@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s2-u13")
+C = "A1-A2"
+
+L(1, "Desporto", "zwemmen, voetballen, hardlopen, fietsen.",
+  ["Falar de desportos que pratica"],
+  vocab=[V("v-zwemmen","zwemmen","nadar","verb"), V("v-voetballen","voetballen","jogar futebol","verb"), V("v-hardlopen","hardlopen","correr (desporto)","verb",note="ik loop hard"),
+         V("v-fietsen","fietsen","andar de bicicleta","verb"), V("v-sportschool","sportschool","ginásio","noun","de"), V("v-wedstrijd","wedstrijd","jogo|competição","noun","de")],
+  ex=[("Ik zwem twee keer per week.","Nado duas vezes por semana."),("Hij voetbalt op zaterdag.","Ele joga futebol ao sábado."),("Ik ga naar de sportschool.","Vou ao ginásio.")],
+  gram=[G("g-verbos-desporto","Desporto como verbo","Muitos desportos são verbos: **zwemmen, voetballen, tennissen, fietsen, hardlopen**. *Ik voetbal* (jogo futebol). Também *ik doe aan yoga* (pratico yoga).",
+    [("Ik tennis graag.","Gosto de jogar ténis.")],
+    "Em português «jogar futebol»; em neerlandês um só verbo: voetballen.")],
+  review=["v-sporten","v-graag-verb","v-week"],
+  cefr=C, exs=[
+    MA([("zwemmen","nadar"),("voetballen","jogar futebol"),("hardlopen","correr"),("fietsen","andar de bicicleta"),("sportschool","ginásio")], "Desporto.", ["v-zwemmen","v-voetballen","v-hardlopen","v-fietsen","v-sportschool"]),
+    CJ("zwemmen","ik","Ik ___ graag.", ["zwem"], "zwemmen → ik zwem.", ["v-zwemmen"]),
+    CJ("voetballen","hij","Hij ___ op zaterdag.", ["voetbalt"], "voetballen → hij voetbalt.", ["v-voetballen"]),
+    TR("pt-nl","Vou ao ginásio.", ["Ik ga naar de sportschool"], "naar de sportschool.", ["v-sportschool"]),
+    TR("nl-pt","Ik zwem twee keer per week.", ["Nado duas vezes por semana"], "keer per week.", ["v-zwemmen"]),
+    AR("wedstrijd","o jogo","de", "«De wedstrijd».", ["v-wedstrijd"]),
+    FE(["Ik","speel","voetballen."], 2, "voetbal", "Ou «ik voetbal», ou «ik speel voetbal» (o nome do jogo).", ["v-voetballen"]),
+    LI("Ik loop elke ochtend hard.", ["Ik loop elke ochtend hard"], "Corro todas as manhãs.", "hardlopen é separável.", ["v-hardlopen"]),
+    FB("Kijk je naar de ___ van Ajax?", ["wedstrijd"], "wedstrijd = jogo.", ["v-wedstrijd"], choices=["wedstrijd","sportschool","fiets"], tr="Vês o jogo do Ajax?"),
+    WO("Gosto de andar de bicicleta ao fim de semana.", ["Ik","fiets","graag","in","het","weekend"], "verbo + graag.", ["v-fietsen"]),
+  ], diff=2, mins=5)
+
+L(2, "Música, leitura e cinema", "luisteren naar muziek, lezen, naar de film gaan.",
+  ["Falar de passatempos culturais"],
+  vocab=[V("v-muziek","muziek","música","noun","de"), V("v-film","film","filme","noun","de","films"), V("v-bioscoop","bioscoop","cinema","noun","de"),
+         V("v-spelen","spelen","jogar|tocar (instrumento)","verb",note="gitaar spelen = tocar guitarra"), V("v-gitaar","gitaar","guitarra","noun","de"), V("v-concert","concert","concerto","noun","het")],
+  ex=[("Ik luister graag naar muziek.","Gosto de ouvir música."),("Zullen we naar de bioscoop gaan?","Vamos ao cinema?"),("Zij speelt gitaar.","Ela toca guitarra.")],
+  review=["v-luisteren","v-lezen","v-boek","v-graag-verb"],
+  cefr=C, exs=[
+    MA([("muziek","música"),("film","filme"),("bioscoop","cinema"),("gitaar","guitarra"),("concert","concerto")], "Cultura.", ["v-muziek","v-film","v-bioscoop","v-gitaar","v-concert"]),
+    TR("pt-nl","Gosto de ouvir música.", ["Ik luister graag naar muziek"], "luisteren naar.", ["v-muziek","v-luisteren"]),
+    TR("pt-nl","Ela toca guitarra.", ["[Zij|Ze] speelt gitaar"], "spelen = tocar.", ["v-spelen","v-gitaar"]),
+    TR("nl-pt","Zullen we naar de bioscoop gaan?", ["Vamos ao cinema"], "Zullen we…?", ["v-bioscoop"]),
+    FE(["Ik","luister","graag","muziek."], 3, "naar muziek", "luisteren naar: ik luister graag naar muziek.", ["v-luisteren"]),
+    AR("concert","o concerto","het", "«Het concert».", ["v-concert"]),
+    AR("bioscoop","o cinema","de", "«De bioscoop».", ["v-bioscoop"]),
+    FB("Welke ___ draait er vanavond?", ["film"], "Que filme passa hoje?", ["v-film"], choices=["film","gitaar","muziek"], tr="Que filme passa hoje à noite?"),
+    LI("Ik lees graag in bed.", ["Ik lees graag in bed"], "Gosto de ler na cama.", "in bed (sem artigo).", ["v-lezen"]),
+    DL([("Sanne","Wat doe je in je vrije tijd?","O que fazes no teu tempo livre?"),("Pedro","")], ["*Ik speel gitaar en ik lees veel.","Ik ben vrij.|Não responde.","Om acht uur.|Responde a «hoe laat»."], "vrije tijd = tempo livre.", ["v-spelen"]),
+  ], diff=2, mins=5)
+
+L(3, "Gostar de fazer: graag, liever, het liefst", "Preferências: gosto, prefiro, o que mais gosto.",
+  ["Exprimir preferências com graag, liever e het liefst"],
+  vocab=[V("v-liever","liever","preferir (antes)","adverb",note="Ik zwem liever = prefiro nadar."), V("v-het-liefst","het liefst","de preferência|o que mais gosto","expression"),
+         V("v-vrije-tijd","vrije tijd","tempo livre","noun","de"), V("v-hobby","hobby","passatempo|hobby","noun","de","hobby's")],
+  ex=[("Ik fiets graag.","Gosto de andar de bicicleta."),("Ik zwem liever.","Prefiro nadar."),("Het liefst lees ik.","O que mais gosto é de ler."),("Wat zijn je hobby's?","Quais são os teus passatempos?")],
+  gram=[G("g-graag-liever-liefst","graag → liever → het liefst","**graag** (gostar), **liever** (preferir), **het liefst** (gostar mais de tudo): *Ik drink graag thee, ik drink liever koffie, maar het liefst drink ik water.* Ficam depois do verbo (ou no início com inversão).",
+    [("Wat doe je het liefst?","O que gostas mais de fazer?")],
+    "O neerlandês usa um advérbio em três graus; o português usa verbos diferentes.")],
+  review=["v-graag-verb","v-fietsen","v-zwemmen","v-lezen"],
+  cefr=C, exs=[
+    MA([("graag","gostar"),("liever","preferir"),("het liefst","o que mais gosto"),("hobby","passatempo")], "Preferências.", ["v-graag-verb","v-liever","v-het-liefst","v-hobby"]),
+    TR("pt-nl","Prefiro nadar.", ["Ik zwem liever"], "verbo + liever.", ["v-liever","v-zwemmen"]),
+    TR("pt-nl","Quais são os teus passatempos?", ["Wat zijn [je|jouw] hobby's"], "hobby → hobby's.", ["v-hobby"]),
+    TR("nl-pt","Het liefst lees ik een boek.", ["O que mais gosto é de ler um livro","Prefiro (acima de tudo )ler um livro"], "het liefst.", ["v-het-liefst"]),
+    MC("Gosta de chá, prefere café e adora sobretudo água. Qual a ordem?", ["*graag thee, liever koffie, het liefst water","liever thee, graag koffie, het liefst water|Ordem dos graus trocada.","het liefst thee, graag koffie, liever water|Ordem trocada."], "graag < liever < het liefst.", ["v-liever","v-het-liefst"]),
+    FE(["Ik","liever","fiets."], 1, "fiets liever", "Verbo em 2.º: ik fiets liever.", ["v-liever"]),
+    FB("Thee of koffie? — Ik drink ___ koffie.", ["liever"], "Escolha entre duas: liever.", ["v-liever"], choices=["liever","het liefst","graag niet"], tr="Chá ou café? — Prefiro café."),
+    LI("Wat doe je het liefst in je vrije tijd?", ["Wat doe je het liefst in je vrije tijd"], "O que gostas mais de fazer no tempo livre?", "vrije tijd = tempo livre.", ["v-vrije-tijd","v-het-liefst"]),
+    AR("hobby","o passatempo","de", "«De hobby».", ["v-hobby"]),
+    WO("Prefiro ficar em casa.", ["Ik","blijf","liever","thuis"], "liever depois do verbo.", ["v-liever"]),
+  ], diff=2, mins=6)
+
+L(4, "Planos com gaan + infinitivo", "We gaan zwemmen! Ga je mee?",
+  ["Falar de planos com gaan + infinitivo", "Convidar com «ga je mee?»"],
+  vocab=[V("v-meegaan","meegaan","ir junto|vir também","verb",note="Ga je mee? = Vens comigo/connosco?"), V("v-vanavond","vanavond","hoje à noite","adverb"),
+         V("v-zin-hebben","zin hebben in","apetecer","expression",note="Ik heb zin in een film = apetece-me um filme."), V("v-wandelen","wandelen","passear a pé|caminhar","verb")],
+  ex=[("We gaan zwemmen.","Vamos nadar."),("Ga je mee?","Vens connosco?"),("Vanavond ga ik een film kijken.","Hoje à noite vou ver um filme."),("Ik heb zin om te wandelen.","Apetece-me ir passear.")],
+  gram=[G("g-gaan-infinitivo","gaan + infinitivo","**gaan** + infinitivo (no fim) exprime planos próximos: *We **gaan** morgen **zwemmen***. Para convidar: **Ga je mee?** (meegaan é separável: *ik ga mee*).",
+    [("Ik ga boodschappen doen.","Vou fazer compras.")],
+    "Igual ao português «vou + infinitivo», mas o infinitivo vai para o fim da frase.")],
+  review=["v-gaan","v-zin","v-zwemmen","v-fietsen"],
+  cefr=C, exs=[
+    MA([("meegaan","ir junto"),("vanavond","hoje à noite"),("wandelen","passear a pé"),("zin hebben in","apetecer")], "Planos.", ["v-meegaan","v-vanavond","v-wandelen","v-zin-hebben"]),
+    WO("Amanhã vamos nadar.", ["Morgen","gaan","we","zwemmen"], "gaan … + infinitivo no fim.", ["v-zwemmen"], alt=["We gaan morgen zwemmen"]),
+    WO("Hoje à noite vou ver um filme.", ["Vanavond","ga","ik","een","film","kijken"], "Infinitivo no fim.", ["v-vanavond"], alt=["Ik ga vanavond een film kijken"]),
+    TR("pt-nl","Vens connosco?", ["Ga je mee","Ga jij mee","Gaan jullie mee"], "meegaan → ga je mee?", ["v-meegaan"]),
+    TR("nl-pt","Ik heb zin in een ijsje.", ["Apetece-me um gelado","Tenho vontade de (comer )um gelado"], "zin hebben in.", ["v-zin-hebben"]),
+    FE(["We","gaan","zwemmen","morgen."], 2, "morgen zwemmen", "O infinitivo vai para o fim: we gaan morgen zwemmen.", ["v-gaan"]),
+    DL([("Tom","We gaan wandelen in het park. Ga je mee?","Vamos passear no parque. Vens?"),("Eva","")], ["*Ja, leuk! Hoe laat?","Ja, ik ga wandelen mee.|Ordem: ik ga mee.","Nee, ik ben park.|Não faz sentido."], "Aceitar e perguntar a hora.", ["v-meegaan","v-wandelen"]),
+    FB("Ik heb geen ___ in voetbal.", ["zin"], "geen zin hebben in = não apetecer.", ["v-zin-hebben"], choices=["zin","tijd mee","hobby"], tr="Não me apetece futebol."),
+    LI("Zullen we vanavond uit eten gaan?", ["Zullen we vanavond uit eten gaan"], "Vamos jantar fora hoje?", "uit eten gaan = jantar fora.", ["v-vanavond"]),
+    CJ("wandelen","wij","Wij ___ elke zondag.", ["wandelen"], "Plural.", ["v-wandelen"]),
+  ], diff=2, mins=6)
+
+L(5, "O meu tempo livre", "Revisão: desporto, cultura, gostos e planos.",
+  ["Falar dos seus passatempos e combinar uma atividade"],
+  ex=[("In mijn vrije tijd zwem ik en speel ik gitaar. Het liefst ga ik naar concerten.","No tempo livre nado e toco guitarra. O que mais gosto é de ir a concertos.")],
+  review=["v-hobby","v-vrije-tijd","v-graag-verb","v-liever","v-het-liefst","v-meegaan","v-zwemmen","v-muziek","v-bioscoop"],
+  cefr=C, exs=[
+    TR("pt-nl","No tempo livre leio muito.", ["In mijn vrije tijd lees ik veel","Ik lees veel in mijn vrije tijd"], "Inversão.", ["v-vrije-tijd"]),
+    TR("nl-pt","Ik ga liever naar de bioscoop dan naar het theater.", ["Prefiro ir ao cinema do que ao teatro","Prefiro ir ao cinema em vez do teatro"], "liever … dan = preferir … a.", ["v-liever","v-bioscoop"]),
+    MC("«Wat zijn je hobby's?» Melhor resposta:", ["*Zwemmen en lezen.","Om acht uur.|Responde a «hoe laat».","In Utrecht.|Responde a «waar»."], "Hobbies.", ["v-hobby"]),
+    FE(["Ik","ga","vanavond","een","film","kijk."], 5, "kijken", "Depois de «gaan» vem o infinitivo: een film kijken.", ["v-meegaan"]),
+    LI("Ik heb geen tijd voor hobby's.", ["Ik heb geen tijd voor hobby's"], "Não tenho tempo para passatempos.", "geen tijd.", ["v-hobby"]),
+    CO("text","O fim de semana do Pedro", "In het weekend heeft Pedro veel vrije tijd. Op zaterdag voetbalt hij met vrienden. Daarna gaan ze iets drinken. Op zondag gaat hij liever niet naar buiten: hij speelt gitaar en kijkt films. Het liefst kijkt hij oude films.",
+       [("O que faz o Pedro ao sábado?", ["*Joga futebol com amigos","Toca guitarra","Vai ao cinema"]),("Que filmes prefere?", ["*Filmes antigos","Filmes de ação","Não vê filmes"])],
+       "naar buiten gaan = sair (de casa).", ["v-voetballen","v-het-liefst"]),
+    DL([("Ana","Heb je zin om zaterdag te gaan wandelen?","Apetece-te ir passear no sábado?"),("Tom","")], ["*Ja, leuk! Waar gaan we heen?","Ja, ik heb wandelen.|Não faz sentido.","Ik ben zaterdag.|Não responde."], "Aceitar e perguntar.", ["v-zin-hebben","v-wandelen"]),
+    MA([("zwemmen","nadar"),("gitaar spelen","tocar guitarra"),("wandelen","passear"),("hardlopen","correr")], "Atividades.", ["v-zwemmen","v-spelen","v-wandelen","v-hardlopen"]),
+    WO("O que mais gosto é de nadar no mar.", ["Het","liefst","zwem","ik","in","de","zee"], "het liefst + inversão.", ["v-het-liefst","v-zee"]),
+    SW("Descreva os seus passatempos (graag, liever, het liefst) e convide alguém para uma atividade.", ["Ik [fiets|zwem|lees] graag(,) maar het liefst [speel ik gitaar|ga ik naar de bioscoop](.) Ga je zaterdag mee [zwemmen|fietsen|wandelen]"],
+       ["Usa graag, liever ou het liefst","Convite com «ga je mee…?»","Infinitivo no fim"], 10, "Modelo: «Ik zwem graag, maar het liefst speel ik gitaar. Ga je zaterdag mee fietsen?»", ["v-hobby"]),
+  ], diff=2, mins=7)
+
+W()
