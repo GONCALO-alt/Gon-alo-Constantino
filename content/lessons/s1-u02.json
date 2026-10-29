@@ -1,0 +1,1869 @@
+{
+  "unitId": "s1-u02",
+  "lessons": [
+    {
+      "id": "s1-u02-l001",
+      "unitId": "s1-u02",
+      "order": 1,
+      "title": "Eu sou…",
+      "description": "Dizer quem é com «ik ben» e fazer perguntas simples com «ben jij…?».",
+      "cefr": "A1",
+      "objectives": [
+        "Usar ik ben e jij bent",
+        "Responder sim ou não",
+        "Perceber que o neerlandês não distingue «ser» e «estar»"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ik",
+          "nl": "ik",
+          "pt": [
+            "eu"
+          ],
+          "pos": "pronoun"
+        },
+        {
+          "id": "v-jij",
+          "nl": "jij",
+          "pt": [
+            "tu"
+          ],
+          "pos": "pronoun",
+          "note": "Forma átona: je."
+        },
+        {
+          "id": "v-u",
+          "nl": "u",
+          "pt": [
+            "você",
+            "o senhor",
+            "a senhora"
+          ],
+          "pos": "pronoun",
+          "note": "Forma de cortesia."
+        },
+        {
+          "id": "v-zijn",
+          "nl": "zijn",
+          "pt": [
+            "ser",
+            "estar"
+          ],
+          "pos": "verb",
+          "note": "ik ben, jij bent, u bent, hij/zij is."
+        },
+        {
+          "id": "v-ja",
+          "nl": "ja",
+          "pt": [
+            "sim"
+          ],
+          "pos": "interjection"
+        },
+        {
+          "id": "v-nee",
+          "nl": "nee",
+          "pt": [
+            "não"
+          ],
+          "pos": "interjection",
+          "note": "Resposta a uma pergunta. A negação de verbos («não sou») aprende-se mais tarde."
+        },
+        {
+          "id": "v-student",
+          "nl": "student",
+          "pt": [
+            "estudante"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "studenten"
+        }
+      ],
+      "reviewVocabulary": [],
+      "examples": [
+        {
+          "nl": "Ik ben Ana.",
+          "pt": "Sou a Ana.",
+          "note": "Sem artigo antes do nome."
+        },
+        {
+          "nl": "Ik ben student.",
+          "pt": "Sou estudante."
+        },
+        {
+          "nl": "Ben jij Tom?",
+          "pt": "És o Tom?"
+        },
+        {
+          "nl": "Ja, ik ben Tom.",
+          "pt": "Sim, sou o Tom."
+        },
+        {
+          "nl": "Bent u meneer Jansen?",
+          "pt": "É o senhor Jansen?"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-zijn-presente",
+          "title": "Ser ou estar? Só «zijn»",
+          "body": "O neerlandês tem um só verbo para «ser» e «estar»: **zijn**. No presente: **ik ben**, **jij bent**, **u bent**, **hij/zij is**. O pronome sujeito é obrigatório: não se pode dizer só «ben student».",
+          "examples": [
+            {
+              "nl": "Ik ben Ana.",
+              "pt": "Sou a Ana."
+            },
+            {
+              "nl": "Ik ben moe.",
+              "pt": "Estou cansado/a."
+            }
+          ],
+          "contrastWithPt": "Em português o verbo já indica a pessoa («sou»), por isso o pronome pode cair. Em neerlandês tem de estar sempre presente. E os nomes próprios não levam artigo: «Ik ben Ana», não «de Ana»."
+        },
+        {
+          "id": "g-pergunta-inversao",
+          "title": "Perguntas de sim/não",
+          "body": "Para fazer uma pergunta de sim ou não, coloca-se o verbo **no início**: **Ben jij Tom?** Quando **jij/je** vem a seguir ao verbo, o verbo perde o **-t** final: jij bent → **ben jij?**",
+          "examples": [
+            {
+              "nl": "Ben jij student?",
+              "pt": "És estudante?"
+            },
+            {
+              "nl": "Bent u mevrouw Visser?",
+              "pt": "É a senhora Visser?"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u02-l001-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "prompt": "Como se diz «eu sou»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "ik ben",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "jij bent",
+              "correct": false,
+              "feedback": "«Jij bent» = tu és."
+            },
+            {
+              "id": "c",
+              "text": "ik heet",
+              "correct": false,
+              "feedback": "«Ik heet» = chamo-me."
+            }
+          ],
+          "explanation": "«Ik ben» é a forma do verbo «zijn» (ser/estar) para «ik».",
+          "vocabRefs": [
+            "v-ik",
+            "v-zijn"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e02",
+          "type": "translate",
+          "direction": "pt-nl",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Sou a Ana.",
+          "answers": [
+            "Ik ben Ana"
+          ],
+          "wordBank": [
+            "Ik",
+            "ben",
+            "Ana",
+            "de",
+            "bent"
+          ],
+          "explanation": "Em neerlandês não se usa artigo antes de nomes próprios: «Ik ben Ana», e não «Ik ben de Ana». O sujeito «ik» também é obrigatório.",
+          "vocabRefs": [
+            "v-ik",
+            "v-zijn"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e03",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "verb": "zijn",
+          "pronoun": "jij",
+          "tense": "presente",
+          "sentence": "Jij ___ Tom.",
+          "answers": [
+            "bent"
+          ],
+          "explanation": "zijn: ik ben, jij bent, u bent, hij/zij is.",
+          "vocabRefs": [
+            "v-zijn",
+            "v-jij"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e04",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "verb": "zijn",
+          "pronoun": "ik",
+          "tense": "presente",
+          "sentence": "Ik ___ student.",
+          "answers": [
+            "ben"
+          ],
+          "explanation": "Com «ik» usa-se «ben». Repare: «student» sem artigo, tal como «sou estudante».",
+          "vocabRefs": [
+            "v-zijn",
+            "v-student"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "___ jij Tom? — Ja, ik ben Tom.",
+          "translation": "És o Tom? — Sim, sou o Tom.",
+          "answers": [
+            "Ben"
+          ],
+          "choices": [
+            "Ben",
+            "Bent",
+            "Is"
+          ],
+          "explanation": "Nas perguntas, o verbo vem antes do sujeito. Quando «jij» vem depois do verbo, o verbo perde o -t: «jij bent», mas «ben jij?».",
+          "vocabRefs": [
+            "v-zijn",
+            "v-jij"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e06",
+          "type": "translate",
+          "direction": "nl-pt",
+          "instruction": "Traduza para português.",
+          "prompt": "Nee, ik ben Eva.",
+          "answers": [
+            "Não, (eu )sou (a )Eva"
+          ],
+          "explanation": "Em português o pronome «eu» pode cair e usamos artigo antes do nome; em neerlandês é ao contrário.",
+          "vocabRefs": [
+            "v-nee",
+            "v-ik",
+            "v-zijn"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e07",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "pairs": [
+            {
+              "nl": "ik",
+              "pt": "eu"
+            },
+            {
+              "nl": "jij",
+              "pt": "tu"
+            },
+            {
+              "nl": "ja",
+              "pt": "sim"
+            },
+            {
+              "nl": "nee",
+              "pt": "não"
+            }
+          ],
+          "explanation": "Palavras curtas mas essenciais.",
+          "vocabRefs": [
+            "v-ik",
+            "v-jij",
+            "v-ja",
+            "v-nee"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik ben student.",
+          "answers": [
+            "Ik ben student"
+          ],
+          "translation": "Sou estudante.",
+          "explanation": "Profissões e ocupações usam-se sem artigo depois de «zijn», tal como em português.",
+          "vocabRefs": [
+            "v-student"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e09",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "tokens": [
+            "Ik",
+            "bent",
+            "Pedro."
+          ],
+          "errorIndex": 1,
+          "correction": "ben",
+          "explanation": "Com «ik» o verbo é «ben». «Bent» é para «jij» e «u».",
+          "vocabRefs": [
+            "v-zijn"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras para formar a pergunta.",
+          "translation": "É o senhor Jansen?",
+          "tokens": [
+            "Bent",
+            "u",
+            "meneer",
+            "Jansen?"
+          ],
+          "explanation": "Numa pergunta de sim/não, o verbo vai para o início: «Bent u…?». Com «u» o verbo é «bent».",
+          "vocabRefs": [
+            "v-u",
+            "v-meneer"
+          ]
+        },
+        {
+          "id": "s1-u02-l001-e11",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "lines": [
+            {
+              "speaker": "Tom",
+              "nl": "Hoi! Ben jij Ana?",
+              "pt": "Olá! És a Ana?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, ik ben Ana.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik bent Ana.",
+              "correct": false,
+              "feedback": "Com «ik» usa-se «ben»."
+            },
+            {
+              "id": "c",
+              "text": "Nee, jij bent Ana.",
+              "correct": false,
+              "feedback": "Assim estaria a dizer que o Tom é a Ana!"
+            }
+          ],
+          "explanation": "«Ja, ik ben Ana» — sim, sou a Ana.",
+          "vocabRefs": [
+            "v-ja",
+            "v-zijn"
+          ]
+        }
+      ],
+      "difficulty": 1,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u02-l002",
+      "unitId": "s1-u02",
+      "order": 2,
+      "title": "Como te chamas?",
+      "description": "Perguntar e dizer o nome, de forma informal e formal.",
+      "cefr": "A1",
+      "objectives": [
+        "Perguntar o nome a alguém",
+        "Dizer o próprio nome de três maneiras"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-heten",
+          "nl": "heten",
+          "pt": [
+            "chamar-se"
+          ],
+          "pos": "verb",
+          "note": "ik heet, jij heet, u heet, hij/zij heet."
+        },
+        {
+          "id": "v-hoe",
+          "nl": "hoe",
+          "pt": [
+            "como"
+          ],
+          "pos": "adverb"
+        },
+        {
+          "id": "v-wat",
+          "nl": "wat",
+          "pt": [
+            "o que",
+            "qual"
+          ],
+          "pos": "pronoun"
+        },
+        {
+          "id": "v-naam",
+          "nl": "naam",
+          "pt": [
+            "nome"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "namen"
+        },
+        {
+          "id": "v-mijn",
+          "nl": "mijn",
+          "pt": [
+            "meu",
+            "minha"
+          ],
+          "pos": "determiner"
+        },
+        {
+          "id": "v-je-jouw",
+          "nl": "je",
+          "pt": [
+            "teu",
+            "tua"
+          ],
+          "pos": "determiner",
+          "note": "Forma átona de «jouw». Também é o pronome «tu» átono."
+        },
+        {
+          "id": "v-is",
+          "nl": "is",
+          "pt": [
+            "é",
+            "está"
+          ],
+          "pos": "verb",
+          "note": "Forma de «zijn» para hij, zij, het."
+        }
+      ],
+      "reviewVocabulary": [
+        "v-hallo",
+        "v-ik",
+        "v-zijn",
+        "v-en"
+      ],
+      "examples": [
+        {
+          "nl": "Hoe heet je?",
+          "pt": "Como te chamas?"
+        },
+        {
+          "nl": "Ik heet Pedro.",
+          "pt": "Chamo-me Pedro."
+        },
+        {
+          "nl": "Hoe heet u?",
+          "pt": "Como se chama?"
+        },
+        {
+          "nl": "Wat is je naam?",
+          "pt": "Qual é o teu nome?"
+        },
+        {
+          "nl": "Mijn naam is Sanne de Boer.",
+          "pt": "O meu nome é Sanne de Boer."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-heten",
+          "title": "Heten: chamar-se",
+          "body": "**Hoe heet je?** = Como te chamas? **Ik heet Ana.** = Chamo-me Ana. O verbo **heten** não é reflexivo. Conjugação: ik **heet**, jij **heet**, u **heet**, hij/zij **heet** — a raiz já termina em -t.",
+          "examples": [
+            {
+              "nl": "Hoe heet u?",
+              "pt": "Como se chama?"
+            },
+            {
+              "nl": "Zij heet Sanne.",
+              "pt": "Ela chama-se Sanne."
+            }
+          ],
+          "contrastWithPt": "Em português dizemos «chamo-me» com pronome reflexivo; em neerlandês não há pronome: «ik heet»."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u02-l002-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "prompt": "Como se pergunta «Como te chamas?» a um colega?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoe heet je?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hoe gaat het?",
+              "correct": false,
+              "feedback": "Isso é «Como estás?»."
+            },
+            {
+              "id": "c",
+              "text": "Hoe heet u?",
+              "correct": false,
+              "feedback": "É a forma formal: «Como se chama?»."
+            }
+          ],
+          "explanation": "«Hoe heet je?» é a pergunta informal. Com «u» torna-se formal.",
+          "vocabRefs": [
+            "v-heten",
+            "v-hoe"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e02",
+          "type": "translate",
+          "direction": "pt-nl",
+          "instruction": "Escreva em neerlandês.",
+          "prompt": "Chamo-me Pedro.",
+          "answers": [
+            "Ik heet Pedro",
+            "Mijn naam is Pedro"
+          ],
+          "explanation": "«Ik heet Pedro» é a forma mais comum. Repare que «heten» não é reflexivo: não há equivalente ao «-me» de «chamo-me».",
+          "vocabRefs": [
+            "v-heten"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e03",
+          "type": "translate",
+          "direction": "nl-pt",
+          "instruction": "Traduza para português.",
+          "prompt": "Wat is je naam?",
+          "answers": [
+            "[Qual é o teu nome|Como te chamas]"
+          ],
+          "explanation": "À letra: «O que é o teu nome?». Em português dizemos «qual é o teu nome?».",
+          "vocabRefs": [
+            "v-wat",
+            "v-naam",
+            "v-je-jouw"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e04",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "verb": "heten",
+          "pronoun": "jij",
+          "tense": "presente",
+          "sentence": "Hoe ___ jij?",
+          "answers": [
+            "heet"
+          ],
+          "explanation": "A raiz de «heten» é «heet», que já termina em -t: «jij heet» (não se acrescenta outro t).",
+          "vocabRefs": [
+            "v-heten"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "noun": "naam",
+          "pt": "o nome",
+          "article": "de",
+          "explanation": "«De naam». A maioria dos substantivos usa «de»; terá de memorizar os que usam «het».",
+          "vocabRefs": [
+            "v-naam"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "___ naam is Sanne.",
+          "translation": "O meu nome é Sanne.",
+          "answers": [
+            "Mijn"
+          ],
+          "choices": [
+            "Mijn",
+            "Ik",
+            "Hoe"
+          ],
+          "explanation": "«Mijn» = meu / minha. Os possessivos não levam artigo: «mijn naam» (o meu nome).",
+          "vocabRefs": [
+            "v-mijn",
+            "v-naam"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo na receção.",
+          "lines": [
+            {
+              "speaker": "Rececionista",
+              "nl": "Goedemiddag. Hoe heet u?",
+              "pt": "Boa tarde. Como se chama?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik heet Ana Silva.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben goed.",
+              "correct": false,
+              "feedback": "Isso não responde à pergunta sobre o nome."
+            },
+            {
+              "id": "c",
+              "text": "Hoe heet u?",
+              "correct": false,
+              "feedback": "Está a repetir a pergunta."
+            }
+          ],
+          "explanation": "Responde-se com «Ik heet…» ou «Mijn naam is…».",
+          "vocabRefs": [
+            "v-heten"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Hoe heet u?",
+          "answers": [
+            "Hoe heet u"
+          ],
+          "translation": "Como se chama?",
+          "explanation": "O «u» neerlandês não existe em português: diga «i» com os lábios arredondados, como no francês «tu».",
+          "vocabRefs": [
+            "v-heten",
+            "v-u"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "O meu nome é Tom.",
+          "tokens": [
+            "Mijn",
+            "naam",
+            "is",
+            "Tom"
+          ],
+          "alternatives": [
+            "Tom is mijn naam"
+          ],
+          "explanation": "O verbo «is» fica na segunda posição.",
+          "vocabRefs": [
+            "v-mijn",
+            "v-naam",
+            "v-is"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e10",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "E tu, como te chamas?",
+          "tokens": [
+            "En",
+            "jij,",
+            "hoe",
+            "heet",
+            "je?",
+            "bent",
+            "gaat"
+          ],
+          "answers": [
+            "En jij, hoe heet je?"
+          ],
+          "explanation": "«En jij?» = «e tu?». A pergunta «hoe heet je?» vem a seguir.",
+          "vocabRefs": [
+            "v-en",
+            "v-heten"
+          ]
+        },
+        {
+          "id": "s1-u02-l002-e11",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua apresentação.",
+          "prompt": "Cumprimente e diga o seu nome (use o seu nome verdadeiro ou «Ana»).",
+          "referenceAnswers": [
+            "[Hallo|Hoi|Goedemorgen|Goedemiddag|Goedenavond](,) [ik heet|ik ben|mijn naam is] Ana"
+          ],
+          "checklist": [
+            "Começa com um cumprimento (hallo, hoi, goedemorgen…)",
+            "Usa «ik heet», «ik ben» ou «mijn naam is»",
+            "O nome vem sem artigo"
+          ],
+          "minWords": 3,
+          "explanation": "Modelo: «Hallo, ik heet Ana.» Com o seu próprio nome a resposta também está certa — confirme com a lista.",
+          "vocabRefs": [
+            "v-heten"
+          ]
+        }
+      ],
+      "difficulty": 1,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u02-l003",
+      "unitId": "s1-u02",
+      "order": 3,
+      "title": "Muito prazer",
+      "description": "Apresentar outras pessoas e reagir quando nos apresentam alguém.",
+      "cefr": "A1",
+      "objectives": [
+        "Apresentar alguém com «dit is…»",
+        "Reagir com «aangenaam» ou «leuk je te ontmoeten»"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-aangenaam",
+          "nl": "aangenaam",
+          "pt": [
+            "muito prazer"
+          ],
+          "pos": "expression",
+          "note": "Um pouco formal; muito usado ao apertar a mão."
+        },
+        {
+          "id": "v-leuk-je-te-ontmoeten",
+          "nl": "leuk je te ontmoeten",
+          "pt": [
+            "prazer em conhecer-te"
+          ],
+          "pos": "expression",
+          "note": "Informal. Formal: leuk u te ontmoeten."
+        },
+        {
+          "id": "v-dit-is",
+          "nl": "dit is",
+          "pt": [
+            "este é",
+            "esta é"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-vriend",
+          "nl": "vriend",
+          "pt": [
+            "amigo",
+            "namorado"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "vrienden",
+          "note": "«Mijn vriend» pode significar «o meu namorado», conforme o contexto."
+        },
+        {
+          "id": "v-vriendin",
+          "nl": "vriendin",
+          "pt": [
+            "amiga",
+            "namorada"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "vriendinnen",
+          "note": "«Mijn vriendin» pode significar «a minha namorada»; «een vriendin van mij» = uma amiga minha."
+        },
+        {
+          "id": "v-collega",
+          "nl": "collega",
+          "pt": [
+            "colega"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "collega's"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-mijn",
+        "v-ik",
+        "v-zijn",
+        "v-hoi"
+      ],
+      "examples": [
+        {
+          "nl": "Dit is Pedro.",
+          "pt": "Este é o Pedro."
+        },
+        {
+          "nl": "Dit is mijn collega Sanne.",
+          "pt": "Esta é a minha colega Sanne."
+        },
+        {
+          "nl": "Aangenaam!",
+          "pt": "Muito prazer!"
+        },
+        {
+          "nl": "Leuk je te ontmoeten!",
+          "pt": "Prazer em conhecer-te!"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-dit-is",
+          "title": "Dit is…: apresentar alguém",
+          "body": "**Dit is** + nome serve para apresentar pessoas, homens ou mulheres: **dit is Pedro**, **dit is Sanne**. Também se usa para coisas: **dit is mijn koffie**.",
+          "examples": [
+            {
+              "nl": "Dit is mijn collega Eva.",
+              "pt": "Esta é a minha colega Eva."
+            }
+          ],
+          "contrastWithPt": "Em português mudamos «este/esta» conforme o género e usamos artigo antes do nome («este é o Pedro»). Em neerlandês, «dit is» é invariável e o nome vai sem artigo."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u02-l003-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "prompt": "Numa reunião de trabalho, apresentam-lhe um cliente. O que diz?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Aangenaam.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Doei!",
+              "correct": false,
+              "feedback": "«Doei» é uma despedida informal."
+            },
+            {
+              "id": "c",
+              "text": "Welterusten.",
+              "correct": false,
+              "feedback": "«Welterusten» diz-se a quem vai dormir."
+            }
+          ],
+          "explanation": "«Aangenaam» (muito prazer) é a reação clássica a uma apresentação, sobretudo em contexto formal.",
+          "vocabRefs": [
+            "v-aangenaam"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e02",
+          "type": "translate",
+          "direction": "nl-pt",
+          "instruction": "Traduza para português.",
+          "prompt": "Dit is mijn vriend Tom.",
+          "answers": [
+            "Este é o meu [amigo|namorado](,) Tom"
+          ],
+          "explanation": "«Vriend» tanto pode ser «amigo» como «namorado» — o contexto decide.",
+          "vocabRefs": [
+            "v-dit-is",
+            "v-vriend",
+            "v-mijn"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e03",
+          "type": "translate",
+          "direction": "pt-nl",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Esta é a Sanne.",
+          "answers": [
+            "Dit is Sanne"
+          ],
+          "wordBank": [
+            "Dit",
+            "is",
+            "de",
+            "Sanne",
+            "ben"
+          ],
+          "explanation": "«Dit is» serve para homens e mulheres. E lembre-se: sem artigo antes do nome.",
+          "vocabRefs": [
+            "v-dit-is"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e04",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "pairs": [
+            {
+              "nl": "aangenaam",
+              "pt": "muito prazer"
+            },
+            {
+              "nl": "de collega",
+              "pt": "o colega"
+            },
+            {
+              "nl": "dit is",
+              "pt": "este é"
+            },
+            {
+              "nl": "de vriendin",
+              "pt": "a amiga"
+            }
+          ],
+          "explanation": "Expressões úteis para apresentar pessoas.",
+          "vocabRefs": [
+            "v-aangenaam",
+            "v-collega",
+            "v-dit-is",
+            "v-vriendin"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "noun": "collega",
+          "pt": "o/a colega",
+          "article": "de",
+          "explanation": "As palavras que designam pessoas usam quase sempre «de»: de collega, de vriend, de student.",
+          "vocabRefs": [
+            "v-collega"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "lines": [
+            {
+              "speaker": "Ana",
+              "nl": "Tom, dit is Pedro.",
+              "pt": "Tom, este é o Pedro."
+            },
+            {
+              "speaker": "Tom",
+              "nl": "Hoi Pedro, leuk je te ontmoeten!",
+              "pt": "Olá Pedro, prazer em conhecer-te!"
+            },
+            {
+              "speaker": "Pedro",
+              "nl": ""
+            }
+          ],
+          "blankLine": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoi Tom! Leuk je te ontmoeten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben goed.",
+              "correct": false,
+              "feedback": "Ninguém perguntou como está."
+            },
+            {
+              "id": "c",
+              "text": "Tot straks!",
+              "correct": false,
+              "feedback": "Acabaram de se conhecer; não é altura de se despedir."
+            }
+          ],
+          "explanation": "Responde-se com a mesma fórmula, ou com «aangenaam».",
+          "vocabRefs": [
+            "v-leuk-je-te-ontmoeten"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e07",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Leuk je te ___!",
+          "translation": "Prazer em conhecer-te!",
+          "answers": [
+            "ontmoeten"
+          ],
+          "choices": [
+            "ontmoeten",
+            "heten",
+            "gaan"
+          ],
+          "explanation": "«Ontmoeten» = conhecer / encontrar-se com alguém.",
+          "vocabRefs": [
+            "v-leuk-je-te-ontmoeten"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Aangenaam, ik ben Pedro.",
+          "answers": [
+            "Aangenaam(,) ik ben Pedro"
+          ],
+          "translation": "Muito prazer, sou o Pedro.",
+          "explanation": "«aa» é um «a» longo, aberto.",
+          "vocabRefs": [
+            "v-aangenaam"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e09",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "tokens": [
+            "Dit",
+            "is",
+            "de",
+            "Pedro."
+          ],
+          "errorIndex": 2,
+          "correction": "(retirar)",
+          "explanation": "Os nomes próprios não levam artigo em neerlandês: «Dit is Pedro».",
+          "vocabRefs": [
+            "v-dit-is"
+          ]
+        },
+        {
+          "id": "s1-u02-l003-e10",
+          "type": "expression",
+          "instruction": "Escolha a opção certa.",
+          "expression": "Leuk je te ontmoeten",
+          "literal": "Agradável conhecer-te",
+          "prompt": "Quando se usa esta expressão?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Quando se conhece alguém pela primeira vez",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Para se despedir à noite",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Para pedir desculpa",
+              "correct": false
+            }
+          ],
+          "explanation": "É o nosso «prazer em conhecer-te». Na forma formal: «leuk u te ontmoeten».",
+          "vocabRefs": [
+            "v-leuk-je-te-ontmoeten"
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u02-l004",
+      "unitId": "s1-u02",
+      "order": 4,
+      "title": "De onde és?",
+      "description": "Dizer de onde é e onde vive.",
+      "cefr": "A1",
+      "objectives": [
+        "Perguntar e dizer a origem com komen uit",
+        "Perguntar e dizer onde vive com wonen",
+        "Perceber a queda do -t nas perguntas com jij"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-komen-uit",
+          "nl": "komen uit",
+          "pt": [
+            "ser de",
+            "vir de"
+          ],
+          "pos": "expression",
+          "note": "ik kom uit, jij komt uit, u komt uit."
+        },
+        {
+          "id": "v-waar",
+          "nl": "waar",
+          "pt": [
+            "onde"
+          ],
+          "pos": "adverb"
+        },
+        {
+          "id": "v-vandaan",
+          "nl": "vandaan",
+          "pt": [
+            "de onde (com waar)"
+          ],
+          "pos": "adverb",
+          "note": "Waar … vandaan? = De onde…?"
+        },
+        {
+          "id": "v-wonen",
+          "nl": "wonen",
+          "pt": [
+            "morar",
+            "viver"
+          ],
+          "pos": "verb",
+          "note": "ik woon, jij woont, u woont."
+        },
+        {
+          "id": "v-in",
+          "nl": "in",
+          "pt": [
+            "em"
+          ],
+          "pos": "preposition"
+        },
+        {
+          "id": "v-nederland",
+          "nl": "Nederland",
+          "pt": [
+            "os Países Baixos",
+            "a Holanda"
+          ],
+          "pos": "noun",
+          "note": "Nome do país. «Holland» refere-se, em rigor, a duas províncias."
+        },
+        {
+          "id": "v-portugal",
+          "nl": "Portugal",
+          "pt": [
+            "Portugal"
+          ],
+          "pos": "noun"
+        },
+        {
+          "id": "v-maar",
+          "nl": "maar",
+          "pt": [
+            "mas"
+          ],
+          "pos": "conjunction"
+        },
+        {
+          "id": "v-nu",
+          "nl": "nu",
+          "pt": [
+            "agora"
+          ],
+          "pos": "adverb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-ik",
+        "v-jij",
+        "v-u",
+        "v-zijn",
+        "v-student"
+      ],
+      "examples": [
+        {
+          "nl": "Waar kom je vandaan?",
+          "pt": "De onde és?"
+        },
+        {
+          "nl": "Ik kom uit Portugal.",
+          "pt": "Sou de Portugal."
+        },
+        {
+          "nl": "Waar woon je?",
+          "pt": "Onde moras?"
+        },
+        {
+          "nl": "Ik woon in Amsterdam.",
+          "pt": "Moro em Amesterdão."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-waar-vandaan",
+          "title": "De onde? Waar … vandaan?",
+          "body": "Para perguntar a origem: **Waar kom je vandaan?** O «waar» vai para o início e o «vandaan» para o fim. Responde-se com **ik kom uit** + país ou cidade.",
+          "examples": [
+            {
+              "nl": "Waar komt u vandaan?",
+              "pt": "De onde é (o senhor / a senhora)?"
+            },
+            {
+              "nl": "Ik kom uit Lissabon.",
+              "pt": "Sou de Lisboa."
+            }
+          ],
+          "contrastWithPt": "Em português usamos «ser de»; em neerlandês usa-se «komen uit» (vir de)."
+        },
+        {
+          "id": "g-presente-regular-t",
+          "title": "Presente: ik woon, jij woont",
+          "body": "Nos verbos regulares, a forma de **ik** é a raiz do verbo (wonen → **woon**). Com **jij** e **u** acrescenta-se **-t**: jij woont, u woont. Mas, se **jij/je** vier a seguir ao verbo, o -t cai: **woon jij…?**, **waar woon je?**. Com **u** o -t mantém-se: **woont u…?**",
+          "examples": [
+            {
+              "nl": "Jij woont in Utrecht.",
+              "pt": "Tu moras em Utrecht."
+            },
+            {
+              "nl": "Woon jij in Utrecht?",
+              "pt": "Moras em Utrecht?"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u02-l004-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "prompt": "Como se pergunta «De onde és?»",
+          "options": [
+            {
+              "id": "a",
+              "text": "Waar kom je vandaan?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Waar woon je?",
+              "correct": false,
+              "feedback": "Isso é «Onde moras?»."
+            },
+            {
+              "id": "c",
+              "text": "Hoe heet je?",
+              "correct": false,
+              "feedback": "Isso é «Como te chamas?»."
+            }
+          ],
+          "explanation": "«Waar … vandaan?» = «de onde?». As duas partes ficam separadas na frase.",
+          "vocabRefs": [
+            "v-waar",
+            "v-vandaan"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e02",
+          "type": "translate",
+          "direction": "pt-nl",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Sou de Portugal.",
+          "answers": [
+            "Ik kom uit Portugal"
+          ],
+          "wordBank": [
+            "Ik",
+            "kom",
+            "uit",
+            "Portugal",
+            "ben",
+            "in"
+          ],
+          "explanation": "Para a origem, o neerlandês usa «komen uit» (vir de): «ik kom uit Portugal».",
+          "vocabRefs": [
+            "v-komen-uit",
+            "v-portugal"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e03",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "verb": "wonen",
+          "pronoun": "jij",
+          "tense": "presente",
+          "sentence": "Jij ___ in Amsterdam.",
+          "answers": [
+            "woont"
+          ],
+          "explanation": "Verbos regulares: ik woon, jij woon**t**, u woon**t**. A forma de «ik» é a raiz do verbo.",
+          "vocabRefs": [
+            "v-wonen"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e04",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo (pergunta).",
+          "verb": "wonen",
+          "pronoun": "jij",
+          "tense": "presente",
+          "sentence": "___ jij in Lissabon?",
+          "answers": [
+            "Woon"
+          ],
+          "explanation": "Quando «jij» vem depois do verbo, o -t cai: «jij woont», mas «woon jij?».",
+          "vocabRefs": [
+            "v-wonen"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Waar kom je ___?",
+          "translation": "De onde és?",
+          "answers": [
+            "vandaan"
+          ],
+          "choices": [
+            "vandaan",
+            "uit",
+            "in"
+          ],
+          "explanation": "«Waar … vandaan?»: o «vandaan» vai para o fim da pergunta.",
+          "vocabRefs": [
+            "v-vandaan"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e06",
+          "type": "translate",
+          "direction": "nl-pt",
+          "instruction": "Traduza para português.",
+          "prompt": "Ik woon in Amsterdam, maar ik kom uit Portugal.",
+          "answers": [
+            "(Eu )[moro|vivo] em [Amesterdão|Amsterdam], mas (eu )[sou|venho] de Portugal"
+          ],
+          "explanation": "Em português de Portugal escreve-se «Amesterdão».",
+          "vocabRefs": [
+            "v-wonen",
+            "v-maar",
+            "v-komen-uit"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e07",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "pairs": [
+            {
+              "nl": "waar",
+              "pt": "onde"
+            },
+            {
+              "nl": "wonen",
+              "pt": "morar"
+            },
+            {
+              "nl": "Nederland",
+              "pt": "os Países Baixos"
+            },
+            {
+              "nl": "maar",
+              "pt": "mas"
+            },
+            {
+              "nl": "nu",
+              "pt": "agora"
+            }
+          ],
+          "explanation": "«Nederland» é o nome do país; «Holland» é, em rigor, apenas uma região.",
+          "vocabRefs": [
+            "v-waar",
+            "v-wonen",
+            "v-nederland",
+            "v-maar",
+            "v-nu"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "De onde és?",
+          "tokens": [
+            "Waar",
+            "kom",
+            "je",
+            "vandaan?"
+          ],
+          "explanation": "A palavra interrogativa vem primeiro, o verbo em segundo lugar e «vandaan» no fim.",
+          "vocabRefs": [
+            "v-waar",
+            "v-vandaan"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e09",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "tokens": [
+            "Waar",
+            "woont",
+            "jij?"
+          ],
+          "errorIndex": 1,
+          "correction": "woon",
+          "explanation": "Com «jij» depois do verbo, o -t desaparece: «Waar woon jij?».",
+          "vocabRefs": [
+            "v-wonen"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e10",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik kom uit Portugal.",
+          "answers": [
+            "Ik kom uit Portugal"
+          ],
+          "translation": "Sou de Portugal.",
+          "explanation": "O ditongo «ui» não existe em português: comece com um «â» e arredonde os lábios para um «i».",
+          "vocabRefs": [
+            "v-komen-uit"
+          ]
+        },
+        {
+          "id": "s1-u02-l004-e11",
+          "type": "comprehension",
+          "kind": "text",
+          "instruction": "Leia o texto e responda.",
+          "title": "A Marta",
+          "text": "Hallo! Ik heet Marta. Ik kom uit Portugal, uit Porto. Ik woon nu in Utrecht. Ik ben student.",
+          "questions": [
+            {
+              "prompt": "De onde é a Marta?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Do Porto",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "De Utrecht",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "De Lisboa",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Onde vive agora?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Em Utrecht",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "No Porto",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Em Amesterdão",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que faz a Marta?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "É estudante",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "É professora",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não diz",
+                  "correct": false
+                }
+              ]
+            }
+          ],
+          "explanation": "«Ik kom uit…» indica a origem; «ik woon nu in…» indica onde vive agora.",
+          "vocabRefs": [
+            "v-komen-uit",
+            "v-wonen",
+            "v-nu"
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u02-l005",
+      "unitId": "s1-u02",
+      "order": 5,
+      "title": "A minha primeira apresentação",
+      "description": "Revisão da unidade: apresentar-se e conhecer alguém.",
+      "cefr": "A1",
+      "objectives": [
+        "Apresentar-se com nome, origem e residência",
+        "Fazer as perguntas básicas a outra pessoa"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-heten",
+        "v-komen-uit",
+        "v-wonen",
+        "v-aangenaam",
+        "v-leuk-je-te-ontmoeten",
+        "v-waar",
+        "v-vandaan",
+        "v-u",
+        "v-ook"
+      ],
+      "examples": [
+        {
+          "nl": "Hallo! Ik heet Ana. Ik kom uit Portugal en ik woon in Lissabon.",
+          "pt": "Olá! Chamo-me Ana. Sou de Portugal e moro em Lisboa."
+        },
+        {
+          "nl": "En jij? Waar kom jij vandaan?",
+          "pt": "E tu? De onde és?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u02-l005-e01",
+          "type": "dialogue",
+          "instruction": "Complete a conversa.",
+          "lines": [
+            {
+              "speaker": "Tom",
+              "nl": "Hoi, ik ben Tom. Hoe heet jij?",
+              "pt": "Olá, sou o Tom. Como te chamas?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": "Ik heet Ana. Leuk je te ontmoeten!",
+              "pt": "Chamo-me Ana. Prazer em conhecer-te!"
+            },
+            {
+              "speaker": "Tom",
+              "nl": "Waar kom je vandaan?",
+              "pt": "De onde és?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": ""
+            }
+          ],
+          "blankLine": 3,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik kom uit Portugal.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik woon Portugal.",
+              "correct": false,
+              "feedback": "Falta a preposição e o verbo não é o certo para a origem."
+            },
+            {
+              "id": "c",
+              "text": "Ik heet Portugal.",
+              "correct": false,
+              "feedback": "«Heten» é para o nome."
+            }
+          ],
+          "explanation": "Para a origem: «ik kom uit…».",
+          "vocabRefs": [
+            "v-komen-uit"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e02",
+          "type": "translate",
+          "direction": "pt-nl",
+          "instruction": "Escreva em neerlandês.",
+          "prompt": "Olá, chamo-me Ana. Sou de Portugal.",
+          "answers": [
+            "[Hallo|Hoi](,) [ik heet|ik ben|mijn naam is] Ana(.) Ik kom uit Portugal"
+          ],
+          "explanation": "Duas frases curtas, cada uma com o verbo em segunda posição.",
+          "vocabRefs": [
+            "v-heten",
+            "v-komen-uit"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e03",
+          "type": "translate",
+          "direction": "nl-pt",
+          "instruction": "Traduza para português.",
+          "prompt": "Aangenaam. Ik ben Tom en ik woon in Utrecht.",
+          "answers": [
+            "[Muito prazer|Prazer](.) (Eu )sou (o )Tom e (eu )[moro|vivo] em Utrecht"
+          ],
+          "explanation": "«Aangenaam» = muito prazer.",
+          "vocabRefs": [
+            "v-aangenaam",
+            "v-wonen"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "prompt": "No balcão da câmara municipal, o funcionário pergunta o seu nome. Qual é a forma adequada?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoe heet u?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hoe heet je?",
+              "correct": false,
+              "feedback": "É informal; num contexto oficial usa-se «u»."
+            },
+            {
+              "id": "c",
+              "text": "Wie ben jij?",
+              "correct": false,
+              "feedback": "É informal e soa brusco."
+            }
+          ],
+          "explanation": "Em contextos oficiais e com desconhecidos usa-se «u».",
+          "vocabRefs": [
+            "v-heten",
+            "v-u"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e05",
+          "type": "match",
+          "instruction": "Associe as perguntas às traduções.",
+          "pairs": [
+            {
+              "nl": "Hoe heet je?",
+              "pt": "Como te chamas?"
+            },
+            {
+              "nl": "Waar kom je vandaan?",
+              "pt": "De onde és?"
+            },
+            {
+              "nl": "Waar woon je?",
+              "pt": "Onde moras?"
+            },
+            {
+              "nl": "Hoe gaat het?",
+              "pt": "Como estás?"
+            }
+          ],
+          "explanation": "As quatro perguntas básicas para conhecer alguém.",
+          "vocabRefs": [
+            "v-heten",
+            "v-vandaan",
+            "v-wonen",
+            "v-hoe-gaat-het"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "tokens": [
+            "Waar",
+            "kom",
+            "je",
+            "uit?"
+          ],
+          "errorIndex": 3,
+          "correction": "vandaan",
+          "explanation": "Na pergunta usa-se «waar … vandaan?»; «uit» aparece na resposta: «ik kom uit Portugal».",
+          "vocabRefs": [
+            "v-vandaan"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Waar woon je?",
+          "answers": [
+            "Waar woon je"
+          ],
+          "translation": "Onde moras?",
+          "explanation": "«oo» é um «ô» longo e fechado.",
+          "vocabRefs": [
+            "v-waar",
+            "v-wonen"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Agora moro em Lisboa.",
+          "tokens": [
+            "Ik",
+            "woon",
+            "nu",
+            "in",
+            "Lissabon"
+          ],
+          "alternatives": [
+            "Nu woon ik in Lissabon"
+          ],
+          "explanation": "As duas ordens estão certas. Se a frase começar por «nu», o verbo continua em segundo lugar e o sujeito passa para depois do verbo: «Nu woon ik…». É a regra do verbo em segunda posição.",
+          "vocabRefs": [
+            "v-nu",
+            "v-wonen"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e09",
+          "type": "comprehension",
+          "kind": "dialogue",
+          "instruction": "Leia o diálogo e responda.",
+          "title": "Numa festa",
+          "text": "Sanne: Hoi! Ik ben Sanne. En jij?\nPedro: Hallo Sanne, ik heet Pedro.\nSanne: Leuk je te ontmoeten! Waar kom je vandaan?\nPedro: Ik kom uit Portugal, maar ik woon nu in Rotterdam.\nSanne: O, leuk! Ik woon ook in Rotterdam.",
+          "questions": [
+            {
+              "prompt": "Onde vive o Pedro?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Em Rotterdam",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Em Portugal",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não diz",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que têm a Sanne e o Pedro em comum?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Vivem na mesma cidade",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "São ambos de Portugal",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Trabalham juntos",
+                  "correct": false
+                }
+              ]
+            }
+          ],
+          "explanation": "«Ik woon ook in Rotterdam» = «eu também moro em Roterdão».",
+          "vocabRefs": [
+            "v-ook",
+            "v-wonen"
+          ]
+        },
+        {
+          "id": "s1-u02-l005-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva 2 ou 3 frases.",
+          "prompt": "Apresente-se: diga o seu nome, de onde é e onde vive.",
+          "referenceAnswers": [
+            "[Hallo|Hoi] ik heet Ana. Ik kom uit Portugal en ik woon in Lissabon"
+          ],
+          "checklist": [
+            "Diz o nome (ik heet / ik ben / mijn naam is)",
+            "Diz a origem com «ik kom uit…»",
+            "Diz onde vive com «ik woon in…»",
+            "O verbo está em segunda posição em cada frase"
+          ],
+          "minWords": 8,
+          "explanation": "Modelo: «Hallo! Ik heet Ana. Ik kom uit Portugal en ik woon in Lissabon.» Use os seus próprios dados e confirme com a lista.",
+          "vocabRefs": [
+            "v-heten",
+            "v-komen-uit",
+            "v-wonen"
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}

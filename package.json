@@ -1,0 +1,46 @@
+{
+  "name": "dutchpath",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Aplicação para aprender neerlandês a partir do português europeu.",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "npm run content:build && vite",
+    "build": "npm run content:build && tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "node tests/e2e/smoke.mjs",
+    "content:validate": "node tools/cli.ts validate",
+    "content:build": "node tools/cli.ts build",
+    "content:status": "node tools/cli.ts status",
+    "content:import": "node tools/cli.ts import",
+    "content:review": "node tools/cli.ts review",
+    "content:generate": "node tools/generate.ts",
+    "content:stats": "node tools/cli.ts stats"
+  },
+  "dependencies": {
+    "idb": "^8.0.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "fake-indexeddb": "^6.2.6",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.7",
+    "vitest": "^3.2.7"
+  }
+}

@@ -1,0 +1,12 @@
+node_modules
+dist
+# Conteúdo compilado a partir de content/ (gerado por `npm run content:build`)
+public/content
+# Segredos locais
+.env
+.env.*
+!.env.example
+# Estado temporário do gerador
+content/drafts/.state
+*.log
+tests/e2e/screenshots
