@@ -148,7 +148,8 @@ switch (cmd) {
     }
     const touched = new Set(all.filter((l) => changed.includes(l.id)).map((l) => l.unitId));
     for (const u of touched) writeLessonFile(files.get(u)!);
-    console.log(`✓ ${changed.length} lições → ${to}.${to === 'published' ? ' Execute "npm run content:build".' : ''}`);
+    console.log(`✓ ${changed.length} lições → ${to}.${to === 'published' && changed.length ? ' Execute "npm run content:build".' : ''}`);
+    if (errors.length) process.exit(1);
     break;
   }
   default:

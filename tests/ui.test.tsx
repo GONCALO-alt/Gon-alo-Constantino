@@ -202,3 +202,24 @@ describe('lição completa', () => {
     expect(await screen.findByRole('heading', { name: 'Traduza para português.' })).toBeTruthy();
   });
 });
+
+describe('revisão', () => {
+  it('depois de uma lição, a revisão mostra as palavras e corre uma sessão', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    await repo.getProfile();
+    await repo.recordLessonCompletion({
+      lessonId: lesson.id, unitId: lesson.unitId, contentVersion: 1, difficulty: 1, xp: 10,
+      startedAt: Date.now() - 60 * 60_000, endedAt: Date.now() - 30 * 60_000,
+      newVocabIds: lesson.newVocabulary.map((v) => v.id),
+      answers: [{ exerciseId: lesson.exercises[0]!.id, exerciseType: 'multipleChoice', verdict: 'incorrect', answer: 'doei', vocabRefs: ['v-hoi'] }],
+    });
+    await go('#/revisao');
+    render(<App />);
+    expect(await screen.findByText('Para rever agora')).toBeTruthy();
+    expect(screen.getByText(/Erros recentes/)).toBeTruthy();
+    await user.click(screen.getByRole('link', { name: /Rever \d+ palavras/ }));
+    expect(await screen.findByRole('button', { name: 'Verificar' })).toBeTruthy();
+    expect(screen.getByRole('progressbar')).toBeTruthy();
+  });
+});
