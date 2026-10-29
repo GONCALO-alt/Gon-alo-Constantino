@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s3-u16")
+C = "A2"
+
+L(1, "Pedidos educados: zou u…?", "Zou u … kunnen? Zou ik … mogen?",
+  ["Fazer pedidos muito educados com zou"],
+  vocab=[V("v-zou","zou","(condicional) -ia","verb",note="Zou u mij kunnen helpen? = Poderia ajudar-me?"), V("v-mogen","mogen","poder (permissão)","verb",note="ik mag, jij mag"),
+         V("v-vriendelijk","vriendelijk","amável|simpático","adjective"), V("v-graag-gedaan2","alstublieft","por favor","expression")],
+  ex=[("Zou u mij kunnen helpen?","Poderia ajudar-me?"),("Zou ik het raam open mogen doen?","Poderia abrir a janela?"),("Dat is heel vriendelijk van u.","Isso é muito amável da sua parte.")],
+  gram=[G("g-zou","Zou = condicional de cortesia","**zou** (de *zullen*) + infinitivo no fim torna os pedidos muito educados: **Zou u … kunnen?** (poderia…?), **Zou ik … mogen?** (poderia eu…?). Com *jij*: **Zou je…?** É mais formal do que *Kun je…?*",
+    [("Zou je de deur dicht willen doen?","Importavas-te de fechar a porta?")],
+    "Equivale ao nosso condicional de cortesia: «poderia», «importava-se de».")],
+  review=["v-kunnen","v-helpen","v-willen","v-u"],
+  cefr=C, exs=[
+    MA([("zou u … kunnen?","poderia…?"),("mogen","poder (permissão)"),("vriendelijk","amável")], "Cortesia.", ["v-zou","v-mogen","v-vriendelijk"]),
+    WO("Poderia ajudar-me?", ["Zou","u","mij","kunnen","helpen?"], "Dois infinitivos no fim.", ["v-zou"]),
+    TR("pt-nl","Poderia falar mais devagar?", ["Zou u langzamer kunnen praten","Zou u wat langzamer kunnen praten","Zou u langzamer kunnen spreken"], "zou … kunnen + infinitivo.", ["v-zou"]),
+    TR("nl-pt","Dat is heel vriendelijk van u.", ["Isso é muito amável da sua parte","É muito simpático da sua parte"], "vriendelijk van u.", ["v-vriendelijk"]),
+    MC("Qual é o pedido mais educado?", ["*Zou u het raam dicht kunnen doen?","Doe het raam dicht!|Imperativo direto.","Raam dicht.|Muito seco."], "zou … kunnen.", ["v-zou"]),
+    FE(["Zou","u","mij","kan","helpen?"], 3, "kunnen", "Depois de «zou» vem o infinitivo: zou u mij kunnen helpen?", ["v-zou"]),
+    CJ("mogen","ik","___ ik hier zitten?", ["Mag"], "mogen → ik mag.", ["v-mogen"]),
+    LI("Zou ik even mogen bellen?", ["Zou ik even mogen bellen"], "Poderia fazer uma chamada?", "zou … mogen.", ["v-mogen"]),
+    FB("___ u mij de weg kunnen wijzen?", ["Zou"], "Pedido educado.", ["v-zou"], choices=["Zou","Ben","Heeft"], tr="Poderia indicar-me o caminho?"),
+    DL([("Ana","Zou ik uw pen even mogen lenen?","Poderia emprestar-me a sua caneta?"),("Senhor","")], ["*Natuurlijk, alstublieft.","Nee, ik zou.|Não faz sentido.","Graag gedaan.|Ainda não deu a caneta."], "Aceitar e entregar.", ["v-mogen"]),
+  ], diff=3, mins=6)
+
+L(2, "Registo formal: u e as fórmulas", "Geachte heer/mevrouw, met vriendelijke groet.",
+  ["Usar fórmulas formais na escrita e na fala"],
+  vocab=[V("v-geachte","geachte","exmo.|caro (formal)","adjective",note="Geachte heer/mevrouw = Exmo(a). Senhor(a)"), V("v-met-vriendelijke-groet","met vriendelijke groet","com os melhores cumprimentos","expression"),
+         V("v-beste","beste","caro|olá (escrita)","adjective",note="Beste Ana = Cara Ana (menos formal que geachte)."), V("v-groeten","groeten","cumprimentos","noun","de")],
+  ex=[("Geachte heer De Vries,","Exmo. Senhor De Vries,"),("Met vriendelijke groet,","Com os melhores cumprimentos,"),("Beste Sanne,","Cara Sanne,"),("Hartelijke groeten!","Muitos cumprimentos!")],
+  gram=[G("g-formal-escrita","Escrita formal","Muito formal: **Geachte heer/mevrouw** + apelido … **Met vriendelijke groet**. Neutro: **Beste** + nome … **Met vriendelijke groet** ou **Groeten**. Informal: **Hoi/Hallo** + nome … **Groetjes**. Em contexto formal trata-se por **u** e **uw**.",
+    [("Geachte mevrouw Jansen,","Exma. Senhora Jansen,")],
+    "O neerlandês escrito é menos cerimonioso do que o português: «Beste» já é adequado em muitos e-mails de trabalho.")],
+  review=["v-u","v-uw","v-meneer","v-mevrouw"],
+  cefr=C, exs=[
+    MA([("geachte","exmo."),("beste","caro"),("met vriendelijke groet","com os melhores cumprimentos"),("groetjes","beijinhos/abraços")], "Fórmulas.", ["v-geachte","v-beste","v-met-vriendelijke-groet","v-groeten"]),
+    MC("Escreve à câmara municipal sem saber o nome do destinatário. Começa com…", ["*Geachte heer/mevrouw,","Hoi!|Demasiado informal.","Beste vriend,|Não é adequado."], "Geachte heer/mevrouw.", ["v-geachte"]),
+    MC("Termina um e-mail profissional com…", ["*Met vriendelijke groet,","Doei!|Informal.","Kusjes,|Muito íntimo."], "Fórmula padrão.", ["v-met-vriendelijke-groet"]),
+    TR("pt-nl","Com os melhores cumprimentos,", ["Met vriendelijke groet"], "Fórmula fixa.", ["v-met-vriendelijke-groet"]),
+    TR("nl-pt","Beste Sanne,", ["Cara Sanne","Olá Sanne"], "Beste + nome.", ["v-beste"]),
+    FE(["Geachte","heer","Pieter,"], 2, "De Vries", "Com «Geachte heer» usa-se o apelido, não o nome próprio.", ["v-geachte"]),
+    LI("Met vriendelijke groet, Ana Silva.", ["Met vriendelijke groet(,) Ana Silva"], "Com os melhores cumprimentos, Ana Silva.", "Fecho formal.", ["v-met-vriendelijke-groet"]),
+    FB("Kunt u mij ___ adres geven?", ["uw"], "Formal: uw.", ["v-uw"], choices=["uw","je","jouw"], tr="Pode dar-me a sua morada?"),
+    WO("Agradeço-lhe antecipadamente.", ["Ik","dank","u","bij","voorbaat"], "bij voorbaat = antecipadamente.", ["v-u"]),
+    CO("text","E-mail formal", "Geachte heer Bakker,\n\nGraag wil ik een afspraak maken om het appartement te bekijken. Zou dat volgende week mogelijk zijn? Ik ben op dinsdag en donderdag beschikbaar.\n\nMet vriendelijke groet,\nPedro Costa",
+       [("O que quer o Pedro?", ["*Marcar uma visita ao apartamento","Cancelar o contrato","Pagar a renda"]),("Quando está disponível?", ["*Terça e quinta","Só segunda","Todos os dias"])],
+       "beschikbaar = disponível.", ["v-geachte","v-zou"]),
+  ], diff=3, mins=6)
+
+L(3, "Reclamar com educação", "Ik wil graag een klacht indienen. Het spijt me, maar…",
+  ["Fazer uma reclamação de forma educada"],
+  vocab=[V("v-klacht-indienen","een klacht indienen","apresentar uma reclamação","expression"), V("v-het-spijt-me","het spijt me","lamento","expression"),
+         V("v-teleurgesteld","teleurgesteld","desiludido","adjective"), V("v-oplossing","oplossing","solução","noun","de")],
+  ex=[("Ik wil graag een klacht indienen.","Queria apresentar uma reclamação."),("Het spijt me, maar dit is niet goed.","Lamento, mas isto não está bem."),("Ik ben erg teleurgesteld.","Estou muito desiludido."),("Wat is de oplossing?","Qual é a solução?")],
+  review=["v-klacht","v-klagen","v-sorry"],
+  cefr=C, exs=[
+    MA([("een klacht indienen","apresentar reclamação"),("het spijt me","lamento"),("teleurgesteld","desiludido"),("oplossing","solução")], "Reclamar.", ["v-klacht-indienen","v-het-spijt-me","v-teleurgesteld","v-oplossing"]),
+    TR("pt-nl","Queria apresentar uma reclamação.", ["Ik wil graag een klacht indienen"], "een klacht indienen.", ["v-klacht-indienen"]),
+    TR("nl-pt","Het spijt me, maar dit is niet goed.", ["Lamento, mas isto não está (bem|certo)"], "het spijt me.", ["v-het-spijt-me"]),
+    TR("pt-nl","Estou muito desiludido.", ["Ik ben erg teleurgesteld","Ik ben heel teleurgesteld"], "teleurgesteld.", ["v-teleurgesteld"]),
+    AR("oplossing","a solução","de", "-ing → de.", ["v-oplossing"]),
+    MC("Qual é a forma mais educada de reclamar?", ["*Het spijt me, maar de soep is koud. Zou u hem kunnen opwarmen?","De soep is koud! Slecht!|Agressivo.","Ik betaal niet!|Agressivo."], "Firme mas educado.", ["v-het-spijt-me"]),
+    FE(["Ik","spijt","het,","maar","dit","klopt","niet."], 0, "Het spijt me", "Expressão fixa: het spijt me.", ["v-het-spijt-me"]),
+    LI("Kunnen we samen een oplossing vinden?", ["Kunnen we samen een oplossing vinden"], "Podemos encontrar uma solução juntos?", "oplossing.", ["v-oplossing"]),
+    DL([("Funcionário","Wat is het probleem?","Qual é o problema?"),("Cliente","")], ["*Het spijt me, maar ik heb de verkeerde maat gekregen.","Jullie zijn slecht!|Agressivo.","Het spijt me!|Não explica o problema."], "Explicar com educação.", ["v-het-spijt-me"]),
+    FB("We zoeken een ___ voor uw probleem.", ["oplossing"], "solução.", ["v-oplossing"], choices=["oplossing","klacht","groet"], tr="Estamos a procurar uma solução para o seu problema."),
+  ], diff=3, mins=6)
+
+L(4, "Situações formais ao telefone", "Met wie spreek ik? Ik verbind u door. Kunt u even wachten?",
+  ["Lidar com chamadas formais"],
+  vocab=[V("v-doorverbinden","doorverbinden","transferir (chamada)","verb",note="Ik verbind u door."), V("v-bericht-achterlaten","een bericht achterlaten","deixar recado","expression"),
+         V("v-bereikbaar","bereikbaar","contactável","adjective"), V("v-spreken-met","met wie spreek ik","com quem falo","expression")],
+  ex=[("Met wie spreek ik?","Com quem estou a falar?"),("Ik verbind u door.","Vou transferir a chamada."),("Kunt u een bericht achterlaten?","Pode deixar recado?"),("Ik ben morgen weer bereikbaar.","Amanhã estou novamente contactável.")],
+  review=["v-bellen","v-even","v-wachten","v-terugbellen"],
+  cefr=C, exs=[
+    MA([("doorverbinden","transferir"),("een bericht achterlaten","deixar recado"),("bereikbaar","contactável"),("met wie spreek ik?","com quem falo?")], "Telefone formal.", ["v-doorverbinden","v-bericht-achterlaten","v-bereikbaar","v-spreken-met"]),
+    TR("pt-nl","Com quem estou a falar?", ["Met wie spreek ik"], "Pergunta fixa.", ["v-spreken-met"]),
+    WO("Vou transferir a chamada.", ["Ik","verbind","u","door"], "Separável.", ["v-doorverbinden"]),
+    TR("nl-pt","Kunt u een bericht achterlaten?", ["Pode deixar (um )recado","Pode deixar uma mensagem"], "achterlaten.", ["v-bericht-achterlaten"]),
+    TR("pt-nl","Pode esperar um momento?", ["Kunt u even wachten","Wilt u even wachten"], "even.", ["v-even"]),
+    FE(["Ik","doorverbind","u","met","de","afdeling."], 1, "verbind … door", "Separável: ik verbind u door met de afdeling.", ["v-doorverbinden"]),
+    LI("Mevrouw Visser is op dit moment niet bereikbaar.", ["Mevrouw Visser is op dit moment niet bereikbaar"], "A senhora Visser não está contactável neste momento.", "op dit moment.", ["v-bereikbaar"]),
+    DL([("Rececionista","Bedrijf Jansen, goedemorgen, u spreekt met Lisa.","Empresa Jansen, bom dia, fala a Lisa."),("Você","")], ["*Goedemorgen, met Ana Silva. Kan ik meneer De Boer spreken?","Hoi Lisa, alles goed?|Demasiado informal.","Met wie spreek ik?|Ela acabou de dizer."], "Apresentar-se e pedir.", ["v-spreken-met"]),
+    FB("Meneer De Boer is in een vergadering. Kan hij u ___ ?", ["terugbellen"], "ligar de volta.", ["v-terugbellen"], choices=["terugbellen","doorverbinden","achterlaten"], tr="O senhor De Boer está numa reunião. Ele pode ligar-lhe de volta?"),
+    CO("dialogue","Chamada", "Receptie: Gemeente Utrecht, goedemiddag.\nPedro: Goedemiddag, met Pedro Costa. Ik heb een vraag over mijn inschrijving.\nReceptie: Een moment, ik verbind u door met de afdeling Burgerzaken.\n...\nReceptie: Het spijt me, er neemt niemand op. Kunt u morgen terugbellen?\nPedro: Ja, dat is goed. Dank u wel.",
+       [("Sobre o que é a chamada?", ["*O registo do Pedro","Uma fatura","Uma consulta médica"]),("O que acontece?", ["*Ninguém atende na secção","O problema é resolvido","O Pedro desliga"])],
+       "Burgerzaken = serviço de registo civil.", ["v-doorverbinden"]),
+  ], diff=3, mins=6)
+
+L(5, "Revisão da Secção 3", "Viver nos Países Baixos: tudo junto.",
+  ["Resolver situações práticas com autonomia"],
+  ex=[("Gisteren ben ik naar de gemeente gegaan en heb ik me ingeschreven.","Ontem fui à câmara e registei-me.")],
+  review=["v-zou","v-geachte","v-met-vriendelijke-groet","v-het-spijt-me","v-gegaan","v-inchecken","v-huurcontract","v-apotheek","v-boeken","v-dan-comp"],
+  cefr=C, exs=[
+    MC("Ik ___ gisteren naar de huisarts gegaan.", ["*ben","heb|gaan usa «zijn»."], "ben gegaan.", ["v-gegaan"]),
+    MC("Começo de um e-mail ao senhorio, o senhor De Boer:", ["*Geachte heer De Boer,","Hoi De Boer!|Informal demais.","Beste meneer Pieter,|Mistura nome próprio com «meneer»."], "Formal.", ["v-geachte"]),
+    TR("pt-nl","Poderia transferir-me para o departamento financeiro?", ["Zou u mij kunnen doorverbinden met de financiële afdeling","Zou u mij met de financiële afdeling kunnen doorverbinden"], "zou … kunnen + separável.", ["v-zou","v-doorverbinden"]),
+    TR("nl-pt","De trein naar Schiphol is uitgevallen, dus ik heb de bus genomen.", ["O comboio para Schiphol foi suprimido, por isso apanhei o autocarro"], "Revisão de passado.", ["v-uitvallen"]),
+    FE(["Rotterdam","is","groter","als","Utrecht."], 3, "dan", "Superioridade: dan.", ["v-dan-comp"]),
+    LI("Zou ik de rekening mogen?", ["Zou ik de rekening mogen"], "Poderia trazer-me a conta?", "Muito educado.", ["v-rekening"]),
+    CO("text","Os primeiros meses do Pedro", "Pedro woont nu drie maanden in Utrecht. In het begin was alles nieuw: hij heeft zich ingeschreven bij de gemeente, een bankrekening geopend en een huis gehuurd. Hij is één keer ziek geweest en is naar de huisarts gegaan. Nu fietst hij elke dag naar zijn werk en spreekt hij al een beetje Nederlands.",
+       [("Há quanto tempo vive o Pedro em Utrecht?", ["*Três meses","Três anos","Três semanas"]),("O que fez no início?", ["*Registou-se, abriu conta e arrendou casa","Comprou uma casa","Foi de férias"]),("Como vai para o trabalho?", ["*De bicicleta","De carro","De comboio"])],
+       "in het begin = no início.", ["v-inschrijven","v-huren","v-gegaan"]),
+    MA([("Zou u … kunnen?","Poderia…?"),("Het spijt me.","Lamento."),("Ik verbind u door.","Vou transferir."),("Met vriendelijke groet","Cumprimentos")], "Cortesia.", ["v-zou","v-het-spijt-me","v-doorverbinden","v-met-vriendelijke-groet"]),
+    WO("Ontem fui à farmácia e comprei medicamentos.", ["Gisteren","ben","ik","naar","de","apotheek","gegaan","en","heb","ik","medicijnen","gekocht"], "Inversão + dois auxiliares.", ["v-apotheek","v-gegaan"]),
+    SW("Escreva um e-mail formal curto ao seu senhorio: o aquecimento avariou e pede uma reparação (use zou u … kunnen).", ["Geachte heer [De Boer|Bakker](,) de verwarming doet het niet(.) Zou u iemand kunnen sturen om het te repareren(?) Met vriendelijke groet(,) [Ana|Pedro]"],
+       ["Abertura formal (Geachte…)","Descrição do problema","Pedido com «zou u … kunnen»","Fecho formal"], 15, "Compare com o modelo e confirme o registo formal (u/uw).", ["v-zou","v-geachte"]),
+  ], diff=3, mins=8)
+
+W()

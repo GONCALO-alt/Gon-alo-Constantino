@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s3-u15")
+C = "A2"
+
+L(1, "O perfeito com hebben", "Ik heb gewerkt: hebben + particípio no fim.",
+  ["Formar o perfeito dos verbos regulares com hebben"],
+  vocab=[V("v-gisteravond","gisteravond","ontem à noite","adverb"), V("v-vorige-week","vorige week","na semana passada","expression"), V("v-al","al","já","adverb")],
+  ex=[("Ik heb gisteren gewerkt.","Ontem trabalhei."),("We hebben pizza gemaakt.","Fizemos pizza."),("Heb je al gegeten?","Já comeste?")],
+  gram=[G("g-perfeito","O perfeito (voltooid tegenwoordige tijd)","Para falar do passado na conversa usa-se sobretudo o **perfeito**: **hebben** (conjugado, 2.ª posição) + **particípio** (no fim). Particípio regular: **ge + raiz + t/d**: werken → **gewerkt**, maken → **gemaakt**, wonen → **gewoond**. Leva **-t** se a raiz acaba em t, k, f, s, ch, p ('t kofschip); senão **-d**.",
+    [("Ik heb Nederlands geleerd.","Aprendi neerlandês."),("Hij heeft lang gewacht.","Ele esperou muito tempo.")],
+    "Em português dizemos «trabalhei» (pretérito perfeito simples); o neerlandês prefere a forma composta «ik heb gewerkt» na fala.")],
+  review=["v-werken","v-maken","v-wonen","v-gisteren","v-hebben"],
+  cefr=C, exs=[
+    MA([("gewerkt","trabalhado"),("gemaakt","feito"),("gewoond","vivido"),("gewacht","esperado")], "Particípios regulares.", ["v-werken","v-maken","v-wonen","v-wachten"]),
+    WO("Ontem trabalhei.", ["Ik","heb","gisteren","gewerkt"], "Particípio no fim.", ["v-werken"], alt=["Gisteren heb ik gewerkt"]),
+    MC("Particípio de «maken»:", ["*gemaakt","gemaakd|Raiz em -k: -t ('t kofschip).","maakte|Isso é o pretérito simples."], "ge + maak + t.", ["v-maken"]),
+    MC("Particípio de «wonen»:", ["*gewoond","gewoont|Raiz em -n: -d.","woonde|Pretérito simples."], "ge + woon + d.", ["v-wonen"]),
+    TR("pt-nl","Fizemos pizza.", ["We hebben pizza gemaakt","Wij hebben pizza gemaakt"], "hebben + gemaakt.", ["v-maken"]),
+    TR("nl-pt","Heb je al gegeten?", ["Já comeste","Já jantaste","Já almoçaste"], "al = já.", ["v-al"]),
+    FE(["Ik","heb","gisteren","gewerkd."], 3, "gewerkt", "Raiz em -k: particípio com -t ('t kofschip): gewerkt.", ["v-werken"]),
+    CJ("wachten","hij","Hij heeft een uur ___ .", ["gewacht"], "ge + wacht (já acaba em t).", ["v-wachten"], tense="passado-perfeito"),
+    LI("Wat heb je vorige week gedaan?", ["Wat heb je vorige week gedaan"], "O que fizeste na semana passada?", "doen → gedaan.", ["v-vorige-week"]),
+    FB("Ik heb drie jaar in Lissabon ___ .", ["gewoond"], "wonen → gewoond.", ["v-wonen"], choices=["gewoond","gewoont","woonde"], tr="Vivi três anos em Lisboa."),
+  ], diff=3, mins=6)
+
+L(2, "Particípios irregulares", "gegeten, gedronken, gezien, geschreven…",
+  ["Usar os particípios irregulares mais frequentes"],
+  vocab=[V("v-gegeten","gegeten","comido (eten)","verb"), V("v-gedronken","gedronken","bebido (drinken)","verb"), V("v-gezien","gezien","visto (zien)","verb"),
+         V("v-geschreven","geschreven","escrito (schrijven)","verb"), V("v-gelezen","gelezen","lido (lezen)","verb"), V("v-gekregen","gekregen","recebido (krijgen)","verb")],
+  ex=[("Ik heb een goede film gezien.","Vi um bom filme."),("Hij heeft een brief geschreven.","Ele escreveu uma carta."),("Heb je dat boek gelezen?","Leste esse livro?")],
+  gram=[G("g-participios-irregulares","Particípios fortes","Muitos verbos frequentes têm particípio **irregular** (forte), geralmente em **-en** e muitas vezes com mudança de vogal: eten → **gegeten**, drinken → **gedronken**, zien → **gezien**, schrijven → **geschreven**, lezen → **gelezen**, krijgen → **gekregen**, doen → **gedaan**, nemen → **genomen**. Têm de ser memorizados.",
+    [("Ik heb koffie gedronken.","Bebi café.")])],
+  review=["v-eten","v-drinken","v-zien","v-schrijven","v-lezen"],
+  cefr=C, exs=[
+    MA([("gegeten","comido"),("gedronken","bebido"),("gezien","visto"),("geschreven","escrito"),("gelezen","lido")], "Irregulares.", ["v-gegeten","v-gedronken","v-gezien","v-geschreven","v-gelezen"]),
+    MC("Particípio de «drinken»:", ["*gedronken","gedrinkt|É irregular.","gedronkt|Não existe."], "drinken → gedronken.", ["v-gedronken"]),
+    MC("Particípio de «schrijven»:", ["*geschreven","geschrijft|É irregular.","geschrijven|A vogal muda: ij → e."], "geschreven.", ["v-geschreven"]),
+    TR("pt-nl","Vi um bom filme.", ["Ik heb een goede film gezien"], "zien → gezien.", ["v-gezien"]),
+    TR("nl-pt","Hij heeft een brief geschreven.", ["Ele escreveu uma carta"], "geschreven.", ["v-geschreven"]),
+    CJ("lezen","jij","Heb jij dat boek ___?", ["gelezen"], "lezen → gelezen.", ["v-gelezen"], tense="passado-perfeito"),
+    FE(["Ik","heb","veel","water","gedrinkt."], 4, "gedronken", "drinken → gedronken.", ["v-gedronken"]),
+    LI("Wat heb je voor je verjaardag gekregen?", ["Wat heb je voor je verjaardag gekregen"], "O que recebeste no teu aniversário?", "krijgen → gekregen.", ["v-gekregen"]),
+    FB("We hebben in een Indonesisch restaurant ___ .", ["gegeten"], "eten → gegeten.", ["v-gegeten"], choices=["gegeten","geëet","geëten"], tr="Comemos num restaurante indonésio."),
+    WO("O que fizeste ontem?", ["Wat","heb","je","gisteren","gedaan?"], "doen → gedaan.", ["v-doen"]),
+  ], diff=3, mins=6)
+
+L(3, "O perfeito com zijn", "Ik ben gegaan: movimento e mudança de estado.",
+  ["Saber quando o perfeito usa zijn"],
+  vocab=[V("v-gegaan","gegaan","ido (gaan)","verb"), V("v-gekomen","gekomen","vindo (komen)","verb"), V("v-geworden","geworden","tornado (worden)","verb"),
+         V("v-geweest","geweest","estado|sido (zijn)","verb"), V("v-gebleven","gebleven","ficado (blijven)","verb")],
+  ex=[("Ik ben naar Amsterdam gegaan.","Fui a Amesterdão."),("Hij is gisteren gekomen.","Ele veio ontem."),("We zijn thuis gebleven.","Ficámos em casa."),("Ben je ooit in Nederland geweest?","Já alguma vez estiveste nos Países Baixos?")],
+  gram=[G("g-perfeito-zijn","Zijn + particípio","Usam **zijn** os verbos de **mudança de lugar** com destino (*gaan, komen, vertrekken*) e de **mudança de estado** (*worden, sterven*), além de **zijn** e **blijven**: *ik **ben** gegaan*, *hij **is** gekomen*, *we **zijn** gebleven*. A maioria dos outros verbos usa **hebben**.",
+    [("Ik ben ziek geworden.","Fiquei doente."),("Ik ben nooit in Japan geweest.","Nunca estive no Japão.")],
+    "Parecido com o francês «je suis allé»; em português usa-se sempre «ter».")],
+  review=["v-gaan","v-komen","v-worden","v-zijn"],
+  cefr=C, exs=[
+    MA([("gegaan","ido"),("gekomen","vindo"),("geworden","tornado"),("geweest","estado"),("gebleven","ficado")], "Particípios com zijn.", ["v-gegaan","v-gekomen","v-geworden","v-geweest","v-gebleven"]),
+    MC("Ik ___ naar huis gegaan.", ["*ben","heb|«gaan» com destino usa «zijn»."], "ben gegaan.", ["v-gegaan"]),
+    MC("Ik ___ een boek gelezen.", ["*heb","ben|«lezen» usa «hebben»."], "heb gelezen.", ["v-gelezen"]),
+    TR("pt-nl","Fui a Amesterdão.", ["Ik ben naar Amsterdam gegaan"], "zijn + gegaan.", ["v-gegaan"]),
+    TR("pt-nl","Ficámos em casa.", ["We zijn thuis gebleven","Wij zijn thuis gebleven"], "blijven → zijn.", ["v-gebleven"]),
+    TR("nl-pt","Ben je ooit in Nederland geweest?", ["Já alguma vez estiveste nos Países Baixos","Já estiveste (alguma vez )nos Países Baixos"], "ooit = alguma vez.", ["v-geweest"]),
+    FE(["Hij","heeft","gisteren","gekomen."], 1, "is", "komen usa «zijn»: hij is gekomen.", ["v-gekomen"]),
+    LI("Ik ben ziek geworden.", ["Ik ben ziek geworden"], "Fiquei doente.", "worden → zijn.", ["v-geworden"]),
+    FB("We ___ gisteren naar het strand gegaan.", ["zijn"], "zijn + gegaan.", ["v-gegaan"], choices=["zijn","hebben","worden"], tr="Ontem fomos à praia."),
+    WO("Nunca estive no Japão.", ["Ik","ben","nooit","in","Japan","geweest"], "zijn + geweest.", ["v-geweest"]),
+  ], diff=3, mins=6)
+
+L(4, "Verbos separáveis no passado", "opgestaan, meegenomen, opgebeld.",
+  ["Formar o perfeito dos verbos separáveis"],
+  vocab=[V("v-opgestaan","opgestaan","levantado (opstaan)","verb"), V("v-meegenomen","meegenomen","levado (meenemen)","verb"),
+         V("v-opgebeld","opgebeld","telefonado (opbellen)","verb"), V("v-aangekomen","aangekomen","chegado (aankomen)","verb")],
+  ex=[("Ik ben om zeven uur opgestaan.","Levantei-me às sete."),("Heb je een paraplu meegenomen?","Trouxeste um guarda-chuva?"),("Ze heeft me gisteren opgebeld.","Ela ligou-me ontem."),("De trein is op tijd aangekomen.","O comboio chegou a horas.")],
+  gram=[G("g-separaveis-perfeito","Separáveis no perfeito","O **ge-** fica **entre** a partícula e o verbo, tudo junto: op**ge**staan, mee**ge**nomen, op**ge**beld, aan**ge**komen. O auxiliar segue as regras normais: *ik **ben** opgestaan* (mudança), *ik **heb** opgebeld*.",
+    [("Ik heb de tafel afgeruimd.","Levantei a mesa.")])],
+  review=["v-opstaan","v-meenemen","v-opbellen","v-aankomen"],
+  cefr=C, exs=[
+    MA([("opgestaan","levantado"),("meegenomen","levado"),("opgebeld","telefonado"),("aangekomen","chegado")], "Separáveis no perfeito.", ["v-opgestaan","v-meegenomen","v-opgebeld","v-aangekomen"]),
+    MC("Particípio de «opbellen»:", ["*opgebeld","geopbeld|ge- fica no meio.","opbeld|Falta ge-."], "op + ge + beld.", ["v-opgebeld"]),
+    MC("Particípio de «meenemen»:", ["*meegenomen","meegenemen|nemen → genomen.","gemeenomen|ge- no meio."], "mee + ge + nomen.", ["v-meegenomen"]),
+    TR("pt-nl","Levantei-me às sete.", ["Ik ben om zeven uur opgestaan"], "zijn + opgestaan.", ["v-opgestaan"]),
+    TR("nl-pt","Heb je een paraplu meegenomen?", ["Levaste um guarda-chuva","Trouxeste (um )guarda-chuva"], "meegenomen.", ["v-meegenomen"]),
+    FE(["Ze","heeft","me","gisteren","geopbeld."], 4, "opgebeld", "ge- no meio: opgebeld.", ["v-opgebeld"]),
+    LI("De trein is op tijd aangekomen.", ["De trein is op tijd aangekomen"], "O comboio chegou a horas.", "zijn + aangekomen.", ["v-aangekomen"]),
+    FB("Ik ben vanochtend om zes uur ___ .", ["opgestaan"], "opstaan → opgestaan.", ["v-opgestaan"], choices=["opgestaan","geopstaan","opstaan"], tr="Esta manhã levantei-me às seis."),
+    WO("Já fizeste as compras?", ["Heb","je","al","boodschappen","gedaan?"], "doen → gedaan.", ["v-boodschappen"]),
+    CJ("aankomen","wij","We zijn om tien uur ___ .", ["aangekomen"], "aankomen → aangekomen.", ["v-aangekomen"], tense="passado-perfeito"),
+  ], diff=3, mins=6)
+
+L(5, "O que fizeste no fim de semana?", "Revisão: contar o passado na conversa.",
+  ["Contar o que fez no fim de semana"],
+  ex=[("Zaterdag ben ik naar de markt gegaan en heb ik vis gekocht.","No sábado fui ao mercado e comprei peixe.")],
+  review=["v-gegaan","v-gegeten","v-gezien","v-gebleven","v-opgestaan","v-weekend","v-geweest"],
+  cefr=C, exs=[
+    DL([("Colega","Wat heb je in het weekend gedaan?","O que fizeste no fim de semana?"),("Você","")], ["*Ik ben naar Utrecht gegaan en heb mijn vrienden gezien.","Ik ga naar Utrecht.|Responde no presente.","Ik heb naar Utrecht gegaan.|gaan usa «zijn»."], "Passado com zijn/hebben.", ["v-gegaan","v-gezien"]),
+    MC("Ik ___ de hele dag thuis gebleven.", ["*ben","heb|blijven usa «zijn»."], "ben gebleven.", ["v-gebleven"]),
+    MC("Particípio de «kopen»:", ["*gekocht","gekoopt|É irregular.","gekopen|Não."], "kopen → gekocht.", ["v-kopen"]),
+    TR("pt-nl","No sábado fui ao mercado.", ["Zaterdag ben ik naar de markt gegaan","Op zaterdag ben ik naar de markt gegaan","Ik ben zaterdag naar de markt gegaan"], "Inversão + zijn.", ["v-gegaan"]),
+    TR("nl-pt","We hebben lekker gegeten en veel gelachen.", ["Comemos bem e rimo-nos muito"], "gelachen = rido.", ["v-gegeten","v-lachen"]),
+    FE(["Ik","ben","een","film","gezien."], 1, "heb", "zien usa «hebben».", ["v-gezien"]),
+    LI("Ik ben laat opgestaan en heb lang ontbeten.", ["Ik ben laat opgestaan en heb lang ontbeten"], "Levantei-me tarde e tomei o pequeno-almoço com calma.", "ontbijten → ontbeten.", ["v-opgestaan"]),
+    CO("text","O fim de semana da Eva", "Vrijdagavond is Eva met collega's uit eten gegaan. Zaterdag heeft ze lang geslapen. 's Middags heeft ze gefietst langs de rivier. Zondag is ze bij haar ouders geweest. Ze heeft veel gegeten en is pas laat naar huis gegaan.",
+       [("O que fez a Eva na sexta à noite?", ["*Jantou fora com colegas","Ficou em casa","Foi andar de bicicleta"]),("Onde esteve no domingo?", ["*Em casa dos pais","No trabalho","Na praia"])],
+       "uit eten gaan = jantar fora; pas laat = só tarde.", ["v-gegaan","v-geweest"]),
+    WO("Já estiveste em Portugal?", ["Ben","je","al","eens","in","Portugal","geweest?"], "al eens = já alguma vez.", ["v-geweest"]),
+    SW("Conte o seu último fim de semana em 3–4 frases (use hebben e zijn).", ["Zaterdag ben ik naar de markt gegaan(.) Ik heb boodschappen gedaan(.) Zondag ben ik thuis gebleven en heb ik een film gezien"],
+       ["Auxiliar certo (zijn para gaan/komen/blijven; hebben para os outros)","Particípios no fim","Inversão depois de «zaterdag/zondag»"], 15, "Compare com o modelo.", ["v-gegaan"]),
+  ], diff=3, mins=7)
+
+W()
