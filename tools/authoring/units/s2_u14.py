@@ -1,0 +1,110 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s2-u14")
+C = "A1-A2"
+
+L(1, "Com que frequência?", "altijd, meestal, vaak, soms, zelden, nooit.",
+  ["Dizer com que frequência faz algo"],
+  vocab=[V("v-meestal","meestal","geralmente|quase sempre","adverb"), V("v-zelden","zelden","raramente","adverb"),
+         V("v-keer","keer","vez","noun","de","keren",note="twee keer per week = duas vezes por semana"), V("v-elke","elke","cada|todos os","determiner",note="elke dag; com palavras het: elk jaar.")],
+  ex=[("Ik fiets meestal naar mijn werk.","Geralmente vou de bicicleta para o trabalho."),("Hij kookt zelden.","Ele raramente cozinha."),("Twee keer per week.","Duas vezes por semana.")],
+  gram=[G("g-frequencia","Escala de frequência","**altijd** (sempre) → **meestal** (geralmente) → **vaak** (muitas vezes) → **soms** (às vezes) → **zelden** (raramente) → **nooit** (nunca). Ficam depois do verbo conjugado. **elke** + palavra de (*elke dag*), **elk** + palavra het (*elk jaar*).",
+    [("Hoe vaak sport je?","Com que frequência fazes desporto?")])],
+  review=["v-altijd","v-vaak","v-soms","v-nooit"],
+  cefr=C, exs=[
+    MA([("altijd","sempre"),("meestal","geralmente"),("soms","às vezes"),("zelden","raramente"),("nooit","nunca")], "Frequência.", ["v-altijd","v-meestal","v-soms","v-zelden","v-nooit"]),
+    TR("pt-nl","Com que frequência fazes desporto?", ["Hoe vaak sport [je|jij]"], "Hoe vaak…?", ["v-vaak"]),
+    TR("pt-nl","duas vezes por semana", ["twee keer per week"], "keer per.", ["v-keer"]),
+    TR("nl-pt","Hij kookt zelden.", ["Ele raramente cozinha","Ele cozinha raramente"], "zelden.", ["v-zelden"]),
+    MC("Qual é mais frequente?", ["*meestal","zelden|«zelden» = raramente.","soms|«soms» = às vezes."], "meestal > vaak > soms > zelden.", ["v-meestal"]),
+    MC("___ jaar ga ik naar Portugal. (todos os)", ["*Elk","Elke|«jaar» é het: elk."], "het jaar → elk jaar.", ["v-elke"]),
+    FE(["Ik","meestal","fiets","naar","school."], 1, "fiets meestal", "Verbo em 2.º: ik fiets meestal.", ["v-meestal"]),
+    FB("Ik drink ___ dag koffie.", ["elke"], "de dag → elke dag.", ["v-elke"], choices=["elke","elk","keer"], tr="Bebo café todos os dias."),
+    LI("Hoe vaak ga je naar de sportschool?", ["Hoe vaak ga je naar de sportschool"], "Com que frequência vais ao ginásio?", "hoe vaak.", ["v-vaak"]),
+    WO("Raramente vejo televisão.", ["Ik","kijk","zelden","tv"], "Advérbio depois do verbo.", ["v-zelden"]),
+  ], diff=2, mins=5)
+
+L(2, "Preposições de lugar", "in, op, aan, bij, tussen, voor, achter.",
+  ["Usar as preposições de lugar mais frequentes"],
+  vocab=[V("v-aan","aan","em (superfície vertical)|junto a","preposition",note="aan de muur = na parede"), V("v-bij","bij","junto de|em casa de","preposition",note="bij de bakker = na padaria; bij mij = em minha casa"),
+         V("v-tussen","tussen","entre","preposition"), V("v-tegenover","tegenover","em frente de","preposition"), V("v-muur","muur","parede","noun","de","muren")],
+  ex=[("De foto hangt aan de muur.","A fotografia está pendurada na parede."),("Ik ben bij de bakker.","Estou na padaria."),("De bank staat tussen de kast en het raam.","O sofá está entre o armário e a janela."),("Het station is tegenover de kerk.","A estação fica em frente da igreja.")],
+  gram=[G("g-preposicoes-lugar","Em: in, op ou aan?","O português usa «em» para tudo; o neerlandês distingue: **in** (dentro: *in de kast*), **op** (em cima, superfície horizontal: *op de tafel*), **aan** (preso a superfície vertical: *aan de muur*), **bij** (junto de, em casa ou na loja de alguém: *bij de dokter*).",
+    [("Hij woont op de eerste verdieping.","Ele vive no primeiro andar."),("Ik zit in de trein.","Estou no comboio.")])],
+  review=["v-in","v-op","v-onder","v-naast","v-achter"],
+  cefr=C, exs=[
+    MA([("aan","na (parede)"),("bij","junto de"),("tussen","entre"),("tegenover","em frente de")], "Preposições.", ["v-aan","v-bij","v-tussen","v-tegenover"]),
+    MC("A fotografia está na parede: de foto hangt ___ de muur.", ["*aan","op|«op» é para superfícies horizontais.","in|Não está dentro da parede."], "aan de muur.", ["v-aan","v-muur"]),
+    MC("Estou na padaria: ik ben ___ de bakker.", ["*bij","in|«bij de bakker» é a forma natural.","op|Não."], "bij + loja/pessoa.", ["v-bij"]),
+    TR("pt-nl","O sofá está entre o armário e a janela.", ["De bank staat tussen de kast en het raam"], "tussen … en …", ["v-tussen"]),
+    TR("nl-pt","Het station is tegenover de kerk.", ["A estação (é|fica) em frente da igreja"], "tegenover.", ["v-tegenover"]),
+    FE(["De","klok","hangt","op","de","muur."], 3, "aan", "Superfície vertical: aan de muur.", ["v-aan"]),
+    FB("Ik ben vanavond ___ mijn ouders.", ["bij"], "bij = em casa de.", ["v-bij"], choices=["bij","aan","tussen"], tr="Hoje à noite estou em casa dos meus pais."),
+    AR("muur","a parede","de", "«De muur».", ["v-muur"]),
+    LI("De sleutels liggen in de la.", ["De sleutels liggen in de la"], "As chaves estão na gaveta.", "de la = a gaveta.", ["v-in"]),
+    WO("O meu filho está em casa do avô.", ["Mijn","zoon","is","bij","opa"], "bij + pessoa.", ["v-bij"]),
+  ], diff=2, mins=6)
+
+L(3, "Preposições de tempo", "om, op, in, van … tot, na, voor, sinds.",
+  ["Usar preposições de tempo"],
+  vocab=[V("v-na","na","depois de","preposition"), V("v-voor-tijd","voor","antes de","preposition",note="voor het eten = antes de comer"),
+         V("v-sinds","sinds","desde","preposition"), V("v-tot","tot","até","preposition"), V("v-tijdens","tijdens","durante","preposition")],
+  ex=[("Om acht uur.","Às oito."),("Op maandag.","À segunda."),("In juli.","Em julho."),("Na het eten.","Depois de comer."),("Ik woon hier sinds 2020.","Vivo aqui desde 2020.")],
+  gram=[G("g-preposicoes-tempo","om, op, in","**om** + horas (*om drie uur*), **op** + dias e datas (*op dinsdag*, *op 5 mei*), **in** + meses, estações e anos (*in mei*, *in de zomer*, *in 2026*). Outras: **na** (depois), **voor** (antes), **sinds** (desde), **tot** (até), **tijdens** (durante).",
+    [("van negen tot vijf","das nove às cinco"),("tijdens de les","durante a aula")])],
+  review=["v-om","v-op","v-in","v-van"],
+  cefr=C, exs=[
+    MA([("na","depois de"),("voor","antes de"),("sinds","desde"),("tot","até"),("tijdens","durante")], "Tempo.", ["v-na","v-voor-tijd","v-sinds","v-tot","v-tijdens"]),
+    MC("___ drie uur", ["*om","op|«op» é para dias e datas.","in|«in» é para meses e anos."], "om + hora.", ["v-om"]),
+    MC("___ vrijdag", ["*op","om|«om» é para horas.","in|«in» é para meses."], "op + dia.", ["v-op"]),
+    MC("___ 2027", ["*in","op|Anos: in.","om|Não."], "in + ano.", ["v-in"]),
+    TR("pt-nl","das nove às cinco", ["van negen tot vijf","van negen tot vijf uur"], "van … tot …", ["v-tot"]),
+    TR("pt-nl","Vivo aqui desde 2020.", ["Ik woon hier sinds 2020","Ik woon hier sinds tweeduizend twintig"], "sinds + presente.", ["v-sinds"]),
+    TR("nl-pt","Na het eten drinken we koffie.", ["Depois de comer bebemos café","Depois do jantar bebemos café"], "na = depois de.", ["v-na"]),
+    FE(["Ik","bel","je","in","maandag."], 3, "op", "Com dias: op maandag.", ["v-op"]),
+    FB("Je telefoon is uit ___ de les.", ["tijdens"], "tijdens = durante.", ["v-tijdens"], choices=["tijdens","sinds","om"], tr="O telemóvel fica desligado durante a aula."),
+    LI("Ik werk van maandag tot en met vrijdag.", ["Ik werk van maandag tot en met vrijdag"], "Trabalho de segunda a sexta (inclusive).", "tot en met = até (inclusive).", ["v-tot"]),
+  ], diff=2, mins=6)
+
+L(4, "Preposições com verbos", "wachten op, denken aan, kijken naar, praten over.",
+  ["Usar verbos com a preposição certa"],
+  vocab=[V("v-denken-aan","denken aan","pensar em","expression"), V("v-kijken-naar","kijken naar","olhar para|ver","expression"),
+         V("v-praten-over","praten over","falar sobre","expression"), V("v-wachten-op","wachten op","esperar por","expression"), V("v-zorgen-voor","zorgen voor","cuidar de","expression")],
+  ex=[("Ik denk aan jou.","Penso em ti."),("We kijken naar de film.","Estamos a ver o filme."),("Waar praten jullie over?","Estão a falar sobre o quê?"),("Ik wacht op de bus.","Espero pelo autocarro.")],
+  gram=[G("g-verbos-preposicao","Verbos + preposição fixa","Muitos verbos têm uma preposição fixa, nem sempre igual à portuguesa: **denken aan** (pensar EM), **kijken naar** (olhar PARA), **wachten op** (esperar POR), **praten over** (falar SOBRE), **zorgen voor** (cuidar DE). Aprenda-os em conjunto.",
+    [("Hij zorgt voor zijn moeder.","Ele cuida da mãe.")])],
+  review=["v-wachten","v-luisteren"],
+  cefr=C, exs=[
+    MA([("denken aan","pensar em"),("kijken naar","olhar para"),("praten over","falar sobre"),("wachten op","esperar por"),("zorgen voor","cuidar de")], "Verbos + preposição.", ["v-denken-aan","v-kijken-naar","v-praten-over","v-wachten-op","v-zorgen-voor"]),
+    MC("Ik denk ___ jou.", ["*aan","in|Decalque do português: denken aan.","op|Não."], "denken aan.", ["v-denken-aan"]),
+    MC("Ik wacht ___ de trein.", ["*op","voor|Decalque: wachten op.","naar|Não."], "wachten op.", ["v-wachten-op"]),
+    TR("pt-nl","Estamos a falar sobre o trabalho.", ["We praten over het werk","Wij praten over het werk"], "praten over.", ["v-praten-over"]),
+    TR("nl-pt","Hij zorgt voor zijn moeder.", ["Ele cuida da (sua )mãe"], "zorgen voor = cuidar de.", ["v-zorgen-voor"]),
+    FE(["Ik","kijk","op","de","televisie."], 2, "naar", "kijken naar.", ["v-kijken-naar"]),
+    FB("Waar ___ je aan?", ["denk"], "Waar … aan? = em que…?", ["v-denken-aan"], choices=["denk","kijk","wacht"], tr="Em que estás a pensar?"),
+    LI("We wachten al een half uur op de bus.", ["We wachten al een half uur op de bus"], "Já estamos há meia hora à espera do autocarro.", "al + tempo = há.", ["v-wachten-op"]),
+    WO("Olha para mim!", ["Kijk","naar","mij!"], "Imperativo + naar.", ["v-kijken-naar"]),
+    TR("pt-nl","Penso muitas vezes em Portugal.", ["Ik denk vaak aan Portugal"], "denken aan.", ["v-denken-aan"]),
+  ], diff=3, mins=6)
+
+L(5, "Onde, quando e com que frequência", "Revisão: frequência e preposições numa história.",
+  ["Usar preposições e frequência em textos curtos"],
+  ex=[("Ik werk van maandag tot vrijdag bij een bank in Utrecht.","Trabalho de segunda a sexta num banco em Utrecht.")],
+  review=["v-meestal","v-zelden","v-bij","v-aan","v-tussen","v-sinds","v-tijdens","v-wachten-op","v-denken-aan"],
+  cefr=C, exs=[
+    MC("Ik woon ___ de tweede verdieping.", ["*op","in|Andares: op.","aan|Não."], "op de verdieping.", ["v-op"]),
+    MC("We eten ___ zes uur.", ["*om","op|Horas: om.","in|Não."], "om + hora.", ["v-om"]),
+    TR("pt-nl","Geralmente espero pelo comboio das oito.", ["Meestal wacht ik op de trein van acht uur","Ik wacht meestal op de trein van acht uur"], "meestal + wachten op.", ["v-meestal","v-wachten-op"]),
+    FE(["Ik","wacht","voor","de","bus."], 2, "op", "wachten op = esperar por.", ["v-wachten-op"]),
+    LI("Tijdens de lunch praten we over het weekend.", ["Tijdens de lunch praten we over het weekend"], "Durante o almoço falamos sobre o fim de semana.", "tijdens + praten over.", ["v-tijdens","v-praten-over"]),
+    CO("text","A semana da Eva", "Eva werkt sinds januari bij een ziekenhuis. Ze werkt van dinsdag tot zaterdag. Meestal fietst ze naar haar werk, maar als het regent, gaat ze met de bus. Op zondag is ze bij haar ouders en op maandag doet ze boodschappen.",
+       [("Desde quando trabalha no hospital?", ["*Desde janeiro","Desde sábado","Há dois anos"]),("O que faz à segunda?", ["*Compras","Trabalha","Visita os pais"])],
+       "als het regent = quando chove.", ["v-sinds","v-meestal","v-bij"]),
+    MA([("om acht uur","às oito"),("op dinsdag","à terça"),("in juni","em junho"),("in de winter","no inverno")], "Preposições de tempo.", ["v-om","v-op","v-in"]),
+    WO("Entre as aulas bebo um café.", ["Tussen","de","lessen","drink","ik","een","koffie"], "Inversão.", ["v-tussen"]),
+    FB("Het schilderij hangt ___ de muur boven de bank.", ["aan"], "aan de muur.", ["v-aan"], choices=["aan","op","tussen"], tr="O quadro está pendurado na parede, por cima do sofá."),
+    SW("Descreva a sua semana com frequência e preposições (om, op, van … tot, bij).", ["Ik werk van maandag tot vrijdag(.) Op zaterdag ben ik meestal bij mijn ouders(.) Ik sport twee keer per week"],
+       ["Pelo menos 3 preposições de tempo/lugar corretas","Um advérbio de frequência depois do verbo","Inversão quando começa por tempo"], 12, "Compare com o modelo.", ["v-meestal"]),
+  ], diff=3, mins=7)
+
+W()

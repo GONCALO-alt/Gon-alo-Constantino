@@ -25,7 +25,7 @@ Regras: IDs de vocabulário únicos em todo o curso (rever com `reviewVocabulary
 | Secção | Unidades com núcleo | Lições | Previstas |
 |---|---|---|---|
 | 1 Primeiros passos | 15/15 | 79 | 600 |
-| 2 A vida quotidiana | 0/15 | 0 | 700 |
+| 2 A vida quotidiana | 15/15 | 75 | 700 |
 | 3 Viver nos Países Baixos | 0/16 | 0 | 700 |
 | 4 Comunicação independente | 0/16 | 0 | 700 |
 | 5 Fluência prática | 0/16 | 0 | 700 |
