@@ -1,0 +1,1454 @@
+{
+  "unitId": "s3-u12",
+  "lessons": [
+    {
+      "id": "s3-u12-l001",
+      "unitId": "s3-u12",
+      "order": 1,
+      "title": "No banco",
+      "description": "de bank, de rekening, de pinpas, een rekening openen.",
+      "cefr": "A2",
+      "objectives": [
+        "Abrir uma conta bancária"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bankrekening",
+          "nl": "bankrekening",
+          "pt": [
+            "conta bancária"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-openen-rekening",
+          "nl": "een rekening openen",
+          "pt": [
+            "abrir uma conta"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-pinpas",
+          "nl": "pinpas",
+          "pt": [
+            "cartão de débito"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-iban",
+          "nl": "IBAN",
+          "pt": [
+            "IBAN"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-pincode",
+          "nl": "pincode",
+          "pt": [
+            "código PIN"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-bank",
+        "v-bsn",
+        "v-paspoort",
+        "v-pinnen"
+      ],
+      "examples": [
+        {
+          "nl": "Ik wil een bankrekening openen.",
+          "pt": "Quero abrir uma conta bancária."
+        },
+        {
+          "nl": "Wat is je IBAN?",
+          "pt": "Qual é o teu IBAN?"
+        },
+        {
+          "nl": "Ik ben mijn pincode vergeten.",
+          "pt": "Esqueci-me do PIN."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u12-l001-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Banco.",
+          "vocabRefs": [
+            "v-bankrekening",
+            "v-pinpas",
+            "v-iban",
+            "v-pincode"
+          ],
+          "pairs": [
+            {
+              "nl": "bankrekening",
+              "pt": "conta bancária"
+            },
+            {
+              "nl": "pinpas",
+              "pt": "cartão de débito"
+            },
+            {
+              "nl": "IBAN",
+              "pt": "IBAN"
+            },
+            {
+              "nl": "pincode",
+              "pt": "PIN"
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l001-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "een rekening openen.",
+          "vocabRefs": [
+            "v-openen-rekening"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quero abrir uma conta bancária.",
+          "answers": [
+            "Ik wil een bankrekening openen",
+            "Ik wil graag een bankrekening openen"
+          ]
+        },
+        {
+          "id": "s3-u12-l001-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "IBAN.",
+          "vocabRefs": [
+            "v-iban"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Wat is je IBAN?",
+          "answers": [
+            "Qual é o teu IBAN"
+          ]
+        },
+        {
+          "id": "s3-u12-l001-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "vergeten com zijn.",
+          "vocabRefs": [
+            "v-pincode"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Esqueci-me do PIN.",
+          "answers": [
+            "Ik ben mijn pincode vergeten"
+          ]
+        },
+        {
+          "id": "s3-u12-l001-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "BSN é essencial.",
+          "vocabRefs": [
+            "v-bsn"
+          ],
+          "prompt": "Para abrir uma conta precisa normalmente de…",
+          "options": [
+            {
+              "id": "a",
+              "text": "BSN, passaporte e morada",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Só o nome",
+              "correct": false,
+              "feedback": "Não chega."
+            },
+            {
+              "id": "c",
+              "text": "Um rijbewijs neerlandês",
+              "correct": false,
+              "feedback": "Não é obrigatório."
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l001-e06",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De pincode».",
+          "vocabRefs": [
+            "v-pincode"
+          ],
+          "noun": "pincode",
+          "pt": "o código PIN",
+          "article": "de"
+        },
+        {
+          "id": "s3-u12-l001-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de bank.",
+          "vocabRefs": [
+            "v-bankrekening"
+          ],
+          "tokens": [
+            "Ik",
+            "open",
+            "een",
+            "bankrekening",
+            "bij",
+            "het",
+            "bank."
+          ],
+          "errorIndex": 5,
+          "correction": "de"
+        },
+        {
+          "id": "s3-u12-l001-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "per post.",
+          "vocabRefs": [
+            "v-pinpas"
+          ],
+          "audioText": "Uw nieuwe pinpas komt per post.",
+          "answers": [
+            "Uw nieuwe pinpas komt per post"
+          ],
+          "translation": "O seu novo cartão chega pelo correio."
+        },
+        {
+          "id": "s3-u12-l001-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "cartão.",
+          "vocabRefs": [
+            "v-pinpas"
+          ],
+          "sentence": "Ik kan niet pinnen: mijn ___ is kapot.",
+          "translation": "Não consigo pagar com cartão: o meu cartão está avariado.",
+          "answers": [
+            "pinpas"
+          ],
+          "choices": [
+            "pinpas",
+            "IBAN",
+            "pincode"
+          ]
+        },
+        {
+          "id": "s3-u12-l001-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Mag ik…?",
+          "vocabRefs": [
+            "v-iban"
+          ],
+          "translation": "Pode dar-me o seu IBAN?",
+          "tokens": [
+            "Mag",
+            "ik",
+            "uw",
+            "IBAN?"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u12-l002",
+      "unitId": "s3-u12",
+      "order": 2,
+      "title": "Pagar e transferir",
+      "description": "overmaken, de rekening betalen, de factuur, Tikkie.",
+      "cefr": "A2",
+      "objectives": [
+        "Fazer transferências e pagar faturas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-overmaken",
+          "nl": "overmaken",
+          "pt": [
+            "transferir (dinheiro)"
+          ],
+          "pos": "verb",
+          "note": "Ik maak het geld over."
+        },
+        {
+          "id": "v-factuur",
+          "nl": "factuur",
+          "pt": [
+            "fatura"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "facturen"
+        },
+        {
+          "id": "v-bedrag",
+          "nl": "bedrag",
+          "pt": [
+            "montante",
+            "quantia"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-machtiging",
+          "nl": "automatische incasso",
+          "pt": [
+            "débito direto"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-betalen",
+        "v-tikkie",
+        "v-iban",
+        "v-geld"
+      ],
+      "examples": [
+        {
+          "nl": "Ik maak het geld vandaag over.",
+          "pt": "Transfiro o dinheiro hoje."
+        },
+        {
+          "nl": "Het bedrag is 50 euro.",
+          "pt": "O montante é 50 euros."
+        },
+        {
+          "nl": "De factuur moet binnen 14 dagen betaald worden.",
+          "pt": "A fatura tem de ser paga em 14 dias."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-betalen-nl",
+          "title": "Pagar nos Países Baixos",
+          "body": "Pagamentos comuns: **pinnen** (cartão), **overmaken** (transferência para IBAN), **iDEAL** (pagamento online direto do banco), **Tikkie** (pedido de pagamento por app) e **automatische incasso** (débito direto, p.ex. para renda e seguro).",
+          "examples": [
+            {
+              "nl": "Kan ik met iDEAL betalen?",
+              "pt": "Posso pagar com iDEAL?"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u12-l002-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pagamentos.",
+          "vocabRefs": [
+            "v-overmaken",
+            "v-factuur",
+            "v-bedrag",
+            "v-machtiging"
+          ],
+          "pairs": [
+            {
+              "nl": "overmaken",
+              "pt": "transferir"
+            },
+            {
+              "nl": "factuur",
+              "pt": "fatura"
+            },
+            {
+              "nl": "bedrag",
+              "pt": "montante"
+            },
+            {
+              "nl": "automatische incasso",
+              "pt": "débito direto"
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l002-e02",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-overmaken"
+          ],
+          "translation": "Transfiro o dinheiro hoje.",
+          "tokens": [
+            "Ik",
+            "maak",
+            "het",
+            "geld",
+            "vandaag",
+            "over"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u12-l002-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "bedrag.",
+          "vocabRefs": [
+            "v-bedrag"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Het bedrag is vijftig euro.",
+          "answers": [
+            "O montante é (de )cinquenta euros",
+            "A quantia é (de )50 euros"
+          ]
+        },
+        {
+          "id": "s3-u12-l002-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Modal + infinitivo.",
+          "vocabRefs": [
+            "v-overmaken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Podes transferir-me o dinheiro?",
+          "answers": [
+            "Kun je het geld overmaken",
+            "Kun je mij het geld overmaken",
+            "Kun je het geld naar mij overmaken"
+          ]
+        },
+        {
+          "id": "s3-u12-l002-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het bedrag».",
+          "vocabRefs": [
+            "v-bedrag"
+          ],
+          "noun": "bedrag",
+          "pt": "o montante",
+          "article": "het"
+        },
+        {
+          "id": "s3-u12-l002-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: ik maak het bedrag over.",
+          "vocabRefs": [
+            "v-overmaken"
+          ],
+          "tokens": [
+            "Ik",
+            "overmaak",
+            "het",
+            "bedrag."
+          ],
+          "errorIndex": 1,
+          "correction": "maak … over"
+        },
+        {
+          "id": "s3-u12-l002-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "binnen = dentro de.",
+          "vocabRefs": [
+            "v-factuur"
+          ],
+          "audioText": "Betaal de factuur binnen veertien dagen.",
+          "answers": [
+            "Betaal de factuur binnen veertien dagen"
+          ],
+          "translation": "Pague a fatura em catorze dias."
+        },
+        {
+          "id": "s3-u12-l002-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "débito direto.",
+          "vocabRefs": [
+            "v-machtiging"
+          ],
+          "sentence": "De huur gaat via automatische ___ .",
+          "translation": "A renda é paga por débito direto.",
+          "answers": [
+            "incasso"
+          ],
+          "choices": [
+            "incasso",
+            "factuur",
+            "pincode"
+          ]
+        },
+        {
+          "id": "s3-u12-l002-e09",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Tikkie = pedido de pagamento.",
+          "vocabRefs": [
+            "v-tikkie"
+          ],
+          "prompt": "Um amigo pagou o jantar e manda-lhe um «Tikkie». O que deve fazer?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Pagar a sua parte pela app",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ignorar",
+              "correct": false,
+              "feedback": "Seria indelicado."
+            },
+            {
+              "id": "c",
+              "text": "Ir ao banco",
+              "correct": false,
+              "feedback": "Não é preciso."
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l002-e10",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "vermelden = indicar.",
+          "vocabRefs": [
+            "v-factuur",
+            "v-bedrag"
+          ],
+          "kind": "text",
+          "title": "Fatura",
+          "text": "Factuur nr. 2024-118\nBedrag: € 89,50\nTe betalen vóór: 30 juni\nIBAN: NL12 BANK 0123 4567 89\nOmschrijving: vermeld het factuurnummer",
+          "questions": [
+            {
+              "prompt": "Quanto tem de pagar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "89,50 €",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "118 €",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "30 €",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que deve indicar na descrição?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "O número da fatura",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "O seu nome",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Nada",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u12-l003",
+      "unitId": "s3-u12",
+      "order": 3,
+      "title": "Dinheiro e poupança",
+      "description": "sparen, uitgeven, het salaris, de lening.",
+      "cefr": "A2",
+      "objectives": [
+        "Falar de dinheiro, gastos e poupança"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-sparen",
+          "nl": "sparen",
+          "pt": [
+            "poupar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-uitgeven",
+          "nl": "uitgeven",
+          "pt": [
+            "gastar"
+          ],
+          "pos": "verb",
+          "note": "Ik geef veel geld uit aan eten."
+        },
+        {
+          "id": "v-salaris",
+          "nl": "salaris",
+          "pt": [
+            "salário"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-lening",
+          "nl": "lening",
+          "pt": [
+            "empréstimo"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-schuld",
+          "nl": "schuld",
+          "pt": [
+            "dívida",
+            "culpa"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "schulden"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-geld",
+        "v-duur",
+        "v-goedkoop"
+      ],
+      "examples": [
+        {
+          "nl": "Ik spaar voor een nieuwe fiets.",
+          "pt": "Poupo para uma bicicleta nova."
+        },
+        {
+          "nl": "Ik geef te veel geld uit.",
+          "pt": "Gasto dinheiro a mais."
+        },
+        {
+          "nl": "Mijn salaris komt op de 25e.",
+          "pt": "O meu salário chega no dia 25."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u12-l003-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Dinheiro.",
+          "vocabRefs": [
+            "v-sparen",
+            "v-uitgeven",
+            "v-salaris",
+            "v-lening",
+            "v-schuld"
+          ],
+          "pairs": [
+            {
+              "nl": "sparen",
+              "pt": "poupar"
+            },
+            {
+              "nl": "uitgeven",
+              "pt": "gastar"
+            },
+            {
+              "nl": "salaris",
+              "pt": "salário"
+            },
+            {
+              "nl": "lening",
+              "pt": "empréstimo"
+            },
+            {
+              "nl": "schuld",
+              "pt": "dívida"
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l003-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "sparen voor.",
+          "vocabRefs": [
+            "v-sparen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Poupo para uma bicicleta nova.",
+          "answers": [
+            "Ik spaar voor een nieuwe fiets"
+          ]
+        },
+        {
+          "id": "s3-u12-l003-e03",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "uitgeven aan.",
+          "vocabRefs": [
+            "v-uitgeven"
+          ],
+          "translation": "Gasto muito dinheiro em comida.",
+          "tokens": [
+            "Ik",
+            "geef",
+            "veel",
+            "geld",
+            "uit",
+            "aan",
+            "eten"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u12-l003-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "op de 25e.",
+          "vocabRefs": [
+            "v-salaris"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Mijn salaris komt op de vijfentwintigste.",
+          "answers": [
+            "O meu salário chega no dia vinte e cinco",
+            "Recebo o salário no dia 25"
+          ]
+        },
+        {
+          "id": "s3-u12-l003-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het salaris».",
+          "vocabRefs": [
+            "v-salaris"
+          ],
+          "noun": "salaris",
+          "pt": "o salário",
+          "article": "het"
+        },
+        {
+          "id": "s3-u12-l003-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: ik geef te veel uit.",
+          "vocabRefs": [
+            "v-uitgeven"
+          ],
+          "tokens": [
+            "Ik",
+            "uitgeef",
+            "te",
+            "veel."
+          ],
+          "errorIndex": 1,
+          "correction": "geef … uit"
+        },
+        {
+          "id": "s3-u12-l003-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "schulden maken.",
+          "vocabRefs": [
+            "v-schuld"
+          ],
+          "audioText": "Ik wil geen schulden maken.",
+          "answers": [
+            "Ik wil geen schulden maken"
+          ],
+          "translation": "Não quero contrair dívidas."
+        },
+        {
+          "id": "s3-u12-l003-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "empréstimo.",
+          "vocabRefs": [
+            "v-lening"
+          ],
+          "sentence": "Voor een huis heb je vaak een ___ nodig.",
+          "translation": "Para uma casa precisas muitas vezes de um empréstimo.",
+          "answers": [
+            "lening",
+            "hypotheek"
+          ],
+          "choices": [
+            "lening",
+            "salaris",
+            "pincode"
+          ]
+        },
+        {
+          "id": "s3-u12-l003-e09",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "gastar.",
+          "vocabRefs": [
+            "v-uitgeven"
+          ],
+          "prompt": "O contrário de «sparen» é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "uitgeven",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "overmaken",
+              "correct": false,
+              "feedback": "= transferir."
+            },
+            {
+              "id": "c",
+              "text": "verdienen",
+              "correct": false,
+              "feedback": "= ganhar."
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l003-e10",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Separável na pergunta.",
+          "vocabRefs": [
+            "v-uitgeven"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quanto gastas por mês?",
+          "answers": [
+            "Hoeveel geef [je|jij] per maand uit"
+          ]
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u12-l004",
+      "unitId": "s3-u12",
+      "order": 4,
+      "title": "Segurança e fraude",
+      "description": "oplichting, phishing, blokkeren, verdacht.",
+      "cefr": "A2",
+      "objectives": [
+        "Reconhecer burlas e bloquear um cartão"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-oplichting",
+          "nl": "oplichting",
+          "pt": [
+            "burla"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-verdacht",
+          "nl": "verdacht",
+          "pt": [
+            "suspeito"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-blokkeren",
+          "nl": "blokkeren",
+          "pt": [
+            "bloquear"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-gestolen",
+          "nl": "gestolen",
+          "pt": [
+            "roubado"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-nooit-delen",
+          "nl": "delen",
+          "pt": [
+            "partilhar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-pinpas",
+        "v-pincode",
+        "v-bank"
+      ],
+      "examples": [
+        {
+          "nl": "Mijn pinpas is gestolen. Ik wil hem blokkeren.",
+          "pt": "Roubaram-me o cartão. Quero bloqueá-lo."
+        },
+        {
+          "nl": "Deze e-mail is verdacht.",
+          "pt": "Este e-mail é suspeito."
+        },
+        {
+          "nl": "Deel nooit je pincode.",
+          "pt": "Nunca partilhes o teu PIN."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-fraude",
+          "title": "Atenção a burlas",
+          "body": "O banco **nunca** pede o PIN ou códigos por telefone, e-mail ou SMS. Mensagens como *«Hoi mam, mijn telefoon is kapot…»* (Olá mãe, o meu telemóvel avariou…) são uma burla conhecida. Em caso de dúvida, ligue para o número oficial do banco.",
+          "examples": [
+            {
+              "nl": "Bel nooit terug naar een onbekend nummer.",
+              "pt": "Nunca ligue de volta para um número desconhecido."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u12-l004-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Segurança.",
+          "vocabRefs": [
+            "v-oplichting",
+            "v-verdacht",
+            "v-blokkeren",
+            "v-gestolen",
+            "v-nooit-delen"
+          ],
+          "pairs": [
+            {
+              "nl": "oplichting",
+              "pt": "burla"
+            },
+            {
+              "nl": "verdacht",
+              "pt": "suspeito"
+            },
+            {
+              "nl": "blokkeren",
+              "pt": "bloquear"
+            },
+            {
+              "nl": "gestolen",
+              "pt": "roubado"
+            },
+            {
+              "nl": "delen",
+              "pt": "partilhar"
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l004-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "blokkeren.",
+          "vocabRefs": [
+            "v-blokkeren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quero bloquear o meu cartão.",
+          "answers": [
+            "Ik wil mijn pinpas blokkeren",
+            "Ik wil mijn pas blokkeren"
+          ]
+        },
+        {
+          "id": "s3-u12-l004-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "delen.",
+          "vocabRefs": [
+            "v-nooit-delen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Deel nooit je pincode.",
+          "answers": [
+            "Nunca partilhes o (teu )PIN",
+            "Nunca partilhe o seu código PIN"
+          ]
+        },
+        {
+          "id": "s3-u12-l004-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Burla.",
+          "vocabRefs": [
+            "v-oplichting"
+          ],
+          "prompt": "Recebe um SMS do «banco» a pedir o PIN. É…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Oplichting",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Normaal",
+              "correct": false,
+              "feedback": "O banco nunca pede o PIN."
+            },
+            {
+              "id": "c",
+              "text": "Een cadeau",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l004-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "gestolen.",
+          "vocabRefs": [
+            "v-gestolen"
+          ],
+          "tokens": [
+            "Mijn",
+            "pinpas",
+            "is",
+            "gestoolen."
+          ],
+          "errorIndex": 3,
+          "correction": "gestolen"
+        },
+        {
+          "id": "s3-u12-l004-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "lijken = parecer.",
+          "vocabRefs": [
+            "v-verdacht"
+          ],
+          "audioText": "Deze e-mail lijkt verdacht.",
+          "answers": [
+            "Deze e-mail lijkt verdacht"
+          ],
+          "translation": "Este e-mail parece suspeito."
+        },
+        {
+          "id": "s3-u12-l004-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pedir bloqueio.",
+          "vocabRefs": [
+            "v-blokkeren"
+          ],
+          "lines": [
+            {
+              "speaker": "Banco",
+              "nl": "Wat is het probleem?",
+              "pt": "Qual é o problema?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Mijn pas is gestolen, kunt u hem blokkeren?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben gestolen.",
+              "correct": false,
+              "feedback": "Diz «fui roubado» de forma estranha."
+            },
+            {
+              "id": "c",
+              "text": "Mijn pincode is 1234.",
+              "correct": false,
+              "feedback": "Nunca diga o PIN!"
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l004-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "suspeitos (-e antes do nome).",
+          "vocabRefs": [
+            "v-verdacht"
+          ],
+          "sentence": "Klik niet op links in ___ e-mails.",
+          "translation": "Não cliques em links de e-mails suspeitos.",
+          "answers": [
+            "verdachte"
+          ],
+          "choices": [
+            "verdachte",
+            "verdacht",
+            "gestolen"
+          ]
+        },
+        {
+          "id": "s3-u12-l004-e09",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-oplichting"
+          ],
+          "noun": "oplichting",
+          "pt": "a burla",
+          "article": "de"
+        },
+        {
+          "id": "s3-u12-l004-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "vragen om = pedir.",
+          "vocabRefs": [
+            "v-pincode"
+          ],
+          "translation": "O banco nunca pede o seu PIN.",
+          "tokens": [
+            "De",
+            "bank",
+            "vraagt",
+            "nooit",
+            "om",
+            "uw",
+            "pincode"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u12-l005",
+      "unitId": "s3-u12",
+      "order": 5,
+      "title": "Finanças do dia a dia",
+      "description": "Revisão: banco, pagamentos e segurança.",
+      "cefr": "A2",
+      "objectives": [
+        "Gerir situações bancárias comuns"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-bankrekening",
+        "v-overmaken",
+        "v-factuur",
+        "v-sparen",
+        "v-uitgeven",
+        "v-blokkeren",
+        "v-pinpas",
+        "v-iban",
+        "v-oplichting"
+      ],
+      "examples": [
+        {
+          "nl": "Ik maak de huur elke maand over via automatische incasso.",
+          "pt": "Pago a renda todos os meses por débito direto."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u12-l005-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Verbos.",
+          "vocabRefs": [
+            "v-overmaken",
+            "v-sparen",
+            "v-uitgeven",
+            "v-blokkeren"
+          ],
+          "pairs": [
+            {
+              "nl": "overmaken",
+              "pt": "transferir"
+            },
+            {
+              "nl": "sparen",
+              "pt": "poupar"
+            },
+            {
+              "nl": "uitgeven",
+              "pt": "gastar"
+            },
+            {
+              "nl": "blokkeren",
+              "pt": "bloquear"
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l005-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Particípio: overgemaakt.",
+          "vocabRefs": [
+            "v-overmaken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Transferi-te o dinheiro.",
+          "answers": [
+            "Ik heb het geld overgemaakt",
+            "Ik heb je het geld overgemaakt"
+          ]
+        },
+        {
+          "id": "s3-u12-l005-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "sparen.",
+          "vocabRefs": [
+            "v-sparen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Hoeveel spaar je per maand?",
+          "answers": [
+            "Quanto poupas por mês"
+          ]
+        },
+        {
+          "id": "s3-u12-l005-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "uitgeven aan: geld uitgeven aan kleren.",
+          "vocabRefs": [
+            "v-uitgeven"
+          ],
+          "tokens": [
+            "Ik",
+            "geef",
+            "veel",
+            "geld",
+            "uit",
+            "op",
+            "kleren."
+          ],
+          "errorIndex": 5,
+          "correction": "aan"
+        },
+        {
+          "id": "s3-u12-l005-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "rood staan = saldo negativo.",
+          "vocabRefs": [
+            "v-bankrekening"
+          ],
+          "audioText": "Uw rekening staat rood.",
+          "answers": [
+            "Uw rekening staat rood"
+          ],
+          "translation": "A sua conta está a descoberto."
+        },
+        {
+          "id": "s3-u12-l005-e06",
+          "type": "comprehension",
+          "instruction": "Leia o diálogo e responda.",
+          "explanation": "verwijderen = apagar.",
+          "vocabRefs": [
+            "v-oplichting",
+            "v-verdacht"
+          ],
+          "kind": "dialogue",
+          "title": "No banco",
+          "text": "Medewerker: Goedemiddag, waarmee kan ik u helpen?\nAna: Ik heb een verdachte sms gekregen. Ze vragen om mijn pincode.\nMedewerker: Dat is oplichting. Wij vragen nooit om uw pincode. Heeft u iets gedeeld?\nAna: Nee, gelukkig niet.\nMedewerker: Heel goed. Verwijder het bericht.",
+          "questions": [
+            {
+              "prompt": "O que recebeu a Ana?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Um SMS suspeito a pedir o PIN",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "O cartão novo",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Uma fatura",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Partilhou o PIN?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Não",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Sim",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não se sabe",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3-u12-l005-e07",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Modal + infinitivo.",
+          "vocabRefs": [
+            "v-factuur"
+          ],
+          "translation": "Posso pagar a fatura com iDEAL?",
+          "tokens": [
+            "Kan",
+            "ik",
+            "de",
+            "factuur",
+            "met",
+            "iDEAL",
+            "betalen?"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u12-l005-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "bloquear.",
+          "vocabRefs": [
+            "v-blokkeren"
+          ],
+          "sentence": "Mijn pinpas is gestolen! Ik moet hem meteen ___.",
+          "translation": "Roubaram-me o cartão! Tenho de bloqueá-lo imediatamente.",
+          "answers": [
+            "blokkeren"
+          ],
+          "choices": [
+            "blokkeren",
+            "sparen",
+            "delen"
+          ]
+        },
+        {
+          "id": "s3-u12-l005-e09",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-iban",
+            "v-tikkie"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Qual é o teu IBAN? Envio-te um Tikkie.",
+          "answers": [
+            "Wat is [je|jouw] IBAN(?) Ik stuur je een Tikkie"
+          ]
+        },
+        {
+          "id": "s3-u12-l005-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Ik spaar elke maand honderd euro. Ik geef veel geld uit aan eten en reizen.»",
+          "vocabRefs": [
+            "v-sparen"
+          ],
+          "prompt": "Escreva 2–3 frases sobre como gere o seu dinheiro (poupar, gastar, pagar).",
+          "referenceAnswers": [
+            "Ik spaar elke maand [honderd|tweehonderd] euro(.) Ik geef veel geld uit aan eten"
+          ],
+          "checklist": [
+            "Usa sparen e uitgeven",
+            "Partícula de «uitgeven» no lugar certo",
+            "Uma frase com «per maand» ou «elke maand»"
+          ],
+          "minWords": 8
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}
