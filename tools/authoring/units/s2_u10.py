@@ -1,0 +1,110 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s2-u10")
+C = "A1-A2"
+
+L(1, "Plurais em -s", "tafels, auto's, meisjes: quando o plural é com -s.",
+  ["Saber quando o plural leva -s ou -'s"],
+  vocab=[V("v-foto","foto","fotografia","noun","de","foto's"),
+         V("v-menu","menu","ementa|menu","noun","het","menu's"), V("v-baby","baby","bebé","noun","de","baby's")],
+  ex=[("twee tafels","duas mesas"),("veel foto's","muitas fotografias","Apóstrofo depois de vogal longa final."),("drie meisjes","três raparigas")],
+  gram=[G("g-plural-s","Plural com -s","Levam **-s**: palavras em **-el, -em, -en, -er, -je** (tafels, bezems, jongens, kamers, meisjes) e muitas palavras estrangeiras. Palavras que acabam em **a, o, u, i, y** levam **'s**: auto's, foto's, menu's. As restantes levam **-en**.",
+    [("de kamer → de kamers","o quarto → os quartos"),("de baby → de baby's","o bebé → os bebés")],
+    "O apóstrofo serve para manter a vogal longa: «fotos» leria-se com «o» curto.")],
+  review=["v-tafel","v-auto","v-meisje","v-jongen","v-leraar"],
+  cefr=C, exs=[
+    MC("Plural de «tafel»:", ["*tafels","tafelen|Palavras em -el levam -s.","tafel's|Só se usa apóstrofo depois de vogal."], "-el → -s.", ["v-tafel"]),
+    MC("Plural de «foto»:", ["*foto's","fotos|Depois de -o usa-se apóstrofo: foto's.","fotoen|Não existe."], "-o → 's.", ["v-foto"]),
+    MC("Plural de «meisje»:", ["*meisjes","meisjen|Diminutivos -je levam -s."], "-je → -s.", ["v-meisje"]),
+    MC("Plural de «boek»:", ["*boeken","boeks|Termina em consoante, sem -el/-er/-en: leva -en."], "boek → boeken.", ["v-boek"]),
+    TR("pt-nl","muitas fotografias", ["veel foto's"], "foto → foto's.", ["v-foto"]),
+    TR("pt-nl","os rapazes e as raparigas", ["de jongens en de meisjes"], "Ambos com -s.", ["v-jongen","v-meisje"]),
+    AR("menu","a ementa","het", "«Het menu».", ["v-menu"]),
+    FE(["Ik","heb","twee","autos."], 3, "auto's", "Depois de vogal: auto's.", ["v-auto"]),
+    FB("De ___ zijn aardig. (leraar)", ["leraren","leraars"], "leraar → leraren (também se aceita leraars).", ["v-leraar"], choices=["leraren","leraaren","leraar's"], tr="Os professores são simpáticos."),
+    LI("Mag ik de menu's?", ["Mag ik de menu's"], "Pode trazer as ementas?", "menu's com apóstrofo.", ["v-menu"]),
+  ], diff=2, mins=5)
+
+L(2, "Plurais irregulares", "kinderen, eieren, steden, dagen…",
+  ["Reconhecer os plurais irregulares mais frequentes"],
+  vocab=[V("v-schip","schip","navio","noun","het","schepen"), V("v-lid","lid","membro|sócio","noun","het","leden"),
+         V("v-weg-noun","weg","caminho|estrada","noun","de","wegen")],
+  ex=[("het kind — de kinderen","a criança — as crianças"),("de stad — de steden","a cidade — as cidades"),("het schip — de schepen","o navio — os navios"),("de dag — de dagen","o dia — os dias","«a» curto passa a longo.")],
+  gram=[G("g-plural-irregular","Irregulares","Alguns plurais mudam a vogal ou acrescentam **-eren**: kind → **kinderen**, ei → **eieren**, stad → **steden**, schip → **schepen**, lid → **leden**. Em **dag → dagen**, **weg → wegen**, **glas → glazen** a vogal curta passa a longa. Estes têm de ser memorizados.",
+    [("het blad — de bladeren","a folha — as folhas")])],
+  review=["v-kind","v-ei","v-stad","v-dag","v-glas"],
+  cefr=C, exs=[
+    MA([("kinderen","crianças"),("steden","cidades"),("schepen","navios"),("leden","membros"),("dagen","dias")], "Plurais irregulares.", ["v-kind","v-stad","v-schip","v-lid","v-dag"]),
+    MC("Plural de «stad»:", ["*steden","staden|É irregular: steden.","stadden|Não existe."], "stad → steden.", ["v-stad"]),
+    MC("Plural de «dag»:", ["*dagen","daggen|A vogal passa a longa: da-gen.","dags|Não."], "dag → dagen.", ["v-dag"]),
+    TR("pt-nl","três crianças", ["drie kinderen"], "kind → kinderen.", ["v-kind"]),
+    TR("nl-pt","In Rotterdam zie je veel schepen.", ["Em Roterdão vês muitos navios","Em Roterdão vêem-se muitos navios"], "schip → schepen.", ["v-schip"]),
+    AR("schip","o navio","het", "«Het schip».", ["v-schip"]),
+    FE(["Ik","koop","zes","eien."], 3, "eieren", "ei → eieren.", ["v-ei"]),
+    FB("De club heeft honderd ___ .", ["leden"], "lid → leden.", ["v-lid"], choices=["leden","lids","lidden"], tr="O clube tem cem sócios."),
+    LI("De wegen zijn nat.", ["De wegen zijn nat"], "As estradas estão molhadas.", "weg → wegen.", ["v-weg-noun"]),
+    WO("Visitamos muitas cidades.", ["We","bezoeken","veel","steden"], "stad → steden.", ["v-stad"]),
+  ], diff=2, mins=5)
+
+L(3, "De quem é? Possessivo com van e 's", "de fiets van Anna, Anna's fiets, die van mij.",
+  ["Indicar posse com van e com 's"],
+  vocab=[V("v-van-mij","van mij","meu|minha (sozinho)","expression",note="Die fiets is van mij = essa bicicleta é minha."), V("v-buurman","buurman","vizinho","noun","de","buren",note="Feminino: buurvrouw."),
+         V("v-eigen","eigen","próprio","adjective")],
+  ex=[("de fiets van Anna","a bicicleta da Ana"),("Anna's fiets","a bicicleta da Ana"),("Pieters auto","o carro do Pieter","Sem apóstrofo depois de consoante."),("Die tas is van mij.","Essa mala é minha.")],
+  gram=[G("g-posse-s","Posse: van e -s","Posse com **van**: *de auto van Pieter* (sempre correto). Com **nomes próprios** também **-s**: *Pieters auto*; depois de vogal com apóstrofo: *Anna's auto*. Para «é meu/teu…» sozinho: **van mij, van jou, van hem, van haar, van ons**.",
+    [("Is dit van jou?","Isto é teu?"),("Nee, het is van mijn buurman.","Não, é do meu vizinho.")])],
+  review=["v-van","v-mijn","v-jouw","v-zijn-poss","v-haar"],
+  cefr=C, exs=[
+    MA([("van mij","meu"),("van jou","teu"),("van hem","dele"),("van haar","dela")], "Posse sozinha.", ["v-van-mij"]),
+    TR("pt-nl","a bicicleta da Ana", ["de fiets van Anna","Anna's fiets"], "van + nome ou nome + 's.", ["v-van"]),
+    TR("pt-nl","Essa mala é minha.", ["Die tas is van mij"], "van mij.", ["v-van-mij"]),
+    MC("O carro do Pieter:", ["*Pieters auto","Pieter's auto|Depois de consoante não há apóstrofo.","auto Pieters|Ordem: nome + s + objeto."], "Pieter + s.", ["v-auto"]),
+    MC("A casa da Eva:", ["*Eva's huis","Evas huis|Depois de vogal: apóstrofo.","het huis Eva|Falta «van»."], "Eva's huis.", ["v-huis"]),
+    TR("nl-pt","Is dit van jou?", ["Isto é teu","É teu"], "van jou = teu.", ["v-van-mij"]),
+    AR("buurman","o vizinho","de", "«De buurman» — plural «buren».", ["v-buurman"]),
+    FE(["Dit","is","de","fiets","van","ik."], 5, "mij", "Depois de «van»: mij.", ["v-van-mij"]),
+    LI("Het is van mijn buurman.", ["Het is van mijn buurman"], "É do meu vizinho.", "van mijn buurman.", ["v-buurman"]),
+    FB("Ik heb mijn ___ kamer!", ["eigen"], "eigen = próprio.", ["v-eigen"], choices=["eigen","van","buren"], tr="Tenho o meu próprio quarto!"),
+  ], diff=2, mins=5)
+
+L(4, "Possessivos com adjetivos", "mijn nieuwe fiets, ons kleine huis.",
+  ["Usar possessivo + adjetivo + nome"],
+  vocab=[V("v-lievelings","lievelings-","preferido|favorito","adjective",note="Prefixo: mijn lievelingskleur = a minha cor preferida."), V("v-oude-adj","vorig","anterior","adjective",note="mijn vorige baan = o meu emprego anterior.")],
+  ex=[("mijn nieuwe fiets","a minha bicicleta nova"),("ons kleine huis","a nossa casa pequena","Com possessivo, sempre -e."),("Wat is je lievelingskleur?","Qual é a tua cor preferida?")],
+  gram=[G("g-possessivo-adj","Possessivo + adjetivo","Depois de um **possessivo** (mijn, jouw, ons…) o adjetivo leva **sempre -e**, também com palavras het: *mijn **nieuwe** huis*, *ons **kleine** huis*. Compare: *een nieuw huis* (sem -e).",
+    [("haar mooie jurk","o vestido bonito dela"),("zijn oude auto","o carro velho dele")])],
+  review=["v-mijn","v-ons","v-nieuw","v-oud","v-kleur"],
+  cefr=C, exs=[
+    MC("A minha casa nova:", ["*mijn nieuwe huis","mijn nieuw huis|Com possessivo leva sempre -e."], "possessivo → -e.", ["v-nieuw"]),
+    MC("Uma casa nova:", ["*een nieuw huis","een nieuwe huis|een + het-palavra → sem -e."], "een nieuw huis.", ["v-nieuw"]),
+    TR("pt-nl","a nossa casa pequena", ["ons kleine huis"], "ons + kleine.", ["v-ons","v-klein"]),
+    TR("pt-nl","Qual é a tua cor preferida?", ["Wat is [je|jouw] lievelingskleur"], "lievelings- + kleur.", ["v-lievelings"]),
+    TR("nl-pt","Zijn oude auto is kapot.", ["O carro velho dele está avariado"], "zijn + oude.", ["v-oud","v-kapot"]),
+    FE(["Mijn","nieuw","appartement","is","licht."], 1, "nieuwe", "Com possessivo: nieuwe.", ["v-nieuw"]),
+    FB("Haar ___ jurk is rood.", ["mooie"], "possessivo + adj-e.", ["v-mooi"], choices=["mooie","mooi"], tr="O vestido bonito dela é vermelho."),
+    LI("Mijn lievelingseten is pizza.", ["Mijn lievelingseten is pizza"], "A minha comida preferida é pizza.", "lievelings + eten.", ["v-lievelings"]),
+    WO("O meu emprego anterior era em Lisboa.", ["Mijn","vorige","baan","was","in","Lissabon"], "vorige = anterior.", ["v-oude-adj"]),
+    WO("O meu livro preferido é velho.", ["Mijn","lievelingsboek","is","oud"], "Depois de «is»: oud.", ["v-lievelings"]),
+  ], diff=2, mins=5)
+
+L(5, "Coisas e pessoas", "Revisão: plurais, posse e adjetivos.",
+  ["Combinar plurais, possessivos e adjetivos"],
+  ex=[("De kinderen van mijn buren hebben twee katten.","Os filhos dos meus vizinhos têm dois gatos.")],
+  review=["v-kind","v-buurman","v-foto","v-van-mij","v-eigen","v-stad","v-lievelings"],
+  cefr=C, exs=[
+    MC("Plural de «kat»:", ["*katten","kats|kat → katten (vogal curta, dobra-se t).","kaaten|Não."], "kat → katten.", ["v-kat"]),
+    MC("Plural de «leraar»:", ["*leraren (ou leraars)","leraaren|Na sílaba aberta basta um «a».","leraar's|Só se usa apóstrofo depois de vogal."], "leraar → leraren.", ["v-leraar"]),
+    TR("pt-nl","Os filhos dos meus vizinhos.", ["De kinderen van mijn buren"], "buurman → buren.", ["v-kind","v-buurman"]),
+    TR("pt-nl","Esta fotografia é tua?", ["Is deze foto van jou"], "deze foto (de foto).", ["v-foto","v-van-mij"]),
+    FE(["Pieter's","fiets","is","nieuw."], 0, "Pieters", "Depois de consoante não há apóstrofo: Pieters fiets.", ["v-van"]),
+    LI("Onze nieuwe buren komen uit Spanje.", ["Onze nieuwe buren komen uit Spanje"], "Os nossos novos vizinhos são de Espanha.", "onze + plural + -e.", ["v-buurman"]),
+    CO("text","A família do lado", "Onze buren hebben drie kinderen en twee honden. Hun oudste dochter heeft haar eigen auto: een oude, rode Fiat. De honden zijn van de jongste zoon.",
+       [("Quantos filhos têm os vizinhos?", ["*Três","Dois","Um"]),("De quem são os cães?", ["*Do filho mais novo","Da filha mais velha","Dos pais"])],
+       "oudste = mais velho/a; jongste = mais novo/a.", ["v-eigen","v-buurman"]),
+    WO("As minhas fotografias preferidas estão no telemóvel.", ["Mijn","lievelingsfoto's","staan","op","mijn","telefoon"], "foto's no plural.", ["v-foto","v-lievelings"]),
+    MA([("kinderen","crianças"),("buren","vizinhos"),("foto's","fotografias"),("steden","cidades")], "Plurais.", ["v-kind","v-buurman","v-foto","v-stad"]),
+    SW("Escreva duas frases sobre coisas suas e de outra pessoa (van mij, possessivos, adjetivos).", ["Mijn fiets is oud(,) maar de fiets van mijn [broer|zus] is nieuw","Die tas is van mij(.) Mijn nieuwe telefoon is zwart"],
+       ["Usa um possessivo + adjetivo + nome","Usa «van» para indicar posse","Adjetivos com a terminação certa"], 6, "Modelo: «Mijn fiets is oud, maar de fiets van mijn zus is nieuw.»", ["v-van"]),
+  ], diff=2, mins=6)
+
+W()
