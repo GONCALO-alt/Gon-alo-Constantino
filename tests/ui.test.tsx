@@ -167,7 +167,8 @@ describe('lição completa', () => {
     expect(await screen.findByRole('link', { name: /Próxima lição/ })).toBeTruthy();
   }, 60_000);
 
-  it.each(realFiles().flatMap((f) => f.lessons).filter((l) => l.status === 'published').map((l) => l.id))(
+  // Amostra: a primeira lição de cada unidade (todas as lições são verificadas sem interface em content-answers.test.ts).
+  it.each(realFiles().map((f) => f.lessons.find((l) => l.status === 'published')?.id).filter((x): x is string => !!x).slice(0, 25))(
     'a resposta de referência de cada exercício é aceite pela interface: %s',
     async (id) => {
       const user = userEvent.setup();

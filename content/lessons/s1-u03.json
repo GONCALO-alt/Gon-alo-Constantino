@@ -1,0 +1,2241 @@
+{
+  "unitId": "s1-u03",
+  "lessons": [
+    {
+      "id": "s1-u03-l001",
+      "unitId": "s1-u03",
+      "order": 1,
+      "title": "Vogais curtas e longas",
+      "description": "a/aa, o/oo, e/ee: uma letra a mais muda a palavra.",
+      "cefr": "A1",
+      "objectives": [
+        "Distinguir vogais curtas de vogais longas",
+        "Ler e reconhecer pares como man/maan e zon/zoon"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-man",
+          "nl": "man",
+          "pt": [
+            "homem"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "mannen"
+        },
+        {
+          "id": "v-maan",
+          "nl": "maan",
+          "pt": [
+            "lua"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "manen"
+        },
+        {
+          "id": "v-zon",
+          "nl": "zon",
+          "pt": [
+            "sol"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-zoon",
+          "nl": "zoon",
+          "pt": [
+            "filho"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "zonen"
+        },
+        {
+          "id": "v-bus",
+          "nl": "bus",
+          "pt": [
+            "autocarro"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "bussen"
+        },
+        {
+          "id": "v-bed",
+          "nl": "bed",
+          "pt": [
+            "cama"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "bedden"
+        },
+        {
+          "id": "v-been",
+          "nl": "been",
+          "pt": [
+            "perna"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "benen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-mijn",
+        "v-heten"
+      ],
+      "examples": [
+        {
+          "nl": "de man — de maan",
+          "pt": "o homem — a lua"
+        },
+        {
+          "nl": "de zon — de zoon",
+          "pt": "o sol — o filho"
+        },
+        {
+          "nl": "het bed — het been",
+          "pt": "a cama — a perna"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-vogais-curtas-longas",
+          "title": "Vogais curtas e longas",
+          "body": "Numa sílaba que termina em consoante, uma vogal escrita **uma vez** é curta (*man*, *zon*, *bed*) e escrita **duas vezes** é longa (*maan*, *zoon*, *been*). A diferença muda o sentido: *man* (homem) não é *maan* (lua).",
+          "examples": [
+            {
+              "nl": "man / maan",
+              "pt": "homem / lua"
+            },
+            {
+              "nl": "zon / zoon",
+              "pt": "sol / filho"
+            }
+          ],
+          "contrastWithPt": "Em português o comprimento da vogal não muda o significado das palavras; em neerlandês muda, por isso vale a pena exagerar a vogal longa ao início."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u03-l001-e01",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "«aa» é um «a» aberto e longo; em «man» o «a» é curto e mais fechado.",
+          "vocabRefs": [
+            "v-maan"
+          ],
+          "audioText": "de maan",
+          "answers": [
+            "de maan"
+          ],
+          "translation": "a lua"
+        },
+        {
+          "id": "s1-u03-l001-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Duas vogais iguais (aa, oo, ee, uu) indicam uma vogal longa.",
+          "vocabRefs": [
+            "v-maan"
+          ],
+          "prompt": "Qual destas palavras tem uma vogal LONGA?",
+          "options": [
+            {
+              "id": "a",
+              "text": "maan",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "man",
+              "correct": false,
+              "feedback": "Um só «a» numa sílaba fechada: vogal curta."
+            },
+            {
+              "id": "c",
+              "text": "zon",
+              "correct": false,
+              "feedback": "Um só «o» numa sílaba fechada: vogal curta."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l001-e03",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Repare como cada par difere só numa vogal.",
+          "vocabRefs": [
+            "v-man",
+            "v-maan",
+            "v-zon",
+            "v-zoon"
+          ],
+          "pairs": [
+            {
+              "nl": "man",
+              "pt": "homem"
+            },
+            {
+              "nl": "maan",
+              "pt": "lua"
+            },
+            {
+              "nl": "zon",
+              "pt": "sol"
+            },
+            {
+              "nl": "zoon",
+              "pt": "filho"
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l001-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "«Zon» é o sol; o filho é «zoon», com «o» longo.",
+          "vocabRefs": [
+            "v-zoon",
+            "v-zon"
+          ],
+          "tokens": [
+            "Mijn",
+            "zon",
+            "heet",
+            "Tom."
+          ],
+          "errorIndex": 1,
+          "correction": "zoon"
+        },
+        {
+          "id": "s1-u03-l001-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het bed». Muitas palavras curtas e comuns usam «het»; é preciso memorizá-las.",
+          "vocabRefs": [
+            "v-bed"
+          ],
+          "noun": "bed",
+          "pt": "a cama",
+          "article": "het"
+        },
+        {
+          "id": "s1-u03-l001-e06",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De maan». A maioria dos substantivos usa «de».",
+          "vocabRefs": [
+            "v-maan"
+          ],
+          "noun": "maan",
+          "pt": "a lua",
+          "article": "de"
+        },
+        {
+          "id": "s1-u03-l001-e07",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "«De bus». Diz-se com «u» curto, parecido com o «â» de «cama».",
+          "vocabRefs": [
+            "v-bus"
+          ],
+          "direction": "pt-nl",
+          "prompt": "o autocarro",
+          "answers": [
+            "(de )bus"
+          ]
+        },
+        {
+          "id": "s1-u03-l001-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "«Zoon» = filho. «Zon» (sol) e «maan» (lua) não fazem sentido aqui.",
+          "vocabRefs": [
+            "v-zoon"
+          ],
+          "sentence": "Mijn ___ heet Pedro.",
+          "translation": "O meu filho chama-se Pedro.",
+          "answers": [
+            "zoon"
+          ],
+          "choices": [
+            "zoon",
+            "zon",
+            "maan"
+          ]
+        },
+        {
+          "id": "s1-u03-l001-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Vogal curta em «man», vogal longa em «zoon».",
+          "vocabRefs": [
+            "v-man",
+            "v-zoon"
+          ],
+          "audioText": "de man en de zoon",
+          "answers": [
+            "de man en de zoon"
+          ],
+          "translation": "o homem e o filho"
+        },
+        {
+          "id": "s1-u03-l001-e10",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "«Been» com «ee» longo = perna. (Também significa «osso».)",
+          "vocabRefs": [
+            "v-been"
+          ],
+          "direction": "nl-pt",
+          "prompt": "het been",
+          "answers": [
+            "(a )perna"
+          ]
+        }
+      ],
+      "difficulty": 1,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u03-l002",
+      "unitId": "s1-u03",
+      "order": 2,
+      "title": "O «g» e o «ch»",
+      "description": "O som mais típico do neerlandês: raspado, no fundo da garganta.",
+      "cefr": "A1",
+      "objectives": [
+        "Pronunciar o «g» e o «ch» neerlandeses",
+        "Aprender palavras frequentes com estes sons"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-acht",
+          "nl": "acht",
+          "pt": [
+            "oito"
+          ],
+          "pos": "numeral"
+        },
+        {
+          "id": "v-nacht",
+          "nl": "nacht",
+          "pt": [
+            "noite"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "nachten"
+        },
+        {
+          "id": "v-lachen",
+          "nl": "lachen",
+          "pt": [
+            "rir"
+          ],
+          "pos": "verb",
+          "note": "ik lach, jij lacht"
+        },
+        {
+          "id": "v-gaan",
+          "nl": "gaan",
+          "pt": [
+            "ir"
+          ],
+          "pos": "verb",
+          "note": "ik ga, jij gaat, u gaat, hij gaat"
+        },
+        {
+          "id": "v-graag",
+          "nl": "graag",
+          "pt": [
+            "com gosto",
+            "sim, por favor"
+          ],
+          "pos": "adverb",
+          "note": "«Ja, graag!» = Sim, por favor!"
+        },
+        {
+          "id": "v-gracht",
+          "nl": "gracht",
+          "pt": [
+            "canal"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "grachten",
+          "note": "Os canais das cidades, como em Amesterdão."
+        },
+        {
+          "id": "v-geld",
+          "nl": "geld",
+          "pt": [
+            "dinheiro"
+          ],
+          "pos": "noun",
+          "article": "het"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-goedemorgen",
+        "v-goedenacht",
+        "v-koffie"
+      ],
+      "examples": [
+        {
+          "nl": "Acht uur.",
+          "pt": "Oito horas."
+        },
+        {
+          "nl": "Ja, graag!",
+          "pt": "Sim, por favor!"
+        },
+        {
+          "nl": "Ik ga naar Amsterdam.",
+          "pt": "Vou para Amesterdão."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-som-g-ch",
+          "title": "O «g» e o «ch»",
+          "body": "Nos Países Baixos, **g** e **ch** soam praticamente igual: um som raspado no fundo da garganta, parecido com o «j» espanhol de *jamón*. No sul do país e na Flandres o som é mais suave. Em **sch** no início da palavra lê-se «s» + esse som: *school*.",
+          "examples": [
+            {
+              "nl": "goed",
+              "pt": "bom / bem"
+            },
+            {
+              "nl": "acht",
+              "pt": "oito"
+            },
+            {
+              "nl": "school",
+              "pt": "escola"
+            }
+          ],
+          "contrastWithPt": "Nunca leia o «g» neerlandês como o «g» de «gato» nem como o de «gente»."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u03-l002-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "O «g» e o «ch» neerlandeses partilham o mesmo som gutural.",
+          "vocabRefs": [
+            "v-goedemorgen"
+          ],
+          "prompt": "Como soa o «g» de «goed»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Um som raspado na garganta, como o «j» espanhol",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Como o «g» de «gato»",
+              "correct": false,
+              "feedback": "Esse som não existe em palavras neerlandesas comuns."
+            },
+            {
+              "id": "c",
+              "text": "Como o «g» de «gente»",
+              "correct": false,
+              "feedback": "Não: o «g» neerlandês é gutural."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l002-e02",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "O «ch» é o mesmo som raspado do «g».",
+          "vocabRefs": [
+            "v-acht"
+          ],
+          "audioText": "acht",
+          "answers": [
+            "acht"
+          ],
+          "translation": "oito"
+        },
+        {
+          "id": "s1-u03-l002-e03",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Todas estas palavras têm o som gutural.",
+          "vocabRefs": [
+            "v-acht",
+            "v-nacht",
+            "v-geld",
+            "v-gracht"
+          ],
+          "pairs": [
+            {
+              "nl": "acht",
+              "pt": "oito"
+            },
+            {
+              "nl": "nacht",
+              "pt": "noite"
+            },
+            {
+              "nl": "geld",
+              "pt": "dinheiro"
+            },
+            {
+              "nl": "gracht",
+              "pt": "canal"
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l002-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het geld».",
+          "vocabRefs": [
+            "v-geld"
+          ],
+          "noun": "geld",
+          "pt": "o dinheiro",
+          "article": "het"
+        },
+        {
+          "id": "s1-u03-l002-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De gracht» — plural «grachten».",
+          "vocabRefs": [
+            "v-gracht"
+          ],
+          "noun": "gracht",
+          "pt": "o canal",
+          "article": "de"
+        },
+        {
+          "id": "s1-u03-l002-e06",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "gaan: ik ga, jij gaat, u gaat, hij/zij gaat. A forma de «ik» é curta: ga.",
+          "vocabRefs": [
+            "v-gaan"
+          ],
+          "verb": "gaan",
+          "pronoun": "ik",
+          "tense": "presente",
+          "sentence": "Ik ___ naar Amsterdam.",
+          "answers": [
+            "ga"
+          ]
+        },
+        {
+          "id": "s1-u03-l002-e07",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "Com «jij» acrescenta-se -t: jij gaat. Na pergunta, o -t cai: «Ga jij naar Utrecht?».",
+          "vocabRefs": [
+            "v-gaan"
+          ],
+          "verb": "gaan",
+          "pronoun": "jij",
+          "tense": "presente",
+          "sentence": "Jij ___ naar Utrecht.",
+          "answers": [
+            "gaat"
+          ]
+        },
+        {
+          "id": "s1-u03-l002-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "«Ja, graag!» é a forma natural de aceitar algo: «sim, por favor».",
+          "vocabRefs": [
+            "v-graag",
+            "v-koffie"
+          ],
+          "lines": [
+            {
+              "speaker": "Sanne",
+              "nl": "Wil je koffie?",
+              "pt": "Queres café?"
+            },
+            {
+              "speaker": "Pedro",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, graag!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, acht!",
+              "correct": false,
+              "feedback": "«Acht» é o número oito."
+            },
+            {
+              "id": "c",
+              "text": "Goedenacht!",
+              "correct": false,
+              "feedback": "Isso é uma despedida noturna."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l002-e09",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "«Graag» exprime vontade: aceitar uma oferta com gosto.",
+          "vocabRefs": [
+            "v-graag"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Ja, graag!",
+          "answers": [
+            "Sim, por favor",
+            "Sim, com (muito )gosto",
+            "Sim, obrigad[o|a]"
+          ]
+        },
+        {
+          "id": "s1-u03-l002-e10",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Dois sons guturais: o «g» inicial e o «ch» final.",
+          "vocabRefs": [
+            "v-goedenacht",
+            "v-nacht"
+          ],
+          "audioText": "Goedenacht!",
+          "answers": [
+            "Goedenacht"
+          ],
+          "translation": "Boa noite! (ao despedir-se tarde)"
+        }
+      ],
+      "difficulty": 1,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u03-l003",
+      "unitId": "s1-u03",
+      "order": 3,
+      "title": "ui, ij e ei",
+      "description": "Os ditongos que não existem em português.",
+      "cefr": "A1",
+      "objectives": [
+        "Pronunciar «ui»",
+        "Saber que «ij» e «ei» soam igual"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-huis",
+          "nl": "huis",
+          "pt": [
+            "casa"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "huizen"
+        },
+        {
+          "id": "v-tuin",
+          "nl": "tuin",
+          "pt": [
+            "jardim"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "tuinen"
+        },
+        {
+          "id": "v-trein",
+          "nl": "trein",
+          "pt": [
+            "comboio"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "treinen"
+        },
+        {
+          "id": "v-wijn",
+          "nl": "wijn",
+          "pt": [
+            "vinho"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-ijs",
+          "nl": "ijs",
+          "pt": [
+            "gelado",
+            "gelo"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-bruin",
+          "nl": "bruin",
+          "pt": [
+            "castanho"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-klein",
+          "nl": "klein",
+          "pt": [
+            "pequeno"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-mijn",
+        "v-is",
+        "v-alstublieft"
+      ],
+      "examples": [
+        {
+          "nl": "Het huis is klein.",
+          "pt": "A casa é pequena."
+        },
+        {
+          "nl": "De trein is laat.",
+          "pt": "O comboio está atrasado."
+        },
+        {
+          "nl": "Een ijs, alstublieft.",
+          "pt": "Um gelado, por favor."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-ui-ij-ei",
+          "title": "ui, ij e ei",
+          "body": "**ij** e **ei** soam exatamente igual (aproximadamente «éi» aberto): *wijn*, *trein*. A escolha entre ij e ei tem de ser memorizada. **ui** não existe em português: comece com um «â» e feche-o num «i» com os lábios arredondados: *huis*, *tuin*.",
+          "examples": [
+            {
+              "nl": "mijn / klein",
+              "pt": "meu / pequeno"
+            },
+            {
+              "nl": "huis / tuin",
+              "pt": "casa / jardim"
+            }
+          ],
+          "contrastWithPt": "O «ij» conta como uma só letra: no início da palavra escrevem-se as duas em maiúscula, como em IJsselmeer."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u03-l003-e01",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "«ui» começa como um «â» e acaba num «i» arredondado.",
+          "vocabRefs": [
+            "v-huis"
+          ],
+          "audioText": "het huis",
+          "answers": [
+            "het huis"
+          ],
+          "translation": "a casa"
+        },
+        {
+          "id": "s1-u03-l003-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "«ij» e «ei» soam igual, por isso a grafia tem de ser memorizada.",
+          "vocabRefs": [
+            "v-trein"
+          ],
+          "prompt": "Como se escreve «comboio» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "trein",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "trijn",
+              "correct": false,
+              "feedback": "Soa igual, mas esta palavra escreve-se com «ei»."
+            },
+            {
+              "id": "c",
+              "text": "train",
+              "correct": false,
+              "feedback": "Isso é inglês."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l003-e03",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "ui em huis e tuin; ei/ij em trein e wijn.",
+          "vocabRefs": [
+            "v-huis",
+            "v-tuin",
+            "v-trein",
+            "v-wijn"
+          ],
+          "pairs": [
+            {
+              "nl": "huis",
+              "pt": "casa"
+            },
+            {
+              "nl": "tuin",
+              "pt": "jardim"
+            },
+            {
+              "nl": "trein",
+              "pt": "comboio"
+            },
+            {
+              "nl": "wijn",
+              "pt": "vinho"
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l003-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het huis» — plural «huizen».",
+          "vocabRefs": [
+            "v-huis"
+          ],
+          "noun": "huis",
+          "pt": "a casa",
+          "article": "het"
+        },
+        {
+          "id": "s1-u03-l003-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De trein».",
+          "vocabRefs": [
+            "v-trein"
+          ],
+          "noun": "trein",
+          "pt": "o comboio",
+          "article": "de"
+        },
+        {
+          "id": "s1-u03-l003-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "«Mijn huis is klein» = a minha casa é pequena.",
+          "vocabRefs": [
+            "v-huis",
+            "v-klein"
+          ],
+          "sentence": "Mijn ___ is klein.",
+          "translation": "A minha casa é pequena.",
+          "answers": [
+            "huis"
+          ],
+          "choices": [
+            "huis",
+            "wijn",
+            "ijs"
+          ]
+        },
+        {
+          "id": "s1-u03-l003-e07",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Os adjetivos depois de «is» não mudam: «klein».",
+          "vocabRefs": [
+            "v-huis",
+            "v-klein"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Het huis is klein.",
+          "answers": [
+            "A casa é pequena"
+          ]
+        },
+        {
+          "id": "s1-u03-l003-e08",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "«Ijs» é gelado (e também gelo). Com um empregado, «alstublieft».",
+          "vocabRefs": [
+            "v-ijs",
+            "v-alstublieft"
+          ],
+          "direction": "pt-nl",
+          "prompt": "um gelado, por favor",
+          "answers": [
+            "[een|één] ijs(,) [alstublieft|alsjeblieft]"
+          ]
+        },
+        {
+          "id": "s1-u03-l003-e09",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Castanho escreve-se «bruin», com «ui».",
+          "vocabRefs": [
+            "v-bruin"
+          ],
+          "tokens": [
+            "Het",
+            "ijs",
+            "is",
+            "bruijn."
+          ],
+          "errorIndex": 3,
+          "correction": "bruin"
+        },
+        {
+          "id": "s1-u03-l003-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Sujeito (mijn huis), verbo (is), adjetivo (klein).",
+          "vocabRefs": [
+            "v-huis",
+            "v-klein"
+          ],
+          "translation": "A minha casa é pequena.",
+          "tokens": [
+            "Mijn",
+            "huis",
+            "is",
+            "klein"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s1-u03-l003-e11",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "«trein» e «klein» rimam: ambos com o som «ei».",
+          "vocabRefs": [
+            "v-trein",
+            "v-klein"
+          ],
+          "audioText": "De trein is klein.",
+          "answers": [
+            "De trein is klein"
+          ],
+          "translation": "O comboio é pequeno."
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u03-l004",
+      "unitId": "s1-u03",
+      "order": 4,
+      "title": "oe, eu, ou e au",
+      "description": "Mais quatro sons: um fácil, um novo e dois que soam igual.",
+      "cefr": "A1",
+      "objectives": [
+        "Ler «oe» como «u»",
+        "Pronunciar «eu»",
+        "Saber que «ou» e «au» soam igual"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-boek",
+          "nl": "boek",
+          "pt": [
+            "livro"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "boeken"
+        },
+        {
+          "id": "v-stoel",
+          "nl": "stoel",
+          "pt": [
+            "cadeira"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "stoelen"
+        },
+        {
+          "id": "v-deur",
+          "nl": "deur",
+          "pt": [
+            "porta"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "deuren"
+        },
+        {
+          "id": "v-leuk",
+          "nl": "leuk",
+          "pt": [
+            "giro",
+            "engraçado",
+            "agradável"
+          ],
+          "pos": "adjective",
+          "note": "«Leuk!» = Que giro! / Que fixe!"
+        },
+        {
+          "id": "v-koud",
+          "nl": "koud",
+          "pt": [
+            "frio"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-oud",
+          "nl": "oud",
+          "pt": [
+            "velho"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-blauw",
+          "nl": "blauw",
+          "pt": [
+            "azul"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-vrouw",
+          "nl": "vrouw",
+          "pt": [
+            "mulher"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "vrouwen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-is",
+        "v-goed"
+      ],
+      "examples": [
+        {
+          "nl": "Het boek is oud.",
+          "pt": "O livro é velho."
+        },
+        {
+          "nl": "Het is koud!",
+          "pt": "Está frio!"
+        },
+        {
+          "nl": "Leuk!",
+          "pt": "Que giro!"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-oe-eu-ou",
+          "title": "oe, eu, ou/au",
+          "body": "**oe** soa como o «u» português: *boek* ≈ «buk». **eu** é parecido com o «eu» francês de *bleu*: diga «e» com os lábios arredondados. **ou** e **au** soam igual (≈ «âu»): *koud*, *blauw*.",
+          "examples": [
+            {
+              "nl": "boek / stoel",
+              "pt": "livro / cadeira"
+            },
+            {
+              "nl": "deur / leuk",
+              "pt": "porta / giro"
+            },
+            {
+              "nl": "koud / blauw",
+              "pt": "frio / azul"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u03-l004-e01",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "«oe» = «u»; «ou» ≈ «âu».",
+          "vocabRefs": [
+            "v-boek",
+            "v-oud"
+          ],
+          "audioText": "Het boek is oud.",
+          "answers": [
+            "Het boek is oud"
+          ],
+          "translation": "O livro é velho."
+        },
+        {
+          "id": "s1-u03-l004-e02",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "oe em boek e stoel, eu em deur, ou em vrouw.",
+          "vocabRefs": [
+            "v-boek",
+            "v-stoel",
+            "v-deur",
+            "v-vrouw"
+          ],
+          "pairs": [
+            {
+              "nl": "boek",
+              "pt": "livro"
+            },
+            {
+              "nl": "stoel",
+              "pt": "cadeira"
+            },
+            {
+              "nl": "deur",
+              "pt": "porta"
+            },
+            {
+              "nl": "vrouw",
+              "pt": "mulher"
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l004-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "«koud» e «blauw» têm o mesmo som; «ij» e «ei» também.",
+          "vocabRefs": [
+            "v-koud",
+            "v-blauw"
+          ],
+          "prompt": "Que par de grafias soa igual?",
+          "options": [
+            {
+              "id": "a",
+              "text": "ou / au",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "oe / eu",
+              "correct": false,
+              "feedback": "«oe» soa como «u»; «eu» é um som diferente."
+            },
+            {
+              "id": "c",
+              "text": "ui / oe",
+              "correct": false,
+              "feedback": "«ui» é um ditongo; «oe» é um «u» simples."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l004-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het boek».",
+          "vocabRefs": [
+            "v-boek"
+          ],
+          "noun": "boek",
+          "pt": "o livro",
+          "article": "het"
+        },
+        {
+          "id": "s1-u03-l004-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De stoel».",
+          "vocabRefs": [
+            "v-stoel"
+          ],
+          "noun": "stoel",
+          "pt": "a cadeira",
+          "article": "de"
+        },
+        {
+          "id": "s1-u03-l004-e06",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Para o tempo usa-se «het is»: het is koud = está frio.",
+          "vocabRefs": [
+            "v-koud"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Het is koud!",
+          "answers": [
+            "[Está|Faz|Está muito] frio"
+          ]
+        },
+        {
+          "id": "s1-u03-l004-e07",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "«De deur is blauw» = a porta é azul.",
+          "vocabRefs": [
+            "v-deur",
+            "v-blauw"
+          ],
+          "sentence": "De ___ is blauw.",
+          "translation": "A porta é azul.",
+          "answers": [
+            "deur"
+          ],
+          "choices": [
+            "deur",
+            "koud",
+            "leuk"
+          ]
+        },
+        {
+          "id": "s1-u03-l004-e08",
+          "type": "expression",
+          "instruction": "Escolha a opção certa.",
+          "explanation": "«Leuk» é uma das palavras mais usadas: giro, fixe, agradável.",
+          "vocabRefs": [
+            "v-leuk"
+          ],
+          "expression": "Leuk!",
+          "literal": "Agradável!",
+          "prompt": "Um amigo conta que vai a Lisboa e tu respondes «Leuk!». O que quer dizer?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Que giro! / Que fixe!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Que frio!",
+              "correct": false,
+              "feedback": "Isso seria «koud»."
+            },
+            {
+              "id": "c",
+              "text": "Que pena!",
+              "correct": false,
+              "feedback": "Isso seria «jammer»."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l004-e09",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Soa igual a «au», mas «mulher» escreve-se «vrouw».",
+          "vocabRefs": [
+            "v-vrouw"
+          ],
+          "tokens": [
+            "De",
+            "vrauw",
+            "is",
+            "oud."
+          ],
+          "errorIndex": 1,
+          "correction": "vrouw"
+        },
+        {
+          "id": "s1-u03-l004-e10",
+          "type": "translate",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "«Het boek» + «is» + adjetivo.",
+          "vocabRefs": [
+            "v-boek",
+            "v-blauw"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O livro é azul.",
+          "answers": [
+            "Het boek is blauw"
+          ],
+          "wordBank": [
+            "Het",
+            "boek",
+            "is",
+            "blauw",
+            "De",
+            "stoel"
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u03-l005",
+      "unitId": "s1-u03",
+      "order": 5,
+      "title": "Consoantes: w, v, j, z e sch",
+      "description": "As consoantes que mais confundem os portugueses.",
+      "cefr": "A1",
+      "objectives": [
+        "Pronunciar w, v e j corretamente",
+        "Ler «sch» e o «z» sonoro"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-water",
+          "nl": "water",
+          "pt": [
+            "água"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-fiets",
+          "nl": "fiets",
+          "pt": [
+            "bicicleta"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "fietsen"
+        },
+        {
+          "id": "v-vis",
+          "nl": "vis",
+          "pt": [
+            "peixe"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "vissen"
+        },
+        {
+          "id": "v-school",
+          "nl": "school",
+          "pt": [
+            "escola"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "scholen"
+        },
+        {
+          "id": "v-zes",
+          "nl": "zes",
+          "pt": [
+            "seis"
+          ],
+          "pos": "numeral"
+        },
+        {
+          "id": "v-jaar",
+          "nl": "jaar",
+          "pt": [
+            "ano"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "jaren"
+        },
+        {
+          "id": "v-zee",
+          "nl": "zee",
+          "pt": [
+            "mar"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "zeeën"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-gaan",
+        "v-ja"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ga naar school.",
+          "pt": "Vou para a escola."
+        },
+        {
+          "nl": "Zes jaar.",
+          "pt": "Seis anos."
+        },
+        {
+          "nl": "Een fiets en een vis.",
+          "pt": "Uma bicicleta e um peixe."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-consoantes",
+          "title": "Consoantes traiçoeiras",
+          "body": "**w**: os lábios quase se tocam, entre o «v» e o «u» (*water*). **v** no início soa muitas vezes quase como «f» (*vis* ≈ «fis»). **j** soa como o «i» de «iate», nunca como o «j» de «janela» (*ja*, *jaar*). **z** é sempre sonoro, como em «zebra». **sch** = «s» + o som raspado do «g» (*school*).",
+          "examples": [
+            {
+              "nl": "ja",
+              "pt": "sim — «iá»"
+            },
+            {
+              "nl": "water",
+              "pt": "água"
+            },
+            {
+              "nl": "school",
+              "pt": "escola"
+            }
+          ],
+          "contrastWithPt": "O «j» português de «janela» não existe em neerlandês: aparece só em palavras estrangeiras como «journalist»."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u03-l005-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "«jaar» ≈ «iár».",
+          "vocabRefs": [
+            "v-jaar"
+          ],
+          "prompt": "Como se lê o «j» de «jaar»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Como o «i» de «iate»",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Como o «j» de «janela»",
+              "correct": false,
+              "feedback": "Esse som só aparece em palavras estrangeiras."
+            },
+            {
+              "id": "c",
+              "text": "Como o «r» gutural",
+              "correct": false,
+              "feedback": "Não: esse é o som do «g»."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l005-e02",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "O «z» é sonoro, como em «zebra».",
+          "vocabRefs": [
+            "v-zes"
+          ],
+          "audioText": "zes",
+          "answers": [
+            "zes"
+          ],
+          "translation": "seis"
+        },
+        {
+          "id": "s1-u03-l005-e03",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Palavras com w, f, v, z e sch.",
+          "vocabRefs": [
+            "v-water",
+            "v-fiets",
+            "v-vis",
+            "v-zee",
+            "v-school"
+          ],
+          "pairs": [
+            {
+              "nl": "water",
+              "pt": "água"
+            },
+            {
+              "nl": "fiets",
+              "pt": "bicicleta"
+            },
+            {
+              "nl": "vis",
+              "pt": "peixe"
+            },
+            {
+              "nl": "zee",
+              "pt": "mar"
+            },
+            {
+              "nl": "school",
+              "pt": "escola"
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l005-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het water».",
+          "vocabRefs": [
+            "v-water"
+          ],
+          "noun": "water",
+          "pt": "a água",
+          "article": "het"
+        },
+        {
+          "id": "s1-u03-l005-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De fiets» — talvez a palavra mais neerlandesa de todas.",
+          "vocabRefs": [
+            "v-fiets"
+          ],
+          "noun": "fiets",
+          "pt": "a bicicleta",
+          "article": "de"
+        },
+        {
+          "id": "s1-u03-l005-e06",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het jaar».",
+          "vocabRefs": [
+            "v-jaar"
+          ],
+          "noun": "jaar",
+          "pt": "o ano",
+          "article": "het"
+        },
+        {
+          "id": "s1-u03-l005-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "«ie» = «i»; «ts» no fim.",
+          "vocabRefs": [
+            "v-fiets"
+          ],
+          "audioText": "de fiets",
+          "answers": [
+            "de fiets"
+          ],
+          "translation": "a bicicleta"
+        },
+        {
+          "id": "s1-u03-l005-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "«Naar school gaan» = ir para a escola (sem artigo).",
+          "vocabRefs": [
+            "v-school",
+            "v-gaan"
+          ],
+          "sentence": "Ik ga naar ___.",
+          "translation": "Vou para a escola.",
+          "answers": [
+            "school"
+          ],
+          "choices": [
+            "school",
+            "zes",
+            "vis"
+          ]
+        },
+        {
+          "id": "s1-u03-l005-e09",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Ambas usam «de».",
+          "vocabRefs": [
+            "v-fiets",
+            "v-vis",
+            "v-en"
+          ],
+          "direction": "pt-nl",
+          "prompt": "a bicicleta e o peixe",
+          "answers": [
+            "de fiets en de vis"
+          ]
+        },
+        {
+          "id": "s1-u03-l005-e10",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Escola escreve-se com «sch»: school.",
+          "vocabRefs": [
+            "v-school"
+          ],
+          "tokens": [
+            "Ik",
+            "ga",
+            "naar",
+            "skool."
+          ],
+          "errorIndex": 3,
+          "correction": "school"
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u03-l006",
+      "unitId": "s1-u03",
+      "order": 6,
+      "title": "O «r», o «h» e o «-en» final",
+      "description": "Pormenores que fazem soar natural.",
+      "cefr": "A1",
+      "objectives": [
+        "Pronunciar o «h» aspirado",
+        "Saber que o «-n» final de «-en» é muitas vezes fraco"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-hond",
+          "nl": "hond",
+          "pt": [
+            "cão"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "honden"
+        },
+        {
+          "id": "v-kat",
+          "nl": "kat",
+          "pt": [
+            "gato"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "katten"
+        },
+        {
+          "id": "v-rood",
+          "nl": "rood",
+          "pt": [
+            "vermelho"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-groot",
+          "nl": "groot",
+          "pt": [
+            "grande"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-lopen",
+          "nl": "lopen",
+          "pt": [
+            "andar a pé",
+            "caminhar"
+          ],
+          "pos": "verb",
+          "note": "ik loop, jij loopt"
+        },
+        {
+          "id": "v-heel",
+          "nl": "heel",
+          "pt": [
+            "muito"
+          ],
+          "pos": "adverb",
+          "note": "heel groot = muito grande"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-huis",
+        "v-klein",
+        "v-is"
+      ],
+      "examples": [
+        {
+          "nl": "De hond is groot.",
+          "pt": "O cão é grande."
+        },
+        {
+          "nl": "De kat is heel klein.",
+          "pt": "O gato é muito pequeno."
+        },
+        {
+          "nl": "Ik loop naar huis.",
+          "pt": "Vou a pé para casa."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-r-h-en",
+          "title": "r, h e -en",
+          "body": "O **h** ouve-se sempre, como no inglês *hello*: *hond*, *huis*. O **r** varia muito de região para região (vibrante ou gutural) e todos são aceites. No **-en** final dos verbos e plurais, muitos falantes quase não pronunciam o «n»: *lopen* ≈ «lope».",
+          "examples": [
+            {
+              "nl": "de hond",
+              "pt": "o cão"
+            },
+            {
+              "nl": "lopen",
+              "pt": "andar a pé"
+            }
+          ],
+          "contrastWithPt": "Em português o «h» é mudo; em neerlandês, omiti-lo pode mudar a palavra: «hand» (mão) vs «and» (não existe)."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u03-l006-e01",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "O «h» de «hond» é aspirado e «oo» é longo em «groot».",
+          "vocabRefs": [
+            "v-hond",
+            "v-groot"
+          ],
+          "audioText": "De hond is groot.",
+          "answers": [
+            "De hond is groot"
+          ],
+          "translation": "O cão é grande."
+        },
+        {
+          "id": "s1-u03-l006-e02",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Vocabulário novo desta lição.",
+          "vocabRefs": [
+            "v-hond",
+            "v-kat",
+            "v-rood",
+            "v-groot"
+          ],
+          "pairs": [
+            {
+              "nl": "hond",
+              "pt": "cão"
+            },
+            {
+              "nl": "kat",
+              "pt": "gato"
+            },
+            {
+              "nl": "rood",
+              "pt": "vermelho"
+            },
+            {
+              "nl": "groot",
+              "pt": "grande"
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l006-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "O «h» neerlandês é sempre pronunciado.",
+          "vocabRefs": [
+            "v-huis"
+          ],
+          "prompt": "Como se pronuncia o «h» de «huis»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Aspirado, como no inglês «hello»",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Mudo, como em «hora»",
+              "correct": false,
+              "feedback": "Em neerlandês o «h» ouve-se sempre."
+            },
+            {
+              "id": "c",
+              "text": "Como o «r» gutural",
+              "correct": false,
+              "feedback": "Não: esse é o som do «g»."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l006-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De hond».",
+          "vocabRefs": [
+            "v-hond"
+          ],
+          "noun": "hond",
+          "pt": "o cão",
+          "article": "de"
+        },
+        {
+          "id": "s1-u03-l006-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De kat» — plural «katten».",
+          "vocabRefs": [
+            "v-kat"
+          ],
+          "noun": "kat",
+          "pt": "o gato",
+          "article": "de"
+        },
+        {
+          "id": "s1-u03-l006-e06",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "lopen: ik loop, jij loopt. Na forma de «ik» o «oo» mantém-se longo: loop.",
+          "vocabRefs": [
+            "v-lopen"
+          ],
+          "verb": "lopen",
+          "pronoun": "ik",
+          "tense": "presente",
+          "sentence": "Ik ___ naar huis.",
+          "answers": [
+            "loop"
+          ]
+        },
+        {
+          "id": "s1-u03-l006-e07",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "«Heel» antes de um adjetivo = muito.",
+          "vocabRefs": [
+            "v-kat",
+            "v-heel",
+            "v-klein"
+          ],
+          "direction": "nl-pt",
+          "prompt": "De kat is heel klein.",
+          "answers": [
+            "O gato é muito pequeno"
+          ]
+        },
+        {
+          "id": "s1-u03-l006-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "«Heel groot» = muito grande.",
+          "vocabRefs": [
+            "v-heel",
+            "v-groot"
+          ],
+          "sentence": "De hond is ___ groot.",
+          "translation": "O cão é muito grande.",
+          "answers": [
+            "heel"
+          ],
+          "choices": [
+            "heel",
+            "rood",
+            "kat"
+          ]
+        },
+        {
+          "id": "s1-u03-l006-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Pergunta: o verbo vai para o início.",
+          "vocabRefs": [
+            "v-kat",
+            "v-rood",
+            "v-bruin"
+          ],
+          "translation": "O gato é vermelho? Não, é castanho.",
+          "tokens": [
+            "Is",
+            "de",
+            "kat",
+            "rood?",
+            "Nee,",
+            "bruin."
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s1-u03-l006-e10",
+          "type": "translate",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Adjetivo sem terminação depois de «is».",
+          "vocabRefs": [
+            "v-hond",
+            "v-groot"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O cão é grande.",
+          "answers": [
+            "De hond is groot"
+          ],
+          "wordBank": [
+            "De",
+            "hond",
+            "is",
+            "groot",
+            "kat",
+            "het"
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u03-l007",
+      "unitId": "s1-u03",
+      "order": 7,
+      "title": "Ler em voz alta",
+      "description": "Revisão da unidade: todos os sons novos em frases curtas.",
+      "cefr": "A1",
+      "objectives": [
+        "Ler frases com os sons típicos do neerlandês",
+        "Distinguir grafias parecidas"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-zoon",
+        "v-zon",
+        "v-maan",
+        "v-man",
+        "v-huis",
+        "v-trein",
+        "v-boek",
+        "v-fiets",
+        "v-school",
+        "v-acht"
+      ],
+      "examples": [
+        {
+          "nl": "Mijn zoon fietst naar school.",
+          "pt": "O meu filho vai de bicicleta para a escola."
+        },
+        {
+          "nl": "De maan is groot en geel.",
+          "pt": "A lua é grande e amarela."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u03-l007-e01",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "oo longo, g gutural, sch = s + ch.",
+          "vocabRefs": [
+            "v-zoon",
+            "v-gaan",
+            "v-school"
+          ],
+          "audioText": "Mijn zoon gaat naar school.",
+          "answers": [
+            "Mijn zoon gaat naar school"
+          ],
+          "translation": "O meu filho vai para a escola."
+        },
+        {
+          "id": "s1-u03-l007-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Vogal longa: aa.",
+          "vocabRefs": [
+            "v-maan"
+          ],
+          "prompt": "Qual é a palavra para «lua»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "maan",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "man",
+              "correct": false,
+              "feedback": "«man» = homem."
+            },
+            {
+              "id": "c",
+              "text": "mann",
+              "correct": false,
+              "feedback": "Esta grafia não existe."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l007-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "trein com «ei».",
+          "vocabRefs": [
+            "v-trein"
+          ],
+          "prompt": "Qual é a palavra para «comboio»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "trein",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "tuin",
+              "correct": false,
+              "feedback": "«tuin» = jardim."
+            },
+            {
+              "id": "c",
+              "text": "tijn",
+              "correct": false,
+              "feedback": "Esta palavra não existe."
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l007-e04",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Revisão de pares e sons.",
+          "vocabRefs": [
+            "v-zon",
+            "v-zoon",
+            "v-boek",
+            "v-huis",
+            "v-acht"
+          ],
+          "pairs": [
+            {
+              "nl": "zon",
+              "pt": "sol"
+            },
+            {
+              "nl": "zoon",
+              "pt": "filho"
+            },
+            {
+              "nl": "boek",
+              "pt": "livro"
+            },
+            {
+              "nl": "huis",
+              "pt": "casa"
+            },
+            {
+              "nl": "acht",
+              "pt": "oito"
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l007-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Azul escreve-se «blauw».",
+          "vocabRefs": [
+            "v-blauw"
+          ],
+          "tokens": [
+            "Het",
+            "boek",
+            "is",
+            "bluaw."
+          ],
+          "errorIndex": 3,
+          "correction": "blauw"
+        },
+        {
+          "id": "s1-u03-l007-e06",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "oud ≈ «âut».",
+          "vocabRefs": [
+            "v-fiets",
+            "v-oud"
+          ],
+          "direction": "nl-pt",
+          "prompt": "De fiets is oud.",
+          "answers": [
+            "A bicicleta é velha"
+          ]
+        },
+        {
+          "id": "s1-u03-l007-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "w entre v e u; ou ≈ «âu».",
+          "vocabRefs": [
+            "v-water",
+            "v-koud"
+          ],
+          "audioText": "Het water is koud.",
+          "answers": [
+            "Het water is koud"
+          ],
+          "translation": "A água está fria."
+        },
+        {
+          "id": "s1-u03-l007-e08",
+          "type": "translate",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Dois adjetivos ligados por «en».",
+          "vocabRefs": [
+            "v-huis",
+            "v-klein",
+            "v-oud"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A casa é pequena e velha.",
+          "answers": [
+            "Het huis is klein en oud"
+          ],
+          "wordBank": [
+            "Het",
+            "huis",
+            "is",
+            "klein",
+            "en",
+            "oud",
+            "De"
+          ]
+        },
+        {
+          "id": "s1-u03-l007-e09",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "«met de fiets» = de bicicleta.",
+          "vocabRefs": [
+            "v-deur",
+            "v-blauw",
+            "v-fiets"
+          ],
+          "kind": "text",
+          "title": "Na rua",
+          "text": "Mijn huis is klein en oud. De deur is blauw. Mijn zoon gaat met de fiets naar school.",
+          "questions": [
+            {
+              "prompt": "De que cor é a porta?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Azul",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Castanha",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Vermelha",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Como vai o filho para a escola?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "De bicicleta",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "De comboio",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "A pé",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s1-u03-l007-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Mijn huis is klein en oud.»",
+          "vocabRefs": [
+            "v-huis"
+          ],
+          "prompt": "Escreva uma frase sobre a sua casa (pequena/grande, velha, de que cor é a porta…).",
+          "referenceAnswers": [
+            "Mijn huis is [klein|groot]",
+            "Mijn huis is [klein|groot] en oud",
+            "De deur is [blauw|rood|bruin]"
+          ],
+          "checklist": [
+            "Usa «mijn huis» ou «de deur»",
+            "Usa «is» + um adjetivo (klein, groot, oud, blauw…)"
+          ],
+          "minWords": 3
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}
