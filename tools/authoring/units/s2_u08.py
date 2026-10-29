@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s2-u08")
+C = "A1-A2"
+
+L(1, "Roupa", "calças, camisola, casaco, vestido, sapatos.",
+  ["Nomear peças de roupa"],
+  vocab=[V("v-kleren","kleren","roupa","noun","de",note="Plural; também «kleding» (de)."), V("v-broek","broek","calças","noun","de","broeken",note="Singular em neerlandês: een broek = umas calças."),
+         V("v-trui","trui","camisola","noun","de","truien"), V("v-jas","jas","casaco","noun","de","jassen"),
+         V("v-jurk","jurk","vestido","noun","de","jurken"), V("v-schoen","schoen","sapato","noun","de","schoenen"), V("v-shirt","shirt","t-shirt|camisola de manga curta","noun","het","shirts")],
+  ex=[("Ik draag een broek en een trui.","Visto umas calças e uma camisola."),("Waar is mijn jas?","Onde está o meu casaco?"),("Deze schoenen zijn nieuw.","Estes sapatos são novos.")],
+  gram=[G("g-broek","Uma calça: een broek","Tal como **de bril** (os óculos), **de broek** é singular: *mijn broek **is** nieuw* (as minhas calças são novas). Vários pares: *twee broeken*.",
+    [("Deze broek is te lang.","Estas calças são compridas demais.")])],
+  review=["v-oud","v-mooi","v-kopen"],
+  cefr=C, exs=[
+    MA([("broek","calças"),("trui","camisola"),("jas","casaco"),("jurk","vestido"),("schoen","sapato")], "Roupa.", ["v-broek","v-trui","v-jas","v-jurk","v-schoen"]),
+    AR("shirt","a t-shirt","het", "«Het shirt».", ["v-shirt"]),
+    AR("jas","o casaco","de", "«De jas».", ["v-jas"]),
+    MC("Como se diz «As minhas calças são novas»?", ["*Mijn broek is nieuw.","Mijn broeken zijn nieuw.|Isso seriam vários pares de calças.","Mijn broek zijn nieuw.|broek é singular: is."], "de broek é singular.", ["v-broek"]),
+    TR("pt-nl","Onde está o meu casaco?", ["Waar is mijn jas"], "de jas.", ["v-jas"]),
+    TR("nl-pt","Deze schoenen zijn te klein.", ["Estes sapatos são (demasiado|muito) pequenos"], "te + adjetivo = demasiado.", ["v-schoen"]),
+    FB("Het is koud: neem je ___ mee!", ["jas"], "Com frio leva-se o casaco.", ["v-jas"], choices=["jas","shirt","jurk"], tr="Está frio: leva o casaco!"),
+    LI("Ik koop een nieuwe trui.", ["Ik koop een nieuwe trui"], "Compro uma camisola nova.", "nieuwe com -e antes de palavra «de».", ["v-trui"]),
+    FE(["Mijn","broek","zijn","vies."], 2, "is", "de broek é singular: is.", ["v-broek"]),
+    WO("Ela usa um vestido bonito.", ["Ze","draagt","een","mooie","jurk"], "dragen = usar/vestir.", ["v-jurk"]),
+  ], diff=1, mins=5)
+
+L(2, "As cores", "geel, groen, wit, zwart, grijs, roze, paars, oranje.",
+  ["Dizer as cores"],
+  vocab=[V("v-kleur","kleur","cor","noun","de","kleuren"), V("v-geel","geel","amarelo","adjective"), V("v-groen","groen","verde","adjective"),
+         V("v-wit","wit","branco","adjective"), V("v-zwart","zwart","preto","adjective"), V("v-grijs","grijs","cinzento","adjective"),
+         V("v-oranje","oranje","laranja (cor)","adjective",note="Cor nacional dos Países Baixos. Não leva -e: een oranje jas."), V("v-roze","roze","cor-de-rosa","adjective")],
+  ex=[("Welke kleur heeft je fiets?","De que cor é a tua bicicleta?"),("Mijn fiets is zwart.","A minha bicicleta é preta."),("Een witte trui en een groene jas.","Uma camisola branca e um casaco verde.")],
+  gram=[G("g-cores","Cores","As cores são adjetivos: depois de **zijn** não mudam (*de jas is groen*); antes de uma palavra «de» levam **-e** (*de groene jas*). **wit** dobra o t: *witte*. **oranje** e **roze** já acabam em -e e não mudam.",
+    [("een zwarte fiets","uma bicicleta preta"),("een oranje shirt","uma t-shirt laranja")])],
+  review=["v-rood","v-blauw","v-bruin","v-fiets"],
+  cefr=C, exs=[
+    MA([("geel","amarelo"),("groen","verde"),("wit","branco"),("zwart","preto"),("grijs","cinzento")], "Cores.", ["v-geel","v-groen","v-wit","v-zwart","v-grijs"]),
+    TR("pt-nl","De que cor é a tua bicicleta?", ["Welke kleur heeft [je|jouw] fiets","Welke kleur is [je|jouw] fiets"], "Welke kleur…?", ["v-kleur"]),
+    TR("pt-nl","A minha bicicleta é preta.", ["Mijn fiets is zwart"], "Depois de «is», sem -e.", ["v-zwart"]),
+    MC("O casaco verde:", ["*de groene jas","de groen jas|Antes de palavra «de» o adjetivo leva -e.","de groenen jas|Só -e."], "de + adjetivo-e.", ["v-groen"]),
+    MC("Uma camisola branca:", ["*een witte trui","een wite trui|O t dobra: witte.","een wit trui|«trui» é de: leva -e."], "wit → witte.", ["v-wit"]),
+    MC("Qual é a cor nacional dos Países Baixos?", ["*oranje","rood|Está na bandeira, mas a cor nacional é o laranja.","blauw|Está na bandeira, mas a cor nacional é o laranja."], "Por causa da casa real de Orange-Nassau.", ["v-oranje"]),
+    AR("kleur","a cor","de", "«De kleur».", ["v-kleur"]),
+    LI("De lucht is grijs vandaag.", ["De lucht is grijs vandaag"], "O céu está cinzento hoje.", "lucht = céu/ar.", ["v-grijs"]),
+    FE(["Ik","heb","een","oranjee","jas."], 3, "oranje", "«oranje» não muda.", ["v-oranje"]),
+    FB("Bananen zijn ___ .", ["geel"], "geel = amarelo.", ["v-geel"], choices=["geel","paars","zwart"], tr="As bananas são amarelas."),
+  ], diff=2, mins=5)
+
+L(3, "Na loja de roupa", "Tamanho, provador, experimentar e trocar.",
+  ["Pedir um tamanho e experimentar roupa"],
+  vocab=[V("v-maat","maat","tamanho|número","noun","de","maten"), V("v-paskamer","paskamer","provador","noun","de"),
+         V("v-passen-kleding","passen","experimentar (roupa)|servir","verb",note="Mag ik dit passen? = Posso experimentar isto?"), V("v-dragen","dragen","usar|vestir|levar","verb",note="ik draag"),
+         V("v-ruilen","ruilen","trocar","verb"), V("v-te","te","demasiado","adverb",note="te groot = grande demais")],
+  ex=[("Welke maat heeft u?","Que tamanho veste?"),("Mag ik deze broek passen?","Posso experimentar estas calças?"),("De paskamer is daar.","O provador é ali."),("Hij is te groot.","É grande demais.")],
+  gram=[G("g-te","Te = demasiado","**te** + adjetivo = demasiado: *te groot*, *te duur*, *te laat*. Não confundir com **heel** (muito): *heel duur* (muito caro, mas talvez compre), *te duur* (demasiado caro, não compro).",
+    [("Deze jas is te duur.","Este casaco é caro demais.")])],
+  review=["v-groot","v-klein","v-duur","v-lang"],
+  cefr=C, exs=[
+    MA([("maat","tamanho"),("paskamer","provador"),("passen","experimentar"),("ruilen","trocar"),("te","demasiado")], "Loja de roupa.", ["v-maat","v-paskamer","v-passen-kleding","v-ruilen","v-te"]),
+    TR("pt-nl","Posso experimentar estas calças?", ["Mag ik deze broek passen"], "passen = experimentar.", ["v-passen-kleding","v-broek"]),
+    TR("nl-pt","Welke maat heeft u?", ["Que tamanho (é que )(veste|usa|tem)","Qual é o seu tamanho"], "maat = tamanho.", ["v-maat"]),
+    MC("O casaco custa 400 € e não o vai comprar. Diz:", ["*Hij is te duur.","Hij is heel duur.|«heel» não implica que não compre; «te» sim.","Hij is duur te.|Ordem: te duur."], "te = demasiado.", ["v-te"]),
+    CJ("dragen","zij (ela)","Zij ___ een rode jurk.", ["draagt"], "dragen → zij draagt.", ["v-dragen"]),
+    FB("De broek is te lang. Heeft u een kleinere ___?", ["maat"], "Pedir outro tamanho.", ["v-maat"], choices=["maat","kleur","paskamer"], tr="As calças são compridas demais. Tem um tamanho mais pequeno?"),
+    DL([("Vendedora","Past hij?","Serve?"),("Cliente","")], ["*Nee, hij is te klein.","Ja, hij is te klein.|Contraditório.","Nee, ik ben de paskamer.|Não faz sentido."], "Past hij? = serve?", ["v-te"]),
+    LI("Kan ik dit ruilen?", ["Kan ik dit ruilen"], "Posso trocar isto?", "ruilen = trocar.", ["v-ruilen"]),
+    AR("paskamer","o provador","de", "kamer → de.", ["v-paskamer"]),
+    FE(["Deze","schoenen","zijn","te","kleine."], 4, "klein", "Depois de «zijn» o adjetivo não leva -e: te klein.", ["v-te"]),
+  ], diff=2, mins=6)
+
+L(4, "Fica-te bem!", "Elogiar roupa e dar opinião.",
+  ["Elogiar e dar opinião sobre roupa"],
+  vocab=[V("v-staan-goed","goed staan","ficar bem (roupa)","expression",note="Die jas staat je goed = esse casaco fica-te bem."), V("v-mooi-vinden","vinden","achar","verb",note="Ik vind het mooi = acho bonito."),
+         V("v-modern","modern","moderno","adjective"), V("v-lelijk","lelijk","feio","adjective")],
+  ex=[("Die jurk staat je goed!","Esse vestido fica-te bem!"),("Ik vind die schoenen mooi.","Acho esses sapatos bonitos."),("Wat vind je van deze jas?","O que achas deste casaco?")],
+  gram=[G("g-vinden-opiniao","Vinden = achar","Para dar opinião: **Ik vind** + objeto + adjetivo: *ik vind het mooi*. Pergunta: **Wat vind je van…?** (o que achas de…?). Roupa que fica bem: *het **staat** je goed*.",
+    [("Ik vind het te duur.","Acho caro demais."),("Hoe vind je mijn nieuwe trui?","Que achas da minha camisola nova?")])],
+  review=["v-vinden","v-mooi","v-jas","v-jurk"],
+  cefr=C, exs=[
+    MA([("goed staan","ficar bem"),("modern","moderno"),("lelijk","feio"),("mooi","bonito")], "Opiniões.", ["v-staan-goed","v-modern","v-lelijk","v-mooi"]),
+    TR("pt-nl","Esse vestido fica-te bem!", ["Die jurk staat je goed","Die jurk staat jou goed"], "staan + je + goed.", ["v-staan-goed"]),
+    TR("pt-nl","O que achas deste casaco?", ["Wat vind je van deze jas","Hoe vind je deze jas"], "Wat vind je van…?", ["v-mooi-vinden"]),
+    TR("nl-pt","Ik vind die schoenen lelijk.", ["Acho esses sapatos feios"], "vinden = achar.", ["v-lelijk"]),
+    FE(["Ik","denk","het","mooi."], 1, "vind", "Para opinião estética: ik vind het mooi.", ["v-mooi-vinden"]),
+    DL([("Eva","Hoe vind je mijn nieuwe trui?","Que achas da minha camisola nova?"),("Tom","")], ["*Mooi! Hij staat je goed.","Ik ben mooi.|Não responde.","Ja, graag.|Não responde."], "Elogio.", ["v-staan-goed"]),
+    FB("Wat ___ jij van deze kleur?", ["vind"], "vinden: jij vindt → pergunta: vind jij?", ["v-mooi-vinden"], choices=["vind","vindt","denk"], tr="O que achas desta cor?"),
+    LI("Wat een mooie jas!", ["Wat een mooie jas"], "Que casaco bonito!", "Wat een + adjetivo + nome!", ["v-mooi"]),
+    WO("Acho-o moderno, mas caro demais.", ["Ik","vind","het","modern,","maar","te","duur"], "vinden + het + adjetivo.", ["v-modern","v-te"]),
+    EX("Dat staat je goed!", "Isso está-te bem de pé!", "Quando se diz?", ["*Para dizer que uma roupa fica bem a alguém","Para pedir a alguém que se levante|Não tem a ver com «estar de pé».","Para dizer que algo está bem arrumado|Não."], "staan aqui = ficar (roupa).", ["v-staan-goed"]),
+  ], diff=2, mins=6)
+
+L(5, "Às compras de roupa", "Revisão: roupa, cores, tamanhos e opiniões.",
+  ["Comprar roupa do início ao fim"],
+  ex=[("Ik zoek een zwarte jas in maat M.","Procuro um casaco preto no tamanho M.")],
+  review=["v-jas","v-broek","v-maat","v-paskamer","v-te","v-zwart","v-mooi-vinden","v-staan-goed","v-duur"],
+  cefr=C, exs=[
+    TR("pt-nl","Procuro um casaco preto.", ["Ik zoek een zwarte jas"], "een + adjetivo-e + palavra de.", ["v-zwart","v-jas"]),
+    MC("Uma t-shirt branca (het shirt):", ["*een wit shirt","een witte shirt|Com een + palavra het, o adjetivo não leva -e.","een wite shirt|Não existe."], "een + het-palavra → sem -e.", ["v-wit","v-shirt"]),
+    DL([("Vendedor","Kan ik u helpen?","Posso ajudar?"),("Cliente","Ja, ik zoek een trui.","Sim, procuro uma camisola."),("Vendedor","Welke maat?","Que tamanho?"),("Cliente","")], ["*Maat L, graag.","Ja, groen.|Perguntaram o tamanho.","Te duur.|Não responde."], "Responder com o tamanho.", ["v-maat"]),
+    FE(["Deze","jas","is","te","goedkoop,","ik","koop","hem","niet."], 4, "duur", "Se não compra, é «te duur».", ["v-te","v-duur"]),
+    LI("Waar is de paskamer?", ["Waar is de paskamer"], "Onde é o provador?", "pas + kamer.", ["v-paskamer"]),
+    TR("nl-pt","Die kleur staat je heel goed.", ["Essa cor fica-te muito bem"], "staan + goed.", ["v-staan-goed"]),
+    CO("dialogue","Na loja", "Ana: Mag ik deze jurk passen?\nVerkoopster: Natuurlijk. De paskamer is daar.\nAna: Hij is te groot. Heeft u maat 36?\nVerkoopster: Ja, alstublieft.\nAna: Perfect! Hoeveel kost hij?\nVerkoopster: Vijftig euro, maar vandaag is er twintig procent korting.",
+       [("Porque pede a Ana outro tamanho?", ["*O vestido é grande demais","É pequeno demais","Não gosta da cor"]),("Quanto desconto há hoje?", ["*20 %","50 %","Nenhum"])],
+       "procent = por cento.", ["v-te","v-maat","v-korting"]),
+    MA([("Mag ik dit passen?","Posso experimentar?"),("Past het?","Serve?"),("Het is te klein.","É pequeno demais."),("Ik neem het.","Levo-o.")], "Frases na loja.", ["v-passen-kleding","v-te"]),
+    SW("Descreva o que veste hoje (peças e cores).", ["Ik draag een [blauwe|zwarte|grijze] broek en een [witte|rode|groene] trui","Vandaag draag ik een zwarte jas en witte schoenen"],
+       ["Usa «ik draag»","Cores antes de palavras de com -e","Cores depois de «is» sem -e"], 6, "Modelo: «Vandaag draag ik een blauwe broek en een witte trui.»", ["v-dragen"]),
+  ], diff=2, mins=6)
+
+W()
