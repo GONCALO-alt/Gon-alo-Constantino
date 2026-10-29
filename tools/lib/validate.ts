@@ -216,7 +216,7 @@ export function validateContent(
       const prev = vocabDefs.get(v.id);
       if (prev) push({ level: 'error', where, message: `Vocabulário "${v.id}" já foi definido em ${prev.lessonId}. Use reviewVocabulary.` });
       else vocabDefs.set(v.id, { lessonId: l.id, pos, nl: v.nl, status: l.status });
-      if (v.pos === 'noun' && !v.article && !/^[A-Z]/.test(v.nl)) push({ level: 'warning', where, message: `Substantivo "${v.nl}" sem artigo (de/het).` });
+      if (v.pos === 'noun' && !v.article && !/^[A-Z]/.test(v.nl) && !v.note?.includes('sem artigo')) push({ level: 'warning', where, message: `Substantivo "${v.nl}" sem artigo (de/het).` });
     }
 
     const exIds = new Set<string>();

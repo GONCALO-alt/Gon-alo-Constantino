@@ -33,7 +33,8 @@ def V(id, nl, pt, pos, article=None, plural=None, note=None):
 
 
 def G(id, title, body, examples=(), contrast=None):
-    g = {"id": id, "title": title, "body": body, "examples": [{"nl": a, "pt": b} for a, b in examples]}
+    g = {"id": id, "title": title, "body": body,
+         "examples": [{"nl": e[0], "pt": e[1] + (f" ({e[2]})" if len(e) > 2 else "")} for e in examples]}
     if contrast: g["contrastWithPt"] = contrast
     return g
 
