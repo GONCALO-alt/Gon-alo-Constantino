@@ -1,0 +1,1581 @@
+{
+  "unitId": "s3-u10",
+  "lessons": [
+    {
+      "id": "s3-u10-l001",
+      "unitId": "s3-u10",
+      "order": 1,
+      "title": "Procurar casa",
+      "description": "huren, kopen, de huur, de makelaar, te huur.",
+      "cefr": "A2",
+      "objectives": [
+        "Falar da procura de casa"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-huren",
+          "nl": "huren",
+          "pt": [
+            "arrendar",
+            "alugar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-huur",
+          "nl": "huur",
+          "pt": [
+            "renda"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-makelaar",
+          "nl": "makelaar",
+          "pt": [
+            "agente imobiliário"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-te-huur",
+          "nl": "te huur",
+          "pt": [
+            "para arrendar"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-te-koop",
+          "nl": "te koop",
+          "pt": [
+            "à venda"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-huurwoning",
+          "nl": "huurwoning",
+          "pt": [
+            "casa arrendada"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zoeken",
+        "v-appartement",
+        "v-maand",
+        "v-duur"
+      ],
+      "examples": [
+        {
+          "nl": "Ik zoek een huis te huur.",
+          "pt": "Procuro uma casa para arrendar."
+        },
+        {
+          "nl": "De huur is 1200 euro per maand.",
+          "pt": "A renda é 1200 euros por mês."
+        },
+        {
+          "nl": "Dit appartement is te koop.",
+          "pt": "Este apartamento está à venda."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-woningmarkt",
+          "title": "O mercado da habitação",
+          "body": "Encontrar casa nos Países Baixos é **difícil**, sobretudo nas cidades grandes. Há **sociale huur** (renda social, com listas de espera longas) e **vrije sector** (mercado livre, mais caro). Atenção a burlas: nunca pague antes de ver a casa e o contrato.",
+          "examples": [
+            {
+              "nl": "Er is een lange wachtlijst.",
+              "pt": "Há uma longa lista de espera."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u10-l001-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Habitação.",
+          "vocabRefs": [
+            "v-huren",
+            "v-huur",
+            "v-makelaar",
+            "v-te-huur",
+            "v-te-koop"
+          ],
+          "pairs": [
+            {
+              "nl": "huren",
+              "pt": "arrendar"
+            },
+            {
+              "nl": "huur",
+              "pt": "renda"
+            },
+            {
+              "nl": "makelaar",
+              "pt": "agente imobiliário"
+            },
+            {
+              "nl": "te huur",
+              "pt": "para arrendar"
+            },
+            {
+              "nl": "te koop",
+              "pt": "à venda"
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l001-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "te huur.",
+          "vocabRefs": [
+            "v-te-huur"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Procuro uma casa para arrendar.",
+          "answers": [
+            "Ik zoek een huis te huur",
+            "Ik zoek een huurhuis",
+            "Ik zoek een huurwoning"
+          ]
+        },
+        {
+          "id": "s3-u10-l001-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "huur.",
+          "vocabRefs": [
+            "v-huur"
+          ],
+          "direction": "nl-pt",
+          "prompt": "De huur is twaalfhonderd euro per maand.",
+          "answers": [
+            "A renda é (de )mil e duzentos euros por mês",
+            "A renda é (de )1200 euros por mês"
+          ]
+        },
+        {
+          "id": "s3-u10-l001-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "te koop = à venda.",
+          "vocabRefs": [
+            "v-te-koop"
+          ],
+          "prompt": "«Te koop» numa janela significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "À venda",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Para arrendar",
+              "correct": false,
+              "feedback": "Isso é «te huur»."
+            },
+            {
+              "id": "c",
+              "text": "Vendido",
+              "correct": false,
+              "feedback": "Isso é «verkocht»."
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l001-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De huur».",
+          "vocabRefs": [
+            "v-huur"
+          ],
+          "noun": "huur",
+          "pt": "a renda",
+          "article": "de"
+        },
+        {
+          "id": "s3-u10-l001-e06",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "Plural.",
+          "vocabRefs": [
+            "v-huren"
+          ],
+          "verb": "huren",
+          "pronoun": "wij",
+          "tense": "presente",
+          "sentence": "Wij ___ een appartement in Delft.",
+          "answers": [
+            "huren"
+          ]
+        },
+        {
+          "id": "s3-u10-l001-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Se é caro demais, procura algo mais barato: iets goedkopers.",
+          "vocabRefs": [
+            "v-huur"
+          ],
+          "tokens": [
+            "De",
+            "huur",
+            "is",
+            "te",
+            "duur",
+            "voor",
+            "mij,",
+            "ik",
+            "zoek",
+            "iets",
+            "duurder."
+          ],
+          "errorIndex": 10,
+          "correction": "goedkopers"
+        },
+        {
+          "id": "s3-u10-l001-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "weinig.",
+          "vocabRefs": [
+            "v-huurwoning"
+          ],
+          "audioText": "Er zijn weinig huurwoningen in Amsterdam.",
+          "answers": [
+            "Er zijn weinig huurwoningen in Amsterdam"
+          ],
+          "translation": "Há poucas casas para arrendar em Amesterdão."
+        },
+        {
+          "id": "s3-u10-l001-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "agente imobiliário.",
+          "vocabRefs": [
+            "v-makelaar"
+          ],
+          "sentence": "Een ___ helpt je een huis te vinden.",
+          "translation": "Um agente imobiliário ajuda-te a encontrar casa.",
+          "answers": [
+            "makelaar"
+          ],
+          "choices": [
+            "makelaar",
+            "huur",
+            "gemeente"
+          ]
+        },
+        {
+          "id": "s3-u10-l001-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "dicht bij = perto de.",
+          "vocabRefs": [
+            "v-huren"
+          ],
+          "translation": "Arrendamos um apartamento perto do centro.",
+          "tokens": [
+            "We",
+            "huren",
+            "een",
+            "appartement",
+            "dicht",
+            "bij",
+            "het",
+            "centrum"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u10-l002",
+      "unitId": "s3-u10",
+      "order": 2,
+      "title": "Visitar uma casa",
+      "description": "de bezichtiging, gemeubileerd, de borg, inclusief.",
+      "cefr": "A2",
+      "objectives": [
+        "Fazer perguntas numa visita a uma casa"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bezichtiging",
+          "nl": "bezichtiging",
+          "pt": [
+            "visita (a uma casa)"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-gemeubileerd",
+          "nl": "gemeubileerd",
+          "pt": [
+            "mobilado"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-borg",
+          "nl": "borg",
+          "pt": [
+            "caução"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-inclusief",
+          "nl": "inclusief",
+          "pt": [
+            "incluído"
+          ],
+          "pos": "adjective",
+          "note": "Também «inclusief gas, water en licht»."
+        },
+        {
+          "id": "v-servicekosten",
+          "nl": "servicekosten",
+          "pt": [
+            "despesas de condomínio"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-huur",
+        "v-appartement",
+        "v-wanneer",
+        "v-hoeveel"
+      ],
+      "examples": [
+        {
+          "nl": "Is het appartement gemeubileerd?",
+          "pt": "O apartamento é mobilado?"
+        },
+        {
+          "nl": "De borg is twee maanden huur.",
+          "pt": "A caução é de dois meses de renda."
+        },
+        {
+          "nl": "Is de huur inclusief gas en licht?",
+          "pt": "A renda inclui gás e eletricidade?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u10-l002-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Visita.",
+          "vocabRefs": [
+            "v-bezichtiging",
+            "v-gemeubileerd",
+            "v-borg",
+            "v-inclusief",
+            "v-servicekosten"
+          ],
+          "pairs": [
+            {
+              "nl": "bezichtiging",
+              "pt": "visita"
+            },
+            {
+              "nl": "gemeubileerd",
+              "pt": "mobilado"
+            },
+            {
+              "nl": "borg",
+              "pt": "caução"
+            },
+            {
+              "nl": "inclusief",
+              "pt": "incluído"
+            },
+            {
+              "nl": "servicekosten",
+              "pt": "condomínio"
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l002-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "gemeubileerd.",
+          "vocabRefs": [
+            "v-gemeubileerd"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O apartamento é mobilado?",
+          "answers": [
+            "Is het appartement gemeubileerd"
+          ]
+        },
+        {
+          "id": "s3-u10-l002-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "gas en licht = gás e eletricidade.",
+          "vocabRefs": [
+            "v-inclusief"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Is de huur inclusief gas en licht?",
+          "answers": [
+            "A renda inclui gás e (eletricidade|luz)",
+            "A renda tem gás e luz incluídos"
+          ]
+        },
+        {
+          "id": "s3-u10-l002-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "de borg.",
+          "vocabRefs": [
+            "v-borg"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quanto é a caução?",
+          "answers": [
+            "Hoeveel is de borg",
+            "Hoe hoog is de borg"
+          ]
+        },
+        {
+          "id": "s3-u10-l002-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De borg».",
+          "vocabRefs": [
+            "v-borg"
+          ],
+          "noun": "borg",
+          "pt": "a caução",
+          "article": "de"
+        },
+        {
+          "id": "s3-u10-l002-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Sem «van»: inclusief water.",
+          "vocabRefs": [
+            "v-inclusief"
+          ],
+          "tokens": [
+            "Is",
+            "de",
+            "huur",
+            "inclusief",
+            "van",
+            "water?"
+          ],
+          "errorIndex": 4,
+          "correction": "(retirar)"
+        },
+        {
+          "id": "s3-u10-l002-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "bezichtiging.",
+          "vocabRefs": [
+            "v-bezichtiging"
+          ],
+          "audioText": "Wanneer is de bezichtiging?",
+          "answers": [
+            "Wanneer is de bezichtiging"
+          ],
+          "translation": "Quando é a visita?"
+        },
+        {
+          "id": "s3-u10-l002-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pergunta sobre disponibilidade.",
+          "vocabRefs": [
+            "v-bezichtiging"
+          ],
+          "lines": [
+            {
+              "speaker": "Senhorio",
+              "nl": "Heeft u nog vragen?",
+              "pt": "Tem mais perguntas?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, wanneer is het appartement beschikbaar?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik ben gemeubileerd.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Nee, de borg.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l002-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "sem incluir = exclusief.",
+          "vocabRefs": [
+            "v-inclusief"
+          ],
+          "sentence": "De huur is 900 euro, ___ servicekosten.",
+          "translation": "A renda é 900 euros, sem as despesas de condomínio.",
+          "answers": [
+            "exclusief"
+          ],
+          "choices": [
+            "exclusief",
+            "gemeubileerd",
+            "borg"
+          ]
+        },
+        {
+          "id": "s3-u10-l002-e10",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "op afspraak = mediante marcação.",
+          "vocabRefs": [
+            "v-gemeubileerd",
+            "v-borg"
+          ],
+          "kind": "text",
+          "title": "Anúncio",
+          "text": "Te huur: gemeubileerd appartement, 55 m², tweede verdieping. Huur: 1.150 euro per maand, exclusief gas, water en licht. Borg: twee maanden huur. Beschikbaar vanaf 1 maart. Bezichtiging op afspraak.",
+          "questions": [
+            {
+              "prompt": "O apartamento é mobilado?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Sim",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Não",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não se diz",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quanto é a caução?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "2300 €",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "1150 €",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Nada",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "A partir de quando está disponível?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "1 de março",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Já",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "1 de maio",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u10-l003",
+      "unitId": "s3-u10",
+      "order": 3,
+      "title": "O contrato",
+      "description": "het huurcontract, de opzegtermijn, de huurder, de verhuurder.",
+      "cefr": "A2",
+      "objectives": [
+        "Perceber termos básicos de um contrato de arrendamento"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-huurcontract",
+          "nl": "huurcontract",
+          "pt": [
+            "contrato de arrendamento"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-huurder",
+          "nl": "huurder",
+          "pt": [
+            "inquilino"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-verhuurder",
+          "nl": "verhuurder",
+          "pt": [
+            "senhorio"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-opzeggen",
+          "nl": "opzeggen",
+          "pt": [
+            "rescindir",
+            "denunciar (contrato)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-opzegtermijn",
+          "nl": "opzegtermijn",
+          "pt": [
+            "prazo de pré-aviso"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-lezen",
+        "v-handtekening",
+        "v-maand"
+      ],
+      "examples": [
+        {
+          "nl": "Lees het huurcontract goed.",
+          "pt": "Lê bem o contrato de arrendamento."
+        },
+        {
+          "nl": "De opzegtermijn is één maand.",
+          "pt": "O pré-aviso é de um mês."
+        },
+        {
+          "nl": "De verhuurder moet de verwarming repareren.",
+          "pt": "O senhorio tem de reparar o aquecimento."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u10-l003-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Contrato.",
+          "vocabRefs": [
+            "v-huurcontract",
+            "v-huurder",
+            "v-verhuurder",
+            "v-opzeggen",
+            "v-opzegtermijn"
+          ],
+          "pairs": [
+            {
+              "nl": "huurcontract",
+              "pt": "contrato"
+            },
+            {
+              "nl": "huurder",
+              "pt": "inquilino"
+            },
+            {
+              "nl": "verhuurder",
+              "pt": "senhorio"
+            },
+            {
+              "nl": "opzeggen",
+              "pt": "rescindir"
+            },
+            {
+              "nl": "opzegtermijn",
+              "pt": "pré-aviso"
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l003-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "contract → het.",
+          "vocabRefs": [
+            "v-huurcontract"
+          ],
+          "noun": "huurcontract",
+          "pt": "o contrato de arrendamento",
+          "article": "het"
+        },
+        {
+          "id": "s3-u10-l003-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "ver- + huurder = quem dá em arrendamento.",
+          "vocabRefs": [
+            "v-verhuurder"
+          ],
+          "prompt": "Quem é o «verhuurder»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "O senhorio (quem arrenda a casa)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "O inquilino",
+              "correct": false,
+              "feedback": "Esse é «huurder»."
+            },
+            {
+              "id": "c",
+              "text": "O agente",
+              "correct": false,
+              "feedback": "Esse é «makelaar»."
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l003-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "opzegtermijn.",
+          "vocabRefs": [
+            "v-opzegtermijn"
+          ],
+          "direction": "nl-pt",
+          "prompt": "De opzegtermijn is één maand.",
+          "answers": [
+            "O pré-aviso é de um mês",
+            "O prazo de rescisão é de um mês"
+          ]
+        },
+        {
+          "id": "s3-u10-l003-e05",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável: zeg … op.",
+          "vocabRefs": [
+            "v-opzeggen"
+          ],
+          "translation": "Rescindo o contrato.",
+          "tokens": [
+            "Ik",
+            "zeg",
+            "het",
+            "huurcontract",
+            "op"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u10-l003-e06",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-huurcontract"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Lê bem o contrato.",
+          "answers": [
+            "Lees het contract goed",
+            "Lees het huurcontract goed"
+          ]
+        },
+        {
+          "id": "s3-u10-l003-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "O dono da casa (huisbaas) é o senhorio: de verhuurder.",
+          "vocabRefs": [
+            "v-verhuurder"
+          ],
+          "tokens": [
+            "Ik",
+            "ben",
+            "de",
+            "huurder",
+            "en",
+            "mijn",
+            "huisbaas",
+            "is",
+            "de",
+            "huurder."
+          ],
+          "errorIndex": 9,
+          "correction": "verhuurder"
+        },
+        {
+          "id": "s3-u10-l003-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "pas als = só quando.",
+          "vocabRefs": [
+            "v-huurcontract"
+          ],
+          "audioText": "Teken het contract pas als alles duidelijk is.",
+          "answers": [
+            "Teken het contract pas als alles duidelijk is"
+          ],
+          "translation": "Assina o contrato só quando tudo estiver claro."
+        },
+        {
+          "id": "s3-u10-l003-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "rescindir.",
+          "vocabRefs": [
+            "v-opzeggen"
+          ],
+          "sentence": "Je moet het contract één maand van tevoren ___.",
+          "translation": "Tens de rescindir o contrato com um mês de antecedência.",
+          "answers": [
+            "opzeggen"
+          ],
+          "choices": [
+            "opzeggen",
+            "huren",
+            "bezichtigen"
+          ]
+        },
+        {
+          "id": "s3-u10-l003-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "op de eerste.",
+          "vocabRefs": [
+            "v-huurder"
+          ],
+          "translation": "O inquilino paga a renda no dia 1.",
+          "tokens": [
+            "De",
+            "huurder",
+            "betaalt",
+            "de",
+            "huur",
+            "op",
+            "de",
+            "eerste"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u10-l004",
+      "unitId": "s3-u10",
+      "order": 4,
+      "title": "Problemas em casa",
+      "description": "lekken, kapot, de verwarming, de loodgieter, repareren.",
+      "cefr": "A2",
+      "objectives": [
+        "Reportar problemas em casa ao senhorio"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-verwarming",
+          "nl": "verwarming",
+          "pt": [
+            "aquecimento"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-lekken",
+          "nl": "lekken",
+          "pt": [
+            "pingar",
+            "ter uma fuga"
+          ],
+          "pos": "verb",
+          "note": "De kraan lekt."
+        },
+        {
+          "id": "v-kraan",
+          "nl": "kraan",
+          "pt": [
+            "torneira"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-repareren",
+          "nl": "repareren",
+          "pt": [
+            "reparar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-loodgieter",
+          "nl": "loodgieter",
+          "pt": [
+            "canalizador"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-schimmel",
+          "nl": "schimmel",
+          "pt": [
+            "bolor"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-kapot",
+        "v-verhuurder",
+        "v-badkamer",
+        "v-helpen"
+      ],
+      "examples": [
+        {
+          "nl": "De verwarming doet het niet.",
+          "pt": "O aquecimento não funciona."
+        },
+        {
+          "nl": "De kraan lekt.",
+          "pt": "A torneira está a pingar."
+        },
+        {
+          "nl": "Er zit schimmel in de badkamer.",
+          "pt": "Há bolor na casa de banho."
+        },
+        {
+          "nl": "Kunt u een loodgieter sturen?",
+          "pt": "Pode mandar um canalizador?"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-het-doen",
+          "title": "«Het doet het niet»",
+          "body": "Para dizer que algo não funciona: **Het doet het niet** ou **Het werkt niet**. *De lift doet het niet* (o elevador não funciona). É uma expressão fixa muito usada.",
+          "examples": [
+            {
+              "nl": "Mijn telefoon doet het niet.",
+              "pt": "O meu telemóvel não funciona."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u10-l004-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Problemas.",
+          "vocabRefs": [
+            "v-verwarming",
+            "v-kraan",
+            "v-repareren",
+            "v-loodgieter",
+            "v-schimmel"
+          ],
+          "pairs": [
+            {
+              "nl": "verwarming",
+              "pt": "aquecimento"
+            },
+            {
+              "nl": "kraan",
+              "pt": "torneira"
+            },
+            {
+              "nl": "repareren",
+              "pt": "reparar"
+            },
+            {
+              "nl": "loodgieter",
+              "pt": "canalizador"
+            },
+            {
+              "nl": "schimmel",
+              "pt": "bolor"
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l004-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "het doet het niet.",
+          "vocabRefs": [
+            "v-verwarming"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O aquecimento não funciona.",
+          "answers": [
+            "De verwarming doet het niet",
+            "De verwarming werkt niet"
+          ]
+        },
+        {
+          "id": "s3-u10-l004-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "lekken.",
+          "vocabRefs": [
+            "v-lekken",
+            "v-kraan"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A torneira está a pingar.",
+          "answers": [
+            "De kraan lekt"
+          ]
+        },
+        {
+          "id": "s3-u10-l004-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "sturen = enviar.",
+          "vocabRefs": [
+            "v-loodgieter"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Kunt u een loodgieter sturen?",
+          "answers": [
+            "Pode (mandar|enviar) um canalizador"
+          ]
+        },
+        {
+          "id": "s3-u10-l004-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-verwarming"
+          ],
+          "noun": "verwarming",
+          "pt": "o aquecimento",
+          "article": "de"
+        },
+        {
+          "id": "s3-u10-l004-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Expressão fixa: de lift doet het niet.",
+          "vocabRefs": [
+            "v-verwarming"
+          ],
+          "tokens": [
+            "De",
+            "lift",
+            "doet",
+            "niet",
+            "het."
+          ],
+          "errorIndex": 3,
+          "correction": "het niet"
+        },
+        {
+          "id": "s3-u10-l004-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "er zit = há.",
+          "vocabRefs": [
+            "v-schimmel"
+          ],
+          "audioText": "Er zit schimmel op de muur.",
+          "answers": [
+            "Er zit schimmel op de muur"
+          ],
+          "translation": "Há bolor na parede."
+        },
+        {
+          "id": "s3-u10-l004-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "reparar.",
+          "vocabRefs": [
+            "v-repareren"
+          ],
+          "sentence": "Wanneer komt iemand de verwarming ___?",
+          "translation": "Quando vem alguém reparar o aquecimento?",
+          "answers": [
+            "repareren"
+          ],
+          "choices": [
+            "repareren",
+            "lekken",
+            "huren"
+          ]
+        },
+        {
+          "id": "s3-u10-l004-e09",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Descrever o problema.",
+          "vocabRefs": [
+            "v-verwarming"
+          ],
+          "lines": [
+            {
+              "speaker": "Senhorio",
+              "nl": "Wat is het probleem?",
+              "pt": "Qual é o problema?"
+            },
+            {
+              "speaker": "Inquilino",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "De verwarming doet het niet en het is heel koud.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben de verwarming.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "De huur is te laag.",
+              "correct": false,
+              "feedback": "Não é um problema de casa."
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l004-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Beste meneer De Boer, de verwarming doet het niet. Kunt u iemand sturen om het te repareren? Met vriendelijke groet, Ana»",
+          "vocabRefs": [
+            "v-repareren"
+          ],
+          "prompt": "Escreva uma mensagem ao senhorio sobre um problema em casa e peça uma reparação.",
+          "referenceAnswers": [
+            "Beste meneer(,) de [verwarming|kraan|douche] doet het niet(.) Kunt u iemand sturen om het te repareren"
+          ],
+          "checklist": [
+            "Descreve o problema",
+            "Pede com «kunt u…?»",
+            "Tom educado (beste…, alstublieft)"
+          ],
+          "minWords": 10
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u10-l005",
+      "unitId": "s3-u10",
+      "order": 5,
+      "title": "Mudar de casa",
+      "description": "Revisão: procurar, visitar, contratar e mudar.",
+      "cefr": "A2",
+      "objectives": [
+        "Contar o processo de mudar de casa"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-verhuizen",
+          "nl": "verhuizen",
+          "pt": [
+            "mudar de casa"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-verhuisdoos",
+          "nl": "verhuisdoos",
+          "pt": [
+            "caixa de mudanças"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-huren",
+        "v-huurcontract",
+        "v-bezichtiging",
+        "v-borg",
+        "v-verhuurder",
+        "v-opzeggen",
+        "v-gemeente",
+        "v-inschrijven"
+      ],
+      "examples": [
+        {
+          "nl": "We verhuizen volgende maand.",
+          "pt": "Mudamos de casa no próximo mês."
+        },
+        {
+          "nl": "Kun je me helpen met verhuizen?",
+          "pt": "Podes ajudar-me nas mudanças?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u10-l005-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Mudanças.",
+          "vocabRefs": [
+            "v-verhuizen",
+            "v-verhuisdoos",
+            "v-bezichtiging",
+            "v-borg"
+          ],
+          "pairs": [
+            {
+              "nl": "verhuizen",
+              "pt": "mudar de casa"
+            },
+            {
+              "nl": "verhuisdoos",
+              "pt": "caixa de mudanças"
+            },
+            {
+              "nl": "bezichtiging",
+              "pt": "visita"
+            },
+            {
+              "nl": "borg",
+              "pt": "caução"
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l005-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verhuizen.",
+          "vocabRefs": [
+            "v-verhuizen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Mudamos de casa no próximo mês.",
+          "answers": [
+            "We verhuizen volgende maand",
+            "Volgende maand verhuizen we"
+          ]
+        },
+        {
+          "id": "s3-u10-l005-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "helpen met.",
+          "vocabRefs": [
+            "v-verhuizen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Kun je me helpen met verhuizen?",
+          "answers": [
+            "Podes ajudar-me (nas|com as) mudanças"
+          ]
+        },
+        {
+          "id": "s3-u10-l005-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Inschrijven no novo adres.",
+          "vocabRefs": [
+            "v-inschrijven"
+          ],
+          "prompt": "Depois de mudar de casa, o que tem de fazer na gemeente?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Registar a nova morada",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nada",
+              "correct": false,
+              "feedback": "É obrigatório comunicar a mudança."
+            },
+            {
+              "id": "c",
+              "text": "Pedir um novo BSN",
+              "correct": false,
+              "feedback": "O BSN não muda."
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l005-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: ik zeg mijn oude huurcontract op.",
+          "vocabRefs": [
+            "v-opzeggen"
+          ],
+          "tokens": [
+            "Ik",
+            "opzeg",
+            "mijn",
+            "oude",
+            "huurcontract."
+          ],
+          "errorIndex": 1,
+          "correction": "zeg … op"
+        },
+        {
+          "id": "s3-u10-l005-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Comparativos (veremos na unidade 14).",
+          "vocabRefs": [
+            "v-verhuizen"
+          ],
+          "audioText": "Het nieuwe huis is groter en lichter.",
+          "answers": [
+            "Het nieuwe huis is groter en lichter"
+          ],
+          "translation": "A casa nova é maior e mais luminosa."
+        },
+        {
+          "id": "s3-u10-l005-e07",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "getekend = assinado; betaald = pago.",
+          "vocabRefs": [
+            "v-verhuizen",
+            "v-borg"
+          ],
+          "kind": "text",
+          "title": "A mudança do Pedro e da Ana",
+          "text": "Pedro en Ana zoeken al zes maanden een groter huis. Vorige week hadden ze een bezichtiging in Utrecht. Het appartement is licht en heeft twee slaapkamers. Ze hebben het huurcontract getekend en de borg betaald. Op 1 juni verhuizen ze. Daarna schrijven ze zich in bij de gemeente.",
+          "questions": [
+            {
+              "prompt": "Há quanto tempo procuram casa?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Seis meses",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Uma semana",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Dois anos",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que já pagaram?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A caução",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Nada",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "A renda de um ano",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que fazem depois de mudar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Registam-se na câmara",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Procuram outra casa",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Vendem a casa",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3-u10-l005-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "nodig no fim.",
+          "vocabRefs": [
+            "v-verhuisdoos"
+          ],
+          "translation": "Preciso de caixas de mudanças.",
+          "tokens": [
+            "Ik",
+            "heb",
+            "verhuisdozen",
+            "nodig"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u10-l005-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "mudar de casa.",
+          "vocabRefs": [
+            "v-verhuizen"
+          ],
+          "sentence": "Wanneer ___ jullie? — Op 1 juni.",
+          "translation": "Quando é que mudam? — A 1 de junho.",
+          "answers": [
+            "verhuizen"
+          ],
+          "choices": [
+            "verhuizen",
+            "huren",
+            "opzeggen"
+          ]
+        },
+        {
+          "id": "s3-u10-l005-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Ik zoek een licht appartement met twee slaapkamers. Is de huur inclusief gas en licht?»",
+          "vocabRefs": [
+            "v-huren"
+          ],
+          "prompt": "Descreva a sua casa ideal para arrendar e uma pergunta que faria na visita.",
+          "referenceAnswers": [
+            "Ik zoek een [appartement|huis] met twee slaapkamers(.) Is het gemeubileerd",
+            "Ik wil een licht appartement huren(.) Is de huur inclusief gas en licht"
+          ],
+          "checklist": [
+            "O que procura (huren, zoeken)",
+            "Uma característica",
+            "Uma pergunta da visita (borg, inclusief, gemeubileerd…)"
+          ],
+          "minWords": 10
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}

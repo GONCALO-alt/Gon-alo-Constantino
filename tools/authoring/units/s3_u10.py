@@ -1,0 +1,110 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s3-u10")
+C = "A2"
+
+L(1, "Procurar casa", "huren, kopen, de huur, de makelaar, te huur.",
+  ["Falar da procura de casa"],
+  vocab=[V("v-huren","huren","arrendar|alugar","verb"), V("v-huur","huur","renda","noun","de"), V("v-makelaar","makelaar","agente imobiliário","noun","de"),
+         V("v-te-huur","te huur","para arrendar","expression"), V("v-te-koop","te koop","à venda","expression"), V("v-huurwoning","huurwoning","casa arrendada","noun","de")],
+  ex=[("Ik zoek een huis te huur.","Procuro uma casa para arrendar."),("De huur is 1200 euro per maand.","A renda é 1200 euros por mês."),("Dit appartement is te koop.","Este apartamento está à venda.")],
+  gram=[G("g-woningmarkt","O mercado da habitação","Encontrar casa nos Países Baixos é **difícil**, sobretudo nas cidades grandes. Há **sociale huur** (renda social, com listas de espera longas) e **vrije sector** (mercado livre, mais caro). Atenção a burlas: nunca pague antes de ver a casa e o contrato.",
+    [("Er is een lange wachtlijst.","Há uma longa lista de espera.")])],
+  review=["v-zoeken","v-appartement","v-maand","v-duur"],
+  cefr=C, exs=[
+    MA([("huren","arrendar"),("huur","renda"),("makelaar","agente imobiliário"),("te huur","para arrendar"),("te koop","à venda")], "Habitação.", ["v-huren","v-huur","v-makelaar","v-te-huur","v-te-koop"]),
+    TR("pt-nl","Procuro uma casa para arrendar.", ["Ik zoek een huis te huur","Ik zoek een huurhuis","Ik zoek een huurwoning"], "te huur.", ["v-te-huur"]),
+    TR("nl-pt","De huur is twaalfhonderd euro per maand.", ["A renda é (de )mil e duzentos euros por mês","A renda é (de )1200 euros por mês"], "huur.", ["v-huur"]),
+    MC("«Te koop» numa janela significa…", ["*À venda","Para arrendar|Isso é «te huur».","Vendido|Isso é «verkocht»."], "te koop = à venda.", ["v-te-koop"]),
+    AR("huur","a renda","de", "«De huur».", ["v-huur"]),
+    CJ("huren","wij","Wij ___ een appartement in Delft.", ["huren"], "Plural.", ["v-huren"]),
+    FE(["De","huur","is","te","duur","voor","mij,","ik","zoek","iets","duurder."], 10, "goedkopers", "Se é caro demais, procura algo mais barato: iets goedkopers.", ["v-huur"]),
+    LI("Er zijn weinig huurwoningen in Amsterdam.", ["Er zijn weinig huurwoningen in Amsterdam"], "Há poucas casas para arrendar em Amesterdão.", "weinig.", ["v-huurwoning"]),
+    FB("Een ___ helpt je een huis te vinden.", ["makelaar"], "agente imobiliário.", ["v-makelaar"], choices=["makelaar","huur","gemeente"], tr="Um agente imobiliário ajuda-te a encontrar casa."),
+    WO("Arrendamos um apartamento perto do centro.", ["We","huren","een","appartement","dicht","bij","het","centrum"], "dicht bij = perto de.", ["v-huren"]),
+  ], diff=2, mins=6)
+
+L(2, "Visitar uma casa", "de bezichtiging, gemeubileerd, de borg, inclusief.",
+  ["Fazer perguntas numa visita a uma casa"],
+  vocab=[V("v-bezichtiging","bezichtiging","visita (a uma casa)","noun","de"), V("v-gemeubileerd","gemeubileerd","mobilado","adjective"),
+         V("v-borg","borg","caução","noun","de"), V("v-inclusief","inclusief","incluído","adjective",note="Também «inclusief gas, water en licht»."), V("v-servicekosten","servicekosten","despesas de condomínio","noun","de")],
+  ex=[("Is het appartement gemeubileerd?","O apartamento é mobilado?"),("De borg is twee maanden huur.","A caução é de dois meses de renda."),("Is de huur inclusief gas en licht?","A renda inclui gás e eletricidade?")],
+  review=["v-huur","v-appartement","v-wanneer","v-hoeveel"],
+  cefr=C, exs=[
+    MA([("bezichtiging","visita"),("gemeubileerd","mobilado"),("borg","caução"),("inclusief","incluído"),("servicekosten","condomínio")], "Visita.", ["v-bezichtiging","v-gemeubileerd","v-borg","v-inclusief","v-servicekosten"]),
+    TR("pt-nl","O apartamento é mobilado?", ["Is het appartement gemeubileerd"], "gemeubileerd.", ["v-gemeubileerd"]),
+    TR("nl-pt","Is de huur inclusief gas en licht?", ["A renda inclui gás e (eletricidade|luz)","A renda tem gás e luz incluídos"], "gas en licht = gás e eletricidade.", ["v-inclusief"]),
+    TR("pt-nl","Quanto é a caução?", ["Hoeveel is de borg","Hoe hoog is de borg"], "de borg.", ["v-borg"]),
+    AR("borg","a caução","de", "«De borg».", ["v-borg"]),
+    FE(["Is","de","huur","inclusief","van","water?"], 4, "(retirar)", "Sem «van»: inclusief water.", ["v-inclusief"]),
+    LI("Wanneer is de bezichtiging?", ["Wanneer is de bezichtiging"], "Quando é a visita?", "bezichtiging.", ["v-bezichtiging"]),
+    DL([("Senhorio","Heeft u nog vragen?","Tem mais perguntas?"),("Ana","")], ["*Ja, wanneer is het appartement beschikbaar?","Ja, ik ben gemeubileerd.|Não faz sentido.","Nee, de borg.|Incompleto."], "Pergunta sobre disponibilidade.", ["v-bezichtiging"]),
+    FB("De huur is 900 euro, ___ servicekosten.", ["exclusief"], "sem incluir = exclusief.", ["v-inclusief"], choices=["exclusief","gemeubileerd","borg"], tr="A renda é 900 euros, sem as despesas de condomínio."),
+    CO("text","Anúncio", "Te huur: gemeubileerd appartement, 55 m², tweede verdieping. Huur: 1.150 euro per maand, exclusief gas, water en licht. Borg: twee maanden huur. Beschikbaar vanaf 1 maart. Bezichtiging op afspraak.",
+       [("O apartamento é mobilado?", ["*Sim","Não","Não se diz"]),("Quanto é a caução?", ["*2300 €","1150 €","Nada"]),("A partir de quando está disponível?", ["*1 de março","Já","1 de maio"])],
+       "op afspraak = mediante marcação.", ["v-gemeubileerd","v-borg"]),
+  ], diff=3, mins=6)
+
+L(3, "O contrato", "het huurcontract, de opzegtermijn, de huurder, de verhuurder.",
+  ["Perceber termos básicos de um contrato de arrendamento"],
+  vocab=[V("v-huurcontract","huurcontract","contrato de arrendamento","noun","het"), V("v-huurder","huurder","inquilino","noun","de"),
+         V("v-verhuurder","verhuurder","senhorio","noun","de"), V("v-opzeggen","opzeggen","rescindir|denunciar (contrato)","verb"), V("v-opzegtermijn","opzegtermijn","prazo de pré-aviso","noun","de")],
+  ex=[("Lees het huurcontract goed.","Lê bem o contrato de arrendamento."),("De opzegtermijn is één maand.","O pré-aviso é de um mês."),("De verhuurder moet de verwarming repareren.","O senhorio tem de reparar o aquecimento.")],
+  review=["v-lezen","v-handtekening","v-maand"],
+  cefr=C, exs=[
+    MA([("huurcontract","contrato"),("huurder","inquilino"),("verhuurder","senhorio"),("opzeggen","rescindir"),("opzegtermijn","pré-aviso")], "Contrato.", ["v-huurcontract","v-huurder","v-verhuurder","v-opzeggen","v-opzegtermijn"]),
+    AR("huurcontract","o contrato de arrendamento","het", "contract → het.", ["v-huurcontract"]),
+    MC("Quem é o «verhuurder»?", ["*O senhorio (quem arrenda a casa)","O inquilino|Esse é «huurder».","O agente|Esse é «makelaar»."], "ver- + huurder = quem dá em arrendamento.", ["v-verhuurder"]),
+    TR("nl-pt","De opzegtermijn is één maand.", ["O pré-aviso é de um mês","O prazo de rescisão é de um mês"], "opzegtermijn.", ["v-opzegtermijn"]),
+    WO("Rescindo o contrato.", ["Ik","zeg","het","huurcontract","op"], "Separável: zeg … op.", ["v-opzeggen"]),
+    TR("pt-nl","Lê bem o contrato.", ["Lees het contract goed","Lees het huurcontract goed"], "Imperativo.", ["v-huurcontract"]),
+    FE(["Ik","ben","de","huurder","en","mijn","huisbaas","is","de","huurder."], 9, "verhuurder", "O dono da casa (huisbaas) é o senhorio: de verhuurder.", ["v-verhuurder"]),
+    LI("Teken het contract pas als alles duidelijk is.", ["Teken het contract pas als alles duidelijk is"], "Assina o contrato só quando tudo estiver claro.", "pas als = só quando.", ["v-huurcontract"]),
+    FB("Je moet het contract één maand van tevoren ___.", ["opzeggen"], "rescindir.", ["v-opzeggen"], choices=["opzeggen","huren","bezichtigen"], tr="Tens de rescindir o contrato com um mês de antecedência."),
+    WO("O inquilino paga a renda no dia 1.", ["De","huurder","betaalt","de","huur","op","de","eerste"], "op de eerste.", ["v-huurder"]),
+  ], diff=3, mins=6)
+
+L(4, "Problemas em casa", "lekken, kapot, de verwarming, de loodgieter, repareren.",
+  ["Reportar problemas em casa ao senhorio"],
+  vocab=[V("v-verwarming","verwarming","aquecimento","noun","de"), V("v-lekken","lekken","pingar|ter uma fuga","verb",note="De kraan lekt."),
+         V("v-kraan","kraan","torneira","noun","de"), V("v-repareren","repareren","reparar","verb"), V("v-loodgieter","loodgieter","canalizador","noun","de"), V("v-schimmel","schimmel","bolor","noun","de")],
+  ex=[("De verwarming doet het niet.","O aquecimento não funciona."),("De kraan lekt.","A torneira está a pingar."),("Er zit schimmel in de badkamer.","Há bolor na casa de banho."),("Kunt u een loodgieter sturen?","Pode mandar um canalizador?")],
+  gram=[G("g-het-doen","«Het doet het niet»","Para dizer que algo não funciona: **Het doet het niet** ou **Het werkt niet**. *De lift doet het niet* (o elevador não funciona). É uma expressão fixa muito usada.",
+    [("Mijn telefoon doet het niet.","O meu telemóvel não funciona.")])],
+  review=["v-kapot","v-verhuurder","v-badkamer","v-helpen"],
+  cefr=C, exs=[
+    MA([("verwarming","aquecimento"),("kraan","torneira"),("repareren","reparar"),("loodgieter","canalizador"),("schimmel","bolor")], "Problemas.", ["v-verwarming","v-kraan","v-repareren","v-loodgieter","v-schimmel"]),
+    TR("pt-nl","O aquecimento não funciona.", ["De verwarming doet het niet","De verwarming werkt niet"], "het doet het niet.", ["v-verwarming"]),
+    TR("pt-nl","A torneira está a pingar.", ["De kraan lekt"], "lekken.", ["v-lekken","v-kraan"]),
+    TR("nl-pt","Kunt u een loodgieter sturen?", ["Pode (mandar|enviar) um canalizador"], "sturen = enviar.", ["v-loodgieter"]),
+    AR("verwarming","o aquecimento","de", "-ing → de.", ["v-verwarming"]),
+    FE(["De","lift","doet","niet","het."], 3, "het niet", "Expressão fixa: de lift doet het niet.", ["v-verwarming"]),
+    LI("Er zit schimmel op de muur.", ["Er zit schimmel op de muur"], "Há bolor na parede.", "er zit = há.", ["v-schimmel"]),
+    FB("Wanneer komt iemand de verwarming ___?", ["repareren"], "reparar.", ["v-repareren"], choices=["repareren","lekken","huren"], tr="Quando vem alguém reparar o aquecimento?"),
+    DL([("Senhorio","Wat is het probleem?","Qual é o problema?"),("Inquilino","")], ["*De verwarming doet het niet en het is heel koud.","Ik ben de verwarming.|Não faz sentido.","De huur is te laag.|Não é um problema de casa."], "Descrever o problema.", ["v-verwarming"]),
+    SW("Escreva uma mensagem ao senhorio sobre um problema em casa e peça uma reparação.", ["Beste meneer(,) de [verwarming|kraan|douche] doet het niet(.) Kunt u iemand sturen om het te repareren"],
+       ["Descreve o problema","Pede com «kunt u…?»","Tom educado (beste…, alstublieft)"], 10, "Modelo: «Beste meneer De Boer, de verwarming doet het niet. Kunt u iemand sturen om het te repareren? Met vriendelijke groet, Ana»", ["v-repareren"]),
+  ], diff=3, mins=6)
+
+L(5, "Mudar de casa", "Revisão: procurar, visitar, contratar e mudar.",
+  ["Contar o processo de mudar de casa"],
+  vocab=[V("v-verhuizen","verhuizen","mudar de casa","verb"), V("v-verhuisdoos","verhuisdoos","caixa de mudanças","noun","de")],
+  ex=[("We verhuizen volgende maand.","Mudamos de casa no próximo mês."),("Kun je me helpen met verhuizen?","Podes ajudar-me nas mudanças?")],
+  review=["v-huren","v-huurcontract","v-bezichtiging","v-borg","v-verhuurder","v-opzeggen","v-gemeente","v-inschrijven"],
+  cefr=C, exs=[
+    MA([("verhuizen","mudar de casa"),("verhuisdoos","caixa de mudanças"),("bezichtiging","visita"),("borg","caução")], "Mudanças.", ["v-verhuizen","v-verhuisdoos","v-bezichtiging","v-borg"]),
+    TR("pt-nl","Mudamos de casa no próximo mês.", ["We verhuizen volgende maand","Volgende maand verhuizen we"], "verhuizen.", ["v-verhuizen"]),
+    TR("nl-pt","Kun je me helpen met verhuizen?", ["Podes ajudar-me (nas|com as) mudanças"], "helpen met.", ["v-verhuizen"]),
+    MC("Depois de mudar de casa, o que tem de fazer na gemeente?", ["*Registar a nova morada","Nada|É obrigatório comunicar a mudança.","Pedir um novo BSN|O BSN não muda."], "Inschrijven no novo adres.", ["v-inschrijven"]),
+    FE(["Ik","opzeg","mijn","oude","huurcontract."], 1, "zeg … op", "Separável: ik zeg mijn oude huurcontract op.", ["v-opzeggen"]),
+    LI("Het nieuwe huis is groter en lichter.", ["Het nieuwe huis is groter en lichter"], "A casa nova é maior e mais luminosa.", "Comparativos (veremos na unidade 14).", ["v-verhuizen"]),
+    CO("text","A mudança do Pedro e da Ana", "Pedro en Ana zoeken al zes maanden een groter huis. Vorige week hadden ze een bezichtiging in Utrecht. Het appartement is licht en heeft twee slaapkamers. Ze hebben het huurcontract getekend en de borg betaald. Op 1 juni verhuizen ze. Daarna schrijven ze zich in bij de gemeente.",
+       [("Há quanto tempo procuram casa?", ["*Seis meses","Uma semana","Dois anos"]),("O que já pagaram?", ["*A caução","Nada","A renda de um ano"]),("O que fazem depois de mudar?", ["*Registam-se na câmara","Procuram outra casa","Vendem a casa"])],
+       "getekend = assinado; betaald = pago.", ["v-verhuizen","v-borg"]),
+    WO("Preciso de caixas de mudanças.", ["Ik","heb","verhuisdozen","nodig"], "nodig no fim.", ["v-verhuisdoos"]),
+    FB("Wanneer ___ jullie? — Op 1 juni.", ["verhuizen"], "mudar de casa.", ["v-verhuizen"], choices=["verhuizen","huren","opzeggen"], tr="Quando é que mudam? — A 1 de junho."),
+    SW("Descreva a sua casa ideal para arrendar e uma pergunta que faria na visita.", ["Ik zoek een [appartement|huis] met twee slaapkamers(.) Is het gemeubileerd","Ik wil een licht appartement huren(.) Is de huur inclusief gas en licht"],
+       ["O que procura (huren, zoeken)","Uma característica","Uma pergunta da visita (borg, inclusief, gemeubileerd…)"], 10, "Modelo: «Ik zoek een licht appartement met twee slaapkamers. Is de huur inclusief gas en licht?»", ["v-huren"]),
+  ], diff=3, mins=7)
+
+W()
