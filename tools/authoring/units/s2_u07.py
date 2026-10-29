@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s2-u07")
+C = "A1-A2"
+
+L(1, "As divisões da casa", "a sala, a cozinha, o quarto, a casa de banho.",
+  ["Nomear as divisões da casa"],
+  vocab=[V("v-kamer","kamer","quarto|divisão","noun","de","kamers"), V("v-woonkamer","woonkamer","sala de estar","noun","de"),
+         V("v-keuken","keuken","cozinha","noun","de","keukens"), V("v-slaapkamer","slaapkamer","quarto (de dormir)","noun","de","slaapkamers"),
+         V("v-badkamer","badkamer","casa de banho","noun","de"), V("v-wc","wc","sanita|WC","noun","de",note="Também «het toilet».")],
+  ex=[("De keuken is groot.","A cozinha é grande."),("Mijn slaapkamer is boven.","O meu quarto é lá em cima."),("Waar is de wc?","Onde é a casa de banho (sanita)?")],
+  gram=[G("g-kamer-compostas","Compostas com kamer","**kamer** é uma divisão. Juntando outras palavras: **woonkamer** (sala: wonen = viver), **slaapkamer** (quarto: slapen = dormir), **badkamer** (casa de banho: bad = banho). O artigo é o de «kamer»: **de**.",
+    [("de werkkamer","o escritório")],
+    "Nas casas neerlandesas a sanita (wc) fica muitas vezes numa divisão separada da casa de banho.")],
+  review=["v-huis","v-groot","v-klein","v-waar"],
+  cefr=C, exs=[
+    MA([("woonkamer","sala"),("keuken","cozinha"),("slaapkamer","quarto"),("badkamer","casa de banho")], "Divisões.", ["v-woonkamer","v-keuken","v-slaapkamer","v-badkamer"]),
+    AR("slaapkamer","o quarto","de", "kamer → de.", ["v-slaapkamer"]),
+    AR("keuken","a cozinha","de", "«De keuken».", ["v-keuken"]),
+    TR("pt-nl","A cozinha é pequena.", ["De keuken is klein"], "de keuken.", ["v-keuken"]),
+    TR("pt-nl","Onde é a casa de banho?", ["Waar is de [wc|badkamer]","Waar is het toilet"], "Para a sanita: wc/toilet.", ["v-wc"]),
+    TR("nl-pt","Mijn slaapkamer is boven.", ["O meu quarto é lá em cima","O meu quarto fica em cima"], "boven = em cima.", ["v-slaapkamer"]),
+    FB("We eten in de ___.", ["keuken","woonkamer"], "Come-se na cozinha ou na sala.", ["v-keuken"], choices=["keuken","badkamer","wc"], tr="Comemos na cozinha."),
+    MC("O que significa «slaapkamer» literalmente?", ["*divisão de dormir","divisão de banho|Isso é badkamer.","divisão de viver|Isso é woonkamer."], "slapen + kamer.", ["v-slaapkamer"]),
+    LI("Het huis heeft drie kamers.", ["Het huis heeft drie kamers"], "A casa tem três divisões.", "kamer → kamers.", ["v-kamer"]),
+    WO("A sala é grande e clara.", ["De","woonkamer","is","groot","en","licht"], "licht = claro.", ["v-woonkamer"]),
+  ], diff=1, mins=5)
+
+L(2, "Os móveis", "o sofá, o armário, a cama, a secretária.",
+  ["Nomear móveis e objetos da casa"],
+  vocab=[V("v-bank","bank","sofá|banco","noun","de","banken",note="Também significa «banco» (a instituição); o contexto decide."), V("v-kast","kast","armário","noun","de","kasten"),
+         V("v-lamp","lamp","candeeiro|lâmpada","noun","de","lampen"), V("v-bureau","bureau","secretária","noun","het"),
+         V("v-spiegel","spiegel","espelho","noun","de"), V("v-gordijn","gordijn","cortina","noun","het","gordijnen")],
+  ex=[("De bank staat in de woonkamer.","O sofá está na sala."),("De kleren liggen in de kast.","A roupa está no armário."),("Mijn bureau staat bij het raam.","A minha secretária está junto à janela.")],
+  review=["v-bed","v-stoel","v-tafel","v-raam","v-staan"],
+  cefr=C, exs=[
+    MA([("bank","sofá"),("kast","armário"),("lamp","candeeiro"),("spiegel","espelho"),("gordijn","cortina")], "Móveis.", ["v-bank","v-kast","v-lamp","v-spiegel","v-gordijn"]),
+    AR("bureau","a secretária","het", "«Het bureau».", ["v-bureau"]),
+    AR("gordijn","a cortina","het", "«Het gordijn».", ["v-gordijn"]),
+    AR("kast","o armário","de", "«De kast».", ["v-kast"]),
+    MC("«Ik zit op de bank» quer dizer…", ["*Estou sentado no sofá","Estou no banco (dinheiro)|Aqui é o sofá: «op de bank zitten».","Estou na cama|Isso seria «in bed»."], "bank = sofá (em casa).", ["v-bank"]),
+    TR("pt-nl","O sofá está na sala.", ["De bank staat in de woonkamer"], "staan para móveis de pé.", ["v-bank","v-woonkamer"]),
+    TR("nl-pt","Mijn bureau staat bij het raam.", ["A minha secretária está junto à janela","A minha secretária fica ao pé da janela"], "bij = junto a.", ["v-bureau"]),
+    FB("De kleren hangen in de ___.", ["kast"], "Roupa no armário.", ["v-kast"], choices=["kast","lamp","spiegel"], tr="A roupa está pendurada no armário."),
+    LI("Doe de lamp aan, alsjeblieft.", ["Doe de lamp aan(,) alsjeblieft"], "Acende o candeeiro, por favor.", "aandoen = ligar/acender.", ["v-lamp"]),
+    FE(["Het","kast","is","oud."], 0, "De", "«De kast».", ["v-kast"]),
+  ], diff=1, mins=5)
+
+L(3, "Há: er is, er zijn", "Er is een keuken. Er zijn twee slaapkamers.",
+  ["Usar er is / er zijn para dizer o que existe"],
+  vocab=[V("v-er-is","er is","há (singular)","expression"), V("v-er-zijn","er zijn","há (plural)","expression"),
+         V("v-boven","boven","em cima|lá em cima","adverb"), V("v-beneden","beneden","em baixo|lá em baixo","adverb")],
+  ex=[("Er is een tuin.","Há um jardim."),("Er zijn drie slaapkamers.","Há três quartos."),("Is er een lift?","Há elevador?"),("Er is geen badkamer beneden.","Não há casa de banho em baixo.")],
+  gram=[G("g-er-is","Er is / er zijn","Para dizer que algo existe usa-se **er is** (singular) e **er zijn** (plural). Pergunta: **Is er…? / Zijn er…?** Negação com geen: *Er is geen lift.*",
+    [("Er zijn veel fietsen.","Há muitas bicicletas."),("Is er nog koffie?","Ainda há café?")],
+    "O português usa «há» para singular e plural; o neerlandês concorda o verbo: is/zijn.")],
+  review=["v-tuin","v-slaapkamer","v-geen","v-badkamer"],
+  cefr=C, exs=[
+    MC("___ drie slaapkamers.", ["*Er zijn","Er is|Plural: er zijn.","Het zijn|Para existência usa-se «er»."], "Plural → er zijn.", ["v-er-zijn"]),
+    MC("___ een tuin.", ["*Er is","Er zijn|Singular: er is.","Is er|Isso é uma pergunta."], "Singular → er is.", ["v-er-is"]),
+    TR("pt-nl","Há um jardim.", ["Er is een tuin"], "er is + singular.", ["v-er-is","v-tuin"]),
+    TR("pt-nl","Há elevador?", ["Is er een lift"], "Pergunta: is er…?", ["v-er-is"]),
+    TR("nl-pt","Er zijn veel fietsen in Amsterdam.", ["Há muitas bicicletas em Amesterdão"], "er zijn + plural.", ["v-er-zijn"]),
+    FE(["Er","is","twee","badkamers."], 1, "zijn", "Plural: er zijn twee badkamers.", ["v-er-zijn"]),
+    FB("Er is geen wc ___, alleen boven.", ["beneden"], "beneden = em baixo.", ["v-beneden"], choices=["beneden","boven","binnen"], tr="Não há sanita em baixo, só em cima."),
+    MA([("er is","há (sing.)"),("er zijn","há (pl.)"),("boven","em cima"),("beneden","em baixo")], "Existência e lugar.", ["v-er-is","v-er-zijn","v-boven","v-beneden"]),
+    LI("Is er nog koffie?", ["Is er nog koffie"], "Ainda há café?", "nog = ainda.", ["v-er-is"]),
+    WO("Não há elevador no prédio.", ["Er","is","geen","lift","in","het","gebouw"], "er is geen…", ["v-er-is","v-gebouw"]),
+  ], diff=2, mins=5)
+
+L(4, "Descrever a casa", "Apartamento, andar, escadas, claro e escuro.",
+  ["Descrever uma casa ou um apartamento"],
+  vocab=[V("v-appartement","appartement","apartamento","noun","het","appartementen"), V("v-verdieping","verdieping","andar|piso","noun","de"),
+         V("v-trap","trap","escada","noun","de",note="As escadas neerlandesas são famosas por serem muito íngremes."), V("v-licht","licht","claro|luminoso","adjective",note="Também «de luz» (het licht)."),
+         V("v-donker","donker","escuro","adjective"), V("v-balkon","balkon","varanda","noun","het")],
+  ex=[("Ik woon in een appartement op de derde verdieping.","Vivo num apartamento no terceiro andar."),("De trap is heel steil.","A escada é muito íngreme."),("De woonkamer is licht en gezellig.","A sala é luminosa e acolhedora.")],
+  review=["v-gezellig","v-groot","v-klein","v-mooi","v-oud","v-derde"],
+  cefr=C, exs=[
+    MA([("appartement","apartamento"),("verdieping","andar"),("trap","escada"),("balkon","varanda")], "Casa.", ["v-appartement","v-verdieping","v-trap","v-balkon"]),
+    AR("appartement","o apartamento","het", "-ment → het.", ["v-appartement"]),
+    AR("balkon","a varanda","het", "«Het balkon».", ["v-balkon"]),
+    TR("pt-nl","Vivo no segundo andar.", ["Ik woon op de tweede verdieping"], "op de … verdieping.", ["v-verdieping","v-tweede"]),
+    TR("nl-pt","De woonkamer is licht en gezellig.", ["A sala é luminosa e acolhedora","A sala é clara e acolhedora"], "licht = luminoso.", ["v-licht","v-gezellig"]),
+    FB("Het is ___ in de kamer: doe het licht aan.", ["donker"], "donker = escuro.", ["v-donker"], choices=["donker","licht","steil"], tr="Está escuro no quarto: acende a luz."),
+    FE(["Ik","woon","in","de","derde","verdieping."], 2, "op", "Andar: op de derde verdieping.", ["v-verdieping"]),
+    LI("Pas op, de trap is steil!", ["Pas op(,) de trap is steil"], "Cuidado, a escada é íngreme!", "Pas op = cuidado.", ["v-trap"]),
+    CO("text","Anúncio", "Te huur: licht appartement in Utrecht. Tweede verdieping, twee slaapkamers, een moderne keuken en een balkon op het zuiden. Geen lift. Huur: 1.400 euro per maand.",
+       [("Quantos quartos tem?", ["*Dois","Três","Um"]),("Tem elevador?", ["*Não","Sim","Não diz"]),("Quanto custa por mês?", ["*1400 €","400 €","14 000 €"])],
+       "te huur = para arrendar; op het zuiden = virada a sul.", ["v-appartement","v-balkon"]),
+    SW("Descreva a sua casa em 3 frases (divisões, andar, como é).", ["Ik woon in een [appartement|huis](.) Er zijn twee slaapkamers(.) De woonkamer is licht"],
+       ["Usa «ik woon in…»","Usa «er is / er zijn»","Pelo menos um adjetivo (licht, groot, gezellig…)"], 8, "Modelo: «Ik woon in een appartement op de eerste verdieping. Er zijn twee slaapkamers. De woonkamer is licht en gezellig.»", ["v-er-zijn"]),
+  ], diff=2, mins=6)
+
+L(5, "Visita a casa", "Revisão: mostrar a casa a um amigo.",
+  ["Mostrar e descrever a casa numa visita"],
+  ex=[("Kom binnen! Dit is de woonkamer.","Entra! Esta é a sala.")],
+  review=["v-woonkamer","v-keuken","v-slaapkamer","v-badkamer","v-er-is","v-er-zijn","v-boven","v-bank","v-kast"],
+  cefr=C, exs=[
+    DL([("Ana","Kom binnen! Dit is de woonkamer.","Entra! Esta é a sala."),("Tom","")], ["*Wat gezellig!","Wat donker de trap!|Não é o momento.","Waar is de kassa?|Isso é no supermercado."], "Elogio típico: wat gezellig!", ["v-gezellig"]),
+    MA([("Kom binnen!","Entra!"),("Wat gezellig!","Que acolhedor!"),("Ga zitten.","Senta-te."),("Pas op!","Cuidado!")], "Receber visitas.", ["v-gezellig"]),
+    TR("pt-nl","Há dois quartos lá em cima.", ["Er zijn twee slaapkamers boven","Boven zijn er twee slaapkamers"], "er zijn + boven.", ["v-er-zijn","v-boven"]),
+    TR("nl-pt","Ga zitten op de bank.", ["Senta-te no sofá"], "op de bank = no sofá.", ["v-bank"]),
+    FE(["De","badkamer","is","beneden","en","de","slaapkamers","is","boven."], 7, "zijn", "Plural: de slaapkamers zijn boven.", ["v-slaapkamer"]),
+    AR("woonkamer","a sala","de", "kamer → de.", ["v-woonkamer"]),
+    LI("De wc is naast de keuken.", ["De wc is naast de keuken"], "A sanita é ao lado da cozinha.", "naast = ao lado de.", ["v-wc","v-naast"]),
+    CO("dialogue","A casa nova", "Sanne: Welkom in mijn nieuwe huis!\nPedro: Wat mooi! Hoeveel kamers heb je?\nSanne: Beneden is de woonkamer met de keuken. Boven zijn twee slaapkamers en de badkamer.\nPedro: En een tuin?\nSanne: Ja, een kleine tuin achter het huis.",
+       [("O que fica em baixo?", ["*A sala e a cozinha","Os quartos","A casa de banho"]),("Onde é o jardim?", ["*Atrás da casa","À frente da casa","Não tem jardim"])],
+       "achter het huis = atrás da casa.", ["v-boven","v-beneden"]),
+    WO("O meu quarto tem um armário grande.", ["Mijn","slaapkamer","heeft","een","grote","kast"], "Adjetivo antes de palavra «de»: grote.", ["v-kast"]),
+    MC("Descrição correta de uma casa com 1 cozinha e 3 quartos:", ["*Er is één keuken en er zijn drie slaapkamers.","Er zijn één keuken en er is drie slaapkamers.|Os verbos estão trocados.","Het is een keuken en het zijn drie slaapkamers.|Para existência usa-se «er»."], "er is (sing.) / er zijn (pl.).", ["v-er-is","v-er-zijn"]),
+  ], diff=2, mins=6)
+
+W()

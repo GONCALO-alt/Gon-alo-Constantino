@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s2-u06")
+C = "A1-A2"
+
+L(1, "No supermercado", "A caixa, o cesto, as promoções e o talão.",
+  ["Nomear o que encontra num supermercado"],
+  vocab=[V("v-winkel","winkel","loja","noun","de","winkels"), V("v-kassa","kassa","caixa (de pagamento)","noun","de"),
+         V("v-mandje","mandje","cesto","noun","het","mandjes"), V("v-aanbieding","aanbieding","promoção","noun","de","aanbiedingen"),
+         V("v-bon","bon","talão|recibo","noun","de"), V("v-tasje","tasje","saco (de plástico/papel)","noun","het",note="Os sacos pagam-se: «Wilt u een tasje?»")],
+  ex=[("Waar is de kassa?","Onde é a caixa?"),("Kaas is in de aanbieding.","O queijo está em promoção."),("Wilt u de bon?","Quer o talão?")],
+  review=["v-supermarkt","v-kopen","v-boodschappen","v-tas"],
+  cefr=C, exs=[
+    MA([("winkel","loja"),("kassa","caixa"),("mandje","cesto"),("aanbieding","promoção"),("bon","talão")], "No supermercado.", ["v-winkel","v-kassa","v-mandje","v-aanbieding","v-bon"]),
+    AR("mandje","o cesto","het", "Diminutivo -je → het.", ["v-mandje"]),
+    AR("kassa","a caixa","de", "«De kassa».", ["v-kassa"]),
+    TR("pt-nl","Onde é a caixa?", ["Waar is de kassa"], "kassa = caixa de pagamento.", ["v-kassa"]),
+    TR("nl-pt","Kaas is in de aanbieding.", ["O queijo está em promoção"], "in de aanbieding = em promoção.", ["v-aanbieding","v-kaas"]),
+    DL([("Caixa","Wilt u een tasje?","Quer um saco?"),("Cliente","")], ["*Nee, dank u, ik heb een tas.","Ja, ik ben een tasje.|Não faz sentido.","Proost!|É para brindar."], "Leve o seu saco: os sacos pagam-se.", ["v-tasje"]),
+    FB("Hier is uw ___ . Fijne dag!", ["bon"], "bon = talão.", ["v-bon"], choices=["bon","kassa","winkel"], tr="Aqui está o seu talão. Bom dia!"),
+    LI("Is dit in de aanbieding?", ["Is dit in de aanbieding"], "Isto está em promoção?", "aanbieding ≈ «ânbiding».", ["v-aanbieding"]),
+    FE(["Ik","ga","naar","het","winkel."], 3, "de", "«De winkel».", ["v-winkel"]),
+    WO("Vou com o cesto para a caixa.", ["Ik","ga","met","het","mandje","naar","de","kassa"], "met … naar …", ["v-mandje","v-kassa"]),
+  ], diff=1, mins=5)
+
+L(2, "Quantidades", "een kilo, een pak, een fles, een stuk — sem «van».",
+  ["Pedir quantidades e embalagens"],
+  vocab=[V("v-kilo","kilo","quilo","noun","de"), V("v-pond","pond","meio quilo (500 g)","noun","het",note="Muito usado nos mercados: een pond tomaten."),
+         V("v-liter","liter","litro","noun","de"), V("v-pak","pak","pacote","noun","het","pakken"), V("v-fles","fles","garrafa","noun","de","flessen"),
+         V("v-stuk","stuk","pedaço|unidade","noun","het","stukken"), V("v-zak","zak","saco","noun","de","zakken")],
+  ex=[("Een pak melk.","Um pacote de leite."),("Twee flessen water.","Duas garrafas de água."),("Een pond kaas.","Meio quilo de queijo."),("Een stuk kaas.","Um pedaço de queijo.")],
+  gram=[G("g-quantidades","Quantidade + produto, sem «van»","Diz-se **een pak melk**, **een fles wijn**, **een kilo appels** — sem preposição. Medidas depois de número ficam no singular: **twee kilo**, **drie liter**. Embalagens vão ao plural: **twee flessen**, **drie pakken**. **Een pond** = 500 g.",
+    [("twee kilo aardappels","dois quilos de batatas"),("twee pakken melk","dois pacotes de leite")],
+    "Em português «um pacote DE leite»; em neerlandês, «een pak melk».")],
+  review=["v-melk","v-water","v-kaas","v-aardappel","v-wijn"],
+  cefr=C, exs=[
+    MA([("pak","pacote"),("fles","garrafa"),("stuk","pedaço"),("zak","saco"),("pond","500 gramas")], "Embalagens e medidas.", ["v-pak","v-fles","v-stuk","v-zak","v-pond"]),
+    TR("pt-nl","um pacote de leite", ["een pak melk"], "Sem «van».", ["v-pak","v-melk"]),
+    TR("pt-nl","duas garrafas de água", ["twee flessen water"], "fles → flessen.", ["v-fles","v-water"]),
+    MC("Como se diz «dois quilos de batatas»?", ["*twee kilo aardappels","twee kilo's aardappels|Depois de número, a medida fica no singular.","twee kilo van aardappels|Sem «van»."], "twee kilo + produto.", ["v-kilo"]),
+    MC("«Een pond tomaten» é…", ["*meio quilo de tomates","uma libra inglesa|Aqui é uma medida: 500 g.","um quilo de tomates|Um quilo = een kilo."], "pond = 500 g.", ["v-pond"]),
+    AR("pak","o pacote","het", "«Het pak».", ["v-pak"]),
+    AR("fles","a garrafa","de", "«De fles».", ["v-fles"]),
+    FE(["Een","fles","van","wijn,","alstublieft."], 2, "(retirar)", "Sem «van»: een fles wijn.", ["v-fles"]),
+    LI("Een zak chips en twee liter cola.", ["Een zak chips en twee liter cola"], "Um saco de batatas fritas e dois litros de cola.", "liter fica no singular depois de número.", ["v-zak","v-liter"]),
+    FB("Mag ik een ___ kaas? Niet te groot.", ["stuk"], "een stuk kaas.", ["v-stuk"], choices=["stuk","fles","liter"], tr="Pode dar-me um pedaço de queijo? Não muito grande."),
+  ], diff=2, mins=5)
+
+L(3, "Caro, barato e pagar", "Preços, descontos e formas de pagamento.",
+  ["Comentar preços", "Pagar com cartão ou em dinheiro"],
+  vocab=[V("v-duur","duur","caro","adjective"), V("v-goedkoop","goedkoop","barato","adjective"), V("v-contant","contant","em dinheiro","adverb"),
+         V("v-korting","korting","desconto","noun","de"), V("v-pas","pas","cartão (bancário)","noun","de",note="de pinpas = o cartão de débito")],
+  ex=[("Dat is duur!","Isso é caro!"),("Deze kaas is goedkoop.","Este queijo é barato."),("Kan ik contant betalen?","Posso pagar em dinheiro?"),("Twintig procent korting.","Vinte por cento de desconto.")],
+  gram=[G("g-pinnen-cultura","Pinnen ou contant?","Nos Países Baixos quase tudo se paga com cartão (**pinnen**). Algumas lojas até não aceitam dinheiro: *Wij accepteren alleen pin* (só aceitamos cartão). Pergunta útil: *Kan ik hier contant betalen?*",
+    [("Alleen pinnen.","Só cartão.")])],
+  review=["v-pinnen","v-betalen","v-kosten","v-euro","v-hoeveel"],
+  cefr=C, exs=[
+    MA([("duur","caro"),("goedkoop","barato"),("contant","em dinheiro"),("korting","desconto")], "Preços e pagamentos.", ["v-duur","v-goedkoop","v-contant","v-korting"]),
+    TR("pt-nl","Isso é muito caro!", ["Dat is (heel |erg )duur"], "duur = caro.", ["v-duur"]),
+    TR("pt-nl","Posso pagar em dinheiro?", ["Kan ik contant betalen"], "contant betalen.", ["v-contant","v-betalen"]),
+    TR("nl-pt","Wij accepteren alleen pin.", ["Só aceitamos cartão","(Nós )só aceitamos pagamentos com cartão"], "alleen = só.", ["v-pinnen"]),
+    FB("Tien euro? Dat is niet duur, dat is ___!", ["goedkoop"], "goedkoop = barato.", ["v-goedkoop"], choices=["goedkoop","korting","contant"], tr="Dez euros? Não é caro, é barato!"),
+    AR("korting","o desconto","de", "-ing → de.", ["v-korting"]),
+    DL([("Caixa","Dat is dertien euro vijftig. Pinnen?","São 13,50 €. Cartão?"),("Cliente","")], ["*Ja, graag.","Ja, ik ben pinnen.|Não faz sentido.","Nee, het is goedkoop.|Não responde."], "Pinnen? → Ja, graag / Nee, contant.", ["v-pinnen"]),
+    LI("Heeft u een bonuskaart?", ["Heeft u een bonuskaart"], "Tem cartão de cliente?", "Pergunta frequente na caixa.", ["v-pas"]),
+    FE(["Deze","appels","zijn","goedkop."], 3, "goedkoop", "Escreve-se com «oo»: goedkoop.", ["v-goedkoop"]),
+    WO("Há desconto nesta camisola?", ["Is","er","korting","op","deze","trui?"], "korting op = desconto em.", ["v-korting"]),
+  ], diff=2, mins=5)
+
+L(4, "Onde encontro…?", "Pedir ajuda a um funcionário e perguntar se há um produto.",
+  ["Perguntar onde está um produto", "Perguntar se a loja tem algo"],
+  vocab=[V("v-vinden","vinden","encontrar|achar","verb",note="Waar vind ik…? = Onde encontro…? Também «achar» (opinião)."), V("v-afdeling","afdeling","secção|departamento","noun","de"),
+         V("v-helpen","helpen","ajudar","verb",note="Kan ik u helpen? = Posso ajudar?")],
+  ex=[("Waar vind ik de melk?","Onde encontro o leite?"),("Heeft u ook glutenvrij brood?","Também tem pão sem glúten?"),("Kan ik u helpen?","Posso ajudá-lo?")],
+  review=["v-zoeken","v-waar","v-pardon","v-hebben","v-ook"],
+  cefr=C, exs=[
+    MA([("vinden","encontrar"),("afdeling","secção"),("helpen","ajudar"),("zoeken","procurar")], "Pedir ajuda.", ["v-vinden","v-afdeling","v-helpen","v-zoeken"]),
+    TR("pt-nl","Onde encontro o leite?", ["Waar vind ik de melk"], "Waar vind ik…?", ["v-vinden","v-melk"]),
+    TR("nl-pt","Kan ik u helpen?", ["Posso ajudá-l[o|a]","Posso ajudar"], "Pergunta do funcionário.", ["v-helpen"]),
+    DL([("Funcionário","Kan ik u helpen?","Posso ajudar?"),("Cliente","")], ["*Ja, graag. Waar vind ik de kaas?","Ja, ik help u.|Os papéis estão trocados.","Nee, ik ben kaas.|Não faz sentido."], "Aceitar e perguntar.", ["v-helpen","v-vinden"]),
+    CJ("vinden","ik","Waar ___ ik de eieren?", ["vind"], "vinden → ik vind.", ["v-vinden"]),
+    FB("De groente is op de ___ achterin.", ["afdeling"], "afdeling = secção.", ["v-afdeling"], choices=["afdeling","kassa","bon"], tr="Os legumes estão na secção ao fundo."),
+    LI("Heeft u ook verse vis?", ["Heeft u ook verse vis"], "Também tem peixe fresco?", "vers = fresco.", ["v-vis"]),
+    FE(["Waar","ik","vind","de","rijst?"], 1, "vind ik", "Interrogativa + verbo + sujeito.", ["v-vinden"]),
+    AR("afdeling","a secção","de", "-ing → de.", ["v-afdeling"]),
+    CO("dialogue","No supermercado", "Pedro: Pardon, waar vind ik de koffie?\nMedewerker: Bij de afdeling ontbijt, gang vier.\nPedro: En heeft u ook Portugese koffie?\nMedewerker: Nee, sorry, dat hebben we niet.",
+       [("Onde está o café?", ["*No corredor 4, secção do pequeno-almoço","Junto à caixa","Não há café"]),("Há café português?", ["*Não","Sim","Só em promoção"])],
+       "gang = corredor.", ["v-afdeling","v-vinden"]),
+  ], diff=2, mins=6)
+
+L(5, "A lista de compras", "Revisão: fazer compras do início ao fim.",
+  ["Fazer compras completas: lista, quantidades, preço e pagamento"],
+  ex=[("Boodschappenlijst: brood, een pak melk, een kilo appels, kaas.","Lista de compras: pão, um pacote de leite, um quilo de maçãs, queijo.")],
+  review=["v-pak","v-fles","v-kilo","v-kassa","v-pinnen","v-duur","v-goedkoop","v-aanbieding","v-vinden"],
+  cefr=C, exs=[
+    TR("pt-nl","Um pacote de leite e um quilo de maçãs, por favor.", ["Een pak melk en een kilo appels(,) [alstublieft|alsjeblieft]"], "Sem «van».", ["v-pak","v-kilo"]),
+    MC("Qual é a frase correta?", ["*Ik koop drie flessen water.","Ik koop drie fles water.|Embalagens vão ao plural: flessen.","Ik koop drie flessen van water.|Sem «van»."], "drie flessen water.", ["v-fles"]),
+    TR("nl-pt","Appels zijn deze week in de aanbieding.", ["As maçãs estão em promoção esta semana"], "deze week = esta semana.", ["v-aanbieding"]),
+    FE(["Ik","koop","twee","kilo's","tomaten."], 3, "kilo", "Depois de número: twee kilo.", ["v-kilo"]),
+    LI("Dat is dan negen euro twintig.", ["Dat is dan negen euro twintig"], "Então são 9,20 €.", "«dan» = então (na caixa).", ["v-euro"]),
+    DL([("Caixa","Spaart u zegels?","Junta selos?"),("Cliente","")], ["*Nee, dank u.","Ja, ik ben zegels.|Não faz sentido.","Nee, ik heb honger.|Não responde."], "Recusa simples.", ["v-dank-u-wel"]),
+    CO("text","As compras da Ana", "Ana doet op zaterdag boodschappen. Ze heeft een lijstje: brood, twee pakken melk, een pond kaas en fruit. De appels zijn in de aanbieding, dus ze koopt twee kilo. Bij de kassa pint ze: het is in totaal vijftien euro.",
+       [("Porque compra a Ana dois quilos de maçãs?", ["*Estão em promoção","Gosta muito de maçãs","Para fazer um bolo"]),("Quanto paga?", ["*15 euros","50 euros","5 euros"])],
+       "in totaal = no total.", ["v-aanbieding","v-pinnen"]),
+    WO("Onde encontro os ovos?", ["Waar","vind","ik","de","eieren?"], "Waar vind ik…?", ["v-vinden"]),
+    MA([("Wilt u een tasje?","Quer um saco?"),("Pinnen?","Cartão?"),("Wilt u de bon?","Quer o talão?"),("Fijne dag!","Bom dia!")], "Frases na caixa.", ["v-tasje","v-pinnen","v-bon"]),
+    SW("Escreva a sua lista de compras com pelo menos quatro produtos e quantidades.", ["Een pak melk(,) een kilo appels(,) een brood en een fles water","[Twee|Een] pak[ken|] melk(,) een pond kaas(,) een zak aardappels en brood"],
+       ["Pelo menos quatro produtos","Quantidades sem «van»","Plural nas embalagens (flessen, pakken) depois de número > 1"], 8, "Modelo: «Een pak melk, een kilo appels, een brood en twee flessen water.»", ["v-pak"]),
+  ], diff=2, mins=6)
+
+W()
