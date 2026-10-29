@@ -1,0 +1,1583 @@
+{
+  "unitId": "s3-u05",
+  "lessons": [
+    {
+      "id": "s3-u05-l001",
+      "unitId": "s3-u05",
+      "order": 1,
+      "title": "Reservar uma mesa",
+      "description": "Ik wil graag een tafel reserveren voor vier personen.",
+      "cefr": "A2",
+      "objectives": [
+        "Reservar mesa por telefone ou ao balcão"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-reserveren",
+          "nl": "reserveren",
+          "pt": [
+            "reservar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-persoon",
+          "nl": "persoon",
+          "pt": [
+            "pessoa"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "personen"
+        },
+        {
+          "id": "v-reservering",
+          "nl": "reservering",
+          "pt": [
+            "reserva"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-op-naam-van",
+          "nl": "op naam van",
+          "pt": [
+            "em nome de"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-buiten",
+          "nl": "buiten",
+          "pt": [
+            "lá fora",
+            "na esplanada"
+          ],
+          "pos": "adverb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-tafel",
+        "v-willen",
+        "v-graag",
+        "v-hoe-laat",
+        "v-restaurant"
+      ],
+      "examples": [
+        {
+          "nl": "Ik wil graag een tafel reserveren voor vier personen.",
+          "pt": "Queria reservar uma mesa para quatro pessoas."
+        },
+        {
+          "nl": "Voor hoe laat?",
+          "pt": "Para que horas?"
+        },
+        {
+          "nl": "Op naam van Silva.",
+          "pt": "Em nome de Silva."
+        },
+        {
+          "nl": "Kunnen we buiten zitten?",
+          "pt": "Podemos ficar na esplanada?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u05-l001-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Reservas.",
+          "vocabRefs": [
+            "v-reserveren",
+            "v-persoon",
+            "v-reservering",
+            "v-buiten"
+          ],
+          "pairs": [
+            {
+              "nl": "reserveren",
+              "pt": "reservar"
+            },
+            {
+              "nl": "persoon",
+              "pt": "pessoa"
+            },
+            {
+              "nl": "reservering",
+              "pt": "reserva"
+            },
+            {
+              "nl": "buiten",
+              "pt": "lá fora"
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l001-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Infinitivo no fim.",
+          "vocabRefs": [
+            "v-reserveren",
+            "v-persoon"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Queria reservar uma mesa para duas pessoas.",
+          "answers": [
+            "Ik wil graag een tafel reserveren voor twee personen"
+          ]
+        },
+        {
+          "id": "s3-u05-l001-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "op naam van.",
+          "vocabRefs": [
+            "v-op-naam-van"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Op naam van Costa.",
+          "answers": [
+            "Em nome de Costa"
+          ]
+        },
+        {
+          "id": "s3-u05-l001-e04",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Pergunta com modal.",
+          "vocabRefs": [
+            "v-buiten"
+          ],
+          "translation": "Podemos ficar na esplanada?",
+          "tokens": [
+            "Kunnen",
+            "we",
+            "buiten",
+            "zitten?"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u05-l001-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-reservering"
+          ],
+          "noun": "reservering",
+          "pt": "a reserva",
+          "article": "de"
+        },
+        {
+          "id": "s3-u05-l001-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pedido de reserva.",
+          "vocabRefs": [
+            "v-reserveren"
+          ],
+          "lines": [
+            {
+              "speaker": "Restaurante",
+              "nl": "Restaurant De Gouden Leeuw, goedenavond.",
+              "pt": "Restaurante O Leão Dourado, boa noite."
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Goedenavond, ik wil graag een tafel reserveren voor vanavond.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Goedenavond, ik ben een tafel.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Ik wil graag betalen.",
+              "correct": false,
+              "feedback": "Ainda não jantou."
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l001-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Plural: drie personen.",
+          "vocabRefs": [
+            "v-persoon"
+          ],
+          "tokens": [
+            "Een",
+            "tafel",
+            "voor",
+            "drie",
+            "persoon,",
+            "alstublieft."
+          ],
+          "errorIndex": 4,
+          "correction": "personen"
+        },
+        {
+          "id": "s3-u05-l001-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta habitual.",
+          "vocabRefs": [
+            "v-persoon"
+          ],
+          "audioText": "Voor hoeveel personen?",
+          "answers": [
+            "Voor hoeveel personen"
+          ],
+          "translation": "Para quantas pessoas?"
+        },
+        {
+          "id": "s3-u05-l001-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Tenho uma reserva.",
+          "vocabRefs": [
+            "v-reservering"
+          ],
+          "sentence": "Ik heb een ___ voor acht uur.",
+          "translation": "Tenho uma reserva para as oito.",
+          "answers": [
+            "reservering"
+          ],
+          "choices": [
+            "reservering",
+            "persoon",
+            "rekening"
+          ]
+        },
+        {
+          "id": "s3-u05-l001-e10",
+          "type": "comprehension",
+          "instruction": "Leia o diálogo e responda.",
+          "explanation": "Dat kan = é possível.",
+          "vocabRefs": [
+            "v-reserveren",
+            "v-op-naam-van"
+          ],
+          "kind": "dialogue",
+          "title": "Ao telefone",
+          "text": "Ober: Restaurant Zuid, goedemiddag.\nAna: Goedemiddag, ik wil graag een tafel reserveren voor zaterdag.\nOber: Voor hoeveel personen?\nAna: Voor vier personen, om half acht.\nOber: Dat kan. Op welke naam?\nAna: Op naam van Silva.",
+          "questions": [
+            {
+              "prompt": "Para quando é a reserva?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Sábado às 19h30",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Sexta às 20h",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Hoje às 19h",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quantas pessoas?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Quatro",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Duas",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Seis",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u05-l002",
+      "unitId": "s3-u05",
+      "order": 2,
+      "title": "Pedir no restaurante",
+      "description": "het voorgerecht, het hoofdgerecht, het nagerecht.",
+      "cefr": "A2",
+      "objectives": [
+        "Pedir uma refeição completa"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-voorgerecht",
+          "nl": "voorgerecht",
+          "pt": [
+            "entrada"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-hoofdgerecht",
+          "nl": "hoofdgerecht",
+          "pt": [
+            "prato principal"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-nagerecht",
+          "nl": "nagerecht",
+          "pt": [
+            "sobremesa"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "note": "Também «het toetje» (informal)."
+        },
+        {
+          "id": "v-bestellen",
+          "nl": "bestellen",
+          "pt": [
+            "pedir (encomendar)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-ober",
+          "nl": "ober",
+          "pt": [
+            "empregado de mesa"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "note": "Feminino: serveerster."
+        }
+      ],
+      "reviewVocabulary": [
+        "v-menu",
+        "v-soep",
+        "v-vis",
+        "v-vlees",
+        "v-willen"
+      ],
+      "examples": [
+        {
+          "nl": "Wat wilt u bestellen?",
+          "pt": "O que deseja pedir?"
+        },
+        {
+          "nl": "Als voorgerecht neem ik de soep.",
+          "pt": "Para entrada quero a sopa."
+        },
+        {
+          "nl": "Als hoofdgerecht de vis, graag.",
+          "pt": "Como prato principal, o peixe, por favor."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-als-voorgerecht",
+          "title": "Als = como",
+          "body": "Para dizer a função: **als** voorgerecht (como entrada). Para pedir: **Ik neem…** (vou querer…) ou **Ik wil graag…**. Para chamar o empregado educadamente: *Pardon!* ou levantar a mão; gritar «Ober!» soa antiquado.",
+          "examples": [
+            {
+              "nl": "Als toetje een ijsje.",
+              "pt": "Para sobremesa, um gelado."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u05-l002-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "No restaurante.",
+          "vocabRefs": [
+            "v-voorgerecht",
+            "v-hoofdgerecht",
+            "v-nagerecht",
+            "v-bestellen",
+            "v-ober"
+          ],
+          "pairs": [
+            {
+              "nl": "voorgerecht",
+              "pt": "entrada"
+            },
+            {
+              "nl": "hoofdgerecht",
+              "pt": "prato principal"
+            },
+            {
+              "nl": "nagerecht",
+              "pt": "sobremesa"
+            },
+            {
+              "nl": "bestellen",
+              "pt": "pedir"
+            },
+            {
+              "nl": "ober",
+              "pt": "empregado"
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l002-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "gerecht → het.",
+          "vocabRefs": [
+            "v-hoofdgerecht"
+          ],
+          "noun": "hoofdgerecht",
+          "pt": "o prato principal",
+          "article": "het"
+        },
+        {
+          "id": "s3-u05-l002-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "als + inversão.",
+          "vocabRefs": [
+            "v-voorgerecht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Para entrada quero a sopa.",
+          "answers": [
+            "Als voorgerecht neem ik de soep",
+            "Als voorgerecht wil ik graag de soep"
+          ]
+        },
+        {
+          "id": "s3-u05-l002-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "bestellen.",
+          "vocabRefs": [
+            "v-bestellen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Wat wilt u bestellen?",
+          "answers": [
+            "O que deseja pedir",
+            "O que vai pedir"
+          ]
+        },
+        {
+          "id": "s3-u05-l002-e05",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "Plural.",
+          "vocabRefs": [
+            "v-bestellen"
+          ],
+          "verb": "bestellen",
+          "pronoun": "wij",
+          "tense": "presente",
+          "sentence": "Wij ___ twee pizza's.",
+          "answers": [
+            "bestellen"
+          ]
+        },
+        {
+          "id": "s3-u05-l002-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Inversão: als nagerecht neem ik ijs.",
+          "vocabRefs": [
+            "v-nagerecht"
+          ],
+          "tokens": [
+            "Als",
+            "nagerecht",
+            "ik",
+            "neem",
+            "ijs."
+          ],
+          "errorIndex": 2,
+          "correction": "neem ik"
+        },
+        {
+          "id": "s3-u05-l002-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta do empregado.",
+          "vocabRefs": [
+            "v-bestellen"
+          ],
+          "audioText": "Heeft u al een keuze gemaakt?",
+          "answers": [
+            "Heeft u al een keuze gemaakt"
+          ],
+          "translation": "Já escolheu?"
+        },
+        {
+          "id": "s3-u05-l002-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pedido do prato.",
+          "vocabRefs": [
+            "v-hoofdgerecht"
+          ],
+          "lines": [
+            {
+              "speaker": "Ober",
+              "nl": "Wat wilt u drinken?",
+              "pt": "O que deseja beber?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": "Een glas rode wijn, graag.",
+              "pt": "Um copo de vinho tinto, por favor."
+            },
+            {
+              "speaker": "Ober",
+              "nl": "En als hoofdgerecht?",
+              "pt": "E como prato principal?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 3,
+          "options": [
+            {
+              "id": "a",
+              "text": "De kip met frietjes, alstublieft.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Een rode wijn.",
+              "correct": false,
+              "feedback": "Já pediu a bebida."
+            },
+            {
+              "id": "c",
+              "text": "Als nagerecht.",
+              "correct": false,
+              "feedback": "Não responde."
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l002-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pedir a ementa.",
+          "vocabRefs": [
+            "v-menu"
+          ],
+          "sentence": "Mag ik het ___? We willen bestellen.",
+          "translation": "Pode trazer a ementa? Queremos pedir.",
+          "answers": [
+            "menu"
+          ],
+          "choices": [
+            "menu",
+            "nagerecht",
+            "ober"
+          ]
+        },
+        {
+          "id": "s3-u05-l002-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-nagerecht"
+          ],
+          "translation": "Como sobremesa quero um gelado.",
+          "tokens": [
+            "Als",
+            "nagerecht",
+            "wil",
+            "ik",
+            "graag",
+            "een",
+            "ijsje"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u05-l003",
+      "unitId": "s3-u05",
+      "order": 3,
+      "title": "Pedidos especiais e alergias",
+      "description": "zonder, allergisch voor, glutenvrij, pittig.",
+      "cefr": "A2",
+      "objectives": [
+        "Fazer pedidos especiais e falar de alergias"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zonder",
+          "nl": "zonder",
+          "pt": [
+            "sem"
+          ],
+          "pos": "preposition"
+        },
+        {
+          "id": "v-allergisch",
+          "nl": "allergisch",
+          "pt": [
+            "alérgico"
+          ],
+          "pos": "adjective",
+          "note": "allergisch voor noten = alérgico a frutos secos"
+        },
+        {
+          "id": "v-glutenvrij",
+          "nl": "glutenvrij",
+          "pt": [
+            "sem glúten"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-pittig",
+          "nl": "pittig",
+          "pt": [
+            "picante"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-saus",
+          "nl": "saus",
+          "pt": [
+            "molho"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "sauzen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vegetarisch",
+        "v-met",
+        "v-kunnen",
+        "v-eten"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ben allergisch voor noten.",
+          "pt": "Sou alérgico a frutos secos."
+        },
+        {
+          "nl": "Kan ik de salade zonder saus krijgen?",
+          "pt": "Posso ter a salada sem molho?"
+        },
+        {
+          "nl": "Is dit gerecht pittig?",
+          "pt": "Este prato é picante?"
+        },
+        {
+          "nl": "Heeft u ook iets glutenvrij?",
+          "pt": "Tem também alguma coisa sem glúten?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u05-l003-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pedidos especiais.",
+          "vocabRefs": [
+            "v-zonder",
+            "v-allergisch",
+            "v-glutenvrij",
+            "v-pittig",
+            "v-saus"
+          ],
+          "pairs": [
+            {
+              "nl": "zonder",
+              "pt": "sem"
+            },
+            {
+              "nl": "allergisch",
+              "pt": "alérgico"
+            },
+            {
+              "nl": "glutenvrij",
+              "pt": "sem glúten"
+            },
+            {
+              "nl": "pittig",
+              "pt": "picante"
+            },
+            {
+              "nl": "saus",
+              "pt": "molho"
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l003-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "allergisch voor.",
+          "vocabRefs": [
+            "v-allergisch"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Sou alérgico a frutos secos.",
+          "answers": [
+            "Ik ben allergisch voor noten"
+          ]
+        },
+        {
+          "id": "s3-u05-l003-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zonder.",
+          "vocabRefs": [
+            "v-zonder",
+            "v-saus"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Sem molho, por favor.",
+          "answers": [
+            "Zonder saus(,) [alstublieft|graag]"
+          ]
+        },
+        {
+          "id": "s3-u05-l003-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "pittig.",
+          "vocabRefs": [
+            "v-pittig"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Is dit gerecht pittig?",
+          "answers": [
+            "Este prato é picante"
+          ]
+        },
+        {
+          "id": "s3-u05-l003-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "allergisch voor.",
+          "vocabRefs": [
+            "v-allergisch"
+          ],
+          "tokens": [
+            "Ik",
+            "ben",
+            "allergisch",
+            "van",
+            "melk."
+          ],
+          "errorIndex": 3,
+          "correction": "voor"
+        },
+        {
+          "id": "s3-u05-l003-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "glutenvrij.",
+          "vocabRefs": [
+            "v-glutenvrij"
+          ],
+          "prompt": "Não pode comer glúten. O que pergunta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Heeft u ook glutenvrije gerechten?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Heeft u ook pittige gerechten?",
+              "correct": false,
+              "feedback": "pittig = picante."
+            },
+            {
+              "id": "c",
+              "text": "Is het vegetarisch?",
+              "correct": false,
+              "feedback": "Não é a mesma coisa."
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l003-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "krijgen = receber.",
+          "vocabRefs": [
+            "v-zonder"
+          ],
+          "audioText": "Kan ik dit zonder ui krijgen?",
+          "answers": [
+            "Kan ik dit zonder ui krijgen"
+          ],
+          "translation": "Posso ter isto sem cebola?"
+        },
+        {
+          "id": "s3-u05-l003-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "allergisch voor.",
+          "vocabRefs": [
+            "v-allergisch"
+          ],
+          "sentence": "Mijn zoon is ___ voor eieren.",
+          "translation": "O meu filho é alérgico a ovos.",
+          "answers": [
+            "allergisch"
+          ],
+          "choices": [
+            "allergisch",
+            "pittig",
+            "glutenvrij"
+          ]
+        },
+        {
+          "id": "s3-u05-l003-e09",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De saus».",
+          "vocabRefs": [
+            "v-saus"
+          ],
+          "noun": "saus",
+          "pt": "o molho",
+          "article": "de"
+        },
+        {
+          "id": "s3-u05-l003-e10",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Indicar alergia.",
+          "vocabRefs": [
+            "v-allergisch"
+          ],
+          "lines": [
+            {
+              "speaker": "Ober",
+              "nl": "Heeft u allergieën?",
+              "pt": "Tem alergias?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, ik ben allergisch voor pinda's.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik ben pittig.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Nee, ik ben vegetarisch.",
+              "correct": false,
+              "feedback": "Não é uma alergia."
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u05-l004",
+      "unitId": "s3-u05",
+      "order": 4,
+      "title": "A conta e a gorjeta",
+      "description": "Mag ik de rekening? Samen of apart? Het klopt zo.",
+      "cefr": "A2",
+      "objectives": [
+        "Pedir a conta, pagar e dar gorjeta"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-rekening",
+          "nl": "rekening",
+          "pt": [
+            "conta"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-apart",
+          "nl": "apart",
+          "pt": [
+            "separado"
+          ],
+          "pos": "adverb"
+        },
+        {
+          "id": "v-fooi",
+          "nl": "fooi",
+          "pt": [
+            "gorjeta"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-het-klopt-zo",
+          "nl": "het klopt zo",
+          "pt": [
+            "está certo assim",
+            "fique com o troco"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-tikkie",
+          "nl": "Tikkie",
+          "pt": [
+            "pedido de pagamento (app)"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "note": "Muito usado para dividir contas entre amigos."
+        }
+      ],
+      "reviewVocabulary": [
+        "v-betalen",
+        "v-pinnen",
+        "v-samen",
+        "v-euro"
+      ],
+      "examples": [
+        {
+          "nl": "Mag ik de rekening?",
+          "pt": "Pode trazer a conta?"
+        },
+        {
+          "nl": "Samen of apart?",
+          "pt": "Juntos ou separados?"
+        },
+        {
+          "nl": "Het klopt zo.",
+          "pt": "Está certo assim (fique com o troco)."
+        },
+        {
+          "nl": "Ik stuur je een Tikkie.",
+          "pt": "Envio-te um pedido de pagamento."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-apart-betalen",
+          "title": "Pagar separado",
+          "body": "Nos Países Baixos é muito comum **pagar separado** (*apart betalen*) ou dividir a conta (**samsam**, **Dutch treat**). A gorjeta (**fooi**) é opcional: arredonda-se ou deixa-se 5–10 % se o serviço foi bom.",
+          "examples": [
+            {
+              "nl": "We betalen apart.",
+              "pt": "Pagamos separadamente."
+            }
+          ],
+          "contrastWithPt": "Em Portugal é mais comum uma pessoa pagar tudo; lá dividir é normal e não é indelicado."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u05-l004-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pagar.",
+          "vocabRefs": [
+            "v-rekening",
+            "v-apart",
+            "v-fooi",
+            "v-het-klopt-zo"
+          ],
+          "pairs": [
+            {
+              "nl": "rekening",
+              "pt": "conta"
+            },
+            {
+              "nl": "apart",
+              "pt": "separado"
+            },
+            {
+              "nl": "fooi",
+              "pt": "gorjeta"
+            },
+            {
+              "nl": "het klopt zo",
+              "pt": "fique com o troco"
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l004-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Mag ik de rekening?",
+          "vocabRefs": [
+            "v-rekening"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Pode trazer a conta?",
+          "answers": [
+            "Mag ik de rekening",
+            "Mogen wij de rekening",
+            "Kunnen we betalen"
+          ]
+        },
+        {
+          "id": "s3-u05-l004-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Pergunta do empregado.",
+          "vocabRefs": [
+            "v-apart"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Samen of apart?",
+          "answers": [
+            "Juntos ou separados",
+            "Junto ou separado"
+          ]
+        },
+        {
+          "id": "s3-u05-l004-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Gorjeta de 3 €.",
+          "vocabRefs": [
+            "v-het-klopt-zo"
+          ],
+          "prompt": "A conta é 47 € e dá 50 € dizendo «Het klopt zo». O que significa?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Que o empregado fica com o troco",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Que a conta está errada",
+              "correct": false,
+              "feedback": "«klopt» = está certo."
+            },
+            {
+              "id": "c",
+              "text": "Que quer o troco",
+              "correct": false,
+              "feedback": "É o contrário."
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l004-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-rekening"
+          ],
+          "noun": "rekening",
+          "pt": "a conta",
+          "article": "de"
+        },
+        {
+          "id": "s3-u05-l004-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Plural: we betalen.",
+          "vocabRefs": [
+            "v-apart"
+          ],
+          "tokens": [
+            "We",
+            "betaalt",
+            "apart."
+          ],
+          "errorIndex": 1,
+          "correction": "betalen"
+        },
+        {
+          "id": "s3-u05-l004-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Tikkie = app de pagamento.",
+          "vocabRefs": [
+            "v-tikkie"
+          ],
+          "audioText": "Ik stuur je straks een Tikkie.",
+          "answers": [
+            "Ik stuur je straks een Tikkie"
+          ],
+          "translation": "Envio-te já um pedido de pagamento."
+        },
+        {
+          "id": "s3-u05-l004-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Elogio + pedido da conta.",
+          "vocabRefs": [
+            "v-rekening",
+            "v-heerlijk"
+          ],
+          "lines": [
+            {
+              "speaker": "Ober",
+              "nl": "Was alles naar wens?",
+              "pt": "Estava tudo a seu gosto?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, heerlijk! Mag ik de rekening?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, ik ben de rekening.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Ja, ik ben allergisch.",
+              "correct": false,
+              "feedback": "Não combina."
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l004-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "fooi = gorjeta.",
+          "vocabRefs": [
+            "v-fooi"
+          ],
+          "sentence": "Hoeveel ___ geef je in Nederland?",
+          "translation": "Quanta gorjeta se dá nos Países Baixos?",
+          "answers": [
+            "fooi"
+          ],
+          "choices": [
+            "fooi",
+            "rekening",
+            "Tikkie"
+          ]
+        },
+        {
+          "id": "s3-u05-l004-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "graag suaviza.",
+          "vocabRefs": [
+            "v-apart"
+          ],
+          "translation": "Pagamos separadamente, se faz favor.",
+          "tokens": [
+            "We",
+            "betalen",
+            "graag",
+            "apart"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u05-l005",
+      "unitId": "s3-u05",
+      "order": 5,
+      "title": "Um jantar fora",
+      "description": "Revisão: da reserva à conta.",
+      "cefr": "A2",
+      "objectives": [
+        "Conduzir uma ida ao restaurante do início ao fim"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-reserveren",
+        "v-bestellen",
+        "v-voorgerecht",
+        "v-hoofdgerecht",
+        "v-nagerecht",
+        "v-allergisch",
+        "v-rekening",
+        "v-apart",
+        "v-fooi"
+      ],
+      "examples": [
+        {
+          "nl": "We hebben gereserveerd op naam van Costa.",
+          "pt": "Temos reserva em nome de Costa."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u05-l005-e01",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Confirmar reserva.",
+          "vocabRefs": [
+            "v-reserveren",
+            "v-op-naam-van"
+          ],
+          "lines": [
+            {
+              "speaker": "Ober",
+              "nl": "Goedenavond! Heeft u gereserveerd?",
+              "pt": "Boa noite! Tem reserva?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, op naam van Costa, voor twee personen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik ben Costa twee.",
+              "correct": false,
+              "feedback": "Mal formulado."
+            },
+            {
+              "id": "c",
+              "text": "Nee, de rekening.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l005-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "als + inversão.",
+          "vocabRefs": [
+            "v-hoofdgerecht",
+            "v-kip"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Como prato principal quero o frango.",
+          "answers": [
+            "Als hoofdgerecht neem ik de kip",
+            "Als hoofdgerecht wil ik graag de kip"
+          ]
+        },
+        {
+          "id": "s3-u05-l005-e03",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Frases de restaurante.",
+          "vocabRefs": [
+            "v-menu",
+            "v-rekening",
+            "v-het-klopt-zo"
+          ],
+          "pairs": [
+            {
+              "nl": "Mag ik het menu?",
+              "pt": "Pode trazer a ementa?"
+            },
+            {
+              "nl": "Wat raadt u aan?",
+              "pt": "O que recomenda?"
+            },
+            {
+              "nl": "Mag ik de rekening?",
+              "pt": "A conta, por favor."
+            },
+            {
+              "nl": "Het klopt zo.",
+              "pt": "Fique com o troco."
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l005-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "aanraden = recomendar.",
+          "vocabRefs": [
+            "v-bestellen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Wat raadt u aan?",
+          "answers": [
+            "O que recomenda",
+            "O que é que (me )recomenda"
+          ]
+        },
+        {
+          "id": "s3-u05-l005-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Se é alérgico, quer «zonder noten».",
+          "vocabRefs": [
+            "v-zonder",
+            "v-allergisch"
+          ],
+          "tokens": [
+            "Ik",
+            "ben",
+            "allergisch",
+            "voor",
+            "noten",
+            "en",
+            "ik",
+            "wil",
+            "de",
+            "salade",
+            "met",
+            "noten."
+          ],
+          "errorIndex": 10,
+          "correction": "zonder"
+        },
+        {
+          "id": "s3-u05-l005-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta habitual no fim.",
+          "vocabRefs": [
+            "v-rekening"
+          ],
+          "audioText": "Was alles naar wens?",
+          "answers": [
+            "Was alles naar wens"
+          ],
+          "translation": "Estava tudo a seu gosto?"
+        },
+        {
+          "id": "s3-u05-l005-e07",
+          "type": "comprehension",
+          "instruction": "Leia o diálogo e responda.",
+          "explanation": "te drinken = para beber.",
+          "vocabRefs": [
+            "v-allergisch",
+            "v-zonder",
+            "v-rekening"
+          ],
+          "kind": "dialogue",
+          "title": "No restaurante",
+          "text": "Ober: Wat mag het zijn?\nPedro: Als voorgerecht de tomatensoep en als hoofdgerecht de vis, graag.\nAna: Ik neem de pasta, maar zonder kaas. Ik ben allergisch voor melk.\nOber: Geen probleem. En te drinken?\nPedro: Een fles witte wijn.\n...\nPedro: Mag ik de rekening? We betalen samen.",
+          "questions": [
+            {
+              "prompt": "Porque pede a Ana a massa sem queijo?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "É alérgica ao leite",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Não gosta de queijo",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Está de dieta",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que bebem?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Uma garrafa de vinho branco",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Água",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Cerveja",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Como pagam?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Juntos",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Separados",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Com Tikkie",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3-u05-l005-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Modal + infinitivo no fim.",
+          "vocabRefs": [
+            "v-apart"
+          ],
+          "translation": "Podemos pagar separadamente?",
+          "tokens": [
+            "Kunnen",
+            "we",
+            "apart",
+            "betalen?"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u05-l005-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Deixar gorjeta.",
+          "vocabRefs": [
+            "v-fooi"
+          ],
+          "sentence": "Dat was heerlijk! Ik laat een ___ achter.",
+          "translation": "Estava delicioso! Deixo uma gorjeta.",
+          "answers": [
+            "fooi"
+          ],
+          "choices": [
+            "fooi",
+            "saus",
+            "reservering"
+          ]
+        },
+        {
+          "id": "s3-u05-l005-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Compare com o modelo.",
+          "vocabRefs": [
+            "v-voorgerecht"
+          ],
+          "prompt": "Escreva o seu pedido completo num restaurante (entrada, prato principal, bebida e um pedido especial).",
+          "referenceAnswers": [
+            "Als voorgerecht neem ik de soep(,) als hoofdgerecht de vis zonder saus en een glas water(,) graag"
+          ],
+          "checklist": [
+            "Entrada e prato principal com «als»",
+            "Uma bebida",
+            "Um pedido especial com «zonder» ou uma alergia"
+          ],
+          "minWords": 12
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}

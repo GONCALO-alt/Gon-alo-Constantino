@@ -1,0 +1,1510 @@
+{
+  "unitId": "s3-u06",
+  "lessons": [
+    {
+      "id": "s3-u06-l001",
+      "unitId": "s3-u06",
+      "order": 1,
+      "title": "Marcar uma consulta",
+      "description": "Ik wil graag een afspraak maken.",
+      "cefr": "A2",
+      "objectives": [
+        "Marcar uma consulta por telefone"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-afspraak-maken",
+          "nl": "een afspraak maken",
+          "pt": [
+            "marcar uma consulta",
+            "combinar"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-huisarts",
+          "nl": "huisarts",
+          "pt": [
+            "médico de família"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "note": "Primeiro contacto obrigatório no sistema de saúde neerlandês."
+        },
+        {
+          "id": "v-tandarts",
+          "nl": "tandarts",
+          "pt": [
+            "dentista"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-kapper",
+          "nl": "kapper",
+          "pt": [
+            "cabeleireiro"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-uitkomen",
+          "nl": "uitkomen",
+          "pt": [
+            "dar jeito"
+          ],
+          "pos": "verb",
+          "note": "Komt dinsdag u uit? = Terça dá-lhe jeito?"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-afspraak",
+        "v-passen",
+        "v-kunnen",
+        "v-wanneer"
+      ],
+      "examples": [
+        {
+          "nl": "Ik wil graag een afspraak maken bij de huisarts.",
+          "pt": "Queria marcar uma consulta no médico de família."
+        },
+        {
+          "nl": "Wanneer komt het u uit?",
+          "pt": "Quando lhe dá jeito?"
+        },
+        {
+          "nl": "Dinsdag om tien uur komt mij goed uit.",
+          "pt": "Terça às dez dá-me jeito."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-uitkomen",
+          "title": "Dar jeito: uitkomen",
+          "body": "Para marcar horários: **Komt het u uit?** (dá-lhe jeito?), **Dat komt mij goed uit** (dá-me jeito), **Dat komt niet uit** (não dá jeito). O verbo é separável: uit + komen.",
+          "examples": [
+            {
+              "nl": "Komt vrijdag jou uit?",
+              "pt": "Sexta dá-te jeito?"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u06-l001-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Consultas.",
+          "vocabRefs": [
+            "v-huisarts",
+            "v-tandarts",
+            "v-kapper",
+            "v-uitkomen"
+          ],
+          "pairs": [
+            {
+              "nl": "huisarts",
+              "pt": "médico de família"
+            },
+            {
+              "nl": "tandarts",
+              "pt": "dentista"
+            },
+            {
+              "nl": "kapper",
+              "pt": "cabeleireiro"
+            },
+            {
+              "nl": "uitkomen",
+              "pt": "dar jeito"
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l001-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "een afspraak maken.",
+          "vocabRefs": [
+            "v-afspraak-maken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Queria marcar uma consulta.",
+          "answers": [
+            "Ik wil graag een afspraak maken"
+          ]
+        },
+        {
+          "id": "s3-u06-l001-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "uitkomen.",
+          "vocabRefs": [
+            "v-uitkomen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Wanneer komt het u uit?",
+          "answers": [
+            "Quando lhe dá jeito",
+            "Quando é que lhe dá jeito"
+          ]
+        },
+        {
+          "id": "s3-u06-l001-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "komt … uit.",
+          "vocabRefs": [
+            "v-uitkomen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Terça dá-me jeito.",
+          "answers": [
+            "Dinsdag komt mij goed uit",
+            "Dinsdag komt me goed uit"
+          ]
+        },
+        {
+          "id": "s3-u06-l001-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "een afspraak maken.",
+          "vocabRefs": [
+            "v-afspraak-maken"
+          ],
+          "tokens": [
+            "Ik",
+            "wil",
+            "een",
+            "afspraak",
+            "doen",
+            "bij",
+            "de",
+            "kapper."
+          ],
+          "errorIndex": 4,
+          "correction": "maken"
+        },
+        {
+          "id": "s3-u06-l001-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "A huisarts encaminha.",
+          "vocabRefs": [
+            "v-huisarts"
+          ],
+          "prompt": "Nos Países Baixos, para ir a um especialista, primeiro vai-se…",
+          "options": [
+            {
+              "id": "a",
+              "text": "à huisarts",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "diretamente ao hospital",
+              "correct": false,
+              "feedback": "Normalmente é preciso referenciação."
+            },
+            {
+              "id": "c",
+              "text": "à farmácia",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l001-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "uitkomen negativo.",
+          "vocabRefs": [
+            "v-uitkomen"
+          ],
+          "audioText": "Dat komt mij niet goed uit.",
+          "answers": [
+            "Dat komt mij niet goed uit"
+          ],
+          "translation": "Isso não me dá jeito."
+        },
+        {
+          "id": "s3-u06-l001-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Aceitar o horário.",
+          "vocabRefs": [
+            "v-uitkomen"
+          ],
+          "lines": [
+            {
+              "speaker": "Assistente",
+              "nl": "Kan het donderdag om drie uur?",
+              "pt": "Pode ser quinta às três?"
+            },
+            {
+              "speaker": "Paciente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, dat komt mij goed uit.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik ben drie uur.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Nee, ik ben huisarts.",
+              "correct": false,
+              "feedback": "Não responde."
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l001-e09",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De tandarts».",
+          "vocabRefs": [
+            "v-tandarts"
+          ],
+          "noun": "tandarts",
+          "pt": "o dentista",
+          "article": "de"
+        },
+        {
+          "id": "s3-u06-l001-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "bij de tandarts.",
+          "vocabRefs": [
+            "v-tandarts"
+          ],
+          "translation": "Tenho consulta no dentista amanhã.",
+          "tokens": [
+            "Ik",
+            "heb",
+            "morgen",
+            "een",
+            "afspraak",
+            "bij",
+            "de",
+            "tandarts"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u06-l002",
+      "unitId": "s3-u06",
+      "order": 2,
+      "title": "Alterar e cancelar",
+      "description": "verzetten, afzeggen, een andere tijd.",
+      "cefr": "A2",
+      "objectives": [
+        "Mudar ou cancelar uma marcação"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-afzeggen",
+          "nl": "afzeggen",
+          "pt": [
+            "cancelar"
+          ],
+          "pos": "verb",
+          "note": "Ik zeg de afspraak af."
+        },
+        {
+          "id": "v-verzetten",
+          "nl": "verzetten",
+          "pt": [
+            "adiar",
+            "mudar (marcação)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-ander",
+          "nl": "ander",
+          "pt": [
+            "outro"
+          ],
+          "pos": "adjective",
+          "note": "een andere dag"
+        },
+        {
+          "id": "v-terugbellen",
+          "nl": "terugbellen",
+          "pt": [
+            "ligar de volta"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-afspraak",
+        "v-helaas",
+        "v-kunnen"
+      ],
+      "examples": [
+        {
+          "nl": "Ik moet mijn afspraak helaas afzeggen.",
+          "pt": "Infelizmente tenho de cancelar a minha consulta."
+        },
+        {
+          "nl": "Kan ik de afspraak verzetten?",
+          "pt": "Posso mudar a marcação?"
+        },
+        {
+          "nl": "Heeft u een andere tijd?",
+          "pt": "Tem outra hora?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u06-l002-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Alterar.",
+          "vocabRefs": [
+            "v-afzeggen",
+            "v-verzetten",
+            "v-ander"
+          ],
+          "pairs": [
+            {
+              "nl": "afzeggen",
+              "pt": "cancelar"
+            },
+            {
+              "nl": "verzetten",
+              "pt": "mudar (marcação)"
+            },
+            {
+              "nl": "ander",
+              "pt": "outro"
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l002-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verzetten.",
+          "vocabRefs": [
+            "v-verzetten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Posso mudar a marcação?",
+          "answers": [
+            "Kan ik de afspraak verzetten",
+            "Kan ik mijn afspraak verzetten"
+          ]
+        },
+        {
+          "id": "s3-u06-l002-e03",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Infinitivo junto no fim.",
+          "vocabRefs": [
+            "v-afzeggen"
+          ],
+          "translation": "Tenho de cancelar a consulta.",
+          "tokens": [
+            "Ik",
+            "moet",
+            "de",
+            "afspraak",
+            "afzeggen"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u06-l002-e04",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável no presente.",
+          "vocabRefs": [
+            "v-afzeggen"
+          ],
+          "translation": "Cancelo a consulta.",
+          "tokens": [
+            "Ik",
+            "zeg",
+            "de",
+            "afspraak",
+            "af"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u06-l002-e05",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "andere.",
+          "vocabRefs": [
+            "v-ander"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Heeft u een andere tijd?",
+          "answers": [
+            "Tem outra hora",
+            "Tem outro horário"
+          ]
+        },
+        {
+          "id": "s3-u06-l002-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: ik zeg mijn afspraak af.",
+          "vocabRefs": [
+            "v-afzeggen"
+          ],
+          "tokens": [
+            "Ik",
+            "afzeg",
+            "mijn",
+            "afspraak."
+          ],
+          "errorIndex": 1,
+          "correction": "zeg … af"
+        },
+        {
+          "id": "s3-u06-l002-e07",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "andere.",
+          "vocabRefs": [
+            "v-ander"
+          ],
+          "prompt": "Uma outra dia:",
+          "options": [
+            {
+              "id": "a",
+              "text": "een andere dag",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "een ander dag",
+              "correct": false,
+              "feedback": "dag é de → andere."
+            },
+            {
+              "id": "c",
+              "text": "een anders dag",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l002-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "terugbellen.",
+          "vocabRefs": [
+            "v-verzetten"
+          ],
+          "audioText": "Kunt u mij terugbellen?",
+          "answers": [
+            "Kunt u mij terugbellen"
+          ],
+          "translation": "Pode ligar-me de volta?"
+        },
+        {
+          "id": "s3-u06-l002-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Cancelar.",
+          "vocabRefs": [
+            "v-afzeggen"
+          ],
+          "sentence": "Ik ben ziek, dus ik moet de afspraak ___.",
+          "translation": "Estou doente, por isso tenho de cancelar a consulta.",
+          "answers": [
+            "afzeggen"
+          ],
+          "choices": [
+            "afzeggen",
+            "maken",
+            "reserveren"
+          ]
+        },
+        {
+          "id": "s3-u06-l002-e10",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Propor nova marcação.",
+          "vocabRefs": [
+            "v-afspraak-maken"
+          ],
+          "lines": [
+            {
+              "speaker": "Paciente",
+              "nl": "Ik kan morgen helaas niet komen.",
+              "pt": "Infelizmente amanhã não posso ir."
+            },
+            {
+              "speaker": "Assistente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Geen probleem. Wilt u een nieuwe afspraak maken?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gefeliciteerd!",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben morgen.",
+              "correct": false,
+              "feedback": "Não responde."
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u06-l003",
+      "unitId": "s3-u06",
+      "order": 3,
+      "title": "No cabeleireiro",
+      "description": "knippen, kort, een beetje korter.",
+      "cefr": "A2",
+      "objectives": [
+        "Pedir um corte de cabelo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-knippen",
+          "nl": "knippen",
+          "pt": [
+            "cortar (cabelo",
+            "com tesoura)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-haar-noun",
+          "nl": "haar",
+          "pt": [
+            "cabelo"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-kort",
+          "nl": "kort",
+          "pt": [
+            "curto"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-korter",
+          "nl": "korter",
+          "pt": [
+            "mais curto"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-wassen",
+          "nl": "wassen",
+          "pt": [
+            "lavar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-kapper",
+        "v-lang",
+        "v-te"
+      ],
+      "examples": [
+        {
+          "nl": "Ik wil mijn haar laten knippen.",
+          "pt": "Quero cortar o cabelo."
+        },
+        {
+          "nl": "Een beetje korter, alstublieft.",
+          "pt": "Um pouco mais curto, por favor."
+        },
+        {
+          "nl": "Niet te kort!",
+          "pt": "Não muito curto!"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-laten",
+          "title": "Laten + infinitivo",
+          "body": "Para dizer que alguém faz algo por nós: **laten** + infinitivo: *Ik **laat** mijn haar **knippen*** (vou cortar o cabelo — o cabeleireiro corta). Também: *Ik laat mijn fiets repareren.*",
+          "examples": [
+            {
+              "nl": "Ik laat de auto wassen.",
+              "pt": "Mando lavar o carro."
+            }
+          ],
+          "contrastWithPt": "Em português dizemos «vou cortar o cabelo» mesmo sendo outra pessoa a cortar; em neerlandês é «laten knippen»."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u06-l003-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Cabeleireiro.",
+          "vocabRefs": [
+            "v-knippen",
+            "v-haar-noun",
+            "v-kort",
+            "v-korter",
+            "v-wassen"
+          ],
+          "pairs": [
+            {
+              "nl": "knippen",
+              "pt": "cortar"
+            },
+            {
+              "nl": "haar",
+              "pt": "cabelo"
+            },
+            {
+              "nl": "kort",
+              "pt": "curto"
+            },
+            {
+              "nl": "korter",
+              "pt": "mais curto"
+            },
+            {
+              "nl": "wassen",
+              "pt": "lavar"
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l003-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "laten knippen.",
+          "vocabRefs": [
+            "v-knippen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quero cortar o cabelo.",
+          "answers": [
+            "Ik wil mijn haar laten knippen",
+            "Ik wil graag mijn haar laten knippen"
+          ]
+        },
+        {
+          "id": "s3-u06-l003-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "korter.",
+          "vocabRefs": [
+            "v-korter"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Um pouco mais curto, por favor.",
+          "answers": [
+            "Een beetje korter(,) [alstublieft|graag]"
+          ]
+        },
+        {
+          "id": "s3-u06-l003-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "te kort.",
+          "vocabRefs": [
+            "v-kort"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Niet te kort!",
+          "answers": [
+            "Não muito curto",
+            "Não demasiado curto"
+          ]
+        },
+        {
+          "id": "s3-u06-l003-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het haar».",
+          "vocabRefs": [
+            "v-haar-noun"
+          ],
+          "noun": "haar",
+          "pt": "o cabelo",
+          "article": "het"
+        },
+        {
+          "id": "s3-u06-l003-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Quem corta é o cabeleireiro: ik laat mijn haar knippen.",
+          "vocabRefs": [
+            "v-knippen"
+          ],
+          "tokens": [
+            "Ik",
+            "knip",
+            "mijn",
+            "haar",
+            "bij",
+            "de",
+            "kapper."
+          ],
+          "errorIndex": 1,
+          "correction": "laat … knippen"
+        },
+        {
+          "id": "s3-u06-l003-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "wassen.",
+          "vocabRefs": [
+            "v-wassen"
+          ],
+          "audioText": "Wilt u uw haar eerst wassen?",
+          "answers": [
+            "Wilt u uw haar eerst wassen"
+          ],
+          "translation": "Quer lavar o cabelo primeiro?"
+        },
+        {
+          "id": "s3-u06-l003-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pedido de corte.",
+          "vocabRefs": [
+            "v-knippen"
+          ],
+          "lines": [
+            {
+              "speaker": "Cabeleireira",
+              "nl": "Wat mag het zijn?",
+              "pt": "O que vai ser?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Alleen knippen, een beetje korter.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Een kop koffie.",
+              "correct": false,
+              "feedback": "Não estamos num café."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben kort.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l003-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Mais curto.",
+          "vocabRefs": [
+            "v-korter"
+          ],
+          "sentence": "Mijn haar is te lang; het moet ___.",
+          "translation": "O meu cabelo está comprido demais; tem de ficar mais curto.",
+          "answers": [
+            "korter",
+            "kort"
+          ],
+          "choices": [
+            "korter",
+            "langer",
+            "wassen"
+          ]
+        },
+        {
+          "id": "s3-u06-l003-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "laten + infinitivo.",
+          "vocabRefs": [
+            "v-wassen"
+          ],
+          "translation": "Mando lavar o carro.",
+          "tokens": [
+            "Ik",
+            "laat",
+            "de",
+            "auto",
+            "wassen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u06-l004",
+      "unitId": "s3-u06",
+      "order": 4,
+      "title": "Lembretes e confirmações",
+      "description": "herinnering, bevestiging, vergeten.",
+      "cefr": "A2",
+      "objectives": [
+        "Perceber mensagens de confirmação e lembrete"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-herinnering",
+          "nl": "herinnering",
+          "pt": [
+            "lembrete",
+            "recordação"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-bevestigen",
+          "nl": "bevestigen",
+          "pt": [
+            "confirmar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-vergeten",
+          "nl": "vergeten",
+          "pt": [
+            "esquecer"
+          ],
+          "pos": "verb",
+          "note": "Vergeet niet… = Não te esqueças de…"
+        },
+        {
+          "id": "v-op-tijd2",
+          "nl": "uiterlijk",
+          "pt": [
+            "o mais tardar",
+            "no máximo"
+          ],
+          "pos": "adverb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-afspraak",
+        "v-afzeggen",
+        "v-op-tijd"
+      ],
+      "examples": [
+        {
+          "nl": "Dit is een herinnering aan uw afspraak.",
+          "pt": "Isto é um lembrete da sua consulta."
+        },
+        {
+          "nl": "Wilt u de afspraak bevestigen?",
+          "pt": "Quer confirmar a consulta?"
+        },
+        {
+          "nl": "Afzeggen uiterlijk 24 uur van tevoren.",
+          "pt": "Cancelar no máximo 24 horas antes."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u06-l004-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Mensagens.",
+          "vocabRefs": [
+            "v-herinnering",
+            "v-bevestigen",
+            "v-vergeten",
+            "v-op-tijd2"
+          ],
+          "pairs": [
+            {
+              "nl": "herinnering",
+              "pt": "lembrete"
+            },
+            {
+              "nl": "bevestigen",
+              "pt": "confirmar"
+            },
+            {
+              "nl": "vergeten",
+              "pt": "esquecer"
+            },
+            {
+              "nl": "uiterlijk",
+              "pt": "o mais tardar"
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l004-e02",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "bevestigen.",
+          "vocabRefs": [
+            "v-bevestigen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Wilt u de afspraak bevestigen?",
+          "answers": [
+            "Quer confirmar a consulta",
+            "Deseja confirmar a marcação"
+          ]
+        },
+        {
+          "id": "s3-u06-l004-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "vergeten + niet no fim.",
+          "vocabRefs": [
+            "v-vergeten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não te esqueças da consulta!",
+          "answers": [
+            "Vergeet je afspraak niet",
+            "Vergeet de afspraak niet"
+          ]
+        },
+        {
+          "id": "s3-u06-l004-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-herinnering"
+          ],
+          "noun": "herinnering",
+          "pt": "o lembrete",
+          "article": "de"
+        },
+        {
+          "id": "s3-u06-l004-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "uiterlijk = o mais tardar.",
+          "vocabRefs": [
+            "v-op-tijd2"
+          ],
+          "prompt": "«Afzeggen uiterlijk 24 uur van tevoren.» Quer dizer…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Deve cancelar pelo menos 24 horas antes",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Pode cancelar até 24 horas depois",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "A consulta dura 24 horas",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l004-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Particípio: ik ben … vergeten.",
+          "vocabRefs": [
+            "v-vergeten"
+          ],
+          "tokens": [
+            "Ik",
+            "ben",
+            "mijn",
+            "afspraak",
+            "vergeet."
+          ],
+          "errorIndex": 4,
+          "correction": "vergeten"
+        },
+        {
+          "id": "s3-u06-l004-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "bevestigd = confirmado.",
+          "vocabRefs": [
+            "v-bevestigen"
+          ],
+          "audioText": "Uw afspraak is bevestigd.",
+          "answers": [
+            "Uw afspraak is bevestigd"
+          ],
+          "translation": "A sua consulta está confirmada."
+        },
+        {
+          "id": "s3-u06-l004-e08",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Antwoord JA = responda SIM.",
+          "vocabRefs": [
+            "v-herinnering",
+            "v-bevestigen"
+          ],
+          "kind": "text",
+          "title": "SMS",
+          "text": "Herinnering: u heeft morgen, dinsdag 14 mei, om 10.30 uur een afspraak bij Tandartspraktijk Smit. Kunt u niet komen? Zeg uw afspraak dan uiterlijk vandaag af. Antwoord JA om te bevestigen.",
+          "questions": [
+            {
+              "prompt": "Quando é a consulta?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Terça, 14 de maio, às 10h30",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Hoje às 10h30",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Segunda às 14h",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Como se confirma?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Responder JA",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Ligar para o dentista",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não é preciso",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l004-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Não te esqueças…",
+          "vocabRefs": [
+            "v-vergeten"
+          ],
+          "sentence": "___ niet je paspoort mee te nemen!",
+          "translation": "Não te esqueças de levar o passaporte!",
+          "answers": [
+            "Vergeet"
+          ],
+          "choices": [
+            "Vergeet",
+            "Bevestig",
+            "Zeg"
+          ]
+        },
+        {
+          "id": "s3-u06-l004-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "bevestigen.",
+          "vocabRefs": [
+            "v-bevestigen"
+          ],
+          "translation": "Confirmo a consulta de quinta.",
+          "tokens": [
+            "Ik",
+            "bevestig",
+            "de",
+            "afspraak",
+            "van",
+            "donderdag"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u06-l005",
+      "unitId": "s3-u06",
+      "order": 5,
+      "title": "A minha agenda",
+      "description": "Revisão: marcar, mudar e confirmar.",
+      "cefr": "A2",
+      "objectives": [
+        "Gerir marcações em situações reais"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-afspraak-maken",
+        "v-uitkomen",
+        "v-afzeggen",
+        "v-verzetten",
+        "v-bevestigen",
+        "v-huisarts",
+        "v-tandarts",
+        "v-kapper"
+      ],
+      "examples": [
+        {
+          "nl": "Ik heb dinsdag een afspraak bij de tandarts, maar ik wil hem verzetten naar vrijdag.",
+          "pt": "Tenho consulta no dentista na terça, mas quero mudá-la para sexta."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u06-l005-e01",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Recusar e propor alternativa.",
+          "vocabRefs": [
+            "v-uitkomen"
+          ],
+          "lines": [
+            {
+              "speaker": "Assistente",
+              "nl": "Praktijk De Linde, goedemorgen.",
+              "pt": "Consultório De Linde, bom dia."
+            },
+            {
+              "speaker": "Ana",
+              "nl": "Goedemorgen, ik wil graag een afspraak maken bij de huisarts.",
+              "pt": "Bom dia, queria marcar consulta no médico de família."
+            },
+            {
+              "speaker": "Assistente",
+              "nl": "Kan het morgen om half tien?",
+              "pt": "Pode ser amanhã às nove e meia?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": ""
+            }
+          ],
+          "blankLine": 3,
+          "options": [
+            {
+              "id": "a",
+              "text": "Nee, dat komt niet goed uit. Kan het ook 's middags?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik ben half tien.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Ik zeg de huisarts af.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l005-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verzetten naar.",
+          "vocabRefs": [
+            "v-verzetten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quero mudar a consulta para sexta.",
+          "answers": [
+            "Ik wil de afspraak verzetten naar vrijdag",
+            "Ik wil mijn afspraak naar vrijdag verzetten"
+          ]
+        },
+        {
+          "id": "s3-u06-l005-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "afzeggen.",
+          "vocabRefs": [
+            "v-afzeggen",
+            "v-kapper"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Ik moet mijn afspraak bij de kapper afzeggen.",
+          "answers": [
+            "Tenho de cancelar a (minha )marcação no cabeleireiro"
+          ]
+        },
+        {
+          "id": "s3-u06-l005-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "uitkomen: dat komt mij goed uit.",
+          "vocabRefs": [
+            "v-uitkomen"
+          ],
+          "tokens": [
+            "Woensdag",
+            "komt",
+            "mij",
+            "goed",
+            "in."
+          ],
+          "errorIndex": 4,
+          "correction": "uit"
+        },
+        {
+          "id": "s3-u06-l005-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "om … te = para.",
+          "vocabRefs": [
+            "v-afspraak-maken"
+          ],
+          "audioText": "Ik bel om een afspraak te maken.",
+          "answers": [
+            "Ik bel om een afspraak te maken"
+          ],
+          "translation": "Ligo para marcar uma consulta."
+        },
+        {
+          "id": "s3-u06-l005-e06",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Ações.",
+          "vocabRefs": [
+            "v-afspraak-maken",
+            "v-verzetten",
+            "v-afzeggen",
+            "v-bevestigen"
+          ],
+          "pairs": [
+            {
+              "nl": "een afspraak maken",
+              "pt": "marcar"
+            },
+            {
+              "nl": "verzetten",
+              "pt": "mudar"
+            },
+            {
+              "nl": "afzeggen",
+              "pt": "cancelar"
+            },
+            {
+              "nl": "bevestigen",
+              "pt": "confirmar"
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l005-e07",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Let op = atenção.",
+          "vocabRefs": [
+            "v-verzetten"
+          ],
+          "kind": "text",
+          "title": "Agenda da semana",
+          "text": "Maandag 9.00: tandarts\nWoensdag 17.30: kapper\nVrijdag 11.15: huisarts\nLet op: tandarts verzet naar donderdag 9.00!",
+          "questions": [
+            {
+              "prompt": "Quando é agora o dentista?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Quinta às 9h",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Segunda às 9h",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Sexta às 11h15",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "A que horas é o cabeleireiro?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "17h30",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "9h",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "11h15",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3-u06-l005-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Modal + infinitivo no fim.",
+          "vocabRefs": [
+            "v-bevestigen"
+          ],
+          "translation": "Pode confirmar a minha consulta por e-mail?",
+          "tokens": [
+            "Kunt",
+            "u",
+            "mijn",
+            "afspraak",
+            "per",
+            "e-mail",
+            "bevestigen?"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u06-l005-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Cancelar.",
+          "vocabRefs": [
+            "v-afzeggen"
+          ],
+          "sentence": "Ik ben ziek. Ik moet mijn afspraak bij de kapper ___.",
+          "translation": "Estou doente. Tenho de cancelar a marcação no cabeleireiro.",
+          "answers": [
+            "afzeggen"
+          ],
+          "choices": [
+            "afzeggen",
+            "bevestigen",
+            "maken"
+          ]
+        },
+        {
+          "id": "s3-u06-l005-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Beste mevrouw, ik moet mijn afspraak van dinsdag helaas afzeggen. Kan ik een nieuwe afspraak maken voor volgende week?»",
+          "vocabRefs": [
+            "v-afzeggen"
+          ],
+          "prompt": "Escreva uma mensagem curta para cancelar uma consulta e pedir outra data.",
+          "referenceAnswers": [
+            "Beste [meneer|mevrouw](,) ik moet mijn afspraak van [dinsdag|maandag] helaas afzeggen(.) Kan ik een nieuwe afspraak maken"
+          ],
+          "checklist": [
+            "Cancela com «afzeggen»",
+            "Usa «helaas»",
+            "Pede nova marcação com «een nieuwe afspraak maken»"
+          ],
+          "minWords": 10
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}

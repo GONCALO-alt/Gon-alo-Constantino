@@ -1,0 +1,110 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s3-u05")
+C = "A2"
+
+L(1, "Reservar uma mesa", "Ik wil graag een tafel reserveren voor vier personen.",
+  ["Reservar mesa por telefone ou ao balcão"],
+  vocab=[V("v-reserveren","reserveren","reservar","verb"), V("v-persoon","persoon","pessoa","noun","de","personen"),
+         V("v-reservering","reservering","reserva","noun","de"), V("v-op-naam-van","op naam van","em nome de","expression"), V("v-buiten","buiten","lá fora|na esplanada","adverb")],
+  ex=[("Ik wil graag een tafel reserveren voor vier personen.","Queria reservar uma mesa para quatro pessoas."),("Voor hoe laat?","Para que horas?"),("Op naam van Silva.","Em nome de Silva."),("Kunnen we buiten zitten?","Podemos ficar na esplanada?")],
+  review=["v-tafel","v-willen","v-graag","v-hoe-laat","v-restaurant"],
+  cefr=C, exs=[
+    MA([("reserveren","reservar"),("persoon","pessoa"),("reservering","reserva"),("buiten","lá fora")], "Reservas.", ["v-reserveren","v-persoon","v-reservering","v-buiten"]),
+    TR("pt-nl","Queria reservar uma mesa para duas pessoas.", ["Ik wil graag een tafel reserveren voor twee personen"], "Infinitivo no fim.", ["v-reserveren","v-persoon"]),
+    TR("nl-pt","Op naam van Costa.", ["Em nome de Costa"], "op naam van.", ["v-op-naam-van"]),
+    WO("Podemos ficar na esplanada?", ["Kunnen","we","buiten","zitten?"], "Pergunta com modal.", ["v-buiten"]),
+    AR("reservering","a reserva","de", "-ing → de.", ["v-reservering"]),
+    DL([("Restaurante","Restaurant De Gouden Leeuw, goedenavond.","Restaurante O Leão Dourado, boa noite."),("Cliente","")], ["*Goedenavond, ik wil graag een tafel reserveren voor vanavond.","Goedenavond, ik ben een tafel.|Não faz sentido.","Ik wil graag betalen.|Ainda não jantou."], "Pedido de reserva.", ["v-reserveren"]),
+    FE(["Een","tafel","voor","drie","persoon,","alstublieft."], 4, "personen", "Plural: drie personen.", ["v-persoon"]),
+    LI("Voor hoeveel personen?", ["Voor hoeveel personen"], "Para quantas pessoas?", "Pergunta habitual.", ["v-persoon"]),
+    FB("Ik heb een ___ voor acht uur.", ["reservering"], "Tenho uma reserva.", ["v-reservering"], choices=["reservering","persoon","rekening"], tr="Tenho uma reserva para as oito."),
+    CO("dialogue","Ao telefone", "Ober: Restaurant Zuid, goedemiddag.\nAna: Goedemiddag, ik wil graag een tafel reserveren voor zaterdag.\nOber: Voor hoeveel personen?\nAna: Voor vier personen, om half acht.\nOber: Dat kan. Op welke naam?\nAna: Op naam van Silva.",
+       [("Para quando é a reserva?", ["*Sábado às 19h30","Sexta às 20h","Hoje às 19h"]),("Quantas pessoas?", ["*Quatro","Duas","Seis"])],
+       "Dat kan = é possível.", ["v-reserveren","v-op-naam-van"]),
+  ], diff=2, mins=6)
+
+L(2, "Pedir no restaurante", "het voorgerecht, het hoofdgerecht, het nagerecht.",
+  ["Pedir uma refeição completa"],
+  vocab=[V("v-voorgerecht","voorgerecht","entrada","noun","het"), V("v-hoofdgerecht","hoofdgerecht","prato principal","noun","het"),
+         V("v-nagerecht","nagerecht","sobremesa","noun","het",note="Também «het toetje» (informal)."), V("v-bestellen","bestellen","pedir (encomendar)","verb"),
+         V("v-ober","ober","empregado de mesa","noun","de",note="Feminino: serveerster.")],
+  ex=[("Wat wilt u bestellen?","O que deseja pedir?"),("Als voorgerecht neem ik de soep.","Para entrada quero a sopa."),("Als hoofdgerecht de vis, graag.","Como prato principal, o peixe, por favor.")],
+  gram=[G("g-als-voorgerecht","Als = como","Para dizer a função: **als** voorgerecht (como entrada). Para pedir: **Ik neem…** (vou querer…) ou **Ik wil graag…**. Para chamar o empregado educadamente: *Pardon!* ou levantar a mão; gritar «Ober!» soa antiquado.",
+    [("Als toetje een ijsje.","Para sobremesa, um gelado.")])],
+  review=["v-menu","v-soep","v-vis","v-vlees","v-willen"],
+  cefr=C, exs=[
+    MA([("voorgerecht","entrada"),("hoofdgerecht","prato principal"),("nagerecht","sobremesa"),("bestellen","pedir"),("ober","empregado")], "No restaurante.", ["v-voorgerecht","v-hoofdgerecht","v-nagerecht","v-bestellen","v-ober"]),
+    AR("hoofdgerecht","o prato principal","het", "gerecht → het.", ["v-hoofdgerecht"]),
+    TR("pt-nl","Para entrada quero a sopa.", ["Als voorgerecht neem ik de soep","Als voorgerecht wil ik graag de soep"], "als + inversão.", ["v-voorgerecht"]),
+    TR("nl-pt","Wat wilt u bestellen?", ["O que deseja pedir","O que vai pedir"], "bestellen.", ["v-bestellen"]),
+    CJ("bestellen","wij","Wij ___ twee pizza's.", ["bestellen"], "Plural.", ["v-bestellen"]),
+    FE(["Als","nagerecht","ik","neem","ijs."], 2, "neem ik", "Inversão: als nagerecht neem ik ijs.", ["v-nagerecht"]),
+    LI("Heeft u al een keuze gemaakt?", ["Heeft u al een keuze gemaakt"], "Já escolheu?", "Pergunta do empregado.", ["v-bestellen"]),
+    DL([("Ober","Wat wilt u drinken?","O que deseja beber?"),("Cliente","Een glas rode wijn, graag.","Um copo de vinho tinto, por favor."),("Ober","En als hoofdgerecht?","E como prato principal?"),("Cliente","")], ["*De kip met frietjes, alstublieft.","Een rode wijn.|Já pediu a bebida.","Als nagerecht.|Não responde."], "Pedido do prato.", ["v-hoofdgerecht"]),
+    FB("Mag ik het ___? We willen bestellen.", ["menu"], "Pedir a ementa.", ["v-menu"], choices=["menu","nagerecht","ober"], tr="Pode trazer a ementa? Queremos pedir."),
+    WO("Como sobremesa quero um gelado.", ["Als","nagerecht","wil","ik","graag","een","ijsje"], "Inversão.", ["v-nagerecht"]),
+  ], diff=2, mins=6)
+
+L(3, "Pedidos especiais e alergias", "zonder, allergisch voor, glutenvrij, pittig.",
+  ["Fazer pedidos especiais e falar de alergias"],
+  vocab=[V("v-zonder","zonder","sem","preposition"), V("v-allergisch","allergisch","alérgico","adjective",note="allergisch voor noten = alérgico a frutos secos"),
+         V("v-glutenvrij","glutenvrij","sem glúten","adjective"), V("v-pittig","pittig","picante","adjective"), V("v-saus","saus","molho","noun","de","sauzen")],
+  ex=[("Ik ben allergisch voor noten.","Sou alérgico a frutos secos."),("Kan ik de salade zonder saus krijgen?","Posso ter a salada sem molho?"),("Is dit gerecht pittig?","Este prato é picante?"),("Heeft u ook iets glutenvrij?","Tem também alguma coisa sem glúten?")],
+  review=["v-vegetarisch","v-met","v-kunnen","v-eten"],
+  cefr=C, exs=[
+    MA([("zonder","sem"),("allergisch","alérgico"),("glutenvrij","sem glúten"),("pittig","picante"),("saus","molho")], "Pedidos especiais.", ["v-zonder","v-allergisch","v-glutenvrij","v-pittig","v-saus"]),
+    TR("pt-nl","Sou alérgico a frutos secos.", ["Ik ben allergisch voor noten"], "allergisch voor.", ["v-allergisch"]),
+    TR("pt-nl","Sem molho, por favor.", ["Zonder saus(,) [alstublieft|graag]"], "zonder.", ["v-zonder","v-saus"]),
+    TR("nl-pt","Is dit gerecht pittig?", ["Este prato é picante"], "pittig.", ["v-pittig"]),
+    FE(["Ik","ben","allergisch","van","melk."], 3, "voor", "allergisch voor.", ["v-allergisch"]),
+    MC("Não pode comer glúten. O que pergunta?", ["*Heeft u ook glutenvrije gerechten?","Heeft u ook pittige gerechten?|pittig = picante.","Is het vegetarisch?|Não é a mesma coisa."], "glutenvrij.", ["v-glutenvrij"]),
+    LI("Kan ik dit zonder ui krijgen?", ["Kan ik dit zonder ui krijgen"], "Posso ter isto sem cebola?", "krijgen = receber.", ["v-zonder"]),
+    FB("Mijn zoon is ___ voor eieren.", ["allergisch"], "allergisch voor.", ["v-allergisch"], choices=["allergisch","pittig","glutenvrij"], tr="O meu filho é alérgico a ovos."),
+    AR("saus","o molho","de", "«De saus».", ["v-saus"]),
+    DL([("Ober","Heeft u allergieën?","Tem alergias?"),("Cliente","")], ["*Ja, ik ben allergisch voor pinda's.","Ja, ik ben pittig.|Não faz sentido.","Nee, ik ben vegetarisch.|Não é uma alergia."], "Indicar alergia.", ["v-allergisch"]),
+  ], diff=2, mins=6)
+
+L(4, "A conta e a gorjeta", "Mag ik de rekening? Samen of apart? Het klopt zo.",
+  ["Pedir a conta, pagar e dar gorjeta"],
+  vocab=[V("v-rekening","rekening","conta","noun","de"), V("v-apart","apart","separado","adverb"), V("v-fooi","fooi","gorjeta","noun","de"),
+         V("v-het-klopt-zo","het klopt zo","está certo assim|fique com o troco","expression"), V("v-tikkie","Tikkie","pedido de pagamento (app)","noun","het",note="Muito usado para dividir contas entre amigos.")],
+  ex=[("Mag ik de rekening?","Pode trazer a conta?"),("Samen of apart?","Juntos ou separados?"),("Het klopt zo.","Está certo assim (fique com o troco)."),("Ik stuur je een Tikkie.","Envio-te um pedido de pagamento.")],
+  gram=[G("g-apart-betalen","Pagar separado","Nos Países Baixos é muito comum **pagar separado** (*apart betalen*) ou dividir a conta (**samsam**, **Dutch treat**). A gorjeta (**fooi**) é opcional: arredonda-se ou deixa-se 5–10 % se o serviço foi bom.",
+    [("We betalen apart.","Pagamos separadamente.")],
+    "Em Portugal é mais comum uma pessoa pagar tudo; lá dividir é normal e não é indelicado.")],
+  review=["v-betalen","v-pinnen","v-samen","v-euro"],
+  cefr=C, exs=[
+    MA([("rekening","conta"),("apart","separado"),("fooi","gorjeta"),("het klopt zo","fique com o troco")], "Pagar.", ["v-rekening","v-apart","v-fooi","v-het-klopt-zo"]),
+    TR("pt-nl","Pode trazer a conta?", ["Mag ik de rekening","Mogen wij de rekening","Kunnen we betalen"], "Mag ik de rekening?", ["v-rekening"]),
+    TR("nl-pt","Samen of apart?", ["Juntos ou separados","Junto ou separado"], "Pergunta do empregado.", ["v-apart"]),
+    MC("A conta é 47 € e dá 50 € dizendo «Het klopt zo». O que significa?", ["*Que o empregado fica com o troco","Que a conta está errada|«klopt» = está certo.","Que quer o troco|É o contrário."], "Gorjeta de 3 €.", ["v-het-klopt-zo"]),
+    AR("rekening","a conta","de", "-ing → de.", ["v-rekening"]),
+    FE(["We","betaalt","apart."], 1, "betalen", "Plural: we betalen.", ["v-apart"]),
+    LI("Ik stuur je straks een Tikkie.", ["Ik stuur je straks een Tikkie"], "Envio-te já um pedido de pagamento.", "Tikkie = app de pagamento.", ["v-tikkie"]),
+    DL([("Ober","Was alles naar wens?","Estava tudo a seu gosto?"),("Cliente","")], ["*Ja, heerlijk! Mag ik de rekening?","Nee, ik ben de rekening.|Não faz sentido.","Ja, ik ben allergisch.|Não combina."], "Elogio + pedido da conta.", ["v-rekening","v-heerlijk"]),
+    FB("Hoeveel ___ geef je in Nederland?", ["fooi"], "fooi = gorjeta.", ["v-fooi"], choices=["fooi","rekening","Tikkie"], tr="Quanta gorjeta se dá nos Países Baixos?"),
+    WO("Pagamos separadamente, se faz favor.", ["We","betalen","graag","apart"], "graag suaviza.", ["v-apart"]),
+  ], diff=2, mins=6)
+
+L(5, "Um jantar fora", "Revisão: da reserva à conta.",
+  ["Conduzir uma ida ao restaurante do início ao fim"],
+  ex=[("We hebben gereserveerd op naam van Costa.","Temos reserva em nome de Costa.")],
+  review=["v-reserveren","v-bestellen","v-voorgerecht","v-hoofdgerecht","v-nagerecht","v-allergisch","v-rekening","v-apart","v-fooi"],
+  cefr=C, exs=[
+    DL([("Ober","Goedenavond! Heeft u gereserveerd?","Boa noite! Tem reserva?"),("Cliente","")], ["*Ja, op naam van Costa, voor twee personen.","Ja, ik ben Costa twee.|Mal formulado.","Nee, de rekening.|Não faz sentido."], "Confirmar reserva.", ["v-reserveren","v-op-naam-van"]),
+    TR("pt-nl","Como prato principal quero o frango.", ["Als hoofdgerecht neem ik de kip","Als hoofdgerecht wil ik graag de kip"], "als + inversão.", ["v-hoofdgerecht","v-kip"]),
+    MA([("Mag ik het menu?","Pode trazer a ementa?"),("Wat raadt u aan?","O que recomenda?"),("Mag ik de rekening?","A conta, por favor."),("Het klopt zo.","Fique com o troco.")], "Frases de restaurante.", ["v-menu","v-rekening","v-het-klopt-zo"]),
+    TR("nl-pt","Wat raadt u aan?", ["O que recomenda","O que é que (me )recomenda"], "aanraden = recomendar.", ["v-bestellen"]),
+    FE(["Ik","ben","allergisch","voor","noten","en","ik","wil","de","salade","met","noten."], 10, "zonder", "Se é alérgico, quer «zonder noten».", ["v-zonder","v-allergisch"]),
+    LI("Was alles naar wens?", ["Was alles naar wens"], "Estava tudo a seu gosto?", "Pergunta habitual no fim.", ["v-rekening"]),
+    CO("dialogue","No restaurante", "Ober: Wat mag het zijn?\nPedro: Als voorgerecht de tomatensoep en als hoofdgerecht de vis, graag.\nAna: Ik neem de pasta, maar zonder kaas. Ik ben allergisch voor melk.\nOber: Geen probleem. En te drinken?\nPedro: Een fles witte wijn.\n...\nPedro: Mag ik de rekening? We betalen samen.",
+       [("Porque pede a Ana a massa sem queijo?", ["*É alérgica ao leite","Não gosta de queijo","Está de dieta"]),("O que bebem?", ["*Uma garrafa de vinho branco","Água","Cerveja"]),("Como pagam?", ["*Juntos","Separados","Com Tikkie"])],
+       "te drinken = para beber.", ["v-allergisch","v-zonder","v-rekening"]),
+    WO("Podemos pagar separadamente?", ["Kunnen","we","apart","betalen?"], "Modal + infinitivo no fim.", ["v-apart"]),
+    FB("Dat was heerlijk! Ik laat een ___ achter.", ["fooi"], "Deixar gorjeta.", ["v-fooi"], choices=["fooi","saus","reservering"], tr="Estava delicioso! Deixo uma gorjeta."),
+    SW("Escreva o seu pedido completo num restaurante (entrada, prato principal, bebida e um pedido especial).", ["Als voorgerecht neem ik de soep(,) als hoofdgerecht de vis zonder saus en een glas water(,) graag"],
+       ["Entrada e prato principal com «als»","Uma bebida","Um pedido especial com «zonder» ou uma alergia"], 12, "Compare com o modelo.", ["v-voorgerecht"]),
+  ], diff=3, mins=7)
+
+W()
