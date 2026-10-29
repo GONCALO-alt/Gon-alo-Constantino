@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s3-u08")
+C = "A2"
+
+L(1, "Na farmácia", "de apotheek, de drogist, medicijnen, pijnstillers.",
+  ["Distinguir apotheek e drogist", "Pedir medicamentos simples"],
+  vocab=[V("v-apotheek","apotheek","farmácia","noun","de",note="Medicamentos com receita."), V("v-drogist","drogist","drogaria","noun","de",note="Medicamentos sem receita, higiene, cosmética."),
+         V("v-medicijn","medicijn","medicamento","noun","het","medicijnen"), V("v-pijnstiller","pijnstiller","analgésico","noun","de"), V("v-pil","pil","comprimido","noun","de","pillen",note="Também «de tablet».")],
+  ex=[("Paracetamol koop je bij de drogist.","O paracetamol compra-se na drogaria."),("Met dit recept ga je naar de apotheek.","Com esta receita vais à farmácia."),("Heeft u iets tegen hoofdpijn?","Tem alguma coisa para as dores de cabeça?")],
+  gram=[G("g-apotheek-drogist","Apotheek ou drogist?","Na **apotheek** levantam-se medicamentos **com receita** (recept). Na **drogist** (ex.: Kruidvat, Etos) compram-se medicamentos simples **sem receita** (paracetamol, xarope), além de produtos de higiene. Para pedir: **Heeft u iets tegen…?** (tem algo contra…?).",
+    [("iets tegen keelpijn","algo para as dores de garganta")],
+    "Em Portugal quase tudo se compra na farmácia; lá a drogaria é o sítio habitual para o básico.")],
+  review=["v-recept-med","v-hoofd","v-hoesten"],
+  cefr=C, exs=[
+    MA([("apotheek","farmácia"),("drogist","drogaria"),("medicijn","medicamento"),("pijnstiller","analgésico"),("pil","comprimido")], "Farmácia.", ["v-apotheek","v-drogist","v-medicijn","v-pijnstiller","v-pil"]),
+    MC("Onde levanta um medicamento com receita?", ["*bij de apotheek","bij de drogist|Lá só há medicamentos sem receita.","bij de bakker|Não."], "Recept → apotheek.", ["v-apotheek"]),
+    TR("pt-nl","Tem alguma coisa para as dores de cabeça?", ["Heeft u iets tegen hoofdpijn"], "iets tegen.", ["v-pijnstiller"]),
+    AR("medicijn","o medicamento","het", "«Het medicijn».", ["v-medicijn"]),
+    TR("nl-pt","Paracetamol koop je bij de drogist.", ["O paracetamol compra-se na drogaria","Compras paracetamol na drogaria"], "je genérico.", ["v-drogist"]),
+    FE(["Heeft","u","iets","voor","keelpijn?"], 3, "tegen", "iets tegen + sintoma.", ["v-pijnstiller"]),
+    LI("Ik kom een recept ophalen.", ["Ik kom een recept ophalen"], "Venho levantar uma receita.", "ophalen = levantar/ir buscar.", ["v-apotheek"]),
+    FB("Neem twee ___ per dag.", ["pillen","tabletten"], "comprimidos.", ["v-pil"], choices=["pillen","drogist","recept"], tr="Tome dois comprimidos por dia."),
+    DL([("Farmacêutica","Kan ik u helpen?","Posso ajudar?"),("Cliente","")], ["*Ja, heeft u iets tegen hoesten?","Ja, ik ben hoesten.|Não faz sentido.","Ja, een recept voor taart.|Receita de cozinha?"], "Pedido.", ["v-hoesten"]),
+    WO("Preciso de um medicamento para a gripe.", ["Ik","heb","een","medicijn","tegen","griep","nodig"], "nodig hebben.", ["v-medicijn"]),
+  ], diff=2, mins=5)
+
+L(2, "Como tomar o medicamento", "drie keer per dag, na het eten, de bijsluiter.",
+  ["Perceber instruções de toma"],
+  vocab=[V("v-innemen","innemen","tomar (medicamento)","verb",note="Neem de pil in met water."), V("v-bijsluiter","bijsluiter","folheto informativo","noun","de"),
+         V("v-bijwerking","bijwerking","efeito secundário","noun","de","bijwerkingen"), V("v-nuchter","nuchter","em jejum","adjective"), V("v-dosis","dosis","dose","noun","de")],
+  ex=[("Drie keer per dag één tablet.","Um comprimido três vezes por dia."),("Neem het in na het eten.","Tome depois de comer."),("Lees de bijsluiter.","Leia o folheto informativo."),("Mogelijke bijwerkingen: hoofdpijn.","Possíveis efeitos secundários: dores de cabeça.")],
+  review=["v-keer","v-na","v-voor-tijd","v-pil"],
+  cefr=C, exs=[
+    MA([("innemen","tomar"),("bijsluiter","folheto"),("bijwerking","efeito secundário"),("nuchter","em jejum"),("dosis","dose")], "Medicação.", ["v-innemen","v-bijsluiter","v-bijwerking","v-nuchter","v-dosis"]),
+    TR("nl-pt","Drie keer per dag één tablet.", ["Um comprimido três vezes por dia","Três vezes por dia um comprimido"], "keer per dag.", ["v-keer"]),
+    TR("pt-nl","Tome depois de comer.", ["Neem het in na het eten","Innemen na het eten"], "na het eten.", ["v-innemen","v-na"]),
+    TR("nl-pt","Lees de bijsluiter.", ["Leia o folheto informativo","Lê o folheto"], "bijsluiter.", ["v-bijsluiter"]),
+    WO("Tomo o comprimido com água.", ["Ik","neem","de","pil","in","met","water"], "Separável: neem … in.", ["v-innemen"]),
+    FE(["Ik","inneem","het","medicijn","'s","ochtends."], 1, "neem … in", "Separável: ik neem het medicijn 's ochtends in.", ["v-innemen"]),
+    MC("«Nuchter innemen» significa…", ["*Tomar em jejum","Tomar com álcool|Não!","Tomar à noite|Não."], "nuchter = em jejum.", ["v-nuchter"]),
+    LI("Heeft dit medicijn bijwerkingen?", ["Heeft dit medicijn bijwerkingen"], "Este medicamento tem efeitos secundários?", "bijwerkingen.", ["v-bijwerking"]),
+    AR("bijwerking","o efeito secundário","de", "-ing → de.", ["v-bijwerking"]),
+    CO("text","Instruções", "Neem drie keer per dag één tablet in, na het eten, met een glas water. Neem niet meer dan zes tabletten per dag. Mogelijke bijwerkingen: misselijkheid en duizeligheid. Rijd geen auto als u duizelig bent.",
+       [("Quantos comprimidos por dia, no máximo?", ["*Seis","Três","Um"]),("Quando não deve conduzir?", ["*Se se sentir tonto","À noite","Depois de comer"])],
+       "misselijkheid = enjoo; duizeligheid = tonturas.", ["v-innemen","v-bijwerking"]),
+  ], diff=3, mins=6)
+
+L(3, "Higiene e cuidados", "tandpasta, zeep, shampoo, pleisters.",
+  ["Comprar produtos de higiene e primeiros socorros"],
+  vocab=[V("v-tandpasta","tandpasta","pasta de dentes","noun","de"), V("v-zeep","zeep","sabonete","noun","de"),
+         V("v-pleister","pleister","penso rápido","noun","de","pleisters"), V("v-zonnebrandcreme","zonnebrandcrème","protetor solar","noun","de"), V("v-tandenborstel","tandenborstel","escova de dentes","noun","de")],
+  ex=[("Ik heb een pleister nodig.","Preciso de um penso."),("Waar staat de tandpasta?","Onde está a pasta de dentes?"),("Vergeet je zonnebrandcrème niet!","Não te esqueças do protetor solar!")],
+  review=["v-drogist","v-vinden","v-zoeken"],
+  cefr=C, exs=[
+    MA([("tandpasta","pasta de dentes"),("zeep","sabonete"),("pleister","penso"),("zonnebrandcrème","protetor solar"),("tandenborstel","escova de dentes")], "Higiene.", ["v-tandpasta","v-zeep","v-pleister","v-zonnebrandcreme","v-tandenborstel"]),
+    TR("pt-nl","Preciso de um penso.", ["Ik heb een pleister nodig"], "nodig hebben.", ["v-pleister"]),
+    TR("nl-pt","Waar staat de tandpasta?", ["Onde está a pasta de dentes"], "staan para produtos.", ["v-tandpasta"]),
+    AR("zeep","o sabonete","de", "«De zeep».", ["v-zeep"]),
+    FE(["Ik","hebt","een","tandenborstel","nodig."], 1, "heb", "ik heb … nodig.", ["v-tandenborstel"]),
+    LI("Vergeet je zonnebrandcrème niet!", ["Vergeet je zonnebrandcrème niet"], "Não te esqueças do protetor solar!", "vergeten + niet.", ["v-zonnebrandcreme"]),
+    FB("Ik heb me gesneden. Heb je een ___?", ["pleister"], "Corte → penso.", ["v-pleister"], choices=["pleister","zeep","tandpasta"], tr="Cortei-me. Tens um penso?"),
+    MC("Onde se compra pasta de dentes nos Países Baixos?", ["*bij de drogist","bij de apotheek met recept|Não precisa de receita.","bij de bakker|Não."], "drogist.", ["v-drogist"]),
+    WO("Vou à drogaria comprar champô.", ["Ik","ga","naar","de","drogist","voor","shampoo"], "voor = para.", ["v-drogist"]),
+    TR("pt-nl","uma escova de dentes nova", ["een nieuwe tandenborstel"], "de tandenborstel → nieuwe.", ["v-tandenborstel","v-nieuw"]),
+  ], diff=2, mins=5)
+
+L(4, "Seguro de saúde", "de zorgverzekering, het eigen risico, de premie.",
+  ["Perceber o básico do seguro de saúde neerlandês"],
+  vocab=[V("v-zorgverzekering","zorgverzekering","seguro de saúde","noun","de",note="Obrigatório para quem vive e trabalha nos Países Baixos."), V("v-eigen-risico","eigen risico","franquia","noun","het",note="Valor anual que paga do seu bolso antes de o seguro pagar."),
+         V("v-premie","premie","prémio (mensalidade)","noun","de"), V("v-vergoeden","vergoeden","reembolsar|cobrir","verb"), V("v-verplicht","verplicht","obrigatório","adjective")],
+  ex=[("Een zorgverzekering is verplicht.","O seguro de saúde é obrigatório."),("Ik betaal elke maand premie.","Pago o prémio todos os meses."),("Wordt dit vergoed?","Isto é comparticipado?")],
+  gram=[G("g-zorgverzekering","O sistema","Todos os residentes têm de ter **basisverzekering** (seguro básico). Paga-se um **premie** mensal e há um **eigen risico** anual. A consulta na huisarts **não** conta para o eigen risico; medicamentos e hospital, sim.",
+    [("De huisarts valt niet onder het eigen risico.","O médico de família não conta para a franquia.")],
+    "Diferente do SNS português, financiado sobretudo por impostos.")],
+  review=["v-betalen","v-maand","v-huisarts"],
+  cefr=C, exs=[
+    MA([("zorgverzekering","seguro de saúde"),("eigen risico","franquia"),("premie","prémio"),("vergoeden","comparticipar"),("verplicht","obrigatório")], "Seguro.", ["v-zorgverzekering","v-eigen-risico","v-premie","v-vergoeden","v-verplicht"]),
+    TR("nl-pt","Een zorgverzekering is verplicht.", ["O seguro de saúde é obrigatório","Ter seguro de saúde é obrigatório"], "verplicht.", ["v-verplicht"]),
+    TR("pt-nl","Isto é comparticipado?", ["Wordt dit vergoed"], "worden + particípio (passiva).", ["v-vergoeden"]),
+    MC("A consulta na huisarts conta para o «eigen risico»?", ["*Não","Sim|Não conta.","Só ao domingo|Não."], "Huisarts valt erbuiten.", ["v-eigen-risico"]),
+    AR("eigen risico","a franquia","het", "«Het eigen risico».", ["v-eigen-risico"]),
+    FE(["Ik","betaal","elk","maand","premie."], 2, "elke", "de maand → elke.", ["v-premie"]),
+    LI("Mijn verzekering vergoedt de tandarts niet.", ["Mijn verzekering vergoedt de tandarts niet"], "O meu seguro não cobre o dentista.", "vergoeden.", ["v-vergoeden"]),
+    FB("De ___ is honderdvijftig euro per maand.", ["premie"], "mensalidade.", ["v-premie"], choices=["premie","eigen risico","recept"], tr="O prémio é cento e cinquenta euros por mês."),
+    CO("text","Informação", "In Nederland moet iedereen die hier woont of werkt een zorgverzekering hebben. Je betaalt elke maand een premie. Het eigen risico is 385 euro per jaar. Kosten voor de huisarts betaal je niet zelf.",
+       [("Quem tem de ter seguro?", ["*Quem vive ou trabalha nos Países Baixos","Só os neerlandeses","Ninguém"]),("Quanto é a franquia anual no texto?", ["*385 €","150 €","Nada"])],
+       "zelf = o próprio.", ["v-zorgverzekering","v-eigen-risico"]),
+    WO("O seguro cobre a fisioterapia?", ["Vergoedt","de","verzekering","de","fysiotherapie?"], "Pergunta.", ["v-vergoeden"]),
+  ], diff=3, mins=6)
+
+L(5, "Cuidar da saúde", "Revisão: farmácia, sintomas e seguro.",
+  ["Resolver situações de saúde do dia a dia"],
+  ex=[("Ik heb keelpijn, dus ik ga naar de drogist voor zuigtabletten.","Tenho dores de garganta, por isso vou à drogaria comprar pastilhas.")],
+  review=["v-apotheek","v-drogist","v-innemen","v-bijsluiter","v-pleister","v-zorgverzekering","v-klacht","v-recept-med"],
+  cefr=C, exs=[
+    MC("Tem uma receita do médico. Para onde vai?", ["*naar de apotheek","naar de drogist|Com receita: apotheek.","naar de kapper|Não."], "recept → apotheek.", ["v-apotheek"]),
+    TR("pt-nl","Tome um comprimido duas vezes por dia.", ["Neem twee keer per dag één [tablet|pil] in","Neem één pil twee keer per dag in"], "Separável.", ["v-innemen"]),
+    TR("nl-pt","Heeft u iets tegen keelpijn?", ["Tem alguma coisa para (as dores de garganta|a garganta)"], "iets tegen.", ["v-keel"]),
+    FE(["Ik","ga","naar","de","apotheek","voor","tandpasta."], 4, "drogist", "Pasta de dentes compra-se na drogist.", ["v-drogist"]),
+    LI("U moet dit medicijn nuchter innemen.", ["U moet dit medicijn nuchter innemen"], "Tem de tomar este medicamento em jejum.", "nuchter.", ["v-nuchter"]),
+    CO("dialogue","Na farmácia", "Apotheker: Goedemiddag, kan ik u helpen?\nAna: Ik kom dit recept ophalen.\nApotheker: Alstublieft. Neem twee keer per dag één tablet in, na het eten. Heeft u nog vragen?\nAna: Heeft het bijwerkingen?\nApotheker: U kunt een beetje moe worden. Lees ook de bijsluiter.",
+       [("O que vem fazer a Ana?", ["*Levantar uma receita","Comprar sabonete","Marcar consulta"]),("Que efeito secundário pode ter?", ["*Cansaço","Febre","Tonturas"])],
+       "ophalen = levantar.", ["v-bijwerking","v-innemen"]),
+    MA([("apotheek","farmácia"),("drogist","drogaria"),("bijsluiter","folheto"),("pleister","penso")], "Revisão.", ["v-apotheek","v-drogist","v-bijsluiter","v-pleister"]),
+    WO("Preciso de pensos e de protetor solar.", ["Ik","heb","pleisters","en","zonnebrandcrème","nodig"], "nodig no fim.", ["v-pleister","v-zonnebrandcreme"]),
+    FB("Is de zorgverzekering ___? — Ja, voor iedereen.", ["verplicht"], "obrigatório.", ["v-verplicht"], choices=["verplicht","nuchter","gewond"], tr="O seguro de saúde é obrigatório? — Sim, para toda a gente."),
+    SW("Explique a um farmacêutico o seu problema e peça algo adequado.", ["Goedemiddag(,) ik heb [hoofdpijn|keelpijn|koorts](.) Heeft u iets tegen [hoofdpijn|keelpijn|koorts]"],
+       ["Cumprimento","Descreve o sintoma","Pede com «iets tegen…»"], 6, "Modelo: «Goedemiddag, ik heb keelpijn. Heeft u iets tegen keelpijn?»", ["v-pijnstiller"]),
+  ], diff=3, mins=7)
+
+W()
