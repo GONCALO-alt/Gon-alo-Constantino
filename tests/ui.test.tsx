@@ -11,7 +11,7 @@ import * as repo from '../src/data/progressRepo.ts';
 import { expandAnswerPattern } from '../src/engine/answers.ts';
 import { App } from '../src/ui/App.tsx';
 import { parseRoute } from '../src/ui/router.ts';
-import { fetcherFor, lessonOf, realFiles } from './helpers.ts';
+import { fetcherFor, lessonOf, realFiles, realStructure } from './helpers.ts';
 
 const fetcher = fetcherFor();
 
@@ -59,8 +59,10 @@ describe('navegação', () => {
     expect(await screen.findByRole('link', { name: /Olá e adeus — disponível/ })).toBeTruthy();
     expect(screen.getByRole('button', { name: /Unidade 2: Apresentações pessoais/ }).textContent).toMatch(/Bloqueada/);
     expect(screen.getByLabelText(/Bom dia, boa tarde, boa noite — bloqueada/)).toBeTruthy();
-    // Unidades sem conteúdo aparecem como "em preparação"
-    expect(screen.getByRole('button', { name: /Unidade 3: Sons e pronúncia/ }).textContent).toMatch(/Em preparação/);
+    // Unidades sem conteúdo aparecem como "em preparação" (se ainda houver alguma na secção 1)
+    const withContent = new Set(realFiles().map((f) => f.unitId));
+    const empty = realStructure().sections[0]!.units.find((u) => !withContent.has(u.id));
+    if (empty) expect(screen.getByRole('button', { name: new RegExp(`Unidade ${empty.order}:`) }).textContent).toMatch(/Em preparação/);
   });
 
   it('uma lição bloqueada não pode ser aberta pelo endereço', async () => {
@@ -77,7 +79,7 @@ async function answerCorrectly(user: ReturnType<typeof userEvent.setup>, ex: Exe
     case 'multipleChoice':
     case 'expression':
     case 'dialogue':
-      await user.click(screen.getByRole('radio', { name: new RegExp(escape(ex.options.find((o) => o.correct)!.text)) }));
+      await user.click(screen.getByRole('radio', { name: new RegExp(`^\\d?${escape(ex.options.find((o) => o.correct)!.text)}$`) }));
       break;
     case 'fillBlank':
       if (ex.choices) await user.click(screen.getByRole('radio', { name: new RegExp(`^\\d?${escape(first(ex.answers))}$`) }));
@@ -111,7 +113,7 @@ async function answerCorrectly(user: ReturnType<typeof userEvent.setup>, ex: Exe
     case 'comprehension':
       for (const q of ex.questions) {
         const group = screen.getByRole('group', { name: q.prompt });
-        await user.click(within(group).getByRole('radio', { name: q.options.find((o) => o.correct)!.text }));
+        await user.click(within(group).getByRole('radio', { name: new RegExp(`^${escape(q.options.find((o) => o.correct)!.text)}$`) }));
       }
       break;
     case 'listening':

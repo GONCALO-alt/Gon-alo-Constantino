@@ -7,25 +7,30 @@ import { clone, realFiles, realStructure } from './helpers.ts';
 
 const units = new Set(realStructure().sections.flatMap((s) => s.units.map((u) => u.id)));
 const existing = () => new Map(realFiles().map((f) => [f.unitId, clone(f)]));
+// Uma unidade ainda sem lições (a última do curso), para os testes de importação.
+const EMPTY = (() => {
+  const used = new Set(realFiles().map((f) => f.unitId));
+  return [...units].reverse().find((u) => !used.has(u))!;
+})();
 const batch = (lessons: unknown[], batchId = 'lote-001') => ({ batchId, createdAt: '2026-10-29', generator: 'teste', lessons });
 
 describe('importação de lotes', () => {
   it('importa lições novas sempre como rascunho', () => {
-    const l = syntheticLesson('s1-u03', 1, 1);
+    const l = syntheticLesson(EMPTY, 1, 1);
     const r = importBatch(existing(), batch([l]), { knownUnits: units });
     expect(r.errors).toEqual([]);
-    expect(r.added).toEqual(['s1-u03-l001']);
-    expect(r.files.get('s1-u03')!.lessons[0]!.status).toBe('draft');
-    expect(r.files.get('s1-u03')!.lessons[0]!.provenance.batchId).toBe('lote-001');
+    expect(r.added).toEqual([`${EMPTY}-l001`]);
+    expect(r.files.get(EMPTY)!.lessons[0]!.status).toBe('draft');
+    expect(r.files.get(EMPTY)!.lessons[0]!.provenance.batchId).toBe('lote-001');
   });
   it('é idempotente: repetir o mesmo lote não cria duplicados', () => {
-    const l = syntheticLesson('s1-u03', 1, 1);
+    const l = syntheticLesson(EMPTY, 1, 1);
     const first = importBatch(existing(), batch([l]), { knownUnits: units });
     const after = existing();
     for (const [k, v] of first.files) after.set(k, v);
     const second = importBatch(after, batch([l]), { knownUnits: units });
     expect(second.added).toEqual([]);
-    expect(second.skippedIdentical).toEqual(['s1-u03-l001']);
+    expect(second.skippedIdentical).toEqual([`${EMPTY}-l001`]);
     expect(second.files.size).toBe(0);
   });
   it('nunca substitui lições publicadas', () => {
@@ -36,24 +41,24 @@ describe('importação de lotes', () => {
     expect(r.files.size).toBe(0);
   });
   it('substitui rascunhos apenas com replaceDrafts, aumentando a versão', () => {
-    const l = syntheticLesson('s1-u03', 1, 1);
+    const l = syntheticLesson(EMPTY, 1, 1);
     const base = existing();
-    base.set('s1-u03', { unitId: 's1-u03', lessons: [{ ...l, status: 'draft' }] });
+    base.set(EMPTY, { unitId: EMPTY, lessons: [{ ...l, status: 'draft' }] });
     const changed = { ...l, title: 'Título revisto' };
     expect(importBatch(base, batch([changed]), { knownUnits: units }).conflicts.length).toBe(1);
     const r = importBatch(base, batch([changed]), { replaceDrafts: true, knownUnits: units });
-    expect(r.replaced).toEqual(['s1-u03-l001']);
-    expect(r.files.get('s1-u03')!.lessons[0]!.version).toBe(2);
+    expect(r.replaced).toEqual([`${EMPTY}-l001`]);
+    expect(r.files.get(EMPTY)!.lessons[0]!.version).toBe(2);
   });
   it('rejeita o lote inteiro se uma lição for inválida', () => {
-    const ok = syntheticLesson('s1-u03', 1, 1);
-    const bad = { ...syntheticLesson('s1-u03', 2, 2), exercises: [] };
+    const ok = syntheticLesson(EMPTY, 1, 1);
+    const bad = { ...syntheticLesson(EMPTY, 2, 2), exercises: [] };
     const r = importBatch(existing(), batch([ok, bad]), { knownUnits: units });
     expect(r.errors.length).toBeGreaterThan(0);
     expect(r.files.size).toBe(0);
   });
   it('rejeita unidades desconhecidas e IDs duplicados no lote', () => {
-    const l = syntheticLesson('s1-u03', 1, 1);
+    const l = syntheticLesson(EMPTY, 1, 1);
     expect(importBatch(existing(), batch([l, l]), { knownUnits: units }).errors.join()).toMatch(/duplicados/);
     expect(importBatch(existing(), batch([{ ...l, id: 's1-u99-l001', unitId: 's1-u99' }]), { knownUnits: units }).errors.join()).toMatch(/não existe/);
   });
@@ -67,10 +72,10 @@ describe('fluxo de revisão editorial', () => {
     expect(canTransition('rejected', 'published')).toBe(false);
   });
   it('setStatus regista quem reviu e quando', () => {
-    const files = new Map([['s1-u03', { unitId: 's1-u03', lessons: [{ ...syntheticLesson('s1-u03', 1, 1), status: 'draft' as const }] }]]);
-    const r = setStatus(files, new Set(['s1-u03-l001']), 'approved', { reviewer: 'ana', now: '2026-10-29T10:00:00Z', note: 'ok' });
-    expect(r.changed).toEqual(['s1-u03-l001']);
-    const l = files.get('s1-u03')!.lessons[0]!;
+    const files = new Map([[EMPTY, { unitId: EMPTY, lessons: [{ ...syntheticLesson(EMPTY, 1, 1), status: 'draft' as const }] }]]);
+    const r = setStatus(files, new Set([`${EMPTY}-l001`]), 'approved', { reviewer: 'ana', now: '2026-10-29T10:00:00Z', note: 'ok' });
+    expect(r.changed).toEqual([`${EMPTY}-l001`]);
+    const l = files.get(EMPTY)!.lessons[0]!;
     expect(l.provenance.reviewedBy).toBe('ana');
     expect(l.reviewNotes).toBe('ok');
     expect(setStatus(files, new Set(['nao-existe']), 'approved').errors.length).toBe(1);
@@ -80,12 +85,12 @@ describe('fluxo de revisão editorial', () => {
 describe('compilação', () => {
   it('só inclui lições publicadas e remove metadados editoriais', () => {
     const files = realFiles().map(clone);
-    files.push({ unitId: 's1-u03', lessons: [{ ...syntheticLesson('s1-u03', 1, 1), status: 'draft' }] });
+    files.push({ unitId: EMPTY, lessons: [{ ...syntheticLesson(EMPTY, 1, 1), status: 'draft' }] });
     const c = compileContent(realStructure(), files, '2026-10-29');
     CourseIndexSchema.parse(c.index);
-    const u3 = c.index.sections[0]!.units.find((u) => u.id === 's1-u03')!;
+    const u3 = c.index.sections.flatMap((s) => s.units).find((u) => u.id === EMPTY)!;
     expect(u3.lessonIds).toEqual([]);
-    expect(c.units.has('s1-u03')).toBe(false);
+    expect(c.units.has(EMPTY)).toBe(false);
     const bundle = UnitBundleSchema.parse(c.units.get('s1-u01'));
     expect('status' in bundle.lessons[0]!).toBe(false);
     expect(JSON.stringify(c.units.get('s1-u01'))).not.toContain('provenance');
