@@ -1,0 +1,1669 @@
+{
+  "unitId": "s1-u06",
+  "lessons": [
+    {
+      "id": "s1-u06-l001",
+      "unitId": "s1-u06",
+      "order": 1,
+      "title": "Países",
+      "description": "Os nomes dos países vizinhos e de língua portuguesa.",
+      "cefr": "A1",
+      "objectives": [
+        "Dizer nomes de países",
+        "Dizer de onde vem e onde vive alguém"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-land",
+          "nl": "land",
+          "pt": [
+            "país"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "landen"
+        },
+        {
+          "id": "v-spanje",
+          "nl": "Spanje",
+          "pt": [
+            "Espanha"
+          ],
+          "pos": "noun"
+        },
+        {
+          "id": "v-frankrijk",
+          "nl": "Frankrijk",
+          "pt": [
+            "França"
+          ],
+          "pos": "noun"
+        },
+        {
+          "id": "v-duitsland",
+          "nl": "Duitsland",
+          "pt": [
+            "Alemanha"
+          ],
+          "pos": "noun"
+        },
+        {
+          "id": "v-belgie",
+          "nl": "België",
+          "pt": [
+            "Bélgica"
+          ],
+          "pos": "noun"
+        },
+        {
+          "id": "v-brazilie",
+          "nl": "Brazilië",
+          "pt": [
+            "Brasil"
+          ],
+          "pos": "noun"
+        },
+        {
+          "id": "v-engeland",
+          "nl": "Engeland",
+          "pt": [
+            "Inglaterra"
+          ],
+          "pos": "noun"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-komen-uit",
+        "v-wonen",
+        "v-in",
+        "v-portugal",
+        "v-nederland"
+      ],
+      "examples": [
+        {
+          "nl": "Ik kom uit Portugal.",
+          "pt": "Sou de Portugal."
+        },
+        {
+          "nl": "Zij woont in Spanje.",
+          "pt": "Ela vive em Espanha."
+        },
+        {
+          "nl": "België is klein.",
+          "pt": "A Bélgica é pequena."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-paises-sem-artigo",
+          "title": "Países sem artigo",
+          "body": "Em neerlandês a maioria dos países **não leva artigo**: *in Spanje*, *uit Frankrijk*, *België is klein*. Exceções com artigo: **de Verenigde Staten** (os EUA) e **het Verenigd Koninkrijk** (o Reino Unido).",
+          "examples": [
+            {
+              "nl": "Ik woon in Duitsland.",
+              "pt": "Vivo na Alemanha."
+            },
+            {
+              "nl": "Hij komt uit Brazilië.",
+              "pt": "Ele é do Brasil."
+            }
+          ],
+          "contrastWithPt": "Em português dizemos «a França», «o Brasil», «na Alemanha»; em neerlandês, sem artigo."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u06-l001-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Países frequentes.",
+          "vocabRefs": [
+            "v-spanje",
+            "v-frankrijk",
+            "v-duitsland",
+            "v-belgie",
+            "v-brazilie"
+          ],
+          "pairs": [
+            {
+              "nl": "Spanje",
+              "pt": "Espanha"
+            },
+            {
+              "nl": "Frankrijk",
+              "pt": "França"
+            },
+            {
+              "nl": "Duitsland",
+              "pt": "Alemanha"
+            },
+            {
+              "nl": "België",
+              "pt": "Bélgica"
+            },
+            {
+              "nl": "Brazilië",
+              "pt": "Brasil"
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l001-e02",
+          "type": "translate",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Sem artigo antes do país.",
+          "vocabRefs": [
+            "v-spanje",
+            "v-wonen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela vive em Espanha.",
+          "answers": [
+            "[Zij|Ze] woont in Spanje"
+          ],
+          "wordBank": [
+            "Zij",
+            "woont",
+            "in",
+            "Spanje",
+            "de",
+            "komt"
+          ]
+        },
+        {
+          "id": "s1-u06-l001-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "komen uit = ser de / vir de.",
+          "vocabRefs": [
+            "v-brazilie",
+            "v-komen-uit"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Hij komt uit Brazilië.",
+          "answers": [
+            "(Ele )é do Brasil",
+            "(Ele )vem do Brasil"
+          ]
+        },
+        {
+          "id": "s1-u06-l001-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Os países não levam artigo: «in Frankrijk».",
+          "vocabRefs": [
+            "v-frankrijk"
+          ],
+          "tokens": [
+            "Ik",
+            "woon",
+            "in",
+            "de",
+            "Frankrijk."
+          ],
+          "errorIndex": 3,
+          "correction": "(retirar)"
+        },
+        {
+          "id": "s1-u06-l001-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het land» — plural «landen».",
+          "vocabRefs": [
+            "v-land"
+          ],
+          "noun": "land",
+          "pt": "o país",
+          "article": "het"
+        },
+        {
+          "id": "s1-u06-l001-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Os EUA e o Reino Unido são exceções com artigo.",
+          "vocabRefs": [
+            "v-land"
+          ],
+          "prompt": "Qual destes países leva artigo em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "de Verenigde Staten",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Duitsland",
+              "correct": false,
+              "feedback": "Não leva artigo."
+            },
+            {
+              "id": "c",
+              "text": "Spanje",
+              "correct": false,
+              "feedback": "Não leva artigo."
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l001-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "O «ë» indica que se lê uma nova sílaba: Bel-gi-ë.",
+          "vocabRefs": [
+            "v-belgie"
+          ],
+          "audioText": "Ik woon in België.",
+          "answers": [
+            "Ik woon in België"
+          ],
+          "translation": "Vivo na Bélgica."
+        },
+        {
+          "id": "s1-u06-l001-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "uit + país sem artigo.",
+          "vocabRefs": [
+            "v-engeland"
+          ],
+          "sentence": "Mijn vriend komt uit ___.",
+          "translation": "O meu amigo é de Inglaterra.",
+          "answers": [
+            "Engeland"
+          ],
+          "choices": [
+            "Engeland",
+            "Engels",
+            "de Engeland"
+          ]
+        },
+        {
+          "id": "s1-u06-l001-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Sem artigo antes do país.",
+          "vocabRefs": [
+            "v-duitsland",
+            "v-groot"
+          ],
+          "translation": "A Alemanha é grande.",
+          "tokens": [
+            "Duitsland",
+            "is",
+            "groot"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s1-u06-l001-e10",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "«een klein land»: o adjetivo antes do nome — explicação na Secção 2.",
+          "vocabRefs": [
+            "v-land",
+            "v-nederland",
+            "v-klein"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Nederland is een klein land.",
+          "answers": [
+            "(Os )Países Baixos são um país pequeno",
+            "A Holanda é um país pequeno"
+          ]
+        }
+      ],
+      "difficulty": 1,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u06-l002",
+      "unitId": "s1-u06",
+      "order": 2,
+      "title": "Nacionalidades",
+      "description": "Ik ben Portugees, zij is Portugese.",
+      "cefr": "A1",
+      "objectives": [
+        "Dizer a nacionalidade, no masculino e no feminino"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-portugees",
+          "nl": "Portugees",
+          "pt": [
+            "português"
+          ],
+          "pos": "adjective",
+          "note": "Feminino: Portugese. Ik ben Portugees / Portugese."
+        },
+        {
+          "id": "v-nederlander",
+          "nl": "Nederlander",
+          "pt": [
+            "neerlandês (pessoa)"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "Nederlanders",
+          "note": "Uma neerlandesa: een Nederlandse."
+        },
+        {
+          "id": "v-spaans-adj",
+          "nl": "Spaans",
+          "pt": [
+            "espanhol"
+          ],
+          "pos": "adjective",
+          "note": "Pessoa: een Spanjaard / een Spaanse."
+        },
+        {
+          "id": "v-duits-adj",
+          "nl": "Duits",
+          "pt": [
+            "alemão"
+          ],
+          "pos": "adjective",
+          "note": "Pessoa: een Duitser / een Duitse."
+        },
+        {
+          "id": "v-belg",
+          "nl": "Belg",
+          "pt": [
+            "belga"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "Belgen",
+          "note": "Feminino: een Belgische."
+        },
+        {
+          "id": "v-braziliaans",
+          "nl": "Braziliaans",
+          "pt": [
+            "brasileiro"
+          ],
+          "pos": "adjective",
+          "note": "Pessoa: een Braziliaan / een Braziliaanse."
+        }
+      ],
+      "reviewVocabulary": [
+        "v-portugal",
+        "v-nederland",
+        "v-duitsland",
+        "v-spanje"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ben Portugees.",
+          "pt": "Sou português."
+        },
+        {
+          "nl": "Zij is Portugese.",
+          "pt": "Ela é portuguesa."
+        },
+        {
+          "nl": "Tom is Nederlander.",
+          "pt": "O Tom é neerlandês."
+        },
+        {
+          "nl": "Eva is een Nederlandse.",
+          "pt": "A Eva é neerlandesa."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-nacionalidades",
+          "title": "Nacionalidades",
+          "body": "Para dizer a nacionalidade usa-se **zijn** + adjetivo ou substantivo: *Ik ben Portugees* (m), *ik ben Portugese* (f). Muitas têm um substantivo próprio para homem e outro para mulher: **Nederlander / Nederlandse**, **Duitser / Duitse**, **Spanjaard / Spaanse**. As nacionalidades escrevem-se com **maiúscula**.",
+          "examples": [
+            {
+              "nl": "Hij is Duitser.",
+              "pt": "Ele é alemão."
+            },
+            {
+              "nl": "Zij is Duitse.",
+              "pt": "Ela é alemã."
+            }
+          ],
+          "contrastWithPt": "Em português escrevemos «português» com minúscula; em neerlandês, «Portugees» leva maiúscula."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u06-l002-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Feminino: Portugese.",
+          "vocabRefs": [
+            "v-portugees"
+          ],
+          "prompt": "Como diz uma mulher «Sou portuguesa»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben Portugese.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben Portugees.",
+              "correct": false,
+              "feedback": "É a forma masculina."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben Portugal.",
+              "correct": false,
+              "feedback": "Isso seria «Sou Portugal»."
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l002-e02",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Substantivos de nacionalidade (masculino).",
+          "vocabRefs": [
+            "v-nederlander",
+            "v-belg",
+            "v-duits-adj",
+            "v-spaans-adj"
+          ],
+          "pairs": [
+            {
+              "nl": "Nederlander",
+              "pt": "neerlandês"
+            },
+            {
+              "nl": "Belg",
+              "pt": "belga"
+            },
+            {
+              "nl": "Duitser",
+              "pt": "alemão"
+            },
+            {
+              "nl": "Spanjaard",
+              "pt": "espanhol"
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l002-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Maiúscula na nacionalidade.",
+          "vocabRefs": [
+            "v-portugees"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Sou português.",
+          "answers": [
+            "Ik ben Portugees"
+          ]
+        },
+        {
+          "id": "s1-u06-l002-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Nederlandse = neerlandesa.",
+          "vocabRefs": [
+            "v-nederlander"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Zij is Nederlandse.",
+          "answers": [
+            "(Ela )é neerlandesa",
+            "(Ela )é holandesa"
+          ]
+        },
+        {
+          "id": "s1-u06-l002-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Homem da Alemanha: Duitser.",
+          "vocabRefs": [
+            "v-duits-adj"
+          ],
+          "sentence": "Hij komt uit Duitsland. Hij is ___.",
+          "translation": "Ele é da Alemanha. É alemão.",
+          "answers": [
+            "Duitser"
+          ],
+          "choices": [
+            "Duitser",
+            "Duitse",
+            "Duitsland"
+          ]
+        },
+        {
+          "id": "s1-u06-l002-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Para a nacionalidade usa-se «Portugees»; «Portugal» é o país. (E as nacionalidades escrevem-se com maiúscula.)",
+          "vocabRefs": [
+            "v-portugees"
+          ],
+          "tokens": [
+            "Ik",
+            "ben",
+            "Portugal."
+          ],
+          "errorIndex": 2,
+          "correction": "Portugees"
+        },
+        {
+          "id": "s1-u06-l002-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "«ee» longo no fim: Por-tu-gees.",
+          "vocabRefs": [
+            "v-portugees"
+          ],
+          "audioText": "Ik ben Portugees.",
+          "answers": [
+            "Ik ben Portugees"
+          ],
+          "translation": "Sou português."
+        },
+        {
+          "id": "s1-u06-l002-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Nacionalidade: Portugees.",
+          "vocabRefs": [
+            "v-portugees"
+          ],
+          "lines": [
+            {
+              "speaker": "Eva",
+              "nl": "Ben jij Spaans?",
+              "pt": "És espanhol?"
+            },
+            {
+              "speaker": "Pedro",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Nee, ik ben Portugees.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, ik ben Portugal.",
+              "correct": false,
+              "feedback": "Portugal é o país; a nacionalidade é Portugees."
+            },
+            {
+              "id": "c",
+              "text": "Ja, ik kom uit Portugal.",
+              "correct": false,
+              "feedback": "«Ja» contradiz o resto da frase."
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l002-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "«geen» nega substantivos — veremos mais tarde.",
+          "vocabRefs": [
+            "v-belg"
+          ],
+          "translation": "Ela é belga, não é francesa.",
+          "tokens": [
+            "Ze",
+            "is",
+            "Belgische,",
+            "geen",
+            "Française"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s1-u06-l002-e10",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Repare nas formas masculinas e femininas.",
+          "vocabRefs": [
+            "v-braziliaans",
+            "v-belg"
+          ],
+          "kind": "text",
+          "title": "Na aula de neerlandês",
+          "text": "In de klas zijn vijf studenten. Ana is Portugese en Pedro is Braziliaan. Lukas is Duitser. Marie is Belgische en Carlos is Spanjaard.",
+          "questions": [
+            {
+              "prompt": "De onde é o Pedro?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Do Brasil",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "De Portugal",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "De Espanha",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quem é belga?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A Marie",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "A Ana",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "O Lukas",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u06-l003",
+      "unitId": "s1-u06",
+      "order": 3,
+      "title": "Que línguas falas?",
+      "description": "spreken e os nomes das línguas.",
+      "cefr": "A1",
+      "objectives": [
+        "Dizer que línguas fala e quão bem",
+        "Perguntar a alguém que línguas fala"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-spreken",
+          "nl": "spreken",
+          "pt": [
+            "falar"
+          ],
+          "pos": "verb",
+          "note": "ik spreek, jij spreekt"
+        },
+        {
+          "id": "v-engels",
+          "nl": "Engels",
+          "pt": [
+            "inglês"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "note": "A língua."
+        },
+        {
+          "id": "v-spaans-taal",
+          "nl": "Spaans",
+          "pt": [
+            "espanhol (língua)"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-frans",
+          "nl": "Frans",
+          "pt": [
+            "francês"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-portugees-taal",
+          "nl": "Portugees",
+          "pt": [
+            "português (língua)"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-een-beetje",
+          "nl": "een beetje",
+          "pt": [
+            "um pouco"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-taal",
+          "nl": "taal",
+          "pt": [
+            "língua"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "talen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-nederlands",
+        "v-en",
+        "v-maar"
+      ],
+      "examples": [
+        {
+          "nl": "Ik spreek Portugees en Engels.",
+          "pt": "Falo português e inglês."
+        },
+        {
+          "nl": "Ik spreek een beetje Nederlands.",
+          "pt": "Falo um pouco de neerlandês."
+        },
+        {
+          "nl": "Spreekt u Engels?",
+          "pt": "Fala inglês?"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-spreken",
+          "title": "Spreken",
+          "body": "**spreken**: ik spreek, jij spreekt, u spreekt, hij spreekt, wij spreken. Os nomes das línguas são neutros (**het** Nederlands) e escrevem-se com maiúscula. Na pergunta com «jij», o -t cai: **Spreek jij Frans?**",
+          "examples": [
+            {
+              "nl": "Spreek je Nederlands?",
+              "pt": "Falas neerlandês?"
+            },
+            {
+              "nl": "Een beetje.",
+              "pt": "Um pouco."
+            }
+          ],
+          "contrastWithPt": "Em português diz-se «falar um pouco DE neerlandês»; em neerlandês não há preposição: een beetje Nederlands."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u06-l003-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Línguas e expressões.",
+          "vocabRefs": [
+            "v-engels",
+            "v-frans",
+            "v-een-beetje",
+            "v-taal"
+          ],
+          "pairs": [
+            {
+              "nl": "Engels",
+              "pt": "inglês"
+            },
+            {
+              "nl": "Frans",
+              "pt": "francês"
+            },
+            {
+              "nl": "een beetje",
+              "pt": "um pouco"
+            },
+            {
+              "nl": "taal",
+              "pt": "língua"
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l003-e02",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "Raiz: spreek (o «ee» longo mantém-se).",
+          "vocabRefs": [
+            "v-spreken"
+          ],
+          "verb": "spreken",
+          "pronoun": "ik",
+          "tense": "presente",
+          "sentence": "Ik ___ Portugees.",
+          "answers": [
+            "spreek"
+          ]
+        },
+        {
+          "id": "s1-u06-l003-e03",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "Com «u»: spreekt — também na pergunta.",
+          "vocabRefs": [
+            "v-spreken"
+          ],
+          "verb": "spreken",
+          "pronoun": "u",
+          "tense": "presente",
+          "sentence": "___ u Engels?",
+          "answers": [
+            "Spreekt"
+          ]
+        },
+        {
+          "id": "s1-u06-l003-e04",
+          "type": "translate",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Sem «de»: een beetje Nederlands.",
+          "vocabRefs": [
+            "v-spreken",
+            "v-een-beetje"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Falo um pouco de neerlandês.",
+          "answers": [
+            "Ik spreek een beetje Nederlands"
+          ],
+          "wordBank": [
+            "Ik",
+            "spreek",
+            "een",
+            "beetje",
+            "Nederlands",
+            "van",
+            "spreekt"
+          ]
+        },
+        {
+          "id": "s1-u06-l003-e05",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Pergunta com o verbo primeiro; o -t cai antes de «jij».",
+          "vocabRefs": [
+            "v-spreken",
+            "v-frans"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Spreek jij Frans?",
+          "answers": [
+            "Falas francês"
+          ]
+        },
+        {
+          "id": "s1-u06-l003-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Não se usa «van»: een beetje Nederlands.",
+          "vocabRefs": [
+            "v-een-beetje"
+          ],
+          "tokens": [
+            "Ik",
+            "spreek",
+            "een",
+            "beetje",
+            "van",
+            "Nederlands."
+          ],
+          "errorIndex": 4,
+          "correction": "(retirar)"
+        },
+        {
+          "id": "s1-u06-l003-e07",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De taal» — plural «talen».",
+          "vocabRefs": [
+            "v-taal"
+          ],
+          "noun": "taal",
+          "pt": "a língua",
+          "article": "de"
+        },
+        {
+          "id": "s1-u06-l003-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "«Natuurlijk» = claro.",
+          "vocabRefs": [
+            "v-spreken",
+            "v-engels"
+          ],
+          "lines": [
+            {
+              "speaker": "Turista",
+              "nl": "Pardon, spreekt u Engels?",
+              "pt": "Desculpe, fala inglês?"
+            },
+            {
+              "speaker": "Funcionário",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, natuurlijk.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik ben Engels.",
+              "correct": false,
+              "feedback": "Perguntaram se fala, não de onde é."
+            },
+            {
+              "id": "c",
+              "text": "Nee, ik ben moe.",
+              "correct": false,
+              "feedback": "Não responde à pergunta."
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l003-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta formal.",
+          "vocabRefs": [
+            "v-spreken",
+            "v-nederlands"
+          ],
+          "audioText": "Spreekt u Nederlands?",
+          "answers": [
+            "Spreekt u Nederlands"
+          ],
+          "translation": "Fala neerlandês?"
+        },
+        {
+          "id": "s1-u06-l003-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Ik spreek Portugees, Engels en een beetje Nederlands.»",
+          "vocabRefs": [
+            "v-spreken",
+            "v-een-beetje"
+          ],
+          "prompt": "Diga que línguas fala e quão bem (pelo menos duas).",
+          "referenceAnswers": [
+            "Ik spreek Portugees en Engels",
+            "Ik spreek Portugees(,) Engels en een beetje Nederlands"
+          ],
+          "checklist": [
+            "Usa «ik spreek»",
+            "Liga as línguas com «en»",
+            "Línguas com maiúscula"
+          ],
+          "minWords": 4
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u06-l004",
+      "unitId": "s1-u06",
+      "order": 4,
+      "title": "Cidades e lugares",
+      "description": "Cidade, aldeia, capital, perto e longe.",
+      "cefr": "A1",
+      "objectives": [
+        "Falar da cidade onde vive",
+        "Dizer se um lugar é perto ou longe"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-stad",
+          "nl": "stad",
+          "pt": [
+            "cidade"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "steden"
+        },
+        {
+          "id": "v-dorp",
+          "nl": "dorp",
+          "pt": [
+            "aldeia"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "dorpen"
+        },
+        {
+          "id": "v-hoofdstad",
+          "nl": "hoofdstad",
+          "pt": [
+            "capital"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-ver",
+          "nl": "ver",
+          "pt": [
+            "longe"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-dichtbij",
+          "nl": "dichtbij",
+          "pt": [
+            "perto"
+          ],
+          "pos": "adverb"
+        },
+        {
+          "id": "v-van",
+          "nl": "van",
+          "pt": [
+            "de"
+          ],
+          "pos": "preposition",
+          "note": "Origem ou posse: de hoofdstad van Portugal."
+        }
+      ],
+      "reviewVocabulary": [
+        "v-wonen",
+        "v-in",
+        "v-groot",
+        "v-klein",
+        "v-mooi"
+      ],
+      "examples": [
+        {
+          "nl": "Lissabon is de hoofdstad van Portugal.",
+          "pt": "Lisboa é a capital de Portugal."
+        },
+        {
+          "nl": "Amsterdam is de hoofdstad van Nederland.",
+          "pt": "Amesterdão é a capital dos Países Baixos."
+        },
+        {
+          "nl": "Is het ver?",
+          "pt": "É longe?"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-hoofdstad",
+          "title": "A capital",
+          "body": "**Amsterdam** é a capital dos Países Baixos, mas o governo e o parlamento ficam em **Den Haag** (Haia). **Van** liga nomes como o nosso «de»: *de hoofdstad van Portugal*.",
+          "examples": [
+            {
+              "nl": "Den Haag is niet de hoofdstad.",
+              "pt": "Haia não é a capital."
+            },
+            {
+              "nl": "Utrecht is dichtbij.",
+              "pt": "Utrecht é perto."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u06-l004-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Lugares e distâncias.",
+          "vocabRefs": [
+            "v-stad",
+            "v-dorp",
+            "v-hoofdstad",
+            "v-ver",
+            "v-dichtbij"
+          ],
+          "pairs": [
+            {
+              "nl": "stad",
+              "pt": "cidade"
+            },
+            {
+              "nl": "dorp",
+              "pt": "aldeia"
+            },
+            {
+              "nl": "hoofdstad",
+              "pt": "capital"
+            },
+            {
+              "nl": "ver",
+              "pt": "longe"
+            },
+            {
+              "nl": "dichtbij",
+              "pt": "perto"
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l004-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Amsterdam é a capital; Den Haag é a sede do governo.",
+          "vocabRefs": [
+            "v-hoofdstad"
+          ],
+          "prompt": "Qual é a capital dos Países Baixos?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Amsterdam",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Den Haag",
+              "correct": false,
+              "feedback": "O governo fica em Haia, mas a capital é Amesterdão."
+            },
+            {
+              "id": "c",
+              "text": "Rotterdam",
+              "correct": false,
+              "feedback": "É a segunda maior cidade."
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l004-e03",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het dorp».",
+          "vocabRefs": [
+            "v-dorp"
+          ],
+          "noun": "dorp",
+          "pt": "a aldeia",
+          "article": "het"
+        },
+        {
+          "id": "s1-u06-l004-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«De stad» — plural irregular «steden».",
+          "vocabRefs": [
+            "v-stad"
+          ],
+          "noun": "stad",
+          "pt": "a cidade",
+          "article": "de"
+        },
+        {
+          "id": "s1-u06-l004-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "«van» = de.",
+          "vocabRefs": [
+            "v-hoofdstad",
+            "v-van"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Lisboa é a capital de Portugal.",
+          "answers": [
+            "Lissabon is de hoofdstad van Portugal"
+          ]
+        },
+        {
+          "id": "s1-u06-l004-e06",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "«het» como sujeito vazio, tal como «het is koud».",
+          "vocabRefs": [
+            "v-ver"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Is het ver?",
+          "answers": [
+            "É longe"
+          ]
+        },
+        {
+          "id": "s1-u06-l004-e07",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "ver ≠ dichtbij.",
+          "vocabRefs": [
+            "v-dichtbij"
+          ],
+          "sentence": "Utrecht is niet ver, het is ___.",
+          "translation": "Utrecht não é longe, é perto.",
+          "answers": [
+            "dichtbij"
+          ],
+          "choices": [
+            "dichtbij",
+            "groot",
+            "stad"
+          ]
+        },
+        {
+          "id": "s1-u06-l004-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "«een klein dorp»: com «het»-palavras o adjetivo não leva -e depois de «een».",
+          "vocabRefs": [
+            "v-dorp",
+            "v-klein"
+          ],
+          "audioText": "Ik woon in een klein dorp.",
+          "answers": [
+            "Ik woon in een klein dorp"
+          ],
+          "translation": "Vivo numa aldeia pequena."
+        },
+        {
+          "id": "s1-u06-l004-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "«maar» liga duas frases sem mudar a ordem.",
+          "vocabRefs": [
+            "v-stad",
+            "v-ver",
+            "v-maar"
+          ],
+          "translation": "A cidade é bonita, mas é longe.",
+          "tokens": [
+            "De",
+            "stad",
+            "is",
+            "mooi,",
+            "maar",
+            "het",
+            "is",
+            "ver"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s1-u06-l004-e10",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "«niet ver» = não é longe; «ook dichtbij» = também perto.",
+          "vocabRefs": [
+            "v-stad",
+            "v-dichtbij",
+            "v-ver"
+          ],
+          "kind": "text",
+          "title": "Onde vive a Marta?",
+          "text": "Marta woont in Leiden. Leiden is een mooie stad. Het is niet ver van Den Haag en Amsterdam is ook dichtbij.",
+          "questions": [
+            {
+              "prompt": "Como é Leiden?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Bonita",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Muito grande",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Longe de tudo",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Amesterdão fica…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "perto",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "longe",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "na Bélgica",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u06-l005",
+      "unitId": "s1-u06",
+      "order": 5,
+      "title": "De onde és e que línguas falas?",
+      "description": "Revisão: país, nacionalidade, língua e cidade numa conversa.",
+      "cefr": "A1",
+      "objectives": [
+        "Apresentar-se com origem, nacionalidade e línguas"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-portugees",
+        "v-spreken",
+        "v-stad",
+        "v-komen-uit",
+        "v-wonen",
+        "v-een-beetje",
+        "v-land",
+        "v-taal"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ben Portugees, ik kom uit Porto en ik woon nu in Utrecht.",
+          "pt": "Sou português, sou do Porto e agora vivo em Utrecht."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u06-l005-e01",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "«Welke talen?» = que línguas?",
+          "vocabRefs": [
+            "v-spreken",
+            "v-taal"
+          ],
+          "lines": [
+            {
+              "speaker": "Sanne",
+              "nl": "Waar kom je vandaan?",
+              "pt": "De onde és?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": "Uit Portugal. Ik ben Portugese.",
+              "pt": "De Portugal. Sou portuguesa."
+            },
+            {
+              "speaker": "Sanne",
+              "nl": "Welke talen spreek je?",
+              "pt": "Que línguas falas?"
+            },
+            {
+              "speaker": "Ana",
+              "nl": ""
+            }
+          ],
+          "blankLine": 3,
+          "options": [
+            {
+              "id": "a",
+              "text": "Portugees, Engels en een beetje Nederlands.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben Lissabon.",
+              "correct": false,
+              "feedback": "Não responde à pergunta."
+            },
+            {
+              "id": "c",
+              "text": "Ik woon in Leiden.",
+              "correct": false,
+              "feedback": "Perguntaram as línguas."
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l005-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Feminino: Portugese.",
+          "vocabRefs": [
+            "v-portugees",
+            "v-wonen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Sou portuguesa e vivo em Roterdão.",
+          "answers": [
+            "Ik ben Portugese en ik woon in Rotterdam"
+          ]
+        },
+        {
+          "id": "s1-u06-l005-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "País Spanje, língua Spaans, pessoa Spanjaard.",
+          "vocabRefs": [
+            "v-spaans-adj"
+          ],
+          "prompt": "O Carlos é de Madrid. Ele é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Spanjaard",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Spaans",
+              "correct": false,
+              "feedback": "«Spaans» é a língua (ou adjetivo); a pessoa é «Spanjaard»."
+            },
+            {
+              "id": "c",
+              "text": "Spanje",
+              "correct": false,
+              "feedback": "É o país."
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l005-e04",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "País e língua.",
+          "vocabRefs": [
+            "v-duitsland",
+            "v-duits-adj",
+            "v-frankrijk",
+            "v-frans"
+          ],
+          "pairs": [
+            {
+              "nl": "Duitsland",
+              "pt": "Alemanha"
+            },
+            {
+              "nl": "Duits",
+              "pt": "alemão (língua)"
+            },
+            {
+              "nl": "Frankrijk",
+              "pt": "França"
+            },
+            {
+              "nl": "Frans",
+              "pt": "francês (língua)"
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l005-e05",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "«welke» = que/quais.",
+          "vocabRefs": [
+            "v-taal",
+            "v-spreken"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Welke talen spreek je?",
+          "answers": [
+            "Que línguas falas"
+          ]
+        },
+        {
+          "id": "s1-u06-l005-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Depois de «uit» vem o país: Duitsland.",
+          "vocabRefs": [
+            "v-duitsland"
+          ],
+          "tokens": [
+            "Zij",
+            "komt",
+            "uit",
+            "Duits."
+          ],
+          "errorIndex": 3,
+          "correction": "Duitsland"
+        },
+        {
+          "id": "s1-u06-l005-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Frase muito útil!",
+          "vocabRefs": [
+            "v-een-beetje"
+          ],
+          "audioText": "Ik spreek een beetje Nederlands.",
+          "answers": [
+            "Ik spreek een beetje Nederlands"
+          ],
+          "translation": "Falo um pouco de neerlandês."
+        },
+        {
+          "id": "s1-u06-l005-e08",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "«al tien jaar» = há dez anos.",
+          "vocabRefs": [
+            "v-spreken",
+            "v-duits-adj"
+          ],
+          "kind": "text",
+          "title": "Um novo colega",
+          "text": "Mijn nieuwe collega heet Lukas. Hij is Duitser, maar hij woont al tien jaar in Nederland. Hij spreekt Duits, Engels en heel goed Nederlands.",
+          "questions": [
+            {
+              "prompt": "Qual é a nacionalidade do Lukas?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Alemã",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Neerlandesa",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Inglesa",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Como é o neerlandês dele?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Muito bom",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Fraco",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não fala neerlandês",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s1-u06-l005-e09",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Ik ben Portugees. Ik woon in Lissabon. Ik spreek Portugees en Engels.»",
+          "vocabRefs": [
+            "v-portugees",
+            "v-spreken"
+          ],
+          "prompt": "Apresente-se: nacionalidade, cidade onde vive e línguas que fala.",
+          "referenceAnswers": [
+            "Ik ben [Portugees|Portugese](.) Ik woon in Lissabon(.) Ik spreek Portugees en Engels"
+          ],
+          "checklist": [
+            "Nacionalidade com «ik ben»",
+            "Cidade com «ik woon in»",
+            "Línguas com «ik spreek»"
+          ],
+          "minWords": 8
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}
