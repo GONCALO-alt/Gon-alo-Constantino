@@ -1,0 +1,110 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s3-u14")
+C = "A2"
+
+L(1, "Comparar: groter dan", "O comparativo com -er … dan.",
+  ["Comparar com o comparativo -er + dan"],
+  vocab=[V("v-dan-comp","dan","do que","conjunction",note="groter dan = maior do que"), V("v-groter","groter","maior","adjective"),
+         V("v-kleiner","kleiner","menor|mais pequeno","adjective"), V("v-ouder","ouder","mais velho","adjective"), V("v-jonger","jonger","mais novo","adjective")],
+  ex=[("Amsterdam is groter dan Utrecht.","Amesterdão é maior do que Utrecht."),("Mijn broer is ouder dan ik.","O meu irmão é mais velho do que eu."),("De trein is sneller dan de bus.","O comboio é mais rápido do que o autocarro.")],
+  gram=[G("g-comparativo","Comparativo: -er + dan","Acrescenta-se **-er** ao adjetivo e usa-se **dan** (do que): *groot → groter*, *klein → kleiner*, *snel → sneller*. Ortografia como nos plurais: groot → **groter**, dun → **dunner**. Adjetivos em -r levam **-der**: duur → **duurder**, ver → **verder**.",
+    [("Lissabon is warmer dan Amsterdam.","Lisboa é mais quente do que Amesterdão.")],
+    "Em português usamos «mais … do que»; em neerlandês muda a própria palavra: groter.")],
+  review=["v-groot","v-klein","v-oud","v-jong","v-snel"],
+  cefr=C, exs=[
+    MA([("groter","maior"),("kleiner","mais pequeno"),("ouder","mais velho"),("jonger","mais novo")], "Comparativos.", ["v-groter","v-kleiner","v-ouder","v-jonger"]),
+    TR("pt-nl","Amesterdão é maior do que Utrecht.", ["Amsterdam is groter dan Utrecht"], "groter dan.", ["v-groter","v-dan-comp"]),
+    TR("pt-nl","O meu irmão é mais velho do que eu.", ["Mijn broer is ouder dan ik"], "ouder dan ik.", ["v-ouder"]),
+    MC("Comparativo de «duur» (caro):", ["*duurder","duurer|Adjetivos em -r levam -der.","meer duur|Usa-se a terminação."], "duur → duurder.", ["v-duur"]),
+    MC("Comparativo de «snel»:", ["*sneller","snelder|Só em -r se usa -der.","meer snel|Usa-se -er."], "snel → sneller.", ["v-snel"]),
+    FE(["De","trein","is","snel","dan","de","bus."], 3, "sneller", "Comparativo: sneller dan.", ["v-dan-comp"]),
+    TR("nl-pt","Lissabon is warmer dan Amsterdam.", ["Lisboa é mais quente do que Amesterdão","Lisboa é mais quente que Amesterdão"], "warmer.", ["v-warm"]),
+    FB("Mijn zus is drie jaar ___ dan ik.", ["jonger","ouder"], "mais nova/velha.", ["v-jonger"], choices=["jonger","jong","jongst"], tr="A minha irmã é três anos mais nova do que eu."),
+    LI("Utrecht is kleiner dan Rotterdam.", ["Utrecht is kleiner dan Rotterdam"], "Utrecht é mais pequena do que Roterdão.", "kleiner dan.", ["v-kleiner"]),
+    WO("O avião é mais caro do que o comboio.", ["Het","vliegtuig","is","duurder","dan","de","trein"], "duurder dan.", ["v-dan-comp"]),
+  ], diff=2, mins=5)
+
+L(2, "Irregulares e preferências", "beter, meer, minder, liever.",
+  ["Usar os comparativos irregulares mais frequentes"],
+  vocab=[V("v-meer","meer","mais","adverb"), V("v-minder","minder","menos","adverb"), V("v-beter-dan","beter","melhor","adjective",note="goed → beter → best"), V("v-erger","erger","pior","adjective",note="Também «slechter».")],
+  ex=[("Fietsen is beter dan autorijden.","Andar de bicicleta é melhor do que conduzir."),("Ik verdien meer dan vorig jaar.","Ganho mais do que no ano passado."),("Ik drink minder koffie.","Bebo menos café.")],
+  gram=[G("g-comparativo-irregular","Irregulares","**goed → beter** (melhor), **veel → meer** (mais), **weinig → minder** (menos), **graag → liever** (preferir). **slecht → slechter** é regular; **erger** = pior (situação).",
+    [("Het weer is beter dan gisteren.","O tempo está melhor do que ontem.")])],
+  review=["v-goed","v-veel","v-weinig","v-liever"],
+  cefr=C, exs=[
+    MA([("beter","melhor"),("meer","mais"),("minder","menos"),("erger","pior")], "Irregulares.", ["v-beter-dan","v-meer","v-minder","v-erger"]),
+    MC("Comparativo de «goed»:", ["*beter","goeder|É irregular.","meer goed|Não."], "goed → beter.", ["v-beter-dan"]),
+    MC("Comparativo de «veel»:", ["*meer","veeler|É irregular.","meest|Isso é superlativo."], "veel → meer.", ["v-meer"]),
+    TR("pt-nl","Andar de bicicleta é melhor do que conduzir.", ["Fietsen is beter dan autorijden","Fietsen is beter dan auto rijden"], "beter dan.", ["v-beter-dan"]),
+    TR("pt-nl","Bebo menos café.", ["Ik drink minder koffie"], "minder.", ["v-minder"]),
+    TR("nl-pt","Ik verdien meer dan vorig jaar.", ["Ganho mais do que no ano passado","Ganho mais que no ano passado"], "meer dan.", ["v-meer"]),
+    FE(["Het","weer","is","gooder","dan","gisteren."], 3, "beter", "goed → beter.", ["v-beter-dan"]),
+    LI("Ik heb minder tijd dan vroeger.", ["Ik heb minder tijd dan vroeger"], "Tenho menos tempo do que antes.", "vroeger = antes/antigamente.", ["v-minder"]),
+    FB("Thee vind ik lekker, maar koffie vind ik ___.", ["lekkerder"], "comparativo de lekker.", ["v-meer"], choices=["lekkerder","meer lekker","lekkerst"], tr="Gosto de chá, mas gosto mais de café."),
+    WO("A situação está pior do que ontem.", ["De","situatie","is","erger","dan","gisteren"], "erger dan.", ["v-erger"]),
+  ], diff=3, mins=5)
+
+L(3, "O mais: het grootst, de beste", "O superlativo.",
+  ["Usar o superlativo"],
+  vocab=[V("v-grootst","grootst","o maior","adjective"), V("v-best","best","o melhor","adjective"), V("v-meest","meest","o mais","adverb"), V("v-ter-wereld","ter wereld","do mundo","expression")],
+  ex=[("Rotterdam heeft de grootste haven van Europa.","Roterdão tem o maior porto da Europa."),("Dit is het beste restaurant van de stad.","Este é o melhor restaurante da cidade."),("Hij werkt het hardst.","Ele é quem trabalha mais.")],
+  gram=[G("g-superlativo","Superlativo: -st","Acrescenta-se **-st**: groot → **grootst**, klein → **kleinst**. Antes do nome leva -e: *de grootste stad*. Depois de zijn usa-se **het** + -st: *deze stad is **het grootst***. Irregulares: goed → **best**, veel → **meest**, weinig → **minst**.",
+    [("de oudste stad","a cidade mais antiga"),("Wie is het snelst?","Quem é o mais rápido?")])],
+  review=["v-groter","v-beter-dan","v-meer","v-stad"],
+  cefr=C, exs=[
+    MA([("grootst","o maior"),("best","o melhor"),("meest","o mais"),("ter wereld","do mundo")], "Superlativos.", ["v-grootst","v-best","v-meest","v-ter-wereld"]),
+    MC("a cidade maior:", ["*de grootste stad","de grootst stad|Antes do nome leva -e.","de meest grote stad|Usa-se -ste."], "grootste.", ["v-grootst"]),
+    MC("o melhor restaurante:", ["*het beste restaurant","het goedste restaurant|goed → best.","het meest goed restaurant|Não."], "best.", ["v-best"]),
+    TR("pt-nl","Este é o melhor café da cidade.", ["Dit is het beste café van de stad"], "het beste.", ["v-best"]),
+    TR("nl-pt","Rotterdam heeft de grootste haven van Europa.", ["Roterdão tem o maior porto da Europa"], "grootste.", ["v-grootst"]),
+    FE(["Amsterdam","is","de","groot","stad","van","Nederland."], 3, "grootste", "Superlativo antes do nome: grootste.", ["v-grootst"]),
+    LI("Wie is de oudste in je familie?", ["Wie is de oudste in je familie"], "Quem é o mais velho da tua família?", "oudste.", ["v-grootst"]),
+    FB("Van alle seizoenen vind ik de zomer het ___.", ["leukst","mooist","best"], "superlativo com het.", ["v-best"], choices=["leukst","leuker","leuk"], tr="De todas as estações, gosto mais do verão."),
+    TR("pt-nl","Quem é o mais rápido?", ["Wie is het snelst","Wie is de snelste"], "het snelst.", ["v-meest"]),
+    WO("O Ajax é a melhor equipa dos Países Baixos?", ["Is","Ajax","het","beste","team","van","Nederland?"], "het team → het beste team.", ["v-best"]),
+  ], diff=3, mins=6)
+
+L(4, "Igual: net zo … als", "Comparar igualdade e quantidades: even, zoveel, te veel.",
+  ["Comparar igualdade com (net) zo … als", "Falar de quantidades"],
+  vocab=[V("v-net-zo","net zo … als","tão … como","expression"), V("v-even-adj","even","igualmente|tão","adverb",note="even groot als = tão grande como"),
+         V("v-genoeg2","te veel","demasiado|a mais","expression"), V("v-te-weinig","te weinig","de menos|insuficiente","expression"), V("v-helft","helft","metade","noun","de")],
+  ex=[("Utrecht is net zo mooi als Leiden.","Utrecht é tão bonita como Leiden."),("Ik ben even oud als jij.","Tenho a mesma idade que tu."),("Ik heb te veel gegeten.","Comi demais."),("De helft van de mensen fietst.","Metade das pessoas anda de bicicleta.")],
+  gram=[G("g-igualdade","Igualdade","**(net) zo + adjetivo + als**: *net zo groot als* (tão grande como). Também **even + adjetivo + als**: *even oud als*. Atenção: na comparação de igualdade usa-se **als**, na de superioridade **dan**.",
+    [("Hij is groter dan ik.","Ele é maior do que eu."),("Hij is net zo groot als ik.","Ele é tão alto como eu.")],
+    "O erro clássico é misturar «als» e «dan» — até os neerlandeses o fazem!")],
+  review=["v-veel","v-weinig","v-dan-comp"],
+  cefr=C, exs=[
+    MA([("net zo … als","tão … como"),("te veel","demasiado"),("te weinig","de menos"),("helft","metade")], "Quantidades.", ["v-net-zo","v-genoeg2","v-te-weinig","v-helft"]),
+    MC("Utrecht is net zo mooi ___ Leiden.", ["*als","dan|Igualdade: als."], "zo … als.", ["v-net-zo"]),
+    MC("Utrecht is mooier ___ Leiden.", ["*dan","als|Superioridade: dan."], "-er … dan.", ["v-dan-comp"]),
+    TR("pt-nl","Tenho a mesma idade que tu.", ["Ik ben even oud als jij","Ik ben net zo oud als jij"], "even oud als.", ["v-even-adj"]),
+    TR("nl-pt","Ik heb te veel gegeten.", ["Comi demais","Comi de mais"], "te veel.", ["v-genoeg2"]),
+    TR("pt-nl","metade das pessoas", ["de helft van de mensen"], "de helft van.", ["v-helft"]),
+    FE(["Jij","bent","net","zo","lang","dan","ik."], 5, "als", "Igualdade: net zo lang als ik.", ["v-net-zo"]),
+    LI("Er is te weinig tijd.", ["Er is te weinig tijd"], "Há pouco tempo (tempo insuficiente).", "te weinig.", ["v-te-weinig"]),
+    FB("Een halve liter is de ___ van een liter.", ["helft"], "metade.", ["v-helft"], choices=["helft","meeste","minder"], tr="Meio litro é metade de um litro."),
+    WO("O café é tão bom como em Portugal?", ["Is","de","koffie","net","zo","lekker","als","in","Portugal?"], "zo … als.", ["v-net-zo"]),
+  ], diff=3, mins=6)
+
+L(5, "Portugal e os Países Baixos", "Revisão: comparar dois países.",
+  ["Comparar países, cidades e hábitos"],
+  ex=[("Portugal is warmer dan Nederland, maar Nederland is vlakker.","Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos.")],
+  review=["v-groter","v-kleiner","v-beter-dan","v-meer","v-minder","v-best","v-net-zo","v-dan-comp"],
+  cefr=C, exs=[
+    MA([("warmer","mais quente"),("vlakker","mais plano"),("duurder","mais caro"),("drukker","mais movimentado")], "Comparativos.", ["v-dan-comp"]),
+    TR("pt-nl","Portugal é mais quente do que os Países Baixos.", ["Portugal is warmer dan Nederland"], "warmer dan.", ["v-dan-comp"]),
+    TR("pt-nl","Os Países Baixos são mais planos.", ["Nederland is vlakker"], "vlak → vlakker.", ["v-dan-comp"]),
+    MC("Qual está correta?", ["*In Nederland fietsen meer mensen dan in Portugal.","In Nederland fietsen meer mensen als in Portugal.|Superioridade: dan.","In Nederland fietsen mensen meest dan in Portugal.|Mistura de formas."], "meer … dan.", ["v-meer"]),
+    FE(["Het","eten","in","Portugal","is","lekkerder","als","hier."], 6, "dan", "Superioridade: dan.", ["v-dan-comp"]),
+    LI("De koffie is hier duurder dan in Lissabon.", ["De koffie is hier duurder dan in Lissabon"], "Aqui o café é mais caro do que em Lisboa.", "duurder.", ["v-duur"]),
+    CO("text","Duas cidades", "Porto is ouder dan Rotterdam en heeft een mooi historisch centrum. Rotterdam is groter en moderner: er zijn veel hoge gebouwen. In Porto is het weer beter, maar in Rotterdam fietsen meer mensen. Volgens Pedro is het eten in Porto het lekkerst.",
+       [("Que cidade é mais antiga?", ["*O Porto","Roterdão","São iguais"]),("Onde andam mais pessoas de bicicleta?", ["*Em Roterdão","No Porto","Em nenhuma"]),("Onde acha o Pedro que se come melhor?", ["*No Porto","Em Roterdão","Não diz"])],
+       "volgens = segundo.", ["v-groter","v-best"]),
+    WO("Lisboa é tão bonita como Amesterdão.", ["Lissabon","is","net","zo","mooi","als","Amsterdam"], "zo … als.", ["v-net-zo"]),
+    FB("Welke stad vind jij het ___?", ["mooist","leukst"], "superlativo.", ["v-best"], choices=["mooist","mooier","mooi"], tr="Que cidade achas a mais bonita?"),
+    SW("Compare Portugal com os Países Baixos em três frases (comparativo, igualdade e superlativo).", ["Portugal is warmer dan Nederland(.) Nederland is net zo mooi als Portugal(.) [Het eten in Portugal is het lekkerst|Lissabon is de mooiste stad]"],
+       ["Um comparativo com «dan»","Uma igualdade com «(net) zo … als»","Um superlativo"], 12, "Confirme dan/als.", ["v-dan-comp"]),
+  ], diff=3, mins=7)
+
+W()
