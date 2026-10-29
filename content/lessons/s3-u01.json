@@ -1,0 +1,1537 @@
+{
+  "unitId": "s3-u01",
+  "lessons": [
+    {
+      "id": "s3-u01-l001",
+      "unitId": "s3-u01",
+      "order": 1,
+      "title": "O OV e o cartão de viagem",
+      "description": "OV-chipkaart, inchecken, uitchecken.",
+      "cefr": "A2",
+      "objectives": [
+        "Perceber como funciona o transporte público (OV)",
+        "Fazer check-in e check-out"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ov",
+          "nl": "ov",
+          "pt": [
+            "transportes públicos"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "note": "Abreviatura de «openbaar vervoer»."
+        },
+        {
+          "id": "v-ov-chipkaart",
+          "nl": "OV-chipkaart",
+          "pt": [
+            "cartão de transportes"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-inchecken",
+          "nl": "inchecken",
+          "pt": [
+            "validar à entrada",
+            "fazer check-in"
+          ],
+          "pos": "verb",
+          "note": "Ik check in."
+        },
+        {
+          "id": "v-uitchecken",
+          "nl": "uitchecken",
+          "pt": [
+            "validar à saída",
+            "fazer check-out"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-saldo",
+          "nl": "saldo",
+          "pt": [
+            "saldo"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-opladen",
+          "nl": "opladen",
+          "pt": [
+            "carregar"
+          ],
+          "pos": "verb",
+          "note": "Ik laad mijn kaart op."
+        }
+      ],
+      "reviewVocabulary": [
+        "v-trein",
+        "v-bus",
+        "v-betalen",
+        "v-pas"
+      ],
+      "examples": [
+        {
+          "nl": "Vergeet niet in te checken!",
+          "pt": "Não te esqueças de validar à entrada!"
+        },
+        {
+          "nl": "Ik check uit bij de uitgang.",
+          "pt": "Valido à saída."
+        },
+        {
+          "nl": "Mijn saldo is te laag.",
+          "pt": "O meu saldo é baixo demais."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-ov-check",
+          "title": "Check-in e check-out",
+          "body": "No OV paga-se por distância: é preciso **inchecken** ao entrar e **uitchecken** ao sair (no comboio, no metro, no autocarro). Hoje também se pode pagar diretamente com o cartão bancário (**betalen met je bankpas**). Quem se esquece de fazer check-out paga uma tarifa máxima.",
+          "examples": [
+            {
+              "nl": "Ik ben vergeten uit te checken.",
+              "pt": "Esqueci-me de validar à saída."
+            }
+          ],
+          "contrastWithPt": "Em Portugal costuma validar-se só à entrada; nos Países Baixos validar à saída é obrigatório."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u01-l001-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "OV.",
+          "vocabRefs": [
+            "v-ov",
+            "v-inchecken",
+            "v-uitchecken",
+            "v-saldo",
+            "v-opladen"
+          ],
+          "pairs": [
+            {
+              "nl": "ov",
+              "pt": "transportes públicos"
+            },
+            {
+              "nl": "inchecken",
+              "pt": "validar à entrada"
+            },
+            {
+              "nl": "uitchecken",
+              "pt": "validar à saída"
+            },
+            {
+              "nl": "saldo",
+              "pt": "saldo"
+            },
+            {
+              "nl": "opladen",
+              "pt": "carregar"
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l001-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "vergeten + te + infinitivo (separável: in te checken).",
+          "vocabRefs": [
+            "v-inchecken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não te esqueças de validar à entrada!",
+          "answers": [
+            "Vergeet niet in te checken"
+          ]
+        },
+        {
+          "id": "s3-u01-l001-e03",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável: check … uit.",
+          "vocabRefs": [
+            "v-uitchecken"
+          ],
+          "translation": "Valido à saída na estação.",
+          "tokens": [
+            "Ik",
+            "check",
+            "uit",
+            "op",
+            "het",
+            "station"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u01-l001-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "te laag.",
+          "vocabRefs": [
+            "v-saldo"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Mijn saldo is te laag.",
+          "answers": [
+            "O meu saldo é (baixo demais|insuficiente)",
+            "O meu saldo está baixo demais"
+          ]
+        },
+        {
+          "id": "s3-u01-l001-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Uitchecken é obrigatório.",
+          "vocabRefs": [
+            "v-uitchecken"
+          ],
+          "prompt": "O que acontece se se esquecer de fazer check-out?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Paga uma tarifa máxima",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nada",
+              "correct": false,
+              "feedback": "Paga-se um valor alto."
+            },
+            {
+              "id": "c",
+              "text": "A viagem é grátis",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l001-e06",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het saldo».",
+          "vocabRefs": [
+            "v-saldo"
+          ],
+          "noun": "saldo",
+          "pt": "o saldo",
+          "article": "het"
+        },
+        {
+          "id": "s3-u01-l001-e07",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "opladen → laad … op.",
+          "vocabRefs": [
+            "v-opladen"
+          ],
+          "verb": "opladen",
+          "pronoun": "ik",
+          "tense": "presente",
+          "sentence": "Ik laad mijn kaart ___ .",
+          "answers": [
+            "op"
+          ]
+        },
+        {
+          "id": "s3-u01-l001-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "uit te checken.",
+          "vocabRefs": [
+            "v-uitchecken"
+          ],
+          "audioText": "Vergeet niet uit te checken.",
+          "answers": [
+            "Vergeet niet uit te checken"
+          ],
+          "translation": "Não te esqueças de validar à saída."
+        },
+        {
+          "id": "s3-u01-l001-e09",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: ik check in bij de poortjes.",
+          "vocabRefs": [
+            "v-inchecken"
+          ],
+          "tokens": [
+            "Ik",
+            "incheck",
+            "bij",
+            "de",
+            "poortjes."
+          ],
+          "errorIndex": 1,
+          "correction": "check … in"
+        },
+        {
+          "id": "s3-u01-l001-e10",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pagamento com cartão bancário.",
+          "vocabRefs": [
+            "v-pas"
+          ],
+          "sentence": "Je kunt ook met je ___ betalen.",
+          "translation": "Também podes pagar com o cartão bancário.",
+          "answers": [
+            "bankpas"
+          ],
+          "choices": [
+            "bankpas",
+            "saldo",
+            "perron"
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u01-l002",
+      "unitId": "s3-u01",
+      "order": 2,
+      "title": "Na paragem e na plataforma",
+      "description": "de halte, het perron, de vertrektijd, overstappen.",
+      "cefr": "A2",
+      "objectives": [
+        "Encontrar a paragem, a plataforma e fazer transbordo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-halte",
+          "nl": "halte",
+          "pt": [
+            "paragem"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "haltes"
+        },
+        {
+          "id": "v-perron",
+          "nl": "perron",
+          "pt": [
+            "plataforma",
+            "cais"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "note": "Também «spoor»: de trein vertrekt van spoor 5."
+        },
+        {
+          "id": "v-vertrekken",
+          "nl": "vertrekken",
+          "pt": [
+            "partir"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-overstappen",
+          "nl": "overstappen",
+          "pt": [
+            "fazer transbordo",
+            "mudar de comboio"
+          ],
+          "pos": "verb",
+          "note": "Je moet in Utrecht overstappen."
+        },
+        {
+          "id": "v-richting",
+          "nl": "richting",
+          "pt": [
+            "direção"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-station",
+        "v-trein",
+        "v-bus",
+        "v-hoe-laat"
+      ],
+      "examples": [
+        {
+          "nl": "De trein vertrekt van spoor vijf.",
+          "pt": "O comboio parte da linha cinco."
+        },
+        {
+          "nl": "Je moet in Utrecht overstappen.",
+          "pt": "Tens de mudar em Utrecht."
+        },
+        {
+          "nl": "Waar is de halte van bus 12?",
+          "pt": "Onde é a paragem do autocarro 12?"
+        },
+        {
+          "nl": "Richting Amsterdam.",
+          "pt": "Em direção a Amesterdão."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u01-l002-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Viajar.",
+          "vocabRefs": [
+            "v-halte",
+            "v-perron",
+            "v-vertrekken",
+            "v-overstappen",
+            "v-richting"
+          ],
+          "pairs": [
+            {
+              "nl": "halte",
+              "pt": "paragem"
+            },
+            {
+              "nl": "perron",
+              "pt": "plataforma"
+            },
+            {
+              "nl": "vertrekken",
+              "pt": "partir"
+            },
+            {
+              "nl": "overstappen",
+              "pt": "fazer transbordo"
+            },
+            {
+              "nl": "richting",
+              "pt": "direção"
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l002-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "de halte.",
+          "vocabRefs": [
+            "v-halte"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Onde é a paragem do autocarro?",
+          "answers": [
+            "Waar is de bushalte",
+            "Waar is de halte van de bus"
+          ]
+        },
+        {
+          "id": "s3-u01-l002-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "moeten + infinitivo.",
+          "vocabRefs": [
+            "v-overstappen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Je moet in Utrecht overstappen.",
+          "answers": [
+            "Tens de mudar (de comboio )em Utrecht",
+            "Tem de fazer transbordo em Utrecht"
+          ]
+        },
+        {
+          "id": "s3-u01-l002-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "spoor = linha.",
+          "vocabRefs": [
+            "v-vertrekken"
+          ],
+          "direction": "nl-pt",
+          "prompt": "De trein vertrekt van spoor vijf.",
+          "answers": [
+            "O comboio parte da linha cinco",
+            "O comboio sai da plataforma cinco"
+          ]
+        },
+        {
+          "id": "s3-u01-l002-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "«Het perron».",
+          "vocabRefs": [
+            "v-perron"
+          ],
+          "noun": "perron",
+          "pt": "a plataforma",
+          "article": "het"
+        },
+        {
+          "id": "s3-u01-l002-e06",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "vertrekken → vertrekt.",
+          "vocabRefs": [
+            "v-vertrekken"
+          ],
+          "verb": "vertrekken",
+          "pronoun": "de trein",
+          "tense": "presente",
+          "sentence": "Hoe laat ___ de trein?",
+          "answers": [
+            "vertrekt"
+          ]
+        },
+        {
+          "id": "s3-u01-l002-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "richting sem preposição.",
+          "vocabRefs": [
+            "v-richting"
+          ],
+          "audioText": "Deze trein gaat richting Den Haag.",
+          "answers": [
+            "Deze trein gaat richting Den Haag"
+          ],
+          "translation": "Este comboio vai em direção a Haia."
+        },
+        {
+          "id": "s3-u01-l002-e08",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: ik stap in Leiden over.",
+          "vocabRefs": [
+            "v-overstappen"
+          ],
+          "tokens": [
+            "Ik",
+            "overstap",
+            "in",
+            "Leiden."
+          ],
+          "errorIndex": 1,
+          "correction": "stap … over"
+        },
+        {
+          "id": "s3-u01-l002-e09",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "van spoor + número.",
+          "vocabRefs": [
+            "v-perron",
+            "v-vertrekken"
+          ],
+          "lines": [
+            {
+              "speaker": "Turista",
+              "nl": "Pardon, van welk spoor vertrekt de trein naar Schiphol?",
+              "pt": "Desculpe, de que linha parte o comboio para Schiphol?"
+            },
+            {
+              "speaker": "Funcionário",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Van spoor drie, om tien over twee.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Om spoor drie.",
+              "correct": false,
+              "feedback": "«Van spoor drie»."
+            },
+            {
+              "id": "c",
+              "text": "Ja, de trein.",
+              "correct": false,
+              "feedback": "Não responde."
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l002-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Imperativo separável.",
+          "vocabRefs": [
+            "v-overstappen"
+          ],
+          "translation": "Muda em Amesterdão para o comboio para Haarlem.",
+          "tokens": [
+            "Stap",
+            "in",
+            "Amsterdam",
+            "over",
+            "op",
+            "de",
+            "trein",
+            "naar",
+            "Haarlem"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u01-l003",
+      "unitId": "s3-u01",
+      "order": 3,
+      "title": "Bilhetes e preços",
+      "description": "enkele reis, retour, korting, dal-uren.",
+      "cefr": "A2",
+      "objectives": [
+        "Comprar um bilhete e perguntar o preço"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kaartje",
+          "nl": "kaartje",
+          "pt": [
+            "bilhete"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "kaartjes"
+        },
+        {
+          "id": "v-enkele-reis",
+          "nl": "enkele reis",
+          "pt": [
+            "ida (bilhete simples)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-retour",
+          "nl": "retour",
+          "pt": [
+            "ida e volta"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-daluren",
+          "nl": "daluren",
+          "pt": [
+            "horas fora de ponta"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "note": "Viajar fora de ponta é mais barato."
+        },
+        {
+          "id": "v-klas-trein",
+          "nl": "eerste klas",
+          "pt": [
+            "primeira classe"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-kosten",
+        "v-goedkoop",
+        "v-duur",
+        "v-korting"
+      ],
+      "examples": [
+        {
+          "nl": "Een enkele reis naar Leiden, alstublieft.",
+          "pt": "Um bilhete de ida para Leiden, por favor."
+        },
+        {
+          "nl": "Een retourtje Utrecht.",
+          "pt": "Uma ida e volta para Utrecht."
+        },
+        {
+          "nl": "In de daluren is het goedkoper.",
+          "pt": "Fora das horas de ponta é mais barato."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u01-l003-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Bilhetes.",
+          "vocabRefs": [
+            "v-kaartje",
+            "v-enkele-reis",
+            "v-retour",
+            "v-daluren"
+          ],
+          "pairs": [
+            {
+              "nl": "kaartje",
+              "pt": "bilhete"
+            },
+            {
+              "nl": "enkele reis",
+              "pt": "só ida"
+            },
+            {
+              "nl": "retour",
+              "pt": "ida e volta"
+            },
+            {
+              "nl": "daluren",
+              "pt": "fora de ponta"
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l003-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "enkele reis.",
+          "vocabRefs": [
+            "v-enkele-reis"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Uma ida para Leiden, por favor.",
+          "answers": [
+            "Een enkele reis (naar )Leiden(,) [alstublieft|graag]"
+          ]
+        },
+        {
+          "id": "s3-u01-l003-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "retour(tje).",
+          "vocabRefs": [
+            "v-retour"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Uma ida e volta para Utrecht.",
+          "answers": [
+            "Een retour(tje)( naar) Utrecht"
+          ]
+        },
+        {
+          "id": "s3-u01-l003-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "goedkoper = mais barato.",
+          "vocabRefs": [
+            "v-daluren"
+          ],
+          "direction": "nl-pt",
+          "prompt": "In de daluren is het goedkoper.",
+          "answers": [
+            "Fora das horas de ponta é mais barato"
+          ]
+        },
+        {
+          "id": "s3-u01-l003-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Diminutivo → het.",
+          "vocabRefs": [
+            "v-kaartje"
+          ],
+          "noun": "kaartje",
+          "pt": "o bilhete",
+          "article": "het"
+        },
+        {
+          "id": "s3-u01-l003-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Escolher a opção.",
+          "vocabRefs": [
+            "v-retour"
+          ],
+          "lines": [
+            {
+              "speaker": "Funcionário",
+              "nl": "Enkele reis of retour?",
+              "pt": "Ida ou ida e volta?"
+            },
+            {
+              "speaker": "Cliente",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Retour, graag.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, graag.",
+              "correct": false,
+              "feedback": "Pergunta de escolha: responda com a opção."
+            },
+            {
+              "id": "c",
+              "text": "Spoor vijf.",
+              "correct": false,
+              "feedback": "Não responde."
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l003-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Wat kost…?",
+          "vocabRefs": [
+            "v-kaartje"
+          ],
+          "audioText": "Wat kost een kaartje naar Rotterdam?",
+          "answers": [
+            "Wat kost een kaartje naar Rotterdam"
+          ],
+          "translation": "Quanto custa um bilhete para Roterdão?"
+        },
+        {
+          "id": "s3-u01-l003-e08",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Destino: naar Leiden.",
+          "vocabRefs": [
+            "v-kaartje"
+          ],
+          "tokens": [
+            "Een",
+            "kaartje",
+            "van",
+            "Leiden,",
+            "alstublieft."
+          ],
+          "errorIndex": 2,
+          "correction": "naar"
+        },
+        {
+          "id": "s3-u01-l003-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "eerste klas = primeira classe.",
+          "vocabRefs": [
+            "v-klas-trein"
+          ],
+          "sentence": "In de ___ klas zijn de stoelen groter.",
+          "translation": "Na primeira classe os bancos são maiores.",
+          "answers": [
+            "eerste"
+          ],
+          "choices": [
+            "eerste",
+            "enkele",
+            "retour"
+          ]
+        },
+        {
+          "id": "s3-u01-l003-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "graag suaviza.",
+          "vocabRefs": [
+            "v-kaartje",
+            "v-klas-trein"
+          ],
+          "translation": "Quero um bilhete de primeira classe.",
+          "tokens": [
+            "Ik",
+            "wil",
+            "graag",
+            "een",
+            "kaartje",
+            "eerste",
+            "klas"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u01-l004",
+      "unitId": "s3-u01",
+      "order": 4,
+      "title": "Atrasos e avisos",
+      "description": "vertraging, uitgevallen, storing: perceber os anúncios.",
+      "cefr": "A2",
+      "objectives": [
+        "Perceber avisos de atraso e cancelamento"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-uitvallen",
+          "nl": "uitvallen",
+          "pt": [
+            "ser cancelado (comboio)"
+          ],
+          "pos": "verb",
+          "note": "De trein valt uit = o comboio foi suprimido."
+        },
+        {
+          "id": "v-storing",
+          "nl": "storing",
+          "pt": [
+            "avaria",
+            "perturbação"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-omroep",
+          "nl": "omroepbericht",
+          "pt": [
+            "anúncio (sonoro)"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-in-plaats-van",
+          "nl": "in plaats van",
+          "pt": [
+            "em vez de"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-wachttijd",
+          "nl": "wachttijd",
+          "pt": [
+            "tempo de espera"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vertraging",
+        "v-trein",
+        "v-minuut"
+      ],
+      "examples": [
+        {
+          "nl": "De trein naar Utrecht valt uit.",
+          "pt": "O comboio para Utrecht foi suprimido."
+        },
+        {
+          "nl": "Door een storing rijden er minder treinen.",
+          "pt": "Devido a uma avaria circulam menos comboios."
+        },
+        {
+          "nl": "Neem de bus in plaats van de trein.",
+          "pt": "Apanha o autocarro em vez do comboio."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-door",
+          "title": "Door = devido a",
+          "body": "Nos anúncios: **door** + causa: *door een storing* (devido a uma avaria), *door het weer* (devido ao tempo). Muito frequente no OV: *door werkzaamheden* (devido a obras).",
+          "examples": [
+            {
+              "nl": "Door werkzaamheden rijden er geen treinen.",
+              "pt": "Devido a obras não há comboios."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u01-l004-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Avisos.",
+          "vocabRefs": [
+            "v-uitvallen",
+            "v-storing",
+            "v-in-plaats-van",
+            "v-wachttijd"
+          ],
+          "pairs": [
+            {
+              "nl": "uitvallen",
+              "pt": "ser cancelado"
+            },
+            {
+              "nl": "storing",
+              "pt": "avaria"
+            },
+            {
+              "nl": "in plaats van",
+              "pt": "em vez de"
+            },
+            {
+              "nl": "wachttijd",
+              "pt": "tempo de espera"
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l004-e02",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "uitvallen.",
+          "vocabRefs": [
+            "v-uitvallen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "De trein naar Utrecht valt uit.",
+          "answers": [
+            "O comboio para Utrecht foi (suprimido|cancelado)",
+            "O comboio para Utrecht não se realiza"
+          ]
+        },
+        {
+          "id": "s3-u01-l004-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "door = devido a.",
+          "vocabRefs": [
+            "v-storing"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Door een storing heeft de trein vertraging.",
+          "answers": [
+            "Devido a uma avaria o comboio está atrasado",
+            "Por causa de uma avaria o comboio tem atraso"
+          ]
+        },
+        {
+          "id": "s3-u01-l004-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "in plaats van.",
+          "vocabRefs": [
+            "v-in-plaats-van"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Apanha o autocarro em vez do comboio.",
+          "answers": [
+            "Neem de bus in plaats van de trein"
+          ]
+        },
+        {
+          "id": "s3-u01-l004-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-storing"
+          ],
+          "noun": "storing",
+          "pt": "a avaria",
+          "article": "de"
+        },
+        {
+          "id": "s3-u01-l004-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "vertraging = atraso.",
+          "vocabRefs": [
+            "v-vertraging"
+          ],
+          "prompt": "O anúncio diz: «De trein van 8.15 uur heeft tien minuten vertraging». O que acontece?",
+          "options": [
+            {
+              "id": "a",
+              "text": "O comboio das 8h15 chega 10 minutos atrasado",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "O comboio foi cancelado",
+              "correct": false,
+              "feedback": "Isso seria «valt uit»."
+            },
+            {
+              "id": "c",
+              "text": "O comboio parte 10 minutos mais cedo",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l004-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "werkzaamheden = obras.",
+          "vocabRefs": [
+            "v-storing"
+          ],
+          "audioText": "Door werkzaamheden rijden er geen treinen.",
+          "answers": [
+            "Door werkzaamheden rijden er geen treinen"
+          ],
+          "translation": "Devido a obras não há comboios."
+        },
+        {
+          "id": "s3-u01-l004-e08",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: de trein valt vandaag uit.",
+          "vocabRefs": [
+            "v-uitvallen"
+          ],
+          "tokens": [
+            "De",
+            "trein",
+            "uitvalt",
+            "vandaag."
+          ],
+          "errorIndex": 2,
+          "correction": "valt … uit"
+        },
+        {
+          "id": "s3-u01-l004-e09",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "reizigers = passageiros.",
+          "vocabRefs": [
+            "v-storing",
+            "v-uitvallen"
+          ],
+          "kind": "text",
+          "title": "Anúncio na estação",
+          "text": "Dames en heren, door een storing tussen Utrecht en Amersfoort rijden er minder treinen. De intercity naar Amersfoort van 14.32 uur valt uit. Reizigers naar Amersfoort kunnen de bus nemen in plaats van de trein.",
+          "questions": [
+            {
+              "prompt": "Porque circulam menos comboios?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Por causa de uma avaria",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Por causa do tempo",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Por causa de uma greve",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que podem fazer os passageiros para Amersfoort?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Apanhar o autocarro",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Esperar pelo comboio seguinte em Utrecht",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Ir a pé",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l004-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "minuten no plural.",
+          "vocabRefs": [
+            "v-wachttijd"
+          ],
+          "translation": "O tempo de espera é de vinte minutos.",
+          "tokens": [
+            "De",
+            "wachttijd",
+            "is",
+            "twintig",
+            "minuten"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u01-l005",
+      "unitId": "s3-u01",
+      "order": 5,
+      "title": "Uma viagem de comboio",
+      "description": "Revisão: planear e fazer uma viagem no OV.",
+      "cefr": "A2",
+      "objectives": [
+        "Planear uma viagem e resolver imprevistos"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-inchecken",
+        "v-uitchecken",
+        "v-perron",
+        "v-overstappen",
+        "v-vertraging",
+        "v-uitvallen",
+        "v-kaartje",
+        "v-retour"
+      ],
+      "examples": [
+        {
+          "nl": "Ik neem de trein van 9.12 uur naar Amsterdam en ik stap in Utrecht over.",
+          "pt": "Apanho o comboio das 9h12 para Amesterdão e mudo em Utrecht."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u01-l005-e01",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Instrução completa.",
+          "vocabRefs": [
+            "v-overstappen",
+            "v-perron"
+          ],
+          "lines": [
+            {
+              "speaker": "Funcionária",
+              "nl": "Kan ik u helpen?",
+              "pt": "Posso ajudar?"
+            },
+            {
+              "speaker": "Pedro",
+              "nl": "Ja, hoe kom ik in Groningen?",
+              "pt": "Sim, como chego a Groningen?"
+            },
+            {
+              "speaker": "Funcionária",
+              "nl": ""
+            }
+          ],
+          "blankLine": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "U moet in Amersfoort overstappen. De trein vertrekt van spoor zeven.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "U checkt bij de kassa.",
+              "correct": false,
+              "feedback": "Não responde."
+            },
+            {
+              "id": "c",
+              "text": "Retour, graag.",
+              "correct": false,
+              "feedback": "O cliente é que diria isto."
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l005-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "moeten + infinitivo no fim.",
+          "vocabRefs": [
+            "v-overstappen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Tenho de mudar em Utrecht.",
+          "answers": [
+            "Ik moet in Utrecht overstappen"
+          ]
+        },
+        {
+          "id": "s3-u01-l005-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "uit te checken.",
+          "vocabRefs": [
+            "v-uitchecken"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Vergeet niet uit te checken!",
+          "answers": [
+            "Não te esqueças de validar à saída",
+            "Não se esqueça de fazer check-out"
+          ]
+        },
+        {
+          "id": "s3-u01-l005-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: ik stap in Utrecht over.",
+          "vocabRefs": [
+            "v-overstappen"
+          ],
+          "tokens": [
+            "De",
+            "trein",
+            "vertrekt",
+            "van",
+            "perron",
+            "vijf",
+            "om",
+            "kwart",
+            "over",
+            "drie",
+            "en",
+            "ik",
+            "overstap",
+            "in",
+            "Utrecht."
+          ],
+          "errorIndex": 12,
+          "correction": "stap … over"
+        },
+        {
+          "id": "s3-u01-l005-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "kwartier = 15 minutos.",
+          "vocabRefs": [
+            "v-vertraging"
+          ],
+          "audioText": "De trein heeft een kwartier vertraging.",
+          "answers": [
+            "De trein heeft een kwartier vertraging"
+          ],
+          "translation": "O comboio tem um quarto de hora de atraso."
+        },
+        {
+          "id": "s3-u01-l005-e06",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Frases de viagem.",
+          "vocabRefs": [
+            "v-retour",
+            "v-perron",
+            "v-overstappen",
+            "v-uitvallen"
+          ],
+          "pairs": [
+            {
+              "nl": "Enkele reis of retour?",
+              "pt": "Ida ou ida e volta?"
+            },
+            {
+              "nl": "Van welk spoor?",
+              "pt": "De que linha?"
+            },
+            {
+              "nl": "Waar moet ik overstappen?",
+              "pt": "Onde tenho de mudar?"
+            },
+            {
+              "nl": "De trein valt uit.",
+              "pt": "O comboio foi suprimido."
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l005-e07",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "gepland = planeado.",
+          "vocabRefs": [
+            "v-uitvallen",
+            "v-overstappen"
+          ],
+          "kind": "text",
+          "title": "Uma viagem atribulada",
+          "text": "Ana wil naar haar vriendin in Groningen. Ze checkt om negen uur in op Utrecht Centraal. De trein naar Groningen valt uit door een storing. Ze neemt de trein naar Zwolle en stapt daar over. Ze komt een uur later aan dan gepland.",
+          "questions": [
+            {
+              "prompt": "Porque não apanha o comboio direto?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Foi suprimido por uma avaria",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Estava cheio",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Perdeu-o",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Onde muda de comboio?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Em Zwolle",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Em Utrecht",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Em Amesterdão",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Com quanto atraso chega?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Uma hora",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Dez minutos",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não chega",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s3-u01-l005-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "aankomen separável.",
+          "vocabRefs": [
+            "v-aankomen"
+          ],
+          "translation": "O comboio chega às dez e meia.",
+          "tokens": [
+            "De",
+            "trein",
+            "komt",
+            "om",
+            "half",
+            "elf",
+            "aan"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s3-u01-l005-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "in plaats van = em vez de.",
+          "vocabRefs": [
+            "v-in-plaats-van"
+          ],
+          "sentence": "Er rijden geen treinen. Neem de bus ___ de trein.",
+          "translation": "Não há comboios. Apanha o autocarro em vez do comboio.",
+          "answers": [
+            "in plaats van"
+          ],
+          "choices": [
+            "in plaats van",
+            "door",
+            "van"
+          ]
+        },
+        {
+          "id": "s3-u01-l005-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Modelo: «Hoi Tom, mijn trein heeft twintig minuten vertraging. Ik kom om half tien aan.»",
+          "vocabRefs": [
+            "v-vertraging",
+            "v-aankomen"
+          ],
+          "prompt": "Escreva uma mensagem a um amigo: o seu comboio está atrasado e diga a que horas chega.",
+          "referenceAnswers": [
+            "Hoi(,) mijn trein heeft vertraging(.) Ik kom om [half|kwart over] [acht|negen|tien] aan"
+          ],
+          "checklist": [
+            "Explica o problema (vertraging, valt uit, storing)",
+            "Diz a hora de chegada com «aankomen»",
+            "Partícula no fim"
+          ],
+          "minWords": 8
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}

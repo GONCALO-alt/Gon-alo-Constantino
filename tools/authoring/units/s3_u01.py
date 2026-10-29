@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s3-u01")
+C = "A2"
+
+L(1, "O OV e o cartão de viagem", "OV-chipkaart, inchecken, uitchecken.",
+  ["Perceber como funciona o transporte público (OV)", "Fazer check-in e check-out"],
+  vocab=[V("v-ov","ov","transportes públicos","noun","het",note="Abreviatura de «openbaar vervoer»."), V("v-ov-chipkaart","OV-chipkaart","cartão de transportes","noun","de"),
+         V("v-inchecken","inchecken","validar à entrada|fazer check-in","verb",note="Ik check in."), V("v-uitchecken","uitchecken","validar à saída|fazer check-out","verb"),
+         V("v-saldo","saldo","saldo","noun","het"), V("v-opladen","opladen","carregar","verb",note="Ik laad mijn kaart op.")],
+  ex=[("Vergeet niet in te checken!","Não te esqueças de validar à entrada!"),("Ik check uit bij de uitgang.","Valido à saída."),("Mijn saldo is te laag.","O meu saldo é baixo demais.")],
+  gram=[G("g-ov-check","Check-in e check-out","No OV paga-se por distância: é preciso **inchecken** ao entrar e **uitchecken** ao sair (no comboio, no metro, no autocarro). Hoje também se pode pagar diretamente com o cartão bancário (**betalen met je bankpas**). Quem se esquece de fazer check-out paga uma tarifa máxima.",
+    [("Ik ben vergeten uit te checken.","Esqueci-me de validar à saída.")],
+    "Em Portugal costuma validar-se só à entrada; nos Países Baixos validar à saída é obrigatório.")],
+  review=["v-trein","v-bus","v-betalen","v-pas"],
+  cefr=C, exs=[
+    MA([("ov","transportes públicos"),("inchecken","validar à entrada"),("uitchecken","validar à saída"),("saldo","saldo"),("opladen","carregar")], "OV.", ["v-ov","v-inchecken","v-uitchecken","v-saldo","v-opladen"]),
+    TR("pt-nl","Não te esqueças de validar à entrada!", ["Vergeet niet in te checken"], "vergeten + te + infinitivo (separável: in te checken).", ["v-inchecken"]),
+    WO("Valido à saída na estação.", ["Ik","check","uit","op","het","station"], "Separável: check … uit.", ["v-uitchecken"]),
+    TR("nl-pt","Mijn saldo is te laag.", ["O meu saldo é (baixo demais|insuficiente)","O meu saldo está baixo demais"], "te laag.", ["v-saldo"]),
+    MC("O que acontece se se esquecer de fazer check-out?", ["*Paga uma tarifa máxima","Nada|Paga-se um valor alto.","A viagem é grátis|Não."], "Uitchecken é obrigatório.", ["v-uitchecken"]),
+    AR("saldo","o saldo","het", "«Het saldo».", ["v-saldo"]),
+    CJ("opladen","ik","Ik laad mijn kaart ___ .", ["op"], "opladen → laad … op.", ["v-opladen"]),
+    LI("Vergeet niet uit te checken.", ["Vergeet niet uit te checken"], "Não te esqueças de validar à saída.", "uit te checken.", ["v-uitchecken"]),
+    FE(["Ik","incheck","bij","de","poortjes."], 1, "check … in", "Separável: ik check in bij de poortjes.", ["v-inchecken"]),
+    FB("Je kunt ook met je ___ betalen.", ["bankpas"], "Pagamento com cartão bancário.", ["v-pas"], choices=["bankpas","saldo","perron"], tr="Também podes pagar com o cartão bancário."),
+  ], diff=2, mins=6)
+
+L(2, "Na paragem e na plataforma", "de halte, het perron, de vertrektijd, overstappen.",
+  ["Encontrar a paragem, a plataforma e fazer transbordo"],
+  vocab=[V("v-halte","halte","paragem","noun","de","haltes"), V("v-perron","perron","plataforma|cais","noun","het",note="Também «spoor»: de trein vertrekt van spoor 5."),
+         V("v-vertrekken","vertrekken","partir","verb"), V("v-overstappen","overstappen","fazer transbordo|mudar de comboio","verb",note="Je moet in Utrecht overstappen."),
+         V("v-richting","richting","direção","noun","de")],
+  ex=[("De trein vertrekt van spoor vijf.","O comboio parte da linha cinco."),("Je moet in Utrecht overstappen.","Tens de mudar em Utrecht."),("Waar is de halte van bus 12?","Onde é a paragem do autocarro 12?"),("Richting Amsterdam.","Em direção a Amesterdão.")],
+  review=["v-station","v-trein","v-bus","v-hoe-laat"],
+  cefr=C, exs=[
+    MA([("halte","paragem"),("perron","plataforma"),("vertrekken","partir"),("overstappen","fazer transbordo"),("richting","direção")], "Viajar.", ["v-halte","v-perron","v-vertrekken","v-overstappen","v-richting"]),
+    TR("pt-nl","Onde é a paragem do autocarro?", ["Waar is de bushalte","Waar is de halte van de bus"], "de halte.", ["v-halte"]),
+    TR("nl-pt","Je moet in Utrecht overstappen.", ["Tens de mudar (de comboio )em Utrecht","Tem de fazer transbordo em Utrecht"], "moeten + infinitivo.", ["v-overstappen"]),
+    TR("nl-pt","De trein vertrekt van spoor vijf.", ["O comboio parte da linha cinco","O comboio sai da plataforma cinco"], "spoor = linha.", ["v-vertrekken"]),
+    AR("perron","a plataforma","het", "«Het perron».", ["v-perron"]),
+    CJ("vertrekken","de trein","Hoe laat ___ de trein?", ["vertrekt"], "vertrekken → vertrekt.", ["v-vertrekken"]),
+    LI("Deze trein gaat richting Den Haag.", ["Deze trein gaat richting Den Haag"], "Este comboio vai em direção a Haia.", "richting sem preposição.", ["v-richting"]),
+    FE(["Ik","overstap","in","Leiden."], 1, "stap … over", "Separável: ik stap in Leiden over.", ["v-overstappen"]),
+    DL([("Turista","Pardon, van welk spoor vertrekt de trein naar Schiphol?","Desculpe, de que linha parte o comboio para Schiphol?"),("Funcionário","")], ["*Van spoor drie, om tien over twee.","Om spoor drie.|«Van spoor drie».","Ja, de trein.|Não responde."], "van spoor + número.", ["v-perron","v-vertrekken"]),
+    WO("Muda em Amesterdão para o comboio para Haarlem.", ["Stap","in","Amsterdam","over","op","de","trein","naar","Haarlem"], "Imperativo separável.", ["v-overstappen"]),
+  ], diff=2, mins=6)
+
+L(3, "Bilhetes e preços", "enkele reis, retour, korting, dal-uren.",
+  ["Comprar um bilhete e perguntar o preço"],
+  vocab=[V("v-kaartje","kaartje","bilhete","noun","het","kaartjes"), V("v-enkele-reis","enkele reis","ida (bilhete simples)","expression"),
+         V("v-retour","retour","ida e volta","noun","het"), V("v-daluren","daluren","horas fora de ponta","noun","de",note="Viajar fora de ponta é mais barato."), V("v-klas-trein","eerste klas","primeira classe","expression")],
+  ex=[("Een enkele reis naar Leiden, alstublieft.","Um bilhete de ida para Leiden, por favor."),("Een retourtje Utrecht.","Uma ida e volta para Utrecht."),("In de daluren is het goedkoper.","Fora das horas de ponta é mais barato.")],
+  review=["v-kosten","v-goedkoop","v-duur","v-korting"],
+  cefr=C, exs=[
+    MA([("kaartje","bilhete"),("enkele reis","só ida"),("retour","ida e volta"),("daluren","fora de ponta")], "Bilhetes.", ["v-kaartje","v-enkele-reis","v-retour","v-daluren"]),
+    TR("pt-nl","Uma ida para Leiden, por favor.", ["Een enkele reis (naar )Leiden(,) [alstublieft|graag]"], "enkele reis.", ["v-enkele-reis"]),
+    TR("pt-nl","Uma ida e volta para Utrecht.", ["Een retour(tje)( naar) Utrecht"], "retour(tje).", ["v-retour"]),
+    TR("nl-pt","In de daluren is het goedkoper.", ["Fora das horas de ponta é mais barato"], "goedkoper = mais barato.", ["v-daluren"]),
+    AR("kaartje","o bilhete","het", "Diminutivo → het.", ["v-kaartje"]),
+    DL([("Funcionário","Enkele reis of retour?","Ida ou ida e volta?"),("Cliente","")], ["*Retour, graag.","Ja, graag.|Pergunta de escolha: responda com a opção.","Spoor vijf.|Não responde."], "Escolher a opção.", ["v-retour"]),
+    LI("Wat kost een kaartje naar Rotterdam?", ["Wat kost een kaartje naar Rotterdam"], "Quanto custa um bilhete para Roterdão?", "Wat kost…?", ["v-kaartje"]),
+    FE(["Een","kaartje","van","Leiden,","alstublieft."], 2, "naar", "Destino: naar Leiden.", ["v-kaartje"]),
+    FB("In de ___ klas zijn de stoelen groter.", ["eerste"], "eerste klas = primeira classe.", ["v-klas-trein"], choices=["eerste","enkele","retour"], tr="Na primeira classe os bancos são maiores."),
+    WO("Quero um bilhete de primeira classe.", ["Ik","wil","graag","een","kaartje","eerste","klas"], "graag suaviza.", ["v-kaartje","v-klas-trein"]),
+  ], diff=2, mins=5)
+
+L(4, "Atrasos e avisos", "vertraging, uitgevallen, storing: perceber os anúncios.",
+  ["Perceber avisos de atraso e cancelamento"],
+  vocab=[V("v-uitvallen","uitvallen","ser cancelado (comboio)","verb",note="De trein valt uit = o comboio foi suprimido."), V("v-storing","storing","avaria|perturbação","noun","de"),
+         V("v-omroep","omroepbericht","anúncio (sonoro)","noun","het"), V("v-in-plaats-van","in plaats van","em vez de","expression"), V("v-wachttijd","wachttijd","tempo de espera","noun","de")],
+  ex=[("De trein naar Utrecht valt uit.","O comboio para Utrecht foi suprimido."),("Door een storing rijden er minder treinen.","Devido a uma avaria circulam menos comboios."),("Neem de bus in plaats van de trein.","Apanha o autocarro em vez do comboio.")],
+  gram=[G("g-door","Door = devido a","Nos anúncios: **door** + causa: *door een storing* (devido a uma avaria), *door het weer* (devido ao tempo). Muito frequente no OV: *door werkzaamheden* (devido a obras).",
+    [("Door werkzaamheden rijden er geen treinen.","Devido a obras não há comboios.")])],
+  review=["v-vertraging","v-trein","v-minuut"],
+  cefr=C, exs=[
+    MA([("uitvallen","ser cancelado"),("storing","avaria"),("in plaats van","em vez de"),("wachttijd","tempo de espera")], "Avisos.", ["v-uitvallen","v-storing","v-in-plaats-van","v-wachttijd"]),
+    TR("nl-pt","De trein naar Utrecht valt uit.", ["O comboio para Utrecht foi (suprimido|cancelado)","O comboio para Utrecht não se realiza"], "uitvallen.", ["v-uitvallen"]),
+    TR("nl-pt","Door een storing heeft de trein vertraging.", ["Devido a uma avaria o comboio está atrasado","Por causa de uma avaria o comboio tem atraso"], "door = devido a.", ["v-storing"]),
+    TR("pt-nl","Apanha o autocarro em vez do comboio.", ["Neem de bus in plaats van de trein"], "in plaats van.", ["v-in-plaats-van"]),
+    AR("storing","a avaria","de", "-ing → de.", ["v-storing"]),
+    MC("O anúncio diz: «De trein van 8.15 uur heeft tien minuten vertraging». O que acontece?", ["*O comboio das 8h15 chega 10 minutos atrasado","O comboio foi cancelado|Isso seria «valt uit».","O comboio parte 10 minutos mais cedo|Não."], "vertraging = atraso.", ["v-vertraging"]),
+    LI("Door werkzaamheden rijden er geen treinen.", ["Door werkzaamheden rijden er geen treinen"], "Devido a obras não há comboios.", "werkzaamheden = obras.", ["v-storing"]),
+    FE(["De","trein","uitvalt","vandaag."], 2, "valt … uit", "Separável: de trein valt vandaag uit.", ["v-uitvallen"]),
+    CO("text","Anúncio na estação", "Dames en heren, door een storing tussen Utrecht en Amersfoort rijden er minder treinen. De intercity naar Amersfoort van 14.32 uur valt uit. Reizigers naar Amersfoort kunnen de bus nemen in plaats van de trein.",
+       [("Porque circulam menos comboios?", ["*Por causa de uma avaria","Por causa do tempo","Por causa de uma greve"]),("O que podem fazer os passageiros para Amersfoort?", ["*Apanhar o autocarro","Esperar pelo comboio seguinte em Utrecht","Ir a pé"])],
+       "reizigers = passageiros.", ["v-storing","v-uitvallen"]),
+    WO("O tempo de espera é de vinte minutos.", ["De","wachttijd","is","twintig","minuten"], "minuten no plural.", ["v-wachttijd"]),
+  ], diff=3, mins=6)
+
+L(5, "Uma viagem de comboio", "Revisão: planear e fazer uma viagem no OV.",
+  ["Planear uma viagem e resolver imprevistos"],
+  ex=[("Ik neem de trein van 9.12 uur naar Amsterdam en ik stap in Utrecht over.","Apanho o comboio das 9h12 para Amesterdão e mudo em Utrecht.")],
+  review=["v-inchecken","v-uitchecken","v-perron","v-overstappen","v-vertraging","v-uitvallen","v-kaartje","v-retour"],
+  cefr=C, exs=[
+    DL([("Funcionária","Kan ik u helpen?","Posso ajudar?"),("Pedro","Ja, hoe kom ik in Groningen?","Sim, como chego a Groningen?"),("Funcionária","")], ["*U moet in Amersfoort overstappen. De trein vertrekt van spoor zeven.","U checkt bij de kassa.|Não responde.","Retour, graag.|O cliente é que diria isto."], "Instrução completa.", ["v-overstappen","v-perron"]),
+    TR("pt-nl","Tenho de mudar em Utrecht.", ["Ik moet in Utrecht overstappen"], "moeten + infinitivo no fim.", ["v-overstappen"]),
+    TR("nl-pt","Vergeet niet uit te checken!", ["Não te esqueças de validar à saída","Não se esqueça de fazer check-out"], "uit te checken.", ["v-uitchecken"]),
+    FE(["De","trein","vertrekt","van","perron","vijf","om","kwart","over","drie","en","ik","overstap","in","Utrecht."], 12, "stap … over", "Separável: ik stap in Utrecht over.", ["v-overstappen"]),
+    LI("De trein heeft een kwartier vertraging.", ["De trein heeft een kwartier vertraging"], "O comboio tem um quarto de hora de atraso.", "kwartier = 15 minutos.", ["v-vertraging"]),
+    MA([("Enkele reis of retour?","Ida ou ida e volta?"),("Van welk spoor?","De que linha?"),("Waar moet ik overstappen?","Onde tenho de mudar?"),("De trein valt uit.","O comboio foi suprimido.")], "Frases de viagem.", ["v-retour","v-perron","v-overstappen","v-uitvallen"]),
+    CO("text","Uma viagem atribulada", "Ana wil naar haar vriendin in Groningen. Ze checkt om negen uur in op Utrecht Centraal. De trein naar Groningen valt uit door een storing. Ze neemt de trein naar Zwolle en stapt daar over. Ze komt een uur later aan dan gepland.",
+       [("Porque não apanha o comboio direto?", ["*Foi suprimido por uma avaria","Estava cheio","Perdeu-o"]),("Onde muda de comboio?", ["*Em Zwolle","Em Utrecht","Em Amesterdão"]),("Com quanto atraso chega?", ["*Uma hora","Dez minutos","Não chega"])],
+       "gepland = planeado.", ["v-uitvallen","v-overstappen"]),
+    WO("O comboio chega às dez e meia.", ["De","trein","komt","om","half","elf","aan"], "aankomen separável.", ["v-aankomen"]),
+    FB("Er rijden geen treinen. Neem de bus ___ de trein.", ["in plaats van"], "in plaats van = em vez de.", ["v-in-plaats-van"], choices=["in plaats van","door","van"], tr="Não há comboios. Apanha o autocarro em vez do comboio."),
+    SW("Escreva uma mensagem a um amigo: o seu comboio está atrasado e diga a que horas chega.", ["Hoi(,) mijn trein heeft vertraging(.) Ik kom om [half|kwart over] [acht|negen|tien] aan"],
+       ["Explica o problema (vertraging, valt uit, storing)","Diz a hora de chegada com «aankomen»","Partícula no fim"], 8, "Modelo: «Hoi Tom, mijn trein heeft twintig minuten vertraging. Ik kom om half tien aan.»", ["v-vertraging","v-aankomen"]),
+  ], diff=3, mins=7)
+
+W()
