@@ -37,6 +37,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
   const [response, setResponse] = useState<ExerciseResponse | null>(null);
   const [result, setResult] = useState<ExerciseResult | null>(null);
   const [selfCheck, setSelfCheck] = useState<string | null>(null);
+  const [confirmExit, setConfirmExit] = useState(false);
   const firstAttempts = useRef(new Map<string, RunnerAnswer>());
   const skipped = useRef<string[]>([]);
   const continueRef = useRef<HTMLButtonElement>(null);
@@ -87,11 +88,20 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
   return (
     <div className="runner">
       <header className="runner-header">
-        <button type="button" className="icon-btn" onClick={onExit} aria-label="Sair (o progresso desta lição não é guardado)">
+        <button type="button" className="icon-btn" onClick={() => setConfirmExit(true)} aria-label="Sair">
           <Icon name="close" />
         </button>
         <ProgressBar value={progressFraction(session)} label={`Progresso em ${title}`} />
       </header>
+      {confirmExit && (
+        <div className="exit-confirm" role="alertdialog" aria-labelledby="exit-title">
+          <p id="exit-title"><strong>Sair agora?</strong> O progresso desta sessão não fica guardado.</p>
+          <div className="row">
+            <button type="button" className="btn btn-primary" autoFocus onClick={() => setConfirmExit(false)}>Continuar</button>
+            <button type="button" className="btn btn-secondary" onClick={onExit}>Sair</button>
+          </div>
+        </div>
+      )}
 
       <main className="runner-body" id="conteudo">
         {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}

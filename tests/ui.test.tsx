@@ -20,7 +20,6 @@ beforeEach(async () => {
   contentRepo.clear();
   vi.stubGlobal('fetch', (url: string) => fetcher(url));
   vi.stubGlobal('scrollTo', () => {});
-  window.confirm = () => true;
 });
 afterEach(() => {
   cleanup();
@@ -200,6 +199,22 @@ describe('lição completa', () => {
     expect(fb.textContent).toMatch(/despedida/); // feedback específico da opção
     await user.click(screen.getByRole('button', { name: 'Continuar' }));
     expect(await screen.findByRole('heading', { name: 'Traduza para português.' })).toBeTruthy();
+  });
+});
+
+describe('sair de uma lição', () => {
+  it('pede confirmação dentro da página e permite continuar ou sair', async () => {
+    const user = userEvent.setup();
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await user.click(screen.getByRole('button', { name: 'Sair' }));
+    expect(screen.getByRole('alertdialog').textContent).toMatch(/não fica guardado/);
+    await user.click(screen.getByRole('button', { name: 'Continuar' }));
+    expect(screen.queryByRole('alertdialog')).toBeNull();
+    await user.click(screen.getByRole('button', { name: 'Sair' }));
+    await user.click(within(screen.getByRole('alertdialog')).getByRole('button', { name: 'Sair' }));
+    await waitFor(() => expect(window.location.hash).toBe('#/curso/s1'));
   });
 });
 

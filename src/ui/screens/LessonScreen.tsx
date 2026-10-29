@@ -58,9 +58,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     return (
       <ExerciseRunner key={runKey} title={lesson.title} exercises={lesson.exercises}
         speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} lenientAccents={app.settings.lenientAccents}
-        onExit={() => {
-          if (window.confirm('Sair da lição? O progresso desta lição não fica guardado.')) navigate(href.course(unit.sectionId));
-        }}
+        onExit={() => navigate(href.course(unit.sectionId))}
         onFinish={async (answers: RunnerAnswer[]) => {
           setPhase('saving');
           const endedAt = Date.now();
