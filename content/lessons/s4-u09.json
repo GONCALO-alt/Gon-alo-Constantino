@@ -1970,9 +1970,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ainda tenho dúvidas.",
           "tokens": [
-            "nog.",
+            "Ik",
             "twijfel",
-            "Ik"
+            "nog."
           ],
           "alternatives": [],
           "explanation": "Ik twijfel nog.",
@@ -1985,12 +1985,12 @@
           "translation": "Não concordo contigo.",
           "tokens": [
             "Ik",
-            "niet",
             "ben",
             "het",
+            "niet",
+            "met",
             "je",
-            "eens.",
-            "met"
+            "eens."
           ],
           "alternatives": [],
           "explanation": "Ik ben het niet met je eens.",
@@ -2002,10 +2002,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Não estou convencido.",
           "tokens": [
-            "niet",
             "Ik",
-            "overtuigd.",
-            "ben"
+            "ben",
+            "niet",
+            "overtuigd."
           ],
           "alternatives": [],
           "explanation": "Ik ben niet overtuigd.",
@@ -2017,7 +2017,7 @@
           "id": "s4-u09-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat vinden jullie van dit voorstel?»?",
+          "prompt": "O que significa: «Ik ben het helemaal met je eens.»?",
           "options": [
             {
               "id": "a",
@@ -2026,88 +2026,85 @@
             },
             {
               "id": "b",
-              "text": "Eu, pelo contrário, acho bem.",
-              "correct": false
+              "text": "Concordo totalmente contigo.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O que acham desta proposta?",
-              "correct": true
+              "text": "Isso é verdade, mas é caro.",
+              "correct": false
             }
           ],
-          "explanation": "«Wat vinden jullie van dit voorstel?» = O que acham desta proposta?",
+          "explanation": "«Ik ben het helemaal met je eens.» = Concordo totalmente contigo.",
           "vocabRefs": [
-            "v-voorstel"
+            "v-helemaal"
           ]
         },
         {
           "id": "s4-u09-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik ben niet overtuigd.»?",
+          "prompt": "O que significa: «Ik begrijp je punt, maar ik zie het anders.»?",
           "options": [
             {
               "id": "a",
-              "text": "Não estou convencido.",
-              "correct": true
+              "text": "Votamos?",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Isso é verdade.",
-              "correct": false
+              "text": "Percebo o teu ponto, mas vejo de outra forma.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Vamos procurar um meio-termo.",
+              "text": "Tenho outra opinião sobre isso.",
               "correct": false
             }
           ],
-          "explanation": "«Ik ben niet overtuigd.» = Não estou convencido.",
+          "explanation": "«Ik begrijp je punt, maar ik zie het anders.» = Percebo o teu ponto, mas vejo de outra forma.",
           "vocabRefs": [
-            "v-overtuigd"
+            "v-ik-zie-het-anders"
           ]
         },
         {
           "id": "s4-u09-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Com isso eu concordo.",
+          "prompt": "Ainda tenho dúvidas.",
           "tokens": [
-            "punt,",
-            "ik",
-            "Daar",
-            "het",
-            "mee",
             "ben",
-            "overtuigd.",
-            "eens."
+            "twijfel",
+            "het",
+            "Ik",
+            "nog."
           ],
           "answers": [
-            "Daar ben ik het mee eens."
+            "Ik twijfel nog."
           ],
-          "explanation": "Com isso eu concordo. = Daar ben ik het mee eens. (sobram: punt,, overtuigd.)",
+          "explanation": "Ainda tenho dúvidas. = Ik twijfel nog. (sobram: het, ben)",
           "vocabRefs": []
         },
         {
           "id": "s4-u09-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho outra opinião sobre isso.",
+          "prompt": "Eu, pelo contrário, acho bem.",
           "tokens": [
-            "Daar",
-            "over.",
-            "denk",
-            "ik",
-            "overtuigd.",
-            "anders",
+            "Ik",
+            "goed.",
+            "vind",
+            "het",
+            "zoeken.",
+            "juist",
             "we"
           ],
           "answers": [
-            "Daar denk ik anders over."
+            "Ik vind het juist goed."
           ],
-          "explanation": "Tenho outra opinião sobre isso. = Daar denk ik anders over. (sobram: overtuigd., we)",
+          "explanation": "Eu, pelo contrário, acho bem. = Ik vind het juist goed. (sobram: zoeken., we)",
           "vocabRefs": [
-            "v-anders-denken"
+            "v-juist"
           ]
         }
       ],
@@ -2164,16 +2161,16 @@
       ],
       "examples": [
         {
+          "nl": "Ik ben het niet met je eens.",
+          "pt": "Não concordo contigo."
+        },
+        {
           "nl": "Ik ben het oneens met dit plan.",
           "pt": "Discordo deste plano."
         },
         {
-          "nl": "Je hebt een punt.",
-          "pt": "Tens alguma razão."
-        },
-        {
-          "nl": "Precies!",
-          "pt": "Exatamente!"
+          "nl": "Ik ben het helemaal met je eens.",
+          "pt": "Concordo totalmente contigo."
         }
       ],
       "grammar": [],
@@ -2300,43 +2297,43 @@
           "id": "s4-u09-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vocês concordam um com o outro?",
+          "prompt": "Com isso eu concordo.",
           "tokens": [
-            "eens?",
-            "het",
-            "elkaar",
-            "zoeken.",
-            "Zijn",
+            "Daar",
+            "is",
             "ben",
-            "met",
-            "jullie"
+            "je",
+            "ik",
+            "eens.",
+            "het",
+            "mee"
           ],
           "answers": [
-            "Zijn jullie het met elkaar eens?"
+            "Daar ben ik het mee eens."
           ],
-          "explanation": "Vocês concordam um com o outro? = Zijn jullie het met elkaar eens? (sobram: ben, zoeken.)",
+          "explanation": "Com isso eu concordo. = Daar ben ik het mee eens. (sobram: is, je)",
           "vocabRefs": []
         },
         {
           "id": "s4-u09-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não tenho opinião sobre isso.",
+          "prompt": "Não estou convencido.",
           "tokens": [
-            "over.",
-            "jullie",
+            "overtuigd.",
             "Ik",
-            "geen",
-            "deels",
-            "heb",
-            "er",
-            "mening"
+            "stemmen?",
+            "Daar",
+            "niet",
+            "ben"
           ],
           "answers": [
-            "Ik heb er geen mening over."
+            "Ik ben niet overtuigd."
           ],
-          "explanation": "Não tenho opinião sobre isso. = Ik heb er geen mening over. (sobram: jullie, deels)",
-          "vocabRefs": []
+          "explanation": "Não estou convencido. = Ik ben niet overtuigd. (sobram: Daar, stemmen?)",
+          "vocabRefs": [
+            "v-overtuigd"
+          ]
         },
         {
           "id": "s4-u09-l008-e09",
@@ -2358,8 +2355,8 @@
           "options": [
             {
               "id": "a",
-              "text": "Exatamente!",
-              "correct": false
+              "text": "Não concordo contigo.",
+              "correct": true
             },
             {
               "id": "b",
@@ -2368,8 +2365,8 @@
             },
             {
               "id": "c",
-              "text": "Não concordo contigo.",
-              "correct": true
+              "text": "Percebo o teu ponto, mas vejo de outra forma.",
+              "correct": false
             }
           ],
           "explanation": "«Ik ben het niet met je eens.» = Não concordo contigo.",
@@ -2429,16 +2426,16 @@
       ],
       "examples": [
         {
-          "nl": "Laten we een compromis zoeken.",
-          "pt": "Vamos procurar um meio-termo."
+          "nl": "Zijn jullie het met elkaar eens?",
+          "pt": "Vocês concordam um com o outro?"
         },
         {
-          "nl": "Aan de ene kant is het goedkoop, aan de andere kant is het ver.",
-          "pt": "Por um lado é barato, por outro é longe."
+          "nl": "Precies!",
+          "pt": "Exatamente!"
         },
         {
-          "nl": "Ik ben niet overtuigd.",
-          "pt": "Não estou convencido."
+          "nl": "Wat vinden jullie van dit voorstel?",
+          "pt": "O que acham desta proposta?"
         }
       ],
       "grammar": [],
@@ -2447,105 +2444,74 @@
           "id": "s4-u09-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Percebo o teu ponto, mas vejo de outra forma.",
+          "prompt": "Concordo totalmente contigo.",
           "tokens": [
-            "punt,",
-            "gelijk.",
-            "Ik",
-            "anders.",
-            "zie",
-            "je",
+            "jullie",
             "het",
-            "dit",
-            "begrijp",
-            "maar",
-            "ik"
+            "ben",
+            "Dat",
+            "eens.",
+            "helemaal",
+            "Ik",
+            "met",
+            "je"
           ],
           "answers": [
-            "Ik begrijp je punt, maar ik zie het anders."
+            "Ik ben het helemaal met je eens."
           ],
-          "explanation": "Percebo o teu ponto, mas vejo de outra forma. = Ik begrijp je punt, maar ik zie het anders. (sobram: gelijk., dit)",
+          "explanation": "Concordo totalmente contigo. = Ik ben het helemaal met je eens. (sobram: Dat, jullie)",
           "vocabRefs": [
-            "v-ik-zie-het-anders"
+            "v-helemaal"
           ]
         },
         {
           "id": "s4-u09-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não concordo contigo.",
-          "tokens": [
-            "het",
-            "ben",
-            "waar,",
-            "eens.",
-            "met",
-            "Ik",
-            "je",
-            "elkaar",
-            "niet"
-          ],
-          "answers": [
-            "Ik ben het niet met je eens."
-          ],
-          "explanation": "Não concordo contigo. = Ik ben het niet met je eens. (sobram: elkaar, waar,)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s4-u09-l009-e03",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "Isso é verdade, mas é caro.",
           "tokens": [
-            "is",
-            "deels",
             "wel",
-            "maar",
-            "duur.",
             "het",
-            "is",
             "Dat",
-            "hebt",
-            "waar,"
+            "maar",
+            "waar,",
+            "anders.",
+            "is",
+            "Wat",
+            "duur.",
+            "is"
           ],
           "answers": [
             "Dat is waar, maar het is wel duur."
           ],
-          "explanation": "Isso é verdade, mas é caro. = Dat is waar, maar het is wel duur. (sobram: hebt, deels)",
+          "explanation": "Isso é verdade, mas é caro. = Dat is waar, maar het is wel duur. (sobram: Wat, anders.)",
           "vocabRefs": [
             "v-dat-is-waar"
           ]
         },
         {
+          "id": "s4-u09-l009-e03",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Não tenho opinião sobre isso.",
+          "tokens": [
+            "over.",
+            "Ik",
+            "geen",
+            "ben",
+            "mening",
+            "Daar",
+            "er",
+            "heb"
+          ],
+          "answers": [
+            "Ik heb er geen mening over."
+          ],
+          "explanation": "Não tenho opinião sobre isso. = Ik heb er geen mening over. (sobram: ben, Daar)",
+          "vocabRefs": []
+        },
+        {
           "id": "s4-u09-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hoe denk jij daarover?",
-          "answers": [
-            "Hoe denk jij daarover?"
-          ],
-          "translation": "O que pensas sobre isso?",
-          "explanation": "«Hoe denk jij daarover?» = O que pensas sobre isso?",
-          "vocabRefs": [
-            "v-daarover"
-          ]
-        },
-        {
-          "id": "s4-u09-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat is jouw standpunt?",
-          "answers": [
-            "Wat is jouw standpunt?"
-          ],
-          "translation": "Qual é a tua posição?",
-          "explanation": "«Wat is jouw standpunt?» = Qual é a tua posição?",
-          "vocabRefs": [
-            "v-standpunt"
-          ]
-        },
-        {
-          "id": "s4-u09-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik ben het helemaal met je eens.",
@@ -2559,53 +2525,110 @@
           ]
         },
         {
+          "id": "s4-u09-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik ben het oneens met dit plan.",
+          "answers": [
+            "Ik ben het oneens met dit plan."
+          ],
+          "translation": "Discordo deste plano.",
+          "explanation": "«Ik ben het oneens met dit plan.» = Discordo deste plano.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s4-u09-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Hoe denk jij daarover?",
+          "answers": [
+            "Hoe denk jij daarover?"
+          ],
+          "translation": "O que pensas sobre isso?",
+          "explanation": "«Hoe denk jij daarover?» = O que pensas sobre isso?",
+          "vocabRefs": [
+            "v-daarover"
+          ]
+        },
+        {
           "id": "s4-u09-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Qual é a tua posição?",
+          "translation": "Eu, pelo contrário, acho bem.",
           "tokens": [
-            "Wat",
-            "jouw",
-            "is",
-            "standpunt?"
+            "Ik",
+            "vind",
+            "het",
+            "juist",
+            "goed."
           ],
           "alternatives": [],
-          "explanation": "Wat is jouw standpunt?",
+          "explanation": "Ik vind het juist goed.",
           "vocabRefs": [
-            "v-standpunt"
+            "v-juist"
           ]
         },
         {
           "id": "s4-u09-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O que achas disso?",
+          "translation": "Concordo em parte contigo.",
           "tokens": [
-            "vind",
-            "ervan?",
-            "jij",
-            "Wat"
+            "Ik",
+            "ben",
+            "het",
+            "deels",
+            "met",
+            "je",
+            "eens."
           ],
           "alternatives": [],
-          "explanation": "Wat vind jij ervan?",
+          "explanation": "Ik ben het deels met je eens.",
           "vocabRefs": [
-            "v-ervan"
+            "v-deels"
           ]
         },
         {
           "id": "s4-u09-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «stemmen»?",
+          "prompt": "O que significa «het oneens zijn»?",
           "options": [
             {
               "id": "a",
-              "text": "disso",
+              "text": "proposta",
               "correct": false
             },
             {
               "id": "b",
-              "text": "votar",
+              "text": "ter dúvidas",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "discordar",
+              "correct": true
+            }
+          ],
+          "explanation": "«het oneens zijn» = discordar.",
+          "vocabRefs": [
+            "v-oneens"
+          ]
+        },
+        {
+          "id": "s4-u09-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «het standpunt»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "convencido",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "posição",
               "correct": true
             },
             {
@@ -2614,36 +2637,9 @@
               "correct": false
             }
           ],
-          "explanation": "«stemmen» = votar.",
+          "explanation": "«het standpunt» = posição, ponto de vista.",
           "vocabRefs": [
-            "v-stemmen"
-          ]
-        },
-        {
-          "id": "s4-u09-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «ik zie het anders»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "ter razão",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "pelo contrário",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "vejo as coisas de outra forma",
-              "correct": true
-            }
-          ],
-          "explanation": "«ik zie het anders» = vejo as coisas de outra forma.",
-          "vocabRefs": [
-            "v-ik-zie-het-anders"
+            "v-standpunt"
           ]
         }
       ],

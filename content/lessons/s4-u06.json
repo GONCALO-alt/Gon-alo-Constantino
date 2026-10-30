@@ -1874,16 +1874,16 @@
       ],
       "examples": [
         {
-          "nl": "Mijn achtergrond is in de horeca.",
-          "pt": "O meu percurso é na hotelaria e restauração."
+          "nl": "Vertel eens iets over uzelf.",
+          "pt": "Fale-me um pouco de si."
         },
         {
-          "nl": "Ik ben in 2018 afgestudeerd in Lissabon.",
-          "pt": "Formei-me em 2018 em Lisboa."
+          "nl": "De proeftijd is een maand.",
+          "pt": "O período experimental é de um mês."
         },
         {
-          "nl": "Waarom wilt u bij ons werken?",
-          "pt": "Porque quer trabalhar connosco?"
+          "nl": "Wat is het vervolg van de procedure?",
+          "pt": "Quais são os próximos passos do processo?"
         }
       ],
       "grammar": [],
@@ -1930,11 +1930,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Atualmente trabalho como rececionista.",
           "tokens": [
-            "werk",
             "Momenteel",
-            "receptionist.",
+            "werk",
             "ik",
-            "als"
+            "als",
+            "receptionist."
           ],
           "alternatives": [],
           "explanation": "Momenteel werk ik als receptionist.",
@@ -1948,12 +1948,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Como é um dia de trabalho normal?",
           "tokens": [
-            "gewone",
-            "een",
-            "ziet",
             "Hoe",
-            "eruit?",
-            "werkdag"
+            "ziet",
+            "een",
+            "gewone",
+            "werkdag",
+            "eruit?"
           ],
           "alternatives": [],
           "explanation": "Hoe ziet een gewone werkdag eruit?",
@@ -1965,11 +1965,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Procuro um novo desafio.",
           "tokens": [
-            "uitdaging.",
-            "nieuwe",
             "Ik",
+            "zoek",
             "een",
-            "zoek"
+            "nieuwe",
+            "uitdaging."
           ],
           "alternatives": [],
           "explanation": "Ik zoek een nieuwe uitdaging.",
@@ -1981,54 +1981,54 @@
           "id": "s4-u06-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Momenteel werk ik als receptionist.»?",
+          "prompt": "O que significa: «Ik ben in 2018 afgestudeerd in Lissabon.»?",
           "options": [
             {
               "id": "a",
-              "text": "Atualmente trabalho como rececionista.",
+              "text": "Formei-me em 2018 em Lisboa.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Formei-me em 2018 em Lisboa.",
+              "text": "Recebo subsídio de deslocação?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Porque quer trabalhar connosco?",
+              "text": "Fale-me um pouco de si.",
               "correct": false
             }
           ],
-          "explanation": "«Momenteel werk ik als receptionist.» = Atualmente trabalho como rececionista.",
+          "explanation": "«Ik ben in 2018 afgestudeerd in Lissabon.» = Formei-me em 2018 em Lisboa.",
           "vocabRefs": [
-            "v-momenteel"
+            "v-afgestudeerd"
           ]
         },
         {
           "id": "s4-u06-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat zijn uw salarisverwachtingen?»?",
+          "prompt": "O que significa: «De proeftijd is een maand.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quais são as suas expectativas salariais?",
-              "correct": true
+              "text": "O salário é 3000 euros brutos por mês.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Quais são os próximos passos do processo?",
-              "correct": false
+              "text": "O período experimental é de um mês.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O período experimental é de um mês.",
+              "text": "O meu percurso é na hotelaria e restauração.",
               "correct": false
             }
           ],
-          "explanation": "«Wat zijn uw salarisverwachtingen?» = Quais são as suas expectativas salariais?",
+          "explanation": "«De proeftijd is een maand.» = O período experimental é de um mês.",
           "vocabRefs": [
-            "v-salarisverwachting"
+            "v-proeftijd"
           ]
         },
         {
@@ -2037,18 +2037,18 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Fale-me um pouco de si.",
           "tokens": [
-            "Vertel",
-            "Wat",
-            "jaar",
             "over",
-            "iets",
             "uzelf.",
-            "eens"
+            "Vertel",
+            "vervolg",
+            "iets",
+            "eens",
+            "afgestudeerd"
           ],
           "answers": [
             "Vertel eens iets over uzelf."
           ],
-          "explanation": "Fale-me um pouco de si. = Vertel eens iets over uzelf. (sobram: Wat, jaar)",
+          "explanation": "Fale-me um pouco de si. = Vertel eens iets over uzelf. (sobram: afgestudeerd, vervolg)",
           "vocabRefs": [
             "v-vertel-eens"
           ]
@@ -2057,20 +2057,21 @@
           "id": "s4-u06-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Obrigado pela agradável entrevista.",
+          "prompt": "Como é um dia de trabalho normal?",
           "tokens": [
-            "Wat",
-            "Bedankt",
-            "gesprek.",
+            "aanbod",
+            "een",
+            "eruit?",
+            "gewone",
+            "ziet",
             "prettige",
-            "voor",
-            "het",
-            "de"
+            "Hoe",
+            "werkdag"
           ],
           "answers": [
-            "Bedankt voor het prettige gesprek."
+            "Hoe ziet een gewone werkdag eruit?"
           ],
-          "explanation": "Obrigado pela agradável entrevista. = Bedankt voor het prettige gesprek. (sobram: de, Wat)",
+          "explanation": "Como é um dia de trabalho normal? = Hoe ziet een gewone werkdag eruit? (sobram: aanbod, prettige)",
           "vocabRefs": []
         }
       ],
@@ -2136,16 +2137,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik zoek een nieuwe uitdaging.",
-          "pt": "Procuro um novo desafio."
+          "nl": "Hoe groot is het team?",
+          "pt": "Qual é o tamanho da equipa?"
         },
         {
-          "nl": "Wat is de ingangsdatum?",
-          "pt": "Qual é a data de início?"
+          "nl": "Wat is het vervolg van de procedure?",
+          "pt": "Quais são os próximos passos do processo?"
         },
         {
-          "nl": "Mijn achtergrond is in de horeca.",
-          "pt": "O meu percurso é na hotelaria e restauração."
+          "nl": "Wat zijn uw salarisverwachtingen?",
+          "pt": "Quais são as suas expectativas salariais?"
         }
       ],
       "grammar": [],
@@ -2154,73 +2155,73 @@
           "id": "s4-u06-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «atualmente» em neerlandês?",
+          "prompt": "Como se diz «subsídio de férias» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "zich ontwikkelen",
+              "text": "zwakke punten",
               "correct": false
             },
             {
               "id": "b",
-              "text": "momenteel",
-              "correct": true
+              "text": "sterke punten",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "netto",
-              "correct": false
+              "text": "vakantiegeld",
+              "correct": true
             }
           ],
-          "explanation": "atualmente = «momenteel».",
+          "explanation": "subsídio de férias = «vakantiegeld».",
           "vocabRefs": [
-            "v-momenteel"
+            "v-vakantiegeld"
           ]
         },
         {
           "id": "s4-u06-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «pontos fortes» em neerlandês?",
+          "prompt": "Como se diz «desafio» em neerlandês?",
           "options": [
             {
               "id": "a",
               "text": "sterke punten",
-              "correct": true
+              "correct": false
             },
             {
               "id": "b",
-              "text": "inwerken",
-              "correct": false
+              "text": "uitdaging",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "salarisverwachting",
+              "text": "ingangsdatum",
               "correct": false
             }
           ],
-          "explanation": "pontos fortes = «sterke punten».",
+          "explanation": "desafio = «uitdaging».",
           "vocabRefs": [
-            "v-sterke-punten"
+            "v-uitdaging"
           ]
         },
         {
           "id": "s4-u06-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Krijg ik een ___?",
-          "translation": "Recebo subsídio de deslocação?",
+          "sentence": "We willen u graag een ___ doen.",
+          "translation": "Gostaríamos de lhe fazer uma proposta.",
           "answers": [
-            "reiskostenvergoeding"
+            "aanbod"
           ],
           "choices": [
-            "netto",
-            "achtergrond",
-            "reiskostenvergoeding"
+            "aanbod",
+            "momenteel",
+            "vervolg"
           ],
-          "explanation": "Krijg ik een reiskostenvergoeding?",
+          "explanation": "We willen u graag een aanbod doen.",
           "vocabRefs": [
-            "v-reiskostenvergoeding"
+            "v-aanbod"
           ]
         },
         {
@@ -2234,8 +2235,8 @@
           ],
           "choices": [
             "uitdaging",
-            "bruto",
-            "inwerken"
+            "ingangsdatum",
+            "aanbod"
           ],
           "explanation": "Ik zoek een nieuwe uitdaging.",
           "vocabRefs": [
@@ -2244,20 +2245,6 @@
         },
         {
           "id": "s4-u06-l008-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn achtergrond is in de horeca.",
-          "answers": [
-            "Mijn achtergrond is in de horeca."
-          ],
-          "translation": "O meu percurso é na hotelaria e restauração.",
-          "explanation": "«Mijn achtergrond is in de horeca.» = O meu percurso é na hotelaria e restauração.",
-          "vocabRefs": [
-            "v-achtergrond"
-          ]
-        },
-        {
-          "id": "s4-u06-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Bedankt voor het prettige gesprek.",
@@ -2269,89 +2256,96 @@
           "vocabRefs": []
         },
         {
-          "id": "s4-u06-l008-e07",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quais são os próximos passos do processo?",
-          "tokens": [
-            "van",
-            "achtergrond",
-            "krijg",
-            "procedure?",
-            "de",
-            "Wat",
-            "vervolg",
-            "het",
-            "is"
-          ],
+          "id": "s4-u06-l008-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Wat is het vervolg van de procedure?",
           "answers": [
             "Wat is het vervolg van de procedure?"
           ],
-          "explanation": "Quais são os próximos passos do processo? = Wat is het vervolg van de procedure? (sobram: achtergrond, krijg)",
+          "translation": "Quais são os próximos passos do processo?",
+          "explanation": "«Wat is het vervolg van de procedure?» = Quais são os próximos passos do processo?",
           "vocabRefs": [
             "v-vervolg"
           ]
         },
         {
+          "id": "s4-u06-l008-e07",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Obrigado pela agradável entrevista.",
+          "tokens": [
+            "achtergrond",
+            "voor",
+            "gesprek.",
+            "In",
+            "Bedankt",
+            "het",
+            "prettige"
+          ],
+          "answers": [
+            "Bedankt voor het prettige gesprek."
+          ],
+          "explanation": "Obrigado pela agradável entrevista. = Bedankt voor het prettige gesprek. (sobram: In, achtergrond)",
+          "vocabRefs": []
+        },
+        {
           "id": "s4-u06-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é o tamanho da equipa?",
+          "prompt": "Recebo subsídio de deslocação?",
           "tokens": [
-            "werkdag",
-            "groot",
-            "is",
-            "salaris",
-            "team?",
-            "Hoe",
-            "het"
+            "u",
+            "gewerkt.",
+            "reiskostenvergoeding?",
+            "ik",
+            "Krijg",
+            "een"
           ],
           "answers": [
-            "Hoe groot is het team?"
+            "Krijg ik een reiskostenvergoeding?"
           ],
-          "explanation": "Qual é o tamanho da equipa? = Hoe groot is het team? (sobram: werkdag, salaris)",
+          "explanation": "Recebo subsídio de deslocação? = Krijg ik een reiskostenvergoeding? (sobram: u, gewerkt.)",
           "vocabRefs": [
-            "v-team"
+            "v-reiskostenvergoeding"
           ]
         },
         {
           "id": "s4-u06-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "vakantiegeld",
-          "pt": "subsídio de férias",
-          "article": "het",
-          "explanation": "het vakantiegeld.",
+          "noun": "achtergrond",
+          "pt": "percurso",
+          "article": "de",
+          "explanation": "de achtergrond.",
           "vocabRefs": [
-            "v-vakantiegeld"
+            "v-achtergrond"
           ]
         },
         {
           "id": "s4-u06-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat is de ingangsdatum?»?",
+          "prompt": "O que significa: «Waarom wilt u bij ons werken?»?",
           "options": [
             {
               "id": "a",
-              "text": "Qual é a data de início?",
-              "correct": true
+              "text": "Em maio recebes o subsídio de férias.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Fale-me um pouco de si.",
-              "correct": false
+              "text": "Porque quer trabalhar connosco?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O meu percurso é na hotelaria e restauração.",
+              "text": "Segundo a convenção coletiva o salário está entre 2800 e 3400 euros.",
               "correct": false
             }
           ],
-          "explanation": "«Wat is de ingangsdatum?» = Qual é a data de início?",
-          "vocabRefs": [
-            "v-ingangsdatum"
-          ]
+          "explanation": "«Waarom wilt u bij ons werken?» = Porque quer trabalhar connosco?",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2416,16 +2410,16 @@
       ],
       "examples": [
         {
+          "nl": "Volgens de cao is het salaris tussen 2800 en 3400 euro.",
+          "pt": "Segundo a convenção coletiva o salário está entre 2800 e 3400 euros."
+        },
+        {
           "nl": "Vertel eens iets over uzelf.",
           "pt": "Fale-me um pouco de si."
         },
         {
-          "nl": "Mijn achtergrond is in de horeca.",
-          "pt": "O meu percurso é na hotelaria e restauração."
-        },
-        {
-          "nl": "Ik heb drie jaar bij een hotel gewerkt.",
-          "pt": "Trabalhei três anos num hotel."
+          "nl": "Mijn zwakke punt is dat ik soms ongeduldig ben.",
+          "pt": "O meu ponto fraco é que às vezes sou impaciente."
         }
       ],
       "grammar": [],
@@ -2434,84 +2428,70 @@
           "id": "s4-u06-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Recebo subsídio de deslocação?",
+          "prompt": "O período experimental é de um mês.",
           "tokens": [
+            "zwakke",
             "een",
-            "uzelf.",
-            "ik",
-            "Krijg",
-            "u",
-            "reiskostenvergoeding?"
+            "is",
+            "en",
+            "proeftijd",
+            "De",
+            "maand."
           ],
           "answers": [
-            "Krijg ik een reiskostenvergoeding?"
+            "De proeftijd is een maand."
           ],
-          "explanation": "Recebo subsídio de deslocação? = Krijg ik een reiskostenvergoeding? (sobram: u, uzelf.)",
+          "explanation": "O período experimental é de um mês. = De proeftijd is een maand. (sobram: zwakke, en)",
           "vocabRefs": [
-            "v-reiskostenvergoeding"
+            "v-proeftijd"
           ]
         },
         {
           "id": "s4-u06-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é a data de início?",
+          "prompt": "Atualmente trabalho como rececionista.",
           "tokens": [
-            "is",
-            "de",
-            "Hoe",
-            "het",
-            "Wat",
-            "ingangsdatum?"
+            "receptionist.",
+            "ik",
+            "in",
+            "werk",
+            "als",
+            "euro.",
+            "Momenteel"
           ],
           "answers": [
-            "Wat is de ingangsdatum?"
+            "Momenteel werk ik als receptionist."
           ],
-          "explanation": "Qual é a data de início? = Wat is de ingangsdatum? (sobram: het, Hoe)",
+          "explanation": "Atualmente trabalho como rececionista. = Momenteel werk ik als receptionist. (sobram: in, euro.)",
           "vocabRefs": [
-            "v-ingangsdatum"
+            "v-momenteel"
           ]
         },
         {
           "id": "s4-u06-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gostaríamos de lhe fazer uma proposta.",
+          "prompt": "Procuro um novo desafio.",
           "tokens": [
-            "We",
-            "aanbod",
-            "graag",
-            "euro",
-            "willen",
-            "u",
+            "uitdaging.",
             "een",
+            "zoek",
+            "in",
+            "Ik",
             "salaris",
-            "doen."
+            "nieuwe"
           ],
           "answers": [
-            "We willen u graag een aanbod doen."
+            "Ik zoek een nieuwe uitdaging."
           ],
-          "explanation": "Gostaríamos de lhe fazer uma proposta. = We willen u graag een aanbod doen. (sobram: salaris, euro)",
+          "explanation": "Procuro um novo desafio. = Ik zoek een nieuwe uitdaging. (sobram: salaris, in)",
           "vocabRefs": [
-            "v-aanbod"
+            "v-uitdaging"
           ]
         },
         {
           "id": "s4-u06-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "In mei krijg je vakantiegeld.",
-          "answers": [
-            "In mei krijg je vakantiegeld."
-          ],
-          "translation": "Em maio recebes o subsídio de férias.",
-          "explanation": "«In mei krijg je vakantiegeld.» = Em maio recebes o subsídio de férias.",
-          "vocabRefs": [
-            "v-vakantiegeld"
-          ]
-        },
-        {
-          "id": "s4-u06-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Mijn zwakke punt is dat ik soms ongeduldig ben.",
@@ -2523,17 +2503,29 @@
           "vocabRefs": []
         },
         {
+          "id": "s4-u06-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Hoe ziet een gewone werkdag eruit?",
+          "answers": [
+            "Hoe ziet een gewone werkdag eruit?"
+          ],
+          "translation": "Como é um dia de trabalho normal?",
+          "explanation": "«Hoe ziet een gewone werkdag eruit?» = Como é um dia de trabalho normal?",
+          "vocabRefs": []
+        },
+        {
           "id": "s4-u06-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik zoek een nieuwe uitdaging.",
+          "audioText": "De proeftijd is een maand.",
           "answers": [
-            "Ik zoek een nieuwe uitdaging."
+            "De proeftijd is een maand."
           ],
-          "translation": "Procuro um novo desafio.",
-          "explanation": "«Ik zoek een nieuwe uitdaging.» = Procuro um novo desafio.",
+          "translation": "O período experimental é de um mês.",
+          "explanation": "«De proeftijd is een maand.» = O período experimental é de um mês.",
           "vocabRefs": [
-            "v-uitdaging"
+            "v-proeftijd"
           ]
         },
         {
@@ -2542,9 +2534,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Recebo subsídio de deslocação?",
           "tokens": [
-            "een",
             "Krijg",
             "ik",
+            "een",
             "reiskostenvergoeding?"
           ],
           "alternatives": [],
@@ -2560,10 +2552,10 @@
           "translation": "Fale-me um pouco de si.",
           "tokens": [
             "Vertel",
-            "uzelf.",
             "eens",
+            "iets",
             "over",
-            "iets"
+            "uzelf."
           ],
           "alternatives": [],
           "explanation": "Vertel eens iets over uzelf.",
@@ -2575,34 +2567,34 @@
           "id": "s4-u06-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «bruto»?",
+          "prompt": "O que significa «eruitzien»?",
           "options": [
             {
               "id": "a",
-              "text": "desenvolver-se",
+              "text": "pontos fracos",
               "correct": false
             },
             {
               "id": "b",
-              "text": "bruto",
-              "correct": true
+              "text": "equipa",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "integrar",
-              "correct": false
+              "text": "parecer",
+              "correct": true
             }
           ],
-          "explanation": "«bruto» = bruto.",
+          "explanation": "«eruitzien» = parecer, ter aspeto.",
           "vocabRefs": [
-            "v-bruto"
+            "v-eruitzien"
           ]
         },
         {
           "id": "s4-u06-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «vertel eens»?",
+          "prompt": "O que significa «de salarisverwachting»?",
           "options": [
             {
               "id": "a",
@@ -2611,18 +2603,18 @@
             },
             {
               "id": "b",
-              "text": "pontos fortes",
+              "text": "aceitar um emprego",
               "correct": false
             },
             {
               "id": "c",
-              "text": "conte lá",
+              "text": "expectativa salarial",
               "correct": true
             }
           ],
-          "explanation": "«vertel eens» = conte lá, fale-me.",
+          "explanation": "«de salarisverwachting» = expectativa salarial.",
           "vocabRefs": [
-            "v-vertel-eens"
+            "v-salarisverwachting"
           ]
         }
       ],

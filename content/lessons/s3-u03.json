@@ -1861,12 +1861,12 @@
           "pt": "No fim da rua."
         },
         {
-          "nl": "Ga rechtdoor tot het kruispunt.",
-          "pt": "Vá em frente até ao cruzamento."
+          "nl": "Het is zo'n twee kilometer.",
+          "pt": "São uns dois quilómetros."
         },
         {
-          "nl": "Na honderd meter.",
-          "pt": "Daqui a cem metros."
+          "nl": "Het is tien minuten lopen.",
+          "pt": "São dez minutos a pé."
         }
       ],
       "grammar": [],
@@ -1922,8 +1922,8 @@
           "translation": "Daqui a cem metros.",
           "tokens": [
             "Na",
-            "meter.",
-            "honderd"
+            "honderd",
+            "meter."
           ],
           "alternatives": [],
           "explanation": "Na honderd meter.",
@@ -1937,12 +1937,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Como chego à estação?",
           "tokens": [
-            "kom",
             "Hoe",
-            "het",
+            "kom",
+            "ik",
             "bij",
-            "station?",
-            "ik"
+            "het",
+            "station?"
           ],
           "alternatives": [],
           "explanation": "Hoe kom ik bij het station?",
@@ -1956,12 +1956,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O hotel fica na praça.",
           "tokens": [
-            "hotel",
             "Het",
+            "hotel",
             "staat",
+            "aan",
             "het",
-            "plein.",
-            "aan"
+            "plein."
           ],
           "alternatives": [],
           "explanation": "Het hotel staat aan het plein.",
@@ -1973,97 +1973,100 @@
           "id": "s3-u03-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Steek de brug over.»?",
+          "prompt": "O que significa: «Het is tien minuten lopen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Atravesse a ponte.",
+              "text": "São dez minutos a pé.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "São uns dois quilómetros.",
+              "text": "É na esquina.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "É depois da igreja.",
+              "text": "Há uma farmácia aqui perto?",
               "correct": false
             }
           ],
-          "explanation": "«Steek de brug over.» = Atravesse a ponte.",
+          "explanation": "«Het is tien minuten lopen.» = São dez minutos a pé.",
           "vocabRefs": [
-            "v-brug"
+            "v-lopen-afstand"
           ]
         },
         {
           "id": "s3-u03-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Aan het einde van de straat.»?",
+          "prompt": "O que significa: «Is er een apotheek in de buurt?»?",
           "options": [
             {
               "id": "a",
-              "text": "Do lado esquerdo.",
-              "correct": false
+              "text": "Há uma farmácia aqui perto?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Daqui a cem metros.",
+              "text": "Atravesse a ponte.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "No fim da rua.",
-              "correct": true
+              "text": "São dez minutos a pé.",
+              "correct": false
             }
           ],
-          "explanation": "«Aan het einde van de straat.» = No fim da rua.",
+          "explanation": "«Is er een apotheek in de buurt?» = Há uma farmácia aqui perto?",
           "vocabRefs": [
-            "v-einde"
+            "v-in-de-buurt"
           ]
         },
         {
           "id": "s3-u03-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Do lado esquerdo.",
+          "prompt": "Desculpe, perdi-me. Pode ajudar-me?",
           "tokens": [
-            "linkerkant.",
-            "er",
+            "ik",
+            "helpen?",
+            "Sorry,",
+            "u",
+            "ben",
+            "kwijt.",
             "de",
-            "Het",
-            "Aan"
+            "mij",
+            "aan",
+            "in",
+            "weg",
+            "Kunt"
           ],
           "answers": [
-            "Aan de linkerkant."
+            "Sorry, ik ben de weg kwijt. Kunt u mij helpen?"
           ],
-          "explanation": "Do lado esquerdo. = Aan de linkerkant. (sobram: Het, er)",
-          "vocabRefs": [
-            "v-kerk",
-            "v-kant"
-          ]
+          "explanation": "Desculpe, perdi-me. Pode ajudar-me? = Sorry, ik ben de weg kwijt. Kunt u mij helpen? (sobram: aan, in)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u03-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vá em frente até ao cruzamento.",
+          "prompt": "Do lado esquerdo.",
           "tokens": [
-            "het",
-            "kruispunt.",
-            "rechtdoor",
-            "weg",
-            "Ga",
-            "waar",
-            "tot"
+            "Aan",
+            "museum",
+            "linkerkant.",
+            "de",
+            "Weet"
           ],
           "answers": [
-            "Ga rechtdoor tot het kruispunt."
+            "Aan de linkerkant."
           ],
-          "explanation": "Vá em frente até ao cruzamento. = Ga rechtdoor tot het kruispunt. (sobram: waar, weg)",
+          "explanation": "Do lado esquerdo. = Aan de linkerkant. (sobram: museum, Weet)",
           "vocabRefs": [
-            "v-kruispunt"
+            "v-kerk",
+            "v-kant"
           ]
         }
       ],
@@ -2128,16 +2131,16 @@
       ],
       "examples": [
         {
+          "nl": "Aan het einde van de straat.",
+          "pt": "No fim da rua."
+        },
+        {
+          "nl": "Hoe kom ik bij het station?",
+          "pt": "Como chego à estação?"
+        },
+        {
           "nl": "Weet jij waar de wc is?",
           "pt": "Sabes onde é a casa de banho?"
-        },
-        {
-          "nl": "Het is zo'n twee kilometer.",
-          "pt": "São uns dois quilómetros."
-        },
-        {
-          "nl": "Het hotel staat aan het plein.",
-          "pt": "O hotel fica na praça."
         }
       ],
       "grammar": [],
@@ -2146,7 +2149,34 @@
           "id": "s3-u03-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «fim» em neerlandês?",
+          "prompt": "Como se diz «lado» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "meter",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "kant",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "einde",
+              "correct": false
+            }
+          ],
+          "explanation": "lado = «kant».",
+          "vocabRefs": [
+            "v-kant"
+          ]
+        },
+        {
+          "id": "s3-u03-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «praça» em neerlandês?",
           "options": [
             {
               "id": "a",
@@ -2155,83 +2185,56 @@
             },
             {
               "id": "b",
-              "text": "kruispunt",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "einde",
-              "correct": true
-            }
-          ],
-          "explanation": "fim = «einde».",
-          "vocabRefs": [
-            "v-einde"
-          ]
-        },
-        {
-          "id": "s3-u03-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ao longo de» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
               "text": "in de buurt",
               "correct": false
             },
             {
-              "id": "b",
-              "text": "kant",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "langs",
+              "text": "plein",
               "correct": true
             }
           ],
-          "explanation": "ao longo de = «langs».",
+          "explanation": "praça = «plein».",
           "vocabRefs": [
-            "v-langs"
+            "v-plein"
           ]
         },
         {
           "id": "s3-u03-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Het is ___ twee kilometer.",
-          "translation": "São uns dois quilómetros.",
+          "sentence": "Het is ___ de kerk.",
+          "translation": "É depois da igreja.",
           "answers": [
-            "zo'n"
+            "voorbij"
           ],
           "choices": [
-            "zo'n",
+            "oversteken",
             "voorbij",
-            "oversteken"
+            "kant"
           ],
-          "explanation": "Het is zo'n twee kilometer.",
+          "explanation": "Het is voorbij de kerk.",
           "vocabRefs": [
-            "v-ongeveer2"
+            "v-voorbij"
           ]
         },
         {
           "id": "s3-u03-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Aan het ___ van de straat.",
-          "translation": "No fim da rua.",
+          "sentence": "Het is tien minuten ___.",
+          "translation": "São dez minutos a pé.",
           "answers": [
-            "einde"
-          ],
-          "choices": [
-            "einde",
-            "brug",
             "lopen"
           ],
-          "explanation": "Aan het einde van de straat.",
+          "choices": [
+            "kant",
+            "lopen",
+            "hoek"
+          ],
+          "explanation": "Het is tien minuten lopen.",
           "vocabRefs": [
-            "v-einde"
+            "v-lopen-afstand"
           ]
         },
         {
@@ -2252,99 +2255,95 @@
           "id": "s3-u03-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Loop langs de gracht.",
+          "audioText": "Sorry, ik ben de weg kwijt. Kunt u mij helpen?",
           "answers": [
-            "Loop langs de gracht."
+            "Sorry, ik ben de weg kwijt. Kunt u mij helpen?"
           ],
-          "translation": "Siga ao longo do canal.",
-          "explanation": "«Loop langs de gracht.» = Siga ao longo do canal.",
-          "vocabRefs": [
-            "v-langs"
-          ]
+          "translation": "Desculpe, perdi-me. Pode ajudar-me?",
+          "explanation": "«Sorry, ik ben de weg kwijt. Kunt u mij helpen?» = Desculpe, perdi-me. Pode ajudar-me?",
+          "vocabRefs": []
         },
         {
           "id": "s3-u03-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É depois da igreja.",
+          "prompt": "Há uma farmácia aqui perto?",
           "tokens": [
-            "kerk.",
-            "voorbij",
+            "apotheek",
+            "er",
+            "het",
+            "hoek.",
+            "Is",
+            "in",
             "een",
-            "is",
-            "Het",
-            "de",
-            "jij"
+            "buurt?",
+            "de"
           ],
           "answers": [
-            "Het is voorbij de kerk."
+            "Is er een apotheek in de buurt?"
           ],
-          "explanation": "É depois da igreja. = Het is voorbij de kerk. (sobram: een, jij)",
+          "explanation": "Há uma farmácia aqui perto? = Is er een apotheek in de buurt? (sobram: het, hoek.)",
           "vocabRefs": [
-            "v-voorbij",
-            "v-kerk"
+            "v-in-de-buurt"
           ]
         },
         {
           "id": "s3-u03-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O hotel fica na praça.",
+          "prompt": "Daqui a cem metros.",
           "tokens": [
-            "hotel",
             "Na",
-            "is",
-            "Het",
-            "staat",
-            "plein.",
-            "het",
-            "aan"
+            "mij",
+            "de",
+            "meter.",
+            "honderd"
           ],
           "answers": [
-            "Het hotel staat aan het plein."
+            "Na honderd meter."
           ],
-          "explanation": "O hotel fica na praça. = Het hotel staat aan het plein. (sobram: Na, is)",
+          "explanation": "Daqui a cem metros. = Na honderd meter. (sobram: de, mij)",
           "vocabRefs": [
-            "v-plein"
+            "v-meter"
           ]
         },
         {
           "id": "s3-u03-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "kruispunt",
-          "pt": "cruzamento",
-          "article": "het",
-          "explanation": "het kruispunt.",
+          "noun": "kilometer",
+          "pt": "quilómetro",
+          "article": "de",
+          "explanation": "de kilometer.",
           "vocabRefs": [
-            "v-kruispunt"
+            "v-kilometer"
           ]
         },
         {
           "id": "s3-u03-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het is tien minuten lopen.»?",
+          "prompt": "O que significa: «Het is op de hoek.»?",
           "options": [
             {
               "id": "a",
-              "text": "A que distância fica?",
-              "correct": false
+              "text": "É na esquina.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "É na esquina.",
+              "text": "Vá em frente até ao cruzamento.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "São dez minutos a pé.",
-              "correct": true
+              "text": "É depois da igreja.",
+              "correct": false
             }
           ],
-          "explanation": "«Het is tien minuten lopen.» = São dez minutos a pé.",
+          "explanation": "«Het is op de hoek.» = É na esquina.",
           "vocabRefs": [
-            "v-lopen-afstand"
+            "v-hoek"
           ]
         }
       ],
@@ -2409,16 +2408,16 @@
       ],
       "examples": [
         {
-          "nl": "Steek de brug over.",
-          "pt": "Atravesse a ponte."
+          "nl": "Aan de linkerkant.",
+          "pt": "Do lado esquerdo."
         },
         {
-          "nl": "Het hotel staat aan het plein.",
-          "pt": "O hotel fica na praça."
+          "nl": "Weet jij waar de wc is?",
+          "pt": "Sabes onde é a casa de banho?"
         },
         {
-          "nl": "Het is op de hoek.",
-          "pt": "É na esquina."
+          "nl": "Sorry, ik ben de weg kwijt. Kunt u mij helpen?",
+          "pt": "Desculpe, perdi-me. Pode ajudar-me?"
         }
       ],
       "grammar": [],
@@ -2427,106 +2426,108 @@
           "id": "s3-u03-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "São dez minutos a pé.",
+          "prompt": "Como chego à estação?",
           "tokens": [
-            "tien",
-            "minuten",
-            "in",
-            "Het",
-            "is",
-            "lopen.",
-            "de"
+            "Hoe",
+            "kom",
+            "bij",
+            "ik",
+            "weet",
+            "een",
+            "het",
+            "station?"
           ],
           "answers": [
-            "Het is tien minuten lopen."
+            "Hoe kom ik bij het station?"
           ],
-          "explanation": "São dez minutos a pé. = Het is tien minuten lopen. (sobram: de, in)",
+          "explanation": "Como chego à estação? = Hoe kom ik bij het station? (sobram: een, weet)",
           "vocabRefs": [
-            "v-lopen-afstand"
+            "v-hoe-kom-ik"
           ]
         },
         {
           "id": "s3-u03-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Atravesse a ponte.",
+          "prompt": "É na esquina.",
           "tokens": [
-            "Steek",
-            "brug",
-            "waar",
-            "station?",
+            "weet",
+            "jij",
+            "op",
+            "Het",
             "de",
-            "over."
+            "hoek.",
+            "is"
           ],
           "answers": [
-            "Steek de brug over."
+            "Het is op de hoek."
           ],
-          "explanation": "Atravesse a ponte. = Steek de brug over. (sobram: waar, station?)",
+          "explanation": "É na esquina. = Het is op de hoek. (sobram: jij, weet)",
           "vocabRefs": [
-            "v-brug"
+            "v-hoek"
           ]
         },
         {
           "id": "s3-u03-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como chego à estação?",
+          "prompt": "Siga ao longo do canal.",
           "tokens": [
-            "het",
-            "Hoe",
-            "bij",
-            "ik",
-            "is",
-            "twee",
-            "kom",
-            "station?"
+            "tien",
+            "Loop",
+            "gracht.",
+            "hoek.",
+            "langs",
+            "de"
           ],
           "answers": [
-            "Hoe kom ik bij het station?"
+            "Loop langs de gracht."
           ],
-          "explanation": "Como chego à estação? = Hoe kom ik bij het station? (sobram: is, twee)",
+          "explanation": "Siga ao longo do canal. = Loop langs de gracht. (sobram: hoek., tien)",
           "vocabRefs": [
-            "v-hoe-kom-ik"
+            "v-langs"
           ]
         },
         {
           "id": "s3-u03-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Sorry, ik ben de weg kwijt. Kunt u mij helpen?",
+          "audioText": "Na honderd meter.",
           "answers": [
-            "Sorry, ik ben de weg kwijt. Kunt u mij helpen?"
+            "Na honderd meter."
           ],
-          "translation": "Desculpe, perdi-me. Pode ajudar-me?",
-          "explanation": "«Sorry, ik ben de weg kwijt. Kunt u mij helpen?» = Desculpe, perdi-me. Pode ajudar-me?",
-          "vocabRefs": []
+          "translation": "Daqui a cem metros.",
+          "explanation": "«Na honderd meter.» = Daqui a cem metros.",
+          "vocabRefs": [
+            "v-meter"
+          ]
         },
         {
           "id": "s3-u03-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het hotel staat aan het plein.",
+          "audioText": "Hoe kom ik bij het station?",
           "answers": [
-            "Het hotel staat aan het plein."
+            "Hoe kom ik bij het station?"
           ],
-          "translation": "O hotel fica na praça.",
-          "explanation": "«Het hotel staat aan het plein.» = O hotel fica na praça.",
+          "translation": "Como chego à estação?",
+          "explanation": "«Hoe kom ik bij het station?» = Como chego à estação?",
           "vocabRefs": [
-            "v-plein"
+            "v-hoe-kom-ik"
           ]
         },
         {
           "id": "s3-u03-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Steek de brug over.",
+          "audioText": "Het is op de hoek.",
           "answers": [
-            "Steek de brug over."
+            "Het is op de hoek."
           ],
-          "translation": "Atravesse a ponte.",
-          "explanation": "«Steek de brug over.» = Atravesse a ponte.",
+          "translation": "É na esquina.",
+          "explanation": "«Het is op de hoek.» = É na esquina.",
           "vocabRefs": [
-            "v-brug"
+            "v-hoek"
           ]
         },
         {
@@ -2535,12 +2536,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "No fim da rua.",
           "tokens": [
-            "straat.",
-            "van",
-            "einde",
             "Aan",
             "het",
-            "de"
+            "einde",
+            "van",
+            "de",
+            "straat."
           ],
           "alternatives": [],
           "explanation": "Aan het einde van de straat.",
@@ -2554,11 +2555,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vá em frente até ao cruzamento.",
           "tokens": [
-            "kruispunt.",
-            "het",
-            "tot",
+            "Ga",
             "rechtdoor",
-            "Ga"
+            "tot",
+            "het",
+            "kruispunt."
           ],
           "alternatives": [],
           "explanation": "Ga rechtdoor tot het kruispunt.",
@@ -2570,54 +2571,54 @@
           "id": "s3-u03-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de brug»?",
+          "prompt": "O que significa «lopen»?",
           "options": [
             {
               "id": "a",
-              "text": "ponte",
-              "correct": true
+              "text": "perto",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "praça",
-              "correct": false
+              "text": "andar a pé",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "como chego a",
+              "text": "quilómetro",
               "correct": false
             }
           ],
-          "explanation": "«de brug» = ponte.",
+          "explanation": "«lopen» = andar a pé.",
           "vocabRefs": [
-            "v-brug"
+            "v-lopen-afstand"
           ]
         },
         {
           "id": "s3-u03-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de weg vragen»?",
+          "prompt": "O que significa «hoe ver»?",
           "options": [
             {
               "id": "a",
-              "text": "pedir direções",
-              "correct": true
+              "text": "cerca de",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "cruzamento",
+              "text": "igreja",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ponte",
-              "correct": false
+              "text": "a que distância",
+              "correct": true
             }
           ],
-          "explanation": "«de weg vragen» = pedir direções.",
+          "explanation": "«hoe ver» = a que distância.",
           "vocabRefs": [
-            "v-de-weg-vragen"
+            "v-hoe-ver"
           ]
         }
       ],

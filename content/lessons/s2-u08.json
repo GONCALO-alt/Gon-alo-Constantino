@@ -1950,12 +1950,12 @@
       ],
       "examples": [
         {
-          "nl": "Welke maat heeft u?",
-          "pt": "Que tamanho veste?"
+          "nl": "Die jurk staat je goed!",
+          "pt": "Esse vestido fica-te bem!"
         },
         {
-          "nl": "Ik draag een broek en een trui.",
-          "pt": "Visto umas calças e uma camisola."
+          "nl": "een zwarte fiets",
+          "pt": "uma bicicleta preta"
         },
         {
           "nl": "Waar is mijn jas?",
@@ -2012,11 +2012,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Acho caro demais.",
           "tokens": [
-            "te",
-            "het",
-            "duur.",
+            "Ik",
             "vind",
-            "Ik"
+            "het",
+            "te",
+            "duur."
           ],
           "alternatives": [],
           "explanation": "Ik vind het te duur.",
@@ -2030,11 +2030,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "De que cor é a tua bicicleta?",
           "tokens": [
-            "heeft",
-            "fiets?",
             "Welke",
+            "kleur",
+            "heeft",
             "je",
-            "kleur"
+            "fiets?"
           ],
           "alternatives": [],
           "explanation": "Welke kleur heeft je fiets?",
@@ -2048,8 +2048,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "uma t-shirt laranja",
           "tokens": [
-            "oranje",
             "een",
+            "oranje",
             "shirt"
           ],
           "alternatives": [],
@@ -2063,104 +2063,97 @@
           "id": "s2-u08-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een witte trui en een groene jas.»?",
+          "prompt": "O que significa: «Ik draag een broek en een trui.»?",
           "options": [
             {
               "id": "a",
-              "text": "Procuro um casaco preto no tamanho M.",
+              "text": "uma bicicleta preta",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Este casaco é caro demais.",
+              "text": "Estas calças são compridas demais.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Uma camisola branca e um casaco verde.",
+              "text": "Visto umas calças e uma camisola.",
               "correct": true
             }
           ],
-          "explanation": "«Een witte trui en een groene jas.» = Uma camisola branca e um casaco verde.",
+          "explanation": "«Ik draag een broek en een trui.» = Visto umas calças e uma camisola.",
           "vocabRefs": [
-            "v-trui",
-            "v-jas",
-            "v-groen",
-            "v-wit"
+            "v-broek",
+            "v-trui"
           ]
         },
         {
           "id": "s2-u08-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De paskamer is daar.»?",
+          "prompt": "O que significa: «Welke maat heeft u?»?",
           "options": [
             {
               "id": "a",
-              "text": "Estas calças são compridas demais.",
+              "text": "uma t-shirt laranja",
               "correct": false
             },
             {
               "id": "b",
-              "text": "De que cor é a tua bicicleta?",
-              "correct": false
+              "text": "Que tamanho veste?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O provador é ali.",
-              "correct": true
+              "text": "Que achas da minha camisola nova?",
+              "correct": false
             }
           ],
-          "explanation": "«De paskamer is daar.» = O provador é ali.",
+          "explanation": "«Welke maat heeft u?» = Que tamanho veste?",
           "vocabRefs": [
-            "v-paskamer"
+            "v-maat"
           ]
         },
         {
           "id": "s2-u08-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Acho esses sapatos bonitos.",
+          "prompt": "Onde está o meu casaco?",
           "tokens": [
-            "mooi.",
-            "Ik",
-            "vind",
-            "die",
-            "schoenen",
-            "mijn",
-            "Deze"
+            "is",
+            "en",
+            "een",
+            "jas?",
+            "Waar",
+            "mijn"
           ],
           "answers": [
-            "Ik vind die schoenen mooi."
+            "Waar is mijn jas?"
           ],
-          "explanation": "Acho esses sapatos bonitos. = Ik vind die schoenen mooi. (sobram: mijn, Deze)",
+          "explanation": "Onde está o meu casaco? = Waar is mijn jas? (sobram: een, en)",
           "vocabRefs": [
-            "v-schoen"
+            "v-jas"
           ]
         },
         {
           "id": "s2-u08-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Visto umas calças e uma camisola.",
+          "prompt": "A minha bicicleta é preta.",
           "tokens": [
-            "Ik",
-            "draag",
-            "maat",
-            "trui.",
-            "te",
-            "een",
-            "en",
-            "een",
-            "broek"
+            "heeft",
+            "zwart.",
+            "duur.",
+            "is",
+            "fiets",
+            "Mijn"
           ],
           "answers": [
-            "Ik draag een broek en een trui."
+            "Mijn fiets is zwart."
           ],
-          "explanation": "Visto umas calças e uma camisola. = Ik draag een broek en een trui. (sobram: te, maat)",
+          "explanation": "A minha bicicleta é preta. = Mijn fiets is zwart. (sobram: heeft, duur.)",
           "vocabRefs": [
-            "v-broek",
-            "v-trui"
+            "v-zwart"
           ]
         }
       ],
@@ -2244,38 +2237,11 @@
           "id": "s2-u08-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «cor» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "broek",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "jurk",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "kleur",
-              "correct": true
-            }
-          ],
-          "explanation": "cor = «kleur».",
-          "vocabRefs": [
-            "v-kleur"
-          ]
-        },
-        {
-          "id": "s2-u08-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
           "prompt": "Como se diz «vestido» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "maat",
+              "text": "roze",
               "correct": false
             },
             {
@@ -2285,7 +2251,7 @@
             },
             {
               "id": "c",
-              "text": "shirt",
+              "text": "paskamer",
               "correct": false
             }
           ],
@@ -2295,60 +2261,72 @@
           ]
         },
         {
+          "id": "s2-u08-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «branco» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "goed staan",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "wit",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "kleur",
+              "correct": false
+            }
+          ],
+          "explanation": "branco = «wit».",
+          "vocabRefs": [
+            "v-wit"
+          ]
+        },
+        {
           "id": "s2-u08-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik vind het ___ duur.",
-          "translation": "Acho caro demais.",
+          "sentence": "Een witte trui en een groene ___.",
+          "translation": "Uma camisola branca e um casaco verde.",
           "answers": [
-            "te"
+            "jas"
           ],
           "choices": [
-            "zwart",
-            "groen",
-            "te"
+            "modern",
+            "kleur",
+            "jas"
           ],
-          "explanation": "Ik vind het te duur.",
+          "explanation": "Een witte trui en een groene jas.",
           "vocabRefs": [
-            "v-te"
+            "v-jas"
           ]
         },
         {
           "id": "s2-u08-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "een oranje ___",
-          "translation": "uma t-shirt laranja",
+          "sentence": "Wat vind je van deze ___?",
+          "translation": "O que achas deste casaco?",
           "answers": [
-            "shirt"
+            "jas"
           ],
           "choices": [
-            "modern",
-            "kleren",
+            "vinden",
+            "jas",
             "shirt"
           ],
-          "explanation": "een oranje shirt",
+          "explanation": "Wat vind je van deze jas?",
           "vocabRefs": [
-            "v-shirt"
+            "v-jas"
           ]
         },
         {
           "id": "s2-u08-l008-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mag ik deze broek passen?",
-          "answers": [
-            "Mag ik deze broek passen?"
-          ],
-          "translation": "Posso experimentar estas calças?",
-          "explanation": "«Mag ik deze broek passen?» = Posso experimentar estas calças?",
-          "vocabRefs": [
-            "v-broek",
-            "v-passen-kleding"
-          ]
-        },
-        {
-          "id": "s2-u08-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik zoek een zwarte jas in maat M.",
@@ -2365,47 +2343,67 @@
           ]
         },
         {
+          "id": "s2-u08-l008-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik vind het te duur.",
+          "answers": [
+            "Ik vind het te duur."
+          ],
+          "translation": "Acho caro demais.",
+          "explanation": "«Ik vind het te duur.» = Acho caro demais.",
+          "vocabRefs": [
+            "v-te"
+          ]
+        },
+        {
           "id": "s2-u08-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso experimentar estas calças?",
+          "prompt": "Uma camisola branca e um casaco verde.",
           "tokens": [
-            "broek",
-            "passen?",
-            "oranje",
+            "witte",
             "deze",
-            "Mag",
-            "mijn",
-            "ik"
+            "groene",
+            "Een",
+            "broek",
+            "trui",
+            "jas.",
+            "een",
+            "en"
           ],
           "answers": [
-            "Mag ik deze broek passen?"
+            "Een witte trui en een groene jas."
           ],
-          "explanation": "Posso experimentar estas calças? = Mag ik deze broek passen? (sobram: oranje, mijn)",
+          "explanation": "Uma camisola branca e um casaco verde. = Een witte trui en een groene jas. (sobram: broek, deze)",
           "vocabRefs": [
-            "v-broek",
-            "v-passen-kleding"
+            "v-trui",
+            "v-jas",
+            "v-groen",
+            "v-wit"
           ]
         },
         {
           "id": "s2-u08-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O provador é ali.",
+          "prompt": "Que achas da minha camisola nova?",
           "tokens": [
-            "zoek",
-            "is",
-            "daar.",
-            "De",
-            "jas",
-            "paskamer"
+            "zijn",
+            "trui?",
+            "je",
+            "vind",
+            "Hoe",
+            "nieuwe",
+            "u?",
+            "mijn"
           ],
           "answers": [
-            "De paskamer is daar."
+            "Hoe vind je mijn nieuwe trui?"
           ],
-          "explanation": "O provador é ali. = De paskamer is daar. (sobram: jas, zoek)",
+          "explanation": "Que achas da minha camisola nova? = Hoe vind je mijn nieuwe trui? (sobram: u?, zijn)",
           "vocabRefs": [
-            "v-paskamer"
+            "v-trui"
           ]
         },
         {
@@ -2511,16 +2509,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat vind je van deze jas?",
-          "pt": "O que achas deste casaco?"
+          "nl": "Hoe vind je mijn nieuwe trui?",
+          "pt": "Que achas da minha camisola nova?"
         },
         {
-          "nl": "Deze broek is te lang.",
-          "pt": "Estas calças são compridas demais."
+          "nl": "Deze jas is te duur.",
+          "pt": "Este casaco é caro demais."
         },
         {
-          "nl": "Ik vind die schoenen mooi.",
-          "pt": "Acho esses sapatos bonitos."
+          "nl": "Een witte trui en een groene jas.",
+          "pt": "Uma camisola branca e um casaco verde."
         }
       ],
       "grammar": [],
@@ -2529,47 +2527,43 @@
           "id": "s2-u08-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Uma camisola branca e um casaco verde.",
+          "prompt": "uma bicicleta preta",
           "tokens": [
-            "je",
-            "en",
-            "Een",
-            "groene",
-            "trui",
+            "u?",
             "een",
-            "witte",
-            "jas.",
-            "maat"
+            "maat",
+            "fiets",
+            "zwarte"
           ],
           "answers": [
-            "Een witte trui en een groene jas."
+            "een zwarte fiets"
           ],
-          "explanation": "Uma camisola branca e um casaco verde. = Een witte trui en een groene jas. (sobram: je, maat)",
+          "explanation": "uma bicicleta preta = een zwarte fiets (sobram: u?, maat)",
           "vocabRefs": [
-            "v-trui",
-            "v-jas",
-            "v-groen",
-            "v-wit"
+            "v-zwart",
+            "v-te"
           ]
         },
         {
           "id": "s2-u08-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É grande demais.",
+          "prompt": "Este casaco é caro demais.",
           "tokens": [
-            "Hij",
             "is",
-            "groot.",
+            "jas",
             "te",
-            "nieuwe",
-            "passen?"
+            "je",
+            "duur.",
+            "vind",
+            "Deze"
           ],
           "answers": [
-            "Hij is te groot."
+            "Deze jas is te duur."
           ],
-          "explanation": "É grande demais. = Hij is te groot. (sobram: nieuwe, passen?)",
+          "explanation": "Este casaco é caro demais. = Deze jas is te duur. (sobram: je, vind)",
           "vocabRefs": [
+            "v-jas",
             "v-te"
           ]
         },
@@ -2577,78 +2571,98 @@
           "id": "s2-u08-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Onde está o meu casaco?",
+          "prompt": "Visto umas calças e uma camisola.",
           "tokens": [
-            "heeft",
-            "Waar",
-            "is",
-            "paskamer",
-            "mijn",
-            "jas?"
+            "Ik",
+            "een",
+            "en",
+            "zwarte",
+            "trui.",
+            "een",
+            "draag",
+            "Deze",
+            "broek"
           ],
           "answers": [
-            "Waar is mijn jas?"
+            "Ik draag een broek en een trui."
           ],
-          "explanation": "Onde está o meu casaco? = Waar is mijn jas? (sobram: paskamer, heeft)",
+          "explanation": "Visto umas calças e uma camisola. = Ik draag een broek en een trui. (sobram: zwarte, Deze)",
           "vocabRefs": [
-            "v-jas"
+            "v-broek",
+            "v-trui"
           ]
         },
         {
           "id": "s2-u08-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Deze jas is te duur.",
+          "audioText": "Welke kleur heeft je fiets?",
           "answers": [
-            "Deze jas is te duur."
+            "Welke kleur heeft je fiets?"
           ],
-          "translation": "Este casaco é caro demais.",
-          "explanation": "«Deze jas is te duur.» = Este casaco é caro demais.",
+          "translation": "De que cor é a tua bicicleta?",
+          "explanation": "«Welke kleur heeft je fiets?» = De que cor é a tua bicicleta?",
           "vocabRefs": [
-            "v-jas",
-            "v-te"
+            "v-kleur"
           ]
         },
         {
           "id": "s2-u08-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn fiets is zwart.",
+          "audioText": "Waar is mijn jas?",
           "answers": [
-            "Mijn fiets is zwart."
+            "Waar is mijn jas?"
           ],
-          "translation": "A minha bicicleta é preta.",
-          "explanation": "«Mijn fiets is zwart.» = A minha bicicleta é preta.",
+          "translation": "Onde está o meu casaco?",
+          "explanation": "«Waar is mijn jas?» = Onde está o meu casaco?",
           "vocabRefs": [
-            "v-zwart"
+            "v-jas"
           ]
         },
         {
           "id": "s2-u08-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "een oranje shirt",
+          "audioText": "Mag ik deze broek passen?",
           "answers": [
-            "een oranje shirt"
+            "Mag ik deze broek passen?"
           ],
-          "translation": "uma t-shirt laranja",
-          "explanation": "«een oranje shirt» = uma t-shirt laranja",
+          "translation": "Posso experimentar estas calças?",
+          "explanation": "«Mag ik deze broek passen?» = Posso experimentar estas calças?",
           "vocabRefs": [
-            "v-shirt",
-            "v-oranje"
+            "v-broek",
+            "v-passen-kleding"
           ]
         },
         {
           "id": "s2-u08-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
+          "translation": "Estes sapatos são novos.",
+          "tokens": [
+            "Deze",
+            "schoenen",
+            "zijn",
+            "nieuw."
+          ],
+          "alternatives": [],
+          "explanation": "Deze schoenen zijn nieuw.",
+          "vocabRefs": [
+            "v-schoen"
+          ]
+        },
+        {
+          "id": "s2-u08-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
           "translation": "Posso experimentar estas calças?",
           "tokens": [
-            "broek",
-            "passen?",
+            "Mag",
             "ik",
             "deze",
-            "Mag"
+            "broek",
+            "passen?"
           ],
           "alternatives": [],
           "explanation": "Mag ik deze broek passen?",
@@ -2658,76 +2672,57 @@
           ]
         },
         {
-          "id": "s2-u08-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Estas calças são compridas demais.",
-          "tokens": [
-            "broek",
-            "is",
-            "lang.",
-            "Deze",
-            "te"
-          ],
-          "alternatives": [],
-          "explanation": "Deze broek is te lang.",
-          "vocabRefs": [
-            "v-broek",
-            "v-te"
-          ]
-        },
-        {
           "id": "s2-u08-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «wit»?",
+          "prompt": "O que significa «goed staan»?",
           "options": [
             {
               "id": "a",
-              "text": "branco",
-              "correct": true
+              "text": "verde",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "t-shirt",
-              "correct": false
+              "text": "ficar bem",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "camisola",
+              "text": "tamanho",
               "correct": false
             }
           ],
-          "explanation": "«wit» = branco.",
+          "explanation": "«goed staan» = ficar bem (roupa).",
           "vocabRefs": [
-            "v-wit"
+            "v-staan-goed"
           ]
         },
         {
           "id": "s2-u08-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «dragen»?",
+          "prompt": "O que significa «geel»?",
           "options": [
             {
               "id": "a",
-              "text": "laranja",
+              "text": "branco",
               "correct": false
             },
             {
               "id": "b",
-              "text": "usar",
+              "text": "amarelo",
               "correct": true
             },
             {
               "id": "c",
-              "text": "cor-de-rosa",
+              "text": "demasiado",
               "correct": false
             }
           ],
-          "explanation": "«dragen» = usar, vestir, levar.",
+          "explanation": "«geel» = amarelo.",
           "vocabRefs": [
-            "v-dragen"
+            "v-geel"
           ]
         }
       ],

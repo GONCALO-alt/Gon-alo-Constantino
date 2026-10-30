@@ -1983,16 +1983,16 @@
       ],
       "examples": [
         {
-          "nl": "Graag ontvang ik uw reactie vóór vrijdag.",
-          "pt": "Agradecia receber a sua resposta até sexta."
-        },
-        {
           "nl": "I.v.m. de feestdagen is het kantoor gesloten.",
           "pt": "Devido aos feriados, o escritório está fechado."
         },
         {
-          "nl": "Ik koppel het terug naar het team.",
-          "pt": "Vou dar o retorno à equipa."
+          "nl": "N.a.v. ons gesprek stuur ik u de planning.",
+          "pt": "Na sequência da nossa conversa envio-lhe o planeamento."
+        },
+        {
+          "nl": "Hierbij delen wij u mede dat uw aanvraag is goedgekeurd.",
+          "pt": "Vimos por este meio informar que o seu pedido foi aprovado."
         }
       ],
       "grammar": [],
@@ -2044,10 +2044,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "A decisão é definitiva.",
           "tokens": [
-            "is",
             "Het",
-            "definitief.",
-            "besluit"
+            "besluit",
+            "is",
+            "definitief."
           ],
           "alternatives": [],
           "explanation": "Het besluit is definitief.",
@@ -2061,13 +2061,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Pode contestar esta decisão.",
           "tokens": [
+            "U",
+            "kunt",
+            "bezwaar",
+            "maken",
             "tegen",
             "dit",
-            "besluit.",
-            "kunt",
-            "maken",
-            "U",
-            "bezwaar"
+            "besluit."
           ],
           "alternatives": [],
           "explanation": "U kunt bezwaar maken tegen dit besluit.",
@@ -2082,14 +2082,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Solicita-se que pendure o casaco.",
           "tokens": [
-            "te",
+            "U",
+            "wordt",
+            "verzocht",
             "uw",
             "jas",
-            "wordt",
-            "U",
-            "hangen.",
-            "verzocht",
-            "op"
+            "op",
+            "te",
+            "hangen."
           ],
           "alternatives": [],
           "explanation": "U wordt verzocht uw jas op te hangen.",
@@ -2099,101 +2099,101 @@
           "id": "s6-u07-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «I.v.m. de feestdagen is het kantoor gesloten.»?",
+          "prompt": "O que significa: «Let op je toon.»?",
           "options": [
             {
               "id": "a",
-              "text": "Solicita-se que pendure o casaco.",
+              "text": "Devido aos feriados, o escritório está fechado.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Devido aos feriados, o escritório está fechado.",
-              "correct": true
+              "text": "Devido a doença, a loja está fechada.",
+              "correct": false
             },
             {
               "id": "c",
               "text": "Atenção ao tom.",
-              "correct": false
+              "correct": true
             }
           ],
-          "explanation": "«I.v.m. de feestdagen is het kantoor gesloten.» = Devido aos feriados, o escritório está fechado.",
+          "explanation": "«Let op je toon.» = Atenção ao tom.",
           "vocabRefs": [
-            "v-i-v-m"
+            "v-toon"
           ]
         },
         {
           "id": "s6-u07-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wegens ziekte is de winkel gesloten.»?",
+          "prompt": "O que significa: «Het was heel chill.»?",
           "options": [
             {
               "id": "a",
-              "text": "Boa, pá!",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Devido a doença, a loja está fechada.",
+              "text": "Foi muito descontraído.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Concerto brutal ontem!",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Com «u» manténs mais distância.",
+              "text": "Atualmente o escritório está fechado.",
               "correct": false
             }
           ],
-          "explanation": "«Wegens ziekte is de winkel gesloten.» = Devido a doença, a loja está fechada.",
+          "explanation": "«Het was heel chill.» = Foi muito descontraído.",
           "vocabRefs": [
-            "v-wegens"
+            "v-chill"
           ]
         },
         {
           "id": "s6-u07-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pode contestar esta decisão.",
+          "prompt": "Com «u» manténs mais distância.",
           "tokens": [
-            "team.",
-            "tegen",
-            "brief",
-            "U",
-            "bezwaar",
+            "houd",
+            "meer",
             "kunt",
-            "maken",
-            "besluit.",
-            "dit"
+            "je",
+            "feestdagen",
+            "Met",
+            "u",
+            "afstand."
           ],
           "answers": [
-            "U kunt bezwaar maken tegen dit besluit."
+            "Met u houd je meer afstand."
           ],
-          "explanation": "Pode contestar esta decisão. = U kunt bezwaar maken tegen dit besluit. (sobram: brief, team.)",
+          "explanation": "Com «u» manténs mais distância. = Met u houd je meer afstand. (sobram: kunt, feestdagen)",
           "vocabRefs": [
-            "v-bezwaar",
-            "v-besluit"
+            "v-afstand"
           ]
         },
         {
           "id": "s6-u07-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O tom dela era jovial.",
+          "prompt": "Agradecia receber a sua resposta até sexta.",
           "tokens": [
+            "uw",
+            "vóór",
+            "ik",
+            "vrijdag.",
+            "Graag",
             "is",
-            "toon",
-            "Haar",
-            "joviaal.",
-            "was",
-            "beleefd."
+            "gesloten.",
+            "reactie",
+            "ontvang"
           ],
           "answers": [
-            "Haar toon was joviaal."
+            "Graag ontvang ik uw reactie vóór vrijdag."
           ],
-          "explanation": "O tom dela era jovial. = Haar toon was joviaal. (sobram: is, beleefd.)",
+          "explanation": "Agradecia receber a sua resposta até sexta. = Graag ontvang ik uw reactie vóór vrijdag. (sobram: is, gesloten.)",
           "vocabRefs": [
-            "v-toon",
-            "v-joviaal"
+            "v-graag-ontvang-ik"
           ]
         }
       ],
@@ -2260,16 +2260,16 @@
       ],
       "examples": [
         {
-          "nl": "Haar toon was joviaal.",
-          "pt": "O tom dela era jovial."
+          "nl": "Hij is altijd erg beleefd.",
+          "pt": "Ele é sempre muito educado."
+        },
+        {
+          "nl": "U kunt bezwaar maken tegen dit besluit.",
+          "pt": "Pode contestar esta decisão."
         },
         {
           "nl": "Vet concert gisteren!",
           "pt": "Concerto brutal ontem!"
-        },
-        {
-          "nl": "Hierbij delen wij u mede dat uw aanvraag is goedgekeurd.",
-          "pt": "Vimos por este meio informar que o seu pedido foi aprovado."
         }
       ],
       "grammar": [],
@@ -2278,92 +2278,92 @@
           "id": "s6-u07-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «receber» em neerlandês?",
+          "prompt": "Como se diz «atualmente» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "n.a.v.",
+              "text": "even checken",
               "correct": false
             },
             {
               "id": "b",
-              "text": "hierbij delen wij u mede",
+              "text": "ontvangen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ontvangen",
+              "text": "thans",
               "correct": true
             }
           ],
-          "explanation": "receber = «ontvangen».",
+          "explanation": "atualmente = «thans».",
           "vocabRefs": [
-            "v-ontvangen"
+            "v-thans"
           ]
         },
         {
           "id": "s6-u07-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «dar retorno» em neerlandês?",
+          "prompt": "Como se diz «por causa de» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "afstand",
+              "text": "besluit",
               "correct": false
             },
             {
               "id": "b",
-              "text": "n.a.v.",
+              "text": "afstand",
               "correct": false
             },
             {
               "id": "c",
-              "text": "terugkoppelen",
+              "text": "i.v.m.",
               "correct": true
             }
           ],
-          "explanation": "dar retorno = «terugkoppelen».",
+          "explanation": "por causa de = «i.v.m.».",
           "vocabRefs": [
-            "v-terugkoppelen"
+            "v-i-v-m"
           ]
         },
         {
           "id": "s6-u07-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "U kunt ___ maken tegen dit besluit.",
-          "translation": "Pode contestar esta decisão.",
+          "sentence": "___. ons gesprek stuur ik u de planning.",
+          "translation": "Na sequência da nossa conversa envio-lhe o planeamento.",
           "answers": [
-            "bezwaar"
+            "N.a.v"
           ],
           "choices": [
-            "thans",
-            "bezwaar",
-            "besluit"
+            "I.v.m.",
+            "Wegens",
+            "N.a.v"
           ],
-          "explanation": "U kunt bezwaar maken tegen dit besluit.",
+          "explanation": "N.a.v. ons gesprek stuur ik u de planning.",
           "vocabRefs": [
-            "v-bezwaar"
+            "v-n-a-v"
           ]
         },
         {
           "id": "s6-u07-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Haar toon was ___.",
-          "translation": "O tom dela era jovial.",
+          "sentence": "Wij hebben uw brief ___ ontvangen.",
+          "translation": "Já recebemos a sua carta.",
           "answers": [
-            "joviaal"
-          ],
-          "choices": [
-            "n.a.v.",
-            "joviaal",
             "reeds"
           ],
-          "explanation": "Haar toon was joviaal.",
+          "choices": [
+            "reeds",
+            "chill",
+            "ontvangen"
+          ],
+          "explanation": "Wij hebben uw brief reeds ontvangen.",
           "vocabRefs": [
-            "v-joviaal"
+            "v-reeds"
           ]
         },
         {
@@ -2382,63 +2382,59 @@
           "id": "s6-u07-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij is altijd erg beleefd.",
+          "audioText": "N.a.v. ons gesprek stuur ik u de planning.",
           "answers": [
-            "Hij is altijd erg beleefd."
+            "N.a.v. ons gesprek stuur ik u de planning."
           ],
-          "translation": "Ele é sempre muito educado.",
-          "explanation": "«Hij is altijd erg beleefd.» = Ele é sempre muito educado.",
+          "translation": "Na sequência da nossa conversa envio-lhe o planeamento.",
+          "explanation": "«N.a.v. ons gesprek stuur ik u de planning.» = Na sequência da nossa conversa envio-lhe o planeamento.",
           "vocabRefs": [
-            "v-beleefd"
+            "v-n-a-v"
           ]
         },
         {
           "id": "s6-u07-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Para efeitos do seu pedido precisamos do seu passaporte.",
+          "prompt": "Atenção ao tom.",
           "tokens": [
-            "van",
-            "aanvraag",
-            "nodig.",
-            "u",
-            "uw",
-            "Ten",
-            "behoeve",
-            "wij",
-            "is",
-            "uw",
-            "hebben",
-            "paspoort"
+            "afstand.",
+            "hangen.",
+            "Let",
+            "op",
+            "toon.",
+            "je"
           ],
           "answers": [
-            "Ten behoeve van uw aanvraag hebben wij uw paspoort nodig."
+            "Let op je toon."
           ],
-          "explanation": "Para efeitos do seu pedido precisamos do seu passaporte. = Ten behoeve van uw aanvraag hebben wij uw paspoort nodig. (sobram: is, u)",
+          "explanation": "Atenção ao tom. = Let op je toon. (sobram: hangen., afstand.)",
           "vocabRefs": [
-            "v-ten-behoeve-van"
+            "v-toon"
           ]
         },
         {
           "id": "s6-u07-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Foi muito descontraído.",
+          "prompt": "Solicita-se que pendure o casaco.",
           "tokens": [
-            "Het",
-            "heel",
-            "chill.",
-            "planning.",
-            "concert",
-            "was"
+            "te",
+            "hangen.",
+            "U",
+            "wordt",
+            "heeft,",
+            "jas",
+            "Ik",
+            "uw",
+            "op",
+            "verzocht"
           ],
           "answers": [
-            "Het was heel chill."
+            "U wordt verzocht uw jas op te hangen."
           ],
-          "explanation": "Foi muito descontraído. = Het was heel chill. (sobram: concert, planning.)",
-          "vocabRefs": [
-            "v-chill"
-          ]
+          "explanation": "Solicita-se que pendure o casaco. = U wordt verzocht uw jas op te hangen. (sobram: heeft,, Ik)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u07-l008-e09",
@@ -2456,27 +2452,27 @@
           "id": "s6-u07-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Let op je toon.»?",
+          "prompt": "O que significa: «I.v.m. de feestdagen is het kantoor gesloten.»?",
           "options": [
             {
               "id": "a",
-              "text": "Boa, pá!",
+              "text": "Foi muito descontraído.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O tom dela era jovial.",
+              "text": "Vou dar o retorno à equipa.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Atenção ao tom.",
+              "text": "Devido aos feriados, o escritório está fechado.",
               "correct": true
             }
           ],
-          "explanation": "«Let op je toon.» = Atenção ao tom.",
+          "explanation": "«I.v.m. de feestdagen is het kantoor gesloten.» = Devido aos feriados, o escritório está fechado.",
           "vocabRefs": [
-            "v-toon"
+            "v-i-v-m"
           ]
         }
       ],
@@ -2543,16 +2539,16 @@
       ],
       "examples": [
         {
-          "nl": "Let op je toon.",
-          "pt": "Atenção ao tom."
+          "nl": "Wat gaaf!",
+          "pt": "Que fixe!"
         },
         {
-          "nl": "U wordt verzocht uw jas op te hangen.",
-          "pt": "Solicita-se que pendure o casaco."
+          "nl": "I.v.m. de feestdagen is het kantoor gesloten.",
+          "pt": "Devido aos feriados, o escritório está fechado."
         },
         {
-          "nl": "Indien u vragen heeft, kunt u contact opnemen.",
-          "pt": "Caso tenha dúvidas, pode entrar em contacto."
+          "nl": "Ten behoeve van uw aanvraag hebben wij uw paspoort nodig.",
+          "pt": "Para efeitos do seu pedido precisamos do seu passaporte."
         }
       ],
       "grammar": [],
@@ -2561,87 +2557,81 @@
           "id": "s6-u07-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Devido a doença, a loja está fechada.",
+          "prompt": "Pode contestar esta decisão.",
           "tokens": [
-            "uw",
-            "Wegens",
-            "gesloten.",
-            "winkel",
-            "is",
-            "de",
-            "ziekte",
-            "joviaal."
+            "kunt",
+            "besluit.",
+            "dit",
+            "U",
+            "heel",
+            "tegen",
+            "het",
+            "maken",
+            "bezwaar"
           ],
           "answers": [
-            "Wegens ziekte is de winkel gesloten."
+            "U kunt bezwaar maken tegen dit besluit."
           ],
-          "explanation": "Devido a doença, a loja está fechada. = Wegens ziekte is de winkel gesloten. (sobram: uw, joviaal.)",
+          "explanation": "Pode contestar esta decisão. = U kunt bezwaar maken tegen dit besluit. (sobram: heel, het)",
           "vocabRefs": [
-            "v-wegens"
+            "v-bezwaar",
+            "v-besluit"
           ]
         },
         {
           "id": "s6-u07-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Caso tenha dúvidas, pode entrar em contacto.",
+          "prompt": "Concerto brutal ontem!",
           "tokens": [
-            "vragen",
-            "heeft,",
-            "Wegens",
-            "gesprek",
-            "u",
+            "gisteren!",
             "contact",
-            "kunt",
-            "opnemen.",
-            "Indien",
-            "u"
+            "concert",
+            "is",
+            "Vet"
           ],
           "answers": [
-            "Indien u vragen heeft, kunt u contact opnemen."
+            "Vet concert gisteren!"
           ],
-          "explanation": "Caso tenha dúvidas, pode entrar em contacto. = Indien u vragen heeft, kunt u contact opnemen. (sobram: gesprek, Wegens)",
-          "vocabRefs": []
+          "explanation": "Concerto brutal ontem! = Vet concert gisteren! (sobram: contact, is)",
+          "vocabRefs": [
+            "v-vet"
+          ]
         },
         {
           "id": "s6-u07-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vimos por este meio informar que o seu pedido foi aprovado.",
+          "prompt": "O tom dela era jovial.",
           "tokens": [
-            "wij",
-            "delen",
-            "goedgekeurd.",
-            "mede",
-            "concert",
-            "dat",
-            "is",
-            "uw",
-            "Hierbij",
-            "aanvraag",
+            "joviaal.",
             "u",
-            "meer"
+            "Indien",
+            "toon",
+            "Haar",
+            "was"
           ],
           "answers": [
-            "Hierbij delen wij u mede dat uw aanvraag is goedgekeurd."
+            "Haar toon was joviaal."
           ],
-          "explanation": "Vimos por este meio informar que o seu pedido foi aprovado. = Hierbij delen wij u mede dat uw aanvraag is goedgekeurd. (sobram: meer, concert)",
+          "explanation": "O tom dela era jovial. = Haar toon was joviaal. (sobram: Indien, u)",
           "vocabRefs": [
-            "v-hierbij-mededelen"
+            "v-toon",
+            "v-joviaal"
           ]
         },
         {
           "id": "s6-u07-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Thans is het kantoor gesloten.",
+          "audioText": "Met u houd je meer afstand.",
           "answers": [
-            "Thans is het kantoor gesloten."
+            "Met u houd je meer afstand."
           ],
-          "translation": "Atualmente o escritório está fechado.",
-          "explanation": "«Thans is het kantoor gesloten.» = Atualmente o escritório está fechado.",
+          "translation": "Com «u» manténs mais distância.",
+          "explanation": "«Met u houd je meer afstand.» = Com «u» manténs mais distância.",
           "vocabRefs": [
-            "v-thans"
+            "v-afstand"
           ]
         },
         {
@@ -2662,14 +2652,14 @@
           "id": "s6-u07-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het besluit is definitief.",
+          "audioText": "Graag ontvang ik uw reactie vóór vrijdag.",
           "answers": [
-            "Het besluit is definitief."
+            "Graag ontvang ik uw reactie vóór vrijdag."
           ],
-          "translation": "A decisão é definitiva.",
-          "explanation": "«Het besluit is definitief.» = A decisão é definitiva.",
+          "translation": "Agradecia receber a sua resposta até sexta.",
+          "explanation": "«Graag ontvang ik uw reactie vóór vrijdag.» = Agradecia receber a sua resposta até sexta.",
           "vocabRefs": [
-            "v-besluit"
+            "v-graag-ontvang-ik"
           ]
         },
         {
@@ -2678,11 +2668,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Devido a doença, a loja está fechada.",
           "tokens": [
-            "winkel",
-            "de",
-            "is",
             "Wegens",
             "ziekte",
+            "is",
+            "de",
+            "winkel",
             "gesloten."
           ],
           "alternatives": [],
@@ -2697,9 +2687,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Atenção ao tom.",
           "tokens": [
-            "je",
-            "op",
             "Let",
+            "op",
+            "je",
             "toon."
           ],
           "alternatives": [],
@@ -2712,34 +2702,34 @@
           "id": "s6-u07-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «thans»?",
+          "prompt": "O que significa «ontvangen»?",
           "options": [
             {
               "id": "a",
-              "text": "atualmente",
-              "correct": true
+              "text": "jovial",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "descontraído",
-              "correct": false
+              "text": "receber",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "jovial",
+              "text": "atualmente",
               "correct": false
             }
           ],
-          "explanation": "«thans» = atualmente (muito formal).",
+          "explanation": "«ontvangen» = receber (formal).",
           "vocabRefs": [
-            "v-thans"
+            "v-ontvangen"
           ]
         },
         {
           "id": "s6-u07-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «ten behoeve van»?",
+          "prompt": "O que significa «joviaal»?",
           "options": [
             {
               "id": "a",
@@ -2748,18 +2738,18 @@
             },
             {
               "id": "b",
-              "text": "para efeitos de",
-              "correct": true
+              "text": "decisão",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "já",
-              "correct": false
+              "text": "jovial",
+              "correct": true
             }
           ],
-          "explanation": "«ten behoeve van» = para efeitos de, a favor de.",
+          "explanation": "«joviaal» = jovial, bem-disposto.",
           "vocabRefs": [
-            "v-ten-behoeve-van"
+            "v-joviaal"
           ]
         }
       ],

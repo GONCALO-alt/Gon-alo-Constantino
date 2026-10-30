@@ -1845,16 +1845,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik moet mijn afspraak helaas afzeggen.",
-          "pt": "Infelizmente tenho de cancelar a minha consulta."
+          "nl": "Ik heb dinsdag een afspraak bij de tandarts, maar ik wil hem verzetten naar vrijdag.",
+          "pt": "Tenho consulta no dentista na terça, mas quero mudá-la para sexta."
         },
         {
-          "nl": "Komt vrijdag jou uit?",
-          "pt": "Sexta dá-te jeito?"
+          "nl": "Heeft u een andere tijd?",
+          "pt": "Tem outra hora?"
         },
         {
-          "nl": "Kan ik de afspraak verzetten?",
-          "pt": "Posso mudar a marcação?"
+          "nl": "Ik wil graag een afspraak maken bij de huisarts.",
+          "pt": "Queria marcar uma consulta no médico de família."
         }
       ],
       "grammar": [],
@@ -1908,12 +1908,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quero cortar o cabelo.",
           "tokens": [
+            "Ik",
+            "wil",
+            "mijn",
             "haar",
             "laten",
-            "knippen.",
-            "mijn",
-            "wil",
-            "Ik"
+            "knippen."
           ],
           "alternatives": [],
           "explanation": "Ik wil mijn haar laten knippen.",
@@ -1929,8 +1929,8 @@
           "translation": "Não muito curto!",
           "tokens": [
             "Niet",
-            "kort!",
-            "te"
+            "te",
+            "kort!"
           ],
           "alternatives": [],
           "explanation": "Niet te kort!",
@@ -1944,9 +1944,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Sexta dá-te jeito?",
           "tokens": [
-            "jou",
             "Komt",
             "vrijdag",
+            "jou",
             "uit?"
           ],
           "alternatives": [],
@@ -1957,7 +1957,7 @@
           "id": "s3-u06-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Heeft u een andere tijd?»?",
+          "prompt": "O que significa: «Ik wil graag een afspraak maken bij de huisarts.»?",
           "options": [
             {
               "id": "a",
@@ -1967,6 +1967,34 @@
             {
               "id": "b",
               "text": "Tem outra hora?",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Queria marcar uma consulta no médico de família.",
+              "correct": true
+            }
+          ],
+          "explanation": "«Ik wil graag een afspraak maken bij de huisarts.» = Queria marcar uma consulta no médico de família.",
+          "vocabRefs": [
+            "v-afspraak-maken",
+            "v-huisarts"
+          ]
+        },
+        {
+          "id": "s3-u06-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Komt vrijdag jou uit?»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Quero cortar o cabelo.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Sexta dá-te jeito?",
               "correct": true
             },
             {
@@ -1975,80 +2003,56 @@
               "correct": false
             }
           ],
-          "explanation": "«Heeft u een andere tijd?» = Tem outra hora?",
-          "vocabRefs": [
-            "v-ander"
-          ]
-        },
-        {
-          "id": "s3-u06-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wanneer komt het u uit?»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Não muito curto!",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Quando lhe dá jeito?",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Queria marcar uma consulta no médico de família.",
-              "correct": false
-            }
-          ],
-          "explanation": "«Wanneer komt het u uit?» = Quando lhe dá jeito?",
+          "explanation": "«Komt vrijdag jou uit?» = Sexta dá-te jeito?",
           "vocabRefs": []
         },
         {
           "id": "s3-u06-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Cancelar no máximo 24 horas antes.",
+          "prompt": "Um pouco mais curto, por favor.",
           "tokens": [
-            "uur",
-            "24",
-            "tevoren.",
+            "Een",
             "uiterlijk",
-            "van",
-            "helaas",
-            "Wilt",
-            "Afzeggen"
+            "korter,",
+            "beetje",
+            "maken",
+            "alstublieft."
           ],
           "answers": [
-            "Afzeggen uiterlijk 24 uur van tevoren."
+            "Een beetje korter, alstublieft."
           ],
-          "explanation": "Cancelar no máximo 24 horas antes. = Afzeggen uiterlijk 24 uur van tevoren. (sobram: Wilt, helaas)",
+          "explanation": "Um pouco mais curto, por favor. = Een beetje korter, alstublieft. (sobram: maken, uiterlijk)",
           "vocabRefs": [
-            "v-afzeggen",
-            "v-op-tijd2"
+            "v-kort",
+            "v-korter"
           ]
         },
         {
           "id": "s3-u06-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quer confirmar a consulta?",
+          "prompt": "Queria marcar uma consulta no médico de família.",
           "tokens": [
             "Ik",
-            "Wilt",
-            "bevestigen?",
-            "u",
             "afspraak",
-            "uit?",
+            "komt",
+            "bij",
+            "een",
+            "Dinsdag",
+            "huisarts.",
+            "wil",
+            "maken",
+            "graag",
             "de"
           ],
           "answers": [
-            "Wilt u de afspraak bevestigen?"
+            "Ik wil graag een afspraak maken bij de huisarts."
           ],
-          "explanation": "Quer confirmar a consulta? = Wilt u de afspraak bevestigen? (sobram: Ik, uit?)",
+          "explanation": "Queria marcar uma consulta no médico de família. = Ik wil graag een afspraak maken bij de huisarts. (sobram: komt, Dinsdag)",
           "vocabRefs": [
-            "v-bevestigen"
+            "v-afspraak-maken",
+            "v-huisarts"
           ]
         }
       ],
@@ -2103,16 +2107,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik moet mijn afspraak helaas afzeggen.",
-          "pt": "Infelizmente tenho de cancelar a minha consulta."
+          "nl": "Niet te kort!",
+          "pt": "Não muito curto!"
         },
         {
-          "nl": "Een beetje korter, alstublieft.",
-          "pt": "Um pouco mais curto, por favor."
+          "nl": "Kan ik de afspraak verzetten?",
+          "pt": "Posso mudar a marcação?"
         },
         {
-          "nl": "Komt vrijdag jou uit?",
-          "pt": "Sexta dá-te jeito?"
+          "nl": "Ik wil graag een afspraak maken bij de huisarts.",
+          "pt": "Queria marcar uma consulta no médico de família."
         }
       ],
       "grammar": [],
@@ -2121,171 +2125,161 @@
           "id": "s3-u06-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «dentista» em neerlandês?",
+          "prompt": "Como se diz «cortar (cabelo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "tandarts",
-              "correct": true
+              "text": "kort",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "vergeten",
+              "text": "bevestigen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "korter",
-              "correct": false
+              "text": "knippen",
+              "correct": true
             }
           ],
-          "explanation": "dentista = «tandarts».",
+          "explanation": "cortar (cabelo = «knippen».",
           "vocabRefs": [
-            "v-tandarts"
+            "v-knippen"
           ]
         },
         {
           "id": "s3-u06-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ligar de volta» em neerlandês?",
+          "prompt": "Como se diz «o mais tardar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "terugbellen",
+              "text": "uiterlijk",
               "correct": true
             },
             {
               "id": "b",
-              "text": "huisarts",
+              "text": "verzetten",
               "correct": false
             },
             {
               "id": "c",
-              "text": "kort",
+              "text": "een afspraak maken",
               "correct": false
             }
           ],
-          "explanation": "ligar de volta = «terugbellen».",
+          "explanation": "o mais tardar = «uiterlijk».",
           "vocabRefs": [
-            "v-terugbellen"
+            "v-op-tijd2"
           ]
         },
         {
           "id": "s3-u06-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik moet mijn afspraak helaas ___.",
-          "translation": "Infelizmente tenho de cancelar a minha consulta.",
+          "sentence": "Ik wil graag een afspraak maken bij de ___.",
+          "translation": "Queria marcar uma consulta no médico de família.",
           "answers": [
-            "afzeggen"
+            "huisarts"
           ],
           "choices": [
-            "afzeggen",
-            "korter",
-            "kapper"
+            "ander",
+            "uiterlijk",
+            "huisarts"
           ],
-          "explanation": "Ik moet mijn afspraak helaas afzeggen.",
+          "explanation": "Ik wil graag een afspraak maken bij de huisarts.",
           "vocabRefs": [
-            "v-afzeggen"
+            "v-huisarts"
           ]
         },
         {
           "id": "s3-u06-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik wil mijn haar laten ___.",
-          "translation": "Quero cortar o cabelo.",
+          "sentence": "Een beetje ___, alstublieft.",
+          "translation": "Um pouco mais curto, por favor.",
           "answers": [
-            "knippen"
+            "korter"
           ],
           "choices": [
-            "knippen",
-            "vergeten",
-            "afzeggen"
+            "uiterlijk",
+            "afzeggen",
+            "korter"
           ],
-          "explanation": "Ik wil mijn haar laten knippen.",
+          "explanation": "Een beetje korter, alstublieft.",
           "vocabRefs": [
-            "v-knippen"
+            "v-korter"
           ]
         },
         {
           "id": "s3-u06-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik wil graag een afspraak maken bij de huisarts.",
+          "audioText": "Ik moet mijn afspraak helaas afzeggen.",
           "answers": [
-            "Ik wil graag een afspraak maken bij de huisarts."
+            "Ik moet mijn afspraak helaas afzeggen."
           ],
-          "translation": "Queria marcar uma consulta no médico de família.",
-          "explanation": "«Ik wil graag een afspraak maken bij de huisarts.» = Queria marcar uma consulta no médico de família.",
+          "translation": "Infelizmente tenho de cancelar a minha consulta.",
+          "explanation": "«Ik moet mijn afspraak helaas afzeggen.» = Infelizmente tenho de cancelar a minha consulta.",
           "vocabRefs": [
-            "v-afspraak-maken",
-            "v-huisarts"
+            "v-afzeggen"
           ]
         },
         {
           "id": "s3-u06-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wilt u de afspraak bevestigen?",
+          "audioText": "Dinsdag om tien uur komt mij goed uit.",
           "answers": [
-            "Wilt u de afspraak bevestigen?"
+            "Dinsdag om tien uur komt mij goed uit."
           ],
-          "translation": "Quer confirmar a consulta?",
-          "explanation": "«Wilt u de afspraak bevestigen?» = Quer confirmar a consulta?",
-          "vocabRefs": [
-            "v-bevestigen"
-          ]
+          "translation": "Terça às dez dá-me jeito.",
+          "explanation": "«Dinsdag om tien uur komt mij goed uit.» = Terça às dez dá-me jeito.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u06-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Terça às dez dá-me jeito.",
+          "prompt": "Infelizmente tenho de cancelar a minha consulta.",
           "tokens": [
-            "uit.",
-            "uur",
+            "afzeggen.",
+            "moet",
             "komt",
-            "graag",
-            "bevestigen?",
-            "goed",
-            "om",
-            "tien",
-            "mij",
-            "Dinsdag"
+            "afspraak",
+            "Ik",
+            "mijn",
+            "uit.",
+            "helaas"
           ],
           "answers": [
-            "Dinsdag om tien uur komt mij goed uit."
+            "Ik moet mijn afspraak helaas afzeggen."
           ],
-          "explanation": "Terça às dez dá-me jeito. = Dinsdag om tien uur komt mij goed uit. (sobram: graag, bevestigen?)",
-          "vocabRefs": []
+          "explanation": "Infelizmente tenho de cancelar a minha consulta. = Ik moet mijn afspraak helaas afzeggen. (sobram: komt, uit.)",
+          "vocabRefs": [
+            "v-afzeggen"
+          ]
         },
         {
           "id": "s3-u06-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Queria marcar uma consulta no médico de família.",
+          "prompt": "Não muito curto!",
           "tokens": [
-            "korter,",
-            "de",
-            "maken",
-            "Ik",
-            "een",
-            "bij",
+            "van",
+            "Niet",
+            "te",
             "Wilt",
-            "afspraak",
-            "wil",
-            "huisarts.",
-            "graag"
+            "kort!"
           ],
           "answers": [
-            "Ik wil graag een afspraak maken bij de huisarts."
+            "Niet te kort!"
           ],
-          "explanation": "Queria marcar uma consulta no médico de família. = Ik wil graag een afspraak maken bij de huisarts. (sobram: Wilt, korter,)",
+          "explanation": "Não muito curto! = Niet te kort! (sobram: Wilt, van)",
           "vocabRefs": [
-            "v-afspraak-maken",
-            "v-huisarts"
+            "v-kort"
           ]
         },
         {
@@ -2304,27 +2298,27 @@
           "id": "s3-u06-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik laat de auto wassen.»?",
+          "prompt": "O que significa: «Wilt u de afspraak bevestigen?»?",
           "options": [
             {
               "id": "a",
-              "text": "Mando lavar o carro.",
+              "text": "Quer confirmar a consulta?",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Cancelar no máximo 24 horas antes.",
+              "text": "Posso mudar a marcação?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Tem outra hora?",
+              "text": "Mando lavar o carro.",
               "correct": false
             }
           ],
-          "explanation": "«Ik laat de auto wassen.» = Mando lavar o carro.",
+          "explanation": "«Wilt u de afspraak bevestigen?» = Quer confirmar a consulta?",
           "vocabRefs": [
-            "v-wassen"
+            "v-bevestigen"
           ]
         }
       ],
@@ -2379,16 +2373,16 @@
       ],
       "examples": [
         {
-          "nl": "Niet te kort!",
-          "pt": "Não muito curto!"
+          "nl": "Kan ik de afspraak verzetten?",
+          "pt": "Posso mudar a marcação?"
         },
         {
-          "nl": "Ik wil graag een afspraak maken bij de huisarts.",
-          "pt": "Queria marcar uma consulta no médico de família."
+          "nl": "Dit is een herinnering aan uw afspraak.",
+          "pt": "Isto é um lembrete da sua consulta."
         },
         {
-          "nl": "Wilt u de afspraak bevestigen?",
-          "pt": "Quer confirmar a consulta?"
+          "nl": "Dinsdag om tien uur komt mij goed uit.",
+          "pt": "Terça às dez dá-me jeito."
         }
       ],
       "grammar": [],
@@ -2397,137 +2391,122 @@
           "id": "s3-u06-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Infelizmente tenho de cancelar a minha consulta.",
+          "prompt": "Quer confirmar a consulta?",
           "tokens": [
-            "Ik",
-            "Komt",
+            "de",
+            "Wilt",
+            "u",
+            "bevestigen?",
             "afspraak",
-            "helaas",
-            "moet",
-            "afzeggen.",
-            "mijn",
-            "aan"
+            "Wanneer",
+            "Heeft"
           ],
           "answers": [
-            "Ik moet mijn afspraak helaas afzeggen."
+            "Wilt u de afspraak bevestigen?"
           ],
-          "explanation": "Infelizmente tenho de cancelar a minha consulta. = Ik moet mijn afspraak helaas afzeggen. (sobram: Komt, aan)",
+          "explanation": "Quer confirmar a consulta? = Wilt u de afspraak bevestigen? (sobram: Wanneer, Heeft)",
           "vocabRefs": [
-            "v-afzeggen"
+            "v-bevestigen"
           ]
         },
         {
           "id": "s3-u06-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Um pouco mais curto, por favor.",
+          "prompt": "Quando lhe dá jeito?",
           "tokens": [
-            "korter,",
-            "alstublieft.",
-            "laat",
-            "afspraak.",
-            "beetje",
-            "Een"
+            "u",
+            "de",
+            "komt",
+            "het",
+            "bevestigen?",
+            "uit?",
+            "Wanneer"
           ],
           "answers": [
-            "Een beetje korter, alstublieft."
+            "Wanneer komt het u uit?"
           ],
-          "explanation": "Um pouco mais curto, por favor. = Een beetje korter, alstublieft. (sobram: laat, afspraak.)",
-          "vocabRefs": [
-            "v-kort",
-            "v-korter"
-          ]
+          "explanation": "Quando lhe dá jeito? = Wanneer komt het u uit? (sobram: de, bevestigen?)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u06-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Terça às dez dá-me jeito.",
+          "prompt": "Isto é um lembrete da sua consulta.",
           "tokens": [
+            "een",
+            "aan",
+            "herinnering",
+            "is",
+            "laat",
+            "Dit",
+            "afspraak.",
             "beetje",
-            "Dinsdag",
-            "mij",
-            "verzetten?",
-            "om",
-            "uur",
-            "uit.",
-            "goed",
-            "tien",
-            "komt"
+            "uw"
           ],
           "answers": [
-            "Dinsdag om tien uur komt mij goed uit."
+            "Dit is een herinnering aan uw afspraak."
           ],
-          "explanation": "Terça às dez dá-me jeito. = Dinsdag om tien uur komt mij goed uit. (sobram: beetje, verzetten?)",
-          "vocabRefs": []
+          "explanation": "Isto é um lembrete da sua consulta. = Dit is een herinnering aan uw afspraak. (sobram: laat, beetje)",
+          "vocabRefs": [
+            "v-herinnering"
+          ]
         },
         {
           "id": "s3-u06-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Komt vrijdag jou uit?",
+          "audioText": "Dit is een herinnering aan uw afspraak.",
           "answers": [
-            "Komt vrijdag jou uit?"
+            "Dit is een herinnering aan uw afspraak."
           ],
-          "translation": "Sexta dá-te jeito?",
-          "explanation": "«Komt vrijdag jou uit?» = Sexta dá-te jeito?",
-          "vocabRefs": []
+          "translation": "Isto é um lembrete da sua consulta.",
+          "explanation": "«Dit is een herinnering aan uw afspraak.» = Isto é um lembrete da sua consulta.",
+          "vocabRefs": [
+            "v-herinnering"
+          ]
         },
         {
           "id": "s3-u06-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een beetje korter, alstublieft.",
+          "audioText": "Ik wil graag een afspraak maken bij de huisarts.",
           "answers": [
-            "Een beetje korter, alstublieft."
+            "Ik wil graag een afspraak maken bij de huisarts."
           ],
-          "translation": "Um pouco mais curto, por favor.",
-          "explanation": "«Een beetje korter, alstublieft.» = Um pouco mais curto, por favor.",
+          "translation": "Queria marcar uma consulta no médico de família.",
+          "explanation": "«Ik wil graag een afspraak maken bij de huisarts.» = Queria marcar uma consulta no médico de família.",
           "vocabRefs": [
-            "v-kort",
-            "v-korter"
+            "v-afspraak-maken",
+            "v-huisarts"
           ]
         },
         {
           "id": "s3-u06-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wilt u de afspraak bevestigen?",
+          "audioText": "Ik wil mijn haar laten knippen.",
           "answers": [
-            "Wilt u de afspraak bevestigen?"
+            "Ik wil mijn haar laten knippen."
           ],
-          "translation": "Quer confirmar a consulta?",
-          "explanation": "«Wilt u de afspraak bevestigen?» = Quer confirmar a consulta?",
+          "translation": "Quero cortar o cabelo.",
+          "explanation": "«Ik wil mijn haar laten knippen.» = Quero cortar o cabelo.",
           "vocabRefs": [
-            "v-bevestigen"
+            "v-knippen",
+            "v-haar-noun"
           ]
         },
         {
           "id": "s3-u06-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Quando lhe dá jeito?",
-          "tokens": [
-            "Wanneer",
-            "het",
-            "u",
-            "uit?",
-            "komt"
-          ],
-          "alternatives": [],
-          "explanation": "Wanneer komt het u uit?",
-          "vocabRefs": []
-        },
-        {
-          "id": "s3-u06-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "Um pouco mais curto, por favor.",
           "tokens": [
-            "beetje",
             "Een",
-            "alstublieft.",
-            "korter,"
+            "beetje",
+            "korter,",
+            "alstublieft."
           ],
           "alternatives": [],
           "explanation": "Een beetje korter, alstublieft.",
@@ -2537,57 +2516,77 @@
           ]
         },
         {
+          "id": "s3-u06-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Cancelar no máximo 24 horas antes.",
+          "tokens": [
+            "Afzeggen",
+            "uiterlijk",
+            "24",
+            "uur",
+            "van",
+            "tevoren."
+          ],
+          "alternatives": [],
+          "explanation": "Afzeggen uiterlijk 24 uur van tevoren.",
+          "vocabRefs": [
+            "v-afzeggen",
+            "v-op-tijd2"
+          ]
+        },
+        {
           "id": "s3-u06-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het haar»?",
+          "prompt": "O que significa «kort»?",
           "options": [
             {
               "id": "a",
               "text": "cabelo",
-              "correct": true
+              "correct": false
             },
             {
               "id": "b",
-              "text": "dentista",
+              "text": "cortar (cabelo",
               "correct": false
             },
             {
               "id": "c",
-              "text": "adiar",
-              "correct": false
+              "text": "curto",
+              "correct": true
             }
           ],
-          "explanation": "«het haar» = cabelo.",
+          "explanation": "«kort» = curto.",
           "vocabRefs": [
-            "v-haar-noun"
+            "v-kort"
           ]
         },
         {
           "id": "s3-u06-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «korter»?",
+          "prompt": "O que significa «uiterlijk»?",
           "options": [
             {
               "id": "a",
-              "text": "cancelar",
+              "text": "outro",
               "correct": false
             },
             {
               "id": "b",
               "text": "mais curto",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "dar jeito",
-              "correct": false
+              "text": "o mais tardar",
+              "correct": true
             }
           ],
-          "explanation": "«korter» = mais curto.",
+          "explanation": "«uiterlijk» = o mais tardar, no máximo.",
           "vocabRefs": [
-            "v-korter"
+            "v-op-tijd2"
           ]
         }
       ],

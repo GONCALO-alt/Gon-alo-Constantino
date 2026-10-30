@@ -1936,16 +1936,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik vind het fijn om buiten te zijn.",
-          "pt": "Gosto de estar ao ar livre."
+          "nl": "Wat is jouw mening?",
+          "pt": "Qual é a tua opinião?"
         },
         {
-          "nl": "Ik ben blij omdat ik geslaagd ben.",
-          "pt": "Estou contente porque passei."
+          "nl": "Ik ben een beetje verdrietig.",
+          "pt": "Estou um bocadinho triste."
         },
         {
-          "nl": "Ik ben blij met het cadeau.",
-          "pt": "Estou contente com o presente."
+          "nl": "Eigenlijk vind ik het wel leuk.",
+          "pt": "Na verdade até acho piada."
         }
       ],
       "grammar": [],
@@ -1999,11 +1999,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Estou mesmo chateado com isso.",
           "tokens": [
-            "van.",
-            "echt",
             "Ik",
             "baal",
-            "er"
+            "er",
+            "echt",
+            "van."
           ],
           "alternatives": [],
           "explanation": "Ik baal er echt van.",
@@ -2015,11 +2015,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tenho orgulho em ti!",
           "tokens": [
-            "trots",
-            "ben",
             "Ik",
-            "je!",
-            "op"
+            "ben",
+            "trots",
+            "op",
+            "je!"
           ],
           "alternatives": [],
           "explanation": "Ik ben trots op je!",
@@ -2033,12 +2033,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Acho que vai chover.",
           "tokens": [
-            "regenen.",
-            "denk",
-            "gaat",
             "Ik",
+            "denk",
             "dat",
-            "het"
+            "het",
+            "gaat",
+            "regenen."
           ],
           "alternatives": [],
           "explanation": "Ik denk dat het gaat regenen.",
@@ -2050,102 +2050,100 @@
           "id": "s4-u08-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Daarom ben ik zo opgelucht.»?",
+          "prompt": "O que significa: «Wat vervelend voor je!»?",
           "options": [
             {
               "id": "a",
-              "text": "Fico em casa porque está a chover.",
+              "text": "Qual é a tua opinião?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Tanto me faz.",
+              "text": "Porque estás zangado?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Por isso estou tão aliviado.",
+              "text": "Que chatice para ti!",
               "correct": true
             }
           ],
-          "explanation": "«Daarom ben ik zo opgelucht.» = Por isso estou tão aliviado.",
+          "explanation": "«Wat vervelend voor je!» = Que chatice para ti!",
           "vocabRefs": [
-            "v-daarom",
-            "v-opgelucht"
+            "v-vervelend",
+            "v-wat-vervelend"
           ]
         },
         {
           "id": "s4-u08-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik ben zenuwachtig voor het examen.»?",
+          "prompt": "O que significa: «Ik vind het vervelend dat de trein vertraging heeft.»?",
           "options": [
             {
               "id": "a",
-              "text": "Acho chato que o comboio esteja atrasado.",
+              "text": "Estou cansado, porque dormi mal.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Estou nervoso por causa do exame.",
+              "text": "Acho chato que o comboio esteja atrasado.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Estou cansado, porque dormi mal.",
+              "text": "Tenho orgulho em ti!",
               "correct": false
             }
           ],
-          "explanation": "«Ik ben zenuwachtig voor het examen.» = Estou nervoso por causa do exame.",
+          "explanation": "«Ik vind het vervelend dat de trein vertraging heeft.» = Acho chato que o comboio esteja atrasado.",
           "vocabRefs": [
-            "v-zenuwachtig"
+            "v-vervelend"
           ]
         },
         {
           "id": "s4-u08-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Na minha opinião ela tem razão.",
+          "prompt": "Estou cansado, porque dormi mal.",
           "tokens": [
-            "ze",
-            "vind",
-            "Volgens",
-            "mij",
-            "niet",
-            "gelijk.",
-            "heeft"
+            "ben",
+            "Ik",
+            "heb",
+            "regenen.",
+            "want",
+            "slecht",
+            "op",
+            "geslapen.",
+            "ik",
+            "moe,"
           ],
           "answers": [
-            "Volgens mij heeft ze gelijk."
+            "Ik ben moe, want ik heb slecht geslapen."
           ],
-          "explanation": "Na minha opinião ela tem razão. = Volgens mij heeft ze gelijk. (sobram: niet, vind)",
-          "vocabRefs": [
-            "v-volgens-mij"
-          ]
+          "explanation": "Estou cansado, porque dormi mal. = Ik ben moe, want ik heb slecht geslapen. (sobram: regenen., op)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u08-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estou contente porque passei.",
+          "prompt": "Fico em casa, porque está a chover.",
           "tokens": [
-            "blij",
-            "ik",
-            "ben.",
-            "omdat",
-            "Sterkte",
-            "regen.",
+            "regent.",
+            "want",
+            "thuis,",
+            "het",
             "ben",
             "Ik",
-            "geslaagd"
+            "kunt",
+            "blijf"
           ],
           "answers": [
-            "Ik ben blij omdat ik geslaagd ben."
+            "Ik blijf thuis, want het regent."
           ],
-          "explanation": "Estou contente porque passei. = Ik ben blij omdat ik geslaagd ben. (sobram: Sterkte, regen.)",
-          "vocabRefs": [
-            "v-omdat"
-          ]
+          "explanation": "Fico em casa, porque está a chover. = Ik blijf thuis, want het regent. (sobram: kunt, ben)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2209,12 +2207,12 @@
       ],
       "examples": [
         {
-          "nl": "Ik ben trots op je!",
-          "pt": "Tenho orgulho em ti!"
+          "nl": "Ik ben een beetje verdrietig.",
+          "pt": "Estou um bocadinho triste."
         },
         {
-          "nl": "Sterkte met alles.",
-          "pt": "Muita força para tudo."
+          "nl": "Ik ben blij met het cadeau.",
+          "pt": "Estou contente com o presente."
         },
         {
           "nl": "Waarom ben je boos?",
@@ -2227,54 +2225,54 @@
           "id": "s4-u08-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «triste» em neerlandês?",
+          "prompt": "Como se diz «adorar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "verdrietig",
+              "text": "dol zijn op",
               "correct": true
             },
             {
               "id": "b",
-              "text": "vervelend",
+              "text": "zenuwachtig",
               "correct": false
             },
             {
               "id": "c",
-              "text": "opgelucht",
+              "text": "boos",
               "correct": false
             }
           ],
-          "explanation": "triste = «verdrietig».",
+          "explanation": "adorar = «dol zijn op».",
           "vocabRefs": [
-            "v-verdrietig"
+            "v-dol-op"
           ]
         },
         {
           "id": "s4-u08-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «por isso» em neerlandês?",
+          "prompt": "Como se diz «que bom!» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "dol zijn op",
+              "text": "trots",
               "correct": false
             },
             {
               "id": "b",
-              "text": "daarom",
+              "text": "wat fijn!",
               "correct": true
             },
             {
               "id": "c",
-              "text": "het maakt me niet uit",
+              "text": "een hekel hebben aan",
               "correct": false
             }
           ],
-          "explanation": "por isso = «daarom».",
+          "explanation": "que bom! = «wat fijn!».",
           "vocabRefs": [
-            "v-daarom"
+            "v-wat-fijn"
           ]
         },
         {
@@ -2287,9 +2285,9 @@
             "trots"
           ],
           "choices": [
-            "reden",
+            "mening",
             "trots",
-            "verdrietig"
+            "fijn"
           ],
           "explanation": "Ik ben trots op je!",
           "vocabRefs": [
@@ -2300,89 +2298,91 @@
           "id": "s4-u08-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ met alles.",
-          "translation": "Muita força para tudo.",
+          "sentence": "Ik ben een beetje ___.",
+          "translation": "Estou um bocadinho triste.",
           "answers": [
-            "Sterkte"
+            "verdrietig"
           ],
           "choices": [
-            "Sterkte",
-            "Fijn",
-            "Opgelucht"
+            "verdrietig",
+            "bang",
+            "eigenlijk"
           ],
-          "explanation": "Sterkte met alles.",
+          "explanation": "Ik ben een beetje verdrietig.",
           "vocabRefs": [
-            "v-sterkte"
+            "v-verdrietig"
           ]
         },
         {
           "id": "s4-u08-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben trots op je!",
+          "audioText": "Waarom ben je boos?",
           "answers": [
-            "Ik ben trots op je!"
+            "Waarom ben je boos?"
           ],
-          "translation": "Tenho orgulho em ti!",
-          "explanation": "«Ik ben trots op je!» = Tenho orgulho em ti!",
+          "translation": "Porque estás zangado?",
+          "explanation": "«Waarom ben je boos?» = Porque estás zangado?",
           "vocabRefs": [
-            "v-trots"
+            "v-boos"
           ]
         },
         {
           "id": "s4-u08-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Eigenlijk vind ik het wel leuk.",
+          "audioText": "Ik blijf thuis, want het regent.",
           "answers": [
-            "Eigenlijk vind ik het wel leuk."
+            "Ik blijf thuis, want het regent."
           ],
-          "translation": "Na verdade até acho piada.",
-          "explanation": "«Eigenlijk vind ik het wel leuk.» = Na verdade até acho piada.",
-          "vocabRefs": [
-            "v-eigenlijk"
-          ]
+          "translation": "Fico em casa, porque está a chover.",
+          "explanation": "«Ik blijf thuis, want het regent.» = Fico em casa, porque está a chover.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u08-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é a tua opinião?",
+          "prompt": "Na verdade até acho piada.",
           "tokens": [
-            "met",
-            "is",
+            "leuk.",
+            "het",
+            "Eigenlijk",
             "ik",
-            "jouw",
-            "Wat",
-            "mening?"
+            "dol",
+            "een",
+            "wel",
+            "vind"
           ],
           "answers": [
-            "Wat is jouw mening?"
+            "Eigenlijk vind ik het wel leuk."
           ],
-          "explanation": "Qual é a tua opinião? = Wat is jouw mening? (sobram: met, ik)",
+          "explanation": "Na verdade até acho piada. = Eigenlijk vind ik het wel leuk. (sobram: dol, een)",
           "vocabRefs": [
-            "v-mening"
+            "v-eigenlijk"
           ]
         },
         {
           "id": "s4-u08-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estou mesmo chateado com isso.",
+          "prompt": "Na minha opinião ela tem razão.",
           "tokens": [
-            "er",
-            "van.",
-            "regenen.",
-            "Ik",
-            "echt",
-            "haar",
-            "baal"
+            "gelijk.",
+            "ze",
+            "Het",
+            "mij",
+            "Volgens",
+            "heeft",
+            "Ik"
           ],
           "answers": [
-            "Ik baal er echt van."
+            "Volgens mij heeft ze gelijk."
           ],
-          "explanation": "Estou mesmo chateado com isso. = Ik baal er echt van. (sobram: regenen., haar)",
-          "vocabRefs": []
+          "explanation": "Na minha opinião ela tem razão. = Volgens mij heeft ze gelijk. (sobram: Het, Ik)",
+          "vocabRefs": [
+            "v-volgens-mij"
+          ]
         },
         {
           "id": "s4-u08-l008-e09",
@@ -2400,27 +2400,28 @@
           "id": "s4-u08-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik blijf thuis omdat het regent.»?",
+          "prompt": "O que significa: «Daarom ben ik zo opgelucht.»?",
           "options": [
             {
               "id": "a",
-              "text": "Estou cansado, porque dormi mal.",
+              "text": "Acho chato que o comboio esteja atrasado.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Fico em casa porque está a chover.",
+              "text": "Por isso estou tão aliviado.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Tenho orgulho em ti!",
+              "text": "Estou nervoso por causa do exame.",
               "correct": false
             }
           ],
-          "explanation": "«Ik blijf thuis omdat het regent.» = Fico em casa porque está a chover.",
+          "explanation": "«Daarom ben ik zo opgelucht.» = Por isso estou tão aliviado.",
           "vocabRefs": [
-            "v-omdat"
+            "v-daarom",
+            "v-opgelucht"
           ]
         }
       ],
@@ -2485,16 +2486,16 @@
       ],
       "examples": [
         {
+          "nl": "Wat jammer dat je niet kunt komen.",
+          "pt": "Que pena que não possas vir."
+        },
+        {
+          "nl": "Ik baal er echt van.",
+          "pt": "Estou mesmo chateado com isso."
+        },
+        {
           "nl": "Ik ben blij met het cadeau.",
           "pt": "Estou contente com o presente."
-        },
-        {
-          "nl": "Wat is jouw mening?",
-          "pt": "Qual é a tua opinião?"
-        },
-        {
-          "nl": "Ik ben trots op je!",
-          "pt": "Tenho orgulho em ti!"
         }
       ],
       "grammar": [],
@@ -2503,43 +2504,48 @@
           "id": "s4-u08-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é a razão?",
+          "prompt": "Estou nervoso por causa do exame.",
           "tokens": [
-            "reden?",
-            "Wat",
+            "examen.",
+            "zenuwachtig",
+            "voor",
+            "het",
             "een",
-            "dat",
-            "is",
-            "de"
+            "ben",
+            "Ik",
+            "haar"
           ],
           "answers": [
-            "Wat is de reden?"
+            "Ik ben zenuwachtig voor het examen."
           ],
-          "explanation": "Qual é a razão? = Wat is de reden? (sobram: dat, een)",
+          "explanation": "Estou nervoso por causa do exame. = Ik ben zenuwachtig voor het examen. (sobram: haar, een)",
           "vocabRefs": [
-            "v-reden"
+            "v-zenuwachtig"
           ]
         },
         {
           "id": "s4-u08-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tanto me faz.",
+          "prompt": "Que bom que arranjaste emprego!",
           "tokens": [
-            "maakt",
-            "me",
-            "uit.",
-            "niet",
+            "regenen.",
+            "hebt!",
+            "je",
             "Wat",
+            "Ik",
+            "fijn",
+            "een",
             "dat",
-            "Het"
+            "baan"
           ],
           "answers": [
-            "Het maakt me niet uit."
+            "Wat fijn dat je een baan hebt!"
           ],
-          "explanation": "Tanto me faz. = Het maakt me niet uit. (sobram: dat, Wat)",
+          "explanation": "Que bom que arranjaste emprego! = Wat fijn dat je een baan hebt! (sobram: regenen., Ik)",
           "vocabRefs": [
-            "v-maakt-niet-uit"
+            "v-fijn",
+            "v-wat-fijn"
           ]
         },
         {
@@ -2548,25 +2554,40 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Ela está zangada com o irmão.",
           "tokens": [
-            "Wat",
             "broer.",
-            "haar",
             "is",
-            "Ze",
-            "boos",
+            "haar",
             "op",
-            "de"
+            "boos",
+            "Ze",
+            "Ik",
+            "heeft"
           ],
           "answers": [
             "Ze is boos op haar broer."
           ],
-          "explanation": "Ela está zangada com o irmão. = Ze is boos op haar broer. (sobram: de, Wat)",
+          "explanation": "Ela está zangada com o irmão. = Ze is boos op haar broer. (sobram: heeft, Ik)",
           "vocabRefs": [
             "v-boos"
           ]
         },
         {
           "id": "s4-u08-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Wat vervelend voor je!",
+          "answers": [
+            "Wat vervelend voor je!"
+          ],
+          "translation": "Que chatice para ti!",
+          "explanation": "«Wat vervelend voor je!» = Que chatice para ti!",
+          "vocabRefs": [
+            "v-vervelend",
+            "v-wat-vervelend"
+          ]
+        },
+        {
+          "id": "s4-u08-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik ben moe, want ik heb slecht geslapen.",
@@ -2578,45 +2599,49 @@
           "vocabRefs": []
         },
         {
-          "id": "s4-u08-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben zenuwachtig voor het examen.",
-          "answers": [
-            "Ik ben zenuwachtig voor het examen."
-          ],
-          "translation": "Estou nervoso por causa do exame.",
-          "explanation": "«Ik ben zenuwachtig voor het examen.» = Estou nervoso por causa do exame.",
-          "vocabRefs": [
-            "v-zenuwachtig"
-          ]
-        },
-        {
           "id": "s4-u08-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ze is boos op haar broer.",
+          "audioText": "Eigenlijk vind ik het wel leuk.",
           "answers": [
-            "Ze is boos op haar broer."
+            "Eigenlijk vind ik het wel leuk."
           ],
-          "translation": "Ela está zangada com o irmão.",
-          "explanation": "«Ze is boos op haar broer.» = Ela está zangada com o irmão.",
+          "translation": "Na verdade até acho piada.",
+          "explanation": "«Eigenlijk vind ik het wel leuk.» = Na verdade até acho piada.",
           "vocabRefs": [
-            "v-boos"
+            "v-eigenlijk"
           ]
         },
         {
           "id": "s4-u08-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
+          "translation": "Tanto me faz.",
+          "tokens": [
+            "Het",
+            "maakt",
+            "me",
+            "niet",
+            "uit."
+          ],
+          "alternatives": [],
+          "explanation": "Het maakt me niet uit.",
+          "vocabRefs": [
+            "v-maakt-niet-uit"
+          ]
+        },
+        {
+          "id": "s4-u08-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
           "translation": "Fico em casa porque está a chover.",
           "tokens": [
             "Ik",
+            "blijf",
             "thuis",
             "omdat",
-            "regent.",
             "het",
-            "blijf"
+            "regent."
           ],
           "alternatives": [],
           "explanation": "Ik blijf thuis omdat het regent.",
@@ -2625,74 +2650,57 @@
           ]
         },
         {
-          "id": "s4-u08-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Qual é a tua opinião?",
-          "tokens": [
-            "jouw",
-            "mening?",
-            "Wat",
-            "is"
-          ],
-          "alternatives": [],
-          "explanation": "Wat is jouw mening?",
-          "vocabRefs": [
-            "v-mening"
-          ]
-        },
-        {
           "id": "s4-u08-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «omdat»?",
+          "prompt": "O que significa «boos»?",
           "options": [
             {
               "id": "a",
-              "text": "que chatice",
+              "text": "agradável",
               "correct": false
             },
             {
               "id": "b",
-              "text": "porque",
+              "text": "zangado",
               "correct": true
             },
             {
               "id": "c",
-              "text": "detestar",
+              "text": "triste",
               "correct": false
             }
           ],
-          "explanation": "«omdat» = porque.",
+          "explanation": "«boos» = zangado.",
           "vocabRefs": [
-            "v-omdat"
+            "v-boos"
           ]
         },
         {
           "id": "s4-u08-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «ik denk dat»?",
+          "prompt": "O que significa «zenuwachtig»?",
           "options": [
             {
               "id": "a",
-              "text": "acho que",
-              "correct": true
+              "text": "adorar",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "razão",
-              "correct": false
+              "text": "nervoso",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "opinião",
+              "text": "porque",
               "correct": false
             }
           ],
-          "explanation": "«ik denk dat» = acho que.",
+          "explanation": "«zenuwachtig» = nervoso.",
           "vocabRefs": [
-            "v-ik-denk-dat"
+            "v-zenuwachtig"
           ]
         }
       ],

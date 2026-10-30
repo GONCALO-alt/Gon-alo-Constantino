@@ -1974,16 +1974,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik app je straks!",
-          "pt": "Mando-te mensagem daqui a pouco!"
+          "nl": "U spreekt met de voicemail van Lisa.",
+          "pt": "Está a falar para o correio de voz da Lisa."
         },
         {
-          "nl": "Goedemiddag, met Tom Bakker van Bakker Installaties.",
-          "pt": "Boa tarde, fala Tom Bakker, da Bakker Installaties."
+          "nl": "Kun je ff bellen?",
+          "pt": "Podes ligar num instante?"
         },
         {
-          "nl": "Wilt u mij zo snel mogelijk terugbellen?",
-          "pt": "Pode ligar-me de volta o mais depressa possível?"
+          "nl": "Je viel even weg.",
+          "pt": "A chamada foi-se abaixo por momentos."
         }
       ],
       "grammar": [],
@@ -2034,13 +2034,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Está a falar para o correio de voz da Lisa.",
           "tokens": [
-            "met",
+            "U",
             "spreekt",
-            "Lisa.",
-            "van",
+            "met",
             "de",
             "voicemail",
-            "U"
+            "van",
+            "Lisa."
           ],
           "alternatives": [],
           "explanation": "U spreekt met de voicemail van Lisa.",
@@ -2054,8 +2054,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Chego já!",
           "tokens": [
-            "er",
             "Ben",
+            "er",
             "zo!"
           ],
           "alternatives": [],
@@ -2071,8 +2071,8 @@
           "translation": "Ótimo, até já!",
           "tokens": [
             "Top,",
-            "zo!",
-            "tot"
+            "tot",
+            "zo!"
           ],
           "alternatives": [],
           "explanation": "Top, tot zo!",
@@ -2084,98 +2084,93 @@
           "id": "s4-u11-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Is er dinsdag nog plek?»?",
+          "prompt": "O que significa: «Hoi, met Pedro! Stoor ik?»?",
           "options": [
             {
               "id": "a",
-              "text": "Ainda há vaga na terça?",
+              "text": "Olá, é o Pedro! Estou a incomodar?",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Dá jeito agora?",
+              "text": "Mando-te mensagem daqui a pouco!",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Pois é, espera um bocadinho.",
+              "text": "Pode ligar-me de volta o mais depressa possível?",
               "correct": false
             }
           ],
-          "explanation": "«Is er dinsdag nog plek?» = Ainda há vaga na terça?",
+          "explanation": "«Hoi, met Pedro! Stoor ik?» = Olá, é o Pedro! Estou a incomodar?",
           "vocabRefs": []
         },
         {
           "id": "s4-u11-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De verbinding is slecht.»?",
+          "prompt": "O que significa: «Ik bel over het feest van zaterdag.»?",
           "options": [
             {
               "id": "a",
-              "text": "Boa tarde, fala Tom Bakker, da Bakker Installaties.",
+              "text": "Olá, é o Pedro! Estou a incomodar?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "A ligação está má.",
-              "correct": true
+              "text": "Pode ligar-me de volta o mais depressa possível?",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Infelizmente na quinta estamos sem vagas.",
-              "correct": false
+              "text": "Ligo por causa da festa de sábado.",
+              "correct": true
             }
           ],
-          "explanation": "«De verbinding is slecht.» = A ligação está má.",
-          "vocabRefs": [
-            "v-verbinding"
-          ]
+          "explanation": "«Ik bel over het feest van zaterdag.» = Ligo por causa da festa de sábado.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u11-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pode ligar-me de volta o mais depressa possível?",
+          "prompt": "Deixe mensagem depois do sinal.",
           "tokens": [
-            "zo",
-            "terugbellen?",
-            "Kunt",
-            "mogelijk",
-            "u",
-            "Wilt",
-            "snel",
-            "mij",
-            "maar"
+            "na",
+            "bericht",
+            "de",
+            "Spreek",
+            "piep.",
+            "nummer",
+            "een",
+            "ik",
+            "in"
           ],
           "answers": [
-            "Wilt u mij zo snel mogelijk terugbellen?"
+            "Spreek een bericht in na de piep."
           ],
-          "explanation": "Pode ligar-me de volta o mais depressa possível? = Wilt u mij zo snel mogelijk terugbellen? (sobram: maar, Kunt)",
+          "explanation": "Deixe mensagem depois do sinal. = Spreek een bericht in na de piep. (sobram: ik, nummer)",
           "vocabRefs": [
-            "v-zo-snel-mogelijk"
+            "v-na-de-piep"
           ]
         },
         {
           "id": "s4-u11-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ligo por causa da festa de sábado.",
+          "prompt": "A chamada foi-se abaixo por momentos.",
           "tokens": [
-            "feest",
-            "bel",
-            "zaterdag.",
-            "met",
-            "Ik",
-            "over",
-            "van",
-            "genoteerd.",
-            "het"
+            "is",
+            "viel",
+            "Je",
+            "weg.",
+            "even",
+            "goed."
           ],
           "answers": [
-            "Ik bel over het feest van zaterdag."
+            "Je viel even weg."
           ],
-          "explanation": "Ligo por causa da festa de sábado. = Ik bel over het feest van zaterdag. (sobram: met, genoteerd.)",
+          "explanation": "A chamada foi-se abaixo por momentos. = Je viel even weg. (sobram: goed., is)",
           "vocabRefs": []
         }
       ],
@@ -2243,16 +2238,16 @@
       ],
       "examples": [
         {
-          "nl": "Top, tot zo!",
-          "pt": "Ótimo, até já!"
+          "nl": "Idd, ff wachten.",
+          "pt": "Pois é, espera um bocadinho."
         },
         {
-          "nl": "Kun je ff bellen?",
-          "pt": "Podes ligar num instante?"
+          "nl": "Je viel even weg.",
+          "pt": "A chamada foi-se abaixo por momentos."
         },
         {
-          "nl": "Ik bel over het feest van zaterdag.",
-          "pt": "Ligo por causa da festa de sábado."
+          "nl": "Ik heb het genoteerd.",
+          "pt": "Ficou anotado."
         }
       ],
       "grammar": [],
@@ -2261,92 +2256,87 @@
           "id": "s4-u11-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «dá jeito agora?» em neerlandês?",
+          "prompt": "Como se diz «o mais depressa possível» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "komt het nu uit?",
+              "text": "zo snel mogelijk",
               "correct": true
             },
             {
               "id": "b",
-              "text": "verstaan",
+              "text": "bellen over",
               "correct": false
             },
             {
               "id": "c",
-              "text": "wegvallen",
+              "text": "voicemail",
               "correct": false
             }
           ],
-          "explanation": "dá jeito agora? = «komt het nu uit?».",
+          "explanation": "o mais depressa possível = «zo snel mogelijk».",
           "vocabRefs": [
-            "v-uitkomen-nu"
+            "v-zo-snel-mogelijk"
           ]
         },
         {
           "id": "s4-u11-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ouvir/perceber» em neerlandês?",
+          "prompt": "Como se diz «anotado» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "storen",
+              "text": "doorgeven",
               "correct": false
             },
             {
               "id": "b",
-              "text": "verstaan",
+              "text": "genoteerd",
               "correct": true
             },
             {
               "id": "c",
-              "text": "er is plek",
+              "text": "ben er zo",
               "correct": false
             }
           ],
-          "explanation": "ouvir/perceber = «verstaan».",
+          "explanation": "anotado = «genoteerd».",
           "vocabRefs": [
-            "v-verstaan"
+            "v-genoteerd"
           ]
         },
         {
           "id": "s4-u11-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Kun je ___ bellen?",
-          "translation": "Podes ligar num instante?",
+          "sentence": "U spreekt met de ___ van Lisa.",
+          "translation": "Está a falar para o correio de voz da Lisa.",
           "answers": [
-            "ff"
+            "voicemail"
           ],
           "choices": [
-            "ff",
-            "volgeboekt",
-            "verstaan"
+            "voicemail",
+            "appen",
+            "genoteerd"
           ],
-          "explanation": "Kun je ff bellen?",
+          "explanation": "U spreekt met de voicemail van Lisa.",
           "vocabRefs": [
-            "v-ff"
+            "v-voicemail"
           ]
         },
         {
           "id": "s4-u11-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "De ___ is slecht.",
-          "translation": "A ligação está má.",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik heb het genoteerd.",
           "answers": [
-            "verbinding"
+            "Ik heb het genoteerd."
           ],
-          "choices": [
-            "volgeboekt",
-            "verbinding",
-            "wegvallen"
-          ],
-          "explanation": "De verbinding is slecht.",
+          "translation": "Ficou anotado.",
+          "explanation": "«Ik heb het genoteerd.» = Ficou anotado.",
           "vocabRefs": [
-            "v-verbinding"
+            "v-genoteerd"
           ]
         },
         {
@@ -2363,62 +2353,52 @@
         },
         {
           "id": "s4-u11-l008-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Spreek een bericht in na de piep.",
-          "answers": [
-            "Spreek een bericht in na de piep."
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Infelizmente na quinta estamos sem vagas.",
+          "tokens": [
+            "nummer",
+            "Donderdag",
+            "helaas",
+            "we",
+            "volgeboekt.",
+            "Stoor",
+            "zijn"
           ],
-          "translation": "Deixe mensagem depois do sinal.",
-          "explanation": "«Spreek een bericht in na de piep.» = Deixe mensagem depois do sinal.",
+          "answers": [
+            "Donderdag zijn we helaas volgeboekt."
+          ],
+          "explanation": "Infelizmente na quinta estamos sem vagas. = Donderdag zijn we helaas volgeboekt. (sobram: nummer, Stoor)",
           "vocabRefs": [
-            "v-na-de-piep"
+            "v-volgeboekt"
           ]
         },
         {
           "id": "s4-u11-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Infelizmente na quinta estamos sem vagas.",
+          "prompt": "Está a falar para o correio de voz da Lisa.",
           "tokens": [
+            "ik",
+            "spreekt",
             "van",
-            "helaas",
-            "na",
-            "zijn",
-            "Donderdag",
-            "volgeboekt.",
-            "we"
+            "Lisa.",
+            "de",
+            "voicemail",
+            "met",
+            "U",
+            "na"
           ],
           "answers": [
-            "Donderdag zijn we helaas volgeboekt."
+            "U spreekt met de voicemail van Lisa."
           ],
-          "explanation": "Infelizmente na quinta estamos sem vagas. = Donderdag zijn we helaas volgeboekt. (sobram: van, na)",
+          "explanation": "Está a falar para o correio de voz da Lisa. = U spreekt met de voicemail van Lisa. (sobram: na, ik)",
           "vocabRefs": [
-            "v-volgeboekt"
+            "v-voicemail"
           ]
         },
         {
           "id": "s4-u11-l008-e08",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não o estou a ouvir bem.",
-          "tokens": [
-            "zaterdag.",
-            "u",
-            "versta",
-            "het",
-            "goed.",
-            "niet",
-            "Ik"
-          ],
-          "answers": [
-            "Ik versta u niet goed."
-          ],
-          "explanation": "Não o estou a ouvir bem. = Ik versta u niet goed. (sobram: het, zaterdag.)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s4-u11-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
           "noun": "herinneringssms",
@@ -2430,29 +2410,31 @@
           ]
         },
         {
-          "id": "s4-u11-l008-e10",
+          "id": "s4-u11-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik versta u niet goed.»?",
+          "prompt": "O que significa: «U spreekt met de voicemail van Lisa.»?",
           "options": [
             {
               "id": "a",
-              "text": "Pois é, espera um bocadinho.",
+              "text": "A ligação está má.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Mando-te mensagem daqui a pouco!",
-              "correct": false
+              "text": "Está a falar para o correio de voz da Lisa.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Não o estou a ouvir bem.",
-              "correct": true
+              "text": "Pois é, espera um bocadinho.",
+              "correct": false
             }
           ],
-          "explanation": "«Ik versta u niet goed.» = Não o estou a ouvir bem.",
-          "vocabRefs": []
+          "explanation": "«U spreekt met de voicemail van Lisa.» = Está a falar para o correio de voz da Lisa.",
+          "vocabRefs": [
+            "v-voicemail"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2519,16 +2501,16 @@
       ],
       "examples": [
         {
-          "nl": "Komt het nu uit?",
-          "pt": "Dá jeito agora?"
+          "nl": "Spreek een bericht in na de piep.",
+          "pt": "Deixe mensagem depois do sinal."
         },
         {
-          "nl": "Wilt u mij zo snel mogelijk terugbellen?",
-          "pt": "Pode ligar-me de volta o mais depressa possível?"
+          "nl": "Idd, ff wachten.",
+          "pt": "Pois é, espera um bocadinho."
         },
         {
-          "nl": "Kunt u iets harder praten?",
-          "pt": "Pode falar um pouco mais alto?"
+          "nl": "Ik versta u niet goed.",
+          "pt": "Não o estou a ouvir bem."
         }
       ],
       "grammar": [],
@@ -2537,64 +2519,95 @@
           "id": "s4-u11-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ainda há vaga na terça?",
+          "prompt": "Recebe um SMS de lembrete na véspera.",
           "tokens": [
-            "nog",
-            "plek?",
-            "er",
-            "dinsdag",
-            "Is",
+            "feest",
+            "De",
+            "een",
+            "herinneringssms.",
             "U",
-            "Wilt"
+            "dag",
+            "krijgt",
+            "een",
+            "van",
+            "tevoren"
           ],
           "answers": [
-            "Is er dinsdag nog plek?"
+            "U krijgt een dag van tevoren een herinneringssms."
           ],
-          "explanation": "Ainda há vaga na terça? = Is er dinsdag nog plek? (sobram: Wilt, U)",
-          "vocabRefs": []
+          "explanation": "Recebe um SMS de lembrete na véspera. = U krijgt een dag van tevoren een herinneringssms. (sobram: De, feest)",
+          "vocabRefs": [
+            "v-herinnering-sms"
+          ]
         },
         {
           "id": "s4-u11-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Mando-te mensagem daqui a pouco!",
+          "prompt": "Pois é, espera um bocadinho.",
           "tokens": [
-            "in",
-            "straks!",
-            "app",
-            "je",
-            "viel",
-            "Ik"
+            "ff",
+            "Idd,",
+            "Hoi,",
+            "het",
+            "wachten."
           ],
           "answers": [
-            "Ik app je straks!"
+            "Idd, ff wachten."
           ],
-          "explanation": "Mando-te mensagem daqui a pouco! = Ik app je straks! (sobram: in, viel)",
-          "vocabRefs": []
+          "explanation": "Pois é, espera um bocadinho. = Idd, ff wachten. (sobram: het, Hoi,)",
+          "vocabRefs": [
+            "v-ff"
+          ]
         },
         {
           "id": "s4-u11-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Dá jeito agora?",
+          "prompt": "Chego já!",
           "tokens": [
-            "Komt",
-            "bel",
-            "het",
-            "nu",
-            "uit?",
-            "van"
+            "zo!",
+            "praten?",
+            "Ben",
+            "er",
+            "Met"
           ],
           "answers": [
-            "Komt het nu uit?"
+            "Ben er zo!"
           ],
-          "explanation": "Dá jeito agora? = Komt het nu uit? (sobram: bel, van)",
+          "explanation": "Chego já! = Ben er zo! (sobram: praten?, Met)",
           "vocabRefs": [
-            "v-uitkomen-nu"
+            "v-ben-er-zo"
           ]
         },
         {
           "id": "s4-u11-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Met Ana de Vries.",
+          "answers": [
+            "Met Ana de Vries."
+          ],
+          "translation": "Fala Ana de Vries.",
+          "explanation": "«Met Ana de Vries.» = Fala Ana de Vries.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s4-u11-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Wilt u mij zo snel mogelijk terugbellen?",
+          "answers": [
+            "Wilt u mij zo snel mogelijk terugbellen?"
+          ],
+          "translation": "Pode ligar-me de volta o mais depressa possível?",
+          "explanation": "«Wilt u mij zo snel mogelijk terugbellen?» = Pode ligar-me de volta o mais depressa possível?",
+          "vocabRefs": [
+            "v-zo-snel-mogelijk"
+          ]
+        },
+        {
+          "id": "s4-u11-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik app je straks!",
@@ -2606,118 +2619,96 @@
           "vocabRefs": []
         },
         {
-          "id": "s4-u11-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hoi, met Pedro! Stoor ik?",
-          "answers": [
-            "Hoi, met Pedro! Stoor ik?"
-          ],
-          "translation": "Olá, é o Pedro! Estou a incomodar?",
-          "explanation": "«Hoi, met Pedro! Stoor ik?» = Olá, é o Pedro! Estou a incomodar?",
-          "vocabRefs": []
-        },
-        {
-          "id": "s4-u11-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik versta het wel, maar ik begrijp het niet.",
-          "answers": [
-            "Ik versta het wel, maar ik begrijp het niet."
-          ],
-          "translation": "Ouço bem, mas não percebo.",
-          "explanation": "«Ik versta het wel, maar ik begrijp het niet.» = Ouço bem, mas não percebo.",
-          "vocabRefs": []
-        },
-        {
           "id": "s4-u11-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Pode ligar-me de volta o mais depressa possível?",
+          "translation": "Deixe mensagem depois do sinal.",
           "tokens": [
-            "snel",
-            "u",
-            "Wilt",
-            "mij",
-            "mogelijk",
-            "terugbellen?",
-            "zo"
+            "Spreek",
+            "een",
+            "bericht",
+            "in",
+            "na",
+            "de",
+            "piep."
           ],
           "alternatives": [],
-          "explanation": "Wilt u mij zo snel mogelijk terugbellen?",
+          "explanation": "Spreek een bericht in na de piep.",
           "vocabRefs": [
-            "v-zo-snel-mogelijk"
+            "v-na-de-piep"
           ]
         },
         {
           "id": "s4-u11-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ficou anotado.",
+          "translation": "O meu número é 06 12 34 56 78.",
           "tokens": [
-            "genoteerd.",
-            "Ik",
-            "het",
-            "heb"
+            "Mijn",
+            "nummer",
+            "is",
+            "06",
+            "12",
+            "34",
+            "56",
+            "78."
           ],
           "alternatives": [],
-          "explanation": "Ik heb het genoteerd.",
-          "vocabRefs": [
-            "v-genoteerd"
-          ]
+          "explanation": "Mijn nummer is 06 12 34 56 78.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u11-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «harder»?",
+          "prompt": "O que significa «gr. / groetjes»?",
           "options": [
             {
               "id": "a",
-              "text": "transmitir",
+              "text": "ir-se abaixo",
               "correct": false
             },
             {
               "id": "b",
-              "text": "mais alto",
-              "correct": true
+              "text": "anotado",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "dá jeito agora?",
-              "correct": false
+              "text": "beijinhos",
+              "correct": true
             }
           ],
-          "explanation": "«harder» = mais alto.",
+          "explanation": "«gr. / groetjes» = beijinhos, abraço (mensagens).",
           "vocabRefs": [
-            "v-harder"
+            "v-groetjes-msg"
           ]
         },
         {
           "id": "s4-u11-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de voicemail»?",
+          "prompt": "O que significa «de verbinding»?",
           "options": [
             {
               "id": "a",
-              "text": "mandar mensagem",
+              "text": "ouvir/perceber",
               "correct": false
             },
             {
               "id": "b",
-              "text": "correio de voz",
-              "correct": true
+              "text": "incomodar",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "ligar por causa de",
-              "correct": false
+              "text": "ligação",
+              "correct": true
             }
           ],
-          "explanation": "«de voicemail» = correio de voz.",
+          "explanation": "«de verbinding» = ligação (rede).",
           "vocabRefs": [
-            "v-voicemail"
+            "v-verbinding"
           ]
         }
       ],

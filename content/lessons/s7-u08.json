@@ -1901,16 +1901,16 @@
       ],
       "examples": [
         {
-          "nl": "Het was een pyrrusoverwinning.",
-          "pt": "Foi uma vitória de Pirro."
+          "nl": "Hij heeft boter op zijn hoofd.",
+          "pt": "Ele tem telhados de vidro."
         },
         {
-          "nl": "De directeur wast zijn handen in onschuld.",
-          "pt": "O diretor lava as mãos."
+          "nl": "De appel valt niet ver van de boom.",
+          "pt": "Filho de peixe sabe nadar."
         },
         {
-          "nl": "Als de kat van huis is, dansen de muizen op tafel.",
-          "pt": "Quando o gato sai, os ratos fazem a festa."
+          "nl": "Ik word van het kastje naar de muur gestuurd.",
+          "pt": "Andam a mandar-me de Herodes para Pilatos."
         }
       ],
       "grammar": [],
@@ -1963,11 +1963,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Cá se fazem, cá se pagam.",
           "tokens": [
-            "om",
             "Boontje",
-            "loontje.",
             "komt",
-            "zijn"
+            "om",
+            "zijn",
+            "loontje."
           ],
           "alternatives": [],
           "explanation": "Boontje komt om zijn loontje.",
@@ -1981,8 +1981,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quem não arrisca não petisca.",
           "tokens": [
-            "niet",
             "Wie",
+            "niet",
             "waagt,",
             "wie",
             "niet",
@@ -2000,10 +2000,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Foi uma vitória de Pirro.",
           "tokens": [
-            "pyrrusoverwinning.",
-            "was",
             "Het",
-            "een"
+            "was",
+            "een",
+            "pyrrusoverwinning."
           ],
           "alternatives": [],
           "explanation": "Het was een pyrrusoverwinning.",
@@ -2015,99 +2015,103 @@
           "id": "s7-u08-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Zachte heelmeesters maken stinkende wonden.»?",
+          "prompt": "O que significa: «Stille wateren hebben diepe gronden.»?",
           "options": [
             {
               "id": "a",
-              "text": "Uma piada num funeral é inadequada.",
+              "text": "A brandura excessiva só piora as coisas.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O diretor lava as mãos.",
+              "text": "Ele tem telhados de vidro.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "A brandura excessiva só piora as coisas.",
+              "text": "Águas paradas são profundas.",
               "correct": true
             }
           ],
-          "explanation": "«Zachte heelmeesters maken stinkende wonden.» = A brandura excessiva só piora as coisas.",
+          "explanation": "«Stille wateren hebben diepe gronden.» = Águas paradas são profundas.",
           "vocabRefs": [
-            "v-zachte-heelmeesters"
+            "v-stille-wateren"
           ]
         },
         {
           "id": "s7-u08-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je Nederlands klinkt heel natuurlijk.»?",
+          "prompt": "O que significa: «Een grap op een begrafenis is ongepast.»?",
           "options": [
             {
               "id": "a",
-              "text": "O teu neerlandês soa muito natural.",
-              "correct": true
+              "text": "Ela é sempre tão arrogante.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "A brandura excessiva só piora as coisas.",
+              "text": "Já estou a ver no que isto vai dar.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ela é sempre tão arrogante.",
-              "correct": false
+              "text": "Uma piada num funeral é inadequada.",
+              "correct": true
             }
           ],
-          "explanation": "«Je Nederlands klinkt heel natuurlijk.» = O teu neerlandês soa muito natural.",
-          "vocabRefs": []
+          "explanation": "«Een grap op een begrafenis is ongepast.» = Uma piada num funeral é inadequada.",
+          "vocabRefs": [
+            "v-gepast",
+            "v-ongepast"
+          ]
         },
         {
           "id": "s7-u08-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Já estou a ver no que isto vai dar.",
+          "prompt": "Andam a mandar-me de Herodes para Pilatos.",
           "tokens": [
-            "Ze",
-            "al",
-            "hangen.",
-            "bui",
+            "het",
+            "naar",
+            "maken",
+            "gestuurd.",
             "Ik",
-            "zie",
             "de",
-            "is,"
+            "om",
+            "van",
+            "word",
+            "muur",
+            "kastje"
           ],
           "answers": [
-            "Ik zie de bui al hangen."
+            "Ik word van het kastje naar de muur gestuurd."
           ],
-          "explanation": "Já estou a ver no que isto vai dar. = Ik zie de bui al hangen. (sobram: Ze, is,)",
-          "vocabRefs": []
+          "explanation": "Andam a mandar-me de Herodes para Pilatos. = Ik word van het kastje naar de muur gestuurd. (sobram: om, maken)",
+          "vocabRefs": [
+            "v-pontius-pilatus"
+          ]
         },
         {
           "id": "s7-u08-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No Século de Ouro Amesterdão era muito rica.",
+          "prompt": "Ele tem telhados de vidro.",
           "tokens": [
-            "Eeuw",
-            "huis",
-            "de",
-            "Gouden",
-            "was",
-            "In",
-            "rijk.",
+            "heeft",
+            "boter",
+            "hoofd.",
+            "begrafenis",
             "op",
-            "heel",
-            "Amsterdam"
+            "Hij",
+            "grap",
+            "zijn"
           ],
           "answers": [
-            "In de Gouden Eeuw was Amsterdam heel rijk."
+            "Hij heeft boter op zijn hoofd."
           ],
-          "explanation": "No Século de Ouro Amesterdão era muito rica. = In de Gouden Eeuw was Amsterdam heel rijk. (sobram: op, huis)",
-          "vocabRefs": [
-            "v-gouden-eeuw"
-          ]
+          "explanation": "Ele tem telhados de vidro. = Hij heeft boter op zijn hoofd. (sobram: grap, begrafenis)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2160,16 +2164,16 @@
       ],
       "examples": [
         {
-          "nl": "De directeur wast zijn handen in onschuld.",
-          "pt": "O diretor lava as mãos."
-        },
-        {
           "nl": "Het was een pyrrusoverwinning.",
           "pt": "Foi uma vitória de Pirro."
         },
         {
-          "nl": "Hij heeft boter op zijn hoofd.",
-          "pt": "Ele tem telhados de vidro."
+          "nl": "De directeur wast zijn handen in onschuld.",
+          "pt": "O diretor lava as mãos."
+        },
+        {
+          "nl": "Boontje komt om zijn loontje.",
+          "pt": "Cá se fazem, cá se pagam."
         }
       ],
       "grammar": [],
@@ -2178,131 +2182,154 @@
           "id": "s7-u08-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «evitar clichés» em neerlandês?",
+          "prompt": "Como se diz «de Herodes para Pilatos» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "als de kat van huis is, dansen de muizen op tafel",
+              "text": "de bui al zien hangen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "zijn handen in onschuld wassen",
+              "text": "pyrrusoverwinning",
               "correct": false
             },
             {
               "id": "c",
-              "text": "clichés vermijden",
+              "text": "van het kastje naar de muur",
               "correct": true
             }
           ],
-          "explanation": "evitar clichés = «clichés vermijden».",
+          "explanation": "de Herodes para Pilatos = «van het kastje naar de muur».",
           "vocabRefs": [
-            "v-cliche-vermijden"
+            "v-pontius-pilatus"
           ]
         },
         {
           "id": "s7-u08-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «Século de Ouro» em neerlandês?",
+          "prompt": "Como se diz «quem não arrisca não petisca» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "stille wateren hebben diepe gronden",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Gouden Eeuw",
+              "text": "wie niet waagt, wie niet wint",
               "correct": true
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "gedane zaken nemen geen keer",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "van het kastje naar de muur",
               "correct": false
             }
           ],
-          "explanation": "Século de Ouro = «Gouden Eeuw».",
+          "explanation": "quem não arrisca não petisca = «wie niet waagt, wie niet wint».",
           "vocabRefs": [
-            "v-gouden-eeuw"
+            "v-oost-west-ext"
           ]
         },
         {
           "id": "s7-u08-l008-e03",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zachte heelmeesters maken stinkende wonden.",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Het was een ___.",
+          "translation": "Foi uma vitória de Pirro.",
           "answers": [
-            "Zachte heelmeesters maken stinkende wonden."
+            "pyrrusoverwinning"
           ],
-          "translation": "A brandura excessiva só piora as coisas.",
-          "explanation": "«Zachte heelmeesters maken stinkende wonden.» = A brandura excessiva só piora as coisas.",
+          "choices": [
+            "pyrrusoverwinning",
+            "gepast",
+            "ongepast"
+          ],
+          "explanation": "Het was een pyrrusoverwinning.",
           "vocabRefs": [
-            "v-zachte-heelmeesters"
+            "v-pyrrusoverwinning"
           ]
         },
         {
           "id": "s7-u08-l008-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je Nederlands klinkt heel natuurlijk.",
+          "audioText": "In de Gouden Eeuw was Amsterdam heel rijk.",
           "answers": [
-            "Je Nederlands klinkt heel natuurlijk."
+            "In de Gouden Eeuw was Amsterdam heel rijk."
           ],
-          "translation": "O teu neerlandês soa muito natural.",
-          "explanation": "«Je Nederlands klinkt heel natuurlijk.» = O teu neerlandês soa muito natural.",
-          "vocabRefs": []
+          "translation": "No Século de Ouro Amesterdão era muito rica.",
+          "explanation": "«In de Gouden Eeuw was Amsterdam heel rijk.» = No Século de Ouro Amesterdão era muito rica.",
+          "vocabRefs": [
+            "v-gouden-eeuw"
+          ]
         },
         {
           "id": "s7-u08-l008-e05",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O caso foi abafado.",
-          "tokens": [
-            "werd",
-            "De",
-            "zaak",
-            "in",
-            "vogel",
-            "zijn",
-            "gestopt.",
-            "doofpot",
-            "de"
-          ],
-          "answers": [
-            "De zaak werd in de doofpot gestopt."
-          ],
-          "explanation": "O caso foi abafado. = De zaak werd in de doofpot gestopt. (sobram: vogel, zijn)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s7-u08-l008-e06",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Uma piada num funeral é inadequada.",
-          "tokens": [
-            "ongepast.",
-            "een",
-            "De",
-            "is",
-            "op",
-            "grap",
-            "in",
-            "Een",
-            "begrafenis"
-          ],
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Een grap op een begrafenis is ongepast.",
           "answers": [
             "Een grap op een begrafenis is ongepast."
           ],
-          "explanation": "Uma piada num funeral é inadequada. = Een grap op een begrafenis is ongepast. (sobram: De, in)",
+          "translation": "Uma piada num funeral é inadequada.",
+          "explanation": "«Een grap op een begrafenis is ongepast.» = Uma piada num funeral é inadequada.",
           "vocabRefs": [
             "v-gepast",
             "v-ongepast"
           ]
         },
         {
+          "id": "s7-u08-l008-e06",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "No Século de Ouro Amesterdão era muito rica.",
+          "tokens": [
+            "Amsterdam",
+            "Gouden",
+            "In",
+            "de",
+            "heel",
+            "appel",
+            "Eeuw",
+            "van",
+            "was",
+            "rijk."
+          ],
+          "answers": [
+            "In de Gouden Eeuw was Amsterdam heel rijk."
+          ],
+          "explanation": "No Século de Ouro Amesterdão era muito rica. = In de Gouden Eeuw was Amsterdam heel rijk. (sobram: appel, van)",
+          "vocabRefs": [
+            "v-gouden-eeuw"
+          ]
+        },
+        {
           "id": "s7-u08-l008-e07",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Quem não arrisca não petisca.",
+          "tokens": [
+            "de",
+            "waagt,",
+            "niet",
+            "in",
+            "wint.",
+            "wie",
+            "Wie",
+            "niet"
+          ],
+          "answers": [
+            "Wie niet waagt, wie niet wint."
+          ],
+          "explanation": "Quem não arrisca não petisca. = Wie niet waagt, wie niet wint. (sobram: in, de)",
+          "vocabRefs": [
+            "v-oost-west-ext"
+          ]
+        },
+        {
+          "id": "s7-u08-l008-e08",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
           "noun": "pyrrusoverwinning",
@@ -2314,58 +2341,29 @@
           ]
         },
         {
-          "id": "s7-u08-l008-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Die uitdrukking is hier niet gepast.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Essa expressão não é adequada aqui.",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "O caso foi abafado.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Ele tem telhados de vidro.",
-              "correct": false
-            }
-          ],
-          "explanation": "«Die uitdrukking is hier niet gepast.» = Essa expressão não é adequada aqui.",
-          "vocabRefs": [
-            "v-gepast"
-          ]
-        },
-        {
           "id": "s7-u08-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «ongepast»?",
+          "prompt": "O que significa: «Je Nederlands klinkt heel natuurlijk.»?",
           "options": [
             {
               "id": "a",
-              "text": "filho de peixe sabe nadar",
-              "correct": false
+              "text": "O teu neerlandês soa muito natural.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Século de Ouro",
+              "text": "Cá se fazem, cá se pagam.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "inadequado",
-              "correct": true
+              "text": "Águas paradas são profundas.",
+              "correct": false
             }
           ],
-          "explanation": "«ongepast» = inadequado.",
-          "vocabRefs": [
-            "v-ongepast"
-          ]
+          "explanation": "«Je Nederlands klinkt heel natuurlijk.» = O teu neerlandês soa muito natural.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2418,16 +2416,16 @@
       ],
       "examples": [
         {
-          "nl": "In de Gouden Eeuw was Amsterdam heel rijk.",
-          "pt": "No Século de Ouro Amesterdão era muito rica."
+          "nl": "De zaak werd in de doofpot gestopt.",
+          "pt": "O caso foi abafado."
         },
         {
-          "nl": "Probeer clichés te vermijden.",
-          "pt": "Tenta evitar clichés."
+          "nl": "Het was een pyrrusoverwinning.",
+          "pt": "Foi uma vitória de Pirro."
         },
         {
-          "nl": "Ik zie de bui al hangen.",
-          "pt": "Já estou a ver no que isto vai dar."
+          "nl": "Als de kat van huis is, dansen de muizen op tafel.",
+          "pt": "Quando o gato sai, os ratos fazem a festa."
         }
       ],
       "grammar": [],
@@ -2436,73 +2434,95 @@
           "id": "s7-u08-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quando o gato sai, os ratos fazem a festa.",
+          "prompt": "Cá se fazem, cá se pagam.",
           "tokens": [
-            "Gouden",
-            "is,",
-            "tafel.",
-            "kat",
-            "dansen",
-            "de",
-            "Als",
-            "muizen",
-            "huis",
-            "op",
-            "Die",
-            "de",
-            "van"
+            "diepe",
+            "gestuurd.",
+            "komt",
+            "Boontje",
+            "om",
+            "loontje.",
+            "zijn"
           ],
           "answers": [
-            "Als de kat van huis is, dansen de muizen op tafel."
+            "Boontje komt om zijn loontje."
           ],
-          "explanation": "Quando o gato sai, os ratos fazem a festa. = Als de kat van huis is, dansen de muizen op tafel. (sobram: Gouden, Die)",
+          "explanation": "Cá se fazem, cá se pagam. = Boontje komt om zijn loontje. (sobram: gestuurd., diepe)",
           "vocabRefs": [
-            "v-kat-van-huis"
+            "v-boontje-komt"
           ]
         },
         {
           "id": "s7-u08-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenta evitar clichés.",
+          "prompt": "Já estou a ver no que isto vai dar.",
           "tokens": [
-            "vermijden.",
-            "te",
-            "clichés",
-            "Probeer",
-            "heeft",
-            "Een"
+            "Hij",
+            "de",
+            "Ik",
+            "Wie",
+            "bui",
+            "hangen.",
+            "zie",
+            "al"
           ],
           "answers": [
-            "Probeer clichés te vermijden."
+            "Ik zie de bui al hangen."
           ],
-          "explanation": "Tenta evitar clichés. = Probeer clichés te vermijden. (sobram: Een, heeft)",
+          "explanation": "Já estou a ver no que isto vai dar. = Ik zie de bui al hangen. (sobram: Wie, Hij)",
           "vocabRefs": []
         },
         {
           "id": "s7-u08-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Cá se fazem, cá se pagam.",
+          "prompt": "Ela é sempre tão arrogante.",
           "tokens": [
-            "zijn",
-            "komt",
-            "om",
+            "de",
             "valt",
-            "gronden.",
-            "loontje.",
-            "Boontje"
+            "Ze",
+            "altijd",
+            "hoogte.",
+            "zo",
+            "uit",
+            "doet",
+            "wint."
           ],
           "answers": [
-            "Boontje komt om zijn loontje."
+            "Ze doet altijd zo uit de hoogte."
           ],
-          "explanation": "Cá se fazem, cá se pagam. = Boontje komt om zijn loontje. (sobram: valt, gronden.)",
-          "vocabRefs": [
-            "v-boontje-komt"
-          ]
+          "explanation": "Ela é sempre tão arrogante. = Ze doet altijd zo uit de hoogte. (sobram: wint., valt)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u08-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "De zaak werd in de doofpot gestopt.",
+          "answers": [
+            "De zaak werd in de doofpot gestopt."
+          ],
+          "translation": "O caso foi abafado.",
+          "explanation": "«De zaak werd in de doofpot gestopt.» = O caso foi abafado.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s7-u08-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Die uitdrukking is hier niet gepast.",
+          "answers": [
+            "Die uitdrukking is hier niet gepast."
+          ],
+          "translation": "Essa expressão não é adequada aqui.",
+          "explanation": "«Die uitdrukking is hier niet gepast.» = Essa expressão não é adequada aqui.",
+          "vocabRefs": [
+            "v-gepast"
+          ]
+        },
+        {
+          "id": "s7-u08-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ze doet altijd zo uit de hoogte.",
@@ -2514,125 +2534,99 @@
           "vocabRefs": []
         },
         {
-          "id": "s7-u08-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "In de Gouden Eeuw was Amsterdam heel rijk.",
-          "answers": [
-            "In de Gouden Eeuw was Amsterdam heel rijk."
-          ],
-          "translation": "No Século de Ouro Amesterdão era muito rica.",
-          "explanation": "«In de Gouden Eeuw was Amsterdam heel rijk.» = No Século de Ouro Amesterdão era muito rica.",
-          "vocabRefs": [
-            "v-gouden-eeuw"
-          ]
-        },
-        {
-          "id": "s7-u08-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een grap op een begrafenis is ongepast.",
-          "answers": [
-            "Een grap op een begrafenis is ongepast."
-          ],
-          "translation": "Uma piada num funeral é inadequada.",
-          "explanation": "«Een grap op een begrafenis is ongepast.» = Uma piada num funeral é inadequada.",
-          "vocabRefs": [
-            "v-gepast",
-            "v-ongepast"
-          ]
-        },
-        {
           "id": "s7-u08-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "No Século de Ouro Amesterdão era muito rica.",
+          "translation": "O diretor lava as mãos.",
           "tokens": [
-            "In",
-            "de",
-            "Gouden",
-            "Amsterdam",
-            "Eeuw",
-            "was",
-            "heel",
-            "rijk."
+            "De",
+            "directeur",
+            "wast",
+            "zijn",
+            "handen",
+            "in",
+            "onschuld."
           ],
           "alternatives": [],
-          "explanation": "In de Gouden Eeuw was Amsterdam heel rijk.",
-          "vocabRefs": [
-            "v-gouden-eeuw"
-          ]
+          "explanation": "De directeur wast zijn handen in onschuld.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u08-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O caso foi abafado.",
+          "translation": "Mais vale um pássaro na mão do que dois a voar.",
           "tokens": [
-            "de",
-            "gestopt.",
-            "werd",
-            "De",
-            "doofpot",
+            "Beter",
+            "één",
+            "vogel",
             "in",
-            "zaak"
+            "de",
+            "hand",
+            "dan",
+            "tien",
+            "in",
+            "de",
+            "lucht."
           ],
           "alternatives": [],
-          "explanation": "De zaak werd in de doofpot gestopt.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s7-u08-l009-e09",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «boter op je hoofd hebben»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "soar natural",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "inadequado",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "ter telhados de vidro",
-              "correct": true
-            }
-          ],
-          "explanation": "«boter op je hoofd hebben» = ter telhados de vidro.",
+          "explanation": "Beter één vogel in de hand dan tien in de lucht.",
           "vocabRefs": [
-            "v-boter-op-je-hoofd"
+            "v-vogel-in-de-hand"
           ]
         },
         {
-          "id": "s7-u08-l009-e10",
+          "id": "s7-u08-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa «natuurlijk klinken»?",
           "options": [
             {
               "id": "a",
-              "text": "soar natural",
-              "correct": true
+              "text": "quando o gato sai, os ratos fazem a festa",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "ser arrogante",
+              "text": "cá se fazem, cá se pagam",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ver a tempestade a chegar",
-              "correct": false
+              "text": "soar natural",
+              "correct": true
             }
           ],
           "explanation": "«natuurlijk klinken» = soar natural.",
           "vocabRefs": [
             "v-natuurlijk-klinken"
+          ]
+        },
+        {
+          "id": "s7-u08-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «boter op je hoofd hebben»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "águas paradas são profundas",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "ter telhados de vidro",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "adequado",
+              "correct": false
+            }
+          ],
+          "explanation": "«boter op je hoofd hebben» = ter telhados de vidro.",
+          "vocabRefs": [
+            "v-boter-op-je-hoofd"
           ]
         }
       ],

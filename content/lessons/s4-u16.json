@@ -1919,16 +1919,16 @@
       ],
       "examples": [
         {
-          "nl": "Hoe voel je je?",
-          "pt": "Como te sentes?"
+          "nl": "Ze voelen zich thuis.",
+          "pt": "Eles sentem-se em casa."
         },
         {
-          "nl": "Maak je geen zorgen!",
-          "pt": "Não te preocupes!"
+          "nl": "De kinderen vervelen zich.",
+          "pt": "As crianças estão aborrecidas."
         },
         {
-          "nl": "'s Avonds ontspan ik me met een boek.",
-          "pt": "À noite descontraio com um livro."
+          "nl": "Ik heb veel vooruitgang geboekt.",
+          "pt": "Fiz muitos progressos."
         }
       ],
       "grammar": [],
@@ -1979,9 +1979,9 @@
           "tokens": [
             "Gisteren",
             "heb",
+            "ik",
             "me",
-            "afgemeld.",
-            "ik"
+            "afgemeld."
           ],
           "alternatives": [],
           "explanation": "Gisteren heb ik me afgemeld.",
@@ -1993,11 +1993,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Faço a barba todas as manhãs.",
           "tokens": [
+            "Ik",
+            "scheer",
             "me",
             "elke",
-            "scheer",
-            "ochtend.",
-            "Ik"
+            "ochtend."
           ],
           "alternatives": [],
           "explanation": "Ik scheer me elke ochtend.",
@@ -2009,13 +2009,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Estou a olhar para o próximo passo.",
           "tokens": [
-            "volgende",
-            "naar",
+            "Ik",
             "kijk",
-            "de",
-            "stap.",
             "vooruit",
-            "Ik"
+            "naar",
+            "de",
+            "volgende",
+            "stap."
           ],
           "alternatives": [],
           "explanation": "Ik kijk vooruit naar de volgende stap.",
@@ -2025,25 +2025,25 @@
           "id": "s4-u16-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Haast je niet!»?",
+          "prompt": "O que significa: «'s Avonds ontspan ik me met een boek.»?",
           "options": [
             {
               "id": "a",
-              "text": "Fiz muitos progressos.",
-              "correct": false
+              "text": "À noite descontraio com um livro.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Acho que ele se engana.",
+              "text": "Ela está a arranjar-se para a festa.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Não te apresses!",
-              "correct": true
+              "text": "Faço a barba todas as manhãs.",
+              "correct": false
             }
           ],
-          "explanation": "«Haast je niet!» = Não te apresses!",
+          "explanation": "«'s Avonds ontspan ik me met een boek.» = À noite descontraio com um livro.",
           "vocabRefs": []
         },
         {
@@ -2054,17 +2054,17 @@
           "options": [
             {
               "id": "a",
-              "text": "Fiz muitos progressos.",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Não me lembro do nome dela.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Desculpe, enganei-me.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Depois do desporto mudo de roupa.",
+              "text": "Estou a olhar para o próximo passo.",
               "correct": false
             }
           ],
@@ -2077,20 +2077,20 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Ela está a arranjar-se para a festa.",
           "tokens": [
-            "klaar",
-            "vergist.",
-            "feest.",
-            "'s",
-            "het",
-            "Ze",
-            "voor",
+            "zich",
             "maakt",
-            "zich"
+            "feest.",
+            "dat",
+            "Ze",
+            "me",
+            "het",
+            "klaar",
+            "voor"
           ],
           "answers": [
             "Ze maakt zich klaar voor het feest."
           ],
-          "explanation": "Ela está a arranjar-se para a festa. = Ze maakt zich klaar voor het feest. (sobram: 's, vergist.)",
+          "explanation": "Ela está a arranjar-se para a festa. = Ze maakt zich klaar voor het feest. (sobram: me, dat)",
           "vocabRefs": [
             "v-zich"
           ]
@@ -2099,22 +2099,20 @@
           "id": "s4-u16-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "As crianças estão aborrecidas.",
+          "prompt": "Desculpe, enganei-me.",
           "tokens": [
-            "je",
-            "kinderen",
-            "vervelen",
-            "De",
-            "zich.",
-            "het"
+            "Sorry,",
+            "me.",
+            "klaar",
+            "vergis",
+            "afgemeld",
+            "ik"
           ],
           "answers": [
-            "De kinderen vervelen zich."
+            "Sorry, ik vergis me."
           ],
-          "explanation": "As crianças estão aborrecidas. = De kinderen vervelen zich. (sobram: je, het)",
-          "vocabRefs": [
-            "v-zich"
-          ]
+          "explanation": "Desculpe, enganei-me. = Sorry, ik vergis me. (sobram: klaar, afgemeld)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2175,12 +2173,12 @@
       ],
       "examples": [
         {
-          "nl": "Ik denk dat hij zich vergist.",
-          "pt": "Acho que ele se engana."
+          "nl": "Ik schaam me.",
+          "pt": "Tenho vergonha."
         },
         {
-          "nl": "Sorry, ik vergis me.",
-          "pt": "Desculpe, enganei-me."
+          "nl": "Maak je geen zorgen!",
+          "pt": "Não te preocupes!"
         },
         {
           "nl": "We verheugen ons op de vakantie.",
@@ -2193,54 +2191,54 @@
           "id": "s4-u16-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «olhar para o futuro» em neerlandês?",
+          "prompt": "Como se diz «aborrecer-se» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "vooruitkijken",
-              "correct": true
+              "text": "zich afmelden",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "zich herinneren",
+              "text": "zich ontspannen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "zich omkleden",
-              "correct": false
+              "text": "zich vervelen",
+              "correct": true
             }
           ],
-          "explanation": "olhar para o futuro = «vooruitkijken».",
+          "explanation": "aborrecer-se = «zich vervelen».",
           "vocabRefs": [
-            "v-vooruitkijken"
+            "v-zich-vervelen"
           ]
         },
         {
           "id": "s4-u16-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «progresso» em neerlandês?",
+          "prompt": "Como se diz «enganar-se» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "vooruitgang",
-              "correct": true
+              "text": "zich aankleden",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "zich ergeren",
-              "correct": false
+              "text": "zich vergissen",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "zich verheugen",
+              "text": "zich klaarmaken",
               "correct": false
             }
           ],
-          "explanation": "progresso = «vooruitgang».",
+          "explanation": "enganar-se = «zich vergissen».",
           "vocabRefs": [
-            "v-vooruitgang"
+            "v-zich-vergissen"
           ]
         },
         {
@@ -2253,9 +2251,9 @@
             "zich"
           ],
           "choices": [
-            "zich",
+            "vooruitkijken",
             "zelfvertrouwen",
-            "terugblikken"
+            "zich"
           ],
           "explanation": "Ze voelen zich thuis.",
           "vocabRefs": [
@@ -2266,124 +2264,127 @@
           "id": "s4-u16-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Laten we even ___.",
-          "translation": "Vamos fazer um pequeno balanço.",
+          "sentence": "Hij wast ___ elke ochtend.",
+          "translation": "Ele lava-se todas as manhãs.",
           "answers": [
-            "terugblikken"
+            "zich"
           ],
           "choices": [
-            "vooruitgang",
+            "vooruitkijken",
             "zich",
-            "terugblikken"
+            "vooruitgang"
           ],
-          "explanation": "Laten we even terugblikken.",
+          "explanation": "Hij wast zich elke ochtend.",
           "vocabRefs": [
-            "v-terugblikken"
+            "v-zich"
           ]
         },
         {
           "id": "s4-u16-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Laten we even terugblikken.",
+          "audioText": "Ze voelen zich thuis.",
           "answers": [
-            "Laten we even terugblikken."
+            "Ze voelen zich thuis."
           ],
-          "translation": "Vamos fazer um pequeno balanço.",
-          "explanation": "«Laten we even terugblikken.» = Vamos fazer um pequeno balanço.",
+          "translation": "Eles sentem-se em casa.",
+          "explanation": "«Ze voelen zich thuis.» = Eles sentem-se em casa.",
           "vocabRefs": [
-            "v-terugblikken"
+            "v-zich"
           ]
         },
         {
           "id": "s4-u16-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik scheer me elke ochtend.",
+          "audioText": "Ik erger me aan het lawaai.",
           "answers": [
-            "Ik scheer me elke ochtend."
+            "Ik erger me aan het lawaai."
           ],
-          "translation": "Faço a barba todas as manhãs.",
-          "explanation": "«Ik scheer me elke ochtend.» = Faço a barba todas as manhãs.",
+          "translation": "O barulho irrita-me.",
+          "explanation": "«Ik erger me aan het lawaai.» = O barulho irrita-me.",
           "vocabRefs": []
         },
         {
           "id": "s4-u16-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Faço a barba todas as manhãs.",
+          "prompt": "Não me lembro do nome dela.",
           "tokens": [
-            "Ik",
-            "elke",
-            "ochtend.",
-            "scheer",
-            "u",
             "me",
-            "het"
+            "Ik",
+            "naam",
+            "ochtend.",
+            "herinner",
+            "niet.",
+            "haar",
+            "Maak"
           ],
           "answers": [
-            "Ik scheer me elke ochtend."
+            "Ik herinner me haar naam niet."
           ],
-          "explanation": "Faço a barba todas as manhãs. = Ik scheer me elke ochtend. (sobram: u, het)",
+          "explanation": "Não me lembro do nome dela. = Ik herinner me haar naam niet. (sobram: ochtend., Maak)",
           "vocabRefs": []
         },
         {
           "id": "s4-u16-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A minha autoconfiança cresceu.",
+          "prompt": "O barulho irrita-me.",
           "tokens": [
-            "gegroeid.",
-            "Mijn",
+            "me",
+            "afgemeld.",
+            "erger",
+            "aan",
+            "lawaai.",
             "Ik",
-            "zelfvertrouwen",
-            "We",
-            "is"
+            "het",
+            "je"
           ],
           "answers": [
-            "Mijn zelfvertrouwen is gegroeid."
+            "Ik erger me aan het lawaai."
           ],
-          "explanation": "A minha autoconfiança cresceu. = Mijn zelfvertrouwen is gegroeid. (sobram: Ik, We)",
-          "vocabRefs": [
-            "v-zelfvertrouwen"
-          ]
+          "explanation": "O barulho irrita-me. = Ik erger me aan het lawaai. (sobram: je, afgemeld.)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u16-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "zelfvertrouwen",
-          "pt": "autoconfiança",
-          "article": "het",
-          "explanation": "het zelfvertrouwen.",
+          "noun": "vooruitgang",
+          "pt": "progresso",
+          "article": "de",
+          "explanation": "de vooruitgang.",
           "vocabRefs": [
-            "v-zelfvertrouwen"
+            "v-vooruitgang"
           ]
         },
         {
           "id": "s4-u16-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Na het sporten kleed ik me om.»?",
+          "prompt": "O que significa: «Ze maakt zich klaar voor het feest.»?",
           "options": [
             {
               "id": "a",
-              "text": "Não me lembro do nome dela.",
-              "correct": false
+              "text": "Ela está a arranjar-se para a festa.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "À noite descontraio com um livro.",
+              "text": "Não te apresses!",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Depois do desporto mudo de roupa.",
-              "correct": true
+              "text": "Vamos fazer um pequeno balanço.",
+              "correct": false
             }
           ],
-          "explanation": "«Na het sporten kleed ik me om.» = Depois do desporto mudo de roupa.",
-          "vocabRefs": []
+          "explanation": "«Ze maakt zich klaar voor het feest.» = Ela está a arranjar-se para a festa.",
+          "vocabRefs": [
+            "v-zich"
+          ]
         }
       ],
       "difficulty": 4,
@@ -2444,16 +2445,16 @@
       ],
       "examples": [
         {
-          "nl": "Haast je niet!",
-          "pt": "Não te apresses!"
+          "nl": "De kinderen vervelen zich.",
+          "pt": "As crianças estão aborrecidas."
         },
         {
-          "nl": "Na het sporten kleed ik me om.",
-          "pt": "Depois do desporto mudo de roupa."
+          "nl": "Sorry, ik vergis me.",
+          "pt": "Desculpe, enganei-me."
         },
         {
-          "nl": "Mijn zelfvertrouwen is gegroeid.",
-          "pt": "A minha autoconfiança cresceu."
+          "nl": "Ik voel me goed.",
+          "pt": "Sinto-me bem."
         }
       ],
       "grammar": [],
@@ -2462,139 +2463,158 @@
           "id": "s4-u16-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não te apresses!",
+          "prompt": "Vestimo-nos depressa.",
           "tokens": [
-            "met",
+            "We",
+            "snel",
+            "Ik",
+            "aan.",
             "niet!",
-            "Haast",
-            "je",
-            "vooruit"
+            "ons",
+            "kleden"
           ],
           "answers": [
-            "Haast je niet!"
+            "We kleden ons snel aan."
           ],
-          "explanation": "Não te apresses! = Haast je niet! (sobram: met, vooruit)",
+          "explanation": "Vestimo-nos depressa. = We kleden ons snel aan. (sobram: Ik, niet!)",
           "vocabRefs": []
         },
         {
           "id": "s4-u16-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estou a olhar para o próximo passo.",
+          "prompt": "A minha autoconfiança cresceu.",
           "tokens": [
-            "stap.",
-            "Ik",
-            "scheer",
-            "vooruit",
-            "erger",
-            "kijk",
-            "de",
-            "naar",
-            "volgende"
+            "elke",
+            "Mijn",
+            "me",
+            "gegroeid.",
+            "is",
+            "zelfvertrouwen"
           ],
           "answers": [
-            "Ik kijk vooruit naar de volgende stap."
+            "Mijn zelfvertrouwen is gegroeid."
           ],
-          "explanation": "Estou a olhar para o próximo passo. = Ik kijk vooruit naar de volgende stap. (sobram: scheer, erger)",
-          "vocabRefs": []
+          "explanation": "A minha autoconfiança cresceu. = Mijn zelfvertrouwen is gegroeid. (sobram: elke, me)",
+          "vocabRefs": [
+            "v-zelfvertrouwen"
+          ]
         },
         {
           "id": "s4-u16-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vamos fazer um pequeno balanço.",
+          "prompt": "Não te apresses!",
           "tokens": [
-            "we",
-            "terugblikken.",
-            "ontspan",
-            "Laten",
-            "even",
-            "de"
+            "Haast",
+            "je",
+            "me",
+            "niet!",
+            "afgemeld."
           ],
           "answers": [
-            "Laten we even terugblikken."
+            "Haast je niet!"
           ],
-          "explanation": "Vamos fazer um pequeno balanço. = Laten we even terugblikken. (sobram: de, ontspan)",
-          "vocabRefs": [
-            "v-terugblikken"
-          ]
+          "explanation": "Não te apresses! = Haast je niet! (sobram: afgemeld., me)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u16-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We kleden ons snel aan.",
+          "audioText": "'s Avonds ontspan ik me met een boek.",
           "answers": [
-            "We kleden ons snel aan."
+            "'s Avonds ontspan ik me met een boek."
           ],
-          "translation": "Vestimo-nos depressa.",
-          "explanation": "«We kleden ons snel aan.» = Vestimo-nos depressa.",
+          "translation": "À noite descontraio com um livro.",
+          "explanation": "«'s Avonds ontspan ik me met een boek.» = À noite descontraio com um livro.",
           "vocabRefs": []
         },
         {
           "id": "s4-u16-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Verveel je je?",
+          "audioText": "Ik heb me afgemeld voor de cursus.",
           "answers": [
-            "Verveel je je?"
+            "Ik heb me afgemeld voor de cursus."
           ],
-          "translation": "Estás aborrecido?",
-          "explanation": "«Verveel je je?» = Estás aborrecido?",
+          "translation": "Cancelei a inscrição no curso.",
+          "explanation": "«Ik heb me afgemeld voor de cursus.» = Cancelei a inscrição no curso.",
           "vocabRefs": []
         },
         {
           "id": "s4-u16-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ze maakt zich klaar voor het feest.",
+          "audioText": "Ik kijk vooruit naar de volgende stap.",
           "answers": [
-            "Ze maakt zich klaar voor het feest."
+            "Ik kijk vooruit naar de volgende stap."
           ],
-          "translation": "Ela está a arranjar-se para a festa.",
-          "explanation": "«Ze maakt zich klaar voor het feest.» = Ela está a arranjar-se para a festa.",
-          "vocabRefs": [
-            "v-zich"
-          ]
+          "translation": "Estou a olhar para o próximo passo.",
+          "explanation": "«Ik kijk vooruit naar de volgende stap.» = Estou a olhar para o próximo passo.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u16-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Acho que ele se engana.",
+          "translation": "Tenho vergonha.",
           "tokens": [
-            "denk",
-            "hij",
-            "dat",
-            "vergist.",
             "Ik",
-            "zich"
+            "schaam",
+            "me."
           ],
           "alternatives": [],
-          "explanation": "Ik denk dat hij zich vergist.",
-          "vocabRefs": [
-            "v-zich"
-          ]
+          "explanation": "Ik schaam me.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u16-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Estamos ansiosos pelas férias.",
+          "translation": "Ele lava-se todas as manhãs.",
           "tokens": [
-            "de",
-            "vakantie.",
-            "op",
-            "verheugen",
-            "ons",
-            "We"
+            "Hij",
+            "wast",
+            "zich",
+            "elke",
+            "ochtend."
           ],
           "alternatives": [],
-          "explanation": "We verheugen ons op de vakantie.",
-          "vocabRefs": []
+          "explanation": "Hij wast zich elke ochtend.",
+          "vocabRefs": [
+            "v-zich"
+          ]
         },
         {
           "id": "s4-u16-l009-e09",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «zich wassen»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "lavar-se",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "descontrair",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "cancelar a inscrição",
+              "correct": false
+            }
+          ],
+          "explanation": "«zich wassen» = lavar-se.",
+          "vocabRefs": [
+            "v-zich-wassen"
+          ]
+        },
+        {
+          "id": "s4-u16-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa «zich»?",
@@ -2618,33 +2638,6 @@
           "explanation": "«zich» = se (reflexivo).",
           "vocabRefs": [
             "v-zich"
-          ]
-        },
-        {
-          "id": "s4-u16-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de vooruitgang»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "progresso",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "se",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "aborrecer-se",
-              "correct": false
-            }
-          ],
-          "explanation": "«de vooruitgang» = progresso.",
-          "vocabRefs": [
-            "v-vooruitgang"
           ]
         }
       ],

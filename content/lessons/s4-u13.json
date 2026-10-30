@@ -1794,16 +1794,16 @@
       ],
       "examples": [
         {
-          "nl": "Je hoeft geen paraplu mee te nemen.",
-          "pt": "Não precisas de levar guarda-chuva."
+          "nl": "Je hoeft niet te roken.",
+          "pt": "Não tens de fumar."
         },
         {
           "nl": "We moesten lang wachten.",
           "pt": "Tivemos de esperar muito."
         },
         {
-          "nl": "Je hoeft niet te komen.",
-          "pt": "Não precisas de vir."
+          "nl": "Ik heb gisteren niet kunnen komen.",
+          "pt": "Ontem não pude vir."
         }
       ],
       "grammar": [],
@@ -1854,10 +1854,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Posso estacionar aqui?",
           "tokens": [
-            "ik",
             "Mag",
-            "parkeren?",
-            "hier"
+            "ik",
+            "hier",
+            "parkeren?"
           ],
           "alternatives": [],
           "explanation": "Mag ik hier parkeren?",
@@ -1873,8 +1873,8 @@
           "tokens": [
             "Moet",
             "je",
-            "vandaag?",
-            "werken"
+            "werken",
+            "vandaag?"
           ],
           "alternatives": [],
           "explanation": "Moet je werken vandaag?",
@@ -1886,11 +1886,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Aqui não se pode nadar.",
           "tokens": [
-            "mag",
-            "niet",
             "Hier",
-            "zwemmen.",
-            "je"
+            "mag",
+            "je",
+            "niet",
+            "zwemmen."
           ],
           "alternatives": [],
           "explanation": "Hier mag je niet zwemmen.",
@@ -1902,93 +1902,92 @@
           "id": "s4-u13-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je hoeft geen paraplu mee te nemen.»?",
+          "prompt": "O que significa: «Wat wil je drinken?»?",
           "options": [
             {
               "id": "a",
-              "text": "Amanhã tenho de me levantar cedo.",
+              "text": "Aqui não se pode nadar.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Tem autorização?",
-              "correct": false
+              "text": "O que queres beber?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Não precisas de levar guarda-chuva.",
-              "correct": true
+              "text": "Tens de trabalhar hoje?",
+              "correct": false
             }
           ],
-          "explanation": "«Je hoeft geen paraplu mee te nemen.» = Não precisas de levar guarda-chuva.",
-          "vocabRefs": []
+          "explanation": "«Wat wil je drinken?» = O que queres beber?",
+          "vocabRefs": [
+            "v-wil"
+          ]
         },
         {
           "id": "s4-u13-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Als kind mocht ik niet laat opblijven.»?",
+          "prompt": "O que significa: «Je moet echt dat museum zien!»?",
           "options": [
             {
               "id": "a",
-              "text": "Não precisas de vir.",
+              "text": "Devia ter saído mais cedo.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Tem autorização?",
-              "correct": false
+              "text": "Tens mesmo de ver esse museu!",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Em criança não me deixavam ficar acordado até tarde.",
-              "correct": true
+              "text": "Aqui não se pode nadar.",
+              "correct": false
             }
           ],
-          "explanation": "«Als kind mocht ik niet laat opblijven.» = Em criança não me deixavam ficar acordado até tarde.",
+          "explanation": "«Je moet echt dat museum zien!» = Tens mesmo de ver esse museu!",
           "vocabRefs": [
-            "v-mocht"
+            "v-echt-moeten"
           ]
         },
         {
           "id": "s4-u13-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não precisas de vir.",
+          "prompt": "Podem ajudar-me?",
           "tokens": [
-            "Ik",
-            "Je",
-            "niet",
-            "hier",
+            "Kunnen",
             "komen.",
-            "te",
-            "hoeft"
+            "helpen?",
+            "mij",
+            "Ik",
+            "jullie"
           ],
           "answers": [
-            "Je hoeft niet te komen."
+            "Kunnen jullie mij helpen?"
           ],
-          "explanation": "Não precisas de vir. = Je hoeft niet te komen. (sobram: Ik, hier)",
+          "explanation": "Podem ajudar-me? = Kunnen jullie mij helpen? (sobram: Ik, komen.)",
           "vocabRefs": []
         },
         {
           "id": "s4-u13-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ontem não pude vir.",
+          "prompt": "Tens de trabalhar hoje?",
           "tokens": [
-            "gisteren",
-            "Ik",
-            "komen.",
-            "kunnen",
-            "heb",
-            "niet",
-            "morgen",
-            "mee"
+            "Moet",
+            "niet,",
+            "werken",
+            "zeggen!",
+            "vandaag?",
+            "je"
           ],
           "answers": [
-            "Ik heb gisteren niet kunnen komen."
+            "Moet je werken vandaag?"
           ],
-          "explanation": "Ontem não pude vir. = Ik heb gisteren niet kunnen komen. (sobram: morgen, mee)",
+          "explanation": "Tens de trabalhar hoje? = Moet je werken vandaag? (sobram: zeggen!, niet,)",
           "vocabRefs": []
         }
       ],
@@ -2047,12 +2046,12 @@
       ],
       "examples": [
         {
-          "nl": "Als kind mocht ik niet laat opblijven.",
-          "pt": "Em criança não me deixavam ficar acordado até tarde."
+          "nl": "Je had het moeten zeggen!",
+          "pt": "Devias ter dito!"
         },
         {
-          "nl": "Ik moet morgen vroeg opstaan.",
-          "pt": "Amanhã tenho de me levantar cedo."
+          "nl": "Ik heb er spijt van.",
+          "pt": "Arrependo-me disso."
         },
         {
           "nl": "Wat wil je drinken?",
@@ -2065,90 +2064,85 @@
           "id": "s4-u13-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «podes» em neerlandês?",
+          "prompt": "Como se diz «não é preciso» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "mag",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "kun / kan",
+              "text": "dat hoeft niet",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "mocht",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "heb kunnen",
+              "text": "moeten",
               "correct": false
             }
           ],
-          "explanation": "podes = «kun / kan».",
+          "explanation": "não é preciso = «dat hoeft niet».",
           "vocabRefs": [
-            "v-kun"
+            "v-dat-hoeft-niet"
           ]
         },
         {
           "id": "s4-u13-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «posso» em neerlandês?",
+          "prompt": "Como se diz «devia» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "had moeten",
+              "text": "niet mogen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "mag",
-              "correct": true
+              "text": "je moet echt…",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "spijt hebben",
-              "correct": false
+              "text": "zou moeten",
+              "correct": true
             }
           ],
-          "explanation": "posso = «mag».",
+          "explanation": "devia = «zou moeten».",
           "vocabRefs": [
-            "v-mag"
+            "v-zou-moeten"
           ]
         },
         {
           "id": "s4-u13-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ ik iets vragen?",
-          "translation": "Posso fazer uma pergunta?",
+          "sentence": "___ je mee?",
+          "translation": "Queres vir?",
           "answers": [
-            "Mag"
+            "Wil"
           ],
           "choices": [
             "Mag",
             "Toestemming",
-            "Moest"
+            "Wil"
           ],
-          "explanation": "Mag ik iets vragen?",
+          "explanation": "Wil je mee?",
           "vocabRefs": [
-            "v-mag"
+            "v-wil"
           ]
         },
         {
           "id": "s4-u13-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Je had het ___ zeggen!",
-          "translation": "Devias ter dito!",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik had eerder moeten vertrekken.",
           "answers": [
-            "moeten"
+            "Ik had eerder moeten vertrekken."
           ],
-          "choices": [
-            "hoeven",
-            "moeten",
-            "mocht"
-          ],
-          "explanation": "Je had het moeten zeggen!",
+          "translation": "Devia ter saído mais cedo.",
+          "explanation": "«Ik had eerder moeten vertrekken.» = Devia ter saído mais cedo.",
           "vocabRefs": [
             "v-moeten"
           ]
@@ -2157,73 +2151,60 @@
           "id": "s4-u13-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je mag hier niet roken.",
+          "audioText": "Ik kan morgen niet komen.",
           "answers": [
-            "Je mag hier niet roken."
+            "Ik kan morgen niet komen."
           ],
-          "translation": "Aqui não se pode fumar.",
-          "explanation": "«Je mag hier niet roken.» = Aqui não se pode fumar.",
-          "vocabRefs": [
-            "v-mag"
-          ]
+          "translation": "Amanhã não posso vir.",
+          "explanation": "«Ik kan morgen niet komen.» = Amanhã não posso vir.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u13-l008-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Als kind mocht ik niet laat opblijven.",
-          "answers": [
-            "Als kind mocht ik niet laat opblijven."
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Tivemos de esperar muito.",
+          "tokens": [
+            "We",
+            "Ik",
+            "niet",
+            "moeten",
+            "wachten.",
+            "hebben",
+            "lang"
           ],
-          "translation": "Em criança não me deixavam ficar acordado até tarde.",
-          "explanation": "«Als kind mocht ik niet laat opblijven.» = Em criança não me deixavam ficar acordado até tarde.",
+          "answers": [
+            "We hebben lang moeten wachten."
+          ],
+          "explanation": "Tivemos de esperar muito. = We hebben lang moeten wachten. (sobram: niet, Ik)",
           "vocabRefs": [
-            "v-mocht"
+            "v-moeten"
           ]
         },
         {
           "id": "s4-u13-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Amanhã tenho de me levantar cedo.",
+          "prompt": "Devias ter dito!",
           "tokens": [
-            "Ik",
-            "opstaan.",
-            "werken",
-            "vroeg",
-            "morgen",
-            "moet",
-            "drinken?"
+            "zeggen!",
+            "het",
+            "Je",
+            "had",
+            "moeten",
+            "moesten",
+            "betalen?"
           ],
           "answers": [
-            "Ik moet morgen vroeg opstaan."
+            "Je had het moeten zeggen!"
           ],
-          "explanation": "Amanhã tenho de me levantar cedo. = Ik moet morgen vroeg opstaan. (sobram: werken, drinken?)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s4-u13-l008-e08",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso fazer uma pergunta?",
-          "tokens": [
-            "roken.",
-            "vragen?",
-            "ik",
-            "iets",
-            "jullie",
-            "Mag"
-          ],
-          "answers": [
-            "Mag ik iets vragen?"
-          ],
-          "explanation": "Posso fazer uma pergunta? = Mag ik iets vragen? (sobram: jullie, roken.)",
+          "explanation": "Devias ter dito! = Je had het moeten zeggen! (sobram: moesten, betalen?)",
           "vocabRefs": [
-            "v-mag"
+            "v-moeten"
           ]
         },
         {
-          "id": "s4-u13-l008-e09",
+          "id": "s4-u13-l008-e08",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
           "noun": "toestemming",
@@ -2235,31 +2216,29 @@
           ]
         },
         {
-          "id": "s4-u13-l008-e10",
+          "id": "s4-u13-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hier mag je niet zwemmen.»?",
+          "prompt": "O que significa: «Ik kan morgen niet komen.»?",
           "options": [
             {
               "id": "a",
-              "text": "O que queres beber?",
+              "text": "Tivemos de esperar muito.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Aqui não se pode nadar.",
+              "text": "Amanhã não posso vir.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Aqui não se pode fumar.",
+              "text": "Tenho de pagar agora?",
               "correct": false
             }
           ],
-          "explanation": "«Hier mag je niet zwemmen.» = Aqui não se pode nadar.",
-          "vocabRefs": [
-            "v-mag"
-          ]
+          "explanation": "«Ik kan morgen niet komen.» = Amanhã não posso vir.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2317,16 +2296,16 @@
       ],
       "examples": [
         {
-          "nl": "Je mag hier niet roken.",
-          "pt": "Aqui não se pode fumar."
+          "nl": "Wil je mee?",
+          "pt": "Queres vir?"
         },
         {
-          "nl": "Moet je werken vandaag?",
-          "pt": "Tens de trabalhar hoje?"
+          "nl": "Ik kan morgen niet komen.",
+          "pt": "Amanhã não posso vir."
         },
         {
-          "nl": "Kunnen jullie mij helpen?",
-          "pt": "Podem ajudar-me?"
+          "nl": "Je zou meer moeten slapen.",
+          "pt": "Devias dormir mais."
         }
       ],
       "grammar": [],
@@ -2335,187 +2314,191 @@
           "id": "s4-u13-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Arrependo-me disso.",
+          "prompt": "Queres vir?",
           "tokens": [
-            "hoeft",
-            "heb",
-            "Ik",
-            "er",
-            "wachten.",
-            "van.",
-            "spijt"
+            "mocht",
+            "je",
+            "Wil",
+            "mee?",
+            "slapen."
           ],
           "answers": [
-            "Ik heb er spijt van."
+            "Wil je mee?"
           ],
-          "explanation": "Arrependo-me disso. = Ik heb er spijt van. (sobram: hoeft, wachten.)",
-          "vocabRefs": []
+          "explanation": "Queres vir? = Wil je mee? (sobram: slapen., mocht)",
+          "vocabRefs": [
+            "v-wil"
+          ]
         },
         {
           "id": "s4-u13-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tens de trabalhar hoje?",
+          "prompt": "Quero que sejas sincero.",
           "tokens": [
-            "je",
-            "werken",
             "Ik",
-            "Wat",
-            "vandaag?",
-            "Moet"
+            "Kunnen",
+            "wil",
+            "dat",
+            "eerlijk",
+            "je",
+            "bent.",
+            "drinken?"
           ],
           "answers": [
-            "Moet je werken vandaag?"
+            "Ik wil dat je eerlijk bent."
           ],
-          "explanation": "Tens de trabalhar hoje? = Moet je werken vandaag? (sobram: Ik, Wat)",
-          "vocabRefs": []
+          "explanation": "Quero que sejas sincero. = Ik wil dat je eerlijk bent. (sobram: drinken?, Kunnen)",
+          "vocabRefs": [
+            "v-wil"
+          ]
         },
         {
           "id": "s4-u13-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho de pagar agora?",
+          "prompt": "O que queres beber?",
           "tokens": [
-            "ik",
-            "hoeft",
-            "Moet",
-            "betalen?",
-            "nu",
-            "te"
+            "je",
+            "nemen.",
+            "Ik",
+            "Wat",
+            "drinken?",
+            "wil"
           ],
           "answers": [
-            "Moet ik nu betalen?"
+            "Wat wil je drinken?"
           ],
-          "explanation": "Tenho de pagar agora? = Moet ik nu betalen? (sobram: te, hoeft)",
-          "vocabRefs": []
+          "explanation": "O que queres beber? = Wat wil je drinken? (sobram: nemen., Ik)",
+          "vocabRefs": [
+            "v-wil"
+          ]
         },
         {
           "id": "s4-u13-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je had het moeten zeggen!",
+          "audioText": "Je hoeft niet te komen.",
           "answers": [
-            "Je had het moeten zeggen!"
+            "Je hoeft niet te komen."
           ],
-          "translation": "Devias ter dito!",
-          "explanation": "«Je had het moeten zeggen!» = Devias ter dito!",
-          "vocabRefs": [
-            "v-moeten"
-          ]
+          "translation": "Não precisas de vir.",
+          "explanation": "«Je hoeft niet te komen.» = Não precisas de vir.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u13-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kunnen jullie mij helpen?",
+          "audioText": "Je hoeft niet te roken.",
           "answers": [
-            "Kunnen jullie mij helpen?"
+            "Je hoeft niet te roken."
           ],
-          "translation": "Podem ajudar-me?",
-          "explanation": "«Kunnen jullie mij helpen?» = Podem ajudar-me?",
+          "translation": "Não tens de fumar.",
+          "explanation": "«Je hoeft niet te roken.» = Não tens de fumar.",
           "vocabRefs": []
         },
         {
           "id": "s4-u13-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mag ik hier parkeren?",
+          "audioText": "We moesten lang wachten.",
           "answers": [
-            "Mag ik hier parkeren?"
+            "We moesten lang wachten."
           ],
-          "translation": "Posso estacionar aqui?",
-          "explanation": "«Mag ik hier parkeren?» = Posso estacionar aqui?",
+          "translation": "Tivemos de esperar muito.",
+          "explanation": "«We moesten lang wachten.» = Tivemos de esperar muito.",
           "vocabRefs": [
-            "v-mag"
+            "v-moest"
           ]
         },
         {
           "id": "s4-u13-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Quero que sejas sincero.",
+          "translation": "Só tens de assinar.",
           "tokens": [
-            "Ik",
-            "dat",
-            "wil",
-            "bent.",
-            "eerlijk",
-            "je"
+            "Je",
+            "hoeft",
+            "alleen",
+            "maar",
+            "te",
+            "tekenen."
           ],
           "alternatives": [],
-          "explanation": "Ik wil dat je eerlijk bent.",
+          "explanation": "Je hoeft alleen maar te tekenen.",
           "vocabRefs": [
-            "v-wil"
+            "v-alleen-maar"
           ]
         },
         {
           "id": "s4-u13-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Não precisas de vir.",
+          "translation": "Arrependo-me disso.",
           "tokens": [
-            "te",
-            "komen.",
-            "Je",
-            "niet",
-            "hoeft"
+            "Ik",
+            "heb",
+            "er",
+            "spijt",
+            "van."
           ],
           "alternatives": [],
-          "explanation": "Je hoeft niet te komen.",
+          "explanation": "Ik heb er spijt van.",
           "vocabRefs": []
         },
         {
           "id": "s4-u13-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «moeten»?",
+          "prompt": "O que significa «had moeten»?",
           "options": [
             {
               "id": "a",
-              "text": "posso",
-              "correct": false
+              "text": "devia ter",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "tinha de",
+              "text": "querer que",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ter de",
-              "correct": true
+              "text": "só",
+              "correct": false
             }
           ],
-          "explanation": "«moeten» = ter de, dever.",
+          "explanation": "«had moeten» = devia ter (feito).",
           "vocabRefs": [
-            "v-moeten"
+            "v-had-moeten"
           ]
         },
         {
           "id": "s4-u13-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «willen dat»?",
+          "prompt": "O que significa «het is verplicht»?",
           "options": [
             {
               "id": "a",
-              "text": "querer que",
+              "text": "é obrigatório",
               "correct": true
             },
             {
               "id": "b",
-              "text": "quero",
+              "text": "não precisar de",
               "correct": false
             },
             {
               "id": "c",
-              "text": "conseguir/saber fazer",
+              "text": "pude",
               "correct": false
             }
           ],
-          "explanation": "«willen dat» = querer que.",
+          "explanation": "«het is verplicht» = é obrigatório.",
           "vocabRefs": [
-            "v-willen-dat"
+            "v-verplicht-zijn"
           ]
         }
       ],

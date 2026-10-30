@@ -1908,16 +1908,16 @@
       ],
       "examples": [
         {
-          "nl": "Met oud en nieuw eten we oliebollen.",
-          "pt": "Na passagem de ano comemos oliebollen."
+          "nl": "Het is een gewoonte om bloemen mee te nemen.",
+          "pt": "É costume levar flores."
         },
         {
-          "nl": "We verkopen oude spullen op de vrijmarkt.",
-          "pt": "Vendemos coisas velhas no mercado livre."
+          "nl": "Wil je een oranje tompouce?",
+          "pt": "Queres uma tompouce cor de laranja?"
         },
         {
-          "nl": "Op 5 december is het pakjesavond.",
-          "pt": "A 5 de dezembro é a noite dos presentes."
+          "nl": "Op Koningsdag mag iedereen op straat verkopen.",
+          "pt": "No Dia do Rei qualquer pessoa pode vender na rua."
         }
       ],
       "grammar": [],
@@ -1970,12 +1970,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "A 5 de dezembro é a noite dos presentes.",
           "tokens": [
-            "5",
-            "is",
-            "pakjesavond.",
-            "het",
             "Op",
-            "december"
+            "5",
+            "december",
+            "is",
+            "het",
+            "pakjesavond."
           ],
           "alternatives": [],
           "explanation": "Op 5 december is het pakjesavond.",
@@ -1989,13 +1989,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "No Dia do Rei toda a gente veste cor de laranja.",
           "tokens": [
-            "het",
-            "Koningsdag",
-            "iedereen",
-            "oranje.",
             "Op",
+            "Koningsdag",
             "is",
-            "in"
+            "iedereen",
+            "in",
+            "het",
+            "oranje."
           ],
           "alternatives": [],
           "explanation": "Op Koningsdag is iedereen in het oranje.",
@@ -2009,13 +2009,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vendemos coisas velhas no mercado livre.",
           "tokens": [
-            "de",
-            "op",
-            "spullen",
-            "vrijmarkt.",
-            "oude",
             "We",
-            "verkopen"
+            "verkopen",
+            "oude",
+            "spullen",
+            "op",
+            "de",
+            "vrijmarkt."
           ],
           "alternatives": [],
           "explanation": "We verkopen oude spullen op de vrijmarkt.",
@@ -2027,99 +2027,99 @@
           "id": "s5-u04-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We verkopen oude spullen op de vrijmarkt.»?",
+          "prompt": "O que significa: «Gefeliciteerd met je verjaardag!»?",
           "options": [
             {
               "id": "a",
-              "text": "Vendemos coisas velhas no mercado livre.",
-              "correct": true
+              "text": "Boas festas!",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Connosco é igual.",
-              "correct": false
+              "text": "Parabéns pelo teu aniversário!",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "É costume levar flores.",
+              "text": "Parabéns pela tua mãe!",
               "correct": false
             }
           ],
-          "explanation": "«We verkopen oude spullen op de vrijmarkt.» = Vendemos coisas velhas no mercado livre.",
+          "explanation": "«Gefeliciteerd met je verjaardag!» = Parabéns pelo teu aniversário!",
           "vocabRefs": [
-            "v-vrijmarkt"
+            "v-gefeliciteerd-met"
           ]
         },
         {
           "id": "s5-u04-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Om twaalf uur kijken we naar het vuurwerk.»?",
+          "prompt": "O que significa: «Wat zijn je goede voornemens?»?",
           "options": [
             {
               "id": "a",
-              "text": "À meia-noite vemos o fogo de artifício.",
-              "correct": true
+              "text": "Parabéns pela tua mãe!",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Parabéns pelo teu aniversário!",
-              "correct": false
+              "text": "Quais são as tuas resoluções de ano novo?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Calhaste-me a ti (no amigo secreto)!",
+              "text": "Parabéns pela tua irmã (pelos anos dela)!",
               "correct": false
             }
           ],
-          "explanation": "«Om twaalf uur kijken we naar het vuurwerk.» = À meia-noite vemos o fogo de artifício.",
+          "explanation": "«Wat zijn je goede voornemens?» = Quais são as tuas resoluções de ano novo?",
           "vocabRefs": [
-            "v-vuurwerk"
+            "v-goede-voornemens"
           ]
         },
         {
           "id": "s5-u04-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ainda tenho de escrever um poema.",
+          "prompt": "Queres pepernoten?",
           "tokens": [
-            "moet",
-            "gedicht",
-            "jou",
-            "nog",
-            "schrijven.",
-            "oliebollen.",
-            "Ik",
-            "een"
+            "we",
+            "pepernoten?",
+            "twaalf",
+            "Wil",
+            "je"
           ],
           "answers": [
-            "Ik moet nog een gedicht schrijven."
+            "Wil je pepernoten?"
           ],
-          "explanation": "Ainda tenho de escrever um poema. = Ik moet nog een gedicht schrijven. (sobram: oliebollen., jou)",
+          "explanation": "Queres pepernoten? = Wil je pepernoten? (sobram: twaalf, we)",
           "vocabRefs": [
-            "v-gedicht"
+            "v-pepernoten"
           ]
         },
         {
           "id": "s5-u04-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Connosco é igual.",
+          "prompt": "À meia-noite vemos o fogo de artifício.",
           "tokens": [
-            "hetzelfde.",
-            "gedicht",
-            "In",
-            "ons",
-            "Bij",
-            "is",
-            "dat"
+            "kijken",
+            "we",
+            "twaalf",
+            "oranje.",
+            "vuurwerk.",
+            "Om",
+            "het",
+            "stad.",
+            "uur",
+            "naar"
           ],
           "answers": [
-            "Bij ons is dat hetzelfde."
+            "Om twaalf uur kijken we naar het vuurwerk."
           ],
-          "explanation": "Connosco é igual. = Bij ons is dat hetzelfde. (sobram: gedicht, In)",
+          "explanation": "À meia-noite vemos o fogo de artifício. = Om twaalf uur kijken we naar het vuurwerk. (sobram: stad., oranje.)",
           "vocabRefs": [
-            "v-hetzelfde"
+            "v-vuurwerk"
           ]
         }
       ],
@@ -2207,18 +2207,18 @@
           "options": [
             {
               "id": "a",
-              "text": "traditie",
+              "text": "verkleed",
               "correct": false
             },
             {
               "id": "b",
-              "text": "oliebol",
-              "correct": false
+              "text": "goede voornemens",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "goede voornemens",
-              "correct": true
+              "text": "tompouce",
+              "correct": false
             }
           ],
           "explanation": "resoluções de ano novo = «goede voornemens».",
@@ -2230,65 +2230,65 @@
           "id": "s5-u04-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «presente» em neerlandês?",
+          "prompt": "Como se diz «poema» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "cadeau",
+              "text": "gedicht",
               "correct": true
             },
             {
               "id": "b",
-              "text": "surprise",
+              "text": "kring",
               "correct": false
             },
             {
               "id": "c",
-              "text": "hetzelfde",
+              "text": "goede voornemens",
               "correct": false
             }
           ],
-          "explanation": "presente = «cadeau».",
+          "explanation": "poema = «gedicht».",
           "vocabRefs": [
-            "v-cadeau"
+            "v-gedicht"
           ]
         },
         {
           "id": "s5-u04-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wil je een stukje ___?",
-          "translation": "Queres uma fatia de bolo?",
+          "sentence": "Dat is een oude ___.",
+          "translation": "É uma tradição antiga.",
           "answers": [
-            "taart"
+            "traditie"
           ],
           "choices": [
             "surprise",
-            "taart",
+            "traditie",
             "koning"
           ],
-          "explanation": "Wil je een stukje taart?",
+          "explanation": "Dat is een oude traditie.",
           "vocabRefs": [
-            "v-taart"
+            "v-traditie"
           ]
         },
         {
           "id": "s5-u04-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Om twaalf uur kijken we naar het ___.",
-          "translation": "À meia-noite vemos o fogo de artifício.",
+          "sentence": "Ik moet nog een ___ schrijven.",
+          "translation": "Ainda tenho de escrever um poema.",
           "answers": [
-            "vuurwerk"
+            "gedicht"
           ],
           "choices": [
-            "vuurwerk",
-            "surprise",
+            "gedicht",
+            "pepernoten",
             "koning"
           ],
-          "explanation": "Om twaalf uur kijken we naar het vuurwerk.",
+          "explanation": "Ik moet nog een gedicht schrijven.",
           "vocabRefs": [
-            "v-vuurwerk"
+            "v-gedicht"
           ]
         },
         {
@@ -2321,19 +2321,19 @@
           "id": "s5-u04-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Parabéns pela tua irmã (pelos anos dela)!",
+          "prompt": "Parabéns pelo teu aniversário!",
           "tokens": [
             "we",
             "je",
             "met",
             "Gefeliciteerd",
-            "zus!",
+            "verjaardag!",
             "oranje."
           ],
           "answers": [
-            "Gefeliciteerd met je zus!"
+            "Gefeliciteerd met je verjaardag!"
           ],
-          "explanation": "Parabéns pela tua irmã (pelos anos dela)! = Gefeliciteerd met je zus! (sobram: oranje., we)",
+          "explanation": "Parabéns pelo teu aniversário! = Gefeliciteerd met je verjaardag! (sobram: oranje., we)",
           "vocabRefs": [
             "v-gefeliciteerd-met"
           ]
@@ -2342,22 +2342,21 @@
           "id": "s5-u04-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Toda a gente está sentada em círculo.",
+          "prompt": "Parabéns pela tua irmã (pelos anos dela)!",
           "tokens": [
-            "in",
-            "Iedereen",
-            "zit",
-            "is",
-            "zetten",
-            "kring.",
-            "een"
+            "je",
+            "Gefeliciteerd",
+            "met",
+            "we",
+            "een",
+            "zus!"
           ],
           "answers": [
-            "Iedereen zit in een kring."
+            "Gefeliciteerd met je zus!"
           ],
-          "explanation": "Toda a gente está sentada em círculo. = Iedereen zit in een kring. (sobram: zetten, is)",
+          "explanation": "Parabéns pela tua irmã (pelos anos dela)! = Gefeliciteerd met je zus! (sobram: een, we)",
           "vocabRefs": [
-            "v-kring"
+            "v-gefeliciteerd-met"
           ]
         },
         {
@@ -2376,11 +2375,11 @@
           "id": "s5-u04-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wil je pepernoten?»?",
+          "prompt": "O que significa: «Op 5 december is het pakjesavond.»?",
           "options": [
             {
               "id": "a",
-              "text": "Queres pepernoten?",
+              "text": "A 5 de dezembro é a noite dos presentes.",
               "correct": true
             },
             {
@@ -2394,9 +2393,9 @@
               "correct": false
             }
           ],
-          "explanation": "«Wil je pepernoten?» = Queres pepernoten?",
+          "explanation": "«Op 5 december is het pakjesavond.» = A 5 de dezembro é a noite dos presentes.",
           "vocabRefs": [
-            "v-pepernoten"
+            "v-pakjesavond"
           ]
         }
       ],
@@ -2462,16 +2461,16 @@
       ],
       "examples": [
         {
-          "nl": "Wil je een stukje taart?",
-          "pt": "Queres uma fatia de bolo?"
+          "nl": "Op Koningsdag is iedereen in het oranje.",
+          "pt": "No Dia do Rei toda a gente veste cor de laranja."
         },
         {
-          "nl": "De kinderen zetten hun schoen.",
-          "pt": "As crianças põem o sapato."
+          "nl": "Op 5 december is het pakjesavond.",
+          "pt": "A 5 de dezembro é a noite dos presentes."
         },
         {
-          "nl": "Met oud en nieuw eten we oliebollen.",
-          "pt": "Na passagem de ano comemos oliebollen."
+          "nl": "Fijne feestdagen!",
+          "pt": "Boas festas!"
         }
       ],
       "grammar": [],
@@ -2480,24 +2479,23 @@
           "id": "s5-u04-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No Dia do Rei qualquer pessoa pode vender na rua.",
+          "prompt": "A 5 de dezembro é a noite dos presentes.",
           "tokens": [
             "een",
-            "verkopen.",
-            "iedereen",
-            "Koningsdag",
+            "5",
+            "is",
             "Op",
-            "op",
-            "mag",
-            "jou",
-            "straat"
+            "heb",
+            "december",
+            "het",
+            "pakjesavond."
           ],
           "answers": [
-            "Op Koningsdag mag iedereen op straat verkopen."
+            "Op 5 december is het pakjesavond."
           ],
-          "explanation": "No Dia do Rei qualquer pessoa pode vender na rua. = Op Koningsdag mag iedereen op straat verkopen. (sobram: een, jou)",
+          "explanation": "A 5 de dezembro é a noite dos presentes. = Op 5 december is het pakjesavond. (sobram: een, heb)",
           "vocabRefs": [
-            "v-koning"
+            "v-pakjesavond"
           ]
         },
         {
@@ -2506,7 +2504,7 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "É costume levar flores.",
           "tokens": [
-            "schoen.",
+            "hetzelfde.",
             "gewoonte",
             "nemen.",
             "mee",
@@ -2521,7 +2519,7 @@
           "answers": [
             "Het is een gewoonte om bloemen mee te nemen."
           ],
-          "explanation": "É costume levar flores. = Het is een gewoonte om bloemen mee te nemen. (sobram: Gefeliciteerd, schoen.)",
+          "explanation": "É costume levar flores. = Het is een gewoonte om bloemen mee te nemen. (sobram: Gefeliciteerd, hetzelfde.)",
           "vocabRefs": [
             "v-gewoonte"
           ]
@@ -2600,10 +2598,10 @@
           "translation": "Queres uma tompouce cor de laranja?",
           "tokens": [
             "Wil",
-            "tompouce?",
+            "je",
             "een",
             "oranje",
-            "je"
+            "tompouce?"
           ],
           "alternatives": [],
           "explanation": "Wil je een oranje tompouce?",
@@ -2617,10 +2615,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Calhaste-me a ti (no amigo secreto)!",
           "tokens": [
+            "Ik",
             "heb",
-            "getrokken!",
             "jou",
-            "Ik"
+            "getrokken!"
           ],
           "alternatives": [],
           "explanation": "Ik heb jou getrokken!",
@@ -2639,12 +2637,12 @@
             },
             {
               "id": "b",
-              "text": "fogo de artifício",
+              "text": "celebrar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "parabéns por…",
+              "text": "hábito",
               "correct": false
             }
           ],
@@ -2657,16 +2655,16 @@
           "id": "s5-u04-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de pepernoten»?",
+          "prompt": "O que significa «de gewoonte»?",
           "options": [
             {
               "id": "a",
-              "text": "biscoitinhos de especiarias",
+              "text": "hábito",
               "correct": true
             },
             {
               "id": "b",
-              "text": "parabéns por…",
+              "text": "bolo de massa folhada",
               "correct": false
             },
             {
@@ -2675,9 +2673,9 @@
               "correct": false
             }
           ],
-          "explanation": "«de pepernoten» = biscoitinhos de especiarias.",
+          "explanation": "«de gewoonte» = hábito, costume.",
           "vocabRefs": [
-            "v-pepernoten"
+            "v-gewoonte"
           ]
         }
       ],

@@ -1844,16 +1844,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik snap je punt, maar ik zie het anders.",
-          "pt": "Percebo o teu ponto, mas vejo de outra forma."
+          "nl": "Wat heb je van mij nodig?",
+          "pt": "De que precisas da minha parte?"
         },
         {
-          "nl": "Ze hebben ruzie over geld.",
-          "pt": "Estão zangados por causa de dinheiro."
+          "nl": "Als ik het even samenvat…",
+          "pt": "Se eu resumir…"
         },
         {
-          "nl": "Het spijt me echt, ik had dat niet moeten zeggen.",
-          "pt": "Peço mesmo desculpa, não devia ter dito aquilo."
+          "nl": "Ik vergeef je.",
+          "pt": "Perdoo-te."
         }
       ],
       "grammar": [],
@@ -1903,14 +1903,14 @@
           "translation": "Percebo o teu ponto, mas vejo de outra forma.",
           "tokens": [
             "Ik",
-            "zie",
-            "maar",
-            "punt,",
-            "ik",
+            "snap",
             "je",
+            "punt,",
+            "maar",
+            "ik",
+            "zie",
             "het",
-            "anders.",
-            "snap"
+            "anders."
           ],
           "alternatives": [],
           "explanation": "Ik snap je punt, maar ik zie het anders.",
@@ -1922,16 +1922,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "Gostava que procurássemos juntos uma solução.",
           "tokens": [
-            "willen",
-            "graag",
-            "zoeken.",
-            "een",
-            "zou",
-            "oplossing",
-            "dat",
             "Ik",
+            "zou",
+            "graag",
+            "willen",
+            "dat",
             "we",
-            "samen"
+            "samen",
+            "een",
+            "oplossing",
+            "zoeken."
           ],
           "alternatives": [],
           "explanation": "Ik zou graag willen dat we samen een oplossing zoeken.",
@@ -1943,13 +1943,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Temos um litígio com o senhorio.",
           "tokens": [
-            "met",
-            "een",
             "We",
             "hebben",
+            "een",
             "geschil",
-            "verhuurder.",
-            "de"
+            "met",
+            "de",
+            "verhuurder."
           ],
           "alternatives": [],
           "explanation": "We hebben een geschil met de verhuurder.",
@@ -1961,16 +1961,43 @@
           "id": "s5-u11-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het spijt me echt, ik had dat niet moeten zeggen.»?",
+          "prompt": "O que significa: «Ik merk wat irritatie.»?",
           "options": [
             {
               "id": "a",
-              "text": "Peço mesmo desculpa, não devia ter dito aquilo.",
+              "text": "Estão zangados por causa de dinheiro.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Vamos dividir as tarefas de forma justa.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Noto alguma irritação.",
+              "correct": true
+            }
+          ],
+          "explanation": "«Ik merk wat irritatie.» = Noto alguma irritação.",
+          "vocabRefs": [
+            "v-irritatie"
+          ]
+        },
+        {
+          "id": "s5-u11-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Buurtbemiddeling kan helpen bij burenruzies.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A mediação de bairro pode ajudar em zangas entre vizinhos.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "A mediação de bairro pode ajudar em zangas entre vizinhos.",
+              "text": "Temos um litígio com o senhorio.",
               "correct": false
             },
             {
@@ -1979,78 +2006,55 @@
               "correct": false
             }
           ],
-          "explanation": "«Het spijt me echt, ik had dat niet moeten zeggen.» = Peço mesmo desculpa, não devia ter dito aquilo.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s5-u11-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik snap je punt, maar ik zie het anders.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Combinado!",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Percebo o teu ponto, mas vejo de outra forma.",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Fazemos assim?",
-              "correct": false
-            }
-          ],
-          "explanation": "«Ik snap je punt, maar ik zie het anders.» = Percebo o teu ponto, mas vejo de outra forma.",
-          "vocabRefs": []
+          "explanation": "«Buurtbemiddeling kan helpen bij burenruzies.» = A mediação de bairro pode ajudar em zangas entre vizinhos.",
+          "vocabRefs": [
+            "v-ruzie",
+            "v-bemiddeling"
+          ]
         },
         {
           "id": "s5-u11-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vamos manter a calma.",
+          "prompt": "Peço mesmo desculpa, não devia ter dito aquilo.",
           "tokens": [
-            "blijven.",
-            "we",
-            "Laten",
-            "hebben",
-            "rustig",
-            "doen?"
+            "moeten",
+            "echt,",
+            "burenruzies.",
+            "dat",
+            "spijt",
+            "niet",
+            "me",
+            "punt,",
+            "zeggen.",
+            "ik",
+            "had",
+            "Het"
           ],
           "answers": [
-            "Laten we rustig blijven."
+            "Het spijt me echt, ik had dat niet moeten zeggen."
           ],
-          "explanation": "Vamos manter a calma. = Laten we rustig blijven. (sobram: hebben, doen?)",
-          "vocabRefs": [
-            "v-rustig-blijven"
-          ]
+          "explanation": "Peço mesmo desculpa, não devia ter dito aquilo. = Het spijt me echt, ik had dat niet moeten zeggen. (sobram: punt,, burenruzies.)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u11-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gostava que procurássemos juntos uma solução.",
+          "prompt": "Fazemos assim?",
           "tokens": [
-            "willen",
-            "samen",
-            "een",
-            "graag",
-            "zou",
-            "stel",
-            "de",
-            "zoeken.",
-            "we",
-            "dat",
+            "niet",
             "Ik",
-            "oplossing"
+            "Zullen",
+            "zo",
+            "we",
+            "het",
+            "doen?"
           ],
           "answers": [
-            "Ik zou graag willen dat we samen een oplossing zoeken."
+            "Zullen we het zo doen?"
           ],
-          "explanation": "Gostava que procurássemos juntos uma solução. = Ik zou graag willen dat we samen een oplossing zoeken. (sobram: de, stel)",
+          "explanation": "Fazemos assim? = Zullen we het zo doen? (sobram: niet, Ik)",
           "vocabRefs": []
         }
       ],
@@ -2114,16 +2118,16 @@
       ],
       "examples": [
         {
-          "nl": "Zullen we het zo doen?",
-          "pt": "Fazemos assim?"
+          "nl": "Ik heb begrip voor je situatie.",
+          "pt": "Compreendo a tua situação."
+        },
+        {
+          "nl": "Als ik het even samenvat…",
+          "pt": "Se eu resumir…"
         },
         {
           "nl": "Ik zou graag willen dat we samen een oplossing zoeken.",
           "pt": "Gostava que procurássemos juntos uma solução."
-        },
-        {
-          "nl": "Buurtbemiddeling kan helpen bij burenruzies.",
-          "pt": "A mediação de bairro pode ajudar em zangas entre vizinhos."
         }
       ],
       "grammar": [],
@@ -2132,16 +2136,16 @@
           "id": "s5-u11-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «manter a calma» em neerlandês?",
+          "prompt": "Como se diz «perdoar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "begrip",
+              "text": "nodig hebben",
               "correct": false
             },
             {
               "id": "b",
-              "text": "rustig blijven",
+              "text": "vergeven",
               "correct": true
             },
             {
@@ -2150,36 +2154,36 @@
               "correct": false
             }
           ],
-          "explanation": "manter a calma = «rustig blijven».",
+          "explanation": "perdoar = «vergeven».",
           "vocabRefs": [
-            "v-rustig-blijven"
+            "v-vergeven"
           ]
         },
         {
           "id": "s5-u11-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «esquecer o assunto» em neerlandês?",
+          "prompt": "Como se diz «o teu lado» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "zand erover",
+              "text": "jouw kant",
               "correct": true
             },
             {
               "id": "b",
-              "text": "bemiddeling",
+              "text": "geschil",
               "correct": false
             },
             {
               "id": "c",
-              "text": "nodig hebben",
+              "text": "snappen",
               "correct": false
             }
           ],
-          "explanation": "esquecer o assunto = «zand erover».",
+          "explanation": "o teu lado = «jouw kant».",
           "vocabRefs": [
-            "v-zand-erover"
+            "v-standpunt-ander"
           ]
         },
         {
@@ -2193,8 +2197,8 @@
           ],
           "choices": [
             "irritatie",
-            "snappen",
-            "ruzie"
+            "ruzie",
+            "bemiddeling"
           ],
           "explanation": "Ze hebben ruzie over geld.",
           "vocabRefs": [
@@ -2205,19 +2209,19 @@
           "id": "s5-u11-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik merk wat ___.",
-          "translation": "Noto alguma irritação.",
+          "sentence": "Hoe kan ik het ___?",
+          "translation": "Como posso compensar?",
           "answers": [
-            "irritatie"
+            "goedmaken"
           ],
           "choices": [
-            "vergeven",
-            "irritatie",
+            "goedmaken",
+            "begrip",
             "snappen"
           ],
-          "explanation": "Ik merk wat irritatie.",
+          "explanation": "Hoe kan ik het goedmaken?",
           "vocabRefs": [
-            "v-irritatie"
+            "v-goedmaken"
           ]
         },
         {
@@ -2236,102 +2240,100 @@
           "id": "s5-u11-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik stel voor dat we het afwisselen.",
+          "audioText": "Buurtbemiddeling kan helpen bij burenruzies.",
           "answers": [
-            "Ik stel voor dat we het afwisselen."
+            "Buurtbemiddeling kan helpen bij burenruzies."
           ],
-          "translation": "Proponho que alternemos.",
-          "explanation": "«Ik stel voor dat we het afwisselen.» = Proponho que alternemos.",
+          "translation": "A mediação de bairro pode ajudar em zangas entre vizinhos.",
+          "explanation": "«Buurtbemiddeling kan helpen bij burenruzies.» = A mediação de bairro pode ajudar em zangas entre vizinhos.",
           "vocabRefs": [
-            "v-afwisselen"
+            "v-ruzie",
+            "v-bemiddeling"
           ]
         },
         {
           "id": "s5-u11-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Peço mesmo desculpa, não devia ter dito aquilo.",
+          "prompt": "Estão zangados por causa de dinheiro.",
           "tokens": [
-            "echt,",
-            "niet",
-            "had",
-            "zeggen.",
-            "moeten",
-            "dat",
-            "Het",
-            "eerlijk",
-            "je",
-            "spijt",
-            "me",
-            "ik"
+            "het",
+            "hebben",
+            "heb",
+            "geld.",
+            "Ze",
+            "ruzie",
+            "over"
           ],
           "answers": [
-            "Het spijt me echt, ik had dat niet moeten zeggen."
+            "Ze hebben ruzie over geld."
           ],
-          "explanation": "Peço mesmo desculpa, não devia ter dito aquilo. = Het spijt me echt, ik had dat niet moeten zeggen. (sobram: eerlijk, je)",
-          "vocabRefs": []
+          "explanation": "Estão zangados por causa de dinheiro. = Ze hebben ruzie over geld. (sobram: heb, het)",
+          "vocabRefs": [
+            "v-ruzie"
+          ]
         },
         {
           "id": "s5-u11-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Proponho que alternemos.",
+          "prompt": "Percebo o teu ponto, mas vejo de outra forma.",
           "tokens": [
-            "van",
-            "Ik",
+            "maar",
+            "je",
+            "Laten",
+            "snap",
+            "ik",
+            "zie",
             "dat",
-            "we",
-            "voor",
-            "afwisselen.",
-            "stel",
-            "heb",
-            "het"
+            "anders.",
+            "het",
+            "punt,",
+            "Ik"
           ],
           "answers": [
-            "Ik stel voor dat we het afwisselen."
+            "Ik snap je punt, maar ik zie het anders."
           ],
-          "explanation": "Proponho que alternemos. = Ik stel voor dat we het afwisselen. (sobram: heb, van)",
-          "vocabRefs": [
-            "v-afwisselen"
-          ]
+          "explanation": "Percebo o teu ponto, mas vejo de outra forma. = Ik snap je punt, maar ik zie het anders. (sobram: dat, Laten)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u11-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "ruzie",
-          "pt": "discussão",
-          "article": "de",
-          "explanation": "de ruzie.",
+          "noun": "geschil",
+          "pt": "litígio",
+          "article": "het",
+          "explanation": "het geschil.",
           "vocabRefs": [
-            "v-ruzie"
+            "v-geschil"
           ]
         },
         {
           "id": "s5-u11-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Vertel eens jouw kant van het verhaal.»?",
+          "prompt": "O que significa: «Laten we rustig blijven.»?",
           "options": [
             {
               "id": "a",
-              "text": "Combinado!",
+              "text": "Peço mesmo desculpa, não devia ter dito aquilo.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "De que precisas da minha parte?",
-              "correct": false
+              "text": "Vamos manter a calma.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Conta lá o teu lado da história.",
-              "correct": true
+              "text": "De que precisas da minha parte?",
+              "correct": false
             }
           ],
-          "explanation": "«Vertel eens jouw kant van het verhaal.» = Conta lá o teu lado da história.",
+          "explanation": "«Laten we rustig blijven.» = Vamos manter a calma.",
           "vocabRefs": [
-            "v-standpunt-ander"
+            "v-rustig-blijven"
           ]
         }
       ],
@@ -2395,16 +2397,16 @@
       ],
       "examples": [
         {
-          "nl": "Vertel eens jouw kant van het verhaal.",
-          "pt": "Conta lá o teu lado da história."
+          "nl": "Het spijt me echt, ik had dat niet moeten zeggen.",
+          "pt": "Peço mesmo desculpa, não devia ter dito aquilo."
         },
         {
-          "nl": "Zand erover!",
-          "pt": "Não se fala mais nisso!"
+          "nl": "Ik zou graag willen dat we samen een oplossing zoeken.",
+          "pt": "Gostava que procurássemos juntos uma solução."
         },
         {
-          "nl": "Ik merk wat irritatie.",
-          "pt": "Noto alguma irritação."
+          "nl": "Ik heb het bedrijf in gebreke gesteld.",
+          "pt": "Notifiquei formalmente a empresa."
         }
       ],
       "grammar": [],
@@ -2413,87 +2415,94 @@
           "id": "s5-u11-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A mediação de bairro pode ajudar em zangas entre vizinhos.",
+          "prompt": "Perdoo-te.",
           "tokens": [
-            "kan",
-            "het",
-            "helpen",
-            "graag",
-            "bij",
-            "burenruzies.",
-            "Buurtbemiddeling"
+            "Loket",
+            "je.",
+            "samen",
+            "vergeef",
+            "Ik"
           ],
           "answers": [
-            "Buurtbemiddeling kan helpen bij burenruzies."
+            "Ik vergeef je."
           ],
-          "explanation": "A mediação de bairro pode ajudar em zangas entre vizinhos. = Buurtbemiddeling kan helpen bij burenruzies. (sobram: graag, het)",
-          "vocabRefs": [
-            "v-ruzie",
-            "v-bemiddeling"
-          ]
+          "explanation": "Perdoo-te. = Ik vergeef je. (sobram: samen, Loket)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u11-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Percebo o teu ponto, mas vejo de outra forma.",
+          "prompt": "Vamos manter a calma.",
           "tokens": [
-            "zie",
-            "snap",
-            "maar",
-            "irritatie.",
-            "doen?",
-            "je",
-            "Ik",
+            "rustig",
+            "Laten",
+            "we",
+            "blijven.",
             "punt,",
-            "anders.",
-            "ik",
-            "het"
+            "een"
           ],
           "answers": [
-            "Ik snap je punt, maar ik zie het anders."
+            "Laten we rustig blijven."
           ],
-          "explanation": "Percebo o teu ponto, mas vejo de outra forma. = Ik snap je punt, maar ik zie het anders. (sobram: doen?, irritatie.)",
-          "vocabRefs": []
+          "explanation": "Vamos manter a calma. = Laten we rustig blijven. (sobram: een, punt,)",
+          "vocabRefs": [
+            "v-rustig-blijven"
+          ]
         },
         {
           "id": "s5-u11-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estão zangados por causa de dinheiro.",
+          "prompt": "Compreendo a tua situação.",
           "tokens": [
-            "had",
-            "hebben",
-            "ruzie",
-            "Ze",
-            "we",
-            "geld.",
-            "over"
+            "voor",
+            "eens",
+            "Ik",
+            "je",
+            "heb",
+            "begrip",
+            "gebreke",
+            "situatie."
           ],
           "answers": [
-            "Ze hebben ruzie over geld."
+            "Ik heb begrip voor je situatie."
           ],
-          "explanation": "Estão zangados por causa de dinheiro. = Ze hebben ruzie over geld. (sobram: we, had)",
+          "explanation": "Compreendo a tua situação. = Ik heb begrip voor je situatie. (sobram: gebreke, eens)",
           "vocabRefs": [
-            "v-ruzie"
+            "v-begrip"
           ]
         },
         {
           "id": "s5-u11-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We hebben een geschil met de verhuurder.",
+          "audioText": "Laten we rustig blijven.",
           "answers": [
-            "We hebben een geschil met de verhuurder."
+            "Laten we rustig blijven."
           ],
-          "translation": "Temos um litígio com o senhorio.",
-          "explanation": "«We hebben een geschil met de verhuurder.» = Temos um litígio com o senhorio.",
+          "translation": "Vamos manter a calma.",
+          "explanation": "«Laten we rustig blijven.» = Vamos manter a calma.",
           "vocabRefs": [
-            "v-geschil"
+            "v-rustig-blijven"
           ]
         },
         {
           "id": "s5-u11-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik stel voor dat we het afwisselen.",
+          "answers": [
+            "Ik stel voor dat we het afwisselen."
+          ],
+          "translation": "Proponho que alternemos.",
+          "explanation": "«Ik stel voor dat we het afwisselen.» = Proponho que alternemos.",
+          "vocabRefs": [
+            "v-afwisselen"
+          ]
+        },
+        {
+          "id": "s5-u11-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Het spijt me echt, ik had dat niet moeten zeggen.",
@@ -2505,36 +2514,20 @@
           "vocabRefs": []
         },
         {
-          "id": "s5-u11-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hoe kan ik het goedmaken?",
-          "answers": [
-            "Hoe kan ik het goedmaken?"
-          ],
-          "translation": "Como posso compensar?",
-          "explanation": "«Hoe kan ik het goedmaken?» = Como posso compensar?",
-          "vocabRefs": [
-            "v-goedmaken"
-          ]
-        },
-        {
           "id": "s5-u11-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Compreendo a tua situação.",
+          "translation": "Vamos manter a calma.",
           "tokens": [
-            "begrip",
-            "situatie.",
-            "heb",
-            "je",
-            "Ik",
-            "voor"
+            "Laten",
+            "we",
+            "rustig",
+            "blijven."
           ],
           "alternatives": [],
-          "explanation": "Ik heb begrip voor je situatie.",
+          "explanation": "Laten we rustig blijven.",
           "vocabRefs": [
-            "v-begrip"
+            "v-rustig-blijven"
           ]
         },
         {
@@ -2543,13 +2536,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Conta lá o teu lado da história.",
           "tokens": [
-            "jouw",
-            "van",
-            "eens",
-            "het",
-            "verhaal.",
             "Vertel",
-            "kant"
+            "eens",
+            "jouw",
+            "kant",
+            "van",
+            "het",
+            "verhaal."
           ],
           "alternatives": [],
           "explanation": "Vertel eens jouw kant van het verhaal.",
@@ -2561,38 +2554,11 @@
           "id": "s5-u11-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «jouw kant»?",
+          "prompt": "O que significa «in gebreke stellen»?",
           "options": [
             {
               "id": "a",
-              "text": "serviço gratuito de informação jurídica",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "o teu lado",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "mediação",
-              "correct": false
-            }
-          ],
-          "explanation": "«jouw kant» = o teu lado (da história).",
-          "vocabRefs": [
-            "v-standpunt-ander"
-          ]
-        },
-        {
-          "id": "s5-u11-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de irritatie»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "irritação",
+              "text": "notificar formalmente",
               "correct": true
             },
             {
@@ -2602,13 +2568,40 @@
             },
             {
               "id": "c",
-              "text": "precisar de",
+              "text": "manter a calma",
               "correct": false
             }
           ],
-          "explanation": "«de irritatie» = irritação.",
+          "explanation": "«in gebreke stellen» = notificar formalmente (incumprimento).",
           "vocabRefs": [
-            "v-irritatie"
+            "v-in-gebreke-stellen"
+          ]
+        },
+        {
+          "id": "s5-u11-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «rustig blijven»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "o teu lado",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "manter a calma",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "alternar",
+              "correct": false
+            }
+          ],
+          "explanation": "«rustig blijven» = manter a calma.",
+          "vocabRefs": [
+            "v-rustig-blijven"
           ]
         }
       ],

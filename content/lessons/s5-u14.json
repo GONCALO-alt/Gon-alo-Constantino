@@ -1912,16 +1912,16 @@
       ],
       "examples": [
         {
-          "nl": "Misschien ga ik volgend jaar naar Japan.",
-          "pt": "Talvez vá ao Japão para o ano."
+          "nl": "Hij was al naar huis gegaan.",
+          "pt": "Ele já tinha ido para casa."
         },
         {
-          "nl": "We hadden al gegeten.",
-          "pt": "Já tínhamos comido."
+          "nl": "Achteraf was het een goede beslissing.",
+          "pt": "Em retrospetiva foi uma boa decisão."
         },
         {
-          "nl": "Ik kijk met plezier terug op die tijd.",
-          "pt": "Recordo esse tempo com prazer."
+          "nl": "Hij zei dat hij zou komen.",
+          "pt": "Ele disse que vinha."
         }
       ],
       "grammar": [],
@@ -1972,10 +1972,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Viver o presente.",
           "tokens": [
+            "In",
             "het",
             "heden",
-            "leven.",
-            "In"
+            "leven."
           ],
           "alternatives": [],
           "explanation": "In het heden leven.",
@@ -1990,9 +1990,9 @@
           "translation": "Já tínhamos comido.",
           "tokens": [
             "We",
+            "hadden",
             "al",
-            "gegeten.",
-            "hadden"
+            "gegeten."
           ],
           "alternatives": [],
           "explanation": "We hadden al gegeten.",
@@ -2004,10 +2004,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Esperamos muitos convidados.",
           "tokens": [
+            "We",
             "verwachten",
-            "gasten.",
             "veel",
-            "We"
+            "gasten."
           ],
           "alternatives": [],
           "explanation": "We verwachten veel gasten.",
@@ -2019,12 +2019,39 @@
           "id": "s5-u14-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Als het lukt, kom ik vrijdag.»?",
+          "prompt": "O que significa: «Hoe zie jij de toekomst?»?",
           "options": [
             {
               "id": "a",
-              "text": "Se der, venho na sexta.",
+              "text": "Ela tinha-se esquecido das chaves.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Como vês o futuro?",
               "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Naquela altura não falava uma palavra de neerlandês.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Hoe zie jij de toekomst?» = Como vês o futuro?",
+          "vocabRefs": [
+            "v-toekomst"
+          ]
+        },
+        {
+          "id": "s5-u14-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Waarschijnlijk wordt het morgen droog.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Quando cheguei, o comboio já tinha partido.",
+              "correct": false
             },
             {
               "id": "b",
@@ -2033,83 +2060,58 @@
             },
             {
               "id": "c",
-              "text": "O que farias se ganhasses a lotaria?",
-              "correct": false
-            }
-          ],
-          "explanation": "«Als het lukt, kom ik vrijdag.» = Se der, venho na sexta.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s5-u14-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Destijds sprak ik geen woord Nederlands.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Isso é passado.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Naquela altura não falava uma palavra de neerlandês.",
+              "text": "Provavelmente amanhã fica seco.",
               "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Gostaria de viver em Amesterdão.",
-              "correct": false
             }
           ],
-          "explanation": "«Destijds sprak ik geen woord Nederlands.» = Naquela altura não falava uma palavra de neerlandês.",
+          "explanation": "«Waarschijnlijk wordt het morgen droog.» = Provavelmente amanhã fica seco.",
           "vocabRefs": [
-            "v-destijds"
+            "v-waarschijnlijk"
           ]
         },
         {
           "id": "s5-u14-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Viver o presente.",
+          "prompt": "Naquela altura não falava uma palavra de neerlandês.",
           "tokens": [
-            "ik",
-            "heden",
-            "In",
+            "Nederlands.",
             "gegeten.",
-            "het",
-            "leven."
+            "sprak",
+            "verhuizing",
+            "woord",
+            "ik",
+            "Destijds",
+            "geen"
           ],
           "answers": [
-            "In het heden leven."
+            "Destijds sprak ik geen woord Nederlands."
           ],
-          "explanation": "Viver o presente. = In het heden leven. (sobram: ik, gegeten.)",
+          "explanation": "Naquela altura não falava uma palavra de neerlandês. = Destijds sprak ik geen woord Nederlands. (sobram: gegeten., verhuizing)",
           "vocabRefs": [
-            "v-heden"
+            "v-destijds"
           ]
         },
         {
           "id": "s5-u14-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Recordo esse tempo com prazer.",
+          "prompt": "A mudança foi dura.",
           "tokens": [
-            "op",
-            "kijk",
-            "jaar.",
-            "plezier",
-            "met",
-            "terug",
-            "Hij",
-            "Ik",
-            "tijd.",
-            "die"
+            "verhuizing",
+            "was",
+            "zwaar.",
+            "De",
+            "doen.",
+            "Toen"
           ],
           "answers": [
-            "Ik kijk met plezier terug op die tijd."
+            "De verhuizing was zwaar."
           ],
-          "explanation": "Recordo esse tempo com prazer. = Ik kijk met plezier terug op die tijd. (sobram: jaar., Hij)",
-          "vocabRefs": []
+          "explanation": "A mudança foi dura. = De verhuizing was zwaar. (sobram: Toen, doen.)",
+          "vocabRefs": [
+            "v-verhuizing"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2187,11 +2189,11 @@
           "id": "s5-u14-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «esperar» em neerlandês?",
+          "prompt": "Como se diz «prometido» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "terugkijken op",
+              "text": "toekomst",
               "correct": false
             },
             {
@@ -2201,63 +2203,96 @@
             },
             {
               "id": "c",
-              "text": "verwachten",
+              "text": "beloofd",
               "correct": true
             }
           ],
-          "explanation": "esperar = «verwachten».",
+          "explanation": "prometido = «beloofd».",
           "vocabRefs": [
-            "v-verwachten"
+            "v-beloofd"
           ]
         },
         {
           "id": "s5-u14-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «passado» em neerlandês?",
+          "prompt": "Como se diz «tinha-se esquecido» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "verleden",
+              "text": "was vergeten",
               "correct": true
             },
             {
               "id": "b",
-              "text": "nog nooit eerder",
+              "text": "sowieso",
               "correct": false
             },
             {
               "id": "c",
-              "text": "verhuizing",
+              "text": "inmiddels",
               "correct": false
             }
           ],
-          "explanation": "passado = «verleden».",
+          "explanation": "tinha-se esquecido = «was vergeten».",
           "vocabRefs": [
-            "v-verleden"
+            "v-vergeten-was"
           ]
         },
         {
           "id": "s5-u14-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ woon ik hier vijf jaar.",
-          "translation": "Entretanto já moro aqui há cinco anos.",
+          "sentence": "Ze hadden beloofd dat ze ___ helpen.",
+          "translation": "Tinham prometido que ajudariam.",
           "answers": [
-            "Inmiddels"
+            "zouden"
           ],
           "choices": [
-            "Toekomst",
-            "Inmiddels",
-            "Vertrokken"
+            "zouden",
+            "beloofd",
+            "verhuizing"
           ],
-          "explanation": "Inmiddels woon ik hier vijf jaar.",
+          "explanation": "Ze hadden beloofd dat ze zouden helpen.",
           "vocabRefs": [
-            "v-inmiddels"
+            "v-zouden"
           ]
         },
         {
           "id": "s5-u14-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Dat is ___ tijd.",
+          "translation": "Isso é passado.",
+          "answers": [
+            "verleden"
+          ],
+          "choices": [
+            "heden",
+            "verleden",
+            "destijds"
+          ],
+          "explanation": "Dat is verleden tijd.",
+          "vocabRefs": [
+            "v-verleden"
+          ]
+        },
+        {
+          "id": "s5-u14-l008-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Hoe zie jij de toekomst?",
+          "answers": [
+            "Hoe zie jij de toekomst?"
+          ],
+          "translation": "Como vês o futuro?",
+          "explanation": "«Hoe zie jij de toekomst?» = Como vês o futuro?",
+          "vocabRefs": [
+            "v-toekomst"
+          ]
+        },
+        {
+          "id": "s5-u14-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Dat is verleden tijd.",
@@ -2271,103 +2306,88 @@
           ]
         },
         {
-          "id": "s5-u14-l008-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Achteraf was het een goede beslissing.",
-          "answers": [
-            "Achteraf was het een goede beslissing."
-          ],
-          "translation": "Em retrospetiva foi uma boa decisão.",
-          "explanation": "«Achteraf was het een goede beslissing.» = Em retrospetiva foi uma boa decisão.",
-          "vocabRefs": [
-            "v-achteraf"
-          ]
-        },
-        {
-          "id": "s5-u14-l008-e06",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Nunca antes tinha comido sushi.",
-          "tokens": [
-            "sushi",
-            "gegeten.",
-            "nog",
-            "Ik",
-            "eerder",
-            "wonen.",
-            "met",
-            "nooit",
-            "had"
-          ],
-          "answers": [
-            "Ik had nog nooit eerder sushi gegeten."
-          ],
-          "explanation": "Nunca antes tinha comido sushi. = Ik had nog nooit eerder sushi gegeten. (sobram: wonen., met)",
-          "vocabRefs": [
-            "v-nog-nooit-eerder"
-          ]
-        },
-        {
           "id": "s5-u14-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gostaria de viver em Amesterdão.",
+          "prompt": "Tinham prometido que ajudariam.",
           "tokens": [
-            "wonen.",
-            "zou",
-            "Ik",
-            "in",
-            "je",
-            "Amsterdam",
-            "graag",
-            "helpen."
+            "hadden",
+            "ze",
+            "beloofd",
+            "Ze",
+            "zouden",
+            "helpen.",
+            "Inmiddels",
+            "dat",
+            "gegaan."
           ],
           "answers": [
-            "Ik zou graag in Amsterdam wonen."
+            "Ze hadden beloofd dat ze zouden helpen."
           ],
-          "explanation": "Gostaria de viver em Amesterdão. = Ik zou graag in Amsterdam wonen. (sobram: je, helpen.)",
+          "explanation": "Tinham prometido que ajudariam. = Ze hadden beloofd dat ze zouden helpen. (sobram: Inmiddels, gegaan.)",
           "vocabRefs": [
-            "v-zou-graag"
+            "v-zouden",
+            "v-beloofd"
           ]
         },
         {
           "id": "s5-u14-l008-e08",
-          "type": "articleChoice",
-          "instruction": "Escolha o artigo certo.",
-          "noun": "verleden",
-          "pt": "passado",
-          "article": "het",
-          "explanation": "het verleden.",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Esperamos muitos convidados.",
+          "tokens": [
+            "beslissing.",
+            "We",
+            "verwachten",
+            "Achteraf",
+            "veel",
+            "gasten."
+          ],
+          "answers": [
+            "We verwachten veel gasten."
+          ],
+          "explanation": "Esperamos muitos convidados. = We verwachten veel gasten. (sobram: Achteraf, beslissing.)",
           "vocabRefs": [
-            "v-verleden"
+            "v-verwachten"
           ]
         },
         {
           "id": "s5-u14-l008-e09",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "noun": "toekomst",
+          "pt": "futuro",
+          "article": "de",
+          "explanation": "de toekomst.",
+          "vocabRefs": [
+            "v-toekomst"
+          ]
+        },
+        {
+          "id": "s5-u14-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We verwachten veel gasten.»?",
+          "prompt": "O que significa: «In het heden leven.»?",
           "options": [
             {
               "id": "a",
-              "text": "Entretanto já moro aqui há cinco anos.",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Em retrospetiva foi uma boa decisão.",
               "correct": false
             },
             {
+              "id": "b",
+              "text": "O que farias se ganhasses a lotaria?",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Esperamos muitos convidados.",
+              "text": "Viver o presente.",
               "correct": true
             }
           ],
-          "explanation": "«We verwachten veel gasten.» = Esperamos muitos convidados.",
+          "explanation": "«In het heden leven.» = Viver o presente.",
           "vocabRefs": [
-            "v-verwachten"
+            "v-heden"
           ]
         }
       ],
@@ -2428,16 +2448,16 @@
       ],
       "examples": [
         {
-          "nl": "Ze hadden beloofd dat ze zouden helpen.",
-          "pt": "Tinham prometido que ajudariam."
-        },
-        {
           "nl": "We verwachten veel gasten.",
           "pt": "Esperamos muitos convidados."
         },
         {
-          "nl": "Ik kom sowieso.",
-          "pt": "Venho de certeza."
+          "nl": "Als ik jou was, zou ik het doen.",
+          "pt": "Se eu fosse a ti, fazia-o."
+        },
+        {
+          "nl": "Ik had nog nooit eerder sushi gegeten.",
+          "pt": "Nunca antes tinha comido sushi."
         }
       ],
       "grammar": [],
@@ -2446,68 +2466,100 @@
           "id": "s5-u14-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Em retrospetiva foi uma boa decisão.",
+          "prompt": "Ele disse que vinha.",
           "tokens": [
-            "was",
-            "met",
-            "geen",
-            "beslissing.",
-            "een",
-            "Achteraf",
-            "goede",
-            "het"
+            "zei",
+            "plezier",
+            "Nederlands.",
+            "komen.",
+            "hij",
+            "Hij",
+            "zou",
+            "dat"
           ],
           "answers": [
-            "Achteraf was het een goede beslissing."
+            "Hij zei dat hij zou komen."
           ],
-          "explanation": "Em retrospetiva foi uma boa decisão. = Achteraf was het een goede beslissing. (sobram: geen, met)",
-          "vocabRefs": [
-            "v-achteraf"
-          ]
+          "explanation": "Ele disse que vinha. = Hij zei dat hij zou komen. (sobram: Nederlands., plezier)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u14-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Se der, venho na sexta.",
+          "prompt": "Em retrospetiva foi uma boa decisão.",
           "tokens": [
-            "vrijdag.",
-            "Amsterdam",
-            "sprak",
+            "was",
+            "Achteraf",
+            "goede",
             "Als",
+            "beslissing.",
             "het",
-            "kom",
-            "lukt,",
-            "ik"
+            "een",
+            "al"
           ],
           "answers": [
-            "Als het lukt, kom ik vrijdag."
+            "Achteraf was het een goede beslissing."
           ],
-          "explanation": "Se der, venho na sexta. = Als het lukt, kom ik vrijdag. (sobram: sprak, Amsterdam)",
-          "vocabRefs": []
+          "explanation": "Em retrospetiva foi uma boa decisão. = Achteraf was het een goede beslissing. (sobram: Als, al)",
+          "vocabRefs": [
+            "v-achteraf"
+          ]
         },
         {
           "id": "s5-u14-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela tinha-se esquecido das chaves.",
+          "prompt": "Nunca antes tinha comido sushi.",
           "tokens": [
-            "sleutels",
-            "vergeten.",
+            "Ik",
+            "nooit",
+            "sushi",
+            "eerder",
             "had",
-            "ik",
-            "tijd.",
-            "haar",
-            "Ze"
+            "de",
+            "toekomst?",
+            "nog",
+            "gegeten."
           ],
           "answers": [
-            "Ze had haar sleutels vergeten."
+            "Ik had nog nooit eerder sushi gegeten."
           ],
-          "explanation": "Ela tinha-se esquecido das chaves. = Ze had haar sleutels vergeten. (sobram: ik, tijd.)",
-          "vocabRefs": []
+          "explanation": "Nunca antes tinha comido sushi. = Ik had nog nooit eerder sushi gegeten. (sobram: de, toekomst?)",
+          "vocabRefs": [
+            "v-nog-nooit-eerder"
+          ]
         },
         {
           "id": "s5-u14-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik had nog nooit eerder sushi gegeten.",
+          "answers": [
+            "Ik had nog nooit eerder sushi gegeten."
+          ],
+          "translation": "Nunca antes tinha comido sushi.",
+          "explanation": "«Ik had nog nooit eerder sushi gegeten.» = Nunca antes tinha comido sushi.",
+          "vocabRefs": [
+            "v-nog-nooit-eerder"
+          ]
+        },
+        {
+          "id": "s5-u14-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Destijds sprak ik geen woord Nederlands.",
+          "answers": [
+            "Destijds sprak ik geen woord Nederlands."
+          ],
+          "translation": "Naquela altura não falava uma palavra de neerlandês.",
+          "explanation": "«Destijds sprak ik geen woord Nederlands.» = Naquela altura não falava uma palavra de neerlandês.",
+          "vocabRefs": [
+            "v-destijds"
+          ]
+        },
+        {
+          "id": "s5-u14-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Als ik jou was, zou ik het doen.",
@@ -2521,67 +2573,42 @@
           ]
         },
         {
-          "id": "s5-u14-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Inmiddels woon ik hier vijf jaar.",
-          "answers": [
-            "Inmiddels woon ik hier vijf jaar."
-          ],
-          "translation": "Entretanto já moro aqui há cinco anos.",
-          "explanation": "«Inmiddels woon ik hier vijf jaar.» = Entretanto já moro aqui há cinco anos.",
-          "vocabRefs": [
-            "v-inmiddels"
-          ]
-        },
-        {
-          "id": "s5-u14-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij was al naar huis gegaan.",
-          "answers": [
-            "Hij was al naar huis gegaan."
-          ],
-          "translation": "Ele já tinha ido para casa.",
-          "explanation": "«Hij was al naar huis gegaan.» = Ele já tinha ido para casa.",
-          "vocabRefs": []
-        },
-        {
           "id": "s5-u14-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ele disse que vinha.",
+          "translation": "Talvez vá ao Japão para o ano.",
           "tokens": [
-            "Hij",
-            "komen.",
-            "zei",
-            "zou",
-            "hij",
-            "dat"
+            "Misschien",
+            "ga",
+            "ik",
+            "volgend",
+            "jaar",
+            "naar",
+            "Japan."
           ],
           "alternatives": [],
-          "explanation": "Hij zei dat hij zou komen.",
+          "explanation": "Misschien ga ik volgend jaar naar Japan.",
           "vocabRefs": []
         },
         {
           "id": "s5-u14-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Se eu fosse a ti, fazia-o.",
+          "translation": "Quando cheguei, o comboio já tinha partido.",
           "tokens": [
-            "doen.",
+            "Toen",
             "ik",
-            "het",
-            "zou",
-            "ik",
-            "jou",
-            "Als",
-            "was,"
+            "aankwam,",
+            "was",
+            "de",
+            "trein",
+            "al",
+            "vertrokken."
           ],
           "alternatives": [],
-          "explanation": "Als ik jou was, zou ik het doen.",
+          "explanation": "Toen ik aankwam, was de trein al vertrokken.",
           "vocabRefs": [
-            "v-als-ik-jou-was"
+            "v-vertrokken"
           ]
         },
         {
@@ -2592,7 +2619,7 @@
           "options": [
             {
               "id": "a",
-              "text": "de qualquer forma",
+              "text": "se eu fosse a ti",
               "correct": false
             },
             {
@@ -2602,7 +2629,7 @@
             },
             {
               "id": "c",
-              "text": "futuro",
+              "text": "de qualquer forma",
               "correct": false
             }
           ],
@@ -2615,27 +2642,27 @@
           "id": "s5-u14-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de toekomst»?",
+          "prompt": "O que significa «vertrokken»?",
           "options": [
             {
               "id": "a",
-              "text": "esperar",
+              "text": "se eu fosse a ti",
               "correct": false
             },
             {
               "id": "b",
-              "text": "tinha-se esquecido",
+              "text": "depois",
               "correct": false
             },
             {
               "id": "c",
-              "text": "futuro",
+              "text": "partido",
               "correct": true
             }
           ],
-          "explanation": "«de toekomst» = futuro.",
+          "explanation": "«vertrokken» = partido, ido embora.",
           "vocabRefs": [
-            "v-toekomst"
+            "v-vertrokken"
           ]
         }
       ],

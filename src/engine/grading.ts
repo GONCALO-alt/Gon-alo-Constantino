@@ -143,3 +143,8 @@ export function needsSelfAssessment(ex: Exercise, value: string, opts: GradeOpti
 
 /** Normalização exposta para a UI (ex.: comparar escolhas). */
 export { normalize };
+
+/** Resposta certa a mostrar quando o aluno pede ajuda («Não me lembro»). */
+export function expectedAnswer(ex: Exercise): string {
+  return gradeExercise(ex, { kind: 'text', value: '' }).expected;
+}

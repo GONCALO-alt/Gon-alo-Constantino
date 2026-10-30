@@ -1852,16 +1852,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik heb echt genoten.",
-          "pt": "Gostei mesmo muito."
+          "nl": "Ik ken haar via mijn werk.",
+          "pt": "Conheço-a do trabalho."
         },
         {
-          "nl": "Hoe laat verwacht je ons?",
-          "pt": "A que horas nos esperas?"
+          "nl": "Ik laat het je nog weten.",
+          "pt": "Depois digo-te qualquer coisa."
         },
         {
-          "nl": "Wat doe je in het dagelijks leven?",
-          "pt": "O que fazes no dia a dia?"
+          "nl": "Leuk, daar heb ik zin in!",
+          "pt": "Boa, estou mesmo com vontade!"
         }
       ],
       "grammar": [],
@@ -1915,9 +1915,9 @@
           "translation": "Como é que conheces a Sanne?",
           "tokens": [
             "Hoe",
-            "Sanne?",
+            "ken",
             "jij",
-            "ken"
+            "Sanne?"
           ],
           "alternatives": [],
           "explanation": "Hoe ken jij Sanne?",
@@ -1929,14 +1929,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Apetece-te vir jantar na sexta?",
           "tokens": [
-            "om",
-            "komen",
-            "te",
             "Heb",
-            "eten?",
-            "vrijdag",
+            "je",
             "zin",
-            "je"
+            "om",
+            "vrijdag",
+            "te",
+            "komen",
+            "eten?"
           ],
           "alternatives": [],
           "explanation": "Heb je zin om vrijdag te komen eten?",
@@ -1948,10 +1948,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Até à próxima!",
           "tokens": [
+            "Tot",
             "de",
-            "keer!",
             "volgende",
-            "Tot"
+            "keer!"
           ],
           "alternatives": [],
           "explanation": "Tot de volgende keer!",
@@ -1963,32 +1963,34 @@
           "id": "s4-u07-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Heb je zin om vrijdag te komen eten?»?",
+          "prompt": "O que significa: «Leuk, daar heb ik zin in!»?",
           "options": [
             {
               "id": "a",
-              "text": "O que fazes no dia a dia?",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Apetece-te vir jantar na sexta?",
+              "text": "Boa, estou mesmo com vontade!",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Aparece à vontade!",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Queres que leve alguma coisa?",
+              "text": "Depois digo-te qualquer coisa.",
               "correct": false
             }
           ],
-          "explanation": "«Heb je zin om vrijdag te komen eten?» = Apetece-te vir jantar na sexta?",
-          "vocabRefs": []
+          "explanation": "«Leuk, daar heb ik zin in!» = Boa, estou mesmo com vontade!",
+          "vocabRefs": [
+            "v-daar-heb-ik-zin-in"
+          ]
         },
         {
           "id": "s4-u07-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoe laat verwacht je ons?»?",
+          "prompt": "O que significa: «Bedankt voor de uitnodiging, maar ik kan helaas niet.»?",
           "options": [
             {
               "id": "a",
@@ -1997,63 +1999,60 @@
             },
             {
               "id": "b",
-              "text": "A que horas nos esperas?",
-              "correct": true
+              "text": "Obrigado pela noite agradável!",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Conheço-a do trabalho.",
-              "correct": false
+              "text": "Obrigado pelo convite, mas infelizmente não posso.",
+              "correct": true
             }
           ],
-          "explanation": "«Hoe laat verwacht je ons?» = A que horas nos esperas?",
-          "vocabRefs": [
-            "v-hoe-laat-verwacht"
-          ]
+          "explanation": "«Bedankt voor de uitnodiging, maar ik kan helaas niet.» = Obrigado pelo convite, mas infelizmente não posso.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u07-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No sábado já tenho outro compromisso.",
+          "prompt": "Apetece-te tomar um café?",
           "tokens": [
-            "heb",
-            "zaterdag",
-            "iets",
-            "anders.",
-            "Ik",
+            "koffie",
+            "drinken?",
             "om",
             "je",
-            "al"
+            "te",
+            "Gezellig!",
+            "Heb",
+            "zin",
+            "ik"
           ],
           "answers": [
-            "Ik heb zaterdag al iets anders."
+            "Heb je zin om koffie te drinken?"
           ],
-          "explanation": "No sábado já tenho outro compromisso. = Ik heb zaterdag al iets anders. (sobram: je, om)",
+          "explanation": "Apetece-te tomar um café? = Heb je zin om koffie te drinken? (sobram: Gezellig!, ik)",
           "vocabRefs": []
         },
         {
           "id": "s4-u07-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que pena, mas infelizmente não posso.",
+          "prompt": "Obrigado pela noite agradável!",
           "tokens": [
-            "kan",
-            "Wat",
-            "maar",
+            "gezellige",
+            "de",
             "helaas",
-            "jammer,",
-            "niet.",
-            "ik",
-            "zin",
-            "Bedankt"
+            "maar",
+            "voor",
+            "Bedankt",
+            "avond!"
           ],
           "answers": [
-            "Wat jammer, maar ik kan helaas niet."
+            "Bedankt voor de gezellige avond!"
           ],
-          "explanation": "Que pena, mas infelizmente não posso. = Wat jammer, maar ik kan helaas niet. (sobram: Bedankt, zin)",
+          "explanation": "Obrigado pela noite agradável! = Bedankt voor de gezellige avond! (sobram: maar, helaas)",
           "vocabRefs": [
-            "v-jammer"
+            "v-gezellig-idee"
           ]
         }
       ],
@@ -2119,16 +2118,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik wil je uitnodigen voor mijn verjaardag.",
-          "pt": "Quero convidar-te para o meu aniversário."
-        },
-        {
           "nl": "Zal ik iets meenemen?",
           "pt": "Queres que leve alguma coisa?"
         },
         {
           "nl": "Bedankt voor de uitnodiging, maar ik kan helaas niet.",
           "pt": "Obrigado pelo convite, mas infelizmente não posso."
+        },
+        {
+          "nl": "Tot de volgende keer!",
+          "pt": "Até à próxima!"
         }
       ],
       "grammar": [],
@@ -2137,54 +2136,54 @@
           "id": "s4-u07-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «convidar» em neerlandês?",
+          "prompt": "Como se diz «a que horas nos esperas?» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "uitnodigen",
+              "text": "hoe laat verwacht je ons?",
               "correct": true
             },
             {
               "id": "b",
-              "text": "etentje",
+              "text": "een andere keer",
               "correct": false
             },
             {
               "id": "c",
-              "text": "kennismaken",
+              "text": "borrel",
               "correct": false
             }
           ],
-          "explanation": "convidar = «uitnodigen».",
+          "explanation": "a que horas nos esperas? = «hoe laat verwacht je ons?».",
           "vocabRefs": [
-            "v-uitnodigen"
+            "v-hoe-laat-verwacht"
           ]
         },
         {
           "id": "s4-u07-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «hospitalidade» em neerlandês?",
+          "prompt": "Como se diz «gostado muito» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "gastvrijheid",
-              "correct": true
+              "text": "jammer",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "al iets anders hebben",
+              "text": "daar heb ik zin in",
               "correct": false
             },
             {
               "id": "c",
-              "text": "jammer",
-              "correct": false
+              "text": "genoten",
+              "correct": true
             }
           ],
-          "explanation": "hospitalidade = «gastvrijheid».",
+          "explanation": "gostado muito = «genoten».",
           "vocabRefs": [
-            "v-gastvrijheid"
+            "v-genoten"
           ]
         },
         {
@@ -2235,85 +2234,90 @@
           "id": "s4-u07-l008-e06",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Conheço-a do trabalho.",
+          "prompt": "Obrigado pelo convite, mas infelizmente não posso.",
           "tokens": [
-            "haar",
-            "ken",
-            "Ik",
-            "een",
-            "mijn",
-            "werk.",
-            "je",
-            "via"
+            "Leuk",
+            "zaterdag",
+            "Bedankt",
+            "maar",
+            "de",
+            "ik",
+            "voor",
+            "helaas",
+            "niet.",
+            "kan",
+            "uitnodiging,"
           ],
           "answers": [
-            "Ik ken haar via mijn werk."
+            "Bedankt voor de uitnodiging, maar ik kan helaas niet."
           ],
-          "explanation": "Conheço-a do trabalho. = Ik ken haar via mijn werk. (sobram: een, je)",
+          "explanation": "Obrigado pelo convite, mas infelizmente não posso. = Bedankt voor de uitnodiging, maar ik kan helaas niet. (sobram: Leuk, zaterdag)",
           "vocabRefs": []
         },
         {
           "id": "s4-u07-l008-e07",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "borrel",
-          "pt": "copo",
-          "article": "de",
-          "explanation": "de borrel.",
+          "noun": "etentje",
+          "pt": "jantarzinho",
+          "article": "het",
+          "explanation": "het etentje.",
           "vocabRefs": [
-            "v-borrel"
+            "v-etentje"
           ]
         },
         {
           "id": "s4-u07-l008-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kom goed thuis!»?",
+          "prompt": "O que significa: «Wat doe je in het dagelijks leven?»?",
           "options": [
             {
               "id": "a",
               "text": "O que fazes no dia a dia?",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Chega bem a casa!",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Até à próxima!",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Gostei mesmo muito.",
+              "text": "Quero convidar-te para o meu aniversário.",
               "correct": false
             }
           ],
-          "explanation": "«Kom goed thuis!» = Chega bem a casa!",
-          "vocabRefs": []
+          "explanation": "«Wat doe je in het dagelijks leven?» = O que fazes no dia a dia?",
+          "vocabRefs": [
+            "v-dagelijks-leven"
+          ]
         },
         {
           "id": "s4-u07-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «al iets anders hebben»?",
+          "prompt": "O que significa «daar heb ik zin in»?",
           "options": [
             {
               "id": "a",
-              "text": "conhecer",
+              "text": "que bom!",
               "correct": false
             },
             {
               "id": "b",
-              "text": "gostado muito",
+              "text": "convidar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "já ter outro compromisso",
+              "text": "estou mesmo com vontade",
               "correct": true
             }
           ],
-          "explanation": "«al iets anders hebben» = já ter outro compromisso.",
+          "explanation": "«daar heb ik zin in» = estou mesmo com vontade.",
           "vocabRefs": [
-            "v-al-iets-anders"
+            "v-daar-heb-ik-zin-in"
           ]
         }
       ],
@@ -2379,16 +2383,16 @@
       ],
       "examples": [
         {
-          "nl": "Bedankt voor de uitnodiging, maar ik kan helaas niet.",
-          "pt": "Obrigado pelo convite, mas infelizmente não posso."
+          "nl": "Leuk kennis te maken!",
+          "pt": "Prazer em conhecer!"
         },
         {
-          "nl": "Zal ik iets meenemen?",
-          "pt": "Queres que leve alguma coisa?"
+          "nl": "Kom gerust langs!",
+          "pt": "Aparece à vontade!"
         },
         {
-          "nl": "Tot de volgende keer!",
-          "pt": "Até à próxima!"
+          "nl": "Gezellig! Ik kom graag.",
+          "pt": "Que bom! Vou com todo o gosto."
         }
       ],
       "grammar": [],
@@ -2397,19 +2401,21 @@
           "id": "s4-u07-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como é que conheces a Sanne?",
+          "prompt": "No sábado já tenho outro compromisso.",
           "tokens": [
-            "Sanne?",
-            "dagelijks",
-            "ken",
-            "Hoe",
-            "jij",
-            "verjaardag."
+            "zaterdag",
+            "al",
+            "Ik",
+            "heb",
+            "om",
+            "anders.",
+            "voor",
+            "iets"
           ],
           "answers": [
-            "Hoe ken jij Sanne?"
+            "Ik heb zaterdag al iets anders."
           ],
-          "explanation": "Como é que conheces a Sanne? = Hoe ken jij Sanne? (sobram: verjaardag., dagelijks)",
+          "explanation": "No sábado já tenho outro compromisso. = Ik heb zaterdag al iets anders. (sobram: voor, om)",
           "vocabRefs": []
         },
         {
@@ -2419,16 +2425,16 @@
           "prompt": "Até à próxima!",
           "tokens": [
             "keer!",
-            "verwacht",
-            "volgende",
+            "vrijdag",
             "Tot",
             "de",
-            "op"
+            "volgende",
+            "Heb"
           ],
           "answers": [
             "Tot de volgende keer!"
           ],
-          "explanation": "Até à próxima! = Tot de volgende keer! (sobram: op, verwacht)",
+          "explanation": "Até à próxima! = Tot de volgende keer! (sobram: Heb, vrijdag)",
           "vocabRefs": [
             "v-tot-de-volgende-keer"
           ]
@@ -2437,24 +2443,26 @@
           "id": "s4-u07-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Apetece-te vir jantar na sexta?",
+          "prompt": "Na sexta temos um copo no trabalho.",
           "tokens": [
-            "om",
+            "een",
+            "op",
+            "borrel",
+            "werk.",
             "te",
             "vrijdag",
-            "komen",
-            "eten?",
-            "zin",
-            "Hoe",
-            "je",
-            "helaas",
-            "Heb"
+            "het",
+            "We",
+            "hebben",
+            "Bedankt"
           ],
           "answers": [
-            "Heb je zin om vrijdag te komen eten?"
+            "We hebben vrijdag een borrel op het werk."
           ],
-          "explanation": "Apetece-te vir jantar na sexta? = Heb je zin om vrijdag te komen eten? (sobram: helaas, Hoe)",
-          "vocabRefs": []
+          "explanation": "Na sexta temos um copo no trabalho. = We hebben vrijdag een borrel op het werk. (sobram: Bedankt, te)",
+          "vocabRefs": [
+            "v-borrel"
+          ]
         },
         {
           "id": "s4-u07-l009-e04",
@@ -2502,12 +2510,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "No sábado já tenho outro compromisso.",
           "tokens": [
-            "zaterdag",
-            "iets",
+            "Ik",
             "heb",
+            "zaterdag",
             "al",
-            "anders.",
-            "Ik"
+            "iets",
+            "anders."
           ],
           "alternatives": [],
           "explanation": "Ik heb zaterdag al iets anders.",
@@ -2519,11 +2527,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "A que horas nos esperas?",
           "tokens": [
-            "je",
             "Hoe",
+            "laat",
             "verwacht",
-            "ons?",
-            "laat"
+            "je",
+            "ons?"
           ],
           "alternatives": [],
           "explanation": "Hoe laat verwacht je ons?",
@@ -2535,17 +2543,17 @@
           "id": "s4-u07-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «jammer»?",
+          "prompt": "O que significa «al iets anders hebben»?",
           "options": [
             {
               "id": "a",
-              "text": "a que horas nos esperas?",
-              "correct": false
+              "text": "já ter outro compromisso",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "que pena",
-              "correct": true
+              "text": "hospitalidade",
+              "correct": false
             },
             {
               "id": "c",
@@ -2553,36 +2561,36 @@
               "correct": false
             }
           ],
-          "explanation": "«jammer» = que pena.",
+          "explanation": "«al iets anders hebben» = já ter outro compromisso.",
           "vocabRefs": [
-            "v-jammer"
+            "v-al-iets-anders"
           ]
         },
         {
           "id": "s4-u07-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het laten weten»?",
+          "prompt": "O que significa «iets meenemen»?",
           "options": [
             {
               "id": "a",
-              "text": "a que horas nos esperas?",
+              "text": "copo",
               "correct": false
             },
             {
               "id": "b",
-              "text": "conhecer",
+              "text": "estou mesmo com vontade",
               "correct": false
             },
             {
               "id": "c",
-              "text": "avisar",
+              "text": "levar alguma coisa",
               "correct": true
             }
           ],
-          "explanation": "«het laten weten» = avisar, dar notícias.",
+          "explanation": "«iets meenemen» = levar alguma coisa.",
           "vocabRefs": [
-            "v-afzeggen2"
+            "v-meenemen-iets"
           ]
         }
       ],

@@ -1938,16 +1938,16 @@
       ],
       "examples": [
         {
-          "nl": "Er zit schimmel in de badkamer.",
-          "pt": "Há bolor na casa de banho."
+          "nl": "De opzegtermijn is één maand.",
+          "pt": "O pré-aviso é de um mês."
+        },
+        {
+          "nl": "De borg is twee maanden huur.",
+          "pt": "A caução é de dois meses de renda."
         },
         {
           "nl": "Kun je me helpen met verhuizen?",
           "pt": "Podes ajudar-me nas mudanças?"
-        },
-        {
-          "nl": "Ik zoek een huis te huur.",
-          "pt": "Procuro uma casa para arrendar."
         }
       ],
       "grammar": [],
@@ -2001,11 +2001,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Há uma longa lista de espera.",
           "tokens": [
-            "lange",
+            "Er",
             "is",
             "een",
-            "wachtlijst.",
-            "Er"
+            "lange",
+            "wachtlijst."
           ],
           "alternatives": [],
           "explanation": "Er is een lange wachtlijst.",
@@ -2017,12 +2017,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O senhorio tem de reparar o aquecimento.",
           "tokens": [
-            "verwarming",
-            "verhuurder",
             "De",
+            "verhuurder",
+            "moet",
             "de",
-            "repareren.",
-            "moet"
+            "verwarming",
+            "repareren."
           ],
           "alternatives": [],
           "explanation": "De verhuurder moet de verwarming repareren.",
@@ -2039,12 +2039,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Procuro uma casa para arrendar.",
           "tokens": [
+            "Ik",
+            "zoek",
+            "een",
             "huis",
             "te",
-            "een",
-            "zoek",
-            "huur.",
-            "Ik"
+            "huur."
           ],
           "alternatives": [],
           "explanation": "Ik zoek een huis te huur.",
@@ -2057,99 +2057,101 @@
           "id": "s3-u10-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mijn telefoon doet het niet.»?",
+          "prompt": "O que significa: «De huur is 1200 euro per maand.»?",
           "options": [
             {
               "id": "a",
-              "text": "A caução é de dois meses de renda.",
-              "correct": false
+              "text": "A renda é 1200 euros por mês.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "A renda inclui gás e eletricidade?",
+              "text": "O senhorio tem de reparar o aquecimento.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O meu telemóvel não funciona.",
-              "correct": true
+              "text": "Mudamos de casa no próximo mês.",
+              "correct": false
             }
           ],
-          "explanation": "«Mijn telefoon doet het niet.» = O meu telemóvel não funciona.",
-          "vocabRefs": []
+          "explanation": "«De huur is 1200 euro per maand.» = A renda é 1200 euros por mês.",
+          "vocabRefs": [
+            "v-huur"
+          ]
         },
         {
           "id": "s3-u10-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De opzegtermijn is één maand.»?",
+          "prompt": "O que significa: «Dit appartement is te koop.»?",
           "options": [
             {
               "id": "a",
-              "text": "O aquecimento não funciona.",
+              "text": "A renda inclui gás e eletricidade?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Há uma longa lista de espera.",
+              "text": "O apartamento é mobilado?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O pré-aviso é de um mês.",
+              "text": "Este apartamento está à venda.",
               "correct": true
             }
           ],
-          "explanation": "«De opzegtermijn is één maand.» = O pré-aviso é de um mês.",
+          "explanation": "«Dit appartement is te koop.» = Este apartamento está à venda.",
           "vocabRefs": [
-            "v-opzegtermijn"
+            "v-te-koop"
           ]
         },
         {
           "id": "s3-u10-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Lê bem o contrato de arrendamento.",
+          "prompt": "O senhorio tem de reparar o aquecimento.",
           "tokens": [
-            "huurcontract",
-            "te",
-            "goed.",
-            "Lees",
+            "moet",
+            "repareren.",
             "Is",
-            "het"
+            "de",
+            "verhuurder",
+            "verwarming",
+            "De",
+            "euro"
           ],
           "answers": [
-            "Lees het huurcontract goed."
+            "De verhuurder moet de verwarming repareren."
           ],
-          "explanation": "Lê bem o contrato de arrendamento. = Lees het huurcontract goed. (sobram: te, Is)",
+          "explanation": "O senhorio tem de reparar o aquecimento. = De verhuurder moet de verwarming repareren. (sobram: Is, euro)",
           "vocabRefs": [
             "v-huur",
-            "v-huurcontract"
+            "v-huurder",
+            "v-verhuurder",
+            "v-verwarming"
           ]
         },
         {
           "id": "s3-u10-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Procuro uma casa para arrendar.",
+          "prompt": "Há uma longa lista de espera.",
           "tokens": [
-            "te",
-            "Dit",
-            "huis",
-            "zoek",
-            "een",
+            "met",
             "Er",
-            "Ik",
-            "huur."
+            "wachtlijst.",
+            "een",
+            "De",
+            "is",
+            "lange"
           ],
           "answers": [
-            "Ik zoek een huis te huur."
+            "Er is een lange wachtlijst."
           ],
-          "explanation": "Procuro uma casa para arrendar. = Ik zoek een huis te huur. (sobram: Dit, Er)",
-          "vocabRefs": [
-            "v-huur",
-            "v-te-huur"
-          ]
+          "explanation": "Há uma longa lista de espera. = Er is een lange wachtlijst. (sobram: met, De)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 3,
@@ -2214,16 +2216,16 @@
       ],
       "examples": [
         {
-          "nl": "De verwarming doet het niet.",
-          "pt": "O aquecimento não funciona."
-        },
-        {
-          "nl": "We verhuizen volgende maand.",
-          "pt": "Mudamos de casa no próximo mês."
-        },
-        {
           "nl": "Lees het huurcontract goed.",
           "pt": "Lê bem o contrato de arrendamento."
+        },
+        {
+          "nl": "Ik zoek een huis te huur.",
+          "pt": "Procuro uma casa para arrendar."
+        },
+        {
+          "nl": "De kraan lekt.",
+          "pt": "A torneira está a pingar."
         }
       ],
       "grammar": [],
@@ -2232,44 +2234,17 @@
           "id": "s3-u10-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «inquilino» em neerlandês?",
+          "prompt": "Como se diz «torneira» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "repareren",
-              "correct": false
+              "text": "kraan",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "loodgieter",
+              "text": "verwarming",
               "correct": false
-            },
-            {
-              "id": "c",
-              "text": "huurder",
-              "correct": true
-            }
-          ],
-          "explanation": "inquilino = «huurder».",
-          "vocabRefs": [
-            "v-huurder"
-          ]
-        },
-        {
-          "id": "s3-u10-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «para arrendar» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "lekken",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "te huur",
-              "correct": true
             },
             {
               "id": "c",
@@ -2277,159 +2252,181 @@
               "correct": false
             }
           ],
-          "explanation": "para arrendar = «te huur».",
+          "explanation": "torneira = «kraan».",
           "vocabRefs": [
-            "v-te-huur"
+            "v-kraan"
+          ]
+        },
+        {
+          "id": "s3-u10-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «visita» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "bezichtiging",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "schimmel",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "te huur",
+              "correct": false
+            }
+          ],
+          "explanation": "visita = «bezichtiging».",
+          "vocabRefs": [
+            "v-bezichtiging"
           ]
         },
         {
           "id": "s3-u10-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Is het appartement ___?",
-          "translation": "O apartamento é mobilado?",
+          "sentence": "Is de huur ___ gas en licht?",
+          "translation": "A renda inclui gás e eletricidade?",
           "answers": [
-            "gemeubileerd"
+            "inclusief"
           ],
           "choices": [
-            "huur",
-            "loodgieter",
-            "gemeubileerd"
+            "inclusief",
+            "makelaar",
+            "bezichtiging"
           ],
-          "explanation": "Is het appartement gemeubileerd?",
+          "explanation": "Is de huur inclusief gas en licht?",
           "vocabRefs": [
-            "v-gemeubileerd"
+            "v-inclusief"
           ]
         },
         {
           "id": "s3-u10-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Er zit ___ in de badkamer.",
-          "translation": "Há bolor na casa de banho.",
+          "sentence": "De ___ lekt.",
+          "translation": "A torneira está a pingar.",
           "answers": [
-            "schimmel"
+            "kraan"
           ],
           "choices": [
-            "huren",
-            "verhuisdoos",
-            "schimmel"
+            "verwarming",
+            "kraan",
+            "borg"
           ],
-          "explanation": "Er zit schimmel in de badkamer.",
+          "explanation": "De kraan lekt.",
           "vocabRefs": [
-            "v-schimmel"
+            "v-kraan"
           ]
         },
         {
           "id": "s3-u10-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De verwarming doet het niet.",
+          "audioText": "We verhuizen volgende maand.",
           "answers": [
-            "De verwarming doet het niet."
+            "We verhuizen volgende maand."
           ],
-          "translation": "O aquecimento não funciona.",
-          "explanation": "«De verwarming doet het niet.» = O aquecimento não funciona.",
+          "translation": "Mudamos de casa no próximo mês.",
+          "explanation": "«We verhuizen volgende maand.» = Mudamos de casa no próximo mês.",
           "vocabRefs": [
-            "v-verwarming"
+            "v-verhuizen"
           ]
         },
         {
           "id": "s3-u10-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De huur is 1200 euro per maand.",
+          "audioText": "Mijn telefoon doet het niet.",
           "answers": [
-            "De huur is 1200 euro per maand."
+            "Mijn telefoon doet het niet."
           ],
-          "translation": "A renda é 1200 euros por mês.",
-          "explanation": "«De huur is 1200 euro per maand.» = A renda é 1200 euros por mês.",
-          "vocabRefs": [
-            "v-huur"
-          ]
+          "translation": "O meu telemóvel não funciona.",
+          "explanation": "«Mijn telefoon doet het niet.» = O meu telemóvel não funciona.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u10-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pode mandar um canalizador?",
+          "prompt": "A torneira está a pingar.",
           "tokens": [
-            "sturen?",
-            "een",
-            "loodgieter",
+            "te",
+            "lekt.",
             "De",
-            "zoek",
-            "Kunt",
-            "u"
+            "maand.",
+            "kraan"
           ],
           "answers": [
-            "Kunt u een loodgieter sturen?"
+            "De kraan lekt."
           ],
-          "explanation": "Pode mandar um canalizador? = Kunt u een loodgieter sturen? (sobram: De, zoek)",
+          "explanation": "A torneira está a pingar. = De kraan lekt. (sobram: te, maand.)",
           "vocabRefs": [
-            "v-loodgieter"
+            "v-kraan"
           ]
         },
         {
           "id": "s3-u10-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Podes ajudar-me nas mudanças?",
+          "prompt": "Este apartamento está à venda.",
           "tokens": [
-            "verhuizen?",
-            "me",
-            "je",
-            "helpen",
-            "Kun",
-            "zoek",
-            "met",
-            "gemeubileerd?"
+            "telefoon",
+            "Dit",
+            "De",
+            "koop.",
+            "te",
+            "is",
+            "appartement"
           ],
           "answers": [
-            "Kun je me helpen met verhuizen?"
+            "Dit appartement is te koop."
           ],
-          "explanation": "Podes ajudar-me nas mudanças? = Kun je me helpen met verhuizen? (sobram: zoek, gemeubileerd?)",
+          "explanation": "Este apartamento está à venda. = Dit appartement is te koop. (sobram: telefoon, De)",
           "vocabRefs": [
-            "v-verhuizen"
+            "v-te-koop"
           ]
         },
         {
           "id": "s3-u10-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "kraan",
-          "pt": "torneira",
+          "noun": "loodgieter",
+          "pt": "canalizador",
           "article": "de",
-          "explanation": "de kraan.",
+          "explanation": "de loodgieter.",
           "vocabRefs": [
-            "v-kraan"
+            "v-loodgieter"
           ]
         },
         {
           "id": "s3-u10-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De huur is 1200 euro per maand.»?",
+          "prompt": "O que significa: «Kunt u een loodgieter sturen?»?",
           "options": [
             {
               "id": "a",
-              "text": "A renda é 1200 euros por mês.",
+              "text": "Pode mandar um canalizador?",
               "correct": true
             },
             {
               "id": "b",
-              "text": "O apartamento é mobilado?",
+              "text": "A caução é de dois meses de renda.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Pode mandar um canalizador?",
+              "text": "A renda inclui gás e eletricidade?",
               "correct": false
             }
           ],
-          "explanation": "«De huur is 1200 euro per maand.» = A renda é 1200 euros por mês.",
+          "explanation": "«Kunt u een loodgieter sturen?» = Pode mandar um canalizador?",
           "vocabRefs": [
-            "v-huur"
+            "v-loodgieter"
           ]
         }
       ],
@@ -2495,16 +2492,16 @@
       ],
       "examples": [
         {
-          "nl": "Dit appartement is te koop.",
-          "pt": "Este apartamento está à venda."
-        },
-        {
           "nl": "Is het appartement gemeubileerd?",
           "pt": "O apartamento é mobilado?"
         },
         {
-          "nl": "Kun je me helpen met verhuizen?",
-          "pt": "Podes ajudar-me nas mudanças?"
+          "nl": "De opzegtermijn is één maand.",
+          "pt": "O pré-aviso é de um mês."
+        },
+        {
+          "nl": "De borg is twee maanden huur.",
+          "pt": "A caução é de dois meses de renda."
         }
       ],
       "grammar": [],
@@ -2513,50 +2510,42 @@
           "id": "s3-u10-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A caução é de dois meses de renda.",
+          "prompt": "O meu telemóvel não funciona.",
           "tokens": [
-            "De",
-            "maanden",
-            "Dit",
-            "twee",
-            "is",
-            "verhuizen",
-            "borg",
-            "huur."
+            "Er",
+            "te",
+            "het",
+            "telefoon",
+            "doet",
+            "Mijn",
+            "niet."
           ],
           "answers": [
-            "De borg is twee maanden huur."
+            "Mijn telefoon doet het niet."
           ],
-          "explanation": "A caução é de dois meses de renda. = De borg is twee maanden huur. (sobram: verhuizen, Dit)",
-          "vocabRefs": [
-            "v-huur",
-            "v-borg"
-          ]
+          "explanation": "O meu telemóvel não funciona. = Mijn telefoon doet het niet. (sobram: te, Er)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u10-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O senhorio tem de reparar o aquecimento.",
+          "prompt": "Pode mandar um canalizador?",
           "tokens": [
-            "De",
-            "verhuizen?",
-            "inclusief",
-            "verhuurder",
-            "repareren.",
-            "de",
-            "verwarming",
-            "moet"
+            "Kunt",
+            "loodgieter",
+            "wachtlijst.",
+            "maand.",
+            "een",
+            "u",
+            "sturen?"
           ],
           "answers": [
-            "De verhuurder moet de verwarming repareren."
+            "Kunt u een loodgieter sturen?"
           ],
-          "explanation": "O senhorio tem de reparar o aquecimento. = De verhuurder moet de verwarming repareren. (sobram: inclusief, verhuizen?)",
+          "explanation": "Pode mandar um canalizador? = Kunt u een loodgieter sturen? (sobram: maand., wachtlijst.)",
           "vocabRefs": [
-            "v-huur",
-            "v-huurder",
-            "v-verhuurder",
-            "v-verwarming"
+            "v-loodgieter"
           ]
         },
         {
@@ -2565,24 +2554,38 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "O aquecimento não funciona.",
           "tokens": [
+            "doet",
             "verwarming",
-            "De",
-            "niet.",
             "het",
-            "telefoon",
-            "verhuurder",
-            "doet"
+            "per",
+            "zit",
+            "niet.",
+            "De"
           ],
           "answers": [
             "De verwarming doet het niet."
           ],
-          "explanation": "O aquecimento não funciona. = De verwarming doet het niet. (sobram: verhuurder, telefoon)",
+          "explanation": "O aquecimento não funciona. = De verwarming doet het niet. (sobram: per, zit)",
           "vocabRefs": [
             "v-verwarming"
           ]
         },
         {
           "id": "s3-u10-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Er zit schimmel in de badkamer.",
+          "answers": [
+            "Er zit schimmel in de badkamer."
+          ],
+          "translation": "Há bolor na casa de banho.",
+          "explanation": "«Er zit schimmel in de badkamer.» = Há bolor na casa de banho.",
+          "vocabRefs": [
+            "v-schimmel"
+          ]
+        },
+        {
+          "id": "s3-u10-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Er is een lange wachtlijst.",
@@ -2594,65 +2597,32 @@
           "vocabRefs": []
         },
         {
-          "id": "s3-u10-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We verhuizen volgende maand.",
-          "answers": [
-            "We verhuizen volgende maand."
-          ],
-          "translation": "Mudamos de casa no próximo mês.",
-          "explanation": "«We verhuizen volgende maand.» = Mudamos de casa no próximo mês.",
-          "vocabRefs": [
-            "v-verhuizen"
-          ]
-        },
-        {
           "id": "s3-u10-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik zoek een huis te huur.",
+          "audioText": "De verwarming doet het niet.",
           "answers": [
-            "Ik zoek een huis te huur."
+            "De verwarming doet het niet."
           ],
-          "translation": "Procuro uma casa para arrendar.",
-          "explanation": "«Ik zoek een huis te huur.» = Procuro uma casa para arrendar.",
+          "translation": "O aquecimento não funciona.",
+          "explanation": "«De verwarming doet het niet.» = O aquecimento não funciona.",
           "vocabRefs": [
-            "v-huur",
-            "v-te-huur"
+            "v-verwarming"
           ]
         },
         {
           "id": "s3-u10-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Pode mandar um canalizador?",
-          "tokens": [
-            "Kunt",
-            "loodgieter",
-            "sturen?",
-            "u",
-            "een"
-          ],
-          "alternatives": [],
-          "explanation": "Kunt u een loodgieter sturen?",
-          "vocabRefs": [
-            "v-loodgieter"
-          ]
-        },
-        {
-          "id": "s3-u10-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "A renda é 1200 euros por mês.",
           "tokens": [
-            "huur",
-            "euro",
-            "is",
             "De",
-            "maand.",
+            "huur",
+            "is",
+            "1200",
+            "euro",
             "per",
-            "1200"
+            "maand."
           ],
           "alternatives": [],
           "explanation": "De huur is 1200 euro per maand.",
@@ -2661,19 +2631,63 @@
           ]
         },
         {
+          "id": "s3-u10-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Mudamos de casa no próximo mês.",
+          "tokens": [
+            "We",
+            "verhuizen",
+            "volgende",
+            "maand."
+          ],
+          "alternatives": [],
+          "explanation": "We verhuizen volgende maand.",
+          "vocabRefs": [
+            "v-verhuizen"
+          ]
+        },
+        {
           "id": "s3-u10-l009-e09",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «de huur»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "à venda",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "para arrendar",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "renda",
+              "correct": true
+            }
+          ],
+          "explanation": "«de huur» = renda.",
+          "vocabRefs": [
+            "v-huur"
+          ]
+        },
+        {
+          "id": "s3-u10-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa «de makelaar»?",
           "options": [
             {
               "id": "a",
-              "text": "inquilino",
+              "text": "contrato de arrendamento",
               "correct": false
             },
             {
               "id": "b",
-              "text": "para arrendar",
+              "text": "visita",
               "correct": false
             },
             {
@@ -2685,33 +2699,6 @@
           "explanation": "«de makelaar» = agente imobiliário.",
           "vocabRefs": [
             "v-makelaar"
-          ]
-        },
-        {
-          "id": "s3-u10-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «te huur»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "aquecimento",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "caução",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "para arrendar",
-              "correct": true
-            }
-          ],
-          "explanation": "«te huur» = para arrendar.",
-          "vocabRefs": [
-            "v-te-huur"
           ]
         }
       ],

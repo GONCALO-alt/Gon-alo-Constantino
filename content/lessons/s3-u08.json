@@ -1892,12 +1892,12 @@
           "pt": "O paracetamol compra-se na drogaria."
         },
         {
-          "nl": "Waar staat de tandpasta?",
-          "pt": "Onde está a pasta de dentes?"
+          "nl": "Ik heb keelpijn, dus ik ga naar de drogist voor zuigtabletten.",
+          "pt": "Tenho dores de garganta, por isso vou à drogaria comprar pastilhas."
         },
         {
-          "nl": "Vergeet je zonnebrandcrème niet!",
-          "pt": "Não te esqueças do protetor solar!"
+          "nl": "Neem het in na het eten.",
+          "pt": "Tome depois de comer."
         }
       ],
       "grammar": [],
@@ -1946,14 +1946,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Com esta receita vais à farmácia.",
           "tokens": [
-            "recept",
-            "apotheek.",
-            "naar",
-            "ga",
-            "dit",
             "Met",
+            "dit",
+            "recept",
+            "ga",
             "je",
-            "de"
+            "naar",
+            "de",
+            "apotheek."
           ],
           "alternatives": [],
           "explanation": "Met dit recept ga je naar de apotheek.",
@@ -1967,14 +1967,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "O médico de família não conta para a franquia.",
           "tokens": [
-            "het",
-            "risico.",
-            "valt",
             "De",
             "huisarts",
+            "valt",
+            "niet",
             "onder",
+            "het",
             "eigen",
-            "niet"
+            "risico."
           ],
           "alternatives": [],
           "explanation": "De huisarts valt niet onder het eigen risico.",
@@ -1988,11 +1988,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Preciso de um penso.",
           "tokens": [
+            "Ik",
+            "heb",
             "een",
             "pleister",
-            "Ik",
-            "nodig.",
-            "heb"
+            "nodig."
           ],
           "alternatives": [],
           "explanation": "Ik heb een pleister nodig.",
@@ -2004,21 +2004,48 @@
           "id": "s3-u08-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Ik heb een pleister nodig.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Leia o folheto informativo.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Preciso de um penso.",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "O seguro de saúde é obrigatório.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Ik heb een pleister nodig.» = Preciso de um penso.",
+          "vocabRefs": [
+            "v-pleister"
+          ]
+        },
+        {
+          "id": "s3-u08-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa: «Mogelijke bijwerkingen: hoofdpijn.»?",
           "options": [
             {
               "id": "a",
+              "text": "Isto é comparticipado?",
+              "correct": false
+            },
+            {
+              "id": "b",
               "text": "Possíveis efeitos secundários: dores de cabeça.",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "Onde está a pasta de dentes?",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "Tem alguma coisa para as dores de cabeça?",
+              "text": "Leia o folheto informativo.",
               "correct": false
             }
           ],
@@ -2028,72 +2055,48 @@
           ]
         },
         {
-          "id": "s3-u08-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wordt dit vergoed?»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Isto é comparticipado?",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "O seguro de saúde é obrigatório.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Onde está a pasta de dentes?",
-              "correct": false
-            }
-          ],
-          "explanation": "«Wordt dit vergoed?» = Isto é comparticipado?",
-          "vocabRefs": []
-        },
-        {
           "id": "s3-u08-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pago o prémio todos os meses.",
+          "prompt": "Um comprimido três vezes por dia.",
           "tokens": [
+            "tablet.",
+            "één",
             "de",
-            "maand",
-            "premie.",
+            "keer",
+            "dag",
             "Drie",
-            "elke",
-            "Ik",
-            "betaal"
+            "per",
+            "drogist."
           ],
           "answers": [
-            "Ik betaal elke maand premie."
+            "Drie keer per dag één tablet."
           ],
-          "explanation": "Pago o prémio todos os meses. = Ik betaal elke maand premie. (sobram: de, Drie)",
-          "vocabRefs": [
-            "v-premie"
-          ]
+          "explanation": "Um comprimido três vezes por dia. = Drie keer per dag één tablet. (sobram: de, drogist.)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u08-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Um comprimido três vezes por dia.",
+          "prompt": "O paracetamol compra-se na drogaria.",
           "tokens": [
-            "drogist",
             "per",
-            "dag",
-            "Drie",
-            "tablet.",
-            "keer",
-            "één",
-            "valt"
+            "tandpasta?",
+            "Paracetamol",
+            "koop",
+            "de",
+            "je",
+            "bij",
+            "drogist."
           ],
           "answers": [
-            "Drie keer per dag één tablet."
+            "Paracetamol koop je bij de drogist."
           ],
-          "explanation": "Um comprimido três vezes por dia. = Drie keer per dag één tablet. (sobram: valt, drogist)",
-          "vocabRefs": []
+          "explanation": "O paracetamol compra-se na drogaria. = Paracetamol koop je bij de drogist. (sobram: per, tandpasta?)",
+          "vocabRefs": [
+            "v-drogist"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2153,12 +2156,12 @@
       ],
       "examples": [
         {
-          "nl": "Ik heb keelpijn, dus ik ga naar de drogist voor zuigtabletten.",
-          "pt": "Tenho dores de garganta, por isso vou à drogaria comprar pastilhas."
+          "nl": "Met dit recept ga je naar de apotheek.",
+          "pt": "Com esta receita vais à farmácia."
         },
         {
-          "nl": "Heeft u iets tegen hoofdpijn?",
-          "pt": "Tem alguma coisa para as dores de cabeça?"
+          "nl": "Ik heb een pleister nodig.",
+          "pt": "Preciso de um penso."
         },
         {
           "nl": "Mogelijke bijwerkingen: hoofdpijn.",
@@ -2171,92 +2174,92 @@
           "id": "s3-u08-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «penso rápido» em neerlandês?",
+          "prompt": "Como se diz «medicamento» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "zorgverzekering",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "pleister",
+              "text": "medicijn",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "vergoeden",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "medicijn",
+              "text": "nuchter",
               "correct": false
             }
           ],
-          "explanation": "penso rápido = «pleister».",
+          "explanation": "medicamento = «medicijn».",
           "vocabRefs": [
-            "v-pleister"
+            "v-medicijn"
           ]
         },
         {
           "id": "s3-u08-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «sabonete» em neerlandês?",
+          "prompt": "Como se diz «seguro de saúde» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "bijwerking",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "zeep",
+              "text": "zorgverzekering",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "dosis",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "vergoeden",
+              "text": "innemen",
               "correct": false
             }
           ],
-          "explanation": "sabonete = «zeep».",
+          "explanation": "seguro de saúde = «zorgverzekering».",
           "vocabRefs": [
-            "v-zeep"
+            "v-zorgverzekering"
           ]
         },
         {
           "id": "s3-u08-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Paracetamol koop je bij de ___.",
-          "translation": "O paracetamol compra-se na drogaria.",
+          "sentence": "Lees de ___.",
+          "translation": "Leia o folheto informativo.",
           "answers": [
-            "drogist"
+            "bijsluiter"
           ],
           "choices": [
-            "drogist",
-            "dosis",
-            "medicijn"
+            "bijsluiter",
+            "pleister",
+            "zonnebrandcrème"
           ],
-          "explanation": "Paracetamol koop je bij de drogist.",
+          "explanation": "Lees de bijsluiter.",
           "vocabRefs": [
-            "v-drogist"
+            "v-bijsluiter"
           ]
         },
         {
           "id": "s3-u08-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Vergeet je ___ niet!",
-          "translation": "Não te esqueças do protetor solar!",
+          "sentence": "Ik betaal elke maand ___.",
+          "translation": "Pago o prémio todos os meses.",
           "answers": [
-            "zonnebrandcrème"
+            "premie"
           ],
           "choices": [
-            "zonnebrandcrème",
-            "verplicht",
-            "tandenborstel"
+            "tandenborstel",
+            "pil",
+            "premie"
           ],
-          "explanation": "Vergeet je zonnebrandcrème niet!",
+          "explanation": "Ik betaal elke maand premie.",
           "vocabRefs": [
-            "v-zonnebrandcreme"
+            "v-premie"
           ]
         },
         {
@@ -2277,78 +2280,81 @@
           "id": "s3-u08-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Drie keer per dag één tablet.",
+          "audioText": "iets tegen keelpijn",
           "answers": [
-            "Drie keer per dag één tablet."
+            "iets tegen keelpijn"
           ],
-          "translation": "Um comprimido três vezes por dia.",
-          "explanation": "«Drie keer per dag één tablet.» = Um comprimido três vezes por dia.",
+          "translation": "algo para as dores de garganta",
+          "explanation": "«iets tegen keelpijn» = algo para as dores de garganta",
           "vocabRefs": []
         },
         {
           "id": "s3-u08-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Preciso de um penso.",
+          "prompt": "Não te esqueças do protetor solar!",
           "tokens": [
-            "heb",
-            "pleister",
-            "Ik",
-            "Wordt",
-            "eten.",
+            "de",
+            "Vergeet",
             "nodig.",
-            "een"
+            "je",
+            "niet!",
+            "zonnebrandcrème"
           ],
           "answers": [
-            "Ik heb een pleister nodig."
+            "Vergeet je zonnebrandcrème niet!"
           ],
-          "explanation": "Preciso de um penso. = Ik heb een pleister nodig. (sobram: Wordt, eten.)",
+          "explanation": "Não te esqueças do protetor solar! = Vergeet je zonnebrandcrème niet! (sobram: de, nodig.)",
           "vocabRefs": [
-            "v-pleister"
+            "v-zonnebrandcreme"
           ]
         },
         {
           "id": "s3-u08-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tome depois de comer.",
+          "prompt": "O médico de família não conta para a franquia.",
           "tokens": [
-            "na",
-            "in",
+            "De",
+            "niet",
+            "Vergeet",
+            "onder",
             "het",
-            "Neem",
-            "het",
-            "koop",
-            "staat",
-            "eten."
+            "eigen",
+            "nodig.",
+            "risico.",
+            "valt",
+            "huisarts"
           ],
           "answers": [
-            "Neem het in na het eten."
+            "De huisarts valt niet onder het eigen risico."
           ],
-          "explanation": "Tome depois de comer. = Neem het in na het eten. (sobram: staat, koop)",
-          "vocabRefs": []
+          "explanation": "O médico de família não conta para a franquia. = De huisarts valt niet onder het eigen risico. (sobram: nodig., Vergeet)",
+          "vocabRefs": [
+            "v-eigen-risico"
+          ]
         },
         {
           "id": "s3-u08-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "apotheek",
-          "pt": "farmácia",
-          "article": "de",
-          "explanation": "de apotheek.",
+          "noun": "medicijn",
+          "pt": "medicamento",
+          "article": "het",
+          "explanation": "het medicijn.",
           "vocabRefs": [
-            "v-apotheek"
+            "v-medicijn"
           ]
         },
         {
           "id": "s3-u08-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Paracetamol koop je bij de drogist.»?",
+          "prompt": "O que significa: «Wordt dit vergoed?»?",
           "options": [
             {
               "id": "a",
-              "text": "algo para as dores de garganta",
+              "text": "O seguro de saúde é obrigatório.",
               "correct": false
             },
             {
@@ -2358,14 +2364,12 @@
             },
             {
               "id": "c",
-              "text": "O paracetamol compra-se na drogaria.",
+              "text": "Isto é comparticipado?",
               "correct": true
             }
           ],
-          "explanation": "«Paracetamol koop je bij de drogist.» = O paracetamol compra-se na drogaria.",
-          "vocabRefs": [
-            "v-drogist"
-          ]
+          "explanation": "«Wordt dit vergoed?» = Isto é comparticipado?",
+          "vocabRefs": []
         }
       ],
       "difficulty": 3,
@@ -2425,16 +2429,16 @@
       ],
       "examples": [
         {
-          "nl": "Vergeet je zonnebrandcrème niet!",
-          "pt": "Não te esqueças do protetor solar!"
+          "nl": "Mogelijke bijwerkingen: hoofdpijn.",
+          "pt": "Possíveis efeitos secundários: dores de cabeça."
         },
         {
-          "nl": "Heeft u iets tegen hoofdpijn?",
-          "pt": "Tem alguma coisa para as dores de cabeça?"
+          "nl": "Paracetamol koop je bij de drogist.",
+          "pt": "O paracetamol compra-se na drogaria."
         },
         {
-          "nl": "Neem het in na het eten.",
-          "pt": "Tome depois de comer."
+          "nl": "De huisarts valt niet onder het eigen risico.",
+          "pt": "O médico de família não conta para a franquia."
         }
       ],
       "grammar": [],
@@ -2443,196 +2447,197 @@
           "id": "s3-u08-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Com esta receita vais à farmácia.",
+          "prompt": "Onde está a pasta de dentes?",
           "tokens": [
-            "dit",
-            "recept",
-            "naar",
+            "pleister",
+            "tandpasta?",
+            "staat",
             "de",
-            "ga",
-            "dag",
-            "je",
-            "koop",
-            "Met",
-            "apotheek."
+            "Waar",
+            "Met"
           ],
           "answers": [
-            "Met dit recept ga je naar de apotheek."
+            "Waar staat de tandpasta?"
           ],
-          "explanation": "Com esta receita vais à farmácia. = Met dit recept ga je naar de apotheek. (sobram: koop, dag)",
+          "explanation": "Onde está a pasta de dentes? = Waar staat de tandpasta? (sobram: Met, pleister)",
           "vocabRefs": [
-            "v-apotheek"
+            "v-tandpasta"
           ]
         },
         {
           "id": "s3-u08-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Onde está a pasta de dentes?",
+          "prompt": "Com esta receita vais à farmácia.",
           "tokens": [
-            "Waar",
-            "tandpasta?",
-            "heb",
-            "het",
-            "staat",
-            "de"
+            "recept",
+            "tegen",
+            "Met",
+            "naar",
+            "je",
+            "pleister",
+            "apotheek.",
+            "dit",
+            "de",
+            "ga"
           ],
           "answers": [
-            "Waar staat de tandpasta?"
+            "Met dit recept ga je naar de apotheek."
           ],
-          "explanation": "Onde está a pasta de dentes? = Waar staat de tandpasta? (sobram: het, heb)",
+          "explanation": "Com esta receita vais à farmácia. = Met dit recept ga je naar de apotheek. (sobram: pleister, tegen)",
           "vocabRefs": [
-            "v-tandpasta"
+            "v-apotheek"
           ]
         },
         {
           "id": "s3-u08-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho dores de garganta, por isso vou à drogaria comprar pastilhas.",
+          "prompt": "O seguro de saúde é obrigatório.",
           "tokens": [
-            "keelpijn,",
-            "dus",
-            "ga",
-            "heb",
-            "de",
-            "hoofdpijn.",
-            "Ik",
-            "ik",
-            "drogist",
-            "zuigtabletten.",
-            "naar",
-            "voor",
-            "u"
+            "iets",
+            "zorgverzekering",
+            "Een",
+            "na",
+            "is",
+            "verplicht."
           ],
           "answers": [
-            "Ik heb keelpijn, dus ik ga naar de drogist voor zuigtabletten."
+            "Een zorgverzekering is verplicht."
           ],
-          "explanation": "Tenho dores de garganta, por isso vou à drogaria comprar pastilhas. = Ik heb keelpijn, dus ik ga naar de drogist voor zuigtabletten. (sobram: u, hoofdpijn.)",
+          "explanation": "O seguro de saúde é obrigatório. = Een zorgverzekering is verplicht. (sobram: na, iets)",
           "vocabRefs": [
-            "v-drogist"
+            "v-zorgverzekering",
+            "v-verplicht"
           ]
         },
         {
           "id": "s3-u08-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb een pleister nodig.",
+          "audioText": "Mogelijke bijwerkingen: hoofdpijn.",
           "answers": [
-            "Ik heb een pleister nodig."
+            "Mogelijke bijwerkingen: hoofdpijn."
           ],
-          "translation": "Preciso de um penso.",
-          "explanation": "«Ik heb een pleister nodig.» = Preciso de um penso.",
+          "translation": "Possíveis efeitos secundários: dores de cabeça.",
+          "explanation": "«Mogelijke bijwerkingen: hoofdpijn.» = Possíveis efeitos secundários: dores de cabeça.",
           "vocabRefs": [
-            "v-pleister"
+            "v-bijwerking"
           ]
         },
         {
           "id": "s3-u08-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Waar staat de tandpasta?",
+          "audioText": "Ik betaal elke maand premie.",
           "answers": [
-            "Waar staat de tandpasta?"
+            "Ik betaal elke maand premie."
           ],
-          "translation": "Onde está a pasta de dentes?",
-          "explanation": "«Waar staat de tandpasta?» = Onde está a pasta de dentes?",
+          "translation": "Pago o prémio todos os meses.",
+          "explanation": "«Ik betaal elke maand premie.» = Pago o prémio todos os meses.",
           "vocabRefs": [
-            "v-tandpasta"
+            "v-premie"
           ]
         },
         {
           "id": "s3-u08-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Drie keer per dag één tablet.",
+          "audioText": "De huisarts valt niet onder het eigen risico.",
           "answers": [
-            "Drie keer per dag één tablet."
+            "De huisarts valt niet onder het eigen risico."
           ],
-          "translation": "Um comprimido três vezes por dia.",
-          "explanation": "«Drie keer per dag één tablet.» = Um comprimido três vezes por dia.",
-          "vocabRefs": []
+          "translation": "O médico de família não conta para a franquia.",
+          "explanation": "«De huisarts valt niet onder het eigen risico.» = O médico de família não conta para a franquia.",
+          "vocabRefs": [
+            "v-eigen-risico"
+          ]
         },
         {
           "id": "s3-u08-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "algo para as dores de garganta",
+          "translation": "Onde está a pasta de dentes?",
           "tokens": [
-            "iets",
-            "keelpijn",
-            "tegen"
+            "Waar",
+            "staat",
+            "de",
+            "tandpasta?"
           ],
           "alternatives": [],
-          "explanation": "iets tegen keelpijn",
-          "vocabRefs": []
+          "explanation": "Waar staat de tandpasta?",
+          "vocabRefs": [
+            "v-tandpasta"
+          ]
         },
         {
           "id": "s3-u08-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Isto é comparticipado?",
+          "translation": "Tem alguma coisa para as dores de cabeça?",
           "tokens": [
-            "vergoed?",
-            "Wordt",
-            "dit"
+            "Heeft",
+            "u",
+            "iets",
+            "tegen",
+            "hoofdpijn?"
           ],
           "alternatives": [],
-          "explanation": "Wordt dit vergoed?",
+          "explanation": "Heeft u iets tegen hoofdpijn?",
           "vocabRefs": []
         },
         {
           "id": "s3-u08-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de zeep»?",
+          "prompt": "O que significa «de dosis»?",
           "options": [
             {
               "id": "a",
-              "text": "sabonete",
+              "text": "dose",
               "correct": true
             },
             {
               "id": "b",
-              "text": "obrigatório",
+              "text": "protetor solar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "protetor solar",
+              "text": "escova de dentes",
               "correct": false
             }
           ],
-          "explanation": "«de zeep» = sabonete.",
+          "explanation": "«de dosis» = dose.",
           "vocabRefs": [
-            "v-zeep"
+            "v-dosis"
           ]
         },
         {
           "id": "s3-u08-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «verplicht»?",
+          "prompt": "O que significa «vergoeden»?",
           "options": [
             {
               "id": "a",
-              "text": "pasta de dentes",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "obrigatório",
+              "text": "reembolsar",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "drogaria",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "medicamento",
+              "text": "prémio",
               "correct": false
             }
           ],
-          "explanation": "«verplicht» = obrigatório.",
+          "explanation": "«vergoeden» = reembolsar, cobrir.",
           "vocabRefs": [
-            "v-verplicht"
+            "v-vergoeden"
           ]
         }
       ],

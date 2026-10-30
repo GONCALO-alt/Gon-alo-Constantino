@@ -1924,16 +1924,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat me opviel, was dat iedereen fietst.",
-          "pt": "O que me chamou a atenção foi que toda a gente anda de bicicleta."
+          "nl": "Annuleren is tot 48 uur van tevoren kosteloos.",
+          "pt": "Cancelar é grátis até 48 horas antes."
         },
         {
-          "nl": "Heb je nog tips?",
-          "pt": "Tens mais dicas?"
+          "nl": "Het hotel viel een beetje tegen.",
+          "pt": "O hotel desiludiu um bocado."
         },
         {
-          "nl": "Sintra is echt de moeite waard.",
-          "pt": "Sintra vale mesmo a pena."
+          "nl": "We hebben een mooi dorpje ontdekt.",
+          "pt": "Descobrimos uma aldeiazinha bonita."
         }
       ],
       "grammar": [],
@@ -1984,15 +1984,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "Em Portugal é habitual jantar tarde.",
           "tokens": [
-            "eten.",
+            "In",
             "Portugal",
             "is",
-            "laat",
-            "In",
-            "om",
-            "te",
+            "het",
             "gebruikelijk",
-            "het"
+            "om",
+            "laat",
+            "te",
+            "eten."
           ],
           "alternatives": [],
           "explanation": "In Portugal is het gebruikelijk om laat te eten.",
@@ -2006,12 +2006,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O hotel desiludiu um bocado.",
           "tokens": [
-            "een",
-            "hotel",
-            "tegen.",
             "Het",
+            "hotel",
+            "viel",
+            "een",
             "beetje",
-            "viel"
+            "tegen."
           ],
           "alternatives": [],
           "explanation": "Het hotel viel een beetje tegen.",
@@ -2023,11 +2023,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quais são os principais pontos de interesse?",
           "tokens": [
-            "bezienswaardigheden?",
+            "Wat",
             "zijn",
             "de",
-            "Wat",
-            "belangrijkste"
+            "belangrijkste",
+            "bezienswaardigheden?"
           ],
           "alternatives": [],
           "explanation": "Wat zijn de belangrijkste bezienswaardigheden?",
@@ -2037,97 +2037,93 @@
           "id": "s5-u08-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het examen viel mee.»?",
+          "prompt": "O que significa: «Onze vlucht is geannuleerd.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tenho direito a indemnização?",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "O exame foi mais fácil do que esperava.",
+              "text": "O nosso voo foi cancelado.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Quais são os principais pontos de interesse?",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Em Portugal é habitual jantar tarde.",
+              "text": "Pode passar-me para o próximo voo?",
               "correct": false
             }
           ],
-          "explanation": "«Het examen viel mee.» = O exame foi mais fácil do que esperava.",
-          "vocabRefs": []
+          "explanation": "«Onze vlucht is geannuleerd.» = O nosso voo foi cancelado.",
+          "vocabRefs": [
+            "v-geannuleerd"
+          ]
         },
         {
           "id": "s5-u08-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat me opviel, was dat iedereen fietst.»?",
+          "prompt": "O que significa: «Ik raad je het Rijksmuseum aan.»?",
           "options": [
             {
               "id": "a",
-              "text": "O preço foi uma desilusão.",
+              "text": "A minha mala desapareceu.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O que me chamou a atenção foi que toda a gente anda de bicicleta.",
-              "correct": true
+              "text": "Pode passar-me para o próximo voo?",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "O tempo afinal foi melhor do que esperávamos.",
-              "correct": false
+              "text": "Recomendo-te o Rijksmuseum.",
+              "correct": true
             }
           ],
-          "explanation": "«Wat me opviel, was dat iedereen fietst.» = O que me chamou a atenção foi que toda a gente anda de bicicleta.",
+          "explanation": "«Ik raad je het Rijksmuseum aan.» = Recomendo-te o Rijksmuseum.",
           "vocabRefs": []
         },
         {
           "id": "s5-u08-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pode passar-me para o próximo voo?",
+          "prompt": "O exame foi mais fácil do que esperava.",
           "tokens": [
-            "vlucht?",
-            "eten.",
-            "jeugdherberg",
-            "de",
-            "u",
-            "Kunt",
-            "naar",
-            "volgende",
-            "mij",
-            "omboeken"
+            "examen",
+            "beetje",
+            "Annuleren",
+            "mee.",
+            "Het",
+            "viel"
           ],
           "answers": [
-            "Kunt u mij omboeken naar de volgende vlucht?"
+            "Het examen viel mee."
           ],
-          "explanation": "Pode passar-me para o próximo voo? = Kunt u mij omboeken naar de volgende vlucht? (sobram: eten., jeugdherberg)",
-          "vocabRefs": [
-            "v-omboeken"
-          ]
+          "explanation": "O exame foi mais fácil do que esperava. = Het examen viel mee. (sobram: beetje, Annuleren)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u08-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A minha mala desapareceu.",
+          "prompt": "O hotel desiludiu um bocado.",
           "tokens": [
-            "zoek.",
-            "48",
-            "Mijn",
+            "Het",
+            "een",
+            "hotel",
             "tegen.",
-            "is",
-            "koffer"
+            "beetje",
+            "de",
+            "volgende",
+            "viel"
           ],
           "answers": [
-            "Mijn koffer is zoek."
+            "Het hotel viel een beetje tegen."
           ],
-          "explanation": "A minha mala desapareceu. = Mijn koffer is zoek. (sobram: 48, tegen.)",
-          "vocabRefs": [
-            "v-zoek"
-          ]
+          "explanation": "O hotel desiludiu um bocado. = Het hotel viel een beetje tegen. (sobram: de, volgende)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2193,16 +2189,16 @@
       ],
       "examples": [
         {
-          "nl": "Het weer viel mee.",
-          "pt": "O tempo afinal foi melhor do que esperávamos."
-        },
-        {
-          "nl": "Het hotel viel een beetje tegen.",
-          "pt": "O hotel desiludiu um bocado."
+          "nl": "De jeugdherberg heeft goede beoordelingen.",
+          "pt": "A pousada de juventude tem boas avaliações."
         },
         {
           "nl": "We hebben een mooi dorpje ontdekt.",
           "pt": "Descobrimos uma aldeiazinha bonita."
+        },
+        {
+          "nl": "Mijn koffer is zoek.",
+          "pt": "A minha mala desapareceu."
         }
       ],
       "grammar": [],
@@ -2211,11 +2207,38 @@
           "id": "s5-u08-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «habitual» em neerlandês?",
+          "prompt": "Como se diz «pousada de juventude» em neerlandês?",
           "options": [
             {
               "id": "a",
+              "text": "jeugdherberg",
+              "correct": true
+            },
+            {
+              "id": "b",
               "text": "gebruikelijk",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "tip",
+              "correct": false
+            }
+          ],
+          "explanation": "pousada de juventude = «jeugdherberg».",
+          "vocabRefs": [
+            "v-jeugdherberg"
+          ]
+        },
+        {
+          "id": "s5-u08-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «recomendar» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "aanraden",
               "correct": true
             },
             {
@@ -2225,168 +2248,147 @@
             },
             {
               "id": "c",
-              "text": "omboeken",
-              "correct": false
-            }
-          ],
-          "explanation": "habitual = «gebruikelijk».",
-          "vocabRefs": [
-            "v-gebruikelijk"
-          ]
-        },
-        {
-          "id": "s5-u08-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «vale a pena» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
               "text": "de moeite waard",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "bezienswaardigheid",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "omboeken",
               "correct": false
             }
           ],
-          "explanation": "vale a pena = «de moeite waard».",
+          "explanation": "recomendar = «aanraden».",
           "vocabRefs": [
-            "v-moeite-waard"
+            "v-aanraden"
           ]
         },
         {
           "id": "s5-u08-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Annuleren is tot 48 uur van tevoren ___.",
-          "translation": "Cancelar é grátis até 48 horas antes.",
+          "sentence": "Heb ik recht op ___?",
+          "translation": "Tenho direito a indemnização?",
           "answers": [
-            "kosteloos"
+            "schadevergoeding"
           ],
           "choices": [
-            "kosteloos",
-            "opvallen",
-            "ontdekken"
+            "wennen",
+            "schadevergoeding",
+            "aanraden"
           ],
-          "explanation": "Annuleren is tot 48 uur van tevoren kosteloos.",
+          "explanation": "Heb ik recht op schadevergoeding?",
           "vocabRefs": [
-            "v-kosteloos"
+            "v-schadevergoeding"
           ]
         },
         {
           "id": "s5-u08-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik moest ___ aan het weer.",
-          "translation": "Tive de me habituar ao tempo.",
+          "sentence": "Onze vlucht is ___.",
+          "translation": "O nosso voo foi cancelado.",
           "answers": [
-            "wennen"
+            "geannuleerd"
           ],
           "choices": [
-            "wennen",
-            "beoordeling",
-            "verschil"
+            "verschil",
+            "opvallen",
+            "geannuleerd"
           ],
-          "explanation": "Ik moest wennen aan het weer.",
+          "explanation": "Onze vlucht is geannuleerd.",
           "vocabRefs": [
-            "v-wennen"
+            "v-geannuleerd"
           ]
         },
         {
           "id": "s5-u08-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat me opviel, was dat iedereen fietst.",
+          "audioText": "In Portugal is het gebruikelijk om laat te eten.",
           "answers": [
-            "Wat me opviel, was dat iedereen fietst."
+            "In Portugal is het gebruikelijk om laat te eten."
           ],
-          "translation": "O que me chamou a atenção foi que toda a gente anda de bicicleta.",
-          "explanation": "«Wat me opviel, was dat iedereen fietst.» = O que me chamou a atenção foi que toda a gente anda de bicicleta.",
-          "vocabRefs": []
+          "translation": "Em Portugal é habitual jantar tarde.",
+          "explanation": "«In Portugal is het gebruikelijk om laat te eten.» = Em Portugal é habitual jantar tarde.",
+          "vocabRefs": [
+            "v-gebruikelijk"
+          ]
         },
         {
           "id": "s5-u08-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat zijn de belangrijkste bezienswaardigheden?",
+          "audioText": "We hebben een mooi dorpje ontdekt.",
           "answers": [
-            "Wat zijn de belangrijkste bezienswaardigheden?"
+            "We hebben een mooi dorpje ontdekt."
           ],
-          "translation": "Quais são os principais pontos de interesse?",
-          "explanation": "«Wat zijn de belangrijkste bezienswaardigheden?» = Quais são os principais pontos de interesse?",
+          "translation": "Descobrimos uma aldeiazinha bonita.",
+          "explanation": "«We hebben een mooi dorpje ontdekt.» = Descobrimos uma aldeiazinha bonita.",
           "vocabRefs": []
         },
         {
           "id": "s5-u08-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O tempo afinal foi melhor do que esperávamos.",
+          "prompt": "Quais são os principais pontos de interesse?",
           "tokens": [
-            "Het",
-            "weer",
-            "viel",
-            "naar",
-            "ontdekt.",
-            "mee."
+            "de",
+            "is",
+            "eten.",
+            "Wat",
+            "bezienswaardigheden?",
+            "belangrijkste",
+            "zijn"
           ],
           "answers": [
-            "Het weer viel mee."
+            "Wat zijn de belangrijkste bezienswaardigheden?"
           ],
-          "explanation": "O tempo afinal foi melhor do que esperávamos. = Het weer viel mee. (sobram: naar, ontdekt.)",
+          "explanation": "Quais são os principais pontos de interesse? = Wat zijn de belangrijkste bezienswaardigheden? (sobram: eten., is)",
           "vocabRefs": []
         },
         {
           "id": "s5-u08-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O preço foi uma desilusão.",
+          "prompt": "O que me chamou a atenção foi que toda a gente anda de bicicleta.",
           "tokens": [
+            "dat",
+            "opviel,",
+            "fietst.",
+            "was",
+            "Wat",
+            "iedereen",
+            "me",
             "viel",
-            "tegen.",
-            "te",
-            "De",
-            "prijs",
-            "is"
+            "annuleringsvoorwaarden."
           ],
           "answers": [
-            "De prijs viel tegen."
+            "Wat me opviel, was dat iedereen fietst."
           ],
-          "explanation": "O preço foi uma desilusão. = De prijs viel tegen. (sobram: te, is)",
+          "explanation": "O que me chamou a atenção foi que toda a gente anda de bicicleta. = Wat me opviel, was dat iedereen fietst. (sobram: viel, annuleringsvoorwaarden.)",
           "vocabRefs": []
         },
         {
           "id": "s5-u08-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "schadevergoeding",
-          "pt": "indemnização",
+          "noun": "annuleringsvoorwaarden",
+          "pt": "condições de cancelamento",
           "article": "de",
-          "explanation": "de schadevergoeding.",
+          "explanation": "de annuleringsvoorwaarden.",
           "vocabRefs": [
-            "v-schadevergoeding"
+            "v-annuleringsvoorwaarden"
           ]
         },
         {
           "id": "s5-u08-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «In Portugal is het gebruikelijk om laat te eten.»?",
+          "prompt": "O que significa: «Wat zijn de belangrijkste bezienswaardigheden?»?",
           "options": [
             {
               "id": "a",
-              "text": "Quais são os principais pontos de interesse?",
+              "text": "O hotel desiludiu um bocado.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Em Portugal é habitual jantar tarde.",
+              "text": "Quais são os principais pontos de interesse?",
               "correct": true
             },
             {
@@ -2395,10 +2397,8 @@
               "correct": false
             }
           ],
-          "explanation": "«In Portugal is het gebruikelijk om laat te eten.» = Em Portugal é habitual jantar tarde.",
-          "vocabRefs": [
-            "v-gebruikelijk"
-          ]
+          "explanation": "«Wat zijn de belangrijkste bezienswaardigheden?» = Quais são os principais pontos de interesse?",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2464,16 +2464,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat zijn de belangrijkste bezienswaardigheden?",
-          "pt": "Quais são os principais pontos de interesse?"
+          "nl": "Mijn koffer is zoek.",
+          "pt": "A minha mala desapareceu."
+        },
+        {
+          "nl": "Onze vlucht is geannuleerd.",
+          "pt": "O nosso voo foi cancelado."
         },
         {
           "nl": "Heb ik recht op schadevergoeding?",
           "pt": "Tenho direito a indemnização?"
-        },
-        {
-          "nl": "Ik raad je het Rijksmuseum aan.",
-          "pt": "Recomendo-te o Rijksmuseum."
         }
       ],
       "grammar": [],
@@ -2482,85 +2482,68 @@
           "id": "s5-u08-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Cancelar é grátis até 48 horas antes.",
+          "prompt": "O pequeno-almoço está incluído?",
           "tokens": [
-            "tot",
-            "tevoren",
-            "uur",
-            "48",
-            "van",
-            "Annuleren",
+            "het",
             "aan",
-            "kosteloos.",
-            "is",
-            "annuleringsvoorwaarden."
+            "ontbijt",
+            "inbegrepen?",
+            "Is",
+            "nog"
           ],
           "answers": [
-            "Annuleren is tot 48 uur van tevoren kosteloos."
+            "Is het ontbijt inbegrepen?"
           ],
-          "explanation": "Cancelar é grátis até 48 horas antes. = Annuleren is tot 48 uur van tevoren kosteloos. (sobram: annuleringsvoorwaarden., aan)",
-          "vocabRefs": [
-            "v-kosteloos"
-          ]
+          "explanation": "O pequeno-almoço está incluído? = Is het ontbijt inbegrepen? (sobram: nog, aan)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u08-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Descobrimos uma aldeiazinha bonita.",
+          "prompt": "Em Portugal é habitual jantar tarde.",
           "tokens": [
-            "een",
-            "dorpje",
-            "hebben",
-            "Onze",
-            "We",
-            "ontdekt.",
-            "mooi",
-            "de"
+            "Portugal",
+            "eten.",
+            "te",
+            "om",
+            "laat",
+            "gebruikelijk",
+            "In",
+            "is",
+            "het",
+            "viel",
+            "aan."
           ],
           "answers": [
-            "We hebben een mooi dorpje ontdekt."
+            "In Portugal is het gebruikelijk om laat te eten."
           ],
-          "explanation": "Descobrimos uma aldeiazinha bonita. = We hebben een mooi dorpje ontdekt. (sobram: de, Onze)",
-          "vocabRefs": []
+          "explanation": "Em Portugal é habitual jantar tarde. = In Portugal is het gebruikelijk om laat te eten. (sobram: viel, aan.)",
+          "vocabRefs": [
+            "v-gebruikelijk"
+          ]
         },
         {
           "id": "s5-u08-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tens mais dicas?",
+          "prompt": "O tempo afinal foi melhor do que esperávamos.",
           "tokens": [
-            "tips?",
-            "nog",
-            "Heb",
-            "een",
-            "moeite",
-            "je"
+            "weer",
+            "Het",
+            "van",
+            "eerst",
+            "viel",
+            "mee."
           ],
           "answers": [
-            "Heb je nog tips?"
+            "Het weer viel mee."
           ],
-          "explanation": "Tens mais dicas? = Heb je nog tips? (sobram: een, moeite)",
-          "vocabRefs": [
-            "v-tip"
-          ]
+          "explanation": "O tempo afinal foi melhor do que esperávamos. = Het weer viel mee. (sobram: van, eerst)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u08-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kunt u mij omboeken naar de volgende vlucht?",
-          "answers": [
-            "Kunt u mij omboeken naar de volgende vlucht?"
-          ],
-          "translation": "Pode passar-me para o próximo voo?",
-          "explanation": "«Kunt u mij omboeken naar de volgende vlucht?» = Pode passar-me para o próximo voo?",
-          "vocabRefs": [
-            "v-omboeken"
-          ]
-        },
-        {
-          "id": "s5-u08-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Het hotel viel een beetje tegen.",
@@ -2572,31 +2555,47 @@
           "vocabRefs": []
         },
         {
+          "id": "s5-u08-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Heb ik recht op schadevergoeding?",
+          "answers": [
+            "Heb ik recht op schadevergoeding?"
+          ],
+          "translation": "Tenho direito a indemnização?",
+          "explanation": "«Heb ik recht op schadevergoeding?» = Tenho direito a indemnização?",
+          "vocabRefs": [
+            "v-schadevergoeding"
+          ]
+        },
+        {
           "id": "s5-u08-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik raad je het Rijksmuseum aan.",
+          "audioText": "Wat zijn de belangrijkste bezienswaardigheden?",
           "answers": [
-            "Ik raad je het Rijksmuseum aan."
+            "Wat zijn de belangrijkste bezienswaardigheden?"
           ],
-          "translation": "Recomendo-te o Rijksmuseum.",
-          "explanation": "«Ik raad je het Rijksmuseum aan.» = Recomendo-te o Rijksmuseum.",
+          "translation": "Quais são os principais pontos de interesse?",
+          "explanation": "«Wat zijn de belangrijkste bezienswaardigheden?» = Quais são os principais pontos de interesse?",
           "vocabRefs": []
         },
         {
           "id": "s5-u08-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O preço foi uma desilusão.",
+          "translation": "O nosso voo foi cancelado.",
           "tokens": [
-            "tegen.",
-            "viel",
-            "De",
-            "prijs"
+            "Onze",
+            "vlucht",
+            "is",
+            "geannuleerd."
           ],
           "alternatives": [],
-          "explanation": "De prijs viel tegen.",
-          "vocabRefs": []
+          "explanation": "Onze vlucht is geannuleerd.",
+          "vocabRefs": [
+            "v-geannuleerd"
+          ]
         },
         {
           "id": "s5-u08-l009-e08",
@@ -2604,12 +2603,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O que me chamou a atenção foi que toda a gente anda de bicicleta.",
           "tokens": [
-            "opviel,",
-            "iedereen",
-            "was",
             "Wat",
             "me",
+            "opviel,",
+            "was",
             "dat",
+            "iedereen",
             "fietst."
           ],
           "alternatives": [],
@@ -2620,54 +2619,54 @@
           "id": "s5-u08-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «opvallen»?",
+          "prompt": "O que significa «gebruikelijk»?",
           "options": [
             {
               "id": "a",
-              "text": "correr melhor do que esperado",
+              "text": "vale a pena",
               "correct": false
             },
             {
               "id": "b",
-              "text": "dar nas vistas",
-              "correct": true
+              "text": "recomendar",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "ponto de interesse turístico",
-              "correct": false
+              "text": "habitual",
+              "correct": true
             }
           ],
-          "explanation": "«opvallen» = dar nas vistas, chamar a atenção.",
+          "explanation": "«gebruikelijk» = habitual.",
           "vocabRefs": [
-            "v-opvallen"
+            "v-gebruikelijk"
           ]
         },
         {
           "id": "s5-u08-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «indrukwekkend»?",
+          "prompt": "O que significa «meevallen»?",
           "options": [
             {
               "id": "a",
-              "text": "impressionante",
+              "text": "correr melhor do que esperado",
               "correct": true
             },
             {
               "id": "b",
-              "text": "cancelado",
+              "text": "ponto de interesse turístico",
               "correct": false
             },
             {
               "id": "c",
-              "text": "sem custos",
+              "text": "remarcar",
               "correct": false
             }
           ],
-          "explanation": "«indrukwekkend» = impressionante.",
+          "explanation": "«meevallen» = correr melhor do que esperado.",
           "vocabRefs": [
-            "v-indrukwekkend"
+            "v-meevallen"
           ]
         }
       ],

@@ -2659,16 +2659,16 @@
       ],
       "examples": [
         {
-          "nl": "zeven, acht, negen, tien",
-          "pt": "sete, oito, nove, dez"
+          "nl": "dertien, veertien, vijftien",
+          "pt": "treze, catorze, quinze"
         },
         {
-          "nl": "Ik ben vijfentwintig (jaar).",
-          "pt": "Tenho vinte e cinco anos."
+          "nl": "veertien",
+          "pt": "14"
         },
         {
-          "nl": "dertien",
-          "pt": "13"
+          "nl": "vier, vijf, zes",
+          "pt": "quatro, cinco, seis"
         }
       ],
       "grammar": [],
@@ -2721,10 +2721,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quantos anos tens?",
           "tokens": [
+            "Hoe",
             "oud",
-            "je?",
             "ben",
-            "Hoe"
+            "je?"
           ],
           "alternatives": [],
           "explanation": "Hoe oud ben je?",
@@ -2738,9 +2738,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "quatro, cinco, seis",
           "tokens": [
-            "zes",
             "vier,",
-            "vijf,"
+            "vijf,",
+            "zes"
           ],
           "alternatives": [],
           "explanation": "vier, vijf, zes",
@@ -2755,11 +2755,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "É o dia um de maio.",
           "tokens": [
-            "eerste",
-            "mei.",
             "Het",
             "is",
-            "de"
+            "de",
+            "eerste",
+            "mei."
           ],
           "alternatives": [],
           "explanation": "Het is de eerste mei.",
@@ -2771,28 +2771,30 @@
           "id": "s1-u07-l009-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «één boek, niet twee»?",
+          "prompt": "O que significa: «Mijn telefoonnummer is nul zes, twaalf, vierendertig, zesenvijftig.»?",
           "options": [
             {
               "id": "a",
-              "text": "um livro, não dois",
-              "correct": true
+              "text": "Zero seis, doze, trinta e quatro…",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "47",
+              "text": "Faço anos hoje!",
               "correct": false
             },
             {
               "id": "c",
-              "text": "um livro",
-              "correct": false
+              "text": "O meu número é 06 12 34 56.",
+              "correct": true
             }
           ],
-          "explanation": "«één boek, niet twee» = um livro, não dois",
+          "explanation": "«Mijn telefoonnummer is nul zes, twaalf, vierendertig, zesenvijftig.» = O meu número é 06 12 34 56.",
           "vocabRefs": [
-            "v-een-num",
-            "v-twee"
+            "v-nul",
+            "v-vier",
+            "v-vijf",
+            "v-twaalf"
           ]
         },
         {
@@ -2803,18 +2805,18 @@
           "options": [
             {
               "id": "a",
-              "text": "14",
+              "text": "O meu número é 06 12 34 56.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ontem estava doente.",
-              "correct": true
+              "text": "13",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Ela tem dez anos.",
-              "correct": false
+              "text": "Ontem estava doente.",
+              "correct": true
             }
           ],
           "explanation": "«Gisteren was ik ziek.» = Ontem estava doente.",
@@ -2826,41 +2828,44 @@
           "id": "s1-u07-l009-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quanto custa o café?",
+          "prompt": "um, dois, três",
           "tokens": [
-            "Wat",
-            "de",
-            "telefoonnummer?",
-            "koffie?",
-            "hij?",
-            "kost"
+            "twee,",
+            "euro.",
+            "verjaardag.",
+            "één,",
+            "drie"
           ],
           "answers": [
-            "Wat kost de koffie?"
+            "één, twee, drie"
           ],
-          "explanation": "Quanto custa o café? = Wat kost de koffie? (sobram: telefoonnummer?, hij?)",
-          "vocabRefs": []
+          "explanation": "um, dois, três = één, twee, drie (sobram: verjaardag., euro.)",
+          "vocabRefs": [
+            "v-een-num",
+            "v-twee",
+            "v-drie"
+          ]
         },
         {
           "id": "s1-u07-l009-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É o dia um de maio.",
+          "prompt": "Amanhã é o meu aniversário.",
           "tokens": [
-            "Het",
-            "twintig",
-            "de",
-            "mei.",
-            "eerste",
+            "mijn",
+            "Morgen",
             "is",
-            "drie."
+            "twee",
+            "verjaardag.",
+            "de"
           ],
           "answers": [
-            "Het is de eerste mei."
+            "Morgen is mijn verjaardag."
           ],
-          "explanation": "É o dia um de maio. = Het is de eerste mei. (sobram: drie., twintig)",
+          "explanation": "Amanhã é o meu aniversário. = Morgen is mijn verjaardag. (sobram: de, twee)",
           "vocabRefs": [
-            "v-eerste"
+            "v-verjaardag",
+            "v-morgen"
           ]
         }
       ],
@@ -2931,16 +2936,16 @@
       ],
       "examples": [
         {
-          "nl": "zevenenveertig",
-          "pt": "47"
+          "nl": "dertien, veertien, vijftien",
+          "pt": "treze, catorze, quinze"
         },
         {
-          "nl": "tweeëntwintig",
-          "pt": "22"
+          "nl": "Nul zes, twaalf, vierendertig…",
+          "pt": "Zero seis, doze, trinta e quatro…"
         },
         {
-          "nl": "Het is de eerste mei.",
-          "pt": "É o dia um de maio."
+          "nl": "Ik ben vandaag jarig!",
+          "pt": "Faço anos hoje!"
         }
       ],
       "grammar": [],
@@ -2949,54 +2954,54 @@
           "id": "s1-u07-l010-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «cinquenta» em neerlandês?",
+          "prompt": "Como se diz «quanto» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "vijftig",
+              "text": "hoeveel",
               "correct": true
             },
             {
               "id": "b",
-              "text": "dertig",
+              "text": "kosten",
               "correct": false
             },
             {
               "id": "c",
-              "text": "verjaardag",
+              "text": "dertien",
               "correct": false
             }
           ],
-          "explanation": "cinquenta = «vijftig».",
+          "explanation": "quanto = «hoeveel».",
           "vocabRefs": [
-            "v-vijftig"
+            "v-hoeveel"
           ]
         },
         {
           "id": "s1-u07-l010-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ontem» em neerlandês?",
+          "prompt": "Como se diz «cêntimo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "vijftien",
+              "text": "nul",
               "correct": false
             },
             {
               "id": "b",
-              "text": "gisteren",
+              "text": "cent",
               "correct": true
             },
             {
               "id": "c",
-              "text": "euro",
+              "text": "twee",
               "correct": false
             }
           ],
-          "explanation": "ontem = «gisteren».",
+          "explanation": "cêntimo = «cent».",
           "vocabRefs": [
-            "v-gisteren"
+            "v-cent"
           ]
         },
         {
@@ -3009,9 +3014,9 @@
             "Gisteren"
           ],
           "choices": [
-            "Hoeveel",
             "Gisteren",
-            "Zestig"
+            "Elf",
+            "Dertien"
           ],
           "explanation": "Gisteren was ik ziek.",
           "vocabRefs": [
@@ -3028,9 +3033,9 @@
             "eerste"
           ],
           "choices": [
-            "vier",
-            "vijf",
-            "eerste"
+            "eerste",
+            "nul",
+            "kosten"
           ],
           "explanation": "Het is de eerste mei.",
           "vocabRefs": [
@@ -3039,21 +3044,6 @@
         },
         {
           "id": "s1-u07-l010-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "vier, vijf, zes",
-          "answers": [
-            "vier, vijf, zes"
-          ],
-          "translation": "quatro, cinco, seis",
-          "explanation": "«vier, vijf, zes» = quatro, cinco, seis",
-          "vocabRefs": [
-            "v-vier",
-            "v-vijf"
-          ]
-        },
-        {
-          "id": "s1-u07-l010-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik ben eenendertig en mijn zoon is drie.",
@@ -3068,91 +3058,110 @@
           ]
         },
         {
+          "id": "s1-u07-l010-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "dertien, veertien, vijftien",
+          "answers": [
+            "dertien, veertien, vijftien"
+          ],
+          "translation": "treze, catorze, quinze",
+          "explanation": "«dertien, veertien, vijftien» = treze, catorze, quinze",
+          "vocabRefs": [
+            "v-vijf",
+            "v-tien",
+            "v-dertien",
+            "v-veertien"
+          ]
+        },
+        {
           "id": "s1-u07-l010-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Amanhã é o meu aniversário.",
+          "prompt": "O meu número é 06 12 34 56.",
           "tokens": [
-            "telefoonnummer?",
-            "ik",
-            "Morgen",
-            "verjaardag.",
+            "telefoonnummer",
+            "vierendertig,",
+            "acht,",
+            "nul",
+            "twaalf,",
+            "Wat",
+            "zes,",
+            "Mijn",
             "is",
-            "mijn"
+            "zesenvijftig."
           ],
           "answers": [
-            "Morgen is mijn verjaardag."
+            "Mijn telefoonnummer is nul zes, twaalf, vierendertig, zesenvijftig."
           ],
-          "explanation": "Amanhã é o meu aniversário. = Morgen is mijn verjaardag. (sobram: telefoonnummer?, ik)",
+          "explanation": "O meu número é 06 12 34 56. = Mijn telefoonnummer is nul zes, twaalf, vierendertig, zesenvijftig. (sobram: acht,, Wat)",
           "vocabRefs": [
-            "v-verjaardag",
-            "v-morgen"
+            "v-nul",
+            "v-vier",
+            "v-vijf",
+            "v-twaalf"
           ]
         },
         {
           "id": "s1-u07-l010-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quanto custa? — Três euros e cinquenta.",
+          "prompt": "É o dia um de maio.",
           "tokens": [
-            "euro",
-            "kost",
-            "—",
-            "vijftig.",
-            "Wat",
-            "telefoonnummer",
-            "het?",
-            "ziek.",
-            "Drie"
+            "mei.",
+            "Het",
+            "drie",
+            "twee",
+            "is",
+            "de",
+            "eerste"
           ],
           "answers": [
-            "Wat kost het? — Drie euro vijftig."
+            "Het is de eerste mei."
           ],
-          "explanation": "Quanto custa? — Três euros e cinquenta. = Wat kost het? — Drie euro vijftig. (sobram: telefoonnummer, ziek.)",
+          "explanation": "É o dia um de maio. = Het is de eerste mei. (sobram: twee, drie)",
           "vocabRefs": [
-            "v-drie",
-            "v-vijf",
-            "v-vijftig",
-            "v-euro"
+            "v-eerste"
           ]
         },
         {
           "id": "s1-u07-l010-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "euro",
-          "pt": "euro",
-          "article": "de",
-          "explanation": "de euro.",
+          "noun": "telefoonnummer",
+          "pt": "número de telefone",
+          "article": "het",
+          "explanation": "het telefoonnummer.",
           "vocabRefs": [
-            "v-euro"
+            "v-telefoonnummer"
           ]
         },
         {
           "id": "s1-u07-l010-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoe oud is hij?»?",
+          "prompt": "O que significa: «Ik ben eenendertig en mijn zoon is drie.»?",
           "options": [
             {
               "id": "a",
-              "text": "Faço anos hoje!",
+              "text": "Quantos anos tens?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "onze, doze",
-              "correct": false
+              "text": "Tenho 31 anos e o meu filho tem 3.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Que idade tem ele?",
-              "correct": true
+              "text": "O meu número é 06 12 34 56.",
+              "correct": false
             }
           ],
-          "explanation": "«Hoe oud is hij?» = Que idade tem ele?",
+          "explanation": "«Ik ben eenendertig en mijn zoon is drie.» = Tenho 31 anos e o meu filho tem 3.",
           "vocabRefs": [
-            "v-hoe-oud"
+            "v-drie",
+            "v-dertig"
           ]
         }
       ],
@@ -3223,16 +3232,16 @@
       ],
       "examples": [
         {
-          "nl": "vier, vijf, zes",
-          "pt": "quatro, cinco, seis"
+          "nl": "Ik ben vijfentwintig (jaar).",
+          "pt": "Tenho vinte e cinco anos."
         },
         {
-          "nl": "Gisteren was ik ziek.",
-          "pt": "Ontem estava doente."
+          "nl": "Wat kost de koffie?",
+          "pt": "Quanto custa o café?"
         },
         {
-          "nl": "Morgen is mijn verjaardag.",
-          "pt": "Amanhã é o meu aniversário."
+          "nl": "elf, twaalf",
+          "pt": "onze, doze"
         }
       ],
       "grammar": [],
@@ -3241,59 +3250,37 @@
           "id": "s1-u07-l011-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é o teu número de telefone?",
+          "prompt": "Quanto custa o café?",
           "tokens": [
-            "je",
-            "is",
-            "telefoonnummer?",
-            "de",
+            "kost",
             "Wat",
-            "en"
+            "de",
+            "koffie?",
+            "nul",
+            "vijftien"
           ],
           "answers": [
-            "Wat is je telefoonnummer?"
+            "Wat kost de koffie?"
           ],
-          "explanation": "Qual é o teu número de telefone? = Wat is je telefoonnummer? (sobram: de, en)",
-          "vocabRefs": [
-            "v-telefoonnummer"
-          ]
+          "explanation": "Quanto custa o café? = Wat kost de koffie? (sobram: nul, vijftien)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u07-l011-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela tem dez anos.",
-          "tokens": [
-            "Zij",
-            "Morgen",
-            "tien.",
-            "negen,",
-            "is"
-          ],
-          "answers": [
-            "Zij is tien."
-          ],
-          "explanation": "Ela tem dez anos. = Zij is tien. (sobram: negen,, Morgen)",
-          "vocabRefs": [
-            "v-tien"
-          ]
-        },
-        {
-          "id": "s1-u07-l011-e03",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "treze, catorze, quinze",
           "tokens": [
-            "dertien,",
+            "euro.",
             "vijftien",
-            "Wat",
-            "veertien,",
-            "mijn"
+            "vandaag",
+            "dertien,",
+            "veertien,"
           ],
           "answers": [
             "dertien, veertien, vijftien"
           ],
-          "explanation": "treze, catorze, quinze = dertien, veertien, vijftien (sobram: Wat, mijn)",
+          "explanation": "treze, catorze, quinze = dertien, veertien, vijftien (sobram: vandaag, euro.)",
           "vocabRefs": [
             "v-vijf",
             "v-tien",
@@ -3302,19 +3289,30 @@
           ]
         },
         {
-          "id": "s1-u07-l011-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat kost de koffie?",
-          "answers": [
-            "Wat kost de koffie?"
+          "id": "s1-u07-l011-e03",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "sete, oito, nove, dez",
+          "tokens": [
+            "negen,",
+            "tien",
+            "acht,",
+            "zeven,",
+            "vier,",
+            "mijn"
           ],
-          "translation": "Quanto custa o café?",
-          "explanation": "«Wat kost de koffie?» = Quanto custa o café?",
-          "vocabRefs": []
+          "answers": [
+            "zeven, acht, negen, tien"
+          ],
+          "explanation": "sete, oito, nove, dez = zeven, acht, negen, tien (sobram: vier,, mijn)",
+          "vocabRefs": [
+            "v-zeven",
+            "v-negen",
+            "v-tien"
+          ]
         },
         {
-          "id": "s1-u07-l011-e05",
+          "id": "s1-u07-l011-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "één boek, niet twee",
@@ -3329,38 +3327,51 @@
           ]
         },
         {
+          "id": "s1-u07-l011-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Het is de eerste mei.",
+          "answers": [
+            "Het is de eerste mei."
+          ],
+          "translation": "É o dia um de maio.",
+          "explanation": "«Het is de eerste mei.» = É o dia um de maio.",
+          "vocabRefs": [
+            "v-eerste"
+          ]
+        },
+        {
           "id": "s1-u07-l011-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "één, twee, drie",
+          "audioText": "Wat kost de koffie?",
           "answers": [
-            "één, twee, drie"
+            "Wat kost de koffie?"
           ],
-          "translation": "um, dois, três",
-          "explanation": "«één, twee, drie» = um, dois, três",
-          "vocabRefs": [
-            "v-een-num",
-            "v-twee",
-            "v-drie"
-          ]
+          "translation": "Quanto custa o café?",
+          "explanation": "«Wat kost de koffie?» = Quanto custa o café?",
+          "vocabRefs": []
         },
         {
           "id": "s1-u07-l011-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "treze, catorze, quinze",
+          "translation": "Tenho 31 anos e o meu filho tem 3.",
           "tokens": [
-            "veertien,",
-            "vijftien",
-            "dertien,"
+            "Ik",
+            "ben",
+            "eenendertig",
+            "en",
+            "mijn",
+            "zoon",
+            "is",
+            "drie."
           ],
           "alternatives": [],
-          "explanation": "dertien, veertien, vijftien",
+          "explanation": "Ik ben eenendertig en mijn zoon is drie.",
           "vocabRefs": [
-            "v-vijf",
-            "v-tien",
-            "v-dertien",
-            "v-veertien"
+            "v-drie",
+            "v-dertig"
           ]
         },
         {
@@ -3369,8 +3380,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "São dois euros.",
           "tokens": [
-            "is",
             "Dat",
+            "is",
             "twee",
             "euro."
           ],
@@ -3385,12 +3396,39 @@
           "id": "s1-u07-l011-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «zestig»?",
+          "prompt": "O que significa «tachtig»?",
           "options": [
             {
               "id": "a",
-              "text": "terceiro",
+              "text": "oitenta",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "dezoito",
               "correct": false
+            },
+            {
+              "id": "c",
+              "text": "data",
+              "correct": false
+            }
+          ],
+          "explanation": "«tachtig» = oitenta.",
+          "vocabRefs": [
+            "v-tachtig"
+          ]
+        },
+        {
+          "id": "s1-u07-l011-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «zeven»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "sete",
+              "correct": true
             },
             {
               "id": "b",
@@ -3399,40 +3437,13 @@
             },
             {
               "id": "c",
-              "text": "sessenta",
-              "correct": true
+              "text": "quatro",
+              "correct": false
             }
           ],
-          "explanation": "«zestig» = sessenta.",
+          "explanation": "«zeven» = sete.",
           "vocabRefs": [
-            "v-zestig"
-          ]
-        },
-        {
-          "id": "s1-u07-l011-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «tien»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "cinco",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "catorze",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "dez",
-              "correct": true
-            }
-          ],
-          "explanation": "«tien» = dez.",
-          "vocabRefs": [
-            "v-tien"
+            "v-zeven"
           ]
         }
       ],
@@ -3503,16 +3514,16 @@
       ],
       "examples": [
         {
-          "nl": "één, twee, drie",
-          "pt": "um, dois, três"
+          "nl": "Wat kost de koffie?",
+          "pt": "Quanto custa o café?"
         },
         {
-          "nl": "Ik ben vijfentwintig (jaar).",
-          "pt": "Tenho vinte e cinco anos."
+          "nl": "Morgen is mijn verjaardag.",
+          "pt": "Amanhã é o meu aniversário."
         },
         {
-          "nl": "elf, twaalf",
-          "pt": "onze, doze"
+          "nl": "tweeëntwintig",
+          "pt": "22"
         }
       ],
       "grammar": [],
@@ -3523,147 +3534,59 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "gefeliciteerd",
-              "pt": "parabéns"
-            },
-            {
-              "nl": "vijftig",
-              "pt": "cinquenta"
-            },
-            {
-              "nl": "tachtig",
-              "pt": "oitenta"
-            },
-            {
-              "nl": "vier",
-              "pt": "quatro"
-            },
-            {
               "nl": "twintig",
               "pt": "vinte"
+            },
+            {
+              "nl": "morgen",
+              "pt": "amanhã"
+            },
+            {
+              "nl": "honderd",
+              "pt": "cem"
+            },
+            {
+              "nl": "dertig",
+              "pt": "trinta"
+            },
+            {
+              "nl": "twee",
+              "pt": "dois"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-gefeliciteerd",
-            "v-vijftig",
-            "v-tachtig",
-            "v-vier",
-            "v-twintig"
+            "v-twintig",
+            "v-morgen",
+            "v-honderd",
+            "v-dertig",
+            "v-twee"
           ]
         },
         {
           "id": "s1-u07-l012-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat kost de koffie?",
+          "audioText": "Het is de eerste mei.",
           "answers": [
-            "Wat kost de koffie?"
+            "Het is de eerste mei."
           ],
-          "translation": "Quanto custa o café?",
-          "explanation": "«Wat kost de koffie?» = Quanto custa o café?",
-          "vocabRefs": []
+          "translation": "É o dia um de maio.",
+          "explanation": "«Het is de eerste mei.» = É o dia um de maio.",
+          "vocabRefs": [
+            "v-eerste"
+          ]
         },
         {
           "id": "s1-u07-l012-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Morgen is mijn verjaardag.",
+          "audioText": "zestien, zeventien, achttien, negentien, twintig",
           "answers": [
-            "Morgen is mijn verjaardag."
+            "zestien, zeventien, achttien, negentien, twintig"
           ],
-          "translation": "Amanhã é o meu aniversário.",
-          "explanation": "«Morgen is mijn verjaardag.» = Amanhã é o meu aniversário.",
-          "vocabRefs": [
-            "v-verjaardag",
-            "v-morgen"
-          ]
-        },
-        {
-          "id": "s1-u07-l012-e04",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het telefoonnummer»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "que faz anos",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "sessenta",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "número de telefone",
-              "correct": true
-            }
-          ],
-          "explanation": "«het telefoonnummer» = número de telefone.",
-          "vocabRefs": [
-            "v-telefoonnummer"
-          ]
-        },
-        {
-          "id": "s1-u07-l012-e05",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «tachtig»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "oitenta",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "sete",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "doze",
-              "correct": false
-            }
-          ],
-          "explanation": "«tachtig» = oitenta.",
-          "vocabRefs": [
-            "v-tachtig"
-          ]
-        },
-        {
-          "id": "s1-u07-l012-e06",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Qual é o teu número de telefone?",
-          "tokens": [
-            "is",
-            "telefoonnummer?",
-            "Wat",
-            "je"
-          ],
-          "alternatives": [],
-          "explanation": "Wat is je telefoonnummer?",
-          "vocabRefs": [
-            "v-telefoonnummer"
-          ]
-        },
-        {
-          "id": "s1-u07-l012-e07",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "dezasseis… vinte",
-          "tokens": [
-            "achttien,",
-            "zeventien,",
-            "zestien,",
-            "negentien,",
-            "twintig"
-          ],
-          "alternatives": [],
-          "explanation": "zestien, zeventien, achttien, negentien, twintig",
+          "explanation": "«zestien, zeventien, achttien, negentien, twintig» = dezasseis… vinte",
           "vocabRefs": [
             "v-zeven",
             "v-negen",
@@ -3672,50 +3595,146 @@
           ]
         },
         {
+          "id": "s1-u07-l012-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «zestig»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "sessenta",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "doze",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "custar",
+              "correct": false
+            }
+          ],
+          "explanation": "«zestig» = sessenta.",
+          "vocabRefs": [
+            "v-zestig"
+          ]
+        },
+        {
+          "id": "s1-u07-l012-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «de euro»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "sete",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "euro",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "custar",
+              "correct": false
+            }
+          ],
+          "explanation": "«de euro» = euro.",
+          "vocabRefs": [
+            "v-euro"
+          ]
+        },
+        {
+          "id": "s1-u07-l012-e06",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "O meu número é 06 12 34 56.",
+          "tokens": [
+            "Mijn",
+            "telefoonnummer",
+            "is",
+            "nul",
+            "zes,",
+            "twaalf,",
+            "vierendertig,",
+            "zesenvijftig."
+          ],
+          "alternatives": [],
+          "explanation": "Mijn telefoonnummer is nul zes, twaalf, vierendertig, zesenvijftig.",
+          "vocabRefs": [
+            "v-nul",
+            "v-vier",
+            "v-vijf",
+            "v-twaalf"
+          ]
+        },
+        {
+          "id": "s1-u07-l012-e07",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "treze, catorze, quinze",
+          "tokens": [
+            "dertien,",
+            "veertien,",
+            "vijftien"
+          ],
+          "alternatives": [],
+          "explanation": "dertien, veertien, vijftien",
+          "vocabRefs": [
+            "v-vijf",
+            "v-tien",
+            "v-dertien",
+            "v-veertien"
+          ]
+        },
+        {
           "id": "s1-u07-l012-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___, twee, drie",
-          "translation": "um, dois, três",
+          "sentence": "Ik ben eenendertig en mijn zoon is ___.",
+          "translation": "Tenho 31 anos e o meu filho tem 3.",
           "answers": [
-            "één"
+            "drie"
           ],
           "choices": [
-            "twee",
-            "euro",
-            "één"
+            "dertig",
+            "drie",
+            "cent"
           ],
-          "explanation": "één, twee, drie",
+          "explanation": "Ik ben eenendertig en mijn zoon is drie.",
           "vocabRefs": [
-            "v-een-num"
+            "v-drie"
           ]
         },
         {
           "id": "s1-u07-l012-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «vier, vijf, zes»?",
+          "prompt": "O que significa: «Hoe oud is hij?»?",
           "options": [
             {
               "id": "a",
-              "text": "Zero seis, doze, trinta e quatro…",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "quatro, cinco, seis",
+              "text": "Que idade tem ele?",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "99",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "um, dois, três",
+              "text": "quatro, cinco, seis",
               "correct": false
             }
           ],
-          "explanation": "«vier, vijf, zes» = quatro, cinco, seis",
+          "explanation": "«Hoe oud is hij?» = Que idade tem ele?",
           "vocabRefs": [
-            "v-vier",
-            "v-vijf"
+            "v-hoe-oud"
           ]
         }
       ],

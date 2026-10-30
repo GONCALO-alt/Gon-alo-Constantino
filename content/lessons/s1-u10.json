@@ -1702,16 +1702,16 @@
       ],
       "examples": [
         {
-          "nl": "de man, de vrouw",
-          "pt": "o homem, a mulher"
+          "nl": "het eten",
+          "pt": "a comida"
         },
         {
-          "nl": "het gebouw",
-          "pt": "o edifício"
+          "nl": "het restaurant",
+          "pt": "o restaurante"
         },
         {
-          "nl": "het huisje",
-          "pt": "a casinha"
+          "nl": "de auto",
+          "pt": "o carro"
         }
       ],
       "grammar": [],
@@ -1768,9 +1768,9 @@
           "translation": "uma maçã, um ovo",
           "tokens": [
             "een",
-            "ei",
+            "appel,",
             "een",
-            "appel,"
+            "ei"
           ],
           "alternatives": [],
           "explanation": "een appel, een ei",
@@ -1786,12 +1786,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "a cadeira, a cama, uma mesa",
           "tokens": [
-            "het",
             "de",
-            "tafel",
-            "bed,",
             "stoel,",
-            "een"
+            "het",
+            "bed,",
+            "een",
+            "tafel"
           ],
           "alternatives": [],
           "explanation": "de stoel, het bed, een tafel",
@@ -1807,9 +1807,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Bebo leite.",
           "tokens": [
+            "Ik",
             "drink",
-            "melk.",
-            "Ik"
+            "melk."
           ],
           "alternatives": [],
           "explanation": "Ik drink melk.",
@@ -1821,101 +1821,97 @@
           "id": "s1-u10-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een brood, alstublieft.»?",
+          "prompt": "O que significa: «de huizen, de meisjes»?",
           "options": [
             {
               "id": "a",
-              "text": "a casinha",
+              "text": "o museu",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Um pão, por favor.",
-              "correct": true
+              "text": "a habitação",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Ele é professor.",
-              "correct": false
+              "text": "as casas, as raparigas",
+              "correct": true
             }
           ],
-          "explanation": "«Een brood, alstublieft.» = Um pão, por favor.",
+          "explanation": "«de huizen, de meisjes» = as casas, as raparigas",
           "vocabRefs": [
-            "v-een",
-            "v-brood"
+            "v-de",
+            "v-meisje",
+            "v-ei"
           ]
         },
         {
           "id": "s1-u10-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «de stoel, het bed, een tafel»?",
+          "prompt": "O que significa: «de man, de vrouw»?",
           "options": [
             {
               "id": "a",
-              "text": "a cadeira, a cama, uma mesa",
+              "text": "o homem, a mulher",
               "correct": true
             },
             {
               "id": "b",
-              "text": "a reunião",
+              "text": "uma maçã, um ovo",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Bebo leite.",
+              "text": "o edifício",
               "correct": false
             }
           ],
-          "explanation": "«de stoel, het bed, een tafel» = a cadeira, a cama, uma mesa",
+          "explanation": "«de man, de vrouw» = o homem, a mulher",
           "vocabRefs": [
-            "v-de",
-            "v-het",
-            "v-een"
+            "v-de"
           ]
         },
         {
           "id": "s1-u10-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "a casa, a rapariga",
+          "prompt": "Como pão.",
           "tokens": [
-            "het",
-            "huis,",
-            "meisje",
-            "het",
-            "ei",
-            "eet"
+            "eet",
+            "Ik",
+            "de",
+            "appel,",
+            "brood."
           ],
           "answers": [
-            "het huis, het meisje"
+            "Ik eet brood."
           ],
-          "explanation": "a casa, a rapariga = het huis, het meisje (sobram: ei, eet)",
+          "explanation": "Como pão. = Ik eet brood. (sobram: de, appel,)",
           "vocabRefs": [
-            "v-het",
-            "v-meisje",
-            "v-ei"
+            "v-brood"
           ]
         },
         {
           "id": "s1-u10-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o homem, a mulher",
+          "prompt": "Um pão, por favor.",
           "tokens": [
-            "de",
-            "appel,",
+            "brood,",
+            "alstublieft.",
             "man,",
-            "de",
-            "stoel,",
-            "vrouw"
+            "Een",
+            "stoel,"
           ],
           "answers": [
-            "de man, de vrouw"
+            "Een brood, alstublieft."
           ],
-          "explanation": "o homem, a mulher = de man, de vrouw (sobram: stoel,, appel,)",
+          "explanation": "Um pão, por favor. = Een brood, alstublieft. (sobram: man,, stoel,)",
           "vocabRefs": [
-            "v-de"
+            "v-een",
+            "v-brood"
           ]
         }
       ],
@@ -1975,16 +1971,16 @@
       ],
       "examples": [
         {
-          "nl": "Hij is leraar.",
-          "pt": "Ele é professor."
+          "nl": "het zwemmen",
+          "pt": "a natação"
         },
         {
-          "nl": "Een brood, alstublieft.",
-          "pt": "Um pão, por favor."
+          "nl": "de man, de vrouw",
+          "pt": "o homem, a mulher"
         },
         {
-          "nl": "de auto",
-          "pt": "o carro"
+          "nl": "de leraar",
+          "pt": "o professor"
         }
       ],
       "grammar": [],
@@ -1993,11 +1989,38 @@
           "id": "s1-u10-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «habitação» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "vrijheid",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "woning",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "auto",
+              "correct": false
+            }
+          ],
+          "explanation": "habitação = «woning».",
+          "vocabRefs": [
+            "v-woning"
+          ]
+        },
+        {
+          "id": "s1-u10-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
           "prompt": "Como se diz «carro» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "document",
+              "text": "eten",
               "correct": false
             },
             {
@@ -2007,7 +2030,7 @@
             },
             {
               "id": "c",
-              "text": "appel",
+              "text": "huisje",
               "correct": false
             }
           ],
@@ -2017,185 +2040,157 @@
           ]
         },
         {
-          "id": "s1-u10-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «liberdade» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "vrijheid",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "document",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "woning",
-              "correct": false
-            }
-          ],
-          "explanation": "liberdade = «vrijheid».",
-          "vocabRefs": [
-            "v-vrijheid"
-          ]
-        },
-        {
           "id": "s1-u10-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "een ___, een ei",
-          "translation": "uma maçã, um ovo",
+          "sentence": "het huis, het ___",
+          "translation": "a casa, a rapariga",
           "answers": [
-            "appel"
+            "meisje"
           ],
           "choices": [
-            "appel",
-            "huisje",
-            "ei"
+            "meisje",
+            "brood",
+            "huisje"
           ],
-          "explanation": "een appel, een ei",
+          "explanation": "het huis, het meisje",
           "vocabRefs": [
-            "v-appel"
+            "v-meisje"
           ]
         },
         {
           "id": "s1-u10-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik eet ___.",
-          "translation": "Como pão.",
+          "sentence": "een appel, een ___",
+          "translation": "uma maçã, um ovo",
           "answers": [
-            "brood"
+            "ei"
           ],
           "choices": [
+            "ei",
             "vrijheid",
-            "brood",
             "melk"
           ],
-          "explanation": "Ik eet brood.",
+          "explanation": "een appel, een ei",
           "vocabRefs": [
-            "v-brood"
+            "v-ei"
           ]
         },
         {
           "id": "s1-u10-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij is leraar.",
+          "audioText": "de man, de vrouw",
           "answers": [
-            "Hij is leraar."
+            "de man, de vrouw"
           ],
-          "translation": "Ele é professor.",
-          "explanation": "«Hij is leraar.» = Ele é professor.",
+          "translation": "o homem, a mulher",
+          "explanation": "«de man, de vrouw» = o homem, a mulher",
           "vocabRefs": [
-            "v-leraar"
+            "v-de"
           ]
         },
         {
           "id": "s1-u10-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de stoel, het bed, een tafel",
+          "audioText": "de huizen, de meisjes",
           "answers": [
-            "de stoel, het bed, een tafel"
+            "de huizen, de meisjes"
           ],
-          "translation": "a cadeira, a cama, uma mesa",
-          "explanation": "«de stoel, het bed, een tafel» = a cadeira, a cama, uma mesa",
+          "translation": "as casas, as raparigas",
+          "explanation": "«de huizen, de meisjes» = as casas, as raparigas",
           "vocabRefs": [
             "v-de",
-            "v-het",
-            "v-een"
+            "v-meisje",
+            "v-ei"
           ]
         },
         {
           "id": "s1-u10-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "a cadeira, a cama, uma mesa",
+          "prompt": "uma maçã, um ovo",
           "tokens": [
-            "tafel",
-            "de",
-            "bed,",
-            "vrouw",
             "een",
+            "ei",
             "het",
-            "stoel,",
-            "is"
+            "een",
+            "appel,",
+            "leraar."
           ],
           "answers": [
-            "de stoel, het bed, een tafel"
+            "een appel, een ei"
           ],
-          "explanation": "a cadeira, a cama, uma mesa = de stoel, het bed, een tafel (sobram: vrouw, is)",
+          "explanation": "uma maçã, um ovo = een appel, een ei (sobram: het, leraar.)",
           "vocabRefs": [
-            "v-de",
-            "v-het",
-            "v-een"
+            "v-een",
+            "v-appel",
+            "v-ei"
           ]
         },
         {
           "id": "s1-u10-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Um pão, por favor.",
+          "prompt": "as casas, as raparigas",
           "tokens": [
-            "appel,",
             "Een",
+            "is",
+            "meisjes",
             "de",
-            "brood,",
-            "alstublieft."
+            "de",
+            "huizen,"
           ],
           "answers": [
-            "Een brood, alstublieft."
+            "de huizen, de meisjes"
           ],
-          "explanation": "Um pão, por favor. = Een brood, alstublieft. (sobram: appel,, de)",
+          "explanation": "as casas, as raparigas = de huizen, de meisjes (sobram: Een, is)",
           "vocabRefs": [
-            "v-een",
-            "v-brood"
+            "v-de",
+            "v-meisje",
+            "v-ei"
           ]
         },
         {
           "id": "s1-u10-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "appel",
-          "pt": "maçã",
+          "noun": "informatie",
+          "pt": "informação",
           "article": "de",
-          "explanation": "de appel.",
+          "explanation": "de informatie.",
           "vocabRefs": [
-            "v-appel"
+            "v-informatie"
           ]
         },
         {
           "id": "s1-u10-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «een appel, een ei»?",
+          "prompt": "O que significa: «Een brood, alstublieft.»?",
           "options": [
             {
               "id": "a",
-              "text": "a informação",
+              "text": "a habitação",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ele é professor.",
-              "correct": false
+              "text": "Um pão, por favor.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "uma maçã, um ovo",
-              "correct": true
+              "text": "a cadeira, a cama, uma mesa",
+              "correct": false
             }
           ],
-          "explanation": "«een appel, een ei» = uma maçã, um ovo",
+          "explanation": "«Een brood, alstublieft.» = Um pão, por favor.",
           "vocabRefs": [
             "v-een",
-            "v-appel",
-            "v-ei"
+            "v-brood"
           ]
         }
       ],
@@ -2255,16 +2250,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik drink melk.",
-          "pt": "Bebo leite."
+          "nl": "het gebouw",
+          "pt": "o edifício"
         },
         {
-          "nl": "de informatie",
-          "pt": "a informação"
+          "nl": "Een brood, alstublieft.",
+          "pt": "Um pão, por favor."
         },
         {
-          "nl": "de vrijheid",
-          "pt": "a liberdade"
+          "nl": "de stoel, het bed, een tafel",
+          "pt": "a cadeira, a cama, uma mesa"
         }
       ],
       "grammar": [],
@@ -2273,65 +2268,41 @@
           "id": "s1-u10-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o homem, a mulher",
+          "prompt": "Bebo leite.",
           "tokens": [
             "Ik",
-            "de",
-            "de",
-            "vrouw",
-            "man,",
-            "het"
+            "melk.",
+            "Hij",
+            "drink",
+            "man,"
           ],
           "answers": [
-            "de man, de vrouw"
+            "Ik drink melk."
           ],
-          "explanation": "o homem, a mulher = de man, de vrouw (sobram: het, Ik)",
+          "explanation": "Bebo leite. = Ik drink melk. (sobram: man,, Hij)",
           "vocabRefs": [
-            "v-de"
+            "v-melk"
           ]
         },
         {
           "id": "s1-u10-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "as casas, as raparigas",
-          "tokens": [
-            "melk.",
-            "meisjes",
-            "de",
-            "het",
-            "huizen,",
-            "de"
-          ],
-          "answers": [
-            "de huizen, de meisjes"
-          ],
-          "explanation": "as casas, as raparigas = de huizen, de meisjes (sobram: het, melk.)",
-          "vocabRefs": [
-            "v-de",
-            "v-meisje",
-            "v-ei"
-          ]
-        },
-        {
-          "id": "s1-u10-l009-e03",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "a cadeira, a cama, uma mesa",
           "tokens": [
+            "een",
             "het",
             "stoel,",
             "de",
-            "een",
-            "bed,",
+            "is",
+            "leraar.",
             "tafel",
-            "man,",
-            "leraar."
+            "bed,"
           ],
           "answers": [
             "de stoel, het bed, een tafel"
           ],
-          "explanation": "a cadeira, a cama, uma mesa = de stoel, het bed, een tafel (sobram: man,, leraar.)",
+          "explanation": "a cadeira, a cama, uma mesa = de stoel, het bed, een tafel (sobram: leraar., is)",
           "vocabRefs": [
             "v-de",
             "v-het",
@@ -2339,38 +2310,41 @@
           ]
         },
         {
-          "id": "s1-u10-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de huizen, de meisjes",
-          "answers": [
-            "de huizen, de meisjes"
+          "id": "s1-u10-l009-e03",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Como pão.",
+          "tokens": [
+            "alstublieft.",
+            "brood.",
+            "eet",
+            "de",
+            "Ik"
           ],
-          "translation": "as casas, as raparigas",
-          "explanation": "«de huizen, de meisjes» = as casas, as raparigas",
-          "vocabRefs": [
-            "v-de",
-            "v-meisje",
-            "v-ei"
-          ]
-        },
-        {
-          "id": "s1-u10-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een brood, alstublieft.",
           "answers": [
-            "Een brood, alstublieft."
+            "Ik eet brood."
           ],
-          "translation": "Um pão, por favor.",
-          "explanation": "«Een brood, alstublieft.» = Um pão, por favor.",
+          "explanation": "Como pão. = Ik eet brood. (sobram: de, alstublieft.)",
           "vocabRefs": [
-            "v-een",
             "v-brood"
           ]
         },
         {
-          "id": "s1-u10-l009-e06",
+          "id": "s1-u10-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik eet brood.",
+          "answers": [
+            "Ik eet brood."
+          ],
+          "translation": "Como pão.",
+          "explanation": "«Ik eet brood.» = Como pão.",
+          "vocabRefs": [
+            "v-brood"
+          ]
+        },
+        {
+          "id": "s1-u10-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "de man, de vrouw",
@@ -2384,92 +2358,109 @@
           ]
         },
         {
+          "id": "s1-u10-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "het huis, het meisje",
+          "answers": [
+            "het huis, het meisje"
+          ],
+          "translation": "a casa, a rapariga",
+          "explanation": "«het huis, het meisje» = a casa, a rapariga",
+          "vocabRefs": [
+            "v-het",
+            "v-meisje",
+            "v-ei"
+          ]
+        },
+        {
           "id": "s1-u10-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "as casas, as raparigas",
+          "translation": "Um pão, por favor.",
           "tokens": [
-            "de",
-            "de",
-            "huizen,",
-            "meisjes"
+            "Een",
+            "brood,",
+            "alstublieft."
           ],
           "alternatives": [],
-          "explanation": "de huizen, de meisjes",
+          "explanation": "Een brood, alstublieft.",
           "vocabRefs": [
-            "v-de",
-            "v-meisje",
-            "v-ei"
+            "v-een",
+            "v-brood"
           ]
         },
         {
           "id": "s1-u10-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Bebo leite.",
+          "translation": "a casa, a rapariga",
           "tokens": [
-            "melk.",
-            "Ik",
-            "drink"
+            "het",
+            "huis,",
+            "het",
+            "meisje"
           ],
           "alternatives": [],
-          "explanation": "Ik drink melk.",
+          "explanation": "het huis, het meisje",
           "vocabRefs": [
-            "v-melk"
+            "v-het",
+            "v-meisje",
+            "v-ei"
           ]
         },
         {
           "id": "s1-u10-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het restaurant»?",
+          "prompt": "O que significa «het eten»?",
           "options": [
             {
               "id": "a",
-              "text": "restaurante",
-              "correct": true
+              "text": "documento",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "o",
-              "correct": false
+              "text": "comida",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "maçã",
+              "text": "rapaz",
               "correct": false
             }
           ],
-          "explanation": "«het restaurant» = restaurante.",
+          "explanation": "«het eten» = comida, comer.",
           "vocabRefs": [
-            "v-restaurant"
+            "v-eten"
           ]
         },
         {
           "id": "s1-u10-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het meisje»?",
+          "prompt": "O que significa «de»?",
           "options": [
             {
               "id": "a",
-              "text": "leite",
+              "text": "professor",
               "correct": false
             },
             {
               "id": "b",
-              "text": "rapariga",
-              "correct": true
+              "text": "informação",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "informação",
-              "correct": false
+              "text": "o",
+              "correct": true
             }
           ],
-          "explanation": "«het meisje» = rapariga.",
+          "explanation": "«de» = o, a, os, as.",
           "vocabRefs": [
-            "v-meisje"
+            "v-de"
           ]
         }
       ],
@@ -2529,16 +2520,16 @@
       ],
       "examples": [
         {
-          "nl": "de vergadering",
-          "pt": "a reunião"
+          "nl": "het huisje",
+          "pt": "a casinha"
         },
         {
-          "nl": "Hij is leraar.",
-          "pt": "Ele é professor."
+          "nl": "het meisje",
+          "pt": "a rapariga"
         },
         {
-          "nl": "Ik drink melk.",
-          "pt": "Bebo leite."
+          "nl": "Een brood, alstublieft.",
+          "pt": "Um pão, por favor."
         }
       ],
       "grammar": [],
@@ -2549,53 +2540,37 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "huisje",
-              "pt": "casinha"
-            },
-            {
               "nl": "appel",
               "pt": "maçã"
             },
             {
+              "nl": "het",
+              "pt": "o"
+            },
+            {
+              "nl": "brood",
+              "pt": "pão"
+            },
+            {
+              "nl": "huisje",
+              "pt": "casinha"
+            },
+            {
               "nl": "meisje",
               "pt": "rapariga"
-            },
-            {
-              "nl": "gebouw",
-              "pt": "edifício"
-            },
-            {
-              "nl": "leraar",
-              "pt": "professor"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-huisje",
             "v-appel",
-            "v-meisje",
-            "v-gebouw",
-            "v-leraar"
+            "v-het",
+            "v-brood",
+            "v-de",
+            "v-huisje"
           ]
         },
         {
           "id": "s1-u10-l010-e02",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de huizen, de meisjes",
-          "answers": [
-            "de huizen, de meisjes"
-          ],
-          "translation": "as casas, as raparigas",
-          "explanation": "«de huizen, de meisjes» = as casas, as raparigas",
-          "vocabRefs": [
-            "v-de",
-            "v-meisje",
-            "v-ei"
-          ]
-        },
-        {
-          "id": "s1-u10-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik drink melk.",
@@ -2609,46 +2584,34 @@
           ]
         },
         {
+          "id": "s1-u10-l010-e03",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Een brood, alstublieft.",
+          "answers": [
+            "Een brood, alstublieft."
+          ],
+          "translation": "Um pão, por favor.",
+          "explanation": "«Een brood, alstublieft.» = Um pão, por favor.",
+          "vocabRefs": [
+            "v-een",
+            "v-brood"
+          ]
+        },
+        {
           "id": "s1-u10-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de appel»?",
+          "prompt": "O que significa «het brood»?",
           "options": [
             {
               "id": "a",
               "text": "pão",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "casinha",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "maçã",
-              "correct": true
-            }
-          ],
-          "explanation": "«de appel» = maçã.",
-          "vocabRefs": [
-            "v-appel"
-          ]
-        },
-        {
-          "id": "s1-u10-l010-e05",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de auto»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "carro",
               "correct": true
             },
             {
               "id": "b",
-              "text": "jornal",
+              "text": "professor",
               "correct": false
             },
             {
@@ -2657,9 +2620,36 @@
               "correct": false
             }
           ],
-          "explanation": "«de auto» = carro.",
+          "explanation": "«het brood» = pão.",
           "vocabRefs": [
-            "v-auto"
+            "v-brood"
+          ]
+        },
+        {
+          "id": "s1-u10-l010-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «de informatie»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "rapaz",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "um",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "informação",
+              "correct": true
+            }
+          ],
+          "explanation": "«de informatie» = informação.",
+          "vocabRefs": [
+            "v-informatie"
           ]
         },
         {
@@ -2668,9 +2658,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Um pão, por favor.",
           "tokens": [
-            "alstublieft.",
+            "Een",
             "brood,",
-            "Een"
+            "alstublieft."
           ],
           "alternatives": [],
           "explanation": "Een brood, alstublieft.",
@@ -2683,18 +2673,18 @@
           "id": "s1-u10-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "as casas, as raparigas",
+          "translation": "uma maçã, um ovo",
           "tokens": [
-            "de",
-            "de",
-            "meisjes",
-            "huizen,"
+            "een",
+            "appel,",
+            "een",
+            "ei"
           ],
           "alternatives": [],
-          "explanation": "de huizen, de meisjes",
+          "explanation": "een appel, een ei",
           "vocabRefs": [
-            "v-de",
-            "v-meisje",
+            "v-een",
+            "v-appel",
             "v-ei"
           ]
         },
@@ -2702,48 +2692,46 @@
           "id": "s1-u10-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "een ___, een ei",
-          "translation": "uma maçã, um ovo",
+          "sentence": "de stoel, ___ bed, een tafel",
+          "translation": "a cadeira, a cama, uma mesa",
           "answers": [
-            "appel"
+            "het"
           ],
           "choices": [
-            "ei",
-            "een",
-            "appel"
+            "jongen",
+            "informatie",
+            "het"
           ],
-          "explanation": "een appel, een ei",
+          "explanation": "de stoel, het bed, een tafel",
           "vocabRefs": [
-            "v-appel"
+            "v-het"
           ]
         },
         {
           "id": "s1-u10-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «een appel, een ei»?",
+          "prompt": "O que significa: «Hij is leraar.»?",
           "options": [
             {
               "id": "a",
-              "text": "a cadeira, a cama, uma mesa",
-              "correct": false
+              "text": "Ele é professor.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "a reunião",
+              "text": "a casa, a rapariga",
               "correct": false
             },
             {
               "id": "c",
               "text": "uma maçã, um ovo",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "«een appel, een ei» = uma maçã, um ovo",
+          "explanation": "«Hij is leraar.» = Ele é professor.",
           "vocabRefs": [
-            "v-een",
-            "v-appel",
-            "v-ei"
+            "v-leraar"
           ]
         }
       ],

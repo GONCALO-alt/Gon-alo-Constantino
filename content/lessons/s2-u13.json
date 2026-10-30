@@ -1812,16 +1812,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik ga boodschappen doen.",
-          "pt": "Vou fazer compras."
+          "nl": "Ga je mee?",
+          "pt": "Vens connosco?"
         },
         {
-          "nl": "Ik ga naar de sportschool.",
-          "pt": "Vou ao ginásio."
+          "nl": "We gaan zwemmen.",
+          "pt": "Vamos nadar."
         },
         {
-          "nl": "Zullen we naar de bioscoop gaan?",
-          "pt": "Vamos ao cinema?"
+          "nl": "In mijn vrije tijd zwem ik en speel ik gitaar. Het liefst ga ik naar concerten.",
+          "pt": "No tempo livre nado e toco guitarra. O que mais gosto é de ir a concertos."
         }
       ],
       "grammar": [],
@@ -1872,9 +1872,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Gosto de jogar ténis.",
           "tokens": [
+            "Ik",
             "tennis",
-            "graag.",
-            "Ik"
+            "graag."
           ],
           "alternatives": [],
           "explanation": "Ik tennis graag.",
@@ -1886,10 +1886,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quais são os teus passatempos?",
           "tokens": [
-            "zijn",
-            "hobby's?",
             "Wat",
-            "je"
+            "zijn",
+            "je",
+            "hobby's?"
           ],
           "alternatives": [],
           "explanation": "Wat zijn je hobby's?",
@@ -1903,11 +1903,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vamos ao cinema?",
           "tokens": [
-            "bioscoop",
-            "we",
             "Zullen",
-            "de",
+            "we",
             "naar",
+            "de",
+            "bioscoop",
             "gaan?"
           ],
           "alternatives": [],
@@ -1920,74 +1920,73 @@
           "id": "s2-u13-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb zin om te wandelen.»?",
+          "prompt": "O que significa: «Wat doe je het liefst?»?",
           "options": [
             {
               "id": "a",
-              "text": "Apetece-me ir passear.",
-              "correct": true
+              "text": "Gosto de ouvir música.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Vens connosco?",
-              "correct": false
+              "text": "O que gostas mais de fazer?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Vou ao ginásio.",
+              "text": "Apetece-me ir passear.",
               "correct": false
             }
           ],
-          "explanation": "«Ik heb zin om te wandelen.» = Apetece-me ir passear.",
+          "explanation": "«Wat doe je het liefst?» = O que gostas mais de fazer?",
           "vocabRefs": [
-            "v-wandelen"
+            "v-het-liefst"
           ]
         },
         {
           "id": "s2-u13-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Zij speelt gitaar.»?",
+          "prompt": "O que significa: «Zullen we naar de bioscoop gaan?»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela toca guitarra.",
-              "correct": true
+              "text": "Vens connosco?",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Gosto de andar de bicicleta.",
-              "correct": false
+              "text": "Vamos ao cinema?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Vamos ao cinema?",
+              "text": "O que mais gosto é de ler.",
               "correct": false
             }
           ],
-          "explanation": "«Zij speelt gitaar.» = Ela toca guitarra.",
+          "explanation": "«Zullen we naar de bioscoop gaan?» = Vamos ao cinema?",
           "vocabRefs": [
-            "v-gitaar"
+            "v-bioscoop"
           ]
         },
         {
           "id": "s2-u13-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O que gostas mais de fazer?",
+          "prompt": "O que mais gosto é de ler.",
           "tokens": [
-            "je",
+            "liefst",
+            "hobby's?",
+            "lees",
+            "Het",
             "doe",
-            "het",
-            "keer",
-            "Wat",
-            "liefst?",
-            "Zullen"
+            "ik."
           ],
           "answers": [
-            "Wat doe je het liefst?"
+            "Het liefst lees ik."
           ],
-          "explanation": "O que gostas mais de fazer? = Wat doe je het liefst? (sobram: Zullen, keer)",
+          "explanation": "O que mais gosto é de ler. = Het liefst lees ik. (sobram: doe, hobby's?)",
           "vocabRefs": [
             "v-het-liefst"
           ]
@@ -1996,22 +1995,20 @@
           "id": "s2-u13-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gosto de ouvir música.",
+          "prompt": "Prefiro nadar.",
           "tokens": [
+            "naar",
             "Ik",
-            "graag",
-            "luister",
-            "We",
-            "Wat",
-            "muziek.",
-            "naar"
+            "voetbalt",
+            "zwem",
+            "liever."
           ],
           "answers": [
-            "Ik luister graag naar muziek."
+            "Ik zwem liever."
           ],
-          "explanation": "Gosto de ouvir música. = Ik luister graag naar muziek. (sobram: We, Wat)",
+          "explanation": "Prefiro nadar. = Ik zwem liever. (sobram: naar, voetbalt)",
           "vocabRefs": [
-            "v-muziek"
+            "v-liever"
           ]
         }
       ],
@@ -2068,16 +2065,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat zijn je hobby's?",
-          "pt": "Quais são os teus passatempos?"
+          "nl": "Ga je mee?",
+          "pt": "Vens connosco?"
         },
         {
           "nl": "Ik ga boodschappen doen.",
           "pt": "Vou fazer compras."
         },
         {
-          "nl": "Ga je mee?",
-          "pt": "Vens connosco?"
+          "nl": "Vanavond ga ik een film kijken.",
+          "pt": "Hoje à noite vou ver um filme."
         }
       ],
       "grammar": [],
@@ -2090,7 +2087,7 @@
           "options": [
             {
               "id": "a",
-              "text": "gitaar",
+              "text": "het liefst",
               "correct": false
             },
             {
@@ -2100,7 +2097,7 @@
             },
             {
               "id": "c",
-              "text": "het liefst",
+              "text": "wedstrijd",
               "correct": false
             }
           ],
@@ -2113,46 +2110,46 @@
           "id": "s2-u13-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «andar de bicicleta» em neerlandês?",
+          "prompt": "Como se diz «nadar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "fietsen",
-              "correct": true
+              "text": "hardlopen",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "wedstrijd",
-              "correct": false
+              "text": "zwemmen",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "hardlopen",
+              "text": "zin hebben in",
               "correct": false
             }
           ],
-          "explanation": "andar de bicicleta = «fietsen».",
+          "explanation": "nadar = «zwemmen».",
           "vocabRefs": [
-            "v-fietsen"
+            "v-zwemmen"
           ]
         },
         {
           "id": "s2-u13-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Vanavond ga ik een ___ kijken.",
+          "sentence": "___ ga ik een film kijken.",
           "translation": "Hoje à noite vou ver um filme.",
           "answers": [
-            "film"
+            "Vanavond"
           ],
           "choices": [
-            "hobby",
-            "spelen",
-            "film"
+            "Gitaar",
+            "Bioscoop",
+            "Vanavond"
           ],
           "explanation": "Vanavond ga ik een film kijken.",
           "vocabRefs": [
-            "v-film"
+            "v-vanavond"
           ]
         },
         {
@@ -2165,9 +2162,9 @@
             "zwemmen"
           ],
           "choices": [
-            "sportschool",
             "zwemmen",
-            "hardlopen"
+            "voetballen",
+            "spelen"
           ],
           "explanation": "We gaan zwemmen.",
           "vocabRefs": [
@@ -2178,106 +2175,108 @@
           "id": "s2-u13-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat zijn je hobby's?",
+          "audioText": "Het liefst lees ik.",
           "answers": [
-            "Wat zijn je hobby's?"
+            "Het liefst lees ik."
           ],
-          "translation": "Quais são os teus passatempos?",
-          "explanation": "«Wat zijn je hobby's?» = Quais são os teus passatempos?",
+          "translation": "O que mais gosto é de ler.",
+          "explanation": "«Het liefst lees ik.» = O que mais gosto é de ler.",
           "vocabRefs": [
-            "v-hobby"
+            "v-het-liefst"
           ]
         },
         {
           "id": "s2-u13-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb zin om te wandelen.",
+          "audioText": "Ik ga naar de sportschool.",
           "answers": [
-            "Ik heb zin om te wandelen."
+            "Ik ga naar de sportschool."
           ],
-          "translation": "Apetece-me ir passear.",
-          "explanation": "«Ik heb zin om te wandelen.» = Apetece-me ir passear.",
+          "translation": "Vou ao ginásio.",
+          "explanation": "«Ik ga naar de sportschool.» = Vou ao ginásio.",
           "vocabRefs": [
-            "v-wandelen"
+            "v-sportschool"
           ]
         },
         {
           "id": "s2-u13-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Nado duas vezes por semana.",
+          "prompt": "Ele joga futebol ao sábado.",
           "tokens": [
-            "keer",
-            "twee",
-            "zwem",
-            "Ik",
-            "luister",
-            "doe",
-            "week.",
-            "per"
+            "een",
+            "Hij",
+            "zaterdag.",
+            "op",
+            "boodschappen",
+            "voetbalt"
           ],
           "answers": [
-            "Ik zwem twee keer per week."
+            "Hij voetbalt op zaterdag."
           ],
-          "explanation": "Nado duas vezes por semana. = Ik zwem twee keer per week. (sobram: luister, doe)",
+          "explanation": "Ele joga futebol ao sábado. = Hij voetbalt op zaterdag. (sobram: een, boodschappen)",
           "vocabRefs": []
         },
         {
           "id": "s2-u13-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gosto de jogar ténis.",
+          "prompt": "Gosto de ouvir música.",
           "tokens": [
-            "graag.",
-            "Ik",
+            "naar",
+            "film",
             "wandelen.",
-            "Zullen",
-            "tennis"
+            "Ik",
+            "graag",
+            "muziek.",
+            "luister"
           ],
           "answers": [
-            "Ik tennis graag."
+            "Ik luister graag naar muziek."
           ],
-          "explanation": "Gosto de jogar ténis. = Ik tennis graag. (sobram: wandelen., Zullen)",
-          "vocabRefs": []
+          "explanation": "Gosto de ouvir música. = Ik luister graag naar muziek. (sobram: wandelen., film)",
+          "vocabRefs": [
+            "v-muziek"
+          ]
         },
         {
           "id": "s2-u13-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "muziek",
-          "pt": "música",
+          "noun": "bioscoop",
+          "pt": "cinema",
           "article": "de",
-          "explanation": "de muziek.",
+          "explanation": "de bioscoop.",
           "vocabRefs": [
-            "v-muziek"
+            "v-bioscoop"
           ]
         },
         {
           "id": "s2-u13-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Zullen we naar de bioscoop gaan?»?",
+          "prompt": "O que significa: «Ik luister graag naar muziek.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quais são os teus passatempos?",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Vamos ao cinema?",
+              "text": "Gosto de ouvir música.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Gosto de jogar ténis.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Vou fazer compras.",
+              "text": "Ela toca guitarra.",
               "correct": false
             }
           ],
-          "explanation": "«Zullen we naar de bioscoop gaan?» = Vamos ao cinema?",
+          "explanation": "«Ik luister graag naar muziek.» = Gosto de ouvir música.",
           "vocabRefs": [
-            "v-bioscoop"
+            "v-muziek"
           ]
         }
       ],
@@ -2334,16 +2333,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik luister graag naar muziek.",
-          "pt": "Gosto de ouvir música."
+          "nl": "Ik zwem twee keer per week.",
+          "pt": "Nado duas vezes por semana."
         },
         {
-          "nl": "Ga je mee?",
-          "pt": "Vens connosco?"
+          "nl": "In mijn vrije tijd zwem ik en speel ik gitaar. Het liefst ga ik naar concerten.",
+          "pt": "No tempo livre nado e toco guitarra. O que mais gosto é de ir a concertos."
         },
         {
-          "nl": "Wat zijn je hobby's?",
-          "pt": "Quais são os teus passatempos?"
+          "nl": "Hij voetbalt op zaterdag.",
+          "pt": "Ele joga futebol ao sábado."
         }
       ],
       "grammar": [],
@@ -2352,114 +2351,131 @@
           "id": "s2-u13-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vou fazer compras.",
+          "prompt": "O que gostas mais de fazer?",
           "tokens": [
-            "je",
-            "doen.",
-            "lees",
-            "Ik",
-            "ga",
-            "boodschappen"
-          ],
-          "answers": [
-            "Ik ga boodschappen doen."
-          ],
-          "explanation": "Vou fazer compras. = Ik ga boodschappen doen. (sobram: je, lees)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s2-u13-l009-e02",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O que mais gosto é de ler.",
-          "tokens": [
-            "lees",
-            "Het",
-            "liefst",
-            "ik.",
             "Wat",
-            "op"
+            "graag.",
+            "liefst?",
+            "je",
+            "de",
+            "doe",
+            "het"
           ],
           "answers": [
-            "Het liefst lees ik."
+            "Wat doe je het liefst?"
           ],
-          "explanation": "O que mais gosto é de ler. = Het liefst lees ik. (sobram: Wat, op)",
+          "explanation": "O que gostas mais de fazer? = Wat doe je het liefst? (sobram: graag., de)",
           "vocabRefs": [
             "v-het-liefst"
           ]
         },
         {
+          "id": "s2-u13-l009-e02",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Gosto de jogar ténis.",
+          "tokens": [
+            "graag.",
+            "fiets",
+            "tennis",
+            "lees",
+            "Ik"
+          ],
+          "answers": [
+            "Ik tennis graag."
+          ],
+          "explanation": "Gosto de jogar ténis. = Ik tennis graag. (sobram: lees, fiets)",
+          "vocabRefs": []
+        },
+        {
           "id": "s2-u13-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele joga futebol ao sábado.",
+          "prompt": "Vens connosco?",
           "tokens": [
-            "zaterdag.",
-            "Hij",
             "Ik",
-            "op",
-            "voetbalt",
-            "tennis"
+            "mee?",
+            "Ga",
+            "je",
+            "luister"
           ],
           "answers": [
-            "Hij voetbalt op zaterdag."
+            "Ga je mee?"
           ],
-          "explanation": "Ele joga futebol ao sábado. = Hij voetbalt op zaterdag. (sobram: Ik, tennis)",
+          "explanation": "Vens connosco? = Ga je mee? (sobram: luister, Ik)",
           "vocabRefs": []
         },
         {
           "id": "s2-u13-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zullen we naar de bioscoop gaan?",
+          "audioText": "Ik heb zin om te wandelen.",
           "answers": [
-            "Zullen we naar de bioscoop gaan?"
+            "Ik heb zin om te wandelen."
           ],
-          "translation": "Vamos ao cinema?",
-          "explanation": "«Zullen we naar de bioscoop gaan?» = Vamos ao cinema?",
+          "translation": "Apetece-me ir passear.",
+          "explanation": "«Ik heb zin om te wandelen.» = Apetece-me ir passear.",
           "vocabRefs": [
-            "v-bioscoop"
+            "v-wandelen"
           ]
         },
         {
           "id": "s2-u13-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het liefst lees ik.",
+          "audioText": "Vanavond ga ik een film kijken.",
           "answers": [
-            "Het liefst lees ik."
+            "Vanavond ga ik een film kijken."
           ],
-          "translation": "O que mais gosto é de ler.",
-          "explanation": "«Het liefst lees ik.» = O que mais gosto é de ler.",
+          "translation": "Hoje à noite vou ver um filme.",
+          "explanation": "«Vanavond ga ik een film kijken.» = Hoje à noite vou ver um filme.",
           "vocabRefs": [
-            "v-het-liefst"
+            "v-film",
+            "v-vanavond"
           ]
         },
         {
           "id": "s2-u13-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zij speelt gitaar.",
+          "audioText": "Ga je mee?",
           "answers": [
-            "Zij speelt gitaar."
+            "Ga je mee?"
           ],
-          "translation": "Ela toca guitarra.",
-          "explanation": "«Zij speelt gitaar.» = Ela toca guitarra.",
-          "vocabRefs": [
-            "v-gitaar"
-          ]
+          "translation": "Vens connosco?",
+          "explanation": "«Ga je mee?» = Vens connosco?",
+          "vocabRefs": []
         },
         {
           "id": "s2-u13-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
+          "translation": "Apetece-me ir passear.",
+          "tokens": [
+            "Ik",
+            "heb",
+            "zin",
+            "om",
+            "te",
+            "wandelen."
+          ],
+          "alternatives": [],
+          "explanation": "Ik heb zin om te wandelen.",
+          "vocabRefs": [
+            "v-wandelen"
+          ]
+        },
+        {
+          "id": "s2-u13-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
           "translation": "Gosto de ouvir música.",
           "tokens": [
-            "muziek.",
             "Ik",
-            "naar",
             "luister",
-            "graag"
+            "graag",
+            "naar",
+            "muziek."
           ],
           "alternatives": [],
           "explanation": "Ik luister graag naar muziek.",
@@ -2468,71 +2484,57 @@
           ]
         },
         {
-          "id": "s2-u13-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Vens connosco?",
-          "tokens": [
-            "je",
-            "mee?",
-            "Ga"
-          ],
-          "alternatives": [],
-          "explanation": "Ga je mee?",
-          "vocabRefs": []
-        },
-        {
           "id": "s2-u13-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de gitaar»?",
+          "prompt": "O que significa «fietsen»?",
           "options": [
             {
               "id": "a",
-              "text": "concerto",
-              "correct": false
+              "text": "andar de bicicleta",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "jogar",
+              "text": "música",
               "correct": false
             },
             {
               "id": "c",
-              "text": "guitarra",
-              "correct": true
+              "text": "jogar",
+              "correct": false
             }
           ],
-          "explanation": "«de gitaar» = guitarra.",
+          "explanation": "«fietsen» = andar de bicicleta.",
           "vocabRefs": [
-            "v-gitaar"
+            "v-fietsen"
           ]
         },
         {
           "id": "s2-u13-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de hobby»?",
+          "prompt": "O que significa «meegaan»?",
           "options": [
             {
               "id": "a",
-              "text": "passatempo",
+              "text": "ir junto",
               "correct": true
             },
             {
               "id": "b",
-              "text": "jogar futebol",
+              "text": "passear a pé",
               "correct": false
             },
             {
               "id": "c",
-              "text": "tempo livre",
+              "text": "jogar",
               "correct": false
             }
           ],
-          "explanation": "«de hobby» = passatempo, hobby.",
+          "explanation": "«meegaan» = ir junto, vir também.",
           "vocabRefs": [
-            "v-hobby"
+            "v-meegaan"
           ]
         }
       ],

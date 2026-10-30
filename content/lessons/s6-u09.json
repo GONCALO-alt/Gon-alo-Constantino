@@ -1875,16 +1875,16 @@
       ],
       "examples": [
         {
-          "nl": "Die uitdrukking is een beetje ouderwets.",
-          "pt": "Essa expressão é um bocado antiquada."
+          "nl": "Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen.",
+          "pt": "Muitas famílias mal conseguem chegar ao fim do mês."
         },
         {
-          "nl": "Gelukkig zitten we op één lijn.",
-          "pt": "Felizmente estamos de acordo."
+          "nl": "Met die nieuwe baan zit ze op rozen.",
+          "pt": "Com esse emprego novo ela está ótima."
         },
         {
-          "nl": "De dief liep tegen de lamp.",
-          "pt": "O ladrão foi apanhado."
+          "nl": "Iedereen stak de handen uit de mouwen.",
+          "pt": "Toda a gente arregaçou as mangas."
         }
       ],
       "grammar": [],
@@ -1933,13 +1933,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Em sentido figurado significa outra coisa.",
           "tokens": [
-            "zin",
-            "het",
             "In",
             "figuurlijke",
+            "zin",
+            "betekent",
+            "het",
             "iets",
-            "anders.",
-            "betekent"
+            "anders."
           ],
           "alternatives": [],
           "explanation": "In figuurlijke zin betekent het iets anders.",
@@ -1953,11 +1953,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "É uma expressão conhecida.",
           "tokens": [
-            "is",
-            "gezegde.",
             "Dat",
+            "is",
             "een",
-            "bekend"
+            "bekend",
+            "gezegde."
           ],
           "alternatives": [],
           "explanation": "Dat is een bekend gezegde.",
@@ -1971,12 +1971,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Felizmente estamos de acordo.",
           "tokens": [
-            "op",
-            "zitten",
             "Gelukkig",
-            "lijn.",
+            "zitten",
+            "we",
+            "op",
             "één",
-            "we"
+            "lijn."
           ],
           "alternatives": [],
           "explanation": "Gelukkig zitten we op één lijn.",
@@ -1986,34 +1986,34 @@
           "id": "s6-u09-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat een mazzel!»?",
+          "prompt": "O que significa: «Je moet het niet letterlijk nemen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quem se atreve a tocar no assunto?",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Que sorte!",
+              "text": "Não deves levar isso à letra.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "É uma expressão conhecida.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Ele inventou essa história.",
+              "text": "O ladrão foi apanhado.",
               "correct": false
             }
           ],
-          "explanation": "«Wat een mazzel!» = Que sorte!",
+          "explanation": "«Je moet het niet letterlijk nemen.» = Não deves levar isso à letra.",
           "vocabRefs": [
-            "v-mazzel"
+            "v-letterlijk"
           ]
         },
         {
           "id": "s6-u09-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De dief liep tegen de lamp.»?",
+          "prompt": "O que significa: «Die opmerking ging echt door de bocht.»?",
           "options": [
             {
               "id": "a",
@@ -2022,41 +2022,39 @@
             },
             {
               "id": "b",
-              "text": "Essa expressão é um bocado antiquada.",
-              "correct": false
+              "text": "Aquele comentário passou mesmo das marcas.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O ladrão foi apanhado.",
-              "correct": true
+              "text": "Depois de muito hesitar, ela decidiu-se.",
+              "correct": false
             }
           ],
-          "explanation": "«De dief liep tegen de lamp.» = O ladrão foi apanhado.",
+          "explanation": "«Die opmerking ging echt door de bocht.» = Aquele comentário passou mesmo das marcas.",
           "vocabRefs": []
         },
         {
           "id": "s6-u09-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ambas as partes têm de fazer concessões.",
+          "prompt": "Essa expressão é um bocado antiquada.",
           "tokens": [
-            "water",
-            "mazzel!",
-            "doen.",
+            "ouderwets.",
+            "uitdrukking",
+            "beetje",
+            "is",
+            "Die",
+            "een",
             "de",
-            "Beide",
-            "wijn",
-            "moeten",
-            "partijen",
-            "bij",
-            "slaat"
+            "eindjes"
           ],
           "answers": [
-            "Beide partijen moeten water bij de wijn doen."
+            "Die uitdrukking is een beetje ouderwets."
           ],
-          "explanation": "Ambas as partes têm de fazer concessões. = Beide partijen moeten water bij de wijn doen. (sobram: slaat, mazzel!)",
+          "explanation": "Essa expressão é um bocado antiquada. = Die uitdrukking is een beetje ouderwets. (sobram: eindjes, de)",
           "vocabRefs": [
-            "v-water-bij-de-wijn"
+            "v-ouderwets"
           ]
         },
         {
@@ -2066,20 +2064,20 @@
           "prompt": "Com esse emprego novo ela está ótima.",
           "tokens": [
             "Met",
-            "op",
+            "ze",
             "baan",
-            "zit",
+            "op",
+            "Dat",
             "rozen.",
             "die",
-            "kat",
-            "ze",
             "nieuwe",
-            "bij"
+            "knoop",
+            "zit"
           ],
           "answers": [
             "Met die nieuwe baan zit ze op rozen."
           ],
-          "explanation": "Com esse emprego novo ela está ótima. = Met die nieuwe baan zit ze op rozen. (sobram: bij, kat)",
+          "explanation": "Com esse emprego novo ela está ótima. = Met die nieuwe baan zit ze op rozen. (sobram: Dat, knoop)",
           "vocabRefs": []
         }
       ],
@@ -2137,16 +2135,16 @@
       ],
       "examples": [
         {
-          "nl": "Dat verhaal heeft hij uit zijn duim gezogen.",
-          "pt": "Ele inventou essa história."
-        },
-        {
           "nl": "We kwamen net op tijd voor het feest: met de neus in de boter!",
           "pt": "Chegámos mesmo a tempo da festa: em cheio!"
         },
         {
-          "nl": "Die uitdrukking is een beetje ouderwets.",
-          "pt": "Essa expressão é um bocado antiquada."
+          "nl": "Dat verhaal heeft hij uit zijn duim gezogen.",
+          "pt": "Ele inventou essa história."
+        },
+        {
+          "nl": "Dat is een bekend gezegde.",
+          "pt": "É uma expressão conhecida."
         }
       ],
       "grammar": [],
@@ -2155,77 +2153,58 @@
           "id": "s6-u09-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ser apanhado» em neerlandês?",
+          "prompt": "Como se diz «estar de acordo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "met de neus in de boter vallen",
+              "text": "ouderwets",
               "correct": false
             },
             {
               "id": "b",
-              "text": "de eindjes aan elkaar knopen",
-              "correct": false
+              "text": "op één lijn zitten",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "tegen de lamp lopen",
-              "correct": true
+              "text": "door de bocht gaan",
+              "correct": false
             }
           ],
-          "explanation": "ser apanhado = «tegen de lamp lopen».",
+          "explanation": "estar de acordo = «op één lijn zitten».",
           "vocabRefs": [
-            "v-tegen-de-lamp"
+            "v-op-een-lijn"
           ]
         },
         {
           "id": "s6-u09-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «sorte» em neerlandês?",
+          "prompt": "Como se diz «inventar algo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "iets uit je duim zuigen",
+              "text": "achter het net vissen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "water bij de wijn doen",
+              "text": "de kat de bel aanbinden",
               "correct": false
             },
             {
               "id": "c",
-              "text": "mazzel",
+              "text": "iets uit je duim zuigen",
               "correct": true
             }
           ],
-          "explanation": "sorte = «mazzel».",
+          "explanation": "inventar algo = «iets uit je duim zuigen».",
           "vocabRefs": [
-            "v-mazzel"
+            "v-uit-je-duim"
           ]
         },
         {
           "id": "s6-u09-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Dat is een bekend ___.",
-          "translation": "É uma expressão conhecida.",
-          "answers": [
-            "gezegde"
-          ],
-          "choices": [
-            "gezegde",
-            "mazzel",
-            "letterlijk"
-          ],
-          "explanation": "Dat is een bekend gezegde.",
-          "vocabRefs": [
-            "v-gezegde"
-          ]
-        },
-        {
-          "id": "s6-u09-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Wat een ___!",
@@ -2234,9 +2213,9 @@
             "mazzel"
           ],
           "choices": [
-            "gezegde",
             "mazzel",
-            "letterlijk"
+            "ouderwets",
+            "figuurlijk"
           ],
           "explanation": "Wat een mazzel!",
           "vocabRefs": [
@@ -2244,32 +2223,47 @@
           ]
         },
         {
+          "id": "s6-u09-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Die uitdrukking is een beetje ___.",
+          "translation": "Essa expressão é um bocado antiquada.",
+          "answers": [
+            "ouderwets"
+          ],
+          "choices": [
+            "figuurlijk",
+            "gezegde",
+            "ouderwets"
+          ],
+          "explanation": "Die uitdrukking is een beetje ouderwets.",
+          "vocabRefs": [
+            "v-ouderwets"
+          ]
+        },
+        {
           "id": "s6-u09-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat is een bekend gezegde.",
+          "audioText": "Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen.",
           "answers": [
-            "Dat is een bekend gezegde."
+            "Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen."
           ],
-          "translation": "É uma expressão conhecida.",
-          "explanation": "«Dat is een bekend gezegde.» = É uma expressão conhecida.",
-          "vocabRefs": [
-            "v-gezegde"
-          ]
+          "translation": "Muitas famílias mal conseguem chegar ao fim do mês.",
+          "explanation": "«Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen.» = Muitas famílias mal conseguem chegar ao fim do mês.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u09-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Die uitdrukking is een beetje ouderwets.",
+          "audioText": "Die opmerking ging echt door de bocht.",
           "answers": [
-            "Die uitdrukking is een beetje ouderwets."
+            "Die opmerking ging echt door de bocht."
           ],
-          "translation": "Essa expressão é um bocado antiquada.",
-          "explanation": "«Die uitdrukking is een beetje ouderwets.» = Essa expressão é um bocado antiquada.",
-          "vocabRefs": [
-            "v-ouderwets"
-          ]
+          "translation": "Aquele comentário passou mesmo das marcas.",
+          "explanation": "«Die opmerking ging echt door de bocht.» = Aquele comentário passou mesmo das marcas.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u09-l008-e07",
@@ -2297,24 +2291,21 @@
           "id": "s6-u09-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Muitas famílias mal conseguem chegar ao fim do mês.",
+          "prompt": "O ladrão foi apanhado.",
           "tokens": [
-            "eindjes",
-            "Veel",
-            "gezinnen",
-            "nauwelijks",
             "de",
-            "In",
-            "elkaar",
-            "aan",
-            "kunnen",
-            "knopen.",
-            "gezegde."
+            "Het",
+            "dief",
+            "De",
+            "mazzel!",
+            "liep",
+            "tegen",
+            "lamp."
           ],
           "answers": [
-            "Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen."
+            "De dief liep tegen de lamp."
           ],
-          "explanation": "Muitas famílias mal conseguem chegar ao fim do mês. = Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen. (sobram: In, gezegde.)",
+          "explanation": "O ladrão foi apanhado. = De dief liep tegen de lamp. (sobram: Het, mazzel!)",
           "vocabRefs": []
         },
         {
@@ -2333,25 +2324,25 @@
           "id": "s6-u09-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wie durft de kat de bel aan te binden?»?",
+          "prompt": "O que significa: «Na lang twijfelen hakte ze de knoop door.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quem se atreve a tocar no assunto?",
-              "correct": true
+              "text": "Muitas famílias mal conseguem chegar ao fim do mês.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Temos agora de tomar uma decisão.",
-              "correct": false
+              "text": "Depois de muito hesitar, ela decidiu-se.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Chegámos mesmo a tempo da festa: em cheio!",
+              "text": "Em sentido figurado significa outra coisa.",
               "correct": false
             }
           ],
-          "explanation": "«Wie durft de kat de bel aan te binden?» = Quem se atreve a tocar no assunto?",
+          "explanation": "«Na lang twijfelen hakte ze de knoop door.» = Depois de muito hesitar, ela decidiu-se.",
           "vocabRefs": []
         }
       ],
@@ -2409,16 +2400,16 @@
       ],
       "examples": [
         {
-          "nl": "Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen.",
-          "pt": "Muitas famílias mal conseguem chegar ao fim do mês."
+          "nl": "Die uitdrukking is een beetje ouderwets.",
+          "pt": "Essa expressão é um bocado antiquada."
         },
         {
           "nl": "Die opmerking ging echt door de bocht.",
           "pt": "Aquele comentário passou mesmo das marcas."
         },
         {
-          "nl": "Iedereen stak de handen uit de mouwen.",
-          "pt": "Toda a gente arregaçou as mangas."
+          "nl": "Beide partijen moeten water bij de wijn doen.",
+          "pt": "Ambas as partes têm de fazer concessões."
         }
       ],
       "grammar": [],
@@ -2427,104 +2418,108 @@
           "id": "s6-u09-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Temos agora de tomar uma decisão.",
+          "prompt": "Não deves levar isso à letra.",
           "tokens": [
-            "de",
-            "We",
-            "is",
-            "nauwelijks",
-            "knoop",
-            "nu",
             "moeten",
-            "doorhakken."
+            "het",
+            "niet",
+            "letterlijk",
+            "Je",
+            "moet",
+            "nemen.",
+            "uitverkocht,"
           ],
           "answers": [
-            "We moeten nu de knoop doorhakken."
+            "Je moet het niet letterlijk nemen."
           ],
-          "explanation": "Temos agora de tomar uma decisão. = We moeten nu de knoop doorhakken. (sobram: nauwelijks, is)",
+          "explanation": "Não deves levar isso à letra. = Je moet het niet letterlijk nemen. (sobram: uitverkocht,, moeten)",
           "vocabRefs": [
-            "v-knoop-doorhakken"
+            "v-letterlijk"
           ]
         },
         {
           "id": "s6-u09-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quem se atreve a tocar no assunto?",
+          "prompt": "Felizmente estamos de acordo.",
           "tokens": [
-            "de",
-            "durft",
-            "aan",
-            "te",
-            "bij",
-            "bel",
-            "Wie",
-            "kat",
-            "binden?",
-            "de",
-            "waren"
+            "Dat",
+            "één",
+            "zitten",
+            "achter",
+            "op",
+            "we",
+            "lijn.",
+            "Gelukkig"
           ],
           "answers": [
-            "Wie durft de kat de bel aan te binden?"
+            "Gelukkig zitten we op één lijn."
           ],
-          "explanation": "Quem se atreve a tocar no assunto? = Wie durft de kat de bel aan te binden? (sobram: waren, bij)",
+          "explanation": "Felizmente estamos de acordo. = Gelukkig zitten we op één lijn. (sobram: Dat, achter)",
           "vocabRefs": []
         },
         {
           "id": "s6-u09-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Felizmente estamos de acordo.",
+          "prompt": "Em sentido figurado significa outra coisa.",
           "tokens": [
-            "uit",
-            "zitten",
-            "we",
-            "Die",
-            "één",
-            "lijn.",
-            "Gelukkig",
-            "op"
+            "iets",
+            "In",
+            "betekent",
+            "figuurlijke",
+            "zin",
+            "het",
+            "tegen",
+            "anders.",
+            "achter"
           ],
           "answers": [
-            "Gelukkig zitten we op één lijn."
+            "In figuurlijke zin betekent het iets anders."
           ],
-          "explanation": "Felizmente estamos de acordo. = Gelukkig zitten we op één lijn. (sobram: uit, Die)",
-          "vocabRefs": []
+          "explanation": "Em sentido figurado significa outra coisa. = In figuurlijke zin betekent het iets anders. (sobram: tegen, achter)",
+          "vocabRefs": [
+            "v-figuurlijk"
+          ]
         },
         {
           "id": "s6-u09-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je slaat de spijker op de kop!",
+          "audioText": "Die uitdrukking is een beetje ouderwets.",
           "answers": [
-            "Je slaat de spijker op de kop!"
+            "Die uitdrukking is een beetje ouderwets."
           ],
-          "translation": "Acertaste em cheio!",
-          "explanation": "«Je slaat de spijker op de kop!» = Acertaste em cheio!",
-          "vocabRefs": []
+          "translation": "Essa expressão é um bocado antiquada.",
+          "explanation": "«Die uitdrukking is een beetje ouderwets.» = Essa expressão é um bocado antiquada.",
+          "vocabRefs": [
+            "v-ouderwets"
+          ]
         },
         {
           "id": "s6-u09-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen.",
+          "audioText": "Dat is een bekend gezegde.",
           "answers": [
-            "Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen."
+            "Dat is een bekend gezegde."
           ],
-          "translation": "Muitas famílias mal conseguem chegar ao fim do mês.",
-          "explanation": "«Veel gezinnen kunnen de eindjes nauwelijks aan elkaar knopen.» = Muitas famílias mal conseguem chegar ao fim do mês.",
-          "vocabRefs": []
+          "translation": "É uma expressão conhecida.",
+          "explanation": "«Dat is een bekend gezegde.» = É uma expressão conhecida.",
+          "vocabRefs": [
+            "v-gezegde"
+          ]
         },
         {
           "id": "s6-u09-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Die opmerking ging echt door de bocht.",
+          "audioText": "Iedereen stak de handen uit de mouwen.",
           "answers": [
-            "Die opmerking ging echt door de bocht."
+            "Iedereen stak de handen uit de mouwen."
           ],
-          "translation": "Aquele comentário passou mesmo das marcas.",
-          "explanation": "«Die opmerking ging echt door de bocht.» = Aquele comentário passou mesmo das marcas.",
+          "translation": "Toda a gente arregaçou as mangas.",
+          "explanation": "«Iedereen stak de handen uit de mouwen.» = Toda a gente arregaçou as mangas.",
           "vocabRefs": []
         },
         {
@@ -2533,12 +2528,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Não deves levar isso à letra.",
           "tokens": [
-            "letterlijk",
-            "niet",
-            "moet",
-            "nemen.",
             "Je",
-            "het"
+            "moet",
+            "het",
+            "niet",
+            "letterlijk",
+            "nemen."
           ],
           "alternatives": [],
           "explanation": "Je moet het niet letterlijk nemen.",
@@ -2552,15 +2547,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os bilhetes esgotaram, chegámos tarde demais.",
           "tokens": [
-            "waren",
-            "we",
             "De",
-            "het",
-            "net.",
             "kaartjes",
-            "achter",
+            "waren",
+            "uitverkocht,",
+            "we",
             "visten",
-            "uitverkocht,"
+            "achter",
+            "het",
+            "net."
           ],
           "alternatives": [],
           "explanation": "De kaartjes waren uitverkocht, we visten achter het net.",
@@ -2574,18 +2569,18 @@
           "options": [
             {
               "id": "a",
-              "text": "sorte",
-              "correct": true
+              "text": "esticar o dinheiro até ao fim do mês",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "literal",
+              "text": "tomar uma decisão",
               "correct": false
             },
             {
               "id": "c",
-              "text": "estar numa situação ótima",
-              "correct": false
+              "text": "sorte",
+              "correct": true
             }
           ],
           "explanation": "«de mazzel» = sorte (coloquial).",
@@ -2597,27 +2592,27 @@
           "id": "s6-u09-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «letterlijk»?",
+          "prompt": "O que significa «door de bocht gaan»?",
           "options": [
             {
               "id": "a",
-              "text": "chegar tarde demais",
-              "correct": false
+              "text": "exagerar",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "estar numa situação ótima",
+              "text": "chegar na altura certa",
               "correct": false
             },
             {
               "id": "c",
-              "text": "literal",
-              "correct": true
+              "text": "ser apanhado",
+              "correct": false
             }
           ],
-          "explanation": "«letterlijk» = literal(mente).",
+          "explanation": "«door de bocht gaan» = exagerar, passar das marcas.",
           "vocabRefs": [
-            "v-letterlijk"
+            "v-door-de-bocht"
           ]
         }
       ],

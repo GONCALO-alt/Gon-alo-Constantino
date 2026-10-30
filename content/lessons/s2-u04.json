@@ -1937,16 +1937,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik houd van chocolade!",
-          "pt": "Adoro chocolate!"
+          "nl": "Ik eet geen vlees, ik ben vegetarisch.",
+          "pt": "Não como carne, sou vegetariano."
         },
         {
-          "nl": "Brood met boter en hagelslag.",
-          "pt": "Pão com manteiga e granulado de chocolate."
+          "nl": "Wilt u water met of zonder bubbels?",
+          "pt": "Quer água com ou sem gás?"
         },
         {
-          "nl": "Een glas sinaasappelsap, alstublieft.",
-          "pt": "Um copo de sumo de laranja, por favor."
+          "nl": "Fruit is gezond.",
+          "pt": "A fruta é saudável."
         }
       ],
       "grammar": [],
@@ -1997,10 +1997,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Adoro chocolate!",
           "tokens": [
-            "chocolade!",
             "Ik",
             "houd",
-            "van"
+            "van",
+            "chocolade!"
           ],
           "alternatives": [],
           "explanation": "Ik houd van chocolade!",
@@ -2012,10 +2012,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Uma sandes de queijo, por favor.",
           "tokens": [
-            "alstublieft.",
             "Een",
+            "broodje",
             "kaas,",
-            "broodje"
+            "alstublieft."
           ],
           "alternatives": [],
           "explanation": "Een broodje kaas, alstublieft.",
@@ -2031,8 +2031,8 @@
           "translation": "Os tomates são saudáveis.",
           "tokens": [
             "Tomaten",
-            "gezond.",
-            "zijn"
+            "zijn",
+            "gezond."
           ],
           "alternatives": [],
           "explanation": "Tomaten zijn gezond.",
@@ -2042,7 +2042,7 @@
           "id": "s2-u04-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Fruit is gezond.»?",
+          "prompt": "O que significa: «Ik drink niet graag koffie.»?",
           "options": [
             {
               "id": "a",
@@ -2051,90 +2051,90 @@
             },
             {
               "id": "b",
-              "text": "A fruta é saudável.",
+              "text": "Não gosto muito de beber café.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Como fruta todos os dias.",
+              "text": "Um copo de sumo de laranja, por favor.",
               "correct": false
             }
           ],
-          "explanation": "«Fruit is gezond.» = A fruta é saudável.",
+          "explanation": "«Ik drink niet graag koffie.» = Não gosto muito de beber café.",
           "vocabRefs": [
-            "v-fruit",
-            "v-ui"
+            "v-graag-verb"
           ]
         },
         {
           "id": "s2-u04-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een broodje kaas, alstublieft.»?",
+          "prompt": "O que significa: «Kraanwater is gratis.»?",
           "options": [
             {
               "id": "a",
-              "text": "Gosto de andar de bicicleta.",
+              "text": "Um copo de sumo de laranja, por favor.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Gosto de fruta e legumes, mas não gosto de queijo.",
-              "correct": false
+              "text": "A água da torneira é grátis.",
+              "correct": true
             },
             {
               "id": "c",
               "text": "Uma sandes de queijo, por favor.",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "«Een broodje kaas, alstublieft.» = Uma sandes de queijo, por favor.",
+          "explanation": "«Kraanwater is gratis.» = A água da torneira é grátis.",
           "vocabRefs": [
-            "v-kaas",
-            "v-broodje"
+            "v-kraanwater"
           ]
         },
         {
           "id": "s2-u04-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gosto de andar de bicicleta.",
+          "prompt": "Pão com manteiga e granulado de chocolate.",
           "tokens": [
-            "fiets",
-            "bubbels?",
-            "kilo",
-            "graag.",
-            "Ik"
+            "groente,",
+            "geen",
+            "hagelslag.",
+            "boter",
+            "Brood",
+            "en",
+            "met"
           ],
           "answers": [
-            "Ik fiets graag."
+            "Brood met boter en hagelslag."
           ],
-          "explanation": "Gosto de andar de bicicleta. = Ik fiets graag. (sobram: bubbels?, kilo)",
+          "explanation": "Pão com manteiga e granulado de chocolate. = Brood met boter en hagelslag. (sobram: geen, groente,)",
           "vocabRefs": [
-            "v-graag-verb"
+            "v-boter",
+            "v-hagelslag"
           ]
         },
         {
           "id": "s2-u04-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quer água com ou sem gás?",
+          "prompt": "A fruta é saudável.",
           "tokens": [
-            "vis.",
-            "zonder",
-            "of",
-            "met",
+            "gezond.",
+            "niet",
+            "is",
             "graag",
-            "water",
-            "bubbels?",
-            "Wilt",
-            "u"
+            "Fruit"
           ],
           "answers": [
-            "Wilt u water met of zonder bubbels?"
+            "Fruit is gezond."
           ],
-          "explanation": "Quer água com ou sem gás? = Wilt u water met of zonder bubbels? (sobram: graag, vis.)",
-          "vocabRefs": []
+          "explanation": "A fruta é saudável. = Fruit is gezond. (sobram: niet, graag)",
+          "vocabRefs": [
+            "v-fruit",
+            "v-ui"
+          ]
         }
       ],
       "difficulty": 2,
@@ -2204,16 +2204,16 @@
       ],
       "examples": [
         {
-          "nl": "een broodje gezond",
-          "pt": "uma sandes com queijo, fiambre e salada"
+          "nl": "Ik eet elke dag fruit.",
+          "pt": "Como fruta todos os dias."
         },
         {
-          "nl": "Een glas sinaasappelsap, alstublieft.",
-          "pt": "Um copo de sumo de laranja, por favor."
+          "nl": "Ik houd van chocolade!",
+          "pt": "Adoro chocolate!"
         },
         {
-          "nl": "Ik eet graag vis.",
-          "pt": "Gosto de comer peixe."
+          "nl": "Dat is vies!",
+          "pt": "Isso sabe mal!"
         }
       ],
       "grammar": [],
@@ -2249,7 +2249,7 @@
           "id": "s2-u04-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «salgado» em neerlandês?",
+          "prompt": "Como se diz «doce» em neerlandês?",
           "options": [
             {
               "id": "a",
@@ -2263,13 +2263,13 @@
             },
             {
               "id": "c",
-              "text": "zout",
+              "text": "zoet",
               "correct": true
             }
           ],
-          "explanation": "salgado = «zout».",
+          "explanation": "doce = «zoet».",
           "vocabRefs": [
-            "v-zout"
+            "v-zoet"
           ]
         },
         {
@@ -2341,81 +2341,80 @@
           "id": "s2-u04-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não gosto muito de beber café.",
+          "prompt": "Adoro chocolate!",
           "tokens": [
-            "niet",
+            "chocolade!",
+            "van",
             "Ik",
-            "graag",
-            "Fruit",
-            "koffie.",
-            "drink",
-            "van"
+            "gratis.",
+            "aardappels,",
+            "houd"
           ],
           "answers": [
-            "Ik drink niet graag koffie."
+            "Ik houd van chocolade!"
           ],
-          "explanation": "Não gosto muito de beber café. = Ik drink niet graag koffie. (sobram: Fruit, van)",
-          "vocabRefs": [
-            "v-graag-verb"
-          ]
+          "explanation": "Adoro chocolate! = Ik houd van chocolade! (sobram: gratis., aardappels,)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u04-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A água da torneira é grátis.",
+          "prompt": "Quer água com ou sem gás?",
           "tokens": [
-            "Kraanwater",
-            "is",
+            "u",
+            "water",
+            "of",
+            "bubbels?",
+            "Wilt",
+            "zonder",
             "eet",
-            "gratis.",
-            "met"
+            "met",
+            "gezond."
           ],
           "answers": [
-            "Kraanwater is gratis."
+            "Wilt u water met of zonder bubbels?"
           ],
-          "explanation": "A água da torneira é grátis. = Kraanwater is gratis. (sobram: eet, met)",
-          "vocabRefs": [
-            "v-kraanwater"
-          ]
+          "explanation": "Quer água com ou sem gás? = Wilt u water met of zonder bubbels? (sobram: gezond., eet)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u04-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "vlees",
-          "pt": "carne",
-          "article": "het",
-          "explanation": "het vlees.",
+          "noun": "hagelslag",
+          "pt": "granulado de chocolate",
+          "article": "de",
+          "explanation": "de hagelslag.",
           "vocabRefs": [
-            "v-vlees"
+            "v-hagelslag"
           ]
         },
         {
           "id": "s2-u04-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik fiets graag.»?",
+          "prompt": "O que significa: «Een kilo aardappels, alstublieft.»?",
           "options": [
             {
               "id": "a",
-              "text": "Os tomates são saudáveis.",
+              "text": "Uma sandes de queijo, por favor.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Gosto de fruta e legumes, mas não gosto de queijo.",
+              "text": "Não como carne, sou vegetariano.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Gosto de andar de bicicleta.",
+              "text": "Um quilo de batatas, por favor.",
               "correct": true
             }
           ],
-          "explanation": "«Ik fiets graag.» = Gosto de andar de bicicleta.",
+          "explanation": "«Een kilo aardappels, alstublieft.» = Um quilo de batatas, por favor.",
           "vocabRefs": [
-            "v-graag-verb"
+            "v-aardappel"
           ]
         }
       ],
@@ -2486,16 +2485,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik eet geen vlees, ik ben vegetarisch.",
-          "pt": "Não como carne, sou vegetariano."
+          "nl": "een broodje gezond",
+          "pt": "uma sandes com queijo, fiambre e salada"
         },
         {
-          "nl": "Een kilo aardappels, alstublieft.",
-          "pt": "Um quilo de batatas, por favor."
+          "nl": "Dat is vies!",
+          "pt": "Isso sabe mal!"
         },
         {
-          "nl": "Een glas sinaasappelsap, alstublieft.",
-          "pt": "Um copo de sumo de laranja, por favor."
+          "nl": "Ik eet graag vis.",
+          "pt": "Gosto de comer peixe."
         }
       ],
       "grammar": [],
@@ -2506,18 +2505,18 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Como fruta todos os dias.",
           "tokens": [
-            "bubbels?",
-            "elke",
-            "dag",
-            "niet",
-            "eet",
             "fruit.",
-            "Ik"
+            "een",
+            "Ik",
+            "elke",
+            "eet",
+            "dag",
+            "boter"
           ],
           "answers": [
             "Ik eet elke dag fruit."
           ],
-          "explanation": "Como fruta todos os dias. = Ik eet elke dag fruit. (sobram: bubbels?, niet)",
+          "explanation": "Como fruta todos os dias. = Ik eet elke dag fruit. (sobram: boter, een)",
           "vocabRefs": [
             "v-fruit",
             "v-ui"
@@ -2527,58 +2526,55 @@
           "id": "s2-u04-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Adoro chocolate!",
+          "prompt": "Gosto de fruta e legumes, mas não gosto de queijo.",
           "tokens": [
+            "zijn",
+            "eet",
+            "en",
+            "ik",
+            "maar",
+            "lust",
+            "graag",
+            "groente,",
+            "kaas.",
             "Ik",
-            "aardappels,",
-            "houd",
-            "vegetarisch.",
-            "chocolade!",
-            "van"
+            "fruit",
+            "geen",
+            "een"
           ],
           "answers": [
-            "Ik houd van chocolade!"
+            "Ik eet graag fruit en groente, maar ik lust geen kaas."
           ],
-          "explanation": "Adoro chocolate! = Ik houd van chocolade! (sobram: aardappels,, vegetarisch.)",
-          "vocabRefs": []
+          "explanation": "Gosto de fruta e legumes, mas não gosto de queijo. = Ik eet graag fruit en groente, maar ik lust geen kaas. (sobram: een, zijn)",
+          "vocabRefs": [
+            "v-fruit",
+            "v-groente",
+            "v-ui",
+            "v-graag-verb"
+          ]
         },
         {
           "id": "s2-u04-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso sabe mal!",
+          "prompt": "Gosto de andar de bicicleta.",
           "tokens": [
-            "vies!",
-            "Dat",
-            "is",
-            "vegetarisch.",
-            "fiets"
+            "bubbels?",
+            "graag.",
+            "fiets",
+            "broodje",
+            "Ik"
           ],
           "answers": [
-            "Dat is vies!"
+            "Ik fiets graag."
           ],
-          "explanation": "Isso sabe mal! = Dat is vies! (sobram: vegetarisch., fiets)",
+          "explanation": "Gosto de andar de bicicleta. = Ik fiets graag. (sobram: broodje, bubbels?)",
           "vocabRefs": [
-            "v-vies"
+            "v-graag-verb"
           ]
         },
         {
           "id": "s2-u04-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik eet elke dag fruit.",
-          "answers": [
-            "Ik eet elke dag fruit."
-          ],
-          "translation": "Como fruta todos os dias.",
-          "explanation": "«Ik eet elke dag fruit.» = Como fruta todos os dias.",
-          "vocabRefs": [
-            "v-fruit",
-            "v-ui"
-          ]
-        },
-        {
-          "id": "s2-u04-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Een broodje kaas, alstublieft.",
@@ -2593,46 +2589,44 @@
           ]
         },
         {
+          "id": "s2-u04-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik eet elke dag fruit.",
+          "answers": [
+            "Ik eet elke dag fruit."
+          ],
+          "translation": "Como fruta todos os dias.",
+          "explanation": "«Ik eet elke dag fruit.» = Como fruta todos os dias.",
+          "vocabRefs": [
+            "v-fruit",
+            "v-ui"
+          ]
+        },
+        {
           "id": "s2-u04-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik fiets graag.",
+          "audioText": "Fruit is gezond.",
           "answers": [
-            "Ik fiets graag."
+            "Fruit is gezond."
           ],
-          "translation": "Gosto de andar de bicicleta.",
-          "explanation": "«Ik fiets graag.» = Gosto de andar de bicicleta.",
+          "translation": "A fruta é saudável.",
+          "explanation": "«Fruit is gezond.» = A fruta é saudável.",
           "vocabRefs": [
-            "v-graag-verb"
+            "v-fruit",
+            "v-ui"
           ]
         },
         {
           "id": "s2-u04-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Um copo de sumo de laranja, por favor.",
-          "tokens": [
-            "sinaasappelsap,",
-            "alstublieft.",
-            "Een",
-            "glas"
-          ],
-          "alternatives": [],
-          "explanation": "Een glas sinaasappelsap, alstublieft.",
-          "vocabRefs": [
-            "v-sinaasappel",
-            "v-sap"
-          ]
-        },
-        {
-          "id": "s2-u04-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "A fruta é saudável.",
           "tokens": [
+            "Fruit",
             "is",
-            "gezond.",
-            "Fruit"
+            "gezond."
           ],
           "alternatives": [],
           "explanation": "Fruit is gezond.",
@@ -2642,19 +2636,64 @@
           ]
         },
         {
+          "id": "s2-u04-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Não gosto muito de beber café.",
+          "tokens": [
+            "Ik",
+            "drink",
+            "niet",
+            "graag",
+            "koffie."
+          ],
+          "alternatives": [],
+          "explanation": "Ik drink niet graag koffie.",
+          "vocabRefs": [
+            "v-graag-verb"
+          ]
+        },
+        {
           "id": "s2-u04-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de sinaasappel»?",
+          "prompt": "O que significa «de banaan»?",
           "options": [
             {
               "id": "a",
-              "text": "laranja",
+              "text": "banana",
               "correct": true
             },
             {
               "id": "b",
-              "text": "batata",
+              "text": "fruta",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "tomate",
+              "correct": false
+            }
+          ],
+          "explanation": "«de banaan» = banana.",
+          "vocabRefs": [
+            "v-banaan"
+          ]
+        },
+        {
+          "id": "s2-u04-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «bruisend water»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "água com gás",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "tomate",
               "correct": false
             },
             {
@@ -2663,36 +2702,9 @@
               "correct": false
             }
           ],
-          "explanation": "«de sinaasappel» = laranja.",
+          "explanation": "«bruisend water» = água com gás.",
           "vocabRefs": [
-            "v-sinaasappel"
-          ]
-        },
-        {
-          "id": "s2-u04-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «zout»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "nojento",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "salgado",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "fruta",
-              "correct": false
-            }
-          ],
-          "explanation": "«zout» = salgado, sal.",
-          "vocabRefs": [
-            "v-zout"
+            "v-bruisend-water"
           ]
         }
       ],

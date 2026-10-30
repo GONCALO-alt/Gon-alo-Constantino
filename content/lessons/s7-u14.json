@@ -1988,16 +1988,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik kan mijn mening geven en onderbouwen.",
-          "pt": "Consigo dar a minha opinião e fundamentá-la."
+          "nl": "Schrijf een e-mail van 100–150 woorden waarin u (1) …, (2) … en (3) …",
+          "pt": "Escreva um e-mail de 100–150 palavras em que (1)…, (2)… e (3)…"
         },
         {
-          "nl": "Dit is een invuloefening.",
-          "pt": "Este é um exercício de preenchimento."
+          "nl": "Mijn sterke punt is lezen.",
+          "pt": "O meu ponto forte é a leitura."
         },
         {
-          "nl": "Lees de opdracht goed.",
-          "pt": "Lê bem o enunciado."
+          "nl": "Wat bedoelt de spreker met die opmerking?",
+          "pt": "O que quer dizer o falante com esse comentário?"
         }
       ],
       "grammar": [],
@@ -2050,9 +2050,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quais são os critérios de avaliação?",
           "tokens": [
+            "Wat",
             "zijn",
             "de",
-            "Wat",
             "beoordelingscriteria?"
           ],
           "alternatives": [],
@@ -2067,13 +2067,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Qual é o sentido geral do texto?",
           "tokens": [
-            "de",
-            "de",
-            "tekst?",
-            "strekking",
             "Wat",
             "is",
-            "van"
+            "de",
+            "strekking",
+            "van",
+            "de",
+            "tekst?"
           ],
           "alternatives": [],
           "explanation": "Wat is de strekking van de tekst?",
@@ -2087,11 +2087,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ouves cada excerto duas vezes.",
           "tokens": [
-            "twee",
-            "hoort",
-            "fragment",
-            "elk",
             "Je",
+            "hoort",
+            "elk",
+            "fragment",
+            "twee",
             "keer."
           ],
           "alternatives": [],
@@ -2104,96 +2104,97 @@
           "id": "s7-u14-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De spreker is een huisarts.»?",
+          "prompt": "O que significa: «Luistervaardigheid kun je trainen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Faz uma autoavaliação honesta.",
+              "text": "A expressão escrita é avaliada à parte.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Que tipo de texto é este?",
-              "correct": false
+              "text": "A compreensão oral treina-se.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O falante é um médico de família.",
-              "correct": true
+              "text": "O meu ponto forte é a leitura.",
+              "correct": false
             }
           ],
-          "explanation": "«De spreker is een huisarts.» = O falante é um médico de família.",
+          "explanation": "«Luistervaardigheid kun je trainen.» = A compreensão oral treina-se.",
           "vocabRefs": [
-            "v-spreker"
+            "v-luistervaardigheid"
           ]
         },
         {
           "id": "s7-u14-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Lees eerst de examenvraag, dan de tekst.»?",
+          "prompt": "O que significa: «Ik kan mijn mening geven en onderbouwen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Lê primeiro a pergunta, depois o texto.",
-              "correct": true
+              "text": "Ouves cada excerto duas vezes.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Faz uma autoavaliação honesta.",
-              "correct": false
+              "text": "Consigo dar a minha opinião e fundamentá-la.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O que quer dizer o falante com esse comentário?",
+              "text": "Qual é o sentido geral do texto?",
               "correct": false
             }
           ],
-          "explanation": "«Lees eerst de examenvraag, dan de tekst.» = Lê primeiro a pergunta, depois o texto.",
+          "explanation": "«Ik kan mijn mening geven en onderbouwen.» = Consigo dar a minha opinião e fundamentá-la.",
           "vocabRefs": [
-            "v-examenvraag"
+            "v-ik-kan"
           ]
         },
         {
           "id": "s7-u14-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que tipo de texto é este?",
+          "prompt": "Esta parte testa a tua compreensão de leitura.",
           "tokens": [
-            "is",
-            "score?",
-            "tekstsoort",
-            "en",
-            "dit?",
-            "Welke"
+            "je",
+            "elk",
+            "Dit",
+            "leesvaardigheid.",
+            "onderdeel",
+            "een",
+            "test"
           ],
           "answers": [
-            "Welke tekstsoort is dit?"
+            "Dit onderdeel test je leesvaardigheid."
           ],
-          "explanation": "Que tipo de texto é este? = Welke tekstsoort is dit? (sobram: en, score?)",
+          "explanation": "Esta parte testa a tua compreensão de leitura. = Dit onderdeel test je leesvaardigheid. (sobram: een, elk)",
           "vocabRefs": [
-            "v-tekstsoort"
+            "v-leesvaardigheid"
           ]
         },
         {
           "id": "s7-u14-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é a tua pontuação?",
+          "prompt": "A expressão escrita é avaliada à parte.",
           "tokens": [
-            "is",
-            "je",
-            "score?",
-            "op",
-            "Wat",
-            "de"
+            "wordt",
+            "apart",
+            "Schrijfvaardigheid",
+            "strekking",
+            "beoordeeld.",
+            "geven"
           ],
           "answers": [
-            "Wat is je score?"
+            "Schrijfvaardigheid wordt apart beoordeeld."
           ],
-          "explanation": "Qual é a tua pontuação? = Wat is je score? (sobram: de, op)",
+          "explanation": "A expressão escrita é avaliada à parte. = Schrijfvaardigheid wordt apart beoordeeld. (sobram: strekking, geven)",
           "vocabRefs": [
-            "v-score"
+            "v-schrijfvaardigheid"
           ]
         }
       ],
@@ -2259,12 +2260,12 @@
       ],
       "examples": [
         {
-          "nl": "Bij een meerkeuzevraag is één antwoord goed.",
-          "pt": "Numa pergunta de escolha múltipla, uma resposta está certa."
+          "nl": "Je hoort elk fragment twee keer.",
+          "pt": "Ouves cada excerto duas vezes."
         },
         {
-          "nl": "Schrijfvaardigheid wordt apart beoordeeld.",
-          "pt": "A expressão escrita é avaliada à parte."
+          "nl": "Welke tekstsoort is dit?",
+          "pt": "Que tipo de texto é este?"
         },
         {
           "nl": "Wat zijn de beoordelingscriteria?",
@@ -2277,200 +2278,204 @@
           "id": "s7-u14-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «o que quer dizer o falante?» em neerlandês?",
+          "prompt": "Como se diz «o sentido geral do texto» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "sterk punt",
-              "correct": false
+              "text": "de strekking van de tekst",
+              "correct": true
             },
             {
               "id": "b",
               "text": "wat bedoelt de spreker?",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "opgave",
+              "text": "aantal woorden",
               "correct": false
             }
           ],
-          "explanation": "o que quer dizer o falante? = «wat bedoelt de spreker?».",
+          "explanation": "o sentido geral do texto = «de strekking van de tekst».",
           "vocabRefs": [
-            "v-bedoelen-spreker"
+            "v-strekking-tekst"
           ]
         },
         {
           "id": "s7-u14-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ponto a melhorar» em neerlandês?",
+          "prompt": "Como se diz «ponto forte» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "aandachtspunt",
-              "correct": true
+              "text": "beoordelingscriteria",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "aantal woorden",
+              "text": "luistervaardigheid",
               "correct": false
             },
             {
               "id": "c",
-              "text": "spreker",
-              "correct": false
+              "text": "sterk punt",
+              "correct": true
             }
           ],
-          "explanation": "ponto a melhorar = «aandachtspunt».",
+          "explanation": "ponto forte = «sterk punt».",
           "vocabRefs": [
-            "v-aandachtspunt"
+            "v-sterk-punt"
           ]
         },
         {
           "id": "s7-u14-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Bij een ___ is één antwoord goed.",
-          "translation": "Numa pergunta de escolha múltipla, uma resposta está certa.",
+          "sentence": "Een ___ is mijn uitspraak.",
+          "translation": "Um ponto a melhorar é a minha pronúncia.",
           "answers": [
-            "meerkeuzevraag"
+            "aandachtspunt"
           ],
           "choices": [
-            "score",
             "examenvraag",
-            "meerkeuzevraag"
+            "tekstsoort",
+            "aandachtspunt"
           ],
-          "explanation": "Bij een meerkeuzevraag is één antwoord goed.",
+          "explanation": "Een aandachtspunt is mijn uitspraak.",
           "vocabRefs": [
-            "v-meerkeuzevraag"
+            "v-aandachtspunt"
           ]
         },
         {
           "id": "s7-u14-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wat bedoelt de ___ met die opmerking?",
-          "translation": "O que quer dizer o falante com esse comentário?",
+          "sentence": "___ wordt apart beoordeeld.",
+          "translation": "A expressão escrita é avaliada à parte.",
           "answers": [
-            "spreker"
+            "Schrijfvaardigheid"
           ],
           "choices": [
-            "spreker",
-            "luistervaardigheid",
-            "opgave"
+            "Opdracht",
+            "Opgave",
+            "Schrijfvaardigheid"
           ],
-          "explanation": "Wat bedoelt de spreker met die opmerking?",
+          "explanation": "Schrijfvaardigheid wordt apart beoordeeld.",
           "vocabRefs": [
-            "v-spreker"
+            "v-schrijfvaardigheid"
           ]
         },
         {
           "id": "s7-u14-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik kan een vergadering volgen.",
+          "audioText": "Wat zijn de beoordelingscriteria?",
           "answers": [
-            "Ik kan een vergadering volgen."
+            "Wat zijn de beoordelingscriteria?"
           ],
-          "translation": "Consigo acompanhar uma reunião.",
-          "explanation": "«Ik kan een vergadering volgen.» = Consigo acompanhar uma reunião.",
+          "translation": "Quais são os critérios de avaliação?",
+          "explanation": "«Wat zijn de beoordelingscriteria?» = Quais são os critérios de avaliação?",
           "vocabRefs": [
-            "v-ik-kan"
+            "v-beoordelingscriteria"
           ]
         },
         {
           "id": "s7-u14-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Bij een meerkeuzevraag is één antwoord goed.",
+          "audioText": "Mijn sterke punt is lezen.",
           "answers": [
-            "Bij een meerkeuzevraag is één antwoord goed."
+            "Mijn sterke punt is lezen."
           ],
-          "translation": "Numa pergunta de escolha múltipla, uma resposta está certa.",
-          "explanation": "«Bij een meerkeuzevraag is één antwoord goed.» = Numa pergunta de escolha múltipla, uma resposta está certa.",
-          "vocabRefs": [
-            "v-meerkeuzevraag"
-          ]
+          "translation": "O meu ponto forte é a leitura.",
+          "explanation": "«Mijn sterke punt is lezen.» = O meu ponto forte é a leitura.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u14-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Este é um exercício de preenchimento.",
+          "prompt": "Consigo dar a minha opinião e fundamentá-la.",
           "tokens": [
-            "goed.",
-            "invuloefening.",
-            "is",
-            "Dit",
-            "op",
-            "een"
+            "Ik",
+            "mening",
+            "onderbouwen.",
+            "kan",
+            "mijn",
+            "die",
+            "Doe",
+            "geven",
+            "en"
           ],
           "answers": [
-            "Dit is een invuloefening."
+            "Ik kan mijn mening geven en onderbouwen."
           ],
-          "explanation": "Este é um exercício de preenchimento. = Dit is een invuloefening. (sobram: goed., op)",
+          "explanation": "Consigo dar a minha opinião e fundamentá-la. = Ik kan mijn mening geven en onderbouwen. (sobram: Doe, die)",
           "vocabRefs": [
-            "v-invuloefening"
+            "v-ik-kan"
           ]
         },
         {
           "id": "s7-u14-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu ponto forte é a leitura.",
+          "prompt": "Ouves cada excerto duas vezes.",
           "tokens": [
-            "Mijn",
-            "is",
+            "Je",
+            "twee",
+            "elk",
+            "hoort",
             "lezen.",
-            "punt",
-            "sterke",
-            "eerlijke",
-            "apart"
+            "fragment",
+            "keer.",
+            "woorden."
           ],
           "answers": [
-            "Mijn sterke punt is lezen."
+            "Je hoort elk fragment twee keer."
           ],
-          "explanation": "O meu ponto forte é a leitura. = Mijn sterke punt is lezen. (sobram: apart, eerlijke)",
-          "vocabRefs": []
+          "explanation": "Ouves cada excerto duas vezes. = Je hoort elk fragment twee keer. (sobram: woorden., lezen.)",
+          "vocabRefs": [
+            "v-fragment"
+          ]
         },
         {
           "id": "s7-u14-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "beoordelingscriteria",
-          "pt": "critérios de avaliação",
+          "noun": "schrijfvaardigheid",
+          "pt": "expressão escrita",
           "article": "de",
-          "explanation": "de beoordelingscriteria.",
+          "explanation": "de schrijfvaardigheid.",
           "vocabRefs": [
-            "v-beoordelingscriteria"
+            "v-schrijfvaardigheid"
           ]
         },
         {
           "id": "s7-u14-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat zijn de beoordelingscriteria?»?",
+          "prompt": "O que significa: «Let op het aantal woorden.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quais são os critérios de avaliação?",
+              "text": "Atenção ao número de palavras.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Esta parte testa a tua compreensão de leitura.",
+              "text": "Ouves cada excerto duas vezes.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Faz todos os exercícios.",
+              "text": "Faz uma autoavaliação honesta.",
               "correct": false
             }
           ],
-          "explanation": "«Wat zijn de beoordelingscriteria?» = Quais são os critérios de avaliação?",
+          "explanation": "«Let op het aantal woorden.» = Atenção ao número de palavras.",
           "vocabRefs": [
-            "v-beoordelingscriteria"
+            "v-woordenaantal"
           ]
         }
       ],
@@ -2554,124 +2559,124 @@
           "id": "s7-u14-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Numa pergunta de escolha múltipla, uma resposta está certa.",
+          "prompt": "O meu ponto forte é a leitura.",
           "tokens": [
-            "één",
-            "Bij",
-            "Wat",
-            "goed.",
-            "een",
-            "antwoord",
+            "tekst?",
+            "lezen.",
             "is",
-            "meerkeuzevraag",
-            "tekstsoort"
+            "punt",
+            "Wat",
+            "Mijn",
+            "sterke"
           ],
           "answers": [
-            "Bij een meerkeuzevraag is één antwoord goed."
+            "Mijn sterke punt is lezen."
           ],
-          "explanation": "Numa pergunta de escolha múltipla, uma resposta está certa. = Bij een meerkeuzevraag is één antwoord goed. (sobram: tekstsoort, Wat)",
-          "vocabRefs": [
-            "v-meerkeuzevraag"
-          ]
+          "explanation": "O meu ponto forte é a leitura. = Mijn sterke punt is lezen. (sobram: Wat, tekst?)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u14-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Lê bem o enunciado.",
+          "prompt": "Um ponto a melhorar é a minha pronúncia.",
           "tokens": [
-            "Lees",
-            "goed.",
-            "de",
+            "Ik",
             "opdracht",
-            "Dit",
-            "Wat"
+            "mijn",
+            "aandachtspunt",
+            "uitspraak.",
+            "is",
+            "Een"
           ],
           "answers": [
-            "Lees de opdracht goed."
+            "Een aandachtspunt is mijn uitspraak."
           ],
-          "explanation": "Lê bem o enunciado. = Lees de opdracht goed. (sobram: Dit, Wat)",
+          "explanation": "Um ponto a melhorar é a minha pronúncia. = Een aandachtspunt is mijn uitspraak. (sobram: opdracht, Ik)",
           "vocabRefs": [
-            "v-opdracht"
+            "v-aandachtspunt"
           ]
         },
         {
           "id": "s7-u14-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A compreensão oral treina-se.",
+          "prompt": "Qual é o sentido geral do texto?",
           "tokens": [
-            "Luistervaardigheid",
+            "is",
+            "de",
+            "Ik",
+            "de",
+            "strekking",
+            "van",
+            "Dit",
             "Wat",
-            "tekst?",
-            "je",
-            "trainen.",
-            "kun"
+            "tekst?"
           ],
           "answers": [
-            "Luistervaardigheid kun je trainen."
+            "Wat is de strekking van de tekst?"
           ],
-          "explanation": "A compreensão oral treina-se. = Luistervaardigheid kun je trainen. (sobram: Wat, tekst?)",
+          "explanation": "Qual é o sentido geral do texto? = Wat is de strekking van de tekst? (sobram: Dit, Ik)",
           "vocabRefs": [
-            "v-luistervaardigheid"
+            "v-strekking-tekst"
           ]
         },
         {
           "id": "s7-u14-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De spreker is een huisarts.",
+          "audioText": "Een aandachtspunt is mijn uitspraak.",
           "answers": [
-            "De spreker is een huisarts."
+            "Een aandachtspunt is mijn uitspraak."
           ],
-          "translation": "O falante é um médico de família.",
-          "explanation": "«De spreker is een huisarts.» = O falante é um médico de família.",
+          "translation": "Um ponto a melhorar é a minha pronúncia.",
+          "explanation": "«Een aandachtspunt is mijn uitspraak.» = Um ponto a melhorar é a minha pronúncia.",
           "vocabRefs": [
-            "v-spreker"
+            "v-aandachtspunt"
           ]
         },
         {
           "id": "s7-u14-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn sterke punt is lezen.",
+          "audioText": "Welke tekstsoort is dit?",
           "answers": [
-            "Mijn sterke punt is lezen."
+            "Welke tekstsoort is dit?"
           ],
-          "translation": "O meu ponto forte é a leitura.",
-          "explanation": "«Mijn sterke punt is lezen.» = O meu ponto forte é a leitura.",
-          "vocabRefs": []
+          "translation": "Que tipo de texto é este?",
+          "explanation": "«Welke tekstsoort is dit?» = Que tipo de texto é este?",
+          "vocabRefs": [
+            "v-tekstsoort"
+          ]
         },
         {
           "id": "s7-u14-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat is de strekking van de tekst?",
+          "audioText": "Maak alle opgaven.",
           "answers": [
-            "Wat is de strekking van de tekst?"
+            "Maak alle opgaven."
           ],
-          "translation": "Qual é o sentido geral do texto?",
-          "explanation": "«Wat is de strekking van de tekst?» = Qual é o sentido geral do texto?",
+          "translation": "Faz todos os exercícios.",
+          "explanation": "«Maak alle opgaven.» = Faz todos os exercícios.",
           "vocabRefs": [
-            "v-strekking-tekst"
+            "v-opgave"
           ]
         },
         {
           "id": "s7-u14-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Consigo dar a minha opinião e fundamentá-la.",
+          "translation": "Consigo acompanhar uma reunião.",
           "tokens": [
-            "geven",
-            "en",
-            "mijn",
-            "onderbouwen.",
-            "kan",
             "Ik",
-            "mening"
+            "kan",
+            "een",
+            "vergadering",
+            "volgen."
           ],
           "alternatives": [],
-          "explanation": "Ik kan mijn mening geven en onderbouwen.",
+          "explanation": "Ik kan een vergadering volgen.",
           "vocabRefs": [
             "v-ik-kan"
           ]
@@ -2682,8 +2687,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Lê bem o enunciado.",
           "tokens": [
-            "de",
             "Lees",
+            "de",
             "opdracht",
             "goed."
           ],

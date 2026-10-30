@@ -1893,12 +1893,12 @@
       ],
       "examples": [
         {
-          "nl": "Klassen zijn te groot.",
-          "pt": "As turmas são demasiado grandes."
+          "nl": "Mijn dochter zit in groep 5.",
+          "pt": "A minha filha anda no 5.º grupo (3.º ano)."
         },
         {
-          "nl": "Ik doe het inburgeringsexamen in mei.",
-          "pt": "Faço o exame de integração em maio."
+          "nl": "Volgende week is het tienminutengesprek.",
+          "pt": "Para a semana é a reunião de pais."
         },
         {
           "nl": "Er is een groot lerarentekort.",
@@ -1955,12 +1955,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quero fazer formação em informática.",
           "tokens": [
-            "me",
-            "in",
-            "IT.",
-            "wil",
             "Ik",
-            "bijscholen"
+            "wil",
+            "me",
+            "bijscholen",
+            "in",
+            "IT."
           ],
           "alternatives": [],
           "explanation": "Ik wil me bijscholen in IT.",
@@ -1974,12 +1974,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Estou a fazer estágio num atelier de arquitetura.",
           "tokens": [
-            "bij",
+            "Ik",
             "loop",
             "stage",
+            "bij",
             "een",
-            "architectenbureau.",
-            "Ik"
+            "architectenbureau."
           ],
           "alternatives": [],
           "explanation": "Ik loop stage bij een architectenbureau.",
@@ -1993,8 +1993,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os alunos sentem muita pressão.",
           "tokens": [
-            "ervaren",
             "Leerlingen",
+            "ervaren",
             "veel",
             "prestatiedruk."
           ],
@@ -2009,98 +2009,98 @@
           "id": "s5-u05-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik loop stage bij een architectenbureau.»?",
+          "prompt": "O que significa: «Er is een groot lerarentekort.»?",
           "options": [
             {
               "id": "a",
-              "text": "Estou a fazer estágio num atelier de arquitetura.",
-              "correct": true
+              "text": "O diretor de turma liga-nos sobre as notas dele.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Faço o exame de integração em maio.",
+              "text": "Depois da primária vai para o vwo.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Pedi o reconhecimento do meu diploma.",
-              "correct": false
+              "text": "Há uma grande falta de professores.",
+              "correct": true
             }
           ],
-          "explanation": "«Ik loop stage bij een architectenbureau.» = Estou a fazer estágio num atelier de arquitetura.",
+          "explanation": "«Er is een groot lerarentekort.» = Há uma grande falta de professores.",
           "vocabRefs": [
-            "v-stage"
+            "v-lerarentekort"
           ]
         },
         {
           "id": "s5-u05-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het vmbo duurt vier jaar.»?",
+          "prompt": "O que significa: «Klassen zijn te groot.»?",
           "options": [
             {
               "id": "a",
+              "text": "As turmas são demasiado grandes.",
+              "correct": true
+            },
+            {
+              "id": "b",
               "text": "Os estudantes podem pedir dinheiro emprestado à DUO.",
               "correct": false
             },
             {
-              "id": "b",
-              "text": "O vmbo dura quatro anos.",
-              "correct": true
-            },
-            {
               "id": "c",
-              "text": "Ela frequenta um curso de línguas de nível B1.",
+              "text": "Os alunos sentem muita pressão.",
               "correct": false
             }
           ],
-          "explanation": "«Het vmbo duurt vier jaar.» = O vmbo dura quatro anos.",
-          "vocabRefs": [
-            "v-vmbo",
-            "v-mbo"
-          ]
+          "explanation": "«Klassen zijn te groot.» = As turmas são demasiado grandes.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u05-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Faço o exame de integração em maio.",
+          "prompt": "Para a semana é a reunião de pais.",
           "tokens": [
+            "tienminutengesprek.",
+            "Volgende",
             "Ik",
-            "in",
-            "mei.",
+            "is",
+            "week",
             "het",
-            "heeft",
-            "doe",
-            "inburgeringsexamen",
-            "prestatiedruk."
+            "Ze"
           ],
           "answers": [
-            "Ik doe het inburgeringsexamen in mei."
+            "Volgende week is het tienminutengesprek."
           ],
-          "explanation": "Faço o exame de integração em maio. = Ik doe het inburgeringsexamen in mei. (sobram: heeft, prestatiedruk.)",
+          "explanation": "Para a semana é a reunião de pais. = Volgende week is het tienminutengesprek. (sobram: Ze, Ik)",
           "vocabRefs": [
-            "v-inburgering"
+            "v-tienminutengesprek"
           ]
         },
         {
           "id": "s5-u05-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "As turmas são demasiado grandes.",
+          "prompt": "Ela estuda enfermagem no ensino politécnico.",
           "tokens": [
-            "geld",
-            "groot.",
-            "ervaren",
-            "te",
-            "zijn",
-            "Klassen"
+            "verpleegkunde",
+            "hbo.",
+            "op",
+            "het",
+            "Ze",
+            "inburgeringsexamen",
+            "groep",
+            "studeert"
           ],
           "answers": [
-            "Klassen zijn te groot."
+            "Ze studeert verpleegkunde op het hbo."
           ],
-          "explanation": "As turmas são demasiado grandes. = Klassen zijn te groot. (sobram: geld, ervaren)",
-          "vocabRefs": []
+          "explanation": "Ela estuda enfermagem no ensino politécnico. = Ze studeert verpleegkunde op het hbo. (sobram: inburgeringsexamen, groep)",
+          "vocabRefs": [
+            "v-hbo"
+          ]
         }
       ],
       "difficulty": 4,
@@ -2169,16 +2169,16 @@
       ],
       "examples": [
         {
+          "nl": "Leerlingen ervaren veel prestatiedruk.",
+          "pt": "Os alunos sentem muita pressão."
+        },
+        {
           "nl": "Klassen zijn te groot.",
           "pt": "As turmas são demasiado grandes."
         },
         {
-          "nl": "Na de basisschool gaat hij naar het vwo.",
-          "pt": "Depois da primária vai para o vwo."
-        },
-        {
-          "nl": "Ze heeft een goed rapport.",
-          "pt": "Ela tem um bom boletim."
+          "nl": "Ze studeert verpleegkunde op het hbo.",
+          "pt": "Ela estuda enfermagem no ensino politécnico."
         }
       ],
       "grammar": [],
@@ -2187,119 +2187,118 @@
           "id": "s5-u05-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «curso de línguas» em neerlandês?",
+          "prompt": "Como se diz «ano» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "ouderavond",
+              "text": "inburgering",
               "correct": false
             },
             {
               "id": "b",
               "text": "taalcursus",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "tienminutengesprek",
-              "correct": false
+              "text": "groep",
+              "correct": true
             }
           ],
-          "explanation": "curso de línguas = «taalcursus».",
+          "explanation": "ano = «groep».",
           "vocabRefs": [
-            "v-taalcursus"
+            "v-groep"
           ]
         },
         {
           "id": "s5-u05-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «universidade» em neerlandês?",
+          "prompt": "Como se diz «reunião de pais» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "bijscholen",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "universiteit",
+              "text": "tienminutengesprek",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "havo",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "je kind ziekmelden",
+              "text": "inburgering",
               "correct": false
             }
           ],
-          "explanation": "universidade = «universiteit».",
+          "explanation": "reunião de pais = «tienminutengesprek».",
           "vocabRefs": [
-            "v-universiteit"
+            "v-tienminutengesprek"
           ]
         },
         {
           "id": "s5-u05-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mijn dochter zit in ___ 5.",
-          "translation": "A minha filha anda no 5.º grupo (3.º ano).",
+          "sentence": "Ik wil me ___ in IT.",
+          "translation": "Quero fazer formação em informática.",
           "answers": [
-            "groep"
+            "bijscholen"
           ],
           "choices": [
-            "lerarentekort",
-            "hbo",
-            "groep"
+            "bijscholen",
+            "taalcursus",
+            "schooladvies"
           ],
-          "explanation": "Mijn dochter zit in groep 5.",
+          "explanation": "Ik wil me bijscholen in IT.",
           "vocabRefs": [
-            "v-groep"
+            "v-bijscholen"
           ]
         },
         {
           "id": "s5-u05-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ze volgt een ___ op B1-niveau.",
-          "translation": "Ela frequenta um curso de línguas de nível B1.",
+          "sentence": "Volgende week is het ___.",
+          "translation": "Para a semana é a reunião de pais.",
           "answers": [
-            "taalcursus"
+            "tienminutengesprek"
           ],
           "choices": [
-            "universiteit",
-            "taalcursus",
-            "studiefinanciering"
+            "bijscholen",
+            "stage",
+            "tienminutengesprek"
           ],
-          "explanation": "Ze volgt een taalcursus op B1-niveau.",
+          "explanation": "Volgende week is het tienminutengesprek.",
           "vocabRefs": [
-            "v-taalcursus"
+            "v-tienminutengesprek"
           ]
         },
         {
           "id": "s5-u05-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Leerlingen ervaren veel prestatiedruk.",
+          "audioText": "Ik loop stage bij een architectenbureau.",
           "answers": [
-            "Leerlingen ervaren veel prestatiedruk."
+            "Ik loop stage bij een architectenbureau."
           ],
-          "translation": "Os alunos sentem muita pressão.",
-          "explanation": "«Leerlingen ervaren veel prestatiedruk.» = Os alunos sentem muita pressão.",
+          "translation": "Estou a fazer estágio num atelier de arquitetura.",
+          "explanation": "«Ik loop stage bij een architectenbureau.» = Estou a fazer estágio num atelier de arquitetura.",
           "vocabRefs": [
-            "v-leerling",
-            "v-prestatiedruk"
+            "v-stage"
           ]
         },
         {
           "id": "s5-u05-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Klassen zijn te groot.",
+          "audioText": "Ze zit in de brugklas.",
           "answers": [
-            "Klassen zijn te groot."
+            "Ze zit in de brugklas."
           ],
-          "translation": "As turmas são demasiado grandes.",
-          "explanation": "«Klassen zijn te groot.» = As turmas são demasiado grandes.",
+          "translation": "Está no primeiro ano do secundário.",
+          "explanation": "«Ze zit in de brugklas.» = Está no primeiro ano do secundário.",
           "vocabRefs": []
         },
         {
@@ -2308,20 +2307,20 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "O diretor de turma liga-nos sobre as notas dele.",
           "tokens": [
-            "ons",
-            "De",
-            "zoon",
+            "mentor",
             "over",
-            "zijn",
-            "belt",
-            "architectenbureau.",
+            "ons",
             "cijfers.",
-            "mentor"
+            "geld",
+            "De",
+            "Volgende",
+            "belt",
+            "zijn"
           ],
           "answers": [
             "De mentor belt ons over zijn cijfers."
           ],
-          "explanation": "O diretor de turma liga-nos sobre as notas dele. = De mentor belt ons over zijn cijfers. (sobram: architectenbureau., zoon)",
+          "explanation": "O diretor de turma liga-nos sobre as notas dele. = De mentor belt ons over zijn cijfers. (sobram: geld, Volgende)",
           "vocabRefs": [
             "v-mentor"
           ]
@@ -2330,61 +2329,61 @@
           "id": "s5-u05-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há uma grande falta de professores.",
+          "prompt": "Ela tem um bom boletim.",
           "tokens": [
-            "groep",
-            "een",
-            "architectenbureau.",
-            "is",
-            "groot",
-            "Er",
-            "lerarentekort."
+            "rapport.",
+            "duurt",
+            "goed",
+            "Volgende",
+            "Ze",
+            "heeft",
+            "een"
           ],
           "answers": [
-            "Er is een groot lerarentekort."
+            "Ze heeft een goed rapport."
           ],
-          "explanation": "Há uma grande falta de professores. = Er is een groot lerarentekort. (sobram: architectenbureau., groep)",
+          "explanation": "Ela tem um bom boletim. = Ze heeft een goed rapport. (sobram: Volgende, duurt)",
           "vocabRefs": [
-            "v-lerarentekort"
+            "v-rapport"
           ]
         },
         {
           "id": "s5-u05-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "ouderavond",
-          "pt": "reunião de pais",
+          "noun": "universiteit",
+          "pt": "universidade",
           "article": "de",
-          "explanation": "de ouderavond.",
+          "explanation": "de universiteit.",
           "vocabRefs": [
-            "v-ouderavond"
+            "v-universiteit"
           ]
         },
         {
           "id": "s5-u05-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik doe het inburgeringsexamen in mei.»?",
+          "prompt": "O que significa: «Mijn dochter zit in groep 5.»?",
           "options": [
             {
               "id": "a",
-              "text": "O vmbo dura quatro anos.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Faço o exame de integração em maio.",
+              "text": "A minha filha anda no 5.º grupo (3.º ano).",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Ela tem um bom boletim.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "O diretor de turma liga-nos sobre as notas dele.",
+              "text": "Os alunos sentem muita pressão.",
               "correct": false
             }
           ],
-          "explanation": "«Ik doe het inburgeringsexamen in mei.» = Faço o exame de integração em maio.",
+          "explanation": "«Mijn dochter zit in groep 5.» = A minha filha anda no 5.º grupo (3.º ano).",
           "vocabRefs": [
-            "v-inburgering"
+            "v-groep"
           ]
         }
       ],
@@ -2454,16 +2453,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik wil me bijscholen in IT.",
-          "pt": "Quero fazer formação em informática."
+          "nl": "Kansengelijkheid is belangrijk.",
+          "pt": "A igualdade de oportunidades é importante."
         },
         {
-          "nl": "Hij doet een mbo-opleiding tot kok.",
-          "pt": "Ele faz um curso profissional de cozinheiro."
+          "nl": "Leerlingen ervaren veel prestatiedruk.",
+          "pt": "Os alunos sentem muita pressão."
         },
         {
-          "nl": "Studenten kunnen geld lenen van DUO.",
-          "pt": "Os estudantes podem pedir dinheiro emprestado à DUO."
+          "nl": "Ik loop stage bij een architectenbureau.",
+          "pt": "Estou a fazer estágio num atelier de arquitetura."
         }
       ],
       "grammar": [],
@@ -2472,76 +2471,80 @@
           "id": "s5-u05-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela estuda enfermagem no ensino politécnico.",
+          "prompt": "Os alunos sentem muita pressão.",
           "tokens": [
-            "Ze",
-            "me",
-            "hbo.",
-            "Volgende",
-            "het",
-            "studeert",
-            "verpleegkunde",
-            "op"
+            "ervaren",
+            "prestatiedruk.",
+            "zit",
+            "veel",
+            "hij",
+            "Leerlingen"
           ],
           "answers": [
-            "Ze studeert verpleegkunde op het hbo."
+            "Leerlingen ervaren veel prestatiedruk."
           ],
-          "explanation": "Ela estuda enfermagem no ensino politécnico. = Ze studeert verpleegkunde op het hbo. (sobram: me, Volgende)",
+          "explanation": "Os alunos sentem muita pressão. = Leerlingen ervaren veel prestatiedruk. (sobram: zit, hij)",
           "vocabRefs": [
-            "v-hbo"
+            "v-leerling",
+            "v-prestatiedruk"
           ]
         },
         {
           "id": "s5-u05-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Os estudantes podem pedir dinheiro emprestado à DUO.",
+          "prompt": "O vmbo dura quatro anos.",
           "tokens": [
-            "havo-advies.",
-            "van",
-            "te",
-            "kunnen",
-            "Studenten",
-            "DUO.",
-            "geld",
-            "lenen"
+            "Leerlingen",
+            "basisschool",
+            "jaar.",
+            "vmbo",
+            "duurt",
+            "Het",
+            "vier"
           ],
           "answers": [
-            "Studenten kunnen geld lenen van DUO."
+            "Het vmbo duurt vier jaar."
           ],
-          "explanation": "Os estudantes podem pedir dinheiro emprestado à DUO. = Studenten kunnen geld lenen van DUO. (sobram: te, havo-advies.)",
-          "vocabRefs": []
+          "explanation": "O vmbo dura quatro anos. = Het vmbo duurt vier jaar. (sobram: basisschool, Leerlingen)",
+          "vocabRefs": [
+            "v-vmbo",
+            "v-mbo"
+          ]
         },
         {
           "id": "s5-u05-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Queria comunicar que o meu filho está doente.",
+          "prompt": "Estou a fazer estágio num atelier de arquitetura.",
           "tokens": [
-            "mijn",
             "Ik",
-            "geld",
-            "wil",
-            "zoon",
-            "ziekmelden.",
-            "verpleegkunde"
+            "belangrijk.",
+            "loop",
+            "architectenbureau.",
+            "bij",
+            "stage",
+            "een",
+            "Er"
           ],
           "answers": [
-            "Ik wil mijn zoon ziekmelden."
+            "Ik loop stage bij een architectenbureau."
           ],
-          "explanation": "Queria comunicar que o meu filho está doente. = Ik wil mijn zoon ziekmelden. (sobram: geld, verpleegkunde)",
-          "vocabRefs": []
+          "explanation": "Estou a fazer estágio num atelier de arquitetura. = Ik loop stage bij een architectenbureau. (sobram: belangrijk., Er)",
+          "vocabRefs": [
+            "v-stage"
+          ]
         },
         {
           "id": "s5-u05-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ze zit in de brugklas.",
+          "audioText": "Klassen zijn te groot.",
           "answers": [
-            "Ze zit in de brugklas."
+            "Klassen zijn te groot."
           ],
-          "translation": "Está no primeiro ano do secundário.",
-          "explanation": "«Ze zit in de brugklas.» = Está no primeiro ano do secundário.",
+          "translation": "As turmas são demasiado grandes.",
+          "explanation": "«Klassen zijn te groot.» = As turmas são demasiado grandes.",
           "vocabRefs": []
         },
         {
@@ -2562,47 +2565,28 @@
           "id": "s5-u05-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kansengelijkheid is belangrijk.",
+          "audioText": "Ze volgt een taalcursus op B1-niveau.",
           "answers": [
-            "Kansengelijkheid is belangrijk."
+            "Ze volgt een taalcursus op B1-niveau."
           ],
-          "translation": "A igualdade de oportunidades é importante.",
-          "explanation": "«Kansengelijkheid is belangrijk.» = A igualdade de oportunidades é importante.",
+          "translation": "Ela frequenta um curso de línguas de nível B1.",
+          "explanation": "«Ze volgt een taalcursus op B1-niveau.» = Ela frequenta um curso de línguas de nível B1.",
           "vocabRefs": [
-            "v-kansengelijkheid"
+            "v-taalcursus"
           ]
         },
         {
           "id": "s5-u05-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ela estuda enfermagem no ensino politécnico.",
-          "tokens": [
-            "Ze",
-            "verpleegkunde",
-            "studeert",
-            "op",
-            "hbo.",
-            "het"
-          ],
-          "alternatives": [],
-          "explanation": "Ze studeert verpleegkunde op het hbo.",
-          "vocabRefs": [
-            "v-hbo"
-          ]
-        },
-        {
-          "id": "s5-u05-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "A minha filha anda no 5.º grupo (3.º ano).",
           "tokens": [
-            "in",
-            "5.",
+            "Mijn",
             "dochter",
-            "groep",
             "zit",
-            "Mijn"
+            "in",
+            "groep",
+            "5."
           ],
           "alternatives": [],
           "explanation": "Mijn dochter zit in groep 5.",
@@ -2611,57 +2595,76 @@
           ]
         },
         {
+          "id": "s5-u05-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Ele faz um curso profissional de cozinheiro.",
+          "tokens": [
+            "Hij",
+            "doet",
+            "een",
+            "mbo-opleiding",
+            "tot",
+            "kok."
+          ],
+          "alternatives": [],
+          "explanation": "Hij doet een mbo-opleiding tot kok.",
+          "vocabRefs": [
+            "v-mbo"
+          ]
+        },
+        {
           "id": "s5-u05-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het vwo»?",
+          "prompt": "O que significa «de inburgering»?",
           "options": [
             {
               "id": "a",
-              "text": "secundário pré-universitário",
+              "text": "integração",
               "correct": true
             },
             {
               "id": "b",
-              "text": "boletim",
+              "text": "curso de línguas",
               "correct": false
             },
             {
               "id": "c",
-              "text": "integração",
+              "text": "secundário geral",
               "correct": false
             }
           ],
-          "explanation": "«het vwo» = secundário pré-universitário (6 anos).",
+          "explanation": "«de inburgering» = integração (cívica).",
           "vocabRefs": [
-            "v-vwo"
+            "v-inburgering"
           ]
         },
         {
           "id": "s5-u05-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de kansengelijkheid»?",
+          "prompt": "O que significa «het schooladvies»?",
           "options": [
             {
               "id": "a",
-              "text": "aluno",
+              "text": "ano",
               "correct": false
             },
             {
               "id": "b",
-              "text": "ensino profissional",
-              "correct": false
+              "text": "recomendação escolar",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "igualdade de oportunidades",
-              "correct": true
+              "text": "reunião de pais",
+              "correct": false
             }
           ],
-          "explanation": "«de kansengelijkheid» = igualdade de oportunidades.",
+          "explanation": "«het schooladvies» = recomendação escolar.",
           "vocabRefs": [
-            "v-kansengelijkheid"
+            "v-schooladvies"
           ]
         }
       ],

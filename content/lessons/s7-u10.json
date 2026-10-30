@@ -1870,16 +1870,16 @@
       ],
       "examples": [
         {
-          "nl": "Onze missie is duurzame mobiliteit voor iedereen.",
-          "pt": "A nossa missão é mobilidade sustentável para todos."
+          "nl": "Na afloop volgt een evaluatie.",
+          "pt": "No fim segue-se uma avaliação."
         },
         {
-          "nl": "Dat is een vakterm uit de geneeskunde.",
-          "pt": "É um termo técnico da medicina."
+          "nl": "Op je loonstrook zie je je brutoloon en nettoloon.",
+          "pt": "No recibo de vencimento vês o salário bruto e líquido."
         },
         {
-          "nl": "De klanttevredenheid is gestegen naar 8,4.",
-          "pt": "A satisfação do cliente subiu para 8,4."
+          "nl": "De visie beschrijft waar we over tien jaar staan.",
+          "pt": "A visão descreve onde estaremos daqui a dez anos."
         }
       ],
       "grammar": [],
@@ -1933,8 +1933,8 @@
           "translation": "O plágio é severamente punido.",
           "tokens": [
             "Plagiaat",
-            "streng",
             "wordt",
+            "streng",
             "bestraft."
           ],
           "alternatives": [],
@@ -1949,15 +1949,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "Em linguagem corrente isso significa: tens de descansar mais.",
           "tokens": [
-            "taal",
-            "rusten.",
-            "betekent",
-            "moet",
-            "gewone",
-            "dat:",
-            "meer",
             "In",
-            "je"
+            "gewone",
+            "taal",
+            "betekent",
+            "dat:",
+            "je",
+            "moet",
+            "meer",
+            "rusten."
           ],
           "alternatives": [],
           "explanation": "In gewone taal betekent dat: je moet meer rusten.",
@@ -1971,13 +1971,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os nossos valores fundamentais são fiabilidade, abertura e inovação.",
           "tokens": [
+            "Onze",
+            "kernwaarden",
+            "zijn",
             "betrouwbaar,",
             "open",
-            "innovatief.",
-            "kernwaarden",
-            "Onze",
             "en",
-            "zijn"
+            "innovatief."
           ],
           "alternatives": [],
           "explanation": "Onze kernwaarden zijn betrouwbaar, open en innovatief.",
@@ -1989,103 +1989,99 @@
           "id": "s7-u10-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Dat is een vakterm uit de geneeskunde.»?",
+          "prompt": "O que significa: «Er wordt loonheffing ingehouden.»?",
           "options": [
             {
               "id": "a",
-              "text": "Foi despedida devido a uma reorganização.",
+              "text": "O plágio é severamente punido.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "É um termo técnico da medicina.",
-              "correct": true
+              "text": "Alcançámos um marco importante.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "A visão descreve onde estaremos daqui a dez anos.",
-              "correct": false
+              "text": "É retido imposto na fonte.",
+              "correct": true
             }
           ],
-          "explanation": "«Dat is een vakterm uit de geneeskunde.» = É um termo técnico da medicina.",
+          "explanation": "«Er wordt loonheffing ingehouden.» = É retido imposto na fonte.",
           "vocabRefs": [
-            "v-vakterm"
+            "v-loonheffing"
           ]
         },
         {
           "id": "s7-u10-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De visie beschrijft waar we over tien jaar staan.»?",
+          "prompt": "O que significa: «In gewone taal betekent dat: je moet meer rusten.»?",
           "options": [
             {
               "id": "a",
-              "text": "A visão descreve onde estaremos daqui a dez anos.",
-              "correct": true
+              "text": "Qual é o objetivo do projeto?",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "A satisfação do cliente subiu para 8,4.",
-              "correct": false
+              "text": "Em linguagem corrente isso significa: tens de descansar mais.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "A nossa missão é mobilidade sustentável para todos.",
+              "text": "Evita o jargão quando falas com clientes.",
               "correct": false
             }
           ],
-          "explanation": "«De visie beschrijft waar we over tien jaar staan.» = A visão descreve onde estaremos daqui a dez anos.",
+          "explanation": "«In gewone taal betekent dat: je moet meer rusten.» = Em linguagem corrente isso significa: tens de descansar mais.",
           "vocabRefs": [
-            "v-visie"
+            "v-in-gewone-taal"
           ]
         },
         {
           "id": "s7-u10-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Depois do despedimento podes pedir subsídio de desemprego.",
+          "prompt": "Não te esqueças das referências.",
           "tokens": [
-            "kun",
-            "waar",
-            "ontslag",
-            "Na",
-            "WW-uitkering",
-            "een",
-            "aanvragen.",
-            "Vergeet",
-            "je"
+            "de",
+            "bronvermelding",
+            "niet.",
+            "loonstrook",
+            "feedback.",
+            "Vergeet"
           ],
           "answers": [
-            "Na ontslag kun je een WW-uitkering aanvragen."
+            "Vergeet de bronvermelding niet."
           ],
-          "explanation": "Depois do despedimento podes pedir subsídio de desemprego. = Na ontslag kun je een WW-uitkering aanvragen. (sobram: Vergeet, waar)",
+          "explanation": "Não te esqueças das referências. = Vergeet de bronvermelding niet. (sobram: loonstrook, feedback.)",
           "vocabRefs": [
-            "v-ontslag",
-            "v-ww-uitkering"
+            "v-bronvermelding"
           ]
         },
         {
           "id": "s7-u10-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A nossa missão é mobilidade sustentável para todos.",
+          "prompt": "Os nossos valores fundamentais são fiabilidade, abertura e inovação.",
           "tokens": [
-            "ontslag",
-            "heeft",
-            "missie",
-            "iedereen.",
+            "innovatief.",
+            "open",
+            "kernwaarden",
             "Onze",
-            "duurzame",
-            "is",
-            "mobiliteit",
-            "voor"
+            "ontslag",
+            "zijn",
+            "en",
+            "betrouwbaar,",
+            "ingehouden."
           ],
           "answers": [
-            "Onze missie is duurzame mobiliteit voor iedereen."
+            "Onze kernwaarden zijn betrouwbaar, open en innovatief."
           ],
-          "explanation": "A nossa missão é mobilidade sustentável para todos. = Onze missie is duurzame mobiliteit voor iedereen. (sobram: ontslag, heeft)",
+          "explanation": "Os nossos valores fundamentais são fiabilidade, abertura e inovação. = Onze kernwaarden zijn betrouwbaar, open en innovatief. (sobram: ontslag, ingehouden.)",
           "vocabRefs": [
-            "v-missie"
+            "v-kernwaarden"
           ]
         }
       ],
@@ -2153,16 +2149,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik schrijf mijn scriptie over migratie.",
-          "pt": "Estou a escrever a tese sobre migração."
+          "nl": "Op je loonstrook zie je je brutoloon en nettoloon.",
+          "pt": "No recibo de vencimento vês o salário bruto e líquido."
         },
         {
-          "nl": "Ze is ontslagen wegens een reorganisatie.",
-          "pt": "Foi despedida devido a uma reorganização."
+          "nl": "Kun je dat eenvoudig uitleggen?",
+          "pt": "Consegues explicar isso de forma simples?"
         },
         {
-          "nl": "Vergeet de bronvermelding niet.",
-          "pt": "Não te esqueças das referências."
+          "nl": "We hebben een belangrijke mijlpaal bereikt.",
+          "pt": "Alcançámos um marco importante."
         }
       ],
       "grammar": [],
@@ -2171,27 +2167,27 @@
           "id": "s7-u10-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «valores fundamentais» em neerlandês?",
+          "prompt": "Como se diz «satisfação do cliente» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "kernwaarden",
+              "text": "klanttevredenheid",
               "correct": true
             },
             {
               "id": "b",
-              "text": "scriptiebegeleider",
+              "text": "loonheffing",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ontslag",
+              "text": "kernwaarden",
               "correct": false
             }
           ],
-          "explanation": "valores fundamentais = «kernwaarden».",
+          "explanation": "satisfação do cliente = «klanttevredenheid».",
           "vocabRefs": [
-            "v-kernwaarden"
+            "v-klanttevredenheid"
           ]
         },
         {
@@ -2202,18 +2198,18 @@
           "options": [
             {
               "id": "a",
-              "text": "jargon",
-              "correct": false
+              "text": "evaluatie",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "visie",
+              "text": "eenvoudig uitleggen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "evaluatie",
-              "correct": true
+              "text": "ontslag",
+              "correct": false
             }
           ],
           "explanation": "avaliação = «evaluatie».",
@@ -2225,42 +2221,56 @@
           "id": "s7-u10-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Vergeet de ___ niet.",
-          "translation": "Não te esqueças das referências.",
+          "sentence": "De ___ is gestegen naar 8,4.",
+          "translation": "A satisfação do cliente subiu para 8,4.",
           "answers": [
-            "bronvermelding"
+            "klanttevredenheid"
           ],
           "choices": [
-            "mijlpaal",
-            "scriptie",
-            "bronvermelding"
+            "cao",
+            "klanttevredenheid",
+            "jargon"
           ],
-          "explanation": "Vergeet de bronvermelding niet.",
+          "explanation": "De klanttevredenheid is gestegen naar 8,4.",
           "vocabRefs": [
-            "v-bronvermelding"
+            "v-klanttevredenheid"
           ]
         },
         {
           "id": "s7-u10-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Onze ___ is duurzame mobiliteit voor iedereen.",
-          "translation": "A nossa missão é mobilidade sustentável para todos.",
+          "sentence": "Wat is de ___ van het project?",
+          "translation": "Qual é o objetivo do projeto?",
           "answers": [
-            "missie"
+            "doelstelling"
           ],
           "choices": [
-            "missie",
-            "loonstrook",
-            "scriptiebegeleider"
+            "klanttevredenheid",
+            "kernwaarden",
+            "doelstelling"
           ],
-          "explanation": "Onze missie is duurzame mobiliteit voor iedereen.",
+          "explanation": "Wat is de doelstelling van het project?",
           "vocabRefs": [
-            "v-missie"
+            "v-doelstelling"
           ]
         },
         {
           "id": "s7-u10-l008-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Vergeet de bronvermelding niet.",
+          "answers": [
+            "Vergeet de bronvermelding niet."
+          ],
+          "translation": "Não te esqueças das referências.",
+          "explanation": "«Vergeet de bronvermelding niet.» = Não te esqueças das referências.",
+          "vocabRefs": [
+            "v-bronvermelding"
+          ]
+        },
+        {
+          "id": "s7-u10-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ze is ontslagen wegens een reorganisatie.",
@@ -2274,61 +2284,50 @@
           ]
         },
         {
-          "id": "s7-u10-l008-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De visie beschrijft waar we over tien jaar staan.",
-          "answers": [
-            "De visie beschrijft waar we over tien jaar staan."
-          ],
-          "translation": "A visão descreve onde estaremos daqui a dez anos.",
-          "explanation": "«De visie beschrijft waar we over tien jaar staan.» = A visão descreve onde estaremos daqui a dez anos.",
-          "vocabRefs": [
-            "v-visie"
-          ]
-        },
-        {
           "id": "s7-u10-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O plágio é severamente punido.",
+          "prompt": "É retido imposto na fonte.",
           "tokens": [
-            "streng",
-            "bestraft.",
-            "Plagiaat",
-            "goede",
+            "kun",
             "wordt",
-            "bronvermelding"
+            "ingehouden.",
+            "In",
+            "loonheffing",
+            "Er"
           ],
           "answers": [
-            "Plagiaat wordt streng bestraft."
+            "Er wordt loonheffing ingehouden."
           ],
-          "explanation": "O plágio é severamente punido. = Plagiaat wordt streng bestraft. (sobram: bronvermelding, goede)",
+          "explanation": "É retido imposto na fonte. = Er wordt loonheffing ingehouden. (sobram: kun, In)",
           "vocabRefs": [
-            "v-plagiaat"
+            "v-loonheffing"
           ]
         },
         {
           "id": "s7-u10-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Foi despedida devido a uma reorganização.",
+          "prompt": "Em linguagem corrente isso significa: tens de descansar mais.",
           "tokens": [
-            "voor",
-            "uit",
-            "is",
-            "ontslagen",
-            "een",
+            "In",
             "wegens",
-            "Ze",
-            "reorganisatie."
+            "betekent",
+            "gewone",
+            "moet",
+            "je",
+            "taal",
+            "meer",
+            "dat:",
+            "rusten.",
+            "Mijn"
           ],
           "answers": [
-            "Ze is ontslagen wegens een reorganisatie."
+            "In gewone taal betekent dat: je moet meer rusten."
           ],
-          "explanation": "Foi despedida devido a uma reorganização. = Ze is ontslagen wegens een reorganisatie. (sobram: voor, uit)",
+          "explanation": "Em linguagem corrente isso significa: tens de descansar mais. = In gewone taal betekent dat: je moet meer rusten. (sobram: Mijn, wegens)",
           "vocabRefs": [
-            "v-ontslag"
+            "v-in-gewone-taal"
           ]
         },
         {
@@ -2347,27 +2346,27 @@
           "id": "s7-u10-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kun je dat eenvoudig uitleggen?»?",
+          "prompt": "O que significa: «Na afloop volgt een evaluatie.»?",
           "options": [
             {
               "id": "a",
-              "text": "Consegues explicar isso de forma simples?",
-              "correct": true
+              "text": "O meu orientador dá bom feedback.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Em linguagem corrente isso significa: tens de descansar mais.",
-              "correct": false
+              "text": "No fim segue-se uma avaliação.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Ele demitiu-se.",
+              "text": "É um termo técnico da medicina.",
               "correct": false
             }
           ],
-          "explanation": "«Kun je dat eenvoudig uitleggen?» = Consegues explicar isso de forma simples?",
+          "explanation": "«Na afloop volgt een evaluatie.» = No fim segue-se uma avaliação.",
           "vocabRefs": [
-            "v-uitleggen-eenvoudig"
+            "v-evaluatie"
           ]
         }
       ],
@@ -2435,16 +2434,16 @@
       ],
       "examples": [
         {
-          "nl": "Hij heeft ontslag genomen.",
-          "pt": "Ele demitiu-se."
-        },
-        {
-          "nl": "Ik schrijf mijn scriptie over migratie.",
-          "pt": "Estou a escrever a tese sobre migração."
-        },
-        {
           "nl": "Vermijd jargon als je met klanten praat.",
           "pt": "Evita o jargão quando falas com clientes."
+        },
+        {
+          "nl": "Na afloop volgt een evaluatie.",
+          "pt": "No fim segue-se uma avaliação."
+        },
+        {
+          "nl": "Onze missie is duurzame mobiliteit voor iedereen.",
+          "pt": "A nossa missão é mobilidade sustentável para todos."
         }
       ],
       "grammar": [],
@@ -2453,110 +2452,116 @@
           "id": "s7-u10-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu orientador dá bom feedback.",
+          "prompt": "No recibo de vencimento vês o salário bruto e líquido.",
           "tokens": [
-            "Mijn",
+            "Op",
+            "brutoloon",
+            "Ze",
+            "nettoloon.",
+            "je",
+            "missie",
+            "en",
+            "loonstrook",
             "zie",
-            "feedback.",
-            "goede",
-            "een",
-            "scriptiebegeleider",
-            "geeft"
+            "je",
+            "je"
           ],
           "answers": [
-            "Mijn scriptiebegeleider geeft goede feedback."
+            "Op je loonstrook zie je je brutoloon en nettoloon."
           ],
-          "explanation": "O meu orientador dá bom feedback. = Mijn scriptiebegeleider geeft goede feedback. (sobram: een, zie)",
+          "explanation": "No recibo de vencimento vês o salário bruto e líquido. = Op je loonstrook zie je je brutoloon en nettoloon. (sobram: Ze, missie)",
           "vocabRefs": [
-            "v-scriptie",
-            "v-scriptiebegeleider"
+            "v-loonstrook"
           ]
         },
         {
           "id": "s7-u10-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não te esqueças das referências.",
+          "prompt": "O meu orientador dá bom feedback.",
           "tokens": [
-            "Vergeet",
-            "de",
-            "visie",
-            "volgt",
-            "bronvermelding",
-            "niet."
+            "hebben",
+            "scriptiebegeleider",
+            "geeft",
+            "feedback.",
+            "Mijn",
+            "goede",
+            "ontslag"
           ],
           "answers": [
-            "Vergeet de bronvermelding niet."
+            "Mijn scriptiebegeleider geeft goede feedback."
           ],
-          "explanation": "Não te esqueças das referências. = Vergeet de bronvermelding niet. (sobram: visie, volgt)",
+          "explanation": "O meu orientador dá bom feedback. = Mijn scriptiebegeleider geeft goede feedback. (sobram: ontslag, hebben)",
           "vocabRefs": [
-            "v-bronvermelding"
+            "v-scriptie",
+            "v-scriptiebegeleider"
           ]
         },
         {
           "id": "s7-u10-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Evita o jargão quando falas com clientes.",
+          "prompt": "Depois do despedimento podes pedir subsídio de desemprego.",
           "tokens": [
-            "jaar",
-            "praat.",
+            "is",
+            "aanvragen.",
+            "duurzame",
             "WW-uitkering",
-            "klanten",
-            "met",
-            "Vermijd",
+            "een",
+            "Na",
             "je",
-            "als",
-            "jargon"
+            "kun",
+            "ontslag"
           ],
           "answers": [
-            "Vermijd jargon als je met klanten praat."
+            "Na ontslag kun je een WW-uitkering aanvragen."
           ],
-          "explanation": "Evita o jargão quando falas com clientes. = Vermijd jargon als je met klanten praat. (sobram: jaar, WW-uitkering)",
+          "explanation": "Depois do despedimento podes pedir subsídio de desemprego. = Na ontslag kun je een WW-uitkering aanvragen. (sobram: is, duurzame)",
           "vocabRefs": [
-            "v-jargon"
+            "v-ontslag",
+            "v-ww-uitkering"
           ]
         },
         {
           "id": "s7-u10-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We hebben een belangrijke mijlpaal bereikt.",
+          "audioText": "Plagiaat wordt streng bestraft.",
           "answers": [
-            "We hebben een belangrijke mijlpaal bereikt."
+            "Plagiaat wordt streng bestraft."
           ],
-          "translation": "Alcançámos um marco importante.",
-          "explanation": "«We hebben een belangrijke mijlpaal bereikt.» = Alcançámos um marco importante.",
+          "translation": "O plágio é severamente punido.",
+          "explanation": "«Plagiaat wordt streng bestraft.» = O plágio é severamente punido.",
           "vocabRefs": [
-            "v-mijlpaal"
+            "v-plagiaat"
           ]
         },
         {
           "id": "s7-u10-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Vergeet de bronvermelding niet.",
+          "audioText": "Op je loonstrook zie je je brutoloon en nettoloon.",
           "answers": [
-            "Vergeet de bronvermelding niet."
+            "Op je loonstrook zie je je brutoloon en nettoloon."
           ],
-          "translation": "Não te esqueças das referências.",
-          "explanation": "«Vergeet de bronvermelding niet.» = Não te esqueças das referências.",
+          "translation": "No recibo de vencimento vês o salário bruto e líquido.",
+          "explanation": "«Op je loonstrook zie je je brutoloon en nettoloon.» = No recibo de vencimento vês o salário bruto e líquido.",
           "vocabRefs": [
-            "v-bronvermelding"
+            "v-loonstrook"
           ]
         },
         {
           "id": "s7-u10-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Onze missie is duurzame mobiliteit voor iedereen.",
+          "audioText": "Dat is een vakterm uit de geneeskunde.",
           "answers": [
-            "Onze missie is duurzame mobiliteit voor iedereen."
+            "Dat is een vakterm uit de geneeskunde."
           ],
-          "translation": "A nossa missão é mobilidade sustentável para todos.",
-          "explanation": "«Onze missie is duurzame mobiliteit voor iedereen.» = A nossa missão é mobilidade sustentável para todos.",
+          "translation": "É um termo técnico da medicina.",
+          "explanation": "«Dat is een vakterm uit de geneeskunde.» = É um termo técnico da medicina.",
           "vocabRefs": [
-            "v-missie"
+            "v-vakterm"
           ]
         },
         {
@@ -2565,13 +2570,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Depois do despedimento podes pedir subsídio de desemprego.",
           "tokens": [
-            "ontslag",
-            "aanvragen.",
             "Na",
-            "WW-uitkering",
+            "ontslag",
             "kun",
             "je",
-            "een"
+            "een",
+            "WW-uitkering",
+            "aanvragen."
           ],
           "alternatives": [],
           "explanation": "Na ontslag kun je een WW-uitkering aanvragen.",
@@ -2586,10 +2591,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "O orçamento foi ultrapassado.",
           "tokens": [
-            "is",
             "De",
-            "overschreden.",
-            "begroting"
+            "begroting",
+            "is",
+            "overschreden."
           ],
           "alternatives": [],
           "explanation": "De begroting is overschreden.",
@@ -2601,54 +2606,54 @@
           "id": "s7-u10-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de scriptie»?",
+          "prompt": "O que significa «de scriptiebegeleider»?",
           "options": [
             {
               "id": "a",
-              "text": "missão",
-              "correct": false
+              "text": "orientador",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "termo técnico",
+              "text": "despedimento",
               "correct": false
             },
             {
               "id": "c",
-              "text": "tese",
-              "correct": true
+              "text": "em linguagem corrente",
+              "correct": false
             }
           ],
-          "explanation": "«de scriptie» = tese, dissertação.",
+          "explanation": "«de scriptiebegeleider» = orientador.",
           "vocabRefs": [
-            "v-scriptie"
+            "v-scriptiebegeleider"
           ]
         },
         {
           "id": "s7-u10-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de belanghebbende»?",
+          "prompt": "O que significa «de loonheffing»?",
           "options": [
             {
               "id": "a",
-              "text": "parte interessada",
-              "correct": true
+              "text": "exame",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "satisfação do cliente",
-              "correct": false
+              "text": "retenção na fonte",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "referência bibliográfica",
+              "text": "tese",
               "correct": false
             }
           ],
-          "explanation": "«de belanghebbende» = parte interessada.",
+          "explanation": "«de loonheffing» = retenção na fonte (imposto).",
           "vocabRefs": [
-            "v-belanghebbende"
+            "v-loonheffing"
           ]
         }
       ],

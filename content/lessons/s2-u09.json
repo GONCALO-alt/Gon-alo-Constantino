@@ -1846,16 +1846,16 @@
       ],
       "examples": [
         {
-          "nl": "Sterke koffie.",
-          "pt": "Café forte."
+          "nl": "het grote huis",
+          "pt": "a casa grande"
         },
         {
           "nl": "Het water is schoon.",
           "pt": "A água está limpa."
         },
         {
-          "nl": "slecht weer",
-          "pt": "mau tempo"
+          "nl": "een snelle trein",
+          "pt": "um comboio rápido"
         }
       ],
       "grammar": [],
@@ -1908,16 +1908,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "Que carro tens? — Um carro pequeno e vermelho.",
           "tokens": [
-            "—",
-            "rode",
-            "auto",
-            "voor",
-            "heb",
-            "auto.",
             "Wat",
+            "voor",
+            "auto",
+            "heb",
             "je?",
+            "—",
             "Een",
-            "kleine,"
+            "kleine,",
+            "rode",
+            "auto."
           ],
           "alternatives": [],
           "explanation": "Wat voor auto heb je? — Een kleine, rode auto.",
@@ -1931,12 +1931,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Que tipo de música gostas?",
           "tokens": [
-            "voor",
-            "leuk?",
-            "muziek",
             "Wat",
+            "voor",
+            "muziek",
+            "vind",
             "je",
-            "vind"
+            "leuk?"
           ],
           "alternatives": [],
           "explanation": "Wat voor muziek vind je leuk?",
@@ -1950,9 +1950,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "a bicicleta nova",
           "tokens": [
+            "de",
             "nieuwe",
-            "fiets",
-            "de"
+            "fiets"
           ],
           "alternatives": [],
           "explanation": "de nieuwe fiets",
@@ -1964,92 +1964,90 @@
           "id": "s2-u09-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat voor muziek vind je leuk?»?",
+          "prompt": "O que significa: «De stad is groot. — de grote stad»?",
           "options": [
             {
               "id": "a",
-              "text": "Que tipo de música gostas?",
+              "text": "A cidade é grande. — a cidade grande",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Um livro grosso.",
+              "text": "A casa velha tem um jardim grande e uma varanda pequena.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "a casa grande",
+              "text": "a bicicleta nova",
               "correct": false
             }
           ],
-          "explanation": "«Wat voor muziek vind je leuk?» = Que tipo de música gostas?",
-          "vocabRefs": [
-            "v-wat-voor"
-          ]
+          "explanation": "«De stad is groot. — de grote stad» = A cidade é grande. — a cidade grande",
+          "vocabRefs": []
         },
         {
           "id": "s2-u09-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat voor auto heb je? — Een kleine, rode auto.»?",
+          "prompt": "O que significa: «een belangrijk document»?",
           "options": [
             {
               "id": "a",
-              "text": "um comboio rápido",
-              "correct": false
+              "text": "um documento importante",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "a casa grande",
+              "text": "Café forte.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Que carro tens? — Um carro pequeno e vermelho.",
-              "correct": true
+              "text": "a casa grande",
+              "correct": false
             }
           ],
-          "explanation": "«Wat voor auto heb je? — Een kleine, rode auto.» = Que carro tens? — Um carro pequeno e vermelho.",
+          "explanation": "«een belangrijk document» = um documento importante",
           "vocabRefs": [
-            "v-wat-voor"
+            "v-belangrijk"
           ]
         },
         {
           "id": "s2-u09-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "a bicicleta nova",
+          "prompt": "um comboio rápido",
           "tokens": [
-            "fiets",
-            "nieuwe",
-            "grote",
-            "de",
-            "groot"
+            "een",
+            "trein",
+            "snelle",
+            "groot",
+            "stad"
           ],
           "answers": [
-            "de nieuwe fiets"
+            "een snelle trein"
           ],
-          "explanation": "a bicicleta nova = de nieuwe fiets (sobram: groot, grote)",
+          "explanation": "um comboio rápido = een snelle trein (sobram: groot, stad)",
           "vocabRefs": [
-            "v-nieuw"
+            "v-snel"
           ]
         },
         {
           "id": "s2-u09-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o documento importante",
+          "prompt": "um documento importante",
           "tokens": [
-            "belangrijke",
-            "—",
-            "het",
             "document",
-            "grote"
+            "woon",
+            "het",
+            "een",
+            "belangrijk"
           ],
           "answers": [
-            "het belangrijke document"
+            "een belangrijk document"
           ],
-          "explanation": "o documento importante = het belangrijke document (sobram: —, grote)",
+          "explanation": "um documento importante = een belangrijk document (sobram: het, woon)",
           "vocabRefs": [
             "v-belangrijk"
           ]
@@ -2115,16 +2113,16 @@
       ],
       "examples": [
         {
+          "nl": "een snelle trein",
+          "pt": "um comboio rápido"
+        },
+        {
+          "nl": "Sterke koffie.",
+          "pt": "Café forte."
+        },
+        {
           "nl": "Het water is schoon.",
           "pt": "A água está limpa."
-        },
-        {
-          "nl": "de nieuwe fiets",
-          "pt": "a bicicleta nova"
-        },
-        {
-          "nl": "het grote huis",
-          "pt": "a casa grande"
         }
       ],
       "grammar": [],
@@ -2133,27 +2131,27 @@
           "id": "s2-u09-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «limpo» em neerlandês?",
+          "prompt": "Como se diz «magro» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "vol",
+              "text": "weer",
               "correct": false
             },
             {
               "id": "b",
-              "text": "belangrijk",
+              "text": "sterk",
               "correct": false
             },
             {
               "id": "c",
-              "text": "schoon",
+              "text": "dun",
               "correct": true
             }
           ],
-          "explanation": "limpo = «schoon».",
+          "explanation": "magro = «dun».",
           "vocabRefs": [
-            "v-schoon"
+            "v-dun"
           ]
         },
         {
@@ -2164,12 +2162,12 @@
           "options": [
             {
               "id": "a",
-              "text": "belangrijk",
+              "text": "vol",
               "correct": false
             },
             {
               "id": "b",
-              "text": "vol",
+              "text": "dik",
               "correct": false
             },
             {
@@ -2187,19 +2185,19 @@
           "id": "s2-u09-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Het water is ___.",
-          "translation": "A água está limpa.",
+          "sentence": "Een ___ boek.",
+          "translation": "Um livro grosso.",
           "answers": [
-            "schoon"
+            "dik"
           ],
           "choices": [
-            "lawaaierig",
-            "schoon",
-            "sterk"
+            "dun",
+            "dik",
+            "weer"
           ],
-          "explanation": "Het water is schoon.",
+          "explanation": "Een dik boek.",
           "vocabRefs": [
-            "v-schoon"
+            "v-dik"
           ]
         },
         {
@@ -2212,9 +2210,9 @@
             "belangrijk"
           ],
           "choices": [
+            "lawaaierig",
             "belangrijk",
-            "schoon",
-            "soort"
+            "zwak"
           ],
           "explanation": "een belangrijk document",
           "vocabRefs": [
@@ -2225,112 +2223,114 @@
           "id": "s2-u09-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de nieuwe fiets",
+          "audioText": "Het oude huis heeft een grote tuin en een klein balkon.",
           "answers": [
-            "de nieuwe fiets"
+            "Het oude huis heeft een grote tuin en een klein balkon."
           ],
-          "translation": "a bicicleta nova",
-          "explanation": "«de nieuwe fiets» = a bicicleta nova",
-          "vocabRefs": [
-            "v-nieuw"
-          ]
+          "translation": "A casa velha tem um jardim grande e uma varanda pequena.",
+          "explanation": "«Het oude huis heeft een grote tuin en een klein balkon.» = A casa velha tem um jardim grande e uma varanda pequena.",
+          "vocabRefs": []
         },
         {
           "id": "s2-u09-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "een snelle trein",
+          "audioText": "het belangrijke document",
           "answers": [
-            "een snelle trein"
+            "het belangrijke document"
           ],
-          "translation": "um comboio rápido",
-          "explanation": "«een snelle trein» = um comboio rápido",
+          "translation": "o documento importante",
+          "explanation": "«het belangrijke document» = o documento importante",
           "vocabRefs": [
-            "v-snel"
+            "v-belangrijk"
           ]
         },
         {
           "id": "s2-u09-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que carro tens? — Um carro pequeno e vermelho.",
+          "prompt": "A cidade é grande. — a cidade grande",
           "tokens": [
-            "auto",
-            "rode",
-            "auto.",
-            "tuin",
-            "balkon.",
-            "voor",
-            "kleine,",
-            "heb",
-            "Wat",
+            "stad",
+            "groot.",
+            "is",
+            "grote",
             "—",
-            "Een",
-            "je?"
+            "Het",
+            "nieuwe",
+            "stad",
+            "De",
+            "de"
           ],
           "answers": [
-            "Wat voor auto heb je? — Een kleine, rode auto."
+            "De stad is groot. — de grote stad"
           ],
-          "explanation": "Que carro tens? — Um carro pequeno e vermelho. = Wat voor auto heb je? — Een kleine, rode auto. (sobram: balkon., tuin)",
-          "vocabRefs": [
-            "v-wat-voor"
-          ]
+          "explanation": "A cidade é grande. — a cidade grande = De stad is groot. — de grote stad (sobram: nieuwe, Het)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u09-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "uma casa grande",
+          "prompt": "A casa velha tem um jardim grande e uma varanda pequena.",
           "tokens": [
-            "nieuwe",
-            "rode",
-            "groot",
+            "en",
+            "straat.",
+            "Het",
+            "klein",
+            "balkon.",
+            "grote",
+            "een",
+            "een",
+            "heeft",
+            "oude",
             "huis",
-            "een"
+            "muziek",
+            "tuin"
           ],
           "answers": [
-            "een groot huis"
+            "Het oude huis heeft een grote tuin en een klein balkon."
           ],
-          "explanation": "uma casa grande = een groot huis (sobram: rode, nieuwe)",
+          "explanation": "A casa velha tem um jardim grande e uma varanda pequena. = Het oude huis heeft een grote tuin en een klein balkon. (sobram: straat., muziek)",
           "vocabRefs": []
         },
         {
           "id": "s2-u09-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "soort",
-          "pt": "tipo",
-          "article": "de",
-          "explanation": "de soort.",
+          "noun": "weer",
+          "pt": "tempo",
+          "article": "het",
+          "explanation": "het weer.",
           "vocabRefs": [
-            "v-soort"
+            "v-mooi-weer"
           ]
         },
         {
           "id": "s2-u09-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het water is schoon.»?",
+          "prompt": "O que significa: «het belangrijke document»?",
           "options": [
             {
               "id": "a",
-              "text": "um comboio rápido",
-              "correct": false
+              "text": "o documento importante",
+              "correct": true
             },
             {
               "id": "b",
               "text": "A água está limpa.",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "uma casa grande",
+              "text": "Vivo numa rua sossegada.",
               "correct": false
             }
           ],
-          "explanation": "«Het water is schoon.» = A água está limpa.",
+          "explanation": "«het belangrijke document» = o documento importante",
           "vocabRefs": [
-            "v-schoon"
+            "v-belangrijk"
           ]
         }
       ],
@@ -2394,16 +2394,16 @@
       ],
       "examples": [
         {
-          "nl": "Het oude huis heeft een grote tuin en een klein balkon.",
-          "pt": "A casa velha tem um jardim grande e uma varanda pequena."
+          "nl": "Een dik boek.",
+          "pt": "Um livro grosso."
         },
         {
-          "nl": "Wat voor auto heb je? — Een kleine, rode auto.",
-          "pt": "Que carro tens? — Um carro pequeno e vermelho."
+          "nl": "een belangrijk document",
+          "pt": "um documento importante"
         },
         {
-          "nl": "lege flessen",
-          "pt": "garrafas vazias"
+          "nl": "Ik woon in een rustige straat.",
+          "pt": "Vivo numa rua sossegada."
         }
       ],
       "grammar": [],
@@ -2412,74 +2412,90 @@
           "id": "s2-u09-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que tipo de música gostas?",
+          "prompt": "a bicicleta nova",
           "tokens": [
-            "voor",
-            "muziek",
-            "je",
-            "Wat",
-            "vind",
-            "huis",
-            "leuk?",
-            "een"
+            "tuin",
+            "document",
+            "nieuwe",
+            "de",
+            "fiets"
           ],
           "answers": [
-            "Wat voor muziek vind je leuk?"
+            "de nieuwe fiets"
           ],
-          "explanation": "Que tipo de música gostas? = Wat voor muziek vind je leuk? (sobram: huis, een)",
+          "explanation": "a bicicleta nova = de nieuwe fiets (sobram: tuin, document)",
           "vocabRefs": [
-            "v-wat-voor"
+            "v-nieuw"
           ]
         },
         {
           "id": "s2-u09-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o documento importante",
+          "prompt": "Um livro grosso.",
           "tokens": [
-            "groot",
-            "document",
-            "het",
             "dik",
-            "belangrijke"
+            "Een",
+            "document",
+            "balkon.",
+            "boek."
           ],
           "answers": [
-            "het belangrijke document"
+            "Een dik boek."
           ],
-          "explanation": "o documento importante = het belangrijke document (sobram: groot, dik)",
+          "explanation": "Um livro grosso. = Een dik boek. (sobram: balkon., document)",
           "vocabRefs": [
-            "v-belangrijk"
+            "v-dik"
           ]
         },
         {
           "id": "s2-u09-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que carro tens? — Um carro pequeno e vermelho.",
+          "prompt": "a casa grande",
           "tokens": [
-            "auto.",
-            "oude",
-            "rode",
-            "—",
-            "Een",
-            "je?",
+            "een",
             "huis",
-            "kleine,",
-            "heb",
-            "auto",
-            "voor",
-            "Wat"
+            "stad",
+            "grote",
+            "het"
           ],
           "answers": [
-            "Wat voor auto heb je? — Een kleine, rode auto."
+            "het grote huis"
           ],
-          "explanation": "Que carro tens? — Um carro pequeno e vermelho. = Wat voor auto heb je? — Een kleine, rode auto. (sobram: oude, huis)",
-          "vocabRefs": [
-            "v-wat-voor"
-          ]
+          "explanation": "a casa grande = het grote huis (sobram: een, stad)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u09-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik woon in een rustige straat.",
+          "answers": [
+            "Ik woon in een rustige straat."
+          ],
+          "translation": "Vivo numa rua sossegada.",
+          "explanation": "«Ik woon in een rustige straat.» = Vivo numa rua sossegada.",
+          "vocabRefs": [
+            "v-rustig"
+          ]
+        },
+        {
+          "id": "s2-u09-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Een dik boek.",
+          "answers": [
+            "Een dik boek."
+          ],
+          "translation": "Um livro grosso.",
+          "explanation": "«Een dik boek.» = Um livro grosso.",
+          "vocabRefs": [
+            "v-dik"
+          ]
+        },
+        {
+          "id": "s2-u09-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "de nieuwe fiets",
@@ -2493,56 +2509,14 @@
           ]
         },
         {
-          "id": "s2-u09-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De stad is groot. — de grote stad",
-          "answers": [
-            "De stad is groot. — de grote stad"
-          ],
-          "translation": "A cidade é grande. — a cidade grande",
-          "explanation": "«De stad is groot. — de grote stad» = A cidade é grande. — a cidade grande",
-          "vocabRefs": []
-        },
-        {
-          "id": "s2-u09-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat voor auto heb je? — Een kleine, rode auto.",
-          "answers": [
-            "Wat voor auto heb je? — Een kleine, rode auto."
-          ],
-          "translation": "Que carro tens? — Um carro pequeno e vermelho.",
-          "explanation": "«Wat voor auto heb je? — Een kleine, rode auto.» = Que carro tens? — Um carro pequeno e vermelho.",
-          "vocabRefs": [
-            "v-wat-voor"
-          ]
-        },
-        {
           "id": "s2-u09-l009-e07",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "o documento importante",
-          "tokens": [
-            "document",
-            "belangrijke",
-            "het"
-          ],
-          "alternatives": [],
-          "explanation": "het belangrijke document",
-          "vocabRefs": [
-            "v-belangrijk"
-          ]
-        },
-        {
-          "id": "s2-u09-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
           "translation": "Um livro grosso.",
           "tokens": [
-            "boek.",
             "Een",
-            "dik"
+            "dik",
+            "boek."
           ],
           "alternatives": [],
           "explanation": "Een dik boek.",
@@ -2551,57 +2525,73 @@
           ]
         },
         {
+          "id": "s2-u09-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "o documento importante",
+          "tokens": [
+            "het",
+            "belangrijke",
+            "document"
+          ],
+          "alternatives": [],
+          "explanation": "het belangrijke document",
+          "vocabRefs": [
+            "v-belangrijk"
+          ]
+        },
+        {
           "id": "s2-u09-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «lawaaierig»?",
+          "prompt": "O que significa «dun»?",
           "options": [
             {
               "id": "a",
-              "text": "barulhento",
+              "text": "magro",
               "correct": true
             },
             {
               "id": "b",
-              "text": "tempo",
+              "text": "que tipo de",
               "correct": false
             },
             {
               "id": "c",
-              "text": "tipo",
+              "text": "tempo",
               "correct": false
             }
           ],
-          "explanation": "«lawaaierig» = barulhento.",
+          "explanation": "«dun» = magro, fino.",
           "vocabRefs": [
-            "v-druk-adj"
+            "v-dun"
           ]
         },
         {
           "id": "s2-u09-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «snel»?",
+          "prompt": "O que significa «wat voor»?",
           "options": [
             {
               "id": "a",
-              "text": "rápido",
+              "text": "que tipo de",
               "correct": true
             },
             {
               "id": "b",
-              "text": "magro",
+              "text": "mau",
               "correct": false
             },
             {
               "id": "c",
-              "text": "tipo",
+              "text": "tempo",
               "correct": false
             }
           ],
-          "explanation": "«snel» = rápido.",
+          "explanation": "«wat voor» = que tipo de.",
           "vocabRefs": [
-            "v-snel"
+            "v-wat-voor"
           ]
         }
       ],

@@ -1826,16 +1826,16 @@
       ],
       "examples": [
         {
-          "nl": "Geld speelt een grote rol.",
-          "pt": "O dinheiro desempenha um papel importante."
+          "nl": "Er is een grote kans dat het lukt.",
+          "pt": "Há uma grande probabilidade de resultar."
         },
         {
-          "nl": "We namen afscheid op het station.",
-          "pt": "Despedimo-nos na estação."
+          "nl": "Mag ik een vraag stellen?",
+          "pt": "Posso fazer uma pergunta?"
         },
         {
-          "nl": "Ik drink graag sterke koffie.",
-          "pt": "Gosto de café forte."
+          "nl": "Ik neem deel aan de cursus.",
+          "pt": "Participo no curso."
         }
       ],
       "grammar": [],
@@ -1884,11 +1884,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "A apresentação impressionou muito.",
           "tokens": [
-            "indruk.",
-            "maakte",
             "De",
             "presentatie",
-            "veel"
+            "maakte",
+            "veel",
+            "indruk."
           ],
           "alternatives": [],
           "explanation": "De presentatie maakte veel indruk.",
@@ -1900,12 +1900,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Participo no curso.",
           "tokens": [
-            "de",
-            "aan",
-            "neem",
             "Ik",
-            "cursus.",
-            "deel"
+            "neem",
+            "deel",
+            "aan",
+            "de",
+            "cursus."
           ],
           "alternatives": [],
           "explanation": "Ik neem deel aan de cursus.",
@@ -1917,10 +1917,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Damos prioridade à segurança.",
           "tokens": [
-            "aan",
             "We",
-            "prioriteit",
             "geven",
+            "prioriteit",
+            "aan",
             "veiligheid."
           ],
           "alternatives": [],
@@ -1931,12 +1931,37 @@
           "id": "s6-u14-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We geven prioriteit aan veiligheid.»?",
+          "prompt": "O que significa: «Hij neemt verantwoordelijkheid voor zijn fouten.»?",
           "options": [
             {
               "id": "a",
-              "text": "Damos prioridade à segurança.",
+              "text": "Ele assume a responsabilidade pelos erros.",
               "correct": true
+            },
+            {
+              "id": "b",
+              "text": "A apresentação impressionou muito.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Aproveita as férias!",
+              "correct": false
+            }
+          ],
+          "explanation": "«Hij neemt verantwoordelijkheid voor zijn fouten.» = Ele assume a responsabilidade pelos erros.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s6-u14-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Geniet van je vakantie!»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Contacte-nos à vontade.",
+              "correct": false
             },
             {
               "id": "b",
@@ -1945,79 +1970,52 @@
             },
             {
               "id": "c",
-              "text": "Há uma grande probabilidade de resultar.",
-              "correct": false
-            }
-          ],
-          "explanation": "«We geven prioriteit aan veiligheid.» = Damos prioridade à segurança.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s6-u14-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het hangt af van het weer.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Depende do tempo.",
+              "text": "Aproveita as férias!",
               "correct": true
-            },
-            {
-              "id": "b",
-              "text": "Despedimo-nos na estação.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "O dinheiro desempenha um papel importante.",
-              "correct": false
             }
           ],
-          "explanation": "«Het hangt af van het weer.» = Depende do tempo.",
+          "explanation": "«Geniet van je vakantie!» = Aproveita as férias!",
           "vocabRefs": []
         },
         {
           "id": "s6-u14-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gosto de café forte.",
+          "prompt": "Contacte-nos à vontade.",
           "tokens": [
-            "op",
-            "sterke",
-            "koffie.",
-            "graag",
-            "Ik",
-            "een",
-            "drink"
+            "op.",
+            "met",
+            "ons",
+            "bezuinigingen.",
+            "Studenten",
+            "contact",
+            "Neem",
+            "gerust"
           ],
           "answers": [
-            "Ik drink graag sterke koffie."
+            "Neem gerust contact met ons op."
           ],
-          "explanation": "Gosto de café forte. = Ik drink graag sterke koffie. (sobram: op, een)",
-          "vocabRefs": [
-            "v-sterke-koffie"
-          ]
+          "explanation": "Contacte-nos à vontade. = Neem gerust contact met ons op. (sobram: Studenten, bezuinigingen.)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u14-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Os estudantes manifestam-se contra os cortes.",
+          "prompt": "A apresentação impressionou muito.",
           "tokens": [
-            "actie",
-            "Studenten",
-            "Nederlands",
-            "tegen",
-            "om",
-            "bezuinigingen.",
-            "voeren",
-            "de"
+            "De",
+            "deel",
+            "presentatie",
+            "Hij",
+            "indruk.",
+            "maakte",
+            "veel"
           ],
           "answers": [
-            "Studenten voeren actie tegen de bezuinigingen."
+            "De presentatie maakte veel indruk."
           ],
-          "explanation": "Os estudantes manifestam-se contra os cortes. = Studenten voeren actie tegen de bezuinigingen. (sobram: om, Nederlands)",
+          "explanation": "A apresentação impressionou muito. = De presentatie maakte veel indruk. (sobram: Hij, deel)",
           "vocabRefs": []
         }
       ],
@@ -2086,16 +2084,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik neem deel aan de cursus.",
-          "pt": "Participo no curso."
+          "nl": "Het hangt af van het weer.",
+          "pt": "Depende do tempo."
         },
         {
-          "nl": "Mag ik een vraag stellen?",
-          "pt": "Posso fazer uma pergunta?"
+          "nl": "Hij doet veel moeite om Nederlands te leren.",
+          "pt": "Ele esforça-se muito para aprender neerlandês."
         },
         {
-          "nl": "We hebben de deadline net gehaald.",
-          "pt": "Cumprimos o prazo mesmo à justa."
+          "nl": "Ze betaalden een hoge prijs.",
+          "pt": "Pagaram um preço alto."
         }
       ],
       "grammar": [],
@@ -2104,133 +2102,129 @@
           "id": "s6-u14-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «tomar uma decisão» em neerlandês?",
+          "prompt": "Como se diz «preço alto» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "grote kans",
+              "text": "indruk maken",
               "correct": false
             },
             {
               "id": "b",
-              "text": "een besluit nemen",
+              "text": "hoge prijs",
               "correct": true
             },
             {
               "id": "c",
-              "text": "afhangen van",
+              "text": "sterke koffie",
               "correct": false
             }
           ],
-          "explanation": "tomar uma decisão = «een besluit nemen».",
+          "explanation": "preço alto = «hoge prijs».",
           "vocabRefs": [
-            "v-besluit-nemen"
+            "v-hoge-prijs"
           ]
         },
         {
           "id": "s6-u14-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «grande probabilidade» em neerlandês?",
+          "prompt": "Como se diz «desempenhar um papel» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "tijd in beslag nemen",
+              "text": "contact opnemen met",
               "correct": false
             },
             {
               "id": "b",
-              "text": "afscheid nemen",
+              "text": "grote kans",
               "correct": false
             },
             {
               "id": "c",
-              "text": "grote kans",
+              "text": "een rol spelen",
               "correct": true
             }
           ],
-          "explanation": "grande probabilidade = «grote kans».",
+          "explanation": "desempenhar um papel = «een rol spelen».",
           "vocabRefs": [
-            "v-grote-kans"
+            "v-rol-spelen"
           ]
         },
         {
           "id": "s6-u14-l008-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We moeten snel een besluit nemen.",
+          "audioText": "We hebben de deadline net gehaald.",
           "answers": [
-            "We moeten snel een besluit nemen."
+            "We hebben de deadline net gehaald."
           ],
-          "translation": "Temos de tomar uma decisão depressa.",
-          "explanation": "«We moeten snel een besluit nemen.» = Temos de tomar uma decisão depressa.",
-          "vocabRefs": [
-            "v-besluit-nemen"
-          ]
+          "translation": "Cumprimos o prazo mesmo à justa.",
+          "explanation": "«We hebben de deadline net gehaald.» = Cumprimos o prazo mesmo à justa.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u14-l008-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik neem deel aan de cursus.",
+          "audioText": "Geld speelt een grote rol.",
           "answers": [
-            "Ik neem deel aan de cursus."
+            "Geld speelt een grote rol."
           ],
-          "translation": "Participo no curso.",
-          "explanation": "«Ik neem deel aan de cursus.» = Participo no curso.",
+          "translation": "O dinheiro desempenha um papel importante.",
+          "explanation": "«Geld speelt een grote rol.» = O dinheiro desempenha um papel importante.",
           "vocabRefs": []
         },
         {
           "id": "s6-u14-l008-e05",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso fazer uma pergunta?",
+          "prompt": "Ele esforça-se muito para aprender neerlandês.",
           "tokens": [
-            "ik",
-            "een",
-            "namen",
-            "stellen?",
-            "Mag",
-            "weer.",
-            "vraag"
+            "doet",
+            "moeite",
+            "veel",
+            "om",
+            "Nederlands",
+            "grote",
+            "te",
+            "Hij",
+            "wind",
+            "leren."
           ],
           "answers": [
-            "Mag ik een vraag stellen?"
+            "Hij doet veel moeite om Nederlands te leren."
           ],
-          "explanation": "Posso fazer uma pergunta? = Mag ik een vraag stellen? (sobram: namen, weer.)",
-          "vocabRefs": [
-            "v-vraag-stellen"
-          ]
+          "explanation": "Ele esforça-se muito para aprender neerlandês. = Hij doet veel moeite om Nederlands te leren. (sobram: grote, wind)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u14-l008-e06",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "uma constipação forte, uma temperatura alta, um vento forte",
+          "prompt": "Cumprimos o prazo mesmo à justa.",
           "tokens": [
+            "Studenten",
+            "gehaald.",
             "een",
-            "wind",
-            "een",
+            "hebben",
+            "deadline",
             "We",
-            "verkoudheid,",
-            "harde",
-            "hoge",
-            "zware",
-            "een",
-            "temperatuur,",
-            "Het"
+            "net",
+            "de"
           ],
           "answers": [
-            "een zware verkoudheid, een hoge temperatuur, een harde wind"
+            "We hebben de deadline net gehaald."
           ],
-          "explanation": "uma constipação forte, uma temperatura alta, um vento forte = een zware verkoudheid, een hoge temperatuur, een harde wind (sobram: We, Het)",
+          "explanation": "Cumprimos o prazo mesmo à justa. = We hebben de deadline net gehaald. (sobram: een, Studenten)",
           "vocabRefs": []
         },
         {
           "id": "s6-u14-l008-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij neemt verantwoordelijkheid voor zijn fouten.»?",
+          "prompt": "O que significa: «Neem gerust contact met ons op.»?",
           "options": [
             {
               "id": "a",
@@ -2244,38 +2238,38 @@
             },
             {
               "id": "c",
-              "text": "Ele assume a responsabilidade pelos erros.",
+              "text": "Contacte-nos à vontade.",
               "correct": true
             }
           ],
-          "explanation": "«Hij neemt verantwoordelijkheid voor zijn fouten.» = Ele assume a responsabilidade pelos erros.",
+          "explanation": "«Neem gerust contact met ons op.» = Contacte-nos à vontade.",
           "vocabRefs": []
         },
         {
           "id": "s6-u14-l008-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «bestaan uit»?",
+          "prompt": "O que significa «een deadline halen»?",
           "options": [
             {
               "id": "a",
-              "text": "perguntar por",
+              "text": "consistir em",
               "correct": false
             },
             {
               "id": "b",
-              "text": "impressionar",
+              "text": "impressão profunda",
               "correct": false
             },
             {
               "id": "c",
-              "text": "consistir em",
+              "text": "cumprir um prazo",
               "correct": true
             }
           ],
-          "explanation": "«bestaan uit» = consistir em, ser composto por.",
+          "explanation": "«een deadline halen» = cumprir um prazo.",
           "vocabRefs": [
-            "v-bestaan-uit"
+            "v-deadline-halen"
           ]
         },
         {
@@ -2286,7 +2280,7 @@
           "options": [
             {
               "id": "a",
-              "text": "afhangen van",
+              "text": "een vraag stellen",
               "correct": false
             },
             {
@@ -2296,7 +2290,7 @@
             },
             {
               "id": "c",
-              "text": "grote kans",
+              "text": "genieten van",
               "correct": false
             }
           ],
@@ -2371,16 +2365,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik drink graag sterke koffie.",
-          "pt": "Gosto de café forte."
-        },
-        {
-          "nl": "Ik neem deel aan de cursus.",
-          "pt": "Participo no curso."
+          "nl": "Hij neemt verantwoordelijkheid voor zijn fouten.",
+          "pt": "Ele assume a responsabilidade pelos erros."
         },
         {
           "nl": "We moeten snel een besluit nemen.",
           "pt": "Temos de tomar uma decisão depressa."
+        },
+        {
+          "nl": "Mag ik een vraag stellen?",
+          "pt": "Posso fazer uma pergunta?"
         }
       ],
       "grammar": [],
@@ -2389,192 +2383,192 @@
           "id": "s6-u14-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele esforça-se muito para aprender neerlandês.",
+          "prompt": "Aproveita as férias!",
           "tokens": [
-            "Geld",
-            "te",
-            "doet",
-            "leren.",
-            "om",
+            "verantwoordelijkheid",
+            "Geniet",
             "veel",
-            "deadline",
-            "Nederlands",
-            "Hij",
-            "moeite"
+            "je",
+            "van",
+            "vakantie!"
           ],
           "answers": [
-            "Hij doet veel moeite om Nederlands te leren."
+            "Geniet van je vakantie!"
           ],
-          "explanation": "Ele esforça-se muito para aprender neerlandês. = Hij doet veel moeite om Nederlands te leren. (sobram: deadline, Geld)",
+          "explanation": "Aproveita as férias! = Geniet van je vakantie! (sobram: veel, verantwoordelijkheid)",
           "vocabRefs": []
         },
         {
           "id": "s6-u14-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Cumprimos o prazo mesmo à justa.",
+          "prompt": "Gosto de café forte.",
           "tokens": [
-            "net",
-            "hebben",
-            "aan",
-            "We",
-            "gehaald.",
-            "de",
-            "deadline",
-            "neem"
+            "sterke",
+            "drink",
+            "het",
+            "koffie.",
+            "stellen?",
+            "Ik",
+            "graag"
           ],
           "answers": [
-            "We hebben de deadline net gehaald."
+            "Ik drink graag sterke koffie."
           ],
-          "explanation": "Cumprimos o prazo mesmo à justa. = We hebben de deadline net gehaald. (sobram: neem, aan)",
-          "vocabRefs": []
+          "explanation": "Gosto de café forte. = Ik drink graag sterke koffie. (sobram: stellen?, het)",
+          "vocabRefs": [
+            "v-sterke-koffie"
+          ]
         },
         {
           "id": "s6-u14-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele assume a responsabilidade pelos erros.",
+          "prompt": "uma constipação forte, uma temperatura alta, um vento forte",
           "tokens": [
             "een",
-            "neemt",
-            "voor",
-            "zijn",
-            "verantwoordelijkheid",
-            "fouten.",
-            "Hij",
-            "zware"
+            "zware",
+            "vijf",
+            "prijs.",
+            "verkoudheid,",
+            "een",
+            "hoge",
+            "wind",
+            "temperatuur,",
+            "een",
+            "harde"
           ],
           "answers": [
-            "Hij neemt verantwoordelijkheid voor zijn fouten."
+            "een zware verkoudheid, een hoge temperatuur, een harde wind"
           ],
-          "explanation": "Ele assume a responsabilidade pelos erros. = Hij neemt verantwoordelijkheid voor zijn fouten. (sobram: een, zware)",
+          "explanation": "uma constipação forte, uma temperatura alta, um vento forte = een zware verkoudheid, een hoge temperatuur, een harde wind (sobram: prijs., vijf)",
           "vocabRefs": []
         },
         {
           "id": "s6-u14-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We hebben de deadline net gehaald.",
+          "audioText": "We moeten snel een besluit nemen.",
           "answers": [
-            "We hebben de deadline net gehaald."
+            "We moeten snel een besluit nemen."
           ],
-          "translation": "Cumprimos o prazo mesmo à justa.",
-          "explanation": "«We hebben de deadline net gehaald.» = Cumprimos o prazo mesmo à justa.",
-          "vocabRefs": []
+          "translation": "Temos de tomar uma decisão depressa.",
+          "explanation": "«We moeten snel een besluit nemen.» = Temos de tomar uma decisão depressa.",
+          "vocabRefs": [
+            "v-besluit-nemen"
+          ]
         },
         {
           "id": "s6-u14-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Er wordt zware regen verwacht.",
+          "audioText": "Ik neem deel aan de cursus.",
           "answers": [
-            "Er wordt zware regen verwacht."
+            "Ik neem deel aan de cursus."
           ],
-          "translation": "Espera-se chuva forte.",
-          "explanation": "«Er wordt zware regen verwacht.» = Espera-se chuva forte.",
-          "vocabRefs": [
-            "v-zware-regen"
-          ]
+          "translation": "Participo no curso.",
+          "explanation": "«Ik neem deel aan de cursus.» = Participo no curso.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u14-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "een zware verkoudheid, een hoge temperatuur, een harde wind",
+          "audioText": "We namen afscheid op het station.",
           "answers": [
-            "een zware verkoudheid, een hoge temperatuur, een harde wind"
+            "We namen afscheid op het station."
           ],
-          "translation": "uma constipação forte, uma temperatura alta, um vento forte",
-          "explanation": "«een zware verkoudheid, een hoge temperatuur, een harde wind» = uma constipação forte, uma temperatura alta, um vento forte",
+          "translation": "Despedimo-nos na estação.",
+          "explanation": "«We namen afscheid op het station.» = Despedimo-nos na estação.",
           "vocabRefs": []
         },
         {
           "id": "s6-u14-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Gosto de café forte.",
+          "translation": "Cumprimos o prazo mesmo à justa.",
           "tokens": [
-            "sterke",
-            "Ik",
-            "graag",
-            "koffie.",
-            "drink"
+            "We",
+            "hebben",
+            "de",
+            "deadline",
+            "net",
+            "gehaald."
           ],
           "alternatives": [],
-          "explanation": "Ik drink graag sterke koffie.",
-          "vocabRefs": [
-            "v-sterke-koffie"
-          ]
+          "explanation": "We hebben de deadline net gehaald.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u14-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Depende do tempo.",
+          "translation": "Pagaram um preço alto.",
           "tokens": [
-            "Het",
-            "af",
-            "van",
-            "het",
-            "hangt",
-            "weer."
+            "Ze",
+            "betaalden",
+            "een",
+            "hoge",
+            "prijs."
           ],
           "alternatives": [],
-          "explanation": "Het hangt af van het weer.",
-          "vocabRefs": []
+          "explanation": "Ze betaalden een hoge prijs.",
+          "vocabRefs": [
+            "v-hoge-prijs"
+          ]
         },
         {
           "id": "s6-u14-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «zware regen»?",
+          "prompt": "O que significa «een vraag stellen»?",
           "options": [
             {
               "id": "a",
-              "text": "chuva forte",
-              "correct": true
+              "text": "depender de",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "manifestar-se",
-              "correct": false
+              "text": "fazer uma pergunta",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "desfrutar de",
+              "text": "ter uma conversa",
               "correct": false
             }
           ],
-          "explanation": "«zware regen» = chuva forte.",
+          "explanation": "«een vraag stellen» = fazer uma pergunta.",
           "vocabRefs": [
-            "v-zware-regen"
+            "v-vraag-stellen"
           ]
         },
         {
           "id": "s6-u14-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «een gesprek voeren»?",
+          "prompt": "O que significa «genieten van»?",
           "options": [
             {
               "id": "a",
-              "text": "ter uma conversa",
+              "text": "desfrutar de",
               "correct": true
             },
             {
               "id": "b",
-              "text": "participar em",
+              "text": "contactar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "desfrutar de",
+              "text": "chuva forte",
               "correct": false
             }
           ],
-          "explanation": "«een gesprek voeren» = ter uma conversa.",
+          "explanation": "«genieten van» = desfrutar de.",
           "vocabRefs": [
-            "v-gesprek-voeren"
+            "v-genieten-van"
           ]
         }
       ],

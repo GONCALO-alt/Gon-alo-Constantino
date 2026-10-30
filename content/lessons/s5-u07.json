@@ -1864,16 +1864,16 @@
       ],
       "examples": [
         {
-          "nl": "Ga naar instellingen.",
-          "pt": "Vai às definições."
+          "nl": "Ik heb de app gedownload.",
+          "pt": "Descarreguei a aplicação."
         },
         {
-          "nl": "Mijn accu is bijna leeg.",
-          "pt": "A minha bateria está quase vazia."
+          "nl": "Ik post bijna nooit iets.",
+          "pt": "Quase nunca publico nada."
         },
         {
-          "nl": "Dit is een nepbericht van een oplichter.",
-          "pt": "Esta é uma mensagem falsa de um burlão."
+          "nl": "Ze zit de hele dag op sociale media.",
+          "pt": "Ela passa o dia nas redes sociais."
         }
       ],
       "grammar": [],
@@ -1927,11 +1927,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "As crianças passam demasiado tempo em frente a ecrãs.",
           "tokens": [
-            "schermtijd.",
+            "Kinderen",
+            "hebben",
             "te",
             "veel",
-            "Kinderen",
-            "hebben"
+            "schermtijd."
           ],
           "alternatives": [],
           "explanation": "Kinderen hebben te veel schermtijd.",
@@ -1946,10 +1946,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "A minha conta foi pirateada!",
           "tokens": [
-            "gehackt!",
-            "is",
             "Mijn",
-            "account"
+            "account",
+            "is",
+            "gehackt!"
           ],
           "alternatives": [],
           "explanation": "Mijn account is gehackt!",
@@ -1961,12 +1961,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Desliga-o e volta a ligá-lo.",
           "tokens": [
-            "weer",
-            "uit",
+            "Zet",
             "hem",
-            "aan.",
+            "uit",
             "en",
-            "Zet"
+            "weer",
+            "aan."
           ],
           "alternatives": [],
           "explanation": "Zet hem uit en weer aan.",
@@ -1976,41 +1976,16 @@
           "id": "s5-u07-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mijn laptop loopt steeds vast.»?",
+          "prompt": "O que significa: «Zet hem uit en weer aan.»?",
           "options": [
             {
               "id": "a",
-              "text": "O ecrã está rachado.",
+              "text": "As crianças passam demasiado tempo em frente a ecrãs.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O meu portátil está sempre a bloquear.",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Quantas pessoas te seguem?",
-              "correct": false
-            }
-          ],
-          "explanation": "«Mijn laptop loopt steeds vast.» = O meu portátil está sempre a bloquear.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s5-u07-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «In het weekend gaan we offline.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Descarreguei a aplicação.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Ao fim de semana desligamo-nos.",
+              "text": "Desliga-o e volta a ligá-lo.",
               "correct": true
             },
             {
@@ -2019,53 +1994,77 @@
               "correct": false
             }
           ],
-          "explanation": "«In het weekend gaan we offline.» = Ao fim de semana desligamo-nos.",
-          "vocabRefs": [
-            "v-offline"
-          ]
+          "explanation": "«Zet hem uit en weer aan.» = Desliga-o e volta a ligá-lo.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s5-u07-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Ik post bijna nooit iets.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Quase nunca publico nada.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Descarreguei a aplicação.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Limitamos o tempo de ecrã a uma hora por dia.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Ik post bijna nooit iets.» = Quase nunca publico nada.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u07-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A minha conta foi pirateada!",
+          "prompt": "Tens de atualizar a aplicação.",
           "tokens": [
-            "account",
-            "media.",
-            "gehackt!",
-            "laptop",
-            "is",
-            "Mijn"
+            "app",
+            "de",
+            "mijn",
+            "moet",
+            "Je",
+            "een",
+            "bijwerken."
           ],
           "answers": [
-            "Mijn account is gehackt!"
+            "Je moet de app bijwerken."
           ],
-          "explanation": "A minha conta foi pirateada! = Mijn account is gehackt! (sobram: media., laptop)",
-          "vocabRefs": []
+          "explanation": "Tens de atualizar a aplicação. = Je moet de app bijwerken. (sobram: mijn, een)",
+          "vocabRefs": [
+            "v-bijwerken"
+          ]
         },
         {
           "id": "s5-u07-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sou um bocado viciado no telemóvel.",
+          "prompt": "Ao fim de semana desligamo-nos.",
           "tokens": [
-            "mijn",
-            "ben",
-            "je",
-            "aan",
-            "telefoon.",
+            "zit",
+            "we",
             "weekend",
-            "verslaafd",
-            "beetje",
-            "een",
-            "Ik"
+            "In",
+            "het",
+            "gaan",
+            "offline.",
+            "je"
           ],
           "answers": [
-            "Ik ben een beetje verslaafd aan mijn telefoon."
+            "In het weekend gaan we offline."
           ],
-          "explanation": "Sou um bocado viciado no telemóvel. = Ik ben een beetje verslaafd aan mijn telefoon. (sobram: weekend, je)",
+          "explanation": "Ao fim de semana desligamo-nos. = In het weekend gaan we offline. (sobram: zit, je)",
           "vocabRefs": [
-            "v-verslaafd"
+            "v-offline"
           ]
         }
       ],
@@ -2153,73 +2152,73 @@
           "id": "s5-u07-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ecrã» em neerlandês?",
+          "prompt": "Como se diz «ligar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "scherm",
+              "text": "aanzetten",
               "correct": true
             },
             {
               "id": "b",
-              "text": "uitzetten",
+              "text": "vastlopen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "schermtijd",
+              "text": "privacy",
               "correct": false
             }
           ],
-          "explanation": "ecrã = «scherm».",
+          "explanation": "ligar = «aanzetten».",
           "vocabRefs": [
-            "v-scherm"
+            "v-aanzetten"
           ]
         },
         {
           "id": "s5-u07-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «bateria» em neerlandês?",
+          "prompt": "Como se diz «descarregar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "verslaafd",
+              "text": "offline",
               "correct": false
             },
             {
               "id": "b",
-              "text": "aanzetten",
-              "correct": false
+              "text": "downloaden",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "accu",
-              "correct": true
+              "text": "vastlopen",
+              "correct": false
             }
           ],
-          "explanation": "bateria = «accu».",
+          "explanation": "descarregar = «downloaden».",
           "vocabRefs": [
-            "v-accu"
+            "v-downloaden"
           ]
         },
         {
           "id": "s5-u07-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Je moet de app ___.",
-          "translation": "Tens de atualizar a aplicação.",
+          "sentence": "Hoeveel mensen ___ je?",
+          "translation": "Quantas pessoas te seguem?",
           "answers": [
-            "bijwerken"
+            "volgen"
           ],
           "choices": [
-            "hacken",
-            "persoonsgegevens",
-            "bijwerken"
+            "privacy",
+            "volgen",
+            "persoonsgegevens"
           ],
-          "explanation": "Je moet de app bijwerken.",
+          "explanation": "Hoeveel mensen volgen je?",
           "vocabRefs": [
-            "v-bijwerken"
+            "v-volgen"
           ]
         },
         {
@@ -2232,9 +2231,9 @@
             "nepbericht"
           ],
           "choices": [
+            "nepbericht",
             "bericht",
-            "vastlopen",
-            "nepbericht"
+            "vastlopen"
           ],
           "explanation": "Dit is een nepbericht van een oplichter.",
           "vocabRefs": [
@@ -2245,110 +2244,109 @@
           "id": "s5-u07-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn account is gehackt!",
+          "audioText": "Zet tweestapsverificatie aan.",
           "answers": [
-            "Mijn account is gehackt!"
+            "Zet tweestapsverificatie aan."
           ],
-          "translation": "A minha conta foi pirateada!",
-          "explanation": "«Mijn account is gehackt!» = A minha conta foi pirateada!",
-          "vocabRefs": []
+          "translation": "Ativa a autenticação em dois passos.",
+          "explanation": "«Zet tweestapsverificatie aan.» = Ativa a autenticação em dois passos.",
+          "vocabRefs": [
+            "v-tweestapsverificatie"
+          ]
         },
         {
           "id": "s5-u07-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Digitale vaardigheden zijn belangrijk.",
+          "audioText": "Ga naar instellingen.",
           "answers": [
-            "Digitale vaardigheden zijn belangrijk."
+            "Ga naar instellingen."
           ],
-          "translation": "As competências digitais são importantes.",
-          "explanation": "«Digitale vaardigheden zijn belangrijk.» = As competências digitais são importantes.",
-          "vocabRefs": []
+          "translation": "Vai às definições.",
+          "explanation": "«Ga naar instellingen.» = Vai às definições.",
+          "vocabRefs": [
+            "v-instellingen"
+          ]
         },
         {
           "id": "s5-u07-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela passa o dia nas redes sociais.",
+          "prompt": "O ecrã está rachado.",
           "tokens": [
-            "zit",
+            "scherm",
+            "telefoon.",
+            "Het",
+            "gebarsten.",
             "een",
-            "sociale",
-            "op",
-            "de",
-            "hele",
-            "Ze",
-            "mijn",
-            "dag",
-            "media."
+            "is"
           ],
           "answers": [
-            "Ze zit de hele dag op sociale media."
+            "Het scherm is gebarsten."
           ],
-          "explanation": "Ela passa o dia nas redes sociais. = Ze zit de hele dag op sociale media. (sobram: mijn, een)",
+          "explanation": "O ecrã está rachado. = Het scherm is gebarsten. (sobram: een, telefoon.)",
           "vocabRefs": [
-            "v-sociale-media"
+            "v-scherm"
           ]
         },
         {
           "id": "s5-u07-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O ecrã está rachado.",
+          "prompt": "Já o reiniciaste?",
           "tokens": [
-            "bijna",
-            "gebarsten.",
-            "is",
-            "Het",
-            "Deel",
-            "scherm"
+            "opgestart?",
+            "Heb",
+            "hem",
+            "mail",
+            "je",
+            "al",
+            "hebben",
+            "opnieuw"
           ],
           "answers": [
-            "Het scherm is gebarsten."
+            "Heb je hem al opnieuw opgestart?"
           ],
-          "explanation": "O ecrã está rachado. = Het scherm is gebarsten. (sobram: bijna, Deel)",
-          "vocabRefs": [
-            "v-scherm"
-          ]
+          "explanation": "Já o reiniciaste? = Heb je hem al opnieuw opgestart? (sobram: mail, hebben)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u07-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "instellingen",
-          "pt": "definições",
-          "article": "de",
-          "explanation": "de instellingen.",
+          "noun": "bericht",
+          "pt": "publicação",
+          "article": "het",
+          "explanation": "het bericht.",
           "vocabRefs": [
-            "v-instellingen"
+            "v-bericht-post"
           ]
         },
         {
           "id": "s5-u07-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kinderen hebben te veel schermtijd.»?",
+          "prompt": "O que significa: «Het scherm is gebarsten.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ativa a autenticação em dois passos.",
+              "text": "Esta é uma mensagem falsa de um burlão.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "As crianças passam demasiado tempo em frente a ecrãs.",
+              "text": "O ecrã está rachado.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Sou um bocado viciado no telemóvel.",
+              "text": "Nunca partilhes os teus dados pessoais ao telefone.",
               "correct": false
             }
           ],
-          "explanation": "«Kinderen hebben te veel schermtijd.» = As crianças passam demasiado tempo em frente a ecrãs.",
+          "explanation": "«Het scherm is gebarsten.» = O ecrã está rachado.",
           "vocabRefs": [
-            "v-scherm",
-            "v-schermtijd"
+            "v-scherm"
           ]
         }
       ],
@@ -2418,16 +2416,16 @@
       ],
       "examples": [
         {
-          "nl": "Ga naar instellingen.",
-          "pt": "Vai às definições."
+          "nl": "Ze zit de hele dag op sociale media.",
+          "pt": "Ela passa o dia nas redes sociais."
         },
         {
-          "nl": "Zet tweestapsverificatie aan.",
-          "pt": "Ativa a autenticação em dois passos."
+          "nl": "Mijn laptop loopt steeds vast.",
+          "pt": "O meu portátil está sempre a bloquear."
         },
         {
-          "nl": "Je moet de app bijwerken.",
-          "pt": "Tens de atualizar a aplicação."
+          "nl": "Digitale vaardigheden zijn belangrijk.",
+          "pt": "As competências digitais são importantes."
         }
       ],
       "grammar": [],
@@ -2436,20 +2434,21 @@
           "id": "s5-u07-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu portátil está sempre a bloquear.",
+          "prompt": "Desliga-o e volta a ligá-lo.",
           "tokens": [
-            "Deel",
-            "vast.",
-            "laptop",
-            "steeds",
-            "loopt",
-            "is",
-            "Mijn"
+            "gebarsten.",
+            "en",
+            "leeg.",
+            "uit",
+            "Zet",
+            "hem",
+            "aan.",
+            "weer"
           ],
           "answers": [
-            "Mijn laptop loopt steeds vast."
+            "Zet hem uit en weer aan."
           ],
-          "explanation": "O meu portátil está sempre a bloquear. = Mijn laptop loopt steeds vast. (sobram: is, Deel)",
+          "explanation": "Desliga-o e volta a ligá-lo. = Zet hem uit en weer aan. (sobram: leeg., gebarsten.)",
           "vocabRefs": []
         },
         {
@@ -2464,74 +2463,71 @@
             "de",
             "app",
             "gedownload.",
-            "account"
+            "telefoon."
           ],
           "answers": [
             "Ik heb de app gedownload."
           ],
-          "explanation": "Descarreguei a aplicação. = Ik heb de app gedownload. (sobram: bijna, account)",
+          "explanation": "Descarreguei a aplicação. = Ik heb de app gedownload. (sobram: bijna, telefoon.)",
           "vocabRefs": []
         },
         {
           "id": "s5-u07-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "As crianças passam demasiado tempo em frente a ecrãs.",
+          "prompt": "Vai às definições.",
           "tokens": [
-            "tot",
-            "Het",
-            "Kinderen",
-            "te",
-            "schermtijd.",
-            "hebben",
-            "veel"
+            "instellingen.",
+            "naar",
+            "Digitale",
+            "Dit",
+            "Ga"
           ],
           "answers": [
-            "Kinderen hebben te veel schermtijd."
+            "Ga naar instellingen."
           ],
-          "explanation": "As crianças passam demasiado tempo em frente a ecrãs. = Kinderen hebben te veel schermtijd. (sobram: Het, tot)",
+          "explanation": "Vai às definições. = Ga naar instellingen. (sobram: Dit, Digitale)",
           "vocabRefs": [
-            "v-scherm",
-            "v-schermtijd"
+            "v-instellingen"
           ]
         },
         {
           "id": "s5-u07-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn laptop loopt steeds vast.",
+          "audioText": "Heb je je mail al gecheckt?",
           "answers": [
-            "Mijn laptop loopt steeds vast."
+            "Heb je je mail al gecheckt?"
           ],
-          "translation": "O meu portátil está sempre a bloquear.",
-          "explanation": "«Mijn laptop loopt steeds vast.» = O meu portátil está sempre a bloquear.",
+          "translation": "Já viste o teu e-mail?",
+          "explanation": "«Heb je je mail al gecheckt?» = Já viste o teu e-mail?",
           "vocabRefs": []
         },
         {
           "id": "s5-u07-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Heb je hem al opnieuw opgestart?",
+          "audioText": "In het weekend gaan we offline.",
           "answers": [
-            "Heb je hem al opnieuw opgestart?"
+            "In het weekend gaan we offline."
           ],
-          "translation": "Já o reiniciaste?",
-          "explanation": "«Heb je hem al opnieuw opgestart?» = Já o reiniciaste?",
-          "vocabRefs": []
+          "translation": "Ao fim de semana desligamo-nos.",
+          "explanation": "«In het weekend gaan we offline.» = Ao fim de semana desligamo-nos.",
+          "vocabRefs": [
+            "v-offline"
+          ]
         },
         {
           "id": "s5-u07-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zet tweestapsverificatie aan.",
+          "audioText": "Ik post bijna nooit iets.",
           "answers": [
-            "Zet tweestapsverificatie aan."
+            "Ik post bijna nooit iets."
           ],
-          "translation": "Ativa a autenticação em dois passos.",
-          "explanation": "«Zet tweestapsverificatie aan.» = Ativa a autenticação em dois passos.",
-          "vocabRefs": [
-            "v-tweestapsverificatie"
-          ]
+          "translation": "Quase nunca publico nada.",
+          "explanation": "«Ik post bijna nooit iets.» = Quase nunca publico nada.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u07-l009-e07",
@@ -2539,14 +2535,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ela passa o dia nas redes sociais.",
           "tokens": [
-            "zit",
-            "sociale",
-            "op",
-            "hele",
             "Ze",
-            "media.",
+            "zit",
+            "de",
+            "hele",
             "dag",
-            "de"
+            "op",
+            "sociale",
+            "media."
           ],
           "alternatives": [],
           "explanation": "Ze zit de hele dag op sociale media.",
@@ -2558,73 +2554,78 @@
           "id": "s5-u07-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ao fim de semana desligamo-nos.",
+          "translation": "Limitamos o tempo de ecrã a uma hora por dia.",
           "tokens": [
-            "gaan",
-            "offline.",
-            "het",
-            "weekend",
-            "we",
-            "In"
+            "We",
+            "beperken",
+            "de",
+            "schermtijd",
+            "tot",
+            "een",
+            "uur",
+            "per",
+            "dag."
           ],
           "alternatives": [],
-          "explanation": "In het weekend gaan we offline.",
+          "explanation": "We beperken de schermtijd tot een uur per dag.",
           "vocabRefs": [
-            "v-offline"
+            "v-scherm",
+            "v-schermtijd",
+            "v-beperken"
           ]
         },
         {
           "id": "s5-u07-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «posten»?",
+          "prompt": "O que significa «offline»?",
           "options": [
             {
               "id": "a",
-              "text": "publicar",
+              "text": "desligado",
               "correct": true
             },
             {
               "id": "b",
-              "text": "tempo de ecrã",
+              "text": "digital",
               "correct": false
             },
             {
               "id": "c",
-              "text": "bloquear",
+              "text": "reiniciar",
               "correct": false
             }
           ],
-          "explanation": "«posten» = publicar.",
+          "explanation": "«offline» = desligado, sem internet.",
           "vocabRefs": [
-            "v-posten"
+            "v-offline"
           ]
         },
         {
           "id": "s5-u07-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de persoonsgegevens»?",
+          "prompt": "O que significa «uitzetten»?",
           "options": [
             {
               "id": "a",
-              "text": "dados pessoais",
-              "correct": true
+              "text": "ligar",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "publicar",
-              "correct": false
+              "text": "desligar",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "atualizar",
+              "text": "desligado",
               "correct": false
             }
           ],
-          "explanation": "«de persoonsgegevens» = dados pessoais.",
+          "explanation": "«uitzetten» = desligar (aparelho).",
           "vocabRefs": [
-            "v-persoonsgegevens"
+            "v-uitzetten"
           ]
         }
       ],

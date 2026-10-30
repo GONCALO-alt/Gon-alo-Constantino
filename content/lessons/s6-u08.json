@@ -1916,12 +1916,12 @@
           "pt": "A probabilidade é reduzida."
         },
         {
-          "nl": "Hij beweert dat hij niets wist.",
-          "pt": "Ele afirma que não sabia de nada."
+          "nl": "Goede communicatie is essentieel.",
+          "pt": "Uma boa comunicação é essencial."
         },
         {
-          "nl": "Hij is niet zuinig, hij is gewoon gierig!",
-          "pt": "Ele não é poupado, é simplesmente forreta!"
+          "nl": "Ken je Utrecht?",
+          "pt": "Conheces Utrecht?"
         }
       ],
       "grammar": [],
@@ -1973,13 +1973,13 @@
           "translation": "Tem de comunicar uma mudança à câmara.",
           "tokens": [
             "U",
+            "moet",
+            "een",
             "verhuizing",
             "melden",
-            "een",
-            "gemeente.",
-            "de",
             "bij",
-            "moet"
+            "de",
+            "gemeente."
           ],
           "alternatives": [],
           "explanation": "U moet een verhuizing melden bij de gemeente.",
@@ -1993,9 +1993,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ainda está a chover.",
           "tokens": [
-            "nog",
             "Het",
             "regent",
+            "nog",
             "steeds."
           ],
           "alternatives": [],
@@ -2010,12 +2010,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele está determinado a ter sucesso.",
           "tokens": [
-            "te",
-            "om",
-            "slagen.",
-            "vastberaden",
             "Hij",
-            "is"
+            "is",
+            "vastberaden",
+            "om",
+            "te",
+            "slagen."
           ],
           "alternatives": [],
           "explanation": "Hij is vastberaden om te slagen.",
@@ -2027,39 +2027,37 @@
           "id": "s6-u08-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij is vastberaden om te slagen.»?",
+          "prompt": "O que significa: «Ken je Utrecht?»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela estuda Direito e está a aprender espanhol.",
-              "correct": false
+              "text": "Conheces Utrecht?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "A diferença é enorme.",
+              "text": "Ele afirma que não sabia de nada.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ele está determinado a ter sucesso.",
-              "correct": true
+              "text": "Ela estuda Direito e está a aprender espanhol.",
+              "correct": false
             }
           ],
-          "explanation": "«Hij is vastberaden om te slagen.» = Ele está determinado a ter sucesso.",
-          "vocabRefs": [
-            "v-vastberaden"
-          ]
+          "explanation": "«Ken je Utrecht?» = Conheces Utrecht?",
+          "vocabRefs": []
         },
         {
           "id": "s6-u08-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De kans is gering.»?",
+          "prompt": "O que significa: «Weet jij waar het station is?»?",
           "options": [
             {
               "id": "a",
-              "text": "A probabilidade é reduzida.",
-              "correct": true
+              "text": "Segundo o jornal, o ministro afirma que…",
+              "correct": false
             },
             {
               "id": "b",
@@ -2068,55 +2066,56 @@
             },
             {
               "id": "c",
-              "text": "Posso pedir-te a bicicleta emprestada?",
-              "correct": false
+              "text": "Sabes onde fica a estação?",
+              "correct": true
             }
           ],
-          "explanation": "«De kans is gering.» = A probabilidade é reduzida.",
-          "vocabRefs": [
-            "v-gering"
-          ]
+          "explanation": "«Weet jij waar het station is?» = Sabes onde fica a estação?",
+          "vocabRefs": []
         },
         {
           "id": "s6-u08-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso pedir-te a bicicleta emprestada?",
+          "prompt": "Não é só bonito, é verdadeiramente magnífico.",
           "tokens": [
-            "Mag",
-            "je",
-            "lenen?",
-            "Ze",
-            "De",
-            "fiets",
-            "ik"
+            "alleen",
+            "is",
+            "werkelijk",
+            "kans",
+            "niet",
+            "Het",
+            "prachtig.",
+            "is",
+            "smartphone.",
+            "mooi,",
+            "het"
           ],
           "answers": [
-            "Mag ik je fiets lenen?"
+            "Het is niet alleen mooi, het is werkelijk prachtig."
           ],
-          "explanation": "Posso pedir-te a bicicleta emprestada? = Mag ik je fiets lenen? (sobram: De, Ze)",
-          "vocabRefs": []
+          "explanation": "Não é só bonito, é verdadeiramente magnífico. = Het is niet alleen mooi, het is werkelijk prachtig. (sobram: smartphone., kans)",
+          "vocabRefs": [
+            "v-prachtig"
+          ]
         },
         {
           "id": "s6-u08-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Uma boa comunicação é essencial.",
+          "prompt": "Conheces Utrecht?",
           "tokens": [
-            "is",
-            "essentieel.",
-            "kom",
-            "vastberaden",
-            "Goede",
-            "communicatie"
+            "smartphone.",
+            "Ken",
+            "Utrecht?",
+            "verhaal.",
+            "je"
           ],
           "answers": [
-            "Goede communicatie is essentieel."
+            "Ken je Utrecht?"
           ],
-          "explanation": "Uma boa comunicação é essencial. = Goede communicatie is essentieel. (sobram: kom, vastberaden)",
-          "vocabRefs": [
-            "v-essentieel"
-          ]
+          "explanation": "Conheces Utrecht? = Ken je Utrecht? (sobram: smartphone., verhaal.)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2186,16 +2185,16 @@
       ],
       "examples": [
         {
-          "nl": "Zet de fles op tafel en leg het boek ernaast.",
-          "pt": "Põe a garrafa na mesa e pousa o livro ao lado."
+          "nl": "De kans is gering.",
+          "pt": "A probabilidade é reduzida."
         },
         {
-          "nl": "Mag ik je fiets lenen?",
-          "pt": "Posso pedir-te a bicicleta emprestada?"
+          "nl": "Ze noemde drie voorbeelden.",
+          "pt": "Ela mencionou três exemplos."
         },
         {
-          "nl": "Goede communicatie is essentieel.",
-          "pt": "Uma boa comunicação é essencial."
+          "nl": "Zelfs mijn oma heeft een smartphone.",
+          "pt": "Até a minha avó tem smartphone."
         }
       ],
       "grammar": [],
@@ -2204,43 +2203,43 @@
           "id": "s6-u08-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «teimoso» em neerlandês?",
+          "prompt": "Como se diz «mencionar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "eigenwijs",
-              "correct": true
+              "text": "melden",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "schitterend",
+              "text": "zetten / leggen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "gierig",
-              "correct": false
+              "text": "noemen",
+              "correct": true
             }
           ],
-          "explanation": "teimoso = «eigenwijs».",
+          "explanation": "mencionar = «noemen».",
           "vocabRefs": [
-            "v-eigenwijs"
+            "v-noemen"
           ]
         },
         {
           "id": "s6-u08-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «conhecer / saber» em neerlandês?",
+          "prompt": "Como se diz «aprender / estudar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "kennen / weten",
+              "text": "leren / studeren",
               "correct": true
             },
             {
               "id": "b",
-              "text": "noemen",
+              "text": "nieuwsgierig",
               "correct": false
             },
             {
@@ -2249,9 +2248,9 @@
               "correct": false
             }
           ],
-          "explanation": "conhecer / saber = «kennen / weten».",
+          "explanation": "aprender / estudar = «leren / studeren».",
           "vocabRefs": [
-            "v-kennen-weten"
+            "v-leren-studeren"
           ]
         },
         {
@@ -2324,24 +2323,20 @@
           "id": "s6-u08-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Só chego às dez.",
+          "prompt": "Ela mencionou três exemplos.",
           "tokens": [
-            "niet",
-            "uur.",
-            "pas",
-            "om",
-            "tien",
-            "Ik",
-            "kom",
-            "begonnen!"
+            "zuinig,",
+            "Ze",
+            "noemde",
+            "voorbeelden.",
+            "hij",
+            "drie"
           ],
           "answers": [
-            "Ik kom pas om tien uur."
+            "Ze noemde drie voorbeelden."
           ],
-          "explanation": "Só chego às dez. = Ik kom pas om tien uur. (sobram: niet, begonnen!)",
-          "vocabRefs": [
-            "v-pas-adv"
-          ]
+          "explanation": "Ela mencionou três exemplos. = Ze noemde drie voorbeelden. (sobram: hij, zuinig,)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u08-l008-e08",
@@ -2349,49 +2344,49 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Conheço-o, mas não sei o nome dele.",
           "tokens": [
-            "ik",
-            "studeert",
-            "niet.",
-            "ken",
-            "uur.",
-            "hem,",
-            "Ik",
-            "zijn",
+            "je",
             "naam",
+            "maar",
+            "ik",
+            "zijn",
             "weet",
-            "maar"
+            "Ik",
+            "ken",
+            "niet.",
+            "hem,",
+            "te"
           ],
           "answers": [
             "Ik ken hem, maar ik weet zijn naam niet."
           ],
-          "explanation": "Conheço-o, mas não sei o nome dele. = Ik ken hem, maar ik weet zijn naam niet. (sobram: uur., studeert)",
+          "explanation": "Conheço-o, mas não sei o nome dele. = Ik ken hem, maar ik weet zijn naam niet. (sobram: te, je)",
           "vocabRefs": []
         },
         {
           "id": "s6-u08-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik kom pas om tien uur.»?",
+          "prompt": "O que significa: «Hij is niet zuinig, hij is gewoon gierig!»?",
           "options": [
             {
               "id": "a",
-              "text": "Sabes onde fica a estação?",
+              "text": "Ainda está a chover.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Até a minha avó tem smartphone.",
+              "text": "Ele está determinado a ter sucesso.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Só chego às dez.",
+              "text": "Ele não é poupado, é simplesmente forreta!",
               "correct": true
             }
           ],
-          "explanation": "«Ik kom pas om tien uur.» = Só chego às dez.",
+          "explanation": "«Hij is niet zuinig, hij is gewoon gierig!» = Ele não é poupado, é simplesmente forreta!",
           "vocabRefs": [
-            "v-pas-adv"
+            "v-gierig"
           ]
         }
       ],
@@ -2462,16 +2457,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik kom pas om tien uur.",
-          "pt": "Só chego às dez."
+          "nl": "Ik ken hem, maar ik weet zijn naam niet.",
+          "pt": "Conheço-o, mas não sei o nome dele."
         },
         {
-          "nl": "Ken je Utrecht?",
-          "pt": "Conheces Utrecht?"
+          "nl": "Het regent nog steeds.",
+          "pt": "Ainda está a chover."
         },
         {
-          "nl": "Zet de fles op tafel en leg het boek ernaast.",
-          "pt": "Põe a garrafa na mesa e pousa o livro ao lado."
+          "nl": "Weet jij waar het station is?",
+          "pt": "Sabes onde fica a estação?"
         }
       ],
       "grammar": [],
@@ -2480,77 +2475,80 @@
           "id": "s6-u08-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A probabilidade é reduzida.",
+          "prompt": "Põe a garrafa na mesa e pousa o livro ao lado.",
           "tokens": [
-            "kans",
-            "De",
-            "is",
-            "Hij",
-            "gering.",
-            "om"
+            "de",
+            "boek",
+            "Zet",
+            "tafel",
+            "fles",
+            "leg",
+            "fiets",
+            "ernaast.",
+            "het",
+            "een",
+            "op",
+            "en"
           ],
           "answers": [
-            "De kans is gering."
+            "Zet de fles op tafel en leg het boek ernaast."
           ],
-          "explanation": "A probabilidade é reduzida. = De kans is gering. (sobram: om, Hij)",
-          "vocabRefs": [
-            "v-gering"
-          ]
+          "explanation": "Põe a garrafa na mesa e pousa o livro ao lado. = Zet de fles op tafel en leg het boek ernaast. (sobram: een, fiets)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u08-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele afirma que não sabia de nada.",
+          "prompt": "Posso pedir-te a bicicleta emprestada?",
           "tokens": [
-            "Hij",
-            "niets",
-            "dat",
-            "Ik",
-            "nog",
             "wist.",
-            "hij",
-            "beweert"
+            "Mag",
+            "fiets",
+            "ik",
+            "je",
+            "Het",
+            "lenen?"
           ],
           "answers": [
-            "Hij beweert dat hij niets wist."
+            "Mag ik je fiets lenen?"
           ],
-          "explanation": "Ele afirma que não sabia de nada. = Hij beweert dat hij niets wist. (sobram: nog, Ik)",
+          "explanation": "Posso pedir-te a bicicleta emprestada? = Mag ik je fiets lenen? (sobram: wist., Het)",
           "vocabRefs": []
         },
         {
           "id": "s6-u08-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sabes onde fica a estação?",
+          "prompt": "Ainda está a chover.",
           "tokens": [
-            "is?",
-            "grappig",
-            "jij",
-            "het",
-            "Ik",
-            "Weet",
-            "waar",
-            "station"
+            "is",
+            "steeds.",
+            "regent",
+            "nog",
+            "Het",
+            "naam"
           ],
           "answers": [
-            "Weet jij waar het station is?"
+            "Het regent nog steeds."
           ],
-          "explanation": "Sabes onde fica a estação? = Weet jij waar het station is? (sobram: grappig, Ik)",
-          "vocabRefs": []
+          "explanation": "Ainda está a chover. = Het regent nog steeds. (sobram: naam, is)",
+          "vocabRefs": [
+            "v-nog-steeds"
+          ]
         },
         {
           "id": "s6-u08-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij is pas achttien.",
+          "audioText": "Het dorp is rustig, maar niet saai.",
           "answers": [
-            "Hij is pas achttien."
+            "Het dorp is rustig, maar niet saai."
           ],
-          "translation": "Ele só tem dezoito anos.",
-          "explanation": "«Hij is pas achttien.» = Ele só tem dezoito anos.",
+          "translation": "A aldeia é sossegada, mas não aborrecida.",
+          "explanation": "«Het dorp is rustig, maar niet saai.» = A aldeia é sossegada, mas não aborrecida.",
           "vocabRefs": [
-            "v-pas-adv"
+            "v-saai"
           ]
         },
         {
@@ -2569,106 +2567,101 @@
           "id": "s6-u08-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het regent nog steeds.",
+          "audioText": "Weet jij waar het station is?",
           "answers": [
-            "Het regent nog steeds."
+            "Weet jij waar het station is?"
           ],
-          "translation": "Ainda está a chover.",
-          "explanation": "«Het regent nog steeds.» = Ainda está a chover.",
-          "vocabRefs": [
-            "v-nog-steeds"
-          ]
+          "translation": "Sabes onde fica a estação?",
+          "explanation": "«Weet jij waar het station is?» = Sabes onde fica a estação?",
+          "vocabRefs": []
         },
         {
           "id": "s6-u08-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Não é só bonito, é verdadeiramente magnífico.",
+          "translation": "Conheces Utrecht?",
           "tokens": [
-            "alleen",
-            "niet",
-            "het",
-            "Het",
-            "is",
-            "werkelijk",
-            "prachtig.",
-            "is",
-            "mooi,"
+            "Ken",
+            "je",
+            "Utrecht?"
           ],
           "alternatives": [],
-          "explanation": "Het is niet alleen mooi, het is werkelijk prachtig.",
-          "vocabRefs": [
-            "v-prachtig"
-          ]
+          "explanation": "Ken je Utrecht?",
+          "vocabRefs": []
         },
         {
           "id": "s6-u08-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Posso pedir-te a bicicleta emprestada?",
+          "translation": "Ele não é poupado, é simplesmente forreta!",
           "tokens": [
-            "fiets",
-            "Mag",
-            "lenen?",
-            "je",
-            "ik"
+            "Hij",
+            "is",
+            "niet",
+            "zuinig,",
+            "hij",
+            "is",
+            "gewoon",
+            "gierig!"
           ],
           "alternatives": [],
-          "explanation": "Mag ik je fiets lenen?",
-          "vocabRefs": []
+          "explanation": "Hij is niet zuinig, hij is gewoon gierig!",
+          "vocabRefs": [
+            "v-gierig"
+          ]
         },
         {
           "id": "s6-u08-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «gierig»?",
+          "prompt": "O que significa «melden»?",
           "options": [
             {
               "id": "a",
-              "text": "essencial",
+              "text": "curioso",
               "correct": false
             },
             {
               "id": "b",
-              "text": "forreta",
-              "correct": true
+              "text": "determinado",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "esplêndido",
-              "correct": false
+              "text": "comunicar",
+              "correct": true
             }
           ],
-          "explanation": "«gierig» = forreta.",
+          "explanation": "«melden» = comunicar, informar.",
           "vocabRefs": [
-            "v-gierig"
+            "v-melden"
           ]
         },
         {
           "id": "s6-u08-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «vertellen»?",
+          "prompt": "O que significa «beweren»?",
           "options": [
             {
               "id": "a",
+              "text": "afirmar",
+              "correct": true
+            },
+            {
+              "id": "b",
               "text": "pôr / pôr",
               "correct": false
             },
             {
-              "id": "b",
-              "text": "contar",
-              "correct": true
-            },
-            {
               "id": "c",
-              "text": "pedir emprestado / emprestar",
+              "text": "determinado",
               "correct": false
             }
           ],
-          "explanation": "«vertellen» = contar.",
+          "explanation": "«beweren» = afirmar (sem prova).",
           "vocabRefs": [
-            "v-vertellen"
+            "v-beweren"
           ]
         }
       ],

@@ -2004,10 +2004,10 @@
           "tokens": [
             "De",
             "trein",
+            "komt",
             "om",
             "acht",
             "uur",
-            "komt",
             "aan."
           ],
           "alternatives": [],
@@ -2020,11 +2020,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Arrumo o meu quarto.",
           "tokens": [
-            "ruim",
-            "op.",
-            "kamer",
             "Ik",
-            "mijn"
+            "ruim",
+            "mijn",
+            "kamer",
+            "op."
           ],
           "alternatives": [],
           "explanation": "Ik ruim mijn kamer op.",
@@ -2036,10 +2036,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Não, era tudo.",
           "tokens": [
-            "het.",
-            "was",
+            "Nee,",
             "dat",
-            "Nee,"
+            "was",
+            "het."
           ],
           "alternatives": [],
           "explanation": "Nee, dat was het.",
@@ -2049,46 +2049,21 @@
           "id": "s2-u15-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wanneer kom je terug?»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "O comboio chega às oito.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Quando voltas?",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Levanto-me às sete, faço compras no supermercado e à noite cozinho para os meus amigos.",
-              "correct": false
-            }
-          ],
-          "explanation": "«Wanneer kom je terug?» = Quando voltas?",
-          "vocabRefs": []
-        },
-        {
-          "id": "s2-u15-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa: «Ik ruim mijn kamer op.»?",
           "options": [
             {
               "id": "a",
+              "text": "Ele volta amanhã.",
+              "correct": false
+            },
+            {
+              "id": "b",
               "text": "Arrumo o meu quarto.",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "Levanto-me às sete, faço compras no supermercado e à noite cozinho para os meus amigos.",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "Claro, sem problema!",
+              "text": "Podes emprestar-me a escada um momento?",
               "correct": false
             }
           ],
@@ -2096,45 +2071,65 @@
           "vocabRefs": []
         },
         {
+          "id": "s2-u15-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Natuurlijk, geen probleem!»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Levanto-me às sete.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Claro, sem problema!",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Um pão integral, às fatias, por favor.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Natuurlijk, geen probleem!» = Claro, sem problema!",
+          "vocabRefs": []
+        },
+        {
           "id": "s2-u15-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O comboio chega às oito.",
+          "prompt": "Claro, sem problema!",
           "tokens": [
-            "je",
-            "Ik",
-            "uur",
-            "om",
-            "acht",
-            "trein",
-            "aan.",
-            "De",
-            "komt"
+            "afwassen.",
+            "probleem!",
+            "Natuurlijk,",
+            "geen",
+            "zeven"
           ],
           "answers": [
-            "De trein komt om acht uur aan."
+            "Natuurlijk, geen probleem!"
           ],
-          "explanation": "O comboio chega às oito. = De trein komt om acht uur aan. (sobram: je, Ik)",
+          "explanation": "Claro, sem problema! = Natuurlijk, geen probleem! (sobram: afwassen., zeven)",
           "vocabRefs": []
         },
         {
           "id": "s2-u15-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ligo-te amanhã.",
+          "prompt": "Acende a luz.",
           "tokens": [
-            "morgen",
-            "langs?",
-            "probleem!",
+            "aan.",
             "je",
-            "op.",
-            "Ik",
-            "bel"
+            "schoon.",
+            "licht",
+            "Doe",
+            "het"
           ],
           "answers": [
-            "Ik bel je morgen op."
+            "Doe het licht aan."
           ],
-          "explanation": "Ligo-te amanhã. = Ik bel je morgen op. (sobram: probleem!, langs?)",
+          "explanation": "Acende a luz. = Doe het licht aan. (sobram: schoon., je)",
           "vocabRefs": []
         }
       ],
@@ -2203,16 +2198,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik ruim mijn kamer op.",
-          "pt": "Arrumo o meu quarto."
-        },
-        {
           "nl": "Hij komt morgen terug.",
           "pt": "Ele volta amanhã."
         },
         {
-          "nl": "Wie wast er af?",
-          "pt": "Quem lava a loiça?"
+          "nl": "Doe je jas uit.",
+          "pt": "Tira o casaco."
+        },
+        {
+          "nl": "Ik bel je morgen op.",
+          "pt": "Ligo-te amanhã."
         }
       ],
       "grammar": [],
@@ -2362,20 +2357,19 @@
           "id": "s2-u15-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Limpamos a casa.",
+          "prompt": "Quem lava a loiça?",
           "tokens": [
-            "maken",
-            "uur",
-            "huis",
-            "Ik",
-            "schoon.",
-            "het",
-            "We"
+            "er",
+            "wast",
+            "Wie",
+            "moet",
+            "af?",
+            "ik"
           ],
           "answers": [
-            "We maken het huis schoon."
+            "Wie wast er af?"
           ],
-          "explanation": "Limpamos a casa. = We maken het huis schoon. (sobram: Ik, uur)",
+          "explanation": "Quem lava a loiça? = Wie wast er af? (sobram: ik, moet)",
           "vocabRefs": []
         },
         {
@@ -2394,28 +2388,26 @@
           "id": "s2-u15-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik sta om zeven uur op.»?",
+          "prompt": "O que significa: «Hij komt morgen terug.»?",
           "options": [
             {
               "id": "a",
-              "text": "Levanto-me às sete.",
+              "text": "Ele volta amanhã.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Podes emprestar-me a escada um momento?",
+              "text": "Ligo-te amanhã.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ele volta amanhã.",
+              "text": "Levas um casaco?",
               "correct": false
             }
           ],
-          "explanation": "«Ik sta om zeven uur op.» = Levanto-me às sete.",
-          "vocabRefs": [
-            "v-even"
-          ]
+          "explanation": "«Hij komt morgen terug.» = Ele volta amanhã.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 3,
@@ -2483,16 +2475,16 @@
       ],
       "examples": [
         {
-          "nl": "Verder nog iets?",
-          "pt": "Mais alguma coisa?"
+          "nl": "Kun je mijn pakketje aannemen?",
+          "pt": "Podes receber a minha encomenda?"
         },
         {
-          "nl": "Ik ruim mijn kamer op.",
-          "pt": "Arrumo o meu quarto."
+          "nl": "Ik sta om zeven uur op.",
+          "pt": "Levanto-me às sete."
         },
         {
-          "nl": "Doe je jas uit.",
-          "pt": "Tira o casaco."
+          "nl": "Ik moet nog afwassen.",
+          "pt": "Ainda tenho de lavar a loiça."
         }
       ],
       "grammar": [],
@@ -2501,61 +2493,79 @@
           "id": "s2-u15-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele volta amanhã.",
+          "prompt": "Limpamos a casa.",
           "tokens": [
-            "langs?",
-            "terug.",
-            "op.",
-            "Hij",
-            "morgen",
-            "komt"
+            "schoon.",
+            "We",
+            "maken",
+            "het",
+            "ladder",
+            "huis",
+            "Mag"
           ],
           "answers": [
-            "Hij komt morgen terug."
+            "We maken het huis schoon."
           ],
-          "explanation": "Ele volta amanhã. = Hij komt morgen terug. (sobram: langs?, op.)",
+          "explanation": "Limpamos a casa. = We maken het huis schoon. (sobram: ladder, Mag)",
           "vocabRefs": []
         },
         {
           "id": "s2-u15-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quando voltas?",
+          "prompt": "Arrumo o meu quarto.",
           "tokens": [
-            "kom",
+            "mijn",
+            "Ik",
+            "kamer",
+            "op.",
+            "ruim",
             "het",
-            "Wanneer",
-            "terug?",
-            "je",
-            "mijn"
+            "iets?"
           ],
           "answers": [
-            "Wanneer kom je terug?"
+            "Ik ruim mijn kamer op."
           ],
-          "explanation": "Quando voltas? = Wanneer kom je terug? (sobram: het, mijn)",
+          "explanation": "Arrumo o meu quarto. = Ik ruim mijn kamer op. (sobram: iets?, het)",
           "vocabRefs": []
         },
         {
           "id": "s2-u15-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não, era tudo.",
+          "prompt": "Levanto-me às sete.",
           "tokens": [
-            "was",
-            "dat",
-            "het.",
-            "huis",
-            "Nee,",
-            "een"
+            "een",
+            "sta",
+            "uur",
+            "Ik",
+            "op.",
+            "acht",
+            "om",
+            "zeven"
           ],
           "answers": [
-            "Nee, dat was het."
+            "Ik sta om zeven uur op."
           ],
-          "explanation": "Não, era tudo. = Nee, dat was het. (sobram: huis, een)",
-          "vocabRefs": []
+          "explanation": "Levanto-me às sete. = Ik sta om zeven uur op. (sobram: een, acht)",
+          "vocabRefs": [
+            "v-even"
+          ]
         },
         {
           "id": "s2-u15-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Neem je een jas mee?",
+          "answers": [
+            "Neem je een jas mee?"
+          ],
+          "translation": "Levas um casaco?",
+          "explanation": "«Neem je een jas mee?» = Levas um casaco?",
+          "vocabRefs": []
+        },
+        {
+          "id": "s2-u15-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Een volkorenbrood, gesneden, alstublieft.",
@@ -2570,96 +2580,87 @@
           ]
         },
         {
-          "id": "s2-u15-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik bel je morgen op.",
-          "answers": [
-            "Ik bel je morgen op."
-          ],
-          "translation": "Ligo-te amanhã.",
-          "explanation": "«Ik bel je morgen op.» = Ligo-te amanhã.",
-          "vocabRefs": []
-        },
-        {
           "id": "s2-u15-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Neem je een jas mee?",
+          "audioText": "Nee, dat was het.",
           "answers": [
-            "Neem je een jas mee?"
+            "Nee, dat was het."
           ],
-          "translation": "Levas um casaco?",
-          "explanation": "«Neem je een jas mee?» = Levas um casaco?",
+          "translation": "Não, era tudo.",
+          "explanation": "«Nee, dat was het.» = Não, era tudo.",
           "vocabRefs": []
         },
         {
           "id": "s2-u15-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tira o casaco.",
+          "translation": "Levanto-me às sete.",
           "tokens": [
-            "uit.",
-            "Doe",
-            "je",
-            "jas"
+            "Ik",
+            "sta",
+            "om",
+            "zeven",
+            "uur",
+            "op."
           ],
           "alternatives": [],
-          "explanation": "Doe je jas uit.",
-          "vocabRefs": []
+          "explanation": "Ik sta om zeven uur op.",
+          "vocabRefs": [
+            "v-even"
+          ]
         },
         {
           "id": "s2-u15-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Levas um casaco?",
+          "translation": "Quando voltas?",
           "tokens": [
-            "een",
-            "jas",
+            "Wanneer",
+            "kom",
             "je",
-            "mee?",
-            "Neem"
+            "terug?"
           ],
           "alternatives": [],
-          "explanation": "Neem je een jas mee?",
+          "explanation": "Wanneer kom je terug?",
           "vocabRefs": []
         },
         {
           "id": "s2-u15-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «uitgaan»?",
+          "prompt": "O que significa «het pakketje»?",
           "options": [
             {
               "id": "a",
-              "text": "sair",
-              "correct": true
+              "text": "integral",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "emprestar",
+              "text": "sair",
               "correct": false
             },
             {
               "id": "c",
-              "text": "limpar",
-              "correct": false
+              "text": "encomenda",
+              "correct": true
             }
           ],
-          "explanation": "«uitgaan» = sair (à noite).",
+          "explanation": "«het pakketje» = encomenda.",
           "vocabRefs": [
-            "v-uitgaan"
+            "v-pakketje"
           ]
         },
         {
           "id": "s2-u15-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «aannemen»?",
+          "prompt": "O que significa «afwassen»?",
           "options": [
             {
               "id": "a",
-              "text": "receber",
+              "text": "lavar a loiça",
               "correct": true
             },
             {
@@ -2669,13 +2670,13 @@
             },
             {
               "id": "c",
-              "text": "lavar a loiça",
+              "text": "limpar",
               "correct": false
             }
           ],
-          "explanation": "«aannemen» = receber, aceitar.",
+          "explanation": "«afwassen» = lavar a loiça.",
           "vocabRefs": [
-            "v-aannemen"
+            "v-afwassen"
           ]
         }
       ],

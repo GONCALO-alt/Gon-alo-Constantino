@@ -1902,12 +1902,12 @@
           "pt": "Ponham as vossas perguntas no chat à vontade."
         },
         {
-          "nl": "Onze doelgroep zijn jonge ouders.",
-          "pt": "O nosso público-alvo são pais jovens."
+          "nl": "Je beeld hapert een beetje.",
+          "pt": "A tua imagem está a falhar um pouco."
         },
         {
-          "nl": "Ik heb twee minuten voor mijn pitch.",
-          "pt": "Tenho dois minutos para o meu pitch."
+          "nl": "Dat is een terechte vraag.",
+          "pt": "É uma pergunta pertinente."
         }
       ],
       "grammar": [],
@@ -1956,10 +1956,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Qual é o valor acrescentado do seu produto?",
           "tokens": [
-            "meerwaarde",
-            "is",
             "Wat",
+            "is",
             "de",
+            "meerwaarde",
             "van",
             "uw",
             "product?"
@@ -1976,12 +1976,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Procuramos parceiros que queiram investir.",
           "tokens": [
-            "partners",
-            "zoeken",
             "We",
-            "investeren.",
+            "zoeken",
+            "partners",
             "die",
-            "willen"
+            "willen",
+            "investeren."
           ],
           "alternatives": [],
           "explanation": "We zoeken partners die willen investeren.",
@@ -1995,10 +1995,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Conseguem ver o meu ecrã?",
           "tokens": [
-            "scherm",
             "Kunnen",
-            "mijn",
             "jullie",
+            "mijn",
+            "scherm",
             "zien?"
           ],
           "alternatives": [],
@@ -2009,101 +2009,102 @@
           "id": "s7-u03-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik begin met een korte anekdote.»?",
+          "prompt": "O que significa: «Wat is de meerwaarde van uw product?»?",
           "options": [
             {
               "id": "a",
-              "text": "Procuramos parceiros que queiram investir.",
+              "text": "Começo com um pequeno episódio.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Começo com um pequeno episódio.",
-              "correct": true
+              "text": "É uma pergunta pertinente.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "A resposta sincera é: ainda não sabemos.",
-              "correct": false
+              "text": "Qual é o valor acrescentado do seu produto?",
+              "correct": true
             }
           ],
-          "explanation": "«Ik begin met een korte anekdote.» = Começo com um pequeno episódio.",
-          "vocabRefs": []
+          "explanation": "«Wat is de meerwaarde van uw product?» = Qual é o valor acrescentado do seu produto?",
+          "vocabRefs": [
+            "v-meerwaarde"
+          ]
         },
         {
           "id": "s7-u03-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We zoeken partners die willen investeren.»?",
+          "prompt": "O que significa: «Ik heb twee minuten voor mijn pitch.»?",
           "options": [
             {
               "id": "a",
-              "text": "Procuramos parceiros que queiram investir.",
+              "text": "Tenho dois minutos para o meu pitch.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "A resposta sincera é: ainda não sabemos.",
+              "text": "Conseguem ver o meu ecrã?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Como foi dito, o tempo é limitado.",
+              "text": "Isso fica fora do tema de hoje.",
               "correct": false
             }
           ],
-          "explanation": "«We zoeken partners die willen investeren.» = Procuramos parceiros que queiram investir.",
+          "explanation": "«Ik heb twee minuten voor mijn pitch.» = Tenho dois minutos para o meu pitch.",
           "vocabRefs": [
-            "v-investeren"
+            "v-pitch"
           ]
         },
         {
           "id": "s7-u03-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isto leva-me aos custos.",
+          "prompt": "Ponham as vossas perguntas no chat à vontade.",
           "tokens": [
-            "me",
-            "bij",
-            "kosten.",
-            "Dit",
-            "brengt",
+            "Zet",
+            "je",
+            "met",
+            "investeren.",
+            "gerust",
+            "vragen",
             "de",
-            "punt.",
-            "beeld"
+            "chat.",
+            "in"
           ],
           "answers": [
-            "Dit brengt me bij de kosten."
+            "Zet je vragen gerust in de chat."
           ],
-          "explanation": "Isto leva-me aos custos. = Dit brengt me bij de kosten. (sobram: punt., beeld)",
+          "explanation": "Ponham as vossas perguntas no chat à vontade. = Zet je vragen gerust in de chat. (sobram: investeren., met)",
           "vocabRefs": [
-            "v-dit-brengt-me-bij"
+            "v-chat"
           ]
         },
         {
           "id": "s7-u03-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sabia que deitamos fora 30 por cento da nossa comida?",
+          "prompt": "Procuramos parceiros que queiram investir.",
           "tokens": [
-            "weggooien?",
-            "dat",
-            "we",
-            "ons",
-            "voedsel",
-            "Wist",
             "je",
-            "30",
-            "procent",
-            "u",
-            "geen",
-            "van"
+            "partners",
+            "willen",
+            "die",
+            "antwoord",
+            "We",
+            "zoeken",
+            "investeren."
           ],
           "answers": [
-            "Wist u dat we 30 procent van ons voedsel weggooien?"
+            "We zoeken partners die willen investeren."
           ],
-          "explanation": "Sabia que deitamos fora 30 por cento da nossa comida? = Wist u dat we 30 procent van ons voedsel weggooien? (sobram: je, geen)",
-          "vocabRefs": []
+          "explanation": "Procuramos parceiros que queiram investir. = We zoeken partners die willen investeren. (sobram: je, antwoord)",
+          "vocabRefs": [
+            "v-investeren"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2166,16 +2167,16 @@
       ],
       "examples": [
         {
-          "nl": "Dat is een terechte vraag.",
-          "pt": "É uma pergunta pertinente."
+          "nl": "Dan kom ik nu bij het tweede punt.",
+          "pt": "Passo agora ao segundo ponto."
         },
         {
-          "nl": "Een pakkende opening boeit het publiek.",
-          "pt": "Uma abertura cativante prende o público."
+          "nl": "Wat is de meerwaarde van uw product?",
+          "pt": "Qual é o valor acrescentado do seu produto?"
         },
         {
-          "nl": "Kunnen jullie mijn scherm zien?",
-          "pt": "Conseguem ver o meu ecrã?"
+          "nl": "Zoals gezegd is de tijd beperkt.",
+          "pt": "Como foi dito, o tempo é limitado."
         }
       ],
       "grammar": [],
@@ -2184,58 +2185,77 @@
           "id": "s7-u03-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «isso fica fora de…» em neerlandês?",
+          "prompt": "Como se diz «pertinente» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "je scherm delen",
-              "correct": false
+              "text": "terecht",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "meerwaarde",
+              "text": "kritische vraag",
               "correct": false
             },
             {
               "id": "c",
-              "text": "dat valt buiten…",
-              "correct": true
+              "text": "meerwaarde",
+              "correct": false
             }
           ],
-          "explanation": "isso fica fora de… = «dat valt buiten…».",
+          "explanation": "pertinente = «terecht».",
           "vocabRefs": [
-            "v-buiten-scope"
+            "v-terecht"
           ]
         },
         {
           "id": "s7-u03-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «investir» em neerlandês?",
+          "prompt": "Como se diz «cativar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "investeren",
-              "correct": true
+              "text": "pakkend",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "doelgroep",
-              "correct": false
+              "text": "boeien",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "haperen",
+              "text": "doelgroep",
               "correct": false
             }
           ],
-          "explanation": "investir = «investeren».",
+          "explanation": "cativar = «boeien».",
           "vocabRefs": [
-            "v-investeren"
+            "v-boeien"
           ]
         },
         {
           "id": "s7-u03-l008-e03",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Een pakkende opening boeit het ___.",
+          "translation": "Uma abertura cativante prende o público.",
+          "answers": [
+            "publiek"
+          ],
+          "choices": [
+            "publiek",
+            "pitch",
+            "doelgroep"
+          ],
+          "explanation": "Een pakkende opening boeit het publiek.",
+          "vocabRefs": [
+            "v-publiek"
+          ]
+        },
+        {
+          "id": "s7-u03-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Zet je vragen gerust in de ___.",
@@ -2244,9 +2264,9 @@
             "chat"
           ],
           "choices": [
+            "haperen",
             "chat",
-            "terecht",
-            "meerwaarde"
+            "boeien"
           ],
           "explanation": "Zet je vragen gerust in de chat.",
           "vocabRefs": [
@@ -2254,134 +2274,117 @@
           ]
         },
         {
-          "id": "s7-u03-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik heb twee minuten voor mijn ___.",
-          "translation": "Tenho dois minutos para o meu pitch.",
-          "answers": [
-            "pitch"
-          ],
-          "choices": [
-            "publiek",
-            "pitch",
-            "dempen"
-          ],
-          "explanation": "Ik heb twee minuten voor mijn pitch.",
-          "vocabRefs": [
-            "v-pitch"
-          ]
-        },
-        {
           "id": "s7-u03-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We zoeken partners die willen investeren.",
+          "audioText": "Je staat nog op mute.",
           "answers": [
-            "We zoeken partners die willen investeren."
+            "Je staat nog op mute."
           ],
-          "translation": "Procuramos parceiros que queiram investir.",
-          "explanation": "«We zoeken partners die willen investeren.» = Procuramos parceiros que queiram investir.",
-          "vocabRefs": [
-            "v-investeren"
-          ]
+          "translation": "Ainda tens o microfone desligado.",
+          "explanation": "«Je staat nog op mute.» = Ainda tens o microfone desligado.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u03-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ter afsluiting nog één opmerking.",
+          "audioText": "Dat valt buiten het onderwerp van vandaag.",
           "answers": [
-            "Ter afsluiting nog één opmerking."
+            "Dat valt buiten het onderwerp van vandaag."
           ],
-          "translation": "Para terminar, mais uma observação.",
-          "explanation": "«Ter afsluiting nog één opmerking.» = Para terminar, mais uma observação.",
+          "translation": "Isso fica fora do tema de hoje.",
+          "explanation": "«Dat valt buiten het onderwerp van vandaag.» = Isso fica fora do tema de hoje.",
           "vocabRefs": [
-            "v-ter-afsluiting"
+            "v-buiten-scope"
           ]
         },
         {
           "id": "s7-u03-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É uma pergunta pertinente.",
+          "prompt": "Uma abertura cativante prende o público.",
           "tokens": [
-            "onderwerp",
-            "een",
-            "vraag.",
-            "tijd",
-            "Dat",
-            "terechte",
-            "is"
+            "publiek.",
+            "boeit",
+            "het",
+            "nog",
+            "is",
+            "Een",
+            "opening",
+            "pakkende"
           ],
           "answers": [
-            "Dat is een terechte vraag."
+            "Een pakkende opening boeit het publiek."
           ],
-          "explanation": "É uma pergunta pertinente. = Dat is een terechte vraag. (sobram: tijd, onderwerp)",
+          "explanation": "Uma abertura cativante prende o público. = Een pakkende opening boeit het publiek. (sobram: is, nog)",
           "vocabRefs": [
-            "v-terecht"
+            "v-publiek",
+            "v-pakkend"
           ]
         },
         {
           "id": "s7-u03-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ponham as vossas perguntas no chat à vontade.",
+          "prompt": "Qual é o valor acrescentado do seu produto?",
           "tokens": [
+            "product?",
+            "van",
+            "is",
             "meerwaarde",
-            "in",
-            "Zet",
+            "uw",
+            "investeren.",
+            "bij",
             "de",
-            "valt",
-            "vragen",
-            "gerust",
-            "chat.",
-            "je"
+            "Wat"
           ],
           "answers": [
-            "Zet je vragen gerust in de chat."
+            "Wat is de meerwaarde van uw product?"
           ],
-          "explanation": "Ponham as vossas perguntas no chat à vontade. = Zet je vragen gerust in de chat. (sobram: valt, meerwaarde)",
+          "explanation": "Qual é o valor acrescentado do seu produto? = Wat is de meerwaarde van uw product? (sobram: investeren., bij)",
           "vocabRefs": [
-            "v-chat"
+            "v-meerwaarde"
           ]
         },
         {
           "id": "s7-u03-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "publiek",
-          "pt": "público",
-          "article": "het",
-          "explanation": "het publiek.",
+          "noun": "pitch",
+          "pt": "apresentação curta de venda",
+          "article": "de",
+          "explanation": "de pitch.",
           "vocabRefs": [
-            "v-publiek"
+            "v-pitch"
           ]
         },
         {
           "id": "s7-u03-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kunnen jullie mijn scherm zien?»?",
+          "prompt": "O que significa: «Dat valt buiten het onderwerp van vandaag.»?",
           "options": [
             {
               "id": "a",
-              "text": "Procuramos parceiros que queiram investir.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Conseguem ver o meu ecrã?",
+              "text": "Isso fica fora do tema de hoje.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Ainda tens o microfone desligado.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Qual é o valor acrescentado do seu produto?",
+              "text": "Para terminar, mais uma observação.",
               "correct": false
             }
           ],
-          "explanation": "«Kunnen jullie mijn scherm zien?» = Conseguem ver o meu ecrã?",
-          "vocabRefs": []
+          "explanation": "«Dat valt buiten het onderwerp van vandaag.» = Isso fica fora do tema de hoje.",
+          "vocabRefs": [
+            "v-buiten-scope"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2444,16 +2447,16 @@
       ],
       "examples": [
         {
-          "nl": "Zet je vragen gerust in de chat.",
-          "pt": "Ponham as vossas perguntas no chat à vontade."
+          "nl": "Ik begin met een korte anekdote.",
+          "pt": "Começo com um pequeno episódio."
+        },
+        {
+          "nl": "Je beeld hapert een beetje.",
+          "pt": "A tua imagem está a falhar um pouco."
         },
         {
           "nl": "Dat valt buiten het onderwerp van vandaag.",
           "pt": "Isso fica fora do tema de hoje."
-        },
-        {
-          "nl": "Je staat nog op mute.",
-          "pt": "Ainda tens o microfone desligado."
         }
       ],
       "grammar": [],
@@ -2462,107 +2465,106 @@
           "id": "s7-u03-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é o valor acrescentado do seu produto?",
+          "prompt": "A tua imagem está a falhar um pouco.",
           "tokens": [
-            "mute.",
-            "de",
-            "van",
-            "meerwaarde",
-            "ons",
-            "is",
-            "Wat",
-            "product?",
-            "uw"
+            "beeld",
+            "staat",
+            "Je",
+            "vraag.",
+            "beetje.",
+            "een",
+            "hapert"
           ],
           "answers": [
-            "Wat is de meerwaarde van uw product?"
+            "Je beeld hapert een beetje."
           ],
-          "explanation": "Qual é o valor acrescentado do seu produto? = Wat is de meerwaarde van uw product? (sobram: ons, mute.)",
-          "vocabRefs": [
-            "v-meerwaarde"
-          ]
+          "explanation": "A tua imagem está a falhar um pouco. = Je beeld hapert een beetje. (sobram: staat, vraag.)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u03-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A tua imagem está a falhar um pouco.",
+          "prompt": "Para terminar, mais uma observação.",
           "tokens": [
-            "hapert",
-            "zien?",
-            "Je",
-            "beeld",
-            "beetje.",
             "één",
-            "een"
+            "eens",
+            "nog",
+            "afsluiting",
+            "nu",
+            "Ter",
+            "opmerking."
           ],
           "answers": [
-            "Je beeld hapert een beetje."
+            "Ter afsluiting nog één opmerking."
           ],
-          "explanation": "A tua imagem está a falhar um pouco. = Je beeld hapert een beetje. (sobram: één, zien?)",
-          "vocabRefs": []
+          "explanation": "Para terminar, mais uma observação. = Ter afsluiting nog één opmerking. (sobram: eens, nu)",
+          "vocabRefs": [
+            "v-ter-afsluiting"
+          ]
         },
         {
           "id": "s7-u03-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Para terminar, mais uma observação.",
+          "prompt": "Tenho dois minutos para o meu pitch.",
           "tokens": [
-            "Ter",
-            "korte",
-            "afsluiting",
-            "punt.",
-            "opmerking.",
-            "nog",
-            "één"
+            "heb",
+            "voor",
+            "Het",
+            "Ik",
+            "twee",
+            "mijn",
+            "We",
+            "minuten",
+            "pitch."
           ],
           "answers": [
-            "Ter afsluiting nog één opmerking."
+            "Ik heb twee minuten voor mijn pitch."
           ],
-          "explanation": "Para terminar, mais uma observação. = Ter afsluiting nog één opmerking. (sobram: korte, punt.)",
+          "explanation": "Tenho dois minutos para o meu pitch. = Ik heb twee minuten voor mijn pitch. (sobram: We, Het)",
           "vocabRefs": [
-            "v-ter-afsluiting"
+            "v-pitch"
           ]
         },
         {
           "id": "s7-u03-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je staat nog op mute.",
+          "audioText": "Een pakkende opening boeit het publiek.",
           "answers": [
-            "Je staat nog op mute."
+            "Een pakkende opening boeit het publiek."
           ],
-          "translation": "Ainda tens o microfone desligado.",
-          "explanation": "«Je staat nog op mute.» = Ainda tens o microfone desligado.",
-          "vocabRefs": []
+          "translation": "Uma abertura cativante prende o público.",
+          "explanation": "«Een pakkende opening boeit het publiek.» = Uma abertura cativante prende o público.",
+          "vocabRefs": [
+            "v-publiek",
+            "v-pakkend"
+          ]
         },
         {
           "id": "s7-u03-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb twee minuten voor mijn pitch.",
+          "audioText": "Je beeld hapert een beetje.",
           "answers": [
-            "Ik heb twee minuten voor mijn pitch."
+            "Je beeld hapert een beetje."
           ],
-          "translation": "Tenho dois minutos para o meu pitch.",
-          "explanation": "«Ik heb twee minuten voor mijn pitch.» = Tenho dois minutos para o meu pitch.",
-          "vocabRefs": [
-            "v-pitch"
-          ]
+          "translation": "A tua imagem está a falhar um pouco.",
+          "explanation": "«Je beeld hapert een beetje.» = A tua imagem está a falhar um pouco.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u03-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat is de meerwaarde van uw product?",
+          "audioText": "Wist u dat we 30 procent van ons voedsel weggooien?",
           "answers": [
-            "Wat is de meerwaarde van uw product?"
+            "Wist u dat we 30 procent van ons voedsel weggooien?"
           ],
-          "translation": "Qual é o valor acrescentado do seu produto?",
-          "explanation": "«Wat is de meerwaarde van uw product?» = Qual é o valor acrescentado do seu produto?",
-          "vocabRefs": [
-            "v-meerwaarde"
-          ]
+          "translation": "Sabia que deitamos fora 30 por cento da nossa comida?",
+          "explanation": "«Wist u dat we 30 procent van ons voedsel weggooien?» = Sabia que deitamos fora 30 por cento da nossa comida?",
+          "vocabRefs": []
         },
         {
           "id": "s7-u03-l009-e07",
@@ -2570,11 +2572,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "É uma pergunta pertinente.",
           "tokens": [
-            "een",
-            "vraag.",
-            "is",
             "Dat",
-            "terechte"
+            "is",
+            "een",
+            "terechte",
+            "vraag."
           ],
           "alternatives": [],
           "explanation": "Dat is een terechte vraag.",
@@ -2586,74 +2588,70 @@
           "id": "s7-u03-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tenho dois minutos para o meu pitch.",
+          "translation": "Ainda tens o microfone desligado.",
           "tokens": [
-            "Ik",
-            "twee",
-            "heb",
-            "minuten",
-            "mijn",
-            "voor",
-            "pitch."
+            "Je",
+            "staat",
+            "nog",
+            "op",
+            "mute."
           ],
           "alternatives": [],
-          "explanation": "Ik heb twee minuten voor mijn pitch.",
-          "vocabRefs": [
-            "v-pitch"
-          ]
+          "explanation": "Je staat nog op mute.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u03-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de chat»?",
+          "prompt": "O que significa «haperen»?",
           "options": [
             {
               "id": "a",
-              "text": "resposta sincera",
-              "correct": false
+              "text": "falhar",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "partilhar o ecrã",
+              "text": "isso fica fora de…",
               "correct": false
             },
             {
               "id": "c",
-              "text": "chat",
-              "correct": true
+              "text": "isto leva-me a",
+              "correct": false
             }
           ],
-          "explanation": "«de chat» = chat.",
+          "explanation": "«haperen» = falhar, engasgar (ligação).",
           "vocabRefs": [
-            "v-chat"
+            "v-haperen"
           ]
         },
         {
           "id": "s7-u03-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de doelgroep»?",
+          "prompt": "O que significa «het eerlijk antwoord»?",
           "options": [
             {
               "id": "a",
-              "text": "público-alvo",
+              "text": "resposta sincera",
               "correct": true
             },
             {
               "id": "b",
-              "text": "isto leva-me a",
+              "text": "chat",
               "correct": false
             },
             {
               "id": "c",
-              "text": "valor acrescentado",
+              "text": "público",
               "correct": false
             }
           ],
-          "explanation": "«de doelgroep» = público-alvo.",
+          "explanation": "«het eerlijk antwoord» = resposta sincera.",
           "vocabRefs": [
-            "v-doelgroep"
+            "v-eerlijk-antwoord"
           ]
         }
       ],

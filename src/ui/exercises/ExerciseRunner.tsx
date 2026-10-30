@@ -5,7 +5,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import type { Exercise } from '../../domain/schemas.ts';
-import { gradeExercise, needsSelfAssessment, type ExerciseResponse, type ExerciseResult } from '../../engine/grading.ts';
+import { expectedAnswer, gradeExercise, needsSelfAssessment, type ExerciseResponse, type ExerciseResult } from '../../engine/grading.ts';
 import { expandAnswerPattern } from '../../engine/answers.ts';
 import { advance, answer, currentExercise, isFinished, progressFraction, startSession, type SessionState } from '../../engine/session.ts';
 import { Icon, ProgressBar, RichText } from '../components/common.tsx';
@@ -38,6 +38,8 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
   const [result, setResult] = useState<ExerciseResult | null>(null);
   const [selfCheck, setSelfCheck] = useState<string | null>(null);
   const [confirmExit, setConfirmExit] = useState(false);
+  /** «Não me lembro»: a resposta foi mostrada antes de o aluno responder. */
+  const [revealed, setRevealed] = useState(false);
   const firstAttempts = useRef(new Map<string, RunnerAnswer>());
   const skipped = useRef<string[]>([]);
   const continueRef = useRef<HTMLButtonElement>(null);
@@ -58,7 +60,19 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
   const finalize = (r: ExerciseResult) => {
     setResult(r);
     if (!firstAttempts.current.has(ex.id)) firstAttempts.current.set(ex.id, { exercise: ex, result: r });
-    setSession((s) => answer(s, r.verdict));
+    // Depois de ver a resposta, o exercício conta como não sabido e volta a aparecer mais tarde.
+    setSession((s) => answer(s, revealed ? 'incorrect' : r.verdict));
+  };
+
+  const reveal = () => {
+    if (result || revealed) return;
+    setRevealed(true);
+    if (!firstAttempts.current.has(ex.id)) {
+      firstAttempts.current.set(ex.id, {
+        exercise: ex,
+        result: { verdict: 'incorrect', expected: expectedAnswer(ex), note: 'Não me lembro', given: '' },
+      });
+    }
   };
 
   const check = () => {
@@ -74,6 +88,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
     setResult(null);
     setResponse(null);
     setSelfCheck(null);
+    setRevealed(false);
     setSession((s) => advance(s));
   };
 
@@ -127,6 +142,15 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
             </div>
           )}
 
+          {revealed && !result && (
+            <div className="reveal" role="status" aria-live="polite">
+              <p className="muted small">Resposta certa:</p>
+              <p className="model" lang="nl">{expectedAnswer(ex)}</p>
+              <p className="explanation"><RichText text={ex.explanation} /></p>
+              <p className="muted small">Agora responda você. Este exercício volta a aparecer no fim para consolidar.</p>
+            </div>
+          )}
+
           {result && (
             <div className="feedback" role="status" aria-live="assertive">
               <p className="verdict">
@@ -139,6 +163,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
                 </p>
               )}
               {result.note && <p className="note">{result.note}</p>}
+              {revealed && <p className="note">Viu a resposta antes de responder: este exercício volta a aparecer no fim.</p>}
               {result.optionFeedback && <p className="note">{result.optionFeedback}</p>}
               <p className="explanation"><RichText text={ex.explanation} /></p>
             </div>
@@ -148,7 +173,12 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
             result ? (
               <button ref={continueRef} type="button" className="btn btn-primary btn-wide" onClick={next}>Continuar</button>
             ) : (
-              <button type="button" className="btn btn-primary btn-wide" disabled={!response} onClick={check}>Verificar</button>
+              <div className="check-row">
+                {!revealed && (
+                  <button type="button" className="btn btn-secondary" onClick={reveal}>Não me lembro</button>
+                )}
+                <button type="button" className="btn btn-primary btn-wide" disabled={!response} onClick={check}>Verificar</button>
+              </div>
             )
           )}
           {selfCheck !== null && result && (

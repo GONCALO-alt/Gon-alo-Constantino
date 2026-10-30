@@ -2064,16 +2064,16 @@
       ],
       "examples": [
         {
-          "nl": "We hebben een bezichtiging om drie uur.",
-          "pt": "Temos uma visita às três."
+          "nl": "In de Randstad wordt vaak overboden.",
+          "pt": "No Randstad oferece-se muitas vezes acima do preço."
+        },
+        {
+          "nl": "De huisarts regelt de nazorg.",
+          "pt": "O médico de família trata do acompanhamento."
         },
         {
           "nl": "Laat altijd een bouwkundige keuring doen.",
           "pt": "Faz sempre uma inspeção técnica."
-        },
-        {
-          "nl": "De Huurcommissie kan een huurverlaging geven.",
-          "pt": "A Huurcommissie pode conceder uma redução da renda."
         }
       ],
       "grammar": [],
@@ -2125,8 +2125,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quem é responsável?",
           "tokens": [
-            "is",
             "Wie",
+            "is",
             "aansprakelijk?"
           ],
           "alternatives": [],
@@ -2141,14 +2141,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Comuniquei o problema do bolor.",
           "tokens": [
-            "schimmel.",
             "Ik",
+            "heb",
+            "een",
+            "melding",
             "gemaakt",
             "van",
-            "heb",
-            "melding",
-            "een",
-            "de"
+            "de",
+            "schimmel."
           ],
           "alternatives": [],
           "explanation": "Ik heb een melding gemaakt van de schimmel.",
@@ -2160,12 +2160,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tive uma pequena colisão.",
           "tokens": [
-            "gehad.",
-            "kleine",
+            "Ik",
             "heb",
             "een",
-            "Ik",
-            "aanrijding"
+            "kleine",
+            "aanrijding",
+            "gehad."
           ],
           "alternatives": [],
           "explanation": "Ik heb een kleine aanrijding gehad.",
@@ -2177,100 +2177,99 @@
           "id": "s7-u12-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De catering verzorgt de lunch.»?",
+          "prompt": "O que significa: «Wie is aansprakelijk?»?",
           "options": [
             {
               "id": "a",
-              "text": "Um telhado com infiltrações é um defeito grave.",
-              "correct": false
+              "text": "Quem é responsável?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "A escritura é no notário.",
+              "text": "Comuniquei o problema do bolor.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O catering trata do almoço.",
-              "correct": true
+              "text": "Temos uma cláusula de financiamento (a compra depende do empréstimo).",
+              "correct": false
             }
           ],
-          "explanation": "«De catering verzorgt de lunch.» = O catering trata do almoço.",
+          "explanation": "«Wie is aansprakelijk?» = Quem é responsável?",
           "vocabRefs": [
-            "v-catering"
+            "v-aansprakelijk"
           ]
         },
         {
           "id": "s7-u12-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wanneer krijg ik de uitslag?»?",
+          "prompt": "O que significa: «We zoeken een locatie voor honderd personen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quando recebo o resultado?",
-              "correct": true
+              "text": "O meu seguro paga os danos.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Procuramos um local para cem pessoas.",
+              "text": "Guarda todos os e-mails como prova.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O médico de família trata do acompanhamento.",
-              "correct": false
+              "text": "Procuramos um local para cem pessoas.",
+              "correct": true
             }
           ],
-          "explanation": "«Wanneer krijg ik de uitslag?» = Quando recebo o resultado?",
+          "explanation": "«We zoeken een locatie voor honderd personen.» = Procuramos um local para cem pessoas.",
           "vocabRefs": [
-            "v-uitslag"
+            "v-locatie"
           ]
         },
         {
           "id": "s7-u12-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Preenchemos juntos a declaração amigável.",
+          "prompt": "Está tudo no guião?",
           "tokens": [
-            "We",
-            "samen",
-            "een",
-            "vullen",
-            "hulp.",
-            "schadeformulier",
+            "in",
             "het",
-            "in."
+            "alles",
+            "Staat",
+            "draaiboek?",
+            "drie",
+            "is"
           ],
           "answers": [
-            "We vullen samen het schadeformulier in."
+            "Staat alles in het draaiboek?"
           ],
-          "explanation": "Preenchemos juntos a declaração amigável. = We vullen samen het schadeformulier in. (sobram: een, hulp.)",
+          "explanation": "Está tudo no guião? = Staat alles in het draaiboek? (sobram: drie, is)",
           "vocabRefs": [
-            "v-schadeformulier"
+            "v-draaiboek"
           ]
         },
         {
           "id": "s7-u12-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Já se inscreveram cinquenta participantes.",
+          "prompt": "Preenchemos juntos a declaração amigável.",
           "tokens": [
-            "deelnemers",
-            "financiering.",
-            "als",
-            "zich",
-            "vijftig",
-            "aangemeld.",
-            "hebben",
-            "Al"
+            "overboden.",
+            "samen",
+            "bouwkundige",
+            "We",
+            "in.",
+            "vullen",
+            "schadeformulier",
+            "het"
           ],
           "answers": [
-            "Al vijftig deelnemers hebben zich aangemeld."
+            "We vullen samen het schadeformulier in."
           ],
-          "explanation": "Já se inscreveram cinquenta participantes. = Al vijftig deelnemers hebben zich aangemeld. (sobram: financiering., als)",
+          "explanation": "Preenchemos juntos a declaração amigável. = We vullen samen het schadeformulier in. (sobram: overboden., bouwkundige)",
           "vocabRefs": [
-            "v-deelnemer"
+            "v-schadeformulier"
           ]
         }
       ],
@@ -2342,16 +2341,16 @@
       ],
       "examples": [
         {
-          "nl": "Mijn verzekering betaalt de schade.",
-          "pt": "O meu seguro paga os danos."
+          "nl": "De catering verzorgt de lunch.",
+          "pt": "O catering trata do almoço."
         },
         {
-          "nl": "Hij ligt op de spoedeisende hulp.",
-          "pt": "Ele está nas urgências."
+          "nl": "We vullen samen het schadeformulier in.",
+          "pt": "Preenchemos juntos a declaração amigável."
         },
         {
-          "nl": "Ik heb een kleine aanrijding gehad.",
-          "pt": "Tive uma pequena colisão."
+          "nl": "We hebben een bezichtiging om drie uur.",
+          "pt": "Temos uma visita às três."
         }
       ],
       "grammar": [],
@@ -2360,12 +2359,12 @@
           "id": "s7-u12-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «internamento» em neerlandês?",
+          "prompt": "Como se diz «declaração amigável» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "koopovereenkomst",
-              "correct": false
+              "text": "schadeformulier",
+              "correct": true
             },
             {
               "id": "b",
@@ -2374,188 +2373,185 @@
             },
             {
               "id": "c",
-              "text": "opname",
-              "correct": true
+              "text": "aansprakelijk",
+              "correct": false
             }
           ],
-          "explanation": "internamento = «opname».",
+          "explanation": "declaração amigável = «schadeformulier».",
           "vocabRefs": [
-            "v-opname"
+            "v-schadeformulier"
           ]
         },
         {
           "id": "s7-u12-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «escritura» em neerlandês?",
+          "prompt": "Como se diz «local» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "huurverlaging",
+              "text": "overbieden",
               "correct": false
             },
             {
               "id": "b",
-              "text": "overdracht",
-              "correct": true
+              "text": "gebrek",
+              "correct": false
             },
             {
               "id": "c",
               "text": "locatie",
-              "correct": false
+              "correct": true
             }
           ],
-          "explanation": "escritura = «overdracht».",
+          "explanation": "local = «locatie».",
           "vocabRefs": [
-            "v-overdracht"
+            "v-locatie"
           ]
         },
         {
           "id": "s7-u12-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik heb een kleine ___ gehad.",
-          "translation": "Tive uma pequena colisão.",
+          "sentence": "De Huurcommissie kan een ___ geven.",
+          "translation": "A Huurcommissie pode conceder uma redução da renda.",
           "answers": [
-            "aanrijding"
+            "huurverlaging"
           ],
           "choices": [
             "specialist",
             "aanrijding",
-            "uitslag"
+            "huurverlaging"
           ],
-          "explanation": "Ik heb een kleine aanrijding gehad.",
+          "explanation": "De Huurcommissie kan een huurverlaging geven.",
           "vocabRefs": [
-            "v-aanrijding"
+            "v-huurverlaging"
           ]
         },
         {
           "id": "s7-u12-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wie is ___?",
-          "translation": "Quem é responsável?",
+          "sentence": "Mijn ___ betaalt de schade.",
+          "translation": "O meu seguro paga os danos.",
           "answers": [
-            "aansprakelijk"
+            "verzekering"
           ],
           "choices": [
-            "notaris",
-            "draaiboek",
-            "aansprakelijk"
+            "specialist",
+            "verzekering",
+            "uitslag"
           ],
-          "explanation": "Wie is aansprakelijk?",
+          "explanation": "Mijn verzekering betaalt de schade.",
           "vocabRefs": [
-            "v-aansprakelijk"
+            "v-verzekering"
           ]
         },
         {
           "id": "s7-u12-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb een kleine aanrijding gehad.",
+          "audioText": "We hebben een bezichtiging om drie uur.",
           "answers": [
-            "Ik heb een kleine aanrijding gehad."
+            "We hebben een bezichtiging om drie uur."
           ],
-          "translation": "Tive uma pequena colisão.",
-          "explanation": "«Ik heb een kleine aanrijding gehad.» = Tive uma pequena colisão.",
-          "vocabRefs": [
-            "v-aanrijding"
-          ]
+          "translation": "Temos uma visita às três.",
+          "explanation": "«We hebben een bezichtiging om drie uur.» = Temos uma visita às três.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u12-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een lekkend dak is een ernstig gebrek.",
+          "audioText": "Mijn verzekering betaalt de schade.",
           "answers": [
-            "Een lekkend dak is een ernstig gebrek."
+            "Mijn verzekering betaalt de schade."
           ],
-          "translation": "Um telhado com infiltrações é um defeito grave.",
-          "explanation": "«Een lekkend dak is een ernstig gebrek.» = Um telhado com infiltrações é um defeito grave.",
+          "translation": "O meu seguro paga os danos.",
+          "explanation": "«Mijn verzekering betaalt de schade.» = O meu seguro paga os danos.",
           "vocabRefs": [
-            "v-gebrek"
+            "v-verzekering"
           ]
         },
         {
           "id": "s7-u12-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Guarda todos os e-mails como prova.",
+          "prompt": "Já se inscreveram cinquenta participantes.",
           "tokens": [
-            "Bewaar",
-            "als",
-            "bewijs.",
-            "ligt",
-            "alle",
-            "is",
-            "e-mails"
+            "deelnemers",
+            "een",
+            "het",
+            "zich",
+            "hebben",
+            "aangemeld.",
+            "vijftig",
+            "Al"
           ],
           "answers": [
-            "Bewaar alle e-mails als bewijs."
+            "Al vijftig deelnemers hebben zich aangemeld."
           ],
-          "explanation": "Guarda todos os e-mails como prova. = Bewaar alle e-mails als bewijs. (sobram: ligt, is)",
-          "vocabRefs": []
+          "explanation": "Já se inscreveram cinquenta participantes. = Al vijftig deelnemers hebben zich aangemeld. (sobram: een, het)",
+          "vocabRefs": [
+            "v-deelnemer"
+          ]
         },
         {
           "id": "s7-u12-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Temos uma visita às três.",
+          "prompt": "Quem é responsável?",
           "tokens": [
-            "hebben",
-            "uur.",
-            "catering",
-            "om",
-            "een",
-            "drie",
-            "aangemeld.",
-            "bezichtiging",
-            "We"
+            "is",
+            "Wie",
+            "geven.",
+            "aansprakelijk?",
+            "een"
           ],
           "answers": [
-            "We hebben een bezichtiging om drie uur."
+            "Wie is aansprakelijk?"
           ],
-          "explanation": "Temos uma visita às três. = We hebben een bezichtiging om drie uur. (sobram: aangemeld., catering)",
-          "vocabRefs": []
+          "explanation": "Quem é responsável? = Wie is aansprakelijk? (sobram: geven., een)",
+          "vocabRefs": [
+            "v-aansprakelijk"
+          ]
         },
         {
           "id": "s7-u12-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "schadeformulier",
-          "pt": "declaração amigável",
+          "noun": "draaiboek",
+          "pt": "guião",
           "article": "het",
-          "explanation": "het schadeformulier.",
+          "explanation": "het draaiboek.",
           "vocabRefs": [
-            "v-schadeformulier"
+            "v-draaiboek"
           ]
         },
         {
           "id": "s7-u12-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een lekkend dak is een ernstig gebrek.»?",
+          "prompt": "O que significa: «Ik heb een melding gemaakt van de schimmel.»?",
           "options": [
             {
               "id": "a",
-              "text": "Um telhado com infiltrações é um defeito grave.",
-              "correct": true
-            },
-            {
-              "id": "b",
               "text": "Temos uma visita às três.",
               "correct": false
             },
             {
+              "id": "b",
+              "text": "Comuniquei o problema do bolor.",
+              "correct": true
+            },
+            {
               "id": "c",
-              "text": "Faz sempre uma inspeção técnica.",
+              "text": "A Huurcommissie pode conceder uma redução da renda.",
               "correct": false
             }
           ],
-          "explanation": "«Een lekkend dak is een ernstig gebrek.» = Um telhado com infiltrações é um defeito grave.",
-          "vocabRefs": [
-            "v-gebrek"
-          ]
+          "explanation": "«Ik heb een melding gemaakt van de schimmel.» = Comuniquei o problema do bolor.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2626,16 +2622,16 @@
       ],
       "examples": [
         {
-          "nl": "Wanneer krijg ik de uitslag?",
-          "pt": "Quando recebo o resultado?"
-        },
-        {
-          "nl": "De catering verzorgt de lunch.",
-          "pt": "O catering trata do almoço."
-        },
-        {
           "nl": "Wie is aansprakelijk?",
           "pt": "Quem é responsável?"
+        },
+        {
+          "nl": "Bewaar alle e-mails als bewijs.",
+          "pt": "Guarda todos os e-mails como prova."
+        },
+        {
+          "nl": "We zoeken een locatie voor honderd personen.",
+          "pt": "Procuramos um local para cem pessoas."
         }
       ],
       "grammar": [],
@@ -2644,145 +2640,149 @@
           "id": "s7-u12-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quem é responsável?",
-          "tokens": [
-            "aansprakelijk?",
-            "geven.",
-            "Wie",
-            "is",
-            "een"
-          ],
-          "answers": [
-            "Wie is aansprakelijk?"
-          ],
-          "explanation": "Quem é responsável? = Wie is aansprakelijk? (sobram: geven., een)",
-          "vocabRefs": [
-            "v-aansprakelijk"
-          ]
-        },
-        {
-          "id": "s7-u12-l009-e02",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "A Huurcommissie pode conceder uma redução da renda.",
           "tokens": [
+            "De",
             "geven.",
-            "gebrek.",
             "een",
             "huurverlaging",
-            "De",
-            "kan",
             "Huurcommissie",
-            "zich"
+            "altijd",
+            "Mijn",
+            "kan"
           ],
           "answers": [
             "De Huurcommissie kan een huurverlaging geven."
           ],
-          "explanation": "A Huurcommissie pode conceder uma redução da renda. = De Huurcommissie kan een huurverlaging geven. (sobram: zich, gebrek.)",
+          "explanation": "A Huurcommissie pode conceder uma redução da renda. = De Huurcommissie kan een huurverlaging geven. (sobram: altijd, Mijn)",
           "vocabRefs": [
             "v-huurcommissie",
             "v-huurverlaging"
           ]
         },
         {
+          "id": "s7-u12-l009-e02",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Procuramos um local para cem pessoas.",
+          "tokens": [
+            "zoeken",
+            "We",
+            "personen.",
+            "als",
+            "voor",
+            "De",
+            "een",
+            "locatie",
+            "honderd"
+          ],
+          "answers": [
+            "We zoeken een locatie voor honderd personen."
+          ],
+          "explanation": "Procuramos um local para cem pessoas. = We zoeken een locatie voor honderd personen. (sobram: De, als)",
+          "vocabRefs": [
+            "v-locatie"
+          ]
+        },
+        {
           "id": "s7-u12-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Faz sempre uma inspeção técnica.",
+          "prompt": "No Randstad oferece-se muitas vezes acima do preço.",
           "tokens": [
-            "bouwkundige",
-            "een",
-            "Laat",
-            "altijd",
-            "Randstad",
-            "overdracht",
-            "keuring",
-            "doen."
+            "wordt",
+            "de",
+            "In",
+            "krijg",
+            "vaak",
+            "overboden.",
+            "drie",
+            "Randstad"
           ],
           "answers": [
-            "Laat altijd een bouwkundige keuring doen."
+            "In de Randstad wordt vaak overboden."
           ],
-          "explanation": "Faz sempre uma inspeção técnica. = Laat altijd een bouwkundige keuring doen. (sobram: Randstad, overdracht)",
-          "vocabRefs": [
-            "v-bouwkundige-keuring"
-          ]
+          "explanation": "No Randstad oferece-se muitas vezes acima do preço. = In de Randstad wordt vaak overboden. (sobram: krijg, drie)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u12-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We hebben een bezichtiging om drie uur.",
+          "audioText": "Een lekkend dak is een ernstig gebrek.",
           "answers": [
-            "We hebben een bezichtiging om drie uur."
+            "Een lekkend dak is een ernstig gebrek."
           ],
-          "translation": "Temos uma visita às três.",
-          "explanation": "«We hebben een bezichtiging om drie uur.» = Temos uma visita às três.",
-          "vocabRefs": []
+          "translation": "Um telhado com infiltrações é um defeito grave.",
+          "explanation": "«Een lekkend dak is een ernstig gebrek.» = Um telhado com infiltrações é um defeito grave.",
+          "vocabRefs": [
+            "v-gebrek"
+          ]
         },
         {
           "id": "s7-u12-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn verzekering betaalt de schade.",
+          "audioText": "Wie is aansprakelijk?",
           "answers": [
-            "Mijn verzekering betaalt de schade."
+            "Wie is aansprakelijk?"
           ],
-          "translation": "O meu seguro paga os danos.",
-          "explanation": "«Mijn verzekering betaalt de schade.» = O meu seguro paga os danos.",
+          "translation": "Quem é responsável?",
+          "explanation": "«Wie is aansprakelijk?» = Quem é responsável?",
           "vocabRefs": [
-            "v-verzekering"
+            "v-aansprakelijk"
           ]
         },
         {
           "id": "s7-u12-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Staat alles in het draaiboek?",
+          "audioText": "Ik heb een kleine aanrijding gehad.",
           "answers": [
-            "Staat alles in het draaiboek?"
+            "Ik heb een kleine aanrijding gehad."
           ],
-          "translation": "Está tudo no guião?",
-          "explanation": "«Staat alles in het draaiboek?» = Está tudo no guião?",
+          "translation": "Tive uma pequena colisão.",
+          "explanation": "«Ik heb een kleine aanrijding gehad.» = Tive uma pequena colisão.",
           "vocabRefs": [
-            "v-draaiboek"
+            "v-aanrijding"
           ]
         },
         {
           "id": "s7-u12-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Temos uma visita às três.",
+          "translation": "Faz sempre uma inspeção técnica.",
           "tokens": [
+            "Laat",
+            "altijd",
             "een",
-            "uur.",
-            "drie",
-            "hebben",
-            "We",
-            "om",
-            "bezichtiging"
+            "bouwkundige",
+            "keuring",
+            "doen."
           ],
           "alternatives": [],
-          "explanation": "We hebben een bezichtiging om drie uur.",
-          "vocabRefs": []
+          "explanation": "Laat altijd een bouwkundige keuring doen.",
+          "vocabRefs": [
+            "v-bouwkundige-keuring"
+          ]
         },
         {
           "id": "s7-u12-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Já se inscreveram cinquenta participantes.",
+          "translation": "Temos uma visita às três.",
           "tokens": [
-            "vijftig",
-            "aangemeld.",
-            "deelnemers",
+            "We",
             "hebben",
-            "zich",
-            "Al"
+            "een",
+            "bezichtiging",
+            "om",
+            "drie",
+            "uur."
           ],
           "alternatives": [],
-          "explanation": "Al vijftig deelnemers hebben zich aangemeld.",
-          "vocabRefs": [
-            "v-deelnemer"
-          ]
+          "explanation": "We hebben een bezichtiging om drie uur.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u12-l009-e09",
@@ -2792,17 +2792,17 @@
           "options": [
             {
               "id": "a",
+              "text": "notário",
+              "correct": false
+            },
+            {
+              "id": "b",
               "text": "inscrever-se",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "redução da renda",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "comissão de arrendamento",
+              "text": "local",
               "correct": false
             }
           ],
@@ -2815,27 +2815,27 @@
           "id": "s7-u12-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «overbieden»?",
+          "prompt": "O que significa «de nazorg»?",
           "options": [
             {
               "id": "a",
-              "text": "escritura",
+              "text": "local",
               "correct": false
             },
             {
               "id": "b",
-              "text": "oferecer acima do preço pedido",
+              "text": "acompanhamento pós-tratamento",
               "correct": true
             },
             {
               "id": "c",
-              "text": "inspeção técnica",
+              "text": "escritura",
               "correct": false
             }
           ],
-          "explanation": "«overbieden» = oferecer acima do preço pedido.",
+          "explanation": "«de nazorg» = acompanhamento pós-tratamento.",
           "vocabRefs": [
-            "v-overbieden"
+            "v-nazorg"
           ]
         }
       ],

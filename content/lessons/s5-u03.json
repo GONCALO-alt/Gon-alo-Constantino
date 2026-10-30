@@ -1926,16 +1926,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat een knus café!",
-          "pt": "Que café tão aconchegado!"
+          "nl": "Eerlijk gezegd vind ik het te duur.",
+          "pt": "Para ser sincero, acho demasiado caro."
         },
         {
-          "nl": "Ik trakteer vandaag!",
-          "pt": "Hoje pago eu!"
+          "nl": "Gemiddeld zijn ze wel lang.",
+          "pt": "Em média são de facto altos."
         },
         {
-          "nl": "Om eerlijk te zijn: je presentatie was te lang.",
-          "pt": "Para ser sincero: a tua apresentação foi demasiado longa."
+          "nl": "Klopt het dat alle Nederlanders lang zijn?",
+          "pt": "É verdade que todos os neerlandeses são altos?"
         }
       ],
       "grammar": [],
@@ -1988,10 +1988,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Cada um paga o seu.",
           "tokens": [
-            "zich.",
-            "voor",
             "Ieder",
-            "betaalt"
+            "betaalt",
+            "voor",
+            "zich."
           ],
           "alternatives": [],
           "explanation": "Ieder betaalt voor zich.",
@@ -2005,13 +2005,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Marcamos alguma coisa para o mês que vem?",
           "tokens": [
-            "we",
-            "volgende",
-            "iets",
-            "voor",
             "Zullen",
-            "maand?",
-            "plannen"
+            "we",
+            "iets",
+            "plannen",
+            "voor",
+            "volgende",
+            "maand?"
           ],
           "alternatives": [],
           "explanation": "Zullen we iets plannen voor volgende maand?",
@@ -2025,11 +2025,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "A «gezelligheid» é importante para os neerlandeses.",
           "tokens": [
+            "Gezelligheid",
             "is",
             "belangrijk",
             "voor",
-            "Nederlanders.",
-            "Gezelligheid"
+            "Nederlanders."
           ],
           "alternatives": [],
           "explanation": "Gezelligheid is belangrijk voor Nederlanders.",
@@ -2041,97 +2041,97 @@
           "id": "s5-u03-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De vergadering begint stipt om negen uur.»?",
+          "prompt": "O que significa: «De verjaardagskalender hangt op de wc.»?",
           "options": [
             {
               "id": "a",
               "text": "O calendário de aniversários está pendurado na casa de banho.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "A reunião começa às nove em ponto.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Isso é um cliché.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Os neerlandeses são muitas vezes muito diretos.",
+              "text": "A reunião começa às nove em ponto.",
               "correct": false
             }
           ],
-          "explanation": "«De vergadering begint stipt om negen uur.» = A reunião começa às nove em ponto.",
+          "explanation": "«De verjaardagskalender hangt op de wc.» = O calendário de aniversários está pendurado na casa de banho.",
           "vocabRefs": [
-            "v-stipt"
+            "v-verjaardagskalender"
           ]
         },
         {
           "id": "s5-u03-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Dat klonk een beetje bot.»?",
+          "prompt": "O que significa: «Klopt het dat alle Nederlanders lang zijn?»?",
           "options": [
             {
               "id": "a",
-              "text": "Para ser sincero: a tua apresentação foi demasiado longa.",
-              "correct": false
+              "text": "É verdade que todos os neerlandeses são altos?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Cada um paga o seu.",
+              "text": "Os neerlandeses não são muito espontâneos.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Isso soou um bocado rude.",
-              "correct": true
+              "text": "Que café tão aconchegado!",
+              "correct": false
             }
           ],
-          "explanation": "«Dat klonk een beetje bot.» = Isso soou um bocado rude.",
-          "vocabRefs": [
-            "v-bot"
-          ]
+          "explanation": "«Klopt het dat alle Nederlanders lang zijn?» = É verdade que todos os neerlandeses são altos?",
+          "vocabRefs": []
         },
         {
           "id": "s5-u03-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Cada um paga o seu.",
+          "prompt": "Isso é um cliché.",
           "tokens": [
-            "kan",
-            "voor",
-            "zich.",
-            "betaalt",
-            "bekend",
-            "Ieder"
+            "cliché.",
+            "is",
+            "Dat",
+            "een",
+            "trakteer",
+            "knus"
           ],
           "answers": [
-            "Ieder betaalt voor zich."
+            "Dat is een cliché."
           ],
-          "explanation": "Cada um paga o seu. = Ieder betaalt voor zich. (sobram: kan, bekend)",
+          "explanation": "Isso é um cliché. = Dat is een cliché. (sobram: trakteer, knus)",
           "vocabRefs": [
-            "v-ieder-voor-zich"
+            "v-cliche"
           ]
         },
         {
           "id": "s5-u03-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Os neerlandeses têm fama de poupados.",
+          "prompt": "Marcamos alguma coisa para o mês que vem?",
           "tokens": [
-            "staan",
-            "Nederlanders",
-            "als",
-            "bekend",
-            "zuinig.",
+            "iets",
             "voor",
-            "café!"
+            "maand?",
+            "we",
+            "volgende",
+            "direct.",
+            "plannen",
+            "een",
+            "Zullen"
           ],
           "answers": [
-            "Nederlanders staan bekend als zuinig."
+            "Zullen we iets plannen voor volgende maand?"
           ],
-          "explanation": "Os neerlandeses têm fama de poupados. = Nederlanders staan bekend als zuinig. (sobram: voor, café!)",
+          "explanation": "Marcamos alguma coisa para o mês que vem? = Zullen we iets plannen voor volgende maand? (sobram: direct., een)",
           "vocabRefs": [
-            "v-zuinig"
+            "v-plannen"
           ]
         }
       ],
@@ -2195,16 +2195,16 @@
       ],
       "examples": [
         {
-          "nl": "Zullen we de rekening delen?",
-          "pt": "Dividimos a conta?"
+          "nl": "Je moet niet generaliseren.",
+          "pt": "Não se deve generalizar."
         },
         {
-          "nl": "Eerlijk gezegd vind ik het te duur.",
-          "pt": "Para ser sincero, acho demasiado caro."
+          "nl": "Ieder betaalt voor zich.",
+          "pt": "Cada um paga o seu."
         },
         {
-          "nl": "Dat klonk een beetje bot.",
-          "pt": "Isso soou um bocado rude."
+          "nl": "Gezelligheid is belangrijk voor Nederlanders.",
+          "pt": "A «gezelligheid» é importante para os neerlandeses."
         }
       ],
       "grammar": [],
@@ -2213,77 +2213,58 @@
           "id": "s5-u03-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «espontâneo» em neerlandês?",
+          "prompt": "Como se diz «dividir» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "spontaan",
+              "text": "delen",
               "correct": true
             },
             {
               "id": "b",
-              "text": "bot",
+              "text": "eerlijk gezegd",
               "correct": false
             },
             {
               "id": "c",
-              "text": "trakteren",
+              "text": "verjaardagskalender",
               "correct": false
             }
           ],
-          "explanation": "espontâneo = «spontaan».",
+          "explanation": "dividir = «delen».",
           "vocabRefs": [
-            "v-spontaan"
+            "v-delen"
           ]
         },
         {
           "id": "s5-u03-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «cliché» em neerlandês?",
+          "prompt": "Como se diz «calendário de aniversários» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "samenzijn",
+              "text": "kritiek",
               "correct": false
             },
             {
               "id": "b",
-              "text": "cliché",
-              "correct": true
+              "text": "ieder betaalt voor zich",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "bot",
-              "correct": false
+              "text": "verjaardagskalender",
+              "correct": true
             }
           ],
-          "explanation": "cliché = «cliché».",
+          "explanation": "calendário de aniversários = «verjaardagskalender».",
           "vocabRefs": [
-            "v-cliche"
+            "v-verjaardagskalender"
           ]
         },
         {
           "id": "s5-u03-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ zijn ze wel lang.",
-          "translation": "Em média são de facto altos.",
-          "answers": [
-            "Gemiddeld"
-          ],
-          "choices": [
-            "Gemiddeld",
-            "Vooroordeel",
-            "Direct"
-          ],
-          "explanation": "Gemiddeld zijn ze wel lang.",
-          "vocabRefs": [
-            "v-gemiddeld"
-          ]
-        },
-        {
-          "id": "s5-u03-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Zullen we de rekening ___?",
@@ -2292,9 +2273,9 @@
             "delen"
           ],
           "choices": [
-            "gezelligheid",
-            "spontaan",
-            "delen"
+            "delen",
+            "trakteren",
+            "zuinig"
           ],
           "explanation": "Zullen we de rekening delen?",
           "vocabRefs": [
@@ -2302,109 +2283,129 @@
           ]
         },
         {
+          "id": "s5-u03-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Dat is een ___.",
+          "translation": "Isso é um cliché.",
+          "answers": [
+            "cliché"
+          ],
+          "choices": [
+            "cliché",
+            "stipt",
+            "delen"
+          ],
+          "explanation": "Dat is een cliché.",
+          "vocabRefs": [
+            "v-cliche"
+          ]
+        },
+        {
           "id": "s5-u03-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Gezelligheid is belangrijk voor Nederlanders.",
+          "audioText": "Kom je ook? Gezellig!",
           "answers": [
-            "Gezelligheid is belangrijk voor Nederlanders."
+            "Kom je ook? Gezellig!"
           ],
-          "translation": "A «gezelligheid» é importante para os neerlandeses.",
-          "explanation": "«Gezelligheid is belangrijk voor Nederlanders.» = A «gezelligheid» é importante para os neerlandeses.",
-          "vocabRefs": [
-            "v-gezelligheid"
-          ]
+          "translation": "Também vens? Que bom!",
+          "explanation": "«Kom je ook? Gezellig!» = Também vens? Que bom!",
+          "vocabRefs": []
         },
         {
           "id": "s5-u03-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het was heel gezellig gisteravond.",
+          "audioText": "Zullen we iets plannen voor volgende maand?",
           "answers": [
-            "Het was heel gezellig gisteravond."
+            "Zullen we iets plannen voor volgende maand?"
           ],
-          "translation": "Ontem à noite foi muito agradável.",
-          "explanation": "«Het was heel gezellig gisteravond.» = Ontem à noite foi muito agradável.",
-          "vocabRefs": []
+          "translation": "Marcamos alguma coisa para o mês que vem?",
+          "explanation": "«Zullen we iets plannen voor volgende maand?» = Marcamos alguma coisa para o mês que vem?",
+          "vocabRefs": [
+            "v-plannen"
+          ]
         },
         {
           "id": "s5-u03-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso soou um bocado rude.",
+          "prompt": "Cada um paga o seu.",
           "tokens": [
-            "beetje",
-            "klonk",
-            "bot.",
-            "Gemiddeld",
-            "een",
-            "Dat",
-            "zo'n"
+            "ze",
+            "Ieder",
+            "zich.",
+            "voor",
+            "zaal.",
+            "betaalt"
           ],
           "answers": [
-            "Dat klonk een beetje bot."
+            "Ieder betaalt voor zich."
           ],
-          "explanation": "Isso soou um bocado rude. = Dat klonk een beetje bot. (sobram: zo'n, Gemiddeld)",
+          "explanation": "Cada um paga o seu. = Ieder betaalt voor zich. (sobram: zaal., ze)",
           "vocabRefs": [
-            "v-bot"
+            "v-ieder-voor-zich"
           ]
         },
         {
           "id": "s5-u03-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Hoje pago eu!",
+          "prompt": "Que desagradável, uma sala assim vazia.",
           "tokens": [
-            "zich.",
+            "zaal.",
             "Ik",
-            "zuinig.",
-            "trakteer",
-            "vandaag!"
+            "Wat",
+            "te",
+            "lege",
+            "ongezellig,",
+            "zo'n"
           ],
           "answers": [
-            "Ik trakteer vandaag!"
+            "Wat ongezellig, zo'n lege zaal."
           ],
-          "explanation": "Hoje pago eu! = Ik trakteer vandaag! (sobram: zich., zuinig.)",
-          "vocabRefs": []
+          "explanation": "Que desagradável, uma sala assim vazia. = Wat ongezellig, zo'n lege zaal. (sobram: te, Ik)",
+          "vocabRefs": [
+            "v-ongezellig"
+          ]
         },
         {
           "id": "s5-u03-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "gezelligheid",
-          "pt": "ambiente acolhedor e agradável",
-          "article": "de",
-          "explanation": "de gezelligheid.",
+          "noun": "vooroordeel",
+          "pt": "preconceito",
+          "article": "het",
+          "explanation": "het vooroordeel.",
           "vocabRefs": [
-            "v-gezelligheid"
+            "v-vooroordeel"
           ]
         },
         {
           "id": "s5-u03-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Nederlanders zijn vaak heel direct.»?",
+          "prompt": "O que significa: «Ik stuur je straks een Tikkie.»?",
           "options": [
             {
               "id": "a",
-              "text": "Hoje pago eu!",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Os neerlandeses são muitas vezes muito diretos.",
+              "text": "Daqui a pouco mando-te um Tikkie.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Marcamos alguma coisa para o mês que vem?",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "A «gezelligheid» é importante para os neerlandeses.",
+              "text": "Que desagradável, uma sala assim vazia.",
               "correct": false
             }
           ],
-          "explanation": "«Nederlanders zijn vaak heel direct.» = Os neerlandeses são muitas vezes muito diretos.",
-          "vocabRefs": [
-            "v-direct"
-          ]
+          "explanation": "«Ik stuur je straks een Tikkie.» = Daqui a pouco mando-te um Tikkie.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2467,16 +2468,16 @@
       ],
       "examples": [
         {
-          "nl": "Dat klonk een beetje bot.",
-          "pt": "Isso soou um bocado rude."
+          "nl": "Wat ongezellig, zo'n lege zaal.",
+          "pt": "Que desagradável, uma sala assim vazia."
         },
         {
-          "nl": "Nederlanders zijn vaak heel direct.",
-          "pt": "Os neerlandeses são muitas vezes muito diretos."
+          "nl": "Dat is een cliché.",
+          "pt": "Isso é um cliché."
         },
         {
-          "nl": "Ik kan goed tegen kritiek.",
-          "pt": "Lido bem com críticas."
+          "nl": "Het was heel gezellig gisteravond.",
+          "pt": "Ontem à noite foi muito agradável."
         }
       ],
       "grammar": [],
@@ -2485,46 +2486,43 @@
           "id": "s5-u03-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso é um cliché.",
+          "prompt": "Ontem à noite foi muito agradável.",
           "tokens": [
-            "cliché.",
-            "een",
-            "ongezellig,",
-            "is",
-            "moet",
-            "Dat"
+            "was",
+            "heel",
+            "Het",
+            "gezellig",
+            "Zullen",
+            "gisteravond.",
+            "vandaag!"
           ],
           "answers": [
-            "Dat is een cliché."
+            "Het was heel gezellig gisteravond."
           ],
-          "explanation": "Isso é um cliché. = Dat is een cliché. (sobram: ongezellig,, moet)",
-          "vocabRefs": [
-            "v-cliche"
-          ]
+          "explanation": "Ontem à noite foi muito agradável. = Het was heel gezellig gisteravond. (sobram: vandaag!, Zullen)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u03-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Para ser sincero: a tua apresentação foi demasiado longa.",
+          "prompt": "Os neerlandeses são muitas vezes muito diretos.",
           "tokens": [
-            "Om",
-            "te",
-            "eerlijk",
-            "Zullen",
+            "Wat",
+            "Nederlanders",
+            "vaak",
+            "direct.",
+            "heel",
             "was",
-            "te",
-            "duur.",
-            "zijn:",
-            "lang.",
-            "je",
-            "presentatie"
+            "zijn"
           ],
           "answers": [
-            "Om eerlijk te zijn: je presentatie was te lang."
+            "Nederlanders zijn vaak heel direct."
           ],
-          "explanation": "Para ser sincero: a tua apresentação foi demasiado longa. = Om eerlijk te zijn: je presentatie was te lang. (sobram: Zullen, duur.)",
-          "vocabRefs": []
+          "explanation": "Os neerlandeses são muitas vezes muito diretos. = Nederlanders zijn vaak heel direct. (sobram: was, Wat)",
+          "vocabRefs": [
+            "v-direct"
+          ]
         },
         {
           "id": "s5-u03-l009-e03",
@@ -2532,18 +2530,18 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Os neerlandeses não são muito espontâneos.",
           "tokens": [
-            "spontaan.",
-            "zijn",
-            "je",
-            "zo",
             "niet",
+            "zijn",
+            "op",
             "Nederlanders",
-            "Tikkie."
+            "zo'n",
+            "spontaan.",
+            "zo"
           ],
           "answers": [
             "Nederlanders zijn niet zo spontaan."
           ],
-          "explanation": "Os neerlandeses não são muito espontâneos. = Nederlanders zijn niet zo spontaan. (sobram: Tikkie., je)",
+          "explanation": "Os neerlandeses não são muito espontâneos. = Nederlanders zijn niet zo spontaan. (sobram: zo'n, op)",
           "vocabRefs": [
             "v-spontaan"
           ]
@@ -2552,14 +2550,14 @@
           "id": "s5-u03-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat klonk een beetje bot.",
+          "audioText": "De vergadering begint stipt om negen uur.",
           "answers": [
-            "Dat klonk een beetje bot."
+            "De vergadering begint stipt om negen uur."
           ],
-          "translation": "Isso soou um bocado rude.",
-          "explanation": "«Dat klonk een beetje bot.» = Isso soou um bocado rude.",
+          "translation": "A reunião começa às nove em ponto.",
+          "explanation": "«De vergadering begint stipt om negen uur.» = A reunião começa às nove em ponto.",
           "vocabRefs": [
-            "v-bot"
+            "v-stipt"
           ]
         },
         {
@@ -2578,74 +2576,76 @@
           "id": "s5-u03-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik trakteer vandaag!",
+          "audioText": "Nederlanders staan bekend als zuinig.",
           "answers": [
-            "Ik trakteer vandaag!"
+            "Nederlanders staan bekend als zuinig."
           ],
-          "translation": "Hoje pago eu!",
-          "explanation": "«Ik trakteer vandaag!» = Hoje pago eu!",
-          "vocabRefs": []
+          "translation": "Os neerlandeses têm fama de poupados.",
+          "explanation": "«Nederlanders staan bekend als zuinig.» = Os neerlandeses têm fama de poupados.",
+          "vocabRefs": [
+            "v-zuinig"
+          ]
         },
         {
           "id": "s5-u03-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Que café tão aconchegado!",
+          "translation": "Isso é um cliché.",
           "tokens": [
-            "knus",
+            "Dat",
+            "is",
             "een",
-            "Wat",
-            "café!"
+            "cliché."
           ],
           "alternatives": [],
-          "explanation": "Wat een knus café!",
+          "explanation": "Dat is een cliché.",
           "vocabRefs": [
-            "v-knus"
+            "v-cliche"
           ]
         },
         {
           "id": "s5-u03-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Que desagradável, uma sala assim vazia.",
+          "translation": "Isso soou um bocado rude.",
           "tokens": [
-            "lege",
-            "ongezellig,",
-            "zaal.",
-            "zo'n",
-            "Wat"
+            "Dat",
+            "klonk",
+            "een",
+            "beetje",
+            "bot."
           ],
           "alternatives": [],
-          "explanation": "Wat ongezellig, zo'n lege zaal.",
+          "explanation": "Dat klonk een beetje bot.",
           "vocabRefs": [
-            "v-ongezellig"
+            "v-bot"
           ]
         },
         {
           "id": "s5-u03-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de verjaardagskalender»?",
+          "prompt": "O que significa «het vooroordeel»?",
           "options": [
             {
               "id": "a",
-              "text": "em média",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "calendário de aniversários",
+              "text": "preconceito",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "espontâneo",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "convívio",
+              "text": "calendário de aniversários",
               "correct": false
             }
           ],
-          "explanation": "«de verjaardagskalender» = calendário de aniversários.",
+          "explanation": "«het vooroordeel» = preconceito, estereótipo.",
           "vocabRefs": [
-            "v-verjaardagskalender"
+            "v-vooroordeel"
           ]
         },
         {
@@ -2656,18 +2656,18 @@
           "options": [
             {
               "id": "a",
-              "text": "generalizar",
+              "text": "pouco acolhedor",
               "correct": false
             },
             {
               "id": "b",
-              "text": "crítica",
-              "correct": false
+              "text": "aconchegado",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "aconchegado",
-              "correct": true
+              "text": "pontual",
+              "correct": false
             }
           ],
           "explanation": "«knus» = aconchegado.",

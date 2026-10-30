@@ -1909,16 +1909,16 @@
       ],
       "examples": [
         {
-          "nl": "Welk belang heeft dit bedrijf bij het onderzoek?",
-          "pt": "Que interesse tem esta empresa no estudo?"
-        },
-        {
-          "nl": "Dat is een zwak argument.",
-          "pt": "Isso é um argumento fraco."
-        },
-        {
           "nl": "Ik schrijf een ingezonden brief naar de krant.",
           "pt": "Escrevo uma carta do leitor para o jornal."
+        },
+        {
+          "nl": "Wie is de afzender van dit bericht?",
+          "pt": "Quem é o emissor desta mensagem?"
+        },
+        {
+          "nl": "De advertentie speelt in op angst.",
+          "pt": "O anúncio joga com o medo."
         }
       ],
       "grammar": [],
@@ -1967,10 +1967,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os media influenciam a nossa opinião.",
           "tokens": [
-            "onze",
-            "mening.",
+            "Media",
             "beïnvloeden",
-            "Media"
+            "onze",
+            "mening."
           ],
           "alternatives": [],
           "explanation": "Media beïnvloeden onze mening.",
@@ -1984,10 +1984,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os números são verificáveis?",
           "tokens": [
-            "controleerbaar?",
-            "de",
             "Zijn",
-            "cijfers"
+            "de",
+            "cijfers",
+            "controleerbaar?"
           ],
           "alternatives": [],
           "explanation": "Zijn de cijfers controleerbaar?",
@@ -2001,12 +2001,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "«Alívio fiscal» é uma forma de framing.",
           "tokens": [
+            "«Belastingverlichting»",
+            "is",
             "een",
             "vorm",
-            "«Belastingverlichting»",
             "van",
-            "framing.",
-            "is"
+            "framing."
           ],
           "alternatives": [],
           "explanation": "«Belastingverlichting» is een vorm van framing.",
@@ -2018,21 +2018,46 @@
           "id": "s7-u05-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Zijn mening is goed onderbouwd.»?",
+          "prompt": "O que significa: «Het artikel gaat voorbij aan de gevolgen voor ouderen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela escreve uma crónica todas as semanas.",
-              "correct": false
+              "text": "O artigo ignora as consequências para os idosos.",
+              "correct": true
             },
             {
               "id": "b",
               "text": "A opinião dele está bem fundamentada.",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Quem é o emissor desta mensagem?",
+              "text": "Os números são verificáveis?",
+              "correct": false
+            }
+          ],
+          "explanation": "«Het artikel gaat voorbij aan de gevolgen voor ouderen.» = O artigo ignora as consequências para os idosos.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s7-u05-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Zijn mening is goed onderbouwd.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A opinião dele está bem fundamentada.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Que interesse tem esta empresa no estudo?",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "O que defende o autor?",
               "correct": false
             }
           ],
@@ -2042,82 +2067,49 @@
           ]
         },
         {
-          "id": "s7-u05-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Media beïnvloeden onze mening.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Escrevo uma carta do leitor para o jornal.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Os media influenciam a nossa opinião.",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "O texto argumentativo não é muito convincente.",
-              "correct": false
-            }
-          ],
-          "explanation": "«Media beïnvloeden onze mening.» = Os media influenciam a nossa opinião.",
-          "vocabRefs": [
-            "v-beinvloeden"
-          ]
-        },
-        {
           "id": "s7-u05-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Escrevo uma carta do leitor para o jornal.",
+          "prompt": "Os media influenciam a nossa opinião.",
           "tokens": [
-            "een",
-            "opiniestuk",
-            "ingezonden",
-            "de",
-            "het",
-            "Ik",
-            "schrijf",
-            "naar",
-            "krant.",
-            "brief"
+            "Media",
+            "onze",
+            "mening.",
+            "beïnvloeden",
+            "goed",
+            "auteur"
           ],
           "answers": [
-            "Ik schrijf een ingezonden brief naar de krant."
+            "Media beïnvloeden onze mening."
           ],
-          "explanation": "Escrevo uma carta do leitor para o jornal. = Ik schrijf een ingezonden brief naar de krant. (sobram: het, opiniestuk)",
+          "explanation": "Os media influenciam a nossa opinião. = Media beïnvloeden onze mening. (sobram: auteur, goed)",
           "vocabRefs": [
-            "v-ingezonden-brief"
+            "v-beinvloeden"
           ]
         },
         {
           "id": "s7-u05-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No artigo de opinião ele defende transportes públicos gratuitos.",
+          "prompt": "O artigo ignora as consequências para os idosos.",
           "tokens": [
-            "pleit",
-            "zijn",
-            "openbaar",
-            "arts",
-            "In",
+            "Het",
+            "aan",
+            "artikel",
+            "de",
+            "suikerindustrie.",
+            "voorbij",
+            "ouderen.",
+            "gaat",
+            "onze",
             "voor",
-            "vervoer.",
-            "gratis",
-            "opiniestuk",
-            "week",
-            "hij"
+            "gevolgen"
           ],
           "answers": [
-            "In zijn opiniestuk pleit hij voor gratis openbaar vervoer."
+            "Het artikel gaat voorbij aan de gevolgen voor ouderen."
           ],
-          "explanation": "No artigo de opinião ele defende transportes públicos gratuitos. = In zijn opiniestuk pleit hij voor gratis openbaar vervoer. (sobram: week, arts)",
-          "vocabRefs": [
-            "v-opiniestuk"
-          ]
+          "explanation": "O artigo ignora as consequências para os idosos. = Het artikel gaat voorbij aan de gevolgen voor ouderen. (sobram: suikerindustrie., onze)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2182,16 +2174,16 @@
       ],
       "examples": [
         {
-          "nl": "Ze schrijft elke week een column.",
-          "pt": "Ela escreve uma crónica todas as semanas."
+          "nl": "Het onderzoek werd betaald door de suikerindustrie.",
+          "pt": "O estudo foi pago pela indústria do açúcar."
         },
         {
-          "nl": "Naar aanleiding van uw artikel van 3 mei wil ik reageren.",
-          "pt": "A propósito do seu artigo de 3 de maio, quero reagir."
+          "nl": "Media beïnvloeden onze mening.",
+          "pt": "Os media influenciam a nossa opinião."
         },
         {
-          "nl": "Je kunt daaruit geen conclusie trekken.",
-          "pt": "Não se pode tirar uma conclusão disso."
+          "nl": "In zijn opiniestuk pleit hij voor gratis openbaar vervoer.",
+          "pt": "No artigo de opinião ele defende transportes públicos gratuitos."
         }
       ],
       "grammar": [],
@@ -2200,12 +2192,12 @@
           "id": "s7-u05-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «carta do leitor» em neerlandês?",
+          "prompt": "Como se diz «verificável» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "pleiten voor",
-              "correct": false
+              "text": "controleerbaar",
+              "correct": true
             },
             {
               "id": "b",
@@ -2215,24 +2207,24 @@
             {
               "id": "c",
               "text": "ingezonden brief",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "carta do leitor = «ingezonden brief».",
+          "explanation": "verificável = «controleerbaar».",
           "vocabRefs": [
-            "v-ingezonden-brief"
+            "v-controleerbaar"
           ]
         },
         {
           "id": "s7-u05-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «argumento fraco» em neerlandês?",
+          "prompt": "Como se diz «carta do leitor» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "voorbijgaan aan",
-              "correct": false
+              "text": "ingezonden brief",
+              "correct": true
             },
             {
               "id": "b",
@@ -2241,32 +2233,32 @@
             },
             {
               "id": "c",
-              "text": "zwak argument",
-              "correct": true
+              "text": "onderbouwd",
+              "correct": false
             }
           ],
-          "explanation": "argumento fraco = «zwak argument».",
+          "explanation": "carta do leitor = «ingezonden brief».",
           "vocabRefs": [
-            "v-zwak-argument"
+            "v-ingezonden-brief"
           ]
         },
         {
           "id": "s7-u05-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ze schrijft elke week een ___.",
-          "translation": "Ela escreve uma crónica todas as semanas.",
+          "sentence": "Welk ___ heeft dit bedrijf bij het onderzoek?",
+          "translation": "Que interesse tem esta empresa no estudo?",
           "answers": [
-            "column"
+            "belang"
           ],
           "choices": [
             "autoriteit",
             "column",
-            "opiniestuk"
+            "belang"
           ],
-          "explanation": "Ze schrijft elke week een column.",
+          "explanation": "Welk belang heeft dit bedrijf bij het onderzoek?",
           "vocabRefs": [
-            "v-column"
+            "v-belang"
           ]
         },
         {
@@ -2279,8 +2271,8 @@
             "beïnvloeden"
           ],
           "choices": [
-            "column",
             "belang",
+            "opiniestuk",
             "beïnvloeden"
           ],
           "explanation": "Media beïnvloeden onze mening.",
@@ -2292,79 +2284,72 @@
           "id": "s7-u05-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik schrijf een ingezonden brief naar de krant.",
+          "audioText": "Dat is een zwak argument.",
           "answers": [
-            "Ik schrijf een ingezonden brief naar de krant."
+            "Dat is een zwak argument."
           ],
-          "translation": "Escrevo uma carta do leitor para o jornal.",
-          "explanation": "«Ik schrijf een ingezonden brief naar de krant.» = Escrevo uma carta do leitor para o jornal.",
+          "translation": "Isso é um argumento fraco.",
+          "explanation": "«Dat is een zwak argument.» = Isso é um argumento fraco.",
           "vocabRefs": [
-            "v-ingezonden-brief"
+            "v-zwak-argument"
           ]
         },
         {
           "id": "s7-u05-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Deze informatie is verouderd.",
+          "audioText": "Naar aanleiding van uw artikel van 3 mei wil ik reageren.",
           "answers": [
-            "Deze informatie is verouderd."
+            "Naar aanleiding van uw artikel van 3 mei wil ik reageren."
           ],
-          "translation": "Esta informação está desatualizada.",
-          "explanation": "«Deze informatie is verouderd.» = Esta informação está desatualizada.",
+          "translation": "A propósito do seu artigo de 3 de maio, quero reagir.",
+          "explanation": "«Naar aanleiding van uw artikel van 3 mei wil ik reageren.» = A propósito do seu artigo de 3 de maio, quero reagir.",
           "vocabRefs": [
-            "v-verouderd"
+            "v-reageren-artikel"
           ]
         },
         {
           "id": "s7-u05-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A propósito do seu artigo de 3 de maio, quero reagir.",
+          "prompt": "O estudo foi pago pela indústria do açúcar.",
           "tokens": [
-            "ik",
-            "3",
-            "Naar",
-            "aanleiding",
-            "trekken.",
-            "mei",
-            "van",
-            "uw",
-            "van",
-            "gratis",
-            "artikel",
-            "reageren.",
-            "wil"
+            "suikerindustrie.",
+            "onderzoek",
+            "als",
+            "door",
+            "Het",
+            "betaald",
+            "werd",
+            "geen",
+            "de"
           ],
           "answers": [
-            "Naar aanleiding van uw artikel van 3 mei wil ik reageren."
+            "Het onderzoek werd betaald door de suikerindustrie."
           ],
-          "explanation": "A propósito do seu artigo de 3 de maio, quero reagir. = Naar aanleiding van uw artikel van 3 mei wil ik reageren. (sobram: gratis, trekken.)",
-          "vocabRefs": [
-            "v-reageren-artikel"
-          ]
+          "explanation": "O estudo foi pago pela indústria do açúcar. = Het onderzoek werd betaald door de suikerindustrie. (sobram: als, geen)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u05-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O estudo foi pago pela indústria do açúcar.",
+          "prompt": "Esta informação está desatualizada.",
           "tokens": [
+            "is",
             "de",
-            "onderzoek",
-            "werd",
-            "suikerindustrie.",
-            "auteur",
-            "Het",
-            "goed",
-            "betaald",
-            "door"
+            "Deze",
+            "verouderd.",
+            "informatie",
+            "een"
           ],
           "answers": [
-            "Het onderzoek werd betaald door de suikerindustrie."
+            "Deze informatie is verouderd."
           ],
-          "explanation": "O estudo foi pago pela indústria do açúcar. = Het onderzoek werd betaald door de suikerindustrie. (sobram: auteur, goed)",
-          "vocabRefs": []
+          "explanation": "Esta informação está desatualizada. = Deze informatie is verouderd. (sobram: de, een)",
+          "vocabRefs": [
+            "v-verouderd"
+          ]
         },
         {
           "id": "s7-u05-l008-e09",
@@ -2382,26 +2367,28 @@
           "id": "s7-u05-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het artikel gaat voorbij aan de gevolgen voor ouderen.»?",
+          "prompt": "O que significa: «Zijn de cijfers controleerbaar?»?",
           "options": [
             {
               "id": "a",
-              "text": "A opinião dele está bem fundamentada.",
-              "correct": false
+              "text": "Os números são verificáveis?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "«Alívio fiscal» é uma forma de framing.",
+              "text": "O autor considera que o ensino deve melhorar.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O artigo ignora as consequências para os idosos.",
-              "correct": true
+              "text": "Esta informação está desatualizada.",
+              "correct": false
             }
           ],
-          "explanation": "«Het artikel gaat voorbij aan de gevolgen voor ouderen.» = O artigo ignora as consequências para os idosos.",
-          "vocabRefs": []
+          "explanation": "«Zijn de cijfers controleerbaar?» = Os números são verificáveis?",
+          "vocabRefs": [
+            "v-controleerbaar"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2466,16 +2453,16 @@
       ],
       "examples": [
         {
-          "nl": "Zijn mening is goed onderbouwd.",
-          "pt": "A opinião dele está bem fundamentada."
+          "nl": "Media beïnvloeden onze mening.",
+          "pt": "Os media influenciam a nossa opinião."
         },
         {
-          "nl": "De schrijver stelt ten onrechte dat…",
-          "pt": "O autor afirma erradamente que…"
+          "nl": "Het betoog is niet erg overtuigend.",
+          "pt": "O texto argumentativo não é muito convincente."
         },
         {
-          "nl": "Zijn de cijfers controleerbaar?",
-          "pt": "Os números são verificáveis?"
+          "nl": "Deze informatie is verouderd.",
+          "pt": "Esta informação está desatualizada."
         }
       ],
       "grammar": [],
@@ -2484,176 +2471,183 @@
           "id": "s7-u05-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O anúncio joga com o medo.",
+          "prompt": "O que defende o autor?",
           "tokens": [
-            "advertentie",
-            "is",
-            "op",
-            "in",
-            "angst.",
-            "3",
-            "speelt",
-            "De"
+            "voor?",
+            "schrijf",
+            "Waar",
+            "pleit",
+            "schrijver",
+            "afzender",
+            "de"
           ],
           "answers": [
-            "De advertentie speelt in op angst."
+            "Waar pleit de schrijver voor?"
           ],
-          "explanation": "O anúncio joga com o medo. = De advertentie speelt in op angst. (sobram: is, 3)",
+          "explanation": "O que defende o autor? = Waar pleit de schrijver voor? (sobram: afzender, schrijf)",
           "vocabRefs": []
         },
         {
           "id": "s7-u05-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A opinião dele está bem fundamentada.",
+          "prompt": "A propósito do seu artigo de 3 de maio, quero reagir.",
           "tokens": [
-            "is",
-            "onderbouwd.",
-            "goed",
-            "cijfers",
-            "mening",
-            "Zijn",
-            "moet."
+            "Naar",
+            "ik",
+            "wil",
+            "mei",
+            "aanleiding",
+            "van",
+            "van",
+            "3",
+            "werd",
+            "reageren.",
+            "artikel",
+            "Waar",
+            "uw"
           ],
           "answers": [
-            "Zijn mening is goed onderbouwd."
+            "Naar aanleiding van uw artikel van 3 mei wil ik reageren."
           ],
-          "explanation": "A opinião dele está bem fundamentada. = Zijn mening is goed onderbouwd. (sobram: moet., cijfers)",
+          "explanation": "A propósito do seu artigo de 3 de maio, quero reagir. = Naar aanleiding van uw artikel van 3 mei wil ik reageren. (sobram: Waar, werd)",
           "vocabRefs": [
-            "v-onderbouwd"
+            "v-reageren-artikel"
           ]
         },
         {
           "id": "s7-u05-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Os media influenciam a nossa opinião.",
+          "prompt": "No artigo de opinião ele defende transportes públicos gratuitos.",
           "tokens": [
-            "beïnvloeden",
-            "Media",
-            "Dat",
-            "onze",
-            "mening.",
-            "schrijft"
+            "zijn",
+            "voor",
+            "gratis",
+            "hij",
+            "pleit",
+            "openbaar",
+            "In",
+            "vervoer.",
+            "is",
+            "opiniestuk",
+            "overtuigend."
           ],
           "answers": [
-            "Media beïnvloeden onze mening."
+            "In zijn opiniestuk pleit hij voor gratis openbaar vervoer."
           ],
-          "explanation": "Os media influenciam a nossa opinião. = Media beïnvloeden onze mening. (sobram: Dat, schrijft)",
+          "explanation": "No artigo de opinião ele defende transportes públicos gratuitos. = In zijn opiniestuk pleit hij voor gratis openbaar vervoer. (sobram: overtuigend., is)",
           "vocabRefs": [
-            "v-beinvloeden"
+            "v-opiniestuk"
           ]
         },
         {
           "id": "s7-u05-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je kunt daaruit geen conclusie trekken.",
+          "audioText": "Welk belang heeft dit bedrijf bij het onderzoek?",
           "answers": [
-            "Je kunt daaruit geen conclusie trekken."
+            "Welk belang heeft dit bedrijf bij het onderzoek?"
           ],
-          "translation": "Não se pode tirar uma conclusão disso.",
-          "explanation": "«Je kunt daaruit geen conclusie trekken.» = Não se pode tirar uma conclusão disso.",
+          "translation": "Que interesse tem esta empresa no estudo?",
+          "explanation": "«Welk belang heeft dit bedrijf bij het onderzoek?» = Que interesse tem esta empresa no estudo?",
           "vocabRefs": [
-            "v-conclusie-trekken"
+            "v-belang"
           ]
         },
         {
           "id": "s7-u05-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ze schrijft elke week een column.",
+          "audioText": "Deze informatie is verouderd.",
           "answers": [
-            "Ze schrijft elke week een column."
+            "Deze informatie is verouderd."
           ],
-          "translation": "Ela escreve uma crónica todas as semanas.",
-          "explanation": "«Ze schrijft elke week een column.» = Ela escreve uma crónica todas as semanas.",
+          "translation": "Esta informação está desatualizada.",
+          "explanation": "«Deze informatie is verouderd.» = Esta informação está desatualizada.",
           "vocabRefs": [
-            "v-column"
+            "v-verouderd"
           ]
         },
         {
           "id": "s7-u05-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zijn de cijfers controleerbaar?",
+          "audioText": "Het betoog is niet erg overtuigend.",
           "answers": [
-            "Zijn de cijfers controleerbaar?"
+            "Het betoog is niet erg overtuigend."
           ],
-          "translation": "Os números são verificáveis?",
-          "explanation": "«Zijn de cijfers controleerbaar?» = Os números são verificáveis?",
+          "translation": "O texto argumentativo não é muito convincente.",
+          "explanation": "«Het betoog is niet erg overtuigend.» = O texto argumentativo não é muito convincente.",
           "vocabRefs": [
-            "v-controleerbaar"
+            "v-overtuigend"
           ]
         },
         {
           "id": "s7-u05-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Não se pode tirar uma conclusão disso.",
+          "translation": "O autor considera que o ensino deve melhorar.",
           "tokens": [
-            "conclusie",
-            "geen",
-            "Je",
-            "trekken.",
-            "kunt",
-            "daaruit"
+            "De",
+            "auteur",
+            "vindt",
+            "dat",
+            "het",
+            "onderwijs",
+            "beter",
+            "moet."
           ],
           "alternatives": [],
-          "explanation": "Je kunt daaruit geen conclusie trekken.",
+          "explanation": "De auteur vindt dat het onderwijs beter moet.",
           "vocabRefs": [
-            "v-conclusie-trekken"
+            "v-standpunt-auteur"
           ]
         },
         {
           "id": "s7-u05-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A propósito do seu artigo de 3 de maio, quero reagir.",
+          "translation": "O texto argumentativo não é muito convincente.",
           "tokens": [
-            "van",
-            "Naar",
-            "wil",
-            "3",
-            "aanleiding",
-            "uw",
-            "ik",
-            "reageren.",
-            "van",
-            "artikel",
-            "mei"
+            "Het",
+            "betoog",
+            "is",
+            "niet",
+            "erg",
+            "overtuigend."
           ],
           "alternatives": [],
-          "explanation": "Naar aanleiding van uw artikel van 3 mei wil ik reageren.",
+          "explanation": "Het betoog is niet erg overtuigend.",
           "vocabRefs": [
-            "v-reageren-artikel"
+            "v-overtuigend"
           ]
         },
         {
           "id": "s7-u05-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de afzender»?",
+          "prompt": "O que significa «pleiten voor»?",
           "options": [
             {
               "id": "a",
-              "text": "enquadramento",
+              "text": "fundamentado",
               "correct": false
             },
             {
               "id": "b",
               "text": "remetente",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "argumento fraco",
-              "correct": false
+              "text": "defender",
+              "correct": true
             }
           ],
-          "explanation": "«de afzender» = remetente, emissor.",
+          "explanation": "«pleiten voor» = defender, advogar.",
           "vocabRefs": [
-            "v-afzender"
+            "v-pleiten-voor"
           ]
         },
         {
@@ -2664,18 +2658,18 @@
           "options": [
             {
               "id": "a",
-              "text": "artigo de opinião",
+              "text": "desatualizado",
               "correct": false
             },
             {
               "id": "b",
-              "text": "enquadramento",
-              "correct": true
+              "text": "autoridade",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "defender",
-              "correct": false
+              "text": "enquadramento",
+              "correct": true
             }
           ],
           "explanation": "«de framing» = enquadramento (framing).",

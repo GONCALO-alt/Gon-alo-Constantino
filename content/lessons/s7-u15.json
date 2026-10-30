@@ -1950,16 +1950,16 @@
       ],
       "examples": [
         {
-          "nl": "In deze reflectie kijk ik terug op mijn leerproces.",
-          "pt": "Nesta reflexão olho para trás para o meu processo de aprendizagem."
+          "nl": "Begin je portret met een anekdote.",
+          "pt": "Começa o teu retrato com um episódio."
         },
         {
-          "nl": "Als nieuwkomer is alles even wennen.",
-          "pt": "Como recém-chegado, tudo exige alguma adaptação."
+          "nl": "We starten een buurtinitiatief.",
+          "pt": "Vamos começar uma iniciativa de bairro."
         },
         {
-          "nl": "Ik ben dankbaar voor alle hulp.",
-          "pt": "Estou grato por toda a ajuda."
+          "nl": "Hier zijn tien praktische tips.",
+          "pt": "Aqui ficam dez dicas práticas."
         }
       ],
       "grammar": [],
@@ -2011,11 +2011,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Começa o teu retrato com um episódio.",
           "tokens": [
-            "een",
             "Begin",
-            "portret",
             "je",
+            "portret",
             "met",
+            "een",
             "anekdote."
           ],
           "alternatives": [],
@@ -2030,12 +2030,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Estou grato por toda a ajuda.",
           "tokens": [
-            "alle",
-            "voor",
-            "dankbaar",
-            "hulp.",
+            "Ik",
             "ben",
-            "Ik"
+            "dankbaar",
+            "voor",
+            "alle",
+            "hulp."
           ],
           "alternatives": [],
           "explanation": "Ik ben dankbaar voor alle hulp.",
@@ -2049,14 +2049,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "O plano melhora a qualidade de vida do bairro.",
           "tokens": [
-            "plan",
-            "de",
-            "van",
             "Het",
+            "plan",
+            "verbetert",
             "de",
             "leefbaarheid",
-            "wijk.",
-            "verbetert"
+            "van",
+            "de",
+            "wijk."
           ],
           "alternatives": [],
           "explanation": "Het plan verbetert de leefbaarheid van de wijk.",
@@ -2068,17 +2068,17 @@
           "id": "s7-u15-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De geïnterviewde vertelt open over haar leven.»?",
+          "prompt": "O que significa: «Kunnen we subsidie aanvragen?»?",
           "options": [
             {
               "id": "a",
-              "text": "Aqui ficam dez dicas práticas.",
-              "correct": false
+              "text": "Podemos pedir um apoio financeiro?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "A entrevistada fala abertamente sobre a sua vida.",
-              "correct": true
+              "text": "Cresci imenso.",
+              "correct": false
             },
             {
               "id": "c",
@@ -2086,82 +2086,84 @@
               "correct": false
             }
           ],
-          "explanation": "«De geïnterviewde vertelt open over haar leven.» = A entrevistada fala abertamente sobre a sua vida.",
+          "explanation": "«Kunnen we subsidie aanvragen?» = Podemos pedir um apoio financeiro?",
           "vocabRefs": [
-            "v-geinterviewde"
+            "v-subsidie"
           ]
         },
         {
           "id": "s7-u15-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «In deze reflectie kijk ik terug op mijn leerproces.»?",
+          "prompt": "O que significa: «Veel bewoners steunen het idee.»?",
           "options": [
             {
               "id": "a",
-              "text": "Começa o teu retrato com um episódio.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Nesta reflexão olho para trás para o meu processo de aprendizagem.",
+              "text": "Muitos moradores apoiam a ideia.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Cresci imenso.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Esta semana a Fatima está em destaque.",
+              "text": "Com este projeto encerro o curso.",
               "correct": false
             }
           ],
-          "explanation": "«In deze reflectie kijk ik terug op mijn leerproces.» = Nesta reflexão olho para trás para o meu processo de aprendizagem.",
+          "explanation": "«Veel bewoners steunen het idee.» = Muitos moradores apoiam a ideia.",
           "vocabRefs": [
-            "v-reflectie",
-            "v-leerproces"
+            "v-bewoners"
           ]
         },
         {
           "id": "s7-u15-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como recém-chegado, tudo exige alguma adaptação.",
+          "prompt": "A entrevistada fala abertamente sobre a sua vida.",
           "tokens": [
-            "nieuwkomer",
-            "alles",
-            "schrijf",
-            "Als",
-            "wennen.",
-            "is",
-            "even",
-            "deze"
+            "over",
+            "open",
+            "dit",
+            "geïnterviewde",
+            "vertelt",
+            "haar",
+            "leven.",
+            "De",
+            "buurtinitiatief."
           ],
           "answers": [
-            "Als nieuwkomer is alles even wennen."
+            "De geïnterviewde vertelt open over haar leven."
           ],
-          "explanation": "Como recém-chegado, tudo exige alguma adaptação. = Als nieuwkomer is alles even wennen. (sobram: deze, schrijf)",
+          "explanation": "A entrevistada fala abertamente sobre a sua vida. = De geïnterviewde vertelt open over haar leven. (sobram: dit, buurtinitiatief.)",
           "vocabRefs": [
-            "v-nieuwkomer"
+            "v-geinterviewde"
           ]
         },
         {
           "id": "s7-u15-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O fado é património cultural.",
+          "prompt": "Com este projeto encerro o curso.",
           "tokens": [
-            "cultureel",
-            "alle",
-            "is",
-            "een",
-            "Fado",
-            "erfgoed."
+            "van",
+            "Met",
+            "wijk.",
+            "cursus",
+            "de",
+            "ik",
+            "sluit",
+            "project",
+            "af.",
+            "dit"
           ],
           "answers": [
-            "Fado is cultureel erfgoed."
+            "Met dit project sluit ik de cursus af."
           ],
-          "explanation": "O fado é património cultural. = Fado is cultureel erfgoed. (sobram: alle, een)",
-          "vocabRefs": [
-            "v-erfgoed"
-          ]
+          "explanation": "Com este projeto encerro o curso. = Met dit project sluit ik de cursus af. (sobram: van, wijk.)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2233,16 +2235,16 @@
       ],
       "examples": [
         {
-          "nl": "Veel bewoners steunen het idee.",
-          "pt": "Muitos moradores apoiam a ideia."
+          "nl": "De geïnterviewde vertelt open over haar leven.",
+          "pt": "A entrevistada fala abertamente sobre a sua vida."
         },
         {
-          "nl": "Deze week staat Fatima in de schijnwerpers.",
-          "pt": "Esta semana a Fatima está em destaque."
+          "nl": "Als nieuwkomer is alles even wennen.",
+          "pt": "Como recém-chegado, tudo exige alguma adaptação."
         },
         {
-          "nl": "Kunnen we subsidie aanvragen?",
-          "pt": "Podemos pedir um apoio financeiro?"
+          "nl": "Een leuk weetje: de oudste boekhandel ter wereld staat in Lissabon.",
+          "pt": "Uma curiosidade: a livraria mais antiga do mundo fica em Lisboa."
         }
       ],
       "grammar": [],
@@ -2251,77 +2253,58 @@
           "id": "s7-u15-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «anedótico» em neerlandês?",
+          "prompt": "Como se diz «orientar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "anekdotisch",
-              "correct": true
+              "text": "leefbaarheid",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "geïnterviewde",
-              "correct": false
+              "text": "wegwijs maken",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "erfgoed",
+              "text": "portret",
               "correct": false
             }
           ],
-          "explanation": "anedótico = «anekdotisch».",
+          "explanation": "orientar = «wegwijs maken».",
           "vocabRefs": [
-            "v-anekdotisch"
+            "v-wegwijs"
           ]
         },
         {
           "id": "s7-u15-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «crescer» em neerlandês?",
+          "prompt": "Como se diz «retrato» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "erfgoed",
+              "text": "buurtinitiatief",
               "correct": false
             },
             {
               "id": "b",
-              "text": "nieuwkomer",
-              "correct": false
+              "text": "portret",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "groeien",
-              "correct": true
+              "text": "reflectie",
+              "correct": false
             }
           ],
-          "explanation": "crescer = «groeien».",
+          "explanation": "retrato = «portret».",
           "vocabRefs": [
-            "v-groeien"
+            "v-portret"
           ]
         },
         {
           "id": "s7-u15-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "De ___ vertelt open over haar leven.",
-          "translation": "A entrevistada fala abertamente sobre a sua vida.",
-          "answers": [
-            "geïnterviewde"
-          ],
-          "choices": [
-            "leerproces",
-            "nieuwkomer",
-            "geïnterviewde"
-          ],
-          "explanation": "De geïnterviewde vertelt open over haar leven.",
-          "vocabRefs": [
-            "v-geinterviewde"
-          ]
-        },
-        {
-          "id": "s7-u15-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Veel ___ steunen het idee.",
@@ -2330,9 +2313,9 @@
             "bewoners"
           ],
           "choices": [
+            "nieuwkomer",
             "leefbaarheid",
-            "bewoners",
-            "reflectie"
+            "bewoners"
           ],
           "explanation": "Veel bewoners steunen het idee.",
           "vocabRefs": [
@@ -2340,15 +2323,34 @@
           ]
         },
         {
+          "id": "s7-u15-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Als ___ is alles even wennen.",
+          "translation": "Como recém-chegado, tudo exige alguma adaptação.",
+          "answers": [
+            "nieuwkomer"
+          ],
+          "choices": [
+            "nieuwkomer",
+            "anekdotisch",
+            "leefbaarheid"
+          ],
+          "explanation": "Als nieuwkomer is alles even wennen.",
+          "vocabRefs": [
+            "v-nieuwkomer"
+          ]
+        },
+        {
           "id": "s7-u15-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Deze gids maakt je wegwijs in Utrecht.",
+          "audioText": "Ik ben enorm gegroeid.",
           "answers": [
-            "Deze gids maakt je wegwijs in Utrecht."
+            "Ik ben enorm gegroeid."
           ],
-          "translation": "Este guia ajuda-te a orientar-te em Utrecht.",
-          "explanation": "«Deze gids maakt je wegwijs in Utrecht.» = Este guia ajuda-te a orientar-te em Utrecht.",
+          "translation": "Cresci imenso.",
+          "explanation": "«Ik ben enorm gegroeid.» = Cresci imenso.",
           "vocabRefs": []
         },
         {
@@ -2369,68 +2371,66 @@
           "id": "s7-u15-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu país de origem é Portugal.",
+          "prompt": "Podemos pedir um apoio financeiro?",
           "tokens": [
-            "op",
-            "Mijn",
-            "is",
-            "van",
-            "Deze",
-            "herkomst",
-            "land",
-            "Portugal."
+            "we",
+            "in",
+            "subsidie",
+            "aanvragen?",
+            "Kunnen",
+            "ben"
           ],
           "answers": [
-            "Mijn land van herkomst is Portugal."
+            "Kunnen we subsidie aanvragen?"
           ],
-          "explanation": "O meu país de origem é Portugal. = Mijn land van herkomst is Portugal. (sobram: op, Deze)",
+          "explanation": "Podemos pedir um apoio financeiro? = Kunnen we subsidie aanvragen? (sobram: in, ben)",
           "vocabRefs": [
-            "v-land-van-herkomst"
+            "v-subsidie"
           ]
         },
         {
           "id": "s7-u15-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Este guia ajuda-te a orientar-te em Utrecht.",
+          "prompt": "Muitos moradores apoiam a ideia.",
           "tokens": [
-            "maakt",
-            "gids",
-            "je",
-            "voor",
-            "ik",
-            "Deze",
-            "wegwijs",
-            "Utrecht.",
-            "in"
+            "Veel",
+            "idee.",
+            "steunen",
+            "portret",
+            "bewoners",
+            "het",
+            "je"
           ],
           "answers": [
-            "Deze gids maakt je wegwijs in Utrecht."
+            "Veel bewoners steunen het idee."
           ],
-          "explanation": "Este guia ajuda-te a orientar-te em Utrecht. = Deze gids maakt je wegwijs in Utrecht. (sobram: ik, voor)",
-          "vocabRefs": []
+          "explanation": "Muitos moradores apoiam a ideia. = Veel bewoners steunen het idee. (sobram: je, portret)",
+          "vocabRefs": [
+            "v-bewoners"
+          ]
         },
         {
           "id": "s7-u15-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "leefbaarheid",
-          "pt": "qualidade de vida",
-          "article": "de",
-          "explanation": "de leefbaarheid.",
+          "noun": "erfgoed",
+          "pt": "património",
+          "article": "het",
+          "explanation": "het erfgoed.",
           "vocabRefs": [
-            "v-leefbaarheid"
+            "v-erfgoed"
           ]
         },
         {
           "id": "s7-u15-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een leuk weetje: de oudste boekhandel ter wereld staat in Lissabon.»?",
+          "prompt": "O que significa: «Ik ben dankbaar voor alle hulp.»?",
           "options": [
             {
               "id": "a",
-              "text": "Uma curiosidade: a livraria mais antiga do mundo fica em Lisboa.",
+              "text": "Estou grato por toda a ajuda.",
               "correct": true
             },
             {
@@ -2440,13 +2440,13 @@
             },
             {
               "id": "c",
-              "text": "Aqui ficam dez dicas práticas.",
+              "text": "Muitos moradores apoiam a ideia.",
               "correct": false
             }
           ],
-          "explanation": "«Een leuk weetje: de oudste boekhandel ter wereld staat in Lissabon.» = Uma curiosidade: a livraria mais antiga do mundo fica em Lisboa.",
+          "explanation": "«Ik ben dankbaar voor alle hulp.» = Estou grato por toda a ajuda.",
           "vocabRefs": [
-            "v-weetje"
+            "v-dankbaar"
           ]
         }
       ],
@@ -2519,16 +2519,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik maak een vergelijking met Nederland.",
-          "pt": "Faço uma comparação com os Países Baixos."
-        },
-        {
-          "nl": "In deze reflectie kijk ik terug op mijn leerproces.",
-          "pt": "Nesta reflexão olho para trás para o meu processo de aprendizagem."
-        },
-        {
           "nl": "Ik ben enorm gegroeid.",
           "pt": "Cresci imenso."
+        },
+        {
+          "nl": "Deze week staat Fatima in de schijnwerpers.",
+          "pt": "Esta semana a Fatima está em destaque."
+        },
+        {
+          "nl": "Met dit project sluit ik de cursus af.",
+          "pt": "Com este projeto encerro o curso."
         }
       ],
       "grammar": [],
@@ -2537,88 +2537,95 @@
           "id": "s7-u15-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Cresci imenso.",
+          "prompt": "Escrevo um guia da cidade para recém-chegados.",
           "tokens": [
-            "subsidie",
-            "enorm",
-            "geïnterviewde",
-            "ben",
+            "nieuwkomers.",
+            "stadsgids",
+            "voor",
+            "even",
             "Ik",
-            "gegroeid."
+            "schrijf",
+            "een",
+            "de"
           ],
           "answers": [
-            "Ik ben enorm gegroeid."
+            "Ik schrijf een stadsgids voor nieuwkomers."
           ],
-          "explanation": "Cresci imenso. = Ik ben enorm gegroeid. (sobram: subsidie, geïnterviewde)",
-          "vocabRefs": []
+          "explanation": "Escrevo um guia da cidade para recém-chegados. = Ik schrijf een stadsgids voor nieuwkomers. (sobram: even, de)",
+          "vocabRefs": [
+            "v-stadsgids",
+            "v-nieuwkomer"
+          ]
         },
         {
           "id": "s7-u15-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vamos começar uma iniciativa de bairro.",
+          "prompt": "Cresci imenso.",
           "tokens": [
-            "leefbaarheid",
-            "een",
-            "buurtinitiatief.",
-            "Hier",
-            "starten",
-            "We"
+            "ben",
+            "gegroeid.",
+            "enorm",
+            "dit",
+            "Ik",
+            "af."
           ],
           "answers": [
-            "We starten een buurtinitiatief."
+            "Ik ben enorm gegroeid."
           ],
-          "explanation": "Vamos começar uma iniciativa de bairro. = We starten een buurtinitiatief. (sobram: leefbaarheid, Hier)",
-          "vocabRefs": [
-            "v-buurtinitiatief"
-          ]
+          "explanation": "Cresci imenso. = Ik ben enorm gegroeid. (sobram: af., dit)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u15-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Muitos moradores apoiam a ideia.",
+          "prompt": "Escrevo um retrato da minha vizinha.",
           "tokens": [
-            "bewoners",
-            "het",
-            "Veel",
-            "idee.",
+            "Ik",
+            "schrijf",
+            "portret",
+            "van",
+            "mijn",
+            "buurvrouw.",
+            "wegwijs",
             "een",
-            "in",
-            "steunen"
+            "bewoners"
           ],
           "answers": [
-            "Veel bewoners steunen het idee."
+            "Ik schrijf een portret van mijn buurvrouw."
           ],
-          "explanation": "Muitos moradores apoiam a ideia. = Veel bewoners steunen het idee. (sobram: in, een)",
+          "explanation": "Escrevo um retrato da minha vizinha. = Ik schrijf een portret van mijn buurvrouw. (sobram: bewoners, wegwijs)",
           "vocabRefs": [
-            "v-bewoners"
+            "v-portret"
           ]
         },
         {
           "id": "s7-u15-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben enorm gegroeid.",
+          "audioText": "Mijn land van herkomst is Portugal.",
           "answers": [
-            "Ik ben enorm gegroeid."
+            "Mijn land van herkomst is Portugal."
           ],
-          "translation": "Cresci imenso.",
-          "explanation": "«Ik ben enorm gegroeid.» = Cresci imenso.",
-          "vocabRefs": []
+          "translation": "O meu país de origem é Portugal.",
+          "explanation": "«Mijn land van herkomst is Portugal.» = O meu país de origem é Portugal.",
+          "vocabRefs": [
+            "v-land-van-herkomst"
+          ]
         },
         {
           "id": "s7-u15-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De geïnterviewde vertelt open over haar leven.",
+          "audioText": "Een leuk weetje: de oudste boekhandel ter wereld staat in Lissabon.",
           "answers": [
-            "De geïnterviewde vertelt open over haar leven."
+            "Een leuk weetje: de oudste boekhandel ter wereld staat in Lissabon."
           ],
-          "translation": "A entrevistada fala abertamente sobre a sua vida.",
-          "explanation": "«De geïnterviewde vertelt open over haar leven.» = A entrevistada fala abertamente sobre a sua vida.",
+          "translation": "Uma curiosidade: a livraria mais antiga do mundo fica em Lisboa.",
+          "explanation": "«Een leuk weetje: de oudste boekhandel ter wereld staat in Lissabon.» = Uma curiosidade: a livraria mais antiga do mundo fica em Lisboa.",
           "vocabRefs": [
-            "v-geinterviewde"
+            "v-weetje"
           ]
         },
         {
@@ -2639,92 +2646,87 @@
           "id": "s7-u15-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Esta semana a Fatima está em destaque.",
+          "translation": "Cresci imenso.",
           "tokens": [
-            "in",
-            "schijnwerpers.",
-            "Fatima",
-            "Deze",
-            "staat",
-            "de",
-            "week"
+            "Ik",
+            "ben",
+            "enorm",
+            "gegroeid."
           ],
           "alternatives": [],
-          "explanation": "Deze week staat Fatima in de schijnwerpers.",
-          "vocabRefs": [
-            "v-in-de-schijnwerpers"
-          ]
+          "explanation": "Ik ben enorm gegroeid.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u15-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Muitos moradores apoiam a ideia.",
+          "translation": "Aqui ficam dez dicas práticas.",
           "tokens": [
-            "bewoners",
-            "Veel",
-            "steunen",
-            "idee.",
-            "het"
+            "Hier",
+            "zijn",
+            "tien",
+            "praktische",
+            "tips."
           ],
           "alternatives": [],
-          "explanation": "Veel bewoners steunen het idee.",
+          "explanation": "Hier zijn tien praktische tips.",
           "vocabRefs": [
-            "v-bewoners"
+            "v-praktische-tip"
           ]
         },
         {
           "id": "s7-u15-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «groeien»?",
+          "prompt": "O que significa «het weetje»?",
           "options": [
             {
               "id": "a",
-              "text": "país de origem",
+              "text": "anedótico",
               "correct": false
             },
             {
               "id": "b",
-              "text": "património",
+              "text": "em destaque",
               "correct": false
             },
             {
               "id": "c",
-              "text": "crescer",
+              "text": "curiosidade",
               "correct": true
             }
           ],
-          "explanation": "«groeien» = crescer.",
+          "explanation": "«het weetje» = curiosidade.",
           "vocabRefs": [
-            "v-groeien"
+            "v-weetje"
           ]
         },
         {
           "id": "s7-u15-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het buurtinitiatief»?",
+          "prompt": "O que significa «anekdotisch»?",
           "options": [
             {
               "id": "a",
-              "text": "qualidade de vida",
+              "text": "património",
               "correct": false
             },
             {
               "id": "b",
-              "text": "iniciativa de bairro",
+              "text": "anedótico",
               "correct": true
             },
             {
               "id": "c",
-              "text": "comparação",
+              "text": "iniciativa de bairro",
               "correct": false
             }
           ],
-          "explanation": "«het buurtinitiatief» = iniciativa de bairro.",
+          "explanation": "«anekdotisch» = anedótico.",
           "vocabRefs": [
-            "v-buurtinitiatief"
+            "v-anekdotisch"
           ]
         }
       ],

@@ -1979,16 +1979,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik ben, jij bent, u bent, hij/zij/het is",
-          "pt": "eu sou … ele/ela é"
+          "nl": "Echt?",
+          "pt": "A sério?"
         },
         {
-          "nl": "De vrouw is mooi.",
-          "pt": "A mulher é bonita."
+          "nl": "De mannen zijn aardig.",
+          "pt": "Os homens são simpáticos."
         },
         {
-          "nl": "Je bent laat.",
-          "pt": "Estás atrasado."
+          "nl": "Ze zijn daar.",
+          "pt": "Eles estão ali."
         }
       ],
       "grammar": [],
@@ -2040,9 +2040,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele está doente.",
           "tokens": [
-            "ziek.",
+            "Hij",
             "is",
-            "Hij"
+            "ziek."
           ],
           "alternatives": [],
           "explanation": "Hij is ziek.",
@@ -2057,10 +2057,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os homens são simpáticos.",
           "tokens": [
-            "zijn",
-            "aardig.",
             "De",
-            "mannen"
+            "mannen",
+            "zijn",
+            "aardig."
           ],
           "alternatives": [],
           "explanation": "De mannen zijn aardig.",
@@ -2076,8 +2076,8 @@
           "translation": "Eles estão ali.",
           "tokens": [
             "Ze",
-            "daar.",
-            "zijn"
+            "zijn",
+            "daar."
           ],
           "alternatives": [],
           "explanation": "Ze zijn daar.",
@@ -2094,17 +2094,17 @@
           "options": [
             {
               "id": "a",
-              "text": "Estamos atrasados!",
-              "correct": true
-            },
-            {
-              "id": "b",
               "text": "Os homens são simpáticos.",
               "correct": false
             },
             {
+              "id": "b",
+              "text": "Estamos atrasados!",
+              "correct": true
+            },
+            {
               "id": "c",
-              "text": "Estamos aqui.",
+              "text": "Ela está contente.",
               "correct": false
             }
           ],
@@ -2117,68 +2117,74 @@
           "id": "s1-u05-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij is moe.»?",
+          "prompt": "O que significa: «De mannen zijn aardig.»?",
           "options": [
             {
               "id": "a",
-              "text": "O meu colega é muito simpático.",
+              "text": "Está frio.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ele está cansado.",
-              "correct": true
+              "text": "Nós estamos em casa.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Ela está contente.",
-              "correct": false
+              "text": "Os homens são simpáticos.",
+              "correct": true
             }
           ],
-          "explanation": "«Hij is moe.» = Ele está cansado.",
+          "explanation": "«De mannen zijn aardig.» = Os homens são simpáticos.",
           "vocabRefs": [
-            "v-hij",
-            "v-moe"
+            "v-zij",
+            "v-aardig"
           ]
         },
         {
           "id": "s1-u05-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estamos aqui.",
+          "prompt": "Ele é alto e jovem.",
           "tokens": [
-            "zijn",
-            "hier.",
-            "We",
+            "jullie",
+            "lang",
+            "en",
+            "ziek.",
+            "Hij",
             "is",
-            "moe?"
+            "jong."
           ],
           "answers": [
-            "We zijn hier."
+            "Hij is lang en jong."
           ],
-          "explanation": "Estamos aqui. = We zijn hier. (sobram: is, moe?)",
+          "explanation": "Ele é alto e jovem. = Hij is lang en jong. (sobram: jullie, ziek.)",
           "vocabRefs": [
-            "v-zij",
-            "v-hier"
+            "v-hij",
+            "v-lang",
+            "v-jong"
           ]
         },
         {
           "id": "s1-u05-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estás atrasado.",
+          "prompt": "Ele está doente.",
           "tokens": [
-            "bent",
-            "Je",
+            "is",
+            "moe?",
             "Hij",
-            "koud.",
-            "laat."
+            "We",
+            "ziek."
           ],
           "answers": [
-            "Je bent laat."
+            "Hij is ziek."
           ],
-          "explanation": "Estás atrasado. = Je bent laat. (sobram: Hij, koud.)",
-          "vocabRefs": []
+          "explanation": "Ele está doente. = Hij is ziek. (sobram: moe?, We)",
+          "vocabRefs": [
+            "v-hij",
+            "v-ziek"
+          ]
         }
       ],
       "difficulty": 2,
@@ -2238,16 +2244,16 @@
       ],
       "examples": [
         {
-          "nl": "Echt?",
-          "pt": "A sério?"
+          "nl": "Ik ben, jij bent, u bent, hij/zij/het is",
+          "pt": "eu sou … ele/ela é"
         },
         {
-          "nl": "Het is koud.",
-          "pt": "Está frio."
+          "nl": "Het is laat.",
+          "pt": "É tarde."
         },
         {
-          "nl": "Nederlands is niet moeilijk!",
-          "pt": "O neerlandês não é difícil!"
+          "nl": "Jíj bent laat, niet ik!",
+          "pt": "TU é que estás atrasado, não eu!"
         }
       ],
       "grammar": [],
@@ -2256,92 +2262,92 @@
           "id": "s1-u05-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «fácil» em neerlandês?",
+          "prompt": "Como se diz «bonito» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "makkelijk",
+              "text": "mooi",
               "correct": true
             },
             {
               "id": "b",
-              "text": "druk",
+              "text": "jullie",
               "correct": false
             },
             {
               "id": "c",
-              "text": "hier",
+              "text": "hij",
               "correct": false
             }
           ],
-          "explanation": "fácil = «makkelijk».",
+          "explanation": "bonito = «mooi».",
           "vocabRefs": [
-            "v-makkelijk"
+            "v-mooi"
           ]
         },
         {
           "id": "s1-u05-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «simpático» em neerlandês?",
+          "prompt": "Como se diz «ocupado» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "ziek",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "aardig",
+              "text": "druk",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "lang",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "zij",
+              "text": "echt",
               "correct": false
             }
           ],
-          "explanation": "simpático = «aardig».",
+          "explanation": "ocupado = «druk».",
           "vocabRefs": [
-            "v-aardig"
+            "v-druk"
           ]
         },
         {
           "id": "s1-u05-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ze zijn ___.",
-          "translation": "Eles estão ali.",
+          "sentence": "Ben je ___? — Ja, en jij?",
+          "translation": "Estás cansado? — Sim, e tu?",
           "answers": [
-            "daar"
+            "moe"
           ],
           "choices": [
-            "daar",
-            "mooi",
-            "echt"
+            "moeilijk",
+            "moe",
+            "makkelijk"
           ],
-          "explanation": "Ze zijn daar.",
+          "explanation": "Ben je moe? — Ja, en jij?",
           "vocabRefs": [
-            "v-daar"
+            "v-moe"
           ]
         },
         {
           "id": "s1-u05-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ is blij.",
-          "translation": "Ela está contente.",
+          "sentence": "Hij is lang en ___.",
+          "translation": "Ele é alto e jovem.",
           "answers": [
-            "Zij"
+            "jong"
           ],
           "choices": [
-            "Makkelijk",
-            "Wij",
-            "Zij"
+            "jong",
+            "thuis",
+            "aardig"
           ],
-          "explanation": "Zij is blij.",
+          "explanation": "Hij is lang en jong.",
           "vocabRefs": [
-            "v-zij"
+            "v-jong"
           ]
         },
         {
@@ -2362,84 +2368,85 @@
           "id": "s1-u05-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Nederlands is niet moeilijk!",
+          "audioText": "Jíj bent laat, niet ik!",
           "answers": [
-            "Nederlands is niet moeilijk!"
+            "Jíj bent laat, niet ik!"
           ],
-          "translation": "O neerlandês não é difícil!",
-          "explanation": "«Nederlands is niet moeilijk!» = O neerlandês não é difícil!",
-          "vocabRefs": [
-            "v-moe",
-            "v-moeilijk"
-          ]
+          "translation": "TU é que estás atrasado, não eu!",
+          "explanation": "«Jíj bent laat, niet ik!» = TU é que estás atrasado, não eu!",
+          "vocabRefs": []
         },
         {
           "id": "s1-u05-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Eles estão ali.",
+          "prompt": "A mulher é bonita.",
           "tokens": [
-            "zijn",
-            "daar.",
-            "Ze",
+            "De",
             "lang",
-            "laat."
+            "vrouw",
+            "is",
+            "zijn",
+            "mooi."
           ],
           "answers": [
-            "Ze zijn daar."
+            "De vrouw is mooi."
           ],
-          "explanation": "Eles estão ali. = Ze zijn daar. (sobram: lang, laat.)",
+          "explanation": "A mulher é bonita. = De vrouw is mooi. (sobram: zijn, lang)",
           "vocabRefs": [
-            "v-zij",
-            "v-daar"
+            "v-mooi"
           ]
         },
         {
           "id": "s1-u05-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela está doente?",
+          "prompt": "nós somos, vocês são, eles são",
           "tokens": [
-            "Zij",
-            "Is",
-            "ziek?",
-            "ze",
+            "moeilijk!",
+            "lang",
+            "zijn,",
+            "zijn,",
+            "wij",
+            "jullie",
+            "zij",
             "zijn"
           ],
           "answers": [
-            "Is ze ziek?"
+            "wij zijn, jullie zijn, zij zijn"
           ],
-          "explanation": "Ela está doente? = Is ze ziek? (sobram: Zij, zijn)",
+          "explanation": "nós somos, vocês são, eles são = wij zijn, jullie zijn, zij zijn (sobram: moeilijk!, lang)",
           "vocabRefs": [
-            "v-ziek"
+            "v-zij",
+            "v-wij",
+            "v-jullie"
           ]
         },
         {
           "id": "s1-u05-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ze zijn daar.»?",
+          "prompt": "O que significa: «Het is laat.»?",
           "options": [
             {
               "id": "a",
-              "text": "Estamos atrasados!",
+              "text": "Vocês estão cansados?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Eles estão ali.",
+              "text": "É tarde.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Ele é alto e jovem.",
+              "text": "Eles estão ali.",
               "correct": false
             }
           ],
-          "explanation": "«Ze zijn daar.» = Eles estão ali.",
+          "explanation": "«Het is laat.» = É tarde.",
           "vocabRefs": [
-            "v-zij",
-            "v-daar"
+            "v-het-pron"
           ]
         }
       ],
@@ -2500,16 +2507,16 @@
       ],
       "examples": [
         {
-          "nl": "We zijn laat!",
-          "pt": "Estamos atrasados!"
-        },
-        {
           "nl": "Hij is moe.",
           "pt": "Ele está cansado."
         },
         {
-          "nl": "Jullie zijn laat.",
-          "pt": "Vocês estão atrasados."
+          "nl": "Ze zijn daar.",
+          "pt": "Eles estão ali."
+        },
+        {
+          "nl": "Het is koud.",
+          "pt": "Está frio."
         }
       ],
       "grammar": [],
@@ -2518,62 +2525,65 @@
           "id": "s1-u05-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Está frio.",
+          "prompt": "Vocês estão cansados?",
           "tokens": [
-            "koud.",
+            "Zijn",
+            "moe?",
             "jullie",
-            "Het",
-            "moe.",
-            "is"
+            "en",
+            "lang"
           ],
           "answers": [
-            "Het is koud."
+            "Zijn jullie moe?"
           ],
-          "explanation": "Está frio. = Het is koud. (sobram: jullie, moe.)",
+          "explanation": "Vocês estão cansados? = Zijn jullie moe? (sobram: lang, en)",
           "vocabRefs": [
-            "v-het-pron"
+            "v-zij",
+            "v-moe",
+            "v-jullie"
           ]
         },
         {
           "id": "s1-u05-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "TU é que estás atrasado, não eu!",
+          "prompt": "O meu colega é muito simpático.",
           "tokens": [
-            "laat,",
-            "Jíj",
-            "bent",
             "zijn",
-            "Zij",
-            "niet",
-            "ik!"
+            "is",
+            "heel",
+            "collega",
+            "bent",
+            "Mijn",
+            "aardig."
           ],
           "answers": [
-            "Jíj bent laat, niet ik!"
+            "Mijn collega is heel aardig."
           ],
-          "explanation": "TU é que estás atrasado, não eu! = Jíj bent laat, niet ik! (sobram: Zij, zijn)",
-          "vocabRefs": []
+          "explanation": "O meu colega é muito simpático. = Mijn collega is heel aardig. (sobram: zijn, bent)",
+          "vocabRefs": [
+            "v-aardig"
+          ]
         },
         {
           "id": "s1-u05-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vocês estão atrasados.",
+          "prompt": "TU é que estás atrasado, não eu!",
           "tokens": [
-            "Jullie",
-            "Het",
-            "laat.",
-            "wij",
-            "zijn"
+            "is",
+            "niet",
+            "bent",
+            "laat,",
+            "zijn,",
+            "Jíj",
+            "ik!"
           ],
           "answers": [
-            "Jullie zijn laat."
+            "Jíj bent laat, niet ik!"
           ],
-          "explanation": "Vocês estão atrasados. = Jullie zijn laat. (sobram: Het, wij)",
-          "vocabRefs": [
-            "v-zij",
-            "v-jullie"
-          ]
+          "explanation": "TU é que estás atrasado, não eu! = Jíj bent laat, niet ik! (sobram: zijn,, is)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u05-l009-e04",
@@ -2595,31 +2605,29 @@
           "id": "s1-u05-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij is lang en jong.",
+          "audioText": "Hij is moe.",
           "answers": [
-            "Hij is lang en jong."
+            "Hij is moe."
           ],
-          "translation": "Ele é alto e jovem.",
-          "explanation": "«Hij is lang en jong.» = Ele é alto e jovem.",
+          "translation": "Ele está cansado.",
+          "explanation": "«Hij is moe.» = Ele está cansado.",
           "vocabRefs": [
             "v-hij",
-            "v-lang",
-            "v-jong"
+            "v-moe"
           ]
         },
         {
           "id": "s1-u05-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "wij zijn, jullie zijn, zij zijn",
+          "audioText": "Jullie zijn laat.",
           "answers": [
-            "wij zijn, jullie zijn, zij zijn"
+            "Jullie zijn laat."
           ],
-          "translation": "nós somos, vocês são, eles são",
-          "explanation": "«wij zijn, jullie zijn, zij zijn» = nós somos, vocês são, eles são",
+          "translation": "Vocês estão atrasados.",
+          "explanation": "«Jullie zijn laat.» = Vocês estão atrasados.",
           "vocabRefs": [
             "v-zij",
-            "v-wij",
             "v-jullie"
           ]
         },
@@ -2627,17 +2635,17 @@
           "id": "s1-u05-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ela está contente.",
+          "translation": "Vocês estão atrasados.",
           "tokens": [
-            "is",
-            "blij.",
-            "Zij"
+            "Jullie",
+            "zijn",
+            "laat."
           ],
           "alternatives": [],
-          "explanation": "Zij is blij.",
+          "explanation": "Jullie zijn laat.",
           "vocabRefs": [
             "v-zij",
-            "v-blij"
+            "v-jullie"
           ]
         },
         {
@@ -2646,11 +2654,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "O meu colega é muito simpático.",
           "tokens": [
-            "collega",
-            "heel",
             "Mijn",
-            "aardig.",
-            "is"
+            "collega",
+            "is",
+            "heel",
+            "aardig."
           ],
           "alternatives": [],
           "explanation": "Mijn collega is heel aardig.",
@@ -2662,7 +2670,34 @@
           "id": "s1-u05-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «echt»?",
+          "prompt": "O que significa «thuis»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "em casa",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "contente",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "simpático",
+              "correct": false
+            }
+          ],
+          "explanation": "«thuis» = em casa.",
+          "vocabRefs": [
+            "v-thuis"
+          ]
+        },
+        {
+          "id": "s1-u05-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «wij»?",
           "options": [
             {
               "id": "a",
@@ -2671,7 +2706,7 @@
             },
             {
               "id": "b",
-              "text": "mesmo",
+              "text": "nós",
               "correct": true
             },
             {
@@ -2680,36 +2715,9 @@
               "correct": false
             }
           ],
-          "explanation": "«echt» = mesmo, realmente.",
+          "explanation": "«wij» = nós.",
           "vocabRefs": [
-            "v-echt"
-          ]
-        },
-        {
-          "id": "s1-u05-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «blij»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "contente",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "vocês",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "ela",
-              "correct": false
-            }
-          ],
-          "explanation": "«blij» = contente.",
-          "vocabRefs": [
-            "v-blij"
+            "v-wij"
           ]
         }
       ],
@@ -2770,16 +2778,16 @@
       ],
       "examples": [
         {
-          "nl": "Jíj bent laat, niet ik!",
-          "pt": "TU é que estás atrasado, não eu!"
+          "nl": "Echt?",
+          "pt": "A sério?"
         },
         {
-          "nl": "Is ze ziek?",
-          "pt": "Ela está doente?"
+          "nl": "Zij is blij.",
+          "pt": "Ela está contente."
         },
         {
-          "nl": "wij zijn, jullie zijn, zij zijn",
-          "pt": "nós somos, vocês são, eles são"
+          "nl": "De vrouw is mooi.",
+          "pt": "A mulher é bonita."
         }
       ],
       "grammar": [],
@@ -2790,95 +2798,97 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "blij",
-              "pt": "contente"
+              "nl": "druk",
+              "pt": "ocupado"
+            },
+            {
+              "nl": "daar",
+              "pt": "ali"
+            },
+            {
+              "nl": "thuis",
+              "pt": "em casa"
             },
             {
               "nl": "lang",
               "pt": "alto"
             },
             {
-              "nl": "moe",
-              "pt": "cansado"
-            },
-            {
-              "nl": "wij",
-              "pt": "nós"
-            },
-            {
-              "nl": "mooi",
-              "pt": "bonito"
+              "nl": "jullie",
+              "pt": "vocês"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-blij",
+            "v-druk",
+            "v-daar",
+            "v-thuis",
             "v-lang",
-            "v-moe",
-            "v-wij",
-            "v-mooi"
+            "v-jullie"
           ]
         },
         {
           "id": "s1-u05-l010-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We zijn laat!",
+          "audioText": "Wij zijn thuis.",
           "answers": [
-            "We zijn laat!"
+            "Wij zijn thuis."
           ],
-          "translation": "Estamos atrasados!",
-          "explanation": "«We zijn laat!» = Estamos atrasados!",
+          "translation": "Nós estamos em casa.",
+          "explanation": "«Wij zijn thuis.» = Nós estamos em casa.",
           "vocabRefs": [
-            "v-zij"
+            "v-zij",
+            "v-wij",
+            "v-thuis"
           ]
         },
         {
           "id": "s1-u05-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Is ze ziek?",
+          "audioText": "Ben je moe? — Ja, en jij?",
           "answers": [
-            "Is ze ziek?"
+            "Ben je moe? — Ja, en jij?"
           ],
-          "translation": "Ela está doente?",
-          "explanation": "«Is ze ziek?» = Ela está doente?",
+          "translation": "Estás cansado? — Sim, e tu?",
+          "explanation": "«Ben je moe? — Ja, en jij?» = Estás cansado? — Sim, e tu?",
           "vocabRefs": [
-            "v-ziek"
+            "v-moe"
           ]
         },
         {
           "id": "s1-u05-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «daar»?",
+          "prompt": "O que significa «blij»?",
           "options": [
             {
               "id": "a",
-              "text": "ele",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "ali",
+              "text": "contente",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "aqui",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "cansado",
+              "text": "ocupado",
               "correct": false
             }
           ],
-          "explanation": "«daar» = ali, lá.",
+          "explanation": "«blij» = contente.",
           "vocabRefs": [
-            "v-daar"
+            "v-blij"
           ]
         },
         {
           "id": "s1-u05-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «aardig»?",
+          "prompt": "O que significa «zij»?",
           "options": [
             {
               "id": "a",
@@ -2887,49 +2897,29 @@
             },
             {
               "id": "b",
-              "text": "ali",
-              "correct": false
+              "text": "ela",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "simpático",
-              "correct": true
+              "text": "também não",
+              "correct": false
             }
           ],
-          "explanation": "«aardig» = simpático.",
+          "explanation": "«zij» = ela.",
           "vocabRefs": [
-            "v-aardig"
+            "v-zij"
           ]
         },
         {
           "id": "s1-u05-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Estás cansado? — Sim, e tu?",
-          "tokens": [
-            "—",
-            "je",
-            "jij?",
-            "Ben",
-            "moe?",
-            "Ja,",
-            "en"
-          ],
-          "alternatives": [],
-          "explanation": "Ben je moe? — Ja, en jij?",
-          "vocabRefs": [
-            "v-moe"
-          ]
-        },
-        {
-          "id": "s1-u05-l010-e07",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "Estamos aqui.",
           "tokens": [
-            "hier.",
+            "We",
             "zijn",
-            "We"
+            "hier."
           ],
           "alternatives": [],
           "explanation": "We zijn hier.",
@@ -2939,50 +2929,66 @@
           ]
         },
         {
+          "id": "s1-u05-l010-e07",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "A mulher é bonita.",
+          "tokens": [
+            "De",
+            "vrouw",
+            "is",
+            "mooi."
+          ],
+          "alternatives": [],
+          "explanation": "De vrouw is mooi.",
+          "vocabRefs": [
+            "v-mooi"
+          ]
+        },
+        {
           "id": "s1-u05-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ is moe.",
-          "translation": "Ele está cansado.",
+          "sentence": "Wij zijn ___.",
+          "translation": "Nós estamos em casa.",
           "answers": [
-            "Hij"
+            "thuis"
           ],
           "choices": [
-            "Moe",
-            "Hij",
-            "Jong"
+            "lang",
+            "thuis",
+            "daar"
           ],
-          "explanation": "Hij is moe.",
+          "explanation": "Wij zijn thuis.",
           "vocabRefs": [
-            "v-hij"
+            "v-thuis"
           ]
         },
         {
           "id": "s1-u05-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij is ziek.»?",
+          "prompt": "O que significa: «Mijn collega is heel aardig.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ele está doente.",
-              "correct": true
+              "text": "Eles estão ali.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Está frio.",
+              "text": "Ele é alto e jovem.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ela está contente.",
-              "correct": false
+              "text": "O meu colega é muito simpático.",
+              "correct": true
             }
           ],
-          "explanation": "«Hij is ziek.» = Ele está doente.",
+          "explanation": "«Mijn collega is heel aardig.» = O meu colega é muito simpático.",
           "vocabRefs": [
-            "v-hij",
-            "v-ziek"
+            "v-aardig"
           ]
         }
       ],

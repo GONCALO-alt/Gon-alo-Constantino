@@ -1954,16 +1954,16 @@
       ],
       "examples": [
         {
-          "nl": "A — aa",
-          "pt": "a"
+          "nl": "Waar is het station?",
+          "pt": "Onde é a estação?"
         },
         {
-          "nl": "Wat betekent «gezellig»?",
-          "pt": "O que significa «gezellig»?"
+          "nl": "Kun je dat herhalen?",
+          "pt": "Podes repetir?"
         },
         {
-          "nl": "Hoe schrijf je dat?",
-          "pt": "Como se escreve isso?"
+          "nl": "Hoe zeg je «obrigado» in het Nederlands?",
+          "pt": "Como se diz «obrigado» em neerlandês?"
         }
       ],
       "grammar": [],
@@ -2016,11 +2016,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Como se diz «obrigado» em neerlandês?",
           "tokens": [
-            "«obrigado»",
             "Hoe",
-            "je",
-            "in",
             "zeg",
+            "je",
+            "«obrigado»",
+            "in",
             "het",
             "Nederlands?"
           ],
@@ -2036,17 +2036,17 @@
           "instruction": "Ordene as palavras.",
           "translation": "Como se soletra «straat»?",
           "tokens": [
-            "je",
-            "aa,",
-            "—",
-            "aa,",
-            "tee,",
-            "tee.",
+            "Hoe",
             "spel",
+            "je",
             "«straat»?",
+            "—",
             "Es,",
+            "tee,",
             "er,",
-            "Hoe"
+            "aa,",
+            "aa,",
+            "tee."
           ],
           "alternatives": [],
           "explanation": "Hoe spel je «straat»? — Es, tee, er, aa, aa, tee.",
@@ -2062,8 +2062,8 @@
           "tokens": [
             "Hoe",
             "spel",
-            "dat?",
-            "je"
+            "je",
+            "dat?"
           ],
           "alternatives": [],
           "explanation": "Hoe spel je dat?",
@@ -2073,89 +2073,90 @@
           "id": "s1-u04-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat betekent «gezellig»?»?",
+          "prompt": "O que significa: «de boom — de bomen»?",
           "options": [
             {
               "id": "a",
-              "text": "O que significa «gezellig»?",
-              "correct": true
+              "text": "o hospital",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "jota",
-              "correct": false
+              "text": "a árvore — as árvores",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "o frigorífico",
+              "text": "Podes repetir?",
               "correct": false
             }
           ],
-          "explanation": "«Wat betekent «gezellig»?» = O que significa «gezellig»?",
-          "vocabRefs": []
+          "explanation": "«de boom — de bomen» = a árvore — as árvores",
+          "vocabRefs": [
+            "v-boom"
+          ]
         },
         {
           "id": "s1-u04-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoe spel je dat?»?",
+          "prompt": "O que significa: «straat → straten»?",
           "options": [
             {
               "id": "a",
-              "text": "o frigorífico",
+              "text": "Como se soletra «straat»?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Como se soletra isso?",
-              "correct": true
+              "text": "a janela — as janelas",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "a janela — as janelas",
-              "correct": false
+              "text": "rua → ruas",
+              "correct": true
             }
           ],
-          "explanation": "«Hoe spel je dat?» = Como se soletra isso?",
-          "vocabRefs": []
+          "explanation": "«straat → straten» = rua → ruas",
+          "vocabRefs": [
+            "v-straat"
+          ]
         },
         {
           "id": "s1-u04-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não percebo.",
+          "prompt": "zê",
           "tokens": [
-            "aa.",
-            "Ik",
-            "het",
-            "niet.",
-            "begrijp",
-            "je"
+            "zet",
+            "dat",
+            "—",
+            "Z",
+            "pad"
           ],
           "answers": [
-            "Ik begrijp het niet."
+            "Z — zet"
           ],
-          "explanation": "Não percebo. = Ik begrijp het niet. (sobram: aa., je)",
-          "vocabRefs": [
-            "v-niet"
-          ]
+          "explanation": "zê = Z — zet (sobram: pad, dat)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u04-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O que significa «gezellig»?",
+          "prompt": "a",
           "tokens": [
-            "Wat",
-            "«gezellig»?",
-            "betekent",
-            "je",
-            "="
+            "A",
+            "—",
+            "Z",
+            "aa",
+            "«gezellig»?"
           ],
           "answers": [
-            "Wat betekent «gezellig»?"
+            "A — aa"
           ],
-          "explanation": "O que significa «gezellig»? = Wat betekent «gezellig»? (sobram: =, je)",
+          "explanation": "a = A — aa (sobram: Z, «gezellig»?)",
           "vocabRefs": []
         }
       ],
@@ -2223,16 +2224,16 @@
       ],
       "examples": [
         {
-          "nl": "Waar is het station?",
-          "pt": "Onde é a estação?"
-        },
-        {
           "nl": "Hoe spel je dat?",
           "pt": "Como se soletra isso?"
         },
         {
-          "nl": "de pen — de pennen",
-          "pt": "a caneta — as canetas"
+          "nl": "Hoe zeg je «obrigado» in het Nederlands?",
+          "pt": "Como se diz «obrigado» em neerlandês?"
+        },
+        {
+          "nl": "de supermarkt",
+          "pt": "o supermercado"
         }
       ],
       "grammar": [],
@@ -2241,7 +2242,34 @@
           "id": "s1-u04-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «não» em neerlandês?",
+          "prompt": "Como se diz «rua» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "fietspad",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "straat",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "koelkast",
+              "correct": false
+            }
+          ],
+          "explanation": "rua = «straat».",
+          "vocabRefs": [
+            "v-straat"
+          ]
+        },
+        {
+          "id": "s1-u04-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «soletrar» em neerlandês?",
           "options": [
             {
               "id": "a",
@@ -2250,189 +2278,161 @@
             },
             {
               "id": "b",
-              "text": "niet",
+              "text": "spellen",
               "correct": true
             },
             {
               "id": "c",
-              "text": "fietspad",
+              "text": "voetbal",
               "correct": false
             }
           ],
-          "explanation": "não = «niet».",
+          "explanation": "soletrar = «spellen».",
           "vocabRefs": [
-            "v-niet"
-          ]
-        },
-        {
-          "id": "s1-u04-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ciclovia» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "langzaam",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "betekenen",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "fietspad",
-              "correct": true
-            }
-          ],
-          "explanation": "ciclovia = «fietspad».",
-          "vocabRefs": [
-            "v-fietspad"
+            "v-spellen"
           ]
         },
         {
           "id": "s1-u04-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "de koel + de kast = de ___",
-          "translation": "o frigorífico",
+          "sentence": "Kunt u dat ___?",
+          "translation": "Pode repetir?",
           "answers": [
-            "koelkast"
-          ],
-          "choices": [
-            "alfabet",
-            "koelkast",
             "herhalen"
           ],
-          "explanation": "de koel + de kast = de koelkast",
+          "choices": [
+            "herhalen",
+            "zeggen",
+            "woord"
+          ],
+          "explanation": "Kunt u dat herhalen?",
           "vocabRefs": [
-            "v-koelkast"
+            "v-herhalen"
           ]
         },
         {
           "id": "s1-u04-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "de ___ — de pennen",
-          "translation": "a caneta — as canetas",
+          "sentence": "het fiets + het pad = het ___",
+          "translation": "a ciclovia",
           "answers": [
-            "pen"
+            "fietspad"
           ],
           "choices": [
-            "station",
-            "pen",
-            "herhalen"
+            "fietspad",
+            "herhalen",
+            "zeggen"
           ],
-          "explanation": "de pen — de pennen",
+          "explanation": "het fiets + het pad = het fietspad",
           "vocabRefs": [
-            "v-pen"
+            "v-fietspad"
           ]
         },
         {
           "id": "s1-u04-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "straat → straten",
+          "audioText": "Kun je dat herhalen?",
           "answers": [
-            "straat → straten"
+            "Kun je dat herhalen?"
           ],
-          "translation": "rua → ruas",
-          "explanation": "«straat → straten» = rua → ruas",
+          "translation": "Podes repetir?",
+          "explanation": "«Kun je dat herhalen?» = Podes repetir?",
           "vocabRefs": [
-            "v-straat"
+            "v-herhalen"
           ]
         },
         {
           "id": "s1-u04-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "J — jee",
+          "audioText": "de koel + de kast = de koelkast",
           "answers": [
-            "J — jee"
+            "de koel + de kast = de koelkast"
           ],
-          "translation": "jota",
-          "explanation": "«J — jee» = jota",
-          "vocabRefs": []
+          "translation": "o frigorífico",
+          "explanation": "«de koel + de kast = de koelkast» = o frigorífico",
+          "vocabRefs": [
+            "v-koelkast"
+          ]
         },
         {
           "id": "s1-u04-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "a janela — as janelas",
+          "prompt": "Pode repetir?",
           "tokens": [
-            "het",
-            "—",
-            "raam",
-            "ramen",
             "de",
+            "aa",
+            "herhalen?",
+            "Kunt",
             "dat",
-            "Kunt"
+            "u"
           ],
           "answers": [
-            "het raam — de ramen"
+            "Kunt u dat herhalen?"
           ],
-          "explanation": "a janela — as janelas = het raam — de ramen (sobram: Kunt, dat)",
+          "explanation": "Pode repetir? = Kunt u dat herhalen? (sobram: de, aa)",
           "vocabRefs": [
-            "v-raam"
+            "v-herhalen"
           ]
         },
         {
           "id": "s1-u04-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "jota",
+          "prompt": "O que significa «gezellig»?",
           "tokens": [
-            "je",
-            "jee",
-            "J",
-            "—",
-            "dat?"
+            "«gezellig»?",
+            "zeg",
+            "betekent",
+            "aa,",
+            "Wat"
           ],
           "answers": [
-            "J — jee"
+            "Wat betekent «gezellig»?"
           ],
-          "explanation": "jota = J — jee (sobram: je, dat?)",
+          "explanation": "O que significa «gezellig»? = Wat betekent «gezellig»? (sobram: zeg, aa,)",
           "vocabRefs": []
         },
         {
           "id": "s1-u04-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "raam",
-          "pt": "janela",
+          "noun": "woord",
+          "pt": "palavra",
           "article": "het",
-          "explanation": "het raam.",
+          "explanation": "het woord.",
           "vocabRefs": [
-            "v-raam"
+            "v-woord"
           ]
         },
         {
           "id": "s1-u04-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «de pen — de pennen»?",
+          "prompt": "O que significa: «Wat betekent «gezellig»?»?",
           "options": [
             {
               "id": "a",
-              "text": "Como se soletra «straat»?",
-              "correct": false
+              "text": "O que significa «gezellig»?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "a árvore — as árvores",
+              "text": "Desculpe, não percebo.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "a caneta — as canetas",
-              "correct": true
+              "text": "o supermercado",
+              "correct": false
             }
           ],
-          "explanation": "«de pen — de pennen» = a caneta — as canetas",
-          "vocabRefs": [
-            "v-pen"
-          ]
+          "explanation": "«Wat betekent «gezellig»?» = O que significa «gezellig»?",
+          "vocabRefs": []
         }
       ],
       "difficulty": 2,
@@ -2499,16 +2499,16 @@
       ],
       "examples": [
         {
-          "nl": "A — aa",
-          "pt": "a"
+          "nl": "Hoe spel je «straat»? — Es, tee, er, aa, aa, tee.",
+          "pt": "Como se soletra «straat»?"
         },
         {
-          "nl": "Sorry, ik begrijp het niet.",
-          "pt": "Desculpe, não percebo."
+          "nl": "Kunt u dat herhalen?",
+          "pt": "Pode repetir?"
         },
         {
-          "nl": "Es, ie, el, vee, aa.",
-          "pt": "S, I, L, V, A."
+          "nl": "Hoe zeg je «obrigado» in het Nederlands?",
+          "pt": "Como se diz «obrigado» em neerlandês?"
         }
       ],
       "grammar": [],
@@ -2517,75 +2517,80 @@
           "id": "s1-u04-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Desculpe, não percebo.",
+          "prompt": "S, I, L, V, A.",
           "tokens": [
-            "niet.",
-            "ik",
-            "begrijp",
-            "het",
-            "+",
-            "aa,",
-            "Sorry,"
+            "el,",
+            "ie,",
+            "J",
+            "aa.",
+            "zeg",
+            "vee,",
+            "Es,"
           ],
           "answers": [
-            "Sorry, ik begrijp het niet."
+            "Es, ie, el, vee, aa."
           ],
-          "explanation": "Desculpe, não percebo. = Sorry, ik begrijp het niet. (sobram: +, aa,)",
-          "vocabRefs": [
-            "v-niet"
-          ]
+          "explanation": "S, I, L, V, A. = Es, ie, el, vee, aa. (sobram: J, zeg)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u04-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como se soletra «straat»?",
+          "prompt": "Como se escreve isso?",
           "tokens": [
+            "dat?",
             "je",
-            "spel",
-            "bomen",
-            "er,",
-            "Hoe",
-            "tee,",
-            "aa,",
+            "vee,",
             "«straat»?",
-            "+",
-            "tee.",
-            "aa,",
-            "—",
-            "Es,"
+            "Hoe",
+            "schrijf"
           ],
           "answers": [
-            "Hoe spel je «straat»? — Es, tee, er, aa, aa, tee."
+            "Hoe schrijf je dat?"
           ],
-          "explanation": "Como se soletra «straat»? = Hoe spel je «straat»? — Es, tee, er, aa, aa, tee. (sobram: bomen, +)",
-          "vocabRefs": [
-            "v-straat"
-          ]
+          "explanation": "Como se escreve isso? = Hoe schrijf je dat? (sobram: vee,, «straat»?)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u04-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pode repetir?",
+          "prompt": "o frigorífico",
           "tokens": [
-            "Kunt",
-            "u",
-            "herhalen?",
-            "Z",
-            "—",
-            "dat"
+            "+",
+            "=",
+            "de",
+            "de",
+            "kast",
+            "→",
+            "de",
+            "koel",
+            "betekent",
+            "koelkast"
           ],
           "answers": [
-            "Kunt u dat herhalen?"
+            "de koel + de kast = de koelkast"
           ],
-          "explanation": "Pode repetir? = Kunt u dat herhalen? (sobram: Z, —)",
+          "explanation": "o frigorífico = de koel + de kast = de koelkast (sobram: →, betekent)",
           "vocabRefs": [
-            "v-herhalen"
+            "v-koelkast"
           ]
         },
         {
           "id": "s1-u04-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "J — jee",
+          "answers": [
+            "J — jee"
+          ],
+          "translation": "jota",
+          "explanation": "«J — jee» = jota",
+          "vocabRefs": []
+        },
+        {
+          "id": "s1-u04-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Kunt u dat herhalen?",
@@ -2599,39 +2604,47 @@
           ]
         },
         {
-          "id": "s1-u04-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Z — zet",
-          "answers": [
-            "Z — zet"
-          ],
-          "translation": "zê",
-          "explanation": "«Z — zet» = zê",
-          "vocabRefs": []
-        },
-        {
           "id": "s1-u04-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hoe spel je dat?",
+          "audioText": "het fiets + het pad = het fietspad",
           "answers": [
-            "Hoe spel je dat?"
+            "het fiets + het pad = het fietspad"
           ],
-          "translation": "Como se soletra isso?",
-          "explanation": "«Hoe spel je dat?» = Como se soletra isso?",
-          "vocabRefs": []
+          "translation": "a ciclovia",
+          "explanation": "«het fiets + het pad = het fietspad» = a ciclovia",
+          "vocabRefs": [
+            "v-fietspad"
+          ]
         },
         {
           "id": "s1-u04-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
+          "translation": "a janela — as janelas",
+          "tokens": [
+            "het",
+            "raam",
+            "—",
+            "de",
+            "ramen"
+          ],
+          "alternatives": [],
+          "explanation": "het raam — de ramen",
+          "vocabRefs": [
+            "v-raam"
+          ]
+        },
+        {
+          "id": "s1-u04-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
           "translation": "Pode repetir?",
           "tokens": [
-            "herhalen?",
+            "Kunt",
             "u",
             "dat",
-            "Kunt"
+            "herhalen?"
           ],
           "alternatives": [],
           "explanation": "Kunt u dat herhalen?",
@@ -2640,75 +2653,57 @@
           ]
         },
         {
-          "id": "s1-u04-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Desculpe, não percebo.",
-          "tokens": [
-            "Sorry,",
-            "het",
-            "ik",
-            "niet.",
-            "begrijp"
-          ],
-          "alternatives": [],
-          "explanation": "Sorry, ik begrijp het niet.",
-          "vocabRefs": [
-            "v-niet"
-          ]
-        },
-        {
           "id": "s1-u04-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het fietspad»?",
+          "prompt": "O que significa «het woord»?",
           "options": [
             {
               "id": "a",
-              "text": "perceber",
-              "correct": false
+              "text": "palavra",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "rua",
+              "text": "supermercado",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ciclovia",
-              "correct": true
+              "text": "não",
+              "correct": false
             }
           ],
-          "explanation": "«het fietspad» = ciclovia.",
+          "explanation": "«het woord» = palavra.",
           "vocabRefs": [
-            "v-fietspad"
+            "v-woord"
           ]
         },
         {
           "id": "s1-u04-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het raam»?",
+          "prompt": "O que significa «het voetbal»?",
           "options": [
             {
               "id": "a",
-              "text": "não",
+              "text": "estação",
               "correct": false
             },
             {
               "id": "b",
-              "text": "janela",
+              "text": "futebol",
               "correct": true
             },
             {
               "id": "c",
-              "text": "estação",
+              "text": "devagar",
               "correct": false
             }
           ],
-          "explanation": "«het raam» = janela.",
+          "explanation": "«het voetbal» = futebol.",
           "vocabRefs": [
-            "v-raam"
+            "v-voetbal"
           ]
         }
       ],
@@ -2796,51 +2791,37 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "betekenen",
-              "pt": "significar"
+              "nl": "zijn",
+              "pt": "são"
             },
             {
-              "nl": "station",
-              "pt": "estação"
+              "nl": "raam",
+              "pt": "janela"
             },
             {
-              "nl": "begrijpen",
-              "pt": "perceber"
+              "nl": "koelkast",
+              "pt": "frigorífico"
             },
             {
-              "nl": "letter",
-              "pt": "letra"
+              "nl": "straat",
+              "pt": "rua"
             },
             {
-              "nl": "fietspad",
-              "pt": "ciclovia"
+              "nl": "Nederlands",
+              "pt": "neerlandês"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-betekenen",
-            "v-station",
-            "v-begrijpen",
-            "v-letter",
-            "v-fietspad"
+            "v-zijn-plural",
+            "v-raam",
+            "v-koelkast",
+            "v-straat",
+            "v-nederlands"
           ]
         },
         {
           "id": "s1-u04-l010-e02",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de pen — de pennen",
-          "answers": [
-            "de pen — de pennen"
-          ],
-          "translation": "a caneta — as canetas",
-          "explanation": "«de pen — de pennen» = a caneta — as canetas",
-          "vocabRefs": [
-            "v-pen"
-          ]
-        },
-        {
-          "id": "s1-u04-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Sorry, ik begrijp het niet.",
@@ -2854,89 +2835,98 @@
           ]
         },
         {
+          "id": "s1-u04-l010-e03",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "A — aa",
+          "answers": [
+            "A — aa"
+          ],
+          "translation": "a",
+          "explanation": "«A — aa» = a",
+          "vocabRefs": []
+        },
+        {
           "id": "s1-u04-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de supermarkt»?",
+          "prompt": "O que significa «de boom»?",
           "options": [
             {
               "id": "a",
-              "text": "futebol",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "supermercado",
+              "text": "árvore",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "palavra",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "frigorífico",
+              "text": "são",
               "correct": false
             }
           ],
-          "explanation": "«de supermarkt» = supermercado.",
+          "explanation": "«de boom» = árvore.",
           "vocabRefs": [
-            "v-supermarkt"
+            "v-boom"
           ]
         },
         {
           "id": "s1-u04-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de kop»?",
+          "prompt": "O que significa «het ziekenhuis»?",
           "options": [
             {
               "id": "a",
-              "text": "caneta",
+              "text": "não",
               "correct": false
             },
             {
               "id": "b",
-              "text": "frigorífico",
-              "correct": false
+              "text": "hospital",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "chávena",
-              "correct": true
+              "text": "janela",
+              "correct": false
             }
           ],
-          "explanation": "«de kop» = chávena.",
+          "explanation": "«het ziekenhuis» = hospital.",
           "vocabRefs": [
-            "v-kop"
+            "v-ziekenhuis"
           ]
         },
         {
           "id": "s1-u04-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "a",
+          "translation": "zê",
           "tokens": [
+            "Z",
             "—",
-            "A",
-            "aa"
+            "zet"
           ],
           "alternatives": [],
-          "explanation": "A — aa",
+          "explanation": "Z — zet",
           "vocabRefs": []
         },
         {
           "id": "s1-u04-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Não percebo.",
+          "translation": "cama → camas",
           "tokens": [
-            "niet.",
-            "het",
-            "begrijp",
-            "Ik"
+            "bed",
+            "→",
+            "bedden"
           ],
           "alternatives": [],
-          "explanation": "Ik begrijp het niet.",
-          "vocabRefs": [
-            "v-niet"
-          ]
+          "explanation": "bed → bedden",
+          "vocabRefs": []
         },
         {
           "id": "s1-u04-l010-e08",
@@ -2948,9 +2938,9 @@
             "boom"
           ],
           "choices": [
+            "station",
             "boom",
-            "voetbal",
-            "raam"
+            "langzaam"
           ],
           "explanation": "de boom — de bomen",
           "vocabRefs": [
@@ -2961,11 +2951,11 @@
           "id": "s1-u04-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoe spel je «straat»? — Es, tee, er, aa, aa, tee.»?",
+          "prompt": "O que significa: «Kunt u dat herhalen?»?",
           "options": [
             {
               "id": "a",
-              "text": "Como se soletra «straat»?",
+              "text": "Pode repetir?",
               "correct": true
             },
             {
@@ -2979,9 +2969,9 @@
               "correct": false
             }
           ],
-          "explanation": "«Hoe spel je «straat»? — Es, tee, er, aa, aa, tee.» = Como se soletra «straat»?",
+          "explanation": "«Kunt u dat herhalen?» = Pode repetir?",
           "vocabRefs": [
-            "v-straat"
+            "v-herhalen"
           ]
         }
       ],

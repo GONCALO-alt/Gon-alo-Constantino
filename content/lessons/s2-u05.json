@@ -1967,16 +1967,16 @@
       ],
       "examples": [
         {
-          "nl": "Nee, dank je, ik heb genoeg gehad.",
-          "pt": "Não, obrigado, já comi o suficiente."
+          "nl": "Kook het water.",
+          "pt": "Ferve a água."
         },
         {
-          "nl": "We eten 's avonds warm.",
-          "pt": "Comemos (uma refeição) quente à noite."
+          "nl": "Doe de pan in de oven.",
+          "pt": "Põe a panela no forno."
         },
         {
-          "nl": "De lunch is meestal koud.",
-          "pt": "O almoço é geralmente frio."
+          "nl": "Eet smakelijk!",
+          "pt": "Bom apetite!"
         }
       ],
       "grammar": [],
@@ -2025,9 +2025,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Corta a cebola.",
           "tokens": [
-            "ui.",
             "Snijd",
-            "de"
+            "de",
+            "ui."
           ],
           "alternatives": [],
           "explanation": "Snijd de ui.",
@@ -2039,11 +2039,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quero provar uma stroopwafel.",
           "tokens": [
+            "Ik",
             "wil",
-            "proberen.",
             "een",
             "stroopwafel",
-            "Ik"
+            "proberen."
           ],
           "alternatives": [],
           "explanation": "Ik wil een stroopwafel proberen.",
@@ -2057,10 +2057,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Frita os ovos na frigideira.",
           "tokens": [
-            "in",
             "Bak",
-            "eieren",
             "de",
+            "eieren",
+            "in",
             "de",
             "pan."
           ],
@@ -2074,11 +2074,11 @@
           "id": "s2-u05-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Nee, dank je, ik heb genoeg gehad.»?",
+          "prompt": "O que significa: «Bak de eieren in de pan.»?",
           "options": [
             {
               "id": "a",
-              "text": "Não, obrigado, já comi o suficiente.",
+              "text": "Frita os ovos na frigideira.",
               "correct": true
             },
             {
@@ -2088,84 +2088,79 @@
             },
             {
               "id": "c",
-              "text": "Saúde!",
+              "text": "Ferve a água.",
               "correct": false
             }
           ],
-          "explanation": "«Nee, dank je, ik heb genoeg gehad.» = Não, obrigado, já comi o suficiente.",
+          "explanation": "«Bak de eieren in de pan.» = Frita os ovos na frigideira.",
           "vocabRefs": [
-            "v-genoeg"
+            "v-pan"
           ]
         },
         {
           "id": "s2-u05-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Stamppot is typisch Nederlands.»?",
+          "prompt": "O que significa: «Kom je zaterdag bij ons eten?»?",
           "options": [
             {
               "id": "a",
-              "text": "Bom apetite!",
+              "text": "Ferve a água.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O stamppot é tipicamente neerlandês.",
+              "text": "Vens jantar a nossa casa no sábado?",
               "correct": true
             },
             {
               "id": "c",
-              "text": "No inverno comemos sopa de ervilhas.",
+              "text": "Comemos (uma refeição) quente à noite.",
               "correct": false
             }
           ],
-          "explanation": "«Stamppot is typisch Nederlands.» = O stamppot é tipicamente neerlandês.",
-          "vocabRefs": [
-            "v-stamppot",
-            "v-typisch"
-          ]
+          "explanation": "«Kom je zaterdag bij ons eten?» = Vens jantar a nossa casa no sábado?",
+          "vocabRefs": []
         },
         {
           "id": "s2-u05-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No inverno comemos sopa de ervilhas.",
+          "prompt": "Ferve a água.",
           "tokens": [
-            "eten",
+            "ik",
             "water.",
-            "winter",
-            "we",
-            "met,",
-            "erwtensoep.",
-            "de",
-            "In"
+            "Nee,",
+            "Kook",
+            "het"
           ],
           "answers": [
-            "In de winter eten we erwtensoep."
+            "Kook het water."
           ],
-          "explanation": "No inverno comemos sopa de ervilhas. = In de winter eten we erwtensoep. (sobram: water., met,)",
-          "vocabRefs": [
-            "v-soep"
-          ]
+          "explanation": "Ferve a água. = Kook het water. (sobram: Nee,, ik)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u05-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Junta sal.",
+          "prompt": "O almoço é geralmente frio.",
           "tokens": [
-            "bij.",
-            "Doe",
-            "er",
-            "zout",
-            "de",
-            "eten?"
+            "koud.",
+            "Kom",
+            "meestal",
+            "is",
+            "lunch",
+            "ik",
+            "De"
           ],
           "answers": [
-            "Doe er zout bij."
+            "De lunch is meestal koud."
           ],
-          "explanation": "Junta sal. = Doe er zout bij. (sobram: de, eten?)",
-          "vocabRefs": []
+          "explanation": "O almoço é geralmente frio. = De lunch is meestal koud. (sobram: ik, Kom)",
+          "vocabRefs": [
+            "v-lunch"
+          ]
         }
       ],
       "difficulty": 2,
@@ -2231,16 +2226,16 @@
       ],
       "examples": [
         {
-          "nl": "Het ontbijt is om half acht.",
-          "pt": "O pequeno-almoço é às sete e meia."
-        },
-        {
-          "nl": "Kom je zaterdag bij ons eten?",
-          "pt": "Vens jantar a nossa casa no sábado?"
-        },
-        {
           "nl": "Doe de pan in de oven.",
           "pt": "Põe a panela no forno."
+        },
+        {
+          "nl": "Proost!",
+          "pt": "Saúde!"
+        },
+        {
+          "nl": "De lunch is meestal koud.",
+          "pt": "O almoço é geralmente frio."
         }
       ],
       "grammar": [],
@@ -2249,11 +2244,38 @@
           "id": "s2-u05-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «almoço» em neerlandês?",
+          "prompt": "Como se diz «cortar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "lunch",
+              "text": "snijden",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "patat",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "ontbijt",
+              "correct": false
+            }
+          ],
+          "explanation": "cortar = «snijden».",
+          "vocabRefs": [
+            "v-snijden"
+          ]
+        },
+        {
+          "id": "s2-u05-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «saúde!» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "proost",
               "correct": true
             },
             {
@@ -2263,63 +2285,17 @@
             },
             {
               "id": "c",
-              "text": "maaltijd",
-              "correct": false
-            }
-          ],
-          "explanation": "almoço = «lunch».",
-          "vocabRefs": [
-            "v-lunch"
-          ]
-        },
-        {
-          "id": "s2-u05-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «receita» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "peper",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "recept",
-              "correct": true
-            },
-            {
-              "id": "c",
               "text": "pan",
               "correct": false
             }
           ],
-          "explanation": "receita = «recept».",
+          "explanation": "saúde! = «proost».",
           "vocabRefs": [
-            "v-recept"
+            "v-proost"
           ]
         },
         {
           "id": "s2-u05-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik wil een ___ proberen.",
-          "translation": "Quero provar uma stroopwafel.",
-          "answers": [
-            "stroopwafel"
-          ],
-          "choices": [
-            "bakken",
-            "genoeg",
-            "stroopwafel"
-          ],
-          "explanation": "Ik wil een stroopwafel proberen.",
-          "vocabRefs": [
-            "v-stroopwafel"
-          ]
-        },
-        {
-          "id": "s2-u05-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "De ___ is meestal koud.",
@@ -2329,8 +2305,8 @@
           ],
           "choices": [
             "lunch",
-            "oven",
-            "ontbijt"
+            "patat",
+            "tussendoortje"
           ],
           "explanation": "De lunch is meestal koud.",
           "vocabRefs": [
@@ -2338,22 +2314,26 @@
           ]
         },
         {
-          "id": "s2-u05-l008-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Stamppot is typisch Nederlands.",
+          "id": "s2-u05-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Doe de pan in de ___.",
+          "translation": "Põe a panela no forno.",
           "answers": [
-            "Stamppot is typisch Nederlands."
+            "oven"
           ],
-          "translation": "O stamppot é tipicamente neerlandês.",
-          "explanation": "«Stamppot is typisch Nederlands.» = O stamppot é tipicamente neerlandês.",
+          "choices": [
+            "stamppot",
+            "oven",
+            "recept"
+          ],
+          "explanation": "Doe de pan in de oven.",
           "vocabRefs": [
-            "v-stamppot",
-            "v-typisch"
+            "v-oven"
           ]
         },
         {
-          "id": "s2-u05-l008-e06",
+          "id": "s2-u05-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "We eten 's avonds warm.",
@@ -2365,86 +2345,102 @@
           "vocabRefs": []
         },
         {
+          "id": "s2-u05-l008-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "In de winter eten we erwtensoep.",
+          "answers": [
+            "In de winter eten we erwtensoep."
+          ],
+          "translation": "No inverno comemos sopa de ervilhas.",
+          "explanation": "«In de winter eten we erwtensoep.» = No inverno comemos sopa de ervilhas.",
+          "vocabRefs": [
+            "v-soep"
+          ]
+        },
+        {
           "id": "s2-u05-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O pequeno-almoço é às sete e meia.",
+          "prompt": "Põe a panela no forno.",
           "tokens": [
-            "ontbijt",
-            "half",
-            "eten",
-            "is",
-            "Het",
-            "acht.",
-            "typisch",
-            "om"
+            "Doe",
+            "de",
+            "in",
+            "pan",
+            "gehad.",
+            "de",
+            "meestal",
+            "oven."
           ],
           "answers": [
-            "Het ontbijt is om half acht."
+            "Doe de pan in de oven."
           ],
-          "explanation": "O pequeno-almoço é às sete e meia. = Het ontbijt is om half acht. (sobram: typisch, eten)",
+          "explanation": "Põe a panela no forno. = Doe de pan in de oven. (sobram: gehad., meestal)",
           "vocabRefs": [
-            "v-ontbijt"
+            "v-pan",
+            "v-oven"
           ]
         },
         {
           "id": "s2-u05-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Queres mais um pouco?",
+          "prompt": "O stamppot é tipicamente neerlandês.",
           "tokens": [
-            "je",
-            "de",
-            "zaterdag",
-            "Wil",
-            "nog",
-            "wat?"
+            "is",
+            "we",
+            "typisch",
+            "Nederlands.",
+            "Stamppot",
+            "genoeg"
           ],
           "answers": [
-            "Wil je nog wat?"
+            "Stamppot is typisch Nederlands."
           ],
-          "explanation": "Queres mais um pouco? = Wil je nog wat? (sobram: zaterdag, de)",
+          "explanation": "O stamppot é tipicamente neerlandês. = Stamppot is typisch Nederlands. (sobram: genoeg, we)",
           "vocabRefs": [
-            "v-nog"
+            "v-stamppot",
+            "v-typisch"
           ]
         },
         {
           "id": "s2-u05-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "tussendoortje",
-          "pt": "lanche",
-          "article": "het",
-          "explanation": "het tussendoortje.",
+          "noun": "soep",
+          "pt": "sopa",
+          "article": "de",
+          "explanation": "de soep.",
           "vocabRefs": [
-            "v-tussendoortje"
+            "v-soep"
           ]
         },
         {
           "id": "s2-u05-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De lunch is meestal koud.»?",
+          "prompt": "O que significa: «In de winter eten we erwtensoep.»?",
           "options": [
             {
               "id": "a",
               "text": "No inverno comemos sopa de ervilhas.",
-              "correct": false
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Junta sal.",
+              "text": "Não, obrigado, já comi o suficiente.",
               "correct": false
             },
             {
               "id": "c",
               "text": "O almoço é geralmente frio.",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "«De lunch is meestal koud.» = O almoço é geralmente frio.",
+          "explanation": "«In de winter eten we erwtensoep.» = No inverno comemos sopa de ervilhas.",
           "vocabRefs": [
-            "v-lunch"
+            "v-soep"
           ]
         }
       ],
@@ -2511,16 +2507,16 @@
       ],
       "examples": [
         {
-          "nl": "Proost!",
-          "pt": "Saúde!"
+          "nl": "Een patatje met, alstublieft.",
+          "pt": "Umas batatas fritas com maionese, por favor."
         },
         {
-          "nl": "Kook het water.",
-          "pt": "Ferve a água."
+          "nl": "Smakelijk!",
+          "pt": "(forma curta) Bom apetite!"
         },
         {
-          "nl": "Doe de pan in de oven.",
-          "pt": "Põe a panela no forno."
+          "nl": "In de winter eten we erwtensoep.",
+          "pt": "No inverno comemos sopa de ervilhas."
         }
       ],
       "grammar": [],
@@ -2529,94 +2525,69 @@
           "id": "s2-u05-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Corta a cebola.",
+          "prompt": "O pequeno-almoço é às sete e meia.",
           "tokens": [
-            "ui.",
-            "winter",
-            "de",
-            "eten",
-            "Snijd"
+            "stroopwafel",
+            "half",
+            "ontbijt",
+            "acht.",
+            "om",
+            "is",
+            "Het",
+            "bij."
           ],
           "answers": [
-            "Snijd de ui."
+            "Het ontbijt is om half acht."
           ],
-          "explanation": "Corta a cebola. = Snijd de ui. (sobram: eten, winter)",
-          "vocabRefs": []
+          "explanation": "O pequeno-almoço é às sete e meia. = Het ontbijt is om half acht. (sobram: stroopwafel, bij.)",
+          "vocabRefs": [
+            "v-ontbijt"
+          ]
         },
         {
           "id": "s2-u05-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O stamppot é tipicamente neerlandês.",
+          "prompt": "Vens jantar a nossa casa no sábado?",
           "tokens": [
-            "is",
-            "Nederlands.",
-            "je",
-            "Stamppot",
-            "typisch",
-            "koud."
+            "'s",
+            "bij",
+            "Kom",
+            "eten?",
+            "ons",
+            "zaterdag",
+            "De",
+            "je"
           ],
           "answers": [
-            "Stamppot is typisch Nederlands."
+            "Kom je zaterdag bij ons eten?"
           ],
-          "explanation": "O stamppot é tipicamente neerlandês. = Stamppot is typisch Nederlands. (sobram: koud., je)",
-          "vocabRefs": [
-            "v-stamppot",
-            "v-typisch"
-          ]
+          "explanation": "Vens jantar a nossa casa no sábado? = Kom je zaterdag bij ons eten? (sobram: De, 's)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u05-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não, obrigado, já comi o suficiente.",
+          "prompt": "Umas batatas fritas com maionese, por favor.",
           "tokens": [
-            "dank",
-            "is",
-            "gehad.",
-            "genoeg",
-            "Nee,",
-            "je,",
-            "acht.",
-            "ik",
-            "heb"
+            "patatje",
+            "met,",
+            "alstublieft.",
+            "Een",
+            "'s",
+            "Nederlands."
           ],
           "answers": [
-            "Nee, dank je, ik heb genoeg gehad."
+            "Een patatje met, alstublieft."
           ],
-          "explanation": "Não, obrigado, já comi o suficiente. = Nee, dank je, ik heb genoeg gehad. (sobram: acht., is)",
+          "explanation": "Umas batatas fritas com maionese, por favor. = Een patatje met, alstublieft. (sobram: 's, Nederlands.)",
           "vocabRefs": [
-            "v-genoeg"
+            "v-patat"
           ]
         },
         {
           "id": "s2-u05-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kook het water.",
-          "answers": [
-            "Kook het water."
-          ],
-          "translation": "Ferve a água.",
-          "explanation": "«Kook het water.» = Ferve a água.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s2-u05-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Bak de eieren in de pan.",
-          "answers": [
-            "Bak de eieren in de pan."
-          ],
-          "translation": "Frita os ovos na frigideira.",
-          "explanation": "«Bak de eieren in de pan.» = Frita os ovos na frigideira.",
-          "vocabRefs": [
-            "v-pan"
-          ]
-        },
-        {
-          "id": "s2-u05-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "De lunch is meestal koud.",
@@ -2630,17 +2601,61 @@
           ]
         },
         {
+          "id": "s2-u05-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Het ontbijt is om half acht.",
+          "answers": [
+            "Het ontbijt is om half acht."
+          ],
+          "translation": "O pequeno-almoço é às sete e meia.",
+          "explanation": "«Het ontbijt is om half acht.» = O pequeno-almoço é às sete e meia.",
+          "vocabRefs": [
+            "v-ontbijt"
+          ]
+        },
+        {
+          "id": "s2-u05-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Snijd de ui.",
+          "answers": [
+            "Snijd de ui."
+          ],
+          "translation": "Corta a cebola.",
+          "explanation": "«Snijd de ui.» = Corta a cebola.",
+          "vocabRefs": []
+        },
+        {
           "id": "s2-u05-l009-e07",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "O almoço é geralmente frio.",
+          "tokens": [
+            "De",
+            "lunch",
+            "is",
+            "meestal",
+            "koud."
+          ],
+          "alternatives": [],
+          "explanation": "De lunch is meestal koud.",
+          "vocabRefs": [
+            "v-lunch"
+          ]
+        },
+        {
+          "id": "s2-u05-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
           "translation": "Põe a panela no forno.",
           "tokens": [
-            "pan",
+            "Doe",
             "de",
-            "oven.",
+            "pan",
             "in",
             "de",
-            "Doe"
+            "oven."
           ],
           "alternatives": [],
           "explanation": "Doe de pan in de oven.",
@@ -2650,74 +2665,57 @@
           ]
         },
         {
-          "id": "s2-u05-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Queres mais um pouco?",
-          "tokens": [
-            "wat?",
-            "Wil",
-            "je",
-            "nog"
-          ],
-          "alternatives": [],
-          "explanation": "Wil je nog wat?",
-          "vocabRefs": [
-            "v-nog"
-          ]
-        },
-        {
           "id": "s2-u05-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «snijden»?",
+          "prompt": "O que significa «de peper»?",
           "options": [
             {
               "id": "a",
-              "text": "mais",
-              "correct": false
+              "text": "pimenta",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "refeição",
+              "text": "pôr a mesa",
               "correct": false
             },
             {
               "id": "c",
-              "text": "cortar",
-              "correct": true
+              "text": "panela",
+              "correct": false
             }
           ],
-          "explanation": "«snijden» = cortar.",
+          "explanation": "«de peper» = pimenta.",
           "vocabRefs": [
-            "v-snijden"
+            "v-peper"
           ]
         },
         {
           "id": "s2-u05-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de stamppot»?",
+          "prompt": "O que significa «de patat»?",
           "options": [
             {
               "id": "a",
-              "text": "típico",
+              "text": "pequeno-almoço",
               "correct": false
             },
             {
               "id": "b",
-              "text": "sopa",
+              "text": "fritar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "puré de batata com legumes",
+              "text": "batatas fritas",
               "correct": true
             }
           ],
-          "explanation": "«de stamppot» = puré de batata com legumes.",
+          "explanation": "«de patat» = batatas fritas.",
           "vocabRefs": [
-            "v-stamppot"
+            "v-patat"
           ]
         }
       ],

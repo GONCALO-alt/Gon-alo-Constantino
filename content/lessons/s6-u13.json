@@ -1903,16 +1903,16 @@
       ],
       "examples": [
         {
-          "nl": "De dokter adviseerde me om meer te bewegen.",
-          "pt": "O médico aconselhou-me a mexer-me mais."
+          "nl": "Ze vertelde dat ze een nieuwe baan had.",
+          "pt": "Ela contou que tinha um emprego novo."
         },
         {
-          "nl": "Ze vroeg of ik ook kwam.",
-          "pt": "Ela perguntou se eu também vinha."
+          "nl": "Mijn moeder zei dat ik moest bellen.",
+          "pt": "A minha mãe disse que eu tinha de ligar."
         },
         {
-          "nl": "Ze erkende dat ze een fout had gemaakt.",
-          "pt": "Ela reconheceu que tinha cometido um erro."
+          "nl": "Bewoners klagen dat het te druk is.",
+          "pt": "Os moradores queixam-se de que há demasiado movimento."
         }
       ],
       "grammar": [],
@@ -1959,13 +1959,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ela reconheceu que tinha cometido um erro.",
           "tokens": [
-            "ze",
-            "erkende",
-            "fout",
             "Ze",
-            "een",
-            "had",
+            "erkende",
             "dat",
+            "ze",
+            "een",
+            "fout",
+            "had",
             "gemaakt."
           ],
           "alternatives": [],
@@ -1978,13 +1978,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele avisou-nos de que estava escorregadio.",
           "tokens": [
-            "dat",
             "Hij",
-            "was.",
-            "ons",
             "waarschuwde",
+            "ons",
+            "dat",
             "het",
-            "glad"
+            "glad",
+            "was."
           ],
           "alternatives": [],
           "explanation": "Hij waarschuwde ons dat het glad was.",
@@ -1997,11 +1997,11 @@
           "translation": "Ele disse textualmente: «Isto é inaceitável.»",
           "tokens": [
             "Hij",
-            "letterlijk:",
-            "is",
-            "onacceptabel.»",
             "zei",
-            "«Dit"
+            "letterlijk:",
+            "«Dit",
+            "is",
+            "onacceptabel.»"
           ],
           "alternatives": [],
           "explanation": "Hij zei letterlijk: «Dit is onacceptabel.»",
@@ -2011,98 +2011,95 @@
           "id": "s6-u13-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ze vroeg me om de deur dicht te doen.»?",
+          "prompt": "O que significa: «Hij zei: «Ik ben moe.»»?",
           "options": [
             {
               "id": "a",
-              "text": "Ele queria saber onde era a estação.",
+              "text": "Ele avisou-nos de que estava escorregadio.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "«Moro em Delft.» → Ela disse que morava/mora em Delft.",
+              "text": "Ela perguntou: «Também vens?»",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ela pediu-me para fechar a porta.",
+              "text": "Ele disse: «Estou cansado.»",
               "correct": true
             }
           ],
-          "explanation": "«Ze vroeg me om de deur dicht te doen.» = Ela pediu-me para fechar a porta.",
+          "explanation": "«Hij zei: «Ik ben moe.»» = Ele disse: «Estou cansado.»",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ze vertelde dat ze een nieuwe baan had.»?",
+          "prompt": "O que significa: «Kun je het gesprek even navertellen?»?",
           "options": [
             {
               "id": "a",
-              "text": "Ele disse que estava cansado.",
+              "text": "Ela reconheceu que tinha cometido um erro.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ela contou que tinha um emprego novo.",
-              "correct": true
+              "text": "Ele avisou-nos de que estava escorregadio.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "«Liga-me amanhã!» → Ele disse que eu tinha de lhe ligar amanhã.",
-              "correct": false
+              "text": "Podes contar como foi a conversa?",
+              "correct": true
             }
           ],
-          "explanation": "«Ze vertelde dat ze een nieuwe baan had.» = Ela contou que tinha um emprego novo.",
+          "explanation": "«Kun je het gesprek even navertellen?» = Podes contar como foi a conversa?",
           "vocabRefs": [
-            "v-vertelde"
+            "v-navertellen"
           ]
         },
         {
           "id": "s6-u13-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele disse que estava cansado.",
+          "prompt": "A minha mãe disse que eu tinha de ligar.",
           "tokens": [
-            "Hij",
+            "Mijn",
+            "bellen.",
+            "zei",
+            "moeder",
             "dat",
-            "was.",
-            "moe",
-            "hij",
-            "glad",
-            "gesprek",
-            "zei"
+            "haar",
+            "me",
+            "moest",
+            "ik"
           ],
           "answers": [
-            "Hij zei dat hij moe was."
+            "Mijn moeder zei dat ik moest bellen."
           ],
-          "explanation": "Ele disse que estava cansado. = Hij zei dat hij moe was. (sobram: gesprek, glad)",
+          "explanation": "A minha mãe disse que eu tinha de ligar. = Mijn moeder zei dat ik moest bellen. (sobram: haar, me)",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Os moradores queixam-se de que há demasiado movimento.",
+          "prompt": "Ela perguntou: «Também vens?»",
           "tokens": [
-            "te",
-            "Bewoners",
-            "is.",
-            "het",
-            "druk",
-            "Hij",
-            "klagen",
-            "moe",
-            "dat"
+            "hij",
+            "«Kom",
+            "vroeg:",
+            "ook?»",
+            "je",
+            "Ze",
+            "informeerde"
           ],
           "answers": [
-            "Bewoners klagen dat het te druk is."
+            "Ze vroeg: «Kom je ook?»"
           ],
-          "explanation": "Os moradores queixam-se de que há demasiado movimento. = Bewoners klagen dat het te druk is. (sobram: Hij, moe)",
-          "vocabRefs": [
-            "v-klagen-dat"
-          ]
+          "explanation": "Ela perguntou: «Também vens?» = Ze vroeg: «Kom je ook?» (sobram: hij, informeerde)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2162,16 +2159,16 @@
       ],
       "examples": [
         {
-          "nl": "Hij zei dat hij moe was.",
-          "pt": "Ele disse que estava cansado."
+          "nl": "Ze vroeg: «Kom je ook?»",
+          "pt": "Ela perguntou: «Também vens?»"
         },
         {
-          "nl": "De woordvoerder bevestigde het nieuws.",
-          "pt": "O porta-voz confirmou a notícia."
+          "nl": "De minister ontkende dat hij het wist.",
+          "pt": "O ministro negou que soubesse."
         },
         {
-          "nl": "«Bel me morgen!» → Hij zei dat ik hem morgen moest bellen.",
-          "pt": "«Liga-me amanhã!» → Ele disse que eu tinha de lhe ligar amanhã."
+          "nl": "Ze vertelde dat ze een nieuwe baan had.",
+          "pt": "Ela contou que tinha um emprego novo."
         }
       ],
       "grammar": [],
@@ -2180,199 +2177,202 @@
           "id": "s6-u13-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «segundo ela / ele» em neerlandês?",
+          "prompt": "Como se diz «discurso direto» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "adviseren",
+              "text": "zei / zeiden",
               "correct": false
             },
             {
               "id": "b",
-              "text": "informeren naar",
+              "text": "letterlijk zeggen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "volgens haar / hem",
+              "text": "directe rede",
               "correct": true
             }
           ],
-          "explanation": "segundo ela / ele = «volgens haar / hem».",
+          "explanation": "discurso direto = «directe rede».",
           "vocabRefs": [
-            "v-volgens-haar"
+            "v-directe-rede"
           ]
         },
         {
           "id": "s6-u13-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «contou» em neerlandês?",
+          "prompt": "Como se diz «dizer textualmente» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "indirecte rede",
+              "text": "navertellen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "samengevat",
-              "correct": false
+              "text": "letterlijk zeggen",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "vertelde",
-              "correct": true
+              "text": "volgens haar / hem",
+              "correct": false
             }
           ],
-          "explanation": "contou = «vertelde».",
+          "explanation": "dizer textualmente = «letterlijk zeggen».",
           "vocabRefs": [
-            "v-vertelde"
+            "v-letterlijk-zeggen"
           ]
         },
         {
           "id": "s6-u13-l008-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij zei letterlijk: «Dit is onacceptabel.»",
+          "audioText": "De dokter adviseerde me om meer te bewegen.",
           "answers": [
-            "Hij zei letterlijk: «Dit is onacceptabel.»"
+            "De dokter adviseerde me om meer te bewegen."
           ],
-          "translation": "Ele disse textualmente: «Isto é inaceitável.»",
-          "explanation": "«Hij zei letterlijk: «Dit is onacceptabel.»» = Ele disse textualmente: «Isto é inaceitável.»",
+          "translation": "O médico aconselhou-me a mexer-me mais.",
+          "explanation": "«De dokter adviseerde me om meer te bewegen.» = O médico aconselhou-me a mexer-me mais.",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l008-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Volgens haar is het project te duur.",
+          "audioText": "De dokter informeerde naar mijn gezondheid.",
           "answers": [
-            "Volgens haar is het project te duur."
+            "De dokter informeerde naar mijn gezondheid."
           ],
-          "translation": "Segundo ela, o projeto é demasiado caro.",
-          "explanation": "«Volgens haar is het project te duur.» = Segundo ela, o projeto é demasiado caro.",
+          "translation": "O médico perguntou pela minha saúde.",
+          "explanation": "«De dokter informeerde naar mijn gezondheid.» = O médico perguntou pela minha saúde.",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l008-e05",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele avisou-nos de que estava escorregadio.",
+          "prompt": "O ministro negou que soubesse.",
           "tokens": [
-            "ons",
-            "waarschuwde",
-            "was.",
+            "De",
+            "ontkende",
             "dat",
-            "Hij",
-            "bevestigde",
-            "glad",
+            "even",
+            "wist.",
+            "hij",
             "het",
-            "te"
+            "minister",
+            "mijn"
           ],
           "answers": [
-            "Hij waarschuwde ons dat het glad was."
+            "De minister ontkende dat hij het wist."
           ],
-          "explanation": "Ele avisou-nos de que estava escorregadio. = Hij waarschuwde ons dat het glad was. (sobram: bevestigde, te)",
+          "explanation": "O ministro negou que soubesse. = De minister ontkende dat hij het wist. (sobram: mijn, even)",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l008-e06",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O porta-voz confirmou a notícia.",
+          "prompt": "Ela reconheceu que tinha cometido um erro.",
           "tokens": [
-            "het",
+            "had",
+            "dat",
+            "gemaakt.",
+            "erkende",
             "een",
-            "nieuws.",
-            "woordvoerder",
-            "De",
-            "wist.",
-            "bevestigde"
+            "ze",
+            "fout",
+            "doen.",
+            "haar",
+            "Ze"
           ],
           "answers": [
-            "De woordvoerder bevestigde het nieuws."
+            "Ze erkende dat ze een fout had gemaakt."
           ],
-          "explanation": "O porta-voz confirmou a notícia. = De woordvoerder bevestigde het nieuws. (sobram: wist., een)",
+          "explanation": "Ela reconheceu que tinha cometido um erro. = Ze erkende dat ze een fout had gemaakt. (sobram: haar, doen.)",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l008-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ze vroeg: «Kom je ook?»»?",
+          "prompt": "O que significa: «De dokter adviseerde me om meer te bewegen.»?",
           "options": [
             {
               "id": "a",
-              "text": "O médico perguntou pela minha saúde.",
+              "text": "Ela contou que tinha um emprego novo.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ela perguntou: «Também vens?»",
+              "text": "O médico aconselhou-me a mexer-me mais.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Ela reconheceu que tinha cometido um erro.",
+              "text": "Ela pediu-me para fechar a porta.",
               "correct": false
             }
           ],
-          "explanation": "«Ze vroeg: «Kom je ook?»» = Ela perguntou: «Também vens?»",
+          "explanation": "«De dokter adviseerde me om meer te bewegen.» = O médico aconselhou-me a mexer-me mais.",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l008-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «vragen om … te»?",
+          "prompt": "O que significa «vroeg / vroegen»?",
           "options": [
             {
               "id": "a",
-              "text": "contou",
+              "text": "dizer textualmente",
               "correct": false
             },
             {
               "id": "b",
-              "text": "perguntar por",
+              "text": "confirmar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "pedir para …",
+              "text": "perguntou / perguntaram",
               "correct": true
             }
           ],
-          "explanation": "«vragen om … te» = pedir para ….",
+          "explanation": "«vroeg / vroegen» = perguntou / perguntaram.",
           "vocabRefs": [
-            "v-vragen-om-te"
+            "v-vroeg-vragen"
           ]
         },
         {
           "id": "s6-u13-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «reconhecer» em neerlandês?",
+          "prompt": "Como se diz «disse / disseram» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "informeren naar",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "erkennen",
+              "text": "zei / zeiden",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "letterlijk zeggen",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "waarschuwen",
+              "text": "vroeg / vroegen",
               "correct": false
             }
           ],
-          "explanation": "reconhecer = «erkennen».",
+          "explanation": "disse / disseram = «zei / zeiden».",
           "vocabRefs": [
-            "v-erkennen-rede"
+            "v-zei"
           ]
         }
       ],
@@ -2433,16 +2433,16 @@
       ],
       "examples": [
         {
-          "nl": "«Ik woon in Delft.» → Ze zei dat ze in Delft woonde/woont.",
-          "pt": "«Moro em Delft.» → Ela disse que morava/mora em Delft."
+          "nl": "Hij wilde weten waar het station was.",
+          "pt": "Ele queria saber onde era a estação."
         },
         {
-          "nl": "Kun je het gesprek even navertellen?",
-          "pt": "Podes contar como foi a conversa?"
+          "nl": "Ze vroeg me om de deur dicht te doen.",
+          "pt": "Ela pediu-me para fechar a porta."
         },
         {
-          "nl": "De minister ontkende dat hij het wist.",
-          "pt": "O ministro negou que soubesse."
+          "nl": "«Hoe laat is het?» → Ze vroeg hoe laat het was.",
+          "pt": "«Que horas são?» → Ela perguntou que horas eram."
         }
       ],
       "grammar": [],
@@ -2451,83 +2451,73 @@
           "id": "s6-u13-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele disse: «Estou cansado.»",
+          "prompt": "O médico perguntou pela minha saúde.",
           "tokens": [
-            "moe.»",
-            "«Ik",
-            "waar",
-            "Ze",
-            "Hij",
-            "zei:",
-            "ben"
+            "mijn",
+            "informeerde",
+            "zei",
+            "naar",
+            "De",
+            "gezondheid.",
+            "dokter",
+            "«Kom"
           ],
           "answers": [
-            "Hij zei: «Ik ben moe.»"
+            "De dokter informeerde naar mijn gezondheid."
           ],
-          "explanation": "Ele disse: «Estou cansado.» = Hij zei: «Ik ben moe.» (sobram: waar, Ze)",
+          "explanation": "O médico perguntou pela minha saúde. = De dokter informeerde naar mijn gezondheid. (sobram: «Kom, zei)",
           "vocabRefs": []
         },
         {
           "id": "s6-u13-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Em resumo: querem mais tempo.",
+          "prompt": "Ela contou que tinha um emprego novo.",
           "tokens": [
+            "baan",
+            "dat",
             "ze",
-            "willen",
-            "tijd.",
-            "meer",
-            "Bewoners",
-            "gemaakt.",
-            "Samengevat:"
+            "vertelde",
+            "haar",
+            "een",
+            "nieuwe",
+            "had.",
+            "waar",
+            "Ze"
           ],
           "answers": [
-            "Samengevat: ze willen meer tijd."
+            "Ze vertelde dat ze een nieuwe baan had."
           ],
-          "explanation": "Em resumo: querem mais tempo. = Samengevat: ze willen meer tijd. (sobram: Bewoners, gemaakt.)",
+          "explanation": "Ela contou que tinha um emprego novo. = Ze vertelde dat ze een nieuwe baan had. (sobram: waar, haar)",
           "vocabRefs": [
-            "v-samengevat"
+            "v-vertelde"
           ]
         },
         {
           "id": "s6-u13-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela reconheceu que tinha cometido um erro.",
+          "prompt": "Podes contar como foi a conversa?",
           "tokens": [
-            "is",
-            "erkende",
-            "ze",
-            "fout",
-            "gemaakt.",
-            "had",
-            "dat",
-            "een",
+            "Kun",
             "je",
-            "Ze"
+            "gesprek",
+            "het",
+            "minister",
+            "even",
+            "een",
+            "navertellen?"
           ],
           "answers": [
-            "Ze erkende dat ze een fout had gemaakt."
+            "Kun je het gesprek even navertellen?"
           ],
-          "explanation": "Ela reconheceu que tinha cometido um erro. = Ze erkende dat ze een fout had gemaakt. (sobram: is, je)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s6-u13-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ze vertelde dat ze een nieuwe baan had.",
-          "answers": [
-            "Ze vertelde dat ze een nieuwe baan had."
-          ],
-          "translation": "Ela contou que tinha um emprego novo.",
-          "explanation": "«Ze vertelde dat ze een nieuwe baan had.» = Ela contou que tinha um emprego novo.",
+          "explanation": "Podes contar como foi a conversa? = Kun je het gesprek even navertellen? (sobram: een, minister)",
           "vocabRefs": [
-            "v-vertelde"
+            "v-navertellen"
           ]
         },
         {
-          "id": "s6-u13-l009-e05",
+          "id": "s6-u13-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ze vroeg: «Kom je ook?»",
@@ -2539,16 +2529,30 @@
           "vocabRefs": []
         },
         {
+          "id": "s6-u13-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ze vroeg me om de deur dicht te doen.",
+          "answers": [
+            "Ze vroeg me om de deur dicht te doen."
+          ],
+          "translation": "Ela pediu-me para fechar a porta.",
+          "explanation": "«Ze vroeg me om de deur dicht te doen.» = Ela pediu-me para fechar a porta.",
+          "vocabRefs": []
+        },
+        {
           "id": "s6-u13-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De dokter adviseerde me om meer te bewegen.",
+          "audioText": "Samengevat: ze willen meer tijd.",
           "answers": [
-            "De dokter adviseerde me om meer te bewegen."
+            "Samengevat: ze willen meer tijd."
           ],
-          "translation": "O médico aconselhou-me a mexer-me mais.",
-          "explanation": "«De dokter adviseerde me om meer te bewegen.» = O médico aconselhou-me a mexer-me mais.",
-          "vocabRefs": []
+          "translation": "Em resumo: querem mais tempo.",
+          "explanation": "«Samengevat: ze willen meer tijd.» = Em resumo: querem mais tempo.",
+          "vocabRefs": [
+            "v-samengevat"
+          ]
         },
         {
           "id": "s6-u13-l009-e07",
@@ -2556,13 +2560,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "O médico aconselhou-me a mexer-me mais.",
           "tokens": [
-            "adviseerde",
-            "om",
-            "me",
             "De",
-            "te",
-            "meer",
             "dokter",
+            "adviseerde",
+            "me",
+            "om",
+            "meer",
+            "te",
             "bewegen."
           ],
           "alternatives": [],
@@ -2575,13 +2579,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele queria saber onde era a estação.",
           "tokens": [
-            "was.",
-            "wilde",
-            "het",
             "Hij",
+            "wilde",
             "weten",
+            "waar",
+            "het",
             "station",
-            "waar"
+            "was."
           ],
           "alternatives": [],
           "explanation": "Hij wilde weten waar het station was.",
@@ -2593,54 +2597,54 @@
           "id": "s6-u13-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «volgens haar / hem»?",
+          "prompt": "O que significa «informeren naar»?",
           "options": [
             {
               "id": "a",
-              "text": "discurso direto",
+              "text": "perguntou / perguntaram",
               "correct": false
             },
             {
               "id": "b",
-              "text": "queria saber",
-              "correct": false
+              "text": "perguntar por",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "segundo ela / ele",
-              "correct": true
+              "text": "em resumo",
+              "correct": false
             }
           ],
-          "explanation": "«volgens haar / hem» = segundo ela / ele.",
+          "explanation": "«informeren naar» = perguntar por, informar-se sobre.",
           "vocabRefs": [
-            "v-volgens-haar"
+            "v-informeren-naar"
           ]
         },
         {
           "id": "s6-u13-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «vroeg / vroegen»?",
+          "prompt": "O que significa «opdragen»?",
           "options": [
             {
               "id": "a",
-              "text": "segundo ela / ele",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "perguntou / perguntaram",
+              "text": "encarregar",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "em resumo",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "confirmar",
+              "text": "discurso direto",
               "correct": false
             }
           ],
-          "explanation": "«vroeg / vroegen» = perguntou / perguntaram.",
+          "explanation": "«opdragen» = encarregar, mandar.",
           "vocabRefs": [
-            "v-vroeg-vragen"
+            "v-opdragen"
           ]
         }
       ],

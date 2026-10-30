@@ -1961,16 +1961,16 @@
       ],
       "examples": [
         {
-          "nl": "Er is een toename van het aantal fietsers.",
-          "pt": "Há um aumento do número de ciclistas."
+          "nl": "Wat is de oorzaak?",
+          "pt": "Qual é a causa?"
+        },
+        {
+          "nl": "Hybride werken is de nieuwe norm.",
+          "pt": "O trabalho híbrido é a nova norma."
         },
         {
           "nl": "Hoofdzaken en bijzaken onderscheiden.",
           "pt": "Distinguir o essencial do acessório."
-        },
-        {
-          "nl": "Het aantal toeristen is gestegen.",
-          "pt": "O número de turistas subiu."
         }
       ],
       "grammar": [],
@@ -2021,16 +2021,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "«Estamos muito contentes com o resultado», disse o presidente da câmara.",
           "tokens": [
-            "resultaat,»",
-            "de",
-            "burgemeester.",
             "«We",
-            "blij",
-            "het",
+            "zijn",
             "heel",
+            "blij",
             "met",
+            "het",
+            "resultaat,»",
             "aldus",
-            "zijn"
+            "de",
+            "burgemeester."
           ],
           "alternatives": [],
           "explanation": "«We zijn heel blij met het resultaat,» aldus de burgemeester.",
@@ -2042,9 +2042,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Qual é o objetivo do texto?",
           "tokens": [
-            "het",
             "Wat",
             "is",
+            "het",
             "schrijfdoel?"
           ],
           "alternatives": [],
@@ -2059,12 +2059,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Isso é um facto, não uma opinião.",
           "tokens": [
-            "een",
-            "geen",
-            "mening.",
             "Dat",
             "is",
-            "feit,"
+            "een",
+            "feit,",
+            "geen",
+            "mening."
           ],
           "alternatives": [],
           "explanation": "Dat is een feit, geen mening.",
@@ -2076,96 +2076,98 @@
           "id": "s6-u03-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hybride werken is de nieuwe norm.»?",
+          "prompt": "O que significa: «Dat is een feit, geen mening.»?",
           "options": [
             {
               "id": "a",
-              "text": "«Estamos muito contentes com o resultado», disse o presidente da câmara.",
-              "correct": false
+              "text": "Isso é um facto, não uma opinião.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Qual é o cerne do artigo?",
+              "text": "A introdução resume o artigo.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O trabalho híbrido é a nova norma.",
-              "correct": true
+              "text": "Os intertítulos ajudam o leitor.",
+              "correct": false
             }
           ],
-          "explanation": "«Hybride werken is de nieuwe norm.» = O trabalho híbrido é a nova norma.",
+          "explanation": "«Dat is een feit, geen mening.» = Isso é um facto, não uma opinião.",
           "vocabRefs": [
-            "v-hybride"
+            "v-feit"
           ]
         },
         {
           "id": "s6-u03-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De intro vat het artikel samen.»?",
+          "prompt": "O que significa: «Wat is de kern van het artikel?»?",
           "options": [
             {
               "id": "a",
-              "text": "Isso é um facto, não uma opinião.",
-              "correct": false
+              "text": "Qual é o cerne do artigo?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "O trabalho híbrido é a nova norma.",
+              "text": "O sentido geral do texto é positivo.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "A introdução resume o artigo.",
-              "correct": true
+              "text": "Isso é um facto, não uma opinião.",
+              "correct": false
             }
           ],
-          "explanation": "«De intro vat het artikel samen.» = A introdução resume o artigo.",
-          "vocabRefs": []
+          "explanation": "«Wat is de kern van het artikel?» = Qual é o cerne do artigo?",
+          "vocabRefs": [
+            "v-kern"
+          ]
         },
         {
           "id": "s6-u03-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é a causa?",
+          "prompt": "Os intertítulos ajudam o leitor.",
           "tokens": [
-            "oorzaak?",
-            "bijzaak.",
+            "lezer.",
+            "Tussenkoppen",
+            "begon",
+            "helpen",
             "de",
-            "is",
-            "Wat",
-            "geen"
+            "bijzaak."
           ],
           "answers": [
-            "Wat is de oorzaak?"
+            "Tussenkoppen helpen de lezer."
           ],
-          "explanation": "Qual é a causa? = Wat is de oorzaak? (sobram: bijzaak., geen)",
+          "explanation": "Os intertítulos ajudam o leitor. = Tussenkoppen helpen de lezer. (sobram: begon, bijzaak.)",
           "vocabRefs": [
-            "v-oorzaak"
+            "v-kop-artikel",
+            "v-tussenkop",
+            "v-lezer"
           ]
         },
         {
           "id": "s6-u03-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O título deve chamar a atenção.",
+          "prompt": "Isso é um pormenor secundário.",
           "tokens": [
-            "Het",
-            "de",
-            "aandacht",
-            "moet",
+            "Dat",
+            "subjectief.",
             "is",
-            "De",
-            "trekken.",
-            "kop"
+            "een",
+            "bijzaak.",
+            "Die"
           ],
           "answers": [
-            "De kop moet de aandacht trekken."
+            "Dat is een bijzaak."
           ],
-          "explanation": "O título deve chamar a atenção. = De kop moet de aandacht trekken. (sobram: Het, is)",
+          "explanation": "Isso é um pormenor secundário. = Dat is een bijzaak. (sobram: Die, subjectief.)",
           "vocabRefs": [
-            "v-kop-artikel"
+            "v-bijzaak"
           ]
         }
       ],
@@ -2230,16 +2232,16 @@
       ],
       "examples": [
         {
-          "nl": "Er is een toename van het aantal fietsers.",
-          "pt": "Há um aumento do número de ciclistas."
+          "nl": "De intro vat het artikel samen.",
+          "pt": "A introdução resume o artigo."
         },
         {
-          "nl": "De kop moet de aandacht trekken.",
-          "pt": "O título deve chamar a atenção."
+          "nl": "Het citaat komt van een expert.",
+          "pt": "A citação é de um especialista."
         },
         {
-          "nl": "Hybride werken is de nieuwe norm.",
-          "pt": "O trabalho híbrido é a nova norma."
+          "nl": "«We zijn heel blij met het resultaat,» aldus de burgemeester.",
+          "pt": "«Estamos muito contentes com o resultado», disse o presidente da câmara."
         }
       ],
       "grammar": [],
@@ -2248,38 +2250,38 @@
           "id": "s6-u03-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «sentido geral» em neerlandês?",
+          "prompt": "Como se diz «informar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "strekking",
-              "correct": true
+              "text": "hoofdzaak",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "aantal",
+              "text": "subjectief",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ontwikkeling",
-              "correct": false
+              "text": "informeren",
+              "correct": true
             }
           ],
-          "explanation": "sentido geral = «strekking».",
+          "explanation": "informar = «informeren».",
           "vocabRefs": [
-            "v-strekking"
+            "v-informeren"
           ]
         },
         {
           "id": "s6-u03-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «facto» em neerlandês?",
+          "prompt": "Como se diz «aumento» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "aantal",
+              "text": "feit",
               "correct": false
             },
             {
@@ -2289,163 +2291,159 @@
             },
             {
               "id": "c",
-              "text": "feit",
+              "text": "toename",
               "correct": true
             }
           ],
-          "explanation": "facto = «feit».",
+          "explanation": "aumento = «toename».",
           "vocabRefs": [
-            "v-feit"
+            "v-toename"
           ]
         },
         {
           "id": "s6-u03-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wat is de ___?",
-          "translation": "Qual é a causa?",
+          "sentence": "De ___ komt door de hoge prijzen.",
+          "translation": "A diminuição deve-se aos preços altos.",
           "answers": [
-            "oorzaak"
+            "afname"
           ],
           "choices": [
-            "oorzaak",
-            "hoofdzaak",
-            "informeren"
+            "informeren",
+            "afname",
+            "strekking"
           ],
-          "explanation": "Wat is de oorzaak?",
+          "explanation": "De afname komt door de hoge prijzen.",
           "vocabRefs": [
-            "v-oorzaak"
+            "v-afname"
           ]
         },
         {
           "id": "s6-u03-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ is een risico.",
-          "translation": "A solidão é um risco.",
+          "sentence": "Het ___ toeristen is gestegen.",
+          "translation": "O número de turistas subiu.",
           "answers": [
-            "Eenzaamheid"
+            "aantal"
           ],
           "choices": [
-            "Kern",
-            "Eenzaamheid",
-            "Kop"
+            "subjectief",
+            "aantal",
+            "citaat"
           ],
-          "explanation": "Eenzaamheid is een risico.",
+          "explanation": "Het aantal toeristen is gestegen.",
           "vocabRefs": [
-            "v-eenzaamheid"
+            "v-aantal"
           ]
         },
         {
           "id": "s6-u03-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De intro vat het artikel samen.",
+          "audioText": "De kop moet de aandacht trekken.",
           "answers": [
-            "De intro vat het artikel samen."
+            "De kop moet de aandacht trekken."
           ],
-          "translation": "A introdução resume o artigo.",
-          "explanation": "«De intro vat het artikel samen.» = A introdução resume o artigo.",
-          "vocabRefs": []
+          "translation": "O título deve chamar a atenção.",
+          "explanation": "«De kop moet de aandacht trekken.» = O título deve chamar a atenção.",
+          "vocabRefs": [
+            "v-kop-artikel"
+          ]
         },
         {
           "id": "s6-u03-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat is de oorzaak?",
+          "audioText": "De afname komt door de hoge prijzen.",
           "answers": [
-            "Wat is de oorzaak?"
+            "De afname komt door de hoge prijzen."
           ],
-          "translation": "Qual é a causa?",
-          "explanation": "«Wat is de oorzaak?» = Qual é a causa?",
+          "translation": "A diminuição deve-se aos preços altos.",
+          "explanation": "«De afname komt door de hoge prijzen.» = A diminuição deve-se aos preços altos.",
           "vocabRefs": [
-            "v-oorzaak"
+            "v-afname"
           ]
         },
         {
           "id": "s6-u03-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "«Estamos muito contentes com o resultado», disse o presidente da câmara.",
+          "prompt": "As expectativas são altas.",
           "tokens": [
-            "prijzen.",
-            "burgemeester.",
-            "«We",
-            "het",
-            "resultaat,»",
-            "de",
-            "heel",
-            "met",
-            "aldus",
-            "werken",
-            "blij",
-            "zijn"
+            "meer",
+            "zijn",
+            "hoog.",
+            "gestegen.",
+            "verwachtingen",
+            "De"
           ],
           "answers": [
-            "«We zijn heel blij met het resultaat,» aldus de burgemeester."
+            "De verwachtingen zijn hoog."
           ],
-          "explanation": "«Estamos muito contentes com o resultado», disse o presidente da câmara. = «We zijn heel blij met het resultaat,» aldus de burgemeester. (sobram: werken, prijzen.)",
-          "vocabRefs": []
+          "explanation": "As expectativas são altas. = De verwachtingen zijn hoog. (sobram: gestegen., meer)",
+          "vocabRefs": [
+            "v-werkgever-verwacht"
+          ]
         },
         {
           "id": "s6-u03-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Uma crónica é subjetiva.",
+          "prompt": "Isso tem grandes consequências.",
           "tokens": [
-            "column",
-            "subjectief.",
-            "is",
-            "kern",
-            "Een",
-            "van"
+            "risico.",
+            "begon",
+            "heeft",
+            "gevolgen.",
+            "Dat",
+            "grote"
           ],
           "answers": [
-            "Een column is subjectief."
+            "Dat heeft grote gevolgen."
           ],
-          "explanation": "Uma crónica é subjetiva. = Een column is subjectief. (sobram: van, kern)",
+          "explanation": "Isso tem grandes consequências. = Dat heeft grote gevolgen. (sobram: risico., begon)",
           "vocabRefs": [
-            "v-subjectief"
+            "v-gevolg"
           ]
         },
         {
           "id": "s6-u03-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "schrijfdoel",
-          "pt": "objetivo do texto",
-          "article": "het",
-          "explanation": "het schrijfdoel.",
+          "noun": "lezer",
+          "pt": "leitor",
+          "article": "de",
+          "explanation": "de lezer.",
           "vocabRefs": [
-            "v-schrijfdoel"
+            "v-lezer"
           ]
         },
         {
           "id": "s6-u03-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Eenzaamheid is een risico.»?",
+          "prompt": "O que significa: «De intro vat het artikel samen.»?",
           "options": [
             {
               "id": "a",
+              "text": "A introdução resume o artigo.",
+              "correct": true
+            },
+            {
+              "id": "b",
               "text": "Essa evolução começou durante a covid.",
               "correct": false
             },
             {
-              "id": "b",
+              "id": "c",
               "text": "Distinguir o essencial do acessório.",
               "correct": false
-            },
-            {
-              "id": "c",
-              "text": "A solidão é um risco.",
-              "correct": true
             }
           ],
-          "explanation": "«Eenzaamheid is een risico.» = A solidão é um risco.",
-          "vocabRefs": [
-            "v-eenzaamheid"
-          ]
+          "explanation": "«De intro vat het artikel samen.» = A introdução resume o artigo.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2509,16 +2507,16 @@
       ],
       "examples": [
         {
-          "nl": "Dat is een feit, geen mening.",
-          "pt": "Isso é um facto, não uma opinião."
+          "nl": "Wat is de kern van het artikel?",
+          "pt": "Qual é o cerne do artigo?"
         },
         {
-          "nl": "Hoofdzaken en bijzaken onderscheiden.",
-          "pt": "Distinguir o essencial do acessório."
+          "nl": "Wat is de oorzaak?",
+          "pt": "Qual é a causa?"
         },
         {
-          "nl": "Hybride werken is de nieuwe norm.",
-          "pt": "O trabalho híbrido é a nova norma."
+          "nl": "De intro vat het artikel samen.",
+          "pt": "A introdução resume o artigo."
         }
       ],
       "grammar": [],
@@ -2527,98 +2525,83 @@
           "id": "s6-u03-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Felizmente cada vez mais pessoas escolhem a bicicleta.",
+          "prompt": "O número de turistas subiu.",
           "tokens": [
-            "Gelukkig",
-            "mensen",
-            "steeds",
-            "fiets.",
-            "meer",
-            "de",
-            "«We",
-            "een",
-            "kiezen",
-            "voor"
+            "Het",
+            "aantal",
+            "citaat",
+            "toeristen",
+            "is",
+            "gestegen.",
+            "Wat"
           ],
           "answers": [
-            "Gelukkig kiezen steeds meer mensen voor de fiets."
+            "Het aantal toeristen is gestegen."
           ],
-          "explanation": "Felizmente cada vez mais pessoas escolhem a bicicleta. = Gelukkig kiezen steeds meer mensen voor de fiets. (sobram: «We, een)",
-          "vocabRefs": []
+          "explanation": "O número de turistas subiu. = Het aantal toeristen is gestegen. (sobram: Wat, citaat)",
+          "vocabRefs": [
+            "v-aantal"
+          ]
         },
         {
           "id": "s6-u03-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O sentido geral do texto é positivo.",
+          "prompt": "O artigo quer sobretudo informar.",
           "tokens": [
-            "is",
-            "Er",
-            "strekking",
-            "positief.",
-            "moet",
-            "tekst",
-            "van",
-            "De",
-            "de"
+            "wil",
+            "steeds",
+            "vooral",
+            "informeren.",
+            "Gelukkig",
+            "Het",
+            "artikel"
           ],
           "answers": [
-            "De strekking van de tekst is positief."
+            "Het artikel wil vooral informeren."
           ],
-          "explanation": "O sentido geral do texto é positivo. = De strekking van de tekst is positief. (sobram: Er, moet)",
+          "explanation": "O artigo quer sobretudo informar. = Het artikel wil vooral informeren. (sobram: Gelukkig, steeds)",
           "vocabRefs": [
-            "v-strekking"
+            "v-informeren"
           ]
         },
         {
           "id": "s6-u03-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Distinguir o essencial do acessório.",
+          "prompt": "A citação é de um especialista.",
           "tokens": [
-            "en",
-            "Hoofdzaken",
-            "bijzaken",
-            "is",
-            "onderscheiden.",
-            "de"
+            "komt",
+            "citaat",
+            "tijdens",
+            "expert.",
+            "Het",
+            "een",
+            "van",
+            "artikel"
           ],
           "answers": [
-            "Hoofdzaken en bijzaken onderscheiden."
+            "Het citaat komt van een expert."
           ],
-          "explanation": "Distinguir o essencial do acessório. = Hoofdzaken en bijzaken onderscheiden. (sobram: de, is)",
-          "vocabRefs": []
+          "explanation": "A citação é de um especialista. = Het citaat komt van een expert. (sobram: artikel, tijdens)",
+          "vocabRefs": [
+            "v-citaat"
+          ]
         },
         {
           "id": "s6-u03-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Die ontwikkeling begon tijdens corona.",
+          "audioText": "De intro vat het artikel samen.",
           "answers": [
-            "Die ontwikkeling begon tijdens corona."
+            "De intro vat het artikel samen."
           ],
-          "translation": "Essa evolução começou durante a covid.",
-          "explanation": "«Die ontwikkeling begon tijdens corona.» = Essa evolução começou durante a covid.",
-          "vocabRefs": [
-            "v-ontwikkeling"
-          ]
+          "translation": "A introdução resume o artigo.",
+          "explanation": "«De intro vat het artikel samen.» = A introdução resume o artigo.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u03-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat heeft grote gevolgen.",
-          "answers": [
-            "Dat heeft grote gevolgen."
-          ],
-          "translation": "Isso tem grandes consequências.",
-          "explanation": "«Dat heeft grote gevolgen.» = Isso tem grandes consequências.",
-          "vocabRefs": [
-            "v-gevolg"
-          ]
-        },
-        {
-          "id": "s6-u03-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Er is een toename van het aantal fietsers.",
@@ -2633,15 +2616,29 @@
           ]
         },
         {
+          "id": "s6-u03-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "De strekking van de tekst is positief.",
+          "answers": [
+            "De strekking van de tekst is positief."
+          ],
+          "translation": "O sentido geral do texto é positivo.",
+          "explanation": "«De strekking van de tekst is positief.» = O sentido geral do texto é positivo.",
+          "vocabRefs": [
+            "v-strekking"
+          ]
+        },
+        {
           "id": "s6-u03-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
           "translation": "Uma crónica é subjetiva.",
           "tokens": [
             "Een",
-            "subjectief.",
+            "column",
             "is",
-            "column"
+            "subjectief."
           ],
           "alternatives": [],
           "explanation": "Een column is subjectief.",
@@ -2655,10 +2652,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Isso tem grandes consequências.",
           "tokens": [
-            "gevolgen.",
-            "heeft",
             "Dat",
-            "grote"
+            "heeft",
+            "grote",
+            "gevolgen."
           ],
           "alternatives": [],
           "explanation": "Dat heeft grote gevolgen.",
@@ -2670,54 +2667,54 @@
           "id": "s6-u03-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het schrijfdoel»?",
+          "prompt": "O que significa «subjectief»?",
           "options": [
             {
               "id": "a",
-              "text": "híbrido",
+              "text": "objetivo",
               "correct": false
             },
             {
               "id": "b",
-              "text": "objetivo do texto",
-              "correct": true
+              "text": "informar",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "evolução",
-              "correct": false
+              "text": "subjetivo",
+              "correct": true
             }
           ],
-          "explanation": "«het schrijfdoel» = objetivo do texto.",
+          "explanation": "«subjectief» = subjetivo.",
           "vocabRefs": [
-            "v-schrijfdoel"
+            "v-subjectief"
           ]
         },
         {
           "id": "s6-u03-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de verwachting»?",
+          "prompt": "O que significa «het citaat»?",
           "options": [
             {
               "id": "a",
-              "text": "expectativa",
-              "correct": true
+              "text": "número",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "consequência",
+              "text": "aumento",
               "correct": false
             },
             {
               "id": "c",
-              "text": "o essencial",
-              "correct": false
+              "text": "citação",
+              "correct": true
             }
           ],
-          "explanation": "«de verwachting» = expectativa.",
+          "explanation": "«het citaat» = citação.",
           "vocabRefs": [
-            "v-werkgever-verwacht"
+            "v-citaat"
           ]
         }
       ],

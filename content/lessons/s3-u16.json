@@ -1917,16 +1917,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik wil graag een klacht indienen.",
-          "pt": "Queria apresentar uma reclamação."
+          "nl": "Wat is de oplossing?",
+          "pt": "Qual é a solução?"
+        },
+        {
+          "nl": "Hartelijke groeten!",
+          "pt": "Muitos cumprimentos!"
         },
         {
           "nl": "Met wie spreek ik?",
           "pt": "Com quem estou a falar?"
-        },
-        {
-          "nl": "Kunt u een bericht achterlaten?",
-          "pt": "Pode deixar recado?"
         }
       ],
       "grammar": [],
@@ -1982,8 +1982,8 @@
           "tokens": [
             "Wat",
             "is",
-            "oplossing?",
-            "de"
+            "de",
+            "oplossing?"
           ],
           "alternatives": [],
           "explanation": "Wat is de oplossing?",
@@ -1997,12 +1997,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Queria apresentar uma reclamação.",
           "tokens": [
-            "klacht",
-            "wil",
-            "indienen.",
             "Ik",
+            "wil",
             "graag",
-            "een"
+            "een",
+            "klacht",
+            "indienen."
           ],
           "alternatives": [],
           "explanation": "Ik wil graag een klacht indienen.",
@@ -2016,11 +2016,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Amanhã estou novamente contactável.",
           "tokens": [
+            "Ik",
             "ben",
-            "weer",
-            "bereikbaar.",
             "morgen",
-            "Ik"
+            "weer",
+            "bereikbaar."
           ],
           "alternatives": [],
           "explanation": "Ik ben morgen weer bereikbaar.",
@@ -2036,18 +2036,18 @@
           "options": [
             {
               "id": "a",
-              "text": "Cara Sanne,",
-              "correct": false
+              "text": "Pode deixar recado?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Com quem estou a falar?",
+              "text": "Poderia abrir a janela?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Pode deixar recado?",
-              "correct": true
+              "text": "Lamento, mas isto não está bem.",
+              "correct": false
             }
           ],
           "explanation": "«Kunt u een bericht achterlaten?» = Pode deixar recado?",
@@ -2063,18 +2063,18 @@
           "options": [
             {
               "id": "a",
-              "text": "Estou muito desiludido.",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Poderia abrir a janela?",
               "correct": false
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "Qual é a solução?",
               "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Lamento, mas isto não está bem.",
+              "correct": false
             }
           ],
           "explanation": "«Wat is de oplossing?» = Qual é a solução?",
@@ -2086,48 +2086,43 @@
           "id": "s3-u16-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso é muito amável da sua parte.",
+          "prompt": "Exma. Senhora Jansen,",
           "tokens": [
-            "u.",
-            "weer",
-            "van",
-            "door.",
-            "Dat",
-            "vriendelijk",
-            "is",
-            "heel"
+            "Zou",
+            "Geachte",
+            "Jansen,",
+            "mevrouw",
+            "een"
           ],
           "answers": [
-            "Dat is heel vriendelijk van u."
+            "Geachte mevrouw Jansen,"
           ],
-          "explanation": "Isso é muito amável da sua parte. = Dat is heel vriendelijk van u. (sobram: weer, door.)",
+          "explanation": "Exma. Senhora Jansen, = Geachte mevrouw Jansen, (sobram: Zou, een)",
           "vocabRefs": [
-            "v-vriendelijk"
+            "v-geachte"
           ]
         },
         {
           "id": "s3-u16-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Poderia abrir a janela?",
+          "prompt": "Isso é muito amável da sua parte.",
           "tokens": [
-            "doen?",
-            "Zou",
-            "mogen",
-            "de",
-            "open",
-            "ik",
-            "Met",
-            "het",
-            "raam"
+            "heel",
+            "u.",
+            "Dat",
+            "vriendelijk",
+            "achterlaten?",
+            "Vries,",
+            "van",
+            "is"
           ],
           "answers": [
-            "Zou ik het raam open mogen doen?"
+            "Dat is heel vriendelijk van u."
           ],
-          "explanation": "Poderia abrir a janela? = Zou ik het raam open mogen doen? (sobram: Met, de)",
+          "explanation": "Isso é muito amável da sua parte. = Dat is heel vriendelijk van u. (sobram: Vries,, achterlaten?)",
           "vocabRefs": [
-            "v-zou",
-            "v-mogen"
+            "v-vriendelijk"
           ]
         }
       ],
@@ -2192,16 +2187,16 @@
       ],
       "examples": [
         {
+          "nl": "Ik ben morgen weer bereikbaar.",
+          "pt": "Amanhã estou novamente contactável."
+        },
+        {
           "nl": "Kunt u een bericht achterlaten?",
           "pt": "Pode deixar recado?"
         },
         {
-          "nl": "Het spijt me, maar dit is niet goed.",
-          "pt": "Lamento, mas isto não está bem."
-        },
-        {
-          "nl": "Ik verbind u door.",
-          "pt": "Vou transferir a chamada."
+          "nl": "Dat is heel vriendelijk van u.",
+          "pt": "Isso é muito amável da sua parte."
         }
       ],
       "grammar": [],
@@ -2210,16 +2205,16 @@
           "id": "s3-u16-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «com os melhores cumprimentos» em neerlandês?",
+          "prompt": "Como se diz «amável» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "bereikbaar",
+              "text": "beste",
               "correct": false
             },
             {
               "id": "b",
-              "text": "met vriendelijke groet",
+              "text": "vriendelijk",
               "correct": true
             },
             {
@@ -2228,59 +2223,40 @@
               "correct": false
             }
           ],
-          "explanation": "com os melhores cumprimentos = «met vriendelijke groet».",
+          "explanation": "amável = «vriendelijk».",
           "vocabRefs": [
-            "v-met-vriendelijke-groet"
+            "v-vriendelijk"
           ]
         },
         {
           "id": "s3-u16-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «caro» em neerlandês?",
+          "prompt": "Como se diz «com quem falo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "beste",
-              "correct": true
+              "text": "bereikbaar",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "oplossing",
+              "text": "mogen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "het spijt me",
-              "correct": false
+              "text": "met wie spreek ik",
+              "correct": true
             }
           ],
-          "explanation": "caro = «beste».",
+          "explanation": "com quem falo = «met wie spreek ik».",
           "vocabRefs": [
-            "v-beste"
+            "v-spreken-met"
           ]
         },
         {
           "id": "s3-u16-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ ik het raam open mogen doen?",
-          "translation": "Poderia abrir a janela?",
-          "answers": [
-            "Zou"
-          ],
-          "choices": [
-            "Teleurgesteld",
-            "Oplossing",
-            "Zou"
-          ],
-          "explanation": "Zou ik het raam open mogen doen?",
-          "vocabRefs": [
-            "v-zou"
-          ]
-        },
-        {
-          "id": "s3-u16-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Dat is heel ___ van u.",
@@ -2289,8 +2265,8 @@
             "vriendelijk"
           ],
           "choices": [
-            "alstublieft",
-            "beste",
+            "teleurgesteld",
+            "oplossing",
             "vriendelijk"
           ],
           "explanation": "Dat is heel vriendelijk van u.",
@@ -2299,78 +2275,96 @@
           ]
         },
         {
+          "id": "s3-u16-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "___ u mij kunnen helpen?",
+          "translation": "Poderia ajudar-me?",
+          "answers": [
+            "Zou"
+          ],
+          "choices": [
+            "Geachte",
+            "Bereikbaar",
+            "Zou"
+          ],
+          "explanation": "Zou u mij kunnen helpen?",
+          "vocabRefs": [
+            "v-zou"
+          ]
+        },
+        {
           "id": "s3-u16-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zou u mij kunnen helpen?",
+          "audioText": "Met vriendelijke groet,",
           "answers": [
-            "Zou u mij kunnen helpen?"
+            "Met vriendelijke groet,"
           ],
-          "translation": "Poderia ajudar-me?",
-          "explanation": "«Zou u mij kunnen helpen?» = Poderia ajudar-me?",
+          "translation": "Com os melhores cumprimentos,",
+          "explanation": "«Met vriendelijke groet,» = Com os melhores cumprimentos,",
           "vocabRefs": [
-            "v-zou"
+            "v-vriendelijk",
+            "v-met-vriendelijke-groet"
           ]
         },
         {
           "id": "s3-u16-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Met wie spreek ik?",
+          "audioText": "Geachte mevrouw Jansen,",
           "answers": [
-            "Met wie spreek ik?"
+            "Geachte mevrouw Jansen,"
           ],
-          "translation": "Com quem estou a falar?",
-          "explanation": "«Met wie spreek ik?» = Com quem estou a falar?",
+          "translation": "Exma. Senhora Jansen,",
+          "explanation": "«Geachte mevrouw Jansen,» = Exma. Senhora Jansen,",
           "vocabRefs": [
-            "v-spreken-met"
+            "v-geachte"
           ]
         },
         {
           "id": "s3-u16-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Com quem estou a falar?",
+          "prompt": "Lamento, mas isto não está bem.",
           "tokens": [
-            "spreek",
-            "Geachte",
-            "wie",
-            "Met",
-            "ik?",
-            "is"
+            "spijt",
+            "niet",
+            "u",
+            "goed.",
+            "dit",
+            "is",
+            "maar",
+            "me,",
+            "teleurgesteld.",
+            "Het"
           ],
           "answers": [
-            "Met wie spreek ik?"
+            "Het spijt me, maar dit is niet goed."
           ],
-          "explanation": "Com quem estou a falar? = Met wie spreek ik? (sobram: Geachte, is)",
+          "explanation": "Lamento, mas isto não está bem. = Het spijt me, maar dit is niet goed. (sobram: u, teleurgesteld.)",
           "vocabRefs": [
-            "v-spreken-met"
+            "v-het-spijt-me"
           ]
         },
         {
           "id": "s3-u16-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Lamento, mas isto não está bem.",
+          "prompt": "Vou transferir a chamada.",
           "tokens": [
-            "maar",
-            "me,",
-            "dit",
-            "niet",
-            "Het",
-            "Zou",
+            "verbind",
+            "doen?",
+            "Ik",
             "spijt",
-            "goed.",
-            "is",
-            "klacht"
+            "door.",
+            "u"
           ],
           "answers": [
-            "Het spijt me, maar dit is niet goed."
+            "Ik verbind u door."
           ],
-          "explanation": "Lamento, mas isto não está bem. = Het spijt me, maar dit is niet goed. (sobram: Zou, klacht)",
-          "vocabRefs": [
-            "v-het-spijt-me"
-          ]
+          "explanation": "Vou transferir a chamada. = Ik verbind u door. (sobram: doen?, spijt)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u16-l008-e09",
@@ -2388,27 +2382,27 @@
           "id": "s3-u16-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Geachte heer De Vries,»?",
+          "prompt": "O que significa: «Zou u mij kunnen helpen?»?",
           "options": [
             {
               "id": "a",
-              "text": "Exmo. Senhor De Vries,",
-              "correct": true
+              "text": "Qual é a solução?",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Vou transferir a chamada.",
-              "correct": false
+              "text": "Poderia ajudar-me?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Muitos cumprimentos!",
+              "text": "Poderia abrir a janela?",
               "correct": false
             }
           ],
-          "explanation": "«Geachte heer De Vries,» = Exmo. Senhor De Vries,",
+          "explanation": "«Zou u mij kunnen helpen?» = Poderia ajudar-me?",
           "vocabRefs": [
-            "v-geachte"
+            "v-zou"
           ]
         }
       ],
@@ -2473,16 +2467,16 @@
       ],
       "examples": [
         {
-          "nl": "Zou ik het raam open mogen doen?",
-          "pt": "Poderia abrir a janela?"
+          "nl": "Met wie spreek ik?",
+          "pt": "Com quem estou a falar?"
         },
         {
-          "nl": "Ik ben morgen weer bereikbaar.",
-          "pt": "Amanhã estou novamente contactável."
+          "nl": "Geachte heer De Vries,",
+          "pt": "Exmo. Senhor De Vries,"
         },
         {
-          "nl": "Geachte mevrouw Jansen,",
-          "pt": "Exma. Senhora Jansen,"
+          "nl": "Zou u mij kunnen helpen?",
+          "pt": "Poderia ajudar-me?"
         }
       ],
       "grammar": [],
@@ -2491,99 +2485,76 @@
           "id": "s3-u16-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Importavas-te de fechar a porta?",
+          "prompt": "Poderia abrir a janela?",
           "tokens": [
-            "vriendelijke",
-            "de",
-            "je",
-            "deur",
-            "willen",
-            "dit",
             "dicht",
+            "het",
+            "ik",
+            "raam",
+            "mogen",
+            "je",
+            "open",
             "Zou",
             "doen?"
           ],
           "answers": [
-            "Zou je de deur dicht willen doen?"
-          ],
-          "explanation": "Importavas-te de fechar a porta? = Zou je de deur dicht willen doen? (sobram: dit, vriendelijke)",
-          "vocabRefs": [
-            "v-zou"
-          ]
-        },
-        {
-          "id": "s3-u16-l009-e02",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Exma. Senhora Jansen,",
-          "tokens": [
-            "mevrouw",
-            "Geachte",
-            "Zou",
-            "Jansen,",
-            "de"
-          ],
-          "answers": [
-            "Geachte mevrouw Jansen,"
-          ],
-          "explanation": "Exma. Senhora Jansen, = Geachte mevrouw Jansen, (sobram: Zou, de)",
-          "vocabRefs": [
-            "v-geachte"
-          ]
-        },
-        {
-          "id": "s3-u16-l009-e03",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Amanhã estou novamente contactável.",
-          "tokens": [
-            "morgen",
-            "bereikbaar.",
-            "ben",
-            "helpen?",
-            "Ik",
-            "weer",
-            "bericht"
-          ],
-          "answers": [
-            "Ik ben morgen weer bereikbaar."
-          ],
-          "explanation": "Amanhã estou novamente contactável. = Ik ben morgen weer bereikbaar. (sobram: bericht, helpen?)",
-          "vocabRefs": [
-            "v-bereikbaar"
-          ]
-        },
-        {
-          "id": "s3-u16-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zou ik het raam open mogen doen?",
-          "answers": [
             "Zou ik het raam open mogen doen?"
           ],
-          "translation": "Poderia abrir a janela?",
-          "explanation": "«Zou ik het raam open mogen doen?» = Poderia abrir a janela?",
+          "explanation": "Poderia abrir a janela? = Zou ik het raam open mogen doen? (sobram: je, dicht)",
           "vocabRefs": [
             "v-zou",
             "v-mogen"
           ]
         },
         {
-          "id": "s3-u16-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben morgen weer bereikbaar.",
-          "answers": [
-            "Ik ben morgen weer bereikbaar."
+          "id": "s3-u16-l009-e02",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Queria apresentar uma reclamação.",
+          "tokens": [
+            "Zou",
+            "Ik",
+            "wil",
+            "klacht",
+            "indienen.",
+            "een",
+            "me,",
+            "graag"
           ],
-          "translation": "Amanhã estou novamente contactável.",
-          "explanation": "«Ik ben morgen weer bereikbaar.» = Amanhã estou novamente contactável.",
+          "answers": [
+            "Ik wil graag een klacht indienen."
+          ],
+          "explanation": "Queria apresentar uma reclamação. = Ik wil graag een klacht indienen. (sobram: me,, Zou)",
           "vocabRefs": [
-            "v-bereikbaar"
+            "v-klacht-indienen"
           ]
         },
         {
-          "id": "s3-u16-l009-e06",
+          "id": "s3-u16-l009-e03",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Importavas-te de fechar a porta?",
+          "tokens": [
+            "dicht",
+            "doen?",
+            "willen",
+            "Zou",
+            "vriendelijke",
+            "de",
+            "deur",
+            "verbind",
+            "je"
+          ],
+          "answers": [
+            "Zou je de deur dicht willen doen?"
+          ],
+          "explanation": "Importavas-te de fechar a porta? = Zou je de deur dicht willen doen? (sobram: vriendelijke, verbind)",
+          "vocabRefs": [
+            "v-zou"
+          ]
+        },
+        {
+          "id": "s3-u16-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Geachte heer De Vries,",
@@ -2597,37 +2568,68 @@
           ]
         },
         {
+          "id": "s3-u16-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik verbind u door.",
+          "answers": [
+            "Ik verbind u door."
+          ],
+          "translation": "Vou transferir a chamada.",
+          "explanation": "«Ik verbind u door.» = Vou transferir a chamada.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s3-u16-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Zou u mij kunnen helpen?",
+          "answers": [
+            "Zou u mij kunnen helpen?"
+          ],
+          "translation": "Poderia ajudar-me?",
+          "explanation": "«Zou u mij kunnen helpen?» = Poderia ajudar-me?",
+          "vocabRefs": [
+            "v-zou"
+          ]
+        },
+        {
           "id": "s3-u16-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Exma. Senhora Jansen,",
+          "translation": "Poderia ajudar-me?",
           "tokens": [
-            "Jansen,",
-            "mevrouw",
-            "Geachte"
+            "Zou",
+            "u",
+            "mij",
+            "kunnen",
+            "helpen?"
           ],
           "alternatives": [],
-          "explanation": "Geachte mevrouw Jansen,",
+          "explanation": "Zou u mij kunnen helpen?",
           "vocabRefs": [
-            "v-geachte"
+            "v-zou"
           ]
         },
         {
           "id": "s3-u16-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Poderia ajudar-me?",
+          "translation": "Poderia abrir a janela?",
           "tokens": [
-            "helpen?",
-            "u",
-            "kunnen",
-            "mij",
-            "Zou"
+            "Zou",
+            "ik",
+            "het",
+            "raam",
+            "open",
+            "mogen",
+            "doen?"
           ],
           "alternatives": [],
-          "explanation": "Zou u mij kunnen helpen?",
+          "explanation": "Zou ik het raam open mogen doen?",
           "vocabRefs": [
-            "v-zou"
+            "v-zou",
+            "v-mogen"
           ]
         },
         {
@@ -2638,18 +2640,18 @@
           "options": [
             {
               "id": "a",
-              "text": "apresentar uma reclamação",
+              "text": "deixar recado",
               "correct": false
             },
             {
               "id": "b",
-              "text": "exmo.",
-              "correct": true
+              "text": "cumprimentos",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "lamento",
-              "correct": false
+              "text": "exmo.",
+              "correct": true
             }
           ],
           "explanation": "«geachte» = exmo., caro (formal).",
@@ -2661,27 +2663,27 @@
           "id": "s3-u16-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «beste»?",
+          "prompt": "O que significa «met vriendelijke groet»?",
           "options": [
             {
               "id": "a",
-              "text": "com quem falo",
+              "text": "cumprimentos",
               "correct": false
             },
             {
               "id": "b",
-              "text": "desiludido",
-              "correct": false
+              "text": "com os melhores cumprimentos",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "caro",
-              "correct": true
+              "text": "apresentar uma reclamação",
+              "correct": false
             }
           ],
-          "explanation": "«beste» = caro, olá (escrita).",
+          "explanation": "«met vriendelijke groet» = com os melhores cumprimentos.",
           "vocabRefs": [
-            "v-beste"
+            "v-met-vriendelijke-groet"
           ]
         }
       ],

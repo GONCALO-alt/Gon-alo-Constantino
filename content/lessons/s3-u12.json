@@ -1793,16 +1793,16 @@
       ],
       "examples": [
         {
-          "nl": "Kan ik met iDEAL betalen?",
-          "pt": "Posso pagar com iDEAL?"
+          "nl": "Mijn pinpas is gestolen. Ik wil hem blokkeren.",
+          "pt": "Roubaram-me o cartão. Quero bloqueá-lo."
         },
         {
-          "nl": "Ik maak de huur elke maand over via automatische incasso.",
-          "pt": "Pago a renda todos os meses por débito direto."
+          "nl": "Mijn salaris komt op de 25e.",
+          "pt": "O meu salário chega no dia 25."
         },
         {
-          "nl": "Ik spaar voor een nieuwe fiets.",
-          "pt": "Poupo para uma bicicleta nova."
+          "nl": "Ik wil een bankrekening openen.",
+          "pt": "Quero abrir uma conta bancária."
         }
       ],
       "grammar": [],
@@ -1853,10 +1853,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Este e-mail é suspeito.",
           "tokens": [
+            "Deze",
             "e-mail",
             "is",
-            "verdacht.",
-            "Deze"
+            "verdacht."
           ],
           "alternatives": [],
           "explanation": "Deze e-mail is verdacht.",
@@ -1870,14 +1870,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "A fatura tem de ser paga em 14 dias.",
           "tokens": [
-            "binnen",
-            "betaald",
-            "moet",
             "De",
-            "14",
-            "worden.",
             "factuur",
-            "dagen"
+            "moet",
+            "binnen",
+            "14",
+            "dagen",
+            "betaald",
+            "worden."
           ],
           "alternatives": [],
           "explanation": "De factuur moet binnen 14 dagen betaald worden.",
@@ -1892,9 +1892,9 @@
           "translation": "Posso pagar com iDEAL?",
           "tokens": [
             "Kan",
+            "ik",
             "met",
             "iDEAL",
-            "ik",
             "betalen?"
           ],
           "alternatives": [],
@@ -1905,103 +1905,97 @@
           "id": "s3-u12-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat is je IBAN?»?",
+          "prompt": "O que significa: «Ik maak het geld vandaag over.»?",
           "options": [
             {
               "id": "a",
-              "text": "Pago a renda todos os meses por débito direto.",
+              "text": "O montante é 50 euros.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Esqueci-me do PIN.",
-              "correct": false
+              "text": "Transfiro o dinheiro hoje.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Qual é o teu IBAN?",
-              "correct": true
+              "text": "Roubaram-me o cartão. Quero bloqueá-lo.",
+              "correct": false
             }
           ],
-          "explanation": "«Wat is je IBAN?» = Qual é o teu IBAN?",
-          "vocabRefs": [
-            "v-iban"
-          ]
+          "explanation": "«Ik maak het geld vandaag over.» = Transfiro o dinheiro hoje.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u12-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Deel nooit je pincode.»?",
+          "prompt": "O que significa: «Ik maak de huur elke maand over via automatische incasso.»?",
           "options": [
             {
               "id": "a",
-              "text": "Este e-mail é suspeito.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Nunca partilhes o teu PIN.",
+              "text": "Pago a renda todos os meses por débito direto.",
               "correct": true
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "Quero abrir uma conta bancária.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "O meu salário chega no dia 25.",
               "correct": false
             }
           ],
-          "explanation": "«Deel nooit je pincode.» = Nunca partilhes o teu PIN.",
+          "explanation": "«Ik maak de huur elke maand over via automatische incasso.» = Pago a renda todos os meses por débito direto.",
           "vocabRefs": [
-            "v-pincode"
+            "v-machtiging"
           ]
         },
         {
           "id": "s3-u12-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pago a renda todos os meses por débito direto.",
+          "prompt": "O meu salário chega no dia 25.",
           "tokens": [
-            "automatische",
-            "incasso.",
-            "huur",
-            "te",
-            "via",
-            "maak",
-            "elke",
-            "is",
-            "maand",
-            "over",
             "de",
-            "Ik"
+            "salaris",
+            "onbekend",
+            "Mijn",
+            "25e.",
+            "ben",
+            "komt",
+            "op"
           ],
           "answers": [
-            "Ik maak de huur elke maand over via automatische incasso."
+            "Mijn salaris komt op de 25e."
           ],
-          "explanation": "Pago a renda todos os meses por débito direto. = Ik maak de huur elke maand over via automatische incasso. (sobram: te, is)",
+          "explanation": "O meu salário chega no dia 25. = Mijn salaris komt op de 25e. (sobram: onbekend, ben)",
           "vocabRefs": [
-            "v-machtiging"
+            "v-salaris"
           ]
         },
         {
           "id": "s3-u12-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Poupo para uma bicicleta nova.",
+          "prompt": "Este e-mail é suspeito.",
           "tokens": [
-            "fiets.",
-            "voor",
-            "is",
-            "betalen?",
-            "een",
-            "spaar",
-            "nieuwe",
-            "Ik"
+            "e-mail",
+            "verdacht.",
+            "Ik",
+            "25e.",
+            "Deze",
+            "is"
           ],
           "answers": [
-            "Ik spaar voor een nieuwe fiets."
+            "Deze e-mail is verdacht."
           ],
-          "explanation": "Poupo para uma bicicleta nova. = Ik spaar voor een nieuwe fiets. (sobram: is, betalen?)",
-          "vocabRefs": []
+          "explanation": "Este e-mail é suspeito. = Deze e-mail is verdacht. (sobram: Ik, 25e.)",
+          "vocabRefs": [
+            "v-verdacht"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2057,16 +2051,16 @@
       ],
       "examples": [
         {
+          "nl": "Ik ben mijn pincode vergeten.",
+          "pt": "Esqueci-me do PIN."
+        },
+        {
           "nl": "De factuur moet binnen 14 dagen betaald worden.",
           "pt": "A fatura tem de ser paga em 14 dias."
         },
         {
-          "nl": "Ik maak het geld vandaag over.",
-          "pt": "Transfiro o dinheiro hoje."
-        },
-        {
-          "nl": "Ik ben mijn pincode vergeten.",
-          "pt": "Esqueci-me do PIN."
+          "nl": "Deze e-mail is verdacht.",
+          "pt": "Este e-mail é suspeito."
         }
       ],
       "grammar": [],
@@ -2075,77 +2069,58 @@
           "id": "s3-u12-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «bloquear» em neerlandês?",
+          "prompt": "Como se diz «montante» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "blokkeren",
-              "correct": true
+              "text": "automatische incasso",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "uitgeven",
+              "text": "schuld",
               "correct": false
             },
             {
               "id": "c",
-              "text": "bankrekening",
-              "correct": false
+              "text": "bedrag",
+              "correct": true
             }
           ],
-          "explanation": "bloquear = «blokkeren».",
+          "explanation": "montante = «bedrag».",
           "vocabRefs": [
-            "v-blokkeren"
+            "v-bedrag"
           ]
         },
         {
           "id": "s3-u12-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «dívida» em neerlandês?",
+          "prompt": "Como se diz «abrir uma conta» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "een rekening openen",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "bankrekening",
               "correct": false
             },
             {
-              "id": "c",
-              "text": "schuld",
+              "id": "b",
+              "text": "een rekening openen",
               "correct": true
+            },
+            {
+              "id": "c",
+              "text": "sparen",
+              "correct": false
             }
           ],
-          "explanation": "dívida = «schuld».",
+          "explanation": "abrir uma conta = «een rekening openen».",
           "vocabRefs": [
-            "v-schuld"
+            "v-openen-rekening"
           ]
         },
         {
           "id": "s3-u12-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mijn pinpas is gestolen. Ik wil hem ___.",
-          "translation": "Roubaram-me o cartão. Quero bloqueá-lo.",
-          "answers": [
-            "blokkeren"
-          ],
-          "choices": [
-            "blokkeren",
-            "pincode",
-            "delen"
-          ],
-          "explanation": "Mijn pinpas is gestolen. Ik wil hem blokkeren.",
-          "vocabRefs": [
-            "v-blokkeren"
-          ]
-        },
-        {
-          "id": "s3-u12-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Wat is je ___?",
@@ -2155,8 +2130,8 @@
           ],
           "choices": [
             "IBAN",
-            "Verdacht",
-            "Blokkeren"
+            "Blokkeren",
+            "Pinpas"
           ],
           "explanation": "Wat is je IBAN?",
           "vocabRefs": [
@@ -2164,118 +2139,128 @@
           ]
         },
         {
+          "id": "s3-u12-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Deze e-mail is ___.",
+          "translation": "Este e-mail é suspeito.",
+          "answers": [
+            "verdacht"
+          ],
+          "choices": [
+            "bedrag",
+            "verdacht",
+            "iBAN"
+          ],
+          "explanation": "Deze e-mail is verdacht.",
+          "vocabRefs": [
+            "v-verdacht"
+          ]
+        },
+        {
           "id": "s3-u12-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Deel nooit je pincode.",
+          "audioText": "Ik spaar voor een nieuwe fiets.",
           "answers": [
-            "Deel nooit je pincode."
+            "Ik spaar voor een nieuwe fiets."
           ],
-          "translation": "Nunca partilhes o teu PIN.",
-          "explanation": "«Deel nooit je pincode.» = Nunca partilhes o teu PIN.",
-          "vocabRefs": [
-            "v-pincode"
-          ]
+          "translation": "Poupo para uma bicicleta nova.",
+          "explanation": "«Ik spaar voor een nieuwe fiets.» = Poupo para uma bicicleta nova.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u12-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik geef te veel geld uit.",
+          "audioText": "Ik maak het geld vandaag over.",
           "answers": [
-            "Ik geef te veel geld uit."
+            "Ik maak het geld vandaag over."
           ],
-          "translation": "Gasto dinheiro a mais.",
-          "explanation": "«Ik geef te veel geld uit.» = Gasto dinheiro a mais.",
+          "translation": "Transfiro o dinheiro hoje.",
+          "explanation": "«Ik maak het geld vandaag over.» = Transfiro o dinheiro hoje.",
           "vocabRefs": []
         },
         {
           "id": "s3-u12-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Roubaram-me o cartão. Quero bloqueá-lo.",
+          "prompt": "Nunca ligue de volta para um número desconhecido.",
           "tokens": [
-            "Mijn",
-            "hem",
-            "25e.",
-            "blokkeren.",
-            "is",
             "nummer.",
-            "gestolen.",
-            "pinpas",
-            "wil",
-            "Ik"
+            "14",
+            "je",
+            "nooit",
+            "Bel",
+            "een",
+            "onbekend",
+            "naar",
+            "terug"
           ],
           "answers": [
-            "Mijn pinpas is gestolen. Ik wil hem blokkeren."
+            "Bel nooit terug naar een onbekend nummer."
           ],
-          "explanation": "Roubaram-me o cartão. Quero bloqueá-lo. = Mijn pinpas is gestolen. Ik wil hem blokkeren. (sobram: nummer., 25e.)",
-          "vocabRefs": [
-            "v-pinpas",
-            "v-blokkeren",
-            "v-gestolen"
-          ]
+          "explanation": "Nunca ligue de volta para um número desconhecido. = Bel nooit terug naar een onbekend nummer. (sobram: 14, je)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u12-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu salário chega no dia 25.",
+          "prompt": "Nunca partilhes o teu PIN.",
           "tokens": [
-            "op",
-            "de",
-            "salaris",
-            "25e.",
-            "naar",
-            "Mijn",
-            "komt",
-            "over"
+            "dagen",
+            "pincode.",
+            "Bel",
+            "je",
+            "nooit",
+            "Deel"
           ],
           "answers": [
-            "Mijn salaris komt op de 25e."
+            "Deel nooit je pincode."
           ],
-          "explanation": "O meu salário chega no dia 25. = Mijn salaris komt op de 25e. (sobram: naar, over)",
+          "explanation": "Nunca partilhes o teu PIN. = Deel nooit je pincode. (sobram: Bel, dagen)",
           "vocabRefs": [
-            "v-salaris"
+            "v-pincode"
           ]
         },
         {
           "id": "s3-u12-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "pincode",
-          "pt": "código PIN",
+          "noun": "pinpas",
+          "pt": "cartão de débito",
           "article": "de",
-          "explanation": "de pincode.",
+          "explanation": "de pinpas.",
           "vocabRefs": [
-            "v-pincode"
+            "v-pinpas"
           ]
         },
         {
           "id": "s3-u12-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Deze e-mail is verdacht.»?",
+          "prompt": "O que significa: «Ik wil een bankrekening openen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Poupo para uma bicicleta nova.",
-              "correct": false
+              "text": "Quero abrir uma conta bancária.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Quero abrir uma conta bancária.",
+              "text": "Qual é o teu IBAN?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Este e-mail é suspeito.",
-              "correct": true
+              "text": "Transfiro o dinheiro hoje.",
+              "correct": false
             }
           ],
-          "explanation": "«Deze e-mail is verdacht.» = Este e-mail é suspeito.",
+          "explanation": "«Ik wil een bankrekening openen.» = Quero abrir uma conta bancária.",
           "vocabRefs": [
-            "v-verdacht"
+            "v-bankrekening"
           ]
         }
       ],
@@ -2332,16 +2317,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat is je IBAN?",
-          "pt": "Qual é o teu IBAN?"
+          "nl": "Deel nooit je pincode.",
+          "pt": "Nunca partilhes o teu PIN."
         },
         {
-          "nl": "De factuur moet binnen 14 dagen betaald worden.",
-          "pt": "A fatura tem de ser paga em 14 dias."
+          "nl": "Ik maak de huur elke maand over via automatische incasso.",
+          "pt": "Pago a renda todos os meses por débito direto."
         },
         {
-          "nl": "Ik ben mijn pincode vergeten.",
-          "pt": "Esqueci-me do PIN."
+          "nl": "Mijn pinpas is gestolen. Ik wil hem blokkeren.",
+          "pt": "Roubaram-me o cartão. Quero bloqueá-lo."
         }
       ],
       "grammar": [],
@@ -2350,83 +2335,89 @@
           "id": "s3-u12-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O montante é 50 euros.",
+          "prompt": "Roubaram-me o cartão. Quero bloqueá-lo.",
           "tokens": [
-            "veel",
-            "euro.",
-            "50",
-            "de",
-            "bedrag",
+            "maak",
+            "gestolen.",
+            "bankrekening",
+            "blokkeren.",
+            "hem",
+            "Ik",
+            "pinpas",
+            "wil",
             "is",
-            "Het"
+            "Mijn"
           ],
           "answers": [
-            "Het bedrag is 50 euro."
+            "Mijn pinpas is gestolen. Ik wil hem blokkeren."
           ],
-          "explanation": "O montante é 50 euros. = Het bedrag is 50 euro. (sobram: de, veel)",
+          "explanation": "Roubaram-me o cartão. Quero bloqueá-lo. = Mijn pinpas is gestolen. Ik wil hem blokkeren. (sobram: maak, bankrekening)",
           "vocabRefs": [
-            "v-bedrag"
+            "v-pinpas",
+            "v-blokkeren",
+            "v-gestolen"
           ]
         },
         {
           "id": "s3-u12-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A fatura tem de ser paga em 14 dias.",
+          "prompt": "O montante é 50 euros.",
           "tokens": [
-            "De",
-            "binnen",
-            "Ik",
-            "14",
-            "moet",
-            "maak",
-            "betaald",
-            "factuur",
-            "worden.",
-            "dagen"
+            "huur",
+            "is",
+            "bedrag",
+            "Het",
+            "50",
+            "via",
+            "euro."
           ],
           "answers": [
-            "De factuur moet binnen 14 dagen betaald worden."
+            "Het bedrag is 50 euro."
           ],
-          "explanation": "A fatura tem de ser paga em 14 dias. = De factuur moet binnen 14 dagen betaald worden. (sobram: Ik, maak)",
+          "explanation": "O montante é 50 euros. = Het bedrag is 50 euro. (sobram: huur, via)",
           "vocabRefs": [
-            "v-factuur"
+            "v-bedrag"
           ]
         },
         {
           "id": "s3-u12-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Nunca partilhes o teu PIN.",
+          "prompt": "Pago a renda todos os meses por débito direto.",
           "tokens": [
-            "je",
-            "hem",
-            "nooit",
+            "huur",
+            "terug",
+            "over",
+            "elke",
+            "een",
             "Ik",
-            "pincode.",
-            "Deel"
+            "maak",
+            "via",
+            "incasso.",
+            "de",
+            "maand",
+            "automatische"
           ],
           "answers": [
-            "Deel nooit je pincode."
+            "Ik maak de huur elke maand over via automatische incasso."
           ],
-          "explanation": "Nunca partilhes o teu PIN. = Deel nooit je pincode. (sobram: hem, Ik)",
+          "explanation": "Pago a renda todos os meses por débito direto. = Ik maak de huur elke maand over via automatische incasso. (sobram: een, terug)",
           "vocabRefs": [
-            "v-pincode"
+            "v-machtiging"
           ]
         },
         {
           "id": "s3-u12-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik maak de huur elke maand over via automatische incasso.",
+          "audioText": "Kan ik met iDEAL betalen?",
           "answers": [
-            "Ik maak de huur elke maand over via automatische incasso."
+            "Kan ik met iDEAL betalen?"
           ],
-          "translation": "Pago a renda todos os meses por débito direto.",
-          "explanation": "«Ik maak de huur elke maand over via automatische incasso.» = Pago a renda todos os meses por débito direto.",
-          "vocabRefs": [
-            "v-machtiging"
-          ]
+          "translation": "Posso pagar com iDEAL?",
+          "explanation": "«Kan ik met iDEAL betalen?» = Posso pagar com iDEAL?",
+          "vocabRefs": []
         },
         {
           "id": "s3-u12-l009-e05",
@@ -2446,103 +2437,103 @@
           "id": "s3-u12-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het bedrag is 50 euro.",
+          "audioText": "Ik wil een bankrekening openen.",
           "answers": [
-            "Het bedrag is 50 euro."
+            "Ik wil een bankrekening openen."
           ],
-          "translation": "O montante é 50 euros.",
-          "explanation": "«Het bedrag is 50 euro.» = O montante é 50 euros.",
+          "translation": "Quero abrir uma conta bancária.",
+          "explanation": "«Ik wil een bankrekening openen.» = Quero abrir uma conta bancária.",
           "vocabRefs": [
-            "v-bedrag"
+            "v-bankrekening"
           ]
         },
         {
           "id": "s3-u12-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Nunca partilhes o teu PIN.",
+          "translation": "Poupo para uma bicicleta nova.",
           "tokens": [
-            "Deel",
-            "pincode.",
-            "je",
-            "nooit"
+            "Ik",
+            "spaar",
+            "voor",
+            "een",
+            "nieuwe",
+            "fiets."
           ],
           "alternatives": [],
-          "explanation": "Deel nooit je pincode.",
-          "vocabRefs": [
-            "v-pincode"
-          ]
+          "explanation": "Ik spaar voor een nieuwe fiets.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u12-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O montante é 50 euros.",
+          "translation": "Esqueci-me do PIN.",
           "tokens": [
-            "is",
-            "Het",
-            "50",
-            "euro.",
-            "bedrag"
+            "Ik",
+            "ben",
+            "mijn",
+            "pincode",
+            "vergeten."
           ],
           "alternatives": [],
-          "explanation": "Het bedrag is 50 euro.",
+          "explanation": "Ik ben mijn pincode vergeten.",
           "vocabRefs": [
-            "v-bedrag"
+            "v-pincode"
           ]
         },
         {
           "id": "s3-u12-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «sparen»?",
+          "prompt": "O que significa «verdacht»?",
           "options": [
             {
               "id": "a",
               "text": "suspeito",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "poupar",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "cartão de débito",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "fatura",
+              "text": "abrir uma conta",
               "correct": false
             }
           ],
-          "explanation": "«sparen» = poupar.",
+          "explanation": "«verdacht» = suspeito.",
           "vocabRefs": [
-            "v-sparen"
+            "v-verdacht"
           ]
         },
         {
           "id": "s3-u12-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «gestolen»?",
+          "prompt": "O que significa «de factuur»?",
           "options": [
             {
               "id": "a",
-              "text": "poupar",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "roubado",
+              "text": "fatura",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "suspeito",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "gastar",
+              "text": "burla",
               "correct": false
             }
           ],
-          "explanation": "«gestolen» = roubado.",
+          "explanation": "«de factuur» = fatura.",
           "vocabRefs": [
-            "v-gestolen"
+            "v-factuur"
           ]
         }
       ],

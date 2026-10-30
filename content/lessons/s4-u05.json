@@ -1970,16 +1970,16 @@
       ],
       "examples": [
         {
-          "nl": "Je hebt ervaring met Excel.",
-          "pt": "Tens experiência com Excel."
-        },
-        {
-          "nl": "In de bijlage vindt u mijn cv.",
-          "pt": "Em anexo encontra o meu currículo."
-        },
-        {
           "nl": "Graag solliciteer ik naar de functie van kok.",
           "pt": "Venho candidatar-me à função de cozinheiro."
+        },
+        {
+          "nl": "Ik werk nauwkeurig.",
+          "pt": "Trabalho com rigor."
+        },
+        {
+          "nl": "Talen: Portugees (moedertaal), Engels (vloeiend), Nederlands (B1)",
+          "pt": "Línguas: português"
         }
       ],
       "grammar": [],
@@ -2033,8 +2033,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele fala depressa.",
           "tokens": [
-            "praat",
             "Hij",
+            "praat",
             "snel."
           ],
           "alternatives": [],
@@ -2047,14 +2047,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Venho candidatar-me à função de cozinheiro.",
           "tokens": [
-            "naar",
+            "Graag",
             "solliciteer",
+            "ik",
+            "naar",
             "de",
             "functie",
-            "kok.",
             "van",
-            "ik",
-            "Graag"
+            "kok."
           ],
           "alternatives": [],
           "explanation": "Graag solliciteer ik naar de functie van kok.",
@@ -2068,10 +2068,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tenho cinco anos de experiência profissional.",
           "tokens": [
+            "Ik",
             "heb",
             "vijf",
             "jaar",
-            "Ik",
             "werkervaring."
           ],
           "alternatives": [],
@@ -2084,34 +2084,7 @@
           "id": "s4-u05-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb vijf jaar werkervaring.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Línguas: português",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Infelizmente escolhemos outro candidato.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Tenho cinco anos de experiência profissional.",
-              "correct": true
-            }
-          ],
-          "explanation": "«Ik heb vijf jaar werkervaring.» = Tenho cinco anos de experiência profissional.",
-          "vocabRefs": [
-            "v-werkervaring"
-          ]
-        },
-        {
-          "id": "s4-u05-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je hebt ervaring met Excel.»?",
+          "prompt": "O que significa: «Wij bieden een goed salaris.»?",
           "options": [
             {
               "id": "a",
@@ -2120,62 +2093,88 @@
             },
             {
               "id": "b",
-              "text": "Que curso fizeste?",
+              "text": "Oferecemos um bom salário.",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "O meu diploma é reconhecido nos Países Baixos.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Wij bieden een goed salaris.» = Oferecemos um bom salário.",
+          "vocabRefs": [
+            "v-wij-bieden"
+          ]
+        },
+        {
+          "id": "s4-u05-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Ik ben zeer gemotiveerd.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Envio em anexo o meu currículo.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "No vosso site vi a vaga para…",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Tens experiência com Excel.",
+              "text": "Estou muito motivado.",
               "correct": true
             }
           ],
-          "explanation": "«Je hebt ervaring met Excel.» = Tens experiência com Excel.",
+          "explanation": "«Ik ben zeer gemotiveerd.» = Estou muito motivado.",
           "vocabRefs": [
-            "v-ervaring-met"
+            "v-gemotiveerd"
           ]
         },
         {
           "id": "s4-u05-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Trabalho muito bem em equipa.",
+          "prompt": "Envio em anexo o meu currículo.",
           "tokens": [
-            "ben",
             "een",
+            "cv",
+            "mijn",
+            "praat",
             "Ik",
-            "opleiding",
-            "echte",
-            "teamspeler.",
+            "mee.",
             "stuur"
           ],
           "answers": [
-            "Ik ben een echte teamspeler."
+            "Ik stuur mijn cv mee."
           ],
-          "explanation": "Trabalho muito bem em equipa. = Ik ben een echte teamspeler. (sobram: stuur, opleiding)",
+          "explanation": "Envio em anexo o meu currículo. = Ik stuur mijn cv mee. (sobram: praat, een)",
           "vocabRefs": [
-            "v-teamspeler"
+            "v-cv"
           ]
         },
         {
           "id": "s4-u05-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Oferecemos um bom salário.",
+          "prompt": "Estou muito motivado.",
           "tokens": [
-            "bieden",
-            "graag",
-            "goed",
-            "Wij",
-            "salaris.",
-            "vijf",
-            "een"
+            "zeer",
+            "mijn",
+            "gemotiveerd.",
+            "Ik",
+            "tegemoet.",
+            "ben"
           ],
           "answers": [
-            "Wij bieden een goed salaris."
+            "Ik ben zeer gemotiveerd."
           ],
-          "explanation": "Oferecemos um bom salário. = Wij bieden een goed salaris. (sobram: vijf, graag)",
+          "explanation": "Estou muito motivado. = Ik ben zeer gemotiveerd. (sobram: tegemoet., mijn)",
           "vocabRefs": [
-            "v-wij-bieden"
+            "v-gemotiveerd"
           ]
         }
       ],
@@ -2242,12 +2241,12 @@
       ],
       "examples": [
         {
-          "nl": "We hebben uw sollicitatie ontvangen.",
-          "pt": "Recebemos a sua candidatura."
+          "nl": "Helaas hebben we gekozen voor een andere kandidaat.",
+          "pt": "Infelizmente escolhemos outro candidato."
         },
         {
-          "nl": "Hij praat snel.",
-          "pt": "Ele fala depressa."
+          "nl": "Welke opleiding heb je gedaan?",
+          "pt": "Que curso fizeste?"
         },
         {
           "nl": "Ik ben flexibel en betrouwbaar.",
@@ -2260,110 +2259,96 @@
           "id": "s4-u05-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «confirmação de receção» em neerlandês?",
+          "prompt": "Como se diz «flexível» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "ontvangstbevestiging",
-              "correct": true
+              "text": "vacature",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "betrouwbaar",
+              "text": "reageren",
               "correct": false
             },
             {
               "id": "c",
-              "text": "vacature",
-              "correct": false
+              "text": "flexibel",
+              "correct": true
             }
           ],
-          "explanation": "confirmação de receção = «ontvangstbevestiging».",
+          "explanation": "flexível = «flexibel».",
           "vocabRefs": [
-            "v-ontvangstbevestiging"
+            "v-flexibel"
           ]
         },
         {
           "id": "s4-u05-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «vaga» em neerlandês?",
+          "prompt": "Como se diz «requisitos» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "flexibel",
+              "text": "diploma",
               "correct": false
             },
             {
               "id": "b",
-              "text": "vacature",
-              "correct": true
+              "text": "functie",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "ervaring met",
-              "correct": false
+              "text": "eisen",
+              "correct": true
             }
           ],
-          "explanation": "vaga = «vacature».",
+          "explanation": "requisitos = «eisen».",
           "vocabRefs": [
-            "v-vacature"
+            "v-eisen"
           ]
         },
         {
           "id": "s4-u05-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik heb vijf jaar ___.",
-          "translation": "Tenho cinco anos de experiência profissional.",
+          "sentence": "Ik ben zeer ___.",
+          "translation": "Estou muito motivado.",
           "answers": [
-            "werkervaring"
+            "gemotiveerd"
           ],
           "choices": [
-            "werkervaring",
+            "gemotiveerd",
             "uitnodiging",
-            "solliciteren"
+            "diploma"
           ],
-          "explanation": "Ik heb vijf jaar werkervaring.",
+          "explanation": "Ik ben zeer gemotiveerd.",
           "vocabRefs": [
-            "v-werkervaring"
+            "v-gemotiveerd"
           ]
         },
         {
           "id": "s4-u05-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Reageer ___ 15 mei.",
-          "translation": "Candidate-se até 15 de maio, o mais tardar.",
+          "sentence": "Wij hebben een ___ voor een kok.",
+          "translation": "Temos uma vaga para cozinheiro.",
           "answers": [
-            "uiterlijk"
+            "vacature"
           ],
           "choices": [
-            "uiterlijk",
-            "flexibel",
-            "solliciteren"
+            "reageren",
+            "afwijzing",
+            "vacature"
           ],
-          "explanation": "Reageer uiterlijk 15 mei.",
+          "explanation": "Wij hebben een vacature voor een kok.",
           "vocabRefs": [
-            "v-uiterlijk"
+            "v-vacature"
           ]
         },
         {
           "id": "s4-u05-l008-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn diploma is erkend in Nederland.",
-          "answers": [
-            "Mijn diploma is erkend in Nederland."
-          ],
-          "translation": "O meu diploma é reconhecido nos Países Baixos.",
-          "explanation": "«Mijn diploma is erkend in Nederland.» = O meu diploma é reconhecido nos Países Baixos.",
-          "vocabRefs": [
-            "v-diploma"
-          ]
-        },
-        {
-          "id": "s4-u05-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik stuur mijn cv mee.",
@@ -2377,91 +2362,103 @@
           ]
         },
         {
+          "id": "s4-u05-l008-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Reageer uiterlijk 15 mei.",
+          "answers": [
+            "Reageer uiterlijk 15 mei."
+          ],
+          "translation": "Candidate-se até 15 de maio, o mais tardar.",
+          "explanation": "«Reageer uiterlijk 15 mei.» = Candidate-se até 15 de maio, o mais tardar.",
+          "vocabRefs": [
+            "v-uiterlijk"
+          ]
+        },
+        {
           "id": "s4-u05-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Temos uma vaga para cozinheiro.",
+          "prompt": "Infelizmente escolhemos outro candidato.",
           "tokens": [
-            "Wij",
+            "andere",
             "voor",
-            "goed",
-            "een",
-            "kok.",
-            "kan",
-            "vacature",
             "hebben",
-            "een"
+            "we",
+            "gekozen",
+            "een",
+            "kandidaat.",
+            "uw",
+            "Helaas",
+            "mee."
           ],
           "answers": [
-            "Wij hebben een vacature voor een kok."
+            "Helaas hebben we gekozen voor een andere kandidaat."
           ],
-          "explanation": "Temos uma vaga para cozinheiro. = Wij hebben een vacature voor een kok. (sobram: kan, goed)",
-          "vocabRefs": [
-            "v-vacature"
-          ]
+          "explanation": "Infelizmente escolhemos outro candidato. = Helaas hebben we gekozen voor een andere kandidaat. (sobram: uw, mee.)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u05-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Em anexo encontra o meu currículo.",
+          "prompt": "O meu diploma é reconhecido nos Países Baixos.",
           "tokens": [
-            "cv.",
-            "voor",
-            "u",
-            "bijlage",
-            "Wij",
-            "In",
-            "mijn",
-            "de",
-            "vindt"
+            "erkend",
+            "is",
+            "Mijn",
+            "ervaring",
+            "in",
+            "diploma",
+            "Nederland.",
+            "de"
           ],
           "answers": [
-            "In de bijlage vindt u mijn cv."
+            "Mijn diploma is erkend in Nederland."
           ],
-          "explanation": "Em anexo encontra o meu currículo. = In de bijlage vindt u mijn cv. (sobram: Wij, voor)",
+          "explanation": "O meu diploma é reconhecido nos Países Baixos. = Mijn diploma is erkend in Nederland. (sobram: ervaring, de)",
           "vocabRefs": [
-            "v-cv",
-            "v-bijlage"
+            "v-diploma"
           ]
         },
         {
           "id": "s4-u05-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "werkervaring",
-          "pt": "experiência profissional",
+          "noun": "opleiding",
+          "pt": "formação",
           "article": "de",
-          "explanation": "de werkervaring.",
+          "explanation": "de opleiding.",
           "vocabRefs": [
-            "v-werkervaring"
+            "v-opleiding"
           ]
         },
         {
           "id": "s4-u05-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Zij werkt zelfstandig.»?",
+          "prompt": "O que significa: «Ik ben flexibel en betrouwbaar.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tenho cinco anos de experiência profissional.",
+              "text": "Recebemos a sua candidatura.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ela trabalha de forma autónoma.",
-              "correct": true
+              "text": "Trabalho bem de forma autónoma.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Que curso fizeste?",
-              "correct": false
+              "text": "Sou flexível e de confiança.",
+              "correct": true
             }
           ],
-          "explanation": "«Zij werkt zelfstandig.» = Ela trabalha de forma autónoma.",
+          "explanation": "«Ik ben flexibel en betrouwbaar.» = Sou flexível e de confiança.",
           "vocabRefs": [
-            "v-zelfstandig"
+            "v-flexibel",
+            "v-betrouwbaar"
           ]
         }
       ],
@@ -2528,16 +2525,16 @@
       ],
       "examples": [
         {
-          "nl": "Zij werkt zelfstandig.",
-          "pt": "Ela trabalha de forma autónoma."
+          "nl": "Wij bieden een goed salaris.",
+          "pt": "Oferecemos um bom salário."
         },
         {
-          "nl": "In de bijlage vindt u mijn cv.",
-          "pt": "Em anexo encontra o meu currículo."
+          "nl": "Ik kan goed zelfstandig werken.",
+          "pt": "Trabalho bem de forma autónoma."
         },
         {
-          "nl": "Wat zijn de eisen?",
-          "pt": "Quais são os requisitos?"
+          "nl": "Ik ben zeer gemotiveerd.",
+          "pt": "Estou muito motivado."
         }
       ],
       "grammar": [],
@@ -2546,178 +2543,178 @@
           "id": "s4-u05-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Recebemos a sua candidatura.",
+          "prompt": "Tens experiência com Excel.",
           "tokens": [
-            "sollicitatie",
-            "bijlage",
-            "We",
-            "hebben",
-            "ontvangen.",
-            "kandidaat.",
-            "uw"
+            "Je",
+            "Wij",
+            "met",
+            "jaar",
+            "Excel.",
+            "ervaring",
+            "hebt"
           ],
           "answers": [
-            "We hebben uw sollicitatie ontvangen."
+            "Je hebt ervaring met Excel."
           ],
-          "explanation": "Recebemos a sua candidatura. = We hebben uw sollicitatie ontvangen. (sobram: kandidaat., bijlage)",
-          "vocabRefs": []
+          "explanation": "Tens experiência com Excel. = Je hebt ervaring met Excel. (sobram: jaar, Wij)",
+          "vocabRefs": [
+            "v-ervaring-met"
+          ]
         },
         {
           "id": "s4-u05-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estou muito motivado.",
+          "prompt": "Tenho cinco anos de experiência profissional.",
           "tokens": [
-            "gemotiveerd.",
-            "We",
-            "zeer",
-            "ben",
+            "heb",
+            "met",
             "Ik",
-            "In"
+            "vijf",
+            "werkervaring.",
+            "een",
+            "jaar"
           ],
           "answers": [
-            "Ik ben zeer gemotiveerd."
+            "Ik heb vijf jaar werkervaring."
           ],
-          "explanation": "Estou muito motivado. = Ik ben zeer gemotiveerd. (sobram: In, We)",
+          "explanation": "Tenho cinco anos de experiência profissional. = Ik heb vijf jaar werkervaring. (sobram: een, met)",
           "vocabRefs": [
-            "v-gemotiveerd"
+            "v-werkervaring"
           ]
         },
         {
           "id": "s4-u05-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que curso fizeste?",
+          "prompt": "Ela trabalha de forma autónoma.",
           "tokens": [
-            "heb",
-            "je",
-            "stuur",
-            "gedaan?",
-            "is",
-            "opleiding",
-            "Welke"
+            "werkt",
+            "een",
+            "hebben",
+            "Zij",
+            "zelfstandig."
           ],
           "answers": [
-            "Welke opleiding heb je gedaan?"
+            "Zij werkt zelfstandig."
           ],
-          "explanation": "Que curso fizeste? = Welke opleiding heb je gedaan? (sobram: is, stuur)",
+          "explanation": "Ela trabalha de forma autónoma. = Zij werkt zelfstandig. (sobram: hebben, een)",
           "vocabRefs": [
-            "v-opleiding"
+            "v-zelfstandig"
           ]
         },
         {
           "id": "s4-u05-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij praat snel.",
+          "audioText": "We nodigen u uit voor een sollicitatiegesprek.",
           "answers": [
-            "Hij praat snel."
+            "We nodigen u uit voor een sollicitatiegesprek."
           ],
-          "translation": "Ele fala depressa.",
-          "explanation": "«Hij praat snel.» = Ele fala depressa.",
-          "vocabRefs": []
+          "translation": "Convidamo-lo para uma entrevista.",
+          "explanation": "«We nodigen u uit voor een sollicitatiegesprek.» = Convidamo-lo para uma entrevista.",
+          "vocabRefs": [
+            "v-sollicitatiegesprek"
+          ]
         },
         {
           "id": "s4-u05-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Reageer uiterlijk 15 mei.",
+          "audioText": "Mijn diploma is erkend in Nederland.",
           "answers": [
-            "Reageer uiterlijk 15 mei."
+            "Mijn diploma is erkend in Nederland."
           ],
-          "translation": "Candidate-se até 15 de maio, o mais tardar.",
-          "explanation": "«Reageer uiterlijk 15 mei.» = Candidate-se até 15 de maio, o mais tardar.",
+          "translation": "O meu diploma é reconhecido nos Países Baixos.",
+          "explanation": "«Mijn diploma is erkend in Nederland.» = O meu diploma é reconhecido nos Países Baixos.",
           "vocabRefs": [
-            "v-uiterlijk"
+            "v-diploma"
           ]
         },
         {
           "id": "s4-u05-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zij werkt zelfstandig.",
+          "audioText": "Wat zijn de eisen?",
           "answers": [
-            "Zij werkt zelfstandig."
+            "Wat zijn de eisen?"
           ],
-          "translation": "Ela trabalha de forma autónoma.",
-          "explanation": "«Zij werkt zelfstandig.» = Ela trabalha de forma autónoma.",
+          "translation": "Quais são os requisitos?",
+          "explanation": "«Wat zijn de eisen?» = Quais são os requisitos?",
           "vocabRefs": [
-            "v-zelfstandig"
+            "v-eisen"
           ]
         },
         {
           "id": "s4-u05-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Temos uma vaga para cozinheiro.",
+          "translation": "Envio em anexo o meu currículo.",
           "tokens": [
-            "voor",
-            "Wij",
-            "vacature",
-            "een",
-            "een",
-            "hebben",
-            "kok."
+            "Ik",
+            "stuur",
+            "mijn",
+            "cv",
+            "mee."
           ],
           "alternatives": [],
-          "explanation": "Wij hebben een vacature voor een kok.",
+          "explanation": "Ik stuur mijn cv mee.",
           "vocabRefs": [
-            "v-vacature"
+            "v-cv"
           ]
         },
         {
           "id": "s4-u05-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Estou muito motivado.",
+          "translation": "Trabalho com rigor.",
           "tokens": [
-            "zeer",
-            "ben",
             "Ik",
-            "gemotiveerd."
+            "werk",
+            "nauwkeurig."
           ],
           "alternatives": [],
-          "explanation": "Ik ben zeer gemotiveerd.",
+          "explanation": "Ik werk nauwkeurig.",
           "vocabRefs": [
-            "v-gemotiveerd"
+            "v-nauwkeurig"
           ]
         },
         {
           "id": "s4-u05-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «flexibel»?",
+          "prompt": "O que significa «reageren»?",
           "options": [
             {
               "id": "a",
-              "text": "rigoroso",
+              "text": "carta de motivação",
               "correct": false
             },
             {
               "id": "b",
-              "text": "flexível",
-              "correct": true
+              "text": "de confiança",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "de confiança",
-              "correct": false
+              "text": "responder",
+              "correct": true
             }
           ],
-          "explanation": "«flexibel» = flexível.",
+          "explanation": "«reageren» = responder (a), candidatar-se.",
           "vocabRefs": [
-            "v-flexibel"
+            "v-reageren"
           ]
         },
         {
           "id": "s4-u05-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de functie»?",
+          "prompt": "O que significa «de ontvangstbevestiging»?",
           "options": [
             {
               "id": "a",
-              "text": "experiência com/em",
+              "text": "competências",
               "correct": false
             },
             {
@@ -2727,13 +2724,13 @@
             },
             {
               "id": "c",
-              "text": "função",
+              "text": "confirmação de receção",
               "correct": true
             }
           ],
-          "explanation": "«de functie» = função, cargo.",
+          "explanation": "«de ontvangstbevestiging» = confirmação de receção.",
           "vocabRefs": [
-            "v-functie"
+            "v-ontvangstbevestiging"
           ]
         }
       ],

@@ -1882,16 +1882,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik dien een zienswijze in over het bestemmingsplan.",
-          "pt": "Apresento um parecer sobre o plano de urbanização."
+          "nl": "Eindig met een sterke afsluiter.",
+          "pt": "Termina com uma frase final forte."
         },
         {
-          "nl": "De aanleiding voor dit stuk is het nieuwe plan.",
-          "pt": "O motivo deste texto é o novo plano."
+          "nl": "Aanleiding: Vorige week besloot de gemeente…",
+          "pt": "Motivo: Na semana passada a câmara decidiu…"
         },
         {
-          "nl": "Dit is de eindversie.",
-          "pt": "Esta é a versão final."
+          "nl": "Dat is een krachtige afsluiting.",
+          "pt": "É um fecho forte."
         }
       ],
       "grammar": [],
@@ -1942,14 +1942,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Apresento um parecer sobre o plano de urbanização.",
           "tokens": [
+            "Ik",
             "dien",
             "een",
             "zienswijze",
-            "het",
-            "bestemmingsplan.",
+            "in",
             "over",
-            "Ik",
-            "in"
+            "het",
+            "bestemmingsplan."
           ],
           "alternatives": [],
           "explanation": "Ik dien een zienswijze in over het bestemmingsplan.",
@@ -1963,13 +1963,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Gostaria de contribuir para os vossos objetivos de sustentabilidade.",
           "tokens": [
-            "uw",
-            "duurzaamheidsdoelen.",
-            "graag",
             "Ik",
-            "aan",
+            "wil",
+            "graag",
             "bijdragen",
-            "wil"
+            "aan",
+            "uw",
+            "duurzaamheidsdoelen."
           ],
           "alternatives": [],
           "explanation": "Ik wil graag bijdragen aan uw duurzaamheidsdoelen.",
@@ -1984,14 +1984,14 @@
           "translation": "Não o carro, mas a bicicleta é o futuro.",
           "tokens": [
             "Niet",
+            "de",
             "auto,",
-            "fiets",
             "maar",
+            "de",
+            "fiets",
             "is",
             "de",
-            "toekomst.",
-            "de",
-            "de"
+            "toekomst."
           ],
           "alternatives": [],
           "explanation": "Niet de auto, maar de fiets is de toekomst.",
@@ -2001,32 +2001,34 @@
           "id": "s7-u07-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Sneller, goedkoper en schoner: dat is de trein.»?",
+          "prompt": "O que significa: «De gemeenteraad beslist volgende maand.»?",
           "options": [
             {
               "id": "a",
-              "text": "A minha experiência corresponde bem à vossa vaga.",
-              "correct": false
+              "text": "A assembleia municipal decide no próximo mês.",
+              "correct": true
             },
             {
               "id": "b",
               "text": "Mais rápido, mais barato e mais limpo: é o comboio.",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Pode submeter o formulário online.",
+              "text": "A minha experiência corresponde bem à vossa vaga.",
               "correct": false
             }
           ],
-          "explanation": "«Sneller, goedkoper en schoner: dat is de trein.» = Mais rápido, mais barato e mais limpo: é o comboio.",
-          "vocabRefs": []
+          "explanation": "«De gemeenteraad beslist volgende maand.» = A assembleia municipal decide no próximo mês.",
+          "vocabRefs": [
+            "v-gemeenteraad"
+          ]
         },
         {
           "id": "s7-u07-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik werk resultaatgericht.»?",
+          "prompt": "O que significa: «Mijn ervaring sluit goed aan bij uw vacature.»?",
           "options": [
             {
               "id": "a",
@@ -2035,67 +2037,62 @@
             },
             {
               "id": "b",
-              "text": "Queremos ar limpo, ruas seguras, uma cidade habitável.",
-              "correct": false
+              "text": "A minha experiência corresponde bem à vossa vaga.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Trabalho orientado para resultados.",
-              "correct": true
+              "text": "A assembleia municipal decide no próximo mês.",
+              "correct": false
             }
           ],
-          "explanation": "«Ik werk resultaatgericht.» = Trabalho orientado para resultados.",
-          "vocabRefs": [
-            "v-resultaatgericht"
-          ]
+          "explanation": "«Mijn ervaring sluit goed aan bij uw vacature.» = A minha experiência corresponde bem à vossa vaga.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u07-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Apresento um parecer sobre o plano de urbanização.",
+          "prompt": "Pode submeter o formulário online.",
           "tokens": [
-            "over",
-            "Ik",
-            "zienswijze",
-            "in",
+            "eindversie.",
+            "indienen.",
+            "U",
+            "online",
+            "de",
+            "kunt",
             "het",
-            "bestemmingsplan.",
-            "nog",
-            "een",
-            "is",
-            "dien"
+            "formulier"
           ],
           "answers": [
-            "Ik dien een zienswijze in over het bestemmingsplan."
+            "U kunt het formulier online indienen."
           ],
-          "explanation": "Apresento um parecer sobre o plano de urbanização. = Ik dien een zienswijze in over het bestemmingsplan. (sobram: is, nog)",
+          "explanation": "Pode submeter o formulário online. = U kunt het formulier online indienen. (sobram: eindversie., de)",
           "vocabRefs": [
-            "v-zienswijze"
+            "v-indienen"
           ]
         },
         {
           "id": "s7-u07-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A minha experiência corresponde bem à vossa vaga.",
+          "prompt": "Termina com uma frase final forte.",
           "tokens": [
-            "aan",
-            "gemeenteraad",
-            "vacature.",
-            "goed",
-            "uw",
-            "bij",
-            "Mijn",
-            "sluit",
+            "tussen",
+            "met",
+            "afsluiter.",
+            "Eindig",
             "een",
-            "ervaring"
+            "is",
+            "sterke"
           ],
           "answers": [
-            "Mijn ervaring sluit goed aan bij uw vacature."
+            "Eindig met een sterke afsluiter."
           ],
-          "explanation": "A minha experiência corresponde bem à vossa vaga. = Mijn ervaring sluit goed aan bij uw vacature. (sobram: een, gemeenteraad)",
-          "vocabRefs": []
+          "explanation": "Termina com uma frase final forte. = Eindig met een sterke afsluiter. (sobram: tussen, is)",
+          "vocabRefs": [
+            "v-afsluiter"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2161,16 +2158,16 @@
       ],
       "examples": [
         {
-          "nl": "De samenhang tussen de alinea's is zwak.",
-          "pt": "A coerência entre os parágrafos é fraca."
+          "nl": "Vermeld altijd het kenmerk van de brief.",
+          "pt": "Mencione sempre a referência da carta."
         },
         {
-          "nl": "Ik werk resultaatgericht.",
-          "pt": "Trabalho orientado para resultados."
+          "nl": "Eindig met een sterke afsluiter.",
+          "pt": "Termina com uma frase final forte."
         },
         {
-          "nl": "Dat is een krachtige afsluiting.",
-          "pt": "É um fecho forte."
+          "nl": "Een drieslag blijft goed hangen.",
+          "pt": "Uma tríade fica bem na memória."
         }
       ],
       "grammar": [],
@@ -2179,54 +2176,54 @@
           "id": "s7-u07-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «motivo» em neerlandês?",
+          "prompt": "Como se diz «parecer» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "aanleiding",
-              "correct": true
-            },
-            {
-              "id": "b",
               "text": "indienen",
               "correct": false
             },
             {
+              "id": "b",
+              "text": "zienswijze",
+              "correct": true
+            },
+            {
               "id": "c",
-              "text": "samenhang",
+              "text": "drieslag",
               "correct": false
             }
           ],
-          "explanation": "motivo = «aanleiding».",
+          "explanation": "parecer = «zienswijze».",
           "vocabRefs": [
-            "v-aanleiding"
+            "v-zienswijze"
           ]
         },
         {
           "id": "s7-u07-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «apresentar» em neerlandês?",
+          "prompt": "Como se diz «motivo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "samenhang",
+              "text": "indienen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "krachtig",
+              "text": "lezerspubliek",
               "correct": false
             },
             {
               "id": "c",
-              "text": "indienen",
+              "text": "aanleiding",
               "correct": true
             }
           ],
-          "explanation": "apresentar = «indienen».",
+          "explanation": "motivo = «aanleiding».",
           "vocabRefs": [
-            "v-indienen"
+            "v-aanleiding"
           ]
         },
         {
@@ -2239,8 +2236,8 @@
             "zienswijze"
           ],
           "choices": [
-            "stijlfiguur",
-            "resultaatgericht",
+            "samenhang",
+            "woordkeus",
             "zienswijze"
           ],
           "explanation": "Ik dien een zienswijze in over het bestemmingsplan.",
@@ -2250,6 +2247,25 @@
         },
         {
           "id": "s7-u07-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "De ___ beslist volgende maand.",
+          "translation": "A assembleia municipal decide no próximo mês.",
+          "answers": [
+            "gemeenteraad"
+          ],
+          "choices": [
+            "gemeenteraad",
+            "drieslag",
+            "aantoonbaar"
+          ],
+          "explanation": "De gemeenteraad beslist volgende maand.",
+          "vocabRefs": [
+            "v-gemeenteraad"
+          ]
+        },
+        {
+          "id": "s7-u07-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "De aanleiding voor dit stuk is het nieuwe plan.",
@@ -2263,102 +2279,101 @@
           ]
         },
         {
-          "id": "s7-u07-l008-e05",
+          "id": "s7-u07-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik wil graag bijdragen aan uw duurzaamheidsdoelen.",
+          "audioText": "Ik dien een zienswijze in over het bestemmingsplan.",
           "answers": [
-            "Ik wil graag bijdragen aan uw duurzaamheidsdoelen."
+            "Ik dien een zienswijze in over het bestemmingsplan."
           ],
-          "translation": "Gostaria de contribuir para os vossos objetivos de sustentabilidade.",
-          "explanation": "«Ik wil graag bijdragen aan uw duurzaamheidsdoelen.» = Gostaria de contribuir para os vossos objetivos de sustentabilidade.",
+          "translation": "Apresento um parecer sobre o plano de urbanização.",
+          "explanation": "«Ik dien een zienswijze in over het bestemmingsplan.» = Apresento um parecer sobre o plano de urbanização.",
           "vocabRefs": [
-            "v-bijdragen-aan"
-          ]
-        },
-        {
-          "id": "s7-u07-l008-e06",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A coerência entre os parágrafos é fraca.",
-          "tokens": [
-            "is",
-            "de",
-            "alinea's",
-            "hangen.",
-            "tussen",
-            "Ik",
-            "zwak.",
-            "samenhang",
-            "De"
-          ],
-          "answers": [
-            "De samenhang tussen de alinea's is zwak."
-          ],
-          "explanation": "A coerência entre os parágrafos é fraca. = De samenhang tussen de alinea's is zwak. (sobram: Ik, hangen.)",
-          "vocabRefs": [
-            "v-samenhang"
+            "v-zienswijze"
           ]
         },
         {
           "id": "s7-u07-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É um fecho forte.",
+          "prompt": "A minha experiência corresponde bem à vossa vaga.",
           "tokens": [
-            "kunt",
-            "titel.",
-            "Dat",
-            "is",
+            "bij",
+            "goed",
+            "uw",
+            "vacature.",
+            "volgende",
+            "Mijn",
+            "sluit",
+            "ervaring",
             "een",
-            "afsluiting.",
-            "krachtige"
+            "aan"
           ],
           "answers": [
-            "Dat is een krachtige afsluiting."
+            "Mijn ervaring sluit goed aan bij uw vacature."
           ],
-          "explanation": "É um fecho forte. = Dat is een krachtige afsluiting. (sobram: titel., kunt)",
-          "vocabRefs": [
-            "v-krachtig"
-          ]
+          "explanation": "A minha experiência corresponde bem à vossa vaga. = Mijn ervaring sluit goed aan bij uw vacature. (sobram: volgende, een)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u07-l008-e08",
-          "type": "articleChoice",
-          "instruction": "Escolha o artigo certo.",
-          "noun": "eindversie",
-          "pt": "versão final",
-          "article": "de",
-          "explanation": "de eindversie.",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "A assembleia municipal decide no próximo mês.",
+          "tokens": [
+            "Ik",
+            "De",
+            "werk",
+            "gemeenteraad",
+            "maand.",
+            "beslist",
+            "volgende"
+          ],
+          "answers": [
+            "De gemeenteraad beslist volgende maand."
+          ],
+          "explanation": "A assembleia municipal decide no próximo mês. = De gemeenteraad beslist volgende maand. (sobram: Ik, werk)",
           "vocabRefs": [
-            "v-eindversie"
+            "v-gemeenteraad"
           ]
         },
         {
           "id": "s7-u07-l008-e09",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "noun": "zienswijze",
+          "pt": "parecer",
+          "article": "de",
+          "explanation": "de zienswijze.",
+          "vocabRefs": [
+            "v-zienswijze"
+          ]
+        },
+        {
+          "id": "s7-u07-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Eindig met een sterke afsluiter.»?",
+          "prompt": "O que significa: «Dat is een krachtige afsluiting.»?",
           "options": [
             {
               "id": "a",
-              "text": "Trabalho orientado para resultados.",
+              "text": "A assembleia municipal decide no próximo mês.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Termina com uma frase final forte.",
-              "correct": true
+              "text": "Mais rápido, mais barato e mais limpo: é o comboio.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Pode submeter o formulário online.",
-              "correct": false
+              "text": "É um fecho forte.",
+              "correct": true
             }
           ],
-          "explanation": "«Eindig met een sterke afsluiter.» = Termina com uma frase final forte.",
+          "explanation": "«Dat is een krachtige afsluiting.» = É um fecho forte.",
           "vocabRefs": [
-            "v-afsluiter"
+            "v-krachtig"
           ]
         }
       ],
@@ -2425,16 +2440,16 @@
       ],
       "examples": [
         {
-          "nl": "Sneller, goedkoper en schoner: dat is de trein.",
-          "pt": "Mais rápido, mais barato e mais limpo: é o comboio."
+          "nl": "De gemeenteraad beslist volgende maand.",
+          "pt": "A assembleia municipal decide no próximo mês."
         },
         {
-          "nl": "Ik wil graag bijdragen aan uw duurzaamheidsdoelen.",
-          "pt": "Gostaria de contribuir para os vossos objetivos de sustentabilidade."
+          "nl": "Ik dien een zienswijze in over het bestemmingsplan.",
+          "pt": "Apresento um parecer sobre o plano de urbanização."
         },
         {
-          "nl": "De samenhang tussen de alinea's is zwak.",
-          "pt": "A coerência entre os parágrafos é fraca."
+          "nl": "U kunt het formulier online indienen.",
+          "pt": "Pode submeter o formulário online."
         }
       ],
       "grammar": [],
@@ -2443,46 +2458,47 @@
           "id": "s7-u07-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gostaria de contribuir para os vossos objetivos de sustentabilidade.",
+          "prompt": "Apresento um parecer sobre o plano de urbanização.",
           "tokens": [
-            "uw",
-            "werk",
-            "graag",
-            "duurzaamheidsdoelen.",
-            "Ik",
-            "wil",
-            "aan",
-            "bijdragen",
-            "U"
+            "bestemmingsplan.",
+            "het",
+            "een",
+            "dien",
+            "over",
+            "in",
+            "titel.",
+            "zienswijze",
+            "beslist",
+            "Ik"
           ],
           "answers": [
-            "Ik wil graag bijdragen aan uw duurzaamheidsdoelen."
+            "Ik dien een zienswijze in over het bestemmingsplan."
           ],
-          "explanation": "Gostaria de contribuir para os vossos objetivos de sustentabilidade. = Ik wil graag bijdragen aan uw duurzaamheidsdoelen. (sobram: werk, U)",
+          "explanation": "Apresento um parecer sobre o plano de urbanização. = Ik dien een zienswijze in over het bestemmingsplan. (sobram: beslist, titel.)",
           "vocabRefs": [
-            "v-bijdragen-aan"
+            "v-zienswijze"
           ]
         },
         {
           "id": "s7-u07-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Uma tríade fica bem na memória.",
+          "prompt": "É um fecho forte.",
           "tokens": [
-            "drieslag",
-            "hangen.",
-            "goed",
-            "Een",
-            "zienswijze",
-            "blijft",
-            "kunt"
+            "een",
+            "Dat",
+            "en",
+            "krachtige",
+            "afsluiting.",
+            "samenhang",
+            "is"
           ],
           "answers": [
-            "Een drieslag blijft goed hangen."
+            "Dat is een krachtige afsluiting."
           ],
-          "explanation": "Uma tríade fica bem na memória. = Een drieslag blijft goed hangen. (sobram: kunt, zienswijze)",
+          "explanation": "É um fecho forte. = Dat is een krachtige afsluiting. (sobram: samenhang, en)",
           "vocabRefs": [
-            "v-drieslag"
+            "v-krachtig"
           ]
         },
         {
@@ -2491,16 +2507,16 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Trabalho orientado para resultados.",
           "tokens": [
+            "resultaatgericht.",
             "Ik",
-            "alinea's",
-            "drieslag",
-            "werk",
-            "resultaatgericht."
+            "een",
+            "dit",
+            "werk"
           ],
           "answers": [
             "Ik werk resultaatgericht."
           ],
-          "explanation": "Trabalho orientado para resultados. = Ik werk resultaatgericht. (sobram: alinea's, drieslag)",
+          "explanation": "Trabalho orientado para resultados. = Ik werk resultaatgericht. (sobram: een, dit)",
           "vocabRefs": [
             "v-resultaatgericht"
           ]
@@ -2509,128 +2525,129 @@
           "id": "s7-u07-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik dien een zienswijze in over het bestemmingsplan.",
+          "audioText": "Sneller, goedkoper en schoner: dat is de trein.",
           "answers": [
-            "Ik dien een zienswijze in over het bestemmingsplan."
+            "Sneller, goedkoper en schoner: dat is de trein."
           ],
-          "translation": "Apresento um parecer sobre o plano de urbanização.",
-          "explanation": "«Ik dien een zienswijze in over het bestemmingsplan.» = Apresento um parecer sobre o plano de urbanização.",
-          "vocabRefs": [
-            "v-zienswijze"
-          ]
+          "translation": "Mais rápido, mais barato e mais limpo: é o comboio.",
+          "explanation": "«Sneller, goedkoper en schoner: dat is de trein.» = Mais rápido, mais barato e mais limpo: é o comboio.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u07-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb aantoonbare ervaring met projectmanagement.",
+          "audioText": "U kunt het formulier online indienen.",
           "answers": [
-            "Ik heb aantoonbare ervaring met projectmanagement."
+            "U kunt het formulier online indienen."
           ],
-          "translation": "Tenho experiência comprovada em gestão de projetos.",
-          "explanation": "«Ik heb aantoonbare ervaring met projectmanagement.» = Tenho experiência comprovada em gestão de projetos.",
-          "vocabRefs": []
+          "translation": "Pode submeter o formulário online.",
+          "explanation": "«U kunt het formulier online indienen.» = Pode submeter o formulário online.",
+          "vocabRefs": [
+            "v-indienen"
+          ]
         },
         {
           "id": "s7-u07-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wie is je lezerspubliek?",
+          "audioText": "Niet de auto, maar de fiets is de toekomst.",
           "answers": [
-            "Wie is je lezerspubliek?"
+            "Niet de auto, maar de fiets is de toekomst."
           ],
-          "translation": "Quem é o teu público leitor?",
-          "explanation": "«Wie is je lezerspubliek?» = Quem é o teu público leitor?",
-          "vocabRefs": [
-            "v-lezerspubliek"
-          ]
+          "translation": "Não o carro, mas a bicicleta é o futuro.",
+          "explanation": "«Niet de auto, maar de fiets is de toekomst.» = Não o carro, mas a bicicleta é o futuro.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u07-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Quem é o teu público leitor?",
+          "translation": "A assembleia municipal decide no próximo mês.",
           "tokens": [
-            "je",
-            "is",
-            "lezerspubliek?",
-            "Wie"
+            "De",
+            "gemeenteraad",
+            "beslist",
+            "volgende",
+            "maand."
           ],
           "alternatives": [],
-          "explanation": "Wie is je lezerspubliek?",
+          "explanation": "De gemeenteraad beslist volgende maand.",
           "vocabRefs": [
-            "v-lezerspubliek"
+            "v-gemeenteraad"
           ]
         },
         {
           "id": "s7-u07-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Esta é a versão final.",
+          "translation": "Editei o texto mais uma vez.",
           "tokens": [
-            "is",
-            "eindversie.",
-            "Dit",
-            "de"
+            "Ik",
+            "heb",
+            "de",
+            "tekst",
+            "nog",
+            "een",
+            "keer",
+            "geredigeerd."
           ],
           "alternatives": [],
-          "explanation": "Dit is de eindversie.",
-          "vocabRefs": [
-            "v-eindversie"
-          ]
+          "explanation": "Ik heb de tekst nog een keer geredigeerd.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u07-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de woordkeus»?",
+          "prompt": "O que significa «krachtig»?",
           "options": [
             {
               "id": "a",
-              "text": "parecer",
+              "text": "referência",
               "correct": false
             },
             {
               "id": "b",
-              "text": "público leitor",
-              "correct": false
+              "text": "forte",
+              "correct": true
             },
             {
               "id": "c",
               "text": "escolha de palavras",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "«de woordkeus» = escolha de palavras.",
+          "explanation": "«krachtig» = forte, poderoso.",
           "vocabRefs": [
-            "v-woordkeus"
+            "v-krachtig"
           ]
         },
         {
           "id": "s7-u07-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «aantoonbaar»?",
+          "prompt": "O que significa «bijdragen aan»?",
           "options": [
             {
               "id": "a",
-              "text": "comprovado",
-              "correct": true
-            },
-            {
-              "id": "b",
               "text": "forte",
               "correct": false
             },
             {
-              "id": "c",
-              "text": "frase final",
+              "id": "b",
+              "text": "escolha de palavras",
               "correct": false
+            },
+            {
+              "id": "c",
+              "text": "contribuir para",
+              "correct": true
             }
           ],
-          "explanation": "«aantoonbaar» = comprovado, demonstrável.",
+          "explanation": "«bijdragen aan» = contribuir para.",
           "vocabRefs": [
-            "v-aantoonbaar"
+            "v-bijdragen-aan"
           ]
         }
       ],

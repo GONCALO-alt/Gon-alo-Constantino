@@ -1992,16 +1992,16 @@
       ],
       "examples": [
         {
+          "nl": "Mijn bril is weg!",
+          "pt": "Os meus óculos desapareceram!"
+        },
+        {
           "nl": "Mag ik een vork?",
           "pt": "Pode dar-me um garfo?"
         },
         {
-          "nl": "Mijn computer is oud.",
-          "pt": "O meu computador é velho."
-        },
-        {
-          "nl": "De tas staat naast de stoel.",
-          "pt": "A mala está ao lado da cadeira."
+          "nl": "Het horloge is van mijn opa.",
+          "pt": "O relógio é do meu avô."
         }
       ],
       "grammar": [],
@@ -2056,8 +2056,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Pode dar-me um garfo?",
           "tokens": [
-            "ik",
             "Mag",
+            "ik",
             "een",
             "vork?"
           ],
@@ -2073,10 +2073,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "aquela casa, aquela cadeira",
           "tokens": [
-            "huis,",
             "dat",
-            "stoel",
-            "die"
+            "huis,",
+            "die",
+            "stoel"
           ],
           "alternatives": [],
           "explanation": "dat huis, die stoel",
@@ -2091,9 +2091,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tens um lápis?",
           "tokens": [
+            "Heb",
             "je",
             "een",
-            "Heb",
             "potlood?"
           ],
           "alternatives": [],
@@ -2106,99 +2106,98 @@
           "id": "s1-u09-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mag ik een lepel?»?",
+          "prompt": "O que significa: «Deze stoel is oud.»?",
           "options": [
             {
               "id": "a",
-              "text": "Pode dar-me uma colher?",
-              "correct": true
+              "text": "O meu passaporte está na minha mala.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "aquela casa, aquela cadeira",
+              "text": "O relógio é do meu avô.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Os meus óculos desapareceram!",
-              "correct": false
+              "text": "Esta cadeira é velha.",
+              "correct": true
             }
           ],
-          "explanation": "«Mag ik een lepel?» = Pode dar-me uma colher?",
+          "explanation": "«Deze stoel is oud.» = Esta cadeira é velha.",
           "vocabRefs": [
-            "v-lepel"
+            "v-deze"
           ]
         },
         {
           "id": "s1-u09-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «dit boek, deze tas»?",
+          "prompt": "O que significa: «Waar is mijn bril?»?",
           "options": [
             {
               "id": "a",
-              "text": "Esse copo é meu.",
-              "correct": false
+              "text": "Onde estão os meus óculos?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "A mala está ao lado da cadeira.",
+              "text": "Pode dar-me um garfo?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "este livro, esta mala",
-              "correct": true
+              "text": "A mala está ao lado da cadeira.",
+              "correct": false
             }
           ],
-          "explanation": "«dit boek, deze tas» = este livro, esta mala",
+          "explanation": "«Waar is mijn bril?» = Onde estão os meus óculos?",
           "vocabRefs": [
-            "v-tas",
-            "v-deze"
+            "v-bril"
           ]
         },
         {
           "id": "s1-u09-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "este livro, esta mala",
+          "prompt": "aquela casa, aquela cadeira",
           "tokens": [
-            "boek,",
-            "deze",
-            "dit",
-            "de",
-            "tas",
-            "huis,"
+            "huis,",
+            "die",
+            "dat",
+            "bril?",
+            "stoel",
+            "is"
           ],
           "answers": [
-            "dit boek, deze tas"
+            "dat huis, die stoel"
           ],
-          "explanation": "este livro, esta mala = dit boek, deze tas (sobram: huis,, de)",
+          "explanation": "aquela casa, aquela cadeira = dat huis, die stoel (sobram: is, bril?)",
           "vocabRefs": [
-            "v-tas",
-            "v-deze"
+            "v-die",
+            "v-dat"
           ]
         },
         {
           "id": "s1-u09-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Os meus óculos desapareceram!",
+          "prompt": "A mala é da Eva.",
           "tokens": [
-            "weg!",
-            "Mijn",
-            "dat",
+            "Het",
+            "tas",
+            "dit",
+            "De",
+            "van",
             "is",
-            "bril",
-            "heb"
+            "Eva."
           ],
           "answers": [
-            "Mijn bril is weg!"
+            "De tas is van Eva."
           ],
-          "explanation": "Os meus óculos desapareceram! = Mijn bril is weg! (sobram: dat, heb)",
+          "explanation": "A mala é da Eva. = De tas is van Eva. (sobram: dit, Het)",
           "vocabRefs": [
-            "v-bril",
-            "v-weg"
+            "v-tas"
           ]
         }
       ],
@@ -2268,16 +2267,16 @@
       ],
       "examples": [
         {
+          "nl": "Mag ik een vork?",
+          "pt": "Pode dar-me um garfo?"
+        },
+        {
+          "nl": "dit boek, deze tas",
+          "pt": "este livro, esta mala"
+        },
+        {
           "nl": "De tas is van Eva.",
           "pt": "A mala é da Eva."
-        },
-        {
-          "nl": "Het boek ligt onder de stoel.",
-          "pt": "O livro está debaixo da cadeira."
-        },
-        {
-          "nl": "Heb je een potlood?",
-          "pt": "Tens um lápis?"
         }
       ],
       "grammar": [],
@@ -2286,58 +2285,77 @@
           "id": "s1-u09-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «faca» em neerlandês?",
+          "prompt": "Como se diz «mesa» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "mes",
-              "correct": true
+              "text": "tas",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "potlood",
+              "text": "naast",
               "correct": false
             },
             {
               "id": "c",
-              "text": "bril",
-              "correct": false
+              "text": "tafel",
+              "correct": true
             }
           ],
-          "explanation": "faca = «mes».",
+          "explanation": "mesa = «tafel».",
           "vocabRefs": [
-            "v-mes"
+            "v-tafel"
           ]
         },
         {
           "id": "s1-u09-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «copo» em neerlandês?",
+          "prompt": "Como se diz «debaixo de» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "die",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "glas",
+              "text": "onder",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "papier",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "sleutel",
+              "text": "portemonnee",
               "correct": false
             }
           ],
-          "explanation": "copo = «glas».",
+          "explanation": "debaixo de = «onder».",
           "vocabRefs": [
-            "v-glas"
+            "v-onder"
           ]
         },
         {
           "id": "s1-u09-l008-e03",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Van wie is de ___?",
+          "translation": "De quem é a mala?",
+          "answers": [
+            "tas"
+          ],
+          "choices": [
+            "papier",
+            "weg",
+            "tas"
+          ],
+          "explanation": "Van wie is de tas?",
+          "vocabRefs": [
+            "v-tas"
+          ]
+        },
+        {
+          "id": "s1-u09-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Mag ik een ___?",
@@ -2346,32 +2364,13 @@
             "vork"
           ],
           "choices": [
-            "sleutel",
-            "klok",
+            "telefoon",
+            "op",
             "vork"
           ],
           "explanation": "Mag ik een vork?",
           "vocabRefs": [
             "v-vork"
-          ]
-        },
-        {
-          "id": "s1-u09-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Heb je een ___?",
-          "translation": "Tens um lápis?",
-          "answers": [
-            "potlood"
-          ],
-          "choices": [
-            "vork",
-            "telefoon",
-            "potlood"
-          ],
-          "explanation": "Heb je een potlood?",
-          "vocabRefs": [
-            "v-potlood"
           ]
         },
         {
@@ -2395,101 +2394,104 @@
           "id": "s1-u09-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mag ik een vork?",
+          "audioText": "Mijn paspoort zit in mijn tas.",
           "answers": [
-            "Mag ik een vork?"
+            "Mijn paspoort zit in mijn tas."
           ],
-          "translation": "Pode dar-me um garfo?",
-          "explanation": "«Mag ik een vork?» = Pode dar-me um garfo?",
+          "translation": "O meu passaporte está na minha mala.",
+          "explanation": "«Mijn paspoort zit in mijn tas.» = O meu passaporte está na minha mala.",
           "vocabRefs": [
-            "v-vork"
+            "v-tas",
+            "v-paspoort"
           ]
         },
         {
           "id": "s1-u09-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O livro está debaixo da cadeira.",
+          "prompt": "A chave está em cima da mesa.",
           "tokens": [
-            "de",
-            "onder",
-            "stoel.",
-            "boek",
-            "Het",
+            "sleutel",
             "ligt",
-            "mijn",
-            "is"
+            "tafel.",
+            "telefoon.",
+            "De",
+            "de",
+            "lepel?",
+            "op"
           ],
           "answers": [
-            "Het boek ligt onder de stoel."
+            "De sleutel ligt op de tafel."
           ],
-          "explanation": "O livro está debaixo da cadeira. = Het boek ligt onder de stoel. (sobram: is, mijn)",
+          "explanation": "A chave está em cima da mesa. = De sleutel ligt op de tafel. (sobram: telefoon., lepel?)",
           "vocabRefs": [
-            "v-onder"
+            "v-sleutel",
+            "v-tafel",
+            "v-op"
           ]
         },
         {
           "id": "s1-u09-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A mala está ao lado da cadeira.",
+          "prompt": "Tenho a minha chave e o meu telemóvel.",
           "tokens": [
-            "De",
-            "water,",
-            "naast",
-            "de",
-            "stoel.",
-            "staat",
-            "tas",
-            "Dat"
+            "sleutel",
+            "tas?",
+            "Ik",
+            "heb",
+            "mijn",
+            "en",
+            "telefoon.",
+            "dat",
+            "mijn"
           ],
           "answers": [
-            "De tas staat naast de stoel."
+            "Ik heb mijn sleutel en mijn telefoon."
           ],
-          "explanation": "A mala está ao lado da cadeira. = De tas staat naast de stoel. (sobram: water,, Dat)",
+          "explanation": "Tenho a minha chave e o meu telemóvel. = Ik heb mijn sleutel en mijn telefoon. (sobram: tas?, dat)",
           "vocabRefs": [
-            "v-tas",
-            "v-naast"
+            "v-sleutel",
+            "v-telefoon"
           ]
         },
         {
           "id": "s1-u09-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "computer",
-          "pt": "computador",
+          "noun": "telefoon",
+          "pt": "telefone",
           "article": "de",
-          "explanation": "de computer.",
+          "explanation": "de telefoon.",
           "vocabRefs": [
-            "v-computer"
+            "v-telefoon"
           ]
         },
         {
           "id": "s1-u09-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het horloge is van mijn opa.»?",
+          "prompt": "O que significa: «Het boek ligt onder de stoel.»?",
           "options": [
             {
               "id": "a",
-              "text": "O livro está debaixo da cadeira.",
+              "text": "Tens um lápis?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O meu passaporte está na minha mala.",
+              "text": "Os meus óculos desapareceram!",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O relógio é do meu avô.",
+              "text": "O livro está debaixo da cadeira.",
               "correct": true
             }
           ],
-          "explanation": "«Het horloge is van mijn opa.» = O relógio é do meu avô.",
+          "explanation": "«Het boek ligt onder de stoel.» = O livro está debaixo da cadeira.",
           "vocabRefs": [
-            "v-horloge",
-            "v-op"
+            "v-onder"
           ]
         }
       ],
@@ -2559,16 +2561,16 @@
       ],
       "examples": [
         {
-          "nl": "Een glas water, alstublieft.",
-          "pt": "Um copo de água, por favor."
+          "nl": "Dat glas is van mij.",
+          "pt": "Esse copo é meu."
         },
         {
-          "nl": "De tas is van Eva.",
-          "pt": "A mala é da Eva."
+          "nl": "Mijn bril is weg!",
+          "pt": "Os meus óculos desapareceram!"
         },
         {
-          "nl": "Mijn paspoort zit in mijn tas.",
-          "pt": "O meu passaporte está na minha mala."
+          "nl": "dat huis, die stoel",
+          "pt": "aquela casa, aquela cadeira"
         }
       ],
       "grammar": [],
@@ -2577,46 +2579,44 @@
           "id": "s1-u09-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O relógio é do meu avô.",
+          "prompt": "O livro está debaixo da cadeira.",
           "tokens": [
             "Het",
-            "is",
+            "tas",
+            "ligt",
             "onder",
-            "horloge",
-            "mijn",
-            "opa.",
-            "van",
-            "deze"
+            "boek",
+            "de",
+            "stoel.",
+            "is"
           ],
           "answers": [
-            "Het horloge is van mijn opa."
+            "Het boek ligt onder de stoel."
           ],
-          "explanation": "O relógio é do meu avô. = Het horloge is van mijn opa. (sobram: onder, deze)",
+          "explanation": "O livro está debaixo da cadeira. = Het boek ligt onder de stoel. (sobram: tas, is)",
           "vocabRefs": [
-            "v-horloge",
-            "v-op"
+            "v-onder"
           ]
         },
         {
           "id": "s1-u09-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "aquela casa, aquela cadeira",
+          "prompt": "Os meus óculos são novos.",
           "tokens": [
-            "die",
+            "is",
+            "Dat",
             "Deze",
-            "stoel",
-            "dat",
-            "telefoon.",
-            "huis,"
+            "nieuw.",
+            "Mijn",
+            "bril"
           ],
           "answers": [
-            "dat huis, die stoel"
+            "Mijn bril is nieuw."
           ],
-          "explanation": "aquela casa, aquela cadeira = dat huis, die stoel (sobram: Deze, telefoon.)",
+          "explanation": "Os meus óculos são novos. = Mijn bril is nieuw. (sobram: Dat, Deze)",
           "vocabRefs": [
-            "v-die",
-            "v-dat"
+            "v-bril"
           ]
         },
         {
@@ -2625,23 +2625,54 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "O meu computador é velho.",
           "tokens": [
-            "sleutel",
-            "computer",
-            "is",
             "oud.",
-            "weg!",
-            "Mijn"
+            "bril?",
+            "dit",
+            "Mijn",
+            "is",
+            "computer"
           ],
           "answers": [
             "Mijn computer is oud."
           ],
-          "explanation": "O meu computador é velho. = Mijn computer is oud. (sobram: sleutel, weg!)",
+          "explanation": "O meu computador é velho. = Mijn computer is oud. (sobram: dit, bril?)",
           "vocabRefs": [
             "v-computer"
           ]
         },
         {
           "id": "s1-u09-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "De sleutel ligt op de tafel.",
+          "answers": [
+            "De sleutel ligt op de tafel."
+          ],
+          "translation": "A chave está em cima da mesa.",
+          "explanation": "«De sleutel ligt op de tafel.» = A chave está em cima da mesa.",
+          "vocabRefs": [
+            "v-sleutel",
+            "v-tafel",
+            "v-op"
+          ]
+        },
+        {
+          "id": "s1-u09-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "De tas staat naast de stoel.",
+          "answers": [
+            "De tas staat naast de stoel."
+          ],
+          "translation": "A mala está ao lado da cadeira.",
+          "explanation": "«De tas staat naast de stoel.» = A mala está ao lado da cadeira.",
+          "vocabRefs": [
+            "v-tas",
+            "v-naast"
+          ]
+        },
+        {
+          "id": "s1-u09-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "dit boek, deze tas",
@@ -2656,108 +2687,79 @@
           ]
         },
         {
-          "id": "s1-u09-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Heb je een potlood?",
-          "answers": [
-            "Heb je een potlood?"
-          ],
-          "translation": "Tens um lápis?",
-          "explanation": "«Heb je een potlood?» = Tens um lápis?",
-          "vocabRefs": [
-            "v-potlood"
-          ]
-        },
-        {
-          "id": "s1-u09-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn computer is oud.",
-          "answers": [
-            "Mijn computer is oud."
-          ],
-          "translation": "O meu computador é velho.",
-          "explanation": "«Mijn computer is oud.» = O meu computador é velho.",
-          "vocabRefs": [
-            "v-computer"
-          ]
-        },
-        {
           "id": "s1-u09-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tenho a minha chave e o meu telemóvel.",
+          "translation": "Esse copo é meu.",
           "tokens": [
-            "sleutel",
-            "telefoon.",
-            "Ik",
-            "mijn",
-            "mijn",
-            "heb",
-            "en"
+            "Dat",
+            "glas",
+            "is",
+            "van",
+            "mij."
           ],
           "alternatives": [],
-          "explanation": "Ik heb mijn sleutel en mijn telefoon.",
+          "explanation": "Dat glas is van mij.",
           "vocabRefs": [
-            "v-sleutel",
-            "v-telefoon"
+            "v-glas",
+            "v-dat"
           ]
         },
         {
           "id": "s1-u09-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "este livro, esta mala",
+          "translation": "O livro está debaixo da cadeira.",
           "tokens": [
-            "dit",
-            "tas",
-            "boek,",
-            "deze"
+            "Het",
+            "boek",
+            "ligt",
+            "onder",
+            "de",
+            "stoel."
           ],
           "alternatives": [],
-          "explanation": "dit boek, deze tas",
+          "explanation": "Het boek ligt onder de stoel.",
           "vocabRefs": [
-            "v-tas",
-            "v-deze"
+            "v-onder"
           ]
         },
         {
           "id": "s1-u09-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de portemonnee»?",
+          "prompt": "O que significa «de telefoon»?",
           "options": [
             {
               "id": "a",
-              "text": "debaixo de",
+              "text": "caderno",
               "correct": false
             },
             {
               "id": "b",
-              "text": "este",
-              "correct": false
+              "text": "telefone",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "carteira",
-              "correct": true
+              "text": "debaixo de",
+              "correct": false
             }
           ],
-          "explanation": "«de portemonnee» = carteira.",
+          "explanation": "«de telefoon» = telefone, telemóvel.",
           "vocabRefs": [
-            "v-portemonnee"
+            "v-telefoon"
           ]
         },
         {
           "id": "s1-u09-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de computer»?",
+          "prompt": "O que significa «het bord»?",
           "options": [
             {
               "id": "a",
-              "text": "computador",
+              "text": "prato",
               "correct": true
             },
             {
@@ -2767,13 +2769,13 @@
             },
             {
               "id": "c",
-              "text": "desaparecido",
+              "text": "relógio",
               "correct": false
             }
           ],
-          "explanation": "«de computer» = computador.",
+          "explanation": "«het bord» = prato.",
           "vocabRefs": [
-            "v-computer"
+            "v-bord"
           ]
         }
       ],
@@ -2843,16 +2845,16 @@
       ],
       "examples": [
         {
-          "nl": "Mijn bril is nieuw.",
-          "pt": "Os meus óculos são novos."
+          "nl": "Het boek ligt onder de stoel.",
+          "pt": "O livro está debaixo da cadeira."
         },
         {
-          "nl": "De tas is van Eva.",
-          "pt": "A mala é da Eva."
+          "nl": "dit boek, deze tas",
+          "pt": "este livro, esta mala"
         },
         {
-          "nl": "Deze stoel is oud.",
-          "pt": "Esta cadeira é velha."
+          "nl": "Mag ik een vork?",
+          "pt": "Pode dar-me um garfo?"
         }
       ],
       "grammar": [],
@@ -2863,204 +2865,207 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "achter",
-              "pt": "atrás de"
-            },
-            {
-              "nl": "klok",
-              "pt": "relógio"
-            },
-            {
-              "nl": "potlood",
-              "pt": "lápis"
-            },
-            {
-              "nl": "schrift",
-              "pt": "caderno"
-            },
-            {
               "nl": "deze",
               "pt": "este"
+            },
+            {
+              "nl": "die",
+              "pt": "esse"
+            },
+            {
+              "nl": "naast",
+              "pt": "ao lado de"
+            },
+            {
+              "nl": "vork",
+              "pt": "garfo"
+            },
+            {
+              "nl": "sleutel",
+              "pt": "chave"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-achter",
-            "v-klok",
-            "v-potlood",
-            "v-schrift",
-            "v-deze"
+            "v-deze",
+            "v-die",
+            "v-naast",
+            "v-vork",
+            "v-sleutel"
           ]
         },
         {
           "id": "s1-u09-l010-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Van wie is de tas?",
+          "audioText": "Mijn computer is oud.",
           "answers": [
-            "Van wie is de tas?"
+            "Mijn computer is oud."
           ],
-          "translation": "De quem é a mala?",
-          "explanation": "«Van wie is de tas?» = De quem é a mala?",
+          "translation": "O meu computador é velho.",
+          "explanation": "«Mijn computer is oud.» = O meu computador é velho.",
           "vocabRefs": [
-            "v-tas"
+            "v-computer"
           ]
         },
         {
           "id": "s1-u09-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De sleutel ligt op de tafel.",
+          "audioText": "Dat glas is van mij.",
           "answers": [
-            "De sleutel ligt op de tafel."
+            "Dat glas is van mij."
           ],
-          "translation": "A chave está em cima da mesa.",
-          "explanation": "«De sleutel ligt op de tafel.» = A chave está em cima da mesa.",
+          "translation": "Esse copo é meu.",
+          "explanation": "«Dat glas is van mij.» = Esse copo é meu.",
           "vocabRefs": [
-            "v-sleutel",
-            "v-tafel",
-            "v-op"
+            "v-glas",
+            "v-dat"
           ]
         },
         {
           "id": "s1-u09-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het horloge»?",
+          "prompt": "O que significa «de lepel»?",
           "options": [
             {
               "id": "a",
-              "text": "mesa",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "relógio",
+              "text": "colher",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "atrás de",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "lápis",
+              "text": "computador",
               "correct": false
             }
           ],
-          "explanation": "«het horloge» = relógio (de pulso).",
+          "explanation": "«de lepel» = colher.",
           "vocabRefs": [
-            "v-horloge"
+            "v-lepel"
           ]
         },
         {
           "id": "s1-u09-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de tafel»?",
+          "prompt": "O que significa «de computer»?",
           "options": [
             {
               "id": "a",
-              "text": "mesa",
+              "text": "computador",
               "correct": true
             },
             {
               "id": "b",
-              "text": "óculos",
+              "text": "garfo",
               "correct": false
             },
             {
               "id": "c",
-              "text": "caderno",
+              "text": "relógio",
               "correct": false
             }
           ],
-          "explanation": "«de tafel» = mesa.",
+          "explanation": "«de computer» = computador.",
           "vocabRefs": [
-            "v-tafel"
+            "v-computer"
           ]
         },
         {
           "id": "s1-u09-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A mala está ao lado da cadeira.",
+          "translation": "A faca e o garfo estão em cima da mesa.",
           "tokens": [
-            "staat",
-            "De",
+            "Het",
+            "mes",
+            "en",
             "de",
-            "naast",
-            "tas",
-            "stoel."
+            "vork",
+            "liggen",
+            "op",
+            "tafel."
           ],
           "alternatives": [],
-          "explanation": "De tas staat naast de stoel.",
+          "explanation": "Het mes en de vork liggen op tafel.",
           "vocabRefs": [
-            "v-tas",
-            "v-naast"
+            "v-tafel",
+            "v-mes",
+            "v-vork",
+            "v-op"
           ]
         },
         {
           "id": "s1-u09-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O meu passaporte está na minha mala.",
+          "translation": "Tenho a minha chave e o meu telemóvel.",
           "tokens": [
-            "in",
-            "paspoort",
-            "zit",
-            "tas.",
-            "Mijn",
-            "mijn"
+            "Ik",
+            "heb",
+            "mijn",
+            "sleutel",
+            "en",
+            "mijn",
+            "telefoon."
           ],
           "alternatives": [],
-          "explanation": "Mijn paspoort zit in mijn tas.",
+          "explanation": "Ik heb mijn sleutel en mijn telefoon.",
           "vocabRefs": [
-            "v-tas",
-            "v-paspoort"
+            "v-sleutel",
+            "v-telefoon"
           ]
         },
         {
           "id": "s1-u09-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Van wie is de ___?",
-          "translation": "De quem é a mala?",
+          "sentence": "Heb je een ___?",
+          "translation": "Tens um lápis?",
           "answers": [
-            "tas"
+            "potlood"
           ],
           "choices": [
-            "glas",
-            "tas",
-            "computer"
+            "portemonnee",
+            "potlood",
+            "klok"
           ],
-          "explanation": "Van wie is de tas?",
+          "explanation": "Heb je een potlood?",
           "vocabRefs": [
-            "v-tas"
+            "v-potlood"
           ]
         },
         {
           "id": "s1-u09-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb mijn sleutel en mijn telefoon.»?",
+          "prompt": "O que significa: «Mijn computer is oud.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tenho a minha chave e o meu telemóvel.",
+              "text": "O meu computador é velho.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "este livro, esta mala",
+              "text": "Pode dar-me uma colher?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Esta cadeira é velha.",
+              "text": "Tens um lápis?",
               "correct": false
             }
           ],
-          "explanation": "«Ik heb mijn sleutel en mijn telefoon.» = Tenho a minha chave e o meu telemóvel.",
+          "explanation": "«Mijn computer is oud.» = O meu computador é velho.",
           "vocabRefs": [
-            "v-sleutel",
-            "v-telefoon"
+            "v-computer"
           ]
         }
       ],

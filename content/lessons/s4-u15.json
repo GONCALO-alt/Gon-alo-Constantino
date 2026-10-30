@@ -1903,16 +1903,16 @@
       ],
       "examples": [
         {
-          "nl": "Wil je thee of drink je liever koffie?",
-          "pt": "Queres chá ou preferes café?"
+          "nl": "Ik blijf thuis, want ik ben ziek.",
+          "pt": "Fico em casa, porque estou doente."
         },
         {
-          "nl": "Ik ben moe, maar ik ga toch mee.",
-          "pt": "Estou cansado, mas vou na mesma."
+          "nl": "Ten eerste is fietsen gezond.",
+          "pt": "Em primeiro lugar, andar de bicicleta é saudável."
         },
         {
-          "nl": "Het regent, dus neem ik de bus.",
-          "pt": "Está a chover, portanto apanho o autocarro."
+          "nl": "Hoewel het koud is, ga ik zwemmen.",
+          "pt": "Embora esteja frio, vou nadar."
         }
       ],
       "grammar": [],
@@ -1963,13 +1963,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Dormi mal. Por causa disso estava cansado.",
           "tokens": [
-            "Daardoor",
+            "Ik",
             "sliep",
-            "moe.",
             "slecht.",
-            "ik",
+            "Daardoor",
             "was",
-            "Ik"
+            "ik",
+            "moe."
           ],
           "alternatives": [],
           "explanation": "Ik sliep slecht. Daardoor was ik moe.",
@@ -1984,13 +1984,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Era caro; mesmo assim comprei-o.",
           "tokens": [
-            "het",
-            "was",
-            "ik",
             "Het",
+            "was",
+            "duur,",
             "toch",
             "heb",
-            "duur,",
+            "ik",
+            "het",
             "gekocht."
           ],
           "alternatives": [],
@@ -2005,12 +2005,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Eu trabalho e o meu marido estuda.",
           "tokens": [
-            "man",
             "Ik",
-            "studeert.",
-            "en",
             "werk",
-            "mijn"
+            "en",
+            "mijn",
+            "man",
+            "studeert."
           ],
           "alternatives": [],
           "explanation": "Ik werk en mijn man studeert.",
@@ -2020,99 +2020,97 @@
           "id": "s4-u15-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Schiet op, anders missen we de trein!»?",
+          "prompt": "O que significa: «Ik ga niet, want ik heb geen zin.»?",
           "options": [
             {
               "id": "a",
-              "text": "Despacha-te, senão perdemos o comboio!",
-              "correct": true
+              "text": "Em primeiro lugar, andar de bicicleta é saudável.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Era caro; mesmo assim comprei-o.",
+              "text": "Apesar do mau tempo… = Embora o tempo esteja mau…",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ao contrário do meu irmão, levanto-me cedo.",
-              "correct": false
+              "text": "Não vou, porque não me apetece.",
+              "correct": true
             }
           ],
-          "explanation": "«Schiet op, anders missen we de trein!» = Despacha-te, senão perdemos o comboio!",
-          "vocabRefs": [
-            "v-anders"
-          ]
+          "explanation": "«Ik ga niet, want ik heb geen zin.» = Não vou, porque não me apetece.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u15-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Door de staking rijden er geen treinen.»?",
+          "prompt": "O que significa: «Het regent, dus neem ik de bus.»?",
           "options": [
             {
               "id": "a",
-              "text": "Devido à greve não há comboios.",
+              "text": "Está a chover, portanto apanho o autocarro.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Apesar da chuva fomos passear.",
+              "text": "A casa é grande. Além disso é barata.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Está frio, mas vou nadar.",
+              "text": "Estou cansado, mas vou na mesma.",
               "correct": false
             }
           ],
-          "explanation": "«Door de staking rijden er geen treinen.» = Devido à greve não há comboios.",
+          "explanation": "«Het regent, dus neem ik de bus.» = Está a chover, portanto apanho o autocarro.",
           "vocabRefs": [
-            "v-door"
+            "v-dus-conj"
           ]
         },
         {
           "id": "s4-u15-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Chego mais tarde porque o comboio está atrasado.",
+          "prompt": "Apesar da chuva fomos passear.",
           "tokens": [
-            "vertraging",
-            "later",
+            "wandelen.",
+            "Ondanks",
+            "regen",
             "de",
-            "blijf",
-            "kom",
-            "Ik",
-            "heeft.",
-            "omdat",
-            "voor",
-            "trein"
+            "werk",
+            "gingen",
+            "we",
+            "koffie?"
           ],
           "answers": [
-            "Ik kom later omdat de trein vertraging heeft."
+            "Ondanks de regen gingen we wandelen."
           ],
-          "explanation": "Chego mais tarde porque o comboio está atrasado. = Ik kom later omdat de trein vertraging heeft. (sobram: voor, blijf)",
-          "vocabRefs": []
+          "explanation": "Apesar da chuva fomos passear. = Ondanks de regen gingen we wandelen. (sobram: werk, koffie?)",
+          "vocabRefs": [
+            "v-ondanks"
+          ]
         },
         {
           "id": "s4-u15-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Fico em casa, porque estou doente.",
+          "prompt": "Está frio, mas vou nadar.",
           "tokens": [
-            "trein!",
-            "toch",
-            "want",
-            "ben",
+            "ga",
+            "zwemmen.",
             "blijf",
-            "Ik",
-            "ziek.",
-            "thuis,",
-            "ik"
+            "ik",
+            "wandelen.",
+            "koud,",
+            "is",
+            "maar",
+            "Het"
           ],
           "answers": [
-            "Ik blijf thuis, want ik ben ziek."
+            "Het is koud, maar ik ga zwemmen."
           ],
-          "explanation": "Fico em casa, porque estou doente. = Ik blijf thuis, want ik ben ziek. (sobram: toch, trein!)",
+          "explanation": "Está frio, mas vou nadar. = Het is koud, maar ik ga zwemmen. (sobram: wandelen., blijf)",
           "vocabRefs": []
         }
       ],
@@ -2173,16 +2171,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik ga niet, want ik heb geen zin.",
-          "pt": "Não vou, porque não me apetece."
+          "nl": "Ondanks de regen gingen we wandelen.",
+          "pt": "Apesar da chuva fomos passear."
         },
         {
-          "nl": "Wil je thee of drink je liever koffie?",
-          "pt": "Queres chá ou preferes café?"
+          "nl": "Het regent, dus neem ik de bus.",
+          "pt": "Está a chover, portanto apanho o autocarro."
         },
         {
-          "nl": "Tot slot is het goed voor het milieu.",
-          "pt": "Por último, é bom para o ambiente."
+          "nl": "Het is koud, maar ik ga zwemmen.",
+          "pt": "Está frio, mas vou nadar."
         }
       ],
       "grammar": [],
@@ -2191,73 +2189,73 @@
           "id": "s4-u15-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «senão» em neerlandês?",
+          "prompt": "Como se diz «portanto» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "anders",
-              "correct": true
+              "text": "voegwoord",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "maar",
+              "text": "bijzin",
               "correct": false
             },
             {
               "id": "c",
-              "text": "in tegenstelling tot",
-              "correct": false
+              "text": "dus",
+              "correct": true
             }
           ],
-          "explanation": "senão = «anders».",
+          "explanation": "portanto = «dus».",
           "vocabRefs": [
-            "v-anders"
+            "v-dus-conj"
           ]
         },
         {
           "id": "s4-u15-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «oração subordinada» em neerlandês?",
+          "prompt": "Como se diz «ordem das palavras» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "bijzin",
+              "text": "woordvolgorde",
               "correct": true
             },
             {
               "id": "b",
-              "text": "en",
+              "text": "tot slot",
               "correct": false
             },
             {
               "id": "c",
-              "text": "toch",
+              "text": "bijvoorbeeld",
               "correct": false
             }
           ],
-          "explanation": "oração subordinada = «bijzin».",
+          "explanation": "ordem das palavras = «woordvolgorde».",
           "vocabRefs": [
-            "v-zin-deel"
+            "v-woordvolgorde"
           ]
         },
         {
           "id": "s4-u15-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ de regen gingen we wandelen.",
-          "translation": "Apesar da chuva fomos passear.",
+          "sentence": "Ik ben moe, ___ ik ga toch mee.",
+          "translation": "Estou cansado, mas vou na mesma.",
           "answers": [
-            "Ondanks"
+            "maar"
           ],
           "choices": [
-            "Bijvoorbeeld",
-            "Ondanks",
-            "Bovendien"
+            "woordvolgorde",
+            "voegwoord",
+            "maar"
           ],
-          "explanation": "Ondanks de regen gingen we wandelen.",
+          "explanation": "Ik ben moe, maar ik ga toch mee.",
           "vocabRefs": [
-            "v-ondanks"
+            "v-maar-conj"
           ]
         },
         {
@@ -2311,46 +2309,49 @@
           "id": "s4-u15-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estava doente. Por isso não vim.",
+          "prompt": "A casa é grande. Além disso é barata.",
           "tokens": [
-            "Daarom",
-            "niet",
-            "Ik",
-            "was",
-            "ziek.",
             "de",
-            "ik",
-            "gekomen.",
-            "koud.",
-            "ben"
+            "is",
+            "zwemmen.",
+            "het",
+            "huis",
+            "goedkoop.",
+            "groot.",
+            "Bovendien",
+            "is",
+            "Het"
           ],
           "answers": [
-            "Ik was ziek. Daarom ben ik niet gekomen."
+            "Het huis is groot. Bovendien is het goedkoop."
           ],
-          "explanation": "Estava doente. Por isso não vim. = Ik was ziek. Daarom ben ik niet gekomen. (sobram: koud., de)",
-          "vocabRefs": []
+          "explanation": "A casa é grande. Além disso é barata. = Het huis is groot. Bovendien is het goedkoop. (sobram: de, zwemmen.)",
+          "vocabRefs": [
+            "v-bovendien"
+          ]
         },
         {
           "id": "s4-u15-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Em segundo lugar, é barato.",
+          "prompt": "Estava doente. Por isso não vim.",
           "tokens": [
-            "is",
-            "tweede",
-            "Ten",
-            "huis",
             "ik",
-            "het",
-            "goedkoop."
+            "Ik",
+            "Daarom",
+            "treinen.",
+            "gekomen.",
+            "ben",
+            "niet",
+            "ziek.",
+            "was",
+            "de"
           ],
           "answers": [
-            "Ten tweede is het goedkoop."
+            "Ik was ziek. Daarom ben ik niet gekomen."
           ],
-          "explanation": "Em segundo lugar, é barato. = Ten tweede is het goedkoop. (sobram: ik, huis)",
-          "vocabRefs": [
-            "v-ten-tweede"
-          ]
+          "explanation": "Estava doente. Por isso não vim. = Ik was ziek. Daarom ben ik niet gekomen. (sobram: de, treinen.)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u15-l008-e09",
@@ -2368,26 +2369,28 @@
           "id": "s4-u15-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wil je thee of drink je liever koffie?»?",
+          "prompt": "O que significa: «Kortom: fietsen is ideaal.»?",
           "options": [
             {
               "id": "a",
-              "text": "Queres chá ou preferes café?",
+              "text": "Em suma: a bicicleta é ideal.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Eu trabalho e o meu marido estuda.",
+              "text": "Está a chover, mas não está frio.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Era caro; mesmo assim comprei-o.",
+              "text": "Dormi mal. Por causa disso estava cansado.",
               "correct": false
             }
           ],
-          "explanation": "«Wil je thee of drink je liever koffie?» = Queres chá ou preferes café?",
-          "vocabRefs": []
+          "explanation": "«Kortom: fietsen is ideaal.» = Em suma: a bicicleta é ideal.",
+          "vocabRefs": [
+            "v-kortom"
+          ]
         }
       ],
       "difficulty": 4,
@@ -2465,99 +2468,94 @@
           "id": "s4-u15-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Apesar da chuva fomos passear.",
+          "prompt": "Em suma: a bicicleta é ideal.",
           "tokens": [
-            "vertraging",
-            "de",
-            "wandelen.",
-            "we",
-            "gingen",
-            "Ondanks",
-            "regen",
-            "Door"
+            "ideaal.",
+            "Kortom:",
+            "ik",
+            "Het",
+            "fietsen",
+            "is"
           ],
           "answers": [
-            "Ondanks de regen gingen we wandelen."
+            "Kortom: fietsen is ideaal."
           ],
-          "explanation": "Apesar da chuva fomos passear. = Ondanks de regen gingen we wandelen. (sobram: Door, vertraging)",
+          "explanation": "Em suma: a bicicleta é ideal. = Kortom: fietsen is ideaal. (sobram: ik, Het)",
           "vocabRefs": [
-            "v-ondanks"
+            "v-kortom"
           ]
         },
         {
           "id": "s4-u15-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Embora esteja frio, vou nadar.",
+          "prompt": "Não vou porque não me apetece.",
           "tokens": [
-            "het",
-            "we",
+            "zin",
+            "gezond.",
+            "Ik",
+            "heb.",
+            "omdat",
+            "geen",
+            "niet,",
             "ga",
             "de",
-            "is,",
-            "koud",
-            "zwemmen.",
-            "Hoewel",
             "ik"
           ],
           "answers": [
-            "Hoewel het koud is, ga ik zwemmen."
+            "Ik ga niet, omdat ik geen zin heb."
           ],
-          "explanation": "Embora esteja frio, vou nadar. = Hoewel het koud is, ga ik zwemmen. (sobram: we, de)",
+          "explanation": "Não vou porque não me apetece. = Ik ga niet, omdat ik geen zin heb. (sobram: de, gezond.)",
           "vocabRefs": []
         },
         {
           "id": "s4-u15-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ao contrário do meu irmão, levanto-me cedo.",
+          "prompt": "Era caro; mesmo assim comprei-o.",
           "tokens": [
-            "tegenstelling",
-            "want",
-            "tot",
-            "vroeg",
-            "broer",
-            "is",
-            "mijn",
-            "op.",
+            "was",
+            "gekocht.",
+            "het",
+            "heb",
             "ik",
-            "In",
-            "ben"
+            "gezond.",
+            "duur,",
+            "toch",
+            "Het",
+            "missen"
           ],
           "answers": [
-            "In tegenstelling tot mijn broer ben ik vroeg op."
+            "Het was duur, toch heb ik het gekocht."
           ],
-          "explanation": "Ao contrário do meu irmão, levanto-me cedo. = In tegenstelling tot mijn broer ben ik vroeg op. (sobram: want, is)",
+          "explanation": "Era caro; mesmo assim comprei-o. = Het was duur, toch heb ik het gekocht. (sobram: missen, gezond.)",
           "vocabRefs": [
-            "v-in-tegenstelling-tot"
+            "v-toch-conj"
           ]
         },
         {
           "id": "s4-u15-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik kom later, want de trein heeft vertraging.",
+          "audioText": "Het is koud, maar ik ga zwemmen.",
           "answers": [
-            "Ik kom later, want de trein heeft vertraging."
+            "Het is koud, maar ik ga zwemmen."
           ],
-          "translation": "Chego mais tarde, porque o comboio está atrasado.",
-          "explanation": "«Ik kom later, want de trein heeft vertraging.» = Chego mais tarde, porque o comboio está atrasado.",
+          "translation": "Está frio, mas vou nadar.",
+          "explanation": "«Het is koud, maar ik ga zwemmen.» = Está frio, mas vou nadar.",
           "vocabRefs": []
         },
         {
           "id": "s4-u15-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik sliep slecht. Daardoor was ik moe.",
+          "audioText": "Ik blijf thuis, want ik ben ziek.",
           "answers": [
-            "Ik sliep slecht. Daardoor was ik moe."
+            "Ik blijf thuis, want ik ben ziek."
           ],
-          "translation": "Dormi mal. Por causa disso estava cansado.",
-          "explanation": "«Ik sliep slecht. Daardoor was ik moe.» = Dormi mal. Por causa disso estava cansado.",
-          "vocabRefs": [
-            "v-door",
-            "v-daardoor"
-          ]
+          "translation": "Fico em casa, porque estou doente.",
+          "explanation": "«Ik blijf thuis, want ik ben ziek.» = Fico em casa, porque estou doente.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u15-l009-e06",
@@ -2577,91 +2575,90 @@
           "id": "s4-u15-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Fico em casa, porque estou doente.",
+          "translation": "Está a chover, mas não está frio.",
           "tokens": [
-            "blijf",
-            "ben",
-            "ik",
-            "want",
-            "ziek.",
-            "Ik",
-            "thuis,"
+            "Het",
+            "regent,",
+            "maar",
+            "het",
+            "is",
+            "niet",
+            "koud."
           ],
           "alternatives": [],
-          "explanation": "Ik blijf thuis, want ik ben ziek.",
+          "explanation": "Het regent, maar het is niet koud.",
           "vocabRefs": []
         },
         {
           "id": "s4-u15-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Chego mais tarde, porque o comboio está atrasado.",
+          "translation": "Em segundo lugar, é barato.",
           "tokens": [
-            "later,",
-            "Ik",
-            "de",
-            "heeft",
-            "vertraging.",
-            "trein",
-            "kom",
-            "want"
+            "Ten",
+            "tweede",
+            "is",
+            "het",
+            "goedkoop."
           ],
           "alternatives": [],
-          "explanation": "Ik kom later, want de trein heeft vertraging.",
-          "vocabRefs": []
+          "explanation": "Ten tweede is het goedkoop.",
+          "vocabRefs": [
+            "v-ten-tweede"
+          ]
         },
         {
           "id": "s4-u15-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «dus»?",
+          "prompt": "O que significa «daardoor»?",
           "options": [
             {
               "id": "a",
-              "text": "portanto",
-              "correct": true
+              "text": "por último",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "ordem das palavras",
+              "text": "ou",
               "correct": false
             },
             {
               "id": "c",
-              "text": "conjunção coordenativa",
-              "correct": false
+              "text": "por causa disso",
+              "correct": true
             }
           ],
-          "explanation": "«dus» = portanto, então.",
+          "explanation": "«daardoor» = por causa disso.",
           "vocabRefs": [
-            "v-dus-conj"
+            "v-daardoor"
           ]
         },
         {
           "id": "s4-u15-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «en»?",
+          "prompt": "O que significa «kortom»?",
           "options": [
             {
               "id": "a",
-              "text": "e",
+              "text": "em suma",
               "correct": true
             },
             {
               "id": "b",
-              "text": "além disso",
+              "text": "em primeiro lugar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "em segundo lugar",
+              "text": "ou",
               "correct": false
             }
           ],
-          "explanation": "«en» = e.",
+          "explanation": "«kortom» = em suma.",
           "vocabRefs": [
-            "v-en-conj"
+            "v-kortom"
           ]
         }
       ],

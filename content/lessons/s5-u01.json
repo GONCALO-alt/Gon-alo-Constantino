@@ -1911,16 +1911,16 @@
       ],
       "examples": [
         {
-          "nl": "Meen je dat?",
-          "pt": "Estás a falar a sério?"
-        },
-        {
           "nl": "Ik moet er weer vandoor.",
           "pt": "Tenho de ir andando."
         },
         {
-          "nl": "Even denken…",
-          "pt": "Deixa-me pensar…"
+          "nl": "Goh, wat een verhaal!",
+          "pt": "Caramba, que história!"
+        },
+        {
+          "nl": "Dat ding waarmee je blikken opent.",
+          "pt": "Aquela coisa com que se abrem latas."
         }
       ],
       "grammar": [],
@@ -1971,10 +1971,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "A propósito, quando é o teu aniversário?",
           "tokens": [
+            "Trouwens,",
+            "wanneer",
             "is",
             "je",
-            "wanneer",
-            "Trouwens,",
             "verjaardag?"
           ],
           "alternatives": [],
@@ -1989,12 +1989,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ah sim? Não sabia.",
           "tokens": [
-            "wist",
-            "niet.",
-            "ik",
+            "O",
             "ja?",
             "Dat",
-            "O"
+            "wist",
+            "ik",
+            "niet."
           ],
           "alternatives": [],
           "explanation": "O ja? Dat wist ik niet.",
@@ -2008,12 +2008,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Não, deixa lá, não faz mal.",
           "tokens": [
-            "niet",
-            "is",
-            "dat",
+            "Nee",
             "joh,",
-            "erg.",
-            "Nee"
+            "dat",
+            "is",
+            "niet",
+            "erg."
           ],
           "alternatives": [],
           "explanation": "Nee joh, dat is niet erg.",
@@ -2025,97 +2025,95 @@
           "id": "s5-u01-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Over eten gesproken: heb je al gegeten?»?",
+          "prompt": "O que significa: «Het is een soort taart.»?",
           "options": [
             {
               "id": "a",
-              "text": "Foi bom falar contigo!",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "É uma espécie de bolo.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Por falar em comida: já comeste?",
               "correct": true
-            }
-          ],
-          "explanation": "«Over eten gesproken: heb je al gegeten?» = Por falar em comida: já comeste?",
-          "vocabRefs": []
-        },
-        {
-          "id": "s5-u01-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kun je een voorbeeld geven?»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Depois falamos!",
-              "correct": false
             },
             {
               "id": "b",
-              "text": "Podes dar um exemplo?",
-              "correct": true
+              "text": "Estás a falar a sério?",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Então, por outras palavras…",
+              "text": "Podes explicar isso outra vez?",
               "correct": false
             }
           ],
-          "explanation": "«Kun je een voorbeeld geven?» = Podes dar um exemplo?",
-          "vocabRefs": [
-            "v-voorbeeld"
-          ]
-        },
-        {
-          "id": "s5-u01-l007-e09",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É uma espécie de bolo.",
-          "tokens": [
-            "soort",
-            "taart.",
-            "Het",
-            "is",
-            "een",
-            "te",
-            "dat"
-          ],
-          "answers": [
-            "Het is een soort taart."
-          ],
-          "explanation": "É uma espécie de bolo. = Het is een soort taart. (sobram: te, dat)",
+          "explanation": "«Het is een soort taart.» = É uma espécie de bolo.",
           "vocabRefs": [
             "v-een-soort"
           ]
         },
         {
+          "id": "s5-u01-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Echt? Wat leuk voor je!»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Aquela coisa com que se abrem latas.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Não, deixa lá, não faz mal.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "A sério? Que bom para ti!",
+              "correct": true
+            }
+          ],
+          "explanation": "«Echt? Wat leuk voor je!» = A sério? Que bom para ti!",
+          "vocabRefs": []
+        },
+        {
+          "id": "s5-u01-l007-e09",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "A sério? Que bom para ti!",
+          "tokens": [
+            "Echt?",
+            "voor",
+            "je!",
+            "blikken",
+            "leuk",
+            "Wat",
+            "voorbeeld"
+          ],
+          "answers": [
+            "Echt? Wat leuk voor je!"
+          ],
+          "explanation": "A sério? Que bom para ti! = Echt? Wat leuk voor je! (sobram: blikken, voorbeeld)",
+          "vocabRefs": []
+        },
+        {
           "id": "s5-u01-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Aquela coisa com que se abrem latas.",
+          "prompt": "Ah sim? Não sabia.",
           "tokens": [
-            "blikken",
-            "ding",
-            "waarmee",
-            "Echt?",
-            "bedoel",
-            "je",
+            "de",
             "Dat",
-            "opent."
+            "ik",
+            "Trouwens,",
+            "niet.",
+            "O",
+            "wist",
+            "ja?"
           ],
           "answers": [
-            "Dat ding waarmee je blikken opent."
+            "O ja? Dat wist ik niet."
           ],
-          "explanation": "Aquela coisa com que se abrem latas. = Dat ding waarmee je blikken opent. (sobram: Echt?, bedoel)",
+          "explanation": "Ah sim? Não sabia. = O ja? Dat wist ik niet. (sobram: de, Trouwens,)",
           "vocabRefs": [
-            "v-ding"
+            "v-o-ja"
           ]
         }
       ],
@@ -2177,16 +2175,16 @@
       ],
       "examples": [
         {
-          "nl": "Over eten gesproken: heb je al gegeten?",
-          "pt": "Por falar em comida: já comeste?"
+          "nl": "Trouwens, wanneer is je verjaardag?",
+          "pt": "A propósito, quando é o teu aniversário?"
         },
         {
-          "nl": "O ja? Dat wist ik niet.",
-          "pt": "Ah sim? Não sabia."
+          "nl": "Even denken…",
+          "pt": "Deixa-me pensar…"
         },
         {
-          "nl": "Kun je een voorbeeld geven?",
-          "pt": "Podes dar um exemplo?"
+          "nl": "Het is een soort taart.",
+          "pt": "É uma espécie de bolo."
         }
       ],
       "grammar": [],
@@ -2195,166 +2193,163 @@
           "id": "s5-u01-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «uma espécie de» em neerlandês?",
+          "prompt": "Como se diz «explicar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "nee joh!",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "een soort",
+              "text": "uitleggen",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "wat goed!",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "voorbeeld",
+              "text": "hoe zeg je…?",
               "correct": false
             }
           ],
-          "explanation": "uma espécie de = «een soort».",
+          "explanation": "explicar = «uitleggen».",
           "vocabRefs": [
-            "v-een-soort"
+            "v-uitleggen"
           ]
         },
         {
           "id": "s5-u01-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «falamos» em neerlandês?",
+          "prompt": "Como se diz «foi bom falar contigo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "we spreken elkaar",
-              "correct": true
+              "text": "ding",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "uitleggen",
+              "text": "en jij?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "een soort",
-              "correct": false
+              "text": "leuk je gesproken te hebben",
+              "correct": true
             }
           ],
-          "explanation": "falamos = «we spreken elkaar».",
+          "explanation": "foi bom falar contigo = «leuk je gesproken te hebben».",
           "vocabRefs": [
-            "v-we-spreken-elkaar"
+            "v-leuk-gesproken"
           ]
         },
         {
           "id": "s5-u01-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Dat ___ waarmee je blikken opent.",
-          "translation": "Aquela coisa com que se abrem latas.",
+          "sentence": "___, wanneer is je verjaardag?",
+          "translation": "A propósito, quando é o teu aniversário?",
           "answers": [
-            "ding"
+            "Trouwens"
           ],
           "choices": [
-            "voorbeeld",
-            "uitleggen",
-            "ding"
+            "Goh!",
+            "Ding",
+            "Trouwens"
           ],
-          "explanation": "Dat ding waarmee je blikken opent.",
+          "explanation": "Trouwens, wanneer is je verjaardag?",
           "vocabRefs": [
-            "v-ding"
+            "v-trouwens"
           ]
         },
         {
           "id": "s5-u01-l008-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Doe de groeten aan je vrouw!",
+          "audioText": "Dat ding waarmee je blikken opent.",
           "answers": [
-            "Doe de groeten aan je vrouw!"
+            "Dat ding waarmee je blikken opent."
           ],
-          "translation": "Dá cumprimentos à tua mulher!",
-          "explanation": "«Doe de groeten aan je vrouw!» = Dá cumprimentos à tua mulher!",
+          "translation": "Aquela coisa com que se abrem latas.",
+          "explanation": "«Dat ding waarmee je blikken opent.» = Aquela coisa com que se abrem latas.",
           "vocabRefs": [
-            "v-de-groeten-aan"
+            "v-ding"
           ]
         },
         {
           "id": "s5-u01-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kun je dat nog eens uitleggen?",
+          "audioText": "Kun je een voorbeeld geven?",
           "answers": [
-            "Kun je dat nog eens uitleggen?"
+            "Kun je een voorbeeld geven?"
           ],
-          "translation": "Podes explicar isso outra vez?",
-          "explanation": "«Kun je dat nog eens uitleggen?» = Podes explicar isso outra vez?",
+          "translation": "Podes dar um exemplo?",
+          "explanation": "«Kun je een voorbeeld geven?» = Podes dar um exemplo?",
           "vocabRefs": [
-            "v-uitleggen"
+            "v-voorbeeld"
           ]
         },
         {
           "id": "s5-u01-l008-e06",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ah sim? Não sabia.",
+          "prompt": "Depois falamos!",
           "tokens": [
-            "niet.",
-            "wanneer",
-            "Dat",
-            "Hoe",
-            "wist",
-            "O",
-            "ja?",
-            "ik"
+            "nog!",
+            "soort",
+            "je",
+            "We",
+            "spreken",
+            "elkaar"
           ],
           "answers": [
-            "O ja? Dat wist ik niet."
+            "We spreken elkaar nog!"
           ],
-          "explanation": "Ah sim? Não sabia. = O ja? Dat wist ik niet. (sobram: wanneer, Hoe)",
+          "explanation": "Depois falamos! = We spreken elkaar nog! (sobram: je, soort)",
           "vocabRefs": [
-            "v-o-ja"
+            "v-we-spreken-elkaar"
           ]
         },
         {
           "id": "s5-u01-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Dá cumprimentos à tua mulher!",
+          "prompt": "Podes dar um exemplo?",
           "tokens": [
-            "wat",
-            "de",
-            "groeten",
-            "Doe",
-            "Dat",
             "je",
-            "vrouw!",
-            "aan"
+            "is",
+            "geven?",
+            "een",
+            "Dat",
+            "Kun",
+            "voorbeeld"
           ],
           "answers": [
-            "Doe de groeten aan je vrouw!"
+            "Kun je een voorbeeld geven?"
           ],
-          "explanation": "Dá cumprimentos à tua mulher! = Doe de groeten aan je vrouw! (sobram: Dat, wat)",
+          "explanation": "Podes dar um exemplo? = Kun je een voorbeeld geven? (sobram: Dat, is)",
           "vocabRefs": [
-            "v-de-groeten-aan"
+            "v-voorbeeld"
           ]
         },
         {
           "id": "s5-u01-l008-e08",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "voorbeeld",
-          "pt": "exemplo",
+          "noun": "ding",
+          "pt": "coisa",
           "article": "het",
-          "explanation": "het voorbeeld.",
+          "explanation": "het ding.",
           "vocabRefs": [
-            "v-voorbeeld"
+            "v-ding"
           ]
         },
         {
           "id": "s5-u01-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoe zit het met je nieuwe baan?»?",
+          "prompt": "O que significa: «Wat bedoel je precies?»?",
           "options": [
             {
               "id": "a",
@@ -2363,18 +2358,18 @@
             },
             {
               "id": "b",
-              "text": "Então e o teu emprego novo?",
+              "text": "O que queres dizer exatamente?",
               "correct": true
             },
             {
               "id": "c",
-              "text": "O que queres dizer exatamente?",
+              "text": "Aquela coisa com que se abrem latas.",
               "correct": false
             }
           ],
-          "explanation": "«Hoe zit het met je nieuwe baan?» = Então e o teu emprego novo?",
+          "explanation": "«Wat bedoel je precies?» = O que queres dizer exatamente?",
           "vocabRefs": [
-            "v-hoe-zit-het-met"
+            "v-precies-bedoelen"
           ]
         }
       ],
@@ -2436,16 +2431,16 @@
       ],
       "examples": [
         {
-          "nl": "Nee joh, dat is niet erg.",
-          "pt": "Não, deixa lá, não faz mal."
+          "nl": "Dat ding waarmee je blikken opent.",
+          "pt": "Aquela coisa com que se abrem latas."
         },
         {
-          "nl": "Meen je dat?",
-          "pt": "Estás a falar a sério?"
+          "nl": "Hoe zeg je dat in het Nederlands?",
+          "pt": "Como se diz isso em neerlandês?"
         },
         {
-          "nl": "Doe de groeten aan je vrouw!",
-          "pt": "Dá cumprimentos à tua mulher!"
+          "nl": "Ik werk in de zorg. En jij?",
+          "pt": "Trabalho na área da saúde. E tu?"
         }
       ],
       "grammar": [],
@@ -2454,196 +2449,194 @@
           "id": "s5-u01-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Podes dar um exemplo?",
+          "prompt": "É uma espécie de bolo.",
           "tokens": [
-            "Kun",
+            "Het",
             "wat",
             "een",
-            "voorbeeld",
-            "zit",
-            "geven?",
-            "je"
+            "soort",
+            "Ik",
+            "taart.",
+            "is"
           ],
           "answers": [
-            "Kun je een voorbeeld geven?"
+            "Het is een soort taart."
           ],
-          "explanation": "Podes dar um exemplo? = Kun je een voorbeeld geven? (sobram: zit, wat)",
+          "explanation": "É uma espécie de bolo. = Het is een soort taart. (sobram: Ik, wat)",
           "vocabRefs": [
-            "v-voorbeeld"
+            "v-een-soort"
           ]
         },
         {
           "id": "s5-u01-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Caramba, que história!",
+          "prompt": "Então e o teu emprego novo?",
           "tokens": [
-            "Goh,",
-            "wat",
-            "bedoel",
-            "een",
-            "verhaal!",
-            "je"
+            "Hoe",
+            "het",
+            "nieuwe",
+            "baan?",
+            "zit",
+            "dat",
+            "met",
+            "je",
+            "een"
           ],
           "answers": [
-            "Goh, wat een verhaal!"
+            "Hoe zit het met je nieuwe baan?"
           ],
-          "explanation": "Caramba, que história! = Goh, wat een verhaal! (sobram: bedoel, je)",
+          "explanation": "Então e o teu emprego novo? = Hoe zit het met je nieuwe baan? (sobram: dat, een)",
           "vocabRefs": [
-            "v-goh"
+            "v-hoe-zit-het-met"
           ]
         },
         {
           "id": "s5-u01-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Por falar em comida: já comeste?",
+          "prompt": "A propósito, quando é o teu aniversário?",
           "tokens": [
+            "is",
+            "wanneer",
+            "de",
             "je",
-            "gegeten?",
-            "Wat",
-            "Over",
-            "een",
-            "gesproken:",
-            "eten",
-            "al",
-            "heb"
+            "Trouwens,",
+            "verjaardag?",
+            "Hoe"
           ],
           "answers": [
-            "Over eten gesproken: heb je al gegeten?"
+            "Trouwens, wanneer is je verjaardag?"
           ],
-          "explanation": "Por falar em comida: já comeste? = Over eten gesproken: heb je al gegeten? (sobram: een, Wat)",
-          "vocabRefs": []
+          "explanation": "A propósito, quando é o teu aniversário? = Trouwens, wanneer is je verjaardag? (sobram: de, Hoe)",
+          "vocabRefs": [
+            "v-trouwens"
+          ]
         },
         {
           "id": "s5-u01-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat ding waarmee je blikken opent.",
+          "audioText": "Over eten gesproken: heb je al gegeten?",
           "answers": [
-            "Dat ding waarmee je blikken opent."
+            "Over eten gesproken: heb je al gegeten?"
           ],
-          "translation": "Aquela coisa com que se abrem latas.",
-          "explanation": "«Dat ding waarmee je blikken opent.» = Aquela coisa com que se abrem latas.",
-          "vocabRefs": [
-            "v-ding"
-          ]
+          "translation": "Por falar em comida: já comeste?",
+          "explanation": "«Over eten gesproken: heb je al gegeten?» = Por falar em comida: já comeste?",
+          "vocabRefs": []
         },
         {
           "id": "s5-u01-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik werk in de zorg. En jij?",
+          "audioText": "O ja? Dat wist ik niet.",
           "answers": [
-            "Ik werk in de zorg. En jij?"
+            "O ja? Dat wist ik niet."
           ],
-          "translation": "Trabalho na área da saúde. E tu?",
-          "explanation": "«Ik werk in de zorg. En jij?» = Trabalho na área da saúde. E tu?",
+          "translation": "Ah sim? Não sabia.",
+          "explanation": "«O ja? Dat wist ik niet.» = Ah sim? Não sabia.",
           "vocabRefs": [
-            "v-en-jij"
+            "v-o-ja"
           ]
         },
         {
           "id": "s5-u01-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kun je een voorbeeld geven?",
+          "audioText": "Trouwens, wanneer is je verjaardag?",
           "answers": [
-            "Kun je een voorbeeld geven?"
+            "Trouwens, wanneer is je verjaardag?"
           ],
-          "translation": "Podes dar um exemplo?",
-          "explanation": "«Kun je een voorbeeld geven?» = Podes dar um exemplo?",
+          "translation": "A propósito, quando é o teu aniversário?",
+          "explanation": "«Trouwens, wanneer is je verjaardag?» = A propósito, quando é o teu aniversário?",
           "vocabRefs": [
-            "v-voorbeeld"
+            "v-trouwens"
           ]
         },
         {
           "id": "s5-u01-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Dá cumprimentos à tua mulher!",
+          "translation": "Como é que se chama aquilo mesmo?",
           "tokens": [
-            "je",
-            "groeten",
-            "Doe",
-            "vrouw!",
-            "aan",
-            "de"
+            "Hoe",
+            "heet",
+            "dat",
+            "ook",
+            "alweer?"
           ],
           "alternatives": [],
-          "explanation": "Doe de groeten aan je vrouw!",
-          "vocabRefs": [
-            "v-de-groeten-aan"
-          ]
+          "explanation": "Hoe heet dat ook alweer?",
+          "vocabRefs": []
         },
         {
           "id": "s5-u01-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tenho de ir andando.",
+          "translation": "A sério? Que bom para ti!",
           "tokens": [
-            "Ik",
-            "weer",
-            "vandoor.",
-            "moet",
-            "er"
+            "Echt?",
+            "Wat",
+            "leuk",
+            "voor",
+            "je!"
           ],
           "alternatives": [],
-          "explanation": "Ik moet er weer vandoor.",
+          "explanation": "Echt? Wat leuk voor je!",
           "vocabRefs": []
         },
         {
           "id": "s5-u01-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «leuk je gesproken te hebben»?",
+          "prompt": "O que significa «over … gesproken»?",
           "options": [
             {
               "id": "a",
-              "text": "foi bom falar contigo",
+              "text": "por falar em…",
               "correct": true
             },
             {
               "id": "b",
-              "text": "falamos",
+              "text": "ter de ir andando",
               "correct": false
             },
             {
               "id": "c",
-              "text": "uma espécie de",
+              "text": "deixa-me pensar",
               "correct": false
             }
           ],
-          "explanation": "«leuk je gesproken te hebben» = foi bom falar contigo.",
+          "explanation": "«over … gesproken» = por falar em….",
           "vocabRefs": [
-            "v-leuk-gesproken"
+            "v-over-gesproken"
           ]
         },
         {
           "id": "s5-u01-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «en jij?»?",
+          "prompt": "O que significa «doe de groeten aan…»?",
           "options": [
             {
               "id": "a",
-              "text": "e tu?",
+              "text": "dá cumprimentos a…",
               "correct": true
             },
             {
               "id": "b",
-              "text": "uma espécie de",
+              "text": "exemplo",
               "correct": false
             },
             {
               "id": "c",
-              "text": "a propósito",
+              "text": "deixa-me pensar",
               "correct": false
             }
           ],
-          "explanation": "«en jij?» = e tu?.",
+          "explanation": "«doe de groeten aan…» = dá cumprimentos a….",
           "vocabRefs": [
-            "v-en-jij"
+            "v-de-groeten-aan"
           ]
         }
       ],

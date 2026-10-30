@@ -2026,16 +2026,16 @@
       ],
       "examples": [
         {
-          "nl": "Utrecht is dichtbij.",
-          "pt": "Utrecht é perto."
+          "nl": "Eva is een Nederlandse.",
+          "pt": "A Eva é neerlandesa."
+        },
+        {
+          "nl": "Lissabon is de hoofdstad van Portugal.",
+          "pt": "Lisboa é a capital de Portugal."
         },
         {
           "nl": "Tom is Nederlander.",
           "pt": "O Tom é neerlandês."
-        },
-        {
-          "nl": "Hij is Duitser.",
-          "pt": "Ele é alemão."
         }
       ],
       "grammar": [],
@@ -2087,9 +2087,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "A Bélgica é pequena.",
           "tokens": [
+            "België",
             "is",
-            "klein.",
-            "België"
+            "klein."
           ],
           "alternatives": [],
           "explanation": "België is klein.",
@@ -2104,12 +2104,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Haia não é a capital.",
           "tokens": [
-            "niet",
-            "hoofdstad.",
-            "is",
             "Den",
+            "Haag",
+            "is",
+            "niet",
             "de",
-            "Haag"
+            "hoofdstad."
           ],
           "alternatives": [],
           "explanation": "Den Haag is niet de hoofdstad.",
@@ -2124,10 +2124,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "A Eva é neerlandesa.",
           "tokens": [
-            "is",
-            "Nederlandse.",
             "Eva",
-            "een"
+            "is",
+            "een",
+            "Nederlandse."
           ],
           "alternatives": [],
           "explanation": "Eva is een Nederlandse.",
@@ -2139,21 +2139,48 @@
           "id": "s1-u06-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Hij is Duitser.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A Bélgica é pequena.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Ele é alemão.",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Lisboa é a capital de Portugal.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Hij is Duitser.» = Ele é alemão.",
+          "vocabRefs": [
+            "v-duits-adj"
+          ]
+        },
+        {
+          "id": "s1-u06-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa: «Den Haag is niet de hoofdstad.»?",
           "options": [
             {
               "id": "a",
+              "text": "Um pouco.",
+              "correct": false
+            },
+            {
+              "id": "b",
               "text": "Haia não é a capital.",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "O Tom é neerlandês.",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "Falo português e inglês.",
+              "text": "Sou português, sou do Porto e agora vivo em Utrecht.",
               "correct": false
             }
           ],
@@ -2164,52 +2191,27 @@
           ]
         },
         {
-          "id": "s1-u06-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Lissabon is de hoofdstad van Portugal.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "A Bélgica é pequena.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Haia não é a capital.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Lisboa é a capital de Portugal.",
-              "correct": true
-            }
-          ],
-          "explanation": "«Lissabon is de hoofdstad van Portugal.» = Lisboa é a capital de Portugal.",
-          "vocabRefs": [
-            "v-stad",
-            "v-hoofdstad",
-            "v-van"
-          ]
-        },
-        {
           "id": "s1-u06-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Utrecht é perto.",
+          "prompt": "Haia não é a capital.",
           "tokens": [
-            "dichtbij.",
-            "is",
+            "de",
+            "Portugal.",
+            "Den",
+            "niet",
             "Hij",
-            "Utrecht",
-            "Portugese."
+            "hoofdstad.",
+            "is",
+            "Haag"
           ],
           "answers": [
-            "Utrecht is dichtbij."
+            "Den Haag is niet de hoofdstad."
           ],
-          "explanation": "Utrecht é perto. = Utrecht is dichtbij. (sobram: Hij, Portugese.)",
+          "explanation": "Haia não é a capital. = Den Haag is niet de hoofdstad. (sobram: Hij, Portugal.)",
           "vocabRefs": [
-            "v-dichtbij"
+            "v-stad",
+            "v-hoofdstad"
           ]
         },
         {
@@ -2218,16 +2220,16 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Ela é portuguesa.",
           "tokens": [
-            "Tom",
             "is",
+            "Lissabon",
+            "Portugese.",
             "Ik",
-            "Zij",
-            "Portugese."
+            "Zij"
           ],
           "answers": [
             "Zij is Portugese."
           ],
-          "explanation": "Ela é portuguesa. = Zij is Portugese. (sobram: Tom, Ik)",
+          "explanation": "Ela é portuguesa. = Zij is Portugese. (sobram: Lissabon, Ik)",
           "vocabRefs": []
         }
       ],
@@ -2293,16 +2295,16 @@
       ],
       "examples": [
         {
-          "nl": "Spreekt u Engels?",
-          "pt": "Fala inglês?"
-        },
-        {
           "nl": "Ik ben Portugees, ik kom uit Porto en ik woon nu in Utrecht.",
           "pt": "Sou português, sou do Porto e agora vivo em Utrecht."
         },
         {
-          "nl": "Eva is een Nederlandse.",
-          "pt": "A Eva é neerlandesa."
+          "nl": "Ik woon in Duitsland.",
+          "pt": "Vivo na Alemanha."
+        },
+        {
+          "nl": "Zij is Duitse.",
+          "pt": "Ela é alemã."
         }
       ],
       "grammar": [],
@@ -2311,34 +2313,7 @@
           "id": "s1-u06-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «neerlandês» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Spaans",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Spanje",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Nederlander",
-              "correct": true
-            }
-          ],
-          "explanation": "neerlandês = «Nederlander».",
-          "vocabRefs": [
-            "v-nederlander"
-          ]
-        },
-        {
-          "id": "s1-u06-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «língua» em neerlandês?",
+          "prompt": "Como se diz «inglês» em neerlandês?",
           "options": [
             {
               "id": "a",
@@ -2347,18 +2322,45 @@
             },
             {
               "id": "b",
-              "text": "taal",
+              "text": "Duitsland",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Engels",
+              "correct": true
+            }
+          ],
+          "explanation": "inglês = «Engels».",
+          "vocabRefs": [
+            "v-engels"
+          ]
+        },
+        {
+          "id": "s1-u06-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «falar» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "België",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "spreken",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Brazilië",
+              "text": "van",
               "correct": false
             }
           ],
-          "explanation": "língua = «taal».",
+          "explanation": "falar = «spreken».",
           "vocabRefs": [
-            "v-taal"
+            "v-spreken"
           ]
         },
         {
@@ -2371,8 +2373,8 @@
             "ver"
           ],
           "choices": [
-            "van",
-            "hoofdstad",
+            "land",
+            "spreken",
             "ver"
           ],
           "explanation": "Is het ver?",
@@ -2390,9 +2392,9 @@
             "Spanje"
           ],
           "choices": [
-            "Engels",
             "Spanje",
-            "België"
+            "Taal",
+            "Frankrijk"
           ],
           "explanation": "Zij woont in Spanje.",
           "vocabRefs": [
@@ -2403,27 +2405,27 @@
           "id": "s1-u06-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik spreek een beetje Nederlands.",
+          "audioText": "Tom is Nederlander.",
           "answers": [
-            "Ik spreek een beetje Nederlands."
+            "Tom is Nederlander."
           ],
-          "translation": "Falo um pouco de neerlandês.",
-          "explanation": "«Ik spreek een beetje Nederlands.» = Falo um pouco de neerlandês.",
+          "translation": "O Tom é neerlandês.",
+          "explanation": "«Tom is Nederlander.» = O Tom é neerlandês.",
           "vocabRefs": [
             "v-land",
-            "v-een-beetje"
+            "v-nederlander"
           ]
         },
         {
           "id": "s1-u06-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zij is Duitse.",
+          "audioText": "Hij is Duitser.",
           "answers": [
-            "Zij is Duitse."
+            "Hij is Duitser."
           ],
-          "translation": "Ela é alemã.",
-          "explanation": "«Zij is Duitse.» = Ela é alemã.",
+          "translation": "Ele é alemão.",
+          "explanation": "«Hij is Duitser.» = Ele é alemão.",
           "vocabRefs": [
             "v-duits-adj"
           ]
@@ -2432,84 +2434,86 @@
           "id": "s1-u06-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vivo na Alemanha.",
+          "prompt": "O Tom é neerlandês.",
           "tokens": [
-            "de",
-            "Ik",
-            "woon",
-            "in",
-            "Portugal.",
-            "Duitsland."
+            "is",
+            "woont",
+            "Nederlander.",
+            "beetje",
+            "Tom"
           ],
           "answers": [
-            "Ik woon in Duitsland."
+            "Tom is Nederlander."
           ],
-          "explanation": "Vivo na Alemanha. = Ik woon in Duitsland. (sobram: de, Portugal.)",
+          "explanation": "O Tom é neerlandês. = Tom is Nederlander. (sobram: woont, beetje)",
           "vocabRefs": [
             "v-land",
-            "v-duitsland",
-            "v-duits-adj"
+            "v-nederlander"
           ]
         },
         {
           "id": "s1-u06-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sou de Portugal.",
+          "prompt": "Lisboa é a capital de Portugal.",
           "tokens": [
-            "kom",
-            "Nederlandse.",
-            "in",
-            "Ik",
-            "uit",
-            "Portugal."
+            "je",
+            "is",
+            "Portugal.",
+            "Brazilië.",
+            "van",
+            "hoofdstad",
+            "de",
+            "Lissabon"
           ],
           "answers": [
-            "Ik kom uit Portugal."
+            "Lissabon is de hoofdstad van Portugal."
           ],
-          "explanation": "Sou de Portugal. = Ik kom uit Portugal. (sobram: in, Nederlandse.)",
-          "vocabRefs": []
+          "explanation": "Lisboa é a capital de Portugal. = Lissabon is de hoofdstad van Portugal. (sobram: je, Brazilië.)",
+          "vocabRefs": [
+            "v-stad",
+            "v-hoofdstad",
+            "v-van"
+          ]
         },
         {
           "id": "s1-u06-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "taal",
-          "pt": "língua",
+          "noun": "Belg",
+          "pt": "belga",
           "article": "de",
-          "explanation": "de taal.",
+          "explanation": "de Belg.",
           "vocabRefs": [
-            "v-taal"
+            "v-belg"
           ]
         },
         {
           "id": "s1-u06-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Amsterdam is de hoofdstad van Nederland.»?",
+          "prompt": "O que significa: «België is klein.»?",
           "options": [
             {
               "id": "a",
-              "text": "Sou de Portugal.",
+              "text": "Falo português e inglês.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Haia não é a capital.",
-              "correct": false
+              "text": "A Bélgica é pequena.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Amesterdão é a capital dos Países Baixos.",
-              "correct": true
+              "text": "O Tom é neerlandês.",
+              "correct": false
             }
           ],
-          "explanation": "«Amsterdam is de hoofdstad van Nederland.» = Amesterdão é a capital dos Países Baixos.",
+          "explanation": "«België is klein.» = A Bélgica é pequena.",
           "vocabRefs": [
-            "v-land",
-            "v-stad",
-            "v-hoofdstad",
-            "v-van"
+            "v-belgie",
+            "v-belg"
           ]
         }
       ],
@@ -2575,16 +2579,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik spreek Portugees en Engels.",
-          "pt": "Falo português e inglês."
+          "nl": "Lissabon is de hoofdstad van Portugal.",
+          "pt": "Lisboa é a capital de Portugal."
         },
         {
-          "nl": "Hij is Duitser.",
-          "pt": "Ele é alemão."
+          "nl": "Ik ben Portugees, ik kom uit Porto en ik woon nu in Utrecht.",
+          "pt": "Sou português, sou do Porto e agora vivo em Utrecht."
         },
         {
-          "nl": "Ik ben Portugees.",
-          "pt": "Sou português."
+          "nl": "Ik spreek een beetje Nederlands.",
+          "pt": "Falo um pouco de neerlandês."
         }
       ],
       "grammar": [],
@@ -2593,150 +2597,151 @@
           "id": "s1-u06-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A Bélgica é pequena.",
+          "prompt": "Sou português.",
           "tokens": [
-            "Brazilië.",
-            "klein.",
-            "is",
-            "België",
-            "u"
+            "Duitse.",
+            "het",
+            "Ik",
+            "Portugees.",
+            "ben"
           ],
           "answers": [
-            "België is klein."
+            "Ik ben Portugees."
           ],
-          "explanation": "A Bélgica é pequena. = België is klein. (sobram: Brazilië., u)",
+          "explanation": "Sou português. = Ik ben Portugees. (sobram: Duitse., het)",
           "vocabRefs": [
-            "v-belgie",
-            "v-belg"
+            "v-portugees",
+            "v-portugees-taal"
           ]
         },
         {
           "id": "s1-u06-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Falo um pouco de neerlandês.",
+          "prompt": "Ela vive em Espanha.",
           "tokens": [
-            "Ik",
-            "een",
-            "beetje",
-            "spreek",
-            "België",
-            "Nederlands.",
-            "van"
+            "Zij",
+            "in",
+            "Portugal.",
+            "woont",
+            "van",
+            "Spanje."
           ],
           "answers": [
-            "Ik spreek een beetje Nederlands."
+            "Zij woont in Spanje."
           ],
-          "explanation": "Falo um pouco de neerlandês. = Ik spreek een beetje Nederlands. (sobram: België, van)",
+          "explanation": "Ela vive em Espanha. = Zij woont in Spanje. (sobram: Portugal., van)",
           "vocabRefs": [
-            "v-land",
-            "v-een-beetje"
+            "v-spanje"
           ]
         },
         {
           "id": "s1-u06-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Fala inglês?",
+          "prompt": "Sou de Portugal.",
           "tokens": [
-            "Zij",
-            "u",
-            "Engels?",
-            "België",
-            "Spreekt"
+            "Portugees.",
+            "Ik",
+            "kom",
+            "hoofdstad.",
+            "uit",
+            "Portugal."
           ],
           "answers": [
-            "Spreekt u Engels?"
+            "Ik kom uit Portugal."
           ],
-          "explanation": "Fala inglês? = Spreekt u Engels? (sobram: België, Zij)",
-          "vocabRefs": [
-            "v-engels"
-          ]
+          "explanation": "Sou de Portugal. = Ik kom uit Portugal. (sobram: hoofdstad., Portugees.)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u06-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Is het ver?",
+          "audioText": "Ik woon in Duitsland.",
           "answers": [
-            "Is het ver?"
+            "Ik woon in Duitsland."
           ],
-          "translation": "É longe?",
-          "explanation": "«Is het ver?» = É longe?",
+          "translation": "Vivo na Alemanha.",
+          "explanation": "«Ik woon in Duitsland.» = Vivo na Alemanha.",
           "vocabRefs": [
-            "v-ver"
+            "v-land",
+            "v-duitsland",
+            "v-duits-adj"
           ]
         },
         {
           "id": "s1-u06-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Spreek je Nederlands?",
+          "audioText": "Ik spreek een beetje Nederlands.",
           "answers": [
-            "Spreek je Nederlands?"
+            "Ik spreek een beetje Nederlands."
           ],
-          "translation": "Falas neerlandês?",
-          "explanation": "«Spreek je Nederlands?» = Falas neerlandês?",
+          "translation": "Falo um pouco de neerlandês.",
+          "explanation": "«Ik spreek een beetje Nederlands.» = Falo um pouco de neerlandês.",
           "vocabRefs": [
-            "v-land"
+            "v-land",
+            "v-een-beetje"
           ]
         },
         {
           "id": "s1-u06-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Den Haag is niet de hoofdstad.",
+          "audioText": "Zij is Duitse.",
           "answers": [
-            "Den Haag is niet de hoofdstad."
+            "Zij is Duitse."
           ],
-          "translation": "Haia não é a capital.",
-          "explanation": "«Den Haag is niet de hoofdstad.» = Haia não é a capital.",
+          "translation": "Ela é alemã.",
+          "explanation": "«Zij is Duitse.» = Ela é alemã.",
           "vocabRefs": [
-            "v-stad",
-            "v-hoofdstad"
+            "v-duits-adj"
           ]
         },
         {
           "id": "s1-u06-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ela vive em Espanha.",
+          "translation": "Ela é alemã.",
           "tokens": [
-            "woont",
-            "Spanje.",
-            "in",
-            "Zij"
+            "Zij",
+            "is",
+            "Duitse."
           ],
           "alternatives": [],
-          "explanation": "Zij woont in Spanje.",
+          "explanation": "Zij is Duitse.",
           "vocabRefs": [
-            "v-spanje"
+            "v-duits-adj"
           ]
         },
         {
           "id": "s1-u06-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ela é portuguesa.",
+          "translation": "Sou português.",
           "tokens": [
-            "is",
-            "Zij",
-            "Portugese."
+            "Ik",
+            "ben",
+            "Portugees."
           ],
           "alternatives": [],
-          "explanation": "Zij is Portugese.",
-          "vocabRefs": []
+          "explanation": "Ik ben Portugees.",
+          "vocabRefs": [
+            "v-portugees",
+            "v-portugees-taal"
+          ]
         },
         {
           "id": "s1-u06-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het Engels»?",
+          "prompt": "O que significa «Frankrijk»?",
           "options": [
             {
               "id": "a",
-              "text": "inglês",
-              "correct": true
+              "text": "Espanha",
+              "correct": false
             },
             {
               "id": "b",
@@ -2745,40 +2750,40 @@
             },
             {
               "id": "c",
-              "text": "português",
-              "correct": false
+              "text": "França",
+              "correct": true
             }
           ],
-          "explanation": "«het Engels» = inglês.",
+          "explanation": "«Frankrijk» = França.",
           "vocabRefs": [
-            "v-engels"
+            "v-frankrijk"
           ]
         },
         {
           "id": "s1-u06-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «Duits»?",
+          "prompt": "O que significa «het Spaans»?",
           "options": [
             {
               "id": "a",
-              "text": "França",
+              "text": "francês",
               "correct": false
             },
             {
               "id": "b",
-              "text": "alemão",
-              "correct": true
+              "text": "Inglaterra",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "português",
-              "correct": false
+              "text": "espanhol",
+              "correct": true
             }
           ],
-          "explanation": "«Duits» = alemão.",
+          "explanation": "«het Spaans» = espanhol (língua).",
           "vocabRefs": [
-            "v-duits-adj"
+            "v-spaans-taal"
           ]
         }
       ],
@@ -2844,16 +2849,16 @@
       ],
       "examples": [
         {
-          "nl": "Spreek je Nederlands?",
-          "pt": "Falas neerlandês?"
+          "nl": "Ik kom uit Portugal.",
+          "pt": "Sou de Portugal."
         },
         {
-          "nl": "Is het ver?",
-          "pt": "É longe?"
+          "nl": "Ik spreek een beetje Nederlands.",
+          "pt": "Falo um pouco de neerlandês."
         },
         {
-          "nl": "Ik woon in Duitsland.",
-          "pt": "Vivo na Alemanha."
+          "nl": "Amsterdam is de hoofdstad van Nederland.",
+          "pt": "Amesterdão é a capital dos Países Baixos."
         }
       ],
       "grammar": [],
@@ -2864,45 +2869,45 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "hoofdstad",
-              "pt": "capital"
-            },
-            {
-              "nl": "ver",
-              "pt": "longe"
-            },
-            {
               "nl": "Frankrijk",
               "pt": "França"
             },
             {
-              "nl": "Brazilië",
-              "pt": "Brasil"
+              "nl": "Frans",
+              "pt": "francês"
             },
             {
-              "nl": "België",
-              "pt": "Bélgica"
+              "nl": "spreken",
+              "pt": "falar"
+            },
+            {
+              "nl": "hoofdstad",
+              "pt": "capital"
+            },
+            {
+              "nl": "Portugees",
+              "pt": "português"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-hoofdstad",
-            "v-ver",
             "v-frankrijk",
-            "v-brazilie",
-            "v-belgie"
+            "v-frans",
+            "v-spreken",
+            "v-hoofdstad",
+            "v-portugees"
           ]
         },
         {
           "id": "s1-u06-l010-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Spreek je Nederlands?",
+          "audioText": "Eva is een Nederlandse.",
           "answers": [
-            "Spreek je Nederlands?"
+            "Eva is een Nederlandse."
           ],
-          "translation": "Falas neerlandês?",
-          "explanation": "«Spreek je Nederlands?» = Falas neerlandês?",
+          "translation": "A Eva é neerlandesa.",
+          "explanation": "«Eva is een Nederlandse.» = A Eva é neerlandesa.",
           "vocabRefs": [
             "v-land"
           ]
@@ -2911,14 +2916,15 @@
           "id": "s1-u06-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Is het ver?",
+          "audioText": "Ik ben Portugees.",
           "answers": [
-            "Is het ver?"
+            "Ik ben Portugees."
           ],
-          "translation": "É longe?",
-          "explanation": "«Is het ver?» = É longe?",
+          "translation": "Sou português.",
+          "explanation": "«Ik ben Portugees.» = Sou português.",
           "vocabRefs": [
-            "v-ver"
+            "v-portugees",
+            "v-portugees-taal"
           ]
         },
         {
@@ -2929,18 +2935,18 @@
           "options": [
             {
               "id": "a",
-              "text": "brasileiro",
+              "text": "Bélgica",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Brasil",
-              "correct": false
+              "text": "belga",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "belga",
-              "correct": true
+              "text": "longe",
+              "correct": false
             }
           ],
           "explanation": "«de Belg» = belga.",
@@ -2952,65 +2958,59 @@
           "id": "s1-u06-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het dorp»?",
+          "prompt": "O que significa «het Frans»?",
           "options": [
             {
               "id": "a",
-              "text": "espanhol",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "aldeia",
+              "text": "francês",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "belga",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "país",
+              "text": "falar",
               "correct": false
             }
           ],
-          "explanation": "«het dorp» = aldeia.",
+          "explanation": "«het Frans» = francês.",
           "vocabRefs": [
-            "v-dorp"
+            "v-frans"
           ]
         },
         {
           "id": "s1-u06-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O Tom é neerlandês.",
+          "translation": "Falas neerlandês?",
           "tokens": [
-            "is",
-            "Tom",
-            "Nederlander."
+            "Spreek",
+            "je",
+            "Nederlands?"
           ],
           "alternatives": [],
-          "explanation": "Tom is Nederlander.",
+          "explanation": "Spreek je Nederlands?",
           "vocabRefs": [
-            "v-land",
-            "v-nederlander"
+            "v-land"
           ]
         },
         {
           "id": "s1-u06-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Lisboa é a capital de Portugal.",
+          "translation": "Utrecht é perto.",
           "tokens": [
-            "hoofdstad",
-            "Lissabon",
-            "van",
+            "Utrecht",
             "is",
-            "de",
-            "Portugal."
+            "dichtbij."
           ],
           "alternatives": [],
-          "explanation": "Lissabon is de hoofdstad van Portugal.",
+          "explanation": "Utrecht is dichtbij.",
           "vocabRefs": [
-            "v-stad",
-            "v-hoofdstad",
-            "v-van"
+            "v-dichtbij"
           ]
         },
         {
@@ -3024,8 +3024,8 @@
           ],
           "choices": [
             "hoofdstad",
-            "spaans",
-            "portugees"
+            "portugees",
+            "stad"
           ],
           "explanation": "Amsterdam is de hoofdstad van Nederland.",
           "vocabRefs": [
@@ -3036,28 +3036,26 @@
           "id": "s1-u06-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Zij is Duitse.»?",
+          "prompt": "O que significa: «Zij is Portugese.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ele é do Brasil.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Ela é alemã.",
+              "text": "Ela é portuguesa.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Sou de Portugal.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Lisboa é a capital de Portugal.",
+              "text": "A Bélgica é pequena.",
               "correct": false
             }
           ],
-          "explanation": "«Zij is Duitse.» = Ela é alemã.",
-          "vocabRefs": [
-            "v-duits-adj"
-          ]
+          "explanation": "«Zij is Portugese.» = Ela é portuguesa.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 2,

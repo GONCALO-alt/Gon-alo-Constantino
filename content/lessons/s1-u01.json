@@ -2261,16 +2261,16 @@
       ],
       "examples": [
         {
+          "nl": "Goed, dank je. En met jou?",
+          "pt": "Bem, obrigado. E tu?"
+        },
+        {
+          "nl": "Dag! / Tot ziens!",
+          "pt": "Olá/Adeus! / Até à vista!"
+        },
+        {
           "nl": "Hoi! / Doei!",
           "pt": "Olá! / Tchau!"
-        },
-        {
-          "nl": "doei",
-          "pt": "≈ «dui»"
-        },
-        {
-          "nl": "Hoe gaat het met u?",
-          "pt": "Como está (o senhor / a senhora)?"
         }
       ],
       "grammar": [],
@@ -2326,10 +2326,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Com licença, posso passar?",
           "tokens": [
-            "erlangs?",
-            "ik",
             "Pardon,",
-            "mag"
+            "mag",
+            "ik",
+            "erlangs?"
           ],
           "alternatives": [],
           "explanation": "Pardon, mag ik erlangs?",
@@ -2343,10 +2343,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Obrigado/a, minha senhora.",
           "tokens": [
+            "Dank",
             "u",
-            "mevrouw.",
             "wel,",
-            "Dank"
+            "mevrouw."
           ],
           "alternatives": [],
           "explanation": "Dank u wel, mevrouw.",
@@ -2361,9 +2361,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tchau, até já!",
           "tokens": [
+            "Doei,",
             "tot",
-            "straks!",
-            "Doei,"
+            "straks!"
           ],
           "alternatives": [],
           "explanation": "Doei, tot straks!",
@@ -2376,104 +2376,104 @@
           "id": "s1-u01-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Dank je wel, Tom!»?",
+          "prompt": "O que significa: «Dank u wel, meneer.»?",
           "options": [
             {
               "id": "a",
-              "text": "Olá!",
+              "text": "Dorme bem! / Boa noite! (antes de dormir)",
               "correct": false
             },
             {
               "id": "b",
               "text": "Obrigado, Tom!",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Boa tarde!",
-              "correct": false
+              "text": "Obrigado, senhor.",
+              "correct": true
             }
           ],
-          "explanation": "«Dank je wel, Tom!» = Obrigado, Tom!",
+          "explanation": "«Dank u wel, meneer.» = Obrigado, senhor.",
           "vocabRefs": [
-            "v-dank-je-wel"
+            "v-meneer",
+            "v-dank-u-wel",
+            "v-en"
           ]
         },
         {
           "id": "s1-u01-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Goedemiddag, mevrouw. Hoe gaat het met u?»?",
+          "prompt": "O que significa: «Dank u wel, mevrouw.»?",
           "options": [
             {
               "id": "a",
-              "text": "Boa tarde. Como está?",
-              "correct": true
+              "text": "Boa noite! Bem-vindo!",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Dorme bem! / Boa noite! (antes de dormir)",
-              "correct": false
+              "text": "Obrigado/a, minha senhora.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Tchau, até já!",
+              "text": "Olá! / Tchau!",
               "correct": false
             }
           ],
-          "explanation": "«Goedemiddag, mevrouw. Hoe gaat het met u?» = Boa tarde. Como está?",
+          "explanation": "«Dank u wel, mevrouw.» = Obrigado/a, minha senhora.",
           "vocabRefs": [
-            "v-dag-groet",
-            "v-goedemiddag",
             "v-mevrouw",
-            "v-hoe-gaat-het"
+            "v-dank-u-wel"
           ]
         },
         {
           "id": "s1-u01-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como estás? / Como está?",
+          "prompt": "Obrigado/a, minha senhora.",
           "tokens": [
-            "u?",
-            "wel!",
-            "Hoe",
             "gaat",
-            "het?"
+            "Dank",
+            "wel,",
+            "Hoe",
+            "mevrouw.",
+            "u"
           ],
           "answers": [
-            "Hoe gaat het?"
+            "Dank u wel, mevrouw."
           ],
-          "explanation": "Como estás? / Como está? = Hoe gaat het? (sobram: wel!, u?)",
+          "explanation": "Obrigado/a, minha senhora. = Dank u wel, mevrouw. (sobram: gaat, Hoe)",
           "vocabRefs": [
-            "v-hoe-gaat-het"
+            "v-mevrouw",
+            "v-dank-u-wel"
           ]
         },
         {
           "id": "s1-u01-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Boa tarde. Como está?",
+          "prompt": "Bem, obrigado. E tu?",
           "tokens": [
-            "mevrouw.",
-            "gaat",
-            "Hoe",
-            "ik",
+            "dank",
             "met",
-            "het",
-            "Tom!",
-            "u?",
-            "Goedemiddag,"
+            "je.",
+            "meneer.",
+            "En",
+            "jou?",
+            "ik",
+            "Goed,"
           ],
           "answers": [
-            "Goedemiddag, mevrouw. Hoe gaat het met u?"
+            "Goed, dank je. En met jou?"
           ],
-          "explanation": "Boa tarde. Como está? = Goedemiddag, mevrouw. Hoe gaat het met u? (sobram: ik, Tom!)",
+          "explanation": "Bem, obrigado. E tu? = Goed, dank je. En met jou? (sobram: ik, meneer.)",
           "vocabRefs": [
-            "v-dag-groet",
-            "v-goedemiddag",
-            "v-mevrouw",
-            "v-hoe-gaat-het"
+            "v-goed",
+            "v-en",
+            "v-en-met-jou"
           ]
         }
       ],
@@ -2534,16 +2534,16 @@
       ],
       "examples": [
         {
-          "nl": "Goedemiddag, mevrouw!",
-          "pt": "Boa tarde!"
+          "nl": "Hoe gaat het met u?",
+          "pt": "Como está (o senhor / a senhora)?"
         },
         {
-          "nl": "Dank u wel. Tot ziens!",
-          "pt": "Obrigado/a. Adeus!"
+          "nl": "Goedenavond!",
+          "pt": "Boa noite! (ao chegar)"
         },
         {
-          "nl": "goedemorgen",
-          "pt": "o «g» inicial soa como um «r» raspado na garganta"
+          "nl": "Hoe gaat het?",
+          "pt": "Como estás? / Como está?"
         }
       ],
       "grammar": [],
@@ -2694,22 +2694,21 @@
           "id": "s1-u01-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Obrigado/a, minha senhora.",
+          "prompt": "Com licença, posso passar?",
           "tokens": [
-            "u",
-            "mevrouw.",
-            "wel,",
-            "Dank",
-            "Tom!",
+            "Pardon,",
+            "Eva,",
+            "gaat",
+            "mag",
+            "ik",
             "erlangs?"
           ],
           "answers": [
-            "Dank u wel, mevrouw."
+            "Pardon, mag ik erlangs?"
           ],
-          "explanation": "Obrigado/a, minha senhora. = Dank u wel, mevrouw. (sobram: Tom!, erlangs?)",
+          "explanation": "Com licença, posso passar? = Pardon, mag ik erlangs? (sobram: Eva,, gaat)",
           "vocabRefs": [
-            "v-mevrouw",
-            "v-dank-u-wel"
+            "v-pardon"
           ]
         },
         {
@@ -2728,27 +2727,27 @@
           "id": "s1-u01-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoe gaat het?»?",
+          "prompt": "O que significa: «Het gaat wel.»?",
           "options": [
             {
               "id": "a",
-              "text": "Olá/Adeus! / Até à vista!",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Como estás? / Como está?",
+              "text": "Mais ou menos.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Um café, por favor.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Obrigado, Tom!",
+              "text": "Dorme bem! / Boa noite! (antes de dormir)",
               "correct": false
             }
           ],
-          "explanation": "«Hoe gaat het?» = Como estás? / Como está?",
+          "explanation": "«Het gaat wel.» = Mais ou menos.",
           "vocabRefs": [
-            "v-hoe-gaat-het"
+            "v-het-gaat-wel"
           ]
         }
       ],
@@ -2809,16 +2808,16 @@
       ],
       "examples": [
         {
-          "nl": "Welterusten!",
-          "pt": "Dorme bem! / Boa noite! (antes de dormir)"
+          "nl": "Dank u wel, mevrouw.",
+          "pt": "Obrigado/a, minha senhora."
         },
         {
-          "nl": "Doei, tot straks!",
-          "pt": "Tchau, até já!"
+          "nl": "doei",
+          "pt": "≈ «dui»"
         },
         {
-          "nl": "Goedemiddag, mevrouw!",
-          "pt": "Boa tarde!"
+          "nl": "Goedenavond!",
+          "pt": "Boa noite! (ao chegar)"
         }
       ],
       "grammar": [],
@@ -2827,24 +2826,20 @@
           "id": "s1-u01-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Bom dia, senhor De Vries!",
+          "prompt": "Como estás? / Como está?",
           "tokens": [
-            "wel.",
-            "meneer",
-            "Vries!",
+            "Hoe",
+            "het?",
+            "met",
             "Goedemorgen,",
-            "De",
-            "mevrouw."
+            "gaat"
           ],
           "answers": [
-            "Goedemorgen, meneer De Vries!"
+            "Hoe gaat het?"
           ],
-          "explanation": "Bom dia, senhor De Vries! = Goedemorgen, meneer De Vries! (sobram: wel., mevrouw.)",
+          "explanation": "Como estás? / Como está? = Hoe gaat het? (sobram: met, Goedemorgen,)",
           "vocabRefs": [
-            "v-goedemorgen",
-            "v-meneer",
-            "v-goed",
-            "v-en"
+            "v-hoe-gaat-het"
           ]
         },
         {
@@ -2853,17 +2848,17 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Obrigado, senhor.",
           "tokens": [
-            "Tot",
-            "meneer.",
-            "u",
+            "alstublieft.",
             "Dank",
-            "wel,",
-            "alstublieft."
+            "meneer.",
+            "gaat",
+            "u",
+            "wel,"
           ],
           "answers": [
             "Dank u wel, meneer."
           ],
-          "explanation": "Obrigado, senhor. = Dank u wel, meneer. (sobram: alstublieft., Tot)",
+          "explanation": "Obrigado, senhor. = Dank u wel, meneer. (sobram: gaat, alstublieft.)",
           "vocabRefs": [
             "v-meneer",
             "v-dank-u-wel",
@@ -2874,105 +2869,19 @@
           "id": "s1-u01-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como está (o senhor / a senhora)?",
+          "prompt": "Bom dia, senhor De Vries!",
           "tokens": [
-            "Hoe",
-            "met",
-            "gaat",
-            "u?",
-            "Tom!",
-            "Dank",
-            "het"
-          ],
-          "answers": [
-            "Hoe gaat het met u?"
-          ],
-          "explanation": "Como está (o senhor / a senhora)? = Hoe gaat het met u? (sobram: Tom!, Dank)",
-          "vocabRefs": [
-            "v-hoe-gaat-het"
-          ]
-        },
-        {
-          "id": "s1-u01-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dank u wel, meneer.",
-          "answers": [
-            "Dank u wel, meneer."
-          ],
-          "translation": "Obrigado, senhor.",
-          "explanation": "«Dank u wel, meneer.» = Obrigado, senhor.",
-          "vocabRefs": [
-            "v-meneer",
-            "v-dank-u-wel",
-            "v-en"
-          ]
-        },
-        {
-          "id": "s1-u01-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een koffie, alstublieft.",
-          "answers": [
-            "Een koffie, alstublieft."
-          ],
-          "translation": "Um café, por favor.",
-          "explanation": "«Een koffie, alstublieft.» = Um café, por favor.",
-          "vocabRefs": [
-            "v-alstublieft",
-            "v-koffie",
-            "v-en"
-          ]
-        },
-        {
-          "id": "s1-u01-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dank u wel. Tot ziens!",
-          "answers": [
-            "Dank u wel. Tot ziens!"
-          ],
-          "translation": "Obrigado/a. Adeus!",
-          "explanation": "«Dank u wel. Tot ziens!» = Obrigado/a. Adeus!",
-          "vocabRefs": [
-            "v-tot-ziens",
-            "v-dank-u-wel",
-            "v-en"
-          ]
-        },
-        {
-          "id": "s1-u01-l009-e07",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Obrigado/a. Adeus!",
-          "tokens": [
-            "Tot",
-            "u",
-            "Dank",
-            "ziens!",
-            "wel."
-          ],
-          "alternatives": [],
-          "explanation": "Dank u wel. Tot ziens!",
-          "vocabRefs": [
-            "v-tot-ziens",
-            "v-dank-u-wel",
-            "v-en"
-          ]
-        },
-        {
-          "id": "s1-u01-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Bom dia, senhor De Vries!",
-          "tokens": [
+            "Doei,",
             "Vries!",
-            "De",
+            "u",
             "Goedemorgen,",
+            "De",
             "meneer"
           ],
-          "alternatives": [],
-          "explanation": "Goedemorgen, meneer De Vries!",
+          "answers": [
+            "Goedemorgen, meneer De Vries!"
+          ],
+          "explanation": "Bom dia, senhor De Vries! = Goedemorgen, meneer De Vries! (sobram: Doei,, u)",
           "vocabRefs": [
             "v-goedemorgen",
             "v-meneer",
@@ -2981,57 +2890,137 @@
           ]
         },
         {
+          "id": "s1-u01-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Dank je wel, Tom!",
+          "answers": [
+            "Dank je wel, Tom!"
+          ],
+          "translation": "Obrigado, Tom!",
+          "explanation": "«Dank je wel, Tom!» = Obrigado, Tom!",
+          "vocabRefs": [
+            "v-dank-je-wel"
+          ]
+        },
+        {
+          "id": "s1-u01-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Hoe gaat het?",
+          "answers": [
+            "Hoe gaat het?"
+          ],
+          "translation": "Como estás? / Como está?",
+          "explanation": "«Hoe gaat het?» = Como estás? / Como está?",
+          "vocabRefs": [
+            "v-hoe-gaat-het"
+          ]
+        },
+        {
+          "id": "s1-u01-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Goedemiddag, mevrouw. Hoe gaat het met u?",
+          "answers": [
+            "Goedemiddag, mevrouw. Hoe gaat het met u?"
+          ],
+          "translation": "Boa tarde. Como está?",
+          "explanation": "«Goedemiddag, mevrouw. Hoe gaat het met u?» = Boa tarde. Como está?",
+          "vocabRefs": [
+            "v-dag-groet",
+            "v-goedemiddag",
+            "v-mevrouw",
+            "v-hoe-gaat-het"
+          ]
+        },
+        {
+          "id": "s1-u01-l009-e07",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Obrigado, Tom!",
+          "tokens": [
+            "Dank",
+            "je",
+            "wel,",
+            "Tom!"
+          ],
+          "alternatives": [],
+          "explanation": "Dank je wel, Tom!",
+          "vocabRefs": [
+            "v-dank-je-wel"
+          ]
+        },
+        {
+          "id": "s1-u01-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Um café, por favor.",
+          "tokens": [
+            "Een",
+            "koffie,",
+            "alstublieft."
+          ],
+          "alternatives": [],
+          "explanation": "Een koffie, alstublieft.",
+          "vocabRefs": [
+            "v-alstublieft",
+            "v-koffie",
+            "v-en"
+          ]
+        },
+        {
           "id": "s1-u01-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «en met u?»?",
+          "prompt": "O que significa «alsjeblieft»?",
           "options": [
             {
               "id": "a",
-              "text": "por favor",
+              "text": "boa noite",
               "correct": false
             },
             {
               "id": "b",
-              "text": "e o senhor?",
+              "text": "por favor",
               "correct": true
             },
             {
               "id": "c",
-              "text": "bem",
+              "text": "e tu?",
               "correct": false
             }
           ],
-          "explanation": "«en met u?» = e o senhor?, e a senhora?, e você?.",
+          "explanation": "«alsjeblieft» = por favor, aqui tens.",
           "vocabRefs": [
-            "v-en-met-u"
+            "v-alsjeblieft"
           ]
         },
         {
           "id": "s1-u01-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «dank u wel»?",
+          "prompt": "O que significa «de meneer»?",
           "options": [
             {
               "id": "a",
-              "text": "obrigado",
-              "correct": true
-            },
-            {
-              "id": "b",
               "text": "olá",
               "correct": false
             },
             {
-              "id": "c",
-              "text": "ótimo",
+              "id": "b",
+              "text": "infelizmente",
               "correct": false
+            },
+            {
+              "id": "c",
+              "text": "senhor",
+              "correct": true
             }
           ],
-          "explanation": "«dank u wel» = obrigado, obrigada.",
+          "explanation": "«de meneer» = senhor.",
           "vocabRefs": [
-            "v-dank-u-wel"
+            "v-meneer"
           ]
         }
       ],
@@ -3112,33 +3101,51 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "dank je wel",
-              "pt": "obrigado"
+              "nl": "helaas",
+              "pt": "infelizmente"
             },
             {
-              "nl": "goedemiddag",
-              "pt": "boa tarde"
+              "nl": "koffie",
+              "pt": "café"
             },
             {
-              "nl": "niet zo goed",
-              "pt": "não muito bem"
+              "nl": "welterusten",
+              "pt": "dorme bem"
             },
             {
-              "nl": "doei",
-              "pt": "adeus"
+              "nl": "hallo",
+              "pt": "olá"
+            },
+            {
+              "nl": "en",
+              "pt": "e"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-dank-je-wel",
-            "v-goedemiddag",
-            "v-niet-zo-goed",
-            "v-dank-u-wel",
-            "v-doei"
+            "v-helaas",
+            "v-koffie",
+            "v-welterusten",
+            "v-hallo",
+            "v-goedenavond"
           ]
         },
         {
           "id": "s1-u01-l010-e02",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Hoe gaat het?",
+          "answers": [
+            "Hoe gaat het?"
+          ],
+          "translation": "Como estás? / Como está?",
+          "explanation": "«Hoe gaat het?» = Como estás? / Como está?",
+          "vocabRefs": [
+            "v-hoe-gaat-het"
+          ]
+        },
+        {
+          "id": "s1-u01-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Goedemiddag, mevrouw. Hoe gaat het met u?",
@@ -3155,68 +3162,25 @@
           ]
         },
         {
-          "id": "s1-u01-l010-e03",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dank u wel. Tot ziens!",
-          "answers": [
-            "Dank u wel. Tot ziens!"
-          ],
-          "translation": "Obrigado/a. Adeus!",
-          "explanation": "«Dank u wel. Tot ziens!» = Obrigado/a. Adeus!",
-          "vocabRefs": [
-            "v-tot-ziens",
-            "v-dank-u-wel",
-            "v-en"
-          ]
-        },
-        {
           "id": "s1-u01-l010-e04",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «goedenacht»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "boa noite",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "adeus",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "e tu?",
-              "correct": false
-            }
-          ],
-          "explanation": "«goedenacht» = boa noite.",
-          "vocabRefs": [
-            "v-goedenacht"
-          ]
-        },
-        {
-          "id": "s1-u01-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa «hoe gaat het?»?",
           "options": [
             {
               "id": "a",
-              "text": "por favor",
+              "text": "olá",
               "correct": false
             },
             {
               "id": "b",
-              "text": "como estás?",
-              "correct": true
+              "text": "boa tarde",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "não muito bem",
-              "correct": false
+              "text": "como estás?",
+              "correct": true
             }
           ],
           "explanation": "«hoe gaat het?» = como estás?, como está?, como vai?.",
@@ -3225,87 +3189,112 @@
           ]
         },
         {
+          "id": "s1-u01-l010-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «goedenavond»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "desculpa",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "boa noite",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "e",
+              "correct": false
+            }
+          ],
+          "explanation": "«goedenavond» = boa noite.",
+          "vocabRefs": [
+            "v-goedenavond"
+          ]
+        },
+        {
           "id": "s1-u01-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Um café, por favor.",
+          "translation": "Obrigado/a, minha senhora.",
           "tokens": [
-            "koffie,",
-            "Een",
-            "alstublieft."
+            "Dank",
+            "u",
+            "wel,",
+            "mevrouw."
           ],
           "alternatives": [],
-          "explanation": "Een koffie, alstublieft.",
+          "explanation": "Dank u wel, mevrouw.",
           "vocabRefs": [
-            "v-alstublieft",
-            "v-koffie",
-            "v-en"
+            "v-mevrouw",
+            "v-dank-u-wel"
           ]
         },
         {
           "id": "s1-u01-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Como está (o senhor / a senhora)?",
+          "translation": "Tchau, até já!",
           "tokens": [
-            "Hoe",
-            "u?",
-            "met",
-            "gaat",
-            "het"
+            "Doei,",
+            "tot",
+            "straks!"
           ],
           "alternatives": [],
-          "explanation": "Hoe gaat het met u?",
+          "explanation": "Doei, tot straks!",
           "vocabRefs": [
-            "v-hoe-gaat-het"
+            "v-doei",
+            "v-tot-straks"
           ]
         },
         {
           "id": "s1-u01-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___, mevrouw. Hoe gaat het met u?",
-          "translation": "Boa tarde. Como está?",
+          "sentence": "Dank u wel, ___.",
+          "translation": "Obrigado, senhor.",
           "answers": [
-            "Goedemiddag"
+            "meneer"
           ],
           "choices": [
-            "Doei",
-            "Dag",
-            "Goedemiddag"
+            "meneer",
+            "doei",
+            "sorry"
           ],
-          "explanation": "Goedemiddag, mevrouw. Hoe gaat het met u?",
+          "explanation": "Dank u wel, meneer.",
           "vocabRefs": [
-            "v-goedemiddag"
+            "v-meneer"
           ]
         },
         {
           "id": "s1-u01-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een koffie, alstublieft.»?",
+          "prompt": "O que significa: «Doei, tot straks!»?",
           "options": [
             {
               "id": "a",
-              "text": "Obrigado, Tom!",
+              "text": "Boa tarde. Como está?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Olá! / Tchau!",
+              "text": "Olá/Adeus! / Até à vista!",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Um café, por favor.",
+              "text": "Tchau, até já!",
               "correct": true
             }
           ],
-          "explanation": "«Een koffie, alstublieft.» = Um café, por favor.",
+          "explanation": "«Doei, tot straks!» = Tchau, até já!",
           "vocabRefs": [
-            "v-alstublieft",
-            "v-koffie",
-            "v-en"
+            "v-doei",
+            "v-tot-straks"
           ]
         }
       ],

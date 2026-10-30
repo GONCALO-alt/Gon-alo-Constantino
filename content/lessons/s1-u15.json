@@ -2135,16 +2135,16 @@
       ],
       "examples": [
         {
-          "nl": "Een gezellig café.",
-          "pt": "Um café acolhedor."
+          "nl": "Het is daar, rechts.",
+          "pt": "É ali, à direita."
         },
         {
-          "nl": "Met Tom de Vries.",
-          "pt": "Fala Tom de Vries."
+          "nl": "Wat een gezellig feest!",
+          "pt": "Que festa tão agradável!"
         },
         {
-          "nl": "Ken je iemand hier?",
-          "pt": "Conheces alguém aqui?"
+          "nl": "Het was gezellig!",
+          "pt": "Foi muito bom (estar juntos)!"
         }
       ],
       "grammar": [],
@@ -2196,8 +2196,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Um café acolhedor.",
           "tokens": [
-            "gezellig",
             "Een",
+            "gezellig",
             "café."
           ],
           "alternatives": [],
@@ -2212,10 +2212,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "É ali, à direita.",
           "tokens": [
-            "rechts.",
             "Het",
             "is",
-            "daar,"
+            "daar,",
+            "rechts."
           ],
           "alternatives": [],
           "explanation": "Het is daar, rechts.",
@@ -2229,11 +2229,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Queria um café, por favor.",
           "tokens": [
-            "een",
-            "graag",
             "Ik",
-            "koffie.",
-            "wil"
+            "wil",
+            "graag",
+            "een",
+            "koffie."
           ],
           "alternatives": [],
           "explanation": "Ik wil graag een koffie.",
@@ -2243,25 +2243,25 @@
           "id": "s1-u15-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik zoek de supermarkt.»?",
+          "prompt": "O que significa: «Ik wil graag een koffie.»?",
           "options": [
             {
               "id": "a",
-              "text": "Procuro o supermercado.",
-              "correct": true
+              "text": "Fala Tom de Vries.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Que festa tão agradável!",
-              "correct": false
+              "text": "Queria um café, por favor.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Posso pagar com cartão?",
+              "text": "Pode trazer a conta?",
               "correct": false
             }
           ],
-          "explanation": "«Ik zoek de supermarkt.» = Procuro o supermercado.",
+          "explanation": "«Ik wil graag een koffie.» = Queria um café, por favor.",
           "vocabRefs": []
         },
         {
@@ -2272,17 +2272,17 @@
           "options": [
             {
               "id": "a",
-              "text": "Vamos beber um café?",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Que festa tão agradável!",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Posso pagar com cartão?",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "É ali, à direita.",
+              "text": "Conheces alguém aqui?",
               "correct": false
             }
           ],
@@ -2296,41 +2296,42 @@
           "id": "s1-u15-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Combinamos para amanhã?",
+          "prompt": "Em frente e depois à esquerda.",
           "tokens": [
-            "we",
-            "wil",
             "Rechtdoor",
-            "afspreken?",
-            "Zullen",
-            "morgen"
+            "was",
+            "links.",
+            "daar,",
+            "en",
+            "dan"
           ],
           "answers": [
-            "Zullen we morgen afspreken?"
+            "Rechtdoor en dan links."
           ],
-          "explanation": "Combinamos para amanhã? = Zullen we morgen afspreken? (sobram: Rechtdoor, wil)",
+          "explanation": "Em frente e depois à esquerda. = Rechtdoor en dan links. (sobram: was, daar,)",
           "vocabRefs": [
-            "v-afspreken"
+            "v-links",
+            "v-rechtdoor"
           ]
         },
         {
           "id": "s1-u15-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Trabalhamos juntos.",
+          "prompt": "Um café acolhedor.",
           "tokens": [
-            "samen.",
-            "We",
-            "werken",
-            "feest!",
-            "rechts."
+            "Een",
+            "café.",
+            "gezellig",
+            "Mag",
+            "samen."
           ],
           "answers": [
-            "We werken samen."
+            "Een gezellig café."
           ],
-          "explanation": "Trabalhamos juntos. = We werken samen. (sobram: feest!, rechts.)",
+          "explanation": "Um café acolhedor. = Een gezellig café. (sobram: Mag, samen.)",
           "vocabRefs": [
-            "v-samen"
+            "v-gezellig"
           ]
         }
       ],
@@ -2420,159 +2421,164 @@
           "id": "s1-u15-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «querer» em neerlandês?",
+          "prompt": "Como se diz «chá» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "pinnen",
+              "text": "betalen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "feest",
-              "correct": false
+              "text": "thee",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "willen",
-              "correct": true
+              "text": "bellen",
+              "correct": false
             }
           ],
-          "explanation": "querer = «willen».",
+          "explanation": "chá = «thee».",
           "vocabRefs": [
-            "v-willen"
+            "v-thee"
           ]
         },
         {
           "id": "s1-u15-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «combinado» em neerlandês?",
+          "prompt": "Como se diz «pagar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "links",
+              "text": "feest",
               "correct": false
             },
             {
               "id": "b",
-              "text": "prima",
+              "text": "betalen",
               "correct": true
             },
             {
               "id": "c",
-              "text": "afspreken",
+              "text": "samen",
               "correct": false
             }
           ],
-          "explanation": "combinado = «prima».",
+          "explanation": "pagar = «betalen».",
           "vocabRefs": [
-            "v-prima-combinado"
+            "v-betalen"
           ]
         },
         {
           "id": "s1-u15-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik wil graag ___.",
-          "translation": "Queria pagar.",
+          "sentence": "Ken je ___ hier?",
+          "translation": "Conheces alguém aqui?",
           "answers": [
-            "betalen"
+            "iemand"
           ],
           "choices": [
-            "thee",
-            "links",
-            "betalen"
+            "zoeken",
+            "iemand",
+            "samen"
           ],
-          "explanation": "Ik wil graag betalen.",
+          "explanation": "Ken je iemand hier?",
           "vocabRefs": [
-            "v-betalen"
+            "v-iemand"
           ]
         },
         {
           "id": "s1-u15-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Kan ik ___?",
-          "translation": "Posso pagar com cartão?",
+          "sentence": "Een ___ café.",
+          "translation": "Um café acolhedor.",
           "answers": [
-            "pinnen"
+            "gezellig"
           ],
           "choices": [
             "thee",
-            "gezellig",
-            "pinnen"
+            "links",
+            "gezellig"
           ],
-          "explanation": "Kan ik pinnen?",
+          "explanation": "Een gezellig café.",
           "vocabRefs": [
-            "v-pinnen"
+            "v-gezellig"
           ]
         },
         {
           "id": "s1-u15-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ken je iemand hier?",
+          "audioText": "Rechtdoor en dan links.",
           "answers": [
-            "Ken je iemand hier?"
+            "Rechtdoor en dan links."
           ],
-          "translation": "Conheces alguém aqui?",
-          "explanation": "«Ken je iemand hier?» = Conheces alguém aqui?",
+          "translation": "Em frente e depois à esquerda.",
+          "explanation": "«Rechtdoor en dan links.» = Em frente e depois à esquerda.",
           "vocabRefs": [
-            "v-iemand"
+            "v-links",
+            "v-rechtdoor"
           ]
         },
         {
           "id": "s1-u15-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zullen we koffie drinken?",
+          "audioText": "Kan ik pinnen?",
           "answers": [
-            "Zullen we koffie drinken?"
+            "Kan ik pinnen?"
           ],
-          "translation": "Vamos beber um café?",
-          "explanation": "«Zullen we koffie drinken?» = Vamos beber um café?",
-          "vocabRefs": []
+          "translation": "Posso pagar com cartão?",
+          "explanation": "«Kan ik pinnen?» = Posso pagar com cartão?",
+          "vocabRefs": [
+            "v-pinnen"
+          ]
         },
         {
           "id": "s1-u15-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso pagar com cartão?",
+          "prompt": "Combinamos para amanhã?",
           "tokens": [
-            "de",
+            "morgen",
+            "afspreken?",
+            "we",
+            "iemand",
             "ik",
-            "pinnen?",
-            "Kan",
-            "dan!"
+            "Zullen"
           ],
           "answers": [
-            "Kan ik pinnen?"
+            "Zullen we morgen afspreken?"
           ],
-          "explanation": "Posso pagar com cartão? = Kan ik pinnen? (sobram: dan!, de)",
+          "explanation": "Combinamos para amanhã? = Zullen we morgen afspreken? (sobram: iemand, ik)",
           "vocabRefs": [
-            "v-pinnen"
+            "v-afspreken"
           ]
         },
         {
           "id": "s1-u15-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Queria um café, por favor.",
+          "prompt": "Conheces alguém aqui?",
           "tokens": [
             "je",
-            "graag",
-            "Ik",
-            "een",
             "wil",
-            "de",
-            "koffie."
+            "iemand",
+            "Ken",
+            "hier?",
+            "zoek"
           ],
           "answers": [
-            "Ik wil graag een koffie."
+            "Ken je iemand hier?"
           ],
-          "explanation": "Queria um café, por favor. = Ik wil graag een koffie. (sobram: je, de)",
-          "vocabRefs": []
+          "explanation": "Conheces alguém aqui? = Ken je iemand hier? (sobram: wil, zoek)",
+          "vocabRefs": [
+            "v-iemand"
+          ]
         },
         {
           "id": "s1-u15-l008-e09",
@@ -2680,16 +2686,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat een gezellig feest!",
-          "pt": "Que festa tão agradável!"
+          "nl": "Een gezellig café.",
+          "pt": "Um café acolhedor."
+        },
+        {
+          "nl": "Het was gezellig!",
+          "pt": "Foi muito bom (estar juntos)!"
         },
         {
           "nl": "Ik wil graag een koffie.",
           "pt": "Queria um café, por favor."
-        },
-        {
-          "nl": "Kan ik pinnen?",
-          "pt": "Posso pagar com cartão?"
         }
       ],
       "grammar": [],
@@ -2698,64 +2704,76 @@
           "id": "s1-u15-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Procuro o supermercado.",
+          "prompt": "Com licença, onde é a estação?",
           "tokens": [
-            "supermarkt.",
-            "de",
-            "Mag",
-            "zoek",
-            "Ik",
-            "we"
+            "het",
+            "is",
+            "station?",
+            "waar",
+            "Pardon,",
+            "we",
+            "ik"
           ],
           "answers": [
-            "Ik zoek de supermarkt."
+            "Pardon, waar is het station?"
           ],
-          "explanation": "Procuro o supermercado. = Ik zoek de supermarkt. (sobram: Mag, we)",
+          "explanation": "Com licença, onde é a estação? = Pardon, waar is het station? (sobram: ik, we)",
           "vocabRefs": []
         },
         {
           "id": "s1-u15-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É ali, à direita.",
+          "prompt": "Procuro o supermercado.",
           "tokens": [
-            "daar,",
-            "is",
-            "Zullen",
-            "graag",
-            "rechts.",
-            "Het"
+            "de",
+            "zoek",
+            "Wat",
+            "hier?",
+            "Ik",
+            "supermarkt."
           ],
           "answers": [
-            "Het is daar, rechts."
+            "Ik zoek de supermarkt."
           ],
-          "explanation": "É ali, à direita. = Het is daar, rechts. (sobram: graag, Zullen)",
-          "vocabRefs": [
-            "v-rechts"
-          ]
+          "explanation": "Procuro o supermercado. = Ik zoek de supermarkt. (sobram: Wat, hier?)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u15-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Um café acolhedor.",
+          "prompt": "Pode trazer a conta?",
           "tokens": [
-            "Een",
-            "café.",
-            "koffie.",
-            "gezellig",
-            "supermarkt."
+            "Mag",
+            "rekening?",
+            "ik",
+            "de",
+            "iemand",
+            "Prima,"
           ],
           "answers": [
-            "Een gezellig café."
+            "Mag ik de rekening?"
           ],
-          "explanation": "Um café acolhedor. = Een gezellig café. (sobram: koffie., supermarkt.)",
-          "vocabRefs": [
-            "v-gezellig"
-          ]
+          "explanation": "Pode trazer a conta? = Mag ik de rekening? (sobram: Prima,, iemand)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u15-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik wil graag betalen.",
+          "answers": [
+            "Ik wil graag betalen."
+          ],
+          "translation": "Queria pagar.",
+          "explanation": "«Ik wil graag betalen.» = Queria pagar.",
+          "vocabRefs": [
+            "v-betalen"
+          ]
+        },
+        {
+          "id": "s1-u15-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Zullen we morgen afspreken?",
@@ -2766,21 +2784,6 @@
           "explanation": "«Zullen we morgen afspreken?» = Combinamos para amanhã?",
           "vocabRefs": [
             "v-afspreken"
-          ]
-        },
-        {
-          "id": "s1-u15-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Rechtdoor en dan links.",
-          "answers": [
-            "Rechtdoor en dan links."
-          ],
-          "translation": "Em frente e depois à esquerda.",
-          "explanation": "«Rechtdoor en dan links.» = Em frente e depois à esquerda.",
-          "vocabRefs": [
-            "v-links",
-            "v-rechtdoor"
           ]
         },
         {
@@ -2799,42 +2802,67 @@
           "id": "s1-u15-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Em frente e depois à esquerda.",
+          "translation": "Foi muito bom (estar juntos)!",
           "tokens": [
-            "links.",
-            "en",
-            "Rechtdoor",
-            "dan"
+            "Het",
+            "was",
+            "gezellig!"
           ],
           "alternatives": [],
-          "explanation": "Rechtdoor en dan links.",
+          "explanation": "Het was gezellig!",
           "vocabRefs": [
-            "v-links",
-            "v-rechtdoor"
+            "v-gezellig"
           ]
         },
         {
           "id": "s1-u15-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Queria pagar.",
+          "translation": "Conheces alguém aqui?",
           "tokens": [
-            "graag",
-            "Ik",
-            "betalen.",
-            "wil"
+            "Ken",
+            "je",
+            "iemand",
+            "hier?"
           ],
           "alternatives": [],
-          "explanation": "Ik wil graag betalen.",
+          "explanation": "Ken je iemand hier?",
           "vocabRefs": [
-            "v-betalen"
+            "v-iemand"
           ]
         },
         {
           "id": "s1-u15-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «betalen»?",
+          "prompt": "O que significa «het feest»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "festa",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "até lá",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "querer",
+              "correct": false
+            }
+          ],
+          "explanation": "«het feest» = festa.",
+          "vocabRefs": [
+            "v-feest"
+          ]
+        },
+        {
+          "id": "s1-u15-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «gezellig»?",
           "options": [
             {
               "id": "a",
@@ -2843,45 +2871,18 @@
             },
             {
               "id": "b",
+              "text": "agradável",
+              "correct": true
+            },
+            {
+              "id": "c",
               "text": "à direita",
               "correct": false
-            },
-            {
-              "id": "c",
-              "text": "pagar",
-              "correct": true
             }
           ],
-          "explanation": "«betalen» = pagar.",
+          "explanation": "«gezellig» = agradável, acolhedor, animado.",
           "vocabRefs": [
-            "v-betalen"
-          ]
-        },
-        {
-          "id": "s1-u15-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «links»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "à esquerda",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "em frente",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "agradável",
-              "correct": false
-            }
-          ],
-          "explanation": "«links» = à esquerda.",
-          "vocabRefs": [
-            "v-links"
+            "v-gezellig"
           ]
         }
       ],
@@ -2953,16 +2954,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik wil graag betalen.",
-          "pt": "Queria pagar."
+          "nl": "Ik zoek de supermarkt.",
+          "pt": "Procuro o supermercado."
         },
         {
-          "nl": "Met Ana.",
-          "pt": "Fala a Ana. (ao atender)"
+          "nl": "Pardon, waar is het station?",
+          "pt": "Com licença, onde é a estação?"
         },
         {
-          "nl": "Kan ik pinnen?",
-          "pt": "Posso pagar com cartão?"
+          "nl": "Zullen we koffie drinken?",
+          "pt": "Vamos beber um café?"
         }
       ],
       "grammar": [],
@@ -2973,37 +2974,52 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
+              "nl": "bier",
+              "pt": "cerveja"
+            },
+            {
               "nl": "afspreken",
               "pt": "combinar"
             },
             {
-              "nl": "betalen",
-              "pt": "pagar"
+              "nl": "links",
+              "pt": "à esquerda"
             },
             {
-              "nl": "bellen",
-              "pt": "telefonar"
+              "nl": "gezellig",
+              "pt": "agradável"
             },
             {
               "nl": "zoeken",
               "pt": "procurar"
-            },
-            {
-              "nl": "willen",
-              "pt": "querer"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
+            "v-bier",
             "v-afspreken",
-            "v-betalen",
-            "v-bellen",
-            "v-zoeken",
-            "v-willen"
+            "v-links",
+            "v-gezellig",
+            "v-zoeken"
           ]
         },
         {
           "id": "s1-u15-l010-e02",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Rechtdoor en dan links.",
+          "answers": [
+            "Rechtdoor en dan links."
+          ],
+          "translation": "Em frente e depois à esquerda.",
+          "explanation": "«Rechtdoor en dan links.» = Em frente e depois à esquerda.",
+          "vocabRefs": [
+            "v-links",
+            "v-rechtdoor"
+          ]
+        },
+        {
+          "id": "s1-u15-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Het is daar, rechts.",
@@ -3017,66 +3033,25 @@
           ]
         },
         {
-          "id": "s1-u15-l010-e03",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mag ik betalen?",
-          "answers": [
-            "Mag ik betalen?"
-          ],
-          "translation": "Posso pagar? / A conta, por favor.",
-          "explanation": "«Mag ik betalen?» = Posso pagar? / A conta, por favor.",
-          "vocabRefs": [
-            "v-betalen"
-          ]
-        },
-        {
           "id": "s1-u15-l010-e04",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «gezellig»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "telefonar",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "agradável",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "juntos",
-              "correct": false
-            }
-          ],
-          "explanation": "«gezellig» = agradável, acolhedor, animado.",
-          "vocabRefs": [
-            "v-gezellig"
-          ]
-        },
-        {
-          "id": "s1-u15-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa «rechts»?",
           "options": [
             {
               "id": "a",
-              "text": "à direita",
-              "correct": true
+              "text": "combinar",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "juntos",
+              "text": "até lá",
               "correct": false
             },
             {
               "id": "c",
-              "text": "pagar com cartão",
-              "correct": false
+              "text": "à direita",
+              "correct": true
             }
           ],
           "explanation": "«rechts» = à direita.",
@@ -3085,79 +3060,110 @@
           ]
         },
         {
+          "id": "s1-u15-l010-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «zoeken»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "pagar",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "juntos",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "procurar",
+              "correct": true
+            }
+          ],
+          "explanation": "«zoeken» = procurar.",
+          "vocabRefs": [
+            "v-zoeken"
+          ]
+        },
+        {
           "id": "s1-u15-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Fala Tom de Vries.",
+          "translation": "Em frente e depois à esquerda.",
           "tokens": [
-            "de",
-            "Tom",
-            "Met",
-            "Vries."
+            "Rechtdoor",
+            "en",
+            "dan",
+            "links."
           ],
           "alternatives": [],
-          "explanation": "Met Tom de Vries.",
-          "vocabRefs": []
+          "explanation": "Rechtdoor en dan links.",
+          "vocabRefs": [
+            "v-links",
+            "v-rechtdoor"
+          ]
         },
         {
           "id": "s1-u15-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Pode trazer a conta?",
+          "translation": "Posso pagar? / A conta, por favor.",
           "tokens": [
-            "rekening?",
             "Mag",
-            "de",
-            "ik"
+            "ik",
+            "betalen?"
           ],
           "alternatives": [],
-          "explanation": "Mag ik de rekening?",
-          "vocabRefs": []
-        },
-        {
-          "id": "s1-u15-l010-e08",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mag ik ___?",
-          "translation": "Posso pagar? / A conta, por favor.",
-          "answers": [
-            "betalen"
-          ],
-          "choices": [
-            "links",
-            "gezellig",
-            "betalen"
-          ],
           "explanation": "Mag ik betalen?",
           "vocabRefs": [
             "v-betalen"
           ]
         },
         {
+          "id": "s1-u15-l010-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Rechtdoor en dan ___.",
+          "translation": "Em frente e depois à esquerda.",
+          "answers": [
+            "links"
+          ],
+          "choices": [
+            "betalen",
+            "samen",
+            "links"
+          ],
+          "explanation": "Rechtdoor en dan links.",
+          "vocabRefs": [
+            "v-links"
+          ]
+        },
+        {
           "id": "s1-u15-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het was gezellig!»?",
+          "prompt": "O que significa: «Zullen we morgen afspreken?»?",
           "options": [
             {
               "id": "a",
-              "text": "Foi muito bom (estar juntos)!",
+              "text": "Combinamos para amanhã?",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Um café acolhedor.",
+              "text": "Queria um café, por favor.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Às três? Combinado, até lá!",
+              "text": "Foi muito bom (estar juntos)!",
               "correct": false
             }
           ],
-          "explanation": "«Het was gezellig!» = Foi muito bom (estar juntos)!",
+          "explanation": "«Zullen we morgen afspreken?» = Combinamos para amanhã?",
           "vocabRefs": [
-            "v-gezellig"
+            "v-afspreken"
           ]
         }
       ],

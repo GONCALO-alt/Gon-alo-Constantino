@@ -1837,16 +1837,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige.",
-          "pt": "Moro em Utrecht há três anos e trabalho como enfermeira."
-        },
-        {
-          "nl": "Ik ben nu zelfredzaam in het Nederlands.",
-          "pt": "Agora sou autónomo em neerlandês."
-        },
-        {
           "nl": "Je voelt steeds beter aan wanneer je «toch» gebruikt.",
           "pt": "Sentes cada vez melhor quando usar «toch»."
+        },
+        {
+          "nl": "Het gesprek verliep heel ongedwongen.",
+          "pt": "A conversa decorreu de forma muito descontraída."
+        },
+        {
+          "nl": "Nu gaan we je stijl verfijnen.",
+          "pt": "Agora vamos refinar o teu estilo."
         }
       ],
       "grammar": [],
@@ -1899,14 +1899,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Sentes cada vez melhor quando usar «toch».",
           "tokens": [
-            "beter",
-            "je",
-            "steeds",
-            "«toch»",
             "Je",
-            "wanneer",
-            "aan",
             "voelt",
+            "steeds",
+            "beter",
+            "aan",
+            "wanneer",
+            "je",
+            "«toch»",
             "gebruikt."
           ],
           "alternatives": [],
@@ -1919,11 +1919,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "A precisão na escolha das palavras é importante.",
           "tokens": [
-            "is",
-            "woordkeus",
-            "belangrijk.",
             "Precisie",
-            "in"
+            "in",
+            "woordkeus",
+            "is",
+            "belangrijk."
           ],
           "alternatives": [],
           "explanation": "Precisie in woordkeus is belangrijk.",
@@ -1937,11 +1937,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ela muda de língua sem esforço.",
           "tokens": [
-            "taal.",
-            "van",
             "Ze",
             "wisselt",
-            "moeiteloos"
+            "moeiteloos",
+            "van",
+            "taal."
           ],
           "alternatives": [],
           "explanation": "Ze wisselt moeiteloos van taal.",
@@ -1953,37 +1953,37 @@
           "id": "s7-u13-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Pas de regels toe in je eigen zinnen.»?",
+          "prompt": "O que significa: «Je voelt steeds beter aan wanneer je «toch» gebruikt.»?",
           "options": [
             {
               "id": "a",
-              "text": "Agora sou autónomo em neerlandês.",
+              "text": "Alcançaste um marco importante.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Aplica as regras nas tuas próprias frases.",
-              "correct": true
+              "text": "Agora vamos refinar o teu estilo.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "A precisão na escolha das palavras é importante.",
-              "correct": false
+              "text": "Sentes cada vez melhor quando usar «toch».",
+              "correct": true
             }
           ],
-          "explanation": "«Pas de regels toe in je eigen zinnen.» = Aplica as regras nas tuas próprias frases.",
+          "explanation": "«Je voelt steeds beter aan wanneer je «toch» gebruikt.» = Sentes cada vez melhor quando usar «toch».",
           "vocabRefs": []
         },
         {
           "id": "s7-u13-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat is je huidige taalniveau?»?",
+          "prompt": "O que significa: «Luister goed naar je gesprekspartner.»?",
           "options": [
             {
               "id": "a",
-              "text": "Consigo tratar de tudo sozinho na câmara.",
-              "correct": false
+              "text": "Ouve bem o teu interlocutor.",
+              "correct": true
             },
             {
               "id": "b",
@@ -1992,61 +1992,58 @@
             },
             {
               "id": "c",
-              "text": "Qual é o teu nível atual de língua?",
-              "correct": true
+              "text": "O que antes era difícil agora é óbvio.",
+              "correct": false
             }
           ],
-          "explanation": "«Wat is je huidige taalniveau?» = Qual é o teu nível atual de língua?",
+          "explanation": "«Luister goed naar je gesprekspartner.» = Ouve bem o teu interlocutor.",
           "vocabRefs": [
-            "v-taalniveau"
+            "v-gesprekspartner"
           ]
         },
         {
           "id": "s7-u13-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O teu domínio dos verbos modais é bom.",
+          "prompt": "O teu texto tem uma estrutura clara.",
           "tokens": [
-            "modale",
             "de",
             "heeft",
-            "beheersing",
+            "tekst",
             "Je",
-            "van",
-            "werkwoorden",
-            "gesprek",
-            "goed.",
-            "is"
+            "een",
+            "hebt",
+            "structuur.",
+            "duidelijke"
           ],
           "answers": [
-            "Je beheersing van de modale werkwoorden is goed."
+            "Je tekst heeft een duidelijke structuur."
           ],
-          "explanation": "O teu domínio dos verbos modais é bom. = Je beheersing van de modale werkwoorden is goed. (sobram: heeft, gesprek)",
+          "explanation": "O teu texto tem uma estrutura clara. = Je tekst heeft een duidelijke structuur. (sobram: de, hebt)",
           "vocabRefs": [
-            "v-beheersing"
+            "v-structuur"
           ]
         },
         {
           "id": "s7-u13-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Agora vamos refinar o teu estilo.",
+          "prompt": "Qual é o teu nível atual de língua?",
           "tokens": [
-            "aan",
-            "kan",
-            "Nu",
-            "gaan",
-            "stijl",
-            "je",
-            "we",
-            "verfijnen."
+            "taalniveau?",
+            "Wat",
+            "beetje",
+            "in",
+            "huidige",
+            "is",
+            "je"
           ],
           "answers": [
-            "Nu gaan we je stijl verfijnen."
+            "Wat is je huidige taalniveau?"
           ],
-          "explanation": "Agora vamos refinar o teu estilo. = Nu gaan we je stijl verfijnen. (sobram: kan, aan)",
+          "explanation": "Qual é o teu nível atual de língua? = Wat is je huidige taalniveau? (sobram: beetje, in)",
           "vocabRefs": [
-            "v-verfijnen"
+            "v-taalniveau"
           ]
         }
       ],
@@ -2119,16 +2116,16 @@
       ],
       "examples": [
         {
+          "nl": "Nu gaan we je stijl verfijnen.",
+          "pt": "Agora vamos refinar o teu estilo."
+        },
+        {
           "nl": "Ik ben nu zelfredzaam in het Nederlands.",
           "pt": "Agora sou autónomo em neerlandês."
         },
         {
-          "nl": "Je hebt een belangrijke mijlpaal bereikt.",
-          "pt": "Alcançaste um marco importante."
-        },
-        {
-          "nl": "Het staatsexamen NT2 programma II is op B2-niveau.",
-          "pt": "O exame estatal NT2 programa II é de nível B2."
+          "nl": "Je beheersing van de modale werkwoorden is goed.",
+          "pt": "O teu domínio dos verbos modais é bom."
         }
       ],
       "grammar": [],
@@ -2137,206 +2134,204 @@
           "id": "s7-u13-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «autónomo» em neerlandês?",
+          "prompt": "Como se diz «estrutura» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "overzicht",
+              "text": "automatisch",
               "correct": false
             },
             {
               "id": "b",
-              "text": "een mijlpaal bereiken",
+              "text": "beheersing",
               "correct": false
             },
             {
               "id": "c",
-              "text": "zelfredzaam",
+              "text": "structuur",
               "correct": true
             }
           ],
-          "explanation": "autónomo = «zelfredzaam».",
+          "explanation": "estrutura = «structuur».",
           "vocabRefs": [
-            "v-zelfredzaam"
+            "v-structuur"
           ]
         },
         {
           "id": "s7-u13-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «descontraído» em neerlandês?",
+          "prompt": "Como se diz «refinar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "blijven oefenen",
+              "text": "taalniveau",
               "correct": false
             },
             {
               "id": "b",
-              "text": "basiskennis",
-              "correct": false
+              "text": "verfijnen",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "ongedwongen",
-              "correct": true
+              "text": "gesprekspartner",
+              "correct": false
             }
           ],
-          "explanation": "descontraído = «ongedwongen».",
+          "explanation": "refinar = «verfijnen».",
           "vocabRefs": [
-            "v-ongedwongen"
+            "v-verfijnen"
           ]
         },
         {
           "id": "s7-u13-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Nu gaan we je stijl ___.",
-          "translation": "Agora vamos refinar o teu estilo.",
+          "sentence": "Dat gaat nu ___.",
+          "translation": "Isso agora sai automaticamente.",
           "answers": [
-            "verfijnen"
+            "automatisch"
           ],
           "choices": [
-            "verfijnen",
-            "opfrissen",
-            "overzicht"
+            "gesprekspartner",
+            "taalniveau",
+            "automatisch"
           ],
-          "explanation": "Nu gaan we je stijl verfijnen.",
+          "explanation": "Dat gaat nu automatisch.",
           "vocabRefs": [
-            "v-verfijnen"
+            "v-automatisch"
           ]
         },
         {
           "id": "s7-u13-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wat eerst moeilijk was, is nu ___.",
-          "translation": "O que antes era difícil agora é óbvio.",
+          "sentence": "Hier is een ___ van de grammatica.",
+          "translation": "Aqui está uma visão geral da gramática.",
           "answers": [
-            "vanzelfsprekend"
+            "overzicht"
           ],
           "choices": [
             "vanzelfsprekend",
-            "zelfredzaam",
-            "automatisch"
+            "beheersing",
+            "overzicht"
           ],
-          "explanation": "Wat eerst moeilijk was, is nu vanzelfsprekend.",
+          "explanation": "Hier is een overzicht van de grammatica.",
           "vocabRefs": [
-            "v-vanzelfsprekend"
+            "v-overzicht"
           ]
         },
         {
           "id": "s7-u13-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben nu zelfredzaam in het Nederlands.",
+          "audioText": "Ze wisselt moeiteloos van taal.",
           "answers": [
-            "Ik ben nu zelfredzaam in het Nederlands."
+            "Ze wisselt moeiteloos van taal."
           ],
-          "translation": "Agora sou autónomo em neerlandês.",
-          "explanation": "«Ik ben nu zelfredzaam in het Nederlands.» = Agora sou autónomo em neerlandês.",
+          "translation": "Ela muda de língua sem esforço.",
+          "explanation": "«Ze wisselt moeiteloos van taal.» = Ela muda de língua sem esforço.",
           "vocabRefs": [
-            "v-zelfredzaam"
+            "v-moeiteloos"
           ]
         },
         {
           "id": "s7-u13-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hier is een overzicht van de grammatica.",
+          "audioText": "Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige.",
           "answers": [
-            "Hier is een overzicht van de grammatica."
+            "Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige."
           ],
-          "translation": "Aqui está uma visão geral da gramática.",
-          "explanation": "«Hier is een overzicht van de grammatica.» = Aqui está uma visão geral da gramática.",
-          "vocabRefs": [
-            "v-overzicht"
-          ]
+          "translation": "Moro em Utrecht há três anos e trabalho como enfermeira.",
+          "explanation": "«Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige.» = Moro em Utrecht há três anos e trabalho como enfermeira.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u13-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela muda de língua sem esforço.",
+          "prompt": "O que antes era difícil agora é óbvio.",
           "tokens": [
-            "moeiteloos",
-            "taal.",
-            "wisselt",
-            "Ze",
-            "het",
-            "van",
-            "Hier"
+            "Wat",
+            "is",
+            "eerst",
+            "nu",
+            "Ik",
+            "was,",
+            "werkwoorden",
+            "vanzelfsprekend.",
+            "moeilijk"
           ],
           "answers": [
-            "Ze wisselt moeiteloos van taal."
+            "Wat eerst moeilijk was, is nu vanzelfsprekend."
           ],
-          "explanation": "Ela muda de língua sem esforço. = Ze wisselt moeiteloos van taal. (sobram: Hier, het)",
+          "explanation": "O que antes era difícil agora é óbvio. = Wat eerst moeilijk was, is nu vanzelfsprekend. (sobram: werkwoorden, Ik)",
           "vocabRefs": [
-            "v-moeiteloos"
+            "v-vanzelfsprekend"
           ]
         },
         {
           "id": "s7-u13-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vamos refrescar os conhecimentos básicos.",
+          "prompt": "Sentes cada vez melhor quando usar «toch».",
           "tokens": [
-            "eigen",
-            "basiskennis",
-            "opfrissen.",
-            "even",
-            "onze",
-            "we",
-            "van",
-            "Laten"
+            "aan",
+            "voelt",
+            "Pas",
+            "je",
+            "beter",
+            "gebruikt.",
+            "«toch»",
+            "wanneer",
+            "steeds",
+            "ongedwongen.",
+            "Je"
           ],
           "answers": [
-            "Laten we onze basiskennis even opfrissen."
+            "Je voelt steeds beter aan wanneer je «toch» gebruikt."
           ],
-          "explanation": "Vamos refrescar os conhecimentos básicos. = Laten we onze basiskennis even opfrissen. (sobram: eigen, van)",
-          "vocabRefs": [
-            "v-herhaling-basis",
-            "v-opfrissen"
-          ]
+          "explanation": "Sentes cada vez melhor quando usar «toch». = Je voelt steeds beter aan wanneer je «toch» gebruikt. (sobram: Pas, ongedwongen.)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u13-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "taalniveau",
-          "pt": "nível de língua",
+          "noun": "overzicht",
+          "pt": "visão geral",
           "article": "het",
-          "explanation": "het taalniveau.",
+          "explanation": "het overzicht.",
           "vocabRefs": [
-            "v-taalniveau"
+            "v-overzicht"
           ]
         },
         {
           "id": "s7-u13-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je beheersing van de modale werkwoorden is goed.»?",
+          "prompt": "O que significa: «Ik kan alles zelf regelen bij de gemeente.»?",
           "options": [
             {
               "id": "a",
-              "text": "Alcançaste um marco importante.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "O teu domínio dos verbos modais é bom.",
+              "text": "Consigo tratar de tudo sozinho na câmara.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Agora sou autónomo em neerlandês.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "A precisão na escolha das palavras é importante.",
+              "text": "Qual é o teu nível atual de língua?",
               "correct": false
             }
           ],
-          "explanation": "«Je beheersing van de modale werkwoorden is goed.» = O teu domínio dos verbos modais é bom.",
-          "vocabRefs": [
-            "v-beheersing"
-          ]
+          "explanation": "«Ik kan alles zelf regelen bij de gemeente.» = Consigo tratar de tudo sozinho na câmara.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2426,176 +2421,187 @@
           "id": "s7-u13-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Agora sou autónomo em neerlandês.",
+          "prompt": "O exame estatal NT2 programa II é de nível B2.",
           "tokens": [
-            "Nederlands.",
-            "Ik",
-            "zelfredzaam",
-            "ben",
-            "nu",
-            "het",
-            "in",
-            "overzicht",
-            "bij"
+            "B2-niveau.",
+            "op",
+            "steeds",
+            "programma",
+            "een",
+            "staatsexamen",
+            "NT2",
+            "II",
+            "Het",
+            "is"
           ],
           "answers": [
-            "Ik ben nu zelfredzaam in het Nederlands."
+            "Het staatsexamen NT2 programma II is op B2-niveau."
           ],
-          "explanation": "Agora sou autónomo em neerlandês. = Ik ben nu zelfredzaam in het Nederlands. (sobram: overzicht, bij)",
+          "explanation": "O exame estatal NT2 programa II é de nível B2. = Het staatsexamen NT2 programma II is op B2-niveau. (sobram: een, steeds)",
           "vocabRefs": [
-            "v-zelfredzaam"
+            "v-staatsexamen"
           ]
         },
         {
           "id": "s7-u13-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Continua a praticar um pouco todos os dias.",
+          "prompt": "Agora sou autónomo em neerlandês.",
           "tokens": [
-            "dag",
-            "beetje",
-            "een",
-            "B2-niveau.",
-            "Blijf",
-            "oefenen.",
-            "«toch»",
-            "elke"
+            "opfrissen.",
+            "nu",
+            "Nederlands.",
+            "het",
+            "in",
+            "ben",
+            "werkwoorden",
+            "zelfredzaam",
+            "Ik"
           ],
           "answers": [
-            "Blijf elke dag een beetje oefenen."
+            "Ik ben nu zelfredzaam in het Nederlands."
           ],
-          "explanation": "Continua a praticar um pouco todos os dias. = Blijf elke dag een beetje oefenen. (sobram: «toch», B2-niveau.)",
-          "vocabRefs": []
+          "explanation": "Agora sou autónomo em neerlandês. = Ik ben nu zelfredzaam in het Nederlands. (sobram: werkwoorden, opfrissen.)",
+          "vocabRefs": [
+            "v-zelfredzaam"
+          ]
         },
         {
           "id": "s7-u13-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso agora sai automaticamente.",
+          "prompt": "O teu domínio dos verbos modais é bom.",
           "tokens": [
-            "programma",
-            "automatisch.",
-            "beter",
-            "gaat",
-            "nu",
-            "Dat"
+            "goed.",
+            "van",
+            "Je",
+            "beheersing",
+            "is",
+            "de",
+            "modale",
+            "werkwoorden",
+            "huidige",
+            "ben"
           ],
           "answers": [
-            "Dat gaat nu automatisch."
+            "Je beheersing van de modale werkwoorden is goed."
           ],
-          "explanation": "Isso agora sai automaticamente. = Dat gaat nu automatisch. (sobram: beter, programma)",
+          "explanation": "O teu domínio dos verbos modais é bom. = Je beheersing van de modale werkwoorden is goed. (sobram: ben, huidige)",
           "vocabRefs": [
-            "v-automatisch"
+            "v-beheersing"
           ]
         },
         {
           "id": "s7-u13-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige.",
+          "audioText": "Hier is een overzicht van de grammatica.",
           "answers": [
-            "Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige."
+            "Hier is een overzicht van de grammatica."
           ],
-          "translation": "Moro em Utrecht há três anos e trabalho como enfermeira.",
-          "explanation": "«Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige.» = Moro em Utrecht há três anos e trabalho como enfermeira.",
-          "vocabRefs": []
+          "translation": "Aqui está uma visão geral da gramática.",
+          "explanation": "«Hier is een overzicht van de grammatica.» = Aqui está uma visão geral da gramática.",
+          "vocabRefs": [
+            "v-overzicht"
+          ]
         },
         {
           "id": "s7-u13-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat gaat nu automatisch.",
+          "audioText": "Wat is je huidige taalniveau?",
           "answers": [
-            "Dat gaat nu automatisch."
+            "Wat is je huidige taalniveau?"
           ],
-          "translation": "Isso agora sai automaticamente.",
-          "explanation": "«Dat gaat nu automatisch.» = Isso agora sai automaticamente.",
+          "translation": "Qual é o teu nível atual de língua?",
+          "explanation": "«Wat is je huidige taalniveau?» = Qual é o teu nível atual de língua?",
           "vocabRefs": [
-            "v-automatisch"
+            "v-taalniveau"
           ]
         },
         {
           "id": "s7-u13-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je voelt steeds beter aan wanneer je «toch» gebruikt.",
+          "audioText": "Laten we onze basiskennis even opfrissen.",
           "answers": [
-            "Je voelt steeds beter aan wanneer je «toch» gebruikt."
+            "Laten we onze basiskennis even opfrissen."
           ],
-          "translation": "Sentes cada vez melhor quando usar «toch».",
-          "explanation": "«Je voelt steeds beter aan wanneer je «toch» gebruikt.» = Sentes cada vez melhor quando usar «toch».",
-          "vocabRefs": []
+          "translation": "Vamos refrescar os conhecimentos básicos.",
+          "explanation": "«Laten we onze basiskennis even opfrissen.» = Vamos refrescar os conhecimentos básicos.",
+          "vocabRefs": [
+            "v-herhaling-basis",
+            "v-opfrissen"
+          ]
         },
         {
           "id": "s7-u13-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Agora sou autónomo em neerlandês.",
+          "translation": "Aplica as regras nas tuas próprias frases.",
           "tokens": [
-            "ben",
-            "het",
-            "Nederlands.",
+            "Pas",
+            "de",
+            "regels",
+            "toe",
             "in",
-            "zelfredzaam",
-            "nu",
-            "Ik"
+            "je",
+            "eigen",
+            "zinnen."
           ],
           "alternatives": [],
-          "explanation": "Ik ben nu zelfredzaam in het Nederlands.",
-          "vocabRefs": [
-            "v-zelfredzaam"
-          ]
+          "explanation": "Pas de regels toe in je eigen zinnen.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u13-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ouve bem o teu interlocutor.",
+          "translation": "Continua a praticar um pouco todos os dias.",
           "tokens": [
-            "goed",
-            "naar",
-            "je",
-            "Luister",
-            "gesprekspartner."
+            "Blijf",
+            "elke",
+            "dag",
+            "een",
+            "beetje",
+            "oefenen."
           ],
           "alternatives": [],
-          "explanation": "Luister goed naar je gesprekspartner.",
-          "vocabRefs": [
-            "v-gesprekspartner"
-          ]
+          "explanation": "Blijf elke dag een beetje oefenen.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u13-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «verfijnen»?",
+          "prompt": "O que significa «het taalniveau»?",
           "options": [
             {
               "id": "a",
-              "text": "visão geral",
+              "text": "automático",
               "correct": false
             },
             {
               "id": "b",
-              "text": "refinar",
+              "text": "nível de língua",
               "correct": true
             },
             {
               "id": "c",
-              "text": "exame estatal de neerlandês",
+              "text": "autónomo",
               "correct": false
             }
           ],
-          "explanation": "«verfijnen» = refinar.",
+          "explanation": "«het taalniveau» = nível de língua.",
           "vocabRefs": [
-            "v-verfijnen"
+            "v-taalniveau"
           ]
         },
         {
           "id": "s7-u13-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het staatsexamen NT2»?",
+          "prompt": "O que significa «ongedwongen»?",
           "options": [
             {
               "id": "a",
@@ -2604,7 +2610,7 @@
             },
             {
               "id": "b",
-              "text": "exame estatal de neerlandês",
+              "text": "descontraído",
               "correct": true
             },
             {
@@ -2613,9 +2619,9 @@
               "correct": false
             }
           ],
-          "explanation": "«het staatsexamen NT2» = exame estatal de neerlandês.",
+          "explanation": "«ongedwongen» = descontraído, à vontade.",
           "vocabRefs": [
-            "v-staatsexamen"
+            "v-ongedwongen"
           ]
         }
       ],

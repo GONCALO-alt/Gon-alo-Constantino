@@ -1845,16 +1845,16 @@
       ],
       "examples": [
         {
-          "nl": "Wie te laat komt, mag niet meer naar binnen.",
-          "pt": "Quem chegar atrasado já não pode entrar."
+          "nl": "Een belangrijk kenmerk is de grote tuin.",
+          "pt": "Uma característica importante é o jardim grande."
         },
         {
-          "nl": "Kun je het huis omschrijven?",
-          "pt": "Consegues descrever a casa?"
+          "nl": "Dat is een foto die me erg dierbaar is.",
+          "pt": "É uma fotografia que me é muito querida."
         },
         {
-          "nl": "de fiets die… / het boek dat… / de boeken die…",
-          "pt": "a bicicleta que… / o livro que… / os livros que…"
+          "nl": "Het meisje dat zingt, is mijn nicht.",
+          "pt": "A rapariga que canta é a minha prima."
         }
       ],
       "grammar": [],
@@ -1905,14 +1905,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "O irmão que mora em Paris vem amanhã. (tenho vários)",
           "tokens": [
-            "komt",
             "De",
             "broer",
-            "woont,",
-            "morgen.",
-            "Parijs",
+            "die",
             "in",
-            "die"
+            "Parijs",
+            "woont,",
+            "komt",
+            "morgen."
           ],
           "alternatives": [],
           "explanation": "De broer die in Parijs woont, komt morgen.",
@@ -1924,15 +1924,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quem chegar atrasado já não pode entrar.",
           "tokens": [
-            "komt,",
-            "meer",
-            "mag",
-            "binnen.",
             "Wie",
+            "te",
             "laat",
-            "naar",
+            "komt,",
+            "mag",
             "niet",
-            "te"
+            "meer",
+            "naar",
+            "binnen."
           ],
           "alternatives": [],
           "explanation": "Wie te laat komt, mag niet meer naar binnen.",
@@ -1944,15 +1944,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "A caneta com que escrevo é do meu avô.",
           "tokens": [
-            "is",
             "De",
+            "pen",
             "waarmee",
-            "schrijf,",
             "ik",
-            "mijn",
+            "schrijf,",
+            "is",
             "van",
-            "opa.",
-            "pen"
+            "mijn",
+            "opa."
           ],
           "alternatives": [],
           "explanation": "De pen waarmee ik schrijf, is van mijn opa.",
@@ -1964,7 +1964,32 @@
           "id": "s6-u11-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een belangrijk kenmerk is de grote tuin.»?",
+          "prompt": "O que significa: «De boeken die op tafel liggen, zijn van mij.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Os livros que estão na mesa são meus.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "É uma fotografia que me é muito querida.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Amesterdão, que aliás não é a sede do governo, é a capital.",
+              "correct": false
+            }
+          ],
+          "explanation": "«De boeken die op tafel liggen, zijn van mij.» = Os livros que estão na mesa são meus.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s6-u11-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «De broer die in Parijs woont, komt morgen.»?",
           "options": [
             {
               "id": "a",
@@ -1973,7 +1998,7 @@
             },
             {
               "id": "b",
-              "text": "Uma característica importante é o jardim grande.",
+              "text": "O irmão que mora em Paris vem amanhã. (tenho vários)",
               "correct": true
             },
             {
@@ -1982,88 +2007,56 @@
               "correct": false
             }
           ],
-          "explanation": "«Een belangrijk kenmerk is de grote tuin.» = Uma característica importante é o jardim grande.",
-          "vocabRefs": [
-            "v-kenmerk"
-          ]
-        },
-        {
-          "id": "s6-u11-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De vriend met wie ik op vakantie ging, woont in Gent.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "a bicicleta que… / o livro que… / os livros que…",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "O amigo com quem fui de férias mora em Gante.",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Os livros que estão na mesa são meus.",
-              "correct": false
-            }
-          ],
-          "explanation": "«De vriend met wie ik op vakantie ging, woont in Gent.» = O amigo com quem fui de férias mora em Gante.",
-          "vocabRefs": [
-            "v-met-wie"
-          ]
+          "explanation": "«De broer die in Parijs woont, komt morgen.» = O irmão que mora em Paris vem amanhã. (tenho vários)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u11-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O irmão que mora em Paris vem amanhã. (tenho vários)",
+          "prompt": "Quem chegar atrasado já não pode entrar.",
           "tokens": [
-            "onderwerp",
-            "morgen.",
-            "in",
-            "De",
-            "woont,",
-            "komt",
-            "broer",
-            "Parijs",
-            "Let",
-            "die"
+            "komt,",
+            "mag",
+            "iets",
+            "niet",
+            "laat",
+            "meer",
+            "te",
+            "binnen.",
+            "naar",
+            "Wie",
+            "is"
           ],
           "answers": [
-            "De broer die in Parijs woont, komt morgen."
+            "Wie te laat komt, mag niet meer naar binnen."
           ],
-          "explanation": "O irmão que mora em Paris vem amanhã. (tenho vários) = De broer die in Parijs woont, komt morgen. (sobram: onderwerp, Let)",
+          "explanation": "Quem chegar atrasado já não pode entrar. = Wie te laat komt, mag niet meer naar binnen. (sobram: is, iets)",
           "vocabRefs": []
         },
         {
           "id": "s6-u11-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O amigo com quem fui de férias mora em Gante.",
+          "prompt": "Os livros que estão na mesa são meus.",
           "tokens": [
-            "in",
-            "vriend",
-            "De",
-            "op",
-            "Gent.",
-            "ging,",
-            "ik",
-            "wie",
-            "woont",
-            "met",
-            "slapen.",
+            "boeken",
+            "Studenten",
             "zijn",
-            "vakantie"
+            "liggen,",
+            "De",
+            "begreep.",
+            "tafel",
+            "van",
+            "op",
+            "mij.",
+            "die"
           ],
           "answers": [
-            "De vriend met wie ik op vakantie ging, woont in Gent."
+            "De boeken die op tafel liggen, zijn van mij."
           ],
-          "explanation": "O amigo com quem fui de férias mora em Gante. = De vriend met wie ik op vakantie ging, woont in Gent. (sobram: zijn, slapen.)",
-          "vocabRefs": [
-            "v-met-wie"
-          ]
+          "explanation": "Os livros que estão na mesa são meus. = De boeken die op tafel liggen, zijn van mij. (sobram: begreep., Studenten)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2138,12 +2131,12 @@
           "id": "s6-u11-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «vírgula» em neerlandês?",
+          "prompt": "Como se diz «explicativo» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "wat",
-              "correct": false
+              "text": "uitbreidend",
+              "correct": true
             },
             {
               "id": "b",
@@ -2152,40 +2145,40 @@
             },
             {
               "id": "c",
-              "text": "komma",
-              "correct": true
+              "text": "waarmee",
+              "correct": false
             }
           ],
-          "explanation": "vírgula = «komma».",
+          "explanation": "explicativo = «uitbreidend».",
           "vocabRefs": [
-            "v-komma"
+            "v-uitbreidend"
           ]
         },
         {
           "id": "s6-u11-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «restritivo» em neerlandês?",
+          "prompt": "Como se diz «aliás» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "overigens",
+              "text": "antecedent",
               "correct": false
             },
             {
               "id": "b",
-              "text": "beperkend",
+              "text": "overigens",
               "correct": true
             },
             {
               "id": "c",
-              "text": "het enige",
+              "text": "kenmerk",
               "correct": false
             }
           ],
-          "explanation": "restritivo = «beperkend».",
+          "explanation": "aliás = «overigens».",
           "vocabRefs": [
-            "v-beperkend"
+            "v-overigens"
           ]
         },
         {
@@ -2256,45 +2249,47 @@
           "id": "s6-u11-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele disse algo que não percebi.",
+          "prompt": "O assunto sobre o qual falámos era sensível.",
           "tokens": [
-            "begreep.",
-            "ik",
-            "iets",
-            "wat",
+            "waarover",
+            "gevoelig.",
             "Het",
-            "zei",
-            "niet",
-            "Hij",
-            "naar"
+            "hoofdstad.",
+            "was",
+            "spraken,",
+            "De",
+            "onderwerp",
+            "we"
           ],
           "answers": [
-            "Hij zei iets wat ik niet begreep."
+            "Het onderwerp waarover we spraken, was gevoelig."
           ],
-          "explanation": "Ele disse algo que não percebi. = Hij zei iets wat ik niet begreep. (sobram: Het, naar)",
-          "vocabRefs": []
+          "explanation": "O assunto sobre o qual falámos era sensível. = Het onderwerp waarover we spraken, was gevoelig. (sobram: hoofdstad., De)",
+          "vocabRefs": [
+            "v-waarover"
+          ]
         },
         {
           "id": "s6-u11-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele ajudou-me, o que achei muito querido.",
+          "prompt": "O meu irmão, que mora em Paris, vem amanhã.",
           "tokens": [
-            "oud.",
-            "vond.",
-            "heel",
-            "Hij",
-            "huis",
-            "lief",
-            "ik",
-            "me,",
-            "wat",
-            "hielp"
+            "schrijf,",
+            "morgen.",
+            "woont,",
+            "Mijn",
+            "slagen.",
+            "komt",
+            "Parijs",
+            "die",
+            "in",
+            "broer,"
           ],
           "answers": [
-            "Hij hielp me, wat ik heel lief vond."
+            "Mijn broer, die in Parijs woont, komt morgen."
           ],
-          "explanation": "Ele ajudou-me, o que achei muito querido. = Hij hielp me, wat ik heel lief vond. (sobram: huis, oud.)",
+          "explanation": "O meu irmão, que mora em Paris, vem amanhã. = Mijn broer, die in Parijs woont, komt morgen. (sobram: slagen., schrijf,)",
           "vocabRefs": []
         },
         {
@@ -2313,7 +2308,7 @@
           "id": "s6-u11-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het meisje dat zingt, is mijn nicht.»?",
+          "prompt": "O que significa: «Wie te laat komt, mag niet meer naar binnen.»?",
           "options": [
             {
               "id": "a",
@@ -2327,11 +2322,11 @@
             },
             {
               "id": "c",
-              "text": "A rapariga que canta é a minha prima.",
+              "text": "Quem chegar atrasado já não pode entrar.",
               "correct": true
             }
           ],
-          "explanation": "«Het meisje dat zingt, is mijn nicht.» = A rapariga que canta é a minha prima.",
+          "explanation": "«Wie te laat komt, mag niet meer naar binnen.» = Quem chegar atrasado já não pode entrar.",
           "vocabRefs": []
         }
       ],
@@ -2389,16 +2384,16 @@
       ],
       "examples": [
         {
-          "nl": "Het is een bijzondere plek.",
-          "pt": "É um lugar especial."
-        },
-        {
-          "nl": "Mijn broer, die in Parijs woont, komt morgen.",
-          "pt": "O meu irmão, que mora em Paris, vem amanhã."
+          "nl": "De broer die in Parijs woont, komt morgen.",
+          "pt": "O irmão que mora em Paris vem amanhã. (tenho vários)"
         },
         {
           "nl": "Het bedrijf waar ik voor werk… = Het bedrijf waarvoor ik werk…",
           "pt": "A empresa para a qual trabalho…"
+        },
+        {
+          "nl": "Hij hielp me, wat ik heel lief vond.",
+          "pt": "Ele ajudou-me, o que achei muito querido."
         }
       ],
       "grammar": [],
@@ -2407,88 +2402,75 @@
           "id": "s6-u11-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A única coisa que quero é dormir.",
+          "prompt": "A casa em que moro tem cem anos.",
           "tokens": [
             "Het",
-            "wat",
-            "Gent.",
-            "slapen.",
+            "waarin",
+            "woont,",
+            "honderd",
             "is",
-            "enige",
+            "huis",
             "ik",
-            "opa.",
-            "wil,"
+            "Kun",
+            "woon,",
+            "jaar",
+            "oud."
           ],
           "answers": [
-            "Het enige wat ik wil, is slapen."
+            "Het huis waarin ik woon, is honderd jaar oud."
           ],
-          "explanation": "A única coisa que quero é dormir. = Het enige wat ik wil, is slapen. (sobram: opa., Gent.)",
+          "explanation": "A casa em que moro tem cem anos. = Het huis waarin ik woon, is honderd jaar oud. (sobram: Kun, woont,)",
           "vocabRefs": [
-            "v-het-enige"
+            "v-waarin"
           ]
         },
         {
           "id": "s6-u11-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quem chegar atrasado já não pode entrar.",
+          "prompt": "Ele disse algo que não percebi.",
           "tokens": [
+            "ik",
+            "zei",
+            "Hij",
+            "is",
+            "iets",
             "niet",
-            "laat",
-            "binnen.",
-            "te",
-            "woont,",
-            "komt,",
-            "dat",
-            "Wie",
-            "meer",
-            "mag",
-            "naar"
+            "wat",
+            "overigens",
+            "begreep."
           ],
           "answers": [
-            "Wie te laat komt, mag niet meer naar binnen."
+            "Hij zei iets wat ik niet begreep."
           ],
-          "explanation": "Quem chegar atrasado já não pode entrar. = Wie te laat komt, mag niet meer naar binnen. (sobram: dat, woont,)",
+          "explanation": "Ele disse algo que não percebi. = Hij zei iets wat ik niet begreep. (sobram: is, overigens)",
           "vocabRefs": []
         },
         {
           "id": "s6-u11-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tudo o que dizes está certo.",
+          "prompt": "Ele ajudou-me, o que achei muito querido.",
           "tokens": [
-            "is",
-            "je",
-            "klopt.",
-            "Alles",
-            "zegt,",
+            "me,",
+            "ik",
+            "zijn",
+            "vond.",
+            "niet",
+            "lief",
             "wat",
-            "opa."
+            "Hij",
+            "hielp",
+            "heel"
           ],
           "answers": [
-            "Alles wat je zegt, klopt."
+            "Hij hielp me, wat ik heel lief vond."
           ],
-          "explanation": "Tudo o que dizes está certo. = Alles wat je zegt, klopt. (sobram: is, opa.)",
-          "vocabRefs": [
-            "v-alles-wat"
-          ]
+          "explanation": "Ele ajudou-me, o que achei muito querido. = Hij hielp me, wat ik heel lief vond. (sobram: zijn, niet)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u11-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De pen waarmee ik schrijf, is van mijn opa.",
-          "answers": [
-            "De pen waarmee ik schrijf, is van mijn opa."
-          ],
-          "translation": "A caneta com que escrevo é do meu avô.",
-          "explanation": "«De pen waarmee ik schrijf, is van mijn opa.» = A caneta com que escrevo é do meu avô.",
-          "vocabRefs": [
-            "v-waarmee"
-          ]
-        },
-        {
-          "id": "s6-u11-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Hij zei iets wat ik niet begreep.",
@@ -2500,109 +2482,116 @@
           "vocabRefs": []
         },
         {
+          "id": "s6-u11-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Studenten die hard werken, slagen.",
+          "answers": [
+            "Studenten die hard werken, slagen."
+          ],
+          "translation": "Os estudantes que trabalham muito passam.",
+          "explanation": "«Studenten die hard werken, slagen.» = Os estudantes que trabalham muito passam.",
+          "vocabRefs": []
+        },
+        {
           "id": "s6-u11-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De boeken die op tafel liggen, zijn van mij.",
+          "audioText": "De broer die in Parijs woont, komt morgen.",
           "answers": [
-            "De boeken die op tafel liggen, zijn van mij."
+            "De broer die in Parijs woont, komt morgen."
           ],
-          "translation": "Os livros que estão na mesa são meus.",
-          "explanation": "«De boeken die op tafel liggen, zijn van mij.» = Os livros que estão na mesa são meus.",
+          "translation": "O irmão que mora em Paris vem amanhã. (tenho vários)",
+          "explanation": "«De broer die in Parijs woont, komt morgen.» = O irmão que mora em Paris vem amanhã. (tenho vários)",
           "vocabRefs": []
         },
         {
           "id": "s6-u11-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tudo o que dizes está certo.",
+          "translation": "É um lugar especial.",
           "tokens": [
-            "klopt.",
-            "zegt,",
-            "je",
-            "wat",
-            "Alles"
+            "Het",
+            "is",
+            "een",
+            "bijzondere",
+            "plek."
           ],
           "alternatives": [],
-          "explanation": "Alles wat je zegt, klopt.",
+          "explanation": "Het is een bijzondere plek.",
           "vocabRefs": [
-            "v-alles-wat"
+            "v-bijzonder"
           ]
         },
         {
           "id": "s6-u11-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A casa em que moro tem cem anos.",
+          "translation": "Atenção às vírgulas.",
           "tokens": [
-            "woon,",
-            "oud.",
-            "huis",
-            "is",
-            "Het",
-            "ik",
-            "honderd",
-            "waarin",
-            "jaar"
+            "Let",
+            "op",
+            "de",
+            "komma's."
           ],
           "alternatives": [],
-          "explanation": "Het huis waarin ik woon, is honderd jaar oud.",
+          "explanation": "Let op de komma's.",
           "vocabRefs": [
-            "v-waarin"
+            "v-komma"
           ]
         },
         {
           "id": "s6-u11-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het enige»?",
+          "prompt": "O que significa «waarin»?",
           "options": [
             {
               "id": "a",
-              "text": "a única coisa",
-              "correct": true
+              "text": "com o qual",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "vírgula",
-              "correct": false
+              "text": "em que",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "descrever",
+              "text": "sobre o qual",
               "correct": false
             }
           ],
-          "explanation": "«het enige» = a única coisa.",
+          "explanation": "«waarin» = em que, onde.",
           "vocabRefs": [
-            "v-het-enige"
+            "v-waarin"
           ]
         },
         {
           "id": "s6-u11-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «uitbreidend»?",
+          "prompt": "O que significa «het kenmerk»?",
           "options": [
             {
               "id": "a",
-              "text": "especial",
-              "correct": false
+              "text": "característica",
+              "correct": true
             },
             {
               "id": "b",
               "text": "explicativo",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "que",
+              "text": "aliás",
               "correct": false
             }
           ],
-          "explanation": "«uitbreidend» = explicativo (não restritivo).",
+          "explanation": "«het kenmerk» = característica.",
           "vocabRefs": [
-            "v-uitbreidend"
+            "v-kenmerk"
           ]
         }
       ],

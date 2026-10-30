@@ -1900,16 +1900,16 @@
       ],
       "examples": [
         {
-          "nl": "Heb je tijd?",
-          "pt": "Tens tempo?"
-        },
-        {
-          "nl": "Misschien.",
-          "pt": "Talvez."
+          "nl": "Is hij thuis?",
+          "pt": "Ele está em casa?"
         },
         {
           "nl": "Je komt morgen, toch?",
           "pt": "Vens amanhã, não vens?"
+        },
+        {
+          "nl": "Wat drink je?",
+          "pt": "O que bebes?"
         }
       ],
       "grammar": [],
@@ -1966,8 +1966,8 @@
           "translation": "Ele está em casa?",
           "tokens": [
             "Is",
-            "thuis?",
-            "hij"
+            "hij",
+            "thuis?"
           ],
           "alternatives": [],
           "explanation": "Is hij thuis?",
@@ -1979,10 +1979,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quem tem a minha caneta?",
           "tokens": [
-            "mijn",
+            "Wie",
             "heeft",
-            "pen?",
-            "Wie"
+            "mijn",
+            "pen?"
           ],
           "alternatives": [],
           "explanation": "Wie heeft mijn pen?",
@@ -1996,8 +1996,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Está frio, não está?",
           "tokens": [
-            "is",
             "Het",
+            "is",
             "koud,",
             "hè?"
           ],
@@ -2011,98 +2011,98 @@
           "id": "s1-u13-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Is hij thuis?»?",
+          "prompt": "O que significa: «Je komt morgen, toch?»?",
           "options": [
             {
               "id": "a",
-              "text": "Como te chamas? De onde és? O que fazes?",
+              "text": "Ele está em casa?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ele está em casa?",
+              "text": "Vens amanhã, não vens?",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Talvez.",
+              "text": "Está um tempo bom, não está?",
               "correct": false
             }
           ],
-          "explanation": "«Is hij thuis?» = Ele está em casa?",
-          "vocabRefs": []
+          "explanation": "«Je komt morgen, toch?» = Vens amanhã, não vens?",
+          "vocabRefs": [
+            "v-toch"
+          ]
         },
         {
           "id": "s1-u13-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoeveel kost dat?»?",
+          "prompt": "O que significa: «Waarom leer je Nederlands?»?",
           "options": [
             {
               "id": "a",
-              "text": "Quando vens?",
+              "text": "Como vais para o trabalho?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O que bebes?",
-              "correct": false
+              "text": "Porque aprendes neerlandês?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Quanto custa isso?",
-              "correct": true
+              "text": "Fala inglês?",
+              "correct": false
             }
           ],
-          "explanation": "«Hoeveel kost dat?» = Quanto custa isso?",
+          "explanation": "«Waarom leer je Nederlands?» = Porque aprendes neerlandês?",
           "vocabRefs": [
-            "v-veel"
+            "v-waarom"
           ]
         },
         {
           "id": "s1-u13-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tens tempo?",
+          "prompt": "Como vais para o trabalho?",
           "tokens": [
+            "Wie",
             "je",
-            "hij",
-            "tijd?",
-            "lang",
-            "Heb"
+            "werk?",
+            "je",
+            "naar",
+            "thuis?",
+            "ga",
+            "Hoe"
           ],
           "answers": [
-            "Heb je tijd?"
+            "Hoe ga je naar je werk?"
           ],
-          "explanation": "Tens tempo? = Heb je tijd? (sobram: hij, lang)",
-          "vocabRefs": [
-            "v-tijd"
-          ]
+          "explanation": "Como vais para o trabalho? = Hoe ga je naar je werk? (sobram: Wie, thuis?)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u13-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como te chamas? De onde és? O que fazes?",
+          "prompt": "Que horas são?",
           "tokens": [
-            "je",
-            "Wat",
             "je?",
-            "thuis?",
-            "je?",
-            "kom",
-            "heet",
-            "vandaan?",
-            "morgen?",
-            "Waar",
+            "het?",
+            "is",
+            "laat",
             "Hoe",
-            "doe"
+            "hij"
           ],
           "answers": [
-            "Hoe heet je? Waar kom je vandaan? Wat doe je?"
+            "Hoe laat is het?"
           ],
-          "explanation": "Como te chamas? De onde és? O que fazes? = Hoe heet je? Waar kom je vandaan? Wat doe je? (sobram: thuis?, morgen?)",
-          "vocabRefs": []
+          "explanation": "Que horas são? = Hoe laat is het? (sobram: hij, je?)",
+          "vocabRefs": [
+            "v-hoe-laat",
+            "v-laat"
+          ]
         }
       ],
       "difficulty": 2,
@@ -2161,16 +2161,16 @@
       ],
       "examples": [
         {
-          "nl": "Lekker weer, hè?",
-          "pt": "Está um tempo bom, não está?"
+          "nl": "Heb je tijd?",
+          "pt": "Tens tempo?"
+        },
+        {
+          "nl": "Wat drink je?",
+          "pt": "O que bebes?"
         },
         {
           "nl": "Hoe laat is het?",
           "pt": "Que horas são?"
-        },
-        {
-          "nl": "Misschien.",
-          "pt": "Talvez."
         }
       ],
       "grammar": [],
@@ -2179,163 +2179,163 @@
           "id": "s1-u13-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «tarde» em neerlandês?",
+          "prompt": "Como se diz «não é?» em neerlandês?",
           "options": [
             {
               "id": "a",
+              "text": "hè",
+              "correct": true
+            },
+            {
+              "id": "b",
               "text": "zin",
               "correct": false
             },
             {
-              "id": "b",
-              "text": "weer",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "laat",
-              "correct": true
+              "text": "waarom",
+              "correct": false
             }
           ],
-          "explanation": "tarde = «laat».",
+          "explanation": "não é? = «hè».",
           "vocabRefs": [
-            "v-laat"
+            "v-he"
           ]
         },
         {
           "id": "s1-u13-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «qual» em neerlandês?",
+          "prompt": "Como se diz «a que horas» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "lekker",
+              "text": "wanneer",
               "correct": false
             },
             {
               "id": "b",
-              "text": "tijd",
+              "text": "lekker",
               "correct": false
             },
             {
               "id": "c",
-              "text": "welk",
+              "text": "hoe laat",
               "correct": true
             }
           ],
-          "explanation": "qual = «welk».",
+          "explanation": "a que horas = «hoe laat».",
           "vocabRefs": [
-            "v-welk"
+            "v-hoe-laat"
           ]
         },
         {
           "id": "s1-u13-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ is dat?",
-          "translation": "Quem é aquele?",
+          "sentence": "Hoe ___ is het?",
+          "translation": "Que horas são?",
           "answers": [
-            "Wie"
+            "laat"
           ],
           "choices": [
-            "Toch",
-            "Wie",
-            "Wanneer"
+            "hè",
+            "laat",
+            "welk"
           ],
-          "explanation": "Wie is dat?",
+          "explanation": "Hoe laat is het?",
           "vocabRefs": [
-            "v-wie"
+            "v-laat"
           ]
         },
         {
           "id": "s1-u13-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Het is koud, ___?",
-          "translation": "Está frio, não está?",
+          "sentence": "___ heeft mijn pen?",
+          "translation": "Quem tem a minha caneta?",
           "answers": [
-            "hè"
+            "Wie"
           ],
           "choices": [
-            "weer",
-            "hè",
-            "wanneer"
+            "Weinig",
+            "Wie",
+            "Natuurlijk"
           ],
-          "explanation": "Het is koud, hè?",
+          "explanation": "Wie heeft mijn pen?",
           "vocabRefs": [
-            "v-he"
+            "v-wie"
           ]
         },
         {
           "id": "s1-u13-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Je komt morgen, toch?",
+          "audioText": "Spreekt u Engels?",
           "answers": [
-            "Je komt morgen, toch?"
+            "Spreekt u Engels?"
           ],
-          "translation": "Vens amanhã, não vens?",
-          "explanation": "«Je komt morgen, toch?» = Vens amanhã, não vens?",
-          "vocabRefs": [
-            "v-toch"
-          ]
+          "translation": "Fala inglês?",
+          "explanation": "«Spreekt u Engels?» = Fala inglês?",
+          "vocabRefs": []
         },
         {
           "id": "s1-u13-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het is koud, hè?",
+          "audioText": "Wat drink je?",
           "answers": [
-            "Het is koud, hè?"
+            "Wat drink je?"
           ],
-          "translation": "Está frio, não está?",
-          "explanation": "«Het is koud, hè?» = Está frio, não está?",
-          "vocabRefs": [
-            "v-he"
-          ]
+          "translation": "O que bebes?",
+          "explanation": "«Wat drink je?» = O que bebes?",
+          "vocabRefs": []
         },
         {
           "id": "s1-u13-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quem tem a minha caneta?",
+          "prompt": "Vens amanhã, não vens?",
           "tokens": [
-            "heeft",
-            "mijn",
             "pen?",
-            "Hoeveel",
+            "komt",
+            "morgen,",
             "toch?",
-            "Wie"
+            "Je",
+            "thuis?"
           ],
           "answers": [
-            "Wie heeft mijn pen?"
+            "Je komt morgen, toch?"
           ],
-          "explanation": "Quem tem a minha caneta? = Wie heeft mijn pen? (sobram: toch?, Hoeveel)",
+          "explanation": "Vens amanhã, não vens? = Je komt morgen, toch? (sobram: pen?, thuis?)",
           "vocabRefs": [
-            "v-wie"
+            "v-toch"
           ]
         },
         {
           "id": "s1-u13-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Está frio, não está?",
+          "prompt": "Como te chamas? De onde és? O que fazes?",
           "tokens": [
-            "je",
-            "mijn",
-            "is",
+            "je?",
+            "Wat",
+            "Is",
+            "heet",
+            "kom",
             "hè?",
-            "koud,",
-            "Het"
+            "vandaan?",
+            "doe",
+            "je?",
+            "Waar",
+            "Hoe",
+            "je"
           ],
           "answers": [
-            "Het is koud, hè?"
+            "Hoe heet je? Waar kom je vandaan? Wat doe je?"
           ],
-          "explanation": "Está frio, não está? = Het is koud, hè? (sobram: mijn, je)",
-          "vocabRefs": [
-            "v-he"
-          ]
+          "explanation": "Como te chamas? De onde és? O que fazes? = Hoe heet je? Waar kom je vandaan? Wat doe je? (sobram: Is, hè?)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u13-l008-e09",
@@ -2353,28 +2353,26 @@
           "id": "s1-u13-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het is koud, hè?»?",
+          "prompt": "O que significa: «Wat drink je?»?",
           "options": [
             {
               "id": "a",
-              "text": "Talvez.",
-              "correct": false
+              "text": "O que bebes?",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Quem é aquele?",
+              "text": "Está um tempo bom, não está?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Está frio, não está?",
-              "correct": true
+              "text": "Talvez.",
+              "correct": false
             }
           ],
-          "explanation": "«Het is koud, hè?» = Está frio, não está?",
-          "vocabRefs": [
-            "v-he"
-          ]
+          "explanation": "«Wat drink je?» = O que bebes?",
+          "vocabRefs": []
         }
       ],
       "difficulty": 2,
@@ -2433,16 +2431,16 @@
       ],
       "examples": [
         {
-          "nl": "Spreekt u Engels?",
-          "pt": "Fala inglês?"
+          "nl": "Hoe lang woon je hier?",
+          "pt": "Há quanto tempo vives aqui?"
         },
         {
-          "nl": "Lekker weer, hè?",
-          "pt": "Está um tempo bom, não está?"
+          "nl": "Wanneer kom je?",
+          "pt": "Quando vens?"
         },
         {
-          "nl": "Misschien.",
-          "pt": "Talvez."
+          "nl": "Waarom leer je Nederlands?",
+          "pt": "Porque aprendes neerlandês?"
         }
       ],
       "grammar": [],
@@ -2451,94 +2449,77 @@
           "id": "s1-u13-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como vais para o trabalho?",
+          "prompt": "O que bebes?",
           "tokens": [
-            "morgen?",
-            "ga",
-            "je",
-            "Hoe",
-            "naar",
-            "werk?",
-            "Lekker",
-            "je"
+            "Heb",
+            "je?",
+            "drink",
+            "Wat",
+            "heeft"
           ],
           "answers": [
-            "Hoe ga je naar je werk?"
+            "Wat drink je?"
           ],
-          "explanation": "Como vais para o trabalho? = Hoe ga je naar je werk? (sobram: Lekker, morgen?)",
+          "explanation": "O que bebes? = Wat drink je? (sobram: heeft, Heb)",
           "vocabRefs": []
         },
         {
           "id": "s1-u13-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há quanto tempo vives aqui?",
+          "prompt": "Tens tempo?",
           "tokens": [
-            "woon",
-            "lang",
-            "Waarom",
-            "Hoe",
-            "hè?",
+            "Lekker",
+            "tijd?",
+            "Heb",
             "je",
-            "hier?"
+            "Wie"
           ],
           "answers": [
-            "Hoe lang woon je hier?"
+            "Heb je tijd?"
           ],
-          "explanation": "Há quanto tempo vives aqui? = Hoe lang woon je hier? (sobram: Waarom, hè?)",
-          "vocabRefs": []
+          "explanation": "Tens tempo? = Heb je tijd? (sobram: Wie, Lekker)",
+          "vocabRefs": [
+            "v-tijd"
+          ]
         },
         {
           "id": "s1-u13-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vens amanhã, não vens?",
+          "prompt": "Porque aprendes neerlandês?",
           "tokens": [
-            "komt",
-            "toch?",
-            "Hoe",
-            "morgen,",
-            "Je",
-            "tijd?"
+            "je",
+            "werk?",
+            "hè?",
+            "Waarom",
+            "leer",
+            "Nederlands?"
           ],
           "answers": [
-            "Je komt morgen, toch?"
+            "Waarom leer je Nederlands?"
           ],
-          "explanation": "Vens amanhã, não vens? = Je komt morgen, toch? (sobram: Hoe, tijd?)",
+          "explanation": "Porque aprendes neerlandês? = Waarom leer je Nederlands? (sobram: hè?, werk?)",
           "vocabRefs": [
-            "v-toch"
+            "v-waarom"
           ]
         },
         {
           "id": "s1-u13-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wie heeft mijn pen?",
+          "audioText": "Je komt morgen, toch?",
           "answers": [
-            "Wie heeft mijn pen?"
+            "Je komt morgen, toch?"
           ],
-          "translation": "Quem tem a minha caneta?",
-          "explanation": "«Wie heeft mijn pen?» = Quem tem a minha caneta?",
+          "translation": "Vens amanhã, não vens?",
+          "explanation": "«Je komt morgen, toch?» = Vens amanhã, não vens?",
           "vocabRefs": [
-            "v-wie"
+            "v-toch"
           ]
         },
         {
           "id": "s1-u13-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wanneer kom je?",
-          "answers": [
-            "Wanneer kom je?"
-          ],
-          "translation": "Quando vens?",
-          "explanation": "«Wanneer kom je?» = Quando vens?",
-          "vocabRefs": [
-            "v-wanneer"
-          ]
-        },
-        {
-          "id": "s1-u13-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Heb je tijd?",
@@ -2552,87 +2533,105 @@
           ]
         },
         {
+          "id": "s1-u13-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Wie heeft mijn pen?",
+          "answers": [
+            "Wie heeft mijn pen?"
+          ],
+          "translation": "Quem tem a minha caneta?",
+          "explanation": "«Wie heeft mijn pen?» = Quem tem a minha caneta?",
+          "vocabRefs": [
+            "v-wie"
+          ]
+        },
+        {
           "id": "s1-u13-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tens tempo?",
+          "translation": "Quando vens?",
           "tokens": [
-            "tijd?",
-            "Heb",
-            "je"
+            "Wanneer",
+            "kom",
+            "je?"
           ],
           "alternatives": [],
-          "explanation": "Heb je tijd?",
+          "explanation": "Wanneer kom je?",
           "vocabRefs": [
-            "v-tijd"
+            "v-wanneer"
           ]
         },
         {
           "id": "s1-u13-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O que bebes?",
+          "translation": "Que horas são?",
           "tokens": [
-            "Wat",
-            "je?",
-            "drink"
+            "Hoe",
+            "laat",
+            "is",
+            "het?"
           ],
           "alternatives": [],
-          "explanation": "Wat drink je?",
-          "vocabRefs": []
+          "explanation": "Hoe laat is het?",
+          "vocabRefs": [
+            "v-hoe-laat",
+            "v-laat"
+          ]
         },
         {
           "id": "s1-u13-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het weer»?",
+          "prompt": "O que significa «welk»?",
           "options": [
             {
               "id": "a",
-              "text": "tempo",
-              "correct": true
+              "text": "quem",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "vontade",
-              "correct": false
+              "text": "qual",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "muito",
+              "text": "tarde",
               "correct": false
             }
           ],
-          "explanation": "«het weer» = tempo (meteorológico).",
+          "explanation": "«welk» = qual, que.",
           "vocabRefs": [
-            "v-weer"
+            "v-welk"
           ]
         },
         {
           "id": "s1-u13-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «toch»?",
+          "prompt": "O que significa «hoe laat»?",
           "options": [
             {
               "id": "a",
-              "text": "não é?",
-              "correct": true
+              "text": "tarde",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "quando",
-              "correct": false
+              "text": "a que horas",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "pouco",
+              "text": "quando",
               "correct": false
             }
           ],
-          "explanation": "«toch» = não é?, pois não?.",
+          "explanation": "«hoe laat» = a que horas, que horas.",
           "vocabRefs": [
-            "v-toch"
+            "v-hoe-laat"
           ]
         }
       ],
@@ -2692,16 +2691,16 @@
       ],
       "examples": [
         {
-          "nl": "Hoe laat is het?",
-          "pt": "Que horas são?"
+          "nl": "Werk je morgen?",
+          "pt": "Trabalhas amanhã?"
         },
         {
-          "nl": "Wie is dat?",
-          "pt": "Quem é aquele?"
+          "nl": "Is hij thuis?",
+          "pt": "Ele está em casa?"
         },
         {
-          "nl": "Het is koud, hè?",
-          "pt": "Está frio, não está?"
+          "nl": "Hoeveel kost dat?",
+          "pt": "Quanto custa isso?"
         }
       ],
       "grammar": [],
@@ -2712,37 +2711,49 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
+              "nl": "veel",
+              "pt": "muito"
+            },
+            {
               "nl": "misschien",
               "pt": "talvez"
             },
             {
-              "nl": "wie",
-              "pt": "quem"
+              "nl": "lekker",
+              "pt": "bom"
+            },
+            {
+              "nl": "toch",
+              "pt": "não é?"
             },
             {
               "nl": "wanneer",
               "pt": "quando"
-            },
-            {
-              "nl": "tijd",
-              "pt": "tempo"
-            },
-            {
-              "nl": "waarom",
-              "pt": "porquê"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
+            "v-veel",
             "v-misschien",
-            "v-wie",
-            "v-wanneer",
-            "v-tijd",
-            "v-waarom"
+            "v-lekker",
+            "v-toch",
+            "v-wanneer"
           ]
         },
         {
           "id": "s1-u13-l010-e02",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Hoe heet je? Waar kom je vandaan? Wat doe je?",
+          "answers": [
+            "Hoe heet je? Waar kom je vandaan? Wat doe je?"
+          ],
+          "translation": "Como te chamas? De onde és? O que fazes?",
+          "explanation": "«Hoe heet je? Waar kom je vandaan? Wat doe je?» = Como te chamas? De onde és? O que fazes?",
+          "vocabRefs": []
+        },
+        {
+          "id": "s1-u13-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Hoe ga je naar je werk?",
@@ -2754,20 +2765,6 @@
           "vocabRefs": []
         },
         {
-          "id": "s1-u13-l010-e03",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wie heeft mijn pen?",
-          "answers": [
-            "Wie heeft mijn pen?"
-          ],
-          "translation": "Quem tem a minha caneta?",
-          "explanation": "«Wie heeft mijn pen?» = Quem tem a minha caneta?",
-          "vocabRefs": [
-            "v-wie"
-          ]
-        },
-        {
           "id": "s1-u13-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
@@ -2775,18 +2772,18 @@
           "options": [
             {
               "id": "a",
-              "text": "pouco",
+              "text": "tempo",
               "correct": false
             },
             {
               "id": "b",
-              "text": "qual",
-              "correct": false
+              "text": "vontade",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "vontade",
-              "correct": true
+              "text": "claro",
+              "correct": false
             }
           ],
           "explanation": "«de zin» = vontade.",
@@ -2798,45 +2795,44 @@
           "id": "s1-u13-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «hoe laat»?",
+          "prompt": "O que significa «laat»?",
           "options": [
             {
               "id": "a",
-              "text": "a que horas",
-              "correct": true
+              "text": "bom",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "claro",
+              "text": "vontade",
               "correct": false
             },
             {
               "id": "c",
-              "text": "vontade",
-              "correct": false
+              "text": "tarde",
+              "correct": true
             }
           ],
-          "explanation": "«hoe laat» = a que horas, que horas.",
+          "explanation": "«laat» = tarde, atrasado.",
           "vocabRefs": [
-            "v-hoe-laat"
+            "v-laat"
           ]
         },
         {
           "id": "s1-u13-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Que horas são?",
+          "translation": "Quantos filhos tens?",
           "tokens": [
-            "het?",
-            "Hoe",
-            "laat",
-            "is"
+            "Hoeveel",
+            "kinderen",
+            "heb",
+            "je?"
           ],
           "alternatives": [],
-          "explanation": "Hoe laat is het?",
+          "explanation": "Hoeveel kinderen heb je?",
           "vocabRefs": [
-            "v-hoe-laat",
-            "v-laat"
+            "v-veel"
           ]
         },
         {
@@ -2845,16 +2841,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "Como te chamas? De onde és? O que fazes?",
           "tokens": [
-            "doe",
-            "heet",
             "Hoe",
-            "je",
-            "je?",
-            "Wat",
+            "heet",
             "je?",
             "Waar",
+            "kom",
+            "je",
             "vandaan?",
-            "kom"
+            "Wat",
+            "doe",
+            "je?"
           ],
           "alternatives": [],
           "explanation": "Hoe heet je? Waar kom je vandaan? Wat doe je?",
@@ -2864,46 +2860,46 @@
           "id": "s1-u13-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ weer, hè?",
-          "translation": "Está um tempo bom, não está?",
+          "sentence": "Heb je ___?",
+          "translation": "Tens tempo?",
           "answers": [
-            "Lekker"
+            "tijd"
           ],
           "choices": [
-            "Weer",
-            "Laat",
-            "Lekker"
+            "tijd",
+            "veel",
+            "waarom"
           ],
-          "explanation": "Lekker weer, hè?",
+          "explanation": "Heb je tijd?",
           "vocabRefs": [
-            "v-lekker"
+            "v-tijd"
           ]
         },
         {
           "id": "s1-u13-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je komt morgen, toch?»?",
+          "prompt": "O que significa: «Wie is dat?»?",
           "options": [
             {
               "id": "a",
-              "text": "Vens amanhã, não vens?",
+              "text": "Quem é aquele?",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Trabalhas amanhã?",
+              "text": "Está frio, não está?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O que bebes?",
+              "text": "Ele está em casa?",
               "correct": false
             }
           ],
-          "explanation": "«Je komt morgen, toch?» = Vens amanhã, não vens?",
+          "explanation": "«Wie is dat?» = Quem é aquele?",
           "vocabRefs": [
-            "v-toch"
+            "v-wie"
           ]
         }
       ],

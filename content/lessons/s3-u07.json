@@ -1955,16 +1955,16 @@
       ],
       "examples": [
         {
+          "nl": "Ik ben morgen waarschijnlijk weer beter.",
+          "pt": "Amanhã provavelmente já estou melhor."
+        },
+        {
           "nl": "Ik hoest veel.",
           "pt": "Tusso muito."
         },
         {
-          "nl": "Ik heb pijn in mijn rug.",
-          "pt": "Tenho dores nas costas."
-        },
-        {
-          "nl": "Wat zijn de klachten?",
-          "pt": "Quais são as queixas?"
+          "nl": "Bel 112!",
+          "pt": "Liga para o 112!"
         }
       ],
       "grammar": [],
@@ -2016,8 +2016,8 @@
           "translation": "Estou constipado.",
           "tokens": [
             "Ik",
-            "verkouden.",
-            "ben"
+            "ben",
+            "verkouden."
           ],
           "alternatives": [],
           "explanation": "Ik ben verkouden.",
@@ -2031,9 +2031,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tenho dores de garganta.",
           "tokens": [
-            "keelpijn.",
+            "Ik",
             "heb",
-            "Ik"
+            "keelpijn."
           ],
           "alternatives": [],
           "explanation": "Ik heb keelpijn.",
@@ -2048,8 +2048,8 @@
           "translation": "Tusso muito.",
           "tokens": [
             "Ik",
-            "veel.",
-            "hoest"
+            "hoest",
+            "veel."
           ],
           "alternatives": [],
           "explanation": "Ik hoest veel.",
@@ -2059,95 +2059,92 @@
           "id": "s3-u07-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb pijn in mijn rug.»?",
+          "prompt": "O que significa: «Iemand is gewond.»?",
           "options": [
             {
               "id": "a",
-              "text": "Houve um acidente.",
-              "correct": false
+              "text": "Alguém está ferido.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Liga para o 112!",
+              "text": "Tenho febre.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Tenho dores nas costas.",
-              "correct": true
+              "text": "Houve um acidente.",
+              "correct": false
             }
           ],
-          "explanation": "«Ik heb pijn in mijn rug.» = Tenho dores nas costas.",
+          "explanation": "«Iemand is gewond.» = Alguém está ferido.",
           "vocabRefs": [
-            "v-rug"
+            "v-gewond"
           ]
         },
         {
           "id": "s3-u07-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb koorts.»?",
+          "prompt": "O que significa: «Ik hoest veel.»?",
           "options": [
             {
               "id": "a",
-              "text": "Liga para o 112!",
+              "text": "Desde quando tem isto?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "As melhoras!",
-              "correct": false
+              "text": "Tusso muito.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Tenho febre.",
-              "correct": true
+              "text": "Quais são as queixas?",
+              "correct": false
             }
           ],
-          "explanation": "«Ik heb koorts.» = Tenho febre.",
-          "vocabRefs": [
-            "v-koorts"
-          ]
+          "explanation": "«Ik hoest veel.» = Tusso muito.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u07-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele tem olhos azuis.",
+          "prompt": "Tenho febre.",
           "tokens": [
-            "ogen.",
-            "voor.",
-            "heeft",
-            "Hij",
-            "blauwe",
-            "voel"
+            "wanneer",
+            "heb",
+            "veel.",
+            "Ik",
+            "koorts."
           ],
           "answers": [
-            "Hij heeft blauwe ogen."
+            "Ik heb koorts."
           ],
-          "explanation": "Ele tem olhos azuis. = Hij heeft blauwe ogen. (sobram: voel, voor.)",
-          "vocabRefs": []
+          "explanation": "Tenho febre. = Ik heb koorts. (sobram: veel., wanneer)",
+          "vocabRefs": [
+            "v-koorts"
+          ]
         },
         {
           "id": "s3-u07-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quais são as queixas?",
+          "prompt": "Aviso que estou doente (não vou trabalhar).",
           "tokens": [
-            "Wat",
             "me",
-            "rug.",
-            "klachten?",
-            "zijn",
-            "de"
+            "gebeurd.",
+            "ziek.",
+            "meld",
+            "lekker.",
+            "Ik"
           ],
           "answers": [
-            "Wat zijn de klachten?"
+            "Ik meld me ziek."
           ],
-          "explanation": "Quais são as queixas? = Wat zijn de klachten? (sobram: me, rug.)",
-          "vocabRefs": [
-            "v-klacht"
-          ]
+          "explanation": "Aviso que estou doente (não vou trabalhar). = Ik meld me ziek. (sobram: gebeurd., lekker.)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 3,
@@ -2209,16 +2206,16 @@
       ],
       "examples": [
         {
-          "nl": "Bel 112!",
-          "pt": "Liga para o 112!"
+          "nl": "Iemand is gewond.",
+          "pt": "Alguém está ferido."
         },
         {
-          "nl": "Wat zijn de klachten?",
-          "pt": "Quais são as queixas?"
+          "nl": "Help!",
+          "pt": "Socorro!"
         },
         {
-          "nl": "Ik heb pijn in mijn rug.",
-          "pt": "Tenho dores nas costas."
+          "nl": "Ik heb koorts.",
+          "pt": "Tenho febre."
         }
       ],
       "grammar": [],
@@ -2227,54 +2224,54 @@
           "id": "s3-u07-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «olho» em neerlandês?",
+          "prompt": "Como se diz «tossir» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "oog",
-              "correct": true
+              "text": "misselijk",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "112 bellen",
+              "text": "recept",
               "correct": false
             },
             {
               "id": "c",
-              "text": "spoedeisende hulp",
-              "correct": false
+              "text": "hoesten",
+              "correct": true
             }
           ],
-          "explanation": "olho = «oog».",
+          "explanation": "tossir = «hoesten».",
           "vocabRefs": [
-            "v-oog"
+            "v-hoesten"
           ]
         },
         {
           "id": "s3-u07-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «examinar» em neerlandês?",
+          "prompt": "Como se diz «constipado» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "koorts",
+              "text": "hand",
               "correct": false
             },
             {
               "id": "b",
-              "text": "onderzoeken",
-              "correct": true
+              "text": "gewond",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "arm",
-              "correct": false
+              "text": "verkouden",
+              "correct": true
             }
           ],
-          "explanation": "examinar = «onderzoeken».",
+          "explanation": "constipado = «verkouden».",
           "vocabRefs": [
-            "v-onderzoeken"
+            "v-verkouden"
           ]
         },
         {
@@ -2287,9 +2284,9 @@
             "rug"
           ],
           "choices": [
-            "klacht",
             "rug",
-            "rust"
+            "koorts",
+            "griep"
           ],
           "explanation": "Ik heb pijn in mijn rug.",
           "vocabRefs": [
@@ -2300,125 +2297,125 @@
           "id": "s3-u07-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik heb ___.",
-          "translation": "Tenho febre.",
+          "sentence": "Neem ___ en drink veel water.",
+          "translation": "Descanse e beba muita água.",
           "answers": [
-            "koorts"
+            "rust"
           ],
           "choices": [
-            "griep",
-            "koorts",
-            "duizelig"
+            "rust",
+            "recept",
+            "ambulance"
           ],
-          "explanation": "Ik heb koorts.",
+          "explanation": "Neem rust en drink veel water.",
           "vocabRefs": [
-            "v-koorts"
+            "v-rust"
           ]
         },
         {
           "id": "s3-u07-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb pijn in mijn rug.",
+          "audioText": "Wat zijn de klachten?",
           "answers": [
-            "Ik heb pijn in mijn rug."
+            "Wat zijn de klachten?"
           ],
-          "translation": "Tenho dores nas costas.",
-          "explanation": "«Ik heb pijn in mijn rug.» = Tenho dores nas costas.",
+          "translation": "Quais são as queixas?",
+          "explanation": "«Wat zijn de klachten?» = Quais são as queixas?",
           "vocabRefs": [
-            "v-rug"
+            "v-klacht"
           ]
         },
         {
           "id": "s3-u07-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb koorts.",
+          "audioText": "Hij heeft blauwe ogen.",
           "answers": [
-            "Ik heb koorts."
+            "Hij heeft blauwe ogen."
           ],
-          "translation": "Tenho febre.",
-          "explanation": "«Ik heb koorts.» = Tenho febre.",
-          "vocabRefs": [
-            "v-koorts"
-          ]
+          "translation": "Ele tem olhos azuis.",
+          "explanation": "«Hij heeft blauwe ogen.» = Ele tem olhos azuis.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u07-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não me sinto bem.",
+          "prompt": "Tusso muito.",
           "tokens": [
-            "me",
-            "niet",
-            "voel",
             "Ik",
-            "lekker.",
-            "meld",
-            "beter."
+            "veel.",
+            "is",
+            "me",
+            "hoest"
           ],
           "answers": [
-            "Ik voel me niet lekker."
+            "Ik hoest veel."
           ],
-          "explanation": "Não me sinto bem. = Ik voel me niet lekker. (sobram: beter., meld)",
+          "explanation": "Tusso muito. = Ik hoest veel. (sobram: me, is)",
           "vocabRefs": []
         },
         {
           "id": "s3-u07-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Alguém está ferido.",
+          "prompt": "Vou passar uma receita.",
           "tokens": [
-            "koorts.",
-            "lekker.",
-            "is",
-            "gewond.",
-            "Iemand"
+            "Ik",
+            "Er",
+            "voor.",
+            "een",
+            "water.",
+            "schrijf",
+            "recept"
           ],
           "answers": [
-            "Iemand is gewond."
+            "Ik schrijf een recept voor."
           ],
-          "explanation": "Alguém está ferido. = Iemand is gewond. (sobram: lekker., koorts.)",
+          "explanation": "Vou passar uma receita. = Ik schrijf een recept voor. (sobram: water., Er)",
           "vocabRefs": [
-            "v-gewond"
+            "v-recept-med"
           ]
         },
         {
           "id": "s3-u07-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "ongeluk",
-          "pt": "acidente",
-          "article": "het",
-          "explanation": "het ongeluk.",
+          "noun": "rust",
+          "pt": "descanso",
+          "article": "de",
+          "explanation": "de rust.",
           "vocabRefs": [
-            "v-ongeluk"
+            "v-rust"
           ]
         },
         {
           "id": "s3-u07-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik voel me niet lekker.»?",
+          "prompt": "O que significa: «Ik voel me misselijk.»?",
           "options": [
             {
               "id": "a",
-              "text": "Não me sinto bem.",
+              "text": "Sinto-me enjoado.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Tenho febre.",
+              "text": "As melhoras!",
               "correct": false
             },
             {
               "id": "c",
-              "text": "As melhoras!",
+              "text": "Tenho dores de garganta.",
               "correct": false
             }
           ],
-          "explanation": "«Ik voel me niet lekker.» = Não me sinto bem.",
-          "vocabRefs": []
+          "explanation": "«Ik voel me misselijk.» = Sinto-me enjoado.",
+          "vocabRefs": [
+            "v-misselijk"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2480,12 +2477,12 @@
       ],
       "examples": [
         {
-          "nl": "Help!",
-          "pt": "Socorro!"
+          "nl": "Ik ben morgen waarschijnlijk weer beter.",
+          "pt": "Amanhã provavelmente já estou melhor."
         },
         {
-          "nl": "Er is een ongeluk gebeurd.",
-          "pt": "Houve um acidente."
+          "nl": "Hij heeft blauwe ogen.",
+          "pt": "Ele tem olhos azuis."
         },
         {
           "nl": "Iemand is gewond.",
@@ -2498,76 +2495,78 @@
           "id": "s3-u07-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho dores nas costas.",
+          "prompt": "Sinto-me enjoado.",
           "tokens": [
-            "mijn",
-            "pijn",
+            "de",
+            "voel",
+            "Sinds",
             "misselijk.",
-            "rug.",
-            "heb",
-            "in",
             "Ik",
-            "waarschijnlijk"
+            "me"
           ],
           "answers": [
-            "Ik heb pijn in mijn rug."
+            "Ik voel me misselijk."
           ],
-          "explanation": "Tenho dores nas costas. = Ik heb pijn in mijn rug. (sobram: misselijk., waarschijnlijk)",
+          "explanation": "Sinto-me enjoado. = Ik voel me misselijk. (sobram: de, Sinds)",
           "vocabRefs": [
-            "v-rug"
+            "v-misselijk"
           ]
         },
         {
           "id": "s3-u07-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tusso muito.",
+          "prompt": "Tenho dores nas costas.",
           "tokens": [
-            "schrijf",
-            "veel.",
+            "rug.",
+            "mijn",
             "heb",
-            "hoest",
-            "Ik"
+            "ogen.",
+            "Ik",
+            "in",
+            "me",
+            "pijn"
           ],
           "answers": [
-            "Ik hoest veel."
+            "Ik heb pijn in mijn rug."
           ],
-          "explanation": "Tusso muito. = Ik hoest veel. (sobram: heb, schrijf)",
-          "vocabRefs": []
+          "explanation": "Tenho dores nas costas. = Ik heb pijn in mijn rug. (sobram: me, ogen.)",
+          "vocabRefs": [
+            "v-rug"
+          ]
         },
         {
           "id": "s3-u07-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sinto-me enjoado.",
+          "prompt": "Alguém está ferido.",
           "tokens": [
-            "koorts.",
-            "Ik",
-            "me",
-            "doet",
-            "misselijk.",
-            "voel"
+            "Iemand",
+            "is",
+            "voel",
+            "gewond.",
+            "Ik"
           ],
           "answers": [
-            "Ik voel me misselijk."
+            "Iemand is gewond."
           ],
-          "explanation": "Sinto-me enjoado. = Ik voel me misselijk. (sobram: koorts., doet)",
+          "explanation": "Alguém está ferido. = Iemand is gewond. (sobram: voel, Ik)",
           "vocabRefs": [
-            "v-misselijk"
+            "v-gewond"
           ]
         },
         {
           "id": "s3-u07-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb keelpijn.",
+          "audioText": "Ik heb pijn in mijn rug.",
           "answers": [
-            "Ik heb keelpijn."
+            "Ik heb pijn in mijn rug."
           ],
-          "translation": "Tenho dores de garganta.",
-          "explanation": "«Ik heb keelpijn.» = Tenho dores de garganta.",
+          "translation": "Tenho dores nas costas.",
+          "explanation": "«Ik heb pijn in mijn rug.» = Tenho dores nas costas.",
           "vocabRefs": [
-            "v-keel"
+            "v-rug"
           ]
         },
         {
@@ -2598,49 +2597,75 @@
           "id": "s3-u07-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tenho febre.",
+          "translation": "Sinto-me enjoado.",
           "tokens": [
-            "koorts.",
-            "heb",
-            "Ik"
+            "Ik",
+            "voel",
+            "me",
+            "misselijk."
           ],
           "alternatives": [],
-          "explanation": "Ik heb koorts.",
+          "explanation": "Ik voel me misselijk.",
           "vocabRefs": [
-            "v-koorts"
+            "v-misselijk"
           ]
         },
         {
           "id": "s3-u07-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Quais são as queixas?",
+          "translation": "Ele tem olhos azuis.",
           "tokens": [
-            "zijn",
-            "Wat",
-            "de",
-            "klachten?"
+            "Hij",
+            "heeft",
+            "blauwe",
+            "ogen."
           ],
           "alternatives": [],
-          "explanation": "Wat zijn de klachten?",
-          "vocabRefs": [
-            "v-klacht"
-          ]
+          "explanation": "Hij heeft blauwe ogen.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u07-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de arm»?",
+          "prompt": "O que significa «hoesten»?",
           "options": [
             {
               "id": "a",
-              "text": "braço",
+              "text": "tossir",
               "correct": true
             },
             {
               "id": "b",
-              "text": "mão",
+              "text": "garganta",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "cabeça",
+              "correct": false
+            }
+          ],
+          "explanation": "«hoesten» = tossir.",
+          "vocabRefs": [
+            "v-hoesten"
+          ]
+        },
+        {
+          "id": "s3-u07-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «de griep»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "gripe",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "braço",
               "correct": false
             },
             {
@@ -2649,36 +2674,9 @@
               "correct": false
             }
           ],
-          "explanation": "«de arm» = braço.",
+          "explanation": "«de griep» = gripe.",
           "vocabRefs": [
-            "v-arm"
-          ]
-        },
-        {
-          "id": "s3-u07-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het oog»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "braço",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "barriga",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "olho",
-              "correct": true
-            }
-          ],
-          "explanation": "«het oog» = olho.",
-          "vocabRefs": [
-            "v-oog"
+            "v-griep"
           ]
         }
       ],

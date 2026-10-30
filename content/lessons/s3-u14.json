@@ -1831,16 +1831,16 @@
       ],
       "examples": [
         {
-          "nl": "Het weer is beter dan gisteren.",
-          "pt": "O tempo está melhor do que ontem."
-        },
-        {
-          "nl": "Portugal is warmer dan Nederland, maar Nederland is vlakker.",
-          "pt": "Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos."
+          "nl": "Dit is het beste restaurant van de stad.",
+          "pt": "Este é o melhor restaurante da cidade."
         },
         {
           "nl": "Wie is het snelst?",
           "pt": "Quem é o mais rápido?"
+        },
+        {
+          "nl": "De helft van de mensen fietst.",
+          "pt": "Metade das pessoas anda de bicicleta."
         }
       ],
       "grammar": [],
@@ -1893,12 +1893,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ganho mais do que no ano passado.",
           "tokens": [
+            "Ik",
+            "verdien",
+            "meer",
             "dan",
             "vorig",
-            "Ik",
-            "jaar.",
-            "verdien",
-            "meer"
+            "jaar."
           ],
           "alternatives": [],
           "explanation": "Ik verdien meer dan vorig jaar.",
@@ -1913,12 +1913,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tenho a mesma idade que tu.",
           "tokens": [
-            "jij.",
-            "even",
-            "oud",
             "Ik",
             "ben",
-            "als"
+            "even",
+            "oud",
+            "als",
+            "jij."
           ],
           "alternatives": [],
           "explanation": "Ik ben even oud als jij.",
@@ -1932,12 +1932,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O tempo está melhor do que ontem.",
           "tokens": [
-            "dan",
-            "gisteren.",
-            "is",
+            "Het",
             "weer",
+            "is",
             "beter",
-            "Het"
+            "dan",
+            "gisteren."
           ],
           "alternatives": [],
           "explanation": "Het weer is beter dan gisteren.",
@@ -1950,95 +1950,98 @@
           "id": "s3-u14-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij is net zo groot als ik.»?",
+          "prompt": "O que significa: «Ik ben even oud als jij.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ganho mais do que no ano passado.",
+              "text": "O comboio é mais rápido do que o autocarro.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ele é tão alto como eu.",
+              "text": "Tenho a mesma idade que tu.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Ele é maior do que eu.",
+              "text": "a cidade mais antiga",
               "correct": false
             }
           ],
-          "explanation": "«Hij is net zo groot als ik.» = Ele é tão alto como eu.",
-          "vocabRefs": []
+          "explanation": "«Ik ben even oud als jij.» = Tenho a mesma idade que tu.",
+          "vocabRefs": [
+            "v-even-adj"
+          ]
         },
         {
           "id": "s3-u14-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb te veel gegeten.»?",
+          "prompt": "O que significa: «Utrecht is net zo mooi als Leiden.»?",
           "options": [
             {
               "id": "a",
-              "text": "Bebo menos café.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Comi demais.",
+              "text": "Utrecht é tão bonita como Leiden.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Ele é quem trabalha mais.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Metade das pessoas anda de bicicleta.",
+              "text": "Ganho mais do que no ano passado.",
               "correct": false
             }
           ],
-          "explanation": "«Ik heb te veel gegeten.» = Comi demais.",
-          "vocabRefs": [
-            "v-genoeg2"
-          ]
+          "explanation": "«Utrecht is net zo mooi als Leiden.» = Utrecht é tão bonita como Leiden.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u14-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Metade das pessoas anda de bicicleta.",
+          "prompt": "Utrecht é tão bonita como Leiden.",
           "tokens": [
-            "helft",
-            "restaurant",
-            "de",
-            "mensen",
-            "De",
+            "zo",
             "is",
-            "van",
-            "fietst."
+            "net",
+            "gisteren.",
+            "mooi",
+            "ik.",
+            "als",
+            "Utrecht",
+            "Leiden."
           ],
           "answers": [
-            "De helft van de mensen fietst."
+            "Utrecht is net zo mooi als Leiden."
           ],
-          "explanation": "Metade das pessoas anda de bicicleta. = De helft van de mensen fietst. (sobram: restaurant, is)",
-          "vocabRefs": [
-            "v-helft"
-          ]
+          "explanation": "Utrecht é tão bonita como Leiden. = Utrecht is net zo mooi als Leiden. (sobram: gisteren., ik.)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u14-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele é quem trabalha mais.",
+          "prompt": "Tenho a mesma idade que tu.",
           "tokens": [
-            "jaar.",
-            "het",
-            "werkt",
-            "Hij",
-            "zo",
-            "hardst."
+            "Ik",
+            "even",
+            "oudste",
+            "oud",
+            "ben",
+            "als",
+            "dan",
+            "jij."
           ],
           "answers": [
-            "Hij werkt het hardst."
+            "Ik ben even oud als jij."
           ],
-          "explanation": "Ele é quem trabalha mais. = Hij werkt het hardst. (sobram: zo, jaar.)",
-          "vocabRefs": []
+          "explanation": "Tenho a mesma idade que tu. = Ik ben even oud als jij. (sobram: dan, oudste)",
+          "vocabRefs": [
+            "v-even-adj"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2094,16 +2097,16 @@
       ],
       "examples": [
         {
-          "nl": "Fietsen is beter dan autorijden.",
-          "pt": "Andar de bicicleta é melhor do que conduzir."
+          "nl": "Hij werkt het hardst.",
+          "pt": "Ele é quem trabalha mais."
         },
         {
-          "nl": "Lissabon is warmer dan Amsterdam.",
-          "pt": "Lisboa é mais quente do que Amesterdão."
+          "nl": "Utrecht is net zo mooi als Leiden.",
+          "pt": "Utrecht é tão bonita como Leiden."
         },
         {
-          "nl": "Amsterdam is groter dan Utrecht.",
-          "pt": "Amesterdão é maior do que Utrecht."
+          "nl": "Ik verdien meer dan vorig jaar.",
+          "pt": "Ganho mais do que no ano passado."
         }
       ],
       "grammar": [],
@@ -2112,54 +2115,54 @@
           "id": "s3-u14-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «mais novo» em neerlandês?",
+          "prompt": "Como se diz «pior» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "even",
+              "text": "net zo … als",
               "correct": false
             },
             {
               "id": "b",
-              "text": "beter",
-              "correct": false
+              "text": "erger",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "jonger",
-              "correct": true
+              "text": "ter wereld",
+              "correct": false
             }
           ],
-          "explanation": "mais novo = «jonger».",
+          "explanation": "pior = «erger».",
           "vocabRefs": [
-            "v-jonger"
+            "v-erger"
           ]
         },
         {
           "id": "s3-u14-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «mais» em neerlandês?",
+          "prompt": "Como se diz «tão … como» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "jonger",
+              "text": "kleiner",
               "correct": false
             },
             {
               "id": "b",
-              "text": "grootst",
+              "text": "helft",
               "correct": false
             },
             {
               "id": "c",
-              "text": "meer",
+              "text": "net zo … als",
               "correct": true
             }
           ],
-          "explanation": "mais = «meer».",
+          "explanation": "tão … como = «net zo … als».",
           "vocabRefs": [
-            "v-meer"
+            "v-net-zo"
           ]
         },
         {
@@ -2172,9 +2175,9 @@
             "helft"
           ],
           "choices": [
-            "helft",
             "grootst",
-            "ouder"
+            "dan",
+            "helft"
           ],
           "explanation": "De helft van de mensen fietst.",
           "vocabRefs": [
@@ -2185,23 +2188,37 @@
           "id": "s3-u14-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Portugal is warmer ___ Nederland, maar Nederland is vlakker.",
-          "translation": "Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos.",
+          "sentence": "Het weer is beter ___ gisteren.",
+          "translation": "O tempo está melhor do que ontem.",
           "answers": [
             "dan"
           ],
           "choices": [
-            "grootst",
-            "even",
-            "dan"
+            "minder",
+            "dan",
+            "meest"
           ],
-          "explanation": "Portugal is warmer dan Nederland, maar Nederland is vlakker.",
+          "explanation": "Het weer is beter dan gisteren.",
           "vocabRefs": [
             "v-dan-comp"
           ]
         },
         {
           "id": "s3-u14-l008-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik ben even oud als jij.",
+          "answers": [
+            "Ik ben even oud als jij."
+          ],
+          "translation": "Tenho a mesma idade que tu.",
+          "explanation": "«Ik ben even oud als jij.» = Tenho a mesma idade que tu.",
+          "vocabRefs": [
+            "v-even-adj"
+          ]
+        },
+        {
+          "id": "s3-u14-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik heb te veel gegeten.",
@@ -2215,67 +2232,46 @@
           ]
         },
         {
-          "id": "s3-u14-l008-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dit is het beste restaurant van de stad.",
-          "answers": [
-            "Dit is het beste restaurant van de stad."
-          ],
-          "translation": "Este é o melhor restaurante da cidade.",
-          "explanation": "«Dit is het beste restaurant van de stad.» = Este é o melhor restaurante da cidade.",
-          "vocabRefs": [
-            "v-best"
-          ]
-        },
-        {
           "id": "s3-u14-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos.",
+          "prompt": "Ganho mais do que no ano passado.",
           "tokens": [
-            "zo",
-            "maar",
-            "Nederland",
-            "Nederland,",
-            "is",
-            "is",
-            "Portugal",
+            "verdien",
             "dan",
-            "vlakker.",
-            "warmer",
+            "Ik",
+            "net",
+            "meer",
+            "vorig",
+            "jaar.",
             "Amsterdam"
           ],
           "answers": [
-            "Portugal is warmer dan Nederland, maar Nederland is vlakker."
+            "Ik verdien meer dan vorig jaar."
           ],
-          "explanation": "Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos. = Portugal is warmer dan Nederland, maar Nederland is vlakker. (sobram: zo, Amsterdam)",
+          "explanation": "Ganho mais do que no ano passado. = Ik verdien meer dan vorig jaar. (sobram: Amsterdam, net)",
           "vocabRefs": [
-            "v-dan-comp"
+            "v-dan-comp",
+            "v-meer"
           ]
         },
         {
           "id": "s3-u14-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Amesterdão é maior do que Utrecht.",
+          "prompt": "a cidade mais antiga",
           "tokens": [
-            "Amsterdam",
-            "is",
-            "hardst.",
-            "dan",
-            "Utrecht.",
-            "groter",
-            "Rotterdam"
+            "Wie",
+            "de",
+            "stad",
+            "vlakker.",
+            "oudste"
           ],
           "answers": [
-            "Amsterdam is groter dan Utrecht."
+            "de oudste stad"
           ],
-          "explanation": "Amesterdão é maior do que Utrecht. = Amsterdam is groter dan Utrecht. (sobram: Rotterdam, hardst.)",
-          "vocabRefs": [
-            "v-dan-comp",
-            "v-groter"
-          ]
+          "explanation": "a cidade mais antiga = de oudste stad (sobram: Wie, vlakker.)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u14-l008-e09",
@@ -2293,27 +2289,27 @@
           "id": "s3-u14-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De helft van de mensen fietst.»?",
+          "prompt": "O que significa: «Portugal is warmer dan Nederland, maar Nederland is vlakker.»?",
           "options": [
             {
               "id": "a",
-              "text": "O comboio é mais rápido do que o autocarro.",
+              "text": "Andar de bicicleta é melhor do que conduzir.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "a cidade mais antiga",
+              "text": "O comboio é mais rápido do que o autocarro.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Metade das pessoas anda de bicicleta.",
+              "text": "Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos.",
               "correct": true
             }
           ],
-          "explanation": "«De helft van de mensen fietst.» = Metade das pessoas anda de bicicleta.",
+          "explanation": "«Portugal is warmer dan Nederland, maar Nederland is vlakker.» = Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos.",
           "vocabRefs": [
-            "v-helft"
+            "v-dan-comp"
           ]
         }
       ],
@@ -2370,16 +2366,16 @@
       ],
       "examples": [
         {
-          "nl": "Lissabon is warmer dan Amsterdam.",
-          "pt": "Lisboa é mais quente do que Amesterdão."
-        },
-        {
-          "nl": "Ik drink minder koffie.",
-          "pt": "Bebo menos café."
+          "nl": "de oudste stad",
+          "pt": "a cidade mais antiga"
         },
         {
           "nl": "Utrecht is net zo mooi als Leiden.",
           "pt": "Utrecht é tão bonita como Leiden."
+        },
+        {
+          "nl": "Portugal is warmer dan Nederland, maar Nederland is vlakker.",
+          "pt": "Portugal é mais quente do que os Países Baixos, mas os Países Baixos são mais planos."
         }
       ],
       "grammar": [],
@@ -2390,20 +2386,20 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "O comboio é mais rápido do que o autocarro.",
           "tokens": [
+            "werkt",
             "De",
-            "sneller",
-            "dan",
-            "Fietsen",
+            "ik.",
             "is",
+            "bus.",
             "trein",
-            "vorig",
+            "sneller",
             "de",
-            "bus."
+            "dan"
           ],
           "answers": [
             "De trein is sneller dan de bus."
           ],
-          "explanation": "O comboio é mais rápido do que o autocarro. = De trein is sneller dan de bus. (sobram: vorig, Fietsen)",
+          "explanation": "O comboio é mais rápido do que o autocarro. = De trein is sneller dan de bus. (sobram: ik., werkt)",
           "vocabRefs": [
             "v-dan-comp"
           ]
@@ -2412,45 +2408,47 @@
           "id": "s3-u14-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Comi demais.",
+          "prompt": "Amesterdão é maior do que Utrecht.",
           "tokens": [
-            "te",
-            "Ik",
-            "zo",
-            "dan",
-            "gegeten.",
-            "heb",
-            "veel"
+            "groter",
+            "Amsterdam",
+            "oud",
+            "de",
+            "Utrecht.",
+            "is",
+            "dan"
           ],
           "answers": [
-            "Ik heb te veel gegeten."
+            "Amsterdam is groter dan Utrecht."
           ],
-          "explanation": "Comi demais. = Ik heb te veel gegeten. (sobram: dan, zo)",
+          "explanation": "Amesterdão é maior do que Utrecht. = Amsterdam is groter dan Utrecht. (sobram: de, oud)",
           "vocabRefs": [
-            "v-genoeg2"
+            "v-dan-comp",
+            "v-groter"
           ]
         },
         {
           "id": "s3-u14-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho a mesma idade que tu.",
+          "prompt": "O meu irmão é mais velho do que eu.",
           "tokens": [
-            "ben",
-            "jij.",
-            "Ik",
-            "Portugal",
-            "oud",
+            "is",
+            "Mijn",
             "dan",
-            "als",
-            "even"
+            "ouder",
+            "ik.",
+            "broer",
+            "bus.",
+            "beter"
           ],
           "answers": [
-            "Ik ben even oud als jij."
+            "Mijn broer is ouder dan ik."
           ],
-          "explanation": "Tenho a mesma idade que tu. = Ik ben even oud als jij. (sobram: dan, Portugal)",
+          "explanation": "O meu irmão é mais velho do que eu. = Mijn broer is ouder dan ik. (sobram: beter, bus.)",
           "vocabRefs": [
-            "v-even-adj"
+            "v-dan-comp",
+            "v-ouder"
           ]
         },
         {
@@ -2472,119 +2470,111 @@
           "id": "s3-u14-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Fietsen is beter dan autorijden.",
+          "audioText": "Hij is net zo groot als ik.",
           "answers": [
-            "Fietsen is beter dan autorijden."
+            "Hij is net zo groot als ik."
           ],
-          "translation": "Andar de bicicleta é melhor do que conduzir.",
-          "explanation": "«Fietsen is beter dan autorijden.» = Andar de bicicleta é melhor do que conduzir.",
+          "translation": "Ele é tão alto como eu.",
+          "explanation": "«Hij is net zo groot als ik.» = Ele é tão alto como eu.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s3-u14-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Het weer is beter dan gisteren.",
+          "answers": [
+            "Het weer is beter dan gisteren."
+          ],
+          "translation": "O tempo está melhor do que ontem.",
+          "explanation": "«Het weer is beter dan gisteren.» = O tempo está melhor do que ontem.",
           "vocabRefs": [
             "v-dan-comp",
             "v-beter-dan"
           ]
         },
         {
-          "id": "s3-u14-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik drink minder koffie.",
-          "answers": [
-            "Ik drink minder koffie."
-          ],
-          "translation": "Bebo menos café.",
-          "explanation": "«Ik drink minder koffie.» = Bebo menos café.",
-          "vocabRefs": [
-            "v-minder"
-          ]
-        },
-        {
           "id": "s3-u14-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Utrecht é tão bonita como Leiden.",
+          "translation": "Quem é o mais rápido?",
           "tokens": [
-            "mooi",
-            "Leiden.",
-            "Utrecht",
-            "net",
-            "als",
-            "zo",
-            "is"
+            "Wie",
+            "is",
+            "het",
+            "snelst?"
           ],
           "alternatives": [],
-          "explanation": "Utrecht is net zo mooi als Leiden.",
+          "explanation": "Wie is het snelst?",
           "vocabRefs": []
         },
         {
           "id": "s3-u14-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Lisboa é mais quente do que Amesterdão.",
+          "translation": "Ele é quem trabalha mais.",
           "tokens": [
-            "Lissabon",
-            "dan",
-            "warmer",
-            "Amsterdam.",
-            "is"
+            "Hij",
+            "werkt",
+            "het",
+            "hardst."
           ],
           "alternatives": [],
-          "explanation": "Lissabon is warmer dan Amsterdam.",
-          "vocabRefs": [
-            "v-dan-comp"
-          ]
+          "explanation": "Hij werkt het hardst.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u14-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «te veel»?",
+          "prompt": "O que significa «kleiner»?",
           "options": [
             {
               "id": "a",
-              "text": "metade",
+              "text": "o melhor",
               "correct": false
             },
             {
               "id": "b",
-              "text": "tão … como",
-              "correct": false
+              "text": "menor",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "demasiado",
-              "correct": true
+              "text": "igualmente",
+              "correct": false
             }
           ],
-          "explanation": "«te veel» = demasiado, a mais.",
+          "explanation": "«kleiner» = menor, mais pequeno.",
           "vocabRefs": [
-            "v-genoeg2"
+            "v-kleiner"
           ]
         },
         {
           "id": "s3-u14-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «meest»?",
+          "prompt": "O que significa «erger»?",
           "options": [
             {
               "id": "a",
-              "text": "melhor",
+              "text": "igualmente",
               "correct": false
             },
             {
               "id": "b",
-              "text": "do que",
+              "text": "mais",
               "correct": false
             },
             {
               "id": "c",
-              "text": "o mais",
+              "text": "pior",
               "correct": true
             }
           ],
-          "explanation": "«meest» = o mais.",
+          "explanation": "«erger» = pior.",
           "vocabRefs": [
-            "v-meest"
+            "v-erger"
           ]
         }
       ],

@@ -1938,9 +1938,9 @@
           "translation": "Ainda há café?",
           "tokens": [
             "Is",
-            "koffie?",
+            "er",
             "nog",
-            "er"
+            "koffie?"
           ],
           "alternatives": [],
           "explanation": "Is er nog koffie?",
@@ -1952,10 +1952,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Há muitas bicicletas.",
           "tokens": [
-            "veel",
-            "fietsen.",
             "Er",
-            "zijn"
+            "zijn",
+            "veel",
+            "fietsen."
           ],
           "alternatives": [],
           "explanation": "Er zijn veel fietsen.",
@@ -1969,10 +1969,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "A cozinha é grande.",
           "tokens": [
-            "is",
             "De",
-            "groot.",
-            "keuken"
+            "keuken",
+            "is",
+            "groot."
           ],
           "alternatives": [],
           "explanation": "De keuken is groot.",
@@ -1984,55 +1984,54 @@
           "id": "s2-u07-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De keuken is groot.»?",
+          "prompt": "O que significa: «Ik woon in een appartement op de derde verdieping.»?",
           "options": [
             {
               "id": "a",
               "text": "Vivo num apartamento no terceiro andar.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "A cozinha é grande.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "A sala é luminosa e acolhedora.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "A minha secretária está junto à janela.",
+              "text": "Há elevador?",
               "correct": false
             }
           ],
-          "explanation": "«De keuken is groot.» = A cozinha é grande.",
+          "explanation": "«Ik woon in een appartement op de derde verdieping.» = Vivo num apartamento no terceiro andar.",
           "vocabRefs": [
-            "v-keuken"
+            "v-appartement",
+            "v-verdieping"
           ]
         },
         {
           "id": "s2-u07-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Er zijn drie slaapkamers.»?",
+          "prompt": "O que significa: «Er zijn veel fietsen.»?",
           "options": [
             {
               "id": "a",
-              "text": "A escada é muito íngreme.",
+              "text": "O sofá está na sala.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Há três quartos.",
-              "correct": true
+              "text": "Não há casa de banho em baixo.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Há um jardim.",
-              "correct": false
+              "text": "Há muitas bicicletas.",
+              "correct": true
             }
           ],
-          "explanation": "«Er zijn drie slaapkamers.» = Há três quartos.",
+          "explanation": "«Er zijn veel fietsen.» = Há muitas bicicletas.",
           "vocabRefs": [
-            "v-kamer",
-            "v-slaapkamer",
             "v-er-zijn"
           ]
         },
@@ -2040,40 +2039,45 @@
           "id": "s2-u07-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há elevador?",
+          "prompt": "A roupa está no armário.",
           "tokens": [
-            "er",
-            "een",
-            "lift?",
-            "op",
-            "Is",
-            "bij"
+            "verdieping.",
+            "liggen",
+            "in",
+            "bank",
+            "kast.",
+            "De",
+            "de",
+            "kleren"
           ],
           "answers": [
-            "Is er een lift?"
+            "De kleren liggen in de kast."
           ],
-          "explanation": "Há elevador? = Is er een lift? (sobram: bij, op)",
-          "vocabRefs": []
+          "explanation": "A roupa está no armário. = De kleren liggen in de kast. (sobram: bank, verdieping.)",
+          "vocabRefs": [
+            "v-kast"
+          ]
         },
         {
           "id": "s2-u07-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A cozinha é grande.",
+          "prompt": "A escada é muito íngreme.",
           "tokens": [
-            "keuken",
-            "raam.",
-            "woonkamer",
+            "trap",
+            "bij",
+            "licht",
             "is",
-            "groot.",
+            "steil.",
+            "heel",
             "De"
           ],
           "answers": [
-            "De keuken is groot."
+            "De trap is heel steil."
           ],
-          "explanation": "A cozinha é grande. = De keuken is groot. (sobram: raam., woonkamer)",
+          "explanation": "A escada é muito íngreme. = De trap is heel steil. (sobram: bij, licht)",
           "vocabRefs": [
-            "v-keuken"
+            "v-trap"
           ]
         }
       ],
@@ -2277,51 +2281,42 @@
           "id": "s2-u07-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vivo num apartamento no terceiro andar.",
+          "prompt": "Há muitas bicicletas.",
           "tokens": [
-            "een",
-            "op",
-            "in",
-            "derde",
-            "raam.",
-            "Ik",
-            "Mijn",
-            "verdieping.",
-            "de",
-            "appartement",
-            "woon"
+            "zijn",
+            "veel",
+            "De",
+            "woonkamer.",
+            "Er",
+            "fietsen."
           ],
           "answers": [
-            "Ik woon in een appartement op de derde verdieping."
+            "Er zijn veel fietsen."
           ],
-          "explanation": "Vivo num apartamento no terceiro andar. = Ik woon in een appartement op de derde verdieping. (sobram: Mijn, raam.)",
+          "explanation": "Há muitas bicicletas. = Er zijn veel fietsen. (sobram: woonkamer., De)",
           "vocabRefs": [
-            "v-appartement",
-            "v-verdieping"
+            "v-er-zijn"
           ]
         },
         {
           "id": "s2-u07-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu quarto é lá em cima.",
+          "prompt": "Onde é a casa de banho (sanita)?",
           "tokens": [
-            "slaapkamer",
-            "raam.",
-            "drie",
-            "Mijn",
             "is",
-            "boven."
+            "wc?",
+            "de",
+            "Waar",
+            "beneden.",
+            "fietsen."
           ],
           "answers": [
-            "Mijn slaapkamer is boven."
+            "Waar is de wc?"
           ],
-          "explanation": "O meu quarto é lá em cima. = Mijn slaapkamer is boven. (sobram: drie, raam.)",
+          "explanation": "Onde é a casa de banho (sanita)? = Waar is de wc? (sobram: beneden., fietsen.)",
           "vocabRefs": [
-            "v-kamer",
-            "v-slaapkamer",
-            "v-er-is",
-            "v-boven"
+            "v-wc"
           ]
         },
         {
@@ -2340,11 +2335,11 @@
           "id": "s2-u07-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Is er nog koffie?»?",
+          "prompt": "O que significa: «De trap is heel steil.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ainda há café?",
+              "text": "A escada é muito íngreme.",
               "correct": true
             },
             {
@@ -2358,8 +2353,10 @@
               "correct": false
             }
           ],
-          "explanation": "«Is er nog koffie?» = Ainda há café?",
-          "vocabRefs": []
+          "explanation": "«De trap is heel steil.» = A escada é muito íngreme.",
+          "vocabRefs": [
+            "v-trap"
+          ]
         }
       ],
       "difficulty": 2,
@@ -2424,16 +2421,16 @@
       ],
       "examples": [
         {
-          "nl": "Mijn bureau staat bij het raam.",
-          "pt": "A minha secretária está junto à janela."
+          "nl": "De kleren liggen in de kast.",
+          "pt": "A roupa está no armário."
         },
         {
-          "nl": "Er zijn drie slaapkamers.",
-          "pt": "Há três quartos."
+          "nl": "De woonkamer is licht en gezellig.",
+          "pt": "A sala é luminosa e acolhedora."
         },
         {
-          "nl": "Er zijn veel fietsen.",
-          "pt": "Há muitas bicicletas."
+          "nl": "Is er nog koffie?",
+          "pt": "Ainda há café?"
         }
       ],
       "grammar": [],
@@ -2463,25 +2460,23 @@
           "id": "s2-u07-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não há casa de banho em baixo.",
+          "prompt": "Há três quartos.",
           "tokens": [
+            "slaapkamers.",
+            "drie",
+            "zijn",
             "Er",
-            "is",
-            "badkamer",
-            "beneden.",
-            "binnen!",
-            "geen",
-            "boven."
+            "bank",
+            "keuken"
           ],
           "answers": [
-            "Er is geen badkamer beneden."
+            "Er zijn drie slaapkamers."
           ],
-          "explanation": "Não há casa de banho em baixo. = Er is geen badkamer beneden. (sobram: binnen!, boven.)",
+          "explanation": "Há três quartos. = Er zijn drie slaapkamers. (sobram: keuken, bank)",
           "vocabRefs": [
             "v-kamer",
-            "v-badkamer",
-            "v-er-is",
-            "v-beneden"
+            "v-slaapkamer",
+            "v-er-zijn"
           ]
         },
         {
@@ -2490,19 +2485,19 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "A minha secretária está junto à janela.",
           "tokens": [
-            "het",
             "Mijn",
-            "appartement",
-            "raam.",
-            "bureau",
+            "het",
+            "woonkamer.",
             "staat",
-            "gezellig.",
-            "bij"
+            "bureau",
+            "en",
+            "bij",
+            "raam."
           ],
           "answers": [
             "Mijn bureau staat bij het raam."
           ],
-          "explanation": "A minha secretária está junto à janela. = Mijn bureau staat bij het raam. (sobram: gezellig., appartement)",
+          "explanation": "A minha secretária está junto à janela. = Mijn bureau staat bij het raam. (sobram: en, woonkamer.)",
           "vocabRefs": [
             "v-bureau"
           ]
@@ -2527,119 +2522,127 @@
           "id": "s2-u07-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn bureau staat bij het raam.",
+          "audioText": "De kleren liggen in de kast.",
           "answers": [
-            "Mijn bureau staat bij het raam."
+            "De kleren liggen in de kast."
           ],
-          "translation": "A minha secretária está junto à janela.",
-          "explanation": "«Mijn bureau staat bij het raam.» = A minha secretária está junto à janela.",
+          "translation": "A roupa está no armário.",
+          "explanation": "«De kleren liggen in de kast.» = A roupa está no armário.",
           "vocabRefs": [
-            "v-bureau"
+            "v-kast"
           ]
         },
         {
           "id": "s2-u07-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De keuken is groot.",
+          "audioText": "Er zijn drie slaapkamers.",
           "answers": [
-            "De keuken is groot."
+            "Er zijn drie slaapkamers."
           ],
-          "translation": "A cozinha é grande.",
-          "explanation": "«De keuken is groot.» = A cozinha é grande.",
+          "translation": "Há três quartos.",
+          "explanation": "«Er zijn drie slaapkamers.» = Há três quartos.",
           "vocabRefs": [
-            "v-keuken"
+            "v-kamer",
+            "v-slaapkamer",
+            "v-er-zijn"
           ]
         },
         {
           "id": "s2-u07-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O meu quarto é lá em cima.",
+          "translation": "O sofá está na sala.",
           "tokens": [
-            "is",
-            "Mijn",
-            "boven.",
-            "slaapkamer"
+            "De",
+            "bank",
+            "staat",
+            "in",
+            "de",
+            "woonkamer."
           ],
           "alternatives": [],
-          "explanation": "Mijn slaapkamer is boven.",
+          "explanation": "De bank staat in de woonkamer.",
           "vocabRefs": [
             "v-kamer",
-            "v-slaapkamer",
-            "v-er-is",
-            "v-boven"
+            "v-woonkamer",
+            "v-bank"
           ]
         },
         {
           "id": "s2-u07-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Há um jardim.",
+          "translation": "A sala é luminosa e acolhedora.",
           "tokens": [
-            "Er",
-            "tuin.",
-            "een",
-            "is"
+            "De",
+            "woonkamer",
+            "is",
+            "licht",
+            "en",
+            "gezellig."
           ],
           "alternatives": [],
-          "explanation": "Er is een tuin.",
+          "explanation": "De woonkamer is licht en gezellig.",
           "vocabRefs": [
-            "v-er-is"
+            "v-kamer",
+            "v-woonkamer",
+            "v-er-is",
+            "v-licht"
           ]
         },
         {
           "id": "s2-u07-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de badkamer»?",
+          "prompt": "O que significa «de woonkamer»?",
           "options": [
             {
               "id": "a",
-              "text": "casa de banho",
-              "correct": true
+              "text": "sanita",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "apartamento",
+              "text": "armário",
               "correct": false
             },
             {
               "id": "c",
               "text": "sala de estar",
-              "correct": false
+              "correct": true
             }
           ],
-          "explanation": "«de badkamer» = casa de banho.",
+          "explanation": "«de woonkamer» = sala de estar.",
           "vocabRefs": [
-            "v-badkamer"
+            "v-woonkamer"
           ]
         },
         {
           "id": "s2-u07-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de bank»?",
+          "prompt": "O que significa «donker»?",
           "options": [
             {
               "id": "a",
-              "text": "sofá",
+              "text": "escuro",
               "correct": true
             },
             {
               "id": "b",
-              "text": "casa de banho",
+              "text": "em cima",
               "correct": false
             },
             {
               "id": "c",
-              "text": "claro",
+              "text": "candeeiro",
               "correct": false
             }
           ],
-          "explanation": "«de bank» = sofá, banco.",
+          "explanation": "«donker» = escuro.",
           "vocabRefs": [
-            "v-bank"
+            "v-donker"
           ]
         }
       ],

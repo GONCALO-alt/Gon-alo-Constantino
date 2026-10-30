@@ -1891,12 +1891,12 @@
       ],
       "examples": [
         {
-          "nl": "De zon schijnt.",
-          "pt": "Está sol."
+          "nl": "Als het mooi weer is, gaan we naar het strand.",
+          "pt": "Se estiver bom tempo, vamos à praia."
         },
         {
-          "nl": "Er zijn buien in het noorden.",
-          "pt": "Há aguaceiros no norte."
+          "nl": "Lekker weertje, hè?",
+          "pt": "Está um tempinho bom, não está?"
         },
         {
           "nl": "Ik ben helemaal nat!",
@@ -1949,9 +1949,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Está um tempinho bom, não está?",
           "tokens": [
-            "hè?",
             "Lekker",
-            "weertje,"
+            "weertje,",
+            "hè?"
           ],
           "alternatives": [],
           "explanation": "Lekker weertje, hè?",
@@ -1963,16 +1963,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "Se estiver bom tempo, vamos à praia.",
           "tokens": [
-            "mooi",
-            "het",
             "Als",
             "het",
+            "mooi",
             "weer",
-            "strand.",
-            "naar",
-            "we",
+            "is,",
             "gaan",
-            "is,"
+            "we",
+            "naar",
+            "het",
+            "strand."
           ],
           "alternatives": [],
           "explanation": "Als het mooi weer is, gaan we naar het strand.",
@@ -1984,12 +1984,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "No verão faz calor.",
           "tokens": [
-            "het",
-            "warm.",
             "In",
             "de",
             "zomer",
-            "is"
+            "is",
+            "het",
+            "warm."
           ],
           "alternatives": [],
           "explanation": "In de zomer is het warm.",
@@ -2001,96 +2001,96 @@
           "id": "s2-u12-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat een vreselijk weer!»?",
+          "prompt": "O que significa: «Het wordt koud.»?",
           "options": [
             {
               "id": "a",
-              "text": "Que tempo horrível!",
-              "correct": true
+              "text": "Leva um guarda-chuva.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "No verão faz calor.",
+              "text": "A minha estação preferida é a primavera.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Leva um guarda-chuva.",
-              "correct": false
+              "text": "Vai arrefecer.",
+              "correct": true
             }
           ],
-          "explanation": "«Wat een vreselijk weer!» = Que tempo horrível!",
-          "vocabRefs": [
-            "v-vreselijk"
-          ]
+          "explanation": "«Het wordt koud.» = Vai arrefecer.",
+          "vocabRefs": []
         },
         {
           "id": "s2-u12-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het is bewolkt.»?",
+          "prompt": "O que significa: «Lekker weertje, hè?»?",
           "options": [
             {
               "id": "a",
-              "text": "No outono há muito vento.",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Estão quinze graus.",
               "correct": false
             },
             {
-              "id": "c",
-              "text": "Está nublado.",
+              "id": "b",
+              "text": "Está um tempinho bom, não está?",
               "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Estou todo molhado!",
+              "correct": false
             }
           ],
-          "explanation": "«Het is bewolkt.» = Está nublado.",
-          "vocabRefs": [
-            "v-bewolkt"
-          ]
+          "explanation": "«Lekker weertje, hè?» = Está um tempinho bom, não está?",
+          "vocabRefs": []
         },
         {
           "id": "s2-u12-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Amanhã vai estar sol.",
+          "prompt": "A minha estação preferida é a primavera.",
           "tokens": [
-            "het",
-            "wordt",
-            "zonnig.",
+            "mee.",
             "lente.",
-            "zijn",
-            "Morgen"
+            "is",
+            "lievelingsseizoen",
+            "de",
+            "in",
+            "Mijn"
           ],
           "answers": [
-            "Morgen wordt het zonnig."
+            "Mijn lievelingsseizoen is de lente."
           ],
-          "explanation": "Amanhã vai estar sol. = Morgen wordt het zonnig. (sobram: zijn, lente.)",
+          "explanation": "A minha estação preferida é a primavera. = Mijn lievelingsseizoen is de lente. (sobram: mee., in)",
           "vocabRefs": [
-            "v-zonnig"
+            "v-lente",
+            "v-seizoen"
           ]
         },
         {
           "id": "s2-u12-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vai chover.",
+          "prompt": "No outono há muito vento.",
           "tokens": [
-            "Het",
-            "gaat",
-            "Lissabon?",
-            "regenen.",
-            "in"
+            "waait",
+            "de",
+            "noorden.",
+            "het",
+            "Morgen",
+            "veel.",
+            "In",
+            "herfst"
           ],
           "answers": [
-            "Het gaat regenen."
+            "In de herfst waait het veel."
           ],
-          "explanation": "Vai chover. = Het gaat regenen. (sobram: in, Lissabon?)",
+          "explanation": "No outono há muito vento. = In de herfst waait het veel. (sobram: Morgen, noorden.)",
           "vocabRefs": [
-            "v-regenen",
-            "v-regen"
+            "v-herfst"
           ]
         }
       ],
@@ -2149,16 +2149,16 @@
       ],
       "examples": [
         {
+          "nl": "De zon schijnt.",
+          "pt": "Está sol."
+        },
+        {
           "nl": "In de lente bloeien de tulpen.",
           "pt": "Na primavera florescem as túlipas."
         },
         {
-          "nl": "Het regent.",
-          "pt": "Está a chover."
-        },
-        {
-          "nl": "Het is vijftien graden.",
-          "pt": "Estão quinze graus."
+          "nl": "Neem een paraplu mee.",
+          "pt": "Leva um guarda-chuva."
         }
       ],
       "grammar": [],
@@ -2167,11 +2167,38 @@
           "id": "s2-u12-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «maravilhoso» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "sneeuwen",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "heerlijk",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "waaien",
+              "correct": false
+            }
+          ],
+          "explanation": "maravilhoso = «heerlijk».",
+          "vocabRefs": [
+            "v-heerlijk"
+          ]
+        },
+        {
+          "id": "s2-u12-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
           "prompt": "Como se diz «chuva» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "graad",
+              "text": "bui",
               "correct": false
             },
             {
@@ -2181,7 +2208,7 @@
             },
             {
               "id": "c",
-              "text": "sneeuwen",
+              "text": "nat",
               "correct": false
             }
           ],
@@ -2191,80 +2218,53 @@
           ]
         },
         {
-          "id": "s2-u12-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «molhado» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "weerbericht",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "nat",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "waaien",
-              "correct": false
-            }
-          ],
-          "explanation": "molhado = «nat».",
-          "vocabRefs": [
-            "v-nat"
-          ]
-        },
-        {
           "id": "s2-u12-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Neem een ___ mee.",
-          "translation": "Leva um guarda-chuva.",
+          "sentence": "Ik ben helemaal ___!",
+          "translation": "Estou todo molhado!",
           "answers": [
-            "paraplu"
+            "nat"
           ],
           "choices": [
-            "winter",
-            "lente",
-            "paraplu"
+            "nat",
+            "waaien",
+            "sneeuwen"
           ],
-          "explanation": "Neem een paraplu mee.",
+          "explanation": "Ik ben helemaal nat!",
           "vocabRefs": [
-            "v-paraplu"
+            "v-nat"
           ]
         },
         {
           "id": "s2-u12-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Morgen wordt het ___.",
-          "translation": "Amanhã vai estar sol.",
+          "sentence": "Mijn lievelingsseizoen is de ___.",
+          "translation": "A minha estação preferida é a primavera.",
           "answers": [
-            "zonnig"
+            "lente"
           ],
           "choices": [
-            "zonnig",
-            "vreselijk",
-            "heerlijk"
+            "seizoen",
+            "zomer",
+            "lente"
           ],
-          "explanation": "Morgen wordt het zonnig.",
+          "explanation": "Mijn lievelingsseizoen is de lente.",
           "vocabRefs": [
-            "v-zonnig"
+            "v-lente"
           ]
         },
         {
           "id": "s2-u12-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het waait hard.",
+          "audioText": "Als het mooi weer is, gaan we naar het strand.",
           "answers": [
-            "Het waait hard."
+            "Als het mooi weer is, gaan we naar het strand."
           ],
-          "translation": "Está muito vento.",
-          "explanation": "«Het waait hard.» = Está muito vento.",
+          "translation": "Se estiver bom tempo, vamos à praia.",
+          "explanation": "«Als het mooi weer is, gaan we naar het strand.» = Se estiver bom tempo, vamos à praia.",
           "vocabRefs": []
         },
         {
@@ -2285,80 +2285,80 @@
           "id": "s2-u12-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No outono há muito vento.",
+          "prompt": "No verão faz calor.",
           "tokens": [
-            "naar",
+            "zomer",
+            "schijnt.",
+            "In",
+            "warm.",
             "de",
+            "is",
             "het",
-            "waait",
-            "veel.",
-            "tulpen.",
-            "herfst",
-            "In"
+            "graden."
           ],
           "answers": [
-            "In de herfst waait het veel."
+            "In de zomer is het warm."
           ],
-          "explanation": "No outono há muito vento. = In de herfst waait het veel. (sobram: tulpen., naar)",
+          "explanation": "No verão faz calor. = In de zomer is het warm. (sobram: schijnt., graden.)",
           "vocabRefs": [
-            "v-herfst"
+            "v-zomer"
           ]
         },
         {
           "id": "s2-u12-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Está muito vento.",
+          "prompt": "Está a ficar tarde.",
           "tokens": [
             "Het",
-            "waait",
-            "Wat",
+            "weer!",
+            "een",
             "wordt",
-            "hard."
+            "laat."
           ],
           "answers": [
-            "Het waait hard."
+            "Het wordt laat."
           ],
-          "explanation": "Está muito vento. = Het waait hard. (sobram: Wat, wordt)",
+          "explanation": "Está a ficar tarde. = Het wordt laat. (sobram: weer!, een)",
           "vocabRefs": []
         },
         {
           "id": "s2-u12-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "winter",
-          "pt": "inverno",
-          "article": "de",
-          "explanation": "de winter.",
+          "noun": "weerbericht",
+          "pt": "previsão do tempo",
+          "article": "het",
+          "explanation": "het weerbericht.",
           "vocabRefs": [
-            "v-winter"
+            "v-weerbericht"
           ]
         },
         {
           "id": "s2-u12-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Neem een paraplu mee.»?",
+          "prompt": "O que significa: «In de lente bloeien de tulpen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Se estiver bom tempo, vamos à praia.",
+              "text": "Há aguaceiros no norte.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Leva um guarda-chuva.",
+              "text": "Na primavera florescem as túlipas.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Na primavera florescem as túlipas.",
+              "text": "Amanhã vai estar sol.",
               "correct": false
             }
           ],
-          "explanation": "«Neem een paraplu mee.» = Leva um guarda-chuva.",
+          "explanation": "«In de lente bloeien de tulpen.» = Na primavera florescem as túlipas.",
           "vocabRefs": [
-            "v-paraplu"
+            "v-lente"
           ]
         }
       ],
@@ -2417,16 +2417,16 @@
       ],
       "examples": [
         {
-          "nl": "Het gaat regenen.",
-          "pt": "Vai chover."
+          "nl": "In de lente bloeien de tulpen.",
+          "pt": "Na primavera florescem as túlipas."
         },
         {
-          "nl": "Als het mooi weer is, gaan we naar het strand.",
-          "pt": "Se estiver bom tempo, vamos à praia."
+          "nl": "Het wordt laat.",
+          "pt": "Está a ficar tarde."
         },
         {
-          "nl": "Het is bewolkt.",
-          "pt": "Está nublado."
+          "nl": "In de herfst waait het veel.",
+          "pt": "No outono há muito vento."
         }
       ],
       "grammar": [],
@@ -2435,167 +2435,164 @@
           "id": "s2-u12-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Está nublado.",
+          "prompt": "Está muito vento.",
           "tokens": [
-            "Het",
             "is",
-            "herfst",
-            "bewolkt.",
-            "In"
+            "Het",
+            "hard.",
+            "weer",
+            "waait"
           ],
           "answers": [
-            "Het is bewolkt."
+            "Het waait hard."
           ],
-          "explanation": "Está nublado. = Het is bewolkt. (sobram: herfst, In)",
-          "vocabRefs": [
-            "v-bewolkt"
-          ]
+          "explanation": "Está muito vento. = Het waait hard. (sobram: weer, is)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u12-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Na primavera florescem as túlipas.",
+          "prompt": "Está sol.",
           "tokens": [
-            "warm.",
-            "de",
-            "bloeien",
-            "tulpen.",
-            "lente",
-            "de",
-            "In",
-            "nat!"
+            "De",
+            "ben",
+            "regenen.",
+            "zon",
+            "schijnt."
           ],
           "answers": [
-            "In de lente bloeien de tulpen."
+            "De zon schijnt."
           ],
-          "explanation": "Na primavera florescem as túlipas. = In de lente bloeien de tulpen. (sobram: warm., nat!)",
-          "vocabRefs": [
-            "v-lente"
-          ]
+          "explanation": "Está sol. = De zon schijnt. (sobram: regenen., ben)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u12-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vai arrefecer.",
+          "prompt": "Como está o tempo em Lisboa?",
           "tokens": [
-            "Het",
-            "wordt",
-            "koud.",
-            "zijn",
-            "waait"
+            "weertje,",
+            "de",
+            "is",
+            "voor",
+            "het",
+            "in",
+            "Lissabon?",
+            "weer",
+            "Wat"
           ],
           "answers": [
-            "Het wordt koud."
+            "Wat voor weer is het in Lissabon?"
           ],
-          "explanation": "Vai arrefecer. = Het wordt koud. (sobram: waait, zijn)",
+          "explanation": "Como está o tempo em Lisboa? = Wat voor weer is het in Lissabon? (sobram: weertje,, de)",
           "vocabRefs": []
         },
         {
           "id": "s2-u12-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "In de herfst waait het veel.",
+          "audioText": "Het waait hard.",
           "answers": [
-            "In de herfst waait het veel."
+            "Het waait hard."
           ],
-          "translation": "No outono há muito vento.",
-          "explanation": "«In de herfst waait het veel.» = No outono há muito vento.",
-          "vocabRefs": [
-            "v-herfst"
-          ]
+          "translation": "Está muito vento.",
+          "explanation": "«Het waait hard.» = Está muito vento.",
+          "vocabRefs": []
         },
         {
           "id": "s2-u12-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben helemaal nat!",
+          "audioText": "Mijn lievelingsseizoen is de lente.",
           "answers": [
-            "Ik ben helemaal nat!"
+            "Mijn lievelingsseizoen is de lente."
           ],
-          "translation": "Estou todo molhado!",
-          "explanation": "«Ik ben helemaal nat!» = Estou todo molhado!",
+          "translation": "A minha estação preferida é a primavera.",
+          "explanation": "«Mijn lievelingsseizoen is de lente.» = A minha estação preferida é a primavera.",
           "vocabRefs": [
-            "v-nat"
+            "v-lente",
+            "v-seizoen"
           ]
         },
         {
           "id": "s2-u12-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Als het mooi weer is, gaan we naar het strand.",
+          "audioText": "Neem een paraplu mee.",
           "answers": [
-            "Als het mooi weer is, gaan we naar het strand."
+            "Neem een paraplu mee."
           ],
-          "translation": "Se estiver bom tempo, vamos à praia.",
-          "explanation": "«Als het mooi weer is, gaan we naar het strand.» = Se estiver bom tempo, vamos à praia.",
-          "vocabRefs": []
+          "translation": "Leva um guarda-chuva.",
+          "explanation": "«Neem een paraplu mee.» = Leva um guarda-chuva.",
+          "vocabRefs": [
+            "v-paraplu"
+          ]
         },
         {
           "id": "s2-u12-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Como está o tempo em Lisboa?",
+          "translation": "Que tempo horrível!",
           "tokens": [
             "Wat",
-            "is",
-            "weer",
-            "in",
-            "Lissabon?",
-            "het",
-            "voor"
+            "een",
+            "vreselijk",
+            "weer!"
           ],
           "alternatives": [],
-          "explanation": "Wat voor weer is het in Lissabon?",
-          "vocabRefs": []
+          "explanation": "Wat een vreselijk weer!",
+          "vocabRefs": [
+            "v-vreselijk"
+          ]
         },
         {
           "id": "s2-u12-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Está muito vento.",
+          "translation": "Está a ficar tarde.",
           "tokens": [
-            "waait",
             "Het",
-            "hard."
+            "wordt",
+            "laat."
           ],
           "alternatives": [],
-          "explanation": "Het waait hard.",
+          "explanation": "Het wordt laat.",
           "vocabRefs": []
         },
         {
           "id": "s2-u12-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de lente»?",
+          "prompt": "O que significa «het weerbericht»?",
           "options": [
             {
               "id": "a",
-              "text": "brilhar",
+              "text": "chover",
               "correct": false
             },
             {
               "id": "b",
-              "text": "primavera",
+              "text": "previsão do tempo",
               "correct": true
             },
             {
               "id": "c",
-              "text": "soalheiro",
+              "text": "chuva",
               "correct": false
             }
           ],
-          "explanation": "«de lente» = primavera.",
+          "explanation": "«het weerbericht» = previsão do tempo.",
           "vocabRefs": [
-            "v-lente"
+            "v-weerbericht"
           ]
         },
         {
           "id": "s2-u12-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de paraplu»?",
+          "prompt": "O que significa «worden»?",
           "options": [
             {
               "id": "a",
@@ -2604,18 +2601,18 @@
             },
             {
               "id": "b",
-              "text": "inverno",
-              "correct": false
+              "text": "tornar-se",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "guarda-chuva",
-              "correct": true
+              "text": "brilhar",
+              "correct": false
             }
           ],
-          "explanation": "«de paraplu» = guarda-chuva.",
+          "explanation": "«worden» = tornar-se, ficar.",
           "vocabRefs": [
-            "v-paraplu"
+            "v-worden"
           ]
         }
       ],

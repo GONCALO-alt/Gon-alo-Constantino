@@ -1905,16 +1905,16 @@
       ],
       "examples": [
         {
-          "nl": "We gaan volgend jaar verhuizen.",
-          "pt": "Vamos mudar de casa no próximo ano."
+          "nl": "Ik zal je morgen bellen.",
+          "pt": "Ligo-te amanhã (prometo)."
         },
         {
-          "nl": "Mijn droom is een eigen bedrijf.",
-          "pt": "O meu sonho é ter uma empresa própria."
+          "nl": "Zullen we een kopje koffie drinken?",
+          "pt": "Vamos tomar um café?"
         },
         {
-          "nl": "Kun je zaterdag?",
-          "pt": "Podes no sábado?"
+          "nl": "Ik hoop dat je komt.",
+          "pt": "Espero que venhas."
         }
       ],
       "grammar": [],
@@ -1965,12 +1965,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vamos tomar um café?",
           "tokens": [
-            "koffie",
-            "kopje",
             "Zullen",
             "we",
-            "drinken?",
-            "een"
+            "een",
+            "kopje",
+            "koffie",
+            "drinken?"
           ],
           "alternatives": [],
           "explanation": "Zullen we een kopje koffie drinken?",
@@ -1985,12 +1985,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O que vais fazer este fim de semana?",
           "tokens": [
+            "Wat",
+            "ga",
+            "je",
             "dit",
             "weekend",
-            "Wat",
-            "je",
-            "doen?",
-            "ga"
+            "doen?"
           ],
           "alternatives": [],
           "explanation": "Wat ga je dit weekend doen?",
@@ -2004,11 +2004,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Na próxima semana estou de folga.",
           "tokens": [
-            "week",
             "Volgende",
-            "vrij.",
+            "week",
             "ben",
-            "ik"
+            "ik",
+            "vrij."
           ],
           "alternatives": [],
           "explanation": "Volgende week ben ik vrij.",
@@ -2020,93 +2020,97 @@
           "id": "s4-u03-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Over twee weken vertrek ik.»?",
+          "prompt": "O que significa: «Straks ga ik koken.»?",
           "options": [
             {
               "id": "a",
-              "text": "Parto daqui a duas semanas.",
-              "correct": true
+              "text": "Ligo-te amanhã (prometo).",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "No futuro quero viver no estrangeiro.",
+              "text": "Isso dá jeito.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Espero que venhas.",
-              "correct": false
+              "text": "Daqui a pouco vou cozinhar.",
+              "correct": true
             }
           ],
-          "explanation": "«Over twee weken vertrek ik.» = Parto daqui a duas semanas.",
+          "explanation": "«Straks ga ik koken.» = Daqui a pouco vou cozinhar.",
           "vocabRefs": [
-            "v-over-twee-weken"
+            "v-straks"
           ]
         },
         {
           "id": "s4-u03-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Volgende week ben ik vrij.»?",
+          "prompt": "O que significa: «Ik beloof het.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quando é que te convém?",
+              "text": "Ainda está de pé?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Na próxima semana estou de folga.",
-              "correct": true
+              "text": "Um dia quero ir ao Japão.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Este fim de semana fico em casa.",
-              "correct": false
+              "text": "Prometo.",
+              "correct": true
             }
           ],
-          "explanation": "«Volgende week ben ik vrij.» = Na próxima semana estou de folga.",
-          "vocabRefs": [
-            "v-volgende-week"
-          ]
+          "explanation": "«Ik beloof het.» = Prometo.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u03-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Amanhã trabalho em casa.",
+          "prompt": "O meu sonho é ter uma empresa própria.",
           "tokens": [
-            "nog",
-            "thuis.",
-            "Morgen",
-            "ga",
-            "werk",
-            "ik"
+            "een",
+            "eigen",
+            "ik",
+            "Mijn",
+            "hoop",
+            "is",
+            "droom",
+            "bedrijf."
           ],
           "answers": [
-            "Morgen werk ik thuis."
+            "Mijn droom is een eigen bedrijf."
           ],
-          "explanation": "Amanhã trabalho em casa. = Morgen werk ik thuis. (sobram: nog, ga)",
-          "vocabRefs": []
+          "explanation": "O meu sonho é ter uma empresa própria. = Mijn droom is een eigen bedrijf. (sobram: hoop, ik)",
+          "vocabRefs": [
+            "v-droom"
+          ]
         },
         {
           "id": "s4-u03-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Podes no sábado?",
+          "prompt": "Parto daqui a duas semanas.",
           "tokens": [
-            "weekend",
-            "zaterdag?",
+            "vertrek",
+            "ik.",
+            "komt.",
+            "weken",
+            "twee",
             "je",
-            "Kun",
-            "Ik"
+            "Over"
           ],
           "answers": [
-            "Kun je zaterdag?"
+            "Over twee weken vertrek ik."
           ],
-          "explanation": "Podes no sábado? = Kun je zaterdag? (sobram: Ik, weekend)",
+          "explanation": "Parto daqui a duas semanas. = Over twee weken vertrek ik. (sobram: je, komt.)",
           "vocabRefs": [
-            "v-kunnen-dag"
+            "v-over-twee-weken"
           ]
         }
       ],
@@ -2194,18 +2198,18 @@
           "options": [
             {
               "id": "a",
-              "text": "beloven",
-              "correct": true
+              "text": "volgend jaar",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "zeker",
+              "text": "van plan zijn",
               "correct": false
             },
             {
               "id": "c",
-              "text": "vanmiddag",
-              "correct": false
+              "text": "beloven",
+              "correct": true
             }
           ],
           "explanation": "prometer = «beloven».",
@@ -2217,83 +2221,69 @@
           "id": "s4-u03-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «convir» em neerlandês?",
+          "prompt": "Como se diz «esta tarde» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "schikken",
+              "text": "vanmiddag",
               "correct": true
             },
             {
               "id": "b",
-              "text": "volgend jaar",
+              "text": "ooit",
               "correct": false
             },
             {
               "id": "c",
-              "text": "over twee weken",
+              "text": "straks",
               "correct": false
             }
           ],
-          "explanation": "convir = «schikken».",
+          "explanation": "esta tarde = «vanmiddag».",
           "vocabRefs": [
-            "v-schikken"
+            "v-vanmiddag"
           ]
         },
         {
           "id": "s4-u03-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ we morgen afspreken?",
-          "translation": "Combinamos para amanhã?",
+          "sentence": "___ ga ik op vakantie.",
+          "translation": "Em breve vou de férias.",
           "answers": [
-            "Zullen"
+            "Binnenkort"
           ],
           "choices": [
-            "Hopen",
-            "Vanmiddag",
-            "Zullen"
+            "Droom",
+            "Beloven",
+            "Binnenkort"
           ],
-          "explanation": "Zullen we morgen afspreken?",
+          "explanation": "Binnenkort ga ik op vakantie.",
           "vocabRefs": [
-            "v-zullen"
+            "v-binnenkort"
           ]
         },
         {
           "id": "s4-u03-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ we een kopje koffie drinken?",
-          "translation": "Vamos tomar um café?",
+          "sentence": "Mijn ___ is een eigen bedrijf.",
+          "translation": "O meu sonho é ter uma empresa própria.",
           "answers": [
-            "Zullen"
+            "droom"
           ],
           "choices": [
-            "Beloven",
-            "Zullen",
-            "Ooit"
+            "ooit",
+            "hopen",
+            "droom"
           ],
-          "explanation": "Zullen we een kopje koffie drinken?",
+          "explanation": "Mijn droom is een eigen bedrijf.",
           "vocabRefs": [
-            "v-zullen"
+            "v-droom"
           ]
         },
         {
           "id": "s4-u03-l008-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat komt goed uit.",
-          "answers": [
-            "Dat komt goed uit."
-          ],
-          "translation": "Isso dá jeito.",
-          "explanation": "«Dat komt goed uit.» = Isso dá jeito.",
-          "vocabRefs": [
-            "v-uitkomen-goed"
-          ]
-        },
-        {
-          "id": "s4-u03-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Later wil ik in het buitenland wonen.",
@@ -2305,44 +2295,57 @@
           "vocabRefs": []
         },
         {
+          "id": "s4-u03-l008-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Zullen we een kopje koffie drinken?",
+          "answers": [
+            "Zullen we een kopje koffie drinken?"
+          ],
+          "translation": "Vamos tomar um café?",
+          "explanation": "«Zullen we een kopje koffie drinken?» = Vamos tomar um café?",
+          "vocabRefs": [
+            "v-zullen",
+            "v-zullen-we"
+          ]
+        },
+        {
           "id": "s4-u03-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Esta tarde tenho uma marcação.",
+          "prompt": "Amanhã vou fazer compras.",
           "tokens": [
-            "Vanmiddag",
-            "afspraak.",
-            "vakantie.",
-            "een",
-            "heb",
-            "twee",
-            "ik"
+            "morgen",
+            "ga",
+            "Ik",
+            "is",
+            "doen.",
+            "we",
+            "boodschappen"
           ],
           "answers": [
-            "Vanmiddag heb ik een afspraak."
+            "Ik ga morgen boodschappen doen."
           ],
-          "explanation": "Esta tarde tenho uma marcação. = Vanmiddag heb ik een afspraak. (sobram: twee, vakantie.)",
-          "vocabRefs": [
-            "v-vanmiddag"
-          ]
+          "explanation": "Amanhã vou fazer compras. = Ik ga morgen boodschappen doen. (sobram: we, is)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u03-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quando é que te convém?",
+          "prompt": "Eu ajudo-te. / Hei de ajudar-te.",
           "tokens": [
-            "het",
-            "ik",
-            "doen?",
-            "Wanneer",
-            "jou?",
-            "schikt"
+            "je",
+            "Wat",
+            "schikt",
+            "Ik",
+            "helpen.",
+            "zal"
           ],
           "answers": [
-            "Wanneer schikt het jou?"
+            "Ik zal je helpen."
           ],
-          "explanation": "Quando é que te convém? = Wanneer schikt het jou? (sobram: ik, doen?)",
+          "explanation": "Eu ajudo-te. / Hei de ajudar-te. = Ik zal je helpen. (sobram: Wat, schikt)",
           "vocabRefs": []
         },
         {
@@ -2445,16 +2448,16 @@
       ],
       "examples": [
         {
-          "nl": "Dit weekend blijf ik thuis.",
-          "pt": "Este fim de semana fico em casa."
-        },
-        {
           "nl": "Volgende week ben ik vrij.",
           "pt": "Na próxima semana estou de folga."
         },
         {
-          "nl": "Morgen werk ik thuis.",
-          "pt": "Amanhã trabalho em casa."
+          "nl": "Wanneer schikt het jou?",
+          "pt": "Quando é que te convém?"
+        },
+        {
+          "nl": "Wat ga je dit weekend doen?",
+          "pt": "O que vais fazer este fim de semana?"
         }
       ],
       "grammar": [],
@@ -2463,96 +2466,98 @@
           "id": "s4-u03-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Espero que venhas.",
+          "prompt": "Um dia quero ir ao Japão.",
           "tokens": [
             "Ik",
-            "Zullen",
-            "droom",
-            "dat",
-            "komt.",
-            "hoop",
-            "je"
+            "morgen",
+            "afspraak.",
+            "ooit",
+            "Japan.",
+            "wil",
+            "naar"
           ],
           "answers": [
-            "Ik hoop dat je komt."
+            "Ik wil ooit naar Japan."
           ],
-          "explanation": "Espero que venhas. = Ik hoop dat je komt. (sobram: droom, Zullen)",
+          "explanation": "Um dia quero ir ao Japão. = Ik wil ooit naar Japan. (sobram: afspraak., morgen)",
           "vocabRefs": []
         },
         {
           "id": "s4-u03-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Espero que sim!",
+          "prompt": "Espero que venhas.",
           "tokens": [
             "Ik",
             "morgen",
-            "boodschappen",
+            "verhuizen.",
             "hoop",
-            "het!"
+            "dat",
+            "je",
+            "komt."
           ],
           "answers": [
-            "Ik hoop het!"
+            "Ik hoop dat je komt."
           ],
-          "explanation": "Espero que sim! = Ik hoop het! (sobram: morgen, boodschappen)",
+          "explanation": "Espero que venhas. = Ik hoop dat je komt. (sobram: morgen, verhuizen.)",
           "vocabRefs": []
         },
         {
           "id": "s4-u03-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso dá jeito.",
+          "prompt": "Quando é que te convém?",
           "tokens": [
-            "uit.",
-            "goed",
-            "ben",
+            "jou?",
+            "doen?",
+            "het",
+            "Wanneer",
             "komt",
-            "schikt",
-            "Dat"
+            "schikt"
           ],
           "answers": [
-            "Dat komt goed uit."
+            "Wanneer schikt het jou?"
           ],
-          "explanation": "Isso dá jeito. = Dat komt goed uit. (sobram: schikt, ben)",
-          "vocabRefs": [
-            "v-uitkomen-goed"
-          ]
+          "explanation": "Quando é que te convém? = Wanneer schikt het jou? (sobram: komt, doen?)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u03-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik zal je helpen.",
+          "audioText": "Morgen werk ik thuis.",
           "answers": [
-            "Ik zal je helpen."
+            "Morgen werk ik thuis."
           ],
-          "translation": "Eu ajudo-te. / Hei de ajudar-te.",
-          "explanation": "«Ik zal je helpen.» = Eu ajudo-te. / Hei de ajudar-te.",
+          "translation": "Amanhã trabalho em casa.",
+          "explanation": "«Morgen werk ik thuis.» = Amanhã trabalho em casa.",
           "vocabRefs": []
         },
         {
           "id": "s4-u03-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik hoop dat je komt.",
+          "audioText": "Ik ga morgen boodschappen doen.",
           "answers": [
-            "Ik hoop dat je komt."
+            "Ik ga morgen boodschappen doen."
           ],
-          "translation": "Espero que venhas.",
-          "explanation": "«Ik hoop dat je komt.» = Espero que venhas.",
+          "translation": "Amanhã vou fazer compras.",
+          "explanation": "«Ik ga morgen boodschappen doen.» = Amanhã vou fazer compras.",
           "vocabRefs": []
         },
         {
           "id": "s4-u03-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik wil ooit naar Japan.",
+          "audioText": "Dit weekend blijf ik thuis.",
           "answers": [
-            "Ik wil ooit naar Japan."
+            "Dit weekend blijf ik thuis."
           ],
-          "translation": "Um dia quero ir ao Japão.",
-          "explanation": "«Ik wil ooit naar Japan.» = Um dia quero ir ao Japão.",
-          "vocabRefs": []
+          "translation": "Este fim de semana fico em casa.",
+          "explanation": "«Dit weekend blijf ik thuis.» = Este fim de semana fico em casa.",
+          "vocabRefs": [
+            "v-dit-weekend"
+          ]
         },
         {
           "id": "s4-u03-l009-e07",
@@ -2561,13 +2566,13 @@
           "translation": "Espero que amanhã esteja bom tempo.",
           "tokens": [
             "Ik",
-            "is.",
-            "morgen",
-            "het",
-            "weer",
             "hoop",
+            "dat",
+            "het",
+            "morgen",
             "mooi",
-            "dat"
+            "weer",
+            "is."
           ],
           "alternatives": [],
           "explanation": "Ik hoop dat het morgen mooi weer is.",
@@ -2577,22 +2582,51 @@
           "id": "s4-u03-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Eu ajudo-te. / Hei de ajudar-te.",
+          "translation": "Isso dá jeito.",
           "tokens": [
-            "helpen.",
-            "zal",
-            "je",
-            "Ik"
+            "Dat",
+            "komt",
+            "goed",
+            "uit."
           ],
           "alternatives": [],
-          "explanation": "Ik zal je helpen.",
-          "vocabRefs": []
+          "explanation": "Dat komt goed uit.",
+          "vocabRefs": [
+            "v-uitkomen-goed"
+          ]
         },
         {
           "id": "s4-u03-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «volgend jaar»?",
+          "prompt": "O que significa «zullen»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "-ei / irá",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "um dia",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "tencionar",
+              "correct": false
+            }
+          ],
+          "explanation": "«zullen» = (futuro) -ei / irá.",
+          "vocabRefs": [
+            "v-zullen"
+          ]
+        },
+        {
+          "id": "s4-u03-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «hopen»?",
           "options": [
             {
               "id": "a",
@@ -2601,45 +2635,18 @@
             },
             {
               "id": "b",
-              "text": "prometer",
+              "text": "-ei / irá",
               "correct": false
             },
             {
               "id": "c",
-              "text": "no próximo ano",
+              "text": "esperar",
               "correct": true
             }
           ],
-          "explanation": "«volgend jaar» = no próximo ano.",
+          "explanation": "«hopen» = esperar (ter esperança).",
           "vocabRefs": [
-            "v-volgend-jaar"
-          ]
-        },
-        {
-          "id": "s4-u03-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «zeker»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "certamente",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "em breve",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "podes?",
-              "correct": false
-            }
-          ],
-          "explanation": "«zeker» = certamente, com certeza.",
-          "vocabRefs": [
-            "v-zeker"
+            "v-hopen"
           ]
         }
       ],

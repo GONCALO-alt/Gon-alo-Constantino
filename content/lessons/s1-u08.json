@@ -1980,16 +1980,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik ben getrouwd.",
-          "pt": "Sou casado/a."
+          "nl": "Zijn broer heet Tom.",
+          "pt": "O irmão dele chama-se Tom."
         },
         {
-          "nl": "de zoon van mijn broer = mijn neef",
-          "pt": "o filho do meu irmão = o meu sobrinho"
+          "nl": "ons gezin",
+          "pt": "a nossa família"
         },
         {
-          "nl": "Hij heeft twee zussen.",
-          "pt": "Ele tem duas irmãs."
+          "nl": "ons huis, onze straat",
+          "pt": "a nossa casa, a nossa rua"
         }
       ],
       "grammar": [],
@@ -2040,14 +2040,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "o filho do meu irmão = o meu sobrinho",
           "tokens": [
-            "neef",
-            "van",
             "de",
-            "mijn",
             "zoon",
+            "van",
+            "mijn",
             "broer",
             "=",
-            "mijn"
+            "mijn",
+            "neef"
           ],
           "alternatives": [],
           "explanation": "de zoon van mijn broer = mijn neef",
@@ -2062,10 +2062,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "O meu primo vive no Brasil.",
           "tokens": [
-            "woont",
             "Mijn",
-            "in",
             "neef",
+            "woont",
+            "in",
             "Brazilië."
           ],
           "alternatives": [],
@@ -2080,11 +2080,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "A irmã dela vive em Gent.",
           "tokens": [
-            "Gent.",
             "Haar",
-            "woont",
             "zus",
-            "in"
+            "woont",
+            "in",
+            "Gent."
           ],
           "alternatives": [],
           "explanation": "Haar zus woont in Gent.",
@@ -2097,97 +2097,98 @@
           "id": "s1-u08-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik ben getrouwd.»?",
+          "prompt": "O que significa: «Mijn ouders wonen in Porto.»?",
           "options": [
             {
               "id": "a",
-              "text": "a bicicleta dela",
+              "text": "A irmã dela vive em Gent.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "a nossa casa, a nossa rua",
-              "correct": false
+              "text": "Os meus pais vivem no Porto.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Sou casado/a.",
-              "correct": true
+              "text": "A minha avó tem oitenta anos.",
+              "correct": false
             }
           ],
-          "explanation": "«Ik ben getrouwd.» = Sou casado/a.",
+          "explanation": "«Mijn ouders wonen in Porto.» = Os meus pais vivem no Porto.",
           "vocabRefs": [
-            "v-uw",
-            "v-getrouwd"
+            "v-ouders"
           ]
         },
         {
           "id": "s1-u08-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mijn oma is tachtig.»?",
+          "prompt": "O que significa: «Haar zus woont in Gent.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela tem uma bicicleta?",
+              "text": "Sou casado/a.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "a nossa casa, a nossa rua",
-              "correct": false
+              "text": "A irmã dela vive em Gent.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "A minha avó tem oitenta anos.",
-              "correct": true
+              "text": "Tenho uma família pequena: a minha mulher, a minha filha e eu.",
+              "correct": false
             }
           ],
-          "explanation": "«Mijn oma is tachtig.» = A minha avó tem oitenta anos.",
+          "explanation": "«Haar zus woont in Gent.» = A irmã dela vive em Gent.",
           "vocabRefs": [
-            "v-oma"
+            "v-zus",
+            "v-haar"
           ]
         },
         {
           "id": "s1-u08-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A minha avó tem oitenta anos.",
+          "prompt": "A minha mãe chama-se Maria.",
           "tokens": [
-            "oma",
-            "Mijn",
-            "tachtig.",
+            "moeder",
             "heet",
-            "is",
-            "Brazilië."
+            "Maria.",
+            "hebben",
+            "Mijn",
+            "twee"
           ],
           "answers": [
-            "Mijn oma is tachtig."
+            "Mijn moeder heet Maria."
           ],
-          "explanation": "A minha avó tem oitenta anos. = Mijn oma is tachtig. (sobram: heet, Brazilië.)",
+          "explanation": "A minha mãe chama-se Maria. = Mijn moeder heet Maria. (sobram: hebben, twee)",
           "vocabRefs": [
-            "v-oma"
+            "v-moeder"
           ]
         },
         {
           "id": "s1-u08-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sou casado/a.",
+          "prompt": "O meu primo vive no Brasil.",
           "tokens": [
-            "Ik",
-            "ben",
-            "zussen.",
-            "getrouwd.",
-            "een"
+            "woont",
+            "Brazilië.",
+            "Mijn",
+            "heet",
+            "neef",
+            "in",
+            "ben"
           ],
           "answers": [
-            "Ik ben getrouwd."
+            "Mijn neef woont in Brazilië."
           ],
-          "explanation": "Sou casado/a. = Ik ben getrouwd. (sobram: een, zussen.)",
+          "explanation": "O meu primo vive no Brasil. = Mijn neef woont in Brazilië. (sobram: ben, heet)",
           "vocabRefs": [
-            "v-uw",
-            "v-getrouwd"
+            "v-neef"
           ]
         }
       ],
@@ -2252,16 +2253,16 @@
       ],
       "examples": [
         {
-          "nl": "haar fiets",
-          "pt": "a bicicleta dela"
-        },
-        {
-          "nl": "Heb jij kinderen?",
-          "pt": "Tens filhos?"
+          "nl": "Mijn neef woont in Brazilië.",
+          "pt": "O meu primo vive no Brasil."
         },
         {
           "nl": "Mijn ouders wonen in Porto.",
           "pt": "Os meus pais vivem no Porto."
+        },
+        {
+          "nl": "zijn fiets",
+          "pt": "a bicicleta dele"
         }
       ],
       "grammar": [],
@@ -2270,11 +2271,38 @@
           "id": "s1-u08-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «prima» em neerlandês?",
+          "prompt": "Como se diz «família» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "nicht",
+              "text": "vader",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "neef",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "familie",
+              "correct": true
+            }
+          ],
+          "explanation": "família = «familie».",
+          "vocabRefs": [
+            "v-familie"
+          ]
+        },
+        {
+          "id": "s1-u08-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «tia» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "tante",
               "correct": true
             },
             {
@@ -2288,59 +2316,13 @@
               "correct": false
             }
           ],
-          "explanation": "prima = «nicht».",
+          "explanation": "tia = «tante».",
           "vocabRefs": [
-            "v-nicht"
-          ]
-        },
-        {
-          "id": "s1-u08-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «mãe» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "getrouwd",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "moeder",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "ouders",
-              "correct": false
-            }
-          ],
-          "explanation": "mãe = «moeder».",
-          "vocabRefs": [
-            "v-moeder"
+            "v-tante"
           ]
         },
         {
           "id": "s1-u08-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik ben ___.",
-          "translation": "Sou casado/a.",
-          "answers": [
-            "getrouwd"
-          ],
-          "choices": [
-            "dochter",
-            "getrouwd",
-            "zus"
-          ],
-          "explanation": "Ik ben getrouwd.",
-          "vocabRefs": [
-            "v-getrouwd"
-          ]
-        },
-        {
-          "id": "s1-u08-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Mijn ___ is tachtig.",
@@ -2349,8 +2331,8 @@
             "oma"
           ],
           "choices": [
-            "broer",
-            "haar",
+            "vader",
+            "nicht",
             "oma"
           ],
           "explanation": "Mijn oma is tachtig.",
@@ -2359,18 +2341,36 @@
           ]
         },
         {
+          "id": "s1-u08-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Mijn ___ woont in Brazilië.",
+          "translation": "O meu primo vive no Brasil.",
+          "answers": [
+            "neef"
+          ],
+          "choices": [
+            "neef",
+            "vader",
+            "zus"
+          ],
+          "explanation": "Mijn neef woont in Brazilië.",
+          "vocabRefs": [
+            "v-neef"
+          ]
+        },
+        {
           "id": "s1-u08-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wij zijn een gezin van vier.",
+          "audioText": "Mijn oma is tachtig.",
           "answers": [
-            "Wij zijn een gezin van vier."
+            "Mijn oma is tachtig."
           ],
-          "translation": "Somos uma família de quatro.",
-          "explanation": "«Wij zijn een gezin van vier.» = Somos uma família de quatro.",
+          "translation": "A minha avó tem oitenta anos.",
+          "explanation": "«Mijn oma is tachtig.» = A minha avó tem oitenta anos.",
           "vocabRefs": [
-            "v-gezin",
-            "v-zijn-poss"
+            "v-oma"
           ]
         },
         {
@@ -2391,79 +2391,80 @@
           "id": "s1-u08-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A minha mãe chama-se Maria.",
+          "prompt": "O meu marido chama-se Rui.",
           "tokens": [
-            "=",
-            "Maria.",
+            "Rui.",
+            "Mijn",
             "heet",
-            "gezin:",
-            "moeder",
-            "Mijn"
+            "man",
+            "ben",
+            "Wij"
           ],
           "answers": [
-            "Mijn moeder heet Maria."
+            "Mijn man heet Rui."
           ],
-          "explanation": "A minha mãe chama-se Maria. = Mijn moeder heet Maria. (sobram: gezin:, =)",
-          "vocabRefs": [
-            "v-moeder"
-          ]
+          "explanation": "O meu marido chama-se Rui. = Mijn man heet Rui. (sobram: Wij, ben)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u08-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela tem uma bicicleta?",
+          "prompt": "Os meus pais vivem no Porto.",
           "tokens": [
-            "zij",
-            "jij",
-            "Heeft",
-            "heet",
-            "een",
-            "fiets?"
+            "Haar",
+            "in",
+            "ouders",
+            "ons",
+            "Porto.",
+            "Mijn",
+            "wonen"
           ],
           "answers": [
-            "Heeft zij een fiets?"
+            "Mijn ouders wonen in Porto."
           ],
-          "explanation": "Ela tem uma bicicleta? = Heeft zij een fiets? (sobram: heet, jij)",
-          "vocabRefs": []
+          "explanation": "Os meus pais vivem no Porto. = Mijn ouders wonen in Porto. (sobram: Haar, ons)",
+          "vocabRefs": [
+            "v-ouders"
+          ]
         },
         {
           "id": "s1-u08-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "vader",
-          "pt": "pai",
+          "noun": "opa",
+          "pt": "avô",
           "article": "de",
-          "explanation": "de vader.",
+          "explanation": "de opa.",
           "vocabRefs": [
-            "v-vader"
+            "v-opa"
           ]
         },
         {
           "id": "s1-u08-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij heeft twee zussen.»?",
+          "prompt": "O que significa: «Wat is uw naam?»?",
           "options": [
             {
               "id": "a",
-              "text": "a bicicleta dela",
+              "text": "Temos um cão.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O meu marido chama-se Rui.",
+              "text": "Os meus pais vivem no Porto.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ele tem duas irmãs.",
+              "text": "Qual é o seu nome?",
               "correct": true
             }
           ],
-          "explanation": "«Hij heeft twee zussen.» = Ele tem duas irmãs.",
+          "explanation": "«Wat is uw naam?» = Qual é o seu nome?",
           "vocabRefs": [
-            "v-zus"
+            "v-uw"
           ]
         }
       ],
@@ -2528,16 +2529,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik ben getrouwd.",
-          "pt": "Sou casado/a."
+          "nl": "ons gezin",
+          "pt": "a nossa família"
         },
         {
-          "nl": "Mijn oma is tachtig.",
-          "pt": "A minha avó tem oitenta anos."
+          "nl": "zijn fiets",
+          "pt": "a bicicleta dele"
         },
         {
-          "nl": "Wat is uw naam?",
-          "pt": "Qual é o seu nome?"
+          "nl": "Ik heb een klein gezin: mijn vrouw, mijn dochter en ik.",
+          "pt": "Tenho uma família pequena: a minha mulher, a minha filha e eu."
         }
       ],
       "grammar": [],
@@ -2546,62 +2547,63 @@
           "id": "s1-u08-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O irmão dele chama-se Tom.",
+          "prompt": "a nossa casa, a nossa rua",
           "tokens": [
-            "oma",
-            "broer",
-            "heet",
-            "een",
-            "Tom.",
-            "Zijn"
+            "ons",
+            "straat",
+            "zus",
+            "onze",
+            "heb",
+            "huis,"
           ],
           "answers": [
-            "Zijn broer heet Tom."
+            "ons huis, onze straat"
           ],
-          "explanation": "O irmão dele chama-se Tom. = Zijn broer heet Tom. (sobram: een, oma)",
+          "explanation": "a nossa casa, a nossa rua = ons huis, onze straat (sobram: heb, zus)",
           "vocabRefs": [
-            "v-broer",
-            "v-zijn-poss"
+            "v-ons"
           ]
         },
         {
           "id": "s1-u08-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu marido chama-se Rui.",
+          "prompt": "A minha avó tem oitenta anos.",
           "tokens": [
-            "heet",
-            "Mijn",
-            "Rui.",
-            "man",
-            "ik.",
-            "van"
+            "heb",
+            "Ik",
+            "is",
+            "tachtig.",
+            "oma",
+            "Mijn"
           ],
           "answers": [
-            "Mijn man heet Rui."
+            "Mijn oma is tachtig."
           ],
-          "explanation": "O meu marido chama-se Rui. = Mijn man heet Rui. (sobram: ik., van)",
-          "vocabRefs": []
+          "explanation": "A minha avó tem oitenta anos. = Mijn oma is tachtig. (sobram: Ik, heb)",
+          "vocabRefs": [
+            "v-oma"
+          ]
         },
         {
           "id": "s1-u08-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é o seu nome?",
+          "prompt": "Sou casado/a.",
           "tokens": [
-            "vrouw,",
-            "Wat",
-            "uw",
-            "is",
-            "naam?",
-            "broer"
+            "ben",
+            "Ik",
+            "zus",
+            "woont",
+            "getrouwd."
           ],
           "answers": [
-            "Wat is uw naam?"
+            "Ik ben getrouwd."
           ],
-          "explanation": "Qual é o seu nome? = Wat is uw naam? (sobram: vrouw,, broer)",
+          "explanation": "Sou casado/a. = Ik ben getrouwd. (sobram: woont, zus)",
           "vocabRefs": [
-            "v-uw"
+            "v-uw",
+            "v-getrouwd"
           ]
         },
         {
@@ -2636,13 +2638,14 @@
           "id": "s1-u08-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn neef woont in Brazilië.",
+          "audioText": "de zoon van mijn broer = mijn neef",
           "answers": [
-            "Mijn neef woont in Brazilië."
+            "de zoon van mijn broer = mijn neef"
           ],
-          "translation": "O meu primo vive no Brasil.",
-          "explanation": "«Mijn neef woont in Brazilië.» = O meu primo vive no Brasil.",
+          "translation": "o filho do meu irmão = o meu sobrinho",
+          "explanation": "«de zoon van mijn broer = mijn neef» = o filho do meu irmão = o meu sobrinho",
           "vocabRefs": [
+            "v-broer",
             "v-neef"
           ]
         },
@@ -2650,87 +2653,89 @@
           "id": "s1-u08-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O irmão dele chama-se Tom.",
+          "translation": "Os meus pais vivem no Porto.",
           "tokens": [
-            "broer",
-            "Zijn",
-            "Tom.",
-            "heet"
+            "Mijn",
+            "ouders",
+            "wonen",
+            "in",
+            "Porto."
           ],
           "alternatives": [],
-          "explanation": "Zijn broer heet Tom.",
+          "explanation": "Mijn ouders wonen in Porto.",
           "vocabRefs": [
-            "v-broer",
-            "v-zijn-poss"
+            "v-ouders"
           ]
         },
         {
           "id": "s1-u08-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ela tem uma bicicleta?",
+          "translation": "a nossa casa, a nossa rua",
           "tokens": [
-            "Heeft",
-            "een",
-            "fiets?",
-            "zij"
+            "ons",
+            "huis,",
+            "onze",
+            "straat"
           ],
           "alternatives": [],
-          "explanation": "Heeft zij een fiets?",
-          "vocabRefs": []
+          "explanation": "ons huis, onze straat",
+          "vocabRefs": [
+            "v-ons"
+          ]
         },
         {
           "id": "s1-u08-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «hebben»?",
+          "prompt": "O que significa «de vader»?",
           "options": [
             {
               "id": "a",
-              "text": "irmã",
+              "text": "seu",
               "correct": false
             },
             {
               "id": "b",
-              "text": "ter",
-              "correct": true
+              "text": "tia",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "filha",
-              "correct": false
+              "text": "pai",
+              "correct": true
             }
           ],
-          "explanation": "«hebben» = ter.",
+          "explanation": "«de vader» = pai.",
           "vocabRefs": [
-            "v-hebben"
+            "v-vader"
           ]
         },
         {
           "id": "s1-u08-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de opa»?",
+          "prompt": "O que significa «getrouwd»?",
           "options": [
             {
               "id": "a",
-              "text": "avô",
+              "text": "casado",
               "correct": true
             },
             {
               "id": "b",
-              "text": "irmão",
+              "text": "tio",
               "correct": false
             },
             {
               "id": "c",
-              "text": "tia",
+              "text": "família",
               "correct": false
             }
           ],
-          "explanation": "«de opa» = avô.",
+          "explanation": "«getrouwd» = casado.",
           "vocabRefs": [
-            "v-opa"
+            "v-getrouwd"
           ]
         }
       ],
@@ -2795,16 +2800,16 @@
       ],
       "examples": [
         {
+          "nl": "Wij zijn een gezin van vier.",
+          "pt": "Somos uma família de quatro."
+        },
+        {
           "nl": "Mijn neef woont in Brazilië.",
           "pt": "O meu primo vive no Brasil."
         },
         {
-          "nl": "Wij hebben een hond.",
-          "pt": "Temos um cão."
-        },
-        {
-          "nl": "mijn familie in Portugal",
-          "pt": "a minha família em Portugal"
+          "nl": "de zoon van mijn broer = mijn neef",
+          "pt": "o filho do meu irmão = o meu sobrinho"
         }
       ],
       "grammar": [],
@@ -2815,20 +2820,20 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "haar",
+              "nl": "hun",
               "pt": "seu"
             },
             {
-              "nl": "jouw",
-              "pt": "teu"
-            },
-            {
-              "nl": "familie",
-              "pt": "família"
+              "nl": "hebben",
+              "pt": "ter"
             },
             {
               "nl": "ons",
               "pt": "nosso"
+            },
+            {
+              "nl": "vader",
+              "pt": "pai"
             },
             {
               "nl": "oom",
@@ -2837,105 +2842,124 @@
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
+            "v-hun",
             "v-haar",
-            "v-jouw",
-            "v-familie",
+            "v-hebben",
             "v-ons",
-            "v-hun"
+            "v-vader"
           ]
         },
         {
           "id": "s1-u08-l010-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn ouders wonen in Porto.",
+          "audioText": "Ik ben getrouwd.",
           "answers": [
-            "Mijn ouders wonen in Porto."
+            "Ik ben getrouwd."
           ],
-          "translation": "Os meus pais vivem no Porto.",
-          "explanation": "«Mijn ouders wonen in Porto.» = Os meus pais vivem no Porto.",
+          "translation": "Sou casado/a.",
+          "explanation": "«Ik ben getrouwd.» = Sou casado/a.",
           "vocabRefs": [
-            "v-ouders"
+            "v-uw",
+            "v-getrouwd"
           ]
         },
         {
           "id": "s1-u08-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de zoon van mijn broer = mijn neef",
+          "audioText": "Haar zus woont in Gent.",
           "answers": [
-            "de zoon van mijn broer = mijn neef"
+            "Haar zus woont in Gent."
           ],
-          "translation": "o filho do meu irmão = o meu sobrinho",
-          "explanation": "«de zoon van mijn broer = mijn neef» = o filho do meu irmão = o meu sobrinho",
+          "translation": "A irmã dela vive em Gent.",
+          "explanation": "«Haar zus woont in Gent.» = A irmã dela vive em Gent.",
           "vocabRefs": [
-            "v-broer",
-            "v-neef"
+            "v-zus",
+            "v-haar"
           ]
         },
         {
           "id": "s1-u08-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de broer»?",
+          "prompt": "O que significa «hun»?",
           "options": [
             {
               "id": "a",
-              "text": "avô",
+              "text": "prima",
               "correct": false
             },
             {
               "id": "b",
-              "text": "seu",
+              "text": "irmão",
               "correct": false
             },
             {
               "id": "c",
-              "text": "irmão",
+              "text": "seu",
               "correct": true
             }
           ],
-          "explanation": "«de broer» = irmão.",
+          "explanation": "«hun» = seu, sua (deles).",
           "vocabRefs": [
-            "v-broer"
+            "v-hun"
           ]
         },
         {
           "id": "s1-u08-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «jouw»?",
+          "prompt": "O que significa «uw»?",
           "options": [
             {
               "id": "a",
-              "text": "teu",
-              "correct": true
+              "text": "pais",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "irmão",
-              "correct": false
+              "text": "seu",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "nosso",
+              "text": "tia",
               "correct": false
             }
           ],
-          "explanation": "«jouw» = teu, tua.",
+          "explanation": "«uw» = seu, sua (formal).",
           "vocabRefs": [
-            "v-jouw"
+            "v-uw"
           ]
         },
         {
           "id": "s1-u08-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
+          "translation": "O irmão dele chama-se Tom.",
+          "tokens": [
+            "Zijn",
+            "broer",
+            "heet",
+            "Tom."
+          ],
+          "alternatives": [],
+          "explanation": "Zijn broer heet Tom.",
+          "vocabRefs": [
+            "v-broer",
+            "v-zijn-poss"
+          ]
+        },
+        {
+          "id": "s1-u08-l010-e07",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
           "translation": "Qual é o seu nome?",
           "tokens": [
+            "Wat",
             "is",
             "uw",
-            "Wat",
             "naam?"
           ],
           "alternatives": [],
@@ -2945,38 +2969,20 @@
           ]
         },
         {
-          "id": "s1-u08-l010-e07",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Os meus pais vivem no Porto.",
-          "tokens": [
-            "in",
-            "wonen",
-            "Porto.",
-            "ouders",
-            "Mijn"
-          ],
-          "alternatives": [],
-          "explanation": "Mijn ouders wonen in Porto.",
-          "vocabRefs": [
-            "v-ouders"
-          ]
-        },
-        {
           "id": "s1-u08-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "de zoon van mijn ___ = mijn neef",
-          "translation": "o filho do meu irmão = o meu sobrinho",
+          "sentence": "Ik heb een ___.",
+          "translation": "Tenho um irmão.",
           "answers": [
             "broer"
           ],
           "choices": [
-            "ons",
-            "jouw",
-            "broer"
+            "neef",
+            "broer",
+            "zijn"
           ],
-          "explanation": "de zoon van mijn broer = mijn neef",
+          "explanation": "Ik heb een broer.",
           "vocabRefs": [
             "v-broer"
           ]
@@ -2985,7 +2991,7 @@
           "id": "s1-u08-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mijn ouders wonen in Porto.»?",
+          "prompt": "O que significa: «Mijn man heet Rui.»?",
           "options": [
             {
               "id": "a",
@@ -2994,19 +3000,17 @@
             },
             {
               "id": "b",
-              "text": "o filho do meu irmão = o meu sobrinho",
-              "correct": false
+              "text": "O meu marido chama-se Rui.",
+              "correct": true
             },
             {
               "id": "c",
               "text": "Os meus pais vivem no Porto.",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "«Mijn ouders wonen in Porto.» = Os meus pais vivem no Porto.",
-          "vocabRefs": [
-            "v-ouders"
-          ]
+          "explanation": "«Mijn man heet Rui.» = O meu marido chama-se Rui.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 2,

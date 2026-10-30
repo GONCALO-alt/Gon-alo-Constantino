@@ -1873,16 +1873,16 @@
       ],
       "examples": [
         {
-          "nl": "Elke zomer gingen we naar het strand.",
-          "pt": "Todos os verões íamos à praia."
+          "nl": "Daarna gingen we eten.",
+          "pt": "Depois fomos comer."
         },
         {
-          "nl": "Ik werkte in een restaurant.",
-          "pt": "Trabalhava num restaurante."
+          "nl": "We zagen een mooie film.",
+          "pt": "Vimos um filme bonito."
         },
         {
-          "nl": "Hij maakte een fout.",
-          "pt": "Ele fez um erro."
+          "nl": "We woonden in Lissabon.",
+          "pt": "Morávamos em Lisboa."
         }
       ],
       "grammar": [],
@@ -1936,11 +1936,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Fui ao mercado.",
           "tokens": [
-            "de",
             "Ik",
+            "ging",
             "naar",
-            "markt.",
-            "ging"
+            "de",
+            "markt."
           ],
           "alternatives": [],
           "explanation": "Ik ging naar de markt.",
@@ -1954,16 +1954,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "Primeiro fui ao padeiro, depois ao talho.",
           "tokens": [
-            "ik",
-            "ging",
             "Eerst",
+            "ging",
+            "ik",
             "naar",
             "de",
-            "slager.",
-            "de",
-            "naar",
+            "bakker,",
             "toen",
-            "bakker,"
+            "naar",
+            "de",
+            "slager."
           ],
           "alternatives": [],
           "explanation": "Eerst ging ik naar de bakker, toen naar de slager.",
@@ -1978,11 +1978,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Antigamente morava em Faro.",
           "tokens": [
+            "Vroeger",
             "woonde",
-            "Faro.",
-            "in",
             "ik",
-            "Vroeger"
+            "in",
+            "Faro."
           ],
           "alternatives": [],
           "explanation": "Vroeger woonde ik in Faro.",
@@ -1995,39 +1995,11 @@
           "id": "s4-u02-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Elke zomer gingen we naar het strand.»?",
+          "prompt": "O que significa: «Ik had geen tijd.»?",
           "options": [
             {
               "id": "a",
-              "text": "O que aconteceu?",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Depois fomos comer.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Todos os verões íamos à praia.",
-              "correct": true
-            }
-          ],
-          "explanation": "«Elke zomer gingen we naar het strand.» = Todos os verões íamos à praia.",
-          "vocabRefs": [
-            "v-ging",
-            "v-elke-zomer"
-          ]
-        },
-        {
-          "id": "s4-u02-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat is er gebeurd?»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "De repente começou a chover.",
+              "text": "Perdi o telemóvel.",
               "correct": false
             },
             {
@@ -2037,59 +2009,85 @@
             },
             {
               "id": "c",
-              "text": "O que aconteceu?",
+              "text": "Não tinha tempo.",
               "correct": true
             }
           ],
-          "explanation": "«Wat is er gebeurd?» = O que aconteceu?",
+          "explanation": "«Ik had geen tijd.» = Não tinha tempo.",
           "vocabRefs": [
-            "v-at",
-            "v-gebeurd"
+            "v-had"
+          ]
+        },
+        {
+          "id": "s4-u02-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Uiteindelijk kwamen we thuis.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ela comeu uma maçã.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Vocês tinham fome?",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Por fim chegámos a casa.",
+              "correct": true
+            }
+          ],
+          "explanation": "«Uiteindelijk kwamen we thuis.» = Por fim chegámos a casa.",
+          "vocabRefs": [
+            "v-kwam",
+            "v-uiteindelijk"
           ]
         },
         {
           "id": "s4-u02-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "De repente começou a chover.",
+          "prompt": "Estava frio.",
           "tokens": [
-            "kwamen",
-            "begon",
-            "naar",
-            "regenen.",
-            "het",
-            "Plotseling",
-            "te"
+            "was",
+            "Het",
+            "koud.",
+            "ik",
+            "naar"
           ],
           "answers": [
-            "Plotseling begon het te regenen."
+            "Het was koud."
           ],
-          "explanation": "De repente começou a chover. = Plotseling begon het te regenen. (sobram: kwamen, naar)",
+          "explanation": "Estava frio. = Het was koud. (sobram: naar, ik)",
           "vocabRefs": [
-            "v-plotseling"
+            "v-was"
           ]
         },
         {
           "id": "s4-u02-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "De repente vi o meu vizinho.",
+          "prompt": "Antigamente brincávamos lá fora todos os dias.",
           "tokens": [
-            "mijn",
-            "Plotseling",
-            "buurman.",
-            "ik",
-            "kind",
+            "speelden",
+            "Het",
+            "Vroeger",
+            "elke",
             "we",
-            "zag"
+            "buiten.",
+            "dag",
+            "Hadden"
           ],
           "answers": [
-            "Plotseling zag ik mijn buurman."
+            "Vroeger speelden we elke dag buiten."
           ],
-          "explanation": "De repente vi o meu vizinho. = Plotseling zag ik mijn buurman. (sobram: kind, we)",
+          "explanation": "Antigamente brincávamos lá fora todos os dias. = Vroeger speelden we elke dag buiten. (sobram: Hadden, Het)",
           "vocabRefs": [
-            "v-zag",
-            "v-plotseling"
+            "v-speelde",
+            "v-vroeger"
           ]
         }
       ],
@@ -2155,16 +2153,16 @@
       ],
       "examples": [
         {
-          "nl": "Ze hadden een hond.",
-          "pt": "Eles tinham um cão."
+          "nl": "Ik heb mijn telefoon verloren.",
+          "pt": "Perdi o telemóvel."
         },
         {
-          "nl": "Elke zomer gingen we naar het strand.",
-          "pt": "Todos os verões íamos à praia."
+          "nl": "Ik fietste naar school.",
+          "pt": "Ia de bicicleta para a escola."
         },
         {
-          "nl": "Ik was gisteren erg moe.",
-          "pt": "Ontem estava muito cansado."
+          "nl": "Hij kwam te laat.",
+          "pt": "Ele chegou atrasado."
         }
       ],
       "grammar": [],
@@ -2173,106 +2171,106 @@
           "id": "s4-u02-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «antigamente» em neerlandês?",
+          "prompt": "Como se diz «por fim» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "maakte",
+              "text": "toen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "waren",
-              "correct": false
+              "text": "uiteindelijk",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "vroeger",
-              "correct": true
+              "text": "werkte",
+              "correct": false
             }
           ],
-          "explanation": "antigamente = «vroeger».",
+          "explanation": "por fim = «uiteindelijk».",
           "vocabRefs": [
-            "v-vroeger"
+            "v-uiteindelijk"
           ]
         },
         {
           "id": "s4-u02-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «tínhamos» em neerlandês?",
+          "prompt": "Como se diz «acontecer» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "werkte",
+              "text": "uiteindelijk",
               "correct": false
             },
             {
               "id": "b",
-              "text": "speelde",
+              "text": "toen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "hadden",
+              "text": "gebeuren",
               "correct": true
             }
           ],
-          "explanation": "tínhamos = «hadden».",
+          "explanation": "acontecer = «gebeuren».",
           "vocabRefs": [
-            "v-hadden"
+            "v-gebeuren"
           ]
         },
         {
           "id": "s4-u02-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Hij ___ een fout.",
-          "translation": "Ele fez um erro.",
+          "sentence": "___ speelden we elke dag buiten.",
+          "translation": "Antigamente brincávamos lá fora todos os dias.",
           "answers": [
-            "maakte"
+            "Vroeger"
           ],
           "choices": [
-            "woonde",
-            "at",
-            "maakte"
+            "Verhaal",
+            "Vroeger",
+            "Had"
           ],
-          "explanation": "Hij maakte een fout.",
+          "explanation": "Vroeger speelden we elke dag buiten.",
           "vocabRefs": [
-            "v-maakte"
+            "v-vroeger"
           ]
         },
         {
           "id": "s4-u02-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wat is er ___?",
-          "translation": "O que aconteceu?",
+          "sentence": "Plotseling ___ ik mijn buurman.",
+          "translation": "De repente vi o meu vizinho.",
           "answers": [
-            "gebeurd"
+            "zag"
           ],
           "choices": [
-            "hadden",
-            "gebeurd",
-            "plotseling"
+            "vroeger",
+            "zag",
+            "gebeurd"
           ],
-          "explanation": "Wat is er gebeurd?",
+          "explanation": "Plotseling zag ik mijn buurman.",
           "vocabRefs": [
-            "v-gebeurd"
+            "v-zag"
           ]
         },
         {
           "id": "s4-u02-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik was gisteren erg moe.",
+          "audioText": "We waren in Den Haag.",
           "answers": [
-            "Ik was gisteren erg moe."
+            "We waren in Den Haag."
           ],
-          "translation": "Ontem estava muito cansado.",
-          "explanation": "«Ik was gisteren erg moe.» = Ontem estava muito cansado.",
+          "translation": "Estávamos na Haia.",
+          "explanation": "«We waren in Den Haag.» = Estávamos na Haia.",
           "vocabRefs": [
-            "v-was"
+            "v-waren"
           ]
         },
         {
@@ -2293,42 +2291,44 @@
           "id": "s4-u02-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Eles foram a pé para casa.",
+          "prompt": "Ele chegou atrasado.",
           "tokens": [
-            "naar",
-            "huis.",
-            "Eerst",
-            "Gent",
-            "liepen",
-            "Zij"
+            "kwam",
+            "te",
+            "erg",
+            "laat.",
+            "Gent.",
+            "Hij"
           ],
           "answers": [
-            "Zij liepen naar huis."
+            "Hij kwam te laat."
           ],
-          "explanation": "Eles foram a pé para casa. = Zij liepen naar huis. (sobram: Eerst, Gent)",
+          "explanation": "Ele chegou atrasado. = Hij kwam te laat. (sobram: erg, Gent.)",
           "vocabRefs": [
-            "v-liep"
+            "v-kwam",
+            "v-at"
           ]
         },
         {
           "id": "s4-u02-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Conta lá uma história!",
+          "prompt": "Ontem estava muito cansado.",
           "tokens": [
-            "kind",
+            "gisteren",
+            "geweest.",
             "een",
-            "eens",
-            "naar",
-            "verhaal!",
-            "Vertel"
+            "was",
+            "moe.",
+            "Ik",
+            "erg"
           ],
           "answers": [
-            "Vertel eens een verhaal!"
+            "Ik was gisteren erg moe."
           ],
-          "explanation": "Conta lá uma história! = Vertel eens een verhaal! (sobram: kind, naar)",
+          "explanation": "Ontem estava muito cansado. = Ik was gisteren erg moe. (sobram: een, geweest.)",
           "vocabRefs": [
-            "v-verhaal"
+            "v-was"
           ]
         },
         {
@@ -2347,28 +2347,27 @@
           "id": "s4-u02-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij kwam te laat.»?",
+          "prompt": "O que significa: «Plotseling begon het te regenen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ele chegou atrasado.",
-              "correct": true
+              "text": "Antigamente morava em Faro.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Depois fomos comer.",
-              "correct": false
+              "text": "De repente começou a chover.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Eles foram a pé para casa.",
+              "text": "Ia de bicicleta para a escola.",
               "correct": false
             }
           ],
-          "explanation": "«Hij kwam te laat.» = Ele chegou atrasado.",
+          "explanation": "«Plotseling begon het te regenen.» = De repente começou a chover.",
           "vocabRefs": [
-            "v-kwam",
-            "v-at"
+            "v-plotseling"
           ]
         }
       ],
@@ -2434,16 +2433,16 @@
       ],
       "examples": [
         {
-          "nl": "We woonden in Lissabon.",
-          "pt": "Morávamos em Lisboa."
+          "nl": "Vertel eens een verhaal!",
+          "pt": "Conta lá uma história!"
+        },
+        {
+          "nl": "Eerst ging ik naar de bakker, toen naar de slager.",
+          "pt": "Primeiro fui ao padeiro, depois ao talho."
         },
         {
           "nl": "Hij kwam te laat.",
           "pt": "Ele chegou atrasado."
-        },
-        {
-          "nl": "Vroeger speelden we elke dag buiten.",
-          "pt": "Antigamente brincávamos lá fora todos os dias."
         }
       ],
       "grammar": [],
@@ -2452,69 +2451,68 @@
           "id": "s4-u02-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Todos os verões íamos à praia.",
+          "prompt": "Ele fez um erro.",
           "tokens": [
-            "strand.",
-            "het",
-            "we",
-            "zomer",
-            "gingen",
-            "speelden",
-            "Elke",
-            "kind",
+            "Gent.",
+            "Hij",
+            "fout.",
+            "maakte",
+            "een",
             "naar"
           ],
           "answers": [
-            "Elke zomer gingen we naar het strand."
+            "Hij maakte een fout."
           ],
-          "explanation": "Todos os verões íamos à praia. = Elke zomer gingen we naar het strand. (sobram: kind, speelden)",
+          "explanation": "Ele fez um erro. = Hij maakte een fout. (sobram: Gent., naar)",
           "vocabRefs": [
-            "v-ging",
-            "v-elke-zomer"
+            "v-maakte"
           ]
         },
         {
           "id": "s4-u02-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Por fim chegámos a casa.",
+          "prompt": "Estive em Gante. Foi muito agradável.",
           "tokens": [
-            "Uiteindelijk",
-            "thuis.",
-            "we",
-            "honger?",
-            "kwamen",
-            "te"
+            "geweest.",
+            "ben",
+            "Gent",
+            "erg",
+            "was",
+            "naar",
+            "Het",
+            "een",
+            "gezellig.",
+            "Ze",
+            "Ik"
           ],
           "answers": [
-            "Uiteindelijk kwamen we thuis."
+            "Ik ben naar Gent geweest. Het was erg gezellig."
           ],
-          "explanation": "Por fim chegámos a casa. = Uiteindelijk kwamen we thuis. (sobram: te, honger?)",
+          "explanation": "Estive em Gante. Foi muito agradável. = Ik ben naar Gent geweest. Het was erg gezellig. (sobram: een, Ze)",
           "vocabRefs": [
-            "v-kwam",
-            "v-uiteindelijk"
+            "v-was"
           ]
         },
         {
           "id": "s4-u02-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O que aconteceu?",
+          "prompt": "Depois fomos comer.",
           "tokens": [
-            "is",
-            "er",
-            "telefoon",
-            "Wat",
-            "gebeurd?",
-            "we"
+            "eten.",
+            "we",
+            "Daarna",
+            "heb",
+            "werkte",
+            "gingen"
           ],
           "answers": [
-            "Wat is er gebeurd?"
+            "Daarna gingen we eten."
           ],
-          "explanation": "O que aconteceu? = Wat is er gebeurd? (sobram: we, telefoon)",
+          "explanation": "Depois fomos comer. = Daarna gingen we eten. (sobram: heb, werkte)",
           "vocabRefs": [
-            "v-at",
-            "v-gebeurd"
+            "v-ging"
           ]
         },
         {
@@ -2533,119 +2531,118 @@
           "id": "s4-u02-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hadden jullie honger?",
+          "audioText": "Wij dronken koffie.",
           "answers": [
-            "Hadden jullie honger?"
+            "Wij dronken koffie."
           ],
-          "translation": "Vocês tinham fome?",
-          "explanation": "«Hadden jullie honger?» = Vocês tinham fome?",
-          "vocabRefs": [
-            "v-had",
-            "v-hadden"
-          ]
+          "translation": "Bebíamos/Bebemos café.",
+          "explanation": "«Wij dronken koffie.» = Bebíamos/Bebemos café.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u02-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zij liepen naar huis.",
+          "audioText": "Elke zomer gingen we naar het strand.",
           "answers": [
-            "Zij liepen naar huis."
+            "Elke zomer gingen we naar het strand."
           ],
-          "translation": "Eles foram a pé para casa.",
-          "explanation": "«Zij liepen naar huis.» = Eles foram a pé para casa.",
+          "translation": "Todos os verões íamos à praia.",
+          "explanation": "«Elke zomer gingen we naar het strand.» = Todos os verões íamos à praia.",
           "vocabRefs": [
-            "v-liep"
+            "v-ging",
+            "v-elke-zomer"
           ]
         },
         {
           "id": "s4-u02-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "De repente começou a chover.",
+          "translation": "Perdi o telemóvel.",
           "tokens": [
-            "het",
-            "Plotseling",
-            "te",
-            "begon",
-            "regenen."
+            "Ik",
+            "heb",
+            "mijn",
+            "telefoon",
+            "verloren."
           ],
           "alternatives": [],
-          "explanation": "Plotseling begon het te regenen.",
-          "vocabRefs": [
-            "v-plotseling"
-          ]
+          "explanation": "Ik heb mijn telefoon verloren.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u02-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ele chegou atrasado.",
+          "translation": "Todos os verões íamos à praia.",
           "tokens": [
-            "te",
-            "Hij",
-            "kwam",
-            "laat."
+            "Elke",
+            "zomer",
+            "gingen",
+            "we",
+            "naar",
+            "het",
+            "strand."
           ],
           "alternatives": [],
-          "explanation": "Hij kwam te laat.",
+          "explanation": "Elke zomer gingen we naar het strand.",
           "vocabRefs": [
-            "v-kwam",
-            "v-at"
+            "v-ging",
+            "v-elke-zomer"
           ]
         },
         {
           "id": "s4-u02-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «toen»?",
+          "prompt": "O que significa «speelde»?",
           "options": [
             {
               "id": "a",
-              "text": "andava",
+              "text": "então",
               "correct": false
             },
             {
               "id": "b",
-              "text": "então",
-              "correct": true
+              "text": "de repente",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "vinha",
-              "correct": false
+              "text": "jogava",
+              "correct": true
             }
           ],
-          "explanation": "«toen» = então, nessa altura.",
+          "explanation": "«speelde» = jogava, brincava.",
           "vocabRefs": [
-            "v-toen"
+            "v-speelde"
           ]
         },
         {
           "id": "s4-u02-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «was»?",
+          "prompt": "O que significa «uiteindelijk»?",
           "options": [
             {
               "id": "a",
-              "text": "morava",
+              "text": "tínhamos",
               "correct": false
             },
             {
               "id": "b",
-              "text": "comia",
-              "correct": false
+              "text": "por fim",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "era",
-              "correct": true
+              "text": "todos os verões",
+              "correct": false
             }
           ],
-          "explanation": "«was» = era, estava.",
+          "explanation": "«uiteindelijk» = por fim, afinal.",
           "vocabRefs": [
-            "v-was"
+            "v-uiteindelijk"
           ]
         }
       ],

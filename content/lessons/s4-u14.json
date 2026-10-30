@@ -1812,12 +1812,12 @@
           "pt": "Ele diz que vem mais tarde."
         },
         {
-          "nl": "Weet je zeker dat de winkel open is?",
-          "pt": "Tens a certeza de que a loja está aberta?"
+          "nl": "Weet u waar het station is?",
+          "pt": "Sabe onde fica a estação?"
         },
         {
-          "nl": "Toen ik binnenkwam, was iedereen stil.",
-          "pt": "Quando entrei, estavam todos calados."
+          "nl": "Zodra ik klaar ben, bel ik je.",
+          "pt": "Assim que acabar, ligo-te."
         }
       ],
       "grammar": [],
@@ -1864,12 +1864,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quando entrei, estavam todos calados.",
           "tokens": [
-            "iedereen",
-            "stil.",
-            "ik",
             "Toen",
+            "ik",
+            "binnenkwam,",
             "was",
-            "binnenkwam,"
+            "iedereen",
+            "stil."
           ],
           "alternatives": [],
           "explanation": "Toen ik binnenkwam, was iedereen stil.",
@@ -1881,12 +1881,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Se chover, fico em casa.",
           "tokens": [
-            "blijf",
-            "het",
             "Als",
-            "thuis.",
+            "het",
             "regent,",
-            "ik"
+            "blijf",
+            "ik",
+            "thuis."
           ],
           "alternatives": [],
           "explanation": "Als het regent, blijf ik thuis.",
@@ -1898,12 +1898,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Lava as mãos antes de comer.",
           "tokens": [
+            "Was",
             "je",
             "handen",
+            "voordat",
             "je",
-            "eet.",
-            "Was",
-            "voordat"
+            "eet."
           ],
           "alternatives": [],
           "explanation": "Was je handen voordat je eet.",
@@ -1915,42 +1915,42 @@
           "id": "s4-u14-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Toen ik klein was, woonde ik in Faro.»?",
+          "prompt": "O que significa: «Ik vraag me af wat hij bedoelt.»?",
           "options": [
             {
               "id": "a",
-              "text": "Liga-me assim que chegares.",
-              "correct": false
+              "text": "Pergunto-me o que é que ele quer dizer.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Desde que moro aqui, ando de bicicleta todos os dias.",
+              "text": "Pode dizer-me a que horas parte o comboio?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Quando era pequeno, morava em Faro.",
-              "correct": true
+              "text": "Sabe onde fica a estação?",
+              "correct": false
             }
           ],
-          "explanation": "«Toen ik klein was, woonde ik in Faro.» = Quando era pequeno, morava em Faro.",
+          "explanation": "«Ik vraag me af wat hij bedoelt.» = Pergunto-me o que é que ele quer dizer.",
           "vocabRefs": []
         },
         {
           "id": "s4-u14-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Bel me zodra je er bent.»?",
+          "prompt": "O que significa: «Kunt u zeggen hoe laat de trein vertrekt?»?",
           "options": [
             {
               "id": "a",
-              "text": "Liga-me assim que chegares.",
-              "correct": true
+              "text": "Quando era pequeno, morava em Faro.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Não sei quem é.",
-              "correct": false
+              "text": "Pode dizer-me a que horas parte o comboio?",
+              "correct": true
             },
             {
               "id": "c",
@@ -1958,54 +1958,52 @@
               "correct": false
             }
           ],
-          "explanation": "«Bel me zodra je er bent.» = Liga-me assim que chegares.",
-          "vocabRefs": [
-            "v-zodra"
-          ]
+          "explanation": "«Kunt u zeggen hoe laat de trein vertrekt?» = Pode dizer-me a que horas parte o comboio?",
+          "vocabRefs": []
         },
         {
           "id": "s4-u14-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tens a certeza de que a loja está aberta?",
+          "prompt": "Depois de comermos, fomos passear.",
           "tokens": [
-            "zeker",
-            "is?",
-            "dat",
-            "open",
-            "de",
-            "We",
-            "Weet",
-            "winkel",
-            "u",
-            "je"
+            "gegeten",
+            "eet.",
+            "hadden,",
+            "wandelen.",
+            "gingen",
+            "regent.",
+            "Nadat",
+            "we",
+            "we"
           ],
           "answers": [
-            "Weet je zeker dat de winkel open is?"
+            "Nadat we gegeten hadden, gingen we wandelen."
           ],
-          "explanation": "Tens a certeza de que a loja está aberta? = Weet je zeker dat de winkel open is? (sobram: We, u)",
-          "vocabRefs": []
+          "explanation": "Depois de comermos, fomos passear. = Nadat we gegeten hadden, gingen we wandelen. (sobram: eet., regent.)",
+          "vocabRefs": [
+            "v-nadat"
+          ]
         },
         {
           "id": "s4-u14-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pergunto-me o que é que ele quer dizer.",
+          "prompt": "Sei que estás cansado.",
           "tokens": [
-            "wat",
-            "af",
             "Ik",
-            "vraag",
-            "klein",
-            "hij",
-            "me",
-            "vertrekt?",
-            "bedoelt."
+            "bent.",
+            "dat",
+            "je",
+            "Wacht",
+            "moe",
+            "zodat",
+            "weet"
           ],
           "answers": [
-            "Ik vraag me af wat hij bedoelt."
+            "Ik weet dat je moe bent."
           ],
-          "explanation": "Pergunto-me o que é que ele quer dizer. = Ik vraag me af wat hij bedoelt. (sobram: klein, vertrekt?)",
+          "explanation": "Sei que estás cansado. = Ik weet dat je moe bent. (sobram: zodat, Wacht)",
           "vocabRefs": []
         }
       ],
@@ -2067,16 +2065,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik denk dat het gaat regenen.",
-          "pt": "Acho que vai chover."
+          "nl": "Nadat we gegeten hadden, gingen we wandelen.",
+          "pt": "Depois de comermos, fomos passear."
         },
         {
-          "nl": "Zodra ik klaar ben, bel ik je.",
-          "pt": "Assim que acabar, ligo-te."
+          "nl": "Ik vraag me af wat hij bedoelt.",
+          "pt": "Pergunto-me o que é que ele quer dizer."
         },
         {
-          "nl": "Ik weet niet wie dat is.",
-          "pt": "Não sei quem é."
+          "nl": "Ik merk dat mijn Nederlands beter wordt.",
+          "pt": "Noto que o meu neerlandês está a melhorar."
         }
       ],
       "grammar": [],
@@ -2085,54 +2083,54 @@
           "id": "s4-u14-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «enquanto» em neerlandês?",
+          "prompt": "Como se diz «querer dizer» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "terwijl",
-              "correct": true
+              "text": "zich afvragen",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "merken",
-              "correct": false
+              "text": "bedoelen",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "sinds",
+              "text": "nadat",
               "correct": false
             }
           ],
-          "explanation": "enquanto = «terwijl».",
+          "explanation": "querer dizer = «bedoelen».",
           "vocabRefs": [
-            "v-terwijl"
+            "v-bedoelen"
           ]
         },
         {
           "id": "s4-u14-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «embora» em neerlandês?",
+          "prompt": "Como se diz «se» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "toen",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "hoewel",
+              "text": "als",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "dat",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "merken",
+              "text": "tenzij",
               "correct": false
             }
           ],
-          "explanation": "embora = «hoewel».",
+          "explanation": "se = «als».",
           "vocabRefs": [
-            "v-hoewel"
+            "v-als-conj"
           ]
         },
         {
@@ -2145,9 +2143,9 @@
             "Toen"
           ],
           "choices": [
-            "Voordat",
-            "Zodra",
-            "Toen"
+            "Hoeveel",
+            "Toen",
+            "Totdat"
           ],
           "explanation": "Toen ik klein was, woonde ik in Faro.",
           "vocabRefs": [
@@ -2158,17 +2156,17 @@
           "id": "s4-u14-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik denk ___ het gaat regenen.",
-          "translation": "Acho que vai chover.",
+          "sentence": "Weet je zeker ___ de winkel open is?",
+          "translation": "Tens a certeza de que a loja está aberta?",
           "answers": [
             "dat"
           ],
           "choices": [
+            "zodat",
             "sinds",
-            "dat",
-            "merken"
+            "dat"
           ],
-          "explanation": "Ik denk dat het gaat regenen.",
+          "explanation": "Weet je zeker dat de winkel open is?",
           "vocabRefs": [
             "v-dat-conj"
           ]
@@ -2177,94 +2175,97 @@
           "id": "s4-u14-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ze vertelt dat ze een nieuwe baan heeft.",
+          "audioText": "Toen ik binnenkwam, was iedereen stil.",
           "answers": [
-            "Ze vertelt dat ze een nieuwe baan heeft."
+            "Toen ik binnenkwam, was iedereen stil."
           ],
-          "translation": "Ela conta que tem um emprego novo.",
-          "explanation": "«Ze vertelt dat ze een nieuwe baan heeft.» = Ela conta que tem um emprego novo.",
+          "translation": "Quando entrei, estavam todos calados.",
+          "explanation": "«Toen ik binnenkwam, was iedereen stil.» = Quando entrei, estavam todos calados.",
           "vocabRefs": []
         },
         {
           "id": "s4-u14-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik merk dat mijn Nederlands beter wordt.",
+          "audioText": "We gaan wandelen, tenzij het regent.",
           "answers": [
-            "Ik merk dat mijn Nederlands beter wordt."
+            "We gaan wandelen, tenzij het regent."
           ],
-          "translation": "Noto que o meu neerlandês está a melhorar.",
-          "explanation": "«Ik merk dat mijn Nederlands beter wordt.» = Noto que o meu neerlandês está a melhorar.",
-          "vocabRefs": []
+          "translation": "Vamos passear, a não ser que chova.",
+          "explanation": "«We gaan wandelen, tenzij het regent.» = Vamos passear, a não ser que chova.",
+          "vocabRefs": [
+            "v-tenzij"
+          ]
         },
         {
           "id": "s4-u14-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Depois de comermos, fomos passear.",
+          "prompt": "Embora esteja a chover, vou de bicicleta.",
           "tokens": [
+            "Hoewel",
             "ik",
-            "gegeten",
-            "hadden,",
-            "Nadat",
-            "Kunt",
-            "we",
-            "gingen",
-            "wandelen.",
-            "we"
+            "regent,",
+            "fietsen.",
+            "het",
+            "ga",
+            "me",
+            "zegt"
           ],
           "answers": [
-            "Nadat we gegeten hadden, gingen we wandelen."
+            "Hoewel het regent, ga ik fietsen."
           ],
-          "explanation": "Depois de comermos, fomos passear. = Nadat we gegeten hadden, gingen we wandelen. (sobram: Kunt, ik)",
+          "explanation": "Embora esteja a chover, vou de bicicleta. = Hoewel het regent, ga ik fietsen. (sobram: zegt, me)",
           "vocabRefs": [
-            "v-nadat"
+            "v-hoewel"
           ]
         },
         {
           "id": "s4-u14-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Se chover, fico em casa.",
+          "prompt": "Pode dizer-me a que horas parte o comboio?",
           "tokens": [
-            "woonde",
-            "ik",
-            "blijf",
-            "thuis.",
-            "regent,",
-            "Als",
-            "het",
-            "hij"
+            "laat",
+            "hij",
+            "jij",
+            "zeggen",
+            "hoe",
+            "trein",
+            "Kunt",
+            "de",
+            "vertrekt?",
+            "u"
           ],
           "answers": [
-            "Als het regent, blijf ik thuis."
+            "Kunt u zeggen hoe laat de trein vertrekt?"
           ],
-          "explanation": "Se chover, fico em casa. = Als het regent, blijf ik thuis. (sobram: hij, woonde)",
+          "explanation": "Pode dizer-me a que horas parte o comboio? = Kunt u zeggen hoe laat de trein vertrekt? (sobram: hij, jij)",
           "vocabRefs": []
         },
         {
           "id": "s4-u14-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik denk dat het gaat regenen.»?",
+          "prompt": "O que significa: «Ik merk dat mijn Nederlands beter wordt.»?",
           "options": [
             {
               "id": "a",
-              "text": "Liga-me assim que chegares.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Acho que vai chover.",
+              "text": "Noto que o meu neerlandês está a melhorar.",
               "correct": true
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "Se chover, fico em casa.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Ele diz que vem mais tarde.",
               "correct": false
             }
           ],
-          "explanation": "«Ik denk dat het gaat regenen.» = Acho que vai chover.",
+          "explanation": "«Ik merk dat mijn Nederlands beter wordt.» = Noto que o meu neerlandês está a melhorar.",
           "vocabRefs": []
         }
       ],
@@ -2326,16 +2327,16 @@
       ],
       "examples": [
         {
-          "nl": "Terwijl ik kookte, belde mijn moeder.",
-          "pt": "Enquanto cozinhava, a minha mãe ligou."
+          "nl": "Als het regent, blijf ik thuis.",
+          "pt": "Se chover, fico em casa."
         },
         {
-          "nl": "Hij zegt dat hij later komt.",
-          "pt": "Ele diz que vem mais tarde."
+          "nl": "Wacht hier totdat ik terug ben.",
+          "pt": "Espera aqui até eu voltar."
         },
         {
-          "nl": "Ze vertelt dat ze een nieuwe baan heeft.",
-          "pt": "Ela conta que tem um emprego novo."
+          "nl": "Zodra ik klaar ben, bel ik je.",
+          "pt": "Assim que acabar, ligo-te."
         }
       ],
       "grammar": [],
@@ -2344,73 +2345,97 @@
           "id": "s4-u14-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Espera aqui até eu voltar.",
+          "prompt": "Assim que acabar, ligo-te.",
           "tokens": [
-            "weet",
-            "ben.",
-            "hier",
-            "wat",
-            "Wacht",
-            "totdat",
             "ik",
-            "terug"
+            "mijn",
+            "klaar",
+            "ik",
+            "Zodra",
+            "ben,",
+            "in",
+            "je.",
+            "bel"
           ],
           "answers": [
-            "Wacht hier totdat ik terug ben."
+            "Zodra ik klaar ben, bel ik je."
           ],
-          "explanation": "Espera aqui até eu voltar. = Wacht hier totdat ik terug ben. (sobram: weet, wat)",
+          "explanation": "Assim que acabar, ligo-te. = Zodra ik klaar ben, bel ik je. (sobram: mijn, in)",
           "vocabRefs": [
-            "v-totdat"
+            "v-zodra"
           ]
         },
         {
           "id": "s4-u14-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela conta que tem um emprego novo.",
+          "prompt": "Falo devagar para que me compreendas.",
           "tokens": [
-            "vertelt",
-            "Ze",
-            "een",
-            "hij",
-            "dat",
-            "nieuwe",
-            "heeft.",
-            "jij",
-            "baan",
-            "ze"
+            "Ik",
+            "mijn",
+            "thuiskom,",
+            "me",
+            "langzaam,",
+            "spreek",
+            "zodat",
+            "begrijpt.",
+            "je"
           ],
           "answers": [
-            "Ze vertelt dat ze een nieuwe baan heeft."
+            "Ik spreek langzaam, zodat je me begrijpt."
           ],
-          "explanation": "Ela conta que tem um emprego novo. = Ze vertelt dat ze een nieuwe baan heeft. (sobram: hij, jij)",
-          "vocabRefs": []
+          "explanation": "Falo devagar para que me compreendas. = Ik spreek langzaam, zodat je me begrijpt. (sobram: thuiskom,, mijn)",
+          "vocabRefs": [
+            "v-zodat"
+          ]
         },
         {
           "id": "s4-u14-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Enquanto cozinhava, a minha mãe ligou.",
+          "prompt": "Não sei quem é.",
           "tokens": [
-            "ze",
-            "wandelen.",
-            "Terwijl",
-            "moeder.",
-            "kookte,",
-            "mijn",
-            "ik",
-            "belde"
+            "niet",
+            "Toen",
+            "is.",
+            "dat",
+            "Ik",
+            "wie",
+            "weet",
+            "zeggen"
           ],
           "answers": [
-            "Terwijl ik kookte, belde mijn moeder."
+            "Ik weet niet wie dat is."
           ],
-          "explanation": "Enquanto cozinhava, a minha mãe ligou. = Terwijl ik kookte, belde mijn moeder. (sobram: ze, wandelen.)",
-          "vocabRefs": [
-            "v-terwijl"
-          ]
+          "explanation": "Não sei quem é. = Ik weet niet wie dat is. (sobram: Toen, zeggen)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u14-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik denk dat het gaat regenen.",
+          "answers": [
+            "Ik denk dat het gaat regenen."
+          ],
+          "translation": "Acho que vai chover.",
+          "explanation": "«Ik denk dat het gaat regenen.» = Acho que vai chover.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s4-u14-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Toen ik klein was, woonde ik in Faro.",
+          "answers": [
+            "Toen ik klein was, woonde ik in Faro."
+          ],
+          "translation": "Quando era pequeno, morava em Faro.",
+          "explanation": "«Toen ik klein was, woonde ik in Faro.» = Quando era pequeno, morava em Faro.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s4-u14-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Mag ik vragen waarom u belt?",
@@ -2422,46 +2447,18 @@
           "vocabRefs": []
         },
         {
-          "id": "s4-u14-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wacht hier totdat ik terug ben.",
-          "answers": [
-            "Wacht hier totdat ik terug ben."
-          ],
-          "translation": "Espera aqui até eu voltar.",
-          "explanation": "«Wacht hier totdat ik terug ben.» = Espera aqui até eu voltar.",
-          "vocabRefs": [
-            "v-totdat"
-          ]
-        },
-        {
-          "id": "s4-u14-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zodra ik klaar ben, bel ik je.",
-          "answers": [
-            "Zodra ik klaar ben, bel ik je."
-          ],
-          "translation": "Assim que acabar, ligo-te.",
-          "explanation": "«Zodra ik klaar ben, bel ik je.» = Assim que acabar, ligo-te.",
-          "vocabRefs": [
-            "v-zodra"
-          ]
-        },
-        {
           "id": "s4-u14-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
           "translation": "Pode dizer-me a que horas parte o comboio?",
           "tokens": [
-            "zeggen",
-            "u",
-            "trein",
-            "de",
-            "laat",
-            "hoe",
             "Kunt",
+            "u",
+            "zeggen",
+            "hoe",
+            "laat",
+            "de",
+            "trein",
             "vertrekt?"
           ],
           "alternatives": [],
@@ -2472,56 +2469,56 @@
           "id": "s4-u14-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Sabes quanto custa?",
+          "translation": "Pergunto-me o que é que ele quer dizer.",
           "tokens": [
-            "het",
-            "jij",
-            "hoeveel",
-            "kost?",
-            "Weet"
+            "Ik",
+            "vraag",
+            "me",
+            "af",
+            "wat",
+            "hij",
+            "bedoelt."
           ],
           "alternatives": [],
-          "explanation": "Weet jij hoeveel het kost?",
-          "vocabRefs": [
-            "v-hoeveel-conj"
-          ]
+          "explanation": "Ik vraag me af wat hij bedoelt.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u14-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «terwijl»?",
+          "prompt": "O que significa «sinds»?",
           "options": [
             {
               "id": "a",
-              "text": "enquanto",
-              "correct": true
+              "text": "querer dizer",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "depois de/que",
-              "correct": false
+              "text": "desde que",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "se",
+              "text": "enquanto",
               "correct": false
             }
           ],
-          "explanation": "«terwijl» = enquanto.",
+          "explanation": "«sinds» = desde que.",
           "vocabRefs": [
-            "v-terwijl"
+            "v-sinds-conj"
           ]
         },
         {
           "id": "s4-u14-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «totdat»?",
+          "prompt": "O que significa «nadat»?",
           "options": [
             {
               "id": "a",
-              "text": "querer dizer",
+              "text": "ter a certeza",
               "correct": false
             },
             {
@@ -2531,13 +2528,13 @@
             },
             {
               "id": "c",
-              "text": "até que",
+              "text": "depois de/que",
               "correct": true
             }
           ],
-          "explanation": "«totdat» = até que.",
+          "explanation": "«nadat» = depois de/que.",
           "vocabRefs": [
-            "v-totdat"
+            "v-nadat"
           ]
         }
       ],

@@ -2060,16 +2060,16 @@
       ],
       "examples": [
         {
-          "nl": "volgend jaar",
-          "pt": "no próximo ano"
+          "nl": "Ik heb een afspraak bij de tandarts.",
+          "pt": "Tenho consulta no dentista."
         },
         {
-          "nl": "Het is maandag 3 mei.",
-          "pt": "É segunda-feira, 3 de maio."
+          "nl": "eind december",
+          "pt": "no fim de dezembro"
         },
         {
-          "nl": "Volgende week ga ik naar Portugal.",
-          "pt": "Na próxima semana vou a Portugal."
+          "nl": "Welke datum is het vandaag?",
+          "pt": "Que dia é hoje (data)?"
         }
       ],
       "grammar": [],
@@ -2125,12 +2125,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "A 5 de maio é o Dia da Libertação.",
           "tokens": [
-            "mei",
-            "Bevrijdingsdag.",
-            "is",
+            "Op",
             "5",
+            "mei",
+            "is",
             "het",
-            "Op"
+            "Bevrijdingsdag."
           ],
           "alternatives": [],
           "explanation": "Op 5 mei is het Bevrijdingsdag.",
@@ -2147,8 +2147,8 @@
           "translation": "É segunda-feira, 3 de maio.",
           "tokens": [
             "Het",
-            "maandag",
             "is",
+            "maandag",
             "3",
             "mei."
           ],
@@ -2167,10 +2167,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Podes na terça?",
           "tokens": [
-            "op",
-            "dinsdag?",
+            "Kun",
             "je",
-            "Kun"
+            "op",
+            "dinsdag?"
           ],
           "alternatives": [],
           "explanation": "Kun je op dinsdag?",
@@ -2183,105 +2183,101 @@
           "id": "s2-u03-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik werk van maandag tot vrijdag.»?",
+          "prompt": "O que significa: «In augustus ga ik op vakantie.»?",
           "options": [
             {
               "id": "a",
-              "text": "É segunda-feira, 3 de maio.",
+              "text": "O Dia do Rei é a 27 de abril.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Trabalho de segunda a sexta.",
-              "correct": true
+              "text": "Que dia é hoje (data)?",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Que dia é hoje (data)?",
-              "correct": false
+              "text": "Em agosto vou de férias.",
+              "correct": true
             }
           ],
-          "explanation": "«Ik werk van maandag tot vrijdag.» = Trabalho de segunda a sexta.",
+          "explanation": "«In augustus ga ik op vakantie.» = Em agosto vou de férias.",
           "vocabRefs": [
-            "v-maandag",
-            "v-vrijdag",
-            "v-dag",
-            "v-maand"
+            "v-augustus"
           ]
         },
         {
           "id": "s2-u03-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Op 5 mei is het Bevrijdingsdag.»?",
+          "prompt": "O que significa: «Ik heb een afspraak bij de tandarts.»?",
           "options": [
             {
               "id": "a",
-              "text": "no fim de dezembro",
+              "text": "Quinta dá jeito?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "A 5 de maio é o Dia da Libertação.",
-              "correct": true
+              "text": "no dia 1 de janeiro",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Que dia é hoje (data)?",
-              "correct": false
+              "text": "Tenho consulta no dentista.",
+              "correct": true
             }
           ],
-          "explanation": "«Op 5 mei is het Bevrijdingsdag.» = A 5 de maio é o Dia da Libertação.",
+          "explanation": "«Ik heb een afspraak bij de tandarts.» = Tenho consulta no dentista.",
           "vocabRefs": [
-            "v-dag",
-            "v-mei",
-            "v-vrij"
+            "v-afspraak"
           ]
         },
         {
           "id": "s2-u03-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho consulta no dentista.",
+          "prompt": "No mês passado estive doente.",
           "tokens": [
-            "Ik",
-            "afspraak",
-            "heb",
             "ga",
-            "de",
-            "tandarts.",
-            "een",
-            "woensdag",
-            "bij"
+            "maand",
+            "ziek.",
+            "was",
+            "Vorige",
+            "ik",
+            "In"
           ],
           "answers": [
-            "Ik heb een afspraak bij de tandarts."
+            "Vorige maand was ik ziek."
           ],
-          "explanation": "Tenho consulta no dentista. = Ik heb een afspraak bij de tandarts. (sobram: woensdag, ga)",
+          "explanation": "No mês passado estive doente. = Vorige maand was ik ziek. (sobram: In, ga)",
           "vocabRefs": [
-            "v-afspraak"
+            "v-maand",
+            "v-vorige"
           ]
         },
         {
           "id": "s2-u03-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Podes na terça?",
+          "prompt": "Na próxima semana vou a Portugal.",
           "tokens": [
-            "dinsdag?",
-            "op",
-            "Kun",
+            "naar",
+            "van",
+            "Volgende",
+            "week",
+            "ik",
+            "Portugal.",
             "vandaag?",
-            "je",
-            "maandag"
+            "ga"
           ],
           "answers": [
-            "Kun je op dinsdag?"
+            "Volgende week ga ik naar Portugal."
           ],
-          "explanation": "Podes na terça? = Kun je op dinsdag? (sobram: vandaag?, maandag)",
+          "explanation": "Na próxima semana vou a Portugal. = Volgende week ga ik naar Portugal. (sobram: vandaag?, van)",
           "vocabRefs": [
-            "v-dinsdag",
-            "v-dag"
+            "v-week",
+            "v-volgende"
           ]
         }
       ],
@@ -2358,16 +2354,16 @@
       ],
       "examples": [
         {
+          "nl": "Januari is koud.",
+          "pt": "Janeiro é frio."
+        },
+        {
           "nl": "Ik ben woensdag vrij.",
           "pt": "Estou livre na quarta."
         },
         {
-          "nl": "Op woensdag sport ik.",
-          "pt": "À quarta-feira faço desporto."
-        },
-        {
-          "nl": "Mijn verjaardag is in mei.",
-          "pt": "O meu aniversário é em maio."
+          "nl": "Op maandag werk ik.",
+          "pt": "À segunda-feira trabalho."
         }
       ],
       "grammar": [],
@@ -2376,7 +2372,34 @@
           "id": "s2-u03-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «fevereiro» em neerlandês?",
+          "prompt": "Como se diz «segunda-feira» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "vrijdag",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "maandag",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "vorige",
+              "correct": false
+            }
+          ],
+          "explanation": "segunda-feira = «maandag».",
+          "vocabRefs": [
+            "v-maandag"
+          ]
+        },
+        {
+          "id": "s2-u03-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «dar jeito» em neerlandês?",
           "options": [
             {
               "id": "a",
@@ -2385,83 +2408,56 @@
             },
             {
               "id": "b",
-              "text": "februari",
-              "correct": true
-            },
-            {
-              "id": "c",
               "text": "passen",
-              "correct": false
-            }
-          ],
-          "explanation": "fevereiro = «februari».",
-          "vocabRefs": [
-            "v-februari"
-          ]
-        },
-        {
-          "id": "s2-u03-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «passado» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "vorige",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "volgende",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "overmorgen",
+              "text": "vrij",
               "correct": false
             }
           ],
-          "explanation": "passado = «vorige».",
+          "explanation": "dar jeito = «passen».",
           "vocabRefs": [
-            "v-vorige"
+            "v-passen"
           ]
         },
         {
           "id": "s2-u03-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "In ___ ga ik op vakantie.",
-          "translation": "Em agosto vou de férias.",
+          "sentence": "Vandaag is het ___.",
+          "translation": "Hoje é sexta-feira.",
           "answers": [
-            "augustus"
+            "vrijdag"
           ],
           "choices": [
-            "feestdag",
-            "december",
-            "augustus"
+            "vrijdag",
+            "juni",
+            "mei"
           ],
-          "explanation": "In augustus ga ik op vakantie.",
+          "explanation": "Vandaag is het vrijdag.",
           "vocabRefs": [
-            "v-augustus"
+            "v-vrijdag"
           ]
         },
         {
           "id": "s2-u03-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik ben ___ vrij.",
-          "translation": "Estou livre na quarta.",
+          "sentence": "Ik heb een ___ bij de tandarts.",
+          "translation": "Tenho consulta no dentista.",
           "answers": [
-            "woensdag"
+            "afspraak"
           ],
           "choices": [
-            "agenda",
-            "woensdag",
-            "zaterdag"
+            "eergisteren",
+            "afspraak",
+            "vrijdag"
           ],
-          "explanation": "Ik ben woensdag vrij.",
+          "explanation": "Ik heb een afspraak bij de tandarts.",
           "vocabRefs": [
-            "v-woensdag"
+            "v-afspraak"
           ]
         },
         {
@@ -2500,87 +2496,81 @@
           "id": "s2-u03-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não posso à segunda.",
+          "prompt": "Podes na terça?",
           "tokens": [
-            "maandag.",
-            "kan",
+            "het",
             "op",
-            "Ik",
-            "niet",
-            "is",
-            "vrijdag."
+            "vrijdag.",
+            "je",
+            "Kun",
+            "dinsdag?"
           ],
           "answers": [
-            "Ik kan niet op maandag."
+            "Kun je op dinsdag?"
           ],
-          "explanation": "Não posso à segunda. = Ik kan niet op maandag. (sobram: is, vrijdag.)",
+          "explanation": "Podes na terça? = Kun je op dinsdag? (sobram: het, vrijdag.)",
           "vocabRefs": [
-            "v-maandag",
-            "v-dag",
-            "v-maand"
+            "v-dinsdag",
+            "v-dag"
           ]
         },
         {
           "id": "s2-u03-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No mês passado estive doente.",
+          "prompt": "no dia 1 de janeiro",
           "tokens": [
-            "je",
-            "Vorige",
-            "ik",
-            "was",
-            "ziek.",
-            "mei.",
-            "maand"
+            "1",
+            "op",
+            "In",
+            "Vandaag",
+            "januari"
           ],
           "answers": [
-            "Vorige maand was ik ziek."
+            "op 1 januari"
           ],
-          "explanation": "No mês passado estive doente. = Vorige maand was ik ziek. (sobram: mei., je)",
+          "explanation": "no dia 1 de janeiro = op 1 januari (sobram: In, Vandaag)",
           "vocabRefs": [
-            "v-maand",
-            "v-vorige"
+            "v-januari"
           ]
         },
         {
           "id": "s2-u03-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "afspraak",
-          "pt": "encontro",
+          "noun": "feestdag",
+          "pt": "feriado",
           "article": "de",
-          "explanation": "de afspraak.",
+          "explanation": "de feestdag.",
           "vocabRefs": [
-            "v-afspraak"
+            "v-feestdag"
           ]
         },
         {
           "id": "s2-u03-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Op woensdag sport ik.»?",
+          "prompt": "O que significa: «Januari is koud.»?",
           "options": [
             {
               "id": "a",
-              "text": "Podes na terça?",
+              "text": "Boas festas!",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Janeiro é frio.",
+              "text": "À quarta-feira faço desporto.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "À quarta-feira faço desporto.",
+              "text": "Janeiro é frio.",
               "correct": true
             }
           ],
-          "explanation": "«Op woensdag sport ik.» = À quarta-feira faço desporto.",
+          "explanation": "«Januari is koud.» = Janeiro é frio.",
           "vocabRefs": [
-            "v-woensdag",
-            "v-dag"
+            "v-januari"
           ]
         }
       ],
@@ -2657,16 +2647,16 @@
       ],
       "examples": [
         {
-          "nl": "Het is maandag 3 mei.",
-          "pt": "É segunda-feira, 3 de maio."
+          "nl": "eind december",
+          "pt": "no fim de dezembro"
         },
         {
-          "nl": "in januari",
-          "pt": "em janeiro"
+          "nl": "Tot zaterdag!",
+          "pt": "Até sábado!"
         },
         {
-          "nl": "volgend jaar",
-          "pt": "no próximo ano"
+          "nl": "Op woensdag sport ik.",
+          "pt": "À quarta-feira faço desporto."
         }
       ],
       "grammar": [],
@@ -2675,67 +2665,21 @@
           "id": "s2-u03-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "À segunda-feira trabalho.",
-          "tokens": [
-            "Op",
-            "de",
-            "27",
-            "maandag",
-            "werk",
-            "ik."
-          ],
-          "answers": [
-            "Op maandag werk ik."
-          ],
-          "explanation": "À segunda-feira trabalho. = Op maandag werk ik. (sobram: de, 27)",
-          "vocabRefs": [
-            "v-maandag",
-            "v-dag",
-            "v-maand"
-          ]
-        },
-        {
-          "id": "s2-u03-l009-e02",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Em agosto vou de férias.",
-          "tokens": [
-            "In",
-            "augustus",
-            "ga",
-            "ik",
-            "op",
-            "tot",
-            "vakantie.",
-            "Koningsdag"
-          ],
-          "answers": [
-            "In augustus ga ik op vakantie."
-          ],
-          "explanation": "Em agosto vou de férias. = In augustus ga ik op vakantie. (sobram: tot, Koningsdag)",
-          "vocabRefs": [
-            "v-augustus"
-          ]
-        },
-        {
-          "id": "s2-u03-l009-e03",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "Trabalho de segunda a sexta.",
           "tokens": [
-            "werk",
-            "Ik",
-            "maandag",
             "tot",
+            "Ik",
+            "mei",
+            "maandag",
             "van",
-            "het",
             "vrijdag.",
-            "niet"
+            "is",
+            "werk"
           ],
           "answers": [
             "Ik werk van maandag tot vrijdag."
           ],
-          "explanation": "Trabalho de segunda a sexta. = Ik werk van maandag tot vrijdag. (sobram: het, niet)",
+          "explanation": "Trabalho de segunda a sexta. = Ik werk van maandag tot vrijdag. (sobram: mei, is)",
           "vocabRefs": [
             "v-maandag",
             "v-vrijdag",
@@ -2744,36 +2688,50 @@
           ]
         },
         {
-          "id": "s2-u03-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Volgende week ga ik naar Portugal.",
-          "answers": [
-            "Volgende week ga ik naar Portugal."
+          "id": "s2-u03-l009-e02",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Janeiro é frio.",
+          "tokens": [
+            "koud.",
+            "Januari",
+            "augustus",
+            "op",
+            "is"
           ],
-          "translation": "Na próxima semana vou a Portugal.",
-          "explanation": "«Volgende week ga ik naar Portugal.» = Na próxima semana vou a Portugal.",
-          "vocabRefs": [
-            "v-week",
-            "v-volgende"
-          ]
-        },
-        {
-          "id": "s2-u03-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "op 1 januari",
           "answers": [
-            "op 1 januari"
+            "Januari is koud."
           ],
-          "translation": "no dia 1 de janeiro",
-          "explanation": "«op 1 januari» = no dia 1 de janeiro",
+          "explanation": "Janeiro é frio. = Januari is koud. (sobram: op, augustus)",
           "vocabRefs": [
             "v-januari"
           ]
         },
         {
-          "id": "s2-u03-l009-e06",
+          "id": "s2-u03-l009-e03",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "À segunda-feira trabalho.",
+          "tokens": [
+            "Op",
+            "maandag",
+            "werk",
+            "is",
+            "27",
+            "ik."
+          ],
+          "answers": [
+            "Op maandag werk ik."
+          ],
+          "explanation": "À segunda-feira trabalho. = Op maandag werk ik. (sobram: is, 27)",
+          "vocabRefs": [
+            "v-maandag",
+            "v-dag",
+            "v-maand"
+          ]
+        },
+        {
+          "id": "s2-u03-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Vandaag is het vrijdag.",
@@ -2789,96 +2747,121 @@
           ]
         },
         {
+          "id": "s2-u03-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Volgende week ga ik naar Portugal.",
+          "answers": [
+            "Volgende week ga ik naar Portugal."
+          ],
+          "translation": "Na próxima semana vou a Portugal.",
+          "explanation": "«Volgende week ga ik naar Portugal.» = Na próxima semana vou a Portugal.",
+          "vocabRefs": [
+            "v-week",
+            "v-volgende"
+          ]
+        },
+        {
+          "id": "s2-u03-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "op 1 januari",
+          "answers": [
+            "op 1 januari"
+          ],
+          "translation": "no dia 1 de janeiro",
+          "explanation": "«op 1 januari» = no dia 1 de janeiro",
+          "vocabRefs": [
+            "v-januari"
+          ]
+        },
+        {
           "id": "s2-u03-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Em agosto vou de férias.",
+          "translation": "Janeiro é frio.",
           "tokens": [
-            "augustus",
-            "In",
-            "op",
-            "ga",
-            "ik",
-            "vakantie."
+            "Januari",
+            "is",
+            "koud."
           ],
           "alternatives": [],
-          "explanation": "In augustus ga ik op vakantie.",
+          "explanation": "Januari is koud.",
           "vocabRefs": [
-            "v-augustus"
+            "v-januari"
           ]
         },
         {
           "id": "s2-u03-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tenho consulta no dentista.",
+          "translation": "Estou livre na quarta.",
           "tokens": [
-            "bij",
-            "tandarts.",
             "Ik",
-            "heb",
-            "de",
-            "een",
-            "afspraak"
+            "ben",
+            "woensdag",
+            "vrij."
           ],
           "alternatives": [],
-          "explanation": "Ik heb een afspraak bij de tandarts.",
+          "explanation": "Ik ben woensdag vrij.",
           "vocabRefs": [
-            "v-afspraak"
+            "v-woensdag",
+            "v-dag",
+            "v-vrij"
           ]
         },
         {
           "id": "s2-u03-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «april»?",
+          "prompt": "O que significa «de woensdag»?",
           "options": [
             {
               "id": "a",
-              "text": "semana",
+              "text": "agosto",
               "correct": false
             },
             {
               "id": "b",
-              "text": "próximo",
-              "correct": false
+              "text": "quarta-feira",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "abril",
-              "correct": true
+              "text": "sexta-feira",
+              "correct": false
             }
           ],
-          "explanation": "«april» = abril.",
+          "explanation": "«de woensdag» = quarta-feira.",
           "vocabRefs": [
-            "v-april"
+            "v-woensdag"
           ]
         },
         {
           "id": "s2-u03-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de vrijdag»?",
+          "prompt": "O que significa «vrij»?",
           "options": [
             {
               "id": "a",
-              "text": "quarta-feira",
+              "text": "depois de amanhã",
               "correct": false
             },
             {
               "id": "b",
-              "text": "sábado",
-              "correct": false
+              "text": "livre",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "sexta-feira",
-              "correct": true
+              "text": "dar jeito",
+              "correct": false
             }
           ],
-          "explanation": "«de vrijdag» = sexta-feira.",
+          "explanation": "«vrij» = livre, de folga.",
           "vocabRefs": [
-            "v-vrijdag"
+            "v-vrij"
           ]
         }
       ],

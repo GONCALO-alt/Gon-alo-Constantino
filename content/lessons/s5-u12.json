@@ -1911,16 +1911,16 @@
       ],
       "examples": [
         {
-          "nl": "Probeer het hoofd koel te houden.",
-          "pt": "Tenta manter a cabeça fria."
+          "nl": "Zo sla je twee vliegen in één klap.",
+          "pt": "Assim matas dois coelhos de uma cajadada."
         },
         {
-          "nl": "Bij het eten is hij altijd haantje de voorste.",
-          "pt": "Na comida é sempre o primeiro."
+          "nl": "Ik stond met de mond vol tanden.",
+          "pt": "Fiquei sem palavras."
         },
         {
-          "nl": "Het gaat om je gezondheid.",
-          "pt": "Trata-se da tua saúde."
+          "nl": "Die toets was een eitje.",
+          "pt": "Aquele teste foi canja."
         }
       ],
       "grammar": [],
@@ -1971,14 +1971,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Podes ficar de olho?",
           "tokens": [
-            "jij",
-            "houden?",
-            "zeil",
-            "in",
-            "een",
-            "het",
             "Kun",
-            "oogje"
+            "jij",
+            "een",
+            "oogje",
+            "in",
+            "het",
+            "zeil",
+            "houden?"
           ],
           "alternatives": [],
           "explanation": "Kun jij een oogje in het zeil houden?",
@@ -1992,14 +1992,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele andava de um lado para o outro como uma barata tonta.",
           "tokens": [
-            "zonder",
+            "Hij",
             "rende",
-            "kop.",
             "rond",
             "als",
-            "Hij",
+            "een",
             "kip",
-            "een"
+            "zonder",
+            "kop."
           ],
           "alternatives": [],
           "explanation": "Hij rende rond als een kip zonder kop.",
@@ -2013,10 +2013,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Não há duas sem três!",
           "tokens": [
-            "drie!",
             "Geen",
+            "twee",
             "zonder",
-            "twee"
+            "drie!"
           ],
           "alternatives": [],
           "explanation": "Geen twee zonder drie!",
@@ -2032,18 +2032,18 @@
           "options": [
             {
               "id": "a",
-              "text": "Despacha-te, tempo é dinheiro!",
-              "correct": true
+              "text": "Não há duas sem três!",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Divertirmo-nos juntos, é isso que importa.",
+              "text": "Conheces este provérbio?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Assim matas dois coelhos de uma cajadada.",
-              "correct": false
+              "text": "Despacha-te, tempo é dinheiro!",
+              "correct": true
             }
           ],
           "explanation": "«Schiet op, tijd is geld!» = Despacha-te, tempo é dinheiro!",
@@ -2055,7 +2055,7 @@
           "id": "s5-u12-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Oost west, thuis best.»?",
+          "prompt": "O que significa: «Ik kijk eerst de kat uit de boom.»?",
           "options": [
             {
               "id": "a",
@@ -2064,62 +2064,61 @@
             },
             {
               "id": "b",
-              "text": "Trata-se da tua saúde.",
-              "correct": false
+              "text": "Primeiro vou esperar para ver.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Não há lugar como a nossa casa.",
-              "correct": true
+              "text": "Conheces este provérbio?",
+              "correct": false
             }
           ],
-          "explanation": "«Oost west, thuis best.» = Não há lugar como a nossa casa.",
-          "vocabRefs": [
-            "v-oost-west"
-          ]
+          "explanation": "«Ik kijk eerst de kat uit de boom.» = Primeiro vou esperar para ver.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u12-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Conheces este provérbio?",
+          "prompt": "Gostos não se discutem.",
           "tokens": [
-            "spreekwoord?",
-            "boom.",
-            "vliegen",
-            "dit",
-            "Ken",
-            "je"
+            "valt",
+            "te",
+            "appel",
+            "niet",
+            "twisten.",
+            "smaak",
+            "hebben,",
+            "Over"
           ],
           "answers": [
-            "Ken je dit spreekwoord?"
+            "Over smaak valt niet te twisten."
           ],
-          "explanation": "Conheces este provérbio? = Ken je dit spreekwoord? (sobram: vliegen, boom.)",
+          "explanation": "Gostos não se discutem. = Over smaak valt niet te twisten. (sobram: appel, hebben,)",
           "vocabRefs": [
-            "v-spreekwoord"
+            "v-over-smaak"
           ]
         },
         {
           "id": "s5-u12-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Fiquei sem palavras.",
+          "prompt": "Conheces este provérbio?",
           "tokens": [
-            "mond",
-            "Geen",
-            "vol",
-            "met",
-            "Ik",
-            "rende",
-            "tanden.",
-            "stond",
-            "de"
+            "je",
+            "twee",
+            "spreekwoord?",
+            "Ken",
+            "dit",
+            "één"
           ],
           "answers": [
-            "Ik stond met de mond vol tanden."
+            "Ken je dit spreekwoord?"
           ],
-          "explanation": "Fiquei sem palavras. = Ik stond met de mond vol tanden. (sobram: rende, Geen)",
-          "vocabRefs": []
+          "explanation": "Conheces este provérbio? = Ken je dit spreekwoord? (sobram: twee, één)",
+          "vocabRefs": [
+            "v-spreekwoord"
+          ]
         }
       ],
       "difficulty": 4,
@@ -2179,16 +2178,16 @@
       ],
       "examples": [
         {
-          "nl": "Over smaak valt niet te twisten.",
-          "pt": "Gostos não se discutem."
+          "nl": "Wie het eerst komt, het eerst maalt.",
+          "pt": "Quem chega primeiro é servido primeiro."
         },
         {
-          "nl": "Ik heb deze fiets voor een appel en een ei gekocht.",
-          "pt": "Comprei esta bicicleta por tuta e meia."
+          "nl": "Hij gooit zijn geld over de balk.",
+          "pt": "Ele esbanja o dinheiro."
         },
         {
-          "nl": "Kun jij een oogje in het zeil houden?",
-          "pt": "Podes ficar de olho?"
+          "nl": "We haalden de trein op het nippertje.",
+          "pt": "Apanhámos o comboio mesmo à justa."
         }
       ],
       "grammar": [],
@@ -2201,18 +2200,18 @@
           "options": [
             {
               "id": "a",
-              "text": "het gaat om…",
+              "text": "geld over de balk gooien",
               "correct": false
             },
             {
               "id": "b",
-              "text": "geen twee zonder drie",
-              "correct": false
+              "text": "op het nippertje",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "op het nippertje",
-              "correct": true
+              "text": "het hoofd koel houden",
+              "correct": false
             }
           ],
           "explanation": "mesmo à última hora = «op het nippertje».",
@@ -2224,100 +2223,103 @@
           "id": "s5-u12-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «por tuta e meia» em neerlandês?",
+          "prompt": "Como se diz «esperar para ver» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "het hoofd koel houden",
+              "text": "over smaak valt niet te twisten",
               "correct": false
             },
             {
               "id": "b",
-              "text": "voor een appel en een ei",
-              "correct": true
+              "text": "een eitje",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "oost west, thuis best",
-              "correct": false
+              "text": "de kat uit de boom kijken",
+              "correct": true
             }
           ],
-          "explanation": "por tuta e meia = «voor een appel en een ei».",
+          "explanation": "esperar para ver = «de kat uit de boom kijken».",
           "vocabRefs": [
-            "v-appel-en-ei"
+            "v-kat-uit-de-boom"
           ]
         },
         {
           "id": "s5-u12-l008-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Samen plezier hebben, daar gaat het om.",
+          "audioText": "Oost west, thuis best.",
           "answers": [
-            "Samen plezier hebben, daar gaat het om."
+            "Oost west, thuis best."
           ],
-          "translation": "Divertirmo-nos juntos, é isso que importa.",
-          "explanation": "«Samen plezier hebben, daar gaat het om.» = Divertirmo-nos juntos, é isso que importa.",
+          "translation": "Não há lugar como a nossa casa.",
+          "explanation": "«Oost west, thuis best.» = Não há lugar como a nossa casa.",
           "vocabRefs": [
-            "v-daar-gaat-het-om"
+            "v-oost-west"
           ]
         },
         {
           "id": "s5-u12-l008-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij heeft het Nederlands goed onder de knie.",
+          "audioText": "Ik heb deze fiets voor een appel en een ei gekocht.",
           "answers": [
-            "Hij heeft het Nederlands goed onder de knie."
+            "Ik heb deze fiets voor een appel en een ei gekocht."
           ],
-          "translation": "Ele domina bem o neerlandês.",
-          "explanation": "«Hij heeft het Nederlands goed onder de knie.» = Ele domina bem o neerlandês.",
-          "vocabRefs": []
+          "translation": "Comprei esta bicicleta por tuta e meia.",
+          "explanation": "«Ik heb deze fiets voor een appel en een ei gekocht.» = Comprei esta bicicleta por tuta e meia.",
+          "vocabRefs": [
+            "v-appel-en-ei"
+          ]
         },
         {
           "id": "s5-u12-l008-e05",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Trata-se da tua saúde.",
+          "prompt": "Quem chega primeiro é servido primeiro.",
           "tokens": [
-            "gezondheid.",
-            "je",
-            "om",
-            "gaat",
-            "zonder",
-            "Het",
-            "Samen"
+            "in",
+            "maalt.",
+            "eerst",
+            "eerst",
+            "komt,",
+            "het",
+            "fiets",
+            "het",
+            "Wie"
           ],
           "answers": [
-            "Het gaat om je gezondheid."
+            "Wie het eerst komt, het eerst maalt."
           ],
-          "explanation": "Trata-se da tua saúde. = Het gaat om je gezondheid. (sobram: zonder, Samen)",
+          "explanation": "Quem chega primeiro é servido primeiro. = Wie het eerst komt, het eerst maalt. (sobram: fiets, in)",
           "vocabRefs": [
-            "v-het-gaat-om"
+            "v-eerst-maalt"
           ]
         },
         {
           "id": "s5-u12-l008-e06",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Divertirmo-nos juntos, é isso que importa.",
+          "prompt": "Assim matas dois coelhos de uma cajadada.",
           "tokens": [
             "knie.",
+            "één",
+            "Zo",
             "gaat",
-            "hebben,",
-            "het",
-            "Samen",
-            "om.",
-            "onder",
-            "plezier",
-            "daar"
+            "twee",
+            "sla",
+            "vliegen",
+            "klap.",
+            "je",
+            "in"
           ],
           "answers": [
-            "Samen plezier hebben, daar gaat het om."
+            "Zo sla je twee vliegen in één klap."
           ],
-          "explanation": "Divertirmo-nos juntos, é isso que importa. = Samen plezier hebben, daar gaat het om. (sobram: onder, knie.)",
-          "vocabRefs": [
-            "v-daar-gaat-het-om"
-          ]
+          "explanation": "Assim matas dois coelhos de uma cajadada. = Zo sla je twee vliegen in één klap. (sobram: gaat, knie.)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u12-l008-e07",
@@ -2335,16 +2337,16 @@
           "id": "s5-u12-l008-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb de grammatica nu onder de knie.»?",
+          "prompt": "O que significa: «Kun jij een oogje in het zeil houden?»?",
           "options": [
             {
               "id": "a",
-              "text": "Ele domina bem o neerlandês.",
+              "text": "Agora domino a gramática.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Agora domino a gramática.",
+              "text": "Podes ficar de olho?",
               "correct": true
             },
             {
@@ -2353,8 +2355,10 @@
               "correct": false
             }
           ],
-          "explanation": "«Ik heb de grammatica nu onder de knie.» = Agora domino a gramática.",
-          "vocabRefs": []
+          "explanation": "«Kun jij een oogje in het zeil houden?» = Podes ficar de olho?",
+          "vocabRefs": [
+            "v-oogje-in-het-zeil"
+          ]
         },
         {
           "id": "s5-u12-l008-e09",
@@ -2364,17 +2368,17 @@
           "options": [
             {
               "id": "a",
-              "text": "matar dois coelhos de uma cajadada",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "como uma barata tonta",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "esperar para ver",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "gostos não se discutem",
+              "text": "canja",
               "correct": false
             }
           ],
@@ -2441,16 +2445,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik stond met de mond vol tanden.",
-          "pt": "Fiquei sem palavras."
+          "nl": "Bij het eten is hij altijd haantje de voorste.",
+          "pt": "Na comida é sempre o primeiro."
         },
         {
           "nl": "Zo sla je twee vliegen in één klap.",
           "pt": "Assim matas dois coelhos de uma cajadada."
         },
         {
-          "nl": "We haalden de trein op het nippertje.",
-          "pt": "Apanhámos o comboio mesmo à justa."
+          "nl": "Hij gooit zijn geld over de balk.",
+          "pt": "Ele esbanja o dinheiro."
         }
       ],
       "grammar": [],
@@ -2461,17 +2465,17 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Não há lugar como a nossa casa.",
           "tokens": [
-            "thuis",
-            "Schiet",
-            "gaat",
-            "best.",
             "west,",
-            "Oost"
+            "goed",
+            "Oost",
+            "thuis",
+            "best.",
+            "met"
           ],
           "answers": [
             "Oost west, thuis best."
           ],
-          "explanation": "Não há lugar como a nossa casa. = Oost west, thuis best. (sobram: Schiet, gaat)",
+          "explanation": "Não há lugar como a nossa casa. = Oost west, thuis best. (sobram: met, goed)",
           "vocabRefs": [
             "v-oost-west"
           ]
@@ -2480,70 +2484,70 @@
           "id": "s5-u12-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não há duas sem três!",
+          "prompt": "Primeiro vou esperar para ver.",
           "tokens": [
-            "Geen",
-            "drie!",
-            "zonder",
-            "Samen",
-            "Kun",
-            "twee"
+            "uit",
+            "toets",
+            "de",
+            "kat",
+            "eerst",
+            "Ik",
+            "de",
+            "kijk",
+            "boom.",
+            "het"
           ],
           "answers": [
-            "Geen twee zonder drie!"
+            "Ik kijk eerst de kat uit de boom."
           ],
-          "explanation": "Não há duas sem três! = Geen twee zonder drie! (sobram: Samen, Kun)",
-          "vocabRefs": [
-            "v-geen-twee-zonder-drie"
-          ]
+          "explanation": "Primeiro vou esperar para ver. = Ik kijk eerst de kat uit de boom. (sobram: het, toets)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u12-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gostos não se discutem.",
+          "prompt": "Agora domino a gramática.",
           "tokens": [
-            "smaak",
-            "twisten.",
-            "houden?",
-            "je",
-            "te",
-            "Over",
-            "valt",
-            "niet"
+            "nu",
+            "Het",
+            "knie.",
+            "heb",
+            "op",
+            "grammatica",
+            "Ik",
+            "de",
+            "onder",
+            "de"
           ],
           "answers": [
-            "Over smaak valt niet te twisten."
+            "Ik heb de grammatica nu onder de knie."
           ],
-          "explanation": "Gostos não se discutem. = Over smaak valt niet te twisten. (sobram: houden?, je)",
-          "vocabRefs": [
-            "v-over-smaak"
-          ]
+          "explanation": "Agora domino a gramática. = Ik heb de grammatica nu onder de knie. (sobram: op, Het)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u12-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb deze fiets voor een appel en een ei gekocht.",
+          "audioText": "Ik stond met de mond vol tanden.",
           "answers": [
-            "Ik heb deze fiets voor een appel en een ei gekocht."
+            "Ik stond met de mond vol tanden."
           ],
-          "translation": "Comprei esta bicicleta por tuta e meia.",
-          "explanation": "«Ik heb deze fiets voor een appel en een ei gekocht.» = Comprei esta bicicleta por tuta e meia.",
-          "vocabRefs": [
-            "v-appel-en-ei"
-          ]
+          "translation": "Fiquei sem palavras.",
+          "explanation": "«Ik stond met de mond vol tanden.» = Fiquei sem palavras.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u12-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij gooit zijn geld over de balk.",
+          "audioText": "Hij heeft het Nederlands goed onder de knie.",
           "answers": [
-            "Hij gooit zijn geld over de balk."
+            "Hij heeft het Nederlands goed onder de knie."
           ],
-          "translation": "Ele esbanja o dinheiro.",
-          "explanation": "«Hij gooit zijn geld over de balk.» = Ele esbanja o dinheiro.",
+          "translation": "Ele domina bem o neerlandês.",
+          "explanation": "«Hij heeft het Nederlands goed onder de knie.» = Ele domina bem o neerlandês.",
           "vocabRefs": []
         },
         {
@@ -2564,58 +2568,80 @@
           "id": "s5-u12-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ele esbanja o dinheiro.",
+          "translation": "Apanhámos o comboio mesmo à justa.",
           "tokens": [
-            "geld",
-            "over",
-            "Hij",
-            "gooit",
+            "We",
+            "haalden",
             "de",
-            "balk.",
-            "zijn"
+            "trein",
+            "op",
+            "het",
+            "nippertje."
           ],
           "alternatives": [],
-          "explanation": "Hij gooit zijn geld over de balk.",
-          "vocabRefs": []
+          "explanation": "We haalden de trein op het nippertje.",
+          "vocabRefs": [
+            "v-nippertje"
+          ]
         },
         {
           "id": "s5-u12-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Comprei esta bicicleta por tuta e meia.",
+          "translation": "Não há lugar como a nossa casa.",
           "tokens": [
-            "gekocht.",
-            "en",
-            "heb",
-            "een",
-            "ei",
-            "Ik",
-            "deze",
-            "een",
-            "voor",
-            "fiets",
-            "appel"
+            "Oost",
+            "west,",
+            "thuis",
+            "best."
           ],
           "alternatives": [],
-          "explanation": "Ik heb deze fiets voor een appel en een ei gekocht.",
+          "explanation": "Oost west, thuis best.",
           "vocabRefs": [
-            "v-appel-en-ei"
+            "v-oost-west"
           ]
         },
         {
           "id": "s5-u12-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de kat uit de boom kijken»?",
+          "prompt": "O que significa «tijd is geld»?",
           "options": [
             {
               "id": "a",
-              "text": "esperar para ver",
+              "text": "tempo é dinheiro",
               "correct": true
             },
             {
               "id": "b",
-              "text": "manter a cabeça fria",
+              "text": "quem chega primeiro é servido primeiro",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "não há duas sem três",
+              "correct": false
+            }
+          ],
+          "explanation": "«tijd is geld» = tempo é dinheiro.",
+          "vocabRefs": [
+            "v-tijd-is-geld"
+          ]
+        },
+        {
+          "id": "s5-u12-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «wie het eerst komt, het eerst maalt»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "quem chega primeiro é servido primeiro",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "trata-se de…",
               "correct": false
             },
             {
@@ -2624,36 +2650,9 @@
               "correct": false
             }
           ],
-          "explanation": "«de kat uit de boom kijken» = esperar para ver.",
+          "explanation": "«wie het eerst komt, het eerst maalt» = quem chega primeiro é servido primeiro.",
           "vocabRefs": [
-            "v-kat-uit-de-boom"
-          ]
-        },
-        {
-          "id": "s5-u12-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «op het nippertje»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "matar dois coelhos de uma cajadada",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "mesmo à última hora",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "como uma barata tonta",
-              "correct": false
-            }
-          ],
-          "explanation": "«op het nippertje» = mesmo à última hora.",
-          "vocabRefs": [
-            "v-nippertje"
+            "v-eerst-maalt"
           ]
         }
       ],

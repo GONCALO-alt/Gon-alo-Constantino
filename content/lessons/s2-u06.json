@@ -1913,16 +1913,16 @@
       ],
       "examples": [
         {
+          "nl": "Waar vind ik de melk?",
+          "pt": "Onde encontro o leite?"
+        },
+        {
           "nl": "Een stuk kaas.",
           "pt": "Um pedaço de queijo."
         },
         {
-          "nl": "twee pakken melk",
-          "pt": "dois pacotes de leite"
-        },
-        {
-          "nl": "Alleen pinnen.",
-          "pt": "Só cartão."
+          "nl": "Kan ik contant betalen?",
+          "pt": "Posso pagar em dinheiro?"
         }
       ],
       "grammar": [],
@@ -1973,10 +1973,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Este queijo é barato.",
           "tokens": [
-            "is",
-            "goedkoop.",
+            "Deze",
             "kaas",
-            "Deze"
+            "is",
+            "goedkoop."
           ],
           "alternatives": [],
           "explanation": "Deze kaas is goedkoop.",
@@ -1990,11 +1990,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "O queijo está em promoção.",
           "tokens": [
-            "aanbieding.",
-            "is",
             "Kaas",
+            "is",
+            "in",
             "de",
-            "in"
+            "aanbieding."
           ],
           "alternatives": [],
           "explanation": "Kaas is in de aanbieding.",
@@ -2008,11 +2008,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Onde encontro o leite?",
           "tokens": [
-            "de",
-            "ik",
-            "melk?",
+            "Waar",
             "vind",
-            "Waar"
+            "ik",
+            "de",
+            "melk?"
           ],
           "alternatives": [],
           "explanation": "Waar vind ik de melk?",
@@ -2022,38 +2022,38 @@
           "id": "s2-u06-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Deze kaas is goedkoop.»?",
+          "prompt": "O que significa: «Een pak melk.»?",
           "options": [
             {
               "id": "a",
-              "text": "Este queijo é barato.",
-              "correct": true
+              "text": "dois quilos de batatas",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Duas garrafas de água.",
-              "correct": false
+              "text": "Um pacote de leite.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Também tem pão sem glúten?",
+              "text": "dois pacotes de leite",
               "correct": false
             }
           ],
-          "explanation": "«Deze kaas is goedkoop.» = Este queijo é barato.",
+          "explanation": "«Een pak melk.» = Um pacote de leite.",
           "vocabRefs": [
-            "v-goedkoop"
+            "v-pak"
           ]
         },
         {
           "id": "s2-u06-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «twee kilo aardappels»?",
+          "prompt": "O que significa: «Kan ik contant betalen?»?",
           "options": [
             {
               "id": "a",
-              "text": "dois quilos de batatas",
+              "text": "Posso pagar em dinheiro?",
               "correct": true
             },
             {
@@ -2063,54 +2063,54 @@
             },
             {
               "id": "c",
-              "text": "Meio quilo de queijo.",
+              "text": "Posso ajudá-lo?",
               "correct": false
             }
           ],
-          "explanation": "«twee kilo aardappels» = dois quilos de batatas",
+          "explanation": "«Kan ik contant betalen?» = Posso pagar em dinheiro?",
           "vocabRefs": [
-            "v-kilo"
+            "v-contant"
           ]
         },
         {
           "id": "s2-u06-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vinte por cento de desconto.",
+          "prompt": "dois quilos de batatas",
           "tokens": [
-            "korting.",
-            "procent",
-            "pak",
-            "Twintig",
-            "bon?"
+            "Een",
+            "kilo",
+            "twee",
+            "in",
+            "aardappels"
           ],
           "answers": [
-            "Twintig procent korting."
+            "twee kilo aardappels"
           ],
-          "explanation": "Vinte por cento de desconto. = Twintig procent korting. (sobram: bon?, pak)",
+          "explanation": "dois quilos de batatas = twee kilo aardappels (sobram: Een, in)",
           "vocabRefs": [
-            "v-korting"
+            "v-kilo"
           ]
         },
         {
           "id": "s2-u06-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Onde encontro o leite?",
+          "prompt": "Meio quilo de queijo.",
           "tokens": [
-            "de",
-            "melk?",
-            "Waar",
-            "Heeft",
-            "kilo",
-            "ik",
-            "vind"
+            "Een",
+            "kaas.",
+            "pond",
+            "u",
+            "twee"
           ],
           "answers": [
-            "Waar vind ik de melk?"
+            "Een pond kaas."
           ],
-          "explanation": "Onde encontro o leite? = Waar vind ik de melk? (sobram: Heeft, kilo)",
-          "vocabRefs": []
+          "explanation": "Meio quilo de queijo. = Een pond kaas. (sobram: twee, u)",
+          "vocabRefs": [
+            "v-pond"
+          ]
         }
       ],
       "difficulty": 2,
@@ -2182,12 +2182,12 @@
           "pt": "Onde encontro o leite?"
         },
         {
-          "nl": "Twee flessen water.",
-          "pt": "Duas garrafas de água."
+          "nl": "Dat is duur!",
+          "pt": "Isso é caro!"
         },
         {
-          "nl": "Een pak melk.",
-          "pt": "Um pacote de leite."
+          "nl": "twee pakken melk",
+          "pt": "dois pacotes de leite"
         }
       ],
       "grammar": [],
@@ -2196,34 +2196,7 @@
           "id": "s2-u06-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «talão» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "mandje",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "bon",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "korting",
-              "correct": false
-            }
-          ],
-          "explanation": "talão = «bon».",
-          "vocabRefs": [
-            "v-bon"
-          ]
-        },
-        {
-          "id": "s2-u06-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «pedaço» em neerlandês?",
+          "prompt": "Como se diz «saco» em neerlandês?",
           "options": [
             {
               "id": "a",
@@ -2232,56 +2205,83 @@
             },
             {
               "id": "b",
-              "text": "pas",
+              "text": "bon",
               "correct": false
             },
             {
               "id": "c",
-              "text": "stuk",
+              "text": "tasje",
               "correct": true
             }
           ],
-          "explanation": "pedaço = «stuk».",
+          "explanation": "saco = «tasje».",
           "vocabRefs": [
-            "v-stuk"
+            "v-tasje"
+          ]
+        },
+        {
+          "id": "s2-u06-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «em dinheiro» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "zak",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "korting",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "contant",
+              "correct": true
+            }
+          ],
+          "explanation": "em dinheiro = «contant».",
+          "vocabRefs": [
+            "v-contant"
           ]
         },
         {
           "id": "s2-u06-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Waar is de ___?",
-          "translation": "Onde é a caixa?",
+          "sentence": "Dat is ___!",
+          "translation": "Isso é caro!",
           "answers": [
-            "kassa"
+            "duur"
           ],
           "choices": [
             "kassa",
-            "kilo",
-            "bon"
+            "pas",
+            "duur"
           ],
-          "explanation": "Waar is de kassa?",
+          "explanation": "Dat is duur!",
           "vocabRefs": [
-            "v-kassa"
+            "v-duur"
           ]
         },
         {
           "id": "s2-u06-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Kan ik u ___?",
-          "translation": "Posso ajudá-lo?",
+          "sentence": "Kaas is in de ___.",
+          "translation": "O queijo está em promoção.",
           "answers": [
-            "helpen"
+            "aanbieding"
           ],
           "choices": [
-            "tasje",
-            "kilo",
-            "helpen"
+            "aanbieding",
+            "pas",
+            "zak"
           ],
-          "explanation": "Kan ik u helpen?",
+          "explanation": "Kaas is in de aanbieding.",
           "vocabRefs": [
-            "v-helpen"
+            "v-aanbieding"
           ]
         },
         {
@@ -2303,35 +2303,36 @@
           "id": "s2-u06-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kan ik u helpen?",
+          "audioText": "Wilt u de bon?",
           "answers": [
-            "Kan ik u helpen?"
+            "Wilt u de bon?"
           ],
-          "translation": "Posso ajudá-lo?",
-          "explanation": "«Kan ik u helpen?» = Posso ajudá-lo?",
+          "translation": "Quer o talão?",
+          "explanation": "«Wilt u de bon?» = Quer o talão?",
           "vocabRefs": [
-            "v-helpen"
+            "v-bon"
           ]
         },
         {
           "id": "s2-u06-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Também tem pão sem glúten?",
+          "prompt": "Posso ajudá-lo?",
           "tokens": [
-            "ook",
-            "glutenvrij",
             "u",
-            "aardappels",
-            "brood?",
-            "Heeft",
-            "Kaas"
+            "Waar",
+            "in",
+            "ik",
+            "helpen?",
+            "Kan"
           ],
           "answers": [
-            "Heeft u ook glutenvrij brood?"
+            "Kan ik u helpen?"
           ],
-          "explanation": "Também tem pão sem glúten? = Heeft u ook glutenvrij brood? (sobram: Kaas, aardappels)",
-          "vocabRefs": []
+          "explanation": "Posso ajudá-lo? = Kan ik u helpen? (sobram: Waar, in)",
+          "vocabRefs": [
+            "v-helpen"
+          ]
         },
         {
           "id": "s2-u06-l008-e08",
@@ -2339,16 +2340,16 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Duas garrafas de água.",
           "tokens": [
-            "water.",
-            "helpen?",
+            "ik",
+            "Een",
             "Twee",
-            "brood?",
+            "water.",
             "flessen"
           ],
           "answers": [
             "Twee flessen water."
           ],
-          "explanation": "Duas garrafas de água. = Twee flessen water. (sobram: helpen?, brood?)",
+          "explanation": "Duas garrafas de água. = Twee flessen water. (sobram: ik, Een)",
           "vocabRefs": [
             "v-fles"
           ]
@@ -2357,39 +2358,39 @@
           "id": "s2-u06-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "tasje",
+          "noun": "zak",
           "pt": "saco",
-          "article": "het",
-          "explanation": "het tasje.",
+          "article": "de",
+          "explanation": "de zak.",
           "vocabRefs": [
-            "v-tasje"
+            "v-zak"
           ]
         },
         {
           "id": "s2-u06-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kan ik contant betalen?»?",
+          "prompt": "O que significa: «Twee flessen water.»?",
           "options": [
             {
               "id": "a",
-              "text": "dois quilos de batatas",
+              "text": "O queijo está em promoção.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Posso pagar em dinheiro?",
+              "text": "Duas garrafas de água.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Onde encontro o leite?",
+              "text": "Meio quilo de queijo.",
               "correct": false
             }
           ],
-          "explanation": "«Kan ik contant betalen?» = Posso pagar em dinheiro?",
+          "explanation": "«Twee flessen water.» = Duas garrafas de água.",
           "vocabRefs": [
-            "v-contant"
+            "v-fles"
           ]
         }
       ],
@@ -2458,16 +2459,16 @@
       ],
       "examples": [
         {
-          "nl": "Kan ik u helpen?",
-          "pt": "Posso ajudá-lo?"
+          "nl": "Wilt u de bon?",
+          "pt": "Quer o talão?"
         },
         {
-          "nl": "Een pak melk.",
-          "pt": "Um pacote de leite."
+          "nl": "Waar is de kassa?",
+          "pt": "Onde é a caixa?"
         },
         {
-          "nl": "Dat is duur!",
-          "pt": "Isso é caro!"
+          "nl": "Boodschappenlijst: brood, een pak melk, een kilo appels, kaas.",
+          "pt": "Lista de compras: pão, um pacote de leite, um quilo de maçãs, queijo."
         }
       ],
       "grammar": [],
@@ -2476,41 +2477,41 @@
           "id": "s2-u06-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "dois quilos de batatas",
+          "prompt": "Posso pagar em dinheiro?",
           "tokens": [
-            "kilo",
-            "glutenvrij",
-            "pak",
-            "aardappels",
-            "twee"
+            "ik",
+            "Heeft",
+            "contant",
+            "Kan",
+            "ook",
+            "betalen?"
           ],
           "answers": [
-            "twee kilo aardappels"
+            "Kan ik contant betalen?"
           ],
-          "explanation": "dois quilos de batatas = twee kilo aardappels (sobram: pak, glutenvrij)",
+          "explanation": "Posso pagar em dinheiro? = Kan ik contant betalen? (sobram: ook, Heeft)",
           "vocabRefs": [
-            "v-kilo"
+            "v-contant"
           ]
         },
         {
           "id": "s2-u06-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quer o talão?",
+          "prompt": "Isso é caro!",
           "tokens": [
+            "Dat",
             "Een",
-            "de",
-            "procent",
-            "u",
-            "bon?",
-            "Wilt"
+            "water.",
+            "is",
+            "duur!"
           ],
           "answers": [
-            "Wilt u de bon?"
+            "Dat is duur!"
           ],
-          "explanation": "Quer o talão? = Wilt u de bon? (sobram: Een, procent)",
+          "explanation": "Isso é caro! = Dat is duur! (sobram: water., Een)",
           "vocabRefs": [
-            "v-bon"
+            "v-duur"
           ]
         },
         {
@@ -2519,23 +2520,37 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Onde é a caixa?",
           "tokens": [
-            "is",
-            "Waar",
             "kassa?",
-            "water.",
+            "brood,",
+            "Waar",
+            "is",
             "de",
-            "Twintig"
+            "u"
           ],
           "answers": [
             "Waar is de kassa?"
           ],
-          "explanation": "Onde é a caixa? = Waar is de kassa? (sobram: Twintig, water.)",
+          "explanation": "Onde é a caixa? = Waar is de kassa? (sobram: brood,, u)",
           "vocabRefs": [
             "v-kassa"
           ]
         },
         {
           "id": "s2-u06-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Waar is de kassa?",
+          "answers": [
+            "Waar is de kassa?"
+          ],
+          "translation": "Onde é a caixa?",
+          "explanation": "«Waar is de kassa?» = Onde é a caixa?",
+          "vocabRefs": [
+            "v-kassa"
+          ]
+        },
+        {
+          "id": "s2-u06-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Waar vind ik de melk?",
@@ -2547,48 +2562,33 @@
           "vocabRefs": []
         },
         {
-          "id": "s2-u06-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een pak melk.",
-          "answers": [
-            "Een pak melk."
-          ],
-          "translation": "Um pacote de leite.",
-          "explanation": "«Een pak melk.» = Um pacote de leite.",
-          "vocabRefs": [
-            "v-pak"
-          ]
-        },
-        {
           "id": "s2-u06-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kan ik u helpen?",
+          "audioText": "Twintig procent korting.",
           "answers": [
-            "Kan ik u helpen?"
+            "Twintig procent korting."
           ],
-          "translation": "Posso ajudá-lo?",
-          "explanation": "«Kan ik u helpen?» = Posso ajudá-lo?",
+          "translation": "Vinte por cento de desconto.",
+          "explanation": "«Twintig procent korting.» = Vinte por cento de desconto.",
           "vocabRefs": [
-            "v-helpen"
+            "v-korting"
           ]
         },
         {
           "id": "s2-u06-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Quer o talão?",
+          "translation": "Meio quilo de queijo.",
           "tokens": [
-            "bon?",
-            "de",
-            "Wilt",
-            "u"
+            "Een",
+            "pond",
+            "kaas."
           ],
           "alternatives": [],
-          "explanation": "Wilt u de bon?",
+          "explanation": "Een pond kaas.",
           "vocabRefs": [
-            "v-bon"
+            "v-pond"
           ]
         },
         {
@@ -2597,8 +2597,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Isso é caro!",
           "tokens": [
-            "is",
             "Dat",
+            "is",
             "duur!"
           ],
           "alternatives": [],
@@ -2611,54 +2611,54 @@
           "id": "s2-u06-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de korting»?",
+          "prompt": "O que significa «het mandje»?",
           "options": [
             {
               "id": "a",
-              "text": "barato",
+              "text": "saco",
               "correct": false
             },
             {
               "id": "b",
-              "text": "em dinheiro",
-              "correct": false
+              "text": "cesto",
+              "correct": true
             },
             {
               "id": "c",
               "text": "desconto",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "«de korting» = desconto.",
+          "explanation": "«het mandje» = cesto.",
           "vocabRefs": [
-            "v-korting"
+            "v-mandje"
           ]
         },
         {
           "id": "s2-u06-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het pond»?",
+          "prompt": "O que significa «vinden»?",
           "options": [
             {
               "id": "a",
-              "text": "garrafa",
+              "text": "secção",
               "correct": false
             },
             {
               "id": "b",
               "text": "meio quilo",
-              "correct": true
+              "correct": false
             },
             {
               "id": "c",
-              "text": "caro",
-              "correct": false
+              "text": "encontrar",
+              "correct": true
             }
           ],
-          "explanation": "«het pond» = meio quilo (500 g).",
+          "explanation": "«vinden» = encontrar, achar.",
           "vocabRefs": [
-            "v-pond"
+            "v-vinden"
           ]
         }
       ],

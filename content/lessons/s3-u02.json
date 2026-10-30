@@ -1872,16 +1872,16 @@
       ],
       "examples": [
         {
-          "nl": "De tram rijdt elke tien minuten.",
-          "pt": "O elétrico passa de dez em dez minutos."
+          "nl": "'s Avonds moet je licht hebben.",
+          "pt": "À noite tens de ter luz."
         },
         {
-          "nl": "Sla bij het stoplicht linksaf.",
-          "pt": "No semáforo vira à esquerda."
+          "nl": "Mijn fiets is gestolen!",
+          "pt": "Roubaram-me a bicicleta!"
         },
         {
-          "nl": "Ik fiets naar het station, neem de intercity en stap in Utrecht over op de tram.",
-          "pt": "Vou de bicicleta para a estação, apanho o intercidades e em Utrecht mudo para o elétrico."
+          "nl": "Neem de sprinter.",
+          "pt": "Apanha o regional."
         }
       ],
       "grammar": [],
@@ -1933,10 +1933,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Roubaram-me a bicicleta!",
           "tokens": [
+            "Mijn",
             "fiets",
-            "gestolen!",
             "is",
-            "Mijn"
+            "gestolen!"
           ],
           "alternatives": [],
           "explanation": "Mijn fiets is gestolen!",
@@ -1949,9 +1949,9 @@
           "translation": "Tenho um pneu furado.",
           "tokens": [
             "Mijn",
+            "band",
             "is",
-            "lek.",
-            "band"
+            "lek."
           ],
           "alternatives": [],
           "explanation": "Mijn band is lek.",
@@ -1966,10 +1966,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Entre pela frente, junto ao motorista.",
           "tokens": [
-            "bij",
             "Stap",
             "voorin",
             "in",
+            "bij",
             "de",
             "chauffeur."
           ],
@@ -1983,43 +1983,16 @@
           "id": "s3-u02-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De tram rijdt elke tien minuten.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "O elétrico passa de dez em dez minutos.",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "Vou de bicicleta para a estação, apanho o intercidades e em Utrecht mudo para o elétrico.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "No semáforo vira à esquerda.",
-              "correct": false
-            }
-          ],
-          "explanation": "«De tram rijdt elke tien minuten.» = O elétrico passa de dez em dez minutos.",
-          "vocabRefs": [
-            "v-tram"
-          ]
-        },
-        {
-          "id": "s3-u02-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa: «Stap voorin in bij de chauffeur.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tranca sempre a bicicleta.",
+              "text": "Andar de bicicleta no passeio é proibido.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O intercidades não para em Woerden.",
+              "text": "Este lugar está livre?",
               "correct": false
             },
             {
@@ -2034,26 +2007,53 @@
           ]
         },
         {
+          "id": "s3-u02-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Is deze plaats vrij?»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "À noite tens de ter luz.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Este lugar está livre?",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Quem vem da direita tem prioridade.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Is deze plaats vrij?» = Este lugar está livre?",
+          "vocabRefs": [
+            "v-plaats"
+          ]
+        },
+        {
           "id": "s3-u02-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O intercidades não para em Woerden.",
+          "prompt": "Em que paragem tenho de sair?",
           "tokens": [
-            "in",
-            "niet",
-            "intercity",
-            "stopt",
-            "rijdt",
-            "Woerden.",
             "band",
-            "De"
+            "uitstappen?",
+            "moet",
+            "Woerden.",
+            "ik",
+            "halte",
+            "welke",
+            "Bij"
           ],
           "answers": [
-            "De intercity stopt niet in Woerden."
+            "Bij welke halte moet ik uitstappen?"
           ],
-          "explanation": "O intercidades não para em Woerden. = De intercity stopt niet in Woerden. (sobram: rijdt, band)",
+          "explanation": "Em que paragem tenho de sair? = Bij welke halte moet ik uitstappen? (sobram: band, Woerden.)",
           "vocabRefs": [
-            "v-intercity"
+            "v-uitstappen"
           ]
         },
         {
@@ -2062,16 +2062,16 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Apanha o regional.",
           "tokens": [
-            "in",
+            "de",
             "Neem",
             "sprinter.",
-            "tien",
-            "de"
+            "fiets",
+            "tram"
           ],
           "answers": [
             "Neem de sprinter."
           ],
-          "explanation": "Apanha o regional. = Neem de sprinter. (sobram: in, tien)",
+          "explanation": "Apanha o regional. = Neem de sprinter. (sobram: tram, fiets)",
           "vocabRefs": [
             "v-sprinter"
           ]
@@ -2157,11 +2157,11 @@
           "id": "s3-u02-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «lugar» em neerlandês?",
+          "prompt": "Como se diz «luz da bicicleta» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "plaats",
+              "text": "fietslicht",
               "correct": true
             },
             {
@@ -2171,24 +2171,24 @@
             },
             {
               "id": "c",
-              "text": "stoep",
+              "text": "rechtsaf",
               "correct": false
             }
           ],
-          "explanation": "lugar = «plaats».",
+          "explanation": "luz da bicicleta = «fietslicht».",
           "vocabRefs": [
-            "v-plaats"
+            "v-fietslicht"
           ]
         },
         {
           "id": "s3-u02-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «travão» em neerlandês?",
+          "prompt": "Como se diz «comboio rápido» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "lek",
+              "text": "fietslicht",
               "correct": false
             },
             {
@@ -2198,13 +2198,13 @@
             },
             {
               "id": "c",
-              "text": "rem",
+              "text": "intercity",
               "correct": true
             }
           ],
-          "explanation": "travão = «rem».",
+          "explanation": "comboio rápido = «intercity».",
           "vocabRefs": [
-            "v-rem"
+            "v-intercity"
           ]
         },
         {
@@ -2329,16 +2329,16 @@
           "id": "s3-u02-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Fietsen op de stoep is verboden.»?",
+          "prompt": "O que significa: «Zet je fiets altijd op slot.»?",
           "options": [
             {
               "id": "a",
-              "text": "Roubaram-me a bicicleta!",
+              "text": "Andar de bicicleta no passeio é proibido.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Andar de bicicleta no passeio é proibido.",
+              "text": "Tranca sempre a bicicleta.",
               "correct": true
             },
             {
@@ -2347,10 +2347,9 @@
               "correct": false
             }
           ],
-          "explanation": "«Fietsen op de stoep is verboden.» = Andar de bicicleta no passeio é proibido.",
+          "explanation": "«Zet je fiets altijd op slot.» = Tranca sempre a bicicleta.",
           "vocabRefs": [
-            "v-stoep",
-            "v-verboden"
+            "v-slot"
           ]
         }
       ],
@@ -2416,16 +2415,16 @@
       ],
       "examples": [
         {
-          "nl": "Bij welke halte moet ik uitstappen?",
-          "pt": "Em que paragem tenho de sair?"
+          "nl": "Fietsen op de stoep is verboden.",
+          "pt": "Andar de bicicleta no passeio é proibido."
         },
         {
           "nl": "Is deze plaats vrij?",
           "pt": "Este lugar está livre?"
         },
         {
-          "nl": "De intercity stopt niet in Woerden.",
-          "pt": "O intercidades não para em Woerden."
+          "nl": "Steek je hand uit.",
+          "pt": "Estica o braço."
         }
       ],
       "grammar": [],
@@ -2434,45 +2433,42 @@
           "id": "s3-u02-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tranca sempre a bicicleta.",
+          "prompt": "Roubaram-me a bicicleta!",
           "tokens": [
-            "slot.",
-            "Stap",
-            "Zet",
-            "licht",
+            "uitstappen?",
+            "is",
             "fiets",
-            "altijd",
-            "op",
-            "je"
+            "gestolen!",
+            "'s",
+            "Mijn"
           ],
           "answers": [
-            "Zet je fiets altijd op slot."
+            "Mijn fiets is gestolen!"
           ],
-          "explanation": "Tranca sempre a bicicleta. = Zet je fiets altijd op slot. (sobram: licht, Stap)",
-          "vocabRefs": [
-            "v-slot"
-          ]
+          "explanation": "Roubaram-me a bicicleta! = Mijn fiets is gestolen! (sobram: 's, uitstappen?)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u02-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho um pneu furado.",
+          "prompt": "Tranca sempre a bicicleta.",
           "tokens": [
-            "lek.",
-            "band",
-            "Mijn",
-            "is",
+            "altijd",
+            "De",
+            "slot.",
             "je",
-            "minuten."
+            "Sla",
+            "fiets",
+            "Zet",
+            "op"
           ],
           "answers": [
-            "Mijn band is lek."
+            "Zet je fiets altijd op slot."
           ],
-          "explanation": "Tenho um pneu furado. = Mijn band is lek. (sobram: je, minuten.)",
+          "explanation": "Tranca sempre a bicicleta. = Zet je fiets altijd op slot. (sobram: Sla, De)",
           "vocabRefs": [
-            "v-band",
-            "v-lek"
+            "v-slot"
           ]
         },
         {
@@ -2481,60 +2477,59 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Estica o braço.",
           "tokens": [
-            "je",
             "Steek",
-            "stoplicht",
             "vrij?",
             "hand",
-            "uit."
+            "je",
+            "uit.",
+            "slot."
           ],
           "answers": [
             "Steek je hand uit."
           ],
-          "explanation": "Estica o braço. = Steek je hand uit. (sobram: stoplicht, vrij?)",
+          "explanation": "Estica o braço. = Steek je hand uit. (sobram: slot., vrij?)",
           "vocabRefs": []
         },
         {
           "id": "s3-u02-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Neem de sprinter.",
+          "audioText": "De tram rijdt elke tien minuten.",
           "answers": [
-            "Neem de sprinter."
+            "De tram rijdt elke tien minuten."
           ],
-          "translation": "Apanha o regional.",
-          "explanation": "«Neem de sprinter.» = Apanha o regional.",
+          "translation": "O elétrico passa de dez em dez minutos.",
+          "explanation": "«De tram rijdt elke tien minuten.» = O elétrico passa de dez em dez minutos.",
           "vocabRefs": [
-            "v-sprinter"
+            "v-tram"
           ]
         },
         {
           "id": "s3-u02-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Stap voorin in bij de chauffeur.",
+          "audioText": "Rechts heeft voorrang.",
           "answers": [
-            "Stap voorin in bij de chauffeur."
+            "Rechts heeft voorrang."
           ],
-          "translation": "Entre pela frente, junto ao motorista.",
-          "explanation": "«Stap voorin in bij de chauffeur.» = Entre pela frente, junto ao motorista.",
+          "translation": "Quem vem da direita tem prioridade.",
+          "explanation": "«Rechts heeft voorrang.» = Quem vem da direita tem prioridade.",
           "vocabRefs": [
-            "v-chauffeur"
+            "v-voorrang"
           ]
         },
         {
           "id": "s3-u02-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Sla bij het stoplicht linksaf.",
+          "audioText": "Zet je fiets altijd op slot.",
           "answers": [
-            "Sla bij het stoplicht linksaf."
+            "Zet je fiets altijd op slot."
           ],
-          "translation": "No semáforo vira à esquerda.",
-          "explanation": "«Sla bij het stoplicht linksaf.» = No semáforo vira à esquerda.",
+          "translation": "Tranca sempre a bicicleta.",
+          "explanation": "«Zet je fiets altijd op slot.» = Tranca sempre a bicicleta.",
           "vocabRefs": [
-            "v-linksaf",
-            "v-stoplicht"
+            "v-slot"
           ]
         },
         {
@@ -2543,10 +2538,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Este lugar está livre?",
           "tokens": [
-            "vrij?",
-            "plaats",
+            "Is",
             "deze",
-            "Is"
+            "plaats",
+            "vrij?"
           ],
           "alternatives": [],
           "explanation": "Is deze plaats vrij?",
@@ -2560,12 +2555,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Em que paragem tenho de sair?",
           "tokens": [
-            "halte",
-            "welke",
-            "ik",
             "Bij",
-            "uitstappen?",
-            "moet"
+            "welke",
+            "halte",
+            "moet",
+            "ik",
+            "uitstappen?"
           ],
           "alternatives": [],
           "explanation": "Bij welke halte moet ik uitstappen?",
@@ -2577,54 +2572,54 @@
           "id": "s3-u02-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «rechtsaf»?",
+          "prompt": "O que significa «de sprinter»?",
           "options": [
             {
               "id": "a",
-              "text": "pneu",
+              "text": "entrar",
               "correct": false
             },
             {
               "id": "b",
-              "text": "virar à direita",
-              "correct": true
+              "text": "proibido",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "sair",
-              "correct": false
+              "text": "comboio regional",
+              "correct": true
             }
           ],
-          "explanation": "«rechtsaf» = virar à direita.",
+          "explanation": "«de sprinter» = comboio regional (para em todas as estações).",
           "vocabRefs": [
-            "v-rechtsaf"
+            "v-sprinter"
           ]
         },
         {
           "id": "s3-u02-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «stoppen»?",
+          "prompt": "O que significa «het stoplicht»?",
           "options": [
             {
               "id": "a",
-              "text": "semáforo",
+              "text": "elétrico",
               "correct": false
             },
             {
               "id": "b",
-              "text": "travão",
+              "text": "estação central",
               "correct": false
             },
             {
               "id": "c",
-              "text": "parar",
+              "text": "semáforo",
               "correct": true
             }
           ],
-          "explanation": "«stoppen» = parar.",
+          "explanation": "«het stoplicht» = semáforo.",
           "vocabRefs": [
-            "v-stoppen"
+            "v-stoplicht"
           ]
         }
       ],

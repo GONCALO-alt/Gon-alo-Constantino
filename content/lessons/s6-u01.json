@@ -1864,12 +1864,12 @@
       ],
       "examples": [
         {
-          "nl": "Dat argument kun je makkelijk weerleggen.",
-          "pt": "Esse argumento refuta-se facilmente."
+          "nl": "Tegenstanders zeggen dat het te duur is.",
+          "pt": "Os opositores dizem que é caro demais."
         },
         {
-          "nl": "Zijn redenering klopt niet.",
-          "pt": "O raciocínio dele não está certo."
+          "nl": "De productiviteit stijgt.",
+          "pt": "A produtividade aumenta."
         },
         {
           "nl": "Wat zijn de gevolgen?",
@@ -1926,13 +1926,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os opositores dizem que é caro demais.",
           "tokens": [
-            "zeggen",
-            "het",
-            "dat",
             "Tegenstanders",
+            "zeggen",
+            "dat",
+            "het",
             "te",
-            "is.",
-            "duur"
+            "duur",
+            "is."
           ],
           "alternatives": [],
           "explanation": "Tegenstanders zeggen dat het te duur is.",
@@ -1946,11 +1946,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tens prova disso?",
           "tokens": [
-            "voor?",
-            "je",
             "Heb",
+            "je",
             "daar",
-            "bewijs"
+            "bewijs",
+            "voor?"
           ],
           "alternatives": [],
           "explanation": "Heb je daar bewijs voor?",
@@ -1964,13 +1964,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "A investigação mostra que os ciclistas são mais saudáveis.",
           "tokens": [
-            "zijn.",
-            "gezonder",
-            "dat",
             "Uit",
             "onderzoek",
+            "blijkt",
+            "dat",
             "fietsers",
-            "blijkt"
+            "gezonder",
+            "zijn."
           ],
           "alternatives": [],
           "explanation": "Uit onderzoek blijkt dat fietsers gezonder zijn.",
@@ -1980,25 +1980,25 @@
           "id": "s6-u01-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je speelt op de persoon.»?",
+          "prompt": "O que significa: «Ik neem een duidelijk standpunt in.»?",
           "options": [
             {
               "id": "a",
-              "text": "Isso é uma falácia.",
+              "text": "Admito que não é perfeito.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Estás a atacar a pessoa.",
-              "correct": true
+              "text": "Sou defensor da semana de quatro dias.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "A investigação mostra que os ciclistas são mais saudáveis.",
-              "correct": false
+              "text": "Tomo uma posição clara.",
+              "correct": true
             }
           ],
-          "explanation": "«Je speelt op de persoon.» = Estás a atacar a pessoa.",
+          "explanation": "«Ik neem een duidelijk standpunt in.» = Tomo uma posição clara.",
           "vocabRefs": []
         },
         {
@@ -2009,18 +2009,18 @@
           "options": [
             {
               "id": "a",
-              "text": "Queria voltar ao primeiro ponto.",
+              "text": "Claro que custa dinheiro, mas a longo prazo poupa-se.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Isso é uma falácia.",
-              "correct": false
+              "text": "Um contra-argumento é que é caro.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Um contra-argumento é que é caro.",
-              "correct": true
+              "text": "Sou defensor da semana de quatro dias.",
+              "correct": false
             }
           ],
           "explanation": "«Een tegenargument is dat het duur is.» = Um contra-argumento é que é caro.",
@@ -2032,47 +2032,47 @@
           "id": "s6-u01-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Consegues fundamentar isso?",
+          "prompt": "Sou defensor da semana de quatro dias.",
           "tokens": [
-            "drogreden.",
-            "dat",
-            "je",
-            "bewijs",
-            "Kun",
-            "onderbouwen?"
+            "Ik",
+            "ben",
+            "zei.",
+            "een",
+            "voorstander",
+            "vierdaagse",
+            "van",
+            "argument",
+            "werkweek."
           ],
           "answers": [
-            "Kun je dat onderbouwen?"
+            "Ik ben voorstander van een vierdaagse werkweek."
           ],
-          "explanation": "Consegues fundamentar isso? = Kun je dat onderbouwen? (sobram: bewijs, drogreden.)",
+          "explanation": "Sou defensor da semana de quatro dias. = Ik ben voorstander van een vierdaagse werkweek. (sobram: zei., argument)",
           "vocabRefs": [
-            "v-onderbouwen"
+            "v-vierdaagse-werkweek",
+            "v-voorstander"
           ]
         },
         {
           "id": "s6-u01-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sou defensor da semana de quatro dias.",
+          "prompt": "Posso dizer algo sobre isto?",
           "tokens": [
-            "een",
+            "hier",
+            "zeggen?",
+            "iets",
+            "ik",
             "niet.",
-            "voorstander",
-            "van",
-            "ben",
-            "vierdaagse",
-            "gevolgen?",
-            "Ik",
-            "werkweek."
+            "op",
+            "Mag",
+            "even"
           ],
           "answers": [
-            "Ik ben voorstander van een vierdaagse werkweek."
+            "Mag ik hier iets op zeggen?"
           ],
-          "explanation": "Sou defensor da semana de quatro dias. = Ik ben voorstander van een vierdaagse werkweek. (sobram: gevolgen?, niet.)",
-          "vocabRefs": [
-            "v-vierdaagse-werkweek",
-            "v-voorstander"
-          ]
+          "explanation": "Posso dizer algo sobre isto? = Mag ik hier iets op zeggen? (sobram: even, niet.)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2132,16 +2132,16 @@
       ],
       "examples": [
         {
+          "nl": "Dat argument kun je makkelijk weerleggen.",
+          "pt": "Esse argumento refuta-se facilmente."
+        },
+        {
           "nl": "Zijn redenering klopt niet.",
           "pt": "O raciocínio dele não está certo."
         },
         {
-          "nl": "Heb je daar bewijs voor?",
-          "pt": "Tens prova disso?"
-        },
-        {
-          "nl": "Dat klopt, alleen is het niet het hele verhaal.",
-          "pt": "É verdade, só que não é a história toda."
+          "nl": "Tegenstanders zeggen dat het te duur is.",
+          "pt": "Os opositores dizem que é caro demais."
         }
       ],
       "grammar": [],
@@ -2150,92 +2150,92 @@
           "id": "s6-u01-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «tomar uma posição» em neerlandês?",
+          "prompt": "Como se diz «atacar a pessoa» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "redenering",
+              "text": "voorstander",
               "correct": false
             },
             {
               "id": "b",
-              "text": "bewijs",
-              "correct": false
+              "text": "op de persoon spelen",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "een standpunt innemen",
-              "correct": true
+              "text": "tegenargument",
+              "correct": false
             }
           ],
-          "explanation": "tomar uma posição = «een standpunt innemen».",
+          "explanation": "atacar a pessoa = «op de persoon spelen».",
           "vocabRefs": [
-            "v-standpunt-innemen"
+            "v-op-de-persoon"
           ]
         },
         {
           "id": "s6-u01-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «convencer» em neerlandês?",
+          "prompt": "Como se diz «dar/ter a palavra» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "terugkomen op",
+              "text": "toegeven",
               "correct": false
             },
             {
               "id": "b",
-              "text": "overtuigen",
+              "text": "het woord geven/krijgen",
               "correct": true
             },
             {
               "id": "c",
-              "text": "het woord geven/krijgen",
+              "text": "weerleggen",
               "correct": false
             }
           ],
-          "explanation": "convencer = «overtuigen».",
+          "explanation": "dar/ter a palavra = «het woord geven/krijgen».",
           "vocabRefs": [
-            "v-overtuigen"
+            "v-het-woord"
           ]
         },
         {
           "id": "s6-u01-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "«Iedereen doet het» is geen ___.",
-          "translation": "«Toda a gente faz» não é prova.",
+          "sentence": "Een ___ is dat het duur is.",
+          "translation": "Um contra-argumento é que é caro.",
           "answers": [
-            "bewijs"
+            "tegenargument"
           ],
           "choices": [
-            "bewijs",
-            "productiviteit",
-            "drogreden"
+            "tegenargument",
+            "redenering",
+            "overtuigen"
           ],
-          "explanation": "«Iedereen doet het» is geen bewijs.",
+          "explanation": "Een tegenargument is dat het duur is.",
           "vocabRefs": [
-            "v-bewijs"
+            "v-tegenargument"
           ]
         },
         {
           "id": "s6-u01-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Kun je dat ___?",
-          "translation": "Consegues fundamentar isso?",
+          "sentence": "De ___ stijgt.",
+          "translation": "A produtividade aumenta.",
           "answers": [
-            "onderbouwen"
+            "productiviteit"
           ],
           "choices": [
-            "tegenargument",
-            "bewijs",
-            "onderbouwen"
+            "redenering",
+            "generalisatie",
+            "productiviteit"
           ],
-          "explanation": "Kun je dat onderbouwen?",
+          "explanation": "De productiviteit stijgt.",
           "vocabRefs": [
-            "v-onderbouwen"
+            "v-productiviteit"
           ]
         },
         {
@@ -2270,86 +2270,89 @@
           "id": "s6-u01-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso dizer algo sobre isto?",
+          "prompt": "Claro que custa dinheiro, mas a longo prazo poupa-se.",
           "tokens": [
-            "eerste",
-            "ik",
+            "lange",
+            "kost",
+            "voorstander",
+            "bespaar",
+            "Natuurlijk",
+            "te",
+            "maar",
             "op",
-            "zeggen?",
-            "hier",
-            "niet",
-            "iets",
-            "Mag"
+            "termijn",
+            "je.",
+            "het",
+            "geld,"
           ],
           "answers": [
-            "Mag ik hier iets op zeggen?"
+            "Natuurlijk kost het geld, maar op lange termijn bespaar je."
           ],
-          "explanation": "Posso dizer algo sobre isto? = Mag ik hier iets op zeggen? (sobram: eerste, niet)",
+          "explanation": "Claro que custa dinheiro, mas a longo prazo poupa-se. = Natuurlijk kost het geld, maar op lange termijn bespaar je. (sobram: te, voorstander)",
           "vocabRefs": []
         },
         {
           "id": "s6-u01-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Claro que custa dinheiro, mas a longo prazo poupa-se.",
+          "prompt": "É verdade, só que não é a história toda.",
           "tokens": [
-            "geld,",
+            "Mag",
+            "toe",
+            "hele",
+            "niet",
+            "is",
+            "verhaal.",
             "alleen",
-            "op",
-            "maar",
-            "lange",
-            "Natuurlijk",
-            "hier",
-            "termijn",
             "het",
-            "kost",
-            "je.",
-            "bespaar"
+            "klopt,",
+            "het",
+            "Dat"
           ],
           "answers": [
-            "Natuurlijk kost het geld, maar op lange termijn bespaar je."
+            "Dat klopt, alleen is het niet het hele verhaal."
           ],
-          "explanation": "Claro que custa dinheiro, mas a longo prazo poupa-se. = Natuurlijk kost het geld, maar op lange termijn bespaar je. (sobram: hier, alleen)",
-          "vocabRefs": []
+          "explanation": "É verdade, só que não é a história toda. = Dat klopt, alleen is het niet het hele verhaal. (sobram: toe, Mag)",
+          "vocabRefs": [
+            "v-alleen-conj"
+          ]
         },
         {
           "id": "s6-u01-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "tegenargument",
-          "pt": "contra-argumento",
+          "noun": "bewijs",
+          "pt": "prova",
           "article": "het",
-          "explanation": "het tegenargument.",
+          "explanation": "het bewijs.",
           "vocabRefs": [
-            "v-tegenargument"
+            "v-bewijs"
           ]
         },
         {
           "id": "s6-u01-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mijn stelling is dat de stad autovrij moet worden.»?",
+          "prompt": "O que significa: «Ik geef toe dat het niet perfect is.»?",
           "options": [
             {
               "id": "a",
-              "text": "A minha tese é que a cidade deve ficar sem carros.",
+              "text": "Admito que não é perfeito.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "O raciocínio dele não está certo.",
+              "text": "A minha tese é que a cidade deve ficar sem carros.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Estás a atacar a pessoa.",
+              "text": "Tens prova disso?",
               "correct": false
             }
           ],
-          "explanation": "«Mijn stelling is dat de stad autovrij moet worden.» = A minha tese é que a cidade deve ficar sem carros.",
-          "vocabRefs": [
-            "v-stelling"
-          ]
+          "explanation": "«Ik geef toe dat het niet perfect is.» = Admito que não é perfeito.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2409,16 +2412,16 @@
       ],
       "examples": [
         {
-          "nl": "Uit onderzoek blijkt dat fietsers gezonder zijn.",
-          "pt": "A investigação mostra que os ciclistas são mais saudáveis."
+          "nl": "Dat klopt, alleen is het niet het hele verhaal.",
+          "pt": "É verdade, só que não é a história toda."
         },
         {
-          "nl": "Mag ik even aanvullen?",
-          "pt": "Posso só acrescentar?"
+          "nl": "Je speelt op de persoon.",
+          "pt": "Estás a atacar a pessoa."
         },
         {
-          "nl": "Mijn stelling is dat de stad autovrij moet worden.",
-          "pt": "A minha tese é que a cidade deve ficar sem carros."
+          "nl": "Dat argument kun je makkelijk weerleggen.",
+          "pt": "Esse argumento refuta-se facilmente."
         }
       ],
       "grammar": [],
@@ -2427,82 +2430,81 @@
           "id": "s6-u01-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A produtividade aumenta.",
+          "prompt": "Queria voltar ao primeiro ponto.",
           "tokens": [
-            "De",
-            "Je",
-            "productiviteit",
-            "stijgt.",
-            "het"
+            "worden.",
+            "zeggen?",
+            "wil",
+            "terugkomen",
+            "Ik",
+            "eerste",
+            "het",
+            "even",
+            "op",
+            "punt.",
+            "nog"
           ],
           "answers": [
-            "De productiviteit stijgt."
+            "Ik wil nog even terugkomen op het eerste punt."
           ],
-          "explanation": "A produtividade aumenta. = De productiviteit stijgt. (sobram: het, Je)",
+          "explanation": "Queria voltar ao primeiro ponto. = Ik wil nog even terugkomen op het eerste punt. (sobram: zeggen?, worden.)",
           "vocabRefs": [
-            "v-productiviteit"
+            "v-terugkomen-op"
           ]
         },
         {
           "id": "s6-u01-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Os opositores dizem que é caro demais.",
+          "prompt": "Isso é uma falácia.",
           "tokens": [
-            "onderzoek",
-            "dat",
-            "duur",
-            "zeggen",
-            "te",
-            "Tegenstanders",
-            "makkelijk",
-            "het",
-            "is."
+            "is",
+            "drogreden.",
+            "Dat",
+            "Ik",
+            "bespaar",
+            "een"
           ],
           "answers": [
-            "Tegenstanders zeggen dat het te duur is."
+            "Dat is een drogreden."
           ],
-          "explanation": "Os opositores dizem que é caro demais. = Tegenstanders zeggen dat het te duur is. (sobram: makkelijk, onderzoek)",
+          "explanation": "Isso é uma falácia. = Dat is een drogreden. (sobram: bespaar, Ik)",
           "vocabRefs": [
-            "v-tegenstander"
+            "v-drogreden"
           ]
         },
         {
           "id": "s6-u01-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É verdade, só que não é a história toda.",
+          "prompt": "Tens prova disso?",
           "tokens": [
-            "het",
-            "Dat",
-            "terugkomen",
-            "alleen",
-            "punt.",
-            "het",
-            "hele",
-            "verhaal.",
-            "klopt,",
-            "niet",
-            "is"
+            "je",
+            "Tegenstanders",
+            "Heb",
+            "bewijs",
+            "daar",
+            "op",
+            "voor?"
           ],
           "answers": [
-            "Dat klopt, alleen is het niet het hele verhaal."
+            "Heb je daar bewijs voor?"
           ],
-          "explanation": "É verdade, só que não é a história toda. = Dat klopt, alleen is het niet het hele verhaal. (sobram: terugkomen, punt.)",
+          "explanation": "Tens prova disso? = Heb je daar bewijs voor? (sobram: op, Tegenstanders)",
           "vocabRefs": [
-            "v-alleen-conj"
+            "v-bewijs"
           ]
         },
         {
           "id": "s6-u01-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Uit onderzoek blijkt dat fietsers gezonder zijn.",
+          "audioText": "Ik geef toe dat het niet perfect is.",
           "answers": [
-            "Uit onderzoek blijkt dat fietsers gezonder zijn."
+            "Ik geef toe dat het niet perfect is."
           ],
-          "translation": "A investigação mostra que os ciclistas são mais saudáveis.",
-          "explanation": "«Uit onderzoek blijkt dat fietsers gezonder zijn.» = A investigação mostra que os ciclistas são mais saudáveis.",
+          "translation": "Admito que não é perfeito.",
+          "explanation": "«Ik geef toe dat het niet perfect is.» = Admito que não é perfeito.",
           "vocabRefs": []
         },
         {
@@ -2523,89 +2525,93 @@
           "id": "s6-u01-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik geef toe dat het niet perfect is.",
+          "audioText": "Heb je daar bewijs voor?",
           "answers": [
-            "Ik geef toe dat het niet perfect is."
+            "Heb je daar bewijs voor?"
           ],
-          "translation": "Admito que não é perfeito.",
-          "explanation": "«Ik geef toe dat het niet perfect is.» = Admito que não é perfeito.",
-          "vocabRefs": []
+          "translation": "Tens prova disso?",
+          "explanation": "«Heb je daar bewijs voor?» = Tens prova disso?",
+          "vocabRefs": [
+            "v-bewijs"
+          ]
         },
         {
           "id": "s6-u01-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Admito que não é perfeito.",
+          "translation": "É verdade, só que não é a história toda.",
           "tokens": [
-            "niet",
-            "perfect",
+            "Dat",
+            "klopt,",
+            "alleen",
+            "is",
             "het",
-            "geef",
-            "toe",
-            "Ik",
-            "is.",
-            "dat"
+            "niet",
+            "het",
+            "hele",
+            "verhaal."
           ],
           "alternatives": [],
-          "explanation": "Ik geef toe dat het niet perfect is.",
-          "vocabRefs": []
+          "explanation": "Dat klopt, alleen is het niet het hele verhaal.",
+          "vocabRefs": [
+            "v-alleen-conj"
+          ]
         },
         {
           "id": "s6-u01-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Um contra-argumento é que é caro.",
+          "translation": "«Toda a gente faz» não é prova.",
           "tokens": [
-            "het",
-            "Een",
-            "is.",
-            "tegenargument",
-            "dat",
-            "duur",
-            "is"
+            "«Iedereen",
+            "doet",
+            "het»",
+            "is",
+            "geen",
+            "bewijs."
           ],
           "alternatives": [],
-          "explanation": "Een tegenargument is dat het duur is.",
+          "explanation": "«Iedereen doet het» is geen bewijs.",
           "vocabRefs": [
-            "v-tegenargument"
+            "v-bewijs"
           ]
         },
         {
           "id": "s6-u01-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de tegenstander»?",
+          "prompt": "O que significa «reageren op»?",
           "options": [
             {
               "id": "a",
-              "text": "falácia",
+              "text": "defensor",
               "correct": false
             },
             {
               "id": "b",
-              "text": "opositor",
-              "correct": true
+              "text": "tese",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "só que",
-              "correct": false
+              "text": "reagir a",
+              "correct": true
             }
           ],
-          "explanation": "«de tegenstander» = opositor.",
+          "explanation": "«reageren op» = reagir a.",
           "vocabRefs": [
-            "v-tegenstander"
+            "v-reageren-op"
           ]
         },
         {
           "id": "s6-u01-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het bewijs»?",
+          "prompt": "O que significa «de tegenstander»?",
           "options": [
             {
               "id": "a",
-              "text": "prova",
+              "text": "opositor",
               "correct": true
             },
             {
@@ -2615,13 +2621,13 @@
             },
             {
               "id": "c",
-              "text": "convencer",
+              "text": "complementar",
               "correct": false
             }
           ],
-          "explanation": "«het bewijs» = prova.",
+          "explanation": "«de tegenstander» = opositor.",
           "vocabRefs": [
-            "v-bewijs"
+            "v-tegenstander"
           ]
         }
       ],

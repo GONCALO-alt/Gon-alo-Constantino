@@ -1878,16 +1878,16 @@
       ],
       "examples": [
         {
-          "nl": "Waar praten jullie over?",
-          "pt": "Estão a falar sobre o quê?"
+          "nl": "Om acht uur.",
+          "pt": "Às oito."
         },
         {
-          "nl": "De bank staat tussen de kast en het raam.",
-          "pt": "O sofá está entre o armário e a janela."
+          "nl": "De foto hangt aan de muur.",
+          "pt": "A fotografia está pendurada na parede."
         },
         {
-          "nl": "Ik werk van maandag tot vrijdag bij een bank in Utrecht.",
-          "pt": "Trabalho de segunda a sexta num banco em Utrecht."
+          "nl": "Hij zorgt voor zijn moeder.",
+          "pt": "Ele cuida da mãe."
         }
       ],
       "grammar": [],
@@ -1940,11 +1940,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele cuida da mãe.",
           "tokens": [
-            "voor",
-            "moeder.",
-            "zorgt",
             "Hij",
-            "zijn"
+            "zorgt",
+            "voor",
+            "zijn",
+            "moeder."
           ],
           "alternatives": [],
           "explanation": "Hij zorgt voor zijn moeder.",
@@ -1958,10 +1958,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Estão a falar sobre o quê?",
           "tokens": [
-            "praten",
             "Waar",
-            "over?",
-            "jullie"
+            "praten",
+            "jullie",
+            "over?"
           ],
           "alternatives": [],
           "explanation": "Waar praten jullie over?",
@@ -1973,10 +1973,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "das nove às cinco",
           "tokens": [
-            "negen",
             "van",
-            "vijf",
-            "tot"
+            "negen",
+            "tot",
+            "vijf"
           ],
           "alternatives": [],
           "explanation": "van negen tot vijf",
@@ -1997,12 +1997,12 @@
             },
             {
               "id": "b",
-              "text": "Ele raramente cozinha.",
+              "text": "Estou na padaria.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "À segunda.",
+              "text": "Depois de comer.",
               "correct": false
             }
           ],
@@ -2013,71 +2013,69 @@
           "id": "s2-u14-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De foto hangt aan de muur.»?",
+          "prompt": "O que significa: «Ik werk van maandag tot vrijdag bij een bank in Utrecht.»?",
           "options": [
             {
               "id": "a",
-              "text": "Duas vezes por semana.",
+              "text": "Geralmente vou de bicicleta para o trabalho.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "A fotografia está pendurada na parede.",
+              "text": "Trabalho de segunda a sexta num banco em Utrecht.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Estamos a ver o filme.",
+              "text": "das nove às cinco",
               "correct": false
             }
           ],
-          "explanation": "«De foto hangt aan de muur.» = A fotografia está pendurada na parede.",
+          "explanation": "«Ik werk van maandag tot vrijdag bij een bank in Utrecht.» = Trabalho de segunda a sexta num banco em Utrecht.",
           "vocabRefs": [
             "v-aan",
-            "v-muur"
+            "v-bij",
+            "v-tot"
           ]
         },
         {
           "id": "s2-u14-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Duas vezes por semana.",
+          "prompt": "Ele raramente cozinha.",
           "tokens": [
-            "keer",
-            "Twee",
-            "op",
-            "per",
-            "in",
-            "week."
+            "voor",
+            "2020.",
+            "kookt",
+            "Hij",
+            "zelden."
           ],
           "answers": [
-            "Twee keer per week."
+            "Hij kookt zelden."
           ],
-          "explanation": "Duas vezes por semana. = Twee keer per week. (sobram: in, op)",
+          "explanation": "Ele raramente cozinha. = Hij kookt zelden. (sobram: voor, 2020.)",
           "vocabRefs": [
-            "v-keer"
+            "v-zelden"
           ]
         },
         {
           "id": "s2-u14-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estou na padaria.",
+          "prompt": "durante a aula",
           "tokens": [
             "de",
-            "bakker.",
-            "ben",
-            "bij",
             "les",
-            "Ik",
-            "aan"
+            "jullie",
+            "vijf",
+            "tijdens"
           ],
           "answers": [
-            "Ik ben bij de bakker."
+            "tijdens de les"
           ],
-          "explanation": "Estou na padaria. = Ik ben bij de bakker. (sobram: aan, les)",
+          "explanation": "durante a aula = tijdens de les (sobram: jullie, vijf)",
           "vocabRefs": [
-            "v-bij"
+            "v-tijdens"
           ]
         }
       ],
@@ -2160,18 +2158,18 @@
           "options": [
             {
               "id": "a",
-              "text": "zorgen voor",
-              "correct": true
+              "text": "tijdens",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "tussen",
+              "text": "na",
               "correct": false
             },
             {
               "id": "c",
-              "text": "denken aan",
-              "correct": false
+              "text": "zorgen voor",
+              "correct": true
             }
           ],
           "explanation": "cuidar de = «zorgen voor».",
@@ -2183,46 +2181,46 @@
           "id": "s2-u14-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «raramente» em neerlandês?",
+          "prompt": "Como se diz «em frente de» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "bij",
+              "text": "keer",
               "correct": false
             },
             {
               "id": "b",
-              "text": "zelden",
-              "correct": true
+              "text": "denken aan",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "elke",
-              "correct": false
+              "text": "tegenover",
+              "correct": true
             }
           ],
-          "explanation": "raramente = «zelden».",
+          "explanation": "em frente de = «tegenover».",
           "vocabRefs": [
-            "v-zelden"
+            "v-tegenover"
           ]
         },
         {
           "id": "s2-u14-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Twee ___ per week.",
-          "translation": "Duas vezes por semana.",
+          "sentence": "___ het eten.",
+          "translation": "Depois de comer.",
           "answers": [
-            "keer"
+            "Na"
           ],
           "choices": [
-            "keer",
-            "voor",
-            "meestal"
+            "Tot",
+            "Na",
+            "Tussen"
           ],
-          "explanation": "Twee keer per week.",
+          "explanation": "Na het eten.",
           "vocabRefs": [
-            "v-keer"
+            "v-na"
           ]
         },
         {
@@ -2235,9 +2233,9 @@
             "tijdens"
           ],
           "choices": [
-            "tot",
-            "tijdens",
-            "elke"
+            "aan",
+            "voor",
+            "tijdens"
           ],
           "explanation": "tijdens de les",
           "vocabRefs": [
@@ -2248,71 +2246,68 @@
           "id": "s2-u14-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De foto hangt aan de muur.",
+          "audioText": "Ik denk aan jou.",
           "answers": [
-            "De foto hangt aan de muur."
+            "Ik denk aan jou."
           ],
-          "translation": "A fotografia está pendurada na parede.",
-          "explanation": "«De foto hangt aan de muur.» = A fotografia está pendurada na parede.",
+          "translation": "Penso em ti.",
+          "explanation": "«Ik denk aan jou.» = Penso em ti.",
           "vocabRefs": [
-            "v-aan",
-            "v-muur"
+            "v-aan"
           ]
         },
         {
           "id": "s2-u14-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "van negen tot vijf",
+          "audioText": "Ik wacht op de bus.",
           "answers": [
-            "van negen tot vijf"
+            "Ik wacht op de bus."
           ],
-          "translation": "das nove às cinco",
-          "explanation": "«van negen tot vijf» = das nove às cinco",
-          "vocabRefs": [
-            "v-tot"
-          ]
+          "translation": "Espero pelo autocarro.",
+          "explanation": "«Ik wacht op de bus.» = Espero pelo autocarro.",
+          "vocabRefs": []
         },
         {
           "id": "s2-u14-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "durante a aula",
+          "prompt": "Às oito.",
           "tokens": [
-            "les",
-            "de",
-            "wacht",
-            "tijdens",
-            "raam."
+            "uur.",
+            "acht",
+            "jullie",
+            "Om",
+            "je?"
           ],
           "answers": [
-            "tijdens de les"
+            "Om acht uur."
           ],
-          "explanation": "durante a aula = tijdens de les (sobram: wacht, raam.)",
-          "vocabRefs": [
-            "v-tijdens"
-          ]
+          "explanation": "Às oito. = Om acht uur. (sobram: jullie, je?)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u14-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele vive no primeiro andar.",
+          "prompt": "A estação fica em frente da igreja.",
           "tokens": [
+            "tegenover",
             "de",
-            "eerste",
-            "op",
-            "verdieping.",
-            "woont",
-            "bank",
-            "tussen",
-            "Hij"
+            "is",
+            "kerk.",
+            "station",
+            "van",
+            "staat",
+            "Het"
           ],
           "answers": [
-            "Hij woont op de eerste verdieping."
+            "Het station is tegenover de kerk."
           ],
-          "explanation": "Ele vive no primeiro andar. = Hij woont op de eerste verdieping. (sobram: tussen, bank)",
-          "vocabRefs": []
+          "explanation": "A estação fica em frente da igreja. = Het station is tegenover de kerk. (sobram: staat, van)",
+          "vocabRefs": [
+            "v-tegenover"
+          ]
         },
         {
           "id": "s2-u14-l008-e09",
@@ -2330,11 +2325,11 @@
           "id": "s2-u14-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We kijken naar de film.»?",
+          "prompt": "O que significa: «tijdens de les»?",
           "options": [
             {
               "id": "a",
-              "text": "Estamos a ver o filme.",
+              "text": "durante a aula",
               "correct": true
             },
             {
@@ -2348,10 +2343,9 @@
               "correct": false
             }
           ],
-          "explanation": "«We kijken naar de film.» = Estamos a ver o filme.",
+          "explanation": "«tijdens de les» = durante a aula",
           "vocabRefs": [
-            "v-na",
-            "v-kijken-naar"
+            "v-tijdens"
           ]
         }
       ],
@@ -2412,16 +2406,16 @@
       ],
       "examples": [
         {
-          "nl": "Hoe vaak sport je?",
-          "pt": "Com que frequência fazes desporto?"
+          "nl": "Op maandag.",
+          "pt": "À segunda."
         },
         {
-          "nl": "In juli.",
-          "pt": "Em julho."
+          "nl": "Om acht uur.",
+          "pt": "Às oito."
         },
         {
-          "nl": "Het station is tegenover de kerk.",
-          "pt": "A estação fica em frente da igreja."
+          "nl": "Ik ben bij de bakker.",
+          "pt": "Estou na padaria."
         }
       ],
       "grammar": [],
@@ -2450,160 +2444,163 @@
           "id": "s2-u14-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Penso em ti.",
+          "prompt": "Estamos a ver o filme.",
           "tokens": [
-            "denk",
-            "Ik",
-            "aan",
-            "jou.",
-            "bank",
-            "kijken"
+            "We",
+            "de",
+            "zijn",
+            "kijken",
+            "naar",
+            "film.",
+            "2020."
           ],
           "answers": [
-            "Ik denk aan jou."
+            "We kijken naar de film."
           ],
-          "explanation": "Penso em ti. = Ik denk aan jou. (sobram: bank, kijken)",
+          "explanation": "Estamos a ver o filme. = We kijken naar de film. (sobram: zijn, 2020.)",
           "vocabRefs": [
-            "v-aan"
+            "v-na",
+            "v-kijken-naar"
           ]
         },
         {
           "id": "s2-u14-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vivo aqui desde 2020.",
+          "prompt": "Depois de comer.",
           "tokens": [
-            "in",
-            "op",
-            "Ik",
-            "sinds",
-            "woon",
-            "2020.",
-            "hier"
+            "jullie",
+            "Na",
+            "zorgt",
+            "het",
+            "eten."
           ],
           "answers": [
-            "Ik woon hier sinds 2020."
+            "Na het eten."
           ],
-          "explanation": "Vivo aqui desde 2020. = Ik woon hier sinds 2020. (sobram: in, op)",
+          "explanation": "Depois de comer. = Na het eten. (sobram: zorgt, jullie)",
           "vocabRefs": [
-            "v-sinds"
+            "v-na"
           ]
         },
         {
           "id": "s2-u14-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik denk aan jou.",
+          "audioText": "We kijken naar de film.",
           "answers": [
-            "Ik denk aan jou."
+            "We kijken naar de film."
           ],
-          "translation": "Penso em ti.",
-          "explanation": "«Ik denk aan jou.» = Penso em ti.",
+          "translation": "Estamos a ver o filme.",
+          "explanation": "«We kijken naar de film.» = Estamos a ver o filme.",
           "vocabRefs": [
-            "v-aan"
+            "v-na",
+            "v-kijken-naar"
           ]
         },
         {
           "id": "s2-u14-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik wacht op de bus.",
+          "audioText": "De foto hangt aan de muur.",
           "answers": [
-            "Ik wacht op de bus."
+            "De foto hangt aan de muur."
           ],
-          "translation": "Espero pelo autocarro.",
-          "explanation": "«Ik wacht op de bus.» = Espero pelo autocarro.",
-          "vocabRefs": []
+          "translation": "A fotografia está pendurada na parede.",
+          "explanation": "«De foto hangt aan de muur.» = A fotografia está pendurada na parede.",
+          "vocabRefs": [
+            "v-aan",
+            "v-muur"
+          ]
         },
         {
           "id": "s2-u14-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Na het eten.",
+          "audioText": "tijdens de les",
           "answers": [
-            "Na het eten."
+            "tijdens de les"
           ],
-          "translation": "Depois de comer.",
-          "explanation": "«Na het eten.» = Depois de comer.",
+          "translation": "durante a aula",
+          "explanation": "«tijdens de les» = durante a aula",
           "vocabRefs": [
-            "v-na"
+            "v-tijdens"
           ]
         },
         {
           "id": "s2-u14-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A estação fica em frente da igreja.",
+          "translation": "durante a aula",
           "tokens": [
-            "kerk.",
-            "station",
-            "is",
-            "tegenover",
-            "Het",
-            "de"
+            "tijdens",
+            "de",
+            "les"
           ],
           "alternatives": [],
-          "explanation": "Het station is tegenover de kerk.",
+          "explanation": "tijdens de les",
           "vocabRefs": [
-            "v-tegenover"
+            "v-tijdens"
           ]
         },
         {
           "id": "s2-u14-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Com que frequência fazes desporto?",
+          "translation": "Ele vive no primeiro andar.",
           "tokens": [
-            "sport",
-            "Hoe",
-            "vaak",
-            "je?"
+            "Hij",
+            "woont",
+            "op",
+            "de",
+            "eerste",
+            "verdieping."
           ],
           "alternatives": [],
-          "explanation": "Hoe vaak sport je?",
+          "explanation": "Hij woont op de eerste verdieping.",
           "vocabRefs": []
         },
         {
           "id": "s2-u14-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de keer»?",
+          "prompt": "O que significa «meestal»?",
           "options": [
             {
               "id": "a",
-              "text": "pensar em",
+              "text": "cada",
               "correct": false
             },
             {
               "id": "b",
-              "text": "vez",
+              "text": "geralmente",
               "correct": true
             },
             {
               "id": "c",
-              "text": "junto de",
+              "text": "antes de",
               "correct": false
             }
           ],
-          "explanation": "«de keer» = vez.",
+          "explanation": "«meestal» = geralmente, quase sempre.",
           "vocabRefs": [
-            "v-keer"
+            "v-meestal"
           ]
         },
         {
           "id": "s2-u14-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de muur»?",
+          "prompt": "O que significa «tegenover»?",
           "options": [
             {
               "id": "a",
-              "text": "desde",
+              "text": "parede",
               "correct": false
             },
             {
               "id": "b",
-              "text": "parede",
+              "text": "em frente de",
               "correct": true
             },
             {
@@ -2612,9 +2609,9 @@
               "correct": false
             }
           ],
-          "explanation": "«de muur» = parede.",
+          "explanation": "«tegenover» = em frente de.",
           "vocabRefs": [
-            "v-muur"
+            "v-tegenover"
           ]
         }
       ],

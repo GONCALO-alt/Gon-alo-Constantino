@@ -2626,16 +2626,16 @@
       ],
       "examples": [
         {
-          "nl": "boek / stoel",
-          "pt": "livro / cadeira"
+          "nl": "Ja, graag!",
+          "pt": "Sim, por favor!"
         },
         {
-          "nl": "de hond",
-          "pt": "o cão"
+          "nl": "Een fiets en een vis.",
+          "pt": "Uma bicicleta e um peixe."
         },
         {
-          "nl": "huis / tuin",
-          "pt": "casa / jardim"
+          "nl": "Ik ga naar Amsterdam.",
+          "pt": "Vou para Amesterdão."
         }
       ],
       "grammar": [],
@@ -2690,12 +2690,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "A lua é grande e amarela.",
           "tokens": [
-            "groot",
             "De",
-            "is",
-            "geel.",
             "maan",
-            "en"
+            "is",
+            "groot",
+            "en",
+            "geel."
           ],
           "alternatives": [],
           "explanation": "De maan is groot en geel.",
@@ -2713,8 +2713,8 @@
             "de",
             "zon",
             "—",
-            "zoon",
-            "de"
+            "de",
+            "zoon"
           ],
           "alternatives": [],
           "explanation": "de zon — de zoon",
@@ -2729,10 +2729,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "O livro é velho.",
           "tokens": [
-            "is",
-            "oud.",
             "Het",
-            "boek"
+            "boek",
+            "is",
+            "oud."
           ],
           "alternatives": [],
           "explanation": "Het boek is oud.",
@@ -2745,100 +2745,103 @@
           "id": "s1-u03-l009-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mijn zoon fietst naar school.»?",
+          "prompt": "O que significa: «De maan is groot en geel.»?",
           "options": [
             {
               "id": "a",
-              "text": "O comboio está atrasado.",
+              "text": "Vou para Amesterdão.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Seis anos.",
+              "text": "oito",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O meu filho vai de bicicleta para a escola.",
+              "text": "A lua é grande e amarela.",
               "correct": true
             }
           ],
-          "explanation": "«Mijn zoon fietst naar school.» = O meu filho vai de bicicleta para a escola.",
+          "explanation": "«De maan is groot en geel.» = A lua é grande e amarela.",
           "vocabRefs": [
-            "v-zoon",
-            "v-fiets",
-            "v-school"
+            "v-maan",
+            "v-groot"
           ]
         },
         {
           "id": "s1-u03-l009-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een ijs, alstublieft.»?",
+          "prompt": "O que significa: «Het huis is klein.»?",
           "options": [
             {
               "id": "a",
-              "text": "meu / pequeno",
+              "text": "água",
               "correct": false
             },
             {
               "id": "b",
-              "text": "bom / bem",
-              "correct": false
+              "text": "A casa é pequena.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Um gelado, por favor.",
-              "correct": true
+              "text": "O cão é grande.",
+              "correct": false
             }
           ],
-          "explanation": "«Een ijs, alstublieft.» = Um gelado, por favor.",
+          "explanation": "«Het huis is klein.» = A casa é pequena.",
           "vocabRefs": [
-            "v-ijs"
+            "v-huis",
+            "v-klein"
           ]
         },
         {
           "id": "s1-u03-l009-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Está frio!",
+          "prompt": "o homem — a lua",
           "tokens": [
+            "—",
+            "de",
             "is",
-            "Het",
-            "koud!",
+            "maan",
             "naar",
-            "Een"
+            "de",
+            "man"
           ],
           "answers": [
-            "Het is koud!"
+            "de man — de maan"
           ],
-          "explanation": "Está frio! = Het is koud! (sobram: Een, naar)",
+          "explanation": "o homem — a lua = de man — de maan (sobram: naar, is)",
           "vocabRefs": [
-            "v-koud",
-            "v-oud"
+            "v-man",
+            "v-maan"
           ]
         },
         {
           "id": "s1-u03-l009-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o homem — a lua",
+          "prompt": "O gato é muito pequeno.",
           "tokens": [
-            "man",
-            "alstublieft.",
-            "—",
-            "fietst",
-            "maan",
-            "de",
-            "de"
+            "heel",
+            "kat",
+            "het",
+            "De",
+            "is",
+            "klein.",
+            "been"
           ],
           "answers": [
-            "de man — de maan"
+            "De kat is heel klein."
           ],
-          "explanation": "o homem — a lua = de man — de maan (sobram: alstublieft., fietst)",
+          "explanation": "O gato é muito pequeno. = De kat is heel klein. (sobram: het, been)",
           "vocabRefs": [
-            "v-man",
-            "v-maan"
+            "v-klein",
+            "v-kat",
+            "v-heel"
           ]
         }
       ],
@@ -2918,16 +2921,16 @@
       ],
       "examples": [
         {
-          "nl": "Een fiets en een vis.",
-          "pt": "Uma bicicleta e um peixe."
+          "nl": "Ik ga naar school.",
+          "pt": "Vou para a escola."
         },
         {
-          "nl": "Zes jaar.",
-          "pt": "Seis anos."
+          "nl": "het bed — het been",
+          "pt": "a cama — a perna"
         },
         {
-          "nl": "water",
-          "pt": "água"
+          "nl": "man / maan",
+          "pt": "homem / lua"
         }
       ],
       "grammar": [],
@@ -2936,92 +2939,92 @@
           "id": "s1-u03-l010-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «escola» em neerlandês?",
+          "prompt": "Como se diz «porta» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "man",
+              "text": "bruin",
               "correct": false
             },
             {
               "id": "b",
-              "text": "school",
-              "correct": true
+              "text": "klein",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "zon",
-              "correct": false
+              "text": "deur",
+              "correct": true
             }
           ],
-          "explanation": "escola = «school».",
+          "explanation": "porta = «deur».",
           "vocabRefs": [
-            "v-school"
+            "v-deur"
           ]
         },
         {
           "id": "s1-u03-l010-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «bicicleta» em neerlandês?",
+          "prompt": "Como se diz «mar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "hond",
+              "text": "zon",
               "correct": false
             },
             {
               "id": "b",
-              "text": "geld",
-              "correct": false
+              "text": "zee",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "fiets",
-              "correct": true
+              "text": "deur",
+              "correct": false
             }
           ],
-          "explanation": "bicicleta = «fiets».",
+          "explanation": "mar = «zee».",
           "vocabRefs": [
-            "v-fiets"
+            "v-zee"
           ]
         },
         {
           "id": "s1-u03-l010-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Een ___, alstublieft.",
-          "translation": "Um gelado, por favor.",
+          "sentence": "Mijn zoon fietst naar ___.",
+          "translation": "O meu filho vai de bicicleta para a escola.",
           "answers": [
-            "ijs"
+            "school"
           ],
           "choices": [
-            "vis",
-            "ijs",
-            "zoon"
+            "klein",
+            "vrouw",
+            "school"
           ],
-          "explanation": "Een ijs, alstublieft.",
+          "explanation": "Mijn zoon fietst naar school.",
           "vocabRefs": [
-            "v-ijs"
+            "v-school"
           ]
         },
         {
           "id": "s1-u03-l010-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "de zon — de ___",
-          "translation": "o sol — o filho",
+          "sentence": "Het boek is ___.",
+          "translation": "O livro é velho.",
           "answers": [
-            "zoon"
+            "oud"
           ],
           "choices": [
-            "zoon",
-            "been",
-            "man"
+            "kat",
+            "oud",
+            "water"
           ],
-          "explanation": "de zon — de zoon",
+          "explanation": "Het boek is oud.",
           "vocabRefs": [
-            "v-zoon"
+            "v-oud"
           ]
         },
         {
@@ -3043,101 +3046,97 @@
           "id": "s1-u03-l010-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een fiets en een vis.",
+          "audioText": "Het huis is klein.",
           "answers": [
-            "Een fiets en een vis."
+            "Het huis is klein."
           ],
-          "translation": "Uma bicicleta e um peixe.",
-          "explanation": "«Een fiets en een vis.» = Uma bicicleta e um peixe.",
+          "translation": "A casa é pequena.",
+          "explanation": "«Het huis is klein.» = A casa é pequena.",
           "vocabRefs": [
-            "v-fiets",
-            "v-vis"
+            "v-huis",
+            "v-klein"
           ]
         },
         {
           "id": "s1-u03-l010-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o sol — o filho",
+          "prompt": "Vou para a escola.",
           "tokens": [
-            "de",
-            "zoon",
-            "het",
-            "zon",
-            "de",
-            "—",
-            "naar"
+            "naar",
+            "Ik",
+            "ga",
+            "school.",
+            "Het",
+            "is"
           ],
           "answers": [
-            "de zon — de zoon"
+            "Ik ga naar school."
           ],
-          "explanation": "o sol — o filho = de zon — de zoon (sobram: het, naar)",
+          "explanation": "Vou para a escola. = Ik ga naar school. (sobram: is, Het)",
           "vocabRefs": [
-            "v-zon",
-            "v-zoon"
+            "v-school"
           ]
         },
         {
           "id": "s1-u03-l010-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "a cama — a perna",
+          "prompt": "A casa é pequena.",
           "tokens": [
-            "naar",
-            "hond",
-            "het",
-            "het",
-            "bed",
             "been",
-            "—"
+            "klein.",
+            "is",
+            "Een",
+            "Het",
+            "huis"
           ],
           "answers": [
-            "het bed — het been"
+            "Het huis is klein."
           ],
-          "explanation": "a cama — a perna = het bed — het been (sobram: naar, hond)",
+          "explanation": "A casa é pequena. = Het huis is klein. (sobram: Een, been)",
           "vocabRefs": [
-            "v-bed",
-            "v-been"
+            "v-huis",
+            "v-klein"
           ]
         },
         {
           "id": "s1-u03-l010-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "fiets",
-          "pt": "bicicleta",
+          "noun": "trein",
+          "pt": "comboio",
           "article": "de",
-          "explanation": "de fiets.",
+          "explanation": "de trein.",
           "vocabRefs": [
-            "v-fiets"
+            "v-trein"
           ]
         },
         {
           "id": "s1-u03-l010-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De maan is groot en geel.»?",
+          "prompt": "O que significa: «Een ijs, alstublieft.»?",
           "options": [
             {
               "id": "a",
-              "text": "A lua é grande e amarela.",
-              "correct": true
+              "text": "escola",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Vou para a escola.",
-              "correct": false
+              "text": "Um gelado, por favor.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O cão é grande.",
+              "text": "água",
               "correct": false
             }
           ],
-          "explanation": "«De maan is groot en geel.» = A lua é grande e amarela.",
+          "explanation": "«Een ijs, alstublieft.» = Um gelado, por favor.",
           "vocabRefs": [
-            "v-maan",
-            "v-groot"
+            "v-ijs"
           ]
         }
       ],
@@ -3217,16 +3216,16 @@
       ],
       "examples": [
         {
-          "nl": "Ja, graag!",
-          "pt": "Sim, por favor!"
+          "nl": "koud / blauw",
+          "pt": "frio / azul"
         },
         {
-          "nl": "Ik ga naar school.",
-          "pt": "Vou para a escola."
+          "nl": "Leuk!",
+          "pt": "Que giro!"
         },
         {
-          "nl": "de zon — de zoon",
-          "pt": "o sol — o filho"
+          "nl": "goed",
+          "pt": "bom / bem"
         }
       ],
       "grammar": [],
@@ -3235,201 +3234,197 @@
           "id": "s1-u03-l011-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O comboio está atrasado.",
+          "prompt": "o sol — o filho",
           "tokens": [
-            "laat.",
-            "De",
+            "de",
+            "zoon",
+            "ijs,",
+            "zon",
             "—",
-            "is",
-            "trein",
-            "maan"
+            "boek",
+            "de"
           ],
           "answers": [
-            "De trein is laat."
+            "de zon — de zoon"
           ],
-          "explanation": "O comboio está atrasado. = De trein is laat. (sobram: —, maan)",
+          "explanation": "o sol — o filho = de zon — de zoon (sobram: ijs,, boek)",
           "vocabRefs": [
-            "v-trein"
+            "v-zon",
+            "v-zoon"
           ]
         },
         {
           "id": "s1-u03-l011-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu filho vai de bicicleta para a escola.",
-          "tokens": [
-            "zoon",
-            "fietst",
-            "Mijn",
-            "De",
-            "school.",
-            "naar",
-            "laat."
-          ],
-          "answers": [
-            "Mijn zoon fietst naar school."
-          ],
-          "explanation": "O meu filho vai de bicicleta para a escola. = Mijn zoon fietst naar school. (sobram: De, laat.)",
-          "vocabRefs": [
-            "v-zoon",
-            "v-fiets",
-            "v-school"
-          ]
-        },
-        {
-          "id": "s1-u03-l011-e03",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "O livro é velho.",
           "tokens": [
-            "school.",
-            "oud.",
-            "naar",
+            "man",
             "is",
             "Het",
+            "oud.",
+            "fiets",
             "boek"
           ],
           "answers": [
             "Het boek is oud."
           ],
-          "explanation": "O livro é velho. = Het boek is oud. (sobram: naar, school.)",
+          "explanation": "O livro é velho. = Het boek is oud. (sobram: fiets, man)",
           "vocabRefs": [
             "v-boek",
             "v-oud"
           ]
         },
         {
+          "id": "s1-u03-l011-e03",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Um gelado, por favor.",
+          "tokens": [
+            "—",
+            "Een",
+            "Het",
+            "ijs,",
+            "alstublieft."
+          ],
+          "answers": [
+            "Een ijs, alstublieft."
+          ],
+          "explanation": "Um gelado, por favor. = Een ijs, alstublieft. (sobram: —, Het)",
+          "vocabRefs": [
+            "v-ijs"
+          ]
+        },
+        {
           "id": "s1-u03-l011-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik loop naar huis.",
+          "audioText": "De maan is groot en geel.",
           "answers": [
-            "Ik loop naar huis."
+            "De maan is groot en geel."
           ],
-          "translation": "Vou a pé para casa.",
-          "explanation": "«Ik loop naar huis.» = Vou a pé para casa.",
+          "translation": "A lua é grande e amarela.",
+          "explanation": "«De maan is groot en geel.» = A lua é grande e amarela.",
           "vocabRefs": [
-            "v-huis"
+            "v-maan",
+            "v-groot"
           ]
         },
         {
           "id": "s1-u03-l011-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De kat is heel klein.",
+          "audioText": "De hond is groot.",
           "answers": [
-            "De kat is heel klein."
+            "De hond is groot."
           ],
-          "translation": "O gato é muito pequeno.",
-          "explanation": "«De kat is heel klein.» = O gato é muito pequeno.",
+          "translation": "O cão é grande.",
+          "explanation": "«De hond is groot.» = O cão é grande.",
           "vocabRefs": [
-            "v-klein",
-            "v-kat",
-            "v-heel"
+            "v-hond",
+            "v-groot"
           ]
         },
         {
           "id": "s1-u03-l011-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ga naar school.",
+          "audioText": "Een fiets en een vis.",
           "answers": [
-            "Ik ga naar school."
+            "Een fiets en een vis."
           ],
-          "translation": "Vou para a escola.",
-          "explanation": "«Ik ga naar school.» = Vou para a escola.",
-          "vocabRefs": [
-            "v-school"
-          ]
-        },
-        {
-          "id": "s1-u03-l011-e07",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
-          "translation": "Vou a pé para casa.",
-          "tokens": [
-            "naar",
-            "huis.",
-            "Ik",
-            "loop"
-          ],
-          "alternatives": [],
-          "explanation": "Ik loop naar huis.",
-          "vocabRefs": [
-            "v-huis"
-          ]
-        },
-        {
-          "id": "s1-u03-l011-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "Uma bicicleta e um peixe.",
-          "tokens": [
-            "een",
-            "Een",
-            "vis.",
-            "fiets",
-            "en"
-          ],
-          "alternatives": [],
-          "explanation": "Een fiets en een vis.",
+          "explanation": "«Een fiets en een vis.» = Uma bicicleta e um peixe.",
           "vocabRefs": [
             "v-fiets",
             "v-vis"
           ]
         },
         {
+          "id": "s1-u03-l011-e07",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "O cão é grande.",
+          "tokens": [
+            "De",
+            "hond",
+            "is",
+            "groot."
+          ],
+          "alternatives": [],
+          "explanation": "De hond is groot.",
+          "vocabRefs": [
+            "v-hond",
+            "v-groot"
+          ]
+        },
+        {
+          "id": "s1-u03-l011-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Vou para Amesterdão.",
+          "tokens": [
+            "Ik",
+            "ga",
+            "naar",
+            "Amsterdam."
+          ],
+          "alternatives": [],
+          "explanation": "Ik ga naar Amsterdam.",
+          "vocabRefs": []
+        },
+        {
           "id": "s1-u03-l011-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de vis»?",
+          "prompt": "O que significa «het ijs»?",
           "options": [
             {
               "id": "a",
-              "text": "peixe",
-              "correct": true
+              "text": "grande",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "oito",
-              "correct": false
+              "text": "gelado",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "perna",
+              "text": "azul",
               "correct": false
             }
           ],
-          "explanation": "«de vis» = peixe.",
+          "explanation": "«het ijs» = gelado, gelo.",
           "vocabRefs": [
-            "v-vis"
+            "v-ijs"
           ]
         },
         {
           "id": "s1-u03-l011-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «gaan»?",
+          "prompt": "O que significa «de kat»?",
           "options": [
             {
               "id": "a",
-              "text": "ir",
-              "correct": true
+              "text": "livro",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "andar a pé",
+              "text": "rir",
               "correct": false
             },
             {
               "id": "c",
-              "text": "grande",
-              "correct": false
+              "text": "gato",
+              "correct": true
             }
           ],
-          "explanation": "«gaan» = ir.",
+          "explanation": "«de kat» = gato.",
           "vocabRefs": [
-            "v-gaan"
+            "v-kat"
           ]
         }
       ],
@@ -3513,12 +3508,12 @@
           "pt": "Seis anos."
         },
         {
-          "nl": "Ja, graag!",
-          "pt": "Sim, por favor!"
+          "nl": "de hond",
+          "pt": "o cão"
         },
         {
-          "nl": "acht",
-          "pt": "oito"
+          "nl": "de zon — de zoon",
+          "pt": "o sol — o filho"
         }
       ],
       "grammar": [],
@@ -3529,102 +3524,79 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "rood",
-              "pt": "vermelho"
-            },
-            {
-              "nl": "lachen",
-              "pt": "rir"
-            },
-            {
-              "nl": "bed",
-              "pt": "cama"
+              "nl": "gaan",
+              "pt": "ir"
             },
             {
               "nl": "kat",
               "pt": "gato"
             },
             {
-              "nl": "huis",
-              "pt": "casa"
+              "nl": "bus",
+              "pt": "autocarro"
+            },
+            {
+              "nl": "koud",
+              "pt": "frio"
+            },
+            {
+              "nl": "geld",
+              "pt": "dinheiro"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-rood",
-            "v-lachen",
-            "v-bed",
+            "v-gaan",
             "v-kat",
-            "v-huis"
+            "v-bus",
+            "v-koud",
+            "v-geld"
           ]
         },
         {
           "id": "s1-u03-l012-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ga naar Amsterdam.",
+          "audioText": "de zon — de zoon",
           "answers": [
-            "Ik ga naar Amsterdam."
+            "de zon — de zoon"
           ],
-          "translation": "Vou para Amesterdão.",
-          "explanation": "«Ik ga naar Amsterdam.» = Vou para Amesterdão.",
-          "vocabRefs": []
+          "translation": "o sol — o filho",
+          "explanation": "«de zon — de zoon» = o sol — o filho",
+          "vocabRefs": [
+            "v-zon",
+            "v-zoon"
+          ]
         },
         {
           "id": "s1-u03-l012-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De trein is laat.",
+          "audioText": "het bed — het been",
           "answers": [
-            "De trein is laat."
+            "het bed — het been"
           ],
-          "translation": "O comboio está atrasado.",
-          "explanation": "«De trein is laat.» = O comboio está atrasado.",
+          "translation": "a cama — a perna",
+          "explanation": "«het bed — het been» = a cama — a perna",
           "vocabRefs": [
-            "v-trein"
+            "v-bed",
+            "v-been"
           ]
         },
         {
           "id": "s1-u03-l012-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «blauw»?",
+          "prompt": "O que significa «de zon»?",
           "options": [
             {
               "id": "a",
-              "text": "azul",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "comboio",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "oito",
-              "correct": false
-            }
-          ],
-          "explanation": "«blauw» = azul.",
-          "vocabRefs": [
-            "v-blauw"
-          ]
-        },
-        {
-          "id": "s1-u03-l012-e05",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het water»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "comboio",
+              "text": "vinho",
               "correct": false
             },
             {
               "id": "b",
-              "text": "água",
+              "text": "sol",
               "correct": true
             },
             {
@@ -3633,9 +3605,36 @@
               "correct": false
             }
           ],
-          "explanation": "«het water» = água.",
+          "explanation": "«de zon» = sol.",
           "vocabRefs": [
-            "v-water"
+            "v-zon"
+          ]
+        },
+        {
+          "id": "s1-u03-l012-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «de stoel»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "cadeira",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "escola",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "água",
+              "correct": false
+            }
+          ],
+          "explanation": "«de stoel» = cadeira.",
+          "vocabRefs": [
+            "v-stoel"
           ]
         },
         {
@@ -3644,10 +3643,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "A casa é pequena.",
           "tokens": [
-            "klein.",
-            "is",
+            "Het",
             "huis",
-            "Het"
+            "is",
+            "klein."
           ],
           "alternatives": [],
           "explanation": "Het huis is klein.",
@@ -3660,65 +3659,64 @@
           "id": "s1-u03-l012-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "a cama — a perna",
+          "translation": "Está frio!",
           "tokens": [
-            "—",
-            "het",
-            "bed",
-            "het",
-            "been"
+            "Het",
+            "is",
+            "koud!"
           ],
           "alternatives": [],
-          "explanation": "het bed — het been",
+          "explanation": "Het is koud!",
           "vocabRefs": [
-            "v-bed",
-            "v-been"
+            "v-koud",
+            "v-oud"
           ]
         },
         {
           "id": "s1-u03-l012-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mijn zoon fietst naar ___.",
-          "translation": "O meu filho vai de bicicleta para a escola.",
+          "sentence": "De kat is heel ___.",
+          "translation": "O gato é muito pequeno.",
           "answers": [
-            "school"
+            "klein"
           ],
           "choices": [
-            "blauw",
-            "nacht",
-            "school"
+            "maan",
+            "klein",
+            "jaar"
           ],
-          "explanation": "Mijn zoon fietst naar school.",
+          "explanation": "De kat is heel klein.",
           "vocabRefs": [
-            "v-school"
+            "v-klein"
           ]
         },
         {
           "id": "s1-u03-l012-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De trein is laat.»?",
+          "prompt": "O que significa: «de man — de maan»?",
           "options": [
             {
               "id": "a",
-              "text": "O comboio está atrasado.",
+              "text": "o homem — a lua",
               "correct": true
             },
             {
               "id": "b",
-              "text": "o sol — o filho",
+              "text": "O meu filho vai de bicicleta para a escola.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "porta / giro",
+              "text": "sim — «iá»",
               "correct": false
             }
           ],
-          "explanation": "«De trein is laat.» = O comboio está atrasado.",
+          "explanation": "«de man — de maan» = o homem — a lua",
           "vocabRefs": [
-            "v-trein"
+            "v-man",
+            "v-maan"
           ]
         }
       ],

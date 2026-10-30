@@ -1893,16 +1893,16 @@
       ],
       "examples": [
         {
+          "nl": "Ik zit op een taalschool en ik heb twee keer per week les.",
+          "pt": "Ando numa escola de línguas e tenho aulas duas vezes por semana."
+        },
+        {
+          "nl": "Open je boek op pagina twaalf.",
+          "pt": "Abre o livro na página doze."
+        },
+        {
           "nl": "Ik leer de woorden.",
           "pt": "Estudo/aprendo as palavras."
-        },
-        {
-          "nl": "Een vijf is onvoldoende.",
-          "pt": "Um cinco é insuficiente."
-        },
-        {
-          "nl": "Herhaal na mij.",
-          "pt": "Repete depois de mim."
         }
       ],
       "grammar": [],
@@ -1955,9 +1955,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Pratico todos os dias.",
           "tokens": [
-            "elke",
-            "oefen",
             "Ik",
+            "oefen",
+            "elke",
             "dag."
           ],
           "alternatives": [],
@@ -1970,12 +1970,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "A aula começa às nove.",
           "tokens": [
-            "om",
-            "uur.",
-            "begint",
-            "negen",
             "De",
-            "les"
+            "les",
+            "begint",
+            "om",
+            "negen",
+            "uur."
           ],
           "alternatives": [],
           "explanation": "De les begint om negen uur.",
@@ -1989,10 +1989,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "O meu neerlandês está a melhorar.",
           "tokens": [
+            "Mijn",
             "Nederlands",
-            "beter.",
             "wordt",
-            "Mijn"
+            "beter."
           ],
           "alternatives": [],
           "explanation": "Mijn Nederlands wordt beter.",
@@ -2004,95 +2004,92 @@
           "id": "s2-u11-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik leer de woorden.»?",
+          "prompt": "O que significa: «Mijn dochter zit op de basisschool.»?",
           "options": [
             {
               "id": "a",
-              "text": "Estudo/aprendo as palavras.",
+              "text": "A minha filha anda na escola primária.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Ando numa escola de línguas e tenho aulas duas vezes por semana.",
+              "text": "Trabalha com o teu colega do lado.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Trabalha com o teu colega do lado.",
+              "text": "Abre o livro na página doze.",
               "correct": false
             }
           ],
-          "explanation": "«Ik leer de woorden.» = Estudo/aprendo as palavras.",
-          "vocabRefs": []
+          "explanation": "«Mijn dochter zit op de basisschool.» = A minha filha anda na escola primária.",
+          "vocabRefs": [
+            "v-basisschool"
+          ]
         },
         {
           "id": "s2-u11-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Open je boek op pagina twaalf.»?",
+          "prompt": "O que significa: «Ik heb een acht!»?",
           "options": [
             {
               "id": "a",
-              "text": "Abre o livro na página doze.",
+              "text": "Tive um oito!",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Trabalha com o teu colega do lado.",
+              "text": "Qual é a resposta?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ouve com atenção!",
+              "text": "Ando numa escola de línguas e tenho aulas duas vezes por semana.",
               "correct": false
             }
           ],
-          "explanation": "«Open je boek op pagina twaalf.» = Abre o livro na página doze.",
-          "vocabRefs": [
-            "v-pagina"
-          ]
+          "explanation": "«Ik heb een acht!» = Tive um oito!",
+          "vocabRefs": []
         },
         {
           "id": "s2-u11-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pratico todos os dias.",
+          "prompt": "Tenho uma pergunta.",
           "tokens": [
-            "dag.",
-            "een",
             "heb",
+            "morgen",
             "Ik",
-            "elke",
-            "oefen"
+            "wordt",
+            "vraag.",
+            "een"
           ],
           "answers": [
-            "Ik oefen elke dag."
+            "Ik heb een vraag."
           ],
-          "explanation": "Pratico todos os dias. = Ik oefen elke dag. (sobram: heb, een)",
-          "vocabRefs": []
+          "explanation": "Tenho uma pergunta. = Ik heb een vraag. (sobram: morgen, wordt)",
+          "vocabRefs": [
+            "v-vraag"
+          ]
         },
         {
           "id": "s2-u11-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Abre o livro na página doze.",
+          "prompt": "Repete depois de mim.",
           "tokens": [
-            "je",
-            "boek",
-            "Open",
+            "Herhaal",
+            "mij.",
+            "Ik",
             "De",
-            "twaalf.",
-            "op",
-            "pagina",
-            "acht!"
+            "na"
           ],
           "answers": [
-            "Open je boek op pagina twaalf."
+            "Herhaal na mij."
           ],
-          "explanation": "Abre o livro na página doze. = Open je boek op pagina twaalf. (sobram: acht!, De)",
-          "vocabRefs": [
-            "v-pagina"
-          ]
+          "explanation": "Repete depois de mim. = Herhaal na mij. (sobram: De, Ik)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 2,
@@ -2159,16 +2156,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik heb een vraag.",
-          "pt": "Tenho uma pergunta."
+          "nl": "Ik oefen elke dag.",
+          "pt": "Pratico todos os dias."
         },
         {
-          "nl": "Ik heb een acht!",
-          "pt": "Tive um oito!"
+          "nl": "Ik heb morgen een toets.",
+          "pt": "Amanhã tenho um teste."
         },
         {
-          "nl": "Mijn dochter zit op de basisschool.",
-          "pt": "A minha filha anda na escola primária."
+          "nl": "Werk samen met je buurman.",
+          "pt": "Trabalha com o teu colega do lado."
         }
       ],
       "grammar": [],
@@ -2177,39 +2174,12 @@
           "id": "s2-u11-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «passar» em neerlandês?",
+          "prompt": "Como se diz «praticar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "antwoord",
+              "text": "cijfer",
               "correct": false
-            },
-            {
-              "id": "b",
-              "text": "oefening",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "slagen",
-              "correct": true
-            }
-          ],
-          "explanation": "passar = «slagen».",
-          "vocabRefs": [
-            "v-slagen"
-          ]
-        },
-        {
-          "id": "s2-u11-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «aula» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "les",
-              "correct": true
             },
             {
               "id": "b",
@@ -2219,95 +2189,127 @@
             {
               "id": "c",
               "text": "oefenen",
+              "correct": true
+            }
+          ],
+          "explanation": "praticar = «oefenen».",
+          "vocabRefs": [
+            "v-oefenen"
+          ]
+        },
+        {
+          "id": "s2-u11-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «turma» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "antwoord",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "klas",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "uitspraak",
               "correct": false
             }
           ],
-          "explanation": "aula = «les».",
+          "explanation": "turma = «klas».",
           "vocabRefs": [
-            "v-les"
+            "v-klas"
           ]
         },
         {
           "id": "s2-u11-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wat is het ___?",
-          "translation": "Qual é a resposta?",
+          "sentence": "De ___ begint om negen uur.",
+          "translation": "A aula começa às nove.",
           "answers": [
-            "antwoord"
+            "les"
           ],
           "choices": [
-            "klas",
-            "antwoord",
-            "openen"
+            "vraag",
+            "bord",
+            "les"
           ],
-          "explanation": "Wat is het antwoord?",
+          "explanation": "De les begint om negen uur.",
           "vocabRefs": [
-            "v-antwoord"
+            "v-les"
           ]
         },
         {
           "id": "s2-u11-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mijn Nederlands wordt ___.",
-          "translation": "O meu neerlandês está a melhorar.",
+          "sentence": "Ik heb morgen een ___.",
+          "translation": "Amanhã tenho um teste.",
           "answers": [
-            "beter"
+            "toets"
           ],
           "choices": [
-            "examen",
-            "beter",
-            "fout"
+            "toets",
+            "cijfer",
+            "pagina"
           ],
-          "explanation": "Mijn Nederlands wordt beter.",
+          "explanation": "Ik heb morgen een toets.",
           "vocabRefs": [
-            "v-beter"
+            "v-toets"
           ]
         },
         {
           "id": "s2-u11-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik leer de woorden.",
+          "audioText": "De les begint om negen uur.",
           "answers": [
-            "Ik leer de woorden."
+            "De les begint om negen uur."
           ],
-          "translation": "Estudo/aprendo as palavras.",
-          "explanation": "«Ik leer de woorden.» = Estudo/aprendo as palavras.",
-          "vocabRefs": []
+          "translation": "A aula começa às nove.",
+          "explanation": "«De les begint om negen uur.» = A aula começa às nove.",
+          "vocabRefs": [
+            "v-les"
+          ]
         },
         {
           "id": "s2-u11-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn Nederlands wordt beter.",
+          "audioText": "Een vijf is onvoldoende.",
           "answers": [
-            "Mijn Nederlands wordt beter."
+            "Een vijf is onvoldoende."
           ],
-          "translation": "O meu neerlandês está a melhorar.",
-          "explanation": "«Mijn Nederlands wordt beter.» = O meu neerlandês está a melhorar.",
-          "vocabRefs": [
-            "v-beter"
-          ]
+          "translation": "Um cinco é insuficiente.",
+          "explanation": "«Een vijf is onvoldoende.» = Um cinco é insuficiente.",
+          "vocabRefs": []
         },
         {
           "id": "s2-u11-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Repete depois de mim.",
+          "prompt": "A minha filha anda na escola primária.",
           "tokens": [
-            "Herhaal",
-            "na",
-            "Maak",
-            "mij.",
-            "basisschool."
+            "de",
+            "je",
+            "zit",
+            "basisschool.",
+            "heb",
+            "Mijn",
+            "dochter",
+            "op"
           ],
           "answers": [
-            "Herhaal na mij."
+            "Mijn dochter zit op de basisschool."
           ],
-          "explanation": "Repete depois de mim. = Herhaal na mij. (sobram: basisschool., Maak)",
-          "vocabRefs": []
+          "explanation": "A minha filha anda na escola primária. = Mijn dochter zit op de basisschool. (sobram: heb, je)",
+          "vocabRefs": [
+            "v-basisschool"
+          ]
         },
         {
           "id": "s2-u11-l008-e08",
@@ -2315,18 +2317,18 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Ainda dou muitos erros.",
           "tokens": [
-            "fouten.",
-            "met",
             "nog",
-            "Ik",
-            "maak",
             "De",
+            "Ik",
+            "fouten.",
+            "maak",
+            "samen",
             "veel"
           ],
           "answers": [
             "Ik maak nog veel fouten."
           ],
-          "explanation": "Ainda dou muitos erros. = Ik maak nog veel fouten. (sobram: met, De)",
+          "explanation": "Ainda dou muitos erros. = Ik maak nog veel fouten. (sobram: De, samen)",
           "vocabRefs": [
             "v-fout"
           ]
@@ -2335,39 +2337,39 @@
           "id": "s2-u11-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "klas",
-          "pt": "turma",
-          "article": "de",
-          "explanation": "de klas.",
+          "noun": "antwoord",
+          "pt": "resposta",
+          "article": "het",
+          "explanation": "het antwoord.",
           "vocabRefs": [
-            "v-klas"
+            "v-antwoord"
           ]
         },
         {
           "id": "s2-u11-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Maak oefening drie.»?",
+          "prompt": "O que significa: «Open je boek op pagina twaalf.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tenho uma pergunta.",
+              "text": "Tive um oito!",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Amanhã tenho um teste.",
+              "text": "Trabalha com o teu colega do lado.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Faz o exercício três.",
+              "text": "Abre o livro na página doze.",
               "correct": true
             }
           ],
-          "explanation": "«Maak oefening drie.» = Faz o exercício três.",
+          "explanation": "«Open je boek op pagina twaalf.» = Abre o livro na página doze.",
           "vocabRefs": [
-            "v-oefening"
+            "v-pagina"
           ]
         }
       ],
@@ -2435,16 +2437,16 @@
       ],
       "examples": [
         {
-          "nl": "Een vijf is onvoldoende.",
-          "pt": "Um cinco é insuficiente."
+          "nl": "Ik heb morgen een toets.",
+          "pt": "Amanhã tenho um teste."
         },
         {
-          "nl": "Mijn Nederlands wordt beter.",
-          "pt": "O meu neerlandês está a melhorar."
+          "nl": "Herhaal na mij.",
+          "pt": "Repete depois de mim."
         },
         {
-          "nl": "Open je boek op pagina twaalf.",
-          "pt": "Abre o livro na página doze."
+          "nl": "Ik oefen elke dag.",
+          "pt": "Pratico todos os dias."
         }
       ],
       "grammar": [],
@@ -2453,22 +2455,23 @@
           "id": "s2-u11-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Amanhã tenho um teste.",
+          "prompt": "A aula começa às nove.",
           "tokens": [
-            "toets.",
-            "morgen",
-            "beter.",
-            "dochter",
-            "Ik",
-            "heb",
-            "een"
+            "uur.",
+            "negen",
+            "les",
+            "De",
+            "veel",
+            "samen",
+            "om",
+            "begint"
           ],
           "answers": [
-            "Ik heb morgen een toets."
+            "De les begint om negen uur."
           ],
-          "explanation": "Amanhã tenho um teste. = Ik heb morgen een toets. (sobram: dochter, beter.)",
+          "explanation": "A aula começa às nove. = De les begint om negen uur. (sobram: veel, samen)",
           "vocabRefs": [
-            "v-toets"
+            "v-les"
           ]
         },
         {
@@ -2477,41 +2480,37 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Um cinco é insuficiente.",
           "tokens": [
-            "morgen",
-            "onvoldoende.",
-            "vijf",
-            "heb",
+            "Een",
             "is",
-            "Een"
+            "vijf",
+            "onvoldoende.",
+            "woorden.",
+            "wordt"
           ],
           "answers": [
             "Een vijf is onvoldoende."
           ],
-          "explanation": "Um cinco é insuficiente. = Een vijf is onvoldoende. (sobram: heb, morgen)",
+          "explanation": "Um cinco é insuficiente. = Een vijf is onvoldoende. (sobram: woorden., wordt)",
           "vocabRefs": []
         },
         {
           "id": "s2-u11-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A aula começa às nove.",
+          "prompt": "Estudo/aprendo as palavras.",
           "tokens": [
-            "negen",
-            "om",
-            "les",
-            "maak",
-            "uur.",
-            "begint",
-            "op",
-            "De"
+            "woorden.",
+            "de",
+            "leer",
+            "morgen",
+            "Werk",
+            "Ik"
           ],
           "answers": [
-            "De les begint om negen uur."
+            "Ik leer de woorden."
           ],
-          "explanation": "A aula começa às nove. = De les begint om negen uur. (sobram: op, maak)",
-          "vocabRefs": [
-            "v-les"
-          ]
+          "explanation": "Estudo/aprendo as palavras. = Ik leer de woorden. (sobram: morgen, Werk)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u11-l009-e04",
@@ -2529,55 +2528,59 @@
           "id": "s2-u11-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb een vraag.",
+          "audioText": "Mijn dochter zit op de basisschool.",
           "answers": [
-            "Ik heb een vraag."
+            "Mijn dochter zit op de basisschool."
           ],
-          "translation": "Tenho uma pergunta.",
-          "explanation": "«Ik heb een vraag.» = Tenho uma pergunta.",
+          "translation": "A minha filha anda na escola primária.",
+          "explanation": "«Mijn dochter zit op de basisschool.» = A minha filha anda na escola primária.",
           "vocabRefs": [
-            "v-vraag"
+            "v-basisschool"
           ]
         },
         {
           "id": "s2-u11-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Herhaal na mij.",
+          "audioText": "De uitspraak is moeilijk.",
           "answers": [
-            "Herhaal na mij."
+            "De uitspraak is moeilijk."
           ],
-          "translation": "Repete depois de mim.",
-          "explanation": "«Herhaal na mij.» = Repete depois de mim.",
-          "vocabRefs": []
+          "translation": "A pronúncia é difícil.",
+          "explanation": "«De uitspraak is moeilijk.» = A pronúncia é difícil.",
+          "vocabRefs": [
+            "v-uitspraak"
+          ]
         },
         {
           "id": "s2-u11-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Repete depois de mim.",
+          "translation": "A pronúncia é difícil.",
           "tokens": [
-            "mij.",
-            "na",
-            "Herhaal"
+            "De",
+            "uitspraak",
+            "is",
+            "moeilijk."
           ],
           "alternatives": [],
-          "explanation": "Herhaal na mij.",
-          "vocabRefs": []
+          "explanation": "De uitspraak is moeilijk.",
+          "vocabRefs": [
+            "v-uitspraak"
+          ]
         },
         {
           "id": "s2-u11-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Estudo/aprendo as palavras.",
+          "translation": "Repete depois de mim.",
           "tokens": [
-            "Ik",
-            "woorden.",
-            "leer",
-            "de"
+            "Herhaal",
+            "na",
+            "mij."
           ],
           "alternatives": [],
-          "explanation": "Ik leer de woorden.",
+          "explanation": "Herhaal na mij.",
           "vocabRefs": []
         },
         {
@@ -2588,18 +2591,18 @@
           "options": [
             {
               "id": "a",
-              "text": "erro",
-              "correct": false
+              "text": "resposta",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "quadro",
+              "text": "escola primária",
               "correct": false
             },
             {
               "id": "c",
-              "text": "resposta",
-              "correct": true
+              "text": "estudar",
+              "correct": false
             }
           ],
           "explanation": "«het antwoord» = resposta.",
@@ -2611,27 +2614,27 @@
           "id": "s2-u11-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het cijfer»?",
+          "prompt": "O que significa «de klas»?",
           "options": [
             {
               "id": "a",
-              "text": "exame",
-              "correct": false
+              "text": "turma",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "erro",
+              "text": "melhor",
               "correct": false
             },
             {
               "id": "c",
-              "text": "nota",
-              "correct": true
+              "text": "ouvir",
+              "correct": false
             }
           ],
-          "explanation": "«het cijfer» = nota.",
+          "explanation": "«de klas» = turma, sala de aula.",
           "vocabRefs": [
-            "v-cijfer"
+            "v-klas"
           ]
         }
       ],

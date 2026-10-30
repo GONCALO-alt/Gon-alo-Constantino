@@ -1853,16 +1853,16 @@
       ],
       "examples": [
         {
-          "nl": "Heb je een paraplu meegenomen?",
-          "pt": "Trouxeste um guarda-chuva?"
+          "nl": "We zijn thuis gebleven.",
+          "pt": "Ficámos em casa."
         },
         {
-          "nl": "Ben je ooit in Nederland geweest?",
-          "pt": "Já alguma vez estiveste nos Países Baixos?"
+          "nl": "Ik ben nooit in Japan geweest.",
+          "pt": "Nunca estive no Japão."
         },
         {
-          "nl": "Ze heeft me gisteren opgebeld.",
-          "pt": "Ela ligou-me ontem."
+          "nl": "Heb je al gegeten?",
+          "pt": "Já comeste?"
         }
       ],
       "grammar": [],
@@ -1913,10 +1913,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ficámos em casa.",
           "tokens": [
+            "We",
             "zijn",
-            "gebleven.",
             "thuis",
-            "We"
+            "gebleven."
           ],
           "alternatives": [],
           "explanation": "We zijn thuis gebleven.",
@@ -1930,8 +1930,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele veio ontem.",
           "tokens": [
-            "is",
             "Hij",
+            "is",
             "gisteren",
             "gekomen."
           ],
@@ -1947,10 +1947,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ontem trabalhei.",
           "tokens": [
-            "gewerkt.",
-            "gisteren",
+            "Ik",
             "heb",
-            "Ik"
+            "gisteren",
+            "gewerkt."
           ],
           "alternatives": [],
           "explanation": "Ik heb gisteren gewerkt.",
@@ -1960,98 +1960,100 @@
           "id": "s3-u15-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik ben om zeven uur opgestaan.»?",
+          "prompt": "O que significa: «Ik heb een goede film gezien.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela ligou-me ontem.",
+              "text": "Aprendi neerlandês.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Fizemos pizza.",
+              "text": "Ficámos em casa.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Levantei-me às sete.",
+              "text": "Vi um bom filme.",
               "correct": true
             }
           ],
-          "explanation": "«Ik ben om zeven uur opgestaan.» = Levantei-me às sete.",
+          "explanation": "«Ik heb een goede film gezien.» = Vi um bom filme.",
           "vocabRefs": [
-            "v-opgestaan"
+            "v-gezien"
           ]
         },
         {
           "id": "s3-u15-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Heb je al gegeten?»?",
+          "prompt": "O que significa: «Ben je ooit in Nederland geweest?»?",
           "options": [
             {
               "id": "a",
               "text": "Já comeste?",
-              "correct": true
+              "correct": false
             },
             {
               "id": "b",
-              "text": "O comboio chegou a horas.",
-              "correct": false
+              "text": "Já alguma vez estiveste nos Países Baixos?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Ele veio ontem.",
+              "text": "Leste esse livro?",
               "correct": false
             }
           ],
-          "explanation": "«Heb je al gegeten?» = Já comeste?",
+          "explanation": "«Ben je ooit in Nederland geweest?» = Já alguma vez estiveste nos Países Baixos?",
           "vocabRefs": [
-            "v-al",
-            "v-gegeten"
+            "v-geweest"
           ]
         },
         {
           "id": "s3-u15-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Fiquei doente.",
+          "prompt": "Vi um bom filme.",
           "tokens": [
-            "ziek",
             "goede",
-            "ben",
             "Ik",
-            "naar",
-            "geworden."
+            "film",
+            "gezien.",
+            "een",
+            "Japan",
+            "heb",
+            "Amsterdam"
           ],
           "answers": [
-            "Ik ben ziek geworden."
+            "Ik heb een goede film gezien."
           ],
-          "explanation": "Fiquei doente. = Ik ben ziek geworden. (sobram: naar, goede)",
+          "explanation": "Vi um bom filme. = Ik heb een goede film gezien. (sobram: Japan, Amsterdam)",
           "vocabRefs": [
-            "v-geworden"
+            "v-gezien"
           ]
         },
         {
           "id": "s3-u15-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Fui a Amesterdão.",
+          "prompt": "Já alguma vez estiveste nos Países Baixos?",
           "tokens": [
-            "Hij",
-            "gegaan.",
-            "Amsterdam",
-            "ben",
             "Ik",
-            "naar",
-            "is"
+            "ooit",
+            "in",
+            "Ben",
+            "Nederland",
+            "geweest?",
+            "zeven",
+            "je"
           ],
           "answers": [
-            "Ik ben naar Amsterdam gegaan."
+            "Ben je ooit in Nederland geweest?"
           ],
-          "explanation": "Fui a Amesterdão. = Ik ben naar Amsterdam gegaan. (sobram: is, Hij)",
+          "explanation": "Já alguma vez estiveste nos Países Baixos? = Ben je ooit in Nederland geweest? (sobram: zeven, Ik)",
           "vocabRefs": [
-            "v-gegaan"
+            "v-geweest"
           ]
         }
       ],
@@ -2117,22 +2119,49 @@
       ],
       "examples": [
         {
-          "nl": "Zaterdag ben ik naar de markt gegaan en heb ik vis gekocht.",
-          "pt": "No sábado fui ao mercado e comprei peixe."
+          "nl": "Hij heeft een brief geschreven.",
+          "pt": "Ele escreveu uma carta."
         },
         {
-          "nl": "Heb je een paraplu meegenomen?",
-          "pt": "Trouxeste um guarda-chuva?"
+          "nl": "Ze heeft me gisteren opgebeld.",
+          "pt": "Ela ligou-me ontem."
         },
         {
-          "nl": "De trein is op tijd aangekomen.",
-          "pt": "O comboio chegou a horas."
+          "nl": "Ik heb een goede film gezien.",
+          "pt": "Vi um bom filme."
         }
       ],
       "grammar": [],
       "exercises": [
         {
           "id": "s3-u15-l008-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «bebido» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "gebleven",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "geweest",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "gedronken",
+              "correct": true
+            }
+          ],
+          "explanation": "bebido = «gedronken».",
+          "vocabRefs": [
+            "v-gedronken"
+          ]
+        },
+        {
+          "id": "s3-u15-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
           "prompt": "Como se diz «vindo» em neerlandês?",
@@ -2159,49 +2188,22 @@
           ]
         },
         {
-          "id": "s3-u15-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «chegado» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "al",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "gegeten",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "aangekomen",
-              "correct": true
-            }
-          ],
-          "explanation": "chegado = «aangekomen».",
-          "vocabRefs": [
-            "v-aangekomen"
-          ]
-        },
-        {
           "id": "s3-u15-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik ben naar Amsterdam ___.",
-          "translation": "Fui a Amesterdão.",
+          "sentence": "Ik heb een goede film ___.",
+          "translation": "Vi um bom filme.",
           "answers": [
-            "gegaan"
+            "gezien"
           ],
           "choices": [
             "opgestaan",
-            "geschreven",
-            "gegaan"
+            "gelezen",
+            "gezien"
           ],
-          "explanation": "Ik ben naar Amsterdam gegaan.",
+          "explanation": "Ik heb een goede film gezien.",
           "vocabRefs": [
-            "v-gegaan"
+            "v-gezien"
           ]
         },
         {
@@ -2253,22 +2255,22 @@
           "id": "s3-u15-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ela ligou-me ontem.",
+          "prompt": "Trouxeste um guarda-chuva?",
           "tokens": [
-            "ben",
-            "me",
-            "opgebeld.",
+            "meegenomen?",
+            "Heb",
+            "een",
             "heeft",
-            "gewacht.",
-            "gisteren",
-            "Ze"
+            "tafel",
+            "je",
+            "paraplu"
           ],
           "answers": [
-            "Ze heeft me gisteren opgebeld."
+            "Heb je een paraplu meegenomen?"
           ],
-          "explanation": "Ela ligou-me ontem. = Ze heeft me gisteren opgebeld. (sobram: gewacht., ben)",
+          "explanation": "Trouxeste um guarda-chuva? = Heb je een paraplu meegenomen? (sobram: tafel, heeft)",
           "vocabRefs": [
-            "v-opgebeld"
+            "v-meegenomen"
           ]
         },
         {
@@ -2277,45 +2279,43 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Ontem trabalhei.",
           "tokens": [
-            "heb",
-            "Hij",
             "gewerkt.",
-            "Ik",
+            "nooit",
             "gisteren",
-            "al"
+            "ben",
+            "Ik",
+            "heb"
           ],
           "answers": [
             "Ik heb gisteren gewerkt."
           ],
-          "explanation": "Ontem trabalhei. = Ik heb gisteren gewerkt. (sobram: Hij, al)",
+          "explanation": "Ontem trabalhei. = Ik heb gisteren gewerkt. (sobram: ben, nooit)",
           "vocabRefs": []
         },
         {
           "id": "s3-u15-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb een goede film gezien.»?",
+          "prompt": "O que significa: «We hebben pizza gemaakt.»?",
           "options": [
             {
               "id": "a",
-              "text": "Levantei-me às sete.",
-              "correct": false
+              "text": "Fizemos pizza.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Ficámos em casa.",
+              "text": "Bebi café.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Vi um bom filme.",
-              "correct": true
+              "text": "Fiquei doente.",
+              "correct": false
             }
           ],
-          "explanation": "«Ik heb een goede film gezien.» = Vi um bom filme.",
-          "vocabRefs": [
-            "v-gezien"
-          ]
+          "explanation": "«We hebben pizza gemaakt.» = Fizemos pizza.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 3,
@@ -2380,16 +2380,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik heb een goede film gezien.",
-          "pt": "Vi um bom filme."
+          "nl": "Zaterdag ben ik naar de markt gegaan en heb ik vis gekocht.",
+          "pt": "No sábado fui ao mercado e comprei peixe."
         },
         {
           "nl": "Hij heeft lang gewacht.",
           "pt": "Ele esperou muito tempo."
         },
         {
-          "nl": "Heb je een paraplu meegenomen?",
-          "pt": "Trouxeste um guarda-chuva?"
+          "nl": "Ik heb een goede film gezien.",
+          "pt": "Vi um bom filme."
         }
       ],
       "grammar": [],
@@ -2398,92 +2398,72 @@
           "id": "s3-u15-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Já comeste?",
+          "prompt": "Ele veio ontem.",
           "tokens": [
-            "al",
-            "gegeten?",
-            "je",
-            "Heb",
-            "afgeruimd.",
-            "zeven"
+            "gisteren",
+            "paraplu",
+            "gekomen.",
+            "is",
+            "Hij",
+            "thuis"
           ],
           "answers": [
-            "Heb je al gegeten?"
+            "Hij is gisteren gekomen."
           ],
-          "explanation": "Já comeste? = Heb je al gegeten? (sobram: afgeruimd., zeven)",
+          "explanation": "Ele veio ontem. = Hij is gisteren gekomen. (sobram: paraplu, thuis)",
           "vocabRefs": [
-            "v-al",
-            "v-gegeten"
+            "v-gekomen"
           ]
         },
         {
           "id": "s3-u15-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Aprendi neerlandês.",
+          "prompt": "O comboio chegou a horas.",
           "tokens": [
-            "je",
-            "geleerd.",
-            "heb",
-            "heeft",
-            "Ik",
-            "Nederlands"
+            "trein",
+            "op",
+            "De",
+            "is",
+            "naar",
+            "tijd",
+            "aangekomen.",
+            "een"
           ],
           "answers": [
-            "Ik heb Nederlands geleerd."
+            "De trein is op tijd aangekomen."
           ],
-          "explanation": "Aprendi neerlandês. = Ik heb Nederlands geleerd. (sobram: je, heeft)",
-          "vocabRefs": []
+          "explanation": "O comboio chegou a horas. = De trein is op tijd aangekomen. (sobram: een, naar)",
+          "vocabRefs": [
+            "v-gekomen",
+            "v-aangekomen"
+          ]
         },
         {
           "id": "s3-u15-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele veio ontem.",
+          "prompt": "Nunca estive no Japão.",
           "tokens": [
-            "Hij",
-            "is",
+            "Ik",
+            "ben",
+            "nooit",
+            "geweest.",
             "gisteren",
-            "gewacht.",
-            "aangekomen.",
-            "gekomen."
+            "je",
+            "in",
+            "Japan"
           ],
           "answers": [
-            "Hij is gisteren gekomen."
+            "Ik ben nooit in Japan geweest."
           ],
-          "explanation": "Ele veio ontem. = Hij is gisteren gekomen. (sobram: aangekomen., gewacht.)",
+          "explanation": "Nunca estive no Japão. = Ik ben nooit in Japan geweest. (sobram: gisteren, je)",
           "vocabRefs": [
-            "v-gekomen"
+            "v-geweest"
           ]
         },
         {
           "id": "s3-u15-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We hebben pizza gemaakt.",
-          "answers": [
-            "We hebben pizza gemaakt."
-          ],
-          "translation": "Fizemos pizza.",
-          "explanation": "«We hebben pizza gemaakt.» = Fizemos pizza.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s3-u15-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Heb je dat boek gelezen?",
-          "answers": [
-            "Heb je dat boek gelezen?"
-          ],
-          "translation": "Leste esse livro?",
-          "explanation": "«Heb je dat boek gelezen?» = Leste esse livro?",
-          "vocabRefs": [
-            "v-gelezen"
-          ]
-        },
-        {
-          "id": "s3-u15-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ben je ooit in Nederland geweest?",
@@ -2497,94 +2477,118 @@
           ]
         },
         {
+          "id": "s3-u15-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "We hebben pizza gemaakt.",
+          "answers": [
+            "We hebben pizza gemaakt."
+          ],
+          "translation": "Fizemos pizza.",
+          "explanation": "«We hebben pizza gemaakt.» = Fizemos pizza.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s3-u15-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Heb je dat boek gelezen?",
+          "answers": [
+            "Heb je dat boek gelezen?"
+          ],
+          "translation": "Leste esse livro?",
+          "explanation": "«Heb je dat boek gelezen?» = Leste esse livro?",
+          "vocabRefs": [
+            "v-gelezen"
+          ]
+        },
+        {
           "id": "s3-u15-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Fiquei doente.",
+          "translation": "Levantei a mesa.",
           "tokens": [
-            "ziek",
-            "geworden.",
             "Ik",
-            "ben"
+            "heb",
+            "de",
+            "tafel",
+            "afgeruimd."
           ],
           "alternatives": [],
-          "explanation": "Ik ben ziek geworden.",
-          "vocabRefs": [
-            "v-geworden"
-          ]
+          "explanation": "Ik heb de tafel afgeruimd.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u15-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O comboio chegou a horas.",
+          "translation": "Nunca estive no Japão.",
           "tokens": [
-            "op",
-            "tijd",
-            "aangekomen.",
-            "is",
-            "trein",
-            "De"
+            "Ik",
+            "ben",
+            "nooit",
+            "in",
+            "Japan",
+            "geweest."
           ],
           "alternatives": [],
-          "explanation": "De trein is op tijd aangekomen.",
+          "explanation": "Ik ben nooit in Japan geweest.",
           "vocabRefs": [
-            "v-gekomen",
-            "v-aangekomen"
+            "v-geweest"
           ]
         },
         {
           "id": "s3-u15-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «gekomen»?",
+          "prompt": "O que significa «aangekomen»?",
           "options": [
             {
               "id": "a",
-              "text": "vindo",
+              "text": "chegado",
               "correct": true
             },
             {
               "id": "b",
-              "text": "levado",
+              "text": "bebido",
               "correct": false
             },
             {
               "id": "c",
-              "text": "estado",
+              "text": "visto",
               "correct": false
             }
           ],
-          "explanation": "«gekomen» = vindo (komen).",
+          "explanation": "«aangekomen» = chegado (aankomen).",
           "vocabRefs": [
-            "v-gekomen"
+            "v-aangekomen"
           ]
         },
         {
           "id": "s3-u15-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «geschreven»?",
+          "prompt": "O que significa «gegaan»?",
           "options": [
             {
               "id": "a",
-              "text": "ontem à noite",
+              "text": "escrito",
               "correct": false
             },
             {
               "id": "b",
-              "text": "escrito",
-              "correct": true
+              "text": "vindo",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "vindo",
-              "correct": false
+              "text": "ido",
+              "correct": true
             }
           ],
-          "explanation": "«geschreven» = escrito (schrijven).",
+          "explanation": "«gegaan» = ido (gaan).",
           "vocabRefs": [
-            "v-geschreven"
+            "v-gegaan"
           ]
         }
       ],

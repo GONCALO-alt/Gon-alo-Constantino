@@ -1934,16 +1934,16 @@
       ],
       "examples": [
         {
+          "nl": "Duurzaam leven is niet altijd makkelijk.",
+          "pt": "Viver de forma sustentável nem sempre é fácil."
+        },
+        {
           "nl": "Na 1953 zijn de Deltawerken gebouwd.",
           "pt": "Depois de 1953 foram construídas as obras do Delta."
         },
         {
-          "nl": "Een groot deel van Nederland ligt onder de zeespiegel.",
-          "pt": "Grande parte dos Países Baixos fica abaixo do nível do mar."
-        },
-        {
-          "nl": "Groenteresten gaan in de gft-bak.",
-          "pt": "Restos de legumes vão para o contentor orgânico."
+          "nl": "Op deze fles zit statiegeld.",
+          "pt": "Esta garrafa tem depósito."
         }
       ],
       "grammar": [],
@@ -1996,12 +1996,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Andar de bicicleta é bom para o ambiente.",
           "tokens": [
-            "milieu.",
-            "het",
-            "voor",
             "Fietsen",
+            "is",
             "goed",
-            "is"
+            "voor",
+            "het",
+            "milieu."
           ],
           "alternatives": [],
           "explanation": "Fietsen is goed voor het milieu.",
@@ -2015,12 +2015,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vai haver um imposto sobre os bilhetes de avião.",
           "tokens": [
-            "vliegtickets.",
-            "een",
-            "belasting",
             "Er",
             "komt",
-            "op"
+            "een",
+            "belasting",
+            "op",
+            "vliegtickets."
           ],
           "alternatives": [],
           "explanation": "Er komt een belasting op vliegtickets.",
@@ -2035,12 +2035,12 @@
           "translation": "Temos de reduzir as emissões de CO₂.",
           "tokens": [
             "We",
-            "van",
-            "de",
             "moeten",
+            "de",
+            "uitstoot",
+            "van",
             "CO₂",
-            "verminderen.",
-            "uitstoot"
+            "verminderen."
           ],
           "alternatives": [],
           "explanation": "We moeten de uitstoot van CO₂ verminderen.",
@@ -2052,95 +2052,102 @@
           "id": "s5-u06-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik ben voor deze maatregel.»?",
+          "prompt": "O que significa: «In 1953 was er een grote overstroming.»?",
           "options": [
             {
               "id": "a",
-              "text": "Sou a favor desta medida.",
-              "correct": true
+              "text": "As alterações climáticas são um grande problema.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Cada vez mais casas têm bomba de calor.",
+              "text": "Temos painéis solares no telhado.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Os diques protegem-nos da água.",
-              "correct": false
+              "text": "Em 1953 houve uma grande inundação.",
+              "correct": true
             }
           ],
-          "explanation": "«Ik ben voor deze maatregel.» = Sou a favor desta medida.",
+          "explanation": "«In 1953 was er een grote overstroming.» = Em 1953 houve uma grande inundação.",
           "vocabRefs": [
-            "v-maatregel"
+            "v-overstroming"
           ]
         },
         {
           "id": "s5-u06-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Na 1953 zijn de Deltawerken gebouwd.»?",
+          "prompt": "O que significa: «De energierekening is flink gestegen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Depois de 1953 foram construídas as obras do Delta.",
-              "correct": true
+              "text": "Temos painéis solares no telhado.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Cada vez mais casas têm bomba de calor.",
-              "correct": false
+              "text": "A fatura da energia subiu bastante.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Nós separamos o nosso lixo.",
+              "text": "A autoridade da água trata dos diques.",
               "correct": false
             }
           ],
-          "explanation": "«Na 1953 zijn de Deltawerken gebouwd.» = Depois de 1953 foram construídas as obras do Delta.",
-          "vocabRefs": []
+          "explanation": "«De energierekening is flink gestegen.» = A fatura da energia subiu bastante.",
+          "vocabRefs": [
+            "v-energierekening"
+          ]
         },
         {
           "id": "s5-u06-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O vidro deita-se no vidrão.",
+          "prompt": "A autoridade da água trata dos diques.",
           "tokens": [
-            "in",
-            "gooi",
-            "glasbak.",
-            "grote",
-            "Glas",
-            "je",
+            "waterschap",
+            "autovrij.",
+            "zorgt",
             "de",
-            "Door"
+            "Het",
+            "We",
+            "dijken.",
+            "voor"
           ],
           "answers": [
-            "Glas gooi je in de glasbak."
+            "Het waterschap zorgt voor de dijken."
           ],
-          "explanation": "O vidro deita-se no vidrão. = Glas gooi je in de glasbak. (sobram: grote, Door)",
-          "vocabRefs": []
+          "explanation": "A autoridade da água trata dos diques. = Het waterschap zorgt voor de dijken. (sobram: We, autovrij.)",
+          "vocabRefs": [
+            "v-dijk",
+            "v-waterschap"
+          ]
         },
         {
           "id": "s5-u06-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A fatura da energia subiu bastante.",
+          "prompt": "Os diques protegem-nos da água.",
           "tokens": [
-            "goed",
-            "is",
-            "voor",
-            "energierekening",
-            "gestegen.",
+            "water.",
+            "tegen",
+            "ons",
+            "het",
+            "beschermen",
             "De",
-            "flink"
+            "In",
+            "dijken",
+            "Duurzaam"
           ],
           "answers": [
-            "De energierekening is flink gestegen."
+            "De dijken beschermen ons tegen het water."
           ],
-          "explanation": "A fatura da energia subiu bastante. = De energierekening is flink gestegen. (sobram: voor, goed)",
+          "explanation": "Os diques protegem-nos da água. = De dijken beschermen ons tegen het water. (sobram: Duurzaam, In)",
           "vocabRefs": [
-            "v-energierekening"
+            "v-dijk"
           ]
         }
       ],
@@ -2209,16 +2216,16 @@
       ],
       "examples": [
         {
-          "nl": "Het waterschap zorgt voor de dijken.",
-          "pt": "A autoridade da água trata dos diques."
+          "nl": "In 1953 was er een grote overstroming.",
+          "pt": "Em 1953 houve uma grande inundação."
         },
         {
-          "nl": "De gemeente wil een nieuwe maatregel invoeren.",
-          "pt": "A câmara quer introduzir uma nova medida."
+          "nl": "Wij scheiden ons afval.",
+          "pt": "Nós separamos o nosso lixo."
         },
         {
-          "nl": "Na 1953 zijn de Deltawerken gebouwd.",
-          "pt": "Depois de 1953 foram construídas as obras do Delta."
+          "nl": "Door het huis te isoleren bespaar je energie.",
+          "pt": "Isolando a casa poupas energia."
         }
       ],
       "grammar": [],
@@ -2227,205 +2234,204 @@
           "id": "s5-u06-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «alterações climáticas» em neerlandês?",
+          "prompt": "Como se diz «inundação» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "container",
+              "text": "milieu",
               "correct": false
             },
             {
               "id": "b",
-              "text": "autovrij",
+              "text": "statiegeld",
               "correct": false
             },
             {
               "id": "c",
-              "text": "klimaatverandering",
+              "text": "overstroming",
               "correct": true
             }
           ],
-          "explanation": "alterações climáticas = «klimaatverandering».",
+          "explanation": "inundação = «overstroming».",
           "vocabRefs": [
-            "v-klimaatverandering"
+            "v-overstroming"
           ]
         },
         {
           "id": "s5-u06-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «introduzir» em neerlandês?",
+          "prompt": "Como se diz «separar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "zonnepanelen",
+              "text": "klimaatverandering",
               "correct": false
             },
             {
               "id": "b",
-              "text": "duurzaam",
+              "text": "invoeren",
               "correct": false
             },
             {
               "id": "c",
-              "text": "invoeren",
+              "text": "scheiden",
               "correct": true
             }
           ],
-          "explanation": "introduzir = «invoeren».",
+          "explanation": "separar = «scheiden».",
           "vocabRefs": [
-            "v-invoeren"
+            "v-scheiden"
           ]
         },
         {
           "id": "s5-u06-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "In 1953 was er een grote ___.",
-          "translation": "Em 1953 houve uma grande inundação.",
+          "sentence": "Fietsen is goed voor het ___.",
+          "translation": "Andar de bicicleta é bom para o ambiente.",
           "answers": [
-            "overstroming"
+            "milieu"
           ],
           "choices": [
-            "besparen",
-            "isoleren",
-            "overstroming"
+            "zonnepanelen",
+            "milieu",
+            "belasting"
           ],
-          "explanation": "In 1953 was er een grote overstroming.",
+          "explanation": "Fietsen is goed voor het milieu.",
           "vocabRefs": [
-            "v-overstroming"
+            "v-milieu"
           ]
         },
         {
           "id": "s5-u06-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Op deze fles zit ___.",
-          "translation": "Esta garrafa tem depósito.",
+          "sentence": "Het ___ zorgt voor de dijken.",
+          "translation": "A autoridade da água trata dos diques.",
           "answers": [
-            "statiegeld"
+            "waterschap"
           ],
           "choices": [
-            "statiegeld",
-            "afval",
-            "duurzaam"
+            "belasting",
+            "waterschap",
+            "invoeren"
           ],
-          "explanation": "Op deze fles zit statiegeld.",
+          "explanation": "Het waterschap zorgt voor de dijken.",
           "vocabRefs": [
-            "v-statiegeld"
+            "v-waterschap"
           ]
         },
         {
           "id": "s5-u06-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Op deze fles zit statiegeld.",
+          "audioText": "In 1953 was er een grote overstroming.",
           "answers": [
-            "Op deze fles zit statiegeld."
+            "In 1953 was er een grote overstroming."
           ],
-          "translation": "Esta garrafa tem depósito.",
-          "explanation": "«Op deze fles zit statiegeld.» = Esta garrafa tem depósito.",
+          "translation": "Em 1953 houve uma grande inundação.",
+          "explanation": "«In 1953 was er een grote overstroming.» = Em 1953 houve uma grande inundação.",
           "vocabRefs": [
-            "v-statiegeld"
+            "v-overstroming"
           ]
         },
         {
           "id": "s5-u06-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een groot deel van Nederland ligt onder de zeespiegel.",
+          "audioText": "Duurzaam leven is niet altijd makkelijk.",
           "answers": [
-            "Een groot deel van Nederland ligt onder de zeespiegel."
+            "Duurzaam leven is niet altijd makkelijk."
           ],
-          "translation": "Grande parte dos Países Baixos fica abaixo do nível do mar.",
-          "explanation": "«Een groot deel van Nederland ligt onder de zeespiegel.» = Grande parte dos Países Baixos fica abaixo do nível do mar.",
+          "translation": "Viver de forma sustentável nem sempre é fácil.",
+          "explanation": "«Duurzaam leven is niet altijd makkelijk.» = Viver de forma sustentável nem sempre é fácil.",
           "vocabRefs": [
-            "v-zeespiegel"
+            "v-duurzaam"
           ]
         },
         {
           "id": "s5-u06-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O centro vai ficar sem carros.",
+          "prompt": "Temos de reduzir as emissões de CO₂.",
           "tokens": [
-            "wordt",
-            "De",
-            "centrum",
-            "Het",
-            "autovrij.",
-            "1953"
+            "uitstoot",
+            "verminderen.",
+            "We",
+            "de",
+            "Deltawerken",
+            "CO₂",
+            "van",
+            "moeten",
+            "In"
           ],
           "answers": [
-            "Het centrum wordt autovrij."
+            "We moeten de uitstoot van CO₂ verminderen."
           ],
-          "explanation": "O centro vai ficar sem carros. = Het centrum wordt autovrij. (sobram: De, 1953)",
+          "explanation": "Temos de reduzir as emissões de CO₂. = We moeten de uitstoot van CO₂ verminderen. (sobram: Deltawerken, In)",
           "vocabRefs": [
-            "v-autovrij"
+            "v-uitstoot"
           ]
         },
         {
           "id": "s5-u06-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vai haver um imposto sobre os bilhetes de avião.",
+          "prompt": "Restos de legumes vão para o contentor orgânico.",
           "tokens": [
-            "komt",
+            "1953",
             "groot",
+            "Groenteresten",
+            "gaan",
             "de",
-            "een",
-            "Er",
-            "vliegtickets.",
-            "op",
-            "belasting"
+            "gft-bak.",
+            "in"
           ],
           "answers": [
-            "Er komt een belasting op vliegtickets."
+            "Groenteresten gaan in de gft-bak."
           ],
-          "explanation": "Vai haver um imposto sobre os bilhetes de avião. = Er komt een belasting op vliegtickets. (sobram: groot, de)",
+          "explanation": "Restos de legumes vão para o contentor orgânico. = Groenteresten gaan in de gft-bak. (sobram: 1953, groot)",
           "vocabRefs": [
-            "v-belasting"
+            "v-gft"
           ]
         },
         {
           "id": "s5-u06-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "dijk",
-          "pt": "dique",
+          "noun": "zeespiegel",
+          "pt": "nível do mar",
           "article": "de",
-          "explanation": "de dijk.",
+          "explanation": "de zeespiegel.",
           "vocabRefs": [
-            "v-dijk"
+            "v-zeespiegel"
           ]
         },
         {
           "id": "s5-u06-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het waterschap zorgt voor de dijken.»?",
+          "prompt": "O que significa: «Glas gooi je in de glasbak.»?",
           "options": [
             {
               "id": "a",
-              "text": "As alterações climáticas são um grande problema.",
+              "text": "A câmara quer introduzir uma nova medida.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "A autoridade da água trata dos diques.",
+              "text": "O vidro deita-se no vidrão.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "A fatura da energia subiu bastante.",
+              "text": "A autoridade da água trata dos diques.",
               "correct": false
             }
           ],
-          "explanation": "«Het waterschap zorgt voor de dijken.» = A autoridade da água trata dos diques.",
-          "vocabRefs": [
-            "v-dijk",
-            "v-waterschap"
-          ]
+          "explanation": "«Glas gooi je in de glasbak.» = O vidro deita-se no vidrão.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2493,16 +2499,16 @@
       ],
       "examples": [
         {
-          "nl": "Fietsen is goed voor het milieu.",
-          "pt": "Andar de bicicleta é bom para o ambiente."
+          "nl": "De energierekening is flink gestegen.",
+          "pt": "A fatura da energia subiu bastante."
         },
         {
           "nl": "De gemeente wil een nieuwe maatregel invoeren.",
           "pt": "A câmara quer introduzir uma nova medida."
         },
         {
-          "nl": "Klimaatverandering is een groot probleem.",
-          "pt": "As alterações climáticas são um grande problema."
+          "nl": "Fietsen is goed voor het milieu.",
+          "pt": "Andar de bicicleta é bom para o ambiente."
         }
       ],
       "grammar": [],
@@ -2511,23 +2517,23 @@
           "id": "s5-u06-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Viver de forma sustentável nem sempre é fácil.",
+          "prompt": "Temos painéis solares no telhado.",
           "tokens": [
-            "is",
-            "leven",
-            "ben",
-            "de",
-            "makkelijk.",
-            "altijd",
-            "Duurzaam",
-            "niet"
+            "We",
+            "uitstoot",
+            "bespaar",
+            "dak.",
+            "zonnepanelen",
+            "het",
+            "op",
+            "hebben"
           ],
           "answers": [
-            "Duurzaam leven is niet altijd makkelijk."
+            "We hebben zonnepanelen op het dak."
           ],
-          "explanation": "Viver de forma sustentável nem sempre é fácil. = Duurzaam leven is niet altijd makkelijk. (sobram: ben, de)",
+          "explanation": "Temos painéis solares no telhado. = We hebben zonnepanelen op het dak. (sobram: bespaar, uitstoot)",
           "vocabRefs": [
-            "v-duurzaam"
+            "v-zonnepanelen"
           ]
         },
         {
@@ -2536,21 +2542,21 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Isolando a casa poupas energia.",
           "tokens": [
-            "huis",
-            "Door",
-            "bespaar",
-            "energie.",
-            "was",
-            "het",
-            "je",
+            "zeespiegel.",
             "isoleren",
-            "deze",
-            "te"
+            "te",
+            "energie.",
+            "je",
+            "hebben",
+            "bespaar",
+            "Door",
+            "het",
+            "huis"
           ],
           "answers": [
             "Door het huis te isoleren bespaar je energie."
           ],
-          "explanation": "Isolando a casa poupas energia. = Door het huis te isoleren bespaar je energie. (sobram: was, deze)",
+          "explanation": "Isolando a casa poupas energia. = Door het huis te isoleren bespaar je energie. (sobram: hebben, zeespiegel.)",
           "vocabRefs": [
             "v-isoleren"
           ]
@@ -2559,157 +2565,158 @@
           "id": "s5-u06-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Restos de legumes vão para o contentor orgânico.",
+          "prompt": "A fatura da energia subiu bastante.",
           "tokens": [
-            "in",
-            "Groenteresten",
-            "nieuwe",
-            "gaan",
-            "de",
-            "gft-bak.",
-            "minder"
+            "een",
+            "is",
+            "De",
+            "groot",
+            "energierekening",
+            "gestegen.",
+            "flink"
           ],
           "answers": [
-            "Groenteresten gaan in de gft-bak."
+            "De energierekening is flink gestegen."
           ],
-          "explanation": "Restos de legumes vão para o contentor orgânico. = Groenteresten gaan in de gft-bak. (sobram: nieuwe, minder)",
+          "explanation": "A fatura da energia subiu bastante. = De energierekening is flink gestegen. (sobram: een, groot)",
           "vocabRefs": [
-            "v-gft"
+            "v-energierekening"
           ]
         },
         {
           "id": "s5-u06-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wij scheiden ons afval.",
+          "audioText": "We hebben zonnepanelen op het dak.",
           "answers": [
-            "Wij scheiden ons afval."
+            "We hebben zonnepanelen op het dak."
           ],
-          "translation": "Nós separamos o nosso lixo.",
-          "explanation": "«Wij scheiden ons afval.» = Nós separamos o nosso lixo.",
+          "translation": "Temos painéis solares no telhado.",
+          "explanation": "«We hebben zonnepanelen op het dak.» = Temos painéis solares no telhado.",
           "vocabRefs": [
-            "v-afval",
-            "v-scheiden"
+            "v-zonnepanelen"
           ]
         },
         {
           "id": "s5-u06-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Duurzaam leven is niet altijd makkelijk.",
+          "audioText": "Klimaatverandering is een groot probleem.",
           "answers": [
-            "Duurzaam leven is niet altijd makkelijk."
+            "Klimaatverandering is een groot probleem."
           ],
-          "translation": "Viver de forma sustentável nem sempre é fácil.",
-          "explanation": "«Duurzaam leven is niet altijd makkelijk.» = Viver de forma sustentável nem sempre é fácil.",
+          "translation": "As alterações climáticas são um grande problema.",
+          "explanation": "«Klimaatverandering is een groot probleem.» = As alterações climáticas são um grande problema.",
           "vocabRefs": [
-            "v-duurzaam"
+            "v-klimaatverandering"
           ]
         },
         {
           "id": "s5-u06-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Door het huis te isoleren bespaar je energie.",
+          "audioText": "De gemeente wil een nieuwe maatregel invoeren.",
           "answers": [
-            "Door het huis te isoleren bespaar je energie."
+            "De gemeente wil een nieuwe maatregel invoeren."
           ],
-          "translation": "Isolando a casa poupas energia.",
-          "explanation": "«Door het huis te isoleren bespaar je energie.» = Isolando a casa poupas energia.",
+          "translation": "A câmara quer introduzir uma nova medida.",
+          "explanation": "«De gemeente wil een nieuwe maatregel invoeren.» = A câmara quer introduzir uma nova medida.",
           "vocabRefs": [
-            "v-isoleren"
+            "v-maatregel",
+            "v-invoeren"
           ]
         },
         {
           "id": "s5-u06-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Restos de legumes vão para o contentor orgânico.",
+          "translation": "A autoridade da água trata dos diques.",
           "tokens": [
+            "Het",
+            "waterschap",
+            "zorgt",
+            "voor",
             "de",
-            "Groenteresten",
-            "gaan",
-            "gft-bak.",
-            "in"
+            "dijken."
           ],
           "alternatives": [],
-          "explanation": "Groenteresten gaan in de gft-bak.",
+          "explanation": "Het waterschap zorgt voor de dijken.",
           "vocabRefs": [
-            "v-gft"
+            "v-dijk",
+            "v-waterschap"
           ]
         },
         {
           "id": "s5-u06-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Os diques protegem-nos da água.",
+          "translation": "Cada vez mais casas têm bomba de calor.",
           "tokens": [
-            "tegen",
-            "beschermen",
-            "water.",
-            "ons",
-            "het",
-            "De",
-            "dijken"
+            "Steeds",
+            "meer",
+            "huizen",
+            "hebben",
+            "een",
+            "warmtepomp."
           ],
           "alternatives": [],
-          "explanation": "De dijken beschermen ons tegen het water.",
+          "explanation": "Steeds meer huizen hebben een warmtepomp.",
           "vocabRefs": [
-            "v-dijk"
+            "v-warmtepomp"
           ]
         },
         {
           "id": "s5-u06-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het statiegeld»?",
+          "prompt": "O que significa «de overstroming»?",
           "options": [
             {
               "id": "a",
-              "text": "bomba de calor",
+              "text": "contentor do lixo",
               "correct": false
             },
             {
               "id": "b",
-              "text": "fatura da energia",
+              "text": "lixo",
               "correct": false
             },
             {
               "id": "c",
-              "text": "depósito",
+              "text": "inundação",
               "correct": true
             }
           ],
-          "explanation": "«het statiegeld» = depósito (garrafas/latas).",
+          "explanation": "«de overstroming» = inundação.",
           "vocabRefs": [
-            "v-statiegeld"
+            "v-overstroming"
           ]
         },
         {
           "id": "s5-u06-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de uitstoot»?",
+          "prompt": "O que significa «autovrij»?",
           "options": [
             {
               "id": "a",
-              "text": "aquecimento",
+              "text": "dique",
               "correct": false
             },
             {
               "id": "b",
-              "text": "isolar",
-              "correct": false
+              "text": "sem carros",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "emissões",
-              "correct": true
+              "text": "sustentável",
+              "correct": false
             }
           ],
-          "explanation": "«de uitstoot» = emissões.",
+          "explanation": "«autovrij» = sem carros.",
           "vocabRefs": [
-            "v-uitstoot"
+            "v-autovrij"
           ]
         }
       ],

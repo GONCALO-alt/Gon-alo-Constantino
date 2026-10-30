@@ -1851,16 +1851,16 @@
       ],
       "examples": [
         {
-          "nl": "Verkleinwoorden zijn altijd het-woorden.",
-          "pt": "Os diminutivos são sempre palavras com het."
-        },
-        {
-          "nl": "Wat is de plaats van het werkwoord in een bijzin?",
-          "pt": "Qual é a posição do verbo numa subordinada?"
-        },
-        {
           "nl": "De hoofdregel is: het werkwoord staat op de tweede plaats.",
           "pt": "A regra principal é: o verbo está na segunda posição."
+        },
+        {
+          "nl": "Waar is de sleutel? — Ik heb hem niet.",
+          "pt": "Onde está a chave? — Não a tenho."
+        },
+        {
+          "nl": "Verkleinwoorden zijn altijd het-woorden.",
+          "pt": "Os diminutivos são sempre palavras com het."
         }
       ],
       "grammar": [],
@@ -1914,12 +1914,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Precisão e fluência são ambas importantes.",
           "tokens": [
-            "vloeiendheid",
-            "allebei",
-            "belangrijk.",
+            "Nauwkeurigheid",
             "en",
+            "vloeiendheid",
             "zijn",
-            "Nauwkeurigheid"
+            "allebei",
+            "belangrijk."
           ],
           "alternatives": [],
           "explanation": "Nauwkeurigheid en vloeiendheid zijn allebei belangrijk.",
@@ -1934,11 +1934,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Que artigo vai com «huis»?",
           "tokens": [
-            "hoort",
             "Welk",
-            "«huis»?",
+            "lidwoord",
+            "hoort",
             "bij",
-            "lidwoord"
+            "«huis»?"
           ],
           "alternatives": [],
           "explanation": "Welk lidwoord hoort bij «huis»?",
@@ -1953,9 +1953,9 @@
           "translation": "Toda a regra tem exceções.",
           "tokens": [
             "Elke",
-            "uitzonderingen.",
             "regel",
-            "heeft"
+            "heeft",
+            "uitzonderingen."
           ],
           "alternatives": [],
           "explanation": "Elke regel heeft uitzonderingen.",
@@ -1967,97 +1967,96 @@
           "id": "s7-u09-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De fiets? Ik heb hem verkocht.»?",
+          "prompt": "O que significa: «Niemand schrijft helemaal foutloos.»?",
           "options": [
             {
               "id": "a",
-              "text": "«Zich» é um pronome reflexivo.",
-              "correct": false
+              "text": "Ninguém escreve totalmente sem erros.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Qual é a posição do verbo numa subordinada?",
+              "text": "Depois de «een» não se flexiona o adjetivo com palavras het.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "A bicicleta? Vendi-a.",
-              "correct": true
+              "text": "A que se refere «die»?",
+              "correct": false
             }
           ],
-          "explanation": "«De fiets? Ik heb hem verkocht.» = A bicicleta? Vendi-a.",
-          "vocabRefs": []
+          "explanation": "«Niemand schrijft helemaal foutloos.» = Ninguém escreve totalmente sem erros.",
+          "vocabRefs": [
+            "v-foutloos"
+          ]
         },
         {
           "id": "s7-u09-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Let op de zinsbouw.»?",
+          "prompt": "O que significa: «Welk voorzetsel hoort bij «wachten»?»?",
           "options": [
             {
               "id": "a",
-              "text": "Atenção à construção frásica.",
-              "correct": true
+              "text": "Comerei (futuro).",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Precisão e fluência são ambas importantes.",
-              "correct": false
+              "text": "Que preposição vai com «wachten»?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Que preposição vai com «wachten»?",
+              "text": "Que artigo vai com «huis»?",
               "correct": false
             }
           ],
-          "explanation": "«Let op de zinsbouw.» = Atenção à construção frásica.",
+          "explanation": "«Welk voorzetsel hoort bij «wachten»?» = Que preposição vai com «wachten»?",
           "vocabRefs": [
-            "v-zinsbouw"
+            "v-voorzetsel"
           ]
         },
         {
           "id": "s7-u09-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "«Het» é o artigo neutro.",
+          "prompt": "Toda a regra tem exceções.",
           "tokens": [
+            "regel",
+            "Elke",
+            "heeft",
+            "uitzonderingen.",
             "is",
-            "het",
-            "bijzin?",
-            "«Het»",
-            "onzijdige",
-            "lidwoord.",
-            "plaats"
+            "je"
           ],
           "answers": [
-            "«Het» is het onzijdige lidwoord."
+            "Elke regel heeft uitzonderingen."
           ],
-          "explanation": "«Het» é o artigo neutro. = «Het» is het onzijdige lidwoord. (sobram: plaats, bijzin?)",
+          "explanation": "Toda a regra tem exceções. = Elke regel heeft uitzonderingen. (sobram: is, je)",
           "vocabRefs": [
-            "v-lidwoord",
-            "v-onzijdig"
+            "v-uitzondering"
           ]
         },
         {
           "id": "s7-u09-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O neerlandês tem oito tempos verbais.",
+          "prompt": "Ninguém escreve totalmente sem erros.",
           "tokens": [
-            "buig",
-            "had",
-            "heeft",
-            "werkwoordstijden.",
-            "Het",
-            "Nederlands",
-            "acht"
+            "foutloos.",
+            "zijn",
+            "schrijft",
+            "helemaal",
+            "Als",
+            "Niemand"
           ],
           "answers": [
-            "Het Nederlands heeft acht werkwoordstijden."
+            "Niemand schrijft helemaal foutloos."
           ],
-          "explanation": "O neerlandês tem oito tempos verbais. = Het Nederlands heeft acht werkwoordstijden. (sobram: had, buig)",
+          "explanation": "Ninguém escreve totalmente sem erros. = Niemand schrijft helemaal foutloos. (sobram: zijn, Als)",
           "vocabRefs": [
-            "v-tijden"
+            "v-foutloos"
           ]
         }
       ],
@@ -2121,16 +2120,16 @@
       ],
       "examples": [
         {
+          "nl": "De fiets? Ik heb hem verkocht.",
+          "pt": "A bicicleta? Vendi-a."
+        },
+        {
+          "nl": "Ik ga morgen vanwege de staking met de fiets naar mijn werk.",
+          "pt": "Amanhã, por causa da greve, vou de bicicleta para o trabalho."
+        },
+        {
           "nl": "Niemand schrijft helemaal foutloos.",
           "pt": "Ninguém escreve totalmente sem erros."
-        },
-        {
-          "nl": "De hoofdregel is: het werkwoord staat op de tweede plaats.",
-          "pt": "A regra principal é: o verbo está na segunda posição."
-        },
-        {
-          "nl": "Elke regel heeft uitzonderingen.",
-          "pt": "Toda a regra tem exceções."
         }
       ],
       "grammar": [],
@@ -2139,11 +2138,11 @@
           "id": "s7-u09-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «artigo» em neerlandês?",
+          "prompt": "Como se diz «erro gramatical» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "lidwoord",
+              "text": "grammaticale fout",
               "correct": true
             },
             {
@@ -2153,40 +2152,40 @@
             },
             {
               "id": "c",
-              "text": "grammaticale fout",
+              "text": "foutloos",
               "correct": false
             }
           ],
-          "explanation": "artigo = «lidwoord».",
+          "explanation": "erro gramatical = «grammaticale fout».",
           "vocabRefs": [
-            "v-lidwoord"
+            "v-verbeterpunt-gram"
           ]
         },
         {
           "id": "s7-u09-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «fluência» em neerlandês?",
+          "prompt": "Como se diz «regra principal» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "toekomende tijd",
+              "text": "lidwoord",
               "correct": false
             },
             {
               "id": "b",
-              "text": "vloeiendheid",
+              "text": "hoofdregel",
               "correct": true
             },
             {
               "id": "c",
-              "text": "lidwoord",
+              "text": "verkleinwoord",
               "correct": false
             }
           ],
-          "explanation": "fluência = «vloeiendheid».",
+          "explanation": "regra principal = «hoofdregel».",
           "vocabRefs": [
-            "v-vloeiendheid"
+            "v-hoofdregel"
           ]
         },
         {
@@ -2257,83 +2256,84 @@
           "id": "s7-u09-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que preposição vai com «wachten»?",
+          "prompt": "Depois de «een» não se flexiona o adjetivo com palavras het.",
           "tokens": [
-            "Welk",
-            "«wachten»?",
-            "—",
-            "voorzetsel",
-            "foutloos.",
-            "hoort",
-            "bij"
+            "Na",
+            "het",
+            "enorm",
+            "je",
+            "niet",
+            "buig",
+            "adjectief",
+            "het-woorden.",
+            "lidwoord",
+            "bij",
+            "«een»"
           ],
           "answers": [
-            "Welk voorzetsel hoort bij «wachten»?"
+            "Na «een» buig je het adjectief niet bij het-woorden."
           ],
-          "explanation": "Que preposição vai com «wachten»? = Welk voorzetsel hoort bij «wachten»? (sobram: foutloos., —)",
-          "vocabRefs": [
-            "v-voorzetsel"
-          ]
+          "explanation": "Depois de «een» não se flexiona o adjetivo com palavras het. = Na «een» buig je het adjectief niet bij het-woorden. (sobram: enorm, lidwoord)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u09-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ninguém escreve totalmente sem erros.",
+          "prompt": "Que preposição vai com «wachten»?",
           "tokens": [
-            "tweede",
-            "helemaal",
-            "schrijft",
-            "werkwoord",
-            "Niemand",
-            "foutloos."
+            "hoort",
+            "voorzetsel",
+            "«wachten»?",
+            "Wat",
+            "«Zich»",
+            "bij",
+            "Welk"
           ],
           "answers": [
-            "Niemand schrijft helemaal foutloos."
+            "Welk voorzetsel hoort bij «wachten»?"
           ],
-          "explanation": "Ninguém escreve totalmente sem erros. = Niemand schrijft helemaal foutloos. (sobram: tweede, werkwoord)",
+          "explanation": "Que preposição vai com «wachten»? = Welk voorzetsel hoort bij «wachten»? (sobram: «Zich», Wat)",
           "vocabRefs": [
-            "v-foutloos"
+            "v-voorzetsel"
           ]
         },
         {
           "id": "s7-u09-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "voorzetsel",
-          "pt": "preposição",
+          "noun": "verkleinwoord",
+          "pt": "diminutivo",
           "article": "het",
-          "explanation": "het voorzetsel.",
+          "explanation": "het verkleinwoord.",
           "vocabRefs": [
-            "v-voorzetsel"
+            "v-verkleinwoord"
           ]
         },
         {
           "id": "s7-u09-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je vloeiendheid is enorm verbeterd.»?",
+          "prompt": "O que significa: «Als ik tijd had gehad, zou ik je hebben geholpen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Onde está a chave? — Não a tenho.",
+              "text": "Que preposição vai com «wachten»?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "A tua fluência melhorou imenso.",
-              "correct": true
+              "text": "Comerei (futuro).",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "«Zich» é um pronome reflexivo.",
-              "correct": false
+              "text": "Se tivesse tido tempo, ter-te-ia ajudado.",
+              "correct": true
             }
           ],
-          "explanation": "«Je vloeiendheid is enorm verbeterd.» = A tua fluência melhorou imenso.",
-          "vocabRefs": [
-            "v-vloeiendheid"
-          ]
+          "explanation": "«Als ik tijd had gehad, zou ik je hebben geholpen.» = Se tivesse tido tempo, ter-te-ia ajudado.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2396,16 +2396,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat is de plaats van het werkwoord in een bijzin?",
-          "pt": "Qual é a posição do verbo numa subordinada?"
+          "nl": "Verkleinwoorden zijn altijd het-woorden.",
+          "pt": "Os diminutivos são sempre palavras com het."
         },
         {
-          "nl": "Je vloeiendheid is enorm verbeterd.",
-          "pt": "A tua fluência melhorou imenso."
+          "nl": "Welk lidwoord hoort bij «huis»?",
+          "pt": "Que artigo vai com «huis»?"
         },
         {
-          "nl": "Welk voorzetsel hoort bij «wachten»?",
-          "pt": "Que preposição vai com «wachten»?"
+          "nl": "Elke regel heeft uitzonderingen.",
+          "pt": "Toda a regra tem exceções."
         }
       ],
       "grammar": [],
@@ -2414,69 +2414,65 @@
           "id": "s7-u09-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A bicicleta? Vendi-a.",
+          "prompt": "«Het» é o artigo neutro.",
           "tokens": [
-            "heb",
+            "onzijdige",
+            "is",
             "gehad,",
-            "fiets?",
-            "Ik",
-            "verkocht.",
-            "bij",
-            "De",
-            "hem"
+            "«Het»",
+            "het",
+            "het-woorden.",
+            "lidwoord."
           ],
           "answers": [
-            "De fiets? Ik heb hem verkocht."
+            "«Het» is het onzijdige lidwoord."
           ],
-          "explanation": "A bicicleta? Vendi-a. = De fiets? Ik heb hem verkocht. (sobram: gehad,, bij)",
-          "vocabRefs": []
+          "explanation": "«Het» é o artigo neutro. = «Het» is het onzijdige lidwoord. (sobram: gehad,, het-woorden.)",
+          "vocabRefs": [
+            "v-lidwoord",
+            "v-onzijdig"
+          ]
         },
         {
           "id": "s7-u09-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A regra principal é: o verbo está na segunda posição.",
+          "prompt": "A bicicleta? Vendi-a.",
           "tokens": [
-            "hoofdregel",
+            "fiets?",
+            "hem",
             "De",
-            "het",
-            "bijzin?",
-            "is:",
-            "de",
-            "verwijst",
-            "plaats.",
-            "staat",
-            "werkwoord",
-            "tweede",
-            "op"
+            "Ik",
+            "heb",
+            "vloeiendheid",
+            "Nauwkeurigheid",
+            "verkocht."
           ],
           "answers": [
-            "De hoofdregel is: het werkwoord staat op de tweede plaats."
+            "De fiets? Ik heb hem verkocht."
           ],
-          "explanation": "A regra principal é: o verbo está na segunda posição. = De hoofdregel is: het werkwoord staat op de tweede plaats. (sobram: verwijst, bijzin?)",
-          "vocabRefs": [
-            "v-hoofdregel"
-          ]
+          "explanation": "A bicicleta? Vendi-a. = De fiets? Ik heb hem verkocht. (sobram: Nauwkeurigheid, vloeiendheid)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u09-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Toda a regra tem exceções.",
+          "prompt": "Atenção à construção frásica.",
           "tokens": [
-            "uitzonderingen.",
-            "Niemand",
-            "heeft",
-            "Elke",
-            "het",
-            "regel"
+            "verwijst",
+            "Let",
+            "zinsbouw.",
+            "op",
+            "de",
+            "werkwoord"
           ],
           "answers": [
-            "Elke regel heeft uitzonderingen."
+            "Let op de zinsbouw."
           ],
-          "explanation": "Toda a regra tem exceções. = Elke regel heeft uitzonderingen. (sobram: het, Niemand)",
+          "explanation": "Atenção à construção frásica. = Let op de zinsbouw. (sobram: werkwoord, verwijst)",
           "vocabRefs": [
-            "v-uitzondering"
+            "v-zinsbouw"
           ]
         },
         {
@@ -2498,18 +2494,6 @@
           "id": "s7-u09-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Na «een» buig je het adjectief niet bij het-woorden.",
-          "answers": [
-            "Na «een» buig je het adjectief niet bij het-woorden."
-          ],
-          "translation": "Depois de «een» não se flexiona o adjetivo com palavras het.",
-          "explanation": "«Na «een» buig je het adjectief niet bij het-woorden.» = Depois de «een» não se flexiona o adjetivo com palavras het.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s7-u09-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Welk voorzetsel hoort bij «wachten»?",
           "answers": [
             "Welk voorzetsel hoort bij «wachten»?"
@@ -2521,16 +2505,28 @@
           ]
         },
         {
+          "id": "s7-u09-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Na «een» buig je het adjectief niet bij het-woorden.",
+          "answers": [
+            "Na «een» buig je het adjectief niet bij het-woorden."
+          ],
+          "translation": "Depois de «een» não se flexiona o adjetivo com palavras het.",
+          "explanation": "«Na «een» buig je het adjectief niet bij het-woorden.» = Depois de «een» não se flexiona o adjetivo com palavras het.",
+          "vocabRefs": []
+        },
+        {
           "id": "s7-u09-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
           "translation": "«Zich» é um pronome reflexivo.",
           "tokens": [
-            "voornaamwoord.",
-            "een",
-            "is",
             "«Zich»",
-            "wederkerend"
+            "is",
+            "een",
+            "wederkerend",
+            "voornaamwoord."
           ],
           "alternatives": [],
           "explanation": "«Zich» is een wederkerend voornaamwoord.",
@@ -2545,9 +2541,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os diminutivos são sempre palavras com het.",
           "tokens": [
-            "altijd",
             "Verkleinwoorden",
             "zijn",
+            "altijd",
             "het-woorden."
           ],
           "alternatives": [],
@@ -2564,7 +2560,7 @@
           "options": [
             {
               "id": "a",
-              "text": "futuro",
+              "text": "tempos verbais",
               "correct": false
             },
             {
@@ -2574,7 +2570,7 @@
             },
             {
               "id": "c",
-              "text": "construção frásica",
+              "text": "perfeito",
               "correct": false
             }
           ],
@@ -2591,18 +2587,18 @@
           "options": [
             {
               "id": "a",
-              "text": "exceção",
+              "text": "erro gramatical",
               "correct": false
             },
             {
               "id": "b",
-              "text": "fluência",
-              "correct": false
+              "text": "construção frásica",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "construção frásica",
-              "correct": true
+              "text": "referir-se a",
+              "correct": false
             }
           ],
           "explanation": "«de zinsbouw» = construção frásica.",

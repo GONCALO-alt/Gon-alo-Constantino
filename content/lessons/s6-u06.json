@@ -1838,16 +1838,16 @@
       ],
       "examples": [
         {
+          "nl": "De minister benadrukte het belang van onderwijs.",
+          "pt": "O ministro sublinhou a importância da educação."
+        },
+        {
+          "nl": "Werk geeft veel mensen zingeving.",
+          "pt": "O trabalho dá sentido à vida de muitas pessoas."
+        },
+        {
           "nl": "Het welzijn van de bewoners staat centraal.",
           "pt": "O bem-estar dos moradores está no centro."
-        },
-        {
-          "nl": "We willen bewoners bij het plan betrekken.",
-          "pt": "Queremos envolver os moradores no plano."
-        },
-        {
-          "nl": "Geld maakt niet altijd gelukkig.",
-          "pt": "O dinheiro nem sempre dá felicidade."
         }
       ],
       "grammar": [],
@@ -1898,13 +1898,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "A investigação demonstra que funciona.",
           "tokens": [
-            "aan",
-            "werkt.",
-            "dat",
+            "Het",
             "onderzoek",
             "toont",
+            "aan",
+            "dat",
             "het",
-            "Het"
+            "werkt."
           ],
           "alternatives": [],
           "explanation": "Het onderzoek toont aan dat het werkt.",
@@ -1916,13 +1916,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "O bem-estar dos moradores está no centro.",
           "tokens": [
-            "de",
-            "staat",
-            "welzijn",
             "Het",
-            "centraal.",
+            "welzijn",
             "van",
-            "bewoners"
+            "de",
+            "bewoners",
+            "staat",
+            "centraal."
           ],
           "alternatives": [],
           "explanation": "Het welzijn van de bewoners staat centraal.",
@@ -1936,10 +1936,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Isso leva a problemas.",
           "tokens": [
-            "leidt",
-            "problemen.",
             "Dat",
-            "tot"
+            "leidt",
+            "tot",
+            "problemen."
           ],
           "alternatives": [],
           "explanation": "Dat leidt tot problemen.",
@@ -1949,95 +1949,99 @@
           "id": "s6-u06-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het welzijn van de bewoners staat centraal.»?",
+          "prompt": "O que significa: «Ons uitgangspunt is dat iedereen meedoet.»?",
           "options": [
             {
               "id": "a",
-              "text": "O ministro sublinhou a importância da educação.",
+              "text": "Isso leva a problemas.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O bem-estar dos moradores está no centro.",
-              "correct": true
+              "text": "A investigação demonstra que funciona.",
+              "correct": false
             },
             {
               "id": "c",
               "text": "O nosso ponto de partida é que todos participam.",
-              "correct": false
+              "correct": true
             }
           ],
-          "explanation": "«Het welzijn van de bewoners staat centraal.» = O bem-estar dos moradores está no centro.",
+          "explanation": "«Ons uitgangspunt is dat iedereen meedoet.» = O nosso ponto de partida é que todos participam.",
           "vocabRefs": [
-            "v-welzijn"
+            "v-uitgangspunt"
           ]
         },
         {
           "id": "s6-u06-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Gelijkheid is een belangrijke waarde.»?",
+          "prompt": "O que significa: «Dat leidt tot problemen.»?",
           "options": [
             {
               "id": "a",
-              "text": "A igualdade é um valor importante.",
-              "correct": true
+              "text": "O trabalho dá sentido à vida de muitas pessoas.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "O dinheiro nem sempre dá felicidade.",
-              "correct": false
+              "text": "Isso leva a problemas.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "O bem-estar dos moradores está no centro.",
+              "text": "Tens de ver isso no contexto.",
               "correct": false
             }
           ],
-          "explanation": "«Gelijkheid is een belangrijke waarde.» = A igualdade é um valor importante.",
-          "vocabRefs": [
-            "v-gelijkheid",
-            "v-waarde"
-          ]
+          "explanation": "«Dat leidt tot problemen.» = Isso leva a problemas.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u06-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O número de fumadores está a diminuir.",
+          "prompt": "O trabalho dá sentido à vida de muitas pessoas.",
           "tokens": [
-            "rokers",
-            "neemt",
-            "aantal",
-            "probleem",
-            "uitgangspunt",
-            "af.",
-            "Het"
+            "veel",
+            "De",
+            "mensen",
+            "geeft",
+            "zingeving.",
+            "verkeer",
+            "Werk"
           ],
           "answers": [
-            "Het aantal rokers neemt af."
+            "Werk geeft veel mensen zingeving."
           ],
-          "explanation": "O número de fumadores está a diminuir. = Het aantal rokers neemt af. (sobram: uitgangspunt, probleem)",
-          "vocabRefs": []
+          "explanation": "O trabalho dá sentido à vida de muitas pessoas. = Werk geeft veel mensen zingeving. (sobram: De, verkeer)",
+          "vocabRefs": [
+            "v-zingeving"
+          ]
         },
         {
           "id": "s6-u06-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O trânsito está a aumentar.",
+          "prompt": "Tens de ver isso no contexto.",
           "tokens": [
-            "belang",
-            "toe.",
-            "Het",
-            "verkeer",
-            "neemt",
-            "welzijn"
+            "zien.",
+            "de",
+            "in",
+            "Je",
+            "dat",
+            "veel",
+            "moet",
+            "het",
+            "context"
           ],
           "answers": [
-            "Het verkeer neemt toe."
+            "Je moet het in de context zien."
           ],
-          "explanation": "O trânsito está a aumentar. = Het verkeer neemt toe. (sobram: belang, welzijn)",
-          "vocabRefs": []
+          "explanation": "Tens de ver isso no contexto. = Je moet het in de context zien. (sobram: dat, veel)",
+          "vocabRefs": [
+            "v-context"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2100,16 +2104,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik beschouw het als een kans.",
-          "pt": "Considero isso uma oportunidade."
+          "nl": "Je moet het in de context zien.",
+          "pt": "Tens de ver isso no contexto."
         },
         {
-          "nl": "Het onderzoek toont aan dat het werkt.",
-          "pt": "A investigação demonstra que funciona."
+          "nl": "Het verkeer neemt toe.",
+          "pt": "O trânsito está a aumentar."
         },
         {
-          "nl": "Het welzijn van de bewoners staat centraal.",
-          "pt": "O bem-estar dos moradores está no centro."
+          "nl": "Werk geeft veel mensen zingeving.",
+          "pt": "O trabalho dá sentido à vida de muitas pessoas."
         }
       ],
       "grammar": [],
@@ -2118,58 +2122,77 @@
           "id": "s6-u06-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «sublinhar» em neerlandês?",
+          "prompt": "Como se diz «apontar para» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "zekerheid",
+              "text": "waarde",
               "correct": false
             },
             {
               "id": "b",
-              "text": "betrekken bij",
+              "text": "aantonen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "benadrukken",
+              "text": "wijzen op",
               "correct": true
             }
           ],
-          "explanation": "sublinhar = «benadrukken».",
+          "explanation": "apontar para = «wijzen op».",
           "vocabRefs": [
-            "v-benadrukken"
+            "v-wijzen-op"
           ]
         },
         {
           "id": "s6-u06-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «melhoria» em neerlandês?",
+          "prompt": "Como se diz «felicidade» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "ontstaan",
-              "correct": false
+              "text": "geluk",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "tevredenheid",
+              "text": "afnemen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "verbetering",
-              "correct": true
+              "text": "kwestie",
+              "correct": false
             }
           ],
-          "explanation": "melhoria = «verbetering».",
+          "explanation": "felicidade = «geluk».",
+          "vocabRefs": [
+            "v-geluk"
+          ]
+        },
+        {
+          "id": "s6-u06-l008-e03",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Er is een duidelijke ___.",
+          "translation": "Há uma melhoria clara.",
+          "answers": [
+            "verbetering"
+          ],
+          "choices": [
+            "welzijn",
+            "verbetering",
+            "ontstaan"
+          ],
+          "explanation": "Er is een duidelijke verbetering.",
           "vocabRefs": [
             "v-verbetering"
           ]
         },
         {
-          "id": "s6-u06-l008-e03",
+          "id": "s6-u06-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Het is een ___ van tijd.",
@@ -2178,9 +2201,9 @@
             "kwestie"
           ],
           "choices": [
+            "zingeving",
             "kwestie",
-            "verbetering",
-            "tevredenheid"
+            "uitgangspunt"
           ],
           "explanation": "Het is een kwestie van tijd.",
           "vocabRefs": [
@@ -2188,134 +2211,113 @@
           ]
         },
         {
-          "id": "s6-u06-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Het ___ van de bewoners staat centraal.",
-          "translation": "O bem-estar dos moradores está no centro.",
-          "answers": [
-            "welzijn"
-          ],
-          "choices": [
-            "tevredenheid",
-            "geluk",
-            "welzijn"
-          ],
-          "explanation": "Het welzijn van de bewoners staat centraal.",
-          "vocabRefs": [
-            "v-welzijn"
-          ]
-        },
-        {
           "id": "s6-u06-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Er is een duidelijke verbetering.",
+          "audioText": "Het is een kwestie van tijd.",
           "answers": [
-            "Er is een duidelijke verbetering."
+            "Het is een kwestie van tijd."
           ],
-          "translation": "Há uma melhoria clara.",
-          "explanation": "«Er is een duidelijke verbetering.» = Há uma melhoria clara.",
+          "translation": "É uma questão de tempo.",
+          "explanation": "«Het is een kwestie van tijd.» = É uma questão de tempo.",
           "vocabRefs": [
-            "v-verbetering"
+            "v-kwestie"
           ]
         },
         {
           "id": "s6-u06-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat is een belangrijk aspect.",
+          "audioText": "Het verkeer neemt toe.",
           "answers": [
-            "Dat is een belangrijk aspect."
+            "Het verkeer neemt toe."
           ],
-          "translation": "Esse é um aspeto importante.",
-          "explanation": "«Dat is een belangrijk aspect.» = Esse é um aspeto importante.",
-          "vocabRefs": [
-            "v-aspect"
-          ]
+          "translation": "O trânsito está a aumentar.",
+          "explanation": "«Het verkeer neemt toe.» = O trânsito está a aumentar.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u06-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A igualdade é um valor importante.",
+          "prompt": "O nosso ponto de partida é que todos participam.",
           "tokens": [
-            "waarde.",
-            "af.",
-            "een",
             "is",
-            "Gelijkheid",
-            "belangrijke",
-            "tot"
+            "iedereen",
+            "dat",
+            "een",
+            "uitgangspunt",
+            "rokers",
+            "Ons",
+            "meedoet."
           ],
           "answers": [
-            "Gelijkheid is een belangrijke waarde."
+            "Ons uitgangspunt is dat iedereen meedoet."
           ],
-          "explanation": "A igualdade é um valor importante. = Gelijkheid is een belangrijke waarde. (sobram: tot, af.)",
+          "explanation": "O nosso ponto de partida é que todos participam. = Ons uitgangspunt is dat iedereen meedoet. (sobram: rokers, een)",
           "vocabRefs": [
-            "v-gelijkheid",
-            "v-waarde"
+            "v-uitgangspunt"
           ]
         },
         {
           "id": "s6-u06-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Esse é um aspeto importante.",
+          "prompt": "O problema surgiu lentamente.",
           "tokens": [
-            "belangrijk",
+            "meningsuiting",
             "is",
-            "moet",
-            "aspect.",
-            "een",
-            "Dat",
-            "staat"
+            "aantal",
+            "ontstaan.",
+            "langzaam",
+            "Het",
+            "probleem"
           ],
           "answers": [
-            "Dat is een belangrijk aspect."
+            "Het probleem is langzaam ontstaan."
           ],
-          "explanation": "Esse é um aspeto importante. = Dat is een belangrijk aspect. (sobram: moet, staat)",
+          "explanation": "O problema surgiu lentamente. = Het probleem is langzaam ontstaan. (sobram: meningsuiting, aantal)",
           "vocabRefs": [
-            "v-aspect"
+            "v-ontstaan"
           ]
         },
         {
           "id": "s6-u06-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "zekerheid",
-          "pt": "segurança",
-          "article": "de",
-          "explanation": "de zekerheid.",
+          "noun": "aspect",
+          "pt": "aspeto",
+          "article": "het",
+          "explanation": "het aspect.",
           "vocabRefs": [
-            "v-zekerheid"
+            "v-aspect"
           ]
         },
         {
           "id": "s6-u06-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Dat is een belangrijk aspect.»?",
+          "prompt": "O que significa: «Een vast contract geeft zekerheid.»?",
           "options": [
             {
               "id": "a",
-              "text": "A satisfação é mais importante do que a riqueza.",
-              "correct": false
+              "text": "Um contrato sem termo dá segurança.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "O número de fumadores está a diminuir.",
+              "text": "Esse é um aspeto importante.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Esse é um aspeto importante.",
-              "correct": true
+              "text": "Considero isso uma oportunidade.",
+              "correct": false
             }
           ],
-          "explanation": "«Dat is een belangrijk aspect.» = Esse é um aspeto importante.",
+          "explanation": "«Een vast contract geeft zekerheid.» = Um contrato sem termo dá segurança.",
           "vocabRefs": [
-            "v-aspect"
+            "v-zekerheid"
           ]
         }
       ],
@@ -2379,16 +2381,16 @@
       ],
       "examples": [
         {
-          "nl": "Verandering kost tijd.",
-          "pt": "A mudança leva tempo."
+          "nl": "Het is een kwestie van tijd.",
+          "pt": "É uma questão de tempo."
         },
         {
-          "nl": "De minister benadrukte het belang van onderwijs.",
-          "pt": "O ministro sublinhou a importância da educação."
+          "nl": "Ik beschouw het als een kans.",
+          "pt": "Considero isso uma oportunidade."
         },
         {
-          "nl": "We willen bewoners bij het plan betrekken.",
-          "pt": "Queremos envolver os moradores no plano."
+          "nl": "Het onderzoek toont aan dat het werkt.",
+          "pt": "A investigação demonstra que funciona."
         }
       ],
       "grammar": [],
@@ -2397,194 +2399,196 @@
           "id": "s6-u06-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Um contrato sem termo dá segurança.",
+          "prompt": "A satisfação é mais importante do que a riqueza.",
           "tokens": [
-            "vast",
-            "Een",
-            "geeft",
-            "zekerheid.",
-            "benadrukte",
-            "contract",
-            "aantal"
+            "is",
+            "beschouw",
+            "belangrijker",
+            "Tevredenheid",
+            "Geld",
+            "dan",
+            "rijkdom."
           ],
           "answers": [
-            "Een vast contract geeft zekerheid."
+            "Tevredenheid is belangrijker dan rijkdom."
           ],
-          "explanation": "Um contrato sem termo dá segurança. = Een vast contract geeft zekerheid. (sobram: benadrukte, aantal)",
+          "explanation": "A satisfação é mais importante do que a riqueza. = Tevredenheid is belangrijker dan rijkdom. (sobram: Geld, beschouw)",
           "vocabRefs": [
-            "v-zekerheid"
+            "v-tevredenheid"
           ]
         },
         {
           "id": "s6-u06-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há uma melhoria clara.",
+          "prompt": "O ministro sublinhou a importância da educação.",
           "tokens": [
-            "centraal.",
-            "duidelijke",
-            "Er",
-            "is",
+            "De",
+            "kwestie",
             "een",
-            "verbetering.",
-            "willen"
+            "benadrukte",
+            "belang",
+            "minister",
+            "van",
+            "het",
+            "onderwijs."
           ],
           "answers": [
-            "Er is een duidelijke verbetering."
+            "De minister benadrukte het belang van onderwijs."
           ],
-          "explanation": "Há uma melhoria clara. = Er is een duidelijke verbetering. (sobram: centraal., willen)",
-          "vocabRefs": [
-            "v-verbetering"
-          ]
+          "explanation": "O ministro sublinhou a importância da educação. = De minister benadrukte het belang van onderwijs. (sobram: een, kwestie)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u06-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Queremos envolver os moradores no plano.",
+          "prompt": "A investigação demonstra que funciona.",
           "tokens": [
-            "bewoners",
-            "betrekken.",
-            "kwestie",
             "het",
-            "bij",
-            "in",
-            "We",
-            "willen",
-            "plan"
+            "Het",
+            "onderzoek",
+            "belangrijke",
+            "Je",
+            "toont",
+            "aan",
+            "werkt.",
+            "dat"
           ],
           "answers": [
-            "We willen bewoners bij het plan betrekken."
+            "Het onderzoek toont aan dat het werkt."
           ],
-          "explanation": "Queremos envolver os moradores no plano. = We willen bewoners bij het plan betrekken. (sobram: in, kwestie)",
+          "explanation": "A investigação demonstra que funciona. = Het onderzoek toont aan dat het werkt. (sobram: Je, belangrijke)",
           "vocabRefs": []
         },
         {
           "id": "s6-u06-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een vast contract geeft zekerheid.",
+          "audioText": "Verandering kost tijd.",
           "answers": [
-            "Een vast contract geeft zekerheid."
+            "Verandering kost tijd."
           ],
-          "translation": "Um contrato sem termo dá segurança.",
-          "explanation": "«Een vast contract geeft zekerheid.» = Um contrato sem termo dá segurança.",
+          "translation": "A mudança leva tempo.",
+          "explanation": "«Verandering kost tijd.» = A mudança leva tempo.",
           "vocabRefs": [
-            "v-zekerheid"
+            "v-verandering"
           ]
         },
         {
           "id": "s6-u06-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het verkeer neemt toe.",
+          "audioText": "Werk geeft veel mensen zingeving.",
           "answers": [
-            "Het verkeer neemt toe."
+            "Werk geeft veel mensen zingeving."
           ],
-          "translation": "O trânsito está a aumentar.",
-          "explanation": "«Het verkeer neemt toe.» = O trânsito está a aumentar.",
-          "vocabRefs": []
+          "translation": "O trabalho dá sentido à vida de muitas pessoas.",
+          "explanation": "«Werk geeft veel mensen zingeving.» = O trabalho dá sentido à vida de muitas pessoas.",
+          "vocabRefs": [
+            "v-zingeving"
+          ]
         },
         {
           "id": "s6-u06-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het is een kwestie van tijd.",
+          "audioText": "Er is een duidelijke verbetering.",
           "answers": [
-            "Het is een kwestie van tijd."
+            "Er is een duidelijke verbetering."
           ],
-          "translation": "É uma questão de tempo.",
-          "explanation": "«Het is een kwestie van tijd.» = É uma questão de tempo.",
+          "translation": "Há uma melhoria clara.",
+          "explanation": "«Er is een duidelijke verbetering.» = Há uma melhoria clara.",
           "vocabRefs": [
-            "v-kwestie"
+            "v-verbetering"
           ]
         },
         {
           "id": "s6-u06-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O trabalho dá sentido à vida de muitas pessoas.",
+          "translation": "A igualdade é um valor importante.",
           "tokens": [
-            "Werk",
-            "mensen",
-            "zingeving.",
-            "geeft",
-            "veel"
+            "Gelijkheid",
+            "is",
+            "een",
+            "belangrijke",
+            "waarde."
           ],
           "alternatives": [],
-          "explanation": "Werk geeft veel mensen zingeving.",
+          "explanation": "Gelijkheid is een belangrijke waarde.",
           "vocabRefs": [
-            "v-zingeving"
+            "v-gelijkheid",
+            "v-waarde"
           ]
         },
         {
           "id": "s6-u06-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A mudança leva tempo.",
+          "translation": "A liberdade de expressão",
           "tokens": [
-            "Verandering",
-            "tijd.",
-            "kost"
+            "De",
+            "vrijheid",
+            "van",
+            "meningsuiting"
           ],
           "alternatives": [],
-          "explanation": "Verandering kost tijd.",
-          "vocabRefs": [
-            "v-verandering"
-          ]
+          "explanation": "De vrijheid van meningsuiting",
+          "vocabRefs": []
         },
         {
           "id": "s6-u06-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «afnemen»?",
+          "prompt": "O que significa «de waarde»?",
           "options": [
             {
               "id": "a",
-              "text": "sentido",
+              "text": "contexto",
               "correct": false
             },
             {
               "id": "b",
-              "text": "diminuir",
-              "correct": true
+              "text": "melhoria",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "felicidade",
-              "correct": false
+              "text": "valor",
+              "correct": true
             }
           ],
-          "explanation": "«afnemen» = diminuir.",
+          "explanation": "«de waarde» = valor.",
           "vocabRefs": [
-            "v-afnemen"
+            "v-waarde"
           ]
         },
         {
           "id": "s6-u06-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de gelijkheid»?",
+          "prompt": "O que significa «beschouwen als»?",
           "options": [
             {
               "id": "a",
-              "text": "diminuir",
+              "text": "bem-estar",
               "correct": false
             },
             {
               "id": "b",
-              "text": "igualdade",
+              "text": "considerar como",
               "correct": true
             },
             {
               "id": "c",
-              "text": "apontar para",
+              "text": "conceito",
               "correct": false
             }
           ],
-          "explanation": "«de gelijkheid» = igualdade.",
+          "explanation": "«beschouwen als» = considerar como.",
           "vocabRefs": [
-            "v-gelijkheid"
+            "v-beschouwen-als"
           ]
         }
       ],

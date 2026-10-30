@@ -1872,12 +1872,12 @@
       ],
       "examples": [
         {
-          "nl": "De kinderen willen naar de dierentuin.",
-          "pt": "As crianças querem ir ao jardim zoológico."
+          "nl": "Donderdag is het koopavond.",
+          "pt": "Quinta-feira é dia de compras à noite."
         },
         {
-          "nl": "Ik leen boeken in de bibliotheek.",
-          "pt": "Requisito livros na biblioteca."
+          "nl": "Ik woon in een rustige buurt.",
+          "pt": "Vivo num bairro sossegado."
         },
         {
           "nl": "Op zondag is de winkel gesloten.",
@@ -1935,11 +1935,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ao domingo a loja está fechada.",
           "tokens": [
-            "zondag",
             "Op",
+            "zondag",
+            "is",
             "de",
             "winkel",
-            "is",
             "gesloten."
           ],
           "alternatives": [],
@@ -1954,9 +1954,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quinta-feira é dia de compras à noite.",
           "tokens": [
-            "het",
             "Donderdag",
             "is",
+            "het",
             "koopavond."
           ],
           "alternatives": [],
@@ -1971,12 +1971,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Requisito livros na biblioteca.",
           "tokens": [
-            "bibliotheek.",
-            "in",
             "Ik",
+            "leen",
             "boeken",
+            "in",
             "de",
-            "leen"
+            "bibliotheek."
           ],
           "alternatives": [],
           "explanation": "Ik leen boeken in de bibliotheek.",
@@ -1988,16 +1988,16 @@
           "id": "s3-u04-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een rondvaart door de grachten.»?",
+          "prompt": "O que significa: «Donderdag is het koopavond.»?",
           "options": [
             {
               "id": "a",
-              "text": "Há um centro comercial no bairro.",
+              "text": "De manhã vamos ao mercado, à tarde ao museu e à noite ao teatro.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Um passeio de barco pelos canais.",
+              "text": "Quinta-feira é dia de compras à noite.",
               "correct": true
             },
             {
@@ -2006,20 +2006,20 @@
               "correct": false
             }
           ],
-          "explanation": "«Een rondvaart door de grachten.» = Um passeio de barco pelos canais.",
+          "explanation": "«Donderdag is het koopavond.» = Quinta-feira é dia de compras à noite.",
           "vocabRefs": [
-            "v-rondvaart"
+            "v-koopavond"
           ]
         },
         {
           "id": "s3-u04-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Er is een winkelcentrum in de wijk.»?",
+          "prompt": "O que significa: «Ik woon in een rustige buurt.»?",
           "options": [
             {
               "id": "a",
-              "text": "Há um centro comercial no bairro.",
+              "text": "Vivo num bairro sossegado.",
               "correct": true
             },
             {
@@ -2029,59 +2029,58 @@
             },
             {
               "id": "c",
-              "text": "Um passeio de barco pelos canais.",
+              "text": "Requisito livros na biblioteca.",
               "correct": false
             }
           ],
-          "explanation": "«Er is een winkelcentrum in de wijk.» = Há um centro comercial no bairro.",
+          "explanation": "«Ik woon in een rustige buurt.» = Vivo num bairro sossegado.",
           "vocabRefs": [
-            "v-centrum",
-            "v-winkelcentrum",
-            "v-wijk"
+            "v-buurt"
           ]
         },
         {
           "id": "s3-u04-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quinta-feira é dia de compras à noite.",
+          "prompt": "As crianças querem ir ao jardim zoológico.",
           "tokens": [
             "De",
+            "willen",
             "het",
-            "koopavond.",
-            "in",
-            "Donderdag",
-            "is"
+            "bibliotheek.",
+            "kinderen",
+            "dierentuin.",
+            "de",
+            "naar"
           ],
           "answers": [
-            "Donderdag is het koopavond."
+            "De kinderen willen naar de dierentuin."
           ],
-          "explanation": "Quinta-feira é dia de compras à noite. = Donderdag is het koopavond. (sobram: De, in)",
+          "explanation": "As crianças querem ir ao jardim zoológico. = De kinderen willen naar de dierentuin. (sobram: het, bibliotheek.)",
           "vocabRefs": [
-            "v-koopavond"
+            "v-dierentuin"
           ]
         },
         {
           "id": "s3-u04-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Requisito livros na biblioteca.",
+          "prompt": "Visitamos o Rijksmuseum.",
           "tokens": [
-            "bibliotheek.",
-            "grachten.",
-            "boeken",
-            "leen",
-            "Ik",
-            "de",
-            "winkelcentrum",
-            "in"
+            "is",
+            "het",
+            "We",
+            "Er",
+            "bezoeken",
+            "Rijksmuseum."
           ],
           "answers": [
-            "Ik leen boeken in de bibliotheek."
+            "We bezoeken het Rijksmuseum."
           ],
-          "explanation": "Requisito livros na biblioteca. = Ik leen boeken in de bibliotheek. (sobram: grachten., winkelcentrum)",
+          "explanation": "Visitamos o Rijksmuseum. = We bezoeken het Rijksmuseum. (sobram: is, Er)",
           "vocabRefs": [
-            "v-bibliotheek"
+            "v-museum",
+            "v-bezoeken"
           ]
         }
       ],
@@ -2163,77 +2162,58 @@
           "id": "s3-u04-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «seguro» em neerlandês?",
+          "prompt": "Como se diz «centro» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "veilig",
+              "text": "centrum",
               "correct": true
             },
             {
               "id": "b",
-              "text": "koopavond",
+              "text": "bezoeken",
               "correct": false
             },
             {
               "id": "c",
-              "text": "theater",
+              "text": "park",
               "correct": false
             }
           ],
-          "explanation": "seguro = «veilig».",
+          "explanation": "centro = «centrum».",
           "vocabRefs": [
-            "v-veilig"
+            "v-centrum"
           ]
         },
         {
           "id": "s3-u04-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «horário de abertura» em neerlandês?",
+          "prompt": "Como se diz «parque» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "openingstijden",
+              "text": "park",
               "correct": true
             },
             {
               "id": "b",
-              "text": "winkelcentrum",
+              "text": "gemeentehuis",
               "correct": false
             },
             {
               "id": "c",
-              "text": "markt",
+              "text": "bibliotheek",
               "correct": false
             }
           ],
-          "explanation": "horário de abertura = «openingstijden».",
+          "explanation": "parque = «park».",
           "vocabRefs": [
-            "v-openingstijden"
+            "v-park"
           ]
         },
         {
           "id": "s3-u04-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik woon in een rustige ___.",
-          "translation": "Vivo num bairro sossegado.",
-          "answers": [
-            "buurt"
-          ],
-          "choices": [
-            "buurt",
-            "centrum",
-            "park"
-          ],
-          "explanation": "Ik woon in een rustige buurt.",
-          "vocabRefs": [
-            "v-buurt"
-          ]
-        },
-        {
-          "id": "s3-u04-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Donderdag is het ___.",
@@ -2242,13 +2222,32 @@
             "koopavond"
           ],
           "choices": [
-            "markt",
+            "winkelcentrum",
             "koopavond",
-            "bezoeken"
+            "park"
           ],
           "explanation": "Donderdag is het koopavond.",
           "vocabRefs": [
             "v-koopavond"
+          ]
+        },
+        {
+          "id": "s3-u04-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Ik woon in een rustige ___.",
+          "translation": "Vivo num bairro sossegado.",
+          "answers": [
+            "buurt"
+          ],
+          "choices": [
+            "alleen",
+            "buurt",
+            "theater"
+          ],
+          "explanation": "Ik woon in een rustige buurt.",
+          "vocabRefs": [
+            "v-buurt"
           ]
         },
         {
@@ -2284,55 +2283,58 @@
           "id": "s3-u04-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é o horário de abertura?",
+          "prompt": "A câmara municipal fica no centro.",
           "tokens": [
-            "de",
-            "zijn",
-            "zaterdag",
-            "Wat",
+            "gemeentehuis",
             "is",
-            "openingstijden?"
+            "centrum.",
+            "boeken",
+            "Het",
+            "het",
+            "de",
+            "in"
           ],
           "answers": [
-            "Wat zijn de openingstijden?"
+            "Het gemeentehuis is in het centrum."
           ],
-          "explanation": "Qual é o horário de abertura? = Wat zijn de openingstijden? (sobram: is, zaterdag)",
+          "explanation": "A câmara municipal fica no centro. = Het gemeentehuis is in het centrum. (sobram: boeken, de)",
           "vocabRefs": [
-            "v-openingstijden"
+            "v-centrum",
+            "v-gemeentehuis"
           ]
         },
         {
           "id": "s3-u04-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Um passeio de barco pelos canais.",
+          "prompt": "Ao sábado há mercado.",
           "tokens": [
-            "rondvaart",
-            "Ik",
-            "Een",
-            "de",
-            "grachten.",
+            "Op",
+            "markt.",
+            "gemeentehuis",
+            "De",
+            "er",
             "is",
-            "door"
+            "zaterdag"
           ],
           "answers": [
-            "Een rondvaart door de grachten."
+            "Op zaterdag is er markt."
           ],
-          "explanation": "Um passeio de barco pelos canais. = Een rondvaart door de grachten. (sobram: Ik, is)",
+          "explanation": "Ao sábado há mercado. = Op zaterdag is er markt. (sobram: De, gemeentehuis)",
           "vocabRefs": [
-            "v-rondvaart"
+            "v-markt"
           ]
         },
         {
           "id": "s3-u04-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "koopavond",
-          "pt": "noite de compras",
+          "noun": "wijk",
+          "pt": "bairro",
           "article": "de",
-          "explanation": "de koopavond.",
+          "explanation": "de wijk.",
           "vocabRefs": [
-            "v-koopavond"
+            "v-wijk"
           ]
         },
         {
@@ -2424,16 +2426,16 @@
       ],
       "examples": [
         {
-          "nl": "De buurt is veilig voor kinderen.",
-          "pt": "O bairro é seguro para crianças."
+          "nl": "De kinderen willen naar de dierentuin.",
+          "pt": "As crianças querem ir ao jardim zoológico."
         },
         {
-          "nl": "Er is een winkelcentrum in de wijk.",
-          "pt": "Há um centro comercial no bairro."
+          "nl": "Ik woon in een rustige buurt.",
+          "pt": "Vivo num bairro sossegado."
         },
         {
-          "nl": "We bezoeken het Rijksmuseum.",
-          "pt": "Visitamos o Rijksmuseum."
+          "nl": "Het gemeentehuis is in het centrum.",
+          "pt": "A câmara municipal fica no centro."
         }
       ],
       "grammar": [],
@@ -2557,12 +2559,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "As crianças querem ir ao jardim zoológico.",
           "tokens": [
-            "dierentuin.",
-            "naar",
-            "willen",
-            "de",
+            "De",
             "kinderen",
-            "De"
+            "willen",
+            "naar",
+            "de",
+            "dierentuin."
           ],
           "alternatives": [],
           "explanation": "De kinderen willen naar de dierentuin.",
@@ -2576,12 +2578,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "A câmara municipal fica no centro.",
           "tokens": [
-            "in",
-            "centrum.",
             "Het",
             "gemeentehuis",
+            "is",
+            "in",
             "het",
-            "is"
+            "centrum."
           ],
           "alternatives": [],
           "explanation": "Het gemeentehuis is in het centrum.",
@@ -2594,12 +2596,12 @@
           "id": "s3-u04-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de rondvaart»?",
+          "prompt": "O que significa «het postkantoor»?",
           "options": [
             {
               "id": "a",
-              "text": "passeio de barco",
-              "correct": true
+              "text": "mercado",
+              "correct": false
             },
             {
               "id": "b",
@@ -2608,40 +2610,40 @@
             },
             {
               "id": "c",
-              "text": "seguro",
-              "correct": false
+              "text": "posto dos correios",
+              "correct": true
             }
           ],
-          "explanation": "«de rondvaart» = passeio de barco.",
+          "explanation": "«het postkantoor» = posto dos correios.",
           "vocabRefs": [
-            "v-rondvaart"
+            "v-postkantoor"
           ]
         },
         {
           "id": "s3-u04-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «bezoeken»?",
+          "prompt": "O que significa «het winkelcentrum»?",
           "options": [
             {
               "id": "a",
-              "text": "horário de abertura",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "visitar",
+              "text": "centro comercial",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "parque infantil",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "só",
+              "text": "visitar",
               "correct": false
             }
           ],
-          "explanation": "«bezoeken» = visitar.",
+          "explanation": "«het winkelcentrum» = centro comercial.",
           "vocabRefs": [
-            "v-bezoeken"
+            "v-winkelcentrum"
           ]
         }
       ],

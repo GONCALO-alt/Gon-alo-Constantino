@@ -1850,12 +1850,12 @@
       ],
       "examples": [
         {
-          "nl": "Bijna de helft van de mensen fietst dagelijks.",
-          "pt": "Quase metade das pessoas anda de bicicleta diariamente."
+          "nl": "Misschien moeten we het plan heroverwegen.",
+          "pt": "Talvez devamos reconsiderar o plano."
         },
         {
-          "nl": "Het lijkt me dat we te weinig tijd hebben.",
-          "pt": "Parece-me que temos pouco tempo."
+          "nl": "Een op de vijf jongeren voelt zich eenzaam.",
+          "pt": "Um em cada cinco jovens sente-se só."
         },
         {
           "nl": "Net als in Duitsland zijn de huren hoog.",
@@ -1908,15 +1908,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "Mantenho que é uma má ideia.",
           "tokens": [
-            "blijf",
-            "een",
-            "dat",
-            "idee",
             "Ik",
-            "het",
+            "blijf",
             "erbij",
-            "is.",
-            "slecht"
+            "dat",
+            "het",
+            "een",
+            "slecht",
+            "idee",
+            "is."
           ],
           "alternatives": [],
           "explanation": "Ik blijf erbij dat het een slecht idee is.",
@@ -1928,15 +1928,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "Parece-me que temos pouco tempo.",
           "tokens": [
+            "Het",
             "lijkt",
+            "me",
             "dat",
+            "we",
             "te",
             "weinig",
-            "Het",
-            "we",
             "tijd",
-            "hebben.",
-            "me"
+            "hebben."
           ],
           "alternatives": [],
           "explanation": "Het lijkt me dat we te weinig tijd hebben.",
@@ -1948,13 +1948,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Compara com a situação em Portugal.",
           "tokens": [
-            "de",
-            "met",
-            "situatie",
-            "het",
-            "Portugal.",
             "Vergelijk",
-            "in"
+            "het",
+            "met",
+            "de",
+            "situatie",
+            "in",
+            "Portugal."
           ],
           "alternatives": [],
           "explanation": "Vergelijk het met de situatie in Portugal.",
@@ -1964,98 +1964,101 @@
           "id": "s6-u02-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Daar bestaat geen twijfel over.»?",
+          "prompt": "O que significa: «De ongelijkheid groeit.»?",
           "options": [
             {
               "id": "a",
-              "text": "Um em cada cinco jovens sente-se só.",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Estou convencido de que isto funciona.",
               "correct": false
             },
             {
-              "id": "c",
-              "text": "Não há dúvida sobre isso.",
+              "id": "b",
+              "text": "A desigualdade está a aumentar.",
               "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Convenceste-me, mudei de opinião.",
+              "correct": false
             }
           ],
-          "explanation": "«Daar bestaat geen twijfel over.» = Não há dúvida sobre isso.",
+          "explanation": "«De ongelijkheid groeit.» = A desigualdade está a aumentar.",
           "vocabRefs": [
-            "v-twijfel"
+            "v-ongelijkheid"
           ]
         },
         {
           "id": "s6-u02-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb het idee dat hij niet luistert.»?",
+          "prompt": "O que significa: «Neem nou Kopenhagen: daar fietst iedereen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tenho a impressão de que ele não ouve.",
-              "correct": true
+              "text": "Estou convencido de que isto funciona.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Isso é sem dúvida verdade.",
-              "correct": false
+              "text": "Olha por exemplo Copenhaga: lá toda a gente anda de bicicleta.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Investigadores da universidade concluem que…",
+              "text": "Mantenho que é uma má ideia.",
               "correct": false
             }
           ],
-          "explanation": "«Ik heb het idee dat hij niet luistert.» = Tenho a impressão de que ele não ouve.",
-          "vocabRefs": []
+          "explanation": "«Neem nou Kopenhagen: daar fietst iedereen.» = Olha por exemplo Copenhaga: lá toda a gente anda de bicicleta.",
+          "vocabRefs": [
+            "v-neem-nou"
+          ]
         },
         {
           "id": "s6-u02-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tenho a impressão de que ele não ouve.",
+          "prompt": "Os números mostram que o número está a subir.",
           "tokens": [
-            "het",
-            "dat",
-            "heb",
-            "niet",
-            "luistert.",
-            "idee",
+            "stijgt.",
+            "ervan",
             "de",
-            "daar",
-            "hij",
-            "Ik"
+            "aantal",
+            "dat",
+            "cijfers",
+            "idee",
+            "blijkt",
+            "het",
+            "Uit"
           ],
           "answers": [
-            "Ik heb het idee dat hij niet luistert."
+            "Uit de cijfers blijkt dat het aantal stijgt."
           ],
-          "explanation": "Tenho a impressão de que ele não ouve. = Ik heb het idee dat hij niet luistert. (sobram: daar, de)",
-          "vocabRefs": []
+          "explanation": "Os números mostram que o número está a subir. = Uit de cijfers blijkt dat het aantal stijgt. (sobram: ervan, idee)",
+          "vocabRefs": [
+            "v-cijfers"
+          ]
         },
         {
           "id": "s6-u02-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A língua é a chave da integração.",
+          "prompt": "Isso é sem dúvida verdade.",
           "tokens": [
-            "integratie.",
-            "Taal",
-            "heroverwegen.",
-            "tot",
+            "Dat",
+            "waar.",
             "is",
-            "CBS",
-            "de",
-            "sleutel"
+            "van",
+            "ongetwijfeld",
+            "zich"
           ],
           "answers": [
-            "Taal is de sleutel tot integratie."
+            "Dat is ongetwijfeld waar."
           ],
-          "explanation": "A língua é a chave da integração. = Taal is de sleutel tot integratie. (sobram: CBS, heroverwegen.)",
+          "explanation": "Isso é sem dúvida verdade. = Dat is ongetwijfeld waar. (sobram: van, zich)",
           "vocabRefs": [
-            "v-integratie"
+            "v-twijfel",
+            "v-ongetwijfeld"
           ]
         }
       ],
@@ -2121,16 +2124,16 @@
       ],
       "examples": [
         {
-          "nl": "Bijna de helft van de mensen fietst dagelijks.",
-          "pt": "Quase metade das pessoas anda de bicicleta diariamente."
+          "nl": "Het lijkt me dat we te weinig tijd hebben.",
+          "pt": "Parece-me que temos pouco tempo."
         },
         {
-          "nl": "Een op de vijf jongeren voelt zich eenzaam.",
-          "pt": "Um em cada cinco jovens sente-se só."
+          "nl": "De ongelijkheid groeit.",
+          "pt": "A desigualdade está a aumentar."
         },
         {
-          "nl": "Er is een grote woningnood.",
-          "pt": "Há uma grande crise da habitação."
+          "nl": "Er zijn te weinig betaalbare woningen.",
+          "pt": "Há poucas casas a preços acessíveis."
         }
       ],
       "grammar": [],
@@ -2139,73 +2142,73 @@
           "id": "s6-u02-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «desigualdade» em neerlandês?",
+          "prompt": "Como se diz «um em cada» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "integratie",
+              "text": "ervan overtuigd zijn",
               "correct": false
             },
             {
               "id": "b",
-              "text": "woningnood",
-              "correct": false
+              "text": "een op de",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "ongelijkheid",
-              "correct": true
+              "text": "integratie",
+              "correct": false
             }
           ],
-          "explanation": "desigualdade = «ongelijkheid».",
+          "explanation": "um em cada = «een op de».",
           "vocabRefs": [
-            "v-ongelijkheid"
+            "v-een-op-de"
           ]
         },
         {
           "id": "s6-u02-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «reconsiderar» em neerlandês?",
+          "prompt": "Como se diz «integração» em neerlandês?",
           "options": [
             {
               "id": "a",
               "text": "heroverwegen",
-              "correct": true
+              "correct": false
             },
             {
               "id": "b",
-              "text": "ongelijkheid",
-              "correct": false
+              "text": "integratie",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "net als",
+              "text": "nuanceren",
               "correct": false
             }
           ],
-          "explanation": "reconsiderar = «heroverwegen».",
+          "explanation": "integração = «integratie».",
           "vocabRefs": [
-            "v-heroverwegen"
+            "v-integratie"
           ]
         },
         {
           "id": "s6-u02-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Daar bestaat geen ___ over.",
-          "translation": "Não há dúvida sobre isso.",
+          "sentence": "Er is een grote ___.",
+          "translation": "Há uma grande crise da habitação.",
           "answers": [
-            "twijfel"
+            "woningnood"
           ],
           "choices": [
-            "twijfel",
-            "onderzoeker",
-            "blijken"
+            "betaalbaar",
+            "woningnood",
+            "integratie"
           ],
-          "explanation": "Daar bestaat geen twijfel over.",
+          "explanation": "Er is een grote woningnood.",
           "vocabRefs": [
-            "v-twijfel"
+            "v-woningnood"
           ]
         },
         {
@@ -2218,9 +2221,9 @@
             "nuanceren"
           ],
           "choices": [
-            "betaalbaar",
             "nuanceren",
-            "onderzoeker"
+            "onderzoeker",
+            "cijfers"
           ],
           "explanation": "Ik wil mijn standpunt nuanceren.",
           "vocabRefs": [
@@ -2231,111 +2234,114 @@
           "id": "s6-u02-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Bijna de helft van de mensen fietst dagelijks.",
+          "audioText": "Volgens het CBS werkt 40 procent parttime.",
           "answers": [
-            "Bijna de helft van de mensen fietst dagelijks."
+            "Volgens het CBS werkt 40 procent parttime."
           ],
-          "translation": "Quase metade das pessoas anda de bicicleta diariamente.",
-          "explanation": "«Bijna de helft van de mensen fietst dagelijks.» = Quase metade das pessoas anda de bicicleta diariamente.",
-          "vocabRefs": []
+          "translation": "Segundo o CBS, 40% trabalha a tempo parcial.",
+          "explanation": "«Volgens het CBS werkt 40 procent parttime.» = Segundo o CBS, 40% trabalha a tempo parcial.",
+          "vocabRefs": [
+            "v-procent"
+          ]
         },
         {
           "id": "s6-u02-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik wil mijn standpunt nuanceren.",
+          "audioText": "Een op de vijf jongeren voelt zich eenzaam.",
           "answers": [
-            "Ik wil mijn standpunt nuanceren."
+            "Een op de vijf jongeren voelt zich eenzaam."
           ],
-          "translation": "Quero matizar a minha posição.",
-          "explanation": "«Ik wil mijn standpunt nuanceren.» = Quero matizar a minha posição.",
+          "translation": "Um em cada cinco jovens sente-se só.",
+          "explanation": "«Een op de vijf jongeren voelt zich eenzaam.» = Um em cada cinco jovens sente-se só.",
           "vocabRefs": [
-            "v-nuanceren"
+            "v-een-op-de"
           ]
         },
         {
           "id": "s6-u02-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Mantenho que é uma má ideia.",
+          "prompt": "Parece-me que temos pouco tempo.",
           "tokens": [
-            "het",
-            "fietst",
-            "Ik",
-            "slecht",
             "dat",
-            "blijf",
-            "erbij",
-            "is.",
-            "idee",
-            "een",
-            "Vergelijk"
+            "te",
+            "lijkt",
+            "me",
+            "weinig",
+            "Het",
+            "tijd",
+            "hebben.",
+            "is",
+            "in",
+            "we"
           ],
           "answers": [
-            "Ik blijf erbij dat het een slecht idee is."
+            "Het lijkt me dat we te weinig tijd hebben."
           ],
-          "explanation": "Mantenho que é uma má ideia. = Ik blijf erbij dat het een slecht idee is. (sobram: Vergelijk, fietst)",
+          "explanation": "Parece-me que temos pouco tempo. = Het lijkt me dat we te weinig tijd hebben. (sobram: is, in)",
           "vocabRefs": []
         },
         {
           "id": "s6-u02-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não há dúvida sobre isso.",
+          "prompt": "Talvez devamos reconsiderar o plano.",
           "tokens": [
-            "twijfel",
-            "over.",
-            "zich",
-            "geen",
-            "bestaat",
-            "Er",
-            "Daar"
+            "moeten",
+            "het",
+            "Misschien",
+            "heroverwegen.",
+            "we",
+            "procent",
+            "plan",
+            "helft."
           ],
           "answers": [
-            "Daar bestaat geen twijfel over."
+            "Misschien moeten we het plan heroverwegen."
           ],
-          "explanation": "Não há dúvida sobre isso. = Daar bestaat geen twijfel over. (sobram: zich, Er)",
+          "explanation": "Talvez devamos reconsiderar o plano. = Misschien moeten we het plan heroverwegen. (sobram: procent, helft.)",
           "vocabRefs": [
-            "v-twijfel"
+            "v-heroverwegen"
           ]
         },
         {
           "id": "s6-u02-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "integratie",
-          "pt": "integração",
+          "noun": "ongelijkheid",
+          "pt": "desigualdade",
           "article": "de",
-          "explanation": "de integratie.",
+          "explanation": "de ongelijkheid.",
           "vocabRefs": [
-            "v-integratie"
+            "v-ongelijkheid"
           ]
         },
         {
           "id": "s6-u02-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Net als in Duitsland zijn de huren hoog.»?",
+          "prompt": "O que significa: «Misschien moeten we het plan heroverwegen.»?",
           "options": [
             {
               "id": "a",
-              "text": "A língua é a chave da integração.",
+              "text": "A desigualdade está a aumentar.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Quase metade das pessoas anda de bicicleta diariamente.",
+              "text": "Investigadores da universidade concluem que…",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Tal como na Alemanha, as rendas são altas.",
+              "text": "Talvez devamos reconsiderar o plano.",
               "correct": true
             }
           ],
-          "explanation": "«Net als in Duitsland zijn de huren hoog.» = Tal como na Alemanha, as rendas são altas.",
+          "explanation": "«Misschien moeten we het plan heroverwegen.» = Talvez devamos reconsiderar o plano.",
           "vocabRefs": [
-            "v-net-als"
+            "v-heroverwegen"
           ]
         }
       ],
@@ -2405,12 +2411,12 @@
           "pt": "Olha por exemplo Copenhaga: lá toda a gente anda de bicicleta."
         },
         {
-          "nl": "Ter vergelijking: in 2010 was het de helft.",
-          "pt": "A título de comparação: em 2010 era metade."
+          "nl": "Ik wil mijn standpunt nuanceren.",
+          "pt": "Quero matizar a minha posição."
         },
         {
-          "nl": "Het lijkt me dat we te weinig tijd hebben.",
-          "pt": "Parece-me que temos pouco tempo."
+          "nl": "Dat is ongetwijfeld waar.",
+          "pt": "Isso é sem dúvida verdade."
         }
       ],
       "grammar": [],
@@ -2419,47 +2425,47 @@
           "id": "s6-u02-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Convenceste-me, mudei de opinião.",
+          "prompt": "Não há dúvida sobre isso.",
           "tokens": [
-            "ik",
-            "helft",
-            "me",
-            "Je",
-            "hebt",
-            "mening",
-            "ben",
-            "overtuigd,",
-            "idee",
-            "van",
-            "veranderd."
+            "twijfel",
+            "te",
+            "fietst",
+            "Daar",
+            "bestaat",
+            "over.",
+            "geen"
           ],
           "answers": [
-            "Je hebt me overtuigd, ik ben van mening veranderd."
+            "Daar bestaat geen twijfel over."
           ],
-          "explanation": "Convenceste-me, mudei de opinião. = Je hebt me overtuigd, ik ben van mening veranderd. (sobram: idee, helft)",
-          "vocabRefs": []
+          "explanation": "Não há dúvida sobre isso. = Daar bestaat geen twijfel over. (sobram: fietst, te)",
+          "vocabRefs": [
+            "v-twijfel"
+          ]
         },
         {
           "id": "s6-u02-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há uma grande crise da habitação.",
+          "prompt": "Mantenho que é uma má ideia.",
           "tokens": [
-            "hij",
-            "we",
-            "woningnood.",
-            "is",
-            "Er",
+            "veranderd.",
+            "slecht",
             "een",
-            "grote"
+            "Ik",
+            "idee",
+            "dat",
+            "erbij",
+            "het",
+            "blijf",
+            "niet",
+            "is."
           ],
           "answers": [
-            "Er is een grote woningnood."
+            "Ik blijf erbij dat het een slecht idee is."
           ],
-          "explanation": "Há uma grande crise da habitação. = Er is een grote woningnood. (sobram: we, hij)",
-          "vocabRefs": [
-            "v-woningnood"
-          ]
+          "explanation": "Mantenho que é uma má ideia. = Ik blijf erbij dat het een slecht idee is. (sobram: veranderd., niet)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u02-l009-e03",
@@ -2467,21 +2473,21 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Tal como na Alemanha, as rendas são altas.",
           "tokens": [
-            "in",
-            "Het",
-            "Duitsland",
             "Net",
-            "de",
-            "zijn",
-            "weinig",
+            "in",
+            "Duitsland",
             "als",
             "huren",
-            "hoog."
+            "de",
+            "hoog.",
+            "Ter",
+            "zijn",
+            "heb"
           ],
           "answers": [
             "Net als in Duitsland zijn de huren hoog."
           ],
-          "explanation": "Tal como na Alemanha, as rendas são altas. = Net als in Duitsland zijn de huren hoog. (sobram: Het, weinig)",
+          "explanation": "Tal como na Alemanha, as rendas são altas. = Net als in Duitsland zijn de huren hoog. (sobram: Ter, heb)",
           "vocabRefs": [
             "v-net-als"
           ]
@@ -2490,132 +2496,130 @@
           "id": "s6-u02-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Een op de vijf jongeren voelt zich eenzaam.",
+          "audioText": "Net als in Duitsland zijn de huren hoog.",
           "answers": [
-            "Een op de vijf jongeren voelt zich eenzaam."
+            "Net als in Duitsland zijn de huren hoog."
           ],
-          "translation": "Um em cada cinco jovens sente-se só.",
-          "explanation": "«Een op de vijf jongeren voelt zich eenzaam.» = Um em cada cinco jovens sente-se só.",
+          "translation": "Tal como na Alemanha, as rendas são altas.",
+          "explanation": "«Net als in Duitsland zijn de huren hoog.» = Tal como na Alemanha, as rendas são altas.",
           "vocabRefs": [
-            "v-een-op-de"
+            "v-net-als"
           ]
         },
         {
           "id": "s6-u02-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Uit de cijfers blijkt dat het aantal stijgt.",
+          "audioText": "Bijna de helft van de mensen fietst dagelijks.",
           "answers": [
-            "Uit de cijfers blijkt dat het aantal stijgt."
+            "Bijna de helft van de mensen fietst dagelijks."
           ],
-          "translation": "Os números mostram que o número está a subir.",
-          "explanation": "«Uit de cijfers blijkt dat het aantal stijgt.» = Os números mostram que o número está a subir.",
-          "vocabRefs": [
-            "v-cijfers"
-          ]
+          "translation": "Quase metade das pessoas anda de bicicleta diariamente.",
+          "explanation": "«Bijna de helft van de mensen fietst dagelijks.» = Quase metade das pessoas anda de bicicleta diariamente.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u02-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Vergelijk het met de situatie in Portugal.",
+          "audioText": "De ongelijkheid groeit.",
           "answers": [
-            "Vergelijk het met de situatie in Portugal."
+            "De ongelijkheid groeit."
           ],
-          "translation": "Compara com a situação em Portugal.",
-          "explanation": "«Vergelijk het met de situatie in Portugal.» = Compara com a situação em Portugal.",
-          "vocabRefs": []
+          "translation": "A desigualdade está a aumentar.",
+          "explanation": "«De ongelijkheid groeit.» = A desigualdade está a aumentar.",
+          "vocabRefs": [
+            "v-ongelijkheid"
+          ]
         },
         {
           "id": "s6-u02-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Não há dúvida sobre isso.",
+          "translation": "Isso é sem dúvida verdade.",
           "tokens": [
-            "twijfel",
-            "over.",
-            "Daar",
-            "bestaat",
-            "geen"
+            "Dat",
+            "is",
+            "ongetwijfeld",
+            "waar."
           ],
           "alternatives": [],
-          "explanation": "Daar bestaat geen twijfel over.",
+          "explanation": "Dat is ongetwijfeld waar.",
           "vocabRefs": [
-            "v-twijfel"
+            "v-twijfel",
+            "v-ongetwijfeld"
           ]
         },
         {
           "id": "s6-u02-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Convenceste-me, mudei de opinião.",
+          "translation": "Quero matizar a minha posição.",
           "tokens": [
-            "van",
-            "Je",
-            "mening",
-            "overtuigd,",
-            "ben",
-            "veranderd.",
-            "me",
-            "ik",
-            "hebt"
+            "Ik",
+            "wil",
+            "mijn",
+            "standpunt",
+            "nuanceren."
           ],
           "alternatives": [],
-          "explanation": "Je hebt me overtuigd, ik ben van mening veranderd.",
-          "vocabRefs": []
+          "explanation": "Ik wil mijn standpunt nuanceren.",
+          "vocabRefs": [
+            "v-nuanceren"
+          ]
         },
         {
           "id": "s6-u02-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «erbij blijven dat»?",
+          "prompt": "O que significa «ter vergelijking»?",
           "options": [
             {
               "id": "a",
-              "text": "revelar-se",
-              "correct": false
+              "text": "a título de comparação",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "sem dúvida",
+              "text": "manter que",
               "correct": false
             },
             {
               "id": "c",
-              "text": "manter que",
-              "correct": true
+              "text": "acessível",
+              "correct": false
             }
           ],
-          "explanation": "«erbij blijven dat» = manter que.",
+          "explanation": "«ter vergelijking» = a título de comparação.",
           "vocabRefs": [
-            "v-erbij-blijven"
+            "v-ter-vergelijking"
           ]
         },
         {
           "id": "s6-u02-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «neem nou…»?",
+          "prompt": "O que significa «de onderzoeker»?",
           "options": [
             {
               "id": "a",
-              "text": "olha por exemplo…",
+              "text": "investigador",
               "correct": true
             },
             {
               "id": "b",
-              "text": "ter a impressão de que",
+              "text": "números",
               "correct": false
             },
             {
               "id": "c",
-              "text": "desigualdade",
+              "text": "manter que",
               "correct": false
             }
           ],
-          "explanation": "«neem nou…» = olha por exemplo….",
+          "explanation": "«de onderzoeker» = investigador.",
           "vocabRefs": [
-            "v-neem-nou"
+            "v-onderzoeker"
           ]
         }
       ],

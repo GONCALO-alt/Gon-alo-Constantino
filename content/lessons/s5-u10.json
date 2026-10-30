@@ -1915,10 +1915,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tens tido muito que fazer?",
           "tokens": [
-            "het",
-            "druk",
             "Heb",
             "je",
+            "het",
+            "druk",
             "gehad?"
           ],
           "alternatives": [],
@@ -1934,10 +1934,10 @@
           "translation": "Estou aberto a feedback.",
           "tokens": [
             "Ik",
-            "open",
-            "feedback.",
             "sta",
-            "voor"
+            "open",
+            "voor",
+            "feedback."
           ],
           "alternatives": [],
           "explanation": "Ik sta open voor feedback.",
@@ -1951,12 +1951,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Também vens ao copo de sexta à tarde?",
           "tokens": [
-            "je",
             "Kom",
-            "vrijdagmiddagborrel?",
+            "je",
             "ook",
             "naar",
-            "de"
+            "de",
+            "vrijdagmiddagborrel?"
           ],
           "alternatives": [],
           "explanation": "Kom je ook naar de vrijdagmiddagborrel?",
@@ -1968,16 +1968,43 @@
           "id": "s5-u10-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een verbeterpunt is de tijd.»?",
+          "prompt": "O que significa: «Heb je het druk gehad?»?",
           "options": [
             {
               "id": "a",
-              "text": "O conteúdo estava bom, mas a estrutura pode melhorar.",
+              "text": "Parabéns pela tua apresentação!",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Um ponto a melhorar é o tempo.",
+              "text": "Não precisas de te defender.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Tens tido muito que fazer?",
+              "correct": true
+            }
+          ],
+          "explanation": "«Heb je het druk gehad?» = Tens tido muito que fazer?",
+          "vocabRefs": [
+            "v-druk-gehad"
+          ]
+        },
+        {
+          "id": "s5-u10-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Kom je ook naar de vrijdagmiddagborrel?»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Vou pedir um aumento.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Também vens ao copo de sexta à tarde?",
               "correct": true
             },
             {
@@ -1986,36 +2013,9 @@
               "correct": false
             }
           ],
-          "explanation": "«Een verbeterpunt is de tijd.» = Um ponto a melhorar é o tempo.",
+          "explanation": "«Kom je ook naar de vrijdagmiddagborrel?» = Também vens ao copo de sexta à tarde?",
           "vocabRefs": [
-            "v-verbeterpunt"
-          ]
-        },
-        {
-          "id": "s5-u10-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De hiërarchie is hier vrij plat.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Todos podem dar a sua opinião.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Aqui a hierarquia é bastante horizontal.",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Podia ter folga na sexta?",
-              "correct": false
-            }
-          ],
-          "explanation": "«De hiërarchie is hier vrij plat.» = Aqui a hierarquia é bastante horizontal.",
-          "vocabRefs": [
-            "v-hierarchie"
+            "v-borrel-vrijdag"
           ]
         },
         {
@@ -2029,14 +2029,14 @@
             "wat",
             "je",
             "geven?",
-            "De",
+            "goed.",
             "Mag",
-            "beter."
+            "was"
           ],
           "answers": [
             "Mag ik je wat feedback geven?"
           ],
-          "explanation": "Posso dar-te algum feedback? = Mag ik je wat feedback geven? (sobram: beter., De)",
+          "explanation": "Posso dar-te algum feedback? = Mag ik je wat feedback geven? (sobram: was, goed.)",
           "vocabRefs": [
             "v-feedback"
           ]
@@ -2045,24 +2045,22 @@
           "id": "s5-u10-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Temos de pôr a conversa em dia em breve.",
+          "prompt": "Não precisas de te defender.",
           "tokens": [
+            "niet",
             "weer",
-            "naar",
-            "druk",
-            "bijpraten.",
-            "eens",
-            "snel",
-            "moeten",
-            "We"
+            "harte.",
+            "verdedigen.",
+            "te",
+            "je",
+            "hoeft",
+            "Je"
           ],
           "answers": [
-            "We moeten snel weer eens bijpraten."
+            "Je hoeft je niet te verdedigen."
           ],
-          "explanation": "Temos de pôr a conversa em dia em breve. = We moeten snel weer eens bijpraten. (sobram: druk, naar)",
-          "vocabRefs": [
-            "v-bijpraten"
-          ]
+          "explanation": "Não precisas de te defender. = Je hoeft je niet te verdedigen. (sobram: harte., weer)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 4,
@@ -2261,45 +2259,46 @@
           "id": "s5-u10-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Podia ter folga na sexta?",
-          "tokens": [
-            "krijgen?",
-            "te",
-            "kunnen",
-            "Zou",
-            "vrij",
-            "pak",
-            "ik",
-            "vrijdag"
-          ],
-          "answers": [
-            "Zou ik vrijdag vrij kunnen krijgen?"
-          ],
-          "explanation": "Podia ter folga na sexta? = Zou ik vrijdag vrij kunnen krijgen? (sobram: pak, te)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s5-u10-l008-e08",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "Gostaria de falar sobre o meu salário.",
           "tokens": [
-            "hebben",
             "over",
-            "wil",
-            "zijn",
-            "mijn",
+            "vraag",
+            "hebben",
+            "krijgen?",
             "graag",
+            "mijn",
+            "wil",
             "het",
-            "Volgende",
             "Ik",
             "salaris."
           ],
           "answers": [
             "Ik wil het graag hebben over mijn salaris."
           ],
-          "explanation": "Gostaria de falar sobre o meu salário. = Ik wil het graag hebben over mijn salaris. (sobram: Volgende, zijn)",
+          "explanation": "Gostaria de falar sobre o meu salário. = Ik wil het graag hebben over mijn salaris. (sobram: krijgen?, vraag)",
           "vocabRefs": []
+        },
+        {
+          "id": "s5-u10-l008-e08",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Vou pedir um aumento.",
+          "tokens": [
+            "aan.",
+            "vraag",
+            "inhoud",
+            "mag",
+            "salarisverhoging",
+            "een",
+            "Ik"
+          ],
+          "answers": [
+            "Ik vraag een salarisverhoging aan."
+          ],
+          "explanation": "Vou pedir um aumento. = Ik vraag een salarisverhoging aan. (sobram: mag, inhoud)",
+          "vocabRefs": [
+            "v-salarisverhoging"
+          ]
         },
         {
           "id": "s5-u10-l008-e09",
@@ -2317,7 +2316,7 @@
           "id": "s5-u10-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kom je ook naar de vrijdagmiddagborrel?»?",
+          "prompt": "O que significa: «Volgende week heb ik mijn functioneringsgesprek.»?",
           "options": [
             {
               "id": "a",
@@ -2331,13 +2330,13 @@
             },
             {
               "id": "c",
-              "text": "Também vens ao copo de sexta à tarde?",
+              "text": "Para a semana tenho a minha entrevista de avaliação.",
               "correct": true
             }
           ],
-          "explanation": "«Kom je ook naar de vrijdagmiddagborrel?» = Também vens ao copo de sexta à tarde?",
+          "explanation": "«Volgende week heb ik mijn functioneringsgesprek.» = Para a semana tenho a minha entrevista de avaliação.",
           "vocabRefs": [
-            "v-borrel-vrijdag"
+            "v-functioneringsgesprek"
           ]
         }
       ],
@@ -2419,21 +2418,23 @@
           "id": "s5-u10-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vou ter isso em conta.",
+          "prompt": "Estou aberto a feedback.",
           "tokens": [
-            "neem",
-            "ter",
-            "Complimenten",
+            "open",
+            "sta",
+            "feedback.",
             "Ik",
-            "het",
-            "harte.",
-            "weer"
+            "We",
+            "voor",
+            "het"
           ],
           "answers": [
-            "Ik neem het ter harte."
+            "Ik sta open voor feedback."
           ],
-          "explanation": "Vou ter isso em conta. = Ik neem het ter harte. (sobram: Complimenten, weer)",
-          "vocabRefs": []
+          "explanation": "Estou aberto a feedback. = Ik sta open voor feedback. (sobram: We, het)",
+          "vocabRefs": [
+            "v-feedback"
+          ]
         },
         {
           "id": "s5-u10-l009-e02",
@@ -2441,70 +2442,65 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "O que achei bem: os teus exemplos.",
           "tokens": [
-            "Wat",
-            "sta",
-            "ik",
-            "voorbeelden.",
             "goed",
             "vond:",
             "je",
-            "de"
+            "ik",
+            "feedback",
+            "Wat",
+            "voorbeelden.",
+            "sta"
           ],
           "answers": [
             "Wat ik goed vond: je voorbeelden."
           ],
-          "explanation": "O que achei bem: os teus exemplos. = Wat ik goed vond: je voorbeelden. (sobram: de, sta)",
+          "explanation": "O que achei bem: os teus exemplos. = Wat ik goed vond: je voorbeelden. (sobram: sta, feedback)",
           "vocabRefs": []
         },
         {
           "id": "s5-u10-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Para a semana tenho a minha entrevista de avaliação.",
+          "prompt": "Está um tempo ótimo, não está?",
           "tokens": [
-            "is",
-            "week",
-            "functioneringsgesprek.",
-            "heb",
-            "was",
-            "ik",
-            "Volgende",
-            "mijn"
+            "hè?",
+            "een",
+            "weer,",
+            "Lekker",
+            "erg"
           ],
           "answers": [
-            "Volgende week heb ik mijn functioneringsgesprek."
+            "Lekker weer, hè?"
           ],
-          "explanation": "Para a semana tenho a minha entrevista de avaliação. = Volgende week heb ik mijn functioneringsgesprek. (sobram: is, was)",
+          "explanation": "Está um tempo ótimo, não está? = Lekker weer, hè? (sobram: een, erg)",
           "vocabRefs": [
-            "v-functioneringsgesprek"
+            "v-he-tag"
           ]
         },
         {
           "id": "s5-u10-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De hiërarchie is hier vrij plat.",
+          "audioText": "Iedereen mag zijn mening geven.",
           "answers": [
-            "De hiërarchie is hier vrij plat."
+            "Iedereen mag zijn mening geven."
           ],
-          "translation": "Aqui a hierarquia é bastante horizontal.",
-          "explanation": "«De hiërarchie is hier vrij plat.» = Aqui a hierarquia é bastante horizontal.",
-          "vocabRefs": [
-            "v-hierarchie"
-          ]
+          "translation": "Todos podem dar a sua opinião.",
+          "explanation": "«Iedereen mag zijn mening geven.» = Todos podem dar a sua opinião.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u10-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Vrijdag hebben we een teamuitje.",
+          "audioText": "Complimenten voor je presentatie!",
           "answers": [
-            "Vrijdag hebben we een teamuitje."
+            "Complimenten voor je presentatie!"
           ],
-          "translation": "Sexta temos uma saída de equipa.",
-          "explanation": "«Vrijdag hebben we een teamuitje.» = Sexta temos uma saída de equipa.",
+          "translation": "Parabéns pela tua apresentação!",
+          "explanation": "«Complimenten voor je presentatie!» = Parabéns pela tua apresentação!",
           "vocabRefs": [
-            "v-teamuitje"
+            "v-compliment"
           ]
         },
         {
@@ -2523,37 +2519,34 @@
           "id": "s5-u10-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Aqui a hierarquia é bastante horizontal.",
+          "translation": "Podia ter folga na sexta?",
           "tokens": [
-            "De",
-            "hiërarchie",
+            "Zou",
+            "ik",
+            "vrijdag",
             "vrij",
-            "plat.",
-            "hier",
-            "is"
+            "kunnen",
+            "krijgen?"
           ],
           "alternatives": [],
-          "explanation": "De hiërarchie is hier vrij plat.",
-          "vocabRefs": [
-            "v-hierarchie"
-          ]
+          "explanation": "Zou ik vrijdag vrij kunnen krijgen?",
+          "vocabRefs": []
         },
         {
           "id": "s5-u10-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A colaboração está a correr bem.",
+          "translation": "Todos podem dar a sua opinião.",
           "tokens": [
-            "loopt",
-            "goed.",
-            "samenwerking",
-            "De"
+            "Iedereen",
+            "mag",
+            "zijn",
+            "mening",
+            "geven."
           ],
           "alternatives": [],
-          "explanation": "De samenwerking loopt goed.",
-          "vocabRefs": [
-            "v-samenwerking"
-          ]
+          "explanation": "Iedereen mag zijn mening geven.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u10-l009-e09",
@@ -2563,7 +2556,7 @@
           "options": [
             {
               "id": "a",
-              "text": "entrevista de avaliação",
+              "text": "pôr a conversa em dia",
               "correct": false
             },
             {
@@ -2573,7 +2566,7 @@
             },
             {
               "id": "c",
-              "text": "copo de sexta à tarde",
+              "text": "estar aberto a",
               "correct": false
             }
           ],
@@ -2586,7 +2579,7 @@
           "id": "s5-u10-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «openstaan voor»?",
+          "prompt": "O que significa «vrij vragen»?",
           "options": [
             {
               "id": "a",
@@ -2600,13 +2593,13 @@
             },
             {
               "id": "c",
-              "text": "estar aberto a",
+              "text": "pedir folga",
               "correct": true
             }
           ],
-          "explanation": "«openstaan voor» = estar aberto a.",
+          "explanation": "«vrij vragen» = pedir folga.",
           "vocabRefs": [
-            "v-openstaan"
+            "v-vrij-vragen"
           ]
         }
       ],

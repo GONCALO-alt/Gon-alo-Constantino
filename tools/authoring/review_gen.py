@@ -149,11 +149,8 @@ class Gen:
     def word_order(self, nl, pt):
         toks = nl.split()
         if len(toks) < 3: return None
-        sh = toks[:]
-        for _ in range(5):
-            self.rng.shuffle(sh)
-            if sh != toks: break
-        return {"type": "wordOrder", "instruction": "Ordene as palavras.", "translation": pt, "tokens": sh, "alternatives": [],
+        # Os tokens ficam na ordem CERTA: a app baralha-os ao mostrar o exercício.
+        return {"type": "wordOrder", "instruction": "Ordene as palavras.", "translation": pt, "tokens": toks, "alternatives": [],
                 "explanation": f"{nl}", "vocabRefs": self.vrefs(nl)}
 
     def build(self, nl, pt):

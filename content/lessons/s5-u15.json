@@ -2011,16 +2011,16 @@
       ],
       "examples": [
         {
-          "nl": "Welkom aan alle luisteraars.",
-          "pt": "Bem-vindos, todos os ouvintes."
+          "nl": "De VvE vergadert twee keer per jaar.",
+          "pt": "Os condóminos reúnem-se duas vezes por ano."
         },
         {
-          "nl": "Ik ga u even onderzoeken.",
-          "pt": "Vou examiná-lo."
+          "nl": "Sorry dat ik je onderbreek.",
+          "pt": "Desculpa interromper-te."
         },
         {
-          "nl": "Niet zo zeuren!",
-          "pt": "Não resmungues tanto!"
+          "nl": "Ik werk als vrijwilliger bij de voedselbank.",
+          "pt": "Trabalho como voluntário no banco alimentar."
         }
       ],
       "grammar": [],
@@ -2074,9 +2074,9 @@
           "translation": "Quais são as suas queixas?",
           "tokens": [
             "Wat",
-            "klachten?",
             "zijn",
-            "uw"
+            "uw",
+            "klachten?"
           ],
           "alternatives": [],
           "explanation": "Wat zijn uw klachten?",
@@ -2090,10 +2090,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Bem-vindos, todos os ouvintes.",
           "tokens": [
-            "luisteraars.",
-            "alle",
             "Welkom",
-            "aan"
+            "aan",
+            "alle",
+            "luisteraars."
           ],
           "alternatives": [],
           "explanation": "Welkom aan alle luisteraars.",
@@ -2107,11 +2107,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Para mim tanto faz.",
           "tokens": [
-            "uit.",
-            "maakt",
-            "niet",
             "Mij",
-            "het"
+            "maakt",
+            "het",
+            "niet",
+            "uit."
           ],
           "alternatives": [],
           "explanation": "Mij maakt het niet uit.",
@@ -2123,99 +2123,98 @@
           "id": "s5-u15-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We gaan over tot de stemming.»?",
+          "prompt": "O que significa: «Over twee weken komt u terug voor controle.»?",
           "options": [
             {
               "id": "a",
-              "text": "Passamos à votação.",
+              "text": "Daqui a duas semanas volta para controlo.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Para mim tanto faz.",
+              "text": "A maioria quer ir ao museu.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O nosso convidado hoje é o Ahmed.",
+              "text": "Os condóminos reúnem-se duas vezes por ano.",
               "correct": false
             }
           ],
-          "explanation": "«We gaan over tot de stemming.» = Passamos à votação.",
+          "explanation": "«Over twee weken komt u terug voor controle.» = Daqui a duas semanas volta para controlo.",
           "vocabRefs": [
-            "v-stemming"
+            "v-controle"
           ]
         },
         {
           "id": "s5-u15-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het is een mooi initiatief.»?",
+          "prompt": "O que significa: «Mij maakt het niet uit.»?",
           "options": [
             {
               "id": "a",
-              "text": "Daqui a duas semanas volta para controlo.",
+              "text": "Vai receber um encaminhamento para o especialista.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "É uma bela iniciativa.",
+              "text": "Para mim tanto faz.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "O nosso convidado hoje é o Ahmed.",
+              "text": "Daqui a duas semanas volta para controlo.",
               "correct": false
             }
           ],
-          "explanation": "«Het is een mooi initiatief.» = É uma bela iniciativa.",
+          "explanation": "«Mij maakt het niet uit.» = Para mim tanto faz.",
           "vocabRefs": [
-            "v-initiatief"
+            "v-maakt-mij-niet"
           ]
         },
         {
           "id": "s5-u15-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "É uma bela iniciativa.",
+          "prompt": "O próximo ponto é o jardim.",
           "tokens": [
-            "initiatief.",
             "is",
-            "een",
+            "agendapunt",
+            "de",
             "Het",
-            "mooi",
-            "voor",
-            "voorkeur"
+            "strand.",
+            "volgende",
+            "U",
+            "tuin."
           ],
           "answers": [
-            "Het is een mooi initiatief."
+            "Het volgende agendapunt is de tuin."
           ],
-          "explanation": "É uma bela iniciativa. = Het is een mooi initiatief. (sobram: voor, voorkeur)",
+          "explanation": "O próximo ponto é o jardim. = Het volgende agendapunt is de tuin. (sobram: U, strand.)",
           "vocabRefs": [
-            "v-initiatief"
+            "v-agenda-punt"
           ]
         },
         {
           "id": "s5-u15-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Para mim tanto faz.",
+          "prompt": "Desculpa interromper-te.",
           "tokens": [
-            "doorverwijzing",
-            "Mij",
-            "meerderheid",
-            "maakt",
-            "het",
-            "niet",
-            "uit."
+            "dat",
+            "uw",
+            "onderbreek.",
+            "ik",
+            "je",
+            "Sorry",
+            "onderhoud"
           ],
           "answers": [
-            "Mij maakt het niet uit."
+            "Sorry dat ik je onderbreek."
           ],
-          "explanation": "Para mim tanto faz. = Mij maakt het niet uit. (sobram: meerderheid, doorverwijzing)",
-          "vocabRefs": [
-            "v-maakt-mij-niet"
-          ]
+          "explanation": "Desculpa interromper-te. = Sorry dat ik je onderbreek. (sobram: onderhoud, uw)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2277,16 +2276,16 @@
       ],
       "examples": [
         {
-          "nl": "Onze gast vandaag is Ahmed.",
-          "pt": "O nosso convidado hoje é o Ahmed."
+          "nl": "Wat voor uitje zullen we doen?",
+          "pt": "Que passeio vamos fazer?"
         },
         {
-          "nl": "Het volgende agendapunt is de tuin.",
-          "pt": "O próximo ponto é o jardim."
+          "nl": "We gaan over tot de stemming.",
+          "pt": "Passamos à votação."
         },
         {
-          "nl": "Het is een mooi initiatief.",
-          "pt": "É uma bela iniciativa."
+          "nl": "Wat zijn uw klachten?",
+          "pt": "Quais são as suas queixas?"
         }
       ],
       "grammar": [],
@@ -2295,16 +2294,16 @@
           "id": "s5-u15-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «votação» em neerlandês?",
+          "prompt": "Como se diz «preferência» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "onderhoud",
+              "text": "initiatief",
               "correct": false
             },
             {
               "id": "b",
-              "text": "stemming",
+              "text": "voorkeur",
               "correct": true
             },
             {
@@ -2313,184 +2312,186 @@
               "correct": false
             }
           ],
-          "explanation": "votação = «stemming».",
+          "explanation": "preferência = «voorkeur».",
           "vocabRefs": [
-            "v-stemming"
+            "v-voorkeur"
           ]
         },
         {
           "id": "s5-u15-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «maioria» em neerlandês?",
+          "prompt": "Como se diz «queixas» em neerlandês?",
           "options": [
             {
               "id": "a",
               "text": "klachten",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "meerderheid",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "stemming",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "gast",
+              "text": "doorverwijzing",
               "correct": false
             }
           ],
-          "explanation": "maioria = «meerderheid».",
+          "explanation": "queixas = «klachten».",
           "vocabRefs": [
-            "v-meerderheid"
+            "v-klachten"
           ]
         },
         {
           "id": "s5-u15-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mijn ___ gaat uit naar het strand.",
-          "translation": "A minha preferência vai para a praia.",
+          "sentence": "Het is een mooi ___.",
+          "translation": "É uma bela iniciativa.",
           "answers": [
-            "voorkeur"
+            "initiatief"
           ],
           "choices": [
-            "meerderheid",
-            "voorkeur",
-            "uitje"
+            "initiatief",
+            "klachten",
+            "stemming"
           ],
-          "explanation": "Mijn voorkeur gaat uit naar het strand.",
+          "explanation": "Het is een mooi initiatief.",
           "vocabRefs": [
-            "v-voorkeur"
+            "v-initiatief"
           ]
         },
         {
           "id": "s5-u15-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik werk als ___ bij de voedselbank.",
-          "translation": "Trabalho como voluntário no banco alimentar.",
+          "sentence": "Het dak heeft ___ nodig.",
+          "translation": "O telhado precisa de manutenção.",
           "answers": [
-            "vrijwilliger"
+            "onderhoud"
           ],
           "choices": [
-            "vrijwilliger",
-            "uitje",
-            "agendapunt"
+            "onderhoud",
+            "overdrijven",
+            "meerderheid"
           ],
-          "explanation": "Ik werk als vrijwilliger bij de voedselbank.",
+          "explanation": "Het dak heeft onderhoud nodig.",
           "vocabRefs": [
-            "v-vrijwilliger"
+            "v-onderhoud"
           ]
         },
         {
           "id": "s5-u15-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De VvE vergadert twee keer per jaar.",
+          "audioText": "Niet zo zeuren!",
           "answers": [
-            "De VvE vergadert twee keer per jaar."
+            "Niet zo zeuren!"
           ],
-          "translation": "Os condóminos reúnem-se duas vezes por ano.",
-          "explanation": "«De VvE vergadert twee keer per jaar.» = Os condóminos reúnem-se duas vezes por ano.",
+          "translation": "Não resmungues tanto!",
+          "explanation": "«Niet zo zeuren!» = Não resmungues tanto!",
           "vocabRefs": [
-            "v-vve"
+            "v-zeuren"
           ]
         },
         {
           "id": "s5-u15-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het volgende agendapunt is de tuin.",
+          "audioText": "Ik ga u even onderzoeken.",
           "answers": [
-            "Het volgende agendapunt is de tuin."
+            "Ik ga u even onderzoeken."
           ],
-          "translation": "O próximo ponto é o jardim.",
-          "explanation": "«Het volgende agendapunt is de tuin.» = O próximo ponto é o jardim.",
+          "translation": "Vou examiná-lo.",
+          "explanation": "«Ik ga u even onderzoeken.» = Vou examiná-lo.",
           "vocabRefs": [
-            "v-agenda-punt"
+            "v-onderzoeken-arts"
           ]
         },
         {
           "id": "s5-u15-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Bem-vindos, todos os ouvintes.",
+          "prompt": "O telhado precisa de manutenção.",
           "tokens": [
-            "voedselbank.",
-            "aan",
-            "het",
-            "luisteraars.",
-            "Welkom",
-            "alle"
+            "dak",
+            "een",
+            "voorkeur",
+            "heeft",
+            "onderhoud",
+            "nodig.",
+            "Het"
           ],
           "answers": [
-            "Welkom aan alle luisteraars."
+            "Het dak heeft onderhoud nodig."
           ],
-          "explanation": "Bem-vindos, todos os ouvintes. = Welkom aan alle luisteraars. (sobram: voedselbank., het)",
+          "explanation": "O telhado precisa de manutenção. = Het dak heeft onderhoud nodig. (sobram: een, voorkeur)",
           "vocabRefs": [
-            "v-luisteraar"
+            "v-onderhoud"
           ]
         },
         {
           "id": "s5-u15-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vou examiná-lo.",
+          "prompt": "Que passeio vamos fazer?",
           "tokens": [
-            "onderzoeken.",
-            "Ik",
-            "voor",
-            "u",
-            "bij",
-            "even",
-            "ga"
+            "het",
+            "we",
+            "doen?",
+            "zullen",
+            "onderhoud",
+            "Wat",
+            "uitje",
+            "voor"
           ],
           "answers": [
-            "Ik ga u even onderzoeken."
+            "Wat voor uitje zullen we doen?"
           ],
-          "explanation": "Vou examiná-lo. = Ik ga u even onderzoeken. (sobram: bij, voor)",
+          "explanation": "Que passeio vamos fazer? = Wat voor uitje zullen we doen? (sobram: het, onderhoud)",
           "vocabRefs": [
-            "v-onderzoeken-arts"
+            "v-uitje"
           ]
         },
         {
           "id": "s5-u15-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "controle",
-          "pt": "consulta de controlo",
+          "noun": "luisteraar",
+          "pt": "ouvinte",
           "article": "de",
-          "explanation": "de controle.",
+          "explanation": "de luisteraar.",
           "vocabRefs": [
-            "v-controle"
+            "v-luisteraar"
           ]
         },
         {
           "id": "s5-u15-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Onze gast vandaag is Ahmed.»?",
+          "prompt": "O que significa: «Laat me even uitpraten!»?",
           "options": [
             {
               "id": "a",
-              "text": "O nosso convidado hoje é o Ahmed.",
-              "correct": true
+              "text": "Quais são as suas queixas?",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Passamos à votação.",
-              "correct": false
+              "text": "Deixa-me acabar de falar!",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Para mim tanto faz.",
+              "text": "Estás a exagerar!",
               "correct": false
             }
           ],
-          "explanation": "«Onze gast vandaag is Ahmed.» = O nosso convidado hoje é o Ahmed.",
+          "explanation": "«Laat me even uitpraten!» = Deixa-me acabar de falar!",
           "vocabRefs": [
-            "v-gast"
+            "v-laat-me-uitpraten"
           ]
         }
       ],
@@ -2553,16 +2554,16 @@
       ],
       "examples": [
         {
-          "nl": "Onze gast vandaag is Ahmed.",
-          "pt": "O nosso convidado hoje é o Ahmed."
+          "nl": "Ik ga u even onderzoeken.",
+          "pt": "Vou examiná-lo."
         },
         {
-          "nl": "Het is een mooi initiatief.",
-          "pt": "É uma bela iniciativa."
+          "nl": "Het volgende agendapunt is de tuin.",
+          "pt": "O próximo ponto é o jardim."
         },
         {
-          "nl": "Niet zo zeuren!",
-          "pt": "Não resmungues tanto!"
+          "nl": "Mij maakt het niet uit.",
+          "pt": "Para mim tanto faz."
         }
       ],
       "grammar": [],
@@ -2571,71 +2572,85 @@
           "id": "s5-u15-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quais são as suas queixas?",
+          "prompt": "É uma bela iniciativa.",
           "tokens": [
-            "Wat",
-            "uw",
-            "het",
-            "klachten?",
-            "u",
-            "zijn"
+            "is",
+            "Laat",
+            "tot",
+            "een",
+            "initiatief.",
+            "mooi",
+            "Het"
           ],
           "answers": [
-            "Wat zijn uw klachten?"
+            "Het is een mooi initiatief."
           ],
-          "explanation": "Quais são as suas queixas? = Wat zijn uw klachten? (sobram: u, het)",
+          "explanation": "É uma bela iniciativa. = Het is een mooi initiatief. (sobram: Laat, tot)",
           "vocabRefs": [
-            "v-klachten"
+            "v-initiatief"
           ]
         },
         {
           "id": "s5-u15-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Que passeio vamos fazer?",
+          "prompt": "Trabalho como voluntário no banco alimentar.",
           "tokens": [
-            "we",
-            "uitje",
-            "doen?",
-            "voor",
-            "gaan",
-            "Wat",
-            "keer",
-            "zullen"
+            "bij",
+            "Welkom",
+            "voedselbank.",
+            "Ik",
+            "even",
+            "vrijwilliger",
+            "werk",
+            "de",
+            "als"
           ],
           "answers": [
-            "Wat voor uitje zullen we doen?"
+            "Ik werk als vrijwilliger bij de voedselbank."
           ],
-          "explanation": "Que passeio vamos fazer? = Wat voor uitje zullen we doen? (sobram: gaan, keer)",
+          "explanation": "Trabalho como voluntário no banco alimentar. = Ik werk als vrijwilliger bij de voedselbank. (sobram: even, Welkom)",
           "vocabRefs": [
-            "v-uitje"
+            "v-vrijwilliger"
           ]
         },
         {
           "id": "s5-u15-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O próximo ponto é o jardim.",
+          "prompt": "Quais são as suas queixas?",
           "tokens": [
-            "agendapunt",
-            "volgende",
-            "Het",
-            "de",
-            "Over",
-            "werk",
-            "is",
-            "tuin."
+            "luisteraars.",
+            "Wat",
+            "jaar.",
+            "zijn",
+            "uw",
+            "klachten?"
           ],
           "answers": [
-            "Het volgende agendapunt is de tuin."
+            "Wat zijn uw klachten?"
           ],
-          "explanation": "O próximo ponto é o jardim. = Het volgende agendapunt is de tuin. (sobram: werk, Over)",
+          "explanation": "Quais são as suas queixas? = Wat zijn uw klachten? (sobram: luisteraars., jaar.)",
           "vocabRefs": [
-            "v-agenda-punt"
+            "v-klachten"
           ]
         },
         {
           "id": "s5-u15-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Welkom aan alle luisteraars.",
+          "answers": [
+            "Welkom aan alle luisteraars."
+          ],
+          "translation": "Bem-vindos, todos os ouvintes.",
+          "explanation": "«Welkom aan alle luisteraars.» = Bem-vindos, todos os ouvintes.",
+          "vocabRefs": [
+            "v-luisteraar"
+          ]
+        },
+        {
+          "id": "s5-u15-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "De meerderheid wil naar het museum.",
@@ -2649,120 +2664,105 @@
           ]
         },
         {
-          "id": "s5-u15-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "U krijgt een doorverwijzing naar de specialist.",
-          "answers": [
-            "U krijgt een doorverwijzing naar de specialist."
-          ],
-          "translation": "Vai receber um encaminhamento para o especialista.",
-          "explanation": "«U krijgt een doorverwijzing naar de specialist.» = Vai receber um encaminhamento para o especialista.",
-          "vocabRefs": [
-            "v-doorverwijzing"
-          ]
-        },
-        {
           "id": "s5-u15-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het is een mooi initiatief.",
+          "audioText": "Mijn voorkeur gaat uit naar het strand.",
           "answers": [
-            "Het is een mooi initiatief."
+            "Mijn voorkeur gaat uit naar het strand."
           ],
-          "translation": "É uma bela iniciativa.",
-          "explanation": "«Het is een mooi initiatief.» = É uma bela iniciativa.",
+          "translation": "A minha preferência vai para a praia.",
+          "explanation": "«Mijn voorkeur gaat uit naar het strand.» = A minha preferência vai para a praia.",
           "vocabRefs": [
-            "v-initiatief"
+            "v-voorkeur"
           ]
         },
         {
           "id": "s5-u15-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Não resmungues tanto!",
+          "translation": "O nosso convidado hoje é o Ahmed.",
           "tokens": [
-            "zeuren!",
-            "zo",
-            "Niet"
+            "Onze",
+            "gast",
+            "vandaag",
+            "is",
+            "Ahmed."
           ],
           "alternatives": [],
-          "explanation": "Niet zo zeuren!",
+          "explanation": "Onze gast vandaag is Ahmed.",
           "vocabRefs": [
-            "v-zeuren"
+            "v-gast"
           ]
         },
         {
           "id": "s5-u15-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Passamos à votação.",
+          "translation": "Desculpa interromper-te.",
           "tokens": [
-            "tot",
-            "stemming.",
-            "over",
-            "gaan",
-            "We",
-            "de"
+            "Sorry",
+            "dat",
+            "ik",
+            "je",
+            "onderbreek."
           ],
           "alternatives": [],
-          "explanation": "We gaan over tot de stemming.",
-          "vocabRefs": [
-            "v-stemming"
-          ]
+          "explanation": "Sorry dat ik je onderbreek.",
+          "vocabRefs": []
         },
         {
           "id": "s5-u15-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het onderhoud»?",
+          "prompt": "O que significa «de stemming»?",
           "options": [
             {
               "id": "a",
               "text": "votação",
-              "correct": false
+              "correct": true
             },
             {
               "id": "b",
-              "text": "consulta de controlo",
+              "text": "convidado",
               "correct": false
             },
             {
               "id": "c",
-              "text": "manutenção",
-              "correct": true
+              "text": "ouvinte",
+              "correct": false
             }
           ],
-          "explanation": "«het onderhoud» = manutenção.",
+          "explanation": "«de stemming» = votação.",
           "vocabRefs": [
-            "v-onderhoud"
+            "v-stemming"
           ]
         },
         {
           "id": "s5-u15-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de doorverwijzing»?",
+          "prompt": "O que significa «de voorkeur»?",
           "options": [
             {
               "id": "a",
-              "text": "examinar",
+              "text": "maioria",
               "correct": false
             },
             {
               "id": "b",
-              "text": "deixa-me acabar",
-              "correct": false
+              "text": "preferência",
+              "correct": true
             },
             {
               "id": "c",
               "text": "credencial",
-              "correct": true
+              "correct": false
             }
           ],
-          "explanation": "«de doorverwijzing» = credencial, encaminhamento.",
+          "explanation": "«de voorkeur» = preferência.",
           "vocabRefs": [
-            "v-doorverwijzing"
+            "v-voorkeur"
           ]
         }
       ],

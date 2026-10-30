@@ -2218,16 +2218,16 @@
       ],
       "examples": [
         {
-          "nl": "Zij heet Sanne.",
-          "pt": "Ela chama-se Sanne."
+          "nl": "Hoe heet u?",
+          "pt": "Como se chama?"
         },
         {
-          "nl": "Ben jij student?",
-          "pt": "És estudante?"
+          "nl": "Ben jij Tom?",
+          "pt": "És o Tom?"
         },
         {
-          "nl": "Woon jij in Utrecht?",
-          "pt": "Moras em Utrecht?"
+          "nl": "Bent u mevrouw Visser?",
+          "pt": "É a senhora Visser?"
         }
       ],
       "grammar": [],
@@ -2284,8 +2284,8 @@
           "translation": "Sou a Ana.",
           "tokens": [
             "Ik",
-            "Ana.",
-            "ben"
+            "ben",
+            "Ana."
           ],
           "alternatives": [],
           "explanation": "Ik ben Ana.",
@@ -2299,10 +2299,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Sou de Lisboa.",
           "tokens": [
-            "kom",
-            "Lissabon.",
             "Ik",
-            "uit"
+            "kom",
+            "uit",
+            "Lissabon."
           ],
           "alternatives": [],
           "explanation": "Ik kom uit Lissabon.",
@@ -2319,8 +2319,8 @@
           "translation": "És estudante?",
           "tokens": [
             "Ben",
-            "student?",
-            "jij"
+            "jij",
+            "student?"
           ],
           "alternatives": [],
           "explanation": "Ben jij student?",
@@ -2334,16 +2334,16 @@
           "id": "s1-u02-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hoe heet je?»?",
+          "prompt": "O que significa: «Jij woont in Utrecht.»?",
           "options": [
             {
               "id": "a",
-              "text": "Como te chamas?",
+              "text": "Tu moras em Utrecht.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Ela chama-se Sanne.",
+              "text": "Este é o Pedro.",
               "correct": false
             },
             {
@@ -2352,78 +2352,82 @@
               "correct": false
             }
           ],
-          "explanation": "«Hoe heet je?» = Como te chamas?",
+          "explanation": "«Jij woont in Utrecht.» = Tu moras em Utrecht.",
           "vocabRefs": [
-            "v-hoe",
-            "v-je-jouw"
+            "v-jij",
+            "v-u",
+            "v-in"
           ]
         },
         {
           "id": "s1-u02-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ben jij Tom?»?",
+          "prompt": "O que significa: «Mijn naam is Sanne de Boer.»?",
           "options": [
             {
               "id": "a",
-              "text": "É o senhor Jansen?",
+              "text": "Sou estudante.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "És o Tom?",
-              "correct": true
+              "text": "Chamo-me Pedro.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Esta é a minha colega Eva.",
-              "correct": false
+              "text": "O meu nome é Sanne de Boer.",
+              "correct": true
             }
           ],
-          "explanation": "«Ben jij Tom?» = És o Tom?",
+          "explanation": "«Mijn naam is Sanne de Boer.» = O meu nome é Sanne de Boer.",
           "vocabRefs": [
-            "v-jij"
+            "v-naam",
+            "v-mijn",
+            "v-is"
           ]
         },
         {
           "id": "s1-u02-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Estou cansado/a.",
+          "prompt": "Como te chamas?",
           "tokens": [
-            "Utrecht?",
-            "moe.",
-            "Ik",
-            "ben",
-            "mijn"
+            "je?",
+            "Hoe",
+            "Jij",
+            "heet",
+            "mevrouw"
           ],
           "answers": [
-            "Ik ben moe."
+            "Hoe heet je?"
           ],
-          "explanation": "Estou cansado/a. = Ik ben moe. (sobram: Utrecht?, mijn)",
+          "explanation": "Como te chamas? = Hoe heet je? (sobram: mevrouw, Jij)",
           "vocabRefs": [
-            "v-ik"
+            "v-hoe",
+            "v-je-jouw"
           ]
         },
         {
           "id": "s1-u02-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "De onde és?",
+          "prompt": "De onde é (o senhor / a senhora)?",
           "tokens": [
-            "Pedro.",
-            "je",
-            "woon",
-            "vandaan?",
+            "naam",
             "kom",
-            "Waar"
+            "komt",
+            "Waar",
+            "u",
+            "vandaan?"
           ],
           "answers": [
-            "Waar kom je vandaan?"
+            "Waar komt u vandaan?"
           ],
-          "explanation": "De onde és? = Waar kom je vandaan? (sobram: Pedro., woon)",
+          "explanation": "De onde é (o senhor / a senhora)? = Waar komt u vandaan? (sobram: naam, kom)",
           "vocabRefs": [
-            "v-je-jouw",
+            "v-u",
             "v-waar",
             "v-vandaan"
           ]
@@ -2487,16 +2491,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik ben Ana.",
-          "pt": "Sou a Ana."
+          "nl": "Ben jij student?",
+          "pt": "És estudante?"
         },
         {
-          "nl": "Aangenaam!",
-          "pt": "Muito prazer!"
+          "nl": "Woon jij in Utrecht?",
+          "pt": "Moras em Utrecht?"
         },
         {
-          "nl": "Bent u mevrouw Visser?",
-          "pt": "É a senhora Visser?"
+          "nl": "Ik heet Pedro.",
+          "pt": "Chamo-me Pedro."
         }
       ],
       "grammar": [],
@@ -2514,13 +2518,13 @@
             },
             {
               "id": "b",
-              "text": "vriendin",
-              "correct": true
+              "text": "zijn",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "vandaan",
-              "correct": false
+              "text": "vriendin",
+              "correct": true
             }
           ],
           "explanation": "amiga = «vriendin».",
@@ -2532,123 +2536,121 @@
           "id": "s1-u02-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «sim» em neerlandês?",
+          "prompt": "Como se diz «meu» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "ja",
-              "correct": true
+              "text": "vandaan",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Portugal",
+              "text": "nu",
               "correct": false
             },
             {
               "id": "c",
-              "text": "is",
-              "correct": false
+              "text": "mijn",
+              "correct": true
             }
           ],
-          "explanation": "sim = «ja».",
+          "explanation": "meu = «mijn».",
           "vocabRefs": [
-            "v-ja"
+            "v-mijn"
           ]
         },
         {
           "id": "s1-u02-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ik kom uit ___.",
-          "translation": "Sou de Portugal.",
+          "sentence": "Dit is ___ collega Eva.",
+          "translation": "Esta é a minha colega Eva.",
           "answers": [
-            "Portugal"
+            "mijn"
           ],
           "choices": [
-            "Portugal",
-            "Is",
-            "Maar"
+            "wonen",
+            "mijn",
+            "is"
           ],
-          "explanation": "Ik kom uit Portugal.",
+          "explanation": "Dit is mijn collega Eva.",
           "vocabRefs": [
-            "v-portugal"
+            "v-mijn"
           ]
         },
         {
           "id": "s1-u02-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Waar woon ___?",
-          "translation": "Onde moras?",
+          "sentence": "___ woon in Amsterdam.",
+          "translation": "Moro em Amesterdão.",
           "answers": [
-            "je"
+            "Ik"
           ],
           "choices": [
-            "is",
-            "je",
-            "ik"
+            "Ik",
+            "Vriend",
+            "Student"
           ],
-          "explanation": "Waar woon je?",
+          "explanation": "Ik woon in Amsterdam.",
           "vocabRefs": [
-            "v-je-jouw"
+            "v-ik"
           ]
         },
         {
           "id": "s1-u02-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "En jij? Waar kom jij vandaan?",
+          "audioText": "Ik ben student.",
           "answers": [
-            "En jij? Waar kom jij vandaan?"
+            "Ik ben student."
           ],
-          "translation": "E tu? De onde és?",
-          "explanation": "«En jij? Waar kom jij vandaan?» = E tu? De onde és?",
+          "translation": "Sou estudante.",
+          "explanation": "«Ik ben student.» = Sou estudante.",
           "vocabRefs": [
-            "v-jij",
-            "v-waar",
-            "v-vandaan"
+            "v-ik",
+            "v-u",
+            "v-student"
           ]
         },
         {
           "id": "s1-u02-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dit is mijn collega Eva.",
+          "audioText": "Ja, ik ben Tom.",
           "answers": [
-            "Dit is mijn collega Eva."
+            "Ja, ik ben Tom."
           ],
-          "translation": "Esta é a minha colega Eva.",
-          "explanation": "«Dit is mijn collega Eva.» = Esta é a minha colega Eva.",
+          "translation": "Sim, sou o Tom.",
+          "explanation": "«Ja, ik ben Tom.» = Sim, sou o Tom.",
           "vocabRefs": [
-            "v-mijn",
-            "v-is",
-            "v-dit-is",
-            "v-collega"
+            "v-ik",
+            "v-ja"
           ]
         },
         {
           "id": "s1-u02-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu nome é Sanne de Boer.",
+          "prompt": "E tu? De onde és?",
           "tokens": [
-            "Boer.",
-            "naam",
-            "Bent",
-            "u",
-            "is",
-            "de",
-            "Sanne",
-            "Mijn"
+            "kom",
+            "Ik",
+            "vandaan?",
+            "jij?",
+            "En",
+            "Waar",
+            "moe.",
+            "jij"
           ],
           "answers": [
-            "Mijn naam is Sanne de Boer."
+            "En jij? Waar kom jij vandaan?"
           ],
-          "explanation": "O meu nome é Sanne de Boer. = Mijn naam is Sanne de Boer. (sobram: Bent, u)",
+          "explanation": "E tu? De onde és? = En jij? Waar kom jij vandaan? (sobram: Ik, moe.)",
           "vocabRefs": [
-            "v-naam",
-            "v-mijn",
-            "v-is"
+            "v-jij",
+            "v-waar",
+            "v-vandaan"
           ]
         },
         {
@@ -2657,16 +2659,16 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "És o Tom?",
           "tokens": [
-            "Ben",
             "jij",
+            "Ben",
             "Tom?",
             "Ik",
-            "u"
+            "student?"
           ],
           "answers": [
             "Ben jij Tom?"
           ],
-          "explanation": "És o Tom? = Ben jij Tom? (sobram: Ik, u)",
+          "explanation": "És o Tom? = Ben jij Tom? (sobram: student?, Ik)",
           "vocabRefs": [
             "v-jij"
           ]
@@ -2675,41 +2677,40 @@
           "id": "s1-u02-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "naam",
-          "pt": "nome",
+          "noun": "vriendin",
+          "pt": "amiga",
           "article": "de",
-          "explanation": "de naam.",
+          "explanation": "de vriendin.",
           "vocabRefs": [
-            "v-naam"
+            "v-vriendin"
           ]
         },
         {
           "id": "s1-u02-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Leuk je te ontmoeten!»?",
+          "prompt": "O que significa: «Dit is Pedro.»?",
           "options": [
             {
               "id": "a",
-              "text": "Sou de Lisboa.",
+              "text": "Moras em Utrecht?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Prazer em conhecer-te!",
-              "correct": true
+              "text": "É o senhor Jansen?",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Moro em Amesterdão.",
-              "correct": false
+              "text": "Este é o Pedro.",
+              "correct": true
             }
           ],
-          "explanation": "«Leuk je te ontmoeten!» = Prazer em conhecer-te!",
+          "explanation": "«Dit is Pedro.» = Este é o Pedro.",
           "vocabRefs": [
-            "v-u",
-            "v-je-jouw",
-            "v-leuk-je-te-ontmoeten"
+            "v-is",
+            "v-dit-is"
           ]
         }
       ],
@@ -2779,8 +2780,8 @@
           "pt": "De onde és?"
         },
         {
-          "nl": "Zij heet Sanne.",
-          "pt": "Ela chama-se Sanne."
+          "nl": "Ben jij student?",
+          "pt": "És estudante?"
         }
       ],
       "grammar": [],
@@ -2789,115 +2790,117 @@
           "id": "s1-u02-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "És estudante?",
+          "prompt": "É o senhor Jansen?",
           "tokens": [
-            "student?",
+            "Bent",
+            "Jansen?",
             "u",
-            "vandaan?",
-            "Ben",
-            "jij"
+            "Ik",
+            "meneer",
+            "student."
           ],
           "answers": [
-            "Ben jij student?"
+            "Bent u meneer Jansen?"
           ],
-          "explanation": "És estudante? = Ben jij student? (sobram: u, vandaan?)",
+          "explanation": "É o senhor Jansen? = Bent u meneer Jansen? (sobram: Ik, student.)",
           "vocabRefs": [
-            "v-jij",
             "v-u",
-            "v-student"
+            "v-ja",
+            "v-nee"
           ]
         },
         {
           "id": "s1-u02-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "De onde é (o senhor / a senhora)?",
+          "prompt": "Qual é o teu nome?",
           "tokens": [
-            "u",
-            "komt",
-            "mijn",
-            "Waar",
-            "vandaan?",
-            "collega"
+            "Ik",
+            "Wat",
+            "Ana.",
+            "is",
+            "naam?",
+            "je"
           ],
           "answers": [
-            "Waar komt u vandaan?"
+            "Wat is je naam?"
           ],
-          "explanation": "De onde é (o senhor / a senhora)? = Waar komt u vandaan? (sobram: collega, mijn)",
+          "explanation": "Qual é o teu nome? = Wat is je naam? (sobram: Ik, Ana.)",
           "vocabRefs": [
-            "v-u",
-            "v-waar",
-            "v-vandaan"
+            "v-wat",
+            "v-naam",
+            "v-je-jouw",
+            "v-is"
           ]
         },
         {
           "id": "s1-u02-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Esta é a minha colega Eva.",
+          "prompt": "Prazer em conhecer-te!",
           "tokens": [
-            "Eva.",
-            "is",
-            "Dit",
-            "collega",
+            "Sanne",
+            "je",
+            "Leuk",
+            "ontmoeten!",
             "Ana.",
-            "de",
-            "mijn"
+            "te"
           ],
           "answers": [
-            "Dit is mijn collega Eva."
+            "Leuk je te ontmoeten!"
           ],
-          "explanation": "Esta é a minha colega Eva. = Dit is mijn collega Eva. (sobram: de, Ana.)",
+          "explanation": "Prazer em conhecer-te! = Leuk je te ontmoeten! (sobram: Sanne, Ana.)",
           "vocabRefs": [
-            "v-mijn",
-            "v-is",
-            "v-dit-is",
-            "v-collega"
+            "v-u",
+            "v-je-jouw",
+            "v-leuk-je-te-ontmoeten"
           ]
         },
         {
           "id": "s1-u02-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ja, ik ben Tom.",
+          "audioText": "Bent u mevrouw Visser?",
           "answers": [
-            "Ja, ik ben Tom."
+            "Bent u mevrouw Visser?"
           ],
-          "translation": "Sim, sou o Tom.",
-          "explanation": "«Ja, ik ben Tom.» = Sim, sou o Tom.",
+          "translation": "É a senhora Visser?",
+          "explanation": "«Bent u mevrouw Visser?» = É a senhora Visser?",
           "vocabRefs": [
-            "v-ik",
-            "v-ja"
+            "v-u",
+            "v-is"
           ]
         },
         {
           "id": "s1-u02-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik kom uit Portugal.",
+          "audioText": "Jij woont in Utrecht.",
           "answers": [
-            "Ik kom uit Portugal."
+            "Jij woont in Utrecht."
           ],
-          "translation": "Sou de Portugal.",
-          "explanation": "«Ik kom uit Portugal.» = Sou de Portugal.",
+          "translation": "Tu moras em Utrecht.",
+          "explanation": "«Jij woont in Utrecht.» = Tu moras em Utrecht.",
           "vocabRefs": [
-            "v-ik",
+            "v-jij",
             "v-u",
-            "v-portugal"
+            "v-in"
           ]
         },
         {
           "id": "s1-u02-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben moe.",
+          "audioText": "Leuk je te ontmoeten!",
           "answers": [
-            "Ik ben moe."
+            "Leuk je te ontmoeten!"
           ],
-          "translation": "Estou cansado/a.",
-          "explanation": "«Ik ben moe.» = Estou cansado/a.",
+          "translation": "Prazer em conhecer-te!",
+          "explanation": "«Leuk je te ontmoeten!» = Prazer em conhecer-te!",
           "vocabRefs": [
-            "v-ik"
+            "v-u",
+            "v-je-jouw",
+            "v-leuk-je-te-ontmoeten"
           ]
         },
         {
@@ -2907,9 +2910,9 @@
           "translation": "Prazer em conhecer-te!",
           "tokens": [
             "Leuk",
-            "ontmoeten!",
+            "je",
             "te",
-            "je"
+            "ontmoeten!"
           ],
           "alternatives": [],
           "explanation": "Leuk je te ontmoeten!",
@@ -2925,10 +2928,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "É a senhora Visser?",
           "tokens": [
-            "Visser?",
-            "u",
             "Bent",
-            "mevrouw"
+            "u",
+            "mevrouw",
+            "Visser?"
           ],
           "alternatives": [],
           "explanation": "Bent u mevrouw Visser?",
@@ -2941,54 +2944,54 @@
           "id": "s1-u02-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «nu»?",
+          "prompt": "O que significa «is»?",
           "options": [
             {
               "id": "a",
-              "text": "meu",
+              "text": "você",
               "correct": false
             },
             {
               "id": "b",
-              "text": "agora",
+              "text": "é",
               "correct": true
             },
             {
               "id": "c",
-              "text": "ser",
+              "text": "tu",
               "correct": false
             }
           ],
-          "explanation": "«nu» = agora.",
+          "explanation": "«is» = é, está.",
           "vocabRefs": [
-            "v-nu"
+            "v-is"
           ]
         },
         {
           "id": "s1-u02-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de student»?",
+          "prompt": "O que significa «de naam»?",
           "options": [
             {
               "id": "a",
               "text": "nome",
-              "correct": false
+              "correct": true
             },
             {
               "id": "b",
-              "text": "prazer em conhecer-te",
+              "text": "mas",
               "correct": false
             },
             {
               "id": "c",
-              "text": "estudante",
-              "correct": true
+              "text": "onde",
+              "correct": false
             }
           ],
-          "explanation": "«de student» = estudante.",
+          "explanation": "«de naam» = nome.",
           "vocabRefs": [
-            "v-student"
+            "v-naam"
           ]
         }
       ],
@@ -3050,16 +3053,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik woon in Amsterdam.",
-          "pt": "Moro em Amesterdão."
+          "nl": "Ik ben moe.",
+          "pt": "Estou cansado/a."
         },
         {
-          "nl": "Woon jij in Utrecht?",
-          "pt": "Moras em Utrecht?"
+          "nl": "Bent u meneer Jansen?",
+          "pt": "É o senhor Jansen?"
         },
         {
-          "nl": "Ja, ik ben Tom.",
-          "pt": "Sim, sou o Tom."
+          "nl": "Ben jij Tom?",
+          "pt": "És o Tom?"
         }
       ],
       "grammar": [],
@@ -3070,173 +3073,166 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "ja",
-              "pt": "sim"
+              "nl": "aangenaam",
+              "pt": "muito prazer"
             },
             {
-              "nl": "zijn",
-              "pt": "ser"
+              "nl": "Nederland",
+              "pt": "os Países Baixos"
             },
             {
-              "nl": "waar",
-              "pt": "onde"
+              "nl": "vriendin",
+              "pt": "amiga"
             },
             {
               "nl": "hoe",
               "pt": "como"
             },
             {
-              "nl": "Nederland",
-              "pt": "os Países Baixos"
+              "nl": "ja",
+              "pt": "sim"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-ja",
-            "v-zijn",
-            "v-waar",
+            "v-aangenaam",
+            "v-nederland",
+            "v-vriendin",
             "v-hoe",
-            "v-nederland"
+            "v-ja"
           ]
         },
         {
           "id": "s1-u02-l010-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Woon jij in Utrecht?",
+          "audioText": "Bent u meneer Jansen?",
           "answers": [
-            "Woon jij in Utrecht?"
+            "Bent u meneer Jansen?"
           ],
-          "translation": "Moras em Utrecht?",
-          "explanation": "«Woon jij in Utrecht?» = Moras em Utrecht?",
+          "translation": "É o senhor Jansen?",
+          "explanation": "«Bent u meneer Jansen?» = É o senhor Jansen?",
           "vocabRefs": [
-            "v-jij",
             "v-u",
-            "v-in"
+            "v-ja",
+            "v-nee"
           ]
         },
         {
           "id": "s1-u02-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Bent u mevrouw Visser?",
+          "audioText": "Waar kom je vandaan?",
           "answers": [
-            "Bent u mevrouw Visser?"
+            "Waar kom je vandaan?"
           ],
-          "translation": "É a senhora Visser?",
-          "explanation": "«Bent u mevrouw Visser?» = É a senhora Visser?",
+          "translation": "De onde és?",
+          "explanation": "«Waar kom je vandaan?» = De onde és?",
           "vocabRefs": [
-            "v-u",
-            "v-is"
+            "v-je-jouw",
+            "v-waar",
+            "v-vandaan"
           ]
         },
         {
           "id": "s1-u02-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «nee»?",
+          "prompt": "O que significa «jij»?",
           "options": [
             {
               "id": "a",
-              "text": "sim",
+              "text": "morar",
               "correct": false
             },
             {
               "id": "b",
               "text": "tu",
-              "correct": false
+              "correct": true
             },
             {
               "id": "c",
-              "text": "não",
-              "correct": true
+              "text": "colega",
+              "correct": false
             }
           ],
-          "explanation": "«nee» = não.",
+          "explanation": "«jij» = tu.",
           "vocabRefs": [
-            "v-nee"
+            "v-jij"
           ]
         },
         {
           "id": "s1-u02-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «leuk je te ontmoeten»?",
+          "prompt": "O que significa «de vriend»?",
           "options": [
             {
               "id": "a",
-              "text": "tu",
+              "text": "ser de",
               "correct": false
             },
             {
               "id": "b",
-              "text": "não",
-              "correct": false
+              "text": "amigo",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "prazer em conhecer-te",
-              "correct": true
+              "text": "não",
+              "correct": false
             }
           ],
-          "explanation": "«leuk je te ontmoeten» = prazer em conhecer-te.",
+          "explanation": "«de vriend» = amigo, namorado.",
           "vocabRefs": [
-            "v-leuk-je-te-ontmoeten"
+            "v-vriend"
           ]
         },
         {
           "id": "s1-u02-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Sou de Portugal.",
+          "translation": "Estou cansado/a.",
           "tokens": [
-            "kom",
-            "uit",
-            "Portugal.",
-            "Ik"
+            "Ik",
+            "ben",
+            "moe."
           ],
           "alternatives": [],
-          "explanation": "Ik kom uit Portugal.",
+          "explanation": "Ik ben moe.",
           "vocabRefs": [
-            "v-ik",
-            "v-u",
-            "v-portugal"
+            "v-ik"
           ]
         },
         {
           "id": "s1-u02-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Tu moras em Utrecht.",
+          "translation": "Ela chama-se Sanne.",
           "tokens": [
-            "Jij",
-            "in",
-            "woont",
-            "Utrecht."
+            "Zij",
+            "heet",
+            "Sanne."
           ],
           "alternatives": [],
-          "explanation": "Jij woont in Utrecht.",
-          "vocabRefs": [
-            "v-jij",
-            "v-u",
-            "v-in"
-          ]
+          "explanation": "Zij heet Sanne.",
+          "vocabRefs": []
         },
         {
           "id": "s1-u02-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wat ___ je naam?",
-          "translation": "Qual é o teu nome?",
+          "sentence": "Mijn naam ___ Sanne de Boer.",
+          "translation": "O meu nome é Sanne de Boer.",
           "answers": [
             "is"
           ],
           "choices": [
-            "maar",
+            "collega",
             "is",
-            "nu"
+            "in"
           ],
-          "explanation": "Wat is je naam?",
+          "explanation": "Mijn naam is Sanne de Boer.",
           "vocabRefs": [
             "v-is"
           ]
@@ -3245,28 +3241,29 @@
           "id": "s1-u02-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik woon in Amsterdam.»?",
+          "prompt": "O que significa: «Ik kom uit Lissabon.»?",
           "options": [
             {
               "id": "a",
-              "text": "Moro em Amesterdão.",
-              "correct": true
+              "text": "Prazer em conhecer-te!",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "E tu? De onde és?",
-              "correct": false
+              "text": "Sou de Lisboa.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Moras em Utrecht?",
+              "text": "Este é o Pedro.",
               "correct": false
             }
           ],
-          "explanation": "«Ik woon in Amsterdam.» = Moro em Amesterdão.",
+          "explanation": "«Ik kom uit Lissabon.» = Sou de Lisboa.",
           "vocabRefs": [
             "v-ik",
-            "v-in"
+            "v-u",
+            "v-is"
           ]
         }
       ],

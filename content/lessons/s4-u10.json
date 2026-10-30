@@ -1866,16 +1866,16 @@
       ],
       "examples": [
         {
-          "nl": "De gemeente kan helpen bij overlast.",
-          "pt": "A câmara pode ajudar em casos de incómodo."
+          "nl": "Kun je me even helpen?",
+          "pt": "Podes ajudar-me um bocadinho?"
         },
         {
-          "nl": "Probeer het nog een keer.",
-          "pt": "Tenta outra vez."
+          "nl": "Misschien kun je een e-mail sturen.",
+          "pt": "Talvez possas mandar um e-mail."
         },
         {
-          "nl": "Kunt u het vervangen?",
-          "pt": "Pode substituí-lo?"
+          "nl": "Telkens als ik inlog, krijg ik een foutmelding.",
+          "pt": "Sempre que entro, aparece uma mensagem de erro."
         }
       ],
       "grammar": [],
@@ -1922,12 +1922,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Queres que o faça por ti?",
           "tokens": [
-            "je",
-            "het",
             "Zal",
-            "doen?",
             "ik",
-            "voor"
+            "het",
+            "voor",
+            "je",
+            "doen?"
           ],
           "alternatives": [],
           "explanation": "Zal ik het voor je doen?",
@@ -1941,12 +1941,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Queria o reembolso.",
           "tokens": [
-            "terug.",
-            "geld",
-            "mijn",
-            "graag",
+            "Ik",
             "wil",
-            "Ik"
+            "graag",
+            "mijn",
+            "geld",
+            "terug."
           ],
           "alternatives": [],
           "explanation": "Ik wil graag mijn geld terug.",
@@ -1960,13 +1960,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vamos combinar regras para o jardim.",
           "tokens": [
+            "Laten",
             "we",
-            "de",
+            "afspraken",
             "maken",
             "over",
-            "tuin.",
-            "afspraken",
-            "Laten"
+            "de",
+            "tuin."
           ],
           "alternatives": [],
           "explanation": "Laten we afspraken maken over de tuin.",
@@ -1978,91 +1978,97 @@
           "id": "s4-u10-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je zou de huisbaas kunnen bellen.»?",
+          "prompt": "O que significa: «Het is me gelukt!»?",
           "options": [
             {
               "id": "a",
-              "text": "Podias ligar ao senhorio.",
-              "correct": true
+              "text": "O meu portátil já não funciona.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "O barulho incomoda-me muito.",
-              "correct": false
+              "text": "Consegui!",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Há algo errado com a minha conta.",
+              "text": "Queres que o faça por ti?",
               "correct": false
             }
           ],
-          "explanation": "«Je zou de huisbaas kunnen bellen.» = Podias ligar ao senhorio.",
+          "explanation": "«Het is me gelukt!» = Consegui!",
           "vocabRefs": []
         },
         {
           "id": "s4-u10-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Probeer het nog een keer.»?",
+          "prompt": "O que significa: «Laten we afspraken maken over de tuin.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tenta outra vez.",
+              "text": "Vamos combinar regras para o jardim.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Posso dar-te um conselho?",
+              "text": "Talvez possas mandar um e-mail.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Que prático!",
+              "text": "Já reiniciei o computador.",
               "correct": false
             }
           ],
-          "explanation": "«Probeer het nog een keer.» = Tenta outra vez.",
-          "vocabRefs": []
+          "explanation": "«Laten we afspraken maken over de tuin.» = Vamos combinar regras para o jardim.",
+          "vocabRefs": [
+            "v-afspraak-maken-over"
+          ]
         },
         {
           "id": "s4-u10-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não consigo.",
+          "prompt": "O barulho incomoda-me muito.",
           "tokens": [
-            "een",
-            "Het",
-            "kiezen?",
-            "me",
-            "niet.",
-            "lukt"
+            "Misschien",
+            "Ik",
+            "lawaai.",
+            "heb",
+            "veel",
+            "last",
+            "voor",
+            "van",
+            "het"
           ],
           "answers": [
-            "Het lukt me niet."
+            "Ik heb veel last van het lawaai."
           ],
-          "explanation": "Não consigo. = Het lukt me niet. (sobram: een, kiezen?)",
-          "vocabRefs": []
+          "explanation": "O barulho incomoda-me muito. = Ik heb veel last van het lawaai. (sobram: voor, Misschien)",
+          "vocabRefs": [
+            "v-lawaai"
+          ]
         },
         {
           "id": "s4-u10-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Já reiniciei o computador.",
+          "prompt": "O meu portátil já não funciona.",
           "tokens": [
-            "computer",
-            "opgestart.",
-            "kunnen",
-            "al",
-            "opnieuw",
-            "heb",
-            "Ik",
-            "u",
-            "de"
+            "doet",
+            "sturen.",
+            "meer.",
+            "niet",
+            "e-mail",
+            "het",
+            "Mijn",
+            "laptop"
           ],
           "answers": [
-            "Ik heb de computer al opnieuw opgestart."
+            "Mijn laptop doet het niet meer."
           ],
-          "explanation": "Já reiniciei o computador. = Ik heb de computer al opnieuw opgestart. (sobram: u, kunnen)",
+          "explanation": "O meu portátil já não funciona. = Mijn laptop doet het niet meer. (sobram: e-mail, sturen.)",
           "vocabRefs": []
         }
       ],
@@ -2127,16 +2133,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat als we een andere dag kiezen?",
-          "pt": "E se escolhermos outro dia?"
+          "nl": "Telkens als ik inlog, krijg ik een foutmelding.",
+          "pt": "Sempre que entro, aparece uma mensagem de erro."
         },
         {
-          "nl": "Sinds gisteren is er geen warm water.",
-          "pt": "Desde ontem não há água quente."
+          "nl": "Het is me gelukt!",
+          "pt": "Consegui!"
         },
         {
-          "nl": "Ik heb veel last van het lawaai.",
-          "pt": "O barulho incomoda-me muito."
+          "nl": "Ik wil graag mijn geld terug.",
+          "pt": "Queria o reembolso."
         }
       ],
       "grammar": [],
@@ -2145,90 +2151,85 @@
           "id": "s4-u10-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «incómodo» em neerlandês?",
+          "prompt": "Como se diz «mensagem de erro» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "overlast",
-              "correct": true
-            },
-            {
-              "id": "b",
               "text": "lukken",
               "correct": false
             },
             {
-              "id": "c",
-              "text": "advies",
+              "id": "b",
+              "text": "zal ik…?",
               "correct": false
+            },
+            {
+              "id": "c",
+              "text": "foutmelding",
+              "correct": true
             }
           ],
-          "explanation": "incómodo = «overlast».",
+          "explanation": "mensagem de erro = «foutmelding».",
           "vocabRefs": [
-            "v-overlast"
+            "v-foutmelding"
           ]
         },
         {
           "id": "s4-u10-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ajuda» em neerlandês?",
+          "prompt": "Como se diz «prático» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "vervangen",
+              "text": "lukken",
               "correct": false
             },
             {
               "id": "b",
-              "text": "hulp",
-              "correct": true
+              "text": "foutmelding",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "bonnetje",
-              "correct": false
+              "text": "handig",
+              "correct": true
             }
           ],
-          "explanation": "ajuda = «hulp».",
+          "explanation": "prático = «handig».",
           "vocabRefs": [
-            "v-hulp"
+            "v-handig"
           ]
         },
         {
           "id": "s4-u10-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Telkens als ik inlog, krijg ik een ___.",
-          "translation": "Sempre que entro, aparece uma mensagem de erro.",
+          "sentence": "Ik heb veel last van het ___.",
+          "translation": "O barulho incomoda-me muito.",
           "answers": [
-            "foutmelding"
+            "lawaai"
           ],
           "choices": [
             "lukken",
-            "foutmelding",
-            "telkens"
+            "lawaai",
+            "hulp"
           ],
-          "explanation": "Telkens als ik inlog, krijg ik een foutmelding.",
+          "explanation": "Ik heb veel last van het lawaai.",
           "vocabRefs": [
-            "v-foutmelding"
+            "v-lawaai"
           ]
         },
         {
           "id": "s4-u10-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Heeft u het ___ nog?",
-          "translation": "Ainda tem o talão?",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Heeft u het bonnetje nog?",
           "answers": [
-            "bonnetje"
+            "Heeft u het bonnetje nog?"
           ],
-          "choices": [
-            "lawaai",
-            "lukken",
-            "bonnetje"
-          ],
-          "explanation": "Heeft u het bonnetje nog?",
+          "translation": "Ainda tem o talão?",
+          "explanation": "«Heeft u het bonnetje nog?» = Ainda tem o talão?",
           "vocabRefs": [
             "v-bonnetje"
           ]
@@ -2237,102 +2238,92 @@
           "id": "s4-u10-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Kun je me even helpen?",
+          "audioText": "Het is me gelukt!",
           "answers": [
-            "Kun je me even helpen?"
+            "Het is me gelukt!"
           ],
-          "translation": "Podes ajudar-me um bocadinho?",
-          "explanation": "«Kun je me even helpen?» = Podes ajudar-me um bocadinho?",
+          "translation": "Consegui!",
+          "explanation": "«Het is me gelukt!» = Consegui!",
           "vocabRefs": []
         },
         {
           "id": "s4-u10-l008-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn laptop doet het niet meer.",
-          "answers": [
-            "Mijn laptop doet het niet meer."
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Queria o reembolso.",
+          "tokens": [
+            "graag",
+            "Ik",
+            "terug.",
+            "geld",
+            "Sinds",
+            "mijn",
+            "computer",
+            "wil"
           ],
-          "translation": "O meu portátil já não funciona.",
-          "explanation": "«Mijn laptop doet het niet meer.» = O meu portátil já não funciona.",
-          "vocabRefs": []
+          "answers": [
+            "Ik wil graag mijn geld terug."
+          ],
+          "explanation": "Queria o reembolso. = Ik wil graag mijn geld terug. (sobram: Sinds, computer)",
+          "vocabRefs": [
+            "v-geld-terug"
+          ]
         },
         {
           "id": "s4-u10-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Desde ontem não há água quente.",
+          "prompt": "E se escolhermos outro dia?",
           "tokens": [
-            "water.",
+            "de",
+            "we",
+            "Wat",
             "het",
-            "warm",
-            "geld",
-            "Sinds",
-            "er",
-            "gisteren",
-            "geen",
-            "is"
+            "dag",
+            "andere",
+            "als",
+            "een",
+            "kiezen?"
           ],
           "answers": [
-            "Sinds gisteren is er geen warm water."
+            "Wat als we een andere dag kiezen?"
           ],
-          "explanation": "Desde ontem não há água quente. = Sinds gisteren is er geen warm water. (sobram: geld, het)",
+          "explanation": "E se escolhermos outro dia? = Wat als we een andere dag kiezen? (sobram: de, het)",
           "vocabRefs": [
-            "v-sinds-gisteren"
+            "v-wat-als"
           ]
         },
         {
           "id": "s4-u10-l008-e08",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A música incomoda-o?",
-          "tokens": [
-            "voor",
-            "muziek?",
-            "u",
-            "krijg",
-            "de",
-            "last",
-            "Heeft",
-            "van"
-          ],
-          "answers": [
-            "Heeft u last van de muziek?"
-          ],
-          "explanation": "A música incomoda-o? = Heeft u last van de muziek? (sobram: voor, krijg)",
-          "vocabRefs": []
-        },
-        {
-          "id": "s4-u10-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "bonnetje",
-          "pt": "talão",
-          "article": "het",
-          "explanation": "het bonnetje.",
+          "noun": "hulp",
+          "pt": "ajuda",
+          "article": "de",
+          "explanation": "de hulp.",
           "vocabRefs": [
-            "v-bonnetje"
+            "v-hulp"
           ]
         },
         {
-          "id": "s4-u10-l008-e10",
+          "id": "s4-u10-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa: «Kun je me even helpen?»?",
           "options": [
             {
               "id": "a",
+              "text": "Sempre que entro, aparece uma mensagem de erro.",
+              "correct": false
+            },
+            {
+              "id": "b",
               "text": "Podes ajudar-me um bocadinho?",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "Desde ontem não há água quente.",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "Estás a conseguir?",
+              "text": "Queria o reembolso.",
               "correct": false
             }
           ],
@@ -2401,16 +2392,16 @@
       ],
       "examples": [
         {
-          "nl": "Probeer het nog een keer.",
-          "pt": "Tenta outra vez."
+          "nl": "Heeft u last van de muziek?",
+          "pt": "A música incomoda-o?"
         },
         {
-          "nl": "Kunt u het vervangen?",
-          "pt": "Pode substituí-lo?"
+          "nl": "Misschien kun je een e-mail sturen.",
+          "pt": "Talvez possas mandar um e-mail."
         },
         {
-          "nl": "Sinds gisteren is er geen warm water.",
-          "pt": "Desde ontem não há água quente."
+          "nl": "De gemeente kan helpen bij overlast.",
+          "pt": "A câmara pode ajudar em casos de incómodo."
         }
       ],
       "grammar": [],
@@ -2419,194 +2410,194 @@
           "id": "s4-u10-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso dar-te um conselho?",
+          "prompt": "Pode ter-nos um pouco em consideração?",
           "tokens": [
-            "ik",
-            "Mag",
-            "een",
-            "je",
-            "de",
-            "advies",
-            "geven?",
-            "is"
+            "gisteren",
+            "kiezen?",
+            "u",
+            "met",
+            "beetje",
+            "houden?",
+            "rekening",
+            "ons",
+            "Kunt",
+            "een"
           ],
           "answers": [
-            "Mag ik je een advies geven?"
+            "Kunt u een beetje rekening met ons houden?"
           ],
-          "explanation": "Posso dar-te um conselho? = Mag ik je een advies geven? (sobram: is, de)",
-          "vocabRefs": [
-            "v-advies"
-          ]
+          "explanation": "Pode ter-nos um pouco em consideração? = Kunt u een beetje rekening met ons houden? (sobram: kiezen?, gisteren)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u10-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu portátil já não funciona.",
+          "prompt": "Consegui!",
           "tokens": [
-            "laptop",
+            "gelukt!",
+            "Het",
+            "me",
+            "is",
             "Mijn",
-            "doet",
-            "gisteren",
-            "het",
-            "niet",
-            "meer.",
-            "met"
+            "een"
           ],
           "answers": [
-            "Mijn laptop doet het niet meer."
+            "Het is me gelukt!"
           ],
-          "explanation": "O meu portátil já não funciona. = Mijn laptop doet het niet meer. (sobram: gisteren, met)",
+          "explanation": "Consegui! = Het is me gelukt! (sobram: Mijn, een)",
           "vocabRefs": []
         },
         {
           "id": "s4-u10-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O barulho incomoda-me muito.",
+          "prompt": "Talvez possas mandar um e-mail.",
           "tokens": [
-            "Je",
-            "Ik",
-            "veel",
-            "lawaai.",
-            "van",
-            "last",
-            "heb",
-            "het",
-            "opnieuw"
+            "houden?",
+            "een",
+            "kun",
+            "je",
+            "e-mail",
+            "tuin.",
+            "Misschien",
+            "sturen."
           ],
           "answers": [
-            "Ik heb veel last van het lawaai."
+            "Misschien kun je een e-mail sturen."
           ],
-          "explanation": "O barulho incomoda-me muito. = Ik heb veel last van het lawaai. (sobram: opnieuw, Je)",
-          "vocabRefs": [
-            "v-lawaai"
-          ]
+          "explanation": "Talvez possas mandar um e-mail. = Misschien kun je een e-mail sturen. (sobram: houden?, tuin.)",
+          "vocabRefs": []
         },
         {
           "id": "s4-u10-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat als we een andere dag kiezen?",
+          "audioText": "Zal ik het voor je doen?",
           "answers": [
-            "Wat als we een andere dag kiezen?"
+            "Zal ik het voor je doen?"
           ],
-          "translation": "E se escolhermos outro dia?",
-          "explanation": "«Wat als we een andere dag kiezen?» = E se escolhermos outro dia?",
+          "translation": "Queres que o faça por ti?",
+          "explanation": "«Zal ik het voor je doen?» = Queres que o faça por ti?",
           "vocabRefs": [
-            "v-wat-als"
+            "v-zal-ik"
           ]
         },
         {
           "id": "s4-u10-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik wil graag mijn geld terug.",
+          "audioText": "Telkens als ik inlog, krijg ik een foutmelding.",
           "answers": [
-            "Ik wil graag mijn geld terug."
+            "Telkens als ik inlog, krijg ik een foutmelding."
           ],
-          "translation": "Queria o reembolso.",
-          "explanation": "«Ik wil graag mijn geld terug.» = Queria o reembolso.",
+          "translation": "Sempre que entro, aparece uma mensagem de erro.",
+          "explanation": "«Telkens als ik inlog, krijg ik een foutmelding.» = Sempre que entro, aparece uma mensagem de erro.",
           "vocabRefs": [
-            "v-geld-terug"
+            "v-gebeurt-telkens",
+            "v-foutmelding"
           ]
         },
         {
           "id": "s4-u10-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het lukt me niet.",
+          "audioText": "Mijn laptop doet het niet meer.",
           "answers": [
-            "Het lukt me niet."
+            "Mijn laptop doet het niet meer."
           ],
-          "translation": "Não consigo.",
-          "explanation": "«Het lukt me niet.» = Não consigo.",
+          "translation": "O meu portátil já não funciona.",
+          "explanation": "«Mijn laptop doet het niet meer.» = O meu portátil já não funciona.",
           "vocabRefs": []
         },
         {
           "id": "s4-u10-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Consegui!",
+          "translation": "A câmara pode ajudar em casos de incómodo.",
           "tokens": [
-            "is",
-            "me",
-            "gelukt!",
-            "Het"
+            "De",
+            "gemeente",
+            "kan",
+            "helpen",
+            "bij",
+            "overlast."
           ],
           "alternatives": [],
-          "explanation": "Het is me gelukt!",
-          "vocabRefs": []
+          "explanation": "De gemeente kan helpen bij overlast.",
+          "vocabRefs": [
+            "v-overlast"
+          ]
         },
         {
           "id": "s4-u10-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Pode substituí-lo?",
+          "translation": "Podias ligar ao senhorio.",
           "tokens": [
-            "u",
-            "het",
-            "vervangen?",
-            "Kunt"
+            "Je",
+            "zou",
+            "de",
+            "huisbaas",
+            "kunnen",
+            "bellen."
           ],
           "alternatives": [],
-          "explanation": "Kunt u het vervangen?",
-          "vocabRefs": [
-            "v-vervangen"
-          ]
+          "explanation": "Je zou de huisbaas kunnen bellen.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u10-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de hulp»?",
+          "prompt": "O que significa «de garantie»?",
           "options": [
             {
               "id": "a",
-              "text": "desde ontem",
+              "text": "tentar",
               "correct": false
             },
             {
               "id": "b",
-              "text": "sempre que",
+              "text": "prático",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ajuda",
+              "text": "garantia",
               "correct": true
             }
           ],
-          "explanation": "«de hulp» = ajuda.",
+          "explanation": "«de garantie» = garantia.",
           "vocabRefs": [
-            "v-hulp"
+            "v-garantie"
           ]
         },
         {
           "id": "s4-u10-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «je zou … kunnen»?",
+          "prompt": "O que significa «de foutmelding»?",
           "options": [
             {
               "id": "a",
-              "text": "ter em conta",
-              "correct": false
+              "text": "mensagem de erro",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "substituir",
+              "text": "incómodo",
               "correct": false
             },
             {
               "id": "c",
-              "text": "podias…",
-              "correct": true
+              "text": "talão",
+              "correct": false
             }
           ],
-          "explanation": "«je zou … kunnen» = podias….",
+          "explanation": "«de foutmelding» = mensagem de erro.",
           "vocabRefs": [
-            "v-je-zou-kunnen"
+            "v-foutmelding"
           ]
         }
       ],

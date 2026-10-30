@@ -1754,16 +1754,16 @@
       ],
       "examples": [
         {
-          "nl": "Is dit van jou?",
-          "pt": "Isto é teu?"
+          "nl": "de dag — de dagen",
+          "pt": "o dia — os dias"
         },
         {
-          "nl": "de baby → de baby's",
-          "pt": "o bebé → os bebés"
+          "nl": "mijn nieuwe fiets",
+          "pt": "a minha bicicleta nova"
         },
         {
-          "nl": "het kind — de kinderen",
-          "pt": "a criança — as crianças"
+          "nl": "Anna's fiets",
+          "pt": "a bicicleta da Ana"
         }
       ],
       "grammar": [],
@@ -1813,8 +1813,8 @@
           "translation": "a cidade — as cidades",
           "tokens": [
             "de",
-            "—",
             "stad",
+            "—",
             "de",
             "steden"
           ],
@@ -1829,10 +1829,10 @@
           "translation": "o bebé → os bebés",
           "tokens": [
             "de",
-            "de",
+            "baby",
             "→",
-            "baby's",
-            "baby"
+            "de",
+            "baby's"
           ],
           "alternatives": [],
           "explanation": "de baby → de baby's",
@@ -1846,10 +1846,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "a bicicleta da Ana",
           "tokens": [
-            "fiets",
             "de",
-            "Anna",
-            "van"
+            "fiets",
+            "van",
+            "Anna"
           ],
           "alternatives": [],
           "explanation": "de fiets van Anna",
@@ -1859,91 +1859,92 @@
           "id": "s2-u10-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat is je lievelingskleur?»?",
+          "prompt": "O que significa: «ons kleine huis»?",
           "options": [
             {
               "id": "a",
-              "text": "Qual é a tua cor preferida?",
-              "correct": true
+              "text": "o quarto → os quartos",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "o dia — os dias",
-              "correct": false
+              "text": "a nossa casa pequena",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "a minha bicicleta nova",
+              "text": "o navio — os navios",
               "correct": false
             }
           ],
-          "explanation": "«Wat is je lievelingskleur?» = Qual é a tua cor preferida?",
+          "explanation": "«ons kleine huis» = a nossa casa pequena",
           "vocabRefs": []
         },
         {
           "id": "s2-u10-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «haar mooie jurk»?",
+          "prompt": "O que significa: «de kamer → de kamers»?",
           "options": [
             {
               "id": "a",
-              "text": "o vestido bonito dela",
-              "correct": true
+              "text": "três raparigas",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "a bicicleta da Ana",
+              "text": "o carro do Pieter",
               "correct": false
             },
             {
               "id": "c",
-              "text": "o carro velho dele",
-              "correct": false
+              "text": "o quarto → os quartos",
+              "correct": true
             }
           ],
-          "explanation": "«haar mooie jurk» = o vestido bonito dela",
+          "explanation": "«de kamer → de kamers» = o quarto → os quartos",
           "vocabRefs": []
         },
         {
           "id": "s2-u10-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é a tua cor preferida?",
+          "prompt": "o quarto → os quartos",
           "tokens": [
-            "lievelingskleur?",
-            "van",
-            "is",
-            "stad",
-            "je",
-            "Wat"
+            "→",
+            "tas",
+            "kamer",
+            "Die",
+            "kamers",
+            "de",
+            "de"
           ],
           "answers": [
-            "Wat is je lievelingskleur?"
+            "de kamer → de kamers"
           ],
-          "explanation": "Qual é a tua cor preferida? = Wat is je lievelingskleur? (sobram: stad, van)",
+          "explanation": "o quarto → os quartos = de kamer → de kamers (sobram: tas, Die)",
           "vocabRefs": []
         },
         {
           "id": "s2-u10-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o navio — os navios",
+          "prompt": "o bebé → os bebés",
           "tokens": [
-            "kinderen",
-            "schip",
-            "—",
-            "schepen",
-            "van",
-            "het",
+            "baby",
+            "Is",
+            "de",
+            "baby's",
+            "→",
+            "kamer",
             "de"
           ],
           "answers": [
-            "het schip — de schepen"
+            "de baby → de baby's"
           ],
-          "explanation": "o navio — os navios = het schip — de schepen (sobram: kinderen, van)",
+          "explanation": "o bebé → os bebés = de baby → de baby's (sobram: kamer, Is)",
           "vocabRefs": [
-            "v-schip"
+            "v-baby"
           ]
         }
       ],
@@ -2010,8 +2011,8 @@
           "pt": "três raparigas"
         },
         {
-          "nl": "mijn nieuwe fiets",
-          "pt": "a minha bicicleta nova"
+          "nl": "het schip — de schepen",
+          "pt": "o navio — os navios"
         }
       ],
       "grammar": [],
@@ -2020,27 +2021,27 @@
           "id": "s2-u10-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «preferido» em neerlandês?",
+          "prompt": "Como se diz «caminho» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "schip",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "lievelings-",
+              "text": "weg",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "van mij",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "lid",
+              "text": "lievelings-",
               "correct": false
             }
           ],
-          "explanation": "preferido = «lievelings-».",
+          "explanation": "caminho = «weg».",
           "vocabRefs": [
-            "v-lievelings"
+            "v-weg-noun"
           ]
         },
         {
@@ -2051,7 +2052,7 @@
           "options": [
             {
               "id": "a",
-              "text": "van mij",
+              "text": "weg",
               "correct": false
             },
             {
@@ -2061,7 +2062,7 @@
             },
             {
               "id": "c",
-              "text": "eigen",
+              "text": "lid",
               "correct": false
             }
           ],
@@ -2072,56 +2073,18 @@
         },
         {
           "id": "s2-u10-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Nee, het is van mijn ___.",
-          "translation": "Não, é do meu vizinho.",
-          "answers": [
-            "buurman"
-          ],
-          "choices": [
-            "buurman",
-            "lid",
-            "lievelings-"
-          ],
-          "explanation": "Nee, het is van mijn buurman.",
-          "vocabRefs": [
-            "v-buurman"
-          ]
-        },
-        {
-          "id": "s2-u10-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "de ___ → de baby's",
-          "translation": "o bebé → os bebés",
-          "answers": [
-            "baby"
-          ],
-          "choices": [
-            "baby",
-            "menu",
-            "eigen"
-          ],
-          "explanation": "de baby → de baby's",
-          "vocabRefs": [
-            "v-baby"
-          ]
-        },
-        {
-          "id": "s2-u10-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de fiets van Anna",
+          "audioText": "mijn nieuwe fiets",
           "answers": [
-            "de fiets van Anna"
+            "mijn nieuwe fiets"
           ],
-          "translation": "a bicicleta da Ana",
-          "explanation": "«de fiets van Anna» = a bicicleta da Ana",
+          "translation": "a minha bicicleta nova",
+          "explanation": "«mijn nieuwe fiets» = a minha bicicleta nova",
           "vocabRefs": []
         },
         {
-          "id": "s2-u10-l008-e06",
+          "id": "s2-u10-l008-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "het kind — de kinderen",
@@ -2133,88 +2096,106 @@
           "vocabRefs": []
         },
         {
-          "id": "s2-u10-l008-e07",
+          "id": "s2-u10-l008-e05",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Essa mala é minha.",
+          "prompt": "a bicicleta da Ana",
           "tokens": [
-            "tas",
-            "is",
-            "katten.",
-            "mij.",
-            "van",
+            "fiets",
             "de",
-            "Die"
+            "katten.",
+            "van",
+            "dag",
+            "Anna"
           ],
           "answers": [
-            "Die tas is van mij."
+            "de fiets van Anna"
           ],
-          "explanation": "Essa mala é minha. = Die tas is van mij. (sobram: de, katten.)",
+          "explanation": "a bicicleta da Ana = de fiets van Anna (sobram: katten., dag)",
+          "vocabRefs": []
+        },
+        {
+          "id": "s2-u10-l008-e06",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "a nossa casa pequena",
+          "tokens": [
+            "kleine",
+            "ons",
+            "huis",
+            "kamers",
+            "de"
+          ],
+          "answers": [
+            "ons kleine huis"
+          ],
+          "explanation": "a nossa casa pequena = ons kleine huis (sobram: kamers, de)",
+          "vocabRefs": []
+        },
+        {
+          "id": "s2-u10-l008-e07",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "noun": "buurman",
+          "pt": "vizinho",
+          "article": "de",
+          "explanation": "de buurman.",
+          "vocabRefs": [
+            "v-buurman"
+          ]
+        },
+        {
+          "id": "s2-u10-l008-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «De kinderen van mijn buren hebben twee katten.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "a bicicleta da Ana",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "muitas fotografias",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Os filhos dos meus vizinhos têm dois gatos.",
+              "correct": true
+            }
+          ],
+          "explanation": "«De kinderen van mijn buren hebben twee katten.» = Os filhos dos meus vizinhos têm dois gatos.",
           "vocabRefs": [
             "v-van-mij"
           ]
         },
         {
-          "id": "s2-u10-l008-e08",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não, é do meu vizinho.",
-          "tokens": [
-            "Nee,",
-            "buurman.",
-            "is",
-            "mijn",
-            "oude",
-            "de",
-            "van",
-            "het"
-          ],
-          "answers": [
-            "Nee, het is van mijn buurman."
-          ],
-          "explanation": "Não, é do meu vizinho. = Nee, het is van mijn buurman. (sobram: oude, de)",
-          "vocabRefs": [
-            "v-van-mij",
-            "v-buurman"
-          ]
-        },
-        {
           "id": "s2-u10-l008-e09",
-          "type": "articleChoice",
-          "instruction": "Escolha o artigo certo.",
-          "noun": "lid",
-          "pt": "membro",
-          "article": "het",
-          "explanation": "het lid.",
-          "vocabRefs": [
-            "v-lid"
-          ]
-        },
-        {
-          "id": "s2-u10-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «het schip — de schepen»?",
+          "prompt": "O que significa «lievelings-»?",
           "options": [
             {
               "id": "a",
-              "text": "o navio — os navios",
-              "correct": true
+              "text": "ementa",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Essa mala é minha.",
-              "correct": false
+              "text": "preferido",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "o vestido bonito dela",
+              "text": "fotografia",
               "correct": false
             }
           ],
-          "explanation": "«het schip — de schepen» = o navio — os navios",
+          "explanation": "«lievelings-» = preferido, favorito.",
           "vocabRefs": [
-            "v-schip"
+            "v-lievelings"
           ]
         }
       ],
@@ -2273,16 +2254,16 @@
       ],
       "examples": [
         {
-          "nl": "zijn oude auto",
-          "pt": "o carro velho dele"
+          "nl": "Nee, het is van mijn buurman.",
+          "pt": "Não, é do meu vizinho."
+        },
+        {
+          "nl": "Anna's fiets",
+          "pt": "a bicicleta da Ana"
         },
         {
           "nl": "de stad — de steden",
           "pt": "a cidade — as cidades"
-        },
-        {
-          "nl": "het blad — de bladeren",
-          "pt": "a folha — as folhas"
         }
       ],
       "grammar": [],
@@ -2291,73 +2272,78 @@
           "id": "s2-u10-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "a bicicleta da Ana",
+          "prompt": "Não, é do meu vizinho.",
           "tokens": [
-            "de",
-            "nieuwe",
-            "fiets",
-            "kinderen",
+            "Nee,",
             "van",
-            "Anna"
+            "buurman.",
+            "is",
+            "mijn",
+            "het",
+            "Anna",
+            "kleine"
           ],
           "answers": [
-            "de fiets van Anna"
+            "Nee, het is van mijn buurman."
           ],
-          "explanation": "a bicicleta da Ana = de fiets van Anna (sobram: nieuwe, kinderen)",
-          "vocabRefs": []
+          "explanation": "Não, é do meu vizinho. = Nee, het is van mijn buurman. (sobram: Anna, kleine)",
+          "vocabRefs": [
+            "v-van-mij",
+            "v-buurman"
+          ]
         },
         {
           "id": "s2-u10-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "a folha — as folhas",
+          "prompt": "Essa mala é minha.",
           "tokens": [
-            "blad",
-            "mijn",
-            "het",
-            "de",
-            "bladeren",
-            "auto",
-            "—"
+            "van",
+            "tas",
+            "is",
+            "mij.",
+            "Die",
+            "jou?",
+            "fiets"
           ],
           "answers": [
-            "het blad — de bladeren"
+            "Die tas is van mij."
           ],
-          "explanation": "a folha — as folhas = het blad — de bladeren (sobram: mijn, auto)",
-          "vocabRefs": []
+          "explanation": "Essa mala é minha. = Die tas is van mij. (sobram: jou?, fiets)",
+          "vocabRefs": [
+            "v-van-mij"
+          ]
         },
         {
           "id": "s2-u10-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "o bebé → os bebés",
+          "prompt": "a criança — as crianças",
           "tokens": [
             "de",
-            "baby",
-            "de",
-            "Nee,",
-            "Die",
-            "baby's",
-            "→"
+            "kind",
+            "het",
+            "nieuwe",
+            "dit",
+            "kinderen",
+            "—"
           ],
           "answers": [
-            "de baby → de baby's"
+            "het kind — de kinderen"
           ],
-          "explanation": "o bebé → os bebés = de baby → de baby's (sobram: Nee,, Die)",
-          "vocabRefs": [
-            "v-baby"
-          ]
+          "explanation": "a criança — as crianças = het kind — de kinderen (sobram: nieuwe, dit)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u10-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "de kamer → de kamers",
+          "audioText": "Is dit van jou?",
           "answers": [
-            "de kamer → de kamers"
+            "Is dit van jou?"
           ],
-          "translation": "o quarto → os quartos",
-          "explanation": "«de kamer → de kamers» = o quarto → os quartos",
+          "translation": "Isto é teu?",
+          "explanation": "«Is dit van jou?» = Isto é teu?",
           "vocabRefs": []
         },
         {
@@ -2392,11 +2378,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "o dia — os dias",
           "tokens": [
-            "dagen",
+            "de",
             "dag",
             "—",
             "de",
-            "de"
+            "dagen"
           ],
           "alternatives": [],
           "explanation": "de dag — de dagen",
@@ -2408,11 +2394,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Essa mala é minha.",
           "tokens": [
-            "is",
-            "mij.",
-            "van",
+            "Die",
             "tas",
-            "Die"
+            "is",
+            "van",
+            "mij."
           ],
           "alternatives": [],
           "explanation": "Die tas is van mij.",
@@ -2424,54 +2410,54 @@
           "id": "s2-u10-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het menu»?",
+          "prompt": "O que significa «de baby»?",
           "options": [
             {
               "id": "a",
-              "text": "ementa",
+              "text": "bebé",
               "correct": true
             },
             {
               "id": "b",
-              "text": "membro",
+              "text": "ementa",
               "correct": false
             },
             {
               "id": "c",
-              "text": "anterior",
+              "text": "fotografia",
               "correct": false
             }
           ],
-          "explanation": "«het menu» = ementa, menu.",
+          "explanation": "«de baby» = bebé.",
           "vocabRefs": [
-            "v-menu"
+            "v-baby"
           ]
         },
         {
           "id": "s2-u10-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de baby»?",
+          "prompt": "O que significa «het lid»?",
           "options": [
             {
               "id": "a",
-              "text": "navio",
+              "text": "caminho",
               "correct": false
             },
             {
               "id": "b",
-              "text": "fotografia",
-              "correct": false
+              "text": "membro",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "bebé",
-              "correct": true
+              "text": "vizinho",
+              "correct": false
             }
           ],
-          "explanation": "«de baby» = bebé.",
+          "explanation": "«het lid» = membro, sócio.",
           "vocabRefs": [
-            "v-baby"
+            "v-lid"
           ]
         }
       ],

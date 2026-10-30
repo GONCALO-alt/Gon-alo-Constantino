@@ -1973,16 +1973,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat kun je uit de tekst afleiden?",
-          "pt": "O que se pode deduzir do texto?"
+          "nl": "Wat is de bedoeling van zijn opmerking?",
+          "pt": "Qual é a intenção do comentário dele?"
+        },
+        {
+          "nl": "Je mag trots zijn op jezelf.",
+          "pt": "Podes ter orgulho em ti."
         },
         {
           "nl": "Je hebt veel vooruitgang geboekt.",
           "pt": "Fizeste muitos progressos."
-        },
-        {
-          "nl": "Je moet het niet verkeerd interpreteren.",
-          "pt": "Não deves interpretar mal."
         }
       ],
       "grammar": [],
@@ -2035,13 +2035,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "O que se pode deduzir do texto?",
           "tokens": [
-            "de",
-            "uit",
-            "kun",
-            "afleiden?",
             "Wat",
+            "kun",
             "je",
-            "tekst"
+            "uit",
+            "de",
+            "tekst",
+            "afleiden?"
           ],
           "alternatives": [],
           "explanation": "Wat kun je uit de tekst afleiden?",
@@ -2055,11 +2055,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Isso não está escrito explicitamente.",
           "tokens": [
+            "Dat",
             "staat",
-            "expliciet.",
-            "niet",
             "er",
-            "Dat"
+            "niet",
+            "expliciet."
           ],
           "alternatives": [],
           "explanation": "Dat staat er niet expliciet.",
@@ -2073,9 +2073,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ela reagiu com entusiasmo.",
           "tokens": [
+            "Ze",
             "reageerde",
-            "enthousiast.",
-            "Ze"
+            "enthousiast."
           ],
           "alternatives": [],
           "explanation": "Ze reageerde enthousiast.",
@@ -2087,98 +2087,104 @@
           "id": "s6-u16-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wat kun je uit de tekst afleiden?»?",
+          "prompt": "O que significa: «Ze reageerde enthousiast.»?",
           "options": [
             {
               "id": "a",
-              "text": "O que se pode deduzir do texto?",
+              "text": "Ela reagiu com entusiasmo.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Foi um mal-entendido.",
+              "text": "Isso não está escrito explicitamente.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "O autor sugere que a política está a falhar.",
+              "text": "Ambos os artigos têm uma perspetiva diferente.",
               "correct": false
             }
           ],
-          "explanation": "«Wat kun je uit de tekst afleiden?» = O que se pode deduzir do texto?",
+          "explanation": "«Ze reageerde enthousiast.» = Ela reagiu com entusiasmo.",
           "vocabRefs": [
-            "v-afleiden"
+            "v-enthousiast"
           ]
         },
         {
           "id": "s6-u16-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een nieuwsbericht is meestal neutraal.»?",
+          "prompt": "O que significa: «Is dit een betrouwbare bron?»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela reagiu com entusiasmo.",
+              "text": "Fizeste muitos progressos.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ele disse-o de forma irónica.",
+              "text": "Este artigo é bastante parcial.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Uma notícia é normalmente neutra.",
+              "text": "Esta é uma fonte fiável?",
               "correct": true
             }
           ],
-          "explanation": "«Een nieuwsbericht is meestal neutraal.» = Uma notícia é normalmente neutra.",
+          "explanation": "«Is dit een betrouwbare bron?» = Esta é uma fonte fiável?",
           "vocabRefs": [
-            "v-neutraal"
+            "v-betrouwbaar-bron"
           ]
         },
         {
           "id": "s6-u16-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Fizeste muitos progressos.",
+          "prompt": "O tom do artigo é crítico.",
           "tokens": [
-            "de",
-            "geboekt.",
-            "veel",
-            "een",
-            "vooruitgang",
-            "hebt",
-            "Je"
+            "Wat",
+            "toon",
+            "De",
+            "van",
+            "is",
+            "artikel",
+            "betrouwbare",
+            "kritisch.",
+            "het"
           ],
           "answers": [
-            "Je hebt veel vooruitgang geboekt."
+            "De toon van het artikel is kritisch."
           ],
-          "explanation": "Fizeste muitos progressos. = Je hebt veel vooruitgang geboekt. (sobram: een, de)",
-          "vocabRefs": []
+          "explanation": "O tom do artigo é crítico. = De toon van het artikel is kritisch. (sobram: betrouwbare, Wat)",
+          "vocabRefs": [
+            "v-kritisch"
+          ]
         },
         {
           "id": "s6-u16-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele disse-o de forma irónica.",
+          "prompt": "Uma semelhança é que ambos referem os números.",
           "tokens": [
-            "een",
-            "ironische",
-            "op",
-            "Hij",
-            "veel",
-            "zei",
-            "staat",
-            "het",
-            "manier."
+            "de",
+            "cijfers",
+            "noemen.",
+            "dat",
+            "overeenkomst",
+            "ze",
+            "is",
+            "meestal",
+            "allebei",
+            "Een",
+            "Je"
           ],
           "answers": [
-            "Hij zei het op een ironische manier."
+            "Een overeenkomst is dat ze allebei de cijfers noemen."
           ],
-          "explanation": "Ele disse-o de forma irónica. = Hij zei het op een ironische manier. (sobram: veel, staat)",
+          "explanation": "Uma semelhança é que ambos referem os números. = Een overeenkomst is dat ze allebei de cijfers noemen. (sobram: meestal, Je)",
           "vocabRefs": [
-            "v-ironisch"
+            "v-overeenkomst-tekst"
           ]
         }
       ],
@@ -2241,16 +2247,16 @@
       ],
       "examples": [
         {
-          "nl": "Hij zei het op een ironische manier.",
-          "pt": "Ele disse-o de forma irónica."
+          "nl": "Een nieuwsbericht is meestal neutraal.",
+          "pt": "Uma notícia é normalmente neutra."
         },
         {
-          "nl": "Dat staat er niet expliciet.",
-          "pt": "Isso não está escrito explicitamente."
+          "nl": "Je hebt veel vooruitgang geboekt.",
+          "pt": "Fizeste muitos progressos."
         },
         {
-          "nl": "Ik beheers de passieve vorm nu goed.",
-          "pt": "Agora domino bem a voz passiva."
+          "nl": "Dat was een duidelijke hint.",
+          "pt": "Isso foi uma indireta clara."
         }
       ],
       "grammar": [],
@@ -2259,143 +2265,142 @@
           "id": "s6-u16-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «entusiasta» em neerlandês?",
+          "prompt": "Como se diz «explícito» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "enthousiast",
-              "correct": true
+              "text": "misverstand",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "hint",
-              "correct": false
+              "text": "expliciet",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "beheersen",
+              "text": "ironisch",
               "correct": false
             }
           ],
-          "explanation": "entusiasta = «enthousiast».",
+          "explanation": "explícito = «expliciet».",
           "vocabRefs": [
-            "v-enthousiast"
+            "v-expliciet"
           ]
         },
         {
           "id": "s6-u16-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «crítico» em neerlandês?",
+          "prompt": "Como se diz «dominar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "kritisch",
-              "correct": true
+              "text": "enthousiast",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "bedoeling",
+              "text": "vooruitgang boeken",
               "correct": false
             },
             {
               "id": "c",
-              "text": "eenzijdig",
-              "correct": false
+              "text": "beheersen",
+              "correct": true
             }
           ],
-          "explanation": "crítico = «kritisch».",
+          "explanation": "dominar = «beheersen».",
           "vocabRefs": [
-            "v-kritisch"
+            "v-beheersen"
           ]
         },
         {
           "id": "s6-u16-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Ze reageerde ___.",
-          "translation": "Ela reagiu com entusiasmo.",
+          "sentence": "Dit niveau is ___.",
+          "translation": "Este nível é desafiante.",
           "answers": [
-            "enthousiast"
+            "uitdagend"
           ],
           "choices": [
-            "enthousiast",
-            "afleiden",
-            "beheersen"
+            "uitdagend",
+            "beheersen",
+            "neutraal"
           ],
-          "explanation": "Ze reageerde enthousiast.",
+          "explanation": "Dit niveau is uitdagend.",
           "vocabRefs": [
-            "v-enthousiast"
+            "v-uitdagend"
           ]
         },
         {
           "id": "s6-u16-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Een nieuwsbericht is meestal ___.",
-          "translation": "Uma notícia é normalmente neutra.",
+          "sentence": "De toon van het artikel is ___.",
+          "translation": "O tom do artigo é crítico.",
           "answers": [
-            "neutraal"
+            "kritisch"
           ],
           "choices": [
-            "overeenkomst",
-            "uitdagend",
+            "perspectief",
+            "kritisch",
             "neutraal"
           ],
-          "explanation": "Een nieuwsbericht is meestal neutraal.",
+          "explanation": "De toon van het artikel is kritisch.",
           "vocabRefs": [
-            "v-neutraal"
+            "v-kritisch"
           ]
         },
         {
           "id": "s6-u16-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat kun je uit de tekst afleiden?",
+          "audioText": "Je moet het niet verkeerd interpreteren.",
           "answers": [
-            "Wat kun je uit de tekst afleiden?"
+            "Je moet het niet verkeerd interpreteren."
           ],
-          "translation": "O que se pode deduzir do texto?",
-          "explanation": "«Wat kun je uit de tekst afleiden?» = O que se pode deduzir do texto?",
+          "translation": "Não deves interpretar mal.",
+          "explanation": "«Je moet het niet verkeerd interpreteren.» = Não deves interpretar mal.",
           "vocabRefs": [
-            "v-afleiden"
+            "v-reactie-interpreteren"
           ]
         },
         {
           "id": "s6-u16-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De toon van het artikel is kritisch.",
+          "audioText": "Hij zei het op een ironische manier.",
           "answers": [
-            "De toon van het artikel is kritisch."
+            "Hij zei het op een ironische manier."
           ],
-          "translation": "O tom do artigo é crítico.",
-          "explanation": "«De toon van het artikel is kritisch.» = O tom do artigo é crítico.",
+          "translation": "Ele disse-o de forma irónica.",
+          "explanation": "«Hij zei het op een ironische manier.» = Ele disse-o de forma irónica.",
           "vocabRefs": [
-            "v-kritisch"
+            "v-ironisch"
           ]
         },
         {
           "id": "s6-u16-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não deves interpretar mal.",
+          "prompt": "Isso não está escrito explicitamente.",
           "tokens": [
-            "faalt.",
-            "verkeerd",
-            "Je",
-            "een",
-            "niet",
+            "er",
+            "Dat",
+            "expliciet.",
             "moet",
-            "het",
-            "interpreteren."
+            "tekst",
+            "niet",
+            "staat"
           ],
           "answers": [
-            "Je moet het niet verkeerd interpreteren."
+            "Dat staat er niet expliciet."
           ],
-          "explanation": "Não deves interpretar mal. = Je moet het niet verkeerd interpreteren. (sobram: faalt., een)",
+          "explanation": "Isso não está escrito explicitamente. = Dat staat er niet expliciet. (sobram: moet, tekst)",
           "vocabRefs": [
-            "v-reactie-interpreteren"
+            "v-expliciet"
           ]
         },
         {
@@ -2404,18 +2409,18 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Este artigo é bastante parcial.",
           "tokens": [
+            "eenzijdig.",
+            "hebt",
             "is",
             "artikel",
-            "vorm",
-            "artikelen",
-            "nogal",
             "Dit",
-            "eenzijdig."
+            "nogal",
+            "zijn"
           ],
           "answers": [
             "Dit artikel is nogal eenzijdig."
           ],
-          "explanation": "Este artigo é bastante parcial. = Dit artikel is nogal eenzijdig. (sobram: artikelen, vorm)",
+          "explanation": "Este artigo é bastante parcial. = Dit artikel is nogal eenzijdig. (sobram: zijn, hebt)",
           "vocabRefs": [
             "v-eenzijdig"
           ]
@@ -2424,39 +2429,39 @@
           "id": "s6-u16-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "misverstand",
-          "pt": "mal-entendido",
-          "article": "het",
-          "explanation": "het misverstand.",
+          "noun": "overeenkomst",
+          "pt": "semelhança",
+          "article": "de",
+          "explanation": "de overeenkomst.",
           "vocabRefs": [
-            "v-misverstand"
+            "v-overeenkomst-tekst"
           ]
         },
         {
           "id": "s6-u16-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Dat staat er niet expliciet.»?",
+          "prompt": "O que significa: «Een overeenkomst is dat ze allebei de cijfers noemen.»?",
           "options": [
             {
               "id": "a",
-              "text": "Fizeste muitos progressos.",
+              "text": "Este artigo é bastante parcial.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Podes ter orgulho em ti.",
+              "text": "Ambos os artigos têm uma perspetiva diferente.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Isso não está escrito explicitamente.",
+              "text": "Uma semelhança é que ambos referem os números.",
               "correct": true
             }
           ],
-          "explanation": "«Dat staat er niet expliciet.» = Isso não está escrito explicitamente.",
+          "explanation": "«Een overeenkomst is dat ze allebei de cijfers noemen.» = Uma semelhança é que ambos referem os números.",
           "vocabRefs": [
-            "v-expliciet"
+            "v-overeenkomst-tekst"
           ]
         }
       ],
@@ -2519,16 +2524,16 @@
       ],
       "examples": [
         {
-          "nl": "Ze reageerde enthousiast.",
-          "pt": "Ela reagiu com entusiasmo."
-        },
-        {
-          "nl": "Een overeenkomst is dat ze allebei de cijfers noemen.",
-          "pt": "Uma semelhança é que ambos referem os números."
+          "nl": "De schrijver suggereert dat het beleid faalt.",
+          "pt": "O autor sugere que a política está a falhar."
         },
         {
           "nl": "Het was een misverstand.",
           "pt": "Foi um mal-entendido."
+        },
+        {
+          "nl": "Beide artikelen hebben een ander perspectief.",
+          "pt": "Ambos os artigos têm uma perspetiva diferente."
         }
       ],
       "grammar": [],
@@ -2537,69 +2542,97 @@
           "id": "s6-u16-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O autor sugere que a política está a falhar.",
+          "prompt": "O que se pode deduzir do texto?",
           "tokens": [
-            "beleid",
-            "faalt.",
-            "schrijver",
-            "dat",
-            "Beide",
-            "suggereert",
-            "het",
-            "De",
-            "passieve"
+            "je",
+            "is",
+            "een",
+            "tekst",
+            "afleiden?",
+            "uit",
+            "Wat",
+            "kun",
+            "de"
           ],
           "answers": [
-            "De schrijver suggereert dat het beleid faalt."
+            "Wat kun je uit de tekst afleiden?"
           ],
-          "explanation": "O autor sugere que a política está a falhar. = De schrijver suggereert dat het beleid faalt. (sobram: passieve, Beide)",
-          "vocabRefs": []
+          "explanation": "O que se pode deduzir do texto? = Wat kun je uit de tekst afleiden? (sobram: is, een)",
+          "vocabRefs": [
+            "v-afleiden"
+          ]
         },
         {
           "id": "s6-u16-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Agora domino bem a voz passiva.",
+          "prompt": "Este nível é desafiante.",
           "tokens": [
-            "hebben",
-            "nu",
+            "uitdagend.",
+            "het",
+            "niveau",
+            "is",
             "Dit",
-            "Ik",
-            "goed.",
-            "de",
-            "vorm",
-            "passieve",
-            "beheers"
+            "artikel"
           ],
           "answers": [
-            "Ik beheers de passieve vorm nu goed."
+            "Dit niveau is uitdagend."
           ],
-          "explanation": "Agora domino bem a voz passiva. = Ik beheers de passieve vorm nu goed. (sobram: hebben, Dit)",
-          "vocabRefs": []
+          "explanation": "Este nível é desafiante. = Dit niveau is uitdagend. (sobram: artikel, het)",
+          "vocabRefs": [
+            "v-uitdagend"
+          ]
         },
         {
           "id": "s6-u16-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Foi um mal-entendido.",
+          "prompt": "Ele disse-o de forma irónica.",
           "tokens": [
-            "misverstand.",
-            "is",
+            "op",
             "een",
-            "was",
-            "Het",
-            "Dat"
+            "artikel",
+            "manier.",
+            "het",
+            "kun",
+            "ironische",
+            "Hij",
+            "zei"
           ],
           "answers": [
-            "Het was een misverstand."
+            "Hij zei het op een ironische manier."
           ],
-          "explanation": "Foi um mal-entendido. = Het was een misverstand. (sobram: Dat, is)",
+          "explanation": "Ele disse-o de forma irónica. = Hij zei het op een ironische manier. (sobram: kun, artikel)",
           "vocabRefs": [
-            "v-misverstand"
+            "v-ironisch"
           ]
         },
         {
           "id": "s6-u16-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Je hebt veel vooruitgang geboekt.",
+          "answers": [
+            "Je hebt veel vooruitgang geboekt."
+          ],
+          "translation": "Fizeste muitos progressos.",
+          "explanation": "«Je hebt veel vooruitgang geboekt.» = Fizeste muitos progressos.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s6-u16-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "De schrijver suggereert dat het beleid faalt.",
+          "answers": [
+            "De schrijver suggereert dat het beleid faalt."
+          ],
+          "translation": "O autor sugere que a política está a falhar.",
+          "explanation": "«De schrijver suggereert dat het beleid faalt.» = O autor sugere que a política está a falhar.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s6-u16-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Een nieuwsbericht is meestal neutraal.",
@@ -2613,123 +2646,95 @@
           ]
         },
         {
-          "id": "s6-u16-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dat was een duidelijke hint.",
-          "answers": [
-            "Dat was een duidelijke hint."
-          ],
-          "translation": "Isso foi uma indireta clara.",
-          "explanation": "«Dat was een duidelijke hint.» = Isso foi uma indireta clara.",
-          "vocabRefs": [
-            "v-hint"
-          ]
-        },
-        {
-          "id": "s6-u16-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De schrijver suggereert dat het beleid faalt.",
-          "answers": [
-            "De schrijver suggereert dat het beleid faalt."
-          ],
-          "translation": "O autor sugere que a política está a falhar.",
-          "explanation": "«De schrijver suggereert dat het beleid faalt.» = O autor sugere que a política está a falhar.",
-          "vocabRefs": []
-        },
-        {
           "id": "s6-u16-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Uma semelhança é que ambos referem os números.",
+          "translation": "Qual é a intenção do comentário dele?",
           "tokens": [
-            "dat",
-            "Een",
-            "noemen.",
+            "Wat",
             "is",
-            "allebei",
             "de",
-            "overeenkomst",
-            "cijfers",
-            "ze"
+            "bedoeling",
+            "van",
+            "zijn",
+            "opmerking?"
           ],
           "alternatives": [],
-          "explanation": "Een overeenkomst is dat ze allebei de cijfers noemen.",
+          "explanation": "Wat is de bedoeling van zijn opmerking?",
           "vocabRefs": [
-            "v-overeenkomst-tekst"
+            "v-bedoeling"
           ]
         },
         {
           "id": "s6-u16-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Esta é uma fonte fiável?",
+          "translation": "Isso foi uma indireta clara.",
           "tokens": [
-            "Is",
+            "Dat",
+            "was",
             "een",
-            "bron?",
-            "dit",
-            "betrouwbare"
+            "duidelijke",
+            "hint."
           ],
           "alternatives": [],
-          "explanation": "Is dit een betrouwbare bron?",
+          "explanation": "Dat was een duidelijke hint.",
           "vocabRefs": [
-            "v-betrouwbaar-bron"
+            "v-hint"
           ]
         },
         {
           "id": "s6-u16-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het misverstand»?",
+          "prompt": "O que significa «trots zijn op»?",
           "options": [
             {
               "id": "a",
-              "text": "crítico",
+              "text": "sugerir",
               "correct": false
             },
             {
               "id": "b",
-              "text": "mal-entendido",
+              "text": "ter orgulho em",
               "correct": true
             },
             {
               "id": "c",
-              "text": "sugerir",
+              "text": "irónico",
               "correct": false
             }
           ],
-          "explanation": "«het misverstand» = mal-entendido.",
+          "explanation": "«trots zijn op» = ter orgulho em.",
           "vocabRefs": [
-            "v-misverstand"
+            "v-trots-zijn-op"
           ]
         },
         {
           "id": "s6-u16-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «afleiden»?",
+          "prompt": "O que significa «betrouwbare bron»?",
           "options": [
             {
               "id": "a",
-              "text": "perspetiva",
+              "text": "interpretar",
               "correct": false
             },
             {
               "id": "b",
-              "text": "deduzir",
-              "correct": true
+              "text": "indireta",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "implícito",
-              "correct": false
+              "text": "fonte fiável",
+              "correct": true
             }
           ],
-          "explanation": "«afleiden» = deduzir.",
+          "explanation": "«betrouwbare bron» = fonte fiável.",
           "vocabRefs": [
-            "v-afleiden"
+            "v-betrouwbaar-bron"
           ]
         }
       ],

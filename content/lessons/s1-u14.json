@@ -1864,16 +1864,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik heb de fiets niet.",
-          "pt": "(de fiets) → niet"
-        },
-        {
-          "nl": "Geen probleem!",
-          "pt": "Não há problema!"
-        },
-        {
           "nl": "Het is niet koud.",
           "pt": "Não está frio."
+        },
+        {
+          "nl": "Dat is geen goed idee.",
+          "pt": "Isso não é boa ideia."
+        },
+        {
+          "nl": "Ik heb de fiets niet.",
+          "pt": "(de fiets) → niet"
         }
       ],
       "grammar": [],
@@ -1923,8 +1923,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele não bebe café.",
           "tokens": [
-            "drinkt",
             "Hij",
+            "drinkt",
             "geen",
             "koffie."
           ],
@@ -1941,8 +1941,8 @@
           "translation": "Hoje não trabalho.",
           "tokens": [
             "Ik",
-            "vandaag",
             "werk",
+            "vandaag",
             "niet."
           ],
           "alternatives": [],
@@ -1955,11 +1955,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele não vive em Utrecht.",
           "tokens": [
+            "Hij",
+            "woont",
             "niet",
             "in",
-            "woont",
-            "Utrecht.",
-            "Hij"
+            "Utrecht."
           ],
           "alternatives": [],
           "explanation": "Hij woont niet in Utrecht.",
@@ -1969,95 +1969,94 @@
           "id": "s1-u14-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb de fiets niet.»?",
+          "prompt": "O que significa: «Het is niet koud.»?",
           "options": [
             {
               "id": "a",
-              "text": "Não sei.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "(de fiets) → niet",
+              "text": "Não está frio.",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Ninguém sabe.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Não tenho fome.",
+              "text": "Ele não bebe café.",
               "correct": false
             }
           ],
-          "explanation": "«Ik heb de fiets niet.» = (de fiets) → niet",
+          "explanation": "«Het is niet koud.» = Não está frio.",
           "vocabRefs": []
         },
         {
           "id": "s1-u14-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Dat is geen goed idee.»?",
+          "prompt": "O que significa: «Ik heb geen honger.»?",
           "options": [
             {
               "id": "a",
-              "text": "Não o conheço.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Isso não é boa ideia.",
+              "text": "Não tenho fome.",
               "correct": true
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "Hoje não trabalho.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "(een fiets) → geen",
               "correct": false
             }
           ],
-          "explanation": "«Dat is geen goed idee.» = Isso não é boa ideia.",
+          "explanation": "«Ik heb geen honger.» = Não tenho fome.",
           "vocabRefs": [
-            "v-geen"
+            "v-geen",
+            "v-honger"
           ]
         },
         {
           "id": "s1-u14-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não há leite.",
+          "prompt": "Não está frio.",
           "tokens": [
-            "fiets.",
+            "koud.",
+            "niet",
+            "Het",
             "is",
-            "Er",
-            "melk.",
-            "geen",
-            "Het"
+            "heb",
+            "Er"
           ],
           "answers": [
-            "Er is geen melk."
+            "Het is niet koud."
           ],
-          "explanation": "Não há leite. = Er is geen melk. (sobram: fiets., Het)",
-          "vocabRefs": [
-            "v-geen"
-          ]
+          "explanation": "Não está frio. = Het is niet koud. (sobram: heb, Er)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u14-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso não é boa ideia.",
+          "prompt": "Não tenho fome.",
           "tokens": [
+            "honger.",
+            "fiets.",
+            "Ik",
             "geen",
-            "is",
-            "idee.",
-            "niet",
-            "goed",
-            "ken",
-            "Dat"
+            "Het",
+            "heb"
           ],
           "answers": [
-            "Dat is geen goed idee."
+            "Ik heb geen honger."
           ],
-          "explanation": "Isso não é boa ideia. = Dat is geen goed idee. (sobram: niet, ken)",
+          "explanation": "Não tenho fome. = Ik heb geen honger. (sobram: Het, fiets.)",
           "vocabRefs": [
-            "v-geen"
+            "v-geen",
+            "v-honger"
           ]
         }
       ],
@@ -2114,16 +2113,16 @@
       ],
       "examples": [
         {
-          "nl": "Niemand weet het.",
-          "pt": "Ninguém sabe."
+          "nl": "Nog niet.",
+          "pt": "Ainda não."
         },
         {
-          "nl": "Hij drinkt geen koffie.",
-          "pt": "Ele não bebe café."
+          "nl": "Ik rook niet meer.",
+          "pt": "Já não fumo."
         },
         {
-          "nl": "Hij zegt niets.",
-          "pt": "Ele não diz nada."
+          "nl": "Ik heb geen sigaretten.",
+          "pt": "Não tenho cigarros."
         }
       ],
       "grammar": [],
@@ -2132,54 +2131,54 @@
           "id": "s1-u14-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «saber» em neerlandês?",
+          "prompt": "Como se diz «sede» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "probleem",
+              "text": "honger",
               "correct": false
             },
             {
               "id": "b",
-              "text": "weten",
-              "correct": true
+              "text": "open",
+              "correct": false
             },
             {
               "id": "c",
               "text": "dorst",
-              "correct": false
+              "correct": true
             }
           ],
-          "explanation": "saber = «weten».",
+          "explanation": "sede = «dorst».",
           "vocabRefs": [
-            "v-weten"
+            "v-dorst"
           ]
         },
         {
           "id": "s1-u14-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ainda não» em neerlandês?",
+          "prompt": "Como se diz «já não» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "nog niet",
-              "correct": true
+              "text": "dorst",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "kennen",
+              "text": "hem",
               "correct": false
             },
             {
               "id": "c",
-              "text": "kapot",
-              "correct": false
+              "text": "niet meer",
+              "correct": true
             }
           ],
-          "explanation": "ainda não = «nog niet».",
+          "explanation": "já não = «niet meer».",
           "vocabRefs": [
-            "v-nog-niet"
+            "v-niet-meer"
           ]
         },
         {
@@ -2193,8 +2192,8 @@
           ],
           "choices": [
             "probleem",
-            "dorst",
-            "geen"
+            "geen",
+            "dorst"
           ],
           "explanation": "Hij drinkt geen koffie.",
           "vocabRefs": [
@@ -2211,9 +2210,9 @@
             "geen"
           ],
           "choices": [
-            "roken",
-            "geen",
-            "hem"
+            "probleem",
+            "dorst",
+            "geen"
           ],
           "explanation": "Dat is geen goed idee.",
           "vocabRefs": [
@@ -2224,72 +2223,68 @@
           "id": "s1-u14-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb geen auto.",
+          "audioText": "Ik ken hem niet.",
           "answers": [
-            "Ik heb geen auto."
+            "Ik ken hem niet."
           ],
-          "translation": "Não tenho carro.",
-          "explanation": "«Ik heb geen auto.» = Não tenho carro.",
+          "translation": "Não o conheço.",
+          "explanation": "«Ik ken hem niet.» = Não o conheço.",
           "vocabRefs": [
-            "v-geen"
+            "v-hem"
           ]
         },
         {
           "id": "s1-u14-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Niemand weet het.",
+          "audioText": "Hij drinkt geen koffie.",
           "answers": [
-            "Niemand weet het."
+            "Hij drinkt geen koffie."
           ],
-          "translation": "Ninguém sabe.",
-          "explanation": "«Niemand weet het.» = Ninguém sabe.",
+          "translation": "Ele não bebe café.",
+          "explanation": "«Hij drinkt geen koffie.» = Ele não bebe café.",
           "vocabRefs": [
-            "v-niemand"
+            "v-geen"
           ]
         },
         {
           "id": "s1-u14-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não tenho fome.",
+          "prompt": "Ele não diz nada.",
           "tokens": [
-            "honger.",
-            "Ik",
-            "vandaag",
-            "heb",
-            "Niemand",
-            "geen"
+            "zegt",
+            "geen",
+            "Hij",
+            "winkel",
+            "niets."
           ],
           "answers": [
-            "Ik heb geen honger."
+            "Hij zegt niets."
           ],
-          "explanation": "Não tenho fome. = Ik heb geen honger. (sobram: vandaag, Niemand)",
+          "explanation": "Ele não diz nada. = Hij zegt niets. (sobram: geen, winkel)",
           "vocabRefs": [
-            "v-geen",
-            "v-honger"
+            "v-niets"
           ]
         },
         {
           "id": "s1-u14-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele não bebe café.",
+          "prompt": "Hoje não trabalho.",
           "tokens": [
+            "meer.",
+            "vandaag",
             "Ik",
-            "Hij",
-            "geen",
-            "drinkt",
-            "koffie.",
-            "thuis."
+            "thuis.",
+            "werk",
+            "niet."
           ],
           "answers": [
-            "Hij drinkt geen koffie."
+            "Ik werk vandaag niet."
           ],
-          "explanation": "Ele não bebe café. = Hij drinkt geen koffie. (sobram: Ik, thuis.)",
-          "vocabRefs": [
-            "v-geen"
-          ]
+          "explanation": "Hoje não trabalho. = Ik werk vandaag niet. (sobram: thuis., meer.)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u14-l008-e09",
@@ -2307,25 +2302,25 @@
           "id": "s1-u14-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik weet het niet.»?",
+          "prompt": "O que significa: «Hij woont niet in Utrecht.»?",
           "options": [
             {
               "id": "a",
-              "text": "Não sei.",
-              "correct": true
+              "text": "(een fiets) → geen",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Ele não vive em Utrecht.",
+              "text": "Não há leite.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Não há problema!",
-              "correct": false
+              "text": "Ele não vive em Utrecht.",
+              "correct": true
             }
           ],
-          "explanation": "«Ik weet het niet.» = Não sei.",
+          "explanation": "«Hij woont niet in Utrecht.» = Ele não vive em Utrecht.",
           "vocabRefs": []
         }
       ],
@@ -2382,16 +2377,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik rook niet meer.",
-          "pt": "Já não fumo."
-        },
-        {
           "nl": "Ik zie niets.",
           "pt": "Não vejo nada."
         },
         {
-          "nl": "Hij drinkt geen koffie.",
-          "pt": "Ele não bebe café."
+          "nl": "Ik heb geen honger.",
+          "pt": "Não tenho fome."
+        },
+        {
+          "nl": "Niemand is thuis.",
+          "pt": "Não está ninguém em casa."
         }
       ],
       "grammar": [],
@@ -2400,38 +2395,44 @@
           "id": "s1-u14-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não sei.",
+          "prompt": "Essa não é a minha bicicleta.",
           "tokens": [
-            "het",
-            "weet",
-            "niet.",
-            "geen",
-            "koud.",
-            "Ik"
+            "niet",
+            "mijn",
+            "is",
+            "zie",
+            "fiets.",
+            "Dat",
+            "in"
           ],
           "answers": [
-            "Ik weet het niet."
+            "Dat is niet mijn fiets."
           ],
-          "explanation": "Não sei. = Ik weet het niet. (sobram: koud., geen)",
+          "explanation": "Essa não é a minha bicicleta. = Dat is niet mijn fiets. (sobram: in, zie)",
           "vocabRefs": []
         },
         {
           "id": "s1-u14-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Não tenho carro.",
+          "prompt": "Não tenho tempo e não estou em casa.",
           "tokens": [
-            "auto.",
+            "tijd",
             "Ik",
-            "geen",
             "is",
+            "ben",
+            "en",
+            "de",
+            "ik",
+            "geen",
             "heb",
+            "thuis.",
             "niet"
           ],
           "answers": [
-            "Ik heb geen auto."
+            "Ik heb geen tijd en ik ben niet thuis."
           ],
-          "explanation": "Não tenho carro. = Ik heb geen auto. (sobram: is, niet)",
+          "explanation": "Não tenho tempo e não estou em casa. = Ik heb geen tijd en ik ben niet thuis. (sobram: de, is)",
           "vocabRefs": [
             "v-geen"
           ]
@@ -2440,36 +2441,53 @@
           "id": "s1-u14-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele não diz nada.",
+          "prompt": "Não há leite.",
           "tokens": [
-            "niets.",
-            "zegt",
-            "heb",
-            "Ik",
-            "Hij"
+            "Er",
+            "melk.",
+            "kinderen.",
+            "niet.",
+            "geen",
+            "is"
           ],
           "answers": [
-            "Hij zegt niets."
+            "Er is geen melk."
           ],
-          "explanation": "Ele não diz nada. = Hij zegt niets. (sobram: Ik, heb)",
+          "explanation": "Não há leite. = Er is geen melk. (sobram: niet., kinderen.)",
           "vocabRefs": [
-            "v-niets"
+            "v-geen"
           ]
         },
         {
           "id": "s1-u14-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik rook niet.",
+          "audioText": "Niemand weet het.",
           "answers": [
-            "Ik rook niet."
+            "Niemand weet het."
           ],
-          "translation": "Não fumo.",
-          "explanation": "«Ik rook niet.» = Não fumo.",
-          "vocabRefs": []
+          "translation": "Ninguém sabe.",
+          "explanation": "«Niemand weet het.» = Ninguém sabe.",
+          "vocabRefs": [
+            "v-niemand"
+          ]
         },
         {
           "id": "s1-u14-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik heb geen kinderen.",
+          "answers": [
+            "Ik heb geen kinderen."
+          ],
+          "translation": "Não tenho filhos.",
+          "explanation": "«Ik heb geen kinderen.» = Não tenho filhos.",
+          "vocabRefs": [
+            "v-geen"
+          ]
+        },
+        {
+          "id": "s1-u14-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik rook niet meer.",
@@ -2483,104 +2501,96 @@
           ]
         },
         {
-          "id": "s1-u14-l009-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De winkel is niet open.",
-          "answers": [
-            "De winkel is niet open."
-          ],
-          "translation": "A loja não está aberta.",
-          "explanation": "«De winkel is niet open.» = A loja não está aberta.",
-          "vocabRefs": [
-            "v-open"
-          ]
-        },
-        {
           "id": "s1-u14-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Não sei.",
+          "translation": "Não tenho tempo e não estou em casa.",
           "tokens": [
             "Ik",
-            "niet.",
-            "weet",
-            "het"
+            "heb",
+            "geen",
+            "tijd",
+            "en",
+            "ik",
+            "ben",
+            "niet",
+            "thuis."
           ],
           "alternatives": [],
-          "explanation": "Ik weet het niet.",
-          "vocabRefs": []
+          "explanation": "Ik heb geen tijd en ik ben niet thuis.",
+          "vocabRefs": [
+            "v-geen"
+          ]
         },
         {
           "id": "s1-u14-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A loja não está aberta.",
+          "translation": "Já não fumo.",
           "tokens": [
-            "winkel",
+            "Ik",
+            "rook",
             "niet",
-            "is",
-            "De",
-            "open."
+            "meer."
           ],
           "alternatives": [],
-          "explanation": "De winkel is niet open.",
+          "explanation": "Ik rook niet meer.",
           "vocabRefs": [
-            "v-open"
+            "v-niet-meer"
           ]
         },
         {
           "id": "s1-u14-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «roken»?",
+          "prompt": "O que significa «kennen»?",
           "options": [
             {
               "id": "a",
-              "text": "o",
+              "text": "ninguém",
               "correct": false
             },
             {
               "id": "b",
-              "text": "fumar",
+              "text": "conhecer",
               "correct": true
             },
             {
               "id": "c",
-              "text": "nada",
+              "text": "já não",
               "correct": false
             }
           ],
-          "explanation": "«roken» = fumar.",
+          "explanation": "«kennen» = conhecer.",
           "vocabRefs": [
-            "v-roken"
+            "v-kennen"
           ]
         },
         {
           "id": "s1-u14-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «kennen»?",
+          "prompt": "O que significa «niemand»?",
           "options": [
             {
               "id": "a",
-              "text": "problema",
+              "text": "nada",
               "correct": false
             },
             {
               "id": "b",
-              "text": "aberto",
+              "text": "fumar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "conhecer",
+              "text": "ninguém",
               "correct": true
             }
           ],
-          "explanation": "«kennen» = conhecer.",
+          "explanation": "«niemand» = ninguém.",
           "vocabRefs": [
-            "v-kennen"
+            "v-niemand"
           ]
         }
       ],
@@ -2637,16 +2647,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik heb de fiets niet.",
-          "pt": "(de fiets) → niet"
+          "nl": "Ik werk vandaag niet.",
+          "pt": "Hoje não trabalho."
         },
         {
-          "nl": "Ik ken hem niet.",
-          "pt": "Não o conheço."
+          "nl": "Geen probleem!",
+          "pt": "Não há problema!"
         },
         {
-          "nl": "Hij zegt niets.",
-          "pt": "Ele não diz nada."
+          "nl": "Ik heb geen sigaretten.",
+          "pt": "Não tenho cigarros."
         }
       ],
       "grammar": [],
@@ -2657,57 +2667,57 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "hem",
-              "pt": "o"
+              "nl": "probleem",
+              "pt": "problema"
+            },
+            {
+              "nl": "weten",
+              "pt": "saber"
             },
             {
               "nl": "roken",
               "pt": "fumar"
             },
             {
-              "nl": "houden van",
-              "pt": "gostar de"
-            },
-            {
               "nl": "niets",
               "pt": "nada"
             },
             {
-              "nl": "probleem",
-              "pt": "problema"
+              "nl": "houden van",
+              "pt": "gostar de"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-hem",
+            "v-probleem",
+            "v-weten",
             "v-roken",
-            "v-houden-van",
             "v-niets",
-            "v-probleem"
+            "v-houden-van"
           ]
         },
         {
           "id": "s1-u14-l010-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik rook niet.",
+          "audioText": "Ik heb de fiets niet.",
           "answers": [
-            "Ik rook niet."
+            "Ik heb de fiets niet."
           ],
-          "translation": "Não fumo.",
-          "explanation": "«Ik rook niet.» = Não fumo.",
+          "translation": "(de fiets) → niet",
+          "explanation": "«Ik heb de fiets niet.» = (de fiets) → niet",
           "vocabRefs": []
         },
         {
           "id": "s1-u14-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb geen auto.",
+          "audioText": "Ik heb geen fiets.",
           "answers": [
-            "Ik heb geen auto."
+            "Ik heb geen fiets."
           ],
-          "translation": "Não tenho carro.",
-          "explanation": "«Ik heb geen auto.» = Não tenho carro.",
+          "translation": "(een fiets) → geen",
+          "explanation": "«Ik heb geen fiets.» = (een fiets) → geen",
           "vocabRefs": [
             "v-geen"
           ]
@@ -2716,7 +2726,7 @@
           "id": "s1-u14-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «kapot»?",
+          "prompt": "O que significa «open»?",
           "options": [
             {
               "id": "a",
@@ -2725,45 +2735,45 @@
             },
             {
               "id": "b",
-              "text": "avariado",
+              "text": "aberto",
               "correct": true
             },
             {
               "id": "c",
-              "text": "aberto",
+              "text": "fumar",
               "correct": false
             }
           ],
-          "explanation": "«kapot» = avariado, partido.",
+          "explanation": "«open» = aberto.",
           "vocabRefs": [
-            "v-kapot"
+            "v-open"
           ]
         },
         {
           "id": "s1-u14-l010-e05",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de dorst»?",
+          "prompt": "O que significa «de honger»?",
           "options": [
             {
               "id": "a",
-              "text": "sede",
-              "correct": true
+              "text": "gostar de",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "fechado",
+              "text": "nenhum",
               "correct": false
             },
             {
               "id": "c",
-              "text": "gostar de",
-              "correct": false
+              "text": "fome",
+              "correct": true
             }
           ],
-          "explanation": "«de dorst» = sede.",
+          "explanation": "«de honger» = fome.",
           "vocabRefs": [
-            "v-dorst"
+            "v-honger"
           ]
         },
         {
@@ -2772,10 +2782,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Não tenho carro.",
           "tokens": [
-            "geen",
+            "Ik",
             "heb",
-            "auto.",
-            "Ik"
+            "geen",
+            "auto."
           ],
           "alternatives": [],
           "explanation": "Ik heb geen auto.",
@@ -2789,10 +2799,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Não tenho cigarros.",
           "tokens": [
-            "geen",
             "Ik",
-            "sigaretten.",
-            "heb"
+            "heb",
+            "geen",
+            "sigaretten."
           ],
           "alternatives": [],
           "explanation": "Ik heb geen sigaretten.",
@@ -2802,55 +2812,47 @@
         },
         {
           "id": "s1-u14-l010-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Dat is niet mijn fiets.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Ele não vive em Utrecht.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Não fumo.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Essa não é a minha bicicleta.",
-              "correct": true
-            }
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Ik heb ___ sigaretten.",
+          "translation": "Não tenho cigarros.",
+          "answers": [
+            "geen"
           ],
-          "explanation": "«Dat is niet mijn fiets.» = Essa não é a minha bicicleta.",
-          "vocabRefs": []
+          "choices": [
+            "weten",
+            "dicht",
+            "geen"
+          ],
+          "explanation": "Ik heb geen sigaretten.",
+          "vocabRefs": [
+            "v-geen"
+          ]
         },
         {
           "id": "s1-u14-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «geen»?",
+          "prompt": "O que significa: «Ik rook niet.»?",
           "options": [
             {
               "id": "a",
-              "text": "nenhum",
-              "correct": true
+              "text": "Não está ninguém em casa.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "avariado",
+              "text": "(een fiets) → geen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "problema",
-              "correct": false
+              "text": "Não fumo.",
+              "correct": true
             }
           ],
-          "explanation": "«geen» = nenhum, não.",
-          "vocabRefs": [
-            "v-geen"
-          ]
+          "explanation": "«Ik rook niet.» = Não fumo.",
+          "vocabRefs": []
         }
       ],
       "difficulty": 3,

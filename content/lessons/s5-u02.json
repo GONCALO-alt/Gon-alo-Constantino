@@ -1965,16 +1965,16 @@
       ],
       "examples": [
         {
+          "nl": "Wat is de bron?",
+          "pt": "Qual é a fonte?"
+        },
+        {
+          "nl": "Het KNMI geeft code oranje af.",
+          "pt": "O KNMI emite aviso laranja."
+        },
+        {
           "nl": "Bij het ongeval vielen twee gewonden.",
           "pt": "No acidente houve dois feridos."
-        },
-        {
-          "nl": "Prijzen in supermarkt stijgen weer",
-          "pt": "Preços no supermercado voltam a subir"
-        },
-        {
-          "nl": "Volgens de politie was niemand gewond.",
-          "pt": "Segundo a polícia, ninguém ficou ferido."
         }
       ],
       "grammar": [],
@@ -2026,12 +2026,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Greve na NS: sem comboios em Utrecht",
           "tokens": [
-            "treinen",
-            "Utrecht",
             "Staking",
-            "geen",
             "NS:",
-            "in"
+            "geen",
+            "treinen",
+            "in",
+            "Utrecht"
           ],
           "alternatives": [],
           "explanation": "Staking NS: geen treinen in Utrecht",
@@ -2045,10 +2045,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Esta tarde há possibilidade de trovoada.",
           "tokens": [
+            "Vanmiddag",
             "kans",
             "op",
-            "onweer.",
-            "Vanmiddag"
+            "onweer."
           ],
           "alternatives": [],
           "explanation": "Vanmiddag kans op onweer.",
@@ -2062,12 +2062,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O acidente aconteceu por volta das oito.",
           "tokens": [
-            "gebeurde",
-            "uur.",
-            "acht",
             "Het",
             "ongeluk",
-            "rond"
+            "gebeurde",
+            "rond",
+            "acht",
+            "uur."
           ],
           "alternatives": [],
           "explanation": "Het ongeluk gebeurde rond acht uur.",
@@ -2077,39 +2077,11 @@
           "id": "s5-u02-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Kabinet wil meer woningen bouwen»?",
+          "prompt": "O que significa: «Er is veel ophef over het plan.»?",
           "options": [
             {
               "id": "a",
-              "text": "Governo quer construir mais casas",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "Desemprego desce",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Ouviste que as rendas vão subir outra vez?",
-              "correct": false
-            }
-          ],
-          "explanation": "«Kabinet wil meer woningen bouwen» = Governo quer construir mais casas",
-          "vocabRefs": [
-            "v-kabinet",
-            "v-bouwen"
-          ]
-        },
-        {
-          "id": "s5-u02-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Morgen zon en opklaringen.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Li que vai haver uma ponte nova.",
+              "text": "Incêndio em Roterdão: dois feridos",
               "correct": false
             },
             {
@@ -2119,58 +2091,89 @@
             },
             {
               "id": "c",
-              "text": "Amanhã sol e abertas.",
+              "text": "Há muita polémica em torno do plano.",
               "correct": true
             }
           ],
-          "explanation": "«Morgen zon en opklaringen.» = Amanhã sol e abertas.",
+          "explanation": "«Er is veel ophef over het plan.» = Há muita polémica em torno do plano.",
           "vocabRefs": [
-            "v-opklaringen"
+            "v-ophef"
+          ]
+        },
+        {
+          "id": "s5-u02-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Kabinet wil meer woningen bouwen»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "O KNMI emite aviso laranja.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Greve na NS: sem comboios em Utrecht",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Governo quer construir mais casas",
+              "correct": true
+            }
+          ],
+          "explanation": "«Kabinet wil meer woningen bouwen» = Governo quer construir mais casas",
+          "vocabRefs": [
+            "v-kabinet",
+            "v-bouwen"
           ]
         },
         {
           "id": "s5-u02-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A polícia procura testemunhas.",
+          "prompt": "Há muita polémica em torno do plano.",
           "tokens": [
-            "De",
-            "getuigen.",
-            "politie",
+            "over",
+            "veel",
+            "het",
+            "plan.",
+            "Ik",
             "is",
-            "kilometer",
-            "zoekt"
+            "Er",
+            "ophef",
+            "wil"
           ],
           "answers": [
-            "De politie zoekt getuigen."
+            "Er is veel ophef over het plan."
           ],
-          "explanation": "A polícia procura testemunhas. = De politie zoekt getuigen. (sobram: is, kilometer)",
+          "explanation": "Há muita polémica em torno do plano. = Er is veel ophef over het plan. (sobram: Ik, wil)",
           "vocabRefs": [
-            "v-getuige",
-            "v-politie"
+            "v-ophef"
           ]
         },
         {
           "id": "s5-u02-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Greve na NS: sem comboios em Utrecht",
+          "prompt": "Segundo a polícia, ninguém ficou ferido.",
           "tokens": [
-            "NS:",
-            "kans",
-            "geen",
-            "Staking",
-            "in",
-            "treinen",
-            "plan.",
+            "de",
+            "gewond.",
+            "Volgens",
+            "niemand",
+            "twee",
+            "politie",
+            "was",
             "Utrecht"
           ],
           "answers": [
-            "Staking NS: geen treinen in Utrecht"
+            "Volgens de politie was niemand gewond."
           ],
-          "explanation": "Greve na NS: sem comboios em Utrecht = Staking NS: geen treinen in Utrecht (sobram: plan., kans)",
+          "explanation": "Segundo a polícia, ninguém ficou ferido. = Volgens de politie was niemand gewond. (sobram: twee, Utrecht)",
           "vocabRefs": [
-            "v-staking"
+            "v-volgens",
+            "v-politie"
           ]
         }
       ],
@@ -2237,16 +2240,16 @@
       ],
       "examples": [
         {
-          "nl": "Bij het ongeval vielen twee gewonden.",
-          "pt": "No acidente houve dois feridos."
+          "nl": "Heb je gehoord dat de huren weer stijgen?",
+          "pt": "Ouviste que as rendas vão subir outra vez?"
         },
         {
-          "nl": "Prijzen in supermarkt stijgen weer",
-          "pt": "Preços no supermercado voltam a subir"
+          "nl": "Er is een onderzoek gestart.",
+          "pt": "Foi aberta uma investigação."
         },
         {
-          "nl": "Kabinet wil meer woningen bouwen",
-          "pt": "Governo quer construir mais casas"
+          "nl": "Schijnbaar is het museum gesloten.",
+          "pt": "Pelos vistos o museu está fechado."
         }
       ],
       "grammar": [],
@@ -2255,206 +2258,204 @@
           "id": "s5-u02-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «descer» em neerlandês?",
+          "prompt": "Como se diz «investigação» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "prijs",
-              "correct": false
+              "text": "onderzoek",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "ongeval",
+              "text": "artikel",
               "correct": false
             },
             {
               "id": "c",
-              "text": "dalen",
-              "correct": true
+              "text": "prijs",
+              "correct": false
             }
           ],
-          "explanation": "descer = «dalen».",
+          "explanation": "investigação = «onderzoek».",
           "vocabRefs": [
-            "v-dalen"
+            "v-onderzoek"
           ]
         },
         {
           "id": "s5-u02-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «preço» em neerlandês?",
+          "prompt": "Como se diz «ouviste que…?» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "prijs",
-              "correct": true
+              "text": "ik las dat…",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "bouwen",
-              "correct": false
+              "text": "heb je gehoord dat…?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "dalen",
+              "text": "onweer",
               "correct": false
             }
           ],
-          "explanation": "preço = «prijs».",
+          "explanation": "ouviste que…? = «heb je gehoord dat…?».",
           "vocabRefs": [
-            "v-prijs"
+            "v-heb-je-gehoord"
           ]
         },
         {
           "id": "s5-u02-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wat is de ___?",
-          "translation": "Qual é a fonte?",
+          "sentence": "Bij het ___ vielen twee gewonden.",
+          "translation": "No acidente houve dois feridos.",
           "answers": [
-            "bron"
+            "ongeval"
           ],
           "choices": [
-            "bron",
-            "artikel",
-            "getuige"
+            "politie",
+            "ongeval",
+            "bron"
           ],
-          "explanation": "Wat is de bron?",
+          "explanation": "Bij het ongeval vielen twee gewonden.",
           "vocabRefs": [
-            "v-bron"
+            "v-ongeval"
           ]
         },
         {
           "id": "s5-u02-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Dat is goed ___!",
-          "translation": "Isso são boas notícias!",
+          "sentence": "Prijzen in supermarkt ___ weer",
+          "translation": "Preços no supermercado voltam a subir",
           "answers": [
-            "nieuws"
+            "stijgen"
           ],
           "choices": [
-            "nieuws",
-            "onweer",
-            "ophef"
+            "stijgen",
+            "kabinet",
+            "nieuws"
           ],
-          "explanation": "Dat is goed nieuws!",
+          "explanation": "Prijzen in supermarkt stijgen weer",
           "vocabRefs": [
-            "v-nieuws"
+            "v-stijgen"
           ]
         },
         {
           "id": "s5-u02-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het KNMI geeft code oranje af.",
+          "audioText": "Schijnbaar is het museum gesloten.",
           "answers": [
-            "Het KNMI geeft code oranje af."
+            "Schijnbaar is het museum gesloten."
           ],
-          "translation": "O KNMI emite aviso laranja.",
-          "explanation": "«Het KNMI geeft code oranje af.» = O KNMI emite aviso laranja.",
+          "translation": "Pelos vistos o museu está fechado.",
+          "explanation": "«Schijnbaar is het museum gesloten.» = Pelos vistos o museu está fechado.",
           "vocabRefs": [
-            "v-code-oranje"
+            "v-schijnbaar"
           ]
         },
         {
           "id": "s5-u02-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Brand in Rotterdam: twee gewonden",
+          "audioText": "Er is veel ophef over het plan.",
           "answers": [
-            "Brand in Rotterdam: twee gewonden"
+            "Er is veel ophef over het plan."
           ],
-          "translation": "Incêndio em Roterdão: dois feridos",
-          "explanation": "«Brand in Rotterdam: twee gewonden» = Incêndio em Roterdão: dois feridos",
+          "translation": "Há muita polémica em torno do plano.",
+          "explanation": "«Er is veel ophef over het plan.» = Há muita polémica em torno do plano.",
           "vocabRefs": [
-            "v-gewonde"
+            "v-ophef"
           ]
         },
         {
           "id": "s5-u02-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ouviste que as rendas vão subir outra vez?",
+          "prompt": "O KNMI emite aviso laranja.",
           "tokens": [
-            "stijgen?",
-            "de",
+            "nieuwe",
             "code",
-            "je",
-            "dat",
-            "weer",
-            "Heb",
-            "Staking",
-            "huren",
-            "gehoord"
+            "klimaat.",
+            "af.",
+            "oranje",
+            "geeft",
+            "Het",
+            "KNMI"
           ],
           "answers": [
-            "Heb je gehoord dat de huren weer stijgen?"
+            "Het KNMI geeft code oranje af."
           ],
-          "explanation": "Ouviste que as rendas vão subir outra vez? = Heb je gehoord dat de huren weer stijgen? (sobram: Staking, code)",
+          "explanation": "O KNMI emite aviso laranja. = Het KNMI geeft code oranje af. (sobram: klimaat., nieuwe)",
           "vocabRefs": [
-            "v-stijgen",
-            "v-heb-je-gehoord"
+            "v-code-oranje"
           ]
         },
         {
           "id": "s5-u02-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pelos vistos o museu está fechado.",
+          "prompt": "Amanhã sol e abertas.",
           "tokens": [
-            "museum",
-            "Schijnbaar",
+            "huren",
             "het",
-            "je",
-            "gesloten.",
-            "is",
-            "stijgen?"
+            "zon",
+            "en",
+            "Morgen",
+            "opklaringen."
           ],
           "answers": [
-            "Schijnbaar is het museum gesloten."
+            "Morgen zon en opklaringen."
           ],
-          "explanation": "Pelos vistos o museu está fechado. = Schijnbaar is het museum gesloten. (sobram: je, stijgen?)",
+          "explanation": "Amanhã sol e abertas. = Morgen zon en opklaringen. (sobram: het, huren)",
           "vocabRefs": [
-            "v-schijnbaar"
+            "v-opklaringen"
           ]
         },
         {
           "id": "s5-u02-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "krantenkop",
-          "pt": "manchete",
-          "article": "de",
-          "explanation": "de krantenkop.",
+          "noun": "artikel",
+          "pt": "artigo",
+          "article": "het",
+          "explanation": "het artikel.",
           "vocabRefs": [
-            "v-krantenkop"
+            "v-artikel"
           ]
         },
         {
           "id": "s5-u02-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het ongeluk gebeurde rond acht uur.»?",
+          "prompt": "O que significa: «Heb je het nieuws gezien?»?",
           "options": [
             {
               "id": "a",
-              "text": "Segundo a polícia, ninguém ficou ferido.",
+              "text": "Estou a ler um artigo sobre o clima.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "O acidente aconteceu por volta das oito.",
+              "text": "Viste as notícias?",
               "correct": true
             },
             {
               "id": "c",
-              "text": "A polícia procura testemunhas.",
+              "text": "Amanhã sol e abertas.",
               "correct": false
             }
           ],
-          "explanation": "«Het ongeluk gebeurde rond acht uur.» = O acidente aconteceu por volta das oito.",
-          "vocabRefs": []
+          "explanation": "«Heb je het nieuws gezien?» = Viste as notícias?",
+          "vocabRefs": [
+            "v-nieuws"
+          ]
         }
       ],
       "difficulty": 4,
@@ -2520,16 +2521,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik lees een artikel over het klimaat.",
-          "pt": "Estou a ler um artigo sobre o clima."
+          "nl": "Wat is de bron?",
+          "pt": "Qual é a fonte?"
         },
         {
-          "nl": "Er staat een file van tien kilometer op de A4.",
-          "pt": "Há uma fila de dez quilómetros na A4."
+          "nl": "Er is veel ophef over het plan.",
+          "pt": "Há muita polémica em torno do plano."
         },
         {
-          "nl": "Heb je gehoord dat de huren weer stijgen?",
-          "pt": "Ouviste que as rendas vão subir outra vez?"
+          "nl": "Prijzen in supermarkt stijgen weer",
+          "pt": "Preços no supermercado voltam a subir"
         }
       ],
       "grammar": [],
@@ -2538,88 +2539,75 @@
           "id": "s5-u02-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Isso são boas notícias!",
+          "prompt": "Ouviste que as rendas vão subir outra vez?",
           "tokens": [
-            "nieuws!",
-            "is",
-            "goed",
-            "ongeluk",
-            "Dat",
-            "Het"
+            "Heb",
+            "dat",
+            "weer",
+            "de",
+            "huren",
+            "je",
+            "gebeurde",
+            "gehoord",
+            "er",
+            "stijgen?"
           ],
           "answers": [
-            "Dat is goed nieuws!"
+            "Heb je gehoord dat de huren weer stijgen?"
           ],
-          "explanation": "Isso são boas notícias! = Dat is goed nieuws! (sobram: Het, ongeluk)",
+          "explanation": "Ouviste que as rendas vão subir outra vez? = Heb je gehoord dat de huren weer stijgen? (sobram: gebeurde, er)",
           "vocabRefs": [
-            "v-nieuws"
+            "v-stijgen",
+            "v-heb-je-gehoord"
           ]
         },
         {
           "id": "s5-u02-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Li que vai haver uma ponte nova.",
+          "prompt": "Greve na NS: sem comboios em Utrecht",
           "tokens": [
-            "komt.",
-            "Ik",
-            "twee",
-            "brug",
-            "las",
-            "een",
-            "nieuwe",
-            "wil",
-            "dat",
-            "er"
+            "politie",
+            "treinen",
+            "NS:",
+            "geen",
+            "Utrecht",
+            "Staking",
+            "weer",
+            "in"
           ],
           "answers": [
-            "Ik las dat er een nieuwe brug komt."
+            "Staking NS: geen treinen in Utrecht"
           ],
-          "explanation": "Li que vai haver uma ponte nova. = Ik las dat er een nieuwe brug komt. (sobram: wil, twee)",
+          "explanation": "Greve na NS: sem comboios em Utrecht = Staking NS: geen treinen in Utrecht (sobram: weer, politie)",
           "vocabRefs": [
-            "v-ik-las-dat"
+            "v-staking"
           ]
         },
         {
           "id": "s5-u02-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há muita polémica em torno do plano.",
+          "prompt": "Viste as notícias?",
           "tokens": [
-            "een",
-            "Er",
-            "ophef",
-            "plan.",
+            "Heb",
+            "gezien?",
+            "nieuws",
+            "stijgen?",
+            "opklaringen.",
             "het",
-            "over",
-            "veel",
-            "museum",
-            "is"
+            "je"
           ],
           "answers": [
-            "Er is veel ophef over het plan."
+            "Heb je het nieuws gezien?"
           ],
-          "explanation": "Há muita polémica em torno do plano. = Er is veel ophef over het plan. (sobram: museum, een)",
+          "explanation": "Viste as notícias? = Heb je het nieuws gezien? (sobram: stijgen?, opklaringen.)",
           "vocabRefs": [
-            "v-ophef"
+            "v-nieuws"
           ]
         },
         {
           "id": "s5-u02-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Schijnbaar is het museum gesloten.",
-          "answers": [
-            "Schijnbaar is het museum gesloten."
-          ],
-          "translation": "Pelos vistos o museu está fechado.",
-          "explanation": "«Schijnbaar is het museum gesloten.» = Pelos vistos o museu está fechado.",
-          "vocabRefs": [
-            "v-schijnbaar"
-          ]
-        },
-        {
-          "id": "s5-u02-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Staking NS: geen treinen in Utrecht",
@@ -2633,67 +2621,82 @@
           ]
         },
         {
+          "id": "s5-u02-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Heb je het nieuws gezien?",
+          "answers": [
+            "Heb je het nieuws gezien?"
+          ],
+          "translation": "Viste as notícias?",
+          "explanation": "«Heb je het nieuws gezien?» = Viste as notícias?",
+          "vocabRefs": [
+            "v-nieuws"
+          ]
+        },
+        {
           "id": "s5-u02-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Prijzen in supermarkt stijgen weer",
+          "audioText": "Ik las dat er een nieuwe brug komt.",
           "answers": [
-            "Prijzen in supermarkt stijgen weer"
+            "Ik las dat er een nieuwe brug komt."
           ],
-          "translation": "Preços no supermercado voltam a subir",
-          "explanation": "«Prijzen in supermarkt stijgen weer» = Preços no supermercado voltam a subir",
+          "translation": "Li que vai haver uma ponte nova.",
+          "explanation": "«Ik las dat er een nieuwe brug komt.» = Li que vai haver uma ponte nova.",
           "vocabRefs": [
-            "v-stijgen"
+            "v-ik-las-dat"
           ]
         },
         {
           "id": "s5-u02-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O KNMI emite aviso laranja.",
+          "translation": "Há muita polémica em torno do plano.",
           "tokens": [
-            "geeft",
-            "KNMI",
-            "Het",
-            "af.",
-            "code",
-            "oranje"
+            "Er",
+            "is",
+            "veel",
+            "ophef",
+            "over",
+            "het",
+            "plan."
           ],
           "alternatives": [],
-          "explanation": "Het KNMI geeft code oranje af.",
+          "explanation": "Er is veel ophef over het plan.",
           "vocabRefs": [
-            "v-code-oranje"
+            "v-ophef"
           ]
         },
         {
           "id": "s5-u02-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "No acidente houve dois feridos.",
+          "translation": "Segundo a polícia, ninguém ficou ferido.",
           "tokens": [
-            "Bij",
-            "gewonden.",
-            "het",
-            "vielen",
-            "twee",
-            "ongeval"
+            "Volgens",
+            "de",
+            "politie",
+            "was",
+            "niemand",
+            "gewond."
           ],
           "alternatives": [],
-          "explanation": "Bij het ongeval vielen twee gewonden.",
+          "explanation": "Volgens de politie was niemand gewond.",
           "vocabRefs": [
-            "v-ongeval",
-            "v-gewonde"
+            "v-volgens",
+            "v-politie"
           ]
         },
         {
           "id": "s5-u02-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het artikel»?",
+          "prompt": "O que significa «de file»?",
           "options": [
             {
               "id": "a",
-              "text": "polícia",
+              "text": "pelos vistos",
               "correct": false
             },
             {
@@ -2703,40 +2706,40 @@
             },
             {
               "id": "c",
-              "text": "artigo",
+              "text": "fila de trânsito",
               "correct": true
             }
           ],
-          "explanation": "«het artikel» = artigo.",
+          "explanation": "«de file» = fila de trânsito.",
           "vocabRefs": [
-            "v-artikel"
+            "v-file"
           ]
         },
         {
           "id": "s5-u02-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de krantenkop»?",
+          "prompt": "O que significa «heb je gehoord dat…?»?",
           "options": [
             {
               "id": "a",
-              "text": "manchete",
-              "correct": true
+              "text": "artigo",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "construir",
-              "correct": false
+              "text": "ouviste que…?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "trovoada",
+              "text": "governo",
               "correct": false
             }
           ],
-          "explanation": "«de krantenkop» = manchete.",
+          "explanation": "«heb je gehoord dat…?» = ouviste que…?.",
           "vocabRefs": [
-            "v-krantenkop"
+            "v-heb-je-gehoord"
           ]
         }
       ],

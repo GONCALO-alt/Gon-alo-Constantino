@@ -1826,16 +1826,16 @@
       ],
       "examples": [
         {
-          "nl": "Koffie of thee?",
-          "pt": "Café ou chá?"
+          "nl": "Ik blijf thuis, want ik ben ziek.",
+          "pt": "Fico em casa, porque estou doente."
+        },
+        {
+          "nl": "Ik ga morgen met de trein naar Amsterdam.",
+          "pt": "Amanhã vou de comboio para Amesterdão."
         },
         {
           "nl": "Ik fiets elke dag naar school.",
           "pt": "Vou de bicicleta todos os dias para a escola."
-        },
-        {
-          "nl": "Daarna eet hij.",
-          "pt": "A seguir ele come."
         }
       ],
       "grammar": [],
@@ -1886,14 +1886,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "Amanhã vou de comboio para Amesterdão.",
           "tokens": [
-            "Amsterdam.",
-            "trein",
+            "Ik",
+            "ga",
+            "morgen",
             "met",
             "de",
-            "ga",
+            "trein",
             "naar",
-            "morgen",
-            "Ik"
+            "Amsterdam."
           ],
           "alternatives": [],
           "explanation": "Ik ga morgen met de trein naar Amsterdam.",
@@ -1908,10 +1908,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Às vezes lemos o jornal.",
           "tokens": [
-            "de",
-            "soms",
             "Wij",
             "lezen",
+            "soms",
+            "de",
             "krant."
           ],
           "alternatives": [],
@@ -1927,12 +1927,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vou de bicicleta todos os dias para a escola.",
           "tokens": [
-            "dag",
             "Ik",
             "fiets",
-            "school.",
             "elke",
-            "naar"
+            "dag",
+            "naar",
+            "school."
           ],
           "alternatives": [],
           "explanation": "Ik fiets elke dag naar school.",
@@ -1944,7 +1944,34 @@
           "id": "s1-u12-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het regent, dus neem ik de bus.»?",
+          "prompt": "O que significa: «Koffie of thee?»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Café ou chá?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Amanhã vou de comboio para Amesterdão.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Ele trabalha sempre em casa.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Koffie of thee?» = Café ou chá?",
+          "vocabRefs": [
+            "v-of"
+          ]
+        },
+        {
+          "id": "s1-u12-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Ik blijf thuis, want ik ben ziek.»?",
           "options": [
             {
               "id": "a",
@@ -1953,7 +1980,7 @@
             },
             {
               "id": "b",
-              "text": "Está a chover, por isso apanho o autocarro.",
+              "text": "Fico em casa, porque estou doente.",
               "correct": true
             },
             {
@@ -1962,82 +1989,50 @@
               "correct": false
             }
           ],
-          "explanation": "«Het regent, dus neem ik de bus.» = Está a chover, por isso apanho o autocarro.",
+          "explanation": "«Ik blijf thuis, want ik ben ziek.» = Fico em casa, porque estou doente.",
           "vocabRefs": [
-            "v-dus"
-          ]
-        },
-        {
-          "id": "s1-u12-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Morgen gaan we naar Utrecht.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Primeiro bebo café, depois leio o jornal.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Amanhã vamos a Utrecht.",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "Hoje trabalho em casa.",
-              "correct": false
-            }
-          ],
-          "explanation": "«Morgen gaan we naar Utrecht.» = Amanhã vamos a Utrecht.",
-          "vocabRefs": [
-            "v-naar"
+            "v-want"
           ]
         },
         {
           "id": "s1-u12-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Bebo café muitas vezes.",
+          "prompt": "Hoje trabalho em casa.",
           "tokens": [
-            "regent,",
-            "vaak",
-            "drink",
-            "koffie.",
-            "Ik",
-            "we"
+            "hij.",
+            "ik",
+            "Vandaag",
+            "werk",
+            "thuis.",
+            "Het"
           ],
           "answers": [
-            "Ik drink vaak koffie."
+            "Vandaag werk ik thuis."
           ],
-          "explanation": "Bebo café muitas vezes. = Ik drink vaak koffie. (sobram: regent,, we)",
-          "vocabRefs": [
-            "v-vaak",
-            "v-of"
-          ]
+          "explanation": "Hoje trabalho em casa. = Vandaag werk ik thuis. (sobram: hij., Het)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u12-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Está a chover, por isso apanho o autocarro.",
+          "prompt": "Amanhã vamos a Utrecht.",
           "tokens": [
-            "ga",
-            "Het",
-            "ik",
-            "lees",
-            "dus",
-            "neem",
-            "bus.",
-            "regent,",
-            "de"
+            "naar",
+            "thuis,",
+            "Utrecht.",
+            "we",
+            "vaak",
+            "gaan",
+            "Morgen"
           ],
           "answers": [
-            "Het regent, dus neem ik de bus."
+            "Morgen gaan we naar Utrecht."
           ],
-          "explanation": "Está a chover, por isso apanho o autocarro. = Het regent, dus neem ik de bus. (sobram: ga, lees)",
+          "explanation": "Amanhã vamos a Utrecht. = Morgen gaan we naar Utrecht. (sobram: vaak, thuis,)",
           "vocabRefs": [
-            "v-dus"
+            "v-naar"
           ]
         }
       ],
@@ -2095,16 +2090,16 @@
       ],
       "examples": [
         {
-          "nl": "Eerst drink ik koffie, daarna lees ik de krant.",
-          "pt": "Primeiro bebo café, depois leio o jornal."
+          "nl": "Morgen gaan we naar Utrecht.",
+          "pt": "Amanhã vamos a Utrecht."
         },
         {
-          "nl": "Nu ga ik.",
-          "pt": "Agora vou."
+          "nl": "Het regent, dus neem ik de bus.",
+          "pt": "Está a chover, por isso apanho o autocarro."
         },
         {
-          "nl": "Vandaag werk ik thuis.",
-          "pt": "Hoje trabalho em casa."
+          "nl": "Hij werkt om negen uur.",
+          "pt": "Ele trabalha às nove horas."
         }
       ],
       "grammar": [],
@@ -2113,49 +2108,22 @@
           "id": "s1-u12-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «sempre» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "eerst",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "met",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "altijd",
-              "correct": true
-            }
-          ],
-          "explanation": "sempre = «altijd».",
-          "vocabRefs": [
-            "v-altijd"
-          ]
-        },
-        {
-          "id": "s1-u12-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
           "prompt": "Como se diz «depois disso» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "of",
+              "text": "altijd",
               "correct": false
             },
             {
               "id": "b",
-              "text": "daarna",
-              "correct": true
+              "text": "nooit",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "straks",
-              "correct": false
+              "text": "daarna",
+              "correct": true
             }
           ],
           "explanation": "depois disso = «daarna».",
@@ -2164,54 +2132,82 @@
           ]
         },
         {
+          "id": "s1-u12-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «porque» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "nooit",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "want",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "of",
+              "correct": false
+            }
+          ],
+          "explanation": "porque = «want».",
+          "vocabRefs": [
+            "v-want"
+          ]
+        },
+        {
           "id": "s1-u12-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Morgen gaan we ___ Utrecht.",
-          "translation": "Amanhã vamos a Utrecht.",
+          "sentence": "Hij werkt om negen ___.",
+          "translation": "Ele trabalha às nove horas.",
           "answers": [
-            "naar"
+            "uur"
           ],
           "choices": [
-            "naar",
-            "straks",
-            "eerst"
+            "dus",
+            "uur",
+            "straks"
           ],
-          "explanation": "Morgen gaan we naar Utrecht.",
+          "explanation": "Hij werkt om negen uur.",
           "vocabRefs": [
-            "v-naar"
+            "v-uur"
           ]
         },
         {
           "id": "s1-u12-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Het regent, ___ neem ik de bus.",
-          "translation": "Está a chover, por isso apanho o autocarro.",
+          "sentence": "___ drink ik koffie, daarna lees ik de krant.",
+          "translation": "Primeiro bebo café, depois leio o jornal.",
           "answers": [
-            "dus"
+            "Eerst"
           ],
           "choices": [
-            "dus",
-            "eerst",
-            "vaak"
+            "Eerst",
+            "Vaak",
+            "Om"
           ],
-          "explanation": "Het regent, dus neem ik de bus.",
+          "explanation": "Eerst drink ik koffie, daarna lees ik de krant.",
           "vocabRefs": [
-            "v-dus"
+            "v-eerst"
           ]
         },
         {
           "id": "s1-u12-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik fiets elke dag naar school.",
+          "audioText": "Ik ga morgen met de trein naar Amsterdam.",
           "answers": [
-            "Ik fiets elke dag naar school."
+            "Ik ga morgen met de trein naar Amsterdam."
           ],
-          "translation": "Vou de bicicleta todos os dias para a escola.",
-          "explanation": "«Ik fiets elke dag naar school.» = Vou de bicicleta todos os dias para a escola.",
+          "translation": "Amanhã vou de comboio para Amesterdão.",
+          "explanation": "«Ik ga morgen met de trein naar Amsterdam.» = Amanhã vou de comboio para Amesterdão.",
           "vocabRefs": [
+            "v-met",
             "v-naar"
           ]
         },
@@ -2219,13 +2215,16 @@
           "id": "s1-u12-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "We eten vanavond thuis.",
+          "audioText": "Hij werkt om negen uur.",
           "answers": [
-            "We eten vanavond thuis."
+            "Hij werkt om negen uur."
           ],
-          "translation": "Jantamos hoje em casa.",
-          "explanation": "«We eten vanavond thuis.» = Jantamos hoje em casa.",
-          "vocabRefs": []
+          "translation": "Ele trabalha às nove horas.",
+          "explanation": "«Hij werkt om negen uur.» = Ele trabalha às nove horas.",
+          "vocabRefs": [
+            "v-om",
+            "v-uur"
+          ]
         },
         {
           "id": "s1-u12-l008-e07",
@@ -2233,7 +2232,7 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Ele trabalha às nove horas.",
           "tokens": [
-            "regent,",
+            "of",
             "Vandaag",
             "negen",
             "Hij",
@@ -2244,7 +2243,7 @@
           "answers": [
             "Hij werkt om negen uur."
           ],
-          "explanation": "Ele trabalha às nove horas. = Hij werkt om negen uur. (sobram: Vandaag, regent,)",
+          "explanation": "Ele trabalha às nove horas. = Hij werkt om negen uur. (sobram: Vandaag, of)",
           "vocabRefs": [
             "v-om",
             "v-uur"
@@ -2254,23 +2253,20 @@
           "id": "s1-u12-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Às vezes lemos o jornal.",
+          "prompt": "A seguir ele come.",
           "tokens": [
-            "ben",
-            "krant.",
-            "lezen",
-            "soms",
-            "Wij",
-            "de",
-            "trein"
+            "werk",
+            "hij.",
+            "eet",
+            "Daarna",
+            "Ik"
           ],
           "answers": [
-            "Wij lezen soms de krant."
+            "Daarna eet hij."
           ],
-          "explanation": "Às vezes lemos o jornal. = Wij lezen soms de krant. (sobram: ben, trein)",
+          "explanation": "A seguir ele come. = Daarna eet hij. (sobram: Ik, werk)",
           "vocabRefs": [
-            "v-soms",
-            "v-om"
+            "v-daarna"
           ]
         },
         {
@@ -2289,26 +2285,29 @@
           "id": "s1-u12-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Vandaag werk ik thuis.»?",
+          "prompt": "O que significa: «Hij werkt om negen uur.»?",
           "options": [
             {
               "id": "a",
-              "text": "Amanhã vou de comboio para Amesterdão.",
+              "text": "Bebo café muitas vezes.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Hoje trabalho em casa.",
+              "text": "Ele trabalha às nove horas.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Bebo café muitas vezes.",
+              "text": "A seguir ele come.",
               "correct": false
             }
           ],
-          "explanation": "«Vandaag werk ik thuis.» = Hoje trabalho em casa.",
-          "vocabRefs": []
+          "explanation": "«Hij werkt om negen uur.» = Ele trabalha às nove horas.",
+          "vocabRefs": [
+            "v-om",
+            "v-uur"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2365,16 +2364,16 @@
       ],
       "examples": [
         {
-          "nl": "Vandaag ga ik met de bus naar mijn werk, want mijn fiets is kapot.",
-          "pt": "Hoje vou de autocarro para o trabalho, porque a minha bicicleta está avariada."
+          "nl": "We eten vanavond thuis.",
+          "pt": "Jantamos hoje em casa."
         },
         {
-          "nl": "Hij werkt om negen uur.",
-          "pt": "Ele trabalha às nove horas."
+          "nl": "Vandaag werk ik thuis.",
+          "pt": "Hoje trabalho em casa."
         },
         {
-          "nl": "Nu ga ik.",
-          "pt": "Agora vou."
+          "nl": "Hij werkt altijd thuis.",
+          "pt": "Ele trabalha sempre em casa."
         }
       ],
       "grammar": [],
@@ -2383,45 +2382,69 @@
           "id": "s1-u12-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele trabalha sempre em casa.",
+          "prompt": "Fico em casa, porque estou doente.",
           "tokens": [
-            "Hij",
-            "Utrecht.",
-            "thuis.",
-            "werkt",
-            "altijd",
-            "Daarna"
+            "ik",
+            "eten",
+            "uur.",
+            "thuis,",
+            "Ik",
+            "ziek.",
+            "ben",
+            "want",
+            "blijf"
           ],
           "answers": [
-            "Hij werkt altijd thuis."
+            "Ik blijf thuis, want ik ben ziek."
           ],
-          "explanation": "Ele trabalha sempre em casa. = Hij werkt altijd thuis. (sobram: Daarna, Utrecht.)",
+          "explanation": "Fico em casa, porque estou doente. = Ik blijf thuis, want ik ben ziek. (sobram: eten, uur.)",
           "vocabRefs": [
-            "v-altijd"
+            "v-want"
           ]
         },
         {
           "id": "s1-u12-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Ele trabalha sempre em casa.",
+          "tokens": [
+            "thuis.",
+            "Hij",
+            "altijd",
+            "Eerst",
+            "elke",
+            "werkt"
+          ],
+          "answers": [
+            "Hij werkt altijd thuis."
+          ],
+          "explanation": "Ele trabalha sempre em casa. = Hij werkt altijd thuis. (sobram: Eerst, elke)",
+          "vocabRefs": [
+            "v-altijd"
+          ]
+        },
+        {
+          "id": "s1-u12-l009-e03",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
           "prompt": "Primeiro bebo café, depois leio o jornal.",
           "tokens": [
-            "de",
-            "altijd",
-            "ik",
-            "daarna",
-            "drink",
-            "ben",
-            "ik",
-            "koffie,",
-            "krant.",
             "lees",
-            "Eerst"
+            "de",
+            "Utrecht.",
+            "koffie,",
+            "Eerst",
+            "krant.",
+            "daarna",
+            "ik",
+            "ik",
+            "werk",
+            "drink"
           ],
           "answers": [
             "Eerst drink ik koffie, daarna lees ik de krant."
           ],
-          "explanation": "Primeiro bebo café, depois leio o jornal. = Eerst drink ik koffie, daarna lees ik de krant. (sobram: altijd, ben)",
+          "explanation": "Primeiro bebo café, depois leio o jornal. = Eerst drink ik koffie, daarna lees ik de krant. (sobram: Utrecht., werk)",
           "vocabRefs": [
             "v-eerst",
             "v-daarna",
@@ -2429,27 +2452,19 @@
           ]
         },
         {
-          "id": "s1-u12-l009-e03",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Café ou chá?",
-          "tokens": [
-            "Koffie",
-            "We",
-            "lees",
-            "thee?",
-            "of"
-          ],
+          "id": "s1-u12-l009-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik ben moe, maar ik werk.",
           "answers": [
-            "Koffie of thee?"
+            "Ik ben moe, maar ik werk."
           ],
-          "explanation": "Café ou chá? = Koffie of thee? (sobram: We, lees)",
-          "vocabRefs": [
-            "v-of"
-          ]
+          "translation": "Estou cansado, mas trabalho.",
+          "explanation": "«Ik ben moe, maar ik werk.» = Estou cansado, mas trabalho.",
+          "vocabRefs": []
         },
         {
-          "id": "s1-u12-l009-e04",
+          "id": "s1-u12-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik blijf thuis, want ik ben ziek.",
@@ -2463,100 +2478,86 @@
           ]
         },
         {
-          "id": "s1-u12-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ga morgen met de trein naar Amsterdam.",
-          "answers": [
-            "Ik ga morgen met de trein naar Amsterdam."
-          ],
-          "translation": "Amanhã vou de comboio para Amesterdão.",
-          "explanation": "«Ik ga morgen met de trein naar Amsterdam.» = Amanhã vou de comboio para Amesterdão.",
-          "vocabRefs": [
-            "v-met",
-            "v-naar"
-          ]
-        },
-        {
           "id": "s1-u12-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik werk altijd thuis.",
+          "audioText": "Daarna eet hij.",
           "answers": [
-            "Ik werk altijd thuis."
+            "Daarna eet hij."
           ],
-          "translation": "Trabalho sempre em casa.",
-          "explanation": "«Ik werk altijd thuis.» = Trabalho sempre em casa.",
+          "translation": "A seguir ele come.",
+          "explanation": "«Daarna eet hij.» = A seguir ele come.",
           "vocabRefs": [
-            "v-altijd"
+            "v-daarna"
           ]
         },
         {
           "id": "s1-u12-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Estou cansado, mas trabalho.",
+          "translation": "Ele trabalha sempre em casa.",
           "tokens": [
-            "werk.",
-            "moe,",
-            "maar",
-            "Ik",
-            "ik",
-            "ben"
+            "Hij",
+            "werkt",
+            "altijd",
+            "thuis."
           ],
           "alternatives": [],
-          "explanation": "Ik ben moe, maar ik werk.",
-          "vocabRefs": []
+          "explanation": "Hij werkt altijd thuis.",
+          "vocabRefs": [
+            "v-altijd"
+          ]
         },
         {
           "id": "s1-u12-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Trabalho sempre em casa.",
+          "translation": "Bebo café muitas vezes.",
           "tokens": [
-            "thuis.",
-            "altijd",
-            "werk",
-            "Ik"
+            "Ik",
+            "drink",
+            "vaak",
+            "koffie."
           ],
           "alternatives": [],
-          "explanation": "Ik werk altijd thuis.",
+          "explanation": "Ik drink vaak koffie.",
           "vocabRefs": [
-            "v-altijd"
+            "v-vaak",
+            "v-of"
           ]
         },
         {
           "id": "s1-u12-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «want»?",
+          "prompt": "O que significa «nooit»?",
           "options": [
             {
               "id": "a",
-              "text": "portanto",
+              "text": "sempre",
               "correct": false
             },
             {
               "id": "b",
-              "text": "porque",
-              "correct": true
+              "text": "primeiro",
+              "correct": false
             },
             {
               "id": "c",
               "text": "nunca",
-              "correct": false
+              "correct": true
             }
           ],
-          "explanation": "«want» = porque, pois.",
+          "explanation": "«nooit» = nunca.",
           "vocabRefs": [
-            "v-want"
+            "v-nooit"
           ]
         },
         {
           "id": "s1-u12-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «eerst»?",
+          "prompt": "O que significa «met»?",
           "options": [
             {
               "id": "a",
@@ -2565,18 +2566,18 @@
             },
             {
               "id": "b",
-              "text": "para",
+              "text": "nunca",
               "correct": false
             },
             {
               "id": "c",
-              "text": "primeiro",
+              "text": "com",
               "correct": true
             }
           ],
-          "explanation": "«eerst» = primeiro.",
+          "explanation": "«met» = com.",
           "vocabRefs": [
-            "v-eerst"
+            "v-met"
           ]
         }
       ],
@@ -2634,16 +2635,16 @@
       ],
       "examples": [
         {
-          "nl": "Hij werkt om negen uur.",
-          "pt": "Ele trabalha às nove horas."
+          "nl": "Wij lezen soms de krant.",
+          "pt": "Às vezes lemos o jornal."
         },
         {
-          "nl": "Eerst drink ik koffie, daarna lees ik de krant.",
-          "pt": "Primeiro bebo café, depois leio o jornal."
+          "nl": "Het regent, dus neem ik de bus.",
+          "pt": "Está a chover, por isso apanho o autocarro."
         },
         {
-          "nl": "Koffie of thee?",
-          "pt": "Café ou chá?"
+          "nl": "Ik ben moe, maar ik werk.",
+          "pt": "Estou cansado, mas trabalho."
         }
       ],
       "grammar": [],
@@ -2654,104 +2655,76 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "dus",
-              "pt": "portanto"
-            },
-            {
-              "nl": "daarna",
-              "pt": "depois disso"
-            },
-            {
               "nl": "nooit",
               "pt": "nunca"
             },
             {
-              "nl": "eerst",
-              "pt": "primeiro"
+              "nl": "of",
+              "pt": "ou"
             },
             {
               "nl": "met",
               "pt": "com"
+            },
+            {
+              "nl": "uur",
+              "pt": "hora"
+            },
+            {
+              "nl": "soms",
+              "pt": "às vezes"
             }
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-dus",
-            "v-daarna",
-            "v-dan",
             "v-nooit",
-            "v-eerst"
+            "v-of",
+            "v-met",
+            "v-uur",
+            "v-soms"
           ]
         },
         {
           "id": "s1-u12-l010-e02",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik drink vaak koffie.",
+          "audioText": "Nu ga ik.",
           "answers": [
-            "Ik drink vaak koffie."
+            "Nu ga ik."
           ],
-          "translation": "Bebo café muitas vezes.",
-          "explanation": "«Ik drink vaak koffie.» = Bebo café muitas vezes.",
-          "vocabRefs": [
-            "v-vaak",
-            "v-of"
-          ]
+          "translation": "Agora vou.",
+          "explanation": "«Nu ga ik.» = Agora vou.",
+          "vocabRefs": []
         },
         {
           "id": "s1-u12-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben moe, maar ik werk.",
+          "audioText": "Ik blijf thuis, want ik ben ziek.",
           "answers": [
-            "Ik ben moe, maar ik werk."
+            "Ik blijf thuis, want ik ben ziek."
           ],
-          "translation": "Estou cansado, mas trabalho.",
-          "explanation": "«Ik ben moe, maar ik werk.» = Estou cansado, mas trabalho.",
-          "vocabRefs": []
+          "translation": "Fico em casa, porque estou doente.",
+          "explanation": "«Ik blijf thuis, want ik ben ziek.» = Fico em casa, porque estou doente.",
+          "vocabRefs": [
+            "v-want"
+          ]
         },
         {
           "id": "s1-u12-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «dan»?",
+          "prompt": "O que significa «om»?",
           "options": [
             {
               "id": "a",
+              "text": "às",
+              "correct": true
+            },
+            {
+              "id": "b",
               "text": "porque",
               "correct": false
-            },
-            {
-              "id": "b",
-              "text": "hora",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "então",
-              "correct": true
-            }
-          ],
-          "explanation": "«dan» = então, depois.",
-          "vocabRefs": [
-            "v-dan"
-          ]
-        },
-        {
-          "id": "s1-u12-l010-e05",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «nooit»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "primeiro",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "nunca",
-              "correct": true
             },
             {
               "id": "c",
@@ -2759,9 +2732,36 @@
               "correct": false
             }
           ],
-          "explanation": "«nooit» = nunca.",
+          "explanation": "«om» = às (horas).",
           "vocabRefs": [
-            "v-nooit"
+            "v-om"
+          ]
+        },
+        {
+          "id": "s1-u12-l010-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «eerst»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "para",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "daqui a pouco",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "primeiro",
+              "correct": true
+            }
+          ],
+          "explanation": "«eerst» = primeiro.",
+          "vocabRefs": [
+            "v-eerst"
           ]
         },
         {
@@ -2770,10 +2770,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Amanhã vamos a Utrecht.",
           "tokens": [
-            "naar",
+            "Morgen",
             "gaan",
             "we",
-            "Morgen",
+            "naar",
             "Utrecht."
           ],
           "alternatives": [],
@@ -2786,37 +2786,36 @@
           "id": "s1-u12-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Bebo café muitas vezes.",
+          "translation": "Trabalho sempre em casa.",
           "tokens": [
-            "koffie.",
-            "vaak",
-            "drink",
-            "Ik"
+            "Ik",
+            "werk",
+            "altijd",
+            "thuis."
           ],
           "alternatives": [],
-          "explanation": "Ik drink vaak koffie.",
+          "explanation": "Ik werk altijd thuis.",
           "vocabRefs": [
-            "v-vaak",
-            "v-of"
+            "v-altijd"
           ]
         },
         {
           "id": "s1-u12-l010-e08",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Wij lezen ___ de krant.",
-          "translation": "Às vezes lemos o jornal.",
+          "sentence": "Ik werk ___ thuis.",
+          "translation": "Trabalho sempre em casa.",
           "answers": [
-            "soms"
+            "altijd"
           ],
           "choices": [
+            "nooit",
             "altijd",
-            "straks",
-            "soms"
+            "naar"
           ],
-          "explanation": "Wij lezen soms de krant.",
+          "explanation": "Ik werk altijd thuis.",
           "vocabRefs": [
-            "v-soms"
+            "v-altijd"
           ]
         },
         {
@@ -2832,7 +2831,7 @@
             },
             {
               "id": "b",
-              "text": "A seguir ele come.",
+              "text": "Hoje vou de autocarro para o trabalho, porque a minha bicicleta está avariada.",
               "correct": false
             },
             {

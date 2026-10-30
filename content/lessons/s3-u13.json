@@ -1990,13 +1990,13 @@
           "translation": "Quero reservar um quarto duplo para três noites.",
           "tokens": [
             "Ik",
+            "wil",
             "een",
             "tweepersoonskamer",
-            "drie",
+            "boeken",
             "voor",
-            "wil",
-            "nachten.",
-            "boeken"
+            "drie",
+            "nachten."
           ],
           "alternatives": [],
           "explanation": "Ik wil een tweepersoonskamer boeken voor drie nachten.",
@@ -2011,11 +2011,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Qual é o teu destino preferido?",
           "tokens": [
-            "favoriete",
-            "is",
-            "bestemming?",
             "Wat",
-            "je"
+            "is",
+            "je",
+            "favoriete",
+            "bestemming?"
           ],
           "alternatives": [],
           "explanation": "Wat is je favoriete bestemming?",
@@ -2029,10 +2029,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "O voo está atrasado.",
           "tokens": [
-            "heeft",
-            "vertraging.",
             "De",
-            "vlucht"
+            "vlucht",
+            "heeft",
+            "vertraging."
           ],
           "alternatives": [],
           "explanation": "De vlucht heeft vertraging.",
@@ -2044,101 +2044,95 @@
           "id": "s3-u13-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De vlucht heeft vertraging.»?",
+          "prompt": "O que significa: «Waar kan ik mijn koffer inchecken?»?",
           "options": [
             {
               "id": "a",
-              "text": "O voo está atrasado.",
-              "correct": true
+              "text": "O meu voo parte às 10h15.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Vamos de férias em agosto.",
-              "correct": false
+              "text": "Onde posso despachar a mala?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Vou muitas vezes ao estrangeiro.",
+              "text": "Vamos de férias em agosto.",
               "correct": false
             }
           ],
-          "explanation": "«De vlucht heeft vertraging.» = O voo está atrasado.",
+          "explanation": "«Waar kan ik mijn koffer inchecken?» = Onde posso despachar a mala?",
           "vocabRefs": [
-            "v-vlucht"
+            "v-inchecken-hotel",
+            "v-koffer"
           ]
         },
         {
           "id": "s3-u13-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Mijn vlucht vertrekt om 10.15 uur.»?",
+          "prompt": "O que significa: «Ze gaan met de caravan naar Frankrijk.»?",
           "options": [
             {
               "id": "a",
-              "text": "O meu voo parte às 10h15.",
-              "correct": true
+              "text": "Marquei um voo para o Porto e um hotel junto à praia.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Vamos acampar em França.",
-              "correct": false
+              "text": "Vão de caravana para França.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Qual é a palavra-passe do wi-fi?",
+              "text": "O voo está atrasado.",
               "correct": false
             }
           ],
-          "explanation": "«Mijn vlucht vertrekt om 10.15 uur.» = O meu voo parte às 10h15.",
-          "vocabRefs": [
-            "v-vlucht"
-          ]
+          "explanation": "«Ze gaan met de caravan naar Frankrijk.» = Vão de caravana para França.",
+          "vocabRefs": []
         },
         {
           "id": "s3-u13-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vou muitas vezes ao estrangeiro.",
+          "prompt": "O voo está atrasado.",
           "tokens": [
-            "ga",
-            "vaak",
-            "buitenland.",
-            "naar",
-            "koffer",
-            "Ik",
-            "wachtwoord",
-            "het"
+            "heeft",
+            "De",
+            "vertraging.",
+            "Wat",
+            "ik",
+            "vlucht"
           ],
           "answers": [
-            "Ik ga vaak naar het buitenland."
+            "De vlucht heeft vertraging."
           ],
-          "explanation": "Vou muitas vezes ao estrangeiro. = Ik ga vaak naar het buitenland. (sobram: koffer, wachtwoord)",
+          "explanation": "O voo está atrasado. = De vlucht heeft vertraging. (sobram: ik, Wat)",
           "vocabRefs": [
-            "v-buitenland"
+            "v-vlucht"
           ]
         },
         {
           "id": "s3-u13-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vamos de férias em agosto.",
+          "prompt": "Vamos acampar em França.",
           "tokens": [
-            "gaan",
-            "vakantie.",
-            "op",
-            "We",
-            "in",
-            "Ik",
+            "is",
+            "vlucht",
             "Frankrijk.",
-            "augustus"
+            "We",
+            "kamperen",
+            "in",
+            "gaan"
           ],
           "answers": [
-            "We gaan in augustus op vakantie."
+            "We gaan kamperen in Frankrijk."
           ],
-          "explanation": "Vamos de férias em agosto. = We gaan in augustus op vakantie. (sobram: Frankrijk., Ik)",
-          "vocabRefs": [
-            "v-vakantie"
-          ]
+          "explanation": "Vamos acampar em França. = We gaan kamperen in Frankrijk. (sobram: vlucht, is)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 3,
@@ -2201,16 +2195,16 @@
       ],
       "examples": [
         {
-          "nl": "Een overnachting kost 120 euro.",
-          "pt": "Uma noite custa 120 euros."
+          "nl": "Wat is het wachtwoord van de wifi?",
+          "pt": "Qual é a palavra-passe do wi-fi?"
         },
         {
-          "nl": "De vlucht heeft vertraging.",
-          "pt": "O voo está atrasado."
+          "nl": "Ik ga vaak naar het buitenland.",
+          "pt": "Vou muitas vezes ao estrangeiro."
         },
         {
-          "nl": "Waar kan ik mijn koffer inchecken?",
-          "pt": "Onde posso despachar a mala?"
+          "nl": "Hoe laat moet ik uitchecken?",
+          "pt": "A que horas tenho de fazer o check-out?"
         }
       ],
       "grammar": [],
@@ -2362,50 +2356,51 @@
           "id": "s3-u13-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Qual é o teu destino preferido?",
+          "prompt": "Vamos de férias em agosto.",
           "tokens": [
-            "favoriete",
-            "bestemming?",
-            "je",
-            "euro.",
-            "ontbijt",
-            "Wat",
-            "is"
+            "op",
+            "in",
+            "We",
+            "gaan",
+            "van",
+            "vakantie.",
+            "augustus",
+            "wachtwoord"
           ],
           "answers": [
-            "Wat is je favoriete bestemming?"
+            "We gaan in augustus op vakantie."
           ],
-          "explanation": "Qual é o teu destino preferido? = Wat is je favoriete bestemming? (sobram: ontbijt, euro.)",
+          "explanation": "Vamos de férias em agosto. = We gaan in augustus op vakantie. (sobram: wachtwoord, van)",
           "vocabRefs": [
-            "v-bestemming"
+            "v-vakantie"
           ]
         },
         {
           "id": "s3-u13-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "koffer",
-          "pt": "mala",
+          "noun": "vakantie",
+          "pt": "férias",
           "article": "de",
-          "explanation": "de koffer.",
+          "explanation": "de vakantie.",
           "vocabRefs": [
-            "v-koffer"
+            "v-vakantie"
           ]
         },
         {
           "id": "s3-u13-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We gaan kamperen in Frankrijk.»?",
+          "prompt": "O que significa: «Mijn vlucht vertrekt om 10.15 uur.»?",
           "options": [
             {
               "id": "a",
-              "text": "Vamos acampar em França.",
+              "text": "O meu voo parte às 10h15.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Marquei um voo para o Porto e um hotel junto à praia.",
+              "text": "Vamos acampar em França.",
               "correct": false
             },
             {
@@ -2414,8 +2409,10 @@
               "correct": false
             }
           ],
-          "explanation": "«We gaan kamperen in Frankrijk.» = Vamos acampar em França.",
-          "vocabRefs": []
+          "explanation": "«Mijn vlucht vertrekt om 10.15 uur.» = O meu voo parte às 10h15.",
+          "vocabRefs": [
+            "v-vlucht"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2482,12 +2479,12 @@
           "pt": "Vamos de férias em agosto."
         },
         {
-          "nl": "Wat is het wachtwoord van de wifi?",
-          "pt": "Qual é a palavra-passe do wi-fi?"
+          "nl": "Ik wil graag inchecken. Ik heb gereserveerd op naam van Silva.",
+          "pt": "Queria fazer o check-in. Tenho reserva em nome de Silva."
         },
         {
-          "nl": "Wat is je favoriete bestemming?",
-          "pt": "Qual é o teu destino preferido?"
+          "nl": "Waar kan ik mijn koffer inchecken?",
+          "pt": "Onde posso despachar a mala?"
         }
       ],
       "grammar": [],
@@ -2496,111 +2493,114 @@
           "id": "s3-u13-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O voo está atrasado.",
+          "prompt": "A que horas tenho de fazer o check-out?",
           "tokens": [
-            "De",
-            "heeft",
-            "vlucht",
-            "het",
-            "wil",
-            "vertraging."
+            "laat",
+            "Hoe",
+            "uitchecken?",
+            "120",
+            "moet",
+            "ik",
+            "gereserveerd"
           ],
           "answers": [
-            "De vlucht heeft vertraging."
+            "Hoe laat moet ik uitchecken?"
           ],
-          "explanation": "O voo está atrasado. = De vlucht heeft vertraging. (sobram: het, wil)",
-          "vocabRefs": [
-            "v-vlucht"
-          ]
+          "explanation": "A que horas tenho de fazer o check-out? = Hoe laat moet ik uitchecken? (sobram: gereserveerd, 120)",
+          "vocabRefs": []
         },
         {
           "id": "s3-u13-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Queria fazer o check-in. Tenho reserva em nome de Silva.",
+          "prompt": "Onde posso despachar a mala?",
           "tokens": [
-            "heb",
-            "graag",
-            "vaak",
-            "van",
-            "Ik",
-            "Silva.",
-            "gereserveerd",
-            "op",
-            "wil",
-            "inchecken.",
+            "inchecken?",
+            "ik",
             "naam",
-            "Ik",
-            "met"
+            "mijn",
+            "Waar",
+            "kan",
+            "120",
+            "koffer"
           ],
           "answers": [
-            "Ik wil graag inchecken. Ik heb gereserveerd op naam van Silva."
+            "Waar kan ik mijn koffer inchecken?"
           ],
-          "explanation": "Queria fazer o check-in. Tenho reserva em nome de Silva. = Ik wil graag inchecken. Ik heb gereserveerd op naam van Silva. (sobram: met, vaak)",
+          "explanation": "Onde posso despachar a mala? = Waar kan ik mijn koffer inchecken? (sobram: naam, 120)",
           "vocabRefs": [
-            "v-inchecken-hotel"
+            "v-inchecken-hotel",
+            "v-koffer"
           ]
         },
         {
           "id": "s3-u13-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O pequeno-almoço está incluído?",
+          "prompt": "Queria fazer o check-in. Tenho reserva em nome de Silva.",
           "tokens": [
-            "caravan",
-            "euro.",
-            "Is",
-            "het",
-            "ontbijt",
-            "inbegrepen?"
+            "gereserveerd",
+            "van",
+            "op",
+            "met",
+            "inchecken.",
+            "Silva.",
+            "naam",
+            "graag",
+            "Ik",
+            "Ik",
+            "wil",
+            "vertrekt",
+            "heb"
           ],
           "answers": [
-            "Is het ontbijt inbegrepen?"
+            "Ik wil graag inchecken. Ik heb gereserveerd op naam van Silva."
           ],
-          "explanation": "O pequeno-almoço está incluído? = Is het ontbijt inbegrepen? (sobram: caravan, euro.)",
+          "explanation": "Queria fazer o check-in. Tenho reserva em nome de Silva. = Ik wil graag inchecken. Ik heb gereserveerd op naam van Silva. (sobram: met, vertrekt)",
           "vocabRefs": [
-            "v-inbegrepen"
+            "v-inchecken-hotel"
           ]
         },
         {
           "id": "s3-u13-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hoe laat moet ik uitchecken?",
+          "audioText": "Een overnachting kost 120 euro.",
           "answers": [
-            "Hoe laat moet ik uitchecken?"
+            "Een overnachting kost 120 euro."
           ],
-          "translation": "A que horas tenho de fazer o check-out?",
-          "explanation": "«Hoe laat moet ik uitchecken?» = A que horas tenho de fazer o check-out?",
-          "vocabRefs": []
+          "translation": "Uma noite custa 120 euros.",
+          "explanation": "«Een overnachting kost 120 euro.» = Uma noite custa 120 euros.",
+          "vocabRefs": [
+            "v-nacht-hotel"
+          ]
         },
         {
           "id": "s3-u13-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat is het wachtwoord van de wifi?",
+          "audioText": "Ik ga vaak naar het buitenland.",
           "answers": [
-            "Wat is het wachtwoord van de wifi?"
+            "Ik ga vaak naar het buitenland."
           ],
-          "translation": "Qual é a palavra-passe do wi-fi?",
-          "explanation": "«Wat is het wachtwoord van de wifi?» = Qual é a palavra-passe do wi-fi?",
+          "translation": "Vou muitas vezes ao estrangeiro.",
+          "explanation": "«Ik ga vaak naar het buitenland.» = Vou muitas vezes ao estrangeiro.",
           "vocabRefs": [
-            "v-wifi"
+            "v-buitenland"
           ]
         },
         {
           "id": "s3-u13-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Waar kan ik mijn koffer inchecken?",
+          "audioText": "Wat is je favoriete bestemming?",
           "answers": [
-            "Waar kan ik mijn koffer inchecken?"
+            "Wat is je favoriete bestemming?"
           ],
-          "translation": "Onde posso despachar a mala?",
-          "explanation": "«Waar kan ik mijn koffer inchecken?» = Onde posso despachar a mala?",
+          "translation": "Qual é o teu destino preferido?",
+          "explanation": "«Wat is je favoriete bestemming?» = Qual é o teu destino preferido?",
           "vocabRefs": [
-            "v-inchecken-hotel",
-            "v-koffer"
+            "v-bestemming"
           ]
         },
         {
@@ -2609,11 +2609,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Vamos acampar em França.",
           "tokens": [
-            "kamperen",
+            "We",
             "gaan",
+            "kamperen",
             "in",
-            "Frankrijk.",
-            "We"
+            "Frankrijk."
           ],
           "alternatives": [],
           "explanation": "We gaan kamperen in Frankrijk.",
@@ -2623,78 +2623,74 @@
           "id": "s3-u13-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Queria fazer o check-in. Tenho reserva em nome de Silva.",
+          "translation": "Onde posso despachar a mala?",
           "tokens": [
-            "wil",
-            "op",
-            "Ik",
-            "gereserveerd",
-            "heb",
-            "inchecken.",
-            "Silva.",
-            "Ik",
-            "naam",
-            "graag",
-            "van"
+            "Waar",
+            "kan",
+            "ik",
+            "mijn",
+            "koffer",
+            "inchecken?"
           ],
           "alternatives": [],
-          "explanation": "Ik wil graag inchecken. Ik heb gereserveerd op naam van Silva.",
+          "explanation": "Waar kan ik mijn koffer inchecken?",
           "vocabRefs": [
-            "v-inchecken-hotel"
+            "v-inchecken-hotel",
+            "v-koffer"
           ]
         },
         {
           "id": "s3-u13-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de bagage»?",
+          "prompt": "O que significa «de vlucht»?",
           "options": [
             {
               "id": "a",
-              "text": "bagagem",
-              "correct": true
+              "text": "wi-fi",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "incluído",
+              "text": "quarto duplo",
               "correct": false
             },
             {
               "id": "c",
-              "text": "fazer check-in",
-              "correct": false
+              "text": "voo",
+              "correct": true
             }
           ],
-          "explanation": "«de bagage» = bagagem.",
+          "explanation": "«de vlucht» = voo.",
           "vocabRefs": [
-            "v-bagage"
+            "v-vlucht"
           ]
         },
         {
           "id": "s3-u13-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de vlucht»?",
+          "prompt": "O que significa «het vliegveld»?",
           "options": [
             {
               "id": "a",
-              "text": "voo",
-              "correct": true
+              "text": "mala",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "estrangeiro",
-              "correct": false
+              "text": "aeroporto",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "mala",
+              "text": "reservar",
               "correct": false
             }
           ],
-          "explanation": "«de vlucht» = voo.",
+          "explanation": "«het vliegveld» = aeroporto.",
           "vocabRefs": [
-            "v-vlucht"
+            "v-vliegveld"
           ]
         }
       ],

@@ -1891,12 +1891,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "A marcação pode ser feita online.",
           "tokens": [
-            "gemaakt",
-            "online",
             "De",
+            "afspraak",
             "kan",
-            "worden.",
-            "afspraak"
+            "online",
+            "gemaakt",
+            "worden."
           ],
           "alternatives": [],
           "explanation": "De afspraak kan online gemaakt worden.",
@@ -1910,12 +1910,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O formulário tem de ser preenchido na totalidade.",
           "tokens": [
-            "volledig",
-            "worden.",
             "Het",
+            "formulier",
             "moet",
+            "volledig",
             "ingevuld",
-            "formulier"
+            "worden."
           ],
           "alternatives": [],
           "explanation": "Het formulier moet volledig ingevuld worden.",
@@ -1929,9 +1929,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Riu-se muito.",
           "tokens": [
-            "veel",
             "Er",
             "werd",
+            "veel",
             "gelachen."
           ],
           "alternatives": [],
@@ -1942,98 +1942,94 @@
           "id": "s6-u12-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De afspraak kan online gemaakt worden.»?",
+          "prompt": "O que significa: «Bewoners zijn gewaarschuwd voor de storm.»?",
           "options": [
             {
               "id": "a",
-              "text": "A marcação pode ser feita online.",
-              "correct": true
+              "text": "Pede-se aos passageiros que saiam.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "O museu está a ser renovado. — O museu foi/está renovado.",
+              "text": "Este documento tem de ser assinado.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "A loja está fechada (estado).",
-              "correct": false
+              "text": "Os moradores foram avisados da tempestade.",
+              "correct": true
             }
           ],
-          "explanation": "«De afspraak kan online gemaakt worden.» = A marcação pode ser feita online.",
+          "explanation": "«Bewoners zijn gewaarschuwd voor de storm.» = Os moradores foram avisados da tempestade.",
           "vocabRefs": [
-            "v-gemaakt-worden"
+            "v-gewaarschuwd"
           ]
         },
         {
           "id": "s6-u12-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Er werd veel gelachen.»?",
+          "prompt": "O que significa: «Het schilderij werd pas later ontdekt.»?",
           "options": [
             {
               "id": "a",
-              "text": "Os moradores foram avisados da tempestade.",
+              "text": "A loja está fechada (estado).",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Riu-se muito.",
+              "text": "O quadro só foi descoberto mais tarde.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "O quadro só foi descoberto mais tarde.",
+              "text": "Os autocarros velhos vão ser substituídos.",
               "correct": false
             }
           ],
-          "explanation": "«Er werd veel gelachen.» = Riu-se muito.",
-          "vocabRefs": []
+          "explanation": "«Het schilderij werd pas later ontdekt.» = O quadro só foi descoberto mais tarde.",
+          "vocabRefs": [
+            "v-ontdekt"
+          ]
         },
         {
           "id": "s6-u12-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Este telemóvel já não pode ser reparado.",
+          "prompt": "Riu-se muito.",
           "tokens": [
-            "meer",
-            "De",
-            "werd",
-            "worden.",
-            "telefoon",
-            "gerepareerd",
+            "gelachen.",
             "kan",
-            "niet",
-            "Deze"
+            "veel",
+            "Er",
+            "is",
+            "werd"
           ],
           "answers": [
-            "Deze telefoon kan niet meer gerepareerd worden."
+            "Er werd veel gelachen."
           ],
-          "explanation": "Este telemóvel já não pode ser reparado. = Deze telefoon kan niet meer gerepareerd worden. (sobram: werd, De)",
+          "explanation": "Riu-se muito. = Er werd veel gelachen. (sobram: is, kan)",
           "vocabRefs": []
         },
         {
           "id": "s6-u12-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A marcação pode ser feita online.",
+          "prompt": "Aqui não se pode fumar.",
           "tokens": [
-            "kan",
-            "online",
-            "gelachen.",
-            "gemaakt",
-            "De",
+            "niet",
+            "gerookt",
+            "mag",
             "worden.",
-            "wordt",
-            "afspraak"
+            "eeuw",
+            "gebracht.",
+            "Hier"
           ],
           "answers": [
-            "De afspraak kan online gemaakt worden."
+            "Hier mag niet gerookt worden."
           ],
-          "explanation": "A marcação pode ser feita online. = De afspraak kan online gemaakt worden. (sobram: wordt, gelachen.)",
-          "vocabRefs": [
-            "v-gemaakt-worden"
-          ]
+          "explanation": "Aqui não se pode fumar. = Hier mag niet gerookt worden. (sobram: gebracht., eeuw)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2090,16 +2086,16 @@
       ],
       "examples": [
         {
-          "nl": "De afspraak kan online gemaakt worden.",
-          "pt": "A marcação pode ser feita online."
+          "nl": "De winkel is gesloten.",
+          "pt": "A loja está fechada (estado)."
         },
         {
-          "nl": "Het huis is al verkocht.",
-          "pt": "A casa já está vendida."
+          "nl": "De brug is vorig jaar geopend.",
+          "pt": "A ponte foi inaugurada no ano passado."
         },
         {
-          "nl": "Bewoners zijn gewaarschuwd voor de storm.",
-          "pt": "Os moradores foram avisados da tempestade."
+          "nl": "Hier wordt Nederlands gesproken.",
+          "pt": "Aqui fala-se neerlandês."
         }
       ],
       "grammar": [],
@@ -2205,98 +2201,97 @@
           "id": "s6-u12-l008-e06",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O jogo foi cancelado / está cancelado.",
+          "prompt": "O museu está a ser renovado. — O museu foi/está renovado.",
           "tokens": [
-            "De",
-            "afgelast.",
-            "wedstrijd",
-            "worden",
             "is",
-            "telefoon"
+            "gerenoveerd.",
+            "museum",
+            "museum",
+            "wordt",
+            "Het",
+            "document",
+            "Het",
+            "gerenoveerd.",
+            "—",
+            "meer"
           ],
           "answers": [
-            "De wedstrijd is afgelast."
+            "Het museum wordt gerenoveerd. — Het museum is gerenoveerd."
           ],
-          "explanation": "O jogo foi cancelado / está cancelado. = De wedstrijd is afgelast. (sobram: telefoon, worden)",
-          "vocabRefs": [
-            "v-afgelast"
-          ]
+          "explanation": "O museu está a ser renovado. — O museu foi/está renovado. = Het museum wordt gerenoveerd. — Het museum is gerenoveerd. (sobram: meer, document)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u12-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A ponte foi inaugurada no ano passado.",
+          "prompt": "A loja está fechada (estado).",
           "tokens": [
-            "vorig",
-            "niet",
-            "is",
-            "voor",
+            "winkel",
+            "gesloten.",
             "De",
-            "jaar",
-            "brug",
-            "geopend."
+            "is",
+            "niet",
+            "voor"
           ],
           "answers": [
-            "De brug is vorig jaar geopend."
+            "De winkel is gesloten."
           ],
-          "explanation": "A ponte foi inaugurada no ano passado. = De brug is vorig jaar geopend. (sobram: niet, voor)",
-          "vocabRefs": [
-            "v-geopend"
-          ]
+          "explanation": "A loja está fechada (estado). = De winkel is gesloten. (sobram: niet, voor)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u12-l008-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Een man is aangehouden voor diefstal.»?",
+          "prompt": "O que significa: «Het huis werd in 1900 gebouwd.»?",
           "options": [
             {
               "id": "a",
-              "text": "A marcação pode ser feita online.",
-              "correct": false
+              "text": "A casa foi construída em 1900.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "A bicicleta foi inventada no século XIX.",
+              "text": "O queijo é feito em Gouda.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Um homem foi detido por furto.",
-              "correct": true
+              "text": "A loja está fechada (estado).",
+              "correct": false
             }
           ],
-          "explanation": "«Een man is aangehouden voor diefstal.» = Um homem foi detido por furto.",
+          "explanation": "«Het huis werd in 1900 gebouwd.» = A casa foi construída em 1900.",
           "vocabRefs": [
-            "v-aangehouden"
+            "v-gebouwd"
           ]
         },
         {
           "id": "s6-u12-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «gebouwd»?",
+          "prompt": "O que significa «kan … worden»?",
           "options": [
             {
               "id": "a",
+              "text": "pode ser …",
+              "correct": true
+            },
+            {
+              "id": "b",
               "text": "ser feito",
               "correct": false
             },
             {
-              "id": "b",
-              "text": "construído",
-              "correct": true
-            },
-            {
               "id": "c",
-              "text": "preenchido",
+              "text": "por",
               "correct": false
             }
           ],
-          "explanation": "«gebouwd» = construído.",
+          "explanation": "«kan … worden» = pode ser ….",
           "vocabRefs": [
-            "v-gebouwd"
+            "v-kan-worden"
           ]
         }
       ],
@@ -2354,16 +2349,16 @@
       ],
       "examples": [
         {
-          "nl": "Het huis werd in 1900 gebouwd.",
-          "pt": "A casa foi construída em 1900."
+          "nl": "De brieven worden door de postbode gebracht.",
+          "pt": "As cartas são trazidas pelo carteiro."
         },
         {
-          "nl": "Het formulier moet volledig ingevuld worden.",
-          "pt": "O formulário tem de ser preenchido na totalidade."
+          "nl": "Dit document moet ondertekend worden.",
+          "pt": "Este documento tem de ser assinado."
         },
         {
-          "nl": "De oude bussen worden vervangen.",
-          "pt": "Os autocarros velhos vão ser substituídos."
+          "nl": "Hier mag niet gerookt worden.",
+          "pt": "Aqui não se pode fumar."
         }
       ],
       "grammar": [],
@@ -2372,43 +2367,45 @@
           "id": "s6-u12-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Riu-se muito.",
+          "prompt": "Pede-se aos passageiros que saiam.",
           "tokens": [
-            "Er",
-            "werd",
-            "gelachen.",
-            "veel",
-            "worden.",
-            "museum"
+            "verzocht",
+            "stappen.",
+            "uit",
+            "te",
+            "worden",
+            "Reizigers",
+            "ondertekend",
+            "ingevuld"
           ],
           "answers": [
-            "Er werd veel gelachen."
+            "Reizigers worden verzocht uit te stappen."
           ],
-          "explanation": "Riu-se muito. = Er werd veel gelachen. (sobram: worden., museum)",
-          "vocabRefs": []
+          "explanation": "Pede-se aos passageiros que saiam. = Reizigers worden verzocht uit te stappen. (sobram: ingevuld, ondertekend)",
+          "vocabRefs": [
+            "v-verzocht"
+          ]
         },
         {
           "id": "s6-u12-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O museu está a ser renovado. — O museu foi/está renovado.",
+          "prompt": "A loja é fechada às seis (ação).",
           "tokens": [
-            "is",
-            "Het",
-            "wordt",
-            "gemaakt",
-            "museum",
-            "museum",
-            "gerenoveerd.",
-            "gerookt",
-            "—",
-            "gerenoveerd.",
-            "Het"
+            "om",
+            "zes",
+            "gesloten.",
+            "uur",
+            "winkel",
+            "Dit",
+            "De",
+            "worden.",
+            "wordt"
           ],
           "answers": [
-            "Het museum wordt gerenoveerd. — Het museum is gerenoveerd."
+            "De winkel wordt om zes uur gesloten."
           ],
-          "explanation": "O museu está a ser renovado. — O museu foi/está renovado. = Het museum wordt gerenoveerd. — Het museum is gerenoveerd. (sobram: gerookt, gemaakt)",
+          "explanation": "A loja é fechada às seis (ação). = De winkel wordt om zes uur gesloten. (sobram: worden., Dit)",
           "vocabRefs": []
         },
         {
@@ -2417,108 +2414,138 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "A estrada está a ser reparada.",
           "tokens": [
+            "weg",
             "gerepareerd.",
-            "fiets",
-            "stappen.",
             "wordt",
             "De",
-            "weg"
+            "kan",
+            "ondertekend"
           ],
           "answers": [
             "De weg wordt gerepareerd."
           ],
-          "explanation": "A estrada está a ser reparada. = De weg wordt gerepareerd. (sobram: fiets, stappen.)",
+          "explanation": "A estrada está a ser reparada. = De weg wordt gerepareerd. (sobram: kan, ondertekend)",
           "vocabRefs": []
         },
         {
           "id": "s6-u12-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De wedstrijd is afgelast.",
+          "audioText": "De brug is vorig jaar geopend.",
           "answers": [
-            "De wedstrijd is afgelast."
+            "De brug is vorig jaar geopend."
           ],
-          "translation": "O jogo foi cancelado / está cancelado.",
-          "explanation": "«De wedstrijd is afgelast.» = O jogo foi cancelado / está cancelado.",
+          "translation": "A ponte foi inaugurada no ano passado.",
+          "explanation": "«De brug is vorig jaar geopend.» = A ponte foi inaugurada no ano passado.",
           "vocabRefs": [
-            "v-afgelast"
+            "v-geopend"
           ]
         },
         {
           "id": "s6-u12-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Dit document moet ondertekend worden.",
+          "audioText": "Het pakket wordt morgen bezorgd.",
           "answers": [
-            "Dit document moet ondertekend worden."
+            "Het pakket wordt morgen bezorgd."
           ],
-          "translation": "Este documento tem de ser assinado.",
-          "explanation": "«Dit document moet ondertekend worden.» = Este documento tem de ser assinado.",
+          "translation": "O pacote é entregue amanhã.",
+          "explanation": "«Het pakket wordt morgen bezorgd.» = O pacote é entregue amanhã.",
           "vocabRefs": []
         },
         {
           "id": "s6-u12-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het schilderij werd pas later ontdekt.",
+          "audioText": "Bewoners zijn gewaarschuwd voor de storm.",
           "answers": [
-            "Het schilderij werd pas later ontdekt."
+            "Bewoners zijn gewaarschuwd voor de storm."
           ],
-          "translation": "O quadro só foi descoberto mais tarde.",
-          "explanation": "«Het schilderij werd pas later ontdekt.» = O quadro só foi descoberto mais tarde.",
+          "translation": "Os moradores foram avisados da tempestade.",
+          "explanation": "«Bewoners zijn gewaarschuwd voor de storm.» = Os moradores foram avisados da tempestade.",
           "vocabRefs": [
-            "v-ontdekt"
+            "v-gewaarschuwd"
           ]
         },
         {
           "id": "s6-u12-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O queijo é feito em Gouda.",
+          "translation": "A casa foi construída em 1900.",
           "tokens": [
+            "Het",
+            "huis",
+            "werd",
             "in",
-            "Kaas",
-            "gemaakt.",
-            "Gouda",
-            "wordt"
+            "1900",
+            "gebouwd."
           ],
           "alternatives": [],
-          "explanation": "Kaas wordt in Gouda gemaakt.",
-          "vocabRefs": []
+          "explanation": "Het huis werd in 1900 gebouwd.",
+          "vocabRefs": [
+            "v-gebouwd"
+          ]
         },
         {
           "id": "s6-u12-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Um homem foi detido por furto.",
+          "translation": "Os moradores foram avisados da tempestade.",
           "tokens": [
-            "aangehouden",
-            "is",
-            "Een",
+            "Bewoners",
+            "zijn",
+            "gewaarschuwd",
             "voor",
-            "man",
-            "diefstal."
+            "de",
+            "storm."
           ],
           "alternatives": [],
-          "explanation": "Een man is aangehouden voor diefstal.",
+          "explanation": "Bewoners zijn gewaarschuwd voor de storm.",
           "vocabRefs": [
-            "v-aangehouden"
+            "v-gewaarschuwd"
           ]
         },
         {
           "id": "s6-u12-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «vervangen worden»?",
+          "prompt": "O que significa «verkocht»?",
           "options": [
             {
               "id": "a",
-              "text": "descoberto",
+              "text": "cancelado",
               "correct": false
             },
             {
               "id": "b",
-              "text": "ser substituído",
+              "text": "vendido",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "tem de ser …",
+              "correct": false
+            }
+          ],
+          "explanation": "«verkocht» = vendido.",
+          "vocabRefs": [
+            "v-verkocht"
+          ]
+        },
+        {
+          "id": "s6-u12-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «moet … worden»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "não pode ser …",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "tem de ser …",
               "correct": true
             },
             {
@@ -2527,36 +2554,9 @@
               "correct": false
             }
           ],
-          "explanation": "«vervangen worden» = ser substituído.",
+          "explanation": "«moet … worden» = tem de ser ….",
           "vocabRefs": [
-            "v-vervangen-pass"
-          ]
-        },
-        {
-          "id": "s6-u12-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «verzocht»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "descoberto",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "solicitado",
-              "correct": true
-            },
-            {
-              "id": "c",
-              "text": "ser entregue",
-              "correct": false
-            }
-          ],
-          "explanation": "«verzocht» = solicitado.",
-          "vocabRefs": [
-            "v-verzocht"
+            "v-moet-worden"
           ]
         }
       ],

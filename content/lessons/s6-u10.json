@@ -1840,16 +1840,16 @@
       ],
       "examples": [
         {
-          "nl": "…omdat ik gisteren niet heb kunnen komen.",
-          "pt": "…porque ontem não pude vir."
+          "nl": "Deze zin is te ingewikkeld.",
+          "pt": "Esta frase é demasiado complicada."
         },
         {
-          "nl": "Het is de bedoeling om om negen uur te beginnen.",
-          "pt": "A ideia é começar às nove."
+          "nl": "Er zijn veel toeristen in de stad.",
+          "pt": "Há muitos turistas na cidade."
         },
         {
-          "nl": "In plaats van te klagen, kun je helpen.",
-          "pt": "Em vez de te queixares, podes ajudar."
+          "nl": "Ik denk dat hij zei dat hij later zou komen.",
+          "pt": "Acho que ele disse que viria mais tarde."
         }
       ],
       "grammar": [],
@@ -1900,10 +1900,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Um texto claro lê-se bem.",
           "tokens": [
-            "tekst",
             "Een",
-            "leest",
             "overzichtelijke",
+            "tekst",
+            "leest",
             "prettig."
           ],
           "alternatives": [],
@@ -1919,11 +1919,11 @@
           "translation": "Não me apetece isso.",
           "tokens": [
             "Daar",
-            "zin",
-            "geen",
-            "in.",
             "heb",
-            "ik"
+            "ik",
+            "geen",
+            "zin",
+            "in."
           ],
           "alternatives": [],
           "explanation": "Daar heb ik geen zin in.",
@@ -1935,13 +1935,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Há muitos turistas na cidade.",
           "tokens": [
-            "veel",
-            "toeristen",
             "Er",
             "zijn",
-            "stad.",
+            "veel",
+            "toeristen",
+            "in",
             "de",
-            "in"
+            "stad."
           ],
           "alternatives": [],
           "explanation": "Er zijn veel toeristen in de stad.",
@@ -1951,93 +1951,93 @@
           "id": "s6-u10-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Daarom heeft de gemeente besloten de weg af te sluiten.»?",
+          "prompt": "O que significa: «Ik denk dat hij zei dat hij later zou komen.»?",
           "options": [
             {
               "id": "a",
-              "text": "A ideia é começar às nove.",
+              "text": "Divide as frases longas.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Nunca lá estive.",
-              "correct": false
+              "text": "Acho que ele disse que viria mais tarde.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Por isso a câmara decidiu fechar a estrada.",
-              "correct": true
+              "text": "Aqui anda-se muito de bicicleta.",
+              "correct": false
             }
           ],
-          "explanation": "«Daarom heeft de gemeente besloten de weg af te sluiten.» = Por isso a câmara decidiu fechar a estrada.",
+          "explanation": "«Ik denk dat hij zei dat hij later zou komen.» = Acho que ele disse que viria mais tarde.",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Split lange zinnen op.»?",
+          "prompt": "O que significa: «Daarom heeft de gemeente besloten de weg af te sluiten.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ele saiu sem dizer nada.",
-              "correct": false
+              "text": "Por isso a câmara decidiu fechar a estrada.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Por isso a câmara decidiu fechar a estrada.",
+              "text": "Acho que a casa tem de ser vendida.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Divide as frases longas.",
-              "correct": true
+              "text": "Nunca lá estive.",
+              "correct": false
             }
           ],
-          "explanation": "«Split lange zinnen op.» = Divide as frases longas.",
+          "explanation": "«Daarom heeft de gemeente besloten de weg af te sluiten.» = Por isso a câmara decidiu fechar a estrada.",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Nunca lá estive.",
+          "prompt": "Esta frase é demasiado complicada.",
           "tokens": [
-            "ben",
-            "komen.",
-            "willen",
-            "Ik",
-            "er",
-            "nooit",
-            "geweest."
+            "is",
+            "te",
+            "geen",
+            "ingewikkeld.",
+            "zin",
+            "Deze",
+            "werkwoorden."
           ],
           "answers": [
-            "Ik ben er nooit geweest."
+            "Deze zin is te ingewikkeld."
           ],
-          "explanation": "Nunca lá estive. = Ik ben er nooit geweest. (sobram: willen, komen.)",
-          "vocabRefs": []
+          "explanation": "Esta frase é demasiado complicada. = Deze zin is te ingewikkeld. (sobram: werkwoorden., geen)",
+          "vocabRefs": [
+            "v-ingewikkeld"
+          ]
         },
         {
           "id": "s6-u10-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vou para casa para descansar.",
+          "prompt": "Não me apetece isso.",
           "tokens": [
-            "rusten.",
-            "Ik",
-            "uit",
-            "huis",
-            "ga",
-            "naar",
-            "graag",
-            "om",
-            "veel",
-            "te"
+            "ik",
+            "zin",
+            "in.",
+            "huis.",
+            "heb",
+            "Daar",
+            "te",
+            "geen"
           ],
           "answers": [
-            "Ik ga naar huis om uit te rusten."
+            "Daar heb ik geen zin in."
           ],
-          "explanation": "Vou para casa para descansar. = Ik ga naar huis om uit te rusten. (sobram: veel, graag)",
+          "explanation": "Não me apetece isso. = Daar heb ik geen zin in. (sobram: te, huis.)",
           "vocabRefs": []
         }
       ],
@@ -2100,16 +2100,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik moet erover nadenken.",
-          "pt": "Tenho de pensar nisso."
+          "nl": "Deze zin is te ingewikkeld.",
+          "pt": "Esta frase é demasiado complicada."
         },
         {
-          "nl": "Desondanks bleef hij optimistisch.",
-          "pt": "Apesar disso, continuou otimista."
+          "nl": "Er wordt hier veel gefietst.",
+          "pt": "Aqui anda-se muito de bicicleta."
         },
         {
-          "nl": "Een overzichtelijke tekst leest prettig.",
-          "pt": "Um texto claro lê-se bem."
+          "nl": "Hoeveel kinderen heb je? — Ik heb er twee.",
+          "pt": "Quantos filhos tens? — Tenho dois."
         }
       ],
       "grammar": [],
@@ -2118,27 +2118,27 @@
           "id": "s6-u10-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «o que quero dizer é…» em neerlandês?",
+          "prompt": "Como se diz «subordinada encaixada» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "moeten worden",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "wat ik bedoel, is…",
+              "text": "ingebedde bijzin",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "er + número",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "zou hebben",
+              "text": "moeten worden",
               "correct": false
             }
           ],
-          "explanation": "o que quero dizer é… = «wat ik bedoel, is…».",
+          "explanation": "subordinada encaixada = «ingebedde bijzin».",
           "vocabRefs": [
-            "v-wat-ik-bedoel"
+            "v-bijzin-in-bijzin"
           ]
         },
         {
@@ -2149,17 +2149,17 @@
           "options": [
             {
               "id": "a",
+              "text": "ingebedde bijzin",
+              "correct": false
+            },
+            {
+              "id": "b",
               "text": "zou hebben",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "overzichtelijk",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "vervolgens",
+              "text": "nadenken over",
               "correct": false
             }
           ],
@@ -2172,39 +2172,32 @@
           "id": "s6-u10-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ bleef hij optimistisch.",
-          "translation": "Apesar disso, continuou otimista.",
+          "sentence": "Om problemen te ___, controleren we alles.",
+          "translation": "Para evitar problemas, verificamos tudo.",
           "answers": [
-            "Desondanks"
+            "voorkomen"
           ],
           "choices": [
-            "Overzichtelijk",
-            "Ingewikkeld",
-            "Desondanks"
+            "desondanks",
+            "voorkomen",
+            "besluiten"
           ],
-          "explanation": "Desondanks bleef hij optimistisch.",
+          "explanation": "Om problemen te voorkomen, controleren we alles.",
           "vocabRefs": [
-            "v-desondanks"
+            "v-voorkomen"
           ]
         },
         {
           "id": "s6-u10-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Deze zin is te ___.",
-          "translation": "Esta frase é demasiado complicada.",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Daarom heeft de gemeente besloten de weg af te sluiten.",
           "answers": [
-            "ingewikkeld"
+            "Daarom heeft de gemeente besloten de weg af te sluiten."
           ],
-          "choices": [
-            "voorkomen",
-            "volgorde",
-            "ingewikkeld"
-          ],
-          "explanation": "Deze zin is te ingewikkeld.",
-          "vocabRefs": [
-            "v-ingewikkeld"
-          ]
+          "translation": "Por isso a câmara decidiu fechar a estrada.",
+          "explanation": "«Daarom heeft de gemeente besloten de weg af te sluiten.» = Por isso a câmara decidiu fechar a estrada.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u10-l008-e05",
@@ -2222,62 +2215,50 @@
         },
         {
           "id": "s6-u10-l008-e06",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik moet erover nadenken.",
-          "answers": [
-            "Ik moet erover nadenken."
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Ele saiu sem dizer nada.",
+          "tokens": [
+            "zeggen.",
+            "om",
+            "iets",
+            "zonder",
+            "vertrok",
+            "te",
+            "heb",
+            "Hij"
           ],
-          "translation": "Tenho de pensar nisso.",
-          "explanation": "«Ik moet erover nadenken.» = Tenho de pensar nisso.",
+          "answers": [
+            "Hij vertrok zonder iets te zeggen."
+          ],
+          "explanation": "Ele saiu sem dizer nada. = Hij vertrok zonder iets te zeggen. (sobram: om, heb)",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Em seguida toda a gente foi para casa.",
+          "prompt": "Acho que a casa tem de ser vendida.",
           "tokens": [
-            "iedereen",
-            "we",
-            "huis.",
-            "ging",
-            "Vervolgens",
-            "naar",
-            "denk"
-          ],
-          "answers": [
-            "Vervolgens ging iedereen naar huis."
-          ],
-          "explanation": "Em seguida toda a gente foi para casa. = Vervolgens ging iedereen naar huis. (sobram: denk, we)",
-          "vocabRefs": [
-            "v-vervolgens"
-          ]
-        },
-        {
-          "id": "s6-u10-l008-e08",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há muitos turistas na cidade.",
-          "tokens": [
-            "stad.",
-            "toeristen",
-            "veel",
-            "Er",
             "het",
+            "denk",
+            "worden.",
+            "dat",
             "huis",
-            "de",
-            "zijn",
-            "in"
+            "moet",
+            "verkocht",
+            "gemeente",
+            "te",
+            "Ik"
           ],
           "answers": [
-            "Er zijn veel toeristen in de stad."
+            "Ik denk dat het huis verkocht moet worden."
           ],
-          "explanation": "Há muitos turistas na cidade. = Er zijn veel toeristen in de stad. (sobram: huis, het)",
+          "explanation": "Acho que a casa tem de ser vendida. = Ik denk dat het huis verkocht moet worden. (sobram: te, gemeente)",
           "vocabRefs": []
         },
         {
-          "id": "s6-u10-l008-e09",
+          "id": "s6-u10-l008-e08",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
           "noun": "volgorde",
@@ -2289,29 +2270,31 @@
           ]
         },
         {
-          "id": "s6-u10-l008-e10",
+          "id": "s6-u10-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik denk dat het huis verkocht moet worden.»?",
+          "prompt": "O que significa: «Er wordt hier veel gefietst.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela contou que teria gostado de vir.",
+              "text": "Um texto claro lê-se bem.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Acho que a casa tem de ser vendida.",
+              "text": "Aqui anda-se muito de bicicleta.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "…porque ontem não pude vir.",
+              "text": "Há muitos turistas na cidade.",
               "correct": false
             }
           ],
-          "explanation": "«Ik denk dat het huis verkocht moet worden.» = Acho que a casa tem de ser vendida.",
-          "vocabRefs": []
+          "explanation": "«Er wordt hier veel gefietst.» = Aqui anda-se muito de bicicleta.",
+          "vocabRefs": [
+            "v-er-passief"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2373,16 +2356,16 @@
       ],
       "examples": [
         {
-          "nl": "Hij vertrok zonder iets te zeggen.",
-          "pt": "Ele saiu sem dizer nada."
+          "nl": "Ik denk dat het huis verkocht moet worden.",
+          "pt": "Acho que a casa tem de ser vendida."
         },
         {
-          "nl": "Om problemen te voorkomen, controleren we alles.",
-          "pt": "Para evitar problemas, verificamos tudo."
+          "nl": "Een overzichtelijke tekst leest prettig.",
+          "pt": "Um texto claro lê-se bem."
         },
         {
-          "nl": "Ze vertelde dat ze graag had willen komen.",
-          "pt": "Ela contou que teria gostado de vir."
+          "nl": "Er zijn veel toeristen in de stad.",
+          "pt": "Há muitos turistas na cidade."
         }
       ],
       "grammar": [],
@@ -2391,197 +2374,195 @@
           "id": "s6-u10-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Acho que a casa tem de ser vendida.",
+          "prompt": "Ela contou que teria gostado de vir.",
           "tokens": [
-            "verkocht",
-            "worden.",
-            "het",
-            "moet",
-            "dat",
-            "rusten.",
+            "vertelde",
+            "graag",
+            "willen",
+            "ze",
             "Ik",
-            "huis",
-            "hij",
-            "denk"
+            "dat",
+            "Ze",
+            "Split",
+            "komen.",
+            "had"
           ],
           "answers": [
-            "Ik denk dat het huis verkocht moet worden."
+            "Ze vertelde dat ze graag had willen komen."
           ],
-          "explanation": "Acho que a casa tem de ser vendida. = Ik denk dat het huis verkocht moet worden. (sobram: hij, rusten.)",
+          "explanation": "Ela contou que teria gostado de vir. = Ze vertelde dat ze graag had willen komen. (sobram: Ik, Split)",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Atenção à ordem dos verbos.",
+          "prompt": "Há muitos turistas na cidade.",
           "tokens": [
-            "van",
-            "op",
-            "Let",
-            "werkwoorden.",
+            "toeristen",
+            "Ik",
+            "veel",
+            "zijn",
+            "te",
+            "stad.",
             "de",
-            "de",
-            "volgorde",
-            "om",
-            "helpen."
+            "in",
+            "Er"
           ],
           "answers": [
-            "Let op de volgorde van de werkwoorden."
+            "Er zijn veel toeristen in de stad."
           ],
-          "explanation": "Atenção à ordem dos verbos. = Let op de volgorde van de werkwoorden. (sobram: om, helpen.)",
-          "vocabRefs": [
-            "v-nauwkeurig-volgorde"
-          ]
+          "explanation": "Há muitos turistas na cidade. = Er zijn veel toeristen in de stad. (sobram: Ik, te)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u10-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Por isso a câmara decidiu fechar a estrada.",
+          "prompt": "Divide as frases longas.",
           "tokens": [
-            "de",
-            "te",
-            "besloten",
-            "zeggen.",
-            "heeft",
-            "gemeente",
-            "Daarom",
-            "weg",
-            "af",
-            "je?",
-            "de",
-            "sluiten."
+            "Split",
+            "zinnen",
+            "lange",
+            "Vervolgens",
+            "op.",
+            "Daarom"
           ],
           "answers": [
-            "Daarom heeft de gemeente besloten de weg af te sluiten."
+            "Split lange zinnen op."
           ],
-          "explanation": "Por isso a câmara decidiu fechar a estrada. = Daarom heeft de gemeente besloten de weg af te sluiten. (sobram: je?, zeggen.)",
+          "explanation": "Divide as frases longas. = Split lange zinnen op. (sobram: Daarom, Vervolgens)",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Let op de volgorde van de werkwoorden.",
+          "audioText": "Ik denk dat hij zei dat hij later zou komen.",
           "answers": [
-            "Let op de volgorde van de werkwoorden."
+            "Ik denk dat hij zei dat hij later zou komen."
           ],
-          "translation": "Atenção à ordem dos verbos.",
-          "explanation": "«Let op de volgorde van de werkwoorden.» = Atenção à ordem dos verbos.",
-          "vocabRefs": [
-            "v-nauwkeurig-volgorde"
-          ]
+          "translation": "Acho que ele disse que viria mais tarde.",
+          "explanation": "«Ik denk dat hij zei dat hij later zou komen.» = Acho que ele disse que viria mais tarde.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u10-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben er nooit geweest.",
+          "audioText": "Deze zin is te ingewikkeld.",
           "answers": [
-            "Ik ben er nooit geweest."
+            "Deze zin is te ingewikkeld."
           ],
-          "translation": "Nunca lá estive.",
-          "explanation": "«Ik ben er nooit geweest.» = Nunca lá estive.",
-          "vocabRefs": []
+          "translation": "Esta frase é demasiado complicada.",
+          "explanation": "«Deze zin is te ingewikkeld.» = Esta frase é demasiado complicada.",
+          "vocabRefs": [
+            "v-ingewikkeld"
+          ]
         },
         {
           "id": "s6-u10-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het is de bedoeling om om negen uur te beginnen.",
+          "audioText": "Ik moet erover nadenken.",
           "answers": [
-            "Het is de bedoeling om om negen uur te beginnen."
+            "Ik moet erover nadenken."
           ],
-          "translation": "A ideia é começar às nove.",
-          "explanation": "«Het is de bedoeling om om negen uur te beginnen.» = A ideia é começar às nove.",
+          "translation": "Tenho de pensar nisso.",
+          "explanation": "«Ik moet erover nadenken.» = Tenho de pensar nisso.",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Nunca lá estive.",
+          "translation": "Acho que a casa tem de ser vendida.",
           "tokens": [
             "Ik",
-            "nooit",
-            "ben",
-            "er",
-            "geweest."
+            "denk",
+            "dat",
+            "het",
+            "huis",
+            "verkocht",
+            "moet",
+            "worden."
           ],
           "alternatives": [],
-          "explanation": "Ik ben er nooit geweest.",
+          "explanation": "Ik denk dat het huis verkocht moet worden.",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ele saiu sem dizer nada.",
+          "translation": "O que não percebo é porque é que ele se foi embora.",
           "tokens": [
-            "Hij",
-            "zeggen.",
-            "zonder",
-            "vertrok",
-            "te",
-            "iets"
+            "Wat",
+            "ik",
+            "niet",
+            "begrijp,",
+            "is",
+            "waarom",
+            "hij",
+            "weg",
+            "is."
           ],
           "alternatives": [],
-          "explanation": "Hij vertrok zonder iets te zeggen.",
+          "explanation": "Wat ik niet begrijp, is waarom hij weg is.",
           "vocabRefs": []
         },
         {
           "id": "s6-u10-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de ingebedde bijzin»?",
+          "prompt": "O que significa «vervolgens»?",
           "options": [
             {
               "id": "a",
-              "text": "teria",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "ter de ser",
               "correct": false
             },
             {
-              "id": "c",
-              "text": "subordinada encaixada",
+              "id": "b",
+              "text": "em seguida",
               "correct": true
+            },
+            {
+              "id": "c",
+              "text": "dividir",
+              "correct": false
             }
           ],
-          "explanation": "«de ingebedde bijzin» = subordinada encaixada.",
+          "explanation": "«vervolgens» = em seguida.",
           "vocabRefs": [
-            "v-bijzin-in-bijzin"
+            "v-vervolgens"
           ]
         },
         {
           "id": "s6-u10-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «desondanks»?",
+          "prompt": "O que significa «besluiten»?",
           "options": [
             {
               "id": "a",
-              "text": "refletir sobre",
-              "correct": false
+              "text": "decidir",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "decidir",
+              "text": "subordinada encaixada",
               "correct": false
             },
             {
               "id": "c",
-              "text": "apesar disso",
-              "correct": true
+              "text": "em seguida",
+              "correct": false
             }
           ],
-          "explanation": "«desondanks» = apesar disso.",
+          "explanation": "«besluiten» = decidir.",
           "vocabRefs": [
-            "v-desondanks"
+            "v-besluiten"
           ]
         }
       ],

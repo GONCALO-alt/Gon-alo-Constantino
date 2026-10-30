@@ -1769,16 +1769,16 @@
       ],
       "examples": [
         {
-          "nl": "Dit is een actiepunt voor Lisa.",
-          "pt": "Esta é uma tarefa para a Lisa."
+          "nl": "Kun je dat verduidelijken?",
+          "pt": "Podes clarificar isso?"
         },
         {
-          "nl": "Zoals u ziet, zijn de cijfers gestegen.",
-          "pt": "Como vê, os números subiram."
+          "nl": "Welkom allemaal, laten we beginnen.",
+          "pt": "Bem-vindos todos, vamos começar."
         },
         {
-          "nl": "Goede vraag! Dat weet ik niet precies.",
-          "pt": "Boa pergunta! Não sei exatamente."
+          "nl": "Opvallend is dat jongeren meer kopen.",
+          "pt": "É notável que os jovens comprem mais."
         }
       ],
       "grammar": [],
@@ -1827,14 +1827,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "O gráfico mostra que as vendas estão a descer.",
           "tokens": [
-            "laat",
             "De",
-            "verkoop",
-            "daalt.",
-            "de",
-            "zien",
             "grafiek",
-            "dat"
+            "laat",
+            "zien",
+            "dat",
+            "de",
+            "verkoop",
+            "daalt."
           ],
           "alternatives": [],
           "explanation": "De grafiek laat zien dat de verkoop daalt.",
@@ -1848,11 +1848,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Gostaria de acrescentar algo.",
           "tokens": [
-            "iets",
-            "graag",
             "Ik",
-            "toevoegen.",
-            "wil"
+            "wil",
+            "graag",
+            "iets",
+            "toevoegen."
           ],
           "alternatives": [],
           "explanation": "Ik wil graag iets toevoegen.",
@@ -1866,10 +1866,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quem faz a ata?",
           "tokens": [
-            "notulen?",
             "Wie",
             "maakt",
-            "de"
+            "de",
+            "notulen?"
           ],
           "alternatives": [],
           "explanation": "Wie maakt de notulen?",
@@ -1881,97 +1881,97 @@
           "id": "s6-u04-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Eerst vertel ik iets over de achtergrond.»?",
+          "prompt": "O que significa: «Dan rond ik af.»?",
           "options": [
             {
               "id": "a",
-              "text": "Primeiro conto algo sobre o contexto.",
+              "text": "Então vou concluir.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Então passamos ao ponto três.",
+              "text": "Boa pergunta! Não sei exatamente.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Há mais algum ponto para «outros assuntos»?",
+              "text": "Quem faz a ata?",
               "correct": false
             }
           ],
-          "explanation": "«Eerst vertel ik iets over de achtergrond.» = Primeiro conto algo sobre o contexto.",
+          "explanation": "«Dan rond ik af.» = Então vou concluir.",
           "vocabRefs": []
         },
         {
           "id": "s6-u04-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Zijn er nog vragen?»?",
+          "prompt": "O que significa: «Mag ik een voorstel doen?»?",
           "options": [
             {
               "id": "a",
-              "text": "Resumindo: começamos em março.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Há perguntas?",
+              "text": "Posso fazer uma proposta?",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Gostaria de acrescentar algo.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Esta é uma tarefa para a Lisa.",
+              "text": "Hoje vou falar sobre o nosso novo produto.",
               "correct": false
             }
           ],
-          "explanation": "«Zijn er nog vragen?» = Há perguntas?",
-          "vocabRefs": []
+          "explanation": "«Mag ik een voorstel doen?» = Posso fazer uma proposta?",
+          "vocabRefs": [
+            "v-een-voorstel-doen"
+          ]
         },
         {
           "id": "s6-u04-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Boa pergunta! Não sei exatamente.",
+          "prompt": "Esta é uma tarefa para a Lisa.",
           "tokens": [
-            "precies.",
-            "niet",
-            "nieuwe",
-            "weet",
-            "Goede",
-            "Dat",
-            "Zijn",
-            "ik",
-            "vraag!"
+            "voor",
+            "actiepunt",
+            "investeren.",
+            "Lisa.",
+            "een",
+            "is",
+            "allemaal,",
+            "Dit"
           ],
           "answers": [
-            "Goede vraag! Dat weet ik niet precies."
+            "Dit is een actiepunt voor Lisa."
           ],
-          "explanation": "Boa pergunta! Não sei exatamente. = Goede vraag! Dat weet ik niet precies. (sobram: nieuwe, Zijn)",
+          "explanation": "Esta é uma tarefa para a Lisa. = Dit is een actiepunt voor Lisa. (sobram: investeren., allemaal,)",
           "vocabRefs": [
-            "v-goede-vraag"
+            "v-actiepunt"
           ]
         },
         {
           "id": "s6-u04-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Posso fazer uma proposta?",
+          "prompt": "Isto significa que temos de investir.",
           "tokens": [
-            "doen?",
-            "een",
+            "Dit",
             "dat",
-            "Mag",
-            "voorstel",
-            "hebben",
-            "ik"
+            "moeten",
+            "betekent",
+            "over",
+            "we",
+            "investeren.",
+            "Samenvattend:"
           ],
           "answers": [
-            "Mag ik een voorstel doen?"
+            "Dit betekent dat we moeten investeren."
           ],
-          "explanation": "Posso fazer uma proposta? = Mag ik een voorstel doen? (sobram: dat, hebben)",
-          "vocabRefs": [
-            "v-een-voorstel-doen"
-          ]
+          "explanation": "Isto significa que temos de investir. = Dit betekent dat we moeten investeren. (sobram: Samenvattend:, over)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2034,16 +2034,16 @@
       ],
       "examples": [
         {
-          "nl": "Zoals u ziet, zijn de cijfers gestegen.",
-          "pt": "Como vê, os números subiram."
+          "nl": "Vandaag ga ik het hebben over ons nieuwe product.",
+          "pt": "Hoje vou falar sobre o nosso novo produto."
         },
         {
-          "nl": "Ik wil graag iets toevoegen.",
-          "pt": "Gostaria de acrescentar algo."
+          "nl": "Dan rond ik af.",
+          "pt": "Então vou concluir."
         },
         {
-          "nl": "De grafiek laat zien dat de verkoop daalt.",
-          "pt": "O gráfico mostra que as vendas estão a descer."
+          "nl": "Samenvattend: we beginnen in maart.",
+          "pt": "Resumindo: começamos em março."
         }
       ],
       "grammar": [],
@@ -2052,12 +2052,39 @@
           "id": "s6-u04-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «volto a isso mais tarde» em neerlandês?",
+          "prompt": "Como se diz «fazer uma proposta» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "daar kom ik later op terug",
+              "text": "notulen",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "een voorstel doen",
               "correct": true
+            },
+            {
+              "id": "c",
+              "text": "resultaat",
+              "correct": false
+            }
+          ],
+          "explanation": "fazer uma proposta = «een voorstel doen».",
+          "vocabRefs": [
+            "v-een-voorstel-doen"
+          ]
+        },
+        {
+          "id": "s6-u04-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «resumindo» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "goede vraag",
+              "correct": false
             },
             {
               "id": "b",
@@ -2066,63 +2093,17 @@
             },
             {
               "id": "c",
-              "text": "uitzoeken",
-              "correct": false
-            }
-          ],
-          "explanation": "volto a isso mais tarde = «daar kom ik later op terug».",
-          "vocabRefs": [
-            "v-daar-kom-ik-op-terug"
-          ]
-        },
-        {
-          "id": "s6-u04-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «averiguar» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "uitzoeken",
+              "text": "samenvattend",
               "correct": true
-            },
-            {
-              "id": "b",
-              "text": "verduidelijken",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "notulen",
-              "correct": false
             }
           ],
-          "explanation": "averiguar = «uitzoeken».",
+          "explanation": "resumindo = «samenvattend».",
           "vocabRefs": [
-            "v-uitzoeken"
+            "v-samenvattend"
           ]
         },
         {
           "id": "s6-u04-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mijn ___ bestaat uit drie delen.",
-          "translation": "A minha apresentação tem três partes.",
-          "answers": [
-            "presentatie"
-          ],
-          "choices": [
-            "verduidelijken",
-            "resultaat",
-            "presentatie"
-          ],
-          "explanation": "Mijn presentatie bestaat uit drie delen.",
-          "vocabRefs": [
-            "v-presentatie"
-          ]
-        },
-        {
-          "id": "s6-u04-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "___: we beginnen in maart.",
@@ -2131,9 +2112,9 @@
             "Samenvattend"
           ],
           "choices": [
-            "Uitzoeken",
-            "Presentatie",
-            "Samenvattend"
+            "Verduidelijken",
+            "Samenvattend",
+            "Uitzoeken"
           ],
           "explanation": "Samenvattend: we beginnen in maart.",
           "vocabRefs": [
@@ -2141,113 +2122,137 @@
           ]
         },
         {
+          "id": "s6-u04-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Wie maakt de ___?",
+          "translation": "Quem faz a ata?",
+          "answers": [
+            "notulen"
+          ],
+          "choices": [
+            "notulen",
+            "afronden",
+            "opvallend"
+          ],
+          "explanation": "Wie maakt de notulen?",
+          "vocabRefs": [
+            "v-notulen"
+          ]
+        },
+        {
           "id": "s6-u04-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mag ik een voorstel doen?",
+          "audioText": "Mijn presentatie bestaat uit drie delen.",
           "answers": [
-            "Mag ik een voorstel doen?"
+            "Mijn presentatie bestaat uit drie delen."
           ],
-          "translation": "Posso fazer uma proposta?",
-          "explanation": "«Mag ik een voorstel doen?» = Posso fazer uma proposta?",
+          "translation": "A minha apresentação tem três partes.",
+          "explanation": "«Mijn presentatie bestaat uit drie delen.» = A minha apresentação tem três partes.",
           "vocabRefs": [
-            "v-een-voorstel-doen"
+            "v-presentatie"
           ]
         },
         {
           "id": "s6-u04-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Samenvattend: we beginnen in maart.",
+          "audioText": "Zijn er nog punten voor de rondvraag?",
           "answers": [
-            "Samenvattend: we beginnen in maart."
+            "Zijn er nog punten voor de rondvraag?"
           ],
-          "translation": "Resumindo: começamos em março.",
-          "explanation": "«Samenvattend: we beginnen in maart.» = Resumindo: começamos em março.",
+          "translation": "Há mais algum ponto para «outros assuntos»?",
+          "explanation": "«Zijn er nog punten voor de rondvraag?» = Há mais algum ponto para «outros assuntos»?",
           "vocabRefs": [
-            "v-samenvattend"
+            "v-rondvraag"
           ]
         },
         {
           "id": "s6-u04-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Primeiro conto algo sobre o contexto.",
+          "prompt": "Há mais algum ponto para «outros assuntos»?",
           "tokens": [
-            "achtergrond.",
-            "ik",
-            "de",
-            "over",
-            "vertel",
-            "graag",
-            "Eerst",
-            "iets",
-            "zoek"
+            "rondvraag?",
+            "er",
+            "nog",
+            "punten",
+            "voor",
+            "dat",
+            "zien",
+            "Zijn",
+            "de"
           ],
           "answers": [
-            "Eerst vertel ik iets over de achtergrond."
+            "Zijn er nog punten voor de rondvraag?"
           ],
-          "explanation": "Primeiro conto algo sobre o contexto. = Eerst vertel ik iets over de achtergrond. (sobram: graag, zoek)",
-          "vocabRefs": []
+          "explanation": "Há mais algum ponto para «outros assuntos»? = Zijn er nog punten voor de rondvraag? (sobram: dat, zien)",
+          "vocabRefs": [
+            "v-rondvraag"
+          ]
         },
         {
           "id": "s6-u04-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gostaria de acrescentar algo.",
+          "prompt": "É notável que os jovens comprem mais.",
           "tokens": [
-            "graag",
-            "wil",
-            "iets",
+            "verduidelijken?",
+            "jongeren",
+            "drie.",
+            "meer",
             "is",
-            "Ik",
-            "vragen?",
-            "toevoegen."
+            "kopen.",
+            "Opvallend",
+            "dat"
           ],
           "answers": [
-            "Ik wil graag iets toevoegen."
+            "Opvallend is dat jongeren meer kopen."
           ],
-          "explanation": "Gostaria de acrescentar algo. = Ik wil graag iets toevoegen. (sobram: is, vragen?)",
+          "explanation": "É notável que os jovens comprem mais. = Opvallend is dat jongeren meer kopen. (sobram: drie., verduidelijken?)",
           "vocabRefs": [
-            "v-toevoegen"
+            "v-opvallend"
           ]
         },
         {
           "id": "s6-u04-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "grafiek",
-          "pt": "gráfico",
+          "noun": "voorzitter",
+          "pt": "presidente",
           "article": "de",
-          "explanation": "de grafiek.",
+          "explanation": "de voorzitter.",
           "vocabRefs": [
-            "v-grafiek"
+            "v-voorzitter"
           ]
         },
         {
           "id": "s6-u04-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik zoek het voor u uit.»?",
+          "prompt": "O que significa: «De grafiek laat zien dat de verkoop daalt.»?",
           "options": [
             {
               "id": "a",
-              "text": "Quem faz a ata?",
+              "text": "Hoje vou falar sobre o nosso novo produto.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Vou averiguar isso para si.",
+              "text": "O gráfico mostra que as vendas estão a descer.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Há perguntas?",
+              "text": "Podes clarificar isso?",
               "correct": false
             }
           ],
-          "explanation": "«Ik zoek het voor u uit.» = Vou averiguar isso para si.",
-          "vocabRefs": []
+          "explanation": "«De grafiek laat zien dat de verkoop daalt.» = O gráfico mostra que as vendas estão a descer.",
+          "vocabRefs": [
+            "v-grafiek"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2310,16 +2315,16 @@
       ],
       "examples": [
         {
-          "nl": "Zijn er nog vragen?",
-          "pt": "Há perguntas?"
+          "nl": "Opvallend is dat jongeren meer kopen.",
+          "pt": "É notável que os jovens comprem mais."
         },
         {
-          "nl": "Mijn presentatie bestaat uit drie delen.",
-          "pt": "A minha apresentação tem três partes."
+          "nl": "Samenvattend: we beginnen in maart.",
+          "pt": "Resumindo: começamos em março."
         },
         {
-          "nl": "Dit betekent dat we moeten investeren.",
-          "pt": "Isto significa que temos de investir."
+          "nl": "Op deze dia ziet u de cijfers.",
+          "pt": "Neste diapositivo vê os números."
         }
       ],
       "grammar": [],
@@ -2328,97 +2333,70 @@
           "id": "s6-u04-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Então vou concluir.",
+          "prompt": "O gráfico mostra que as vendas estão a descer.",
           "tokens": [
+            "laat",
+            "grafiek",
+            "daalt.",
+            "De",
+            "verkoop",
+            "in",
+            "beginnen",
+            "zien",
             "de",
-            "rond",
-            "laten",
-            "Dan",
-            "af.",
-            "ik"
+            "dat"
           ],
           "answers": [
-            "Dan rond ik af."
+            "De grafiek laat zien dat de verkoop daalt."
           ],
-          "explanation": "Então vou concluir. = Dan rond ik af. (sobram: laten, de)",
-          "vocabRefs": []
+          "explanation": "O gráfico mostra que as vendas estão a descer. = De grafiek laat zien dat de verkoop daalt. (sobram: beginnen, in)",
+          "vocabRefs": [
+            "v-grafiek"
+          ]
         },
         {
           "id": "s6-u04-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vou averiguar isso para si.",
+          "prompt": "Há perguntas?",
           "tokens": [
-            "u",
-            "Ik",
-            "we",
-            "het",
-            "zoek",
-            "voor",
-            "delen.",
-            "uit."
+            "Zijn",
+            "nog",
+            "vragen?",
+            "er",
+            "cijfers.",
+            "voor"
           ],
           "answers": [
-            "Ik zoek het voor u uit."
+            "Zijn er nog vragen?"
           ],
-          "explanation": "Vou averiguar isso para si. = Ik zoek het voor u uit. (sobram: we, delen.)",
+          "explanation": "Há perguntas? = Zijn er nog vragen? (sobram: cijfers., voor)",
           "vocabRefs": []
         },
         {
           "id": "s6-u04-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O gráfico mostra que as vendas estão a descer.",
+          "prompt": "Como vê, os números subiram.",
           "tokens": [
+            "precies.",
+            "ziet,",
+            "zijn",
+            "Zoals",
             "u",
-            "Dit",
-            "grafiek",
-            "verkoop",
-            "de",
-            "daalt.",
-            "dat",
-            "laat",
-            "De",
-            "zien"
+            "gestegen.",
+            "Dan",
+            "cijfers",
+            "de"
           ],
           "answers": [
-            "De grafiek laat zien dat de verkoop daalt."
+            "Zoals u ziet, zijn de cijfers gestegen."
           ],
-          "explanation": "O gráfico mostra que as vendas estão a descer. = De grafiek laat zien dat de verkoop daalt. (sobram: u, Dit)",
-          "vocabRefs": [
-            "v-grafiek"
-          ]
+          "explanation": "Como vê, os números subiram. = Zoals u ziet, zijn de cijfers gestegen. (sobram: precies., Dan)",
+          "vocabRefs": []
         },
         {
           "id": "s6-u04-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Goede vraag! Dat weet ik niet precies.",
-          "answers": [
-            "Goede vraag! Dat weet ik niet precies."
-          ],
-          "translation": "Boa pergunta! Não sei exatamente.",
-          "explanation": "«Goede vraag! Dat weet ik niet precies.» = Boa pergunta! Não sei exatamente.",
-          "vocabRefs": [
-            "v-goede-vraag"
-          ]
-        },
-        {
-          "id": "s6-u04-l009-e05",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik wil graag iets toevoegen.",
-          "answers": [
-            "Ik wil graag iets toevoegen."
-          ],
-          "translation": "Gostaria de acrescentar algo.",
-          "explanation": "«Ik wil graag iets toevoegen.» = Gostaria de acrescentar algo.",
-          "vocabRefs": [
-            "v-toevoegen"
-          ]
-        },
-        {
-          "id": "s6-u04-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Vandaag ga ik het hebben over ons nieuwe product.",
@@ -2430,23 +2408,47 @@
           "vocabRefs": []
         },
         {
+          "id": "s6-u04-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Opvallend is dat jongeren meer kopen.",
+          "answers": [
+            "Opvallend is dat jongeren meer kopen."
+          ],
+          "translation": "É notável que os jovens comprem mais.",
+          "explanation": "«Opvallend is dat jongeren meer kopen.» = É notável que os jovens comprem mais.",
+          "vocabRefs": [
+            "v-opvallend"
+          ]
+        },
+        {
+          "id": "s6-u04-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Dan gaan we naar punt drie.",
+          "answers": [
+            "Dan gaan we naar punt drie."
+          ],
+          "translation": "Então passamos ao ponto três.",
+          "explanation": "«Dan gaan we naar punt drie.» = Então passamos ao ponto três.",
+          "vocabRefs": []
+        },
+        {
           "id": "s6-u04-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Esta é uma tarefa para a Lisa.",
+          "translation": "Vou averiguar isso para si.",
           "tokens": [
-            "Dit",
-            "is",
-            "Lisa.",
-            "een",
+            "Ik",
+            "zoek",
+            "het",
             "voor",
-            "actiepunt"
+            "u",
+            "uit."
           ],
           "alternatives": [],
-          "explanation": "Dit is een actiepunt voor Lisa.",
-          "vocabRefs": [
-            "v-actiepunt"
-          ]
+          "explanation": "Ik zoek het voor u uit.",
+          "vocabRefs": []
         },
         {
           "id": "s6-u04-l009-e08",
@@ -2455,8 +2457,8 @@
           "translation": "Há perguntas?",
           "tokens": [
             "Zijn",
-            "nog",
             "er",
+            "nog",
             "vragen?"
           ],
           "alternatives": [],
@@ -2467,54 +2469,54 @@
           "id": "s6-u04-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de dia»?",
+          "prompt": "O que significa «ik ga het hebben over»?",
           "options": [
             {
               "id": "a",
-              "text": "averiguar",
+              "text": "volto a isso mais tarde",
               "correct": false
             },
             {
               "id": "b",
-              "text": "diapositivo",
+              "text": "vou falar sobre",
               "correct": true
             },
             {
               "id": "c",
-              "text": "ata",
+              "text": "presidente",
               "correct": false
             }
           ],
-          "explanation": "«de dia» = diapositivo.",
+          "explanation": "«ik ga het hebben over» = vou falar sobre.",
           "vocabRefs": [
-            "v-dia"
+            "v-onderwerp-presentatie"
           ]
         },
         {
           "id": "s6-u04-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «afronden»?",
+          "prompt": "O que significa «het actiepunt»?",
           "options": [
             {
               "id": "a",
-              "text": "tarefa a cumprir",
+              "text": "vou falar sobre",
               "correct": false
             },
             {
               "id": "b",
-              "text": "concluir",
-              "correct": true
+              "text": "notável",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "resultado",
-              "correct": false
+              "text": "tarefa a cumprir",
+              "correct": true
             }
           ],
-          "explanation": "«afronden» = concluir, terminar.",
+          "explanation": "«het actiepunt» = tarefa a cumprir (ação).",
           "vocabRefs": [
-            "v-afronden"
+            "v-actiepunt"
           ]
         }
       ],

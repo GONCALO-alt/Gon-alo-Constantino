@@ -1991,16 +1991,16 @@
       ],
       "examples": [
         {
-          "nl": "Er is weinig draagvlak voor die maatregel.",
-          "pt": "Há pouco apoio para essa medida."
+          "nl": "De formatie duurde maanden.",
+          "pt": "A formação do governo durou meses."
         },
         {
-          "nl": "Er is steeds meer polarisatie.",
-          "pt": "Há cada vez mais polarização."
+          "nl": "De ethiek van AI is een belangrijk thema.",
+          "pt": "A ética da IA é um tema importante."
         },
         {
-          "nl": "De rente op hypotheken stijgt.",
-          "pt": "Os juros do crédito à habitação estão a subir."
+          "nl": "Welke partij heeft de meeste stemmen?",
+          "pt": "Que partido tem mais votos?"
         }
       ],
       "grammar": [],
@@ -2049,14 +2049,14 @@
           "instruction": "Ordene as palavras.",
           "translation": "A ética da IA é um tema importante.",
           "tokens": [
-            "ethiek",
-            "is",
-            "belangrijk",
-            "een",
             "De",
-            "thema.",
+            "ethiek",
             "van",
-            "AI"
+            "AI",
+            "is",
+            "een",
+            "belangrijk",
+            "thema."
           ],
           "alternatives": [],
           "explanation": "De ethiek van AI is een belangrijk thema.",
@@ -2070,10 +2070,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "A formação do governo durou meses.",
           "tokens": [
-            "duurde",
-            "maanden.",
+            "De",
             "formatie",
-            "De"
+            "duurde",
+            "maanden."
           ],
           "alternatives": [],
           "explanation": "De formatie duurde maanden.",
@@ -2085,11 +2085,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "O primeiro-ministro dirige o governo.",
           "tokens": [
+            "De",
+            "minister-president",
             "leidt",
             "het",
-            "minister-president",
-            "kabinet.",
-            "De"
+            "kabinet."
           ],
           "alternatives": [],
           "explanation": "De minister-president leidt het kabinet.",
@@ -2101,48 +2101,21 @@
           "id": "s7-u02-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Migratie is een gevoelig onderwerp.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "A migração é um tema sensível.",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "A inteligência artificial está a mudar o nosso trabalho.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Como te manténs informado?",
-              "correct": false
-            }
-          ],
-          "explanation": "«Migratie is een gevoelig onderwerp.» = A migração é um tema sensível.",
-          "vocabRefs": [
-            "v-gevoelig"
-          ]
-        },
-        {
-          "id": "s7-u02-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa: «Hoe blijf jij op de hoogte van het nieuws?»?",
           "options": [
             {
               "id": "a",
-              "text": "Que partido tem mais votos?",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Como te manténs informado?",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "Cuidado com as notícias falsas.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Quais são os riscos?",
+              "text": "A migração é um tema sensível.",
               "correct": false
             }
           ],
@@ -2150,49 +2123,72 @@
           "vocabRefs": []
         },
         {
+          "id": "s7-u02-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «De ethiek van AI is een belangrijk thema.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A inflação desceu para 3 por cento.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "A migração é um tema sensível.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "A ética da IA é um tema importante.",
+              "correct": true
+            }
+          ],
+          "explanation": "«De ethiek van AI is een belangrijk thema.» = A ética da IA é um tema importante.",
+          "vocabRefs": [
+            "v-ethiek"
+          ]
+        },
+        {
           "id": "s7-u02-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A Câmara tem 150 lugares.",
+          "prompt": "Há cada vez mais polarização.",
           "tokens": [
-            "gaan",
-            "150",
-            "heeft",
-            "Kamer",
-            "Tweede",
-            "zetels.",
-            "De",
-            "jij"
+            "steeds",
+            "polarisatie.",
+            "Er",
+            "meer",
+            "voor",
+            "is",
+            "belangrijk"
           ],
           "answers": [
-            "De Tweede Kamer heeft 150 zetels."
+            "Er is steeds meer polarisatie."
           ],
-          "explanation": "A Câmara tem 150 lugares. = De Tweede Kamer heeft 150 zetels. (sobram: jij, gaan)",
+          "explanation": "Há cada vez mais polarização. = Er is steeds meer polarisatie. (sobram: belangrijk, voor)",
           "vocabRefs": [
-            "v-tweede-kamer"
+            "v-polarisatie"
           ]
         },
         {
           "id": "s7-u02-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A inteligência artificial está a mudar o nosso trabalho.",
+          "prompt": "A formação do governo durou meses.",
           "tokens": [
-            "intelligentie",
-            "gedaald",
-            "Kunstmatige",
-            "werk.",
-            "verandert",
-            "ons",
-            "jij"
+            "formatie",
+            "een",
+            "De",
+            "hoogte",
+            "maanden.",
+            "duurde"
           ],
           "answers": [
-            "Kunstmatige intelligentie verandert ons werk."
+            "De formatie duurde maanden."
           ],
-          "explanation": "A inteligência artificial está a mudar o nosso trabalho. = Kunstmatige intelligentie verandert ons werk. (sobram: gedaald, jij)",
-          "vocabRefs": [
-            "v-kunstmatige-intelligentie"
-          ]
+          "explanation": "A formação do governo durou meses. = De formatie duurde maanden. (sobram: een, hoogte)",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2260,16 +2256,16 @@
       ],
       "examples": [
         {
-          "nl": "Veel mensen gaan er in koopkracht op achteruit.",
-          "pt": "Muitas pessoas perdem poder de compra."
+          "nl": "Onderzoekers melden een doorbraak.",
+          "pt": "Os investigadores anunciam um avanço decisivo."
         },
         {
-          "nl": "De ethiek van AI is een belangrijk thema.",
-          "pt": "A ética da IA é um tema importante."
+          "nl": "De Tweede Kamer heeft 150 zetels.",
+          "pt": "A Câmara tem 150 lugares."
         },
         {
-          "nl": "De inflatie is gedaald naar 3 procent.",
-          "pt": "A inflação desceu para 3 por cento."
+          "nl": "Er is steeds meer polarisatie.",
+          "pt": "Há cada vez mais polarização."
         }
       ],
       "grammar": [],
@@ -2282,18 +2278,18 @@
           "options": [
             {
               "id": "a",
-              "text": "draagvlak",
+              "text": "koopkracht",
               "correct": false
             },
             {
               "id": "b",
-              "text": "minister-president",
-              "correct": false
+              "text": "kunstmatige intelligentie",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "kunstmatige intelligentie",
-              "correct": true
+              "text": "doorbraak",
+              "correct": false
             }
           ],
           "explanation": "inteligência artificial = «kunstmatige intelligentie».",
@@ -2305,31 +2301,50 @@
           "id": "s7-u02-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «ver algo» em neerlandês?",
+          "prompt": "Como se diz «primeiro-ministro» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "draagvlak",
+              "text": "inflatie",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Tweede Kamer",
+              "text": "tegen iets aankijken",
               "correct": false
             },
             {
               "id": "c",
-              "text": "tegen iets aankijken",
+              "text": "minister-president",
               "correct": true
             }
           ],
-          "explanation": "ver algo = «tegen iets aankijken».",
+          "explanation": "primeiro-ministro = «minister-president».",
           "vocabRefs": [
-            "v-tegen-aankijken"
+            "v-minister-president"
           ]
         },
         {
           "id": "s7-u02-l008-e03",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Na de ___ wordt een coalitie gevormd.",
+          "translation": "Depois das eleições forma-se uma coligação.",
+          "answers": [
+            "verkiezingen"
+          ],
+          "choices": [
+            "verkiezingen",
+            "gevoelig",
+            "partij"
+          ],
+          "explanation": "Na de verkiezingen wordt een coalitie gevormd.",
+          "vocabRefs": [
+            "v-verkiezingen"
+          ]
+        },
+        {
+          "id": "s7-u02-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Er is steeds meer ___.",
@@ -2338,9 +2353,9 @@
             "polarisatie"
           ],
           "choices": [
+            "toepassing",
             "polarisatie",
-            "recessie",
-            "risico"
+            "draagvlak"
           ],
           "explanation": "Er is steeds meer polarisatie.",
           "vocabRefs": [
@@ -2348,120 +2363,101 @@
           ]
         },
         {
-          "id": "s7-u02-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "De ___ is gedaald naar 3 procent.",
-          "translation": "A inflação desceu para 3 por cento.",
-          "answers": [
-            "inflatie"
-          ],
-          "choices": [
-            "gevoelig",
-            "inflatie",
-            "coalitie"
-          ],
-          "explanation": "De inflatie is gedaald naar 3 procent.",
-          "vocabRefs": [
-            "v-inflatie"
-          ]
-        },
-        {
           "id": "s7-u02-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Welke partij heeft de meeste stemmen?",
+          "audioText": "Migratie is een gevoelig onderwerp.",
           "answers": [
-            "Welke partij heeft de meeste stemmen?"
+            "Migratie is een gevoelig onderwerp."
           ],
-          "translation": "Que partido tem mais votos?",
-          "explanation": "«Welke partij heeft de meeste stemmen?» = Que partido tem mais votos?",
+          "translation": "A migração é um tema sensível.",
+          "explanation": "«Migratie is een gevoelig onderwerp.» = A migração é um tema sensível.",
           "vocabRefs": [
-            "v-partij"
+            "v-gevoelig"
           ]
         },
         {
           "id": "s7-u02-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Er is steeds meer polarisatie.",
+          "audioText": "Onderzoekers melden een doorbraak.",
           "answers": [
-            "Er is steeds meer polarisatie."
+            "Onderzoekers melden een doorbraak."
           ],
-          "translation": "Há cada vez mais polarização.",
-          "explanation": "«Er is steeds meer polarisatie.» = Há cada vez mais polarização.",
+          "translation": "Os investigadores anunciam um avanço decisivo.",
+          "explanation": "«Onderzoekers melden een doorbraak.» = Os investigadores anunciam um avanço decisivo.",
           "vocabRefs": [
-            "v-polarisatie"
+            "v-doorbraak"
           ]
         },
         {
           "id": "s7-u02-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Acompanho a atualidade através de podcasts.",
+          "prompt": "Depois das eleições forma-se uma coligação.",
           "tokens": [
-            "actualiteit",
-            "podcasts.",
-            "volg",
+            "gevormd.",
+            "avond",
+            "verkiezingen",
+            "een",
+            "wordt",
             "de",
-            "naar",
-            "verwachten",
-            "Ik",
-            "via"
+            "Pas",
+            "Na",
+            "coalitie"
           ],
           "answers": [
-            "Ik volg de actualiteit via podcasts."
+            "Na de verkiezingen wordt een coalitie gevormd."
           ],
-          "explanation": "Acompanho a atualidade através de podcasts. = Ik volg de actualiteit via podcasts. (sobram: naar, verwachten)",
+          "explanation": "Depois das eleições forma-se uma coligação. = Na de verkiezingen wordt een coalitie gevormd. (sobram: Pas, avond)",
           "vocabRefs": [
-            "v-actualiteit"
+            "v-coalitie",
+            "v-verkiezingen"
           ]
         },
         {
           "id": "s7-u02-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como te manténs informado?",
+          "prompt": "Como vês esse plano?",
           "tokens": [
-            "mensen",
-            "nieuws?",
-            "partij",
-            "op",
             "Hoe",
-            "blijf",
-            "van",
-            "het",
+            "kijk",
+            "doorbraak.",
             "jij",
-            "hoogte",
-            "de"
+            "blijf",
+            "dat",
+            "tegen",
+            "aan?",
+            "plan"
           ],
           "answers": [
-            "Hoe blijf jij op de hoogte van het nieuws?"
+            "Hoe kijk jij tegen dat plan aan?"
           ],
-          "explanation": "Como te manténs informado? = Hoe blijf jij op de hoogte van het nieuws? (sobram: mensen, partij)",
+          "explanation": "Como vês esse plano? = Hoe kijk jij tegen dat plan aan? (sobram: blijf, doorbraak.)",
           "vocabRefs": []
         },
         {
           "id": "s7-u02-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "talkshow",
-          "pt": "programa de entrevistas",
+          "noun": "doorbraak",
+          "pt": "avanço decisivo",
           "article": "de",
-          "explanation": "de talkshow.",
+          "explanation": "de doorbraak.",
           "vocabRefs": [
-            "v-talkshow"
+            "v-doorbraak"
           ]
         },
         {
           "id": "s7-u02-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Welke partij heeft de meeste stemmen?»?",
+          "prompt": "O que significa: «Hoe kijk jij tegen dat plan aan?»?",
           "options": [
             {
               "id": "a",
-              "text": "Muitas pessoas perdem poder de compra.",
+              "text": "O primeiro-ministro dirige o governo.",
               "correct": false
             },
             {
@@ -2471,14 +2467,12 @@
             },
             {
               "id": "c",
-              "text": "Que partido tem mais votos?",
+              "text": "Como vês esse plano?",
               "correct": true
             }
           ],
-          "explanation": "«Welke partij heeft de meeste stemmen?» = Que partido tem mais votos?",
-          "vocabRefs": [
-            "v-partij"
-          ]
+          "explanation": "«Hoe kijk jij tegen dat plan aan?» = Como vês esse plano?",
+          "vocabRefs": []
         }
       ],
       "difficulty": 5,
@@ -2546,16 +2540,16 @@
       ],
       "examples": [
         {
-          "nl": "De rente op hypotheken stijgt.",
-          "pt": "Os juros do crédito à habitação estão a subir."
+          "nl": "De minister-president leidt het kabinet.",
+          "pt": "O primeiro-ministro dirige o governo."
         },
         {
           "nl": "Veel mensen gaan er in koopkracht op achteruit.",
           "pt": "Muitas pessoas perdem poder de compra."
         },
         {
-          "nl": "Economen verwachten geen recessie.",
-          "pt": "Os economistas não esperam uma recessão."
+          "nl": "De inflatie is gedaald naar 3 procent.",
+          "pt": "A inflação desceu para 3 por cento."
         }
       ],
       "grammar": [],
@@ -2564,195 +2558,190 @@
           "id": "s7-u02-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Cuidado com as notícias falsas.",
+          "prompt": "Os investigadores anunciam um avanço decisivo.",
           "tokens": [
+            "ethiek",
             "op",
-            "gevormd.",
-            "Pas",
-            "voor",
-            "meeste",
-            "nepnieuws."
+            "Onderzoekers",
+            "een",
+            "doorbraak.",
+            "melden"
           ],
           "answers": [
-            "Pas op voor nepnieuws."
+            "Onderzoekers melden een doorbraak."
           ],
-          "explanation": "Cuidado com as notícias falsas. = Pas op voor nepnieuws. (sobram: meeste, gevormd.)",
+          "explanation": "Os investigadores anunciam um avanço decisivo. = Onderzoekers melden een doorbraak. (sobram: op, ethiek)",
           "vocabRefs": [
-            "v-nepnieuws"
+            "v-doorbraak"
           ]
         },
         {
           "id": "s7-u02-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A ética da IA é um tema importante.",
+          "prompt": "O primeiro-ministro dirige o governo.",
           "tokens": [
-            "ethiek",
-            "stijgt.",
-            "belangrijk",
-            "AI",
-            "thema.",
+            "het",
+            "kabinet.",
             "Tweede",
-            "een",
             "De",
-            "van",
-            "is"
+            "minister-president",
+            "leidt",
+            "op"
           ],
           "answers": [
-            "De ethiek van AI is een belangrijk thema."
+            "De minister-president leidt het kabinet."
           ],
-          "explanation": "A ética da IA é um tema importante. = De ethiek van AI is een belangrijk thema. (sobram: Tweede, stijgt.)",
+          "explanation": "O primeiro-ministro dirige o governo. = De minister-president leidt het kabinet. (sobram: Tweede, op)",
           "vocabRefs": [
-            "v-ethiek"
+            "v-minister-president"
           ]
         },
         {
           "id": "s7-u02-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Muitas pessoas perdem poder de compra.",
+          "prompt": "Os juros do crédito à habitação estão a subir.",
           "tokens": [
-            "achteruit.",
-            "Veel",
-            "koopkracht",
-            "in",
-            "mensen",
+            "het",
             "op",
-            "coalitie",
-            "gaan",
-            "heeft",
-            "er"
+            "stijgt.",
+            "De",
+            "stemmen?",
+            "hypotheken",
+            "rente"
           ],
           "answers": [
-            "Veel mensen gaan er in koopkracht op achteruit."
+            "De rente op hypotheken stijgt."
           ],
-          "explanation": "Muitas pessoas perdem poder de compra. = Veel mensen gaan er in koopkracht op achteruit. (sobram: coalitie, heeft)",
+          "explanation": "Os juros do crédito à habitação estão a subir. = De rente op hypotheken stijgt. (sobram: stemmen?, het)",
           "vocabRefs": [
-            "v-koopkracht"
+            "v-rente"
           ]
         },
         {
           "id": "s7-u02-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Migratie is een gevoelig onderwerp.",
+          "audioText": "Na de verkiezingen wordt een coalitie gevormd.",
           "answers": [
-            "Migratie is een gevoelig onderwerp."
+            "Na de verkiezingen wordt een coalitie gevormd."
           ],
-          "translation": "A migração é um tema sensível.",
-          "explanation": "«Migratie is een gevoelig onderwerp.» = A migração é um tema sensível.",
+          "translation": "Depois das eleições forma-se uma coligação.",
+          "explanation": "«Na de verkiezingen wordt een coalitie gevormd.» = Depois das eleições forma-se uma coligação.",
           "vocabRefs": [
-            "v-gevoelig"
+            "v-coalitie",
+            "v-verkiezingen"
           ]
         },
         {
           "id": "s7-u02-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Pas op voor nepnieuws.",
+          "audioText": "Er is steeds meer polarisatie.",
           "answers": [
-            "Pas op voor nepnieuws."
+            "Er is steeds meer polarisatie."
           ],
-          "translation": "Cuidado com as notícias falsas.",
-          "explanation": "«Pas op voor nepnieuws.» = Cuidado com as notícias falsas.",
+          "translation": "Há cada vez mais polarização.",
+          "explanation": "«Er is steeds meer polarisatie.» = Há cada vez mais polarização.",
           "vocabRefs": [
-            "v-nepnieuws"
+            "v-polarisatie"
           ]
         },
         {
           "id": "s7-u02-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Veel mensen gaan er in koopkracht op achteruit.",
+          "audioText": "De inflatie is gedaald naar 3 procent.",
           "answers": [
-            "Veel mensen gaan er in koopkracht op achteruit."
+            "De inflatie is gedaald naar 3 procent."
           ],
-          "translation": "Muitas pessoas perdem poder de compra.",
-          "explanation": "«Veel mensen gaan er in koopkracht op achteruit.» = Muitas pessoas perdem poder de compra.",
+          "translation": "A inflação desceu para 3 por cento.",
+          "explanation": "«De inflatie is gedaald naar 3 procent.» = A inflação desceu para 3 por cento.",
           "vocabRefs": [
-            "v-koopkracht"
+            "v-inflatie"
           ]
         },
         {
           "id": "s7-u02-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Como te manténs informado?",
+          "translation": "Há pouco apoio para essa medida.",
           "tokens": [
-            "hoogte",
-            "op",
-            "de",
-            "het",
-            "nieuws?",
-            "van",
-            "Hoe",
-            "jij",
-            "blijf"
+            "Er",
+            "is",
+            "weinig",
+            "draagvlak",
+            "voor",
+            "die",
+            "maatregel."
           ],
           "alternatives": [],
-          "explanation": "Hoe blijf jij op de hoogte van het nieuws?",
-          "vocabRefs": []
+          "explanation": "Er is weinig draagvlak voor die maatregel.",
+          "vocabRefs": [
+            "v-draagvlak"
+          ]
         },
         {
           "id": "s7-u02-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Há cada vez mais polarização.",
+          "translation": "A migração é um tema sensível.",
           "tokens": [
-            "polarisatie.",
-            "steeds",
-            "Er",
+            "Migratie",
             "is",
-            "meer"
+            "een",
+            "gevoelig",
+            "onderwerp."
           ],
           "alternatives": [],
-          "explanation": "Er is steeds meer polarisatie.",
+          "explanation": "Migratie is een gevoelig onderwerp.",
           "vocabRefs": [
-            "v-polarisatie"
+            "v-gevoelig"
           ]
         },
         {
           "id": "s7-u02-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de minister-president»?",
+          "prompt": "O que significa «tegen iets aankijken»?",
           "options": [
             {
               "id": "a",
-              "text": "primeiro-ministro",
-              "correct": true
+              "text": "sensível",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "aplicação",
-              "correct": false
+              "text": "ver algo",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "eleições",
+              "text": "partido",
               "correct": false
             }
           ],
-          "explanation": "«de minister-president» = primeiro-ministro.",
+          "explanation": "«tegen iets aankijken» = ver algo (de certa forma).",
           "vocabRefs": [
-            "v-minister-president"
+            "v-tegen-aankijken"
           ]
         },
         {
           "id": "s7-u02-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «gevoelig»?",
+          "prompt": "O que significa «de verkiezingen»?",
           "options": [
             {
               "id": "a",
-              "text": "programa de entrevistas",
-              "correct": false
+              "text": "eleições",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "sensível",
-              "correct": true
+              "text": "inflação",
+              "correct": false
             },
             {
               "id": "c",
@@ -2760,9 +2749,9 @@
               "correct": false
             }
           ],
-          "explanation": "«gevoelig» = sensível.",
+          "explanation": "«de verkiezingen» = eleições.",
           "vocabRefs": [
-            "v-gevoelig"
+            "v-verkiezingen"
           ]
         }
       ],

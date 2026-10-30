@@ -1895,16 +1895,16 @@
       ],
       "examples": [
         {
-          "nl": "Bel 113 of 0800-0113.",
-          "pt": "Ligue 113 ou 0800-0113."
+          "nl": "Je vrienden kunnen je steun geven.",
+          "pt": "Os teus amigos podem dar-te apoio."
         },
         {
-          "nl": "Ze zit thuis met een burn-out.",
-          "pt": "Está em casa com um esgotamento."
+          "nl": "Ik probeer elke dag te wandelen.",
+          "pt": "Tento caminhar todos os dias."
         },
         {
-          "nl": "Ik ben de laatste tijd erg gestrest.",
-          "pt": "Ultimamente ando muito stressado."
+          "nl": "Ze heeft een blessure aan haar knie.",
+          "pt": "Ela tem uma lesão no joelho."
         }
       ],
       "grammar": [],
@@ -1953,12 +1953,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Tento caminhar todos os dias.",
           "tokens": [
+            "Ik",
+            "probeer",
+            "elke",
             "dag",
             "te",
-            "elke",
-            "wandelen.",
-            "Ik",
-            "probeer"
+            "wandelen."
           ],
           "alternatives": [],
           "explanation": "Ik probeer elke dag te wandelen.",
@@ -1970,8 +1970,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "A fisioterapia é comparticipada?",
           "tokens": [
-            "fysiotherapie",
             "Wordt",
+            "fysiotherapie",
             "vergoed?"
           ],
           "alternatives": [],
@@ -1984,13 +1984,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "O dentista está no seguro complementar.",
           "tokens": [
-            "in",
-            "aanvullende",
-            "de",
-            "verzekering.",
-            "zit",
             "De",
-            "tandarts"
+            "tandarts",
+            "zit",
+            "in",
+            "de",
+            "aanvullende",
+            "verzekering."
           ],
           "alternatives": [],
           "explanation": "De tandarts zit in de aanvullende verzekering.",
@@ -2002,102 +2002,98 @@
           "id": "s5-u09-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ze heeft een blessure aan haar knie.»?",
+          "prompt": "O que significa: «Gezonde voeding is belangrijk.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ela tem uma lesão no joelho.",
+              "text": "Uma alimentação saudável é importante.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Não te esqueças de beber água!",
+              "text": "Ultimamente ando muito stressado.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "A fisioterapia é comparticipada?",
+              "text": "Tento comer de forma mais saudável.",
               "correct": false
             }
           ],
-          "explanation": "«Ze heeft een blessure aan haar knie.» = Ela tem uma lesão no joelho.",
+          "explanation": "«Gezonde voeding is belangrijk.» = Uma alimentação saudável é importante.",
           "vocabRefs": [
-            "v-blessure"
+            "v-gezond",
+            "v-voeding"
           ]
         },
         {
           "id": "s5-u09-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik voel me de laatste tijd somber.»?",
+          "prompt": "O que significa: «Ik ben de laatste tijd erg gestrest.»?",
           "options": [
             {
               "id": "a",
-              "text": "A minha forma física é má.",
+              "text": "Ultimamente sinto-me em baixo.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ela tem uma lesão no joelho.",
+              "text": "Falar ajuda.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Ultimamente sinto-me em baixo.",
+              "text": "Ultimamente ando muito stressado.",
               "correct": true
             }
           ],
-          "explanation": "«Ik voel me de laatste tijd somber.» = Ultimamente sinto-me em baixo.",
+          "explanation": "«Ik ben de laatste tijd erg gestrest.» = Ultimamente ando muito stressado.",
           "vocabRefs": [
-            "v-somber"
+            "v-gestrest"
           ]
         },
         {
           "id": "s5-u09-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele tem um estilo de vida pouco saudável.",
+          "prompt": "Treino duas vezes por semana.",
           "tokens": [
-            "heeft",
-            "huisarts",
-            "De",
-            "levensstijl.",
-            "Hij",
-            "een",
-            "ongezonde"
+            "week.",
+            "train",
+            "per",
+            "twee",
+            "elke",
+            "keer",
+            "Ik",
+            "moet"
           ],
           "answers": [
-            "Hij heeft een ongezonde levensstijl."
+            "Ik train twee keer per week."
           ],
-          "explanation": "Ele tem um estilo de vida pouco saudável. = Hij heeft een ongezonde levensstijl. (sobram: huisarts, De)",
-          "vocabRefs": [
-            "v-gezond",
-            "v-ongezond",
-            "v-gewoonte-gezond"
-          ]
+          "explanation": "Treino duas vezes por semana. = Ik train twee keer per week. (sobram: elke, moet)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u09-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ultimamente ando muito stressado.",
+          "prompt": "Toda a gente tem de ter seguro básico.",
           "tokens": [
-            "verzekering.",
-            "de",
-            "erg",
-            "ben",
-            "gestrest.",
-            "tijd",
-            "Mijn",
             "Ik",
-            "laatste"
+            "hebben.",
+            "Iedereen",
+            "basisverzekering",
+            "moet",
+            "een",
+            "steun"
           ],
           "answers": [
-            "Ik ben de laatste tijd erg gestrest."
+            "Iedereen moet een basisverzekering hebben."
           ],
-          "explanation": "Ultimamente ando muito stressado. = Ik ben de laatste tijd erg gestrest. (sobram: Mijn, verzekering.)",
+          "explanation": "Toda a gente tem de ter seguro básico. = Iedereen moet een basisverzekering hebben. (sobram: steun, Ik)",
           "vocabRefs": [
-            "v-gestrest"
+            "v-basisverzekering"
           ]
         }
       ],
@@ -2165,16 +2161,16 @@
       ],
       "examples": [
         {
-          "nl": "Je moet je grenzen aangeven.",
-          "pt": "Tens de impor os teus limites."
+          "nl": "Je moet elke dag een halfuur bewegen.",
+          "pt": "Devias mexer-te meia hora por dia."
         },
         {
-          "nl": "Ik ben de laatste tijd erg gestrest.",
-          "pt": "Ultimamente ando muito stressado."
+          "nl": "Met een laag inkomen krijg je zorgtoeslag.",
+          "pt": "Com um rendimento baixo recebes subsídio de saúde."
         },
         {
-          "nl": "Hij heeft een ongezonde levensstijl.",
-          "pt": "Ele tem um estilo de vida pouco saudável."
+          "nl": "De werkdruk is te hoog.",
+          "pt": "A pressão no trabalho é demasiado alta."
         }
       ],
       "grammar": [],
@@ -2183,22 +2179,49 @@
           "id": "s5-u09-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «lesão» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "blessure",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "ontspanning",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "zorgtoeslag",
+              "correct": false
+            }
+          ],
+          "explanation": "lesão = «blessure».",
+          "vocabRefs": [
+            "v-blessure"
+          ]
+        },
+        {
+          "id": "s5-u09-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
           "prompt": "Como se diz «pressão no trabalho» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "zorgtoeslag",
+              "text": "bewegen",
               "correct": false
             },
             {
               "id": "b",
-              "text": "werkdruk",
-              "correct": true
+              "text": "grens",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "ongezond",
-              "correct": false
+              "text": "werkdruk",
+              "correct": true
             }
           ],
           "explanation": "pressão no trabalho = «werkdruk».",
@@ -2207,34 +2230,26 @@
           ]
         },
         {
-          "id": "s5-u09-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «stressado» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "gestrest",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "vereniging",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "steun",
-              "correct": false
-            }
+          "id": "s5-u09-l008-e03",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Ze zit thuis met een ___.",
+          "translation": "Está em casa com um esgotamento.",
+          "answers": [
+            "burn-out"
           ],
-          "explanation": "stressado = «gestrest».",
+          "choices": [
+            "burn-out",
+            "werkdruk",
+            "somber"
+          ],
+          "explanation": "Ze zit thuis met een burn-out.",
           "vocabRefs": [
-            "v-gestrest"
+            "v-burn-out"
           ]
         },
         {
-          "id": "s5-u09-l008-e03",
+          "id": "s5-u09-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Ze heeft een ___ aan haar knie.",
@@ -2243,9 +2258,9 @@
             "blessure"
           ],
           "choices": [
-            "zorgtoeslag",
+            "psycholoog",
             "blessure",
-            "aanvullend"
+            "doorverwijzen"
           ],
           "explanation": "Ze heeft een blessure aan haar knie.",
           "vocabRefs": [
@@ -2253,132 +2268,115 @@
           ]
         },
         {
-          "id": "s5-u09-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Mijn ___ is slecht.",
-          "translation": "A minha forma física é má.",
-          "answers": [
-            "conditie"
-          ],
-          "choices": [
-            "aanvullend",
-            "gestrest",
-            "conditie"
-          ],
-          "explanation": "Mijn conditie is slecht.",
-          "vocabRefs": [
-            "v-conditie"
-          ]
-        },
-        {
           "id": "s5-u09-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Met een laag inkomen krijg je zorgtoeslag.",
+          "audioText": "Ze zit thuis met een burn-out.",
           "answers": [
-            "Met een laag inkomen krijg je zorgtoeslag."
+            "Ze zit thuis met een burn-out."
           ],
-          "translation": "Com um rendimento baixo recebes subsídio de saúde.",
-          "explanation": "«Met een laag inkomen krijg je zorgtoeslag.» = Com um rendimento baixo recebes subsídio de saúde.",
+          "translation": "Está em casa com um esgotamento.",
+          "explanation": "«Ze zit thuis met een burn-out.» = Está em casa com um esgotamento.",
           "vocabRefs": [
-            "v-zorgtoeslag"
+            "v-burn-out"
           ]
         },
         {
           "id": "s5-u09-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn conditie is slecht.",
+          "audioText": "Ze heeft een blessure aan haar knie.",
           "answers": [
-            "Mijn conditie is slecht."
+            "Ze heeft een blessure aan haar knie."
           ],
-          "translation": "A minha forma física é má.",
-          "explanation": "«Mijn conditie is slecht.» = A minha forma física é má.",
+          "translation": "Ela tem uma lesão no joelho.",
+          "explanation": "«Ze heeft een blessure aan haar knie.» = Ela tem uma lesão no joelho.",
           "vocabRefs": [
-            "v-conditie"
+            "v-blessure"
           ]
         },
         {
           "id": "s5-u09-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sou sócio de um clube de hóquei.",
+          "prompt": "Com um rendimento baixo recebes subsídio de saúde.",
           "tokens": [
-            "lid",
-            "moet",
-            "van",
-            "Ik",
-            "hockeyvereniging.",
-            "een",
+            "inkomen",
+            "Met",
             "je",
-            "ben"
+            "moet",
+            "burn-out.",
+            "krijg",
+            "laag",
+            "zorgtoeslag.",
+            "een"
           ],
           "answers": [
-            "Ik ben lid van een hockeyvereniging."
+            "Met een laag inkomen krijg je zorgtoeslag."
           ],
-          "explanation": "Sou sócio de um clube de hóquei. = Ik ben lid van een hockeyvereniging. (sobram: je, moet)",
+          "explanation": "Com um rendimento baixo recebes subsídio de saúde. = Met een laag inkomen krijg je zorgtoeslag. (sobram: burn-out., moet)",
           "vocabRefs": [
-            "v-vereniging"
+            "v-zorgtoeslag"
           ]
         },
         {
           "id": "s5-u09-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tento caminhar todos os dias.",
+          "prompt": "Não te esqueças de beber água!",
           "tokens": [
-            "een",
-            "wandelen.",
-            "Ik",
-            "probeer",
+            "water",
             "te",
-            "dag",
-            "heeft",
-            "elke"
+            "niet",
+            "me",
+            "Vergeet",
+            "drinken!",
+            "De"
           ],
           "answers": [
-            "Ik probeer elke dag te wandelen."
+            "Vergeet niet water te drinken!"
           ],
-          "explanation": "Tento caminhar todos os dias. = Ik probeer elke dag te wandelen. (sobram: heeft, een)",
+          "explanation": "Não te esqueças de beber água! = Vergeet niet water te drinken! (sobram: me, De)",
           "vocabRefs": []
         },
         {
           "id": "s5-u09-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "levensstijl",
-          "pt": "estilo de vida",
+          "noun": "burn-out",
+          "pt": "esgotamento",
           "article": "de",
-          "explanation": "de levensstijl.",
+          "explanation": "de burn-out.",
           "vocabRefs": [
-            "v-gewoonte-gezond"
+            "v-burn-out"
           ]
         },
         {
           "id": "s5-u09-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Wordt fysiotherapie vergoed?»?",
+          "prompt": "O que significa: «Iedereen moet een basisverzekering hebben.»?",
           "options": [
             {
               "id": "a",
-              "text": "O dentista está no seguro complementar.",
+              "text": "A fisioterapia é comparticipada?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ela tem uma lesão no joelho.",
+              "text": "Devias mexer-te meia hora por dia.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "A fisioterapia é comparticipada?",
+              "text": "Toda a gente tem de ter seguro básico.",
               "correct": true
             }
           ],
-          "explanation": "«Wordt fysiotherapie vergoed?» = A fisioterapia é comparticipada?",
-          "vocabRefs": []
+          "explanation": "«Iedereen moet een basisverzekering hebben.» = Toda a gente tem de ter seguro básico.",
+          "vocabRefs": [
+            "v-basisverzekering"
+          ]
         }
       ],
       "difficulty": 4,
@@ -2445,16 +2443,16 @@
       ],
       "examples": [
         {
-          "nl": "Je moet je grenzen aangeven.",
-          "pt": "Tens de impor os teus limites."
+          "nl": "Met een laag inkomen krijg je zorgtoeslag.",
+          "pt": "Com um rendimento baixo recebes subsídio de saúde."
         },
         {
-          "nl": "De tandarts zit in de aanvullende verzekering.",
-          "pt": "O dentista está no seguro complementar."
+          "nl": "Ik train twee keer per week.",
+          "pt": "Treino duas vezes por semana."
         },
         {
-          "nl": "Ik voel me de laatste tijd somber.",
-          "pt": "Ultimamente sinto-me em baixo."
+          "nl": "Vergeet niet water te drinken!",
+          "pt": "Não te esqueças de beber água!"
         }
       ],
       "grammar": [],
@@ -2463,80 +2461,84 @@
           "id": "s5-u09-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O médico de família encaminhou-me para um psicólogo.",
+          "prompt": "A pressão no trabalho é demasiado alta.",
           "tokens": [
-            "doorverwezen",
-            "De",
-            "vergoed?",
-            "heeft",
-            "psycholoog.",
+            "werkdruk",
+            "is",
+            "0800-0113.",
             "hoog.",
-            "een",
-            "huisarts",
-            "naar",
-            "me"
+            "wandelen.",
+            "te",
+            "De"
           ],
           "answers": [
-            "De huisarts heeft me doorverwezen naar een psycholoog."
+            "De werkdruk is te hoog."
           ],
-          "explanation": "O médico de família encaminhou-me para um psicólogo. = De huisarts heeft me doorverwezen naar een psycholoog. (sobram: vergoed?, hoog.)",
+          "explanation": "A pressão no trabalho é demasiado alta. = De werkdruk is te hoog. (sobram: wandelen., 0800-0113.)",
           "vocabRefs": [
-            "v-psycholoog"
+            "v-werkdruk"
           ]
         },
         {
           "id": "s5-u09-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ligue 113 ou 0800-0113.",
+          "prompt": "O médico de família encaminhou-me para um psicólogo.",
           "tokens": [
-            "113",
-            "Bel",
+            "De",
+            "heeft",
+            "me",
+            "naar",
             "Ik",
-            "geven.",
-            "of",
-            "0800-0113."
+            "een",
+            "huisarts",
+            "psycholoog.",
+            "probeer",
+            "doorverwezen"
           ],
           "answers": [
-            "Bel 113 of 0800-0113."
+            "De huisarts heeft me doorverwezen naar een psycholoog."
           ],
-          "explanation": "Ligue 113 ou 0800-0113. = Bel 113 of 0800-0113. (sobram: geven., Ik)",
-          "vocabRefs": []
+          "explanation": "O médico de família encaminhou-me para um psicólogo. = De huisarts heeft me doorverwezen naar een psycholoog. (sobram: Ik, probeer)",
+          "vocabRefs": [
+            "v-psycholoog"
+          ]
         },
         {
           "id": "s5-u09-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A pressão no trabalho é demasiado alta.",
+          "prompt": "Os teus amigos podem dar-te apoio.",
           "tokens": [
-            "Vergeet",
-            "hoog.",
-            "is",
-            "De",
-            "te",
-            "knie.",
+            "naar",
+            "vrienden",
+            "Je",
+            "kunnen",
+            "je",
+            "steun",
+            "geven.",
             "werkdruk"
           ],
           "answers": [
-            "De werkdruk is te hoog."
+            "Je vrienden kunnen je steun geven."
           ],
-          "explanation": "A pressão no trabalho é demasiado alta. = De werkdruk is te hoog. (sobram: knie., Vergeet)",
+          "explanation": "Os teus amigos podem dar-te apoio. = Je vrienden kunnen je steun geven. (sobram: naar, werkdruk)",
           "vocabRefs": [
-            "v-werkdruk"
+            "v-steun"
           ]
         },
         {
           "id": "s5-u09-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De huisarts heeft me doorverwezen naar een psycholoog.",
+          "audioText": "Je moet elke dag een halfuur bewegen.",
           "answers": [
-            "De huisarts heeft me doorverwezen naar een psycholoog."
+            "Je moet elke dag een halfuur bewegen."
           ],
-          "translation": "O médico de família encaminhou-me para um psicólogo.",
-          "explanation": "«De huisarts heeft me doorverwezen naar een psycholoog.» = O médico de família encaminhou-me para um psicólogo.",
+          "translation": "Devias mexer-te meia hora por dia.",
+          "explanation": "«Je moet elke dag een halfuur bewegen.» = Devias mexer-te meia hora por dia.",
           "vocabRefs": [
-            "v-psycholoog"
+            "v-bewegen"
           ]
         },
         {
@@ -2557,105 +2559,106 @@
           "id": "s5-u09-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ze heeft een blessure aan haar knie.",
+          "audioText": "Hij heeft een ongezonde levensstijl.",
           "answers": [
-            "Ze heeft een blessure aan haar knie."
+            "Hij heeft een ongezonde levensstijl."
           ],
-          "translation": "Ela tem uma lesão no joelho.",
-          "explanation": "«Ze heeft een blessure aan haar knie.» = Ela tem uma lesão no joelho.",
+          "translation": "Ele tem um estilo de vida pouco saudável.",
+          "explanation": "«Hij heeft een ongezonde levensstijl.» = Ele tem um estilo de vida pouco saudável.",
           "vocabRefs": [
-            "v-blessure"
+            "v-gezond",
+            "v-ongezond",
+            "v-gewoonte-gezond"
           ]
         },
         {
           "id": "s5-u09-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ultimamente sinto-me em baixo.",
+          "translation": "A pressão no trabalho é demasiado alta.",
           "tokens": [
-            "laatste",
-            "me",
-            "de",
-            "tijd",
-            "voel",
-            "somber.",
-            "Ik"
+            "De",
+            "werkdruk",
+            "is",
+            "te",
+            "hoog."
           ],
           "alternatives": [],
-          "explanation": "Ik voel me de laatste tijd somber.",
+          "explanation": "De werkdruk is te hoog.",
           "vocabRefs": [
-            "v-somber"
+            "v-werkdruk"
           ]
         },
         {
           "id": "s5-u09-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "A minha forma física é má.",
+          "translation": "Toda a gente tem de ter seguro básico.",
           "tokens": [
-            "Mijn",
-            "slecht.",
-            "conditie",
-            "is"
+            "Iedereen",
+            "moet",
+            "een",
+            "basisverzekering",
+            "hebben."
           ],
           "alternatives": [],
-          "explanation": "Mijn conditie is slecht.",
+          "explanation": "Iedereen moet een basisverzekering hebben.",
           "vocabRefs": [
-            "v-conditie"
+            "v-basisverzekering"
           ]
         },
         {
           "id": "s5-u09-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «aanvullend»?",
+          "prompt": "O que significa «de basisverzekering»?",
           "options": [
             {
               "id": "a",
-              "text": "stressado",
+              "text": "complementar",
               "correct": false
             },
             {
               "id": "b",
-              "text": "apoio",
-              "correct": false
+              "text": "seguro básico",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "complementar",
-              "correct": true
+              "text": "lesão",
+              "correct": false
             }
           ],
-          "explanation": "«aanvullend» = complementar.",
+          "explanation": "«de basisverzekering» = seguro básico (obrigatório).",
           "vocabRefs": [
-            "v-aanvullend"
+            "v-basisverzekering"
           ]
         },
         {
           "id": "s5-u09-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «doorverwijzen»?",
+          "prompt": "O que significa «de conditie»?",
           "options": [
             {
               "id": "a",
-              "text": "pressão no trabalho",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "encaminhar",
+              "text": "forma física",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "saudável",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "stressado",
+              "text": "estilo de vida",
               "correct": false
             }
           ],
-          "explanation": "«doorverwijzen» = encaminhar (médico).",
+          "explanation": "«de conditie» = forma física.",
           "vocabRefs": [
-            "v-doorverwijzen"
+            "v-conditie"
           ]
         }
       ],

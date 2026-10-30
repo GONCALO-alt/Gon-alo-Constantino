@@ -169,8 +169,16 @@ describe('lição completa', () => {
     expect(await screen.findByRole('link', { name: /Próxima lição/ })).toBeTruthy();
   }, 60_000);
 
-  // Amostra: a primeira lição de cada unidade (todas as lições são verificadas sem interface em content-answers.test.ts).
-  it.each(realFiles().map((f) => f.lessons.find((l) => l.status === 'published')?.id).filter((x): x is string => !!x).slice(0, 25))(
+  // Amostra: a primeira lição de cada unidade (todas as lições são verificadas sem interface em content-answers.test.ts),
+  // mais duas lições de revisão geradas (ordenar palavras e construir frases passam pela interface real).
+  const generatedSample = realFiles()
+    .flatMap((f) => f.lessons.filter((l) => (l.provenance.generator ?? '').includes('review_gen')))
+    .filter((l) => l.exercises.some((e) => e.type === 'wordOrder'))
+    .map((l) => l.id);
+  it.each([
+    ...realFiles().map((f) => f.lessons.find((l) => l.status === 'published')?.id).filter((x): x is string => !!x).slice(0, 25),
+    ...[generatedSample[0], generatedSample.at(-1)].filter((x): x is string => !!x),
+  ])(
     'a resposta de referência de cada exercício é aceite pela interface: %s',
     async (id) => {
       const user = userEvent.setup();
@@ -202,6 +210,30 @@ describe('lição completa', () => {
     expect(fb.textContent).toMatch(/despedida/); // feedback específico da opção
     await user.click(screen.getByRole('button', { name: 'Continuar' }));
     expect(await screen.findByRole('heading', { name: 'Traduza para português.' })).toBeTruthy();
+  });
+});
+
+describe('«Não me lembro»', () => {
+  it('mostra a resposta, deixa responder e repete o exercício no fim', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    const first = lesson.exercises[0]!;
+    if (first.type !== 'multipleChoice') throw new Error('o teste espera escolha múltipla no 1.º exercício');
+    const correct = first.options.find((o) => o.correct)!;
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await user.click(screen.getByRole('button', { name: 'Não me lembro' }));
+    // A resposta aparece antes de responder, e o botão desaparece.
+    expect((await screen.findByText('Resposta certa:')).parentElement!.textContent).toContain(correct.text);
+    expect(screen.queryByRole('button', { name: 'Não me lembro' })).toBeNull();
+    // O aluno responde com a resposta que acabou de ver.
+    await user.click(screen.getByRole('radio', { name: new RegExp(correct.text) }));
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
+    expect((await screen.findByRole('status')).textContent).toMatch(/volta a aparecer no fim/);
+    await user.click(screen.getByRole('button', { name: 'Continuar' }));
+    // O botão volta a estar disponível no exercício seguinte.
+    expect(await screen.findByRole('button', { name: 'Não me lembro' })).toBeTruthy();
   });
 });
 

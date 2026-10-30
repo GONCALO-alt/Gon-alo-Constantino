@@ -1948,16 +1948,16 @@
       ],
       "examples": [
         {
-          "nl": "Dat was een leuke ervaring.",
-          "pt": "Foi uma experiência gira."
+          "nl": "Ik heb twee uur gefietst.",
+          "pt": "Andei duas horas de bicicleta."
         },
         {
-          "nl": "Ik heb nog nooit gesurft.",
-          "pt": "Nunca fiz surf."
+          "nl": "Heb jij ooit een marathon gelopen?",
+          "pt": "Já alguma vez correste uma maratona?"
         },
         {
-          "nl": "Ik ben in Braga opgegroeid.",
-          "pt": "Cresci em Braga."
+          "nl": "Hij heeft de trein genomen.",
+          "pt": "Ele apanhou o comboio."
         }
       ],
       "grammar": [],
@@ -2011,8 +2011,8 @@
             "Ik",
             "ben",
             "naar",
-            "gefietst.",
-            "huis"
+            "huis",
+            "gefietst."
           ],
           "alternatives": [],
           "explanation": "Ik ben naar huis gefietst.",
@@ -2024,12 +2024,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Moro aqui há três anos.",
           "tokens": [
-            "drie",
-            "al",
-            "hier",
-            "jaar.",
+            "Ik",
             "woon",
-            "Ik"
+            "hier",
+            "al",
+            "drie",
+            "jaar."
           ],
           "alternatives": [],
           "explanation": "Ik woon hier al drie jaar.",
@@ -2041,9 +2041,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Falámos neerlandês.",
           "tokens": [
-            "Nederlands",
             "We",
             "hebben",
+            "Nederlands",
             "gesproken."
           ],
           "alternatives": [],
@@ -2056,98 +2056,98 @@
           "id": "s4-u01-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik woon hier al lang.»?",
+          "prompt": "O que significa: «Ik ben in Braga opgegroeid.»?",
           "options": [
             {
               "id": "a",
-              "text": "Cresci em Braga.",
+              "text": "Fui para casa de bicicleta.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Já alguma vez estiveste em Amesterdão?",
+              "text": "Já alguma vez correste uma maratona?",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Moro aqui há muito tempo.",
+              "text": "Cresci em Braga.",
               "correct": true
             }
           ],
-          "explanation": "«Ik woon hier al lang.» = Moro aqui há muito tempo.",
+          "explanation": "«Ik ben in Braga opgegroeid.» = Cresci em Braga.",
           "vocabRefs": [
-            "v-al-lang"
+            "v-opgegroeid"
           ]
         },
         {
           "id": "s4-u01-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb haar geholpen.»?",
+          "prompt": "O que significa: «Ik heb veel gereisd.»?",
           "options": [
             {
               "id": "a",
-              "text": "Ajudei-a.",
+              "text": "Viajei muito.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Mudámo-nos em 2021.",
+              "text": "Mudei-me há três anos.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "A vista era magnífica.",
+              "text": "Já alguma vez estiveste em Amesterdão?",
               "correct": false
             }
           ],
-          "explanation": "«Ik heb haar geholpen.» = Ajudei-a.",
-          "vocabRefs": []
+          "explanation": "«Ik heb veel gereisd.» = Viajei muito.",
+          "vocabRefs": [
+            "v-gereisd"
+          ]
         },
         {
           "id": "s4-u01-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Já alguma vez estiveste em Amesterdão?",
+          "prompt": "Moro aqui há muito tempo.",
           "tokens": [
-            "woon",
-            "hebben",
-            "Ben",
-            "geweest?",
-            "ooit",
-            "in",
+            "ben",
+            "lang.",
             "je",
-            "Amsterdam"
+            "Ik",
+            "al",
+            "hier",
+            "woon"
           ],
           "answers": [
-            "Ben je ooit in Amsterdam geweest?"
+            "Ik woon hier al lang."
           ],
-          "explanation": "Já alguma vez estiveste em Amesterdão? = Ben je ooit in Amsterdam geweest? (sobram: hebben, woon)",
+          "explanation": "Moro aqui há muito tempo. = Ik woon hier al lang. (sobram: ben, je)",
           "vocabRefs": [
-            "v-ooit"
+            "v-al-lang"
           ]
         },
         {
           "id": "s4-u01-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Já alguma vez correste uma maratona?",
+          "prompt": "O que fizeste ontem?",
           "tokens": [
-            "gelopen?",
-            "marathon",
-            "ooit",
-            "Heb",
-            "Hoe",
-            "jij",
-            "Ik",
-            "een"
+            "verhuisd.",
+            "je",
+            "heb",
+            "gisteren",
+            "gereisd.",
+            "Wat",
+            "gedaan?"
           ],
           "answers": [
-            "Heb jij ooit een marathon gelopen?"
+            "Wat heb je gisteren gedaan?"
           ],
-          "explanation": "Já alguma vez correste uma maratona? = Heb jij ooit een marathon gelopen? (sobram: Hoe, Ik)",
+          "explanation": "O que fizeste ontem? = Wat heb je gisteren gedaan? (sobram: verhuisd., gereisd.)",
           "vocabRefs": [
-            "v-ooit"
+            "v-gedaan"
           ]
         }
       ],
@@ -2215,16 +2215,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik heb in Lissabon gestudeerd.",
-          "pt": "Estudei em Lisboa."
+          "nl": "Wie heeft dit boek geschreven?",
+          "pt": "Quem escreveu este livro?"
         },
         {
-          "nl": "Ik heb veel gereisd.",
-          "pt": "Viajei muito."
+          "nl": "Ik ben nog nooit in Japan geweest.",
+          "pt": "Nunca estive no Japão."
         },
         {
-          "nl": "Ik ben in Braga opgegroeid.",
-          "pt": "Cresci em Braga."
+          "nl": "Heb je al eens haring gegeten?",
+          "pt": "Já comeste arenque alguma vez?"
         }
       ],
       "grammar": [],
@@ -2233,27 +2233,27 @@
           "id": "s4-u01-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «há muito tempo» em neerlandês?",
+          "prompt": "Como se diz «estudado» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "ontmoet",
-              "correct": false
+              "text": "gestudeerd",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "ervaring",
+              "text": "uitzicht",
               "correct": false
             },
             {
               "id": "c",
-              "text": "al lang",
-              "correct": true
+              "text": "gevlogen",
+              "correct": false
             }
           ],
-          "explanation": "há muito tempo = «al lang».",
+          "explanation": "estudado = «gestudeerd».",
           "vocabRefs": [
-            "v-al-lang"
+            "v-gestudeerd"
           ]
         },
         {
@@ -2264,7 +2264,7 @@
           "options": [
             {
               "id": "a",
-              "text": "gedaan",
+              "text": "al lang",
               "correct": false
             },
             {
@@ -2274,7 +2274,7 @@
             },
             {
               "id": "c",
-              "text": "nog nooit",
+              "text": "genomen",
               "correct": false
             }
           ],
@@ -2293,9 +2293,9 @@
             "gedaan"
           ],
           "choices": [
-            "gereisd",
+            "gevonden",
             "gedaan",
-            "ooit"
+            "gesproken"
           ],
           "explanation": "Wat heb je gisteren gedaan?",
           "vocabRefs": [
@@ -2306,108 +2306,107 @@
           "id": "s4-u01-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Het ___ was prachtig.",
-          "translation": "A vista era magnífica.",
+          "sentence": "We hebben Rome ___.",
+          "translation": "Visitámos Roma.",
           "answers": [
-            "uitzicht"
+            "bezocht"
           ],
           "choices": [
-            "uitzicht",
-            "geboren",
-            "gevlogen"
+            "gevlogen",
+            "bezocht",
+            "ervaring"
           ],
-          "explanation": "Het uitzicht was prachtig.",
+          "explanation": "We hebben Rome bezocht.",
           "vocabRefs": [
-            "v-uitzicht"
+            "v-bezocht"
           ]
         },
         {
           "id": "s4-u01-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben nog nooit in Japan geweest.",
+          "audioText": "Ik heb veel gereisd.",
           "answers": [
-            "Ik ben nog nooit in Japan geweest."
+            "Ik heb veel gereisd."
           ],
-          "translation": "Nunca estive no Japão.",
-          "explanation": "«Ik ben nog nooit in Japan geweest.» = Nunca estive no Japão.",
+          "translation": "Viajei muito.",
+          "explanation": "«Ik heb veel gereisd.» = Viajei muito.",
           "vocabRefs": [
-            "v-ooit",
-            "v-nog-nooit"
+            "v-gereisd"
           ]
         },
         {
           "id": "s4-u01-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het uitzicht was prachtig.",
+          "audioText": "Ik ben in Porto geboren.",
           "answers": [
-            "Het uitzicht was prachtig."
+            "Ik ben in Porto geboren."
           ],
-          "translation": "A vista era magnífica.",
-          "explanation": "«Het uitzicht was prachtig.» = A vista era magnífica.",
+          "translation": "Nasci no Porto.",
+          "explanation": "«Ik ben in Porto geboren.» = Nasci no Porto.",
           "vocabRefs": [
-            "v-uitzicht"
+            "v-geboren"
           ]
         },
         {
           "id": "s4-u01-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Já comeste arenque alguma vez?",
-          "tokens": [
-            "haring",
-            "Lissabon",
-            "je",
-            "al",
-            "eens",
-            "Heb",
-            "naar",
-            "gegeten?"
-          ],
-          "answers": [
-            "Heb je al eens haring gegeten?"
-          ],
-          "explanation": "Já comeste arenque alguma vez? = Heb je al eens haring gegeten? (sobram: naar, Lissabon)",
-          "vocabRefs": [
-            "v-al-eens"
-          ]
-        },
-        {
-          "id": "s4-u01-l008-e08",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
           "prompt": "Conheci-o há dois anos.",
           "tokens": [
-            "ontmoet.",
-            "haring",
-            "Ik",
-            "heb",
-            "jaar",
-            "hem",
             "geleden",
-            "uur",
-            "twee"
+            "ontmoet.",
+            "Ik",
+            "jaar",
+            "gelopen?",
+            "twee",
+            "heb",
+            "hem",
+            "bezocht."
           ],
           "answers": [
             "Ik heb hem twee jaar geleden ontmoet."
           ],
-          "explanation": "Conheci-o há dois anos. = Ik heb hem twee jaar geleden ontmoet. (sobram: uur, haring)",
+          "explanation": "Conheci-o há dois anos. = Ik heb hem twee jaar geleden ontmoet. (sobram: bezocht., gelopen?)",
           "vocabRefs": [
             "v-geleden",
             "v-ontmoet"
           ]
         },
         {
+          "id": "s4-u01-l008-e08",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Já alguma vez estiveste em Amesterdão?",
+          "tokens": [
+            "ooit",
+            "uur",
+            "geweest?",
+            "je",
+            "Ben",
+            "naar",
+            "in",
+            "Amsterdam"
+          ],
+          "answers": [
+            "Ben je ooit in Amsterdam geweest?"
+          ],
+          "explanation": "Já alguma vez estiveste em Amesterdão? = Ben je ooit in Amsterdam geweest? (sobram: uur, naar)",
+          "vocabRefs": [
+            "v-ooit"
+          ]
+        },
+        {
           "id": "s4-u01-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "uitzicht",
-          "pt": "vista",
-          "article": "het",
-          "explanation": "het uitzicht.",
+          "noun": "ervaring",
+          "pt": "experiência",
+          "article": "de",
+          "explanation": "de ervaring.",
           "vocabRefs": [
-            "v-uitzicht"
+            "v-ervaring"
           ]
         },
         {
@@ -2423,12 +2422,12 @@
             },
             {
               "id": "b",
-              "text": "Conheci-o há dois anos.",
+              "text": "Nunca estive no Japão.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Falámos neerlandês.",
+              "text": "Já comeste arenque alguma vez?",
               "correct": false
             }
           ],
@@ -2502,16 +2501,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat heb je gisteren gedaan?",
-          "pt": "O que fizeste ontem?"
+          "nl": "Ik ben in Porto geboren.",
+          "pt": "Nasci no Porto."
         },
         {
-          "nl": "Ik heb veel gereisd.",
-          "pt": "Viajei muito."
+          "nl": "Ik heb nog nooit gesurft.",
+          "pt": "Nunca fiz surf."
         },
         {
-          "nl": "Het uitzicht was prachtig.",
-          "pt": "A vista era magnífica."
+          "nl": "We zijn naar Italië gevlogen.",
+          "pt": "Fomos de avião para Itália."
         }
       ],
       "grammar": [],
@@ -2520,126 +2519,122 @@
           "id": "s4-u01-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Nunca fiz surf.",
+          "prompt": "Fomos de avião para Itália.",
           "tokens": [
-            "Ik",
-            "gesurft.",
-            "nog",
-            "uitzicht",
-            "Italië",
+            "We",
+            "zijn",
             "heb",
-            "nooit"
+            "uur",
+            "naar",
+            "gevlogen.",
+            "Italië"
           ],
           "answers": [
-            "Ik heb nog nooit gesurft."
+            "We zijn naar Italië gevlogen."
           ],
-          "explanation": "Nunca fiz surf. = Ik heb nog nooit gesurft. (sobram: uitzicht, Italië)",
+          "explanation": "Fomos de avião para Itália. = We zijn naar Italië gevlogen. (sobram: uur, heb)",
           "vocabRefs": [
-            "v-ooit",
-            "v-nog-nooit"
+            "v-gevlogen"
           ]
         },
         {
           "id": "s4-u01-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Há quanto tempo foi isso?",
+          "prompt": "A vista era magnífica.",
           "tokens": [
+            "Ik",
+            "prachtig.",
+            "in",
+            "Het",
             "was",
-            "dat?",
-            "Hoe",
-            "We",
-            "Wat",
-            "lang",
-            "geleden"
+            "uitzicht"
           ],
           "answers": [
-            "Hoe lang geleden was dat?"
+            "Het uitzicht was prachtig."
           ],
-          "explanation": "Há quanto tempo foi isso? = Hoe lang geleden was dat? (sobram: We, Wat)",
+          "explanation": "A vista era magnífica. = Het uitzicht was prachtig. (sobram: Ik, in)",
           "vocabRefs": [
-            "v-geleden"
+            "v-uitzicht"
           ]
         },
         {
           "id": "s4-u01-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O que fizeste ontem?",
+          "prompt": "Visitámos Roma.",
           "tokens": [
-            "was",
-            "heb",
-            "gisteren",
-            "Wat",
-            "je",
-            "gedaan?",
-            "Porto"
+            "We",
+            "hebben",
+            "naar",
+            "bezocht.",
+            "Rome",
+            "gedaan?"
           ],
           "answers": [
-            "Wat heb je gisteren gedaan?"
+            "We hebben Rome bezocht."
           ],
-          "explanation": "O que fizeste ontem? = Wat heb je gisteren gedaan? (sobram: was, Porto)",
+          "explanation": "Visitámos Roma. = We hebben Rome bezocht. (sobram: naar, gedaan?)",
           "vocabRefs": [
-            "v-gedaan"
+            "v-bezocht"
           ]
         },
         {
           "id": "s4-u01-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben drie jaar geleden verhuisd.",
+          "audioText": "Het uitzicht was prachtig.",
           "answers": [
-            "Ik ben drie jaar geleden verhuisd."
+            "Het uitzicht was prachtig."
           ],
-          "translation": "Mudei-me há três anos.",
-          "explanation": "«Ik ben drie jaar geleden verhuisd.» = Mudei-me há três anos.",
+          "translation": "A vista era magnífica.",
+          "explanation": "«Het uitzicht was prachtig.» = A vista era magnífica.",
           "vocabRefs": [
-            "v-geleden",
-            "v-verhuisd"
+            "v-uitzicht"
           ]
         },
         {
           "id": "s4-u01-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik ben in Braga opgegroeid.",
+          "audioText": "Hoe lang geleden was dat?",
           "answers": [
-            "Ik ben in Braga opgegroeid."
+            "Hoe lang geleden was dat?"
           ],
-          "translation": "Cresci em Braga.",
-          "explanation": "«Ik ben in Braga opgegroeid.» = Cresci em Braga.",
+          "translation": "Há quanto tempo foi isso?",
+          "explanation": "«Hoe lang geleden was dat?» = Há quanto tempo foi isso?",
           "vocabRefs": [
-            "v-opgegroeid"
+            "v-geleden"
           ]
         },
         {
           "id": "s4-u01-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb haar geholpen.",
+          "audioText": "Ik ben naar huis gefietst.",
           "answers": [
-            "Ik heb haar geholpen."
+            "Ik ben naar huis gefietst."
           ],
-          "translation": "Ajudei-a.",
-          "explanation": "«Ik heb haar geholpen.» = Ajudei-a.",
+          "translation": "Fui para casa de bicicleta.",
+          "explanation": "«Ik ben naar huis gefietst.» = Fui para casa de bicicleta.",
           "vocabRefs": []
         },
         {
           "id": "s4-u01-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Cresci em Braga.",
+          "translation": "Encontrei as minhas chaves.",
           "tokens": [
-            "opgegroeid.",
             "Ik",
-            "Braga",
-            "in",
-            "ben"
+            "heb",
+            "mijn",
+            "sleutels",
+            "gevonden."
           ],
           "alternatives": [],
-          "explanation": "Ik ben in Braga opgegroeid.",
+          "explanation": "Ik heb mijn sleutels gevonden.",
           "vocabRefs": [
-            "v-opgegroeid"
+            "v-gevonden"
           ]
         },
         {
@@ -2648,11 +2643,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Foi uma experiência gira.",
           "tokens": [
-            "was",
             "Dat",
-            "ervaring.",
+            "was",
+            "een",
             "leuke",
-            "een"
+            "ervaring."
           ],
           "alternatives": [],
           "explanation": "Dat was een leuke ervaring.",
@@ -2664,7 +2659,34 @@
           "id": "s4-u01-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «geleden»?",
+          "prompt": "O que significa «opgegroeid»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "encontrado",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "viajado",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "crescido",
+              "correct": true
+            }
+          ],
+          "explanation": "«opgegroeid» = crescido (criado).",
+          "vocabRefs": [
+            "v-opgegroeid"
+          ]
+        },
+        {
+          "id": "s4-u01-l009-e10",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «gereisd»?",
           "options": [
             {
               "id": "a",
@@ -2673,45 +2695,18 @@
             },
             {
               "id": "b",
-              "text": "visitado",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "há",
-              "correct": true
-            }
-          ],
-          "explanation": "«geleden» = há (tempo atrás).",
-          "vocabRefs": [
-            "v-geleden"
-          ]
-        },
-        {
-          "id": "s4-u01-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «begonnen»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "falado",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "tirado",
-              "correct": false
-            },
-            {
-              "id": "c",
               "text": "começado",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "viajado",
               "correct": true
             }
           ],
-          "explanation": "«begonnen» = começado.",
+          "explanation": "«gereisd» = viajado.",
           "vocabRefs": [
-            "v-begonnen"
+            "v-gereisd"
           ]
         }
       ],

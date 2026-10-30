@@ -1769,16 +1769,16 @@
       ],
       "examples": [
         {
-          "nl": "Jij drinkt koffie.",
-          "pt": "Tu bebes café."
+          "nl": "Wat doe jij vandaag?",
+          "pt": "O que fazes hoje?"
         },
         {
-          "nl": "Hij maakt eten.",
-          "pt": "Ele faz o jantar."
+          "nl": "Hij geeft een cadeau.",
+          "pt": "Ele dá um presente."
         },
         {
-          "nl": "Ik koop brood.",
-          "pt": "Compro pão."
+          "nl": "Jij leest de krant.",
+          "pt": "Tu lês o jornal."
         }
       ],
       "grammar": [],
@@ -1825,8 +1825,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Compro pão.",
           "tokens": [
-            "koop",
             "Ik",
+            "koop",
             "brood."
           ],
           "alternatives": [],
@@ -1839,9 +1839,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Ele vem amanhã.",
           "tokens": [
-            "morgen.",
+            "Hij",
             "komt",
-            "Hij"
+            "morgen."
           ],
           "alternatives": [],
           "explanation": "Hij komt morgen.",
@@ -1853,10 +1853,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Viajamos para Espanha.",
           "tokens": [
-            "naar",
             "Wij",
-            "Spanje.",
-            "reizen"
+            "reizen",
+            "naar",
+            "Spanje."
           ],
           "alternatives": [],
           "explanation": "Wij reizen naar Spanje.",
@@ -1868,25 +1868,25 @@
           "id": "s1-u11-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Hij zit thuis.»?",
+          "prompt": "O que significa: «Hij geeft een cadeau.»?",
           "options": [
             {
               "id": "a",
-              "text": "Vou a pé para casa.",
+              "text": "Vocês trabalham aqui?",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Ele está em casa.",
+              "text": "Ele dá um presente.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Ele faz o jantar.",
+              "text": "Faço um bolo.",
               "correct": false
             }
           ],
-          "explanation": "«Hij zit thuis.» = Ele está em casa.",
+          "explanation": "«Hij geeft een cadeau.» = Ele dá um presente.",
           "vocabRefs": []
         },
         {
@@ -1897,18 +1897,18 @@
           "options": [
             {
               "id": "a",
-              "text": "Vou a pé para casa.",
+              "text": "Tu bebes café.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Tu lês o jornal.",
-              "correct": false
+              "text": "Trabalho em Amesterdão.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Trabalho em Amesterdão.",
-              "correct": true
+              "text": "O que fazes hoje?",
+              "correct": false
             }
           ],
           "explanation": "«Ik werk in Amsterdam.» = Trabalho em Amesterdão.",
@@ -1918,39 +1918,38 @@
           "id": "s1-u11-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele espera pelo autocarro.",
+          "prompt": "Leio um livro.",
           "tokens": [
+            "Ik",
+            "boek.",
+            "Jij",
             "de",
             "lees",
-            "op",
-            "wacht",
-            "bus.",
-            "Hij",
-            "ik"
+            "een"
           ],
           "answers": [
-            "Hij wacht op de bus."
+            "Ik lees een boek."
           ],
-          "explanation": "Ele espera pelo autocarro. = Hij wacht op de bus. (sobram: ik, lees)",
+          "explanation": "Leio um livro. = Ik lees een boek. (sobram: de, Jij)",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tu lês o jornal.",
+          "prompt": "Trabalho em Amesterdão.",
           "tokens": [
-            "krant.",
-            "thuis.",
             "Ik",
-            "Jij",
             "de",
-            "leest"
+            "werk",
+            "Wij",
+            "Amsterdam.",
+            "in"
           ],
           "answers": [
-            "Jij leest de krant."
+            "Ik werk in Amsterdam."
           ],
-          "explanation": "Tu lês o jornal. = Jij leest de krant. (sobram: thuis., Ik)",
+          "explanation": "Trabalho em Amesterdão. = Ik werk in Amsterdam. (sobram: de, Wij)",
           "vocabRefs": []
         }
       ],
@@ -2008,16 +2007,16 @@
       ],
       "examples": [
         {
-          "nl": "Wij reizen naar Spanje.",
-          "pt": "Viajamos para Espanha."
+          "nl": "Ik koop brood.",
+          "pt": "Compro pão."
         },
         {
-          "nl": "Zij zit op de stoel.",
-          "pt": "Ela está sentada na cadeira."
+          "nl": "Jij drinkt koffie.",
+          "pt": "Tu bebes café."
         },
         {
-          "nl": "Hij geeft een cadeau.",
-          "pt": "Ele dá um presente."
+          "nl": "Hij komt morgen.",
+          "pt": "Ele vem amanhã."
         }
       ],
       "grammar": [],
@@ -2035,12 +2034,12 @@
             },
             {
               "id": "b",
-              "text": "zitten",
+              "text": "leven",
               "correct": false
             },
             {
               "id": "c",
-              "text": "kopen",
+              "text": "staan",
               "correct": false
             }
           ],
@@ -2053,159 +2052,163 @@
           "id": "s1-u11-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «trabalhar» em neerlandês?",
+          "prompt": "Como se diz «comprar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "geven",
+              "text": "leven",
               "correct": false
             },
             {
               "id": "b",
-              "text": "doen",
+              "text": "werken",
               "correct": false
             },
             {
               "id": "c",
-              "text": "werken",
+              "text": "kopen",
               "correct": true
             }
           ],
-          "explanation": "trabalhar = «werken».",
+          "explanation": "comprar = «kopen».",
           "vocabRefs": [
-            "v-werken"
+            "v-kopen"
           ]
         },
         {
           "id": "s1-u11-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "___ jullie hier?",
-          "translation": "Vocês trabalham aqui?",
+          "sentence": "Wij ___ naar Spanje.",
+          "translation": "Viajamos para Espanha.",
           "answers": [
-            "Werken"
+            "reizen"
           ],
           "choices": [
-            "Werken",
-            "Slapen",
-            "Zitten"
+            "slapen",
+            "komen",
+            "reizen"
           ],
-          "explanation": "Werken jullie hier?",
+          "explanation": "Wij reizen naar Spanje.",
           "vocabRefs": [
-            "v-werken"
+            "v-reizen"
           ]
         },
         {
           "id": "s1-u11-l008-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Zij reist veel.",
+          "audioText": "Hij geeft een cadeau.",
           "answers": [
-            "Zij reist veel."
+            "Hij geeft een cadeau."
           ],
-          "translation": "Ela viaja muito.",
-          "explanation": "«Zij reist veel.» = Ela viaja muito.",
+          "translation": "Ele dá um presente.",
+          "explanation": "«Hij geeft een cadeau.» = Ele dá um presente.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik werk, ik lees, ik reis.",
+          "audioText": "Ik maak een taart.",
           "answers": [
-            "Ik werk, ik lees, ik reis."
+            "Ik maak een taart."
           ],
-          "translation": "Trabalho, leio, viajo.",
-          "explanation": "«Ik werk, ik lees, ik reis.» = Trabalho, leio, viajo.",
+          "translation": "Faço um bolo.",
+          "explanation": "«Ik maak een taart.» = Faço um bolo.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l008-e06",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tu bebes café.",
+          "prompt": "Estamos a aprender neerlandês.",
           "tokens": [
+            "leren",
             "Amsterdam.",
-            "koffie.",
-            "drinkt",
-            "ik",
-            "Jij"
+            "De",
+            "Nederlands.",
+            "Wij"
           ],
           "answers": [
-            "Jij drinkt koffie."
+            "Wij leren Nederlands."
           ],
-          "explanation": "Tu bebes café. = Jij drinkt koffie. (sobram: Amsterdam., ik)",
-          "vocabRefs": []
+          "explanation": "Estamos a aprender neerlandês. = Wij leren Nederlands. (sobram: De, Amsterdam.)",
+          "vocabRefs": [
+            "v-leren"
+          ]
         },
         {
           "id": "s1-u11-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ele dá um presente.",
+          "prompt": "Trabalho, leio, viajo.",
           "tokens": [
-            "thuis.",
-            "maak",
-            "Hij",
-            "geeft",
-            "cadeau.",
-            "een"
+            "werk,",
+            "ik",
+            "Ik",
+            "ik",
+            "vandaag?",
+            "reis.",
+            "lees,",
+            "Jij"
           ],
           "answers": [
-            "Hij geeft een cadeau."
+            "Ik werk, ik lees, ik reis."
           ],
-          "explanation": "Ele dá um presente. = Hij geeft een cadeau. (sobram: maak, thuis.)",
+          "explanation": "Trabalho, leio, viajo. = Ik werk, ik lees, ik reis. (sobram: vandaag?, Jij)",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l008-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik loop naar huis.»?",
+          "prompt": "O que significa: «Zij reist veel.»?",
           "options": [
             {
               "id": "a",
-              "text": "Vou a pé para casa.",
-              "correct": true
+              "text": "Ela está sentada na cadeira.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Ele espera pelo autocarro.",
+              "text": "Tu bebes café.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Compro pão.",
-              "correct": false
+              "text": "Ela viaja muito.",
+              "correct": true
             }
           ],
-          "explanation": "«Ik loop naar huis.» = Vou a pé para casa.",
+          "explanation": "«Zij reist veel.» = Ela viaja muito.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «lezen»?",
+          "prompt": "O que significa «zitten»?",
           "options": [
             {
               "id": "a",
-              "text": "estar sentado",
+              "text": "ler",
               "correct": false
             },
             {
               "id": "b",
-              "text": "aprender",
+              "text": "esperar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "ler",
+              "text": "estar sentado",
               "correct": true
             }
           ],
-          "explanation": "«lezen» = ler.",
+          "explanation": "«zitten» = estar sentado, estar.",
           "vocabRefs": [
-            "v-lezen"
+            "v-zitten"
           ]
         }
       ],
@@ -2263,12 +2266,12 @@
       ],
       "examples": [
         {
-          "nl": "Wij leren Nederlands.",
-          "pt": "Estamos a aprender neerlandês."
+          "nl": "Hij maakt eten.",
+          "pt": "Ele faz o jantar."
         },
         {
-          "nl": "Hij zit thuis.",
-          "pt": "Ele está em casa."
+          "nl": "Werken jullie hier?",
+          "pt": "Vocês trabalham aqui?"
         },
         {
           "nl": "Ik zie de zee.",
@@ -2281,78 +2284,60 @@
           "id": "s1-u11-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Trabalho, leio, viajo.",
+          "prompt": "Ele espera pelo autocarro.",
           "tokens": [
-            "ik",
+            "op",
+            "bus.",
+            "slaapt.",
+            "thuis.",
             "Hij",
-            "Ik",
-            "lees,",
-            "ik",
-            "in",
-            "werk,",
-            "reis."
+            "wacht",
+            "de"
           ],
           "answers": [
-            "Ik werk, ik lees, ik reis."
+            "Hij wacht op de bus."
           ],
-          "explanation": "Trabalho, leio, viajo. = Ik werk, ik lees, ik reis. (sobram: Hij, in)",
+          "explanation": "Ele espera pelo autocarro. = Hij wacht op de bus. (sobram: thuis., slaapt.)",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Viajamos para Espanha.",
+          "prompt": "O bebé dorme.",
           "tokens": [
-            "Wij",
-            "naar",
-            "in",
-            "reizen",
-            "Spanje.",
-            "Hij"
+            "slaapt.",
+            "loop",
+            "De",
+            "baby",
+            "reist"
           ],
           "answers": [
-            "Wij reizen naar Spanje."
+            "De baby slaapt."
           ],
-          "explanation": "Viajamos para Espanha. = Wij reizen naar Spanje. (sobram: Hij, in)",
-          "vocabRefs": [
-            "v-reizen"
-          ]
+          "explanation": "O bebé dorme. = De baby slaapt. (sobram: loop, reist)",
+          "vocabRefs": []
         },
         {
           "id": "s1-u11-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vocês trabalham aqui?",
+          "prompt": "Ele está em casa.",
           "tokens": [
-            "geeft",
-            "hier?",
-            "jullie",
-            "naar",
-            "Werken"
+            "zit",
+            "Hij",
+            "thuis.",
+            "Jij",
+            "de"
           ],
           "answers": [
-            "Werken jullie hier?"
+            "Hij zit thuis."
           ],
-          "explanation": "Vocês trabalham aqui? = Werken jullie hier? (sobram: naar, geeft)",
-          "vocabRefs": [
-            "v-werken"
-          ]
-        },
-        {
-          "id": "s1-u11-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat doe jij vandaag?",
-          "answers": [
-            "Wat doe jij vandaag?"
-          ],
-          "translation": "O que fazes hoje?",
-          "explanation": "«Wat doe jij vandaag?» = O que fazes hoje?",
+          "explanation": "Ele está em casa. = Hij zit thuis. (sobram: de, Jij)",
           "vocabRefs": []
         },
         {
-          "id": "s1-u11-l009-e05",
+          "id": "s1-u11-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Ik werk in Amsterdam.",
@@ -2364,43 +2349,57 @@
           "vocabRefs": []
         },
         {
+          "id": "s1-u11-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik koop brood.",
+          "answers": [
+            "Ik koop brood."
+          ],
+          "translation": "Compro pão.",
+          "explanation": "«Ik koop brood.» = Compro pão.",
+          "vocabRefs": []
+        },
+        {
           "id": "s1-u11-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij geeft een cadeau.",
+          "audioText": "Jij leest de krant.",
           "answers": [
-            "Hij geeft een cadeau."
+            "Jij leest de krant."
           ],
-          "translation": "Ele dá um presente.",
-          "explanation": "«Hij geeft een cadeau.» = Ele dá um presente.",
+          "translation": "Tu lês o jornal.",
+          "explanation": "«Jij leest de krant.» = Tu lês o jornal.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ele faz o jantar.",
+          "translation": "Ele dá um presente.",
           "tokens": [
-            "eten.",
-            "maakt",
-            "Hij"
+            "Hij",
+            "geeft",
+            "een",
+            "cadeau."
           ],
           "alternatives": [],
-          "explanation": "Hij maakt eten.",
+          "explanation": "Hij geeft een cadeau.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "O bebé dorme.",
+          "translation": "Vou a pé para casa.",
           "tokens": [
-            "slaapt.",
-            "De",
-            "baby"
+            "Ik",
+            "loop",
+            "naar",
+            "huis."
           ],
           "alternatives": [],
-          "explanation": "De baby slaapt.",
+          "explanation": "Ik loop naar huis.",
           "vocabRefs": []
         },
         {
@@ -2411,18 +2410,18 @@
           "options": [
             {
               "id": "a",
-              "text": "fazer",
-              "correct": true
+              "text": "comprar",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "viajar",
+              "text": "vir",
               "correct": false
             },
             {
               "id": "c",
-              "text": "viver",
-              "correct": false
+              "text": "fazer",
+              "correct": true
             }
           ],
           "explanation": "«maken» = fazer.",
@@ -2438,7 +2437,7 @@
           "options": [
             {
               "id": "a",
-              "text": "viajar",
+              "text": "estar de pé",
               "correct": false
             },
             {
@@ -2448,7 +2447,7 @@
             },
             {
               "id": "c",
-              "text": "ler",
+              "text": "dar",
               "correct": false
             }
           ],
@@ -2512,16 +2511,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat doe je?",
-          "pt": "O que fazes? / O que estás a fazer?"
+          "nl": "Hij komt morgen.",
+          "pt": "Ele vem amanhã."
         },
         {
-          "nl": "De baby slaapt.",
-          "pt": "O bebé dorme."
+          "nl": "Hij maakt eten.",
+          "pt": "Ele faz o jantar."
         },
         {
-          "nl": "Zij reist veel.",
-          "pt": "Ela viaja muito."
+          "nl": "Ik zie de zee.",
+          "pt": "Vejo o mar."
         }
       ],
       "grammar": [],
@@ -2532,20 +2531,20 @@
           "instruction": "Associe as palavras.",
           "pairs": [
             {
-              "nl": "leren",
-              "pt": "aprender"
+              "nl": "staan",
+              "pt": "estar de pé"
             },
             {
-              "nl": "doen",
-              "pt": "fazer"
+              "nl": "geven",
+              "pt": "dar"
             },
             {
               "nl": "zien",
               "pt": "ver"
             },
             {
-              "nl": "kopen",
-              "pt": "comprar"
+              "nl": "doen",
+              "pt": "fazer"
             },
             {
               "nl": "reizen",
@@ -2554,10 +2553,10 @@
           ],
           "explanation": "Revisão do vocabulário da unidade.",
           "vocabRefs": [
-            "v-leren",
-            "v-doen",
+            "v-staan",
+            "v-geven",
             "v-zien",
-            "v-kopen",
+            "v-doen",
             "v-reizen"
           ]
         },
@@ -2577,39 +2576,39 @@
           "id": "s1-u11-l010-e03",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Hij komt morgen.",
+          "audioText": "Hij maakt eten.",
           "answers": [
-            "Hij komt morgen."
+            "Hij maakt eten."
           ],
-          "translation": "Ele vem amanhã.",
-          "explanation": "«Hij komt morgen.» = Ele vem amanhã.",
+          "translation": "Ele faz o jantar.",
+          "explanation": "«Hij maakt eten.» = Ele faz o jantar.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l010-e04",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «leven»?",
+          "prompt": "O que significa «lezen»?",
           "options": [
             {
               "id": "a",
-              "text": "dar",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "viver",
+              "text": "ler",
               "correct": true
             },
             {
+              "id": "b",
+              "text": "fazer",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "aprender",
+              "text": "comprar",
               "correct": false
             }
           ],
-          "explanation": "«leven» = viver.",
+          "explanation": "«lezen» = ler.",
           "vocabRefs": [
-            "v-leven"
+            "v-lezen"
           ]
         },
         {
@@ -2620,18 +2619,18 @@
           "options": [
             {
               "id": "a",
-              "text": "fazer",
+              "text": "dormir",
               "correct": false
             },
             {
               "id": "b",
-              "text": "comprar",
-              "correct": false
+              "text": "dar",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "dar",
-              "correct": true
+              "text": "esperar",
+              "correct": false
             }
           ],
           "explanation": "«geven» = dar.",
@@ -2643,47 +2642,66 @@
           "id": "s1-u11-l010-e06",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Trabalho em Amesterdão.",
+          "translation": "Tu lês o jornal.",
           "tokens": [
-            "werk",
-            "in",
-            "Amsterdam.",
-            "Ik"
+            "Jij",
+            "leest",
+            "de",
+            "krant."
           ],
           "alternatives": [],
-          "explanation": "Ik werk in Amsterdam.",
+          "explanation": "Jij leest de krant.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l010-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Faço um bolo.",
+          "translation": "Trabalho em Amesterdão.",
           "tokens": [
-            "taart.",
-            "maak",
-            "een",
-            "Ik"
+            "Ik",
+            "werk",
+            "in",
+            "Amsterdam."
           ],
           "alternatives": [],
-          "explanation": "Ik maak een taart.",
+          "explanation": "Ik werk in Amsterdam.",
           "vocabRefs": []
         },
         {
           "id": "s1-u11-l010-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "___ jullie hier?",
+          "translation": "Vocês trabalham aqui?",
+          "answers": [
+            "Werken"
+          ],
+          "choices": [
+            "Komen",
+            "Doen",
+            "Werken"
+          ],
+          "explanation": "Werken jullie hier?",
+          "vocabRefs": [
+            "v-werken"
+          ]
+        },
+        {
+          "id": "s1-u11-l010-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik werk, ik lees, ik reis.»?",
+          "prompt": "O que significa: «Wij reizen naar Spanje.»?",
           "options": [
             {
               "id": "a",
-              "text": "Vejo o mar.",
-              "correct": false
+              "text": "Viajamos para Espanha.",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "Trabalho, leio, viajo.",
-              "correct": true
+              "text": "Faço um bolo.",
+              "correct": false
             },
             {
               "id": "c",
@@ -2691,34 +2709,9 @@
               "correct": false
             }
           ],
-          "explanation": "«Ik werk, ik lees, ik reis.» = Trabalho, leio, viajo.",
-          "vocabRefs": []
-        },
-        {
-          "id": "s1-u11-l010-e09",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «geven»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "dar",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "estar sentado",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "ler",
-              "correct": false
-            }
-          ],
-          "explanation": "«geven» = dar.",
+          "explanation": "«Wij reizen naar Spanje.» = Viajamos para Espanha.",
           "vocabRefs": [
-            "v-geven"
+            "v-reizen"
           ]
         }
       ],

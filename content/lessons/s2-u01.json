@@ -1878,16 +1878,16 @@
       ],
       "examples": [
         {
+          "nl": "'s Avonds kook ik.",
+          "pt": "À noite cozinho."
+        },
+        {
           "nl": "Ik word om zeven uur wakker.",
           "pt": "Acordo às sete."
         },
         {
-          "nl": "'s Nachts slaap ik.",
-          "pt": "À noite (de madrugada) durmo."
-        },
-        {
-          "nl": "Om twaalf uur lunch ik.",
-          "pt": "Ao meio-dia almoço."
+          "nl": "Zondag gaan we op bezoek bij oma.",
+          "pt": "No domingo vamos visitar a avó."
         }
       ],
       "grammar": [],
@@ -1935,12 +1935,12 @@
           "translation": "Às onze vou para a cama.",
           "tokens": [
             "Om",
-            "bed.",
+            "elf",
             "uur",
             "ga",
             "ik",
-            "elf",
-            "naar"
+            "naar",
+            "bed."
           ],
           "alternatives": [],
           "explanation": "Om elf uur ga ik naar bed.",
@@ -1952,10 +1952,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Como uma sandes de queijo.",
           "tokens": [
-            "broodje",
-            "eet",
             "Ik",
+            "eet",
             "een",
+            "broodje",
             "kaas."
           ],
           "alternatives": [],
@@ -1968,12 +1968,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "O meu trabalho começa às nove.",
           "tokens": [
-            "werk",
-            "uur.",
             "Mijn",
-            "om",
+            "werk",
             "begint",
-            "negen"
+            "om",
+            "negen",
+            "uur."
           ],
           "alternatives": [],
           "explanation": "Mijn werk begint om negen uur.",
@@ -1985,17 +1985,17 @@
           "id": "s2-u01-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «We eten om half zeven.»?",
+          "prompt": "O que significa: «Hij staat vroeg op.»?",
           "options": [
             {
               "id": "a",
-              "text": "Jantamos às seis e meia.",
-              "correct": true
+              "text": "À noite cozinho.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "À tarde trabalho.",
-              "correct": false
+              "text": "Ele levanta-se cedo.",
+              "correct": true
             },
             {
               "id": "c",
@@ -2003,74 +2003,73 @@
               "correct": false
             }
           ],
-          "explanation": "«We eten om half zeven.» = Jantamos às seis e meia.",
+          "explanation": "«Hij staat vroeg op.» = Ele levanta-se cedo.",
           "vocabRefs": []
         },
         {
           "id": "s2-u01-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik word om zeven uur wakker.»?",
+          "prompt": "O que significa: «'s Nachts slaap ik.»?",
           "options": [
             {
               "id": "a",
-              "text": "Acordo às sete.",
+              "text": "À noite (de madrugada) durmo.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "O meu trabalho começa às nove.",
+              "text": "Às onze vou para a cama.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "À noite (de madrugada) durmo.",
+              "text": "Acordo às sete.",
               "correct": false
             }
           ],
-          "explanation": "«Ik word om zeven uur wakker.» = Acordo às sete.",
+          "explanation": "«'s Nachts slaap ik.» = À noite (de madrugada) durmo.",
           "vocabRefs": []
         },
         {
           "id": "s2-u01-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Acordo às sete.",
+          "prompt": "Ele levanta-se cedo.",
           "tokens": [
-            "elf",
-            "zeven",
-            "om",
-            "uur",
-            "Ik",
-            "wakker.",
             "op.",
-            "word"
+            "vroeg",
+            "staat",
+            "Hij",
+            "gaan",
+            "half"
           ],
           "answers": [
-            "Ik word om zeven uur wakker."
+            "Hij staat vroeg op."
           ],
-          "explanation": "Acordo às sete. = Ik word om zeven uur wakker. (sobram: elf, op.)",
+          "explanation": "Ele levanta-se cedo. = Hij staat vroeg op. (sobram: gaan, half)",
           "vocabRefs": []
         },
         {
           "id": "s2-u01-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ao meio-dia almoço.",
+          "prompt": "À tarde trabalho.",
           "tokens": [
-            "ik.",
-            "zeven",
-            "eten",
-            "uur",
+            "doe",
             "Om",
-            "twaalf",
-            "lunch"
+            "ik.",
+            "Middags",
+            "werk",
+            "'s"
           ],
           "answers": [
-            "Om twaalf uur lunch ik."
+            "'s Middags werk ik."
           ],
-          "explanation": "Ao meio-dia almoço. = Om twaalf uur lunch ik. (sobram: zeven, eten)",
-          "vocabRefs": []
+          "explanation": "À tarde trabalho. = 's Middags werk ik. (sobram: doe, Om)",
+          "vocabRefs": [
+            "v-werk"
+          ]
         }
       ],
       "difficulty": 2,
@@ -2136,16 +2135,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik eet een broodje kaas.",
-          "pt": "Como uma sandes de queijo."
+          "nl": "We eten om half zeven.",
+          "pt": "Jantamos às seis e meia."
+        },
+        {
+          "nl": "Om elf uur ga ik naar bed.",
+          "pt": "Às onze vou para a cama."
         },
         {
           "nl": "Ik sta om half acht op.",
           "pt": "Levanto-me às sete e meia."
-        },
-        {
-          "nl": "Om vijf uur ben ik klaar.",
-          "pt": "Às cinco acabo."
         }
       ],
       "grammar": [],
@@ -2154,54 +2153,54 @@
           "id": "s2-u01-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «trabalhar a partir de casa» em neerlandês?",
+          "prompt": "Como se diz «descansar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "thuiswerken",
-              "correct": true
+              "text": "'s avonds",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "klaar",
+              "text": "lunchen",
               "correct": false
             },
             {
               "id": "c",
-              "text": "lunchen",
-              "correct": false
+              "text": "rusten",
+              "correct": true
             }
           ],
-          "explanation": "trabalhar a partir de casa = «thuiswerken».",
+          "explanation": "descansar = «rusten».",
           "vocabRefs": [
-            "v-thuiswerken"
+            "v-rusten"
           ]
         },
         {
           "id": "s2-u01-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «cozinhar» em neerlandês?",
+          "prompt": "Como se diz «almoçar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "koken",
-              "correct": true
+              "text": "tandenpoetsen",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "boodschappen doen",
-              "correct": false
+              "text": "lunchen",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "tv kijken",
+              "text": "ontbijten",
               "correct": false
             }
           ],
-          "explanation": "cozinhar = «koken».",
+          "explanation": "almoçar = «lunchen».",
           "vocabRefs": [
-            "v-koken"
+            "v-lunchen"
           ]
         },
         {
@@ -2214,9 +2213,9 @@
             "weekend"
           ],
           "choices": [
-            "beginnen",
+            "koken",
             "weekend",
-            "douchen"
+            "avondeten"
           ],
           "explanation": "In het weekend slaap ik uit.",
           "vocabRefs": [
@@ -2225,75 +2224,92 @@
         },
         {
           "id": "s2-u01-l008-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik eet een broodje kaas.",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Mijn ___ begint om negen uur.",
+          "translation": "O meu trabalho começa às nove.",
           "answers": [
-            "Ik eet een broodje kaas."
+            "werk"
           ],
-          "translation": "Como uma sandes de queijo.",
-          "explanation": "«Ik eet een broodje kaas.» = Como uma sandes de queijo.",
-          "vocabRefs": []
+          "choices": [
+            "avondeten",
+            "klaar",
+            "werk"
+          ],
+          "explanation": "Mijn werk begint om negen uur.",
+          "vocabRefs": [
+            "v-werk"
+          ]
         },
         {
           "id": "s2-u01-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Om vijf uur ben ik klaar.",
+          "audioText": "Mijn werk begint om negen uur.",
           "answers": [
-            "Om vijf uur ben ik klaar."
+            "Mijn werk begint om negen uur."
           ],
-          "translation": "Às cinco acabo.",
-          "explanation": "«Om vijf uur ben ik klaar.» = Às cinco acabo.",
+          "translation": "O meu trabalho começa às nove.",
+          "explanation": "«Mijn werk begint om negen uur.» = O meu trabalho começa às nove.",
           "vocabRefs": [
-            "v-klaar"
+            "v-werk"
           ]
         },
         {
           "id": "s2-u01-l008-e06",
-          "type": "buildSentence",
-          "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No domingo vamos visitar a avó.",
-          "tokens": [
-            "bij",
-            "Zondag",
-            "gaan",
-            "oma.",
-            "bezoek",
-            "'s",
-            "we",
-            "op",
-            "zeven"
-          ],
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Ik word om zeven uur wakker.",
           "answers": [
-            "Zondag gaan we op bezoek bij oma."
+            "Ik word om zeven uur wakker."
           ],
-          "explanation": "No domingo vamos visitar a avó. = Zondag gaan we op bezoek bij oma. (sobram: 's, zeven)",
+          "translation": "Acordo às sete.",
+          "explanation": "«Ik word om zeven uur wakker.» = Acordo às sete.",
           "vocabRefs": []
         },
         {
           "id": "s2-u01-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Levanto-me às sete e meia.",
+          "prompt": "À noite cozinho.",
           "tokens": [
-            "Ik",
-            "sta",
-            "doe",
-            "acht",
-            "om",
-            "op.",
-            "half",
-            "vijf"
+            "ik.",
+            "We",
+            "kook",
+            "Avonds",
+            "wakker.",
+            "'s"
           ],
           "answers": [
-            "Ik sta om half acht op."
+            "'s Avonds kook ik."
           ],
-          "explanation": "Levanto-me às sete e meia. = Ik sta om half acht op. (sobram: vijf, doe)",
-          "vocabRefs": []
+          "explanation": "À noite cozinho. = 's Avonds kook ik. (sobram: We, wakker.)",
+          "vocabRefs": [
+            "v-s-avonds"
+          ]
         },
         {
           "id": "s2-u01-l008-e08",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "prompt": "Ao sábado faço compras.",
+          "tokens": [
+            "met",
+            "doe",
+            "Op",
+            "Avonds",
+            "ik",
+            "boodschappen.",
+            "zaterdag"
+          ],
+          "answers": [
+            "Op zaterdag doe ik boodschappen."
+          ],
+          "explanation": "Ao sábado faço compras. = Op zaterdag doe ik boodschappen. (sobram: met, Avonds)",
+          "vocabRefs": []
+        },
+        {
+          "id": "s2-u01-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
           "noun": "pauze",
@@ -2305,28 +2321,28 @@
           ]
         },
         {
-          "id": "s2-u01-l008-e09",
+          "id": "s2-u01-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «'s Nachts slaap ik.»?",
+          "prompt": "O que significa: «Zondag gaan we op bezoek bij oma.»?",
           "options": [
             {
               "id": "a",
-              "text": "À noite (de madrugada) durmo.",
+              "text": "No domingo vamos visitar a avó.",
               "correct": true
             },
             {
               "id": "b",
-              "text": "Levanto-me às sete e meia.",
+              "text": "De manhã tomo o pequeno-almoço com pão.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Às cinco acabo.",
+              "text": "Jantamos às seis e meia.",
               "correct": false
             }
           ],
-          "explanation": "«'s Nachts slaap ik.» = À noite (de madrugada) durmo.",
+          "explanation": "«Zondag gaan we op bezoek bij oma.» = No domingo vamos visitar a avó.",
           "vocabRefs": []
         }
       ],
@@ -2393,16 +2409,16 @@
       ],
       "examples": [
         {
+          "nl": "Ik sta om half acht op.",
+          "pt": "Levanto-me às sete e meia."
+        },
+        {
+          "nl": "Ik sta op, ik douche, ik ontbijt en dan ga ik naar mijn werk.",
+          "pt": "Levanto-me, tomo duche, tomo o pequeno-almoço e depois vou trabalhar."
+        },
+        {
           "nl": "In het weekend slaap ik uit.",
           "pt": "Ao fim de semana durmo até tarde."
-        },
-        {
-          "nl": "Op zaterdag doe ik boodschappen.",
-          "pt": "Ao sábado faço compras."
-        },
-        {
-          "nl": "Hij staat vroeg op.",
-          "pt": "Ele levanta-se cedo."
         }
       ],
       "grammar": [],
@@ -2411,45 +2427,39 @@
           "id": "s2-u01-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O meu trabalho começa às nove.",
+          "prompt": "À noite (de madrugada) durmo.",
           "tokens": [
-            "begint",
-            "lunch",
+            "ik.",
+            "zeven.",
             "om",
-            "uur.",
-            "werk",
-            "Mijn",
-            "negen",
-            "op"
+            "slaap",
+            "Nachts",
+            "'s"
           ],
           "answers": [
-            "Mijn werk begint om negen uur."
+            "'s Nachts slaap ik."
           ],
-          "explanation": "O meu trabalho começa às nove. = Mijn werk begint om negen uur. (sobram: op, lunch)",
-          "vocabRefs": [
-            "v-werk"
-          ]
+          "explanation": "À noite (de madrugada) durmo. = 's Nachts slaap ik. (sobram: om, zeven.)",
+          "vocabRefs": []
         },
         {
           "id": "s2-u01-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Às onze vou para a cama.",
+          "prompt": "Jantamos às seis e meia.",
           "tokens": [
-            "ga",
-            "naar",
+            "half",
+            "eten",
             "We",
-            "twaalf",
-            "ik",
-            "elf",
-            "bed.",
-            "Om",
-            "uur"
+            "om",
+            "uur",
+            "zeven.",
+            "Op"
           ],
           "answers": [
-            "Om elf uur ga ik naar bed."
+            "We eten om half zeven."
           ],
-          "explanation": "Às onze vou para a cama. = Om elf uur ga ik naar bed. (sobram: We, twaalf)",
+          "explanation": "Jantamos às seis e meia. = We eten om half zeven. (sobram: Op, uur)",
           "vocabRefs": []
         },
         {
@@ -2458,19 +2468,19 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "De manhã tomo o pequeno-almoço com pão.",
           "tokens": [
-            "brood.",
-            "ik",
-            "Hij",
-            "met",
-            "Ochtends",
+            "om",
             "'s",
+            "brood.",
             "ontbijt",
-            "kook"
+            "wakker.",
+            "Ochtends",
+            "ik",
+            "met"
           ],
           "answers": [
             "'s Ochtends ontbijt ik met brood."
           ],
-          "explanation": "De manhã tomo o pequeno-almoço com pão. = 's Ochtends ontbijt ik met brood. (sobram: Hij, kook)",
+          "explanation": "De manhã tomo o pequeno-almoço com pão. = 's Ochtends ontbijt ik met brood. (sobram: om, wakker.)",
           "vocabRefs": [
             "v-s-ochtends"
           ]
@@ -2479,24 +2489,24 @@
           "id": "s2-u01-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik sta om half acht op.",
+          "audioText": "'s Nachts slaap ik.",
           "answers": [
-            "Ik sta om half acht op."
+            "'s Nachts slaap ik."
           ],
-          "translation": "Levanto-me às sete e meia.",
-          "explanation": "«Ik sta om half acht op.» = Levanto-me às sete e meia.",
+          "translation": "À noite (de madrugada) durmo.",
+          "explanation": "«'s Nachts slaap ik.» = À noite (de madrugada) durmo.",
           "vocabRefs": []
         },
         {
           "id": "s2-u01-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik eet een broodje kaas.",
+          "audioText": "Om elf uur ga ik naar bed.",
           "answers": [
-            "Ik eet een broodje kaas."
+            "Om elf uur ga ik naar bed."
           ],
-          "translation": "Como uma sandes de queijo.",
-          "explanation": "«Ik eet een broodje kaas.» = Como uma sandes de queijo.",
+          "translation": "Às onze vou para a cama.",
+          "explanation": "«Om elf uur ga ik naar bed.» = Às onze vou para a cama.",
           "vocabRefs": []
         },
         {
@@ -2517,86 +2527,87 @@
           "id": "s2-u01-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ele levanta-se cedo.",
+          "translation": "Ao meio-dia almoço.",
           "tokens": [
-            "vroeg",
-            "op.",
-            "Hij",
-            "staat"
+            "Om",
+            "twaalf",
+            "uur",
+            "lunch",
+            "ik."
           ],
           "alternatives": [],
-          "explanation": "Hij staat vroeg op.",
+          "explanation": "Om twaalf uur lunch ik.",
           "vocabRefs": []
         },
         {
           "id": "s2-u01-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "À noite cozinho.",
+          "translation": "Levanto-me às sete e meia.",
           "tokens": [
-            "ik.",
-            "kook",
-            "'s",
-            "Avonds"
+            "Ik",
+            "sta",
+            "om",
+            "half",
+            "acht",
+            "op."
           ],
           "alternatives": [],
-          "explanation": "'s Avonds kook ik.",
-          "vocabRefs": [
-            "v-s-avonds"
-          ]
+          "explanation": "Ik sta om half acht op.",
+          "vocabRefs": []
         },
         {
           "id": "s2-u01-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «wakker worden»?",
+          "prompt": "O que significa «sporten»?",
           "options": [
             {
               "id": "a",
-              "text": "fazer compras",
+              "text": "pausa",
               "correct": false
             },
             {
               "id": "b",
-              "text": "acordar",
+              "text": "fazer desporto",
               "correct": true
             },
             {
               "id": "c",
-              "text": "lavar os dentes",
+              "text": "fim de semana",
               "correct": false
             }
           ],
-          "explanation": "«wakker worden» = acordar.",
+          "explanation": "«sporten» = fazer desporto.",
           "vocabRefs": [
-            "v-wakker-worden"
+            "v-sporten"
           ]
         },
         {
           "id": "s2-u01-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het weekend»?",
+          "prompt": "O que significa «tv kijken»?",
           "options": [
             {
               "id": "a",
-              "text": "fim de semana",
-              "correct": true
+              "text": "à noite",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "trabalhar a partir de casa",
+              "text": "pronto",
               "correct": false
             },
             {
               "id": "c",
-              "text": "tomar o pequeno-almoço",
-              "correct": false
+              "text": "ver televisão",
+              "correct": true
             }
           ],
-          "explanation": "«het weekend» = fim de semana.",
+          "explanation": "«tv kijken» = ver televisão.",
           "vocabRefs": [
-            "v-weekend"
+            "v-tv-kijken"
           ]
         }
       ],

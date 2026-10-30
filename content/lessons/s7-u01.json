@@ -1963,16 +1963,16 @@
       ],
       "examples": [
         {
-          "nl": "Waar was ik? Ik ben de draad kwijt.",
-          "pt": "Onde é que eu ia? Perdi o fio à meada."
+          "nl": "Het was echt spannend.",
+          "pt": "Foi mesmo emocionante."
         },
         {
-          "nl": "We dwalen af.",
-          "pt": "Estamos a desviar-nos do tema."
+          "nl": "Kun je iets vertellen over je levensloop?",
+          "pt": "Podes falar um pouco do teu percurso de vida?"
         },
         {
-          "nl": "Om daar even op door te gaan: hoe zit het met de kosten?",
-          "pt": "Desenvolvendo esse ponto: e os custos?"
+          "nl": "Ik ga graag nieuwe uitdagingen aan.",
+          "pt": "Gosto de aceitar novos desafios."
         }
       ],
       "grammar": [],
@@ -2024,13 +2024,13 @@
           "translation": "A mudança foi um ponto de viragem na minha vida.",
           "tokens": [
             "De",
+            "verhuizing",
+            "was",
             "een",
+            "keerpunt",
             "in",
             "mijn",
-            "was",
-            "verhuizing",
-            "leven.",
-            "keerpunt"
+            "leven."
           ],
           "alternatives": [],
           "explanation": "De verhuizing was een keerpunt in mijn leven.",
@@ -2044,16 +2044,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "A discussão foi muito acesa.",
           "tokens": [
-            "snede",
-            "scherpst",
+            "De",
             "discussie",
             "werd",
-            "gevoerd.",
-            "van",
-            "De",
             "op",
+            "het",
+            "scherpst",
+            "van",
             "de",
-            "het"
+            "snede",
+            "gevoerd."
           ],
           "alternatives": [],
           "explanation": "De discussie werd op het scherpst van de snede gevoerd.",
@@ -2068,9 +2068,9 @@
           "translation": "Cozinhar é a minha paixão.",
           "tokens": [
             "Koken",
+            "is",
             "mijn",
-            "passie.",
-            "is"
+            "passie."
           ],
           "alternatives": [],
           "explanation": "Koken is mijn passie.",
@@ -2082,7 +2082,32 @@
           "id": "s7-u01-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Je raadt nooit wie ik tegenkwam!»?",
+          "prompt": "O que significa: «Ik sluit me aan bij Bram.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Onde é que eu ia? Perdi o fio à meada.",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Concordo com o Bram.",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "Queria pegar no que a Sanne disse.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Ik sluit me aan bij Bram.» = Concordo com o Bram.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s7-u01-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Het was echt spannend.»?",
           "options": [
             {
               "id": "a",
@@ -2091,67 +2116,39 @@
             },
             {
               "id": "b",
-              "text": "Estamos a desviar-nos do tema.",
+              "text": "Em retrospetiva, foi a escolha certa.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Nunca vais adivinhar com quem me cruzei!",
+              "text": "Foi mesmo emocionante.",
               "correct": true
             }
           ],
-          "explanation": "«Je raadt nooit wie ik tegenkwam!» = Nunca vais adivinhar com quem me cruzei!",
+          "explanation": "«Het was echt spannend.» = Foi mesmo emocionante.",
           "vocabRefs": [
-            "v-je-raadt-nooit"
+            "v-spannend"
           ]
-        },
-        {
-          "id": "s7-u01-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Sorry, ik wijd een beetje uit.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Cozinhar é a minha paixão.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Afinal veio-se a saber que era um mal-entendido.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Desculpem, estou a alongar-me.",
-              "correct": true
-            }
-          ],
-          "explanation": "«Sorry, ik wijd een beetje uit.» = Desculpem, estou a alongar-me.",
-          "vocabRefs": []
         },
         {
           "id": "s7-u01-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Podes falar um pouco do teu percurso de vida?",
+          "prompt": "Foi mesmo emocionante.",
           "tokens": [
-            "over",
-            "aan.",
-            "levensloop?",
-            "vertellen",
-            "Kun",
-            "iets",
-            "aanhaken",
-            "je",
-            "je"
+            "spannend.",
+            "Het",
+            "echt",
+            "was",
+            "niemand",
+            "een"
           ],
           "answers": [
-            "Kun je iets vertellen over je levensloop?"
+            "Het was echt spannend."
           ],
-          "explanation": "Podes falar um pouco do teu percurso de vida? = Kun je iets vertellen over je levensloop? (sobram: aan., aanhaken)",
+          "explanation": "Foi mesmo emocionante. = Het was echt spannend. (sobram: niemand, een)",
           "vocabRefs": [
-            "v-levensloop"
+            "v-spannend"
           ]
         },
         {
@@ -2160,17 +2157,17 @@
           "instruction": "Construa a frase em neerlandês.",
           "prompt": "Cozinhar é a minha paixão.",
           "tokens": [
-            "ik",
-            "wijd",
-            "mijn",
             "passie.",
             "Koken",
-            "is"
+            "is",
+            "werd",
+            "De",
+            "mijn"
           ],
           "answers": [
             "Koken is mijn passie."
           ],
-          "explanation": "Cozinhar é a minha paixão. = Koken is mijn passie. (sobram: ik, wijd)",
+          "explanation": "Cozinhar é a minha paixão. = Koken is mijn passie. (sobram: De, werd)",
           "vocabRefs": [
             "v-passie"
           ]
@@ -2236,16 +2233,16 @@
       ],
       "examples": [
         {
+          "nl": "Kun je iets vertellen over je levensloop?",
+          "pt": "Podes falar um pouco do teu percurso de vida?"
+        },
+        {
           "nl": "De verhuizing was een keerpunt in mijn leven.",
           "pt": "A mudança foi um ponto de viragem na minha vida."
         },
         {
-          "nl": "Koken is mijn passie.",
-          "pt": "Cozinhar é a minha paixão."
-        },
-        {
-          "nl": "Sorry, ik wijd een beetje uit.",
-          "pt": "Desculpem, estou a alongar-me."
+          "nl": "Terugblikkend ben ik dankbaar.",
+          "pt": "Olhando para trás, estou grato."
         }
       ],
       "grammar": [],
@@ -2254,58 +2251,77 @@
           "id": "s7-u01-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «de forma muito acesa» em neerlandês?",
+          "prompt": "Como se diz «ponto de viragem» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "de draad kwijt zijn",
+              "text": "achteraf gezien",
               "correct": false
             },
             {
               "id": "b",
-              "text": "op het scherpst van de snede",
-              "correct": true
+              "text": "aanhaken bij",
+              "correct": false
             },
             {
               "id": "c",
               "text": "keerpunt",
-              "correct": false
+              "correct": true
             }
           ],
-          "explanation": "de forma muito acesa = «op het scherpst van de snede».",
+          "explanation": "ponto de viragem = «keerpunt».",
           "vocabRefs": [
-            "v-op-het-scherpst-van-de-snede"
+            "v-keerpunt"
           ]
         },
         {
           "id": "s7-u01-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «nunca vais adivinhar…» em neerlandês?",
+          "prompt": "Como se diz «emocionante» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "op het scherpst van de snede",
+              "text": "achteraf gezien",
               "correct": false
             },
             {
               "id": "b",
-              "text": "je raadt nooit…",
-              "correct": true
+              "text": "terugblikkend",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "aanhaken bij",
-              "correct": false
+              "text": "spannend",
+              "correct": true
             }
           ],
-          "explanation": "nunca vais adivinhar… = «je raadt nooit…».",
+          "explanation": "emocionante = «spannend».",
           "vocabRefs": [
-            "v-je-raadt-nooit"
+            "v-spannend"
           ]
         },
         {
           "id": "s7-u01-l008-e03",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Koken is mijn ___.",
+          "translation": "Cozinhar é a minha paixão.",
+          "answers": [
+            "passie"
+          ],
+          "choices": [
+            "afdwalen",
+            "passie",
+            "keerpunt"
+          ],
+          "explanation": "Koken is mijn passie.",
+          "vocabRefs": [
+            "v-passie"
+          ]
+        },
+        {
+          "id": "s7-u01-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Kun je iets vertellen over je ___?",
@@ -2321,25 +2337,6 @@
           "explanation": "Kun je iets vertellen over je levensloop?",
           "vocabRefs": [
             "v-levensloop"
-          ]
-        },
-        {
-          "id": "s7-u01-l008-e04",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Koken is mijn ___.",
-          "translation": "Cozinhar é a minha paixão.",
-          "answers": [
-            "passie"
-          ],
-          "choices": [
-            "levensloop",
-            "drijfveer",
-            "passie"
-          ],
-          "explanation": "Koken is mijn passie.",
-          "vocabRefs": [
-            "v-passie"
           ]
         },
         {
@@ -2360,97 +2357,96 @@
           "id": "s7-u01-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De verhuizing was een keerpunt in mijn leven.",
+          "audioText": "Ik ga graag nieuwe uitdagingen aan.",
           "answers": [
-            "De verhuizing was een keerpunt in mijn leven."
+            "Ik ga graag nieuwe uitdagingen aan."
           ],
-          "translation": "A mudança foi um ponto de viragem na minha vida.",
-          "explanation": "«De verhuizing was een keerpunt in mijn leven.» = A mudança foi um ponto de viragem na minha vida.",
-          "vocabRefs": [
-            "v-keerpunt"
-          ]
+          "translation": "Gosto de aceitar novos desafios.",
+          "explanation": "«Ik ga graag nieuwe uitdagingen aan.» = Gosto de aceitar novos desafios.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u01-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Gosto de aceitar novos desafios.",
+          "prompt": "Nunca vais adivinhar com quem me cruzei!",
           "tokens": [
-            "ervan",
+            "raadt",
+            "Je",
+            "wie",
+            "snede",
+            "nooit",
+            "tegenkwam!",
             "de",
-            "graag",
-            "Ik",
-            "aan.",
-            "nieuwe",
-            "uitdagingen",
-            "ga"
+            "ik"
           ],
           "answers": [
-            "Ik ga graag nieuwe uitdagingen aan."
+            "Je raadt nooit wie ik tegenkwam!"
           ],
-          "explanation": "Gosto de aceitar novos desafios. = Ik ga graag nieuwe uitdagingen aan. (sobram: ervan, de)",
-          "vocabRefs": []
+          "explanation": "Nunca vais adivinhar com quem me cruzei! = Je raadt nooit wie ik tegenkwam! (sobram: snede, de)",
+          "vocabRefs": [
+            "v-je-raadt-nooit"
+          ]
         },
         {
           "id": "s7-u01-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Onde é que eu ia? Perdi o fio à meada.",
+          "prompt": "Afinal veio-se a saber que era um mal-entendido.",
           "tokens": [
-            "dat",
-            "de",
-            "draad",
-            "kwijt.",
-            "Waar",
-            "was",
-            "heb,",
-            "Ik",
-            "ben",
-            "ik?"
+            "een",
+            "misverstand.",
+            "snede",
+            "bleek",
+            "het",
+            "Uiteindelijk",
+            "mijn"
           ],
           "answers": [
-            "Waar was ik? Ik ben de draad kwijt."
+            "Uiteindelijk bleek het een misverstand."
           ],
-          "explanation": "Onde é que eu ia? Perdi o fio à meada. = Waar was ik? Ik ben de draad kwijt. (sobram: heb,, dat)",
-          "vocabRefs": []
+          "explanation": "Afinal veio-se a saber que era um mal-entendido. = Uiteindelijk bleek het een misverstand. (sobram: mijn, snede)",
+          "vocabRefs": [
+            "v-uiteindelijk-bleek"
+          ]
         },
         {
           "id": "s7-u01-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "passie",
-          "pt": "paixão",
+          "noun": "levensloop",
+          "pt": "percurso de vida",
           "article": "de",
-          "explanation": "de passie.",
+          "explanation": "de levensloop.",
           "vocabRefs": [
-            "v-passie"
+            "v-levensloop"
           ]
         },
         {
           "id": "s7-u01-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Koken is mijn passie.»?",
+          "prompt": "O que significa: «Wat is je grootste drijfveer?»?",
           "options": [
             {
               "id": "a",
-              "text": "Cozinhar é a minha paixão.",
-              "correct": true
+              "text": "A discussão foi muito acesa.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Afinal veio-se a saber que era um mal-entendido.",
+              "text": "Cozinhar é a minha paixão.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Foi mesmo emocionante.",
-              "correct": false
+              "text": "Qual é a tua maior motivação?",
+              "correct": true
             }
           ],
-          "explanation": "«Koken is mijn passie.» = Cozinhar é a minha paixão.",
+          "explanation": "«Wat is je grootste drijfveer?» = Qual é a tua maior motivação?",
           "vocabRefs": [
-            "v-passie"
+            "v-drijfveer"
           ]
         }
       ],
@@ -2514,16 +2510,16 @@
       ],
       "examples": [
         {
-          "nl": "Het was echt spannend.",
-          "pt": "Foi mesmo emocionante."
+          "nl": "Uiteindelijk bleek het een misverstand.",
+          "pt": "Afinal veio-se a saber que era um mal-entendido."
         },
         {
-          "nl": "Het gekke was dat niemand iets zei.",
-          "pt": "O mais estranho foi que ninguém disse nada."
+          "nl": "Sorry, ik wijd een beetje uit.",
+          "pt": "Desculpem, estou a alongar-me."
         },
         {
-          "nl": "Wat is je grootste drijfveer?",
-          "pt": "Qual é a tua maior motivação?"
+          "nl": "Kun je iets vertellen over je levensloop?",
+          "pt": "Podes falar um pouco do teu percurso de vida?"
         }
       ],
       "grammar": [],
@@ -2532,90 +2528,72 @@
           "id": "s7-u01-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O mais estranho foi que ninguém disse nada.",
+          "prompt": "A mudança foi um ponto de viragem na minha vida.",
           "tokens": [
-            "in",
-            "niemand",
             "was",
-            "gekke",
-            "zei.",
-            "Het",
-            "dat",
-            "iets",
-            "van"
+            "verhuizing",
+            "een",
+            "aan.",
+            "De",
+            "in",
+            "leven.",
+            "mijn",
+            "af.",
+            "keerpunt"
           ],
           "answers": [
-            "Het gekke was dat niemand iets zei."
+            "De verhuizing was een keerpunt in mijn leven."
           ],
-          "explanation": "O mais estranho foi que ninguém disse nada. = Het gekke was dat niemand iets zei. (sobram: in, van)",
+          "explanation": "A mudança foi um ponto de viragem na minha vida. = De verhuizing was een keerpunt in mijn leven. (sobram: aan., af.)",
           "vocabRefs": [
-            "v-het-gekke-was"
+            "v-keerpunt"
           ]
         },
         {
           "id": "s7-u01-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A discussão foi muito acesa.",
+          "prompt": "Desculpem, estou a alongar-me.",
           "tokens": [
-            "van",
-            "gevoerd.",
-            "De",
-            "heb,",
-            "niemand",
-            "discussie",
-            "het",
-            "snede",
-            "scherpst",
-            "op",
-            "werd",
-            "de"
+            "uit.",
+            "ik",
+            "mijn",
+            "Sorry,",
+            "beetje",
+            "iets",
+            "wijd",
+            "een"
           ],
           "answers": [
-            "De discussie werd op het scherpst van de snede gevoerd."
+            "Sorry, ik wijd een beetje uit."
           ],
-          "explanation": "A discussão foi muito acesa. = De discussie werd op het scherpst van de snede gevoerd. (sobram: heb,, niemand)",
-          "vocabRefs": [
-            "v-op-het-scherpst-van-de-snede"
-          ]
+          "explanation": "Desculpem, estou a alongar-me. = Sorry, ik wijd een beetje uit. (sobram: iets, mijn)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u01-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Foi mesmo emocionante.",
+          "prompt": "Ainda assim quero contrariar isso.",
           "tokens": [
-            "was",
-            "spannend.",
-            "echt",
-            "Het",
-            "wat",
-            "wil"
+            "graag",
+            "tegenkwam!",
+            "tegenin",
+            "er",
+            "toch",
+            "even",
+            "wil",
+            "gaan.",
+            "Ik"
           ],
           "answers": [
-            "Het was echt spannend."
+            "Ik wil er toch even tegenin gaan."
           ],
-          "explanation": "Foi mesmo emocionante. = Het was echt spannend. (sobram: wil, wat)",
-          "vocabRefs": [
-            "v-spannend"
-          ]
+          "explanation": "Ainda assim quero contrariar isso. = Ik wil er toch even tegenin gaan. (sobram: graag, tegenkwam!)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u01-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Uiteindelijk bleek het een misverstand.",
-          "answers": [
-            "Uiteindelijk bleek het een misverstand."
-          ],
-          "translation": "Afinal veio-se a saber que era um mal-entendido.",
-          "explanation": "«Uiteindelijk bleek het een misverstand.» = Afinal veio-se a saber que era um mal-entendido.",
-          "vocabRefs": [
-            "v-uiteindelijk-bleek"
-          ]
-        },
-        {
-          "id": "s7-u01-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Sorry, ik wijd een beetje uit.",
@@ -2627,102 +2605,120 @@
           "vocabRefs": []
         },
         {
+          "id": "s7-u01-l009-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Je raadt nooit wie ik tegenkwam!",
+          "answers": [
+            "Je raadt nooit wie ik tegenkwam!"
+          ],
+          "translation": "Nunca vais adivinhar com quem me cruzei!",
+          "explanation": "«Je raadt nooit wie ik tegenkwam!» = Nunca vais adivinhar com quem me cruzei!",
+          "vocabRefs": [
+            "v-je-raadt-nooit"
+          ]
+        },
+        {
           "id": "s7-u01-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Achteraf gezien was het de juiste keuze.",
+          "audioText": "Ik sluit me aan bij Bram.",
           "answers": [
-            "Achteraf gezien was het de juiste keuze."
+            "Ik sluit me aan bij Bram."
           ],
-          "translation": "Em retrospetiva, foi a escolha certa.",
-          "explanation": "«Achteraf gezien was het de juiste keuze.» = Em retrospetiva, foi a escolha certa.",
-          "vocabRefs": [
-            "v-achteraf-gezien"
-          ]
+          "translation": "Concordo com o Bram.",
+          "explanation": "«Ik sluit me aan bij Bram.» = Concordo com o Bram.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u01-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Foi mesmo emocionante.",
+          "translation": "Afinal veio-se a saber que era um mal-entendido.",
           "tokens": [
-            "echt",
-            "spannend.",
-            "was",
-            "Het"
+            "Uiteindelijk",
+            "bleek",
+            "het",
+            "een",
+            "misverstand."
           ],
           "alternatives": [],
-          "explanation": "Het was echt spannend.",
+          "explanation": "Uiteindelijk bleek het een misverstand.",
           "vocabRefs": [
-            "v-spannend"
+            "v-uiteindelijk-bleek"
           ]
         },
         {
           "id": "s7-u01-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Estamos a desviar-nos do tema.",
+          "translation": "Onde é que eu ia? Perdi o fio à meada.",
           "tokens": [
-            "af.",
-            "We",
-            "dwalen"
+            "Waar",
+            "was",
+            "ik?",
+            "Ik",
+            "ben",
+            "de",
+            "draad",
+            "kwijt."
           ],
           "alternatives": [],
-          "explanation": "We dwalen af.",
+          "explanation": "Waar was ik? Ik ben de draad kwijt.",
           "vocabRefs": []
         },
         {
           "id": "s7-u01-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «ervan leren»?",
+          "prompt": "O que significa «terugblikkend»?",
           "options": [
             {
               "id": "a",
-              "text": "juntar-se a",
-              "correct": false
+              "text": "olhando para trás",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "motivação",
+              "text": "emocionante",
               "correct": false
             },
             {
               "id": "c",
-              "text": "aprender com isso",
-              "correct": true
+              "text": "o mais estranho foi que…",
+              "correct": false
             }
           ],
-          "explanation": "«ervan leren» = aprender com isso.",
+          "explanation": "«terugblikkend» = olhando para trás.",
           "vocabRefs": [
-            "v-ervan-leren"
+            "v-terugblikkend"
           ]
         },
         {
           "id": "s7-u01-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de draad kwijt zijn»?",
+          "prompt": "O que significa «je raadt nooit…»?",
           "options": [
             {
               "id": "a",
-              "text": "perder o fio à meada",
+              "text": "nunca vais adivinhar…",
               "correct": true
             },
             {
               "id": "b",
-              "text": "ponto de viragem",
+              "text": "contrariar",
               "correct": false
             },
             {
               "id": "c",
-              "text": "motivação",
+              "text": "percurso de vida",
               "correct": false
             }
           ],
-          "explanation": "«de draad kwijt zijn» = perder o fio à meada.",
+          "explanation": "«je raadt nooit…» = nunca vais adivinhar….",
           "vocabRefs": [
-            "v-de-draad-kwijt"
+            "v-je-raadt-nooit"
           ]
         }
       ],

@@ -1857,16 +1857,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik verstuur het pakket aangetekend, dan kan het niet kwijtraken.",
-          "pt": "Envio o pacote registado; assim não se pode perder."
+          "nl": "Ik wil dit pakket naar Portugal versturen.",
+          "pt": "Quero enviar este pacote para Portugal."
         },
         {
-          "nl": "De bezorger heeft het bij de buren afgegeven.",
-          "pt": "O estafeta deixou-o nos vizinhos."
+          "nl": "Mijn pakket is kwijt.",
+          "pt": "O meu pacote perdeu-se."
         },
         {
-          "nl": "Ik wil deze schoenen retourneren.",
-          "pt": "Quero devolver estes sapatos."
+          "nl": "U kunt het pakket ophalen bij het servicepunt.",
+          "pt": "Pode levantar o pacote no ponto de recolha."
         }
       ],
       "grammar": [],
@@ -1918,10 +1918,10 @@
           "translation": "Quero devolver estes sapatos.",
           "tokens": [
             "Ik",
-            "retourneren.",
-            "schoenen",
+            "wil",
             "deze",
-            "wil"
+            "schoenen",
+            "retourneren."
           ],
           "alternatives": [],
           "explanation": "Ik wil deze schoenen retourneren.",
@@ -1935,12 +1935,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Põe a carta no marco do correio.",
           "tokens": [
-            "brief",
             "Doe",
-            "brievenbus.",
             "de",
+            "brief",
             "in",
-            "de"
+            "de",
+            "brievenbus."
           ],
           "alternatives": [],
           "explanation": "Doe de brief in de brievenbus.",
@@ -1955,10 +1955,10 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quanto custa um selo?",
           "tokens": [
+            "Hoeveel",
             "kost",
-            "postzegel?",
             "een",
-            "Hoeveel"
+            "postzegel?"
           ],
           "alternatives": [],
           "explanation": "Hoeveel kost een postzegel?",
@@ -1970,7 +1970,35 @@
           "id": "s3-u11-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «U kunt het pakket ophalen bij het servicepunt.»?",
+          "prompt": "O que significa: «Ik wil dit pakket naar Portugal versturen.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Onde é o ponto PostNL mais próximo?",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Pode levantar o pacote no ponto de recolha.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Quero enviar este pacote para Portugal.",
+              "correct": true
+            }
+          ],
+          "explanation": "«Ik wil dit pakket naar Portugal versturen.» = Quero enviar este pacote para Portugal.",
+          "vocabRefs": [
+            "v-versturen",
+            "v-pakket"
+          ]
+        },
+        {
+          "id": "s3-u11-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Mijn pakket is kwijt.»?",
           "options": [
             {
               "id": "a",
@@ -1979,93 +2007,67 @@
             },
             {
               "id": "b",
-              "text": "Pode levantar o pacote no ponto de recolha.",
+              "text": "O meu pacote perdeu-se.",
               "correct": true
             },
             {
               "id": "c",
-              "text": "Quero devolver estes sapatos.",
+              "text": "A entrega é grátis.",
               "correct": false
             }
           ],
-          "explanation": "«U kunt het pakket ophalen bij het servicepunt.» = Pode levantar o pacote no ponto de recolha.",
+          "explanation": "«Mijn pakket is kwijt.» = O meu pacote perdeu-se.",
           "vocabRefs": [
             "v-pakket",
-            "v-ophalen"
-          ]
-        },
-        {
-          "id": "s3-u11-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik wil deze schoenen retourneren.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Quero devolver estes sapatos.",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "text": "O meu pacote perdeu-se.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Ligo para o apoio ao cliente.",
-              "correct": false
-            }
-          ],
-          "explanation": "«Ik wil deze schoenen retourneren.» = Quero devolver estes sapatos.",
-          "vocabRefs": [
-            "v-retourneren"
+            "v-kwijt"
           ]
         },
         {
           "id": "s3-u11-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Pode reembolsar o dinheiro?",
+          "prompt": "Quero devolver estes sapatos.",
           "tokens": [
-            "bezorgd.",
             "geld",
-            "u",
-            "De",
-            "terugbetalen?",
-            "Kunt",
+            "wil",
+            "deze",
+            "retourneren.",
+            "schoenen",
+            "Ik",
             "het"
           ],
           "answers": [
-            "Kunt u het geld terugbetalen?"
+            "Ik wil deze schoenen retourneren."
           ],
-          "explanation": "Pode reembolsar o dinheiro? = Kunt u het geld terugbetalen? (sobram: bezorgd., De)",
+          "explanation": "Quero devolver estes sapatos. = Ik wil deze schoenen retourneren. (sobram: het, geld)",
           "vocabRefs": [
-            "v-terugbetalen"
+            "v-retourneren"
           ]
         },
         {
           "id": "s3-u11-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "O estafeta deixou-o nos vizinhos.",
+          "prompt": "Pode levantar o pacote no ponto de recolha.",
           "tokens": [
-            "heeft",
-            "bezorger",
+            "kunt",
             "het",
-            "Doe",
-            "de",
-            "De",
-            "buren",
-            "wordt",
-            "afgegeven.",
-            "bij"
+            "ophalen",
+            "U",
+            "is",
+            "Ik",
+            "het",
+            "pakket",
+            "bij",
+            "servicepunt."
           ],
           "answers": [
-            "De bezorger heeft het bij de buren afgegeven."
+            "U kunt het pakket ophalen bij het servicepunt."
           ],
-          "explanation": "O estafeta deixou-o nos vizinhos. = De bezorger heeft het bij de buren afgegeven. (sobram: wordt, Doe)",
+          "explanation": "Pode levantar o pacote no ponto de recolha. = U kunt het pakket ophalen bij het servicepunt. (sobram: is, Ik)",
           "vocabRefs": [
-            "v-bezorger"
+            "v-pakket",
+            "v-ophalen"
           ]
         }
       ],
@@ -2142,27 +2144,27 @@
           "id": "s3-u11-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «etiqueta de devolução» em neerlandês?",
+          "prompt": "Como se diz «ir buscar» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "levering",
+              "text": "retourneren",
               "correct": false
             },
             {
               "id": "b",
-              "text": "online",
+              "text": "brievenbus",
               "correct": false
             },
             {
               "id": "c",
-              "text": "retourlabel",
+              "text": "ophalen",
               "correct": true
             }
           ],
-          "explanation": "etiqueta de devolução = «retourlabel».",
+          "explanation": "ir buscar = «ophalen».",
           "vocabRefs": [
-            "v-retourlabel"
+            "v-ophalen"
           ]
         },
         {
@@ -2321,7 +2323,7 @@
           "id": "s3-u11-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De doos was beschadigd.»?",
+          "prompt": "O que significa: «De levering is gratis.»?",
           "options": [
             {
               "id": "a",
@@ -2335,13 +2337,14 @@
             },
             {
               "id": "c",
-              "text": "A caixa estava danificada.",
+              "text": "A entrega é grátis.",
               "correct": true
             }
           ],
-          "explanation": "«De doos was beschadigd.» = A caixa estava danificada.",
+          "explanation": "«De levering is gratis.» = A entrega é grátis.",
           "vocabRefs": [
-            "v-beschadigd"
+            "v-levering",
+            "v-gratis"
           ]
         }
       ],
@@ -2400,16 +2403,16 @@
       ],
       "examples": [
         {
-          "nl": "De levering is gratis.",
-          "pt": "A entrega é grátis."
-        },
-        {
-          "nl": "Hoeveel kost een postzegel?",
-          "pt": "Quanto custa um selo?"
-        },
-        {
           "nl": "Waar is het dichtstbijzijnde PostNL-punt?",
           "pt": "Onde é o ponto PostNL mais próximo?"
+        },
+        {
+          "nl": "Kunt u het geld terugbetalen?",
+          "pt": "Pode reembolsar o dinheiro?"
+        },
+        {
+          "nl": "Mijn pakket wordt morgen bezorgd.",
+          "pt": "O meu pacote é entregue amanhã."
         }
       ],
       "grammar": [],
@@ -2418,43 +2421,43 @@
           "id": "s3-u11-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Quero devolver estes sapatos.",
+          "prompt": "Encomendo muita coisa online.",
           "tokens": [
+            "de",
+            "bestel",
             "het",
-            "wil",
-            "retourneren.",
-            "Hoeveel",
-            "deze",
+            "veel",
             "Ik",
-            "schoenen"
+            "online."
           ],
           "answers": [
-            "Ik wil deze schoenen retourneren."
+            "Ik bestel veel online."
           ],
-          "explanation": "Quero devolver estes sapatos. = Ik wil deze schoenen retourneren. (sobram: het, Hoeveel)",
+          "explanation": "Encomendo muita coisa online. = Ik bestel veel online. (sobram: de, het)",
           "vocabRefs": [
-            "v-retourneren"
+            "v-online"
           ]
         },
         {
           "id": "s3-u11-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ligo para o apoio ao cliente.",
+          "prompt": "O meu pacote perdeu-se.",
           "tokens": [
-            "klantenservice.",
-            "levering",
-            "Ik",
-            "de",
-            "schoenen",
-            "bel"
+            "kwijt.",
+            "online.",
+            "Mijn",
+            "is",
+            "niet",
+            "pakket"
           ],
           "answers": [
-            "Ik bel de klantenservice."
+            "Mijn pakket is kwijt."
           ],
-          "explanation": "Ligo para o apoio ao cliente. = Ik bel de klantenservice. (sobram: schoenen, levering)",
+          "explanation": "O meu pacote perdeu-se. = Mijn pakket is kwijt. (sobram: niet, online.)",
           "vocabRefs": [
-            "v-klantenservice"
+            "v-pakket",
+            "v-kwijt"
           ]
         },
         {
@@ -2527,16 +2530,16 @@
           "instruction": "Ordene as palavras.",
           "translation": "Envio o pacote registado; assim não se pode perder.",
           "tokens": [
+            "Ik",
+            "verstuur",
+            "het",
             "pakket",
             "aangetekend,",
-            "het",
-            "het",
+            "dan",
             "kan",
-            "verstuur",
-            "kwijtraken.",
-            "Ik",
+            "het",
             "niet",
-            "dan"
+            "kwijtraken."
           ],
           "alternatives": [],
           "explanation": "Ik verstuur het pakket aangetekend, dan kan het niet kwijtraken.",
@@ -2551,13 +2554,13 @@
           "instruction": "Ordene as palavras.",
           "translation": "Quero enviar este pacote para Portugal.",
           "tokens": [
-            "naar",
-            "Portugal",
+            "Ik",
+            "wil",
             "dit",
             "pakket",
-            "versturen.",
-            "wil",
-            "Ik"
+            "naar",
+            "Portugal",
+            "versturen."
           ],
           "alternatives": [],
           "explanation": "Ik wil dit pakket naar Portugal versturen.",
@@ -2570,54 +2573,54 @@
           "id": "s3-u11-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «online»?",
+          "prompt": "O que significa «versturen»?",
           "options": [
             {
               "id": "a",
-              "text": "reembolsar",
+              "text": "serviço de apoio ao cliente",
               "correct": false
             },
             {
               "id": "b",
-              "text": "queixar-se",
+              "text": "perdido",
               "correct": false
             },
             {
               "id": "c",
-              "text": "online",
+              "text": "enviar",
               "correct": true
             }
           ],
-          "explanation": "«online» = online.",
+          "explanation": "«versturen» = enviar.",
           "vocabRefs": [
-            "v-online"
+            "v-versturen"
           ]
         },
         {
           "id": "s3-u11-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «afgeven»?",
+          "prompt": "O que significa «de bezorger»?",
           "options": [
             {
               "id": "a",
-              "text": "queixar-se",
+              "text": "danificado",
               "correct": false
             },
             {
               "id": "b",
               "text": "estafeta",
-              "correct": false
+              "correct": true
             },
             {
               "id": "c",
-              "text": "deixar",
-              "correct": true
+              "text": "online",
+              "correct": false
             }
           ],
-          "explanation": "«afgeven» = deixar, entregar.",
+          "explanation": "«de bezorger» = estafeta, carteiro.",
           "vocabRefs": [
-            "v-afgeven"
+            "v-bezorger"
           ]
         }
       ],

@@ -2013,9 +2013,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Sou enfermeira.",
           "tokens": [
+            "Ik",
             "ben",
-            "verpleegkundige.",
-            "Ik"
+            "verpleegkundige."
           ],
           "alternatives": [],
           "explanation": "Ik ben verpleegkundige.",
@@ -2031,9 +2031,9 @@
           "tokens": [
             "Ze",
             "heeft",
-            "contract.",
+            "een",
             "vast",
-            "een"
+            "contract."
           ],
           "alternatives": [],
           "explanation": "Ze heeft een vast contract.",
@@ -2047,12 +2047,12 @@
           "instruction": "Ordene as palavras.",
           "translation": "Sou responsável pelo planeamento.",
           "tokens": [
-            "de",
-            "verantwoordelijk",
             "Ik",
-            "planning.",
+            "ben",
+            "verantwoordelijk",
             "voor",
-            "ben"
+            "de",
+            "planning."
           ],
           "alternatives": [],
           "explanation": "Ik ben verantwoordelijk voor de planning.",
@@ -2064,98 +2064,99 @@
           "id": "s4-u04-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het bedrijf heeft 200 werknemers.»?",
+          "prompt": "O que significa: «Zij is ingenieur.»?",
           "options": [
             {
               "id": "a",
-              "text": "Trabalho a tempo parcial, 24 horas por semana.",
+              "text": "Hoje tenho três reuniões.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "A empresa tem 200 trabalhadores.",
-              "correct": true
+              "text": "Tenho de fazer horas extra muitas vezes.",
+              "correct": false
             },
             {
               "id": "c",
-              "text": "Tenho de fazer horas extra muitas vezes.",
-              "correct": false
+              "text": "Ela é engenheira.",
+              "correct": true
             }
           ],
-          "explanation": "«Het bedrijf heeft 200 werknemers.» = A empresa tem 200 trabalhadores.",
+          "explanation": "«Zij is ingenieur.» = Ela é engenheira.",
           "vocabRefs": [
-            "v-bedrijf",
-            "v-werknemer"
+            "v-ingenieur"
           ]
         },
         {
           "id": "s4-u04-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Werk je fulltime?»?",
+          "prompt": "O que significa: «Ik ben verpleegkundige.»?",
           "options": [
             {
               "id": "a",
-              "text": "O que fazes profissionalmente?",
+              "text": "Ele está no escritório.",
               "correct": false
             },
             {
               "id": "b",
-              "text": "Sou responsável pelo planeamento.",
+              "text": "Trabalho a tempo parcial, 24 horas por semana.",
               "correct": false
             },
             {
               "id": "c",
-              "text": "Trabalhas a tempo inteiro?",
+              "text": "Sou enfermeira.",
               "correct": true
             }
           ],
-          "explanation": "«Werk je fulltime?» = Trabalhas a tempo inteiro?",
+          "explanation": "«Ik ben verpleegkundige.» = Sou enfermeira.",
           "vocabRefs": [
-            "v-fulltime"
+            "v-verpleegkundige"
           ]
         },
         {
           "id": "s4-u04-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Trabalho num banco (para um banco).",
+          "prompt": "Ela tem um contrato sem termo.",
           "tokens": [
-            "Ze",
             "Ik",
+            "Ze",
+            "vast",
             "een",
-            "bij",
-            "bank.",
-            "werk",
-            "Mijn"
+            "contract.",
+            "heeft",
+            "ben"
           ],
           "answers": [
-            "Ik werk bij een bank."
+            "Ze heeft een vast contract."
           ],
-          "explanation": "Trabalho num banco (para um banco). = Ik werk bij een bank. (sobram: Mijn, Ze)",
-          "vocabRefs": []
+          "explanation": "Ela tem um contrato sem termo. = Ze heeft een vast contract. (sobram: ben, Ik)",
+          "vocabRefs": [
+            "v-vast-contract"
+          ]
         },
         {
           "id": "s4-u04-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Ajudo clientes ao telefone.",
+          "prompt": "Sou responsável pelo planeamento.",
           "tokens": [
-            "Wat",
+            "uw",
             "Ik",
-            "telefoon.",
-            "bij",
-            "klanten",
+            "planning.",
+            "groot",
+            "verantwoordelijk",
             "de",
-            "aan",
-            "help"
+            "voor",
+            "ben"
           ],
           "answers": [
-            "Ik help klanten aan de telefoon."
+            "Ik ben verantwoordelijk voor de planning."
           ],
-          "explanation": "Ajudo clientes ao telefone. = Ik help klanten aan de telefoon. (sobram: bij, Wat)",
+          "explanation": "Sou responsável pelo planeamento. = Ik ben verantwoordelijk voor de planning. (sobram: groot, uw)",
           "vocabRefs": [
-            "v-klant"
+            "v-verantwoordelijk"
           ]
         }
       ],
@@ -2225,16 +2226,16 @@
       ],
       "examples": [
         {
-          "nl": "Wat doe je voor werk?",
-          "pt": "O que fazes profissionalmente?"
+          "nl": "Mijn vader werkte in een fabriek.",
+          "pt": "O meu pai trabalhava numa fábrica."
         },
         {
-          "nl": "Werk je fulltime?",
-          "pt": "Trabalhas a tempo inteiro?"
+          "nl": "Ik ben verantwoordelijk voor de planning.",
+          "pt": "Sou responsável pelo planeamento."
         },
         {
-          "nl": "Ze heeft een vast contract.",
-          "pt": "Ela tem um contrato sem termo."
+          "nl": "Ik heb vandaag drie vergaderingen.",
+          "pt": "Hoje tenho três reuniões."
         }
       ],
       "grammar": [],
@@ -2383,58 +2384,61 @@
           "id": "s4-u04-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Sou enfermeira.",
+          "prompt": "Qual é a sua profissão?",
           "tokens": [
-            "verpleegkundige.",
-            "Wat",
-            "Het",
-            "ben",
-            "Ik"
+            "24",
+            "is",
+            "uw",
+            "je",
+            "beroep?",
+            "Wat"
           ],
           "answers": [
-            "Ik ben verpleegkundige."
+            "Wat is uw beroep?"
           ],
-          "explanation": "Sou enfermeira. = Ik ben verpleegkundige. (sobram: Het, Wat)",
+          "explanation": "Qual é a sua profissão? = Wat is uw beroep? (sobram: 24, je)",
           "vocabRefs": [
-            "v-verpleegkundige"
+            "v-beroep"
           ]
         },
         {
           "id": "s4-u04-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "taak",
-          "pt": "tarefa",
-          "article": "de",
-          "explanation": "de taak.",
+          "noun": "bedrijf",
+          "pt": "empresa",
+          "article": "het",
+          "explanation": "het bedrijf.",
           "vocabRefs": [
-            "v-taak"
+            "v-bedrijf"
           ]
         },
         {
           "id": "s4-u04-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik werk vier dagen per week.»?",
+          "prompt": "O que significa: «Werk je fulltime?»?",
           "options": [
             {
               "id": "a",
-              "text": "Trabalho quatro dias por semana.",
-              "correct": true
+              "text": "O meu pai trabalhava numa fábrica.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Hoje tenho três reuniões.",
-              "correct": false
+              "text": "Trabalhas a tempo inteiro?",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Sou responsável pelo planeamento.",
+              "text": "Trabalho num banco (para um banco).",
               "correct": false
             }
           ],
-          "explanation": "«Ik werk vier dagen per week.» = Trabalho quatro dias por semana.",
-          "vocabRefs": []
+          "explanation": "«Werk je fulltime?» = Trabalhas a tempo inteiro?",
+          "vocabRefs": [
+            "v-fulltime"
+          ]
         }
       ],
       "difficulty": 3,
@@ -2503,16 +2507,16 @@
       ],
       "examples": [
         {
-          "nl": "Mijn broer is kok.",
-          "pt": "O meu irmão é cozinheiro."
+          "nl": "Wat doe je voor werk?",
+          "pt": "O que fazes profissionalmente?"
         },
         {
-          "nl": "Ik ben verantwoordelijk voor de planning.",
-          "pt": "Sou responsável pelo planeamento."
+          "nl": "Ik help klanten aan de telefoon.",
+          "pt": "Ajudo clientes ao telefone."
         },
         {
-          "nl": "Hij is een goede leraar.",
-          "pt": "Ele é um bom professor."
+          "nl": "Ik heb vandaag drie vergaderingen.",
+          "pt": "Hoje tenho três reuniões."
         }
       ],
       "grammar": [],
@@ -2521,202 +2525,194 @@
           "id": "s4-u04-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A desvantagem é o longo tempo de deslocação.",
+          "prompt": "A empresa tem 200 trabalhadores.",
           "tokens": [
-            "lange",
-            "op",
-            "is",
-            "nadeel",
-            "reistijd.",
-            "verantwoordelijk",
+            "werk",
             "Het",
-            "de"
+            "200",
+            "werknemers.",
+            "bedrijf",
+            "kantoor.",
+            "heeft"
           ],
           "answers": [
-            "Het nadeel is de lange reistijd."
+            "Het bedrijf heeft 200 werknemers."
           ],
-          "explanation": "A desvantagem é o longo tempo de deslocação. = Het nadeel is de lange reistijd. (sobram: op, verantwoordelijk)",
+          "explanation": "A empresa tem 200 trabalhadores. = Het bedrijf heeft 200 werknemers. (sobram: werk, kantoor.)",
           "vocabRefs": [
-            "v-reistijd",
-            "v-nadeel"
+            "v-bedrijf",
+            "v-werknemer"
           ]
         },
         {
           "id": "s4-u04-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A empresa tem 200 trabalhadores.",
+          "prompt": "A desvantagem é o longo tempo de deslocação.",
           "tokens": [
-            "200",
-            "bij",
+            "nadeel",
+            "reistijd.",
             "Het",
+            "lange",
+            "is",
             "parttime,",
-            "bedrijf",
-            "heeft",
-            "werknemers."
+            "de",
+            "Mijn"
           ],
           "answers": [
-            "Het bedrijf heeft 200 werknemers."
+            "Het nadeel is de lange reistijd."
           ],
-          "explanation": "A empresa tem 200 trabalhadores. = Het bedrijf heeft 200 werknemers. (sobram: parttime,, bij)",
+          "explanation": "A desvantagem é o longo tempo de deslocação. = Het nadeel is de lange reistijd. (sobram: parttime,, Mijn)",
           "vocabRefs": [
-            "v-bedrijf",
-            "v-werknemer"
+            "v-reistijd",
+            "v-nadeel"
           ]
         },
         {
           "id": "s4-u04-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Trato das marcações.",
+          "prompt": "Ela é engenheira.",
           "tokens": [
-            "de",
-            "afspraken.",
-            "Ik",
-            "werk",
-            "regel",
-            "een"
+            "ingenieur.",
+            "is",
+            "op",
+            "fabriek.",
+            "Zij"
           ],
           "answers": [
-            "Ik regel de afspraken."
+            "Zij is ingenieur."
           ],
-          "explanation": "Trato das marcações. = Ik regel de afspraken. (sobram: een, werk)",
-          "vocabRefs": []
+          "explanation": "Ela é engenheira. = Zij is ingenieur. (sobram: op, fabriek.)",
+          "vocabRefs": [
+            "v-ingenieur"
+          ]
         },
         {
           "id": "s4-u04-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Wat is uw beroep?",
+          "audioText": "Ze heeft een vast contract.",
           "answers": [
-            "Wat is uw beroep?"
+            "Ze heeft een vast contract."
           ],
-          "translation": "Qual é a sua profissão?",
-          "explanation": "«Wat is uw beroep?» = Qual é a sua profissão?",
+          "translation": "Ela tem um contrato sem termo.",
+          "explanation": "«Ze heeft een vast contract.» = Ela tem um contrato sem termo.",
           "vocabRefs": [
-            "v-beroep"
+            "v-vast-contract"
           ]
         },
         {
           "id": "s4-u04-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Het bedrijf heeft 200 werknemers.",
+          "audioText": "Hij zit op kantoor.",
           "answers": [
-            "Het bedrijf heeft 200 werknemers."
+            "Hij zit op kantoor."
           ],
-          "translation": "A empresa tem 200 trabalhadores.",
-          "explanation": "«Het bedrijf heeft 200 werknemers.» = A empresa tem 200 trabalhadores.",
+          "translation": "Ele está no escritório.",
+          "explanation": "«Hij zit op kantoor.» = Ele está no escritório.",
           "vocabRefs": [
-            "v-bedrijf",
-            "v-werknemer"
+            "v-kantoor"
           ]
         },
         {
           "id": "s4-u04-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik werk parttime, 24 uur per week.",
+          "audioText": "Mijn broer is kok.",
           "answers": [
-            "Ik werk parttime, 24 uur per week."
+            "Mijn broer is kok."
           ],
-          "translation": "Trabalho a tempo parcial, 24 horas por semana.",
-          "explanation": "«Ik werk parttime, 24 uur per week.» = Trabalho a tempo parcial, 24 horas por semana.",
+          "translation": "O meu irmão é cozinheiro.",
+          "explanation": "«Mijn broer is kok.» = O meu irmão é cozinheiro.",
           "vocabRefs": [
-            "v-parttime",
-            "v-uur-per-week"
+            "v-kok"
           ]
         },
         {
           "id": "s4-u04-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Ele está no escritório.",
+          "translation": "Trato das marcações.",
           "tokens": [
-            "Hij",
-            "op",
-            "kantoor.",
-            "zit"
+            "Ik",
+            "regel",
+            "de",
+            "afspraken."
           ],
           "alternatives": [],
-          "explanation": "Hij zit op kantoor.",
-          "vocabRefs": [
-            "v-kantoor"
-          ]
+          "explanation": "Ik regel de afspraken.",
+          "vocabRefs": []
         },
         {
           "id": "s4-u04-l009-e08",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Trabalho a tempo parcial, 24 horas por semana.",
+          "translation": "Trabalhas a tempo inteiro?",
           "tokens": [
-            "24",
-            "per",
-            "parttime,",
-            "werk",
-            "Ik",
-            "uur",
-            "week."
+            "Werk",
+            "je",
+            "fulltime?"
           ],
           "alternatives": [],
-          "explanation": "Ik werk parttime, 24 uur per week.",
+          "explanation": "Werk je fulltime?",
           "vocabRefs": [
-            "v-parttime",
-            "v-uur-per-week"
+            "v-fulltime"
           ]
         },
         {
           "id": "s4-u04-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de kok»?",
+          "prompt": "O que significa «de werkgever»?",
           "options": [
             {
               "id": "a",
-              "text": "cozinheiro",
+              "text": "empregador",
               "correct": true
             },
             {
               "id": "b",
-              "text": "a tempo parcial",
+              "text": "a tempo inteiro",
               "correct": false
             },
             {
               "id": "c",
-              "text": "cliente",
+              "text": "enfermeiro",
               "correct": false
             }
           ],
-          "explanation": "«de kok» = cozinheiro(a).",
+          "explanation": "«de werkgever» = empregador.",
           "vocabRefs": [
-            "v-kok"
+            "v-werkgever"
           ]
         },
         {
           "id": "s4-u04-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «het beroep»?",
+          "prompt": "O que significa «vast contract»?",
           "options": [
             {
               "id": "a",
-              "text": "a tempo inteiro",
+              "text": "trabalhador",
               "correct": false
             },
             {
               "id": "b",
-              "text": "empregado de limpeza",
-              "correct": false
+              "text": "contrato sem termo",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "profissão",
-              "correct": true
+              "text": "a tempo parcial",
+              "correct": false
             }
           ],
-          "explanation": "«het beroep» = profissão.",
+          "explanation": "«vast contract» = contrato sem termo.",
           "vocabRefs": [
-            "v-beroep"
+            "v-vast-contract"
           ]
         }
       ],

@@ -1892,16 +1892,16 @@
       ],
       "examples": [
         {
-          "nl": "Ik wil graag doorgroeien naar een leidinggevende functie.",
-          "pt": "Gostaria de progredir para uma função de chefia."
-        },
-        {
           "nl": "De woordvoerder gaf een korte verklaring.",
           "pt": "O porta-voz deu uma breve declaração."
         },
         {
-          "nl": "Er zit een gat van een jaar in je cv.",
-          "pt": "Há uma interrupção de um ano no seu currículo."
+          "nl": "Welke competenties heb je daarbij gebruikt?",
+          "pt": "Que competências usou nisso?"
+        },
+        {
+          "nl": "Ik heb een opleidingsbudget van 1500 euro per jaar.",
+          "pt": "Tenho um orçamento de formação de 1500 euros por ano."
         }
       ],
       "grammar": [],
@@ -1952,15 +1952,15 @@
           "instruction": "Ordene as palavras.",
           "translation": "A minha tarefa era manter o cliente satisfeito.",
           "tokens": [
-            "houden.",
+            "Mijn",
+            "taak",
             "was",
             "om",
-            "te",
+            "de",
             "klant",
-            "taak",
-            "Mijn",
             "tevreden",
-            "de"
+            "te",
+            "houden."
           ],
           "alternatives": [],
           "explanation": "Mijn taak was om de klant tevreden te houden.",
@@ -1972,11 +1972,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Os benefícios adicionais são excelentes.",
           "tokens": [
-            "voorwaarden",
-            "uitstekend.",
             "De",
             "secundaire",
-            "zijn"
+            "voorwaarden",
+            "zijn",
+            "uitstekend."
           ],
           "alternatives": [],
           "explanation": "De secundaire voorwaarden zijn uitstekend.",
@@ -1989,11 +1989,11 @@
           "translation": "A primeira conversa é de apresentação.",
           "tokens": [
             "Het",
-            "is",
-            "kennismakingsgesprek.",
+            "eerste",
             "gesprek",
+            "is",
             "een",
-            "eerste"
+            "kennismakingsgesprek."
           ],
           "alternatives": [],
           "explanation": "Het eerste gesprek is een kennismakingsgesprek.",
@@ -2003,31 +2003,6 @@
         },
         {
           "id": "s7-u04-l007-e07",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Ik heb een aanbod gekregen!»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Há uma interrupção de um ano no seu currículo.",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "Podemos contactar as tuas referências?",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Recebi uma proposta!",
-              "correct": true
-            }
-          ],
-          "explanation": "«Ik heb een aanbod gekregen!» = Recebi uma proposta!",
-          "vocabRefs": []
-        },
-        {
-          "id": "s7-u04-l007-e08",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa: «Is er ruimte om over het salaris te praten?»?",
@@ -2044,7 +2019,7 @@
             },
             {
               "id": "c",
-              "text": "Que competências usou nisso?",
+              "text": "Tenho um orçamento de formação de 1500 euros por ano.",
               "correct": false
             }
           ],
@@ -2052,48 +2027,73 @@
           "vocabRefs": []
         },
         {
+          "id": "s7-u04-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Mijn taak was om de klant tevreden te houden.»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A minha tarefa era manter o cliente satisfeito.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Passaste à segunda fase!",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "No fim alcançámos um bom resultado.",
+              "correct": false
+            }
+          ],
+          "explanation": "«Mijn taak was om de klant tevreden te houden.» = A minha tarefa era manter o cliente satisfeito.",
+          "vocabRefs": []
+        },
+        {
           "id": "s7-u04-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A primeira conversa é de apresentação.",
+          "prompt": "Recebi uma proposta!",
           "tokens": [
             "een",
-            "je",
-            "eerste",
-            "daarbij",
-            "is",
-            "kennismakingsgesprek.",
-            "gesprek",
-            "Het"
+            "referenties",
+            "aanbod",
+            "dat",
+            "gekregen!",
+            "heb",
+            "Ik"
           ],
           "answers": [
-            "Het eerste gesprek is een kennismakingsgesprek."
+            "Ik heb een aanbod gekregen!"
           ],
-          "explanation": "A primeira conversa é de apresentação. = Het eerste gesprek is een kennismakingsgesprek. (sobram: daarbij, je)",
-          "vocabRefs": [
-            "v-kennismakingsgesprek"
-          ]
+          "explanation": "Recebi uma proposta! = Ik heb een aanbod gekregen! (sobram: dat, referenties)",
+          "vocabRefs": []
         },
         {
           "id": "s7-u04-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Podemos contactar as tuas referências?",
+          "prompt": "Gostaria de progredir para uma função de chefia.",
           "tokens": [
-            "ruimte",
-            "Mogen",
-            "we",
-            "je",
-            "referenties",
-            "werkgever?",
-            "bellen?"
+            "leidinggevende",
+            "functie.",
+            "naar",
+            "een",
+            "wil",
+            "Ik",
+            "graag",
+            "verklaring.",
+            "waarin",
+            "doorgroeien"
           ],
           "answers": [
-            "Mogen we je referenties bellen?"
+            "Ik wil graag doorgroeien naar een leidinggevende functie."
           ],
-          "explanation": "Podemos contactar as tuas referências? = Mogen we je referenties bellen? (sobram: werkgever?, ruimte)",
+          "explanation": "Gostaria de progredir para uma função de chefia. = Ik wil graag doorgroeien naar een leidinggevende functie. (sobram: verklaring., waarin)",
           "vocabRefs": [
-            "v-referentie"
+            "v-doorgroeien"
           ]
         }
       ],
@@ -2155,12 +2155,12 @@
       ],
       "examples": [
         {
-          "nl": "Uiteindelijk hebben we een goed resultaat behaald.",
-          "pt": "No fim alcançámos um bom resultado."
+          "nl": "De arbeidsvoorwaarden zijn goed.",
+          "pt": "As condições de trabalho são boas."
         },
         {
-          "nl": "Ik heb een opleidingsbudget van 1500 euro per jaar.",
-          "pt": "Tenho um orçamento de formação de 1500 euros por ano."
+          "nl": "Het eerste gesprek is een kennismakingsgesprek.",
+          "pt": "A primeira conversa é de apresentação."
         },
         {
           "nl": "Daar geef ik geen commentaar op.",
@@ -2173,198 +2173,206 @@
           "id": "s7-u04-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «jornalista» em neerlandês?",
+          "prompt": "Como se diz «conversa de apresentação» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "huidige werkgever",
-              "correct": false
+              "text": "kennismakingsgesprek",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "STAR-methode",
+              "text": "opleidingsbudget",
               "correct": false
             },
             {
               "id": "c",
-              "text": "journalist",
-              "correct": true
+              "text": "loopbaan",
+              "correct": false
             }
           ],
-          "explanation": "jornalista = «journalist».",
+          "explanation": "conversa de apresentação = «kennismakingsgesprek».",
           "vocabRefs": [
-            "v-journalist"
+            "v-kennismakingsgesprek"
           ]
         },
         {
           "id": "s7-u04-l008-e02",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «receber uma proposta» em neerlandês?",
+          "prompt": "Como se diz «progredir» em neerlandês?",
           "options": [
             {
               "id": "a",
-              "text": "geen commentaar",
+              "text": "referentie",
               "correct": false
             },
             {
               "id": "b",
               "text": "doorgroeien",
-              "correct": false
+              "correct": true
             },
             {
               "id": "c",
-              "text": "een aanbod krijgen",
-              "correct": true
+              "text": "arbeidsvoorwaarden",
+              "correct": false
             }
           ],
-          "explanation": "receber uma proposta = «een aanbod krijgen».",
+          "explanation": "progredir = «doorgroeien».",
           "vocabRefs": [
-            "v-aanbod-krijgen"
+            "v-doorgroeien"
           ]
         },
         {
           "id": "s7-u04-l008-e03",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Is er ___ om over het salaris te praten?",
-          "translation": "Há margem para falar sobre o salário?",
+          "sentence": "Ik heb een ___ van 1500 euro per jaar.",
+          "translation": "Tenho um orçamento de formação de 1500 euros por ano.",
           "answers": [
-            "ruimte"
+            "opleidingsbudget"
           ],
           "choices": [
-            "journalist",
+            "opleidingsbudget",
             "ruimte",
-            "kernboodschap"
+            "competentie"
           ],
-          "explanation": "Is er ruimte om over het salaris te praten?",
+          "explanation": "Ik heb een opleidingsbudget van 1500 euro per jaar.",
           "vocabRefs": [
-            "v-ruimte"
+            "v-opleidingsbudget"
           ]
         },
         {
           "id": "s7-u04-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
-          "sentence": "Een ___ wil u interviewen.",
-          "translation": "Um jornalista quer entrevistá-lo.",
+          "sentence": "Wat is je ___?",
+          "translation": "Qual é a tua mensagem principal?",
           "answers": [
-            "journalist"
+            "kernboodschap"
           ],
           "choices": [
-            "opleidingsbudget",
-            "journalist",
-            "woordvoerder"
+            "doorgroeien",
+            "competentie",
+            "kernboodschap"
           ],
-          "explanation": "Een journalist wil u interviewen.",
+          "explanation": "Wat is je kernboodschap?",
           "vocabRefs": [
-            "v-journalist"
+            "v-kernboodschap"
           ]
         },
         {
           "id": "s7-u04-l008-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mijn taak was om de klant tevreden te houden.",
+          "audioText": "Ik heb een aanbod gekregen!",
           "answers": [
-            "Mijn taak was om de klant tevreden te houden."
+            "Ik heb een aanbod gekregen!"
           ],
-          "translation": "A minha tarefa era manter o cliente satisfeito.",
-          "explanation": "«Mijn taak was om de klant tevreden te houden.» = A minha tarefa era manter o cliente satisfeito.",
+          "translation": "Recebi uma proposta!",
+          "explanation": "«Ik heb een aanbod gekregen!» = Recebi uma proposta!",
           "vocabRefs": []
         },
         {
           "id": "s7-u04-l008-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "De arbeidsvoorwaarden zijn goed.",
+          "audioText": "De woordvoerder gaf een korte verklaring.",
           "answers": [
-            "De arbeidsvoorwaarden zijn goed."
+            "De woordvoerder gaf een korte verklaring."
           ],
-          "translation": "As condições de trabalho são boas.",
-          "explanation": "«De arbeidsvoorwaarden zijn goed.» = As condições de trabalho são boas.",
+          "translation": "O porta-voz deu uma breve declaração.",
+          "explanation": "«De woordvoerder gaf een korte verklaring.» = O porta-voz deu uma breve declaração.",
           "vocabRefs": [
-            "v-arbeidsvoorwaarden"
+            "v-woordvoerder"
           ]
         },
         {
           "id": "s7-u04-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "No fim alcançámos um bom resultado.",
+          "prompt": "Há uma interrupção de um ano no seu currículo.",
           "tokens": [
-            "behaald.",
-            "Uiteindelijk",
-            "een",
-            "goed",
-            "hebben",
+            "Er",
+            "gat",
+            "Ik",
             "je",
-            "we",
-            "resultaat",
-            "graag"
+            "een",
+            "cv.",
+            "jaar",
+            "dat",
+            "in",
+            "zit",
+            "van",
+            "een"
           ],
           "answers": [
-            "Uiteindelijk hebben we een goed resultaat behaald."
+            "Er zit een gat van een jaar in je cv."
           ],
-          "explanation": "No fim alcançámos um bom resultado. = Uiteindelijk hebben we een goed resultaat behaald. (sobram: je, graag)",
+          "explanation": "Há uma interrupção de um ano no seu currículo. = Er zit een gat van een jaar in je cv. (sobram: dat, Ik)",
           "vocabRefs": []
         },
         {
           "id": "s7-u04-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Recebi uma proposta!",
+          "prompt": "A primeira conversa é de apresentação.",
           "tokens": [
-            "gekregen!",
-            "aanbod",
-            "heb",
+            "Het",
+            "gesprek",
+            "eerste",
+            "graag",
+            "is",
+            "gaf",
             "een",
-            "van",
-            "tevreden",
-            "Ik"
+            "kennismakingsgesprek."
           ],
           "answers": [
-            "Ik heb een aanbod gekregen!"
+            "Het eerste gesprek is een kennismakingsgesprek."
           ],
-          "explanation": "Recebi uma proposta! = Ik heb een aanbod gekregen! (sobram: van, tevreden)",
-          "vocabRefs": []
+          "explanation": "A primeira conversa é de apresentação. = Het eerste gesprek is een kennismakingsgesprek. (sobram: graag, gaf)",
+          "vocabRefs": [
+            "v-kennismakingsgesprek"
+          ]
         },
         {
           "id": "s7-u04-l008-e09",
           "type": "articleChoice",
           "instruction": "Escolha o artigo certo.",
-          "noun": "competentie",
-          "pt": "competência",
+          "noun": "loopbaan",
+          "pt": "carreira",
           "article": "de",
-          "explanation": "de competentie.",
+          "explanation": "de loopbaan.",
           "vocabRefs": [
-            "v-competentie"
+            "v-loopbaan"
           ]
         },
         {
           "id": "s7-u04-l008-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «De secundaire voorwaarden zijn uitstekend.»?",
+          "prompt": "O que significa: «Mogen we je referenties bellen?»?",
           "options": [
             {
               "id": "a",
-              "text": "Que competências usou nisso?",
-              "correct": false
-            },
-            {
-              "id": "b",
               "text": "Gostaria de progredir para uma função de chefia.",
               "correct": false
             },
             {
+              "id": "b",
+              "text": "Tenho um orçamento de formação de 1500 euros por ano.",
+              "correct": false
+            },
+            {
               "id": "c",
-              "text": "Os benefícios adicionais são excelentes.",
+              "text": "Podemos contactar as tuas referências?",
               "correct": true
             }
           ],
-          "explanation": "«De secundaire voorwaarden zijn uitstekend.» = Os benefícios adicionais são excelentes.",
-          "vocabRefs": []
+          "explanation": "«Mogen we je referenties bellen?» = Podemos contactar as tuas referências?",
+          "vocabRefs": [
+            "v-referentie"
+          ]
         }
       ],
       "difficulty": 5,
@@ -2425,16 +2433,16 @@
       ],
       "examples": [
         {
+          "nl": "Waarom wil je weg bij je huidige werkgever?",
+          "pt": "Porque quer sair do seu empregador atual?"
+        },
+        {
           "nl": "Ik wil graag doorgroeien naar een leidinggevende functie.",
           "pt": "Gostaria de progredir para uma função de chefia."
         },
         {
-          "nl": "Daar geef ik geen commentaar op.",
-          "pt": "Sobre isso não faço comentários."
-        },
-        {
-          "nl": "De arbeidsvoorwaarden zijn goed.",
-          "pt": "As condições de trabalho são boas."
+          "nl": "Welke competenties heb je daarbij gebruikt?",
+          "pt": "Que competências usou nisso?"
         }
       ],
       "grammar": [],
@@ -2443,143 +2451,122 @@
           "id": "s7-u04-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Dê um exemplo de uma situação em que resolveu um conflito.",
+          "prompt": "Como abordou isso?",
           "tokens": [
-            "ruimte",
+            "Hoe",
+            "geef",
             "een",
-            "oploste.",
-            "woordvoerder",
-            "situatie",
-            "van",
-            "je",
-            "conflict",
-            "een",
-            "waarin",
-            "een",
-            "voorbeeld",
-            "Geef"
+            "dat",
+            "aangepakt?",
+            "heb",
+            "je"
           ],
           "answers": [
-            "Geef een voorbeeld van een situatie waarin je een conflict oploste."
+            "Hoe heb je dat aangepakt?"
           ],
-          "explanation": "Dê um exemplo de uma situação em que resolveu um conflito. = Geef een voorbeeld van een situatie waarin je een conflict oploste. (sobram: woordvoerder, ruimte)",
+          "explanation": "Como abordou isso? = Hoe heb je dat aangepakt? (sobram: geef, een)",
           "vocabRefs": []
         },
         {
           "id": "s7-u04-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "A minha tarefa era manter o cliente satisfeito.",
+          "prompt": "Tenho um orçamento de formação de 1500 euros por ano.",
           "tokens": [
+            "heb",
+            "wil",
+            "1500",
+            "jaar.",
             "het",
-            "Mijn",
-            "houden.",
-            "tevreden",
-            "om",
-            "conflict",
-            "klant",
-            "de",
-            "te",
-            "was",
-            "taak"
+            "Ik",
+            "per",
+            "euro",
+            "van",
+            "een",
+            "opleidingsbudget"
           ],
           "answers": [
-            "Mijn taak was om de klant tevreden te houden."
+            "Ik heb een opleidingsbudget van 1500 euro per jaar."
           ],
-          "explanation": "A minha tarefa era manter o cliente satisfeito. = Mijn taak was om de klant tevreden te houden. (sobram: het, conflict)",
-          "vocabRefs": []
+          "explanation": "Tenho um orçamento de formação de 1500 euros por ano. = Ik heb een opleidingsbudget van 1500 euro per jaar. (sobram: het, wil)",
+          "vocabRefs": [
+            "v-opleidingsbudget"
+          ]
         },
         {
           "id": "s7-u04-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Como abordou isso?",
+          "prompt": "Sobre isso não faço comentários.",
           "tokens": [
-            "heb",
-            "te",
-            "je",
-            "aangepakt?",
-            "Hoe",
-            "we",
-            "dat"
+            "op.",
+            "competenties",
+            "geen",
+            "ik",
+            "geef",
+            "Daar",
+            "commentaar",
+            "een"
           ],
           "answers": [
-            "Hoe heb je dat aangepakt?"
+            "Daar geef ik geen commentaar op."
           ],
-          "explanation": "Como abordou isso? = Hoe heb je dat aangepakt? (sobram: we, te)",
-          "vocabRefs": []
+          "explanation": "Sobre isso não faço comentários. = Daar geef ik geen commentaar op. (sobram: competenties, een)",
+          "vocabRefs": [
+            "v-geen-commentaar"
+          ]
         },
         {
           "id": "s7-u04-l009-e04",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Ik heb een aanbod gekregen!",
+          "audioText": "De arbeidsvoorwaarden zijn goed.",
           "answers": [
-            "Ik heb een aanbod gekregen!"
+            "De arbeidsvoorwaarden zijn goed."
           ],
-          "translation": "Recebi uma proposta!",
-          "explanation": "«Ik heb een aanbod gekregen!» = Recebi uma proposta!",
-          "vocabRefs": []
+          "translation": "As condições de trabalho são boas.",
+          "explanation": "«De arbeidsvoorwaarden zijn goed.» = As condições de trabalho são boas.",
+          "vocabRefs": [
+            "v-arbeidsvoorwaarden"
+          ]
         },
         {
           "id": "s7-u04-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Uiteindelijk hebben we een goed resultaat behaald.",
+          "audioText": "Mijn taak was om de klant tevreden te houden.",
           "answers": [
-            "Uiteindelijk hebben we een goed resultaat behaald."
+            "Mijn taak was om de klant tevreden te houden."
           ],
-          "translation": "No fim alcançámos um bom resultado.",
-          "explanation": "«Uiteindelijk hebben we een goed resultaat behaald.» = No fim alcançámos um bom resultado.",
+          "translation": "A minha tarefa era manter o cliente satisfeito.",
+          "explanation": "«Mijn taak was om de klant tevreden te houden.» = A minha tarefa era manter o cliente satisfeito.",
           "vocabRefs": []
         },
         {
           "id": "s7-u04-l009-e06",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Mogen we je referenties bellen?",
+          "audioText": "Geef een voorbeeld van een situatie waarin je een conflict oploste.",
           "answers": [
-            "Mogen we je referenties bellen?"
+            "Geef een voorbeeld van een situatie waarin je een conflict oploste."
           ],
-          "translation": "Podemos contactar as tuas referências?",
-          "explanation": "«Mogen we je referenties bellen?» = Podemos contactar as tuas referências?",
-          "vocabRefs": [
-            "v-referentie"
-          ]
+          "translation": "Dê um exemplo de uma situação em que resolveu um conflito.",
+          "explanation": "«Geef een voorbeeld van een situatie waarin je een conflict oploste.» = Dê um exemplo de uma situação em que resolveu um conflito.",
+          "vocabRefs": []
         },
         {
           "id": "s7-u04-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
-          "translation": "Há margem para falar sobre o salário?",
-          "tokens": [
-            "het",
-            "over",
-            "te",
-            "er",
-            "Is",
-            "ruimte",
-            "salaris",
-            "praten?",
-            "om"
-          ],
-          "alternatives": [],
-          "explanation": "Is er ruimte om over het salaris te praten?",
-          "vocabRefs": []
-        },
-        {
-          "id": "s7-u04-l009-e08",
-          "type": "wordOrder",
-          "instruction": "Ordene as palavras.",
           "translation": "Passaste à segunda fase!",
           "tokens": [
-            "bent",
-            "ronde!",
             "Je",
+            "bent",
             "door",
-            "tweede",
+            "naar",
             "de",
-            "naar"
+            "tweede",
+            "ronde!"
           ],
           "alternatives": [],
           "explanation": "Je bent door naar de tweede ronde!",
@@ -2588,14 +2575,62 @@
           ]
         },
         {
+          "id": "s7-u04-l009-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "translation": "Porque quer sair do seu empregador atual?",
+          "tokens": [
+            "Waarom",
+            "wil",
+            "je",
+            "weg",
+            "bij",
+            "je",
+            "huidige",
+            "werkgever?"
+          ],
+          "alternatives": [],
+          "explanation": "Waarom wil je weg bij je huidige werkgever?",
+          "vocabRefs": [
+            "v-huidige-werkgever"
+          ]
+        },
+        {
           "id": "s7-u04-l009-e09",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa «de STAR-methode»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "sem comentários",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "método STAR",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "text": "orçamento para formação",
+              "correct": false
+            }
+          ],
+          "explanation": "«de STAR-methode» = método STAR.",
+          "vocabRefs": [
+            "v-star-methode"
+          ]
+        },
+        {
+          "id": "s7-u04-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
           "prompt": "O que significa «doorgroeien»?",
           "options": [
             {
               "id": "a",
-              "text": "referência",
+              "text": "segunda fase",
               "correct": false
             },
             {
@@ -2605,40 +2640,13 @@
             },
             {
               "id": "c",
-              "text": "orçamento para formação",
+              "text": "benefícios adicionais",
               "correct": false
             }
           ],
           "explanation": "«doorgroeien» = progredir (na carreira).",
           "vocabRefs": [
             "v-doorgroeien"
-          ]
-        },
-        {
-          "id": "s7-u04-l009-e10",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «de competentie»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "mensagem principal",
-              "correct": false
-            },
-            {
-              "id": "b",
-              "text": "conversa de apresentação",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "competência",
-              "correct": true
-            }
-          ],
-          "explanation": "«de competentie» = competência.",
-          "vocabRefs": [
-            "v-competentie"
           ]
         }
       ],

@@ -1934,16 +1934,16 @@
       ],
       "examples": [
         {
-          "nl": "Hij is dan toch gekomen!",
-          "pt": "Afinal sempre veio!"
+          "nl": "Nu even niet, ik ben druk.",
+          "pt": "Agora não, estou ocupado."
         },
         {
-          "nl": "Kun je even helpen?",
-          "pt": "Podes ajudar um bocadinho?"
+          "nl": "Ik kom morgen niet, maar overmorgen wel.",
+          "pt": "Amanhã não venho, mas depois de amanhã sim."
         },
         {
-          "nl": "Neem maar een koekje.",
-          "pt": "Tira uma bolacha à vontade."
+          "nl": "Wacht nog even.",
+          "pt": "Espera só mais um bocadinho."
         }
       ],
       "grammar": [],
@@ -1993,9 +1993,9 @@
           "translation": "Experimenta lá, vá!",
           "tokens": [
             "Probeer",
+            "het",
             "toch",
-            "eens!",
-            "het"
+            "eens!"
           ],
           "alternatives": [],
           "explanation": "Probeer het toch eens!",
@@ -2007,11 +2007,11 @@
           "instruction": "Ordene as palavras.",
           "translation": "Olha lá o que eu tenho!",
           "tokens": [
+            "Kijk",
+            "eens",
             "wat",
             "ik",
-            "heb!",
-            "Kijk",
-            "eens"
+            "heb!"
           ],
           "alternatives": [],
           "explanation": "Kijk eens wat ik heb!",
@@ -2023,9 +2023,9 @@
           "instruction": "Ordene as palavras.",
           "translation": "Diga, faz favor.",
           "tokens": [
-            "maar.",
             "Zeg",
-            "het"
+            "het",
+            "maar."
           ],
           "alternatives": [],
           "explanation": "Zeg het maar.",
@@ -2037,12 +2037,37 @@
           "id": "s5-u13-l007-e07",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Probeer het toch eens!»?",
+          "prompt": "O que significa: «Ik kom morgen niet, maar overmorgen wel.»?",
           "options": [
             {
               "id": "a",
-              "text": "Experimenta lá, vá!",
+              "text": "Espera aí um momento!",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "É caro, lá isso é.",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Amanhã não venho, mas depois de amanhã sim.",
               "correct": true
+            }
+          ],
+          "explanation": "«Ik kom morgen niet, maar overmorgen wel.» = Amanhã não venho, mas depois de amanhã sim.",
+          "vocabRefs": []
+        },
+        {
+          "id": "s5-u13-l007-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a tradução certa.",
+          "prompt": "O que significa: «Zeg het toch gewoon!»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Afinal sempre veio!",
+              "correct": false
             },
             {
               "id": "b",
@@ -2051,74 +2076,55 @@
             },
             {
               "id": "c",
-              "text": "É caro, lá isso é.",
-              "correct": false
-            }
-          ],
-          "explanation": "«Probeer het toch eens!» = Experimenta lá, vá!",
-          "vocabRefs": []
-        },
-        {
-          "id": "s5-u13-l007-e08",
-          "type": "multipleChoice",
-          "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Het regent, maar we gaan toch.»?",
-          "options": [
-            {
-              "id": "a",
-              "text": "Está a chover, mas vamos na mesma.",
+              "text": "Diz lá simplesmente!",
               "correct": true
-            },
-            {
-              "id": "b",
-              "text": "Faz simplesmente / sê natural.",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "Isso é lógico, não é?",
-              "correct": false
             }
           ],
-          "explanation": "«Het regent, maar we gaan toch.» = Está a chover, mas vamos na mesma.",
+          "explanation": "«Zeg het toch gewoon!» = Diz lá simplesmente!",
           "vocabRefs": []
         },
         {
           "id": "s5-u13-l007-e09",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Tu também vens, não vens?",
+          "prompt": "Agora não, estou ocupado.",
           "tokens": [
-            "toch",
-            "ook?",
-            "Je",
-            "Hij",
-            "valt",
-            "komt"
+            "even",
+            "druk.",
+            "maar",
+            "niet,",
+            "Nu",
+            "ik",
+            "ben",
+            "is"
           ],
           "answers": [
-            "Je komt toch ook?"
+            "Nu even niet, ik ben druk."
           ],
-          "explanation": "Tu também vens, não vens? = Je komt toch ook? (sobram: valt, Hij)",
-          "vocabRefs": []
+          "explanation": "Agora não, estou ocupado. = Nu even niet, ik ben druk. (sobram: maar, is)",
+          "vocabRefs": [
+            "v-even-niet"
+          ]
         },
         {
           "id": "s5-u13-l007-e10",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Experimenta lá, vá!",
+          "prompt": "Está a chover, mas vamos na mesma.",
           "tokens": [
-            "eens!",
-            "het",
-            "nog",
-            "toch",
-            "Probeer",
-            "heb!"
+            "Jawel!",
+            "gaan",
+            "toch.",
+            "we",
+            "wat",
+            "regent,",
+            "maar",
+            "Het"
           ],
           "answers": [
-            "Probeer het toch eens!"
+            "Het regent, maar we gaan toch."
           ],
-          "explanation": "Experimenta lá, vá! = Probeer het toch eens! (sobram: heb!, nog)",
+          "explanation": "Está a chover, mas vamos na mesma. = Het regent, maar we gaan toch. (sobram: wat, Jawel!)",
           "vocabRefs": []
         }
       ],
@@ -2177,16 +2183,16 @@
       ],
       "examples": [
         {
-          "nl": "Doe maar gewoon.",
-          "pt": "Faz simplesmente / sê natural."
+          "nl": "Kun je even helpen?",
+          "pt": "Podes ajudar um bocadinho?"
         },
         {
-          "nl": "Ga je gang.",
-          "pt": "Faz favor."
+          "nl": "Het regent, maar we gaan toch.",
+          "pt": "Está a chover, mas vamos na mesma."
         },
         {
-          "nl": "Dat is toch logisch?",
-          "pt": "Isso é lógico, não é?"
+          "nl": "Kom maar even hier.",
+          "pt": "Vem cá um bocadinho."
         }
       ],
       "grammar": [],
@@ -2195,7 +2201,34 @@
           "id": "s5-u13-l008-e01",
           "type": "multipleChoice",
           "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «diga» em neerlandês?",
+          "prompt": "Como se diz «de certeza» em neerlandês?",
+          "options": [
+            {
+              "id": "a",
+              "text": "zeg het maar",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "hoor",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "zeker",
+              "correct": true
+            }
+          ],
+          "explanation": "de certeza = «zeker».",
+          "vocabRefs": [
+            "v-zeker-part"
+          ]
+        },
+        {
+          "id": "s5-u13-l008-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a palavra certa.",
+          "prompt": "Como se diz «não, pois não?» em neerlandês?",
           "options": [
             {
               "id": "a",
@@ -2204,68 +2237,22 @@
             },
             {
               "id": "b",
-              "text": "ga je gang",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "text": "zeg het maar",
-              "correct": true
-            }
-          ],
-          "explanation": "diga = «zeg het maar».",
-          "vocabRefs": [
-            "v-zeg-het-maar"
-          ]
-        },
-        {
-          "id": "s5-u13-l008-e02",
-          "type": "multipleChoice",
-          "instruction": "Escolha a palavra certa.",
-          "prompt": "Como se diz «simplesmente» em neerlandês?",
-          "options": [
-            {
-              "id": "a",
-              "text": "gewoon",
+              "text": "toch niet",
               "correct": true
             },
             {
-              "id": "b",
-              "text": "jawel",
-              "correct": false
-            },
-            {
               "id": "c",
-              "text": "zeg het maar",
+              "text": "even niet",
               "correct": false
             }
           ],
-          "explanation": "simplesmente = «gewoon».",
+          "explanation": "não, pois não? = «toch niet».",
           "vocabRefs": [
-            "v-gewoon-part"
+            "v-toch-niet"
           ]
         },
         {
           "id": "s5-u13-l008-e03",
-          "type": "fillBlank",
-          "instruction": "Escolha a palavra que falta.",
-          "sentence": "Dat is ___ logisch?",
-          "translation": "Isso é lógico, não é?",
-          "answers": [
-            "toch"
-          ],
-          "choices": [
-            "maar",
-            "zeker",
-            "toch"
-          ],
-          "explanation": "Dat is toch logisch?",
-          "vocabRefs": [
-            "v-toch-part"
-          ]
-        },
-        {
-          "id": "s5-u13-l008-e04",
           "type": "fillBlank",
           "instruction": "Escolha a palavra que falta.",
           "sentence": "Kun je ___ helpen?",
@@ -2274,11 +2261,30 @@
             "even"
           ],
           "choices": [
+            "eens",
+            "zeker",
+            "even"
+          ],
+          "explanation": "Kun je even helpen?",
+          "vocabRefs": [
+            "v-even-part"
+          ]
+        },
+        {
+          "id": "s5-u13-l008-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "sentence": "Mag ik ___ je pen?",
+          "translation": "Emprestas-me a caneta um segundo?",
+          "answers": [
+            "even"
+          ],
+          "choices": [
             "toch",
             "maar",
             "even"
           ],
-          "explanation": "Kun je even helpen?",
+          "explanation": "Mag ik even je pen?",
           "vocabRefs": [
             "v-even-part"
           ]
@@ -2311,65 +2317,67 @@
           "id": "s5-u13-l008-e07",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Está tudo bem, a sério!",
+          "prompt": "Espera só mais um bocadinho.",
           "tokens": [
-            "goed,",
+            "maar",
+            "even.",
+            "Wacht",
             "hoor!",
-            "Het",
-            "gekomen!",
-            "niet",
-            "is"
+            "nog"
           ],
           "answers": [
-            "Het is goed, hoor!"
+            "Wacht nog even."
           ],
-          "explanation": "Está tudo bem, a sério! = Het is goed, hoor! (sobram: gekomen!, niet)",
+          "explanation": "Espera só mais um bocadinho. = Wacht nog even. (sobram: maar, hoor!)",
           "vocabRefs": [
-            "v-hoor"
+            "v-nog-even"
           ]
         },
         {
           "id": "s5-u13-l008-e08",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Faz simplesmente / sê natural.",
+          "prompt": "Experimenta lá, vá!",
           "tokens": [
-            "even",
-            "Doe",
-            "gewoon.",
-            "maar",
-            "goed,"
+            "eens!",
+            "binnen!",
+            "het",
+            "toch",
+            "Probeer",
+            "mee!"
           ],
           "answers": [
-            "Doe maar gewoon."
+            "Probeer het toch eens!"
           ],
-          "explanation": "Faz simplesmente / sê natural. = Doe maar gewoon. (sobram: goed,, even)",
+          "explanation": "Experimenta lá, vá! = Probeer het toch eens! (sobram: mee!, binnen!)",
           "vocabRefs": []
         },
         {
           "id": "s5-u13-l008-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa: «Neem maar een koekje.»?",
+          "prompt": "O que significa: «Wacht nog even.»?",
           "options": [
             {
               "id": "a",
-              "text": "Tira uma bolacha à vontade.",
-              "correct": true
+              "text": "Diga, faz favor.",
+              "correct": false
             },
             {
               "id": "b",
-              "text": "Vou só ali fazer umas compras.",
-              "correct": false
+              "text": "Espera só mais um bocadinho.",
+              "correct": true
             },
             {
               "id": "c",
-              "text": "Olha lá o que eu tenho!",
+              "text": "Tira uma bolacha à vontade.",
               "correct": false
             }
           ],
-          "explanation": "«Neem maar een koekje.» = Tira uma bolacha à vontade.",
-          "vocabRefs": []
+          "explanation": "«Wacht nog even.» = Espera só mais um bocadinho.",
+          "vocabRefs": [
+            "v-nog-even"
+          ]
         }
       ],
       "difficulty": 4,
@@ -2427,16 +2435,16 @@
       ],
       "examples": [
         {
-          "nl": "Wacht nog even.",
-          "pt": "Espera só mais um bocadinho."
+          "nl": "Nu even niet, ik ben druk.",
+          "pt": "Agora não, estou ocupado."
         },
         {
-          "nl": "Ik heb geen auto, maar wel een fiets.",
-          "pt": "Não tenho carro, mas tenho bicicleta."
+          "nl": "Mag ik even je pen?",
+          "pt": "Emprestas-me a caneta um segundo?"
         },
         {
-          "nl": "Nou, dat valt mee!",
-          "pt": "Bem, não é assim tão mau!"
+          "nl": "Zeg het toch gewoon!",
+          "pt": "Diz lá simplesmente!"
         }
       ],
       "grammar": [],
@@ -2445,76 +2453,64 @@
           "id": "s5-u13-l009-e01",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Vou só ali fazer umas compras.",
+          "prompt": "Podes ajudar um bocadinho?",
           "tokens": [
-            "ga",
-            "Ik",
-            "even",
-            "Het",
-            "doen.",
             "je",
-            "boodschappen"
+            "Kun",
+            "even",
+            "hier.",
+            "we",
+            "helpen?"
           ],
           "answers": [
-            "Ik ga even boodschappen doen."
+            "Kun je even helpen?"
           ],
-          "explanation": "Vou só ali fazer umas compras. = Ik ga even boodschappen doen. (sobram: je, Het)",
+          "explanation": "Podes ajudar um bocadinho? = Kun je even helpen? (sobram: we, hier.)",
           "vocabRefs": []
         },
         {
           "id": "s5-u13-l009-e02",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Entra à vontade!",
+          "prompt": "Está tudo bem, a sério!",
           "tokens": [
-            "binnen!",
-            "en?",
-            "maar",
+            "is",
+            "hoor!",
+            "Nou",
+            "goed,",
             "ben",
-            "Kom"
+            "Het"
           ],
           "answers": [
-            "Kom maar binnen!"
+            "Het is goed, hoor!"
           ],
-          "explanation": "Entra à vontade! = Kom maar binnen! (sobram: en?, ben)",
-          "vocabRefs": []
+          "explanation": "Está tudo bem, a sério! = Het is goed, hoor! (sobram: Nou, ben)",
+          "vocabRefs": [
+            "v-hoor"
+          ]
         },
         {
           "id": "s5-u13-l009-e03",
           "type": "buildSentence",
           "instruction": "Construa a frase em neerlandês.",
-          "prompt": "Faz favor.",
+          "prompt": "Olha lá o que eu tenho!",
           "tokens": [
-            "is",
-            "gang.",
+            "heb!",
             "wel",
-            "je",
-            "Ga"
+            "fiets.",
+            "wat",
+            "ik",
+            "eens",
+            "Kijk"
           ],
           "answers": [
-            "Ga je gang."
+            "Kijk eens wat ik heb!"
           ],
-          "explanation": "Faz favor. = Ga je gang. (sobram: wel, is)",
-          "vocabRefs": [
-            "v-ga-je-gang"
-          ]
+          "explanation": "Olha lá o que eu tenho! = Kijk eens wat ik heb! (sobram: fiets., wel)",
+          "vocabRefs": []
         },
         {
           "id": "s5-u13-l009-e04",
-          "type": "listening",
-          "instruction": "Ouça e escreva o que ouviu.",
-          "audioText": "Nu even niet, ik ben druk.",
-          "answers": [
-            "Nu even niet, ik ben druk."
-          ],
-          "translation": "Agora não, estou ocupado.",
-          "explanation": "«Nu even niet, ik ben druk.» = Agora não, estou ocupado.",
-          "vocabRefs": [
-            "v-even-niet"
-          ]
-        },
-        {
-          "id": "s5-u13-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Het is goed, hoor!",
@@ -2528,7 +2524,7 @@
           ]
         },
         {
-          "id": "s5-u13-l009-e06",
+          "id": "s5-u13-l009-e05",
           "type": "listening",
           "instruction": "Ouça e escreva o que ouviu.",
           "audioText": "Je komt toch ook?",
@@ -2540,14 +2536,26 @@
           "vocabRefs": []
         },
         {
+          "id": "s5-u13-l009-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "audioText": "Kom maar binnen!",
+          "answers": [
+            "Kom maar binnen!"
+          ],
+          "translation": "Entra à vontade!",
+          "explanation": "«Kom maar binnen!» = Entra à vontade!",
+          "vocabRefs": []
+        },
+        {
           "id": "s5-u13-l009-e07",
           "type": "wordOrder",
           "instruction": "Ordene as palavras.",
           "translation": "Diz lá simplesmente!",
           "tokens": [
-            "toch",
             "Zeg",
             "het",
+            "toch",
             "gewoon!"
           ],
           "alternatives": [],
@@ -2560,8 +2568,8 @@
           "instruction": "Ordene as palavras.",
           "translation": "Faz simplesmente / sê natural.",
           "tokens": [
-            "maar",
             "Doe",
+            "maar",
             "gewoon."
           ],
           "alternatives": [],
@@ -2572,7 +2580,7 @@
           "id": "s5-u13-l009-e09",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «zeg het maar»?",
+          "prompt": "O que significa «ga je gang»?",
           "options": [
             {
               "id": "a",
@@ -2586,40 +2594,40 @@
             },
             {
               "id": "c",
-              "text": "diga",
+              "text": "faz favor",
               "correct": true
             }
           ],
-          "explanation": "«zeg het maar» = diga (em que posso ajudar).",
+          "explanation": "«ga je gang» = faz favor, à vontade.",
           "vocabRefs": [
-            "v-zeg-het-maar"
+            "v-ga-je-gang"
           ]
         },
         {
           "id": "s5-u13-l009-e10",
           "type": "multipleChoice",
           "instruction": "Escolha a tradução certa.",
-          "prompt": "O que significa «heel even»?",
+          "prompt": "O que significa «zeker»?",
           "options": [
             {
               "id": "a",
-              "text": "faz favor",
-              "correct": false
+              "text": "de certeza",
+              "correct": true
             },
             {
               "id": "b",
-              "text": "e depois?",
+              "text": "simplesmente",
               "correct": false
             },
             {
               "id": "c",
-              "text": "só um bocadinho",
-              "correct": true
+              "text": "bem",
+              "correct": false
             }
           ],
-          "explanation": "«heel even» = só um bocadinho.",
+          "explanation": "«zeker» = de certeza, com certeza.",
           "vocabRefs": [
-            "v-heel-even"
+            "v-zeker-part"
           ]
         }
       ],
