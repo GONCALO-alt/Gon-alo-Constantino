@@ -1,0 +1,21 @@
+# Configuração para publicar no Netlify a partir do GitHub.
+# O Netlify corre o build e publica a pasta dist/.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # As ferramentas de conteúdo usam TypeScript direto no Node (precisa do Node 22).
+  NODE_VERSION = "22"
+
+# O conteúdo das lições muda quando há lições novas: não guardar em cache por muito tempo.
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+# Os ficheiros JS/CSS têm nome com hash: podem ficar em cache muito tempo.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
