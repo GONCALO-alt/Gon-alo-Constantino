@@ -5,11 +5,10 @@ C = "B2"
 
 L(1, "Vocabulário de gestão", "doelstelling, planning, budget, evaluatie, stakeholder",
   ["Usar vocabulário de gestão de projetos"],
-  vocab=[V("v-doelstelling","doelstelling","objetivo","noun","de"), V("v-begroting","begroting","orçamento","noun","de"),
-         V("v-evaluatie","evaluatie","avaliação","noun","de"), V("v-belanghebbende","belanghebbende","parte interessada","noun","de"),
+  vocab=[V("v-doelstelling","doelstelling","objetivo","noun","de"), V("v-evaluatie","evaluatie","avaliação","noun","de"), V("v-belanghebbende","belanghebbende","parte interessada","noun","de"),
          V("v-mijlpaal","mijlpaal","marco|etapa importante","noun","de")],
   ex=[("Wat is de doelstelling van het project?","Qual é o objetivo do projeto?"),("De begroting is overschreden.","O orçamento foi ultrapassado."),("Na afloop volgt een evaluatie.","No fim segue-se uma avaliação."),("We hebben een belangrijke mijlpaal bereikt.","Alcançámos um marco importante.")],
-  review=["v-agenda","v-deadline-halen","v-resultaat"],
+  review=["v-begroting","v-agenda","v-deadline-halen","v-resultaat"],
   cefr=C, exs=[
     MA([("doelstelling","objetivo"),("begroting","orçamento"),("evaluatie","avaliação"),("belanghebbende","parte interessada"),("mijlpaal","marco")], "Gestão.", ["v-doelstelling","v-begroting","v-evaluatie","v-belanghebbende","v-mijlpaal"]),
     TR("pt-nl","Qual é o objetivo do projeto?", ["Wat is de doelstelling van het project","Wat is het doel van het project"], "doelstelling.", ["v-doelstelling"]),
