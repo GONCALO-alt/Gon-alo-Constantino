@@ -30,6 +30,10 @@ Regras: IDs de vocabulário únicos em todo o curso (rever com `reviewVocabulary
 | 4 Comunicação independente | 16/16 | 80 | 700 |
 | 5 Fluência prática | 16/16 | 80 | 700 |
 | 6 Neerlandês avançado | 16/16 | 80 | 600 |
-| 7 Domínio e utilização real | 0/15 | 0 | 500 |
+| 7 Domínio e utilização real | 15/15 | 75 | 500 |
+
+**Total:** 549 lições publicadas (5490 exercícios, 2322 palavras) — a 1.ª passagem (núcleo) está
+completa em todas as 109 unidades. Próximo passo: 2.ª passagem (lições de prática, histórias,
+compreensão oral e revisão), começando pela Secção 1.
 
 Todo o conteúdo foi redigido com IA e **não foi revisto por um falante nativo**.

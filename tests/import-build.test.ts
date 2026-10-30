@@ -6,12 +6,11 @@ import { syntheticLesson } from '../tools/lib/synthetic.ts';
 import { clone, realFiles, realStructure } from './helpers.ts';
 
 const units = new Set(realStructure().sections.flatMap((s) => s.units.map((u) => u.id)));
-const existing = () => new Map(realFiles().map((f) => [f.unitId, clone(f)]));
-// Uma unidade ainda sem lições (a última do curso), para os testes de importação.
-const EMPTY = (() => {
-  const used = new Set(realFiles().map((f) => f.unitId));
-  return [...units].reverse().find((u) => !used.has(u))!;
-})();
+// A última unidade do curso faz de «unidade sem lições» nestes testes:
+// o seu ficheiro real é retirado, para o resultado não depender do conteúdo existente.
+const EMPTY = [...units].at(-1)!;
+const filesWithoutEmpty = () => realFiles().filter((f) => f.unitId !== EMPTY);
+const existing = () => new Map(filesWithoutEmpty().map((f) => [f.unitId, clone(f)]));
 const batch = (lessons: unknown[], batchId = 'lote-001') => ({ batchId, createdAt: '2026-10-29', generator: 'teste', lessons });
 
 describe('importação de lotes', () => {
@@ -84,7 +83,7 @@ describe('fluxo de revisão editorial', () => {
 
 describe('compilação', () => {
   it('só inclui lições publicadas e remove metadados editoriais', () => {
-    const files = realFiles().map(clone);
+    const files = filesWithoutEmpty().map(clone);
     files.push({ unitId: EMPTY, lessons: [{ ...syntheticLesson(EMPTY, 1, 1), status: 'draft' }] });
     const c = compileContent(realStructure(), files, '2026-10-29');
     CourseIndexSchema.parse(c.index);

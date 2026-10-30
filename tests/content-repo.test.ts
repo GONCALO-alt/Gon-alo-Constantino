@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { ContentError, ContentRepository } from '../src/data/contentRepo.ts';
-import { fetcherFor } from './helpers.ts';
+import { compileContent } from '../tools/lib/build.ts';
+import { fetcherFor, realFiles, realStructure } from './helpers.ts';
 
 describe('carregamento de conteúdo', () => {
   it('carrega o índice uma vez e as unidades só quando necessário', async () => {
@@ -30,8 +31,11 @@ describe('carregamento de conteúdo', () => {
     await expect(repo.loadIndex()).rejects.toThrow(/inválido/);
   });
   it('vocabulário de secção sem conteúdo devolve null', async () => {
-    const repo = new ContentRepository('/content/', fetcherFor());
-    expect(await repo.loadVocab('s7')).toBeNull();
+    const last = realStructure().sections.at(-1)!;
+    const lastUnits = new Set(last.units.map((u) => u.id));
+    const compiled = compileContent(realStructure(), realFiles().filter((f) => !lastUnits.has(f.unitId)));
+    const repo = new ContentRepository('/content/', fetcherFor(compiled));
+    expect(await repo.loadVocab(last.id)).toBeNull();
     expect((await repo.loadVocab('s1'))!.items.length).toBeGreaterThan(10);
   });
   it('limita o número de unidades em cache', async () => {
