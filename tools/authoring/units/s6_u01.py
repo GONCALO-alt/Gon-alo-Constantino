@@ -103,6 +103,6 @@ L(5, "Debate completo", "Een debat over de vierdaagse werkweek.",
     LI("De productiviteit blijft gelijk of stijgt zelfs.", ["De productiviteit blijft gelijk of stijgt zelfs"], "A produtividade mantém-se igual ou até sobe.", "productiviteit.", ["v-productiviteit"]),
     WO("Quais são as consequências?", ["Wat","zijn","de","gevolgen?"], "gevolgen.", []),
     SW("Escreva a sua intervenção (5 frases) num debate sobre a semana de 4 dias: posição, argumento com fundamentação, concessão e conclusão.", ["Ik ben voorstander van een vierdaagse werkweek. Mensen zijn dan minder gestrest en uit onderzoek blijkt dat de productiviteit niet daalt. Ik geef toe dat het in de zorg moeilijk is. Daar zou je kunnen beginnen met kleinere stappen. Kortom: waar het kan, moeten we het proberen."], ["Posição", "Argumento + fundamentação", "**Ik geef toe dat…**", "Conclusão"], 50, "Intervenção em debate.", ["v-voorstander","v-toegeven"]),
-  ], diff=5, mins=9)
+  ], diff=5, mins=8)
 
 W()

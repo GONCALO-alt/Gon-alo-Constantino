@@ -1,0 +1,1606 @@
+{
+  "unitId": "s6-u03",
+  "lessons": [
+    {
+      "id": "s6-u03-l001",
+      "unitId": "s6-u03",
+      "order": 1,
+      "title": "Partes de um artigo",
+      "description": "kop, intro, tussenkop, citaat",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Reconhecer a estrutura de um artigo jornalístico"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kop-artikel",
+          "nl": "kop",
+          "pt": [
+            "título (de artigo)"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-tussenkop",
+          "nl": "tussenkop",
+          "pt": [
+            "intertítulo"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-citaat",
+          "nl": "citaat",
+          "pt": [
+            "citação"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-lezer",
+          "nl": "lezer",
+          "pt": [
+            "leitor"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-samenvatting",
+          "nl": "samenvatting",
+          "pt": [
+            "resumo"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-artikel",
+        "v-krantenkop",
+        "v-bron"
+      ],
+      "examples": [
+        {
+          "nl": "De kop moet de aandacht trekken.",
+          "pt": "O título deve chamar a atenção."
+        },
+        {
+          "nl": "De intro vat het artikel samen.",
+          "pt": "A introdução resume o artigo."
+        },
+        {
+          "nl": "Het citaat komt van een expert.",
+          "pt": "A citação é de um especialista."
+        },
+        {
+          "nl": "Tussenkoppen helpen de lezer.",
+          "pt": "Os intertítulos ajudam o leitor."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-artikel-structuur",
+          "title": "Pirâmide invertida",
+          "body": "Num artigo de notícia, o mais importante vem **primeiro**: **kop** (título) → **intro/lead** (quem, o quê, onde, quando) → pormenores e **citaten** → contexto. Por isso, ler o título e o primeiro parágrafo dá logo a ideia principal.",
+          "examples": [
+            {
+              "nl": "«We zijn heel blij met het resultaat,» aldus de burgemeester.",
+              "pt": "«Estamos muito contentes com o resultado», disse o presidente da câmara."
+            }
+          ],
+          "contrastWithPt": "«aldus» = segundo/disse (usado depois de citações)."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u03-l001-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Artigo.",
+          "vocabRefs": [
+            "v-kop-artikel",
+            "v-tussenkop",
+            "v-citaat",
+            "v-lezer",
+            "v-samenvatting"
+          ],
+          "pairs": [
+            {
+              "nl": "kop",
+              "pt": "título"
+            },
+            {
+              "nl": "tussenkop",
+              "pt": "intertítulo"
+            },
+            {
+              "nl": "citaat",
+              "pt": "citação"
+            },
+            {
+              "nl": "lezer",
+              "pt": "leitor"
+            },
+            {
+              "nl": "samenvatting",
+              "pt": "resumo"
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l001-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het citaat.",
+          "vocabRefs": [
+            "v-citaat"
+          ],
+          "noun": "citaat",
+          "pt": "a citação",
+          "article": "het"
+        },
+        {
+          "id": "s6-u03-l001-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "samenvatten.",
+          "vocabRefs": [
+            "v-samenvatting"
+          ],
+          "direction": "nl-pt",
+          "prompt": "De intro vat het artikel samen.",
+          "answers": [
+            "A introdução resume o artigo"
+          ]
+        },
+        {
+          "id": "s6-u03-l001-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "de aandacht trekken.",
+          "vocabRefs": [
+            "v-kop-artikel"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O título deve chamar a atenção.",
+          "answers": [
+            "De kop moet de aandacht trekken"
+          ]
+        },
+        {
+          "id": "s6-u03-l001-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pirâmide invertida.",
+          "vocabRefs": [
+            "v-kop-artikel"
+          ],
+          "prompt": "Onde encontra mais depressa a informação principal de uma notícia?",
+          "options": [
+            {
+              "id": "a",
+              "text": "No título e no primeiro parágrafo",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "No último parágrafo",
+              "correct": false,
+              "feedback": "Normalmente é contexto."
+            },
+            {
+              "id": "c",
+              "text": "Nas fotos",
+              "correct": false,
+              "feedback": "Não necessariamente."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l001-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "aldus.",
+          "vocabRefs": [
+            "v-citaat"
+          ],
+          "prompt": "«…, aldus de minister.» — «aldus» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "disse/segundo (depois de uma citação)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "portanto",
+              "correct": false,
+              "feedback": "Não aqui."
+            },
+            {
+              "id": "c",
+              "text": "contra",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l001-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Citaat é het-woord: het citaat.",
+          "vocabRefs": [
+            "v-citaat"
+          ],
+          "tokens": [
+            "De",
+            "citaat",
+            "komt",
+            "van",
+            "een",
+            "expert."
+          ],
+          "errorIndex": 0,
+          "correction": "Het"
+        },
+        {
+          "id": "s6-u03-l001-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "aldus.",
+          "vocabRefs": [
+            "v-citaat"
+          ],
+          "audioText": "«We zijn heel blij met het resultaat,» aldus de burgemeester.",
+          "answers": [
+            "We zijn heel blij met het resultaat(,) aldus de burgemeester"
+          ],
+          "translation": "«Estamos muito contentes com o resultado», disse o presidente da câmara."
+        },
+        {
+          "id": "s6-u03-l001-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Resumo.",
+          "vocabRefs": [
+            "v-samenvatting"
+          ],
+          "sentence": "Schrijf een korte ___ van de tekst in drie zinnen.",
+          "translation": "Escreve um resumo curto do texto em três frases.",
+          "answers": [
+            "samenvatting"
+          ],
+          "choices": [
+            "samenvatting",
+            "kop",
+            "citaat"
+          ]
+        },
+        {
+          "id": "s6-u03-l001-e10",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Simples.",
+          "vocabRefs": [
+            "v-tussenkop",
+            "v-lezer"
+          ],
+          "translation": "Os intertítulos ajudam o leitor.",
+          "tokens": [
+            "Tussenkoppen",
+            "helpen",
+            "de",
+            "lezer"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u03-l002",
+      "unitId": "s6-u03",
+      "order": 2,
+      "title": "Encontrar a ideia principal",
+      "description": "De kern van de tekst. Waar gaat het over?",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Identificar a ideia principal e distingui-la de pormenores"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kern",
+          "nl": "kern",
+          "pt": [
+            "essência",
+            "cerne"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-bijzaak",
+          "nl": "bijzaak",
+          "pt": [
+            "pormenor secundário"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-hoofdzaak",
+          "nl": "hoofdzaak",
+          "pt": [
+            "o essencial"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-strekking",
+          "nl": "strekking",
+          "pt": [
+            "sentido geral"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-hoofdgedachte",
+        "v-samenvatting",
+        "v-kernzin"
+      ],
+      "examples": [
+        {
+          "nl": "Wat is de kern van het artikel?",
+          "pt": "Qual é o cerne do artigo?"
+        },
+        {
+          "nl": "Dat is een bijzaak.",
+          "pt": "Isso é um pormenor secundário."
+        },
+        {
+          "nl": "Hoofdzaken en bijzaken onderscheiden.",
+          "pt": "Distinguir o essencial do acessório."
+        },
+        {
+          "nl": "De strekking van de tekst is positief.",
+          "pt": "O sentido geral do texto é positivo."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u03-l002-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Ideia principal.",
+          "vocabRefs": [
+            "v-kern",
+            "v-bijzaak",
+            "v-hoofdzaak",
+            "v-strekking"
+          ],
+          "pairs": [
+            {
+              "nl": "kern",
+              "pt": "cerne"
+            },
+            {
+              "nl": "bijzaak",
+              "pt": "pormenor"
+            },
+            {
+              "nl": "hoofdzaak",
+              "pt": "essencial"
+            },
+            {
+              "nl": "strekking",
+              "pt": "sentido geral"
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l002-e02",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "werk aan de winkel = trabalho por fazer.",
+          "vocabRefs": [
+            "v-kern",
+            "v-bijzaak"
+          ],
+          "kind": "text",
+          "title": "Minder vlees, meer bonen",
+          "text": "Nederlanders eten steeds minder vlees. Volgens het Voedingscentrum daalde de vleesconsumptie de afgelopen tien jaar met ongeveer tien procent. Vooral jongeren kiezen vaker voor vegetarische maaltijden. Supermarkten spelen daarop in: het aanbod van vleesvervangers is sterk gegroeid. Toch blijft Nederland in Europa een van de grotere vleeseters. Volgens experts is er dus nog werk aan de winkel.",
+          "questions": [
+            {
+              "prompt": "Qual é a ideia principal?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Os neerlandeses comem menos carne, mas ainda comem bastante",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Os supermercados vendem mais feijão",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Os jovens não gostam de carne",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Qual destas é um pormenor (bijzaak)?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "O aumento da oferta de substitutos de carne nos supermercados",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "A diminuição do consumo de carne",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Ainda há trabalho a fazer",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l002-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "de kern.",
+          "vocabRefs": [
+            "v-kern"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Qual é o cerne do artigo?",
+          "answers": [
+            "Wat is de kern van het artikel"
+          ]
+        },
+        {
+          "id": "s6-u03-l002-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "bijzaak.",
+          "vocabRefs": [
+            "v-bijzaak"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Dat is een bijzaak.",
+          "answers": [
+            "Isso é um pormenor secundário",
+            "Isso é secundário",
+            "Isso é um pormenor"
+          ]
+        },
+        {
+          "id": "s6-u03-l002-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estratégia.",
+          "vocabRefs": [
+            "v-kern"
+          ],
+          "prompt": "Para encontrar a ideia principal, é útil…",
+          "options": [
+            {
+              "id": "a",
+              "text": "ler o título, a introdução e as primeiras frases de cada parágrafo",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "ler só os números",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "ler só o último parágrafo",
+              "correct": false,
+              "feedback": "Insuficiente."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l002-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Expressão.",
+          "vocabRefs": [],
+          "prompt": "«Er is nog werk aan de winkel» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ainda há muito por fazer",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Há vagas na loja",
+              "correct": false,
+              "feedback": "Literal."
+            },
+            {
+              "id": "c",
+              "text": "A loja está fechada",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l002-e07",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-strekking"
+          ],
+          "noun": "strekking",
+          "pt": "o sentido geral",
+          "article": "de"
+        },
+        {
+          "id": "s6-u03-l002-e08",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Kern é de-woord: de kern.",
+          "vocabRefs": [
+            "v-kern"
+          ],
+          "tokens": [
+            "Wat",
+            "is",
+            "het",
+            "kern",
+            "van",
+            "de",
+            "tekst?"
+          ],
+          "errorIndex": 2,
+          "correction": "de"
+        },
+        {
+          "id": "s6-u03-l002-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "hoofdzaken.",
+          "vocabRefs": [
+            "v-hoofdzaak"
+          ],
+          "audioText": "Laten we ons op de hoofdzaken concentreren.",
+          "answers": [
+            "Laten we ons op de hoofdzaken concentreren"
+          ],
+          "translation": "Concentremo-nos no essencial."
+        },
+        {
+          "id": "s6-u03-l002-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Ideia principal.",
+          "vocabRefs": [
+            "v-kern",
+            "v-hoofdzaak"
+          ],
+          "prompt": "Resuma o texto «Minder vlees, meer bonen» numa só frase com a ideia principal.",
+          "referenceAnswers": [
+            "Nederlanders eten minder vlees dan vroeger, maar ze eten nog steeds relatief veel."
+          ],
+          "checklist": [
+            "Uma frase",
+            "Ideia principal (não pormenores)",
+            "Contraste com **maar**"
+          ],
+          "minWords": 10
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u03-l003",
+      "unitId": "s6-u03",
+      "order": 3,
+      "title": "Facto, opinião e intenção do autor",
+      "description": "Wil de schrijver informeren, overtuigen of amuseren?",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Distinguir factos de opiniões e reconhecer a intenção do texto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-feit",
+          "nl": "feit",
+          "pt": [
+            "facto"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "feiten"
+        },
+        {
+          "id": "v-informeren",
+          "nl": "informeren",
+          "pt": [
+            "informar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-schrijfdoel",
+          "nl": "schrijfdoel",
+          "pt": [
+            "objetivo do texto"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-objectief",
+          "nl": "objectief",
+          "pt": [
+            "objetivo (imparcial)"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-subjectief",
+          "nl": "subjectief",
+          "pt": [
+            "subjetivo"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-mening",
+        "v-overtuigen",
+        "v-bron"
+      ],
+      "examples": [
+        {
+          "nl": "Dat is een feit, geen mening.",
+          "pt": "Isso é um facto, não uma opinião."
+        },
+        {
+          "nl": "Het artikel wil vooral informeren.",
+          "pt": "O artigo quer sobretudo informar."
+        },
+        {
+          "nl": "Wat is het schrijfdoel?",
+          "pt": "Qual é o objetivo do texto?"
+        },
+        {
+          "nl": "Een column is subjectief.",
+          "pt": "Uma crónica é subjetiva."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-schrijfdoel",
+          "title": "Objetivos de um texto",
+          "body": "**informeren** (notícia, folheto), **overtuigen** (opinião, publicidade), **amuseren** (crónica humorística), **activeren** (instruções, apelos: *Meld je nu aan!*). Sinais de opinião: *ik vind, helaas, gelukkig, natuurlijk, moeten, beste, schandalig*.",
+          "examples": [
+            {
+              "nl": "Gelukkig kiezen steeds meer mensen voor de fiets.",
+              "pt": "Felizmente cada vez mais pessoas escolhem a bicicleta. (opinião)"
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u03-l003-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Textos.",
+          "vocabRefs": [
+            "v-feit",
+            "v-informeren",
+            "v-schrijfdoel",
+            "v-objectief",
+            "v-subjectief"
+          ],
+          "pairs": [
+            {
+              "nl": "feit",
+              "pt": "facto"
+            },
+            {
+              "nl": "informeren",
+              "pt": "informar"
+            },
+            {
+              "nl": "schrijfdoel",
+              "pt": "objetivo do texto"
+            },
+            {
+              "nl": "objectief",
+              "pt": "imparcial"
+            },
+            {
+              "nl": "subjectief",
+              "pt": "subjetivo"
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l003-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Facto.",
+          "vocabRefs": [
+            "v-feit"
+          ],
+          "prompt": "«Amsterdam heeft ongeveer 900.000 inwoners.» É…",
+          "options": [
+            {
+              "id": "a",
+              "text": "een feit",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "een mening",
+              "correct": false,
+              "feedback": "É verificável."
+            },
+            {
+              "id": "c",
+              "text": "een advertentie",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l003-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Opinião.",
+          "vocabRefs": [
+            "v-subjectief"
+          ],
+          "prompt": "«Amsterdam is de mooiste stad van Europa.» É…",
+          "options": [
+            {
+              "id": "a",
+              "text": "een mening",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "een feit",
+              "correct": false,
+              "feedback": "Não é verificável."
+            },
+            {
+              "id": "c",
+              "text": "een citaat",
+              "correct": false,
+              "feedback": "Não necessariamente."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l003-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Palavra avaliativa.",
+          "vocabRefs": [
+            "v-subjectief"
+          ],
+          "prompt": "Qual palavra revela opinião?",
+          "options": [
+            {
+              "id": "a",
+              "text": "schandalig",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "gisteren",
+              "correct": false,
+              "feedback": "Neutra."
+            },
+            {
+              "id": "c",
+              "text": "tachtig",
+              "correct": false,
+              "feedback": "Neutra."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l003-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Objetivo.",
+          "vocabRefs": [
+            "v-schrijfdoel"
+          ],
+          "prompt": "Um folheto «Meld je nu aan voor de cursus!» quer…",
+          "options": [
+            {
+              "id": "a",
+              "text": "activeren (levar a agir)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "amuseren",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "alleen informeren",
+              "correct": false,
+              "feedback": "Pede uma ação."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l003-e06",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het feit.",
+          "vocabRefs": [
+            "v-feit"
+          ],
+          "noun": "feit",
+          "pt": "o facto",
+          "article": "het"
+        },
+        {
+          "id": "s6-u03-l003-e07",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "feit/mening.",
+          "vocabRefs": [
+            "v-feit"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Isso é um facto, não uma opinião.",
+          "answers": [
+            "Dat is een feit(,) geen mening"
+          ]
+        },
+        {
+          "id": "s6-u03-l003-e08",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "column.",
+          "vocabRefs": [
+            "v-subjectief"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Een column is subjectief.",
+          "answers": [
+            "Uma crónica é subjetiva",
+            "Uma coluna de opinião é subjetiva"
+          ]
+        },
+        {
+          "id": "s6-u03-l003-e09",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "het feit → een objectief feit.",
+          "vocabRefs": [
+            "v-objectief"
+          ],
+          "tokens": [
+            "Dit",
+            "is",
+            "een",
+            "objectieve",
+            "feit."
+          ],
+          "errorIndex": 3,
+          "correction": "objectief"
+        },
+        {
+          "id": "s6-u03-l003-e10",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "schrijfdoel.",
+          "vocabRefs": [
+            "v-schrijfdoel"
+          ],
+          "audioText": "De schrijver wil de lezer vooral overtuigen.",
+          "answers": [
+            "De schrijver wil de lezer vooral overtuigen"
+          ],
+          "translation": "O autor quer sobretudo convencer o leitor."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u03-l004",
+      "unitId": "s6-u03",
+      "order": 4,
+      "title": "Vocabulário de textos informativos",
+      "description": "aantal, toename, afname, gevolg, oorzaak",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Dominar palavras frequentes em textos informativos"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-toename",
+          "nl": "toename",
+          "pt": [
+            "aumento"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-afname",
+          "nl": "afname",
+          "pt": [
+            "diminuição"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-oorzaak",
+          "nl": "oorzaak",
+          "pt": [
+            "causa"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-gevolg",
+          "nl": "gevolg",
+          "pt": [
+            "consequência"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "gevolgen"
+        },
+        {
+          "id": "v-aantal",
+          "nl": "aantal",
+          "pt": [
+            "número (quantidade)"
+          ],
+          "pos": "noun",
+          "article": "het"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-stijgen",
+        "v-dalen",
+        "v-door",
+        "v-daardoor"
+      ],
+      "examples": [
+        {
+          "nl": "Er is een toename van het aantal fietsers.",
+          "pt": "Há um aumento do número de ciclistas."
+        },
+        {
+          "nl": "De afname komt door de hoge prijzen.",
+          "pt": "A diminuição deve-se aos preços altos."
+        },
+        {
+          "nl": "Wat is de oorzaak?",
+          "pt": "Qual é a causa?"
+        },
+        {
+          "nl": "Dat heeft grote gevolgen.",
+          "pt": "Isso tem grandes consequências."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-aantal-enkelvoud",
+          "title": "Het aantal + verbo",
+          "body": "**Het aantal** (o número de) leva o verbo no **singular**: *Het aantal fietsers **stijgt**.* Mas **een aantal** (alguns) leva normalmente plural: *Een aantal mensen **zijn** ziek.* Oorzaak → **door/doordat**; gevolg → **daardoor/dus**.",
+          "examples": [
+            {
+              "nl": "Het aantal toeristen is gestegen.",
+              "pt": "O número de turistas subiu."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u03-l004-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Textos informativos.",
+          "vocabRefs": [
+            "v-toename",
+            "v-afname",
+            "v-oorzaak",
+            "v-gevolg",
+            "v-aantal"
+          ],
+          "pairs": [
+            {
+              "nl": "toename",
+              "pt": "aumento"
+            },
+            {
+              "nl": "afname",
+              "pt": "diminuição"
+            },
+            {
+              "nl": "oorzaak",
+              "pt": "causa"
+            },
+            {
+              "nl": "gevolg",
+              "pt": "consequência"
+            },
+            {
+              "nl": "aantal",
+              "pt": "número"
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l004-e02",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "het aantal → singular.",
+          "vocabRefs": [
+            "v-aantal"
+          ],
+          "sentence": "Het aantal fietsers ___ elk jaar.",
+          "translation": "O número de ciclistas sobe todos os anos.",
+          "answers": [
+            "stijgt"
+          ],
+          "choices": [
+            "stijgt",
+            "stijgen",
+            "gestegen"
+          ]
+        },
+        {
+          "id": "s6-u03-l004-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "de oorzaak.",
+          "vocabRefs": [
+            "v-oorzaak"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Qual é a causa?",
+          "answers": [
+            "Wat is de oorzaak"
+          ]
+        },
+        {
+          "id": "s6-u03-l004-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "gevolgen.",
+          "vocabRefs": [
+            "v-gevolg"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Isso tem grandes consequências.",
+          "answers": [
+            "Dat heeft grote gevolgen"
+          ]
+        },
+        {
+          "id": "s6-u03-l004-e05",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "toename.",
+          "vocabRefs": [
+            "v-toename"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Er is een toename van het aantal fietsers.",
+          "answers": [
+            "Há um aumento do número de ciclistas"
+          ]
+        },
+        {
+          "id": "s6-u03-l004-e06",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het gevolg.",
+          "vocabRefs": [
+            "v-gevolg"
+          ],
+          "noun": "gevolg",
+          "pt": "a consequência",
+          "article": "het"
+        },
+        {
+          "id": "s6-u03-l004-e07",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het aantal.",
+          "vocabRefs": [
+            "v-aantal"
+          ],
+          "noun": "aantal",
+          "pt": "o número",
+          "article": "het"
+        },
+        {
+          "id": "s6-u03-l004-e08",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "het aantal → singular: is.",
+          "vocabRefs": [
+            "v-aantal"
+          ],
+          "tokens": [
+            "Het",
+            "aantal",
+            "toeristen",
+            "zijn",
+            "gestegen."
+          ],
+          "errorIndex": 3,
+          "correction": "is"
+        },
+        {
+          "id": "s6-u03-l004-e09",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Antónimos.",
+          "vocabRefs": [
+            "v-afname"
+          ],
+          "prompt": "O oposto de «toename» é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "afname",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "oorzaak",
+              "correct": false,
+              "feedback": "Causa."
+            },
+            {
+              "id": "c",
+              "text": "gevolg",
+              "correct": false,
+              "feedback": "Consequência."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l004-e10",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "oorzaak/afname.",
+          "vocabRefs": [
+            "v-oorzaak",
+            "v-afname"
+          ],
+          "audioText": "De oorzaak van de afname is nog onduidelijk.",
+          "answers": [
+            "De oorzaak van de afname is nog onduidelijk"
+          ],
+          "translation": "A causa da diminuição ainda não é clara."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u03-l005",
+      "unitId": "s6-u03",
+      "order": 5,
+      "title": "Ler um artigo completo",
+      "description": "Um artigo sobre trabalho remoto.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Ler um artigo e responder a perguntas de compreensão variadas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ontwikkeling",
+          "nl": "ontwikkeling",
+          "pt": [
+            "evolução",
+            "desenvolvimento"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-werkgever-verwacht",
+          "nl": "verwachting",
+          "pt": [
+            "expectativa"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-hybride",
+          "nl": "hybride",
+          "pt": [
+            "híbrido"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-eenzaamheid",
+          "nl": "eenzaamheid",
+          "pt": [
+            "solidão"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-thuiswerken",
+        "v-productiviteit",
+        "v-toename",
+        "v-gevolg"
+      ],
+      "examples": [
+        {
+          "nl": "Hybride werken is de nieuwe norm.",
+          "pt": "O trabalho híbrido é a nova norma."
+        },
+        {
+          "nl": "Die ontwikkeling begon tijdens corona.",
+          "pt": "Essa evolução começou durante a covid."
+        },
+        {
+          "nl": "De verwachtingen zijn hoog.",
+          "pt": "As expectativas são altas."
+        },
+        {
+          "nl": "Eenzaamheid is een risico.",
+          "pt": "A solidão é um risco."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u03-l005-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Artigo.",
+          "vocabRefs": [
+            "v-ontwikkeling",
+            "v-werkgever-verwacht",
+            "v-hybride",
+            "v-eenzaamheid"
+          ],
+          "pairs": [
+            {
+              "nl": "ontwikkeling",
+              "pt": "evolução"
+            },
+            {
+              "nl": "verwachting",
+              "pt": "expectativa"
+            },
+            {
+              "nl": "hybride",
+              "pt": "híbrido"
+            },
+            {
+              "nl": "eenzaamheid",
+              "pt": "solidão"
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l005-e02",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Repare na estrutura: situação → mudança → razões → reação → solução.",
+          "vocabRefs": [
+            "v-ontwikkeling",
+            "v-hybride",
+            "v-eenzaamheid"
+          ],
+          "kind": "text",
+          "title": "Thuiswerken blijft, maar anders",
+          "text": "Sinds de coronacrisis werken veel meer Nederlanders (deels) thuis. Volgens het CBS werkte in 2023 bijna de helft van de werkenden weleens thuis. Toch zien we een nieuwe ontwikkeling: steeds meer werkgevers vragen hun personeel om vaker naar kantoor te komen.\n\nWaarom? Werkgevers noemen vooral de samenwerking. 'Nieuwe collega's leren veel door gewoon naast ervaren mensen te zitten,' zegt HR-directeur Ingrid Bos. Ook eenzaamheid speelt een rol: vooral jongeren missen het contact.\n\nWerknemers zijn niet altijd enthousiast. Zij noemen de reistijd en de rust thuis als grote voordelen. De meeste bedrijven kiezen daarom voor een hybride model: twee of drie dagen op kantoor, de rest thuis.",
+          "questions": [
+            {
+              "prompt": "Qual é a nova evolução descrita?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Empregadores pedem mais presença no escritório",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Todos passam a trabalhar em casa",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Fecham-se escritórios",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Porque querem os empregadores mais presença?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Colaboração e aprendizagem dos novos colegas",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Para poupar dinheiro",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Por causa do trânsito",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Qual é a solução mais comum?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Um modelo híbrido",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Teletrabalho total",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Escritório cinco dias",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Qual é o objetivo principal do texto?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Informar",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Convencer a trabalhar em casa",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Divertir",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l005-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "hybride.",
+          "vocabRefs": [
+            "v-hybride"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O trabalho híbrido é a nova norma.",
+          "answers": [
+            "Hybride werken is de nieuwe norm",
+            "Hybride werken is de nieuwe standaard"
+          ]
+        },
+        {
+          "id": "s6-u03-l005-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "eenzaamheid.",
+          "vocabRefs": [
+            "v-eenzaamheid"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Eenzaamheid is een risico.",
+          "answers": [
+            "A solidão é um risco"
+          ]
+        },
+        {
+          "id": "s6-u03-l005-e05",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-werkgever-verwacht"
+          ],
+          "noun": "verwachting",
+          "pt": "a expectativa",
+          "article": "de"
+        },
+        {
+          "id": "s6-u03-l005-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Função da citação.",
+          "vocabRefs": [
+            "v-citaat"
+          ],
+          "prompt": "No texto, a citação de Ingrid Bos serve para…",
+          "options": [
+            {
+              "id": "a",
+              "text": "ilustrar o argumento dos empregadores",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "dar a opinião dos trabalhadores",
+              "correct": false,
+              "feedback": "Ela é diretora de RH."
+            },
+            {
+              "id": "c",
+              "text": "mostrar números",
+              "correct": false,
+              "feedback": "É uma citação."
+            }
+          ]
+        },
+        {
+          "id": "s6-u03-l005-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Sujeito plural: vragen.",
+          "vocabRefs": [],
+          "tokens": [
+            "Steeds",
+            "meer",
+            "werkgevers",
+            "vraagt",
+            "hun",
+            "personeel",
+            "om",
+            "te",
+            "komen."
+          ],
+          "errorIndex": 3,
+          "correction": "vragen"
+        },
+        {
+          "id": "s6-u03-l005-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "kiezen voor.",
+          "vocabRefs": [
+            "v-hybride"
+          ],
+          "audioText": "De meeste bedrijven kiezen voor een hybride model.",
+          "answers": [
+            "De meeste bedrijven kiezen voor een hybride model"
+          ],
+          "translation": "A maioria das empresas opta por um modelo híbrido."
+        },
+        {
+          "id": "s6-u03-l005-e09",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Evolução.",
+          "vocabRefs": [
+            "v-ontwikkeling"
+          ],
+          "sentence": "Deze ___ begon al voor corona.",
+          "translation": "Esta evolução começou já antes da covid.",
+          "answers": [
+            "ontwikkeling"
+          ],
+          "choices": [
+            "ontwikkeling",
+            "eenzaamheid",
+            "verwachting"
+          ]
+        },
+        {
+          "id": "s6-u03-l005-e10",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Resumo.",
+          "vocabRefs": [
+            "v-samenvatting"
+          ],
+          "prompt": "Resuma o artigo em 2–3 frases com as suas palavras.",
+          "referenceAnswers": [
+            "Na corona werken veel Nederlanders deels thuis. Werkgevers willen nu dat mensen vaker naar kantoor komen, vooral voor de samenwerking. De meeste bedrijven kiezen voor een hybride model."
+          ],
+          "checklist": [
+            "Situação",
+            "Mudança e razão",
+            "Solução",
+            "Palavras próprias"
+          ],
+          "minWords": 30
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 8,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    }
+  ]
+}
