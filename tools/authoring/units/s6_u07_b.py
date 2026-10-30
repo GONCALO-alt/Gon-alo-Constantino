@@ -1,0 +1,295 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u07")
+C = "B1-B2"
+# Lições de aprofundamento (10–25): registo — formal, neutro e informal.
+
+def X(id, nl, pt, pos="expression"): return V(id, nl, pt, pos)
+def N(id, nl, pt, art, pl=None): return V(id, nl, pt, "noun", art, pl)
+
+L(10, "U ou je?", "Mag ik je zeggen?",
+  ["Escolher entre u e je e mudar de registo com naturalidade"],
+  vocab=[X("v-u-zeggen","u zeggen tegen iemand","tratar alguém por «u»"), X("v-mag-ik-je-zeggen","mag ik je zeggen?","posso tratá-lo por tu?")],
+  ex=[("Ik zeg u tegen mijn huisarts.","Trato o meu médico de família por «u»."),("Mag ik je zeggen?","Posso tratá-lo por tu?"),("Op mijn werk tutoyeert iedereen elkaar.","No meu trabalho toda a gente se trata por tu.")],
+  review=["v-tutoyeren","v-zeg-maar-je","v-afstand","v-formeel","v-informeel"],
+  cefr=C, exs=[
+    MA([("u zeggen tegen iemand","tratar por «u»"),("mag ik je zeggen?","posso tratá-lo por tu?"),("tutoyeren","tratar por tu"),("zeg maar je","trata-me por tu")], "Tratamento.", ["v-u-zeggen","v-mag-ik-je-zeggen","v-tutoyeren","v-zeg-maar-je"]),
+    MC("Nos Países Baixos, em muitos locais de trabalho…", ["*tratam-se por «je», mesmo com o chefe","usa-se sempre «u»|Pouco comum hoje.","não se usam pronomes|Não."], "Cultura (tendência geral).", ["v-tutoyeren"]),
+    MC("Com uma pessoa idosa desconhecida, o mais seguro é…", ["*começar com «u»","usar «jij» logo|Pode soar desrespeitoso.","não falar|Não."], "Prudência.", ["v-u-zeggen"]),
+    TR("pt-nl","Posso tratá-lo por tu?", ["Mag ik je zeggen","Mag ik je zeggen?","Mag ik jij zeggen"], "Pedido.", ["v-mag-ik-je-zeggen"]),
+    TR("pt-nl","Trato o médico por «u».", ["Ik zeg u tegen de dokter","Ik zeg u tegen mijn huisarts","Ik zeg u tegen de huisarts"], "u zeggen tegen.", ["v-u-zeggen"]),
+    FB("Zeg maar ___, hoor!", ["je"], "Expressão.", ["v-zeg-maar-je"], choices=["je","u","jij"], tr="Trate-me por tu, à vontade!"),
+    FE(["Op","het","werk","tutoyeren","iedereen","elkaar."], 3, "tutoyeert", "Iedereen = singular.", ["v-tutoyeren"]),
+    DL([("Nieuwe buurvrouw (70)","Goedemiddag, ik ben mevrouw De Wit.","Boa tarde, sou a senhora De Wit."),("Jij","","")], ["*Goedemiddag, mevrouw De Wit. Aangenaam, ik ben Rui. Woont u hier al lang?","Hoi! Woon jij hier al lang?|Informal demais.","Wat wil je?|Rude."], "Registo adequado.", ["v-u-zeggen"]),
+    LI("Zeg maar je, dat is veel gezelliger.", ["Zeg maar je, dat is veel gezelliger","Zeg maar je dat is veel gezelliger"], "Trate-me por tu, é muito mais simpático.", "Mudar de registo.", ["v-zeg-maar-je"]),
+  ], diff=3, mins=5)
+
+L(11, "Verbos formais", "Wij verstrekken geen informatie.",
+  ["Reconhecer verbos formais e os seus equivalentes neutros"],
+  vocab=[X("v-verstrekken","verstrekken","fornecer|facultar","verb"), X("v-dienen-te","dienen te","dever (formal)","verb"),
+         X("v-zich-wenden-tot","zich wenden tot","dirigir-se a","verb")],
+  ex=[("Wij verstrekken geen informatie over klanten.","Não fornecemos informação sobre clientes."),("U dient het formulier vóór 1 mei in te leveren.","Deve entregar o formulário antes de 1 de maio."),("Voor vragen kunt u zich wenden tot de balie.","Para questões pode dirigir-se ao balcão.")],
+  review=["v-ontvangen","v-verzoeken","v-reeds"],
+  cefr=C, exs=[
+    MA([("verstrekken","fornecer"),("dienen te","dever (formal)"),("zich wenden tot","dirigir-se a"),("reeds","já (formal)")], "Formal.", ["v-verstrekken","v-dienen-te","v-zich-wenden-tot","v-reeds"]),
+    MC("«U dient … te betalen» = …", ["*U moet … betalen","U mag … betalen|Permissão.","U kunt … betalen|Possibilidade."], "Equivalente neutro.", ["v-dienen-te"]),
+    MC("Neutro de «verstrekken»:", ["*geven","verkopen|Não.","verstoppen|Não."], "Equivalente.", ["v-verstrekken"]),
+    TR("pt-nl","Deve entregar o formulário antes de 1 de maio.", ["U dient het formulier vóór 1 mei in te leveren","U dient het formulier voor 1 mei in te leveren"], "dienen + te.", ["v-dienen-te"]),
+    TR("nl-pt","Voor vragen kunt u zich wenden tot de balie.", ["Para questões pode dirigir-se ao balcão","Para perguntas pode dirigir-se ao balcão"], "zich wenden tot.", ["v-zich-wenden-tot"]),
+    FB("U ___ zich binnen vijf dagen te melden.", ["dient"], "u + t.", ["v-dienen-te"], choices=["dient","dien","moet"], tr="Deve apresentar-se no prazo de cinco dias."),
+    FE(["U","dient","het","formulier","in","leveren."], 4, "in te", "dienen te: …in te leveren.", ["v-dienen-te"]),
+    TR("nl-pt","Wij verstrekken geen informatie over klanten.", ["Não fornecemos informação sobre clientes","Não damos informações sobre clientes"], "verstrekken.", ["v-verstrekken"]),
+    LI("Voor meer informatie kunt u zich wenden tot onze klantenservice.", ["Voor meer informatie kunt u zich wenden tot onze klantenservice"], "Para mais informações pode dirigir-se ao nosso apoio ao cliente.", "Fórmula.", ["v-zich-wenden-tot"]),
+  ], diff=4, mins=5)
+
+L(12, "Conectores formais", "Indien, derhalve, teneinde.",
+  ["Perceber conectores típicos de textos formais"],
+  vocab=[X("v-indien","indien","caso|se (formal)","conjunction"), X("v-derhalve","derhalve","por conseguinte","adverb"),
+         X("v-teneinde","teneinde","a fim de","conjunction"), X("v-alsmede","alsmede","bem como","conjunction")],
+  ex=[("Indien u verhinderd bent, verzoeken wij u dit te melden.","Caso esteja impedido, pedimos-lhe que o comunique."),("De aanvraag is onvolledig; derhalve kunnen wij deze niet behandelen.","O pedido está incompleto; por conseguinte não o podemos tratar."),("Teneinde de kosten te beperken, sluiten wij om 17.00 uur.","A fim de limitar os custos, fechamos às 17h."),("Neem uw paspoort alsmede een recente foto mee.","Traga o passaporte bem como uma fotografia recente.")],
+  review=["v-thans","v-wegens"],
+  gram=[G("g-formele-connectoren","Conectores formais","Em cartas oficiais aparecem conectores formais com equivalentes simples: **indien** = *als*; **derhalve** = *daarom*; **teneinde … te** = *om … te*; **alsmede** = *en ook*; **thans** = *nu*; **reeds** = *al*. Para escrever de forma clara, prefira muitas vezes os simples.",
+    [("Indien nodig bellen wij u.","Se necessário, telefonamos-lhe."),("Teneinde u beter te helpen…","A fim de o ajudar melhor…")])],
+  cefr=C, exs=[
+    MA([("indien","caso"),("derhalve","por conseguinte"),("teneinde","a fim de"),("alsmede","bem como")], "Conectores.", ["v-indien","v-derhalve","v-teneinde","v-alsmede"]),
+    MC("Equivalente simples de «indien»:", ["*als","omdat|Causa.","hoewel|Concessão."], "Simplificar.", ["v-indien"]),
+    MC("Equivalente simples de «derhalve»:", ["*daarom","toch|Não.","maar|Não."], "Simplificar.", ["v-derhalve"]),
+    MC("Equivalente simples de «teneinde … te»:", ["*om … te","zodat|Parecido, mas outra estrutura.","terwijl|Não."], "Simplificar.", ["v-teneinde"]),
+    TR("pt-nl","Caso esteja impedido, ligue-nos.", ["Indien u verhinderd bent, belt u ons dan","Indien u verhinderd bent, bel ons","Als u verhinderd bent, bel ons"], "indien.", ["v-indien"]),
+    FB("___ de kosten te beperken, sluiten wij eerder.", ["Teneinde"], "A fim de.", ["v-teneinde"], choices=["Teneinde","Indien","Derhalve"], tr="A fim de limitar os custos, fechamos mais cedo."),
+    FE(["Indien","u","vragen","heeft,","u","kunt","bellen."], 4, "kunt", "Inversão: …, kunt u bellen.", ["v-indien"]),
+    TR("nl-pt","Neem uw paspoort alsmede een foto mee.", ["Traga o passaporte bem como uma fotografia","Traga o seu passaporte e também uma foto"], "alsmede.", ["v-alsmede"]),
+    LI("Uw aanvraag is onvolledig; derhalve kunnen wij deze niet in behandeling nemen.", ["Uw aanvraag is onvolledig; derhalve kunnen wij deze niet in behandeling nemen","Uw aanvraag is onvolledig, derhalve kunnen wij deze niet in behandeling nemen"], "O seu pedido está incompleto; por conseguinte não o podemos tratar.", "Carta oficial.", ["v-derhalve"]),
+  ], diff=5, mins=6)
+
+L(13, "Linguagem administrativa", "Inzake uw aanvraag…",
+  ["Perceber expressões administrativas frequentes"],
+  vocab=[X("v-inzake","inzake","relativamente a|referente a"), X("v-conform","conform","conforme|de acordo com"),
+         X("v-onder-vermelding-van","onder vermelding van","indicando|com a referência")],
+  ex=[("Inzake uw aanvraag van 3 maart delen wij u het volgende mee.","Relativamente ao seu pedido de 3 de março, informamos o seguinte."),("Conform de afspraak sturen wij u de factuur.","Conforme o acordado, enviamos-lhe a fatura."),("Betaal onder vermelding van het factuurnummer.","Pague indicando o número da fatura.")],
+  review=["v-ten-behoeve-van","v-hierbij-mededelen"],
+  cefr=C, exs=[
+    MA([("inzake","relativamente a"),("conform","conforme"),("onder vermelding van","indicando"),("ten behoeve van","em benefício de")], "Administrativo.", ["v-inzake","v-conform","v-onder-vermelding-van","v-ten-behoeve-van"]),
+    MC("«Onder vermelding van uw klantnummer» significa…", ["*indique o seu número de cliente","esqueça o número|Não.","por baixo do número|Literal."], "Instrução.", ["v-onder-vermelding-van"]),
+    TR("pt-nl","Conforme o acordado, enviamos a fatura.", ["Conform de afspraak sturen wij u de factuur","Conform de afspraak sturen we de factuur"], "conform.", ["v-conform"]),
+    TR("nl-pt","Betaal onder vermelding van het factuurnummer.", ["Pague indicando o número da fatura","Pague com a referência do número da fatura"], "Instrução.", ["v-onder-vermelding-van"]),
+    FB("___ uw brief van 5 juni kunnen wij u het volgende melden.", ["Inzake"], "Relativamente a.", ["v-inzake"], choices=["Inzake","Conform","Indien"], tr="Relativamente à sua carta de 5 de junho, podemos informar o seguinte."),
+    FE(["Conform","de","afspraak","wij","sturen","u","de","factuur."], 3, "sturen", "Inversão: Conform de afspraak sturen wij…", ["v-conform"]),
+    CO("text","Brief van de gemeente (fragment, fictief)","Inzake: uw aanvraag parkeervergunning\n\nGeachte heer Costa,\n\nHierbij delen wij u mede dat uw aanvraag is goedgekeurd. Conform de regels ontvangt u de vergunning binnen tien werkdagen. De leges bedragen € 45. U kunt dit bedrag overmaken onder vermelding van het zaaknummer 2024-1187.",
+       [("O pedido foi…", ["*aprovado","recusado","adiado"]),("Quando recebe a licença?", ["*Em dez dias úteis","Hoje","Num mês"]),("O que tem de indicar no pagamento?", ["*O número do processo","O nome da rua","Nada"])],
+       "Carta oficial.", ["v-inzake","v-conform","v-onder-vermelding-van"]),
+    LI("Wij verzoeken u het bedrag binnen veertien dagen over te maken.", ["Wij verzoeken u het bedrag binnen veertien dagen over te maken","Wij verzoeken u het bedrag binnen 14 dagen over te maken"], "Pedimos-lhe que transfira o montante no prazo de catorze dias.", "Fórmula.", ["v-verzoeken"]),
+  ], diff=5, mins=6)
+
+L(14, "Linguagem clara", "Schrijf in begrijpelijke taal!",
+  ["Reescrever frases burocráticas em linguagem simples"],
+  vocab=[X("v-begrijpelijke-taal","begrijpelijke taal","linguagem clara|compreensível"), X("v-jip-en-janneketaal","Jip-en-Janneketaal","linguagem muito simples"),
+         X("v-ambtelijk","ambtelijk","burocrático|administrativo","adjective")],
+  ex=[("Veel overheden schrijven nu in begrijpelijke taal.","Muitos organismos públicos escrevem agora em linguagem clara."),("Leg het eens uit in Jip-en-Janneketaal.","Explica isso em linguagem simples."),("Die brief is erg ambtelijk geschreven.","Essa carta está escrita de forma muito burocrática.")],
+  review=["v-indien","v-derhalve","v-dienen-te"],
+  cefr=C, exs=[
+    MA([("begrijpelijke taal","linguagem clara"),("Jip-en-Janneketaal","linguagem muito simples"),("ambtelijk","burocrático"),("indien","caso")], "Clareza.", ["v-begrijpelijke-taal","v-jip-en-janneketaal","v-ambtelijk","v-indien"]),
+    MC("«Jip en Janneke» são…", ["*personagens de livros infantis (Annie M.G. Schmidt)","políticos|Não.","uma marca|Não."], "Cultura.", ["v-jip-en-janneketaal"]),
+    MC("Versão clara de «Indien u verhinderd bent, dient u dit tijdig te melden.»", ["*Kunt u niet komen? Laat het ons dan op tijd weten.","Indien verhinderd, melden.|Ainda burocrático.","U komt niet.|Muda o sentido."], "Reescrever.", ["v-begrijpelijke-taal"]),
+    MC("Versão clara de «Teneinde u beter van dienst te zijn…»", ["*Om u beter te helpen…","Teneinde beter…|Igual.","Wij dienen u…|Não."], "Reescrever.", ["v-begrijpelijke-taal"]),
+    TR("pt-nl","Essa carta é muito burocrática.", ["Die brief is erg ambtelijk","Die brief is heel ambtelijk","Die brief is erg ambtelijk geschreven"], "ambtelijk.", ["v-ambtelijk"]),
+    FB("Schrijf in ___ taal, zodat iedereen het snapt.", ["begrijpelijke"], "de taal → -e.", ["v-begrijpelijke-taal"], choices=["begrijpelijke","begrijpelijk","ambtelijke"], tr="Escreve em linguagem clara, para que todos percebam."),
+    FE(["Die","brief","is","erg","ambtelijke."], 4, "ambtelijk.", "Predicativo: sem -e.", ["v-ambtelijk"]),
+    SW("Reescreva em linguagem clara: «Indien u reeds betaald heeft, dient u deze herinnering als niet verzonden te beschouwen.»", ["Heeft u al betaald? Dan kunt u deze brief vergeten."], ["Frase curta","Sem palavras formais","Mesmo sentido"], 6, "Simplificar.", ["v-begrijpelijke-taal"]),
+    LI("Kunt u dat in gewone woorden uitleggen?", ["Kunt u dat in gewone woorden uitleggen","Kunt u dat in gewone woorden uitleggen?"], "Pode explicar isso por palavras simples?", "Pedido útil.", ["v-begrijpelijke-taal"]),
+  ], diff=4, mins=6)
+
+L(15, "Uma carta das finanças locais", "De aanslag gemeentelijke belastingen.",
+  ["Perceber uma liquidação de impostos e saber reagir"],
+  vocab=[N("v-aanslag","aanslag","liquidação (de imposto)","de","aanslagen"), X("v-binnen-zes-weken","binnen zes weken","no prazo de seis semanas"),
+         N("v-betalingsregeling","betalingsregeling","plano de pagamento","de")],
+  ex=[("Ik heb de aanslag gemeentelijke belastingen ontvangen.","Recebi a liquidação dos impostos municipais."),("U kunt binnen zes weken bezwaar maken.","Pode reclamar no prazo de seis semanas."),("Kan ik een betalingsregeling treffen?","Posso fazer um plano de pagamento?")],
+  review=["v-belasting","v-bezwaar-maken","v-ontvangen"],
+  cefr=C, exs=[
+    MA([("aanslag","liquidação"),("binnen zes weken","no prazo de seis semanas"),("betalingsregeling","plano de pagamento"),("bezwaar maken","reclamar")], "Impostos.", ["v-aanslag","v-binnen-zes-weken","v-betalingsregeling","v-bezwaar-maken"]),
+    MC("«Aanslag» numa carta de impostos significa…", ["*liquidação (o valor a pagar)","atentado|Outro sentido da palavra.","desconto|Não."], "Polissemia.", ["v-aanslag"]),
+    TR("pt-nl","Posso fazer um plano de pagamento?", ["Kan ik een betalingsregeling treffen","Kan ik een betalingsregeling afspreken","Kan ik een betalingsregeling krijgen"], "treffen.", ["v-betalingsregeling"]),
+    TR("pt-nl","Pode reclamar no prazo de seis semanas.", ["U kunt binnen zes weken bezwaar maken","U kunt binnen 6 weken bezwaar maken"], "bezwaar maken.", ["v-binnen-zes-weken"]),
+    FB("Ik wil ___ maken tegen de WOZ-waarde.", ["bezwaar"], "Reclamar.", ["v-bezwaar-maken"], choices=["bezwaar","aanslag","regeling"], tr="Quero reclamar do valor patrimonial (WOZ)."),
+    FE(["Ik","heb","de","aanslag","ontvangt."], 4, "ontvangen.", "Particípio: ontvangen.", ["v-ontvangen"]),
+    CO("text","Aanslag (fragment, fictief)","Aanslag gemeentelijke belastingen 2025\nOZB woning: € 312\nAfvalstoffenheffing: € 298\nRioolheffing: € 176\nTotaal: € 786\nU betaalt in 10 termijnen via automatische incasso. Bent u het niet eens met deze aanslag? Dan kunt u binnen zes weken na de dagtekening bezwaar maken.",
+       [("Total a pagar?", ["*786 €","312 €","10 €"]),("Como paga?", ["*Débito direto em 10 prestações","De uma vez","Em dinheiro"]),("Prazo para reclamar?", ["*Seis semanas após a data da carta","Um ano","Não se pode"])],
+       "Ler uma liquidação (valores fictícios).", ["v-aanslag","v-binnen-zes-weken"]),
+    LI("Wie een laag inkomen heeft, kan soms kwijtschelding aanvragen.", ["Wie een laag inkomen heeft, kan soms kwijtschelding aanvragen","Wie een laag inkomen heeft kan soms kwijtschelding aanvragen"], "Quem tem rendimentos baixos pode por vezes pedir isenção.", "Informação geral (verifique na sua gemeente).", ["v-aanslag"]),
+  ], diff=5, mins=6)
+
+L(16, "Avisos de pagamento", "Dit is een aanmaning.",
+  ["Perceber lembretes e avisos de dívida"],
+  vocab=[N("v-aanmaning","aanmaning","aviso de pagamento (2.º aviso)","de","aanmaningen"), N("v-incassokosten","incassokosten","custos de cobrança","de"),
+         X("v-openstaand-bedrag","het openstaande bedrag","o montante em dívida")],
+  ex=[("Na de herinnering volgt een aanmaning.","Depois do lembrete vem um aviso de pagamento."),("Als u niet betaalt, rekenen wij incassokosten.","Se não pagar, cobramos custos de cobrança."),("Wilt u het openstaande bedrag binnen veertien dagen betalen?","Quer pagar o montante em dívida no prazo de catorze dias?")],
+  review=["v-herinnering","v-betalingsregeling"],
+  cefr=C, exs=[
+    MA([("aanmaning","aviso de pagamento"),("incassokosten","custos de cobrança"),("het openstaande bedrag","montante em dívida"),("betalingsregeling","plano de pagamento")], "Dívidas.", ["v-aanmaning","v-incassokosten","v-openstaand-bedrag","v-betalingsregeling"]),
+    MC("Ordem habitual:", ["*factuur → herinnering → aanmaning → incasso","aanmaning → factuur|Não.","incasso → herinnering|Não."], "Sequência.", ["v-aanmaning"]),
+    TR("pt-nl","Quer pagar o montante em dívida?", ["Wilt u het openstaande bedrag betalen","Wilt u het openstaande bedrag betalen?"], "openstaande.", ["v-openstaand-bedrag"]),
+    TR("pt-nl","Recebi um aviso de pagamento.", ["Ik heb een aanmaning ontvangen","Ik heb een aanmaning gekregen"], "aanmaning.", ["v-aanmaning"]),
+    MC("Recebeu uma aanmaning por engano (já pagou). Faz…", ["*contacta a empresa com o comprovativo de pagamento","ignora|Arriscado.","paga outra vez|Desnecessário."], "Ação.", ["v-aanmaning"]),
+    FB("Het ___ bedrag is € 54,20.", ["openstaande"], "het bedrag → het openstaande.", ["v-openstaand-bedrag"], choices=["openstaande","openstaand","open"], tr="O montante em dívida é 54,20 €."),
+    FE(["Wij","rekent","incassokosten","bij","te","late","betaling."], 1, "rekenen", "wij: rekenen.", ["v-incassokosten"]),
+    DL([("Medewerker","U heeft nog een openstaand bedrag van 120 euro.","Ainda tem um montante em dívida de 120 euros."),("Jij","","")], ["*Dat klopt, ik heb even financiële problemen. Kan ik een betalingsregeling treffen?","Nee.|Recusa.","Incasso!|Sem sentido."], "Pedir solução.", ["v-betalingsregeling"]),
+    LI("Wacht niet te lang: schulden worden alleen maar groter.", ["Wacht niet te lang: schulden worden alleen maar groter","Wacht niet te lang, schulden worden alleen maar groter"], "Não esperes muito: as dívidas só aumentam.", "Conselho.", ["v-incassokosten"]),
+  ], diff=4, mins=5)
+
+L(17, "Linguagem falada", "Effe, joh, hè hè!",
+  ["Perceber marcas da linguagem oral informal"],
+  vocab=[X("v-he-he","hè hè!","finalmente! (alívio)"), X("v-tja","tja","pois…|bem… (hesitação)","interjection"),
+         X("v-zeg-nou-zelf","zeg nou zelf","diz lá tu|sê honesto")],
+  ex=[("Hè hè, eindelijk weekend!","Ufa, finalmente fim de semana!"),("Tja, wat moet ik daarvan zeggen?","Pois… o que hei de dizer sobre isso?"),("Zeg nou zelf: is dat eerlijk?","Diz lá tu: isso é justo?")],
+  review=["v-nee-joh","v-nou"],
+  cefr=C, exs=[
+    MA([("hè hè!","finalmente!"),("tja","pois…"),("zeg nou zelf","diz lá tu"),("effe","um bocadinho (oral)")], "Oral.", ["v-he-he","v-tja","v-zeg-nou-zelf"]),
+    MC("«Hè hè!» exprime…", ["*alívio","surpresa negativa|Não.","pergunta|Não."], "Interjeição.", ["v-he-he"]),
+    MC("«Tja…» no início de uma resposta indica…", ["*hesitação ou resignação","entusiasmo|Não.","concordância total|Não."], "Interjeição.", ["v-tja"]),
+    MC("«Effe» é a forma oral de…", ["*even","effect|Não.","heel|Não."], "Oral.", []),
+    TR("pt-nl","Ufa, finalmente fim de semana!", ["Hè hè, eindelijk weekend","Hè hè, eindelijk weekend!","He he, eindelijk weekend"], "hè hè.", ["v-he-he"]),
+    TR("pt-nl","Diz lá tu: isso é justo?", ["Zeg nou zelf: is dat eerlijk","Zeg nou zelf, is dat eerlijk","Zeg nou zelf: is dat eerlijk?"], "Expressão.", ["v-zeg-nou-zelf"]),
+    MC("Num e-mail ao gerente do banco, «effe» e «joh» são…", ["*inadequados","perfeitos|Não.","obrigatórios|Não."], "Registo.", []),
+    LI("Tja, het is niet anders.", ["Tja, het is niet anders","Tja het is niet anders"], "Pois, é o que é.", "Resignação.", ["v-tja"]),
+    DL([("Vriend","Hè hè, we zijn er eindelijk!","Ufa, finalmente chegámos!"),("Jij","","")], ["*Ja joh, wat een file was dat!","Geachte vriend…|Formal demais.","Tja.|Desajustado."], "Registo informal.", ["v-he-he","v-nee-joh"]),
+  ], diff=3, mins=5)
+
+L(18, "Diminutivos e tom", "Heeft u even een momentje?",
+  ["Usar diminutivos para suavizar pedidos"],
+  vocab=[X("v-momentje","een momentje","um momentinho"), X("v-vraagje","een vraagje","uma perguntinha"),
+         X("v-hapje-eten","een hapje eten","comer qualquer coisa")],
+  ex=[("Heeft u een momentje?","Tem um momentinho?"),("Mag ik een vraagje stellen?","Posso fazer uma perguntinha?"),("Zullen we ergens een hapje eten?","Vamos comer qualquer coisa a algum lado?")],
+  review=["v-hapje","v-even-part"],
+  cefr=C, exs=[
+    MA([("een momentje","um momentinho"),("een vraagje","uma perguntinha"),("een hapje eten","comer qualquer coisa"),("even","um bocadinho")], "Diminutivos.", ["v-momentje","v-vraagje","v-hapje-eten","v-even-part"]),
+    MC("«Mag ik een vraagje stellen?» soa…", ["*mais leve e simpático do que «een vraag»","infantil e ridículo|Não, é normal.","rude|Não."], "Suavizar.", ["v-vraagje"]),
+    TR("pt-nl","Tem um momentinho?", ["Heeft u een momentje","Heeft u een momentje?","Heeft u even een momentje"], "momentje.", ["v-momentje"]),
+    TR("pt-nl","Vamos comer qualquer coisa?", ["Zullen we een hapje eten","Zullen we ergens een hapje eten","Zullen we een hapje eten?"], "hapje.", ["v-hapje-eten"]),
+    FB("Een ___, ik verbind u door.", ["momentje"], "Momentinho.", ["v-momentje"], choices=["momentje","vraagje","hapje"], tr="Um momentinho, vou transferi-lo."),
+    FE(["Mag","ik","een","vraagje","stelt?"], 4, "stellen?", "Infinitivo.", ["v-vraagje"]),
+    MC("Plural de «vraagje»:", ["*vraagjes","vraagjen|Não.","vraagje's|Não."], "Diminutivos: -s.", ["v-vraagje"]),
+    LI("Ik heb nog één klein vraagje.", ["Ik heb nog één klein vraagje","Ik heb nog een klein vraagje"], "Tenho só mais uma perguntinha.", "Uso.", ["v-vraagje"]),
+    WO("Tem um momentinho?", ["Heeft","u","een","momentje?"], "Ordem.", ["v-momentje"]),
+  ], diff=3, mins=4)
+
+L(19, "Abreviaturas em mensagens", "T.a.v. de afdeling HR, mvg.",
+  ["Perceber abreviaturas frequentes em e-mails e cartas"],
+  vocab=[X("v-tav","t.a.v. (ter attentie van)","ao cuidado de"), X("v-mvg","mvg (met vriendelijke groet)","cumprimentos (abreviado)"),
+         X("v-o-a","o.a. (onder andere)","entre outros")],
+  ex=[("T.a.v. de afdeling personeelszaken","Ao cuidado do departamento de pessoal"),("Mvg, Ana","Cumprimentos, Ana"),("We bespreken o.a. de planning.","Discutimos, entre outros, o planeamento.")],
+  review=["v-zsm","v-i-v-m","v-n-a-v"],
+  cefr=C, exs=[
+    MA([("t.a.v.","ao cuidado de"),("mvg","cumprimentos"),("o.a.","entre outros"),("z.s.m.","o mais rápido possível")], "Abreviaturas.", ["v-tav","v-mvg","v-o-a","v-zsm"]),
+    MC("«i.v.m.» significa…", ["*in verband met (por causa de / relativamente a)","in vrije maand|Não.","ik vind mooi|Não."], "Abreviatura.", ["v-i-v-m"]),
+    MC("«Mvg» num e-mail a um cliente novo é…", ["*um pouco informal; melhor escrever por extenso","perfeito|Pode parecer apressado.","ofensivo|Não."], "Registo.", ["v-mvg"]),
+    TR("pt-nl","Ao cuidado do departamento de pessoal.", ["T.a.v. de afdeling personeelszaken","Ter attentie van de afdeling personeelszaken","T.a.v. afdeling personeelszaken"], "t.a.v.", ["v-tav"]),
+    FB("We bespreken ___ de begroting en de planning.", ["o.a."], "Entre outros.", ["v-o-a"], choices=["o.a.","t.a.v.","mvg"], tr="Discutimos, entre outros, o orçamento e o planeamento."),
+    FB("Kun je ___ reageren? Het is dringend.", ["z.s.m."], "O mais rápido possível.", ["v-zsm"], choices=["z.s.m.","o.a.","t.a.v."], tr="Podes responder o mais rápido possível? É urgente."),
+    LI("Ter attentie van mevrouw Bakker.", ["Ter attentie van mevrouw Bakker","T.a.v. mevrouw Bakker"], "Ao cuidado da senhora Bakker.", "Por extenso.", ["v-tav"]),
+    MC("«N.a.v. uw e-mail» = …", ["*naar aanleiding van uw e-mail","na afloop van|Não.","niet aan verzenden|Não."], "Revisão.", ["v-n-a-v"]),
+    MC("«Gesloten i.v.m. Koningsdag» significa…", ["*fechado por causa do Dia do Rei","aberto no Dia do Rei|Não.","fechado depois do Dia do Rei|Não."], "Aviso.", ["v-i-v-m"]),
+  ], diff=3, mins=5)
+
+L(20, "Ao telefone: formal e informal", "U spreekt met…",
+  ["Atender e fazer chamadas no registo certo"],
+  vocab=[X("v-u-spreekt-met","u spreekt met …","fala … (ao atender)"), X("v-met-x","met …","sou eu, o/a … (ao atender)"),
+         X("v-waarmee-kan-ik-u-helpen","waarmee kan ik u helpen?","em que posso ajudar?")],
+  ex=[("Goedemiddag, u spreekt met Ana Costa van Bouwbedrijf Jansen.","Boa tarde, fala Ana Costa da Construtora Jansen."),("Met Rui!","Sim, é o Rui!"),("Waarmee kan ik u helpen?","Em que posso ajudar?")],
+  review=["v-met-wie-spreek-ik","v-doorverbinden","v-terugbellen"],
+  cefr=C, exs=[
+    MA([("u spreekt met…","fala…"),("met…","é o/a…"),("waarmee kan ik u helpen?","em que posso ajudar?"),("terugbellen","ligar de volta")], "Telefone.", ["v-u-spreekt-met","v-met-x","v-waarmee-kan-ik-u-helpen","v-terugbellen"]),
+    MC("Os neerlandeses costumam atender o telefone dizendo…", ["*o próprio nome («Met Rui»)","«Estou?»|Não.","«Hallo, wie?»|Pouco comum."], "Cultura.", ["v-met-x"]),
+    TR("pt-nl","Em que posso ajudar?", ["Waarmee kan ik u helpen","Waarmee kan ik u helpen?","Hoe kan ik u helpen"], "Fórmula.", ["v-waarmee-kan-ik-u-helpen"]),
+    TR("pt-nl","Fala Ana Costa.", ["U spreekt met Ana Costa","Met Ana Costa"], "Formal/informal.", ["v-u-spreekt-met"]),
+    FB("Goedemorgen, u ___ met de huisartsenpraktijk.", ["spreekt"], "Fórmula.", ["v-u-spreekt-met"], choices=["spreekt","spreek","praat"], tr="Bom dia, fala o consultório médico."),
+    FE(["Waarmee","ik","kan","u","helpen?"], 1, "kan", "Pergunta: Waarmee kan ik…", ["v-waarmee-kan-ik-u-helpen"]),
+    DL([("Receptie","Bouwbedrijf Jansen, goedemiddag.","Construtora Jansen, boa tarde."),("Jij","","")], ["*Goedemiddag, u spreekt met Rui Costa. Ik bel over de offerte voor mijn badkamer.","Hoi, met mij!|Informal e vago.","Wie ben jij?|Rude."], "Identificar-se.", ["v-u-spreekt-met"]),
+    LI("Kunt u mij terugbellen op dit nummer?", ["Kunt u mij terugbellen op dit nummer","Kunt u mij terugbellen op dit nummer?","Kunt u me terugbellen op dit nummer"], "Pode ligar-me de volta para este número?", "Pedido.", ["v-terugbellen"]),
+    WO("Em que posso ajudar?", ["Waarmee","kan","ik","u","helpen?"], "Ordem.", ["v-waarmee-kan-ik-u-helpen"]),
+  ], diff=3, mins=5)
+
+L(21, "Pedir desculpa em vários registos", "Excuses voor het ongemak.",
+  ["Pedir desculpa de forma adequada ao contexto"],
+  vocab=[X("v-excuses-ongemak","excuses voor het ongemak","pedimos desculpa pelo incómodo"), X("v-wij-betreuren","wij betreuren dat…","lamentamos que…"),
+         X("v-mijn-fout","mijn fout!","foi erro meu!")],
+  ex=[("De lift is defect. Excuses voor het ongemak.","O elevador está avariado. Pedimos desculpa pelo incómodo."),("Wij betreuren dat uw pakket te laat is bezorgd.","Lamentamos que a sua encomenda tenha sido entregue com atraso."),("O, mijn fout! Ik pak de verkeerde jas.","Oh, foi erro meu! Peguei no casaco errado.")],
+  review=["v-betreuren","v-excuses-aanbieden","v-het-spijt-me"],
+  cefr=C, exs=[
+    MA([("excuses voor het ongemak","desculpa pelo incómodo"),("wij betreuren dat…","lamentamos que…"),("mijn fout!","foi erro meu!"),("het spijt me","lamento")], "Desculpas.", ["v-excuses-ongemak","v-wij-betreuren","v-mijn-fout","v-het-spijt-me"]),
+    MC("Ordene do MAIS informal ao mais formal — qual é o mais formal?", ["*Wij betreuren dat…","Sorry!|Informal.","Mijn fout!|Informal."], "Registo.", ["v-wij-betreuren"]),
+    TR("pt-nl","Pedimos desculpa pelo incómodo.", ["Excuses voor het ongemak","Onze excuses voor het ongemak"], "Fórmula.", ["v-excuses-ongemak"]),
+    TR("pt-nl","Lamentamos que a encomenda tenha chegado tarde.", ["Wij betreuren dat het pakket te laat is bezorgd","Wij betreuren dat uw pakket te laat is","Wij betreuren dat het pakket te laat is aangekomen"], "betreuren dat.", ["v-wij-betreuren"]),
+    FB("Wij ___ dat u zo lang heeft moeten wachten.", ["betreuren"], "Formal.", ["v-wij-betreuren"], choices=["betreuren","betreurt","spijten"], tr="Lamentamos que tenha tido de esperar tanto."),
+    FE(["Wij","betreuren","dat","uw","pakket","is","te","laat."], 5, "te", "Subordinada: …dat uw pakket te laat is.", ["v-wij-betreuren"]),
+    DL([("Collega","Je hebt mijn koffie gepakt!","Pegaste no meu café!"),("Jij","","")], ["*O, mijn fout! Sorry, ik dacht dat het de mijne was.","Wij betreuren dit ten zeerste.|Formal demais.","Niet waar.|Nega."], "Informal.", ["v-mijn-fout"]),
+    LI("Onze excuses voor het ongemak; we werken aan een oplossing.", ["Onze excuses voor het ongemak; we werken aan een oplossing","Onze excuses voor het ongemak, we werken aan een oplossing"], "As nossas desculpas pelo incómodo; estamos a trabalhar numa solução.", "Aviso.", ["v-excuses-ongemak"]),
+  ], diff=4, mins=5)
+
+L(22, "Convites formais e informais", "Wij nodigen u van harte uit.",
+  ["Escrever convites no registo certo"],
+  vocab=[X("v-wij-nodigen-u-uit","wij nodigen u van harte uit","temos o prazer de o convidar"), X("v-graag-voor-laten-weten","graag vóór … laten weten","agradecemos resposta até …"),
+         X("v-ben-je-erbij","ben je erbij?","contamos contigo?|vens?")],
+  ex=[("Wij nodigen u van harte uit voor de opening van ons nieuwe kantoor.","Temos o prazer de o convidar para a inauguração do nosso novo escritório."),("Graag vóór 1 juni laten weten of u komt.","Agradecemos que nos diga até 1 de junho se vem."),("Zaterdag BBQ bij mij. Ben je erbij?","Sábado churrasco em minha casa. Vens?")],
+  review=["v-uitnodigen","v-laten-weten"],
+  cefr=C, exs=[
+    MA([("wij nodigen u van harte uit","temos o prazer de convidar"),("graag vóór … laten weten","resposta até…"),("ben je erbij?","vens?"),("uitnodigen","convidar")], "Convites.", ["v-wij-nodigen-u-uit","v-graag-voor-laten-weten","v-ben-je-erbij","v-uitnodigen"]),
+    MC("Para um jantar de empresa com clientes, escolhe…", ["*Wij nodigen u van harte uit voor…","Ben je erbij?|Informal demais.","Kom!|Seco."], "Registo.", ["v-wij-nodigen-u-uit"]),
+    TR("pt-nl","Vens?", ["Ben je erbij","Ben je erbij?","Kom je ook"], "Informal.", ["v-ben-je-erbij"]),
+    TR("pt-nl","Agradecemos resposta até 1 de junho.", ["Graag vóór 1 juni laten weten","Graag voor 1 juni laten weten","Laat het ons graag vóór 1 juni weten"], "Fórmula.", ["v-graag-voor-laten-weten"]),
+    FB("Wij nodigen u van ___ uit voor onze nieuwjaarsreceptie.", ["harte"], "Expressão fixa.", ["v-wij-nodigen-u-uit"], choices=["harte","hart","harten"], tr="Temos o prazer de o convidar para a nossa receção de Ano Novo."),
+    FE(["Wij","nodigt","u","van","harte","uit."], 1, "nodigen", "wij: nodigen.", ["v-wij-nodigen-u-uit"]),
+    SW("Escreva dois convites curtos para o mesmo evento (a sua festa de aniversário): um para amigos (informal) e um para os vizinhos idosos (formal).", ["Informeel: Hoi allemaal! Zaterdag vier ik mijn verjaardag, vanaf 20.00 uur. Ben je erbij? Laat het even weten!\nFormeel: Beste buren, graag nodig ik u uit voor mijn verjaardag op zaterdag 14 juni, vanaf 15.00 uur, voor koffie en taart. Graag vóór 10 juni laten weten of u komt. Hartelijke groet, Ana (nr. 8)"], ["Versão informal","Versão formal","Data e hora","Pedido de resposta"], 40, "Dois registos.", ["v-ben-je-erbij","v-wij-nodigen-u-uit"]),
+    LI("Laat je even weten of je erbij bent?", ["Laat je even weten of je erbij bent","Laat je even weten of je erbij bent?"], "Dizes-me se vens?", "Informal.", ["v-ben-je-erbij"]),
+  ], diff=4, mins=6)
+
+L(23, "O tom de uma reclamação", "Ik verzoek u vriendelijk…",
+  ["Manter um tom firme mas educado numa reclamação escrita"],
+  vocab=[X("v-ik-verzoek-u","ik verzoek u (vriendelijk) om…","peço-lhe (amavelmente) que…"), X("v-tot-mijn-spijt","tot mijn spijt","lamentavelmente|infelizmente"),
+         X("v-ik-ga-ervan-uit","ik ga ervan uit dat…","parto do princípio de que…")],
+  ex=[("Ik verzoek u vriendelijk om het bedrag terug te storten.","Peço-lhe amavelmente que devolva o montante."),("Tot mijn spijt moet ik constateren dat het product defect is.","Lamentavelmente tenho de constatar que o produto está avariado."),("Ik ga ervan uit dat u dit snel oplost.","Parto do princípio de que resolve isto rapidamente.")],
+  review=["v-klacht-indienen","v-teleurgesteld","v-terugbetalen"],
+  cefr=C, exs=[
+    MA([("ik verzoek u om…","peço-lhe que…"),("tot mijn spijt","lamentavelmente"),("ik ga ervan uit dat…","parto do princípio de que…"),("terugbetalen","reembolsar")], "Tom.", ["v-ik-verzoek-u","v-tot-mijn-spijt","v-ik-ga-ervan-uit","v-terugbetalen"]),
+    MC("Qual frase é firme mas educada?", ["*Ik ga ervan uit dat u dit binnen een week oplost.","Los dit NU op, anders!|Ameaçador.","Misschien kunt u eventueel iets doen?|Fraco demais."], "Tom.", ["v-ik-ga-ervan-uit"]),
+    TR("pt-nl","Peço-lhe que devolva o montante.", ["Ik verzoek u om het bedrag terug te storten","Ik verzoek u het bedrag terug te betalen","Ik verzoek u vriendelijk om het bedrag terug te storten"], "verzoeken om … te.", ["v-ik-verzoek-u"]),
+    TR("pt-nl","Lamentavelmente o produto está avariado.", ["Tot mijn spijt is het product defect","Tot mijn spijt is het product kapot"], "Inversão.", ["v-tot-mijn-spijt"]),
+    FB("Tot mijn ___ moet ik een klacht indienen.", ["spijt"], "Expressão.", ["v-tot-mijn-spijt"], choices=["spijt","verbazing","excuses"], tr="Lamentavelmente tenho de apresentar uma queixa."),
+    FE(["Ik","ga","ervan","uit","dat","u","lost","dit","snel","op."], 6, "dit", "Subordinada: …dat u dit snel oplost.", ["v-ik-ga-ervan-uit"]),
+    SW("Escreva o parágrafo central de uma reclamação (3–4 frases) sobre uma encomenda que chegou partida. Tom firme e educado.", ["Op 3 maart heb ik bij u een lamp besteld. Tot mijn spijt was de lamp bij ontvangst kapot. Ik verzoek u vriendelijk om mij binnen veertien dagen een nieuwe lamp te sturen of het bedrag terug te storten. Ik ga ervan uit dat u dit snel oplost."], ["Factos","tot mijn spijt","Pedido concreto","Prazo"], 40, "Reclamação.", ["v-ik-verzoek-u","v-tot-mijn-spijt"]),
+    LI("Ik ga ervan uit dat ik binnenkort iets van u hoor.", ["Ik ga ervan uit dat ik binnenkort iets van u hoor"], "Parto do princípio de que terei notícias suas em breve.", "Fecho firme.", ["v-ik-ga-ervan-uit"]),
+  ], diff=5, mins=6)
+
+L(24, "O mesmo conteúdo, três registos", "Formeel, neutraal, informeel.",
+  ["Adaptar a mesma mensagem a três destinatários"],
+  vocab=[X("v-neutraal-register","neutraal","neutro (registo)","adjective"), X("v-aanpassen-aan","aanpassen aan","adaptar a","verb")],
+  ex=[("Pas je taal aan aan de lezer.","Adapta a tua linguagem ao leitor."),("Een neutrale e-mail is beleefd maar niet stijf.","Um e-mail neutro é educado mas não rígido.")],
+  review=["v-formeel","v-informeel","v-toon","v-afstand"],
+  cefr=C, exs=[
+    MA([("formeel","formal"),("neutraal","neutro"),("informeel","informal"),("aanpassen aan","adaptar a")], "Registos.", ["v-formeel","v-neutraal-register","v-informeel","v-aanpassen-aan"]),
+    MC("«Ik ben morgen ziek / afwezig» — versão FORMAL:", ["*Hierbij meld ik mij voor morgen ziek.","Ben morgen ziek hoor.|Informal.","Morgen ziek, doei.|Muito informal."], "Formal.", ["v-formeel"]),
+    MC("Versão NEUTRA para um colega:", ["*Ik ben morgen helaas ziek, dus ik kan niet naar de vergadering.","Hierbij meld ik mij ziek.|Formal.","Ff ziek morgen.|Informal."], "Neutro.", ["v-neutraal-register"]),
+    MC("Versão INFORMAL para um amigo:", ["*Ben morgen ziek, kan niet mee. Balen!","Hierbij deel ik u mede…|Formal.","Geachte vriend…|Formal."], "Informal.", ["v-informeel"]),
+    TR("pt-nl","Adapta a tua linguagem ao leitor.", ["Pas je taal aan aan de lezer","Pas je taalgebruik aan de lezer aan","Pas je taal aan de lezer aan"], "aanpassen aan.", ["v-aanpassen-aan"]),
+    FB("Een ___ toon is beleefd maar niet stijf.", ["neutrale"], "de toon → -e.", ["v-neutraal-register"], choices=["neutrale","neutraal","formeel"], tr="Um tom neutro é educado mas não rígido."),
+    FE(["Pas","jouw","taal","aan","op","de","lezer."], 4, "aan", "aanpassen aan.", ["v-aanpassen-aan"]),
+    SW("Escreva a mesma mensagem em três registos: «Não posso vir à reunião/encontro de quinta-feira.» (1) ao diretor, (2) a uma colega, (3) a um amigo.", ["1. Geachte heer Smit, helaas ben ik donderdag verhinderd voor de vergadering. Mijn excuses hiervoor.\n2. Hoi Lisa, ik kan donderdag helaas niet bij het overleg zijn. Wil jij de notulen delen?\n3. Hé! Kan donderdag niet, sorry! Volgende keer!"], ["Formal","Neutro","Informal"], 40, "Três registos.", ["v-aanpassen-aan"]),
+  ], diff=4, mins=6)
+
+L(25, "Prática: reescrever", "Van ambtelijk naar helder.",
+  ["Reescrever textos mudando de registo"],
+  vocab=[X("v-herschrijven","herschrijven","reescrever","verb")],
+  ex=[("Kun je deze brief herschrijven in eenvoudige taal?","Consegues reescrever esta carta em linguagem simples?")],
+  review=["v-indien","v-derhalve","v-dienen-te","v-inzake","v-begrijpelijke-taal","v-tot-mijn-spijt","v-ik-verzoek-u","v-u-zeggen"],
+  cefr=C, exs=[
+    CO("text","Ambtelijke brief (fictief)","Inzake: uw aanvraag huurtoeslag\n\nGeachte mevrouw Ferreira,\n\nIndien u reeds de benodigde stukken heeft overgelegd, dient u deze brief als niet verzonden te beschouwen. Indien dit niet het geval is, verzoeken wij u de ontbrekende stukken binnen veertien dagen te verstrekken. Derhalve kunnen wij uw aanvraag thans nog niet in behandeling nemen.",
+       [("De que trata a carta?", ["*Do pedido de subsídio de renda","De uma multa","De um contrato"]),("O que deve fazer se já enviou os documentos?", ["*Ignorar a carta","Enviar outra vez","Telefonar"]),("Prazo?", ["*14 dias","6 semanas","1 ano"])],
+       "Ler linguagem administrativa.", ["v-inzake","v-indien","v-dienen-te"]),
+    MC("«Thans» = …", ["*nu","toen|Não.","dan|Não."], "Revisão.", ["v-thans"]),
+    MC("«Overleggen» (documentos) aqui significa…", ["*entregar/apresentar","discutir|Outro sentido.","perder|Não."], "Contexto.", ["v-verstrekken"]),
+    TR("pt-nl","Consegues reescrever esta carta?", ["Kun je deze brief herschrijven","Kun je deze brief herschrijven?","Kan je deze brief herschrijven"], "herschrijven.", ["v-herschrijven"]),
+    FE(["Indien","u","reeds","betaald","heeft,","u","dient","niets","te","doen."], 5, "dient", "Inversão: …, dient u niets te doen.", ["v-indien"]),
+    SW("Reescreva a carta acima em linguagem clara (3–4 frases curtas), mantendo a informação.", ["Beste mevrouw Ferreira,\n\nU heeft huurtoeslag aangevraagd. Heeft u al alle papieren gestuurd? Dan hoeft u niets te doen. Zo niet, stuur dan binnen twee weken de papieren die nog ontbreken. Daarna kunnen wij uw aanvraag behandelen."], ["Frases curtas","Sem palavras formais","Toda a informação"], 40, "Reescrever.", ["v-herschrijven","v-begrijpelijke-taal"]),
+    LI("Herschrijf de tekst zo dat een kind van twaalf hem begrijpt.", ["Herschrijf de tekst zo dat een kind van twaalf hem begrijpt","Herschrijf de tekst zo dat een kind van 12 hem begrijpt"], "Reescreve o texto de forma que uma criança de doze anos o perceba.", "Dica de clareza.", ["v-herschrijven"]),
+  ], diff=5, mins=7)
+
+W()
