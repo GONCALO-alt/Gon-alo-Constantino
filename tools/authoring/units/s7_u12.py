@@ -29,11 +29,10 @@ L(1, "Simulação: comprar casa", "Bezichtiging, bod, hypotheek, notaris",
 
 L(2, "Simulação: no hospital", "Opname, specialist, onderzoek, ontslag uit het ziekenhuis",
   ["Lidar com uma ida ao hospital do início ao fim"],
-  vocab=[V("v-opname","opname","internamento","noun","de"), V("v-specialist","specialist","especialista","noun","de"),
-         V("v-spoedeisende-hulp","spoedeisende hulp","urgências","noun","de",note="abrev. SEH"), V("v-uitslag","uitslag","resultado (de exames)","noun","de"),
+  vocab=[V("v-opname","opname","internamento","noun","de"), V("v-spoedeisende-hulp","spoedeisende hulp","urgências","noun","de",note="abrev. SEH"), V("v-uitslag","uitslag","resultado (de exames)","noun","de"),
          V("v-nazorg","nazorg","acompanhamento pós-tratamento","noun","de")],
   ex=[("Hij ligt op de spoedeisende hulp.","Ele está nas urgências."),("De opname duurt drie dagen.","O internamento dura três dias."),("Wanneer krijg ik de uitslag?","Quando recebo o resultado?"),("De huisarts regelt de nazorg.","O médico de família trata do acompanhamento.")],
-  review=["v-ziekenhuis","v-doorverwijzing","v-onderzoeken-arts","v-klachten"],
+  review=["v-specialist","v-ziekenhuis","v-doorverwijzing","v-onderzoeken-arts","v-klachten"],
   cefr=C, exs=[
     MA([("opname","internamento"),("specialist","especialista"),("spoedeisende hulp","urgências"),("uitslag","resultado"),("nazorg","acompanhamento")], "Hospital.", ["v-opname","v-specialist","v-spoedeisende-hulp","v-uitslag","v-nazorg"]),
     TR("pt-nl","Quando recebo o resultado?", ["Wanneer krijg ik de uitslag","Wanneer hoor ik de uitslag"], "uitslag.", ["v-uitslag"]),
