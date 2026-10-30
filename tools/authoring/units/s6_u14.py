@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u14")
+C = "B1-B2"
+
+L(1, "Colocações com nemen, maken e doen", "een besluit nemen, een fout maken, moeite doen",
+  ["Usar colocações frequentes com nemen, maken e doen"],
+  vocab=[V("v-besluit-nemen","een besluit nemen","tomar uma decisão","expression"), V("v-moeite-doen","moeite doen","esforçar-se","expression"),
+         V("v-indruk-maken","indruk maken","impressionar","expression"), V("v-afscheid-nemen","afscheid nemen","despedir-se","expression"),
+         V("v-onderzoek-doen","onderzoek doen","fazer investigação","expression")],
+  ex=[("We moeten snel een besluit nemen.","Temos de tomar uma decisão depressa."),("Hij doet veel moeite om Nederlands te leren.","Ele esforça-se muito para aprender neerlandês."),("De presentatie maakte veel indruk.","A apresentação impressionou muito."),("We namen afscheid op het station.","Despedimo-nos na estação.")],
+  gram=[G("g-collocaties","O que são colocações?","Combinações fixas de palavras que «soam bem» juntas. Traduzir palavra a palavra do português dá muitas vezes erros: tomar uma decisão = **een besluit nemen** (não *pakken*); fazer um esforço = **moeite doen** (não *maken*); cometer um erro = **een fout maken**.",
+    [("een foto maken, een wandeling maken, een examen doen, een douche nemen","tirar uma foto, dar um passeio, fazer um exame, tomar um duche")],
+    "Aprenda sempre o verbo junto com o nome.")],
+  review=["v-besluit","v-fout","v-maken","v-doen"],
+  cefr=C, exs=[
+    MA([("een besluit nemen","tomar uma decisão"),("moeite doen","esforçar-se"),("indruk maken","impressionar"),("afscheid nemen","despedir-se"),("onderzoek doen","fazer investigação")], "Colocações.", ["v-besluit-nemen","v-moeite-doen","v-indruk-maken","v-afscheid-nemen","v-onderzoek-doen"]),
+    FB("We moeten snel een besluit ___.", ["nemen"], "een besluit nemen.", ["v-besluit-nemen"], choices=["nemen","maken","doen"], tr="Temos de tomar uma decisão depressa."),
+    FB("Hij ___ veel moeite om op tijd te komen.", ["doet"], "moeite doen.", ["v-moeite-doen"], choices=["doet","maakt","neemt"], tr="Ele esforça-se muito para chegar a horas."),
+    FB("Ik wil een foto ___.", ["maken"], "een foto maken.", [], choices=["maken","nemen","doen"], tr="Quero tirar uma fotografia."),
+    FB("Zij ___ onderzoek naar klimaatverandering.", ["doet"], "onderzoek doen.", ["v-onderzoek-doen"], choices=["doet","maakt","neemt"], tr="Ela faz investigação sobre as alterações climáticas."),
+    FE(["Ik","heb","een","besluit","gemaakt."], 4, "genomen", "een besluit nemen → genomen.", ["v-besluit-nemen"]),
+    FE(["Hij","maakt","veel","moeite."], 1, "doet", "moeite doen.", ["v-moeite-doen"]),
+    TR("pt-nl","Despedimo-nos na estação.", ["We namen afscheid op het station","We hebben op het station afscheid genomen","Wij namen afscheid op het station"], "afscheid nemen.", ["v-afscheid-nemen"]),
+    TR("nl-pt","De presentatie maakte veel indruk.", ["A apresentação impressionou muito","A apresentação causou muita impressão"], "indruk maken.", ["v-indruk-maken"]),
+    LI("Ik neem morgen afscheid van mijn collega's.", ["Ik neem morgen afscheid van mijn collega's"], "Amanhã despeço-me dos meus colegas.", "afscheid nemen van.", ["v-afscheid-nemen"]),
+  ], diff=5, mins=7)
+
+L(2, "Colocações com spelen, voeren, stellen", "een rol spelen, een gesprek voeren, een vraag stellen",
+  ["Usar colocações com verbos menos óbvios"],
+  vocab=[V("v-rol-spelen","een rol spelen","desempenhar um papel","expression"), V("v-gesprek-voeren","een gesprek voeren","ter uma conversa","expression"),
+         V("v-vraag-stellen","een vraag stellen","fazer uma pergunta","expression"), V("v-eisen-stellen","eisen stellen","impor exigências","expression"),
+         V("v-actie-voeren","actie voeren","manifestar-se|fazer campanha","expression")],
+  ex=[("Geld speelt een grote rol.","O dinheiro desempenha um papel importante."),("We hebben een goed gesprek gevoerd.","Tivemos uma boa conversa."),("Mag ik een vraag stellen?","Posso fazer uma pergunta?"),("Studenten voeren actie tegen de bezuinigingen.","Os estudantes manifestam-se contra os cortes.")],
+  review=["v-vraag","v-eisen","v-spelen"],
+  cefr=C, exs=[
+    MA([("een rol spelen","desempenhar um papel"),("een gesprek voeren","ter uma conversa"),("een vraag stellen","fazer uma pergunta"),("eisen stellen","impor exigências"),("actie voeren","manifestar-se")], "Colocações.", ["v-rol-spelen","v-gesprek-voeren","v-vraag-stellen","v-eisen-stellen","v-actie-voeren"]),
+    FB("Mag ik een vraag ___?", ["stellen"], "een vraag stellen.", ["v-vraag-stellen"], choices=["stellen","maken","doen"], tr="Posso fazer uma pergunta?"),
+    FB("Geld ___ een grote rol.", ["speelt"], "een rol spelen.", ["v-rol-spelen"], choices=["speelt","maakt","doet"], tr="O dinheiro desempenha um papel importante."),
+    FB("De directeur ___ een gesprek met het personeel.", ["voert"], "een gesprek voeren.", ["v-gesprek-voeren"], choices=["voert","maakt","neemt"], tr="O diretor tem uma conversa com o pessoal."),
+    FE(["Mag","ik","een","vraag","maken?"], 4, "stellen", "een vraag stellen.", ["v-vraag-stellen"]),
+    FE(["Ervaring","maakt","een","belangrijke","rol."], 1, "speelt", "een rol spelen.", ["v-rol-spelen"]),
+    TR("pt-nl","Tivemos uma boa conversa.", ["We hebben een goed gesprek gevoerd","We hebben een goed gesprek gehad","Wij hebben een goed gesprek gevoerd"], "gesprek voeren/hebben.", ["v-gesprek-voeren"]),
+    TR("nl-pt","Studenten voeren actie tegen de bezuinigingen.", ["Os estudantes manifestam-se contra os cortes","Os estudantes fazem campanha contra os cortes"], "actie voeren.", ["v-actie-voeren"]),
+    LI("De werkgever stelt hoge eisen aan zijn personeel.", ["De werkgever stelt hoge eisen aan zijn personeel"], "O empregador impõe exigências altas ao pessoal.", "eisen stellen aan.", ["v-eisen-stellen"]),
+    MC("Qual é a colocação certa para «colocar uma questão» numa reunião?", ["*een vraag stellen","een vraag zetten|Não.","een vraag leggen|Não."], "stellen.", ["v-vraag-stellen"]),
+  ], diff=5, mins=7)
+
+L(3, "Adjetivo + nome", "zware regen, sterke koffie, grote kans, hoge prijs",
+  ["Usar combinações naturais de adjetivo e nome"],
+  vocab=[V("v-zware-regen","zware regen","chuva forte","expression"), V("v-sterke-koffie","sterke koffie","café forte","expression"),
+         V("v-grote-kans","grote kans","grande probabilidade","expression"), V("v-hoge-prijs","hoge prijs","preço alto","expression"),
+         V("v-diepe-indruk","diepe indruk","impressão profunda","expression")],
+  ex=[("Er wordt zware regen verwacht.","Espera-se chuva forte."),("Ik drink graag sterke koffie.","Gosto de café forte."),("Er is een grote kans dat het lukt.","Há uma grande probabilidade de resultar."),("Ze betaalden een hoge prijs.","Pagaram um preço alto.")],
+  gram=[G("g-adj-noun-colloc","Adjetivos que «combinam»","Em neerlandês diz-se **zware** regen (pesada), não *sterke regen*; **hoge** prijs (alta), não *grote prijs* (isso é um grande prémio!); **sterke** koffie; **grote** kans; **dikke** vriend (amigo íntimo, coloquial).",
+    [("een zware verkoudheid, een hoge temperatuur, een harde wind","uma constipação forte, uma temperatura alta, um vento forte")])],
+  review=["v-prijs","v-regen","v-koffie"],
+  cefr=C, exs=[
+    MA([("zware regen","chuva forte"),("sterke koffie","café forte"),("grote kans","grande probabilidade"),("hoge prijs","preço alto"),("diepe indruk","impressão profunda")], "Adjetivo + nome.", ["v-zware-regen","v-sterke-koffie","v-grote-kans","v-hoge-prijs","v-diepe-indruk"]),
+    FB("Morgen wordt ___ regen verwacht.", ["zware"], "Chuva forte = zware regen.", ["v-zware-regen"], choices=["zware","sterke","grote"], tr="Amanhã espera-se chuva forte."),
+    FB("De huizen hebben een erg ___ prijs.", ["hoge"], "Preço alto = hoge prijs.", ["v-hoge-prijs"], choices=["hoge","grote","dikke"], tr="As casas têm um preço muito alto."),
+    FB("Er is een ___ kans op succes.", ["grote"], "grote kans.", ["v-grote-kans"], choices=["grote","hoge","sterke"], tr="Há uma grande probabilidade de sucesso."),
+    FB("Er staat een ___ wind aan zee.", ["harde","sterke"], "Vento forte = harde/sterke wind.", [], choices=["harde","zware","hoge"], tr="Está um vento forte junto ao mar."),
+    FE(["Er","valt","sterke","regen."], 2, "zware", "Chuva forte = zware regen.", ["v-zware-regen"]),
+    FE(["Ze","betaalden","een","grote","prijs","voor","het","huis."], 3, "hoge", "Preço alto = hoge prijs (grote prijs = grande prémio).", ["v-hoge-prijs"]),
+    TR("pt-nl","Gosto de café forte.", ["Ik drink graag sterke koffie","Ik hou van sterke koffie","Ik houd van sterke koffie"], "sterke koffie.", ["v-sterke-koffie"]),
+    TR("nl-pt","Het boek maakte een diepe indruk op mij.", ["O livro causou-me uma impressão profunda","O livro marcou-me profundamente"], "diepe indruk.", ["v-diepe-indruk"]),
+    LI("Hij heeft een hoge temperatuur en een zware verkoudheid.", ["Hij heeft een hoge temperatuur en een zware verkoudheid"], "Ele tem febre alta e uma constipação forte.", "Colocações.", ["v-hoge-prijs","v-zware-regen"]),
+  ], diff=5, mins=7)
+
+L(4, "Verbos com preposição fixa", "afhangen van, bestaan uit, deelnemen aan, zorgen voor",
+  ["Usar verbos com a preposição correta"],
+  vocab=[V("v-afhangen-van","afhangen van","depender de","expression"), V("v-bestaan-uit","bestaan uit","consistir em|ser composto por","expression"),
+         V("v-deelnemen-aan","deelnemen aan","participar em","expression"), V("v-vragen-naar","vragen naar","perguntar por","expression"),
+         V("v-genieten-van","genieten van","desfrutar de","expression")],
+  ex=[("Het hangt af van het weer.","Depende do tempo."),("Het team bestaat uit vijf mensen.","A equipa é composta por cinco pessoas."),("Ik neem deel aan de cursus.","Participo no curso."),("Geniet van je vakantie!","Aproveita as férias!")],
+  gram=[G("g-vaste-voorzetsels","Preposições fixas","Muitos verbos têm uma preposição fixa que raramente coincide com o português: **afhangen van** (depender DE), **bestaan uit** (consistir EM), **deelnemen aan** (participar EM), **genieten van** (desfrutar DE), **zorgen voor** (cuidar DE), **wachten op** (esperar POR), **denken aan** (pensar EM).",
+    [("Dat hangt ervan af.","Isso depende.")])],
+  review=["v-zorgen-voor","v-wachten-op","v-denken-aan","v-genoten"],
+  cefr=C, exs=[
+    MA([("afhangen van","depender de"),("bestaan uit","consistir em"),("deelnemen aan","participar em"),("vragen naar","perguntar por"),("genieten van","desfrutar de")], "Preposições fixas.", ["v-afhangen-van","v-bestaan-uit","v-deelnemen-aan","v-vragen-naar","v-genieten-van"]),
+    FB("Het hangt ___ het weer.", ["af van"], "afhangen van.", ["v-afhangen-van"], choices=["af van","af op","aan"], tr="Depende do tempo."),
+    FB("Het team bestaat ___ vijf mensen.", ["uit"], "bestaan uit.", ["v-bestaan-uit"], choices=["uit","van","in"], tr="A equipa é composta por cinco pessoas."),
+    FB("Ik neem ___ de cursus deel.", ["aan"], "deelnemen aan.", ["v-deelnemen-aan"], choices=["aan","in","op"], tr="Participo no curso."),
+    FB("Er heeft iemand ___ je gevraagd.", ["naar"], "vragen naar.", ["v-vragen-naar"], choices=["naar","voor","om"], tr="Alguém perguntou por ti."),
+    FE(["Het","hangt","af","op","het","budget."], 3, "van", "afhangen van.", ["v-afhangen-van"]),
+    FE(["Ik","neem","deel","in","het","project."], 3, "aan", "deelnemen aan.", ["v-deelnemen-aan"]),
+    TR("pt-nl","Isso depende.", ["Dat hangt ervan af","Het hangt ervan af","Dat ligt eraan"], "ervan af.", ["v-afhangen-van"]),
+    TR("pt-nl","Aproveita as férias!", ["Geniet van je vakantie","Geniet van jouw vakantie"], "genieten van.", ["v-genieten-van"]),
+    LI("Ik wacht al een uur op de bus.", ["Ik wacht al een uur op de bus"], "Estou à espera do autocarro há uma hora.", "wachten op.", ["v-wachten-op"]),
+  ], diff=5, mins=7)
+
+L(5, "Colocações em contexto profissional", "een afspraak maken, een deadline halen, verantwoordelijkheid nemen",
+  ["Usar colocações típicas do mundo do trabalho"],
+  vocab=[V("v-deadline-halen","een deadline halen","cumprir um prazo","expression"), V("v-verantwoordelijkheid-nemen","verantwoordelijkheid nemen","assumir responsabilidade","expression"),
+         V("v-prioriteit-geven","prioriteit geven aan","dar prioridade a","expression"), V("v-beslag-leggen","tijd in beslag nemen","ocupar tempo","expression"),
+         V("v-contact-opnemen","contact opnemen met","contactar","expression")],
+  ex=[("We hebben de deadline net gehaald.","Cumprimos o prazo mesmo à justa."),("Hij neemt verantwoordelijkheid voor zijn fouten.","Ele assume a responsabilidade pelos erros."),("We geven prioriteit aan veiligheid.","Damos prioridade à segurança."),("Neem gerust contact met ons op.","Contacte-nos à vontade.")],
+  review=["v-afspraak-maken","v-besluit-nemen","v-vraag-stellen"],
+  cefr=C, exs=[
+    MA([("een deadline halen","cumprir um prazo"),("verantwoordelijkheid nemen","assumir responsabilidade"),("prioriteit geven aan","dar prioridade a"),("tijd in beslag nemen","ocupar tempo"),("contact opnemen met","contactar")], "Trabalho.", ["v-deadline-halen","v-verantwoordelijkheid-nemen","v-prioriteit-geven","v-beslag-leggen","v-contact-opnemen"]),
+    FB("We hebben de deadline niet ___.", ["gehaald"], "deadline halen.", ["v-deadline-halen"], choices=["gehaald","gemaakt","gedaan"], tr="Não cumprimos o prazo."),
+    FB("Neem gerust contact met ons ___.", ["op"], "contact opnemen.", ["v-contact-opnemen"], choices=["op","aan","in"], tr="Contacte-nos à vontade."),
+    FB("Dit project neemt veel tijd in ___.", ["beslag"], "in beslag nemen.", ["v-beslag-leggen"], choices=["beslag","gebruik","bezit"], tr="Este projeto ocupa muito tempo."),
+    FE(["We","hebben","de","deadline","gemaakt."], 4, "gehaald", "een deadline halen.", ["v-deadline-halen"]),
+    FE(["Hij","pakt","verantwoordelijkheid","voor","het","team."], 1, "neemt", "verantwoordelijkheid nemen.", ["v-verantwoordelijkheid-nemen"]),
+    TR("pt-nl","Damos prioridade à segurança.", ["We geven prioriteit aan veiligheid","Wij geven prioriteit aan veiligheid","We geven voorrang aan veiligheid"], "prioriteit geven aan.", ["v-prioriteit-geven"]),
+    TR("nl-pt","Hij neemt verantwoordelijkheid voor zijn fouten.", ["Ele assume a responsabilidade pelos [seus |]erros"], "verantwoordelijkheid nemen.", ["v-verantwoordelijkheid-nemen"]),
+    LI("Voor vragen kunt u contact opnemen met de klantenservice.", ["Voor vragen kunt u contact opnemen met de klantenservice"], "Para perguntas pode contactar o apoio ao cliente.", "contact opnemen.", ["v-contact-opnemen"]),
+    SW("Escreva um e-mail curto de trabalho (3 frases) com pelo menos três colocações desta unidade.", ["Beste team, we hebben de deadline van vrijdag gehaald, goed gedaan! Volgende week geven we prioriteit aan het nieuwe project, dat veel tijd in beslag zal nemen. Neem bij vragen gerust contact met mij op."], ["Três colocações corretas", "Registo de e-mail de trabalho", "Separáveis certos (**opnemen**)"], 35, "Colocações em uso.", ["v-deadline-halen","v-prioriteit-geven","v-contact-opnemen"]),
+  ], diff=5, mins=8)
+
+W()
