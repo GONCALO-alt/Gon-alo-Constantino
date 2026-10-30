@@ -92,9 +92,9 @@ L(4, "Relativas restritivas e explicativas", "Mijn broer, die in Parijs woont, �
 L(5, "Prática: descrever com relativas", "Pessoas, lugares e objetos.",
   ["Usar orações relativas para descrever de forma rica"],
   vocab=[V("v-omschrijven","omschrijven","descrever","verb"), V("v-kenmerk","kenmerk","característica","noun","het"),
-         V("v-bijzonder","bijzonder","especial|particular","adjective"), V("v-dierbaar","dierbaar","querido|de grande valor afetivo","adjective")],
+         V("v-bijzonder","bijzonder","especial|particular","adjective")],
   ex=[("Kun je het huis omschrijven?","Consegues descrever a casa?"),("Een belangrijk kenmerk is de grote tuin.","Uma característica importante é o jardim grande."),("Het is een bijzondere plek.","É um lugar especial."),("Dat is een foto die me erg dierbaar is.","É uma fotografia que me é muito querida.")],
-  review=["v-die-rel","v-dat-rel","v-waarin","v-met-wie","v-wat-rel"],
+  review=["v-dierbaar","v-die-rel","v-dat-rel","v-waarin","v-met-wie","v-wat-rel"],
   cefr=C, exs=[
     MA([("omschrijven","descrever"),("kenmerk","característica"),("bijzonder","especial"),("dierbaar","querido")], "Descrever.", ["v-omschrijven","v-kenmerk","v-bijzonder","v-dierbaar"]),
     TR("pt-nl","É uma fotografia que me é muito querida.", ["Dat is een foto die me erg dierbaar is","Het is een foto die me heel dierbaar is","Het is een foto die mij erg dierbaar is"], "die + verbo no fim.", ["v-dierbaar"]),
