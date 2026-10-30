@@ -27,11 +27,11 @@ L(1, "Relatar afirmações", "Hij zei: «Ik ben moe.» → Hij zei dat hij moe w
 L(2, "Relatar perguntas", "Ze vroeg of… Hij wilde weten waar…",
   ["Passar perguntas para discurso indireto"],
   vocab=[V("v-vroeg-vragen","vroeg / vroegen","perguntou / perguntaram","verb",note="vragen → vroeg, gevraagd"), V("v-wilde-weten","wilde weten","queria saber","expression"),
-         V("v-informeren-naar","informeren naar","perguntar por|informar-se sobre","expression"), V("v-zich-afvragen-of","zich afvragen of","perguntar-se se","expression")],
+         V("v-informeren-naar","informeren naar","perguntar por|informar-se sobre","expression")],
   ex=[("Ze vroeg: «Kom je ook?»","Ela perguntou: «Também vens?»"),("Ze vroeg of ik ook kwam.","Ela perguntou se eu também vinha."),("Hij wilde weten waar het station was.","Ele queria saber onde era a estação."),("De dokter informeerde naar mijn gezondheid.","O médico perguntou pela minha saúde.")],
   gram=[G("g-indirecte-vraag-verleden","Perguntas indiretas","Pergunta sim/não → **of** + verbo no fim: *Ze vroeg **of** ik kwam.* Pergunta com palavra interrogativa → essa palavra + verbo no fim: *Hij vroeg **waar** het station **was**.* Mesmas mudanças de pronome e tempo.",
     [("«Hoe laat is het?» → Ze vroeg hoe laat het was.","«Que horas são?» → Ela perguntou que horas eram.")])],
-  review=["v-of-conj","v-zich-afvragen","v-vraag"],
+  review=["v-zich-afvragen-of","v-of-conj","v-zich-afvragen","v-vraag"],
   cefr=C, exs=[
     MA([("vroeg","perguntou"),("wilde weten","queria saber"),("informeren naar","perguntar por"),("zich afvragen of","perguntar-se se")], "Perguntas relatadas.", ["v-vroeg-vragen","v-wilde-weten","v-informeren-naar","v-zich-afvragen-of"]),
     WO("Ela perguntou se eu também vinha.", ["Ze","vroeg","of","ik","ook","kwam"], "of + verbo no fim.", ["v-vroeg-vragen"]),
@@ -87,10 +87,9 @@ L(4, "Verbos introdutores", "beweren, toegeven, ontkennen, benadrukken, beloven"
 
 L(5, "Relatar uma conversa", "Juntar afirmações, perguntas e pedidos.",
   ["Relatar uma conversa completa a outra pessoa"],
-  vocab=[V("v-navertellen","navertellen","recontar","verb"), V("v-volgens-haar","volgens haar / hem","segundo ela / ele","expression"),
-         V("v-letterlijk-zeggen","letterlijk zeggen","dizer textualmente","expression"), V("v-samengevat","samengevat","em resumo","adverb")],
+  vocab=[V("v-navertellen","navertellen","recontar","verb"), V("v-letterlijk-zeggen","letterlijk zeggen","dizer textualmente","expression"), V("v-samengevat","samengevat","em resumo","adverb")],
   ex=[("Kun je het gesprek even navertellen?","Podes contar como foi a conversa?"),("Volgens haar is het project te duur.","Segundo ela, o projeto é demasiado caro."),("Hij zei letterlijk: «Dit is onacceptabel.»","Ele disse textualmente: «Isto é inaceitável.»"),("Samengevat: ze willen meer tijd.","Em resumo: querem mais tempo.")],
-  review=["v-zei","v-vroeg-vragen","v-vragen-om-te","v-ontkennen"],
+  review=["v-volgens-haar","v-zei","v-vroeg-vragen","v-vragen-om-te","v-ontkennen"],
   cefr=C, exs=[
     MA([("navertellen","recontar"),("volgens haar","segundo ela"),("letterlijk zeggen","dizer textualmente"),("samengevat","em resumo")], "Relatar.", ["v-navertellen","v-volgens-haar","v-letterlijk-zeggen","v-samengevat"]),
     CO("dialogue","Gesprek met de huisbaas", "Huisbaas: Ik wil de huur per 1 juli verhogen met vijftig euro.\nAna: Waarom zo veel?\nHuisbaas: De kosten voor onderhoud zijn gestegen.\nAna: Kunt u dan eerst de lekkende kraan repareren?\nHuisbaas: Ik stuur volgende week een loodgieter.",

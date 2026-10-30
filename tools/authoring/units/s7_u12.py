@@ -92,22 +92,21 @@ L(4, "Simulação: acidente de trânsito", "Schadeformulier, getuigen, verzekeri
 L(5, "Simulação: organizar um evento", "Locatie, catering, uitnodigingen, draaiboek",
   ["Planear e comunicar a organização de um evento"],
   vocab=[V("v-locatie","locatie","local","noun","de"), V("v-catering","catering","catering","noun","de"),
-         V("v-draaiboek","draaiboek","guião (plano detalhado)","noun","het"), V("v-aanmelden-evenement","zich aanmelden","inscrever-se","verb"),
-         V("v-deelnemer","deelnemer","participante","noun","de")],
+         V("v-draaiboek","draaiboek","guião (plano detalhado)","noun","het"), V("v-deelnemer","deelnemer","participante","noun","de")],
   ex=[("We zoeken een locatie voor honderd personen.","Procuramos um local para cem pessoas."),("De catering verzorgt de lunch.","O catering trata do almoço."),("Staat alles in het draaiboek?","Está tudo no guião?"),("Al vijftig deelnemers hebben zich aangemeld.","Já se inscreveram cinquenta participantes.")],
-  review=["v-reserveren","v-uitnodiging","v-begroting","v-plannen"],
+  review=["v-aanmelden","v-reserveren","v-uitnodiging","v-begroting","v-plannen"],
   cefr=C, exs=[
-    MA([("locatie","local"),("catering","catering"),("draaiboek","guião"),("zich aanmelden","inscrever-se"),("deelnemer","participante")], "Evento.", ["v-locatie","v-catering","v-draaiboek","v-aanmelden-evenement","v-deelnemer"]),
+    MA([("locatie","local"),("catering","catering"),("draaiboek","guião"),("zich aanmelden","inscrever-se"),("deelnemer","participante")], "Evento.", ["v-locatie","v-catering","v-draaiboek","v-aanmelden","v-deelnemer"]),
     TR("pt-nl","Procuramos um local para cem pessoas.", ["We zoeken een locatie voor honderd personen","Wij zoeken een locatie voor 100 personen","We zoeken een locatie voor 100 personen"], "locatie.", ["v-locatie"]),
-    TR("nl-pt","Al vijftig deelnemers hebben zich aangemeld.", ["Já se inscreveram cinquenta participantes","Cinquenta participantes já se inscreveram"], "zich aanmelden.", ["v-aanmelden-evenement"]),
+    TR("nl-pt","Al vijftig deelnemers hebben zich aangemeld.", ["Já se inscreveram cinquenta participantes","Cinquenta participantes já se inscreveram"], "zich aanmelden.", ["v-aanmelden"]),
     AR("draaiboek","o guião","het", "Het boek.", ["v-draaiboek"]),
     CO("text","Draaiboek personeelsfeest", "09.30 – Ontvangst met koffie in de foyer (catering: Smaakvol)\n10.00 – Welkomstwoord door de directeur\n10.30 – Workshops in drie groepen (zie lijst deelnemers)\n12.30 – Lunch\n14.00 – Fietstocht langs de rivier (bij regen: pubquiz binnen)\n17.00 – Borrel en afsluiting\nContactpersoon op de dag: Ana Silva, 06-12345678",
        [("O que acontece às 10h?", ["*Discurso de boas-vindas do diretor","Almoço","Passeio de bicicleta"]),("O que acontece se chover às 14h?", ["*Um quiz dentro de portas","Cancela-se tudo","Passeio de barco"]),("Quem é a pessoa de contacto?", ["*Ana Silva","O diretor","A empresa de catering"])],
        "Um draaiboek detalha horários e responsáveis.", ["v-draaiboek","v-catering"]),
     FE(["Al","vijftig","deelnemers","heeft","zich","aangemeld."], 3, "hebben", "Plural: hebben.", ["v-deelnemer"]),
-    LI("Vergeet niet je aan te melden vóór vrijdag.", ["Vergeet niet je aan te melden vóór vrijdag","Vergeet niet je aan te melden voor vrijdag"], "Não te esqueças de te inscrever antes de sexta.", "aanmelden.", ["v-aanmelden-evenement"]),
+    LI("Vergeet niet je aan te melden vóór vrijdag.", ["Vergeet niet je aan te melden vóór vrijdag","Vergeet niet je aan te melden voor vrijdag"], "Não te esqueças de te inscrever antes de sexta.", "aanmelden.", ["v-aanmelden"]),
     FB("De ___ verzorgt de koffie en de lunch.", ["catering"], "Catering.", ["v-catering"], choices=["catering","locatie","deelnemer"], tr="O catering trata do café e do almoço."),
-    SW("Escreva um convite curto (4 frases) para o evento do draaiboek, com data, local, programa e inscrição.", ["Beste collega's,\nOp vrijdag 14 juni organiseren we ons jaarlijkse personeelsfeest in Restaurant De Rivier. Het programma bestaat uit workshops, een lunch en een fietstocht. Meld je vóór 1 juni aan via het formulier op intranet.\nTot dan!"], ["Data e local", "Programa", "Inscrição com prazo"], 40, "Convite.", ["v-aanmelden-evenement","v-locatie"]),
+    SW("Escreva um convite curto (4 frases) para o evento do draaiboek, com data, local, programa e inscrição.", ["Beste collega's,\nOp vrijdag 14 juni organiseren we ons jaarlijkse personeelsfeest in Restaurant De Rivier. Het programma bestaat uit workshops, een lunch en een fietstocht. Meld je vóór 1 juni aan via het formulier op intranet.\nTot dan!"], ["Data e local", "Programa", "Inscrição com prazo"], 40, "Convite.", ["v-aanmelden","v-locatie"]),
   ], diff=5, mins=8)
 
 W()
