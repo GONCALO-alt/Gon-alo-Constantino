@@ -5,14 +5,14 @@ C = "B1-B2"
 
 L(1, "Substantivos abstratos em -heid e -ing", "vrijheid, gezondheid, verandering, ervaring",
   ["Formar e usar substantivos abstratos"],
-  vocab=[V("v-gelijkheid","gelijkheid","igualdade","noun","de"), V("v-zekerheid","zekerheid","segurança|certeza","noun","de"),
+  vocab=[V("v-zekerheid","zekerheid","segurança|certeza","noun","de"),
          V("v-verandering","verandering","mudança","noun","de"), V("v-verbetering","verbetering","melhoria","noun","de"),
          V("v-waarde","waarde","valor","noun","de",note="waarden = valores (princípios)")],
   ex=[("Gelijkheid is een belangrijke waarde.","A igualdade é um valor importante."),("Verandering kost tijd.","A mudança leva tempo."),("Er is een duidelijke verbetering.","Há uma melhoria clara."),("Een vast contract geeft zekerheid.","Um contrato sem termo dá segurança.")],
   gram=[G("g-abstracte-woorden","Formar substantivos","**adjetivo + -heid** → *vrij → vrijheid, gelijk → gelijkheid, zeker → zekerheid*. **verbo + -ing** → *veranderen → verandering, verbeteren → verbetering*. Todos são **de**-woorden.",
     [("De vrijheid van meningsuiting","A liberdade de expressão")],
     "Muitos correspondem às nossas palavras em -dade e -ção.")],
-  review=["v-vrijheid","v-gezond","v-ervaring"],
+  review=["v-gelijkheid","v-vrijheid","v-gezond","v-ervaring"],
   cefr=C, exs=[
     MA([("gelijkheid","igualdade"),("zekerheid","segurança"),("verandering","mudança"),("verbetering","melhoria"),("waarde","valor")], "Abstratos.", ["v-gelijkheid","v-zekerheid","v-verandering","v-verbetering","v-waarde"]),
     MC("Qual é o substantivo de «eerlijk»?", ["*eerlijkheid","eerlijking|Adjetivo → -heid.","eerlijkte|Não existe."], "-heid.", ["v-gelijkheid"]),

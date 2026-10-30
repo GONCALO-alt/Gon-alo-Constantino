@@ -82,9 +82,9 @@ L(4, "Revisão: Secção 6 (B1–B2)", "Argumentação, registos, relativas, pas
 L(5, "Revisão final: o percurso completo", "De A1 a B2 — balanço e próximos passos.",
   ["Fazer o balanço do percurso e planear a continuação da aprendizagem"],
   vocab=[V("v-mijlpaal-bereikt","een mijlpaal bereiken","alcançar um marco","expression"), V("v-blijven-oefenen","blijven oefenen","continuar a praticar","expression"),
-         V("v-staatsexamen","staatsexamen NT2","exame estatal de neerlandês","noun","het"), V("v-taalniveau","taalniveau","nível de língua","noun","het")],
+         V("v-staatsexamen","staatsexamen NT2","exame estatal de neerlandês","noun","het")],
   ex=[("Je hebt een belangrijke mijlpaal bereikt.","Alcançaste um marco importante."),("Blijf elke dag een beetje oefenen.","Continua a praticar um pouco todos os dias."),("Het staatsexamen NT2 programma II is op B2-niveau.","O exame estatal NT2 programa II é de nível B2."),("Wat is je huidige taalniveau?","Qual é o teu nível atual de língua?")],
-  review=["v-vooruitgang-boeken","v-trots-zijn-op","v-oefening-baart-kunst","v-volhouden"],
+  review=["v-taalniveau","v-vooruitgang-boeken","v-trots-zijn-op","v-oefening-baart-kunst","v-volhouden"],
   cefr=C, exs=[
     MA([("een mijlpaal bereiken","alcançar um marco"),("blijven oefenen","continuar a praticar"),("staatsexamen NT2","exame estatal"),("taalniveau","nível de língua")], "Balanço.", ["v-mijlpaal-bereikt","v-blijven-oefenen","v-staatsexamen","v-taalniveau"]),
     MC("O Staatsexamen NT2 programa II corresponde a…", ["*B2 (para estudar ou trabalhar a nível superior)","A1|Não.","C2|Não."], "Exame oficial.", ["v-staatsexamen"]),
