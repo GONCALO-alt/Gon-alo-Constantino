@@ -91,9 +91,9 @@ L(4, "Planos, previsões e condições", "Als het lukt, ga ik… Waarschijnlijk 
 L(5, "Prática: passado, presente e futuro", "Uma conversa sobre a vida: o que foi, o que é, o que vai ser.",
   ["Combinar tempos verbais numa conversa natural"],
   vocab=[V("v-toekomst","toekomst","futuro","noun","de"), V("v-verleden","verleden","passado","noun","het"),
-         V("v-heden","heden","presente","noun","het"), V("v-terugkijken","terugkijken op","olhar para trás|recordar","expression")],
+         V("v-heden","heden","presente","noun","het")],
   ex=[("Hoe zie jij de toekomst?","Como vês o futuro?"),("Dat is verleden tijd.","Isso é passado."),("Ik kijk met plezier terug op die tijd.","Recordo esse tempo com prazer."),("In het heden leven.","Viver o presente.")],
-  review=["v-al-gedaan","v-zou","v-waarschijnlijk","v-inmiddels"],
+  review=["v-terugkijken","v-al-gedaan","v-zou","v-waarschijnlijk","v-inmiddels"],
   cefr=C, exs=[
     MA([("toekomst","futuro"),("verleden","passado"),("heden","presente"),("terugkijken op","recordar")], "Tempo.", ["v-toekomst","v-verleden","v-heden","v-terugkijken"]),
     AR("toekomst","o futuro","de", "De toekomst.", ["v-toekomst"]),
