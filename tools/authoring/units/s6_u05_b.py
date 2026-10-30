@@ -1,0 +1,297 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u05")
+C = "B1-B2"
+# Lições de aprofundamento (10–25): negociação no trabalho e no dia a dia.
+
+def X(id, nl, pt, pos="expression"): return V(id, nl, pt, pos)
+def N(id, nl, pt, art, pl=None): return V(id, nl, pt, "noun", art, pl)
+
+L(10, "Preparar uma negociação", "Wat is je ondergrens?",
+  ["Definir objetivo, limite e margem antes de negociar"],
+  vocab=[N("v-ondergrens","ondergrens","limite mínimo","de"), N("v-speelruimte","speelruimte","margem de manobra","de"),
+         X("v-wat-wil-je-bereiken","wat wil je bereiken?","o que queres alcançar?")],
+  ex=[("Bepaal vooraf je ondergrens.","Define antecipadamente o teu limite mínimo."),("Hoeveel speelruimte heb je?","Quanta margem de manobra tens?"),("Wat wil je met dit gesprek bereiken?","O que queres alcançar com esta conversa?")],
+  review=["v-onderhandelen","v-haalbaar"],
+  cefr=C, exs=[
+    MA([("ondergrens","limite mínimo"),("speelruimte","margem de manobra"),("wat wil je bereiken?","o que queres alcançar?"),("onderhandelen","negociar")], "Preparar.", ["v-ondergrens","v-speelruimte","v-wat-wil-je-bereiken","v-onderhandelen"]),
+    MC("Vende a bicicleta e não aceita menos de 200 €. 200 € é a sua…", ["*ondergrens","speelruimte|É a margem.","openingsbod|Não."], "Limite.", ["v-ondergrens"]),
+    TR("pt-nl","Define antecipadamente o teu limite mínimo.", ["Bepaal vooraf je ondergrens","Bepaal van tevoren je ondergrens"], "vooraf.", ["v-ondergrens"]),
+    TR("pt-nl","O que queres alcançar?", ["Wat wil je bereiken","Wat wil je bereiken?","Wat wil jij bereiken"], "bereiken.", ["v-wat-wil-je-bereiken"]),
+    FB("Tussen 200 en 300 euro heb ik nog wat ___.", ["speelruimte"], "Margem.", ["v-speelruimte"], choices=["speelruimte","ondergrens","haalbaar"], tr="Entre 200 e 300 euros ainda tenho alguma margem."),
+    FE(["Bepaal","vooraf","jouw","ondergrenzen","goed."], 3, "ondergrens", "Singular: a tua ondergrens.", ["v-ondergrens"]),
+    LI("Wie goed voorbereid is, onderhandelt rustiger.", ["Wie goed voorbereid is, onderhandelt rustiger","Wie goed voorbereid is onderhandelt rustiger"], "Quem está bem preparado negoceia com mais calma.", "Princípio.", ["v-onderhandelen"]),
+    SW("Vai negociar o preço de um carro em segunda mão. Escreva 3 frases: objetivo, limite e margem.", ["Ik wil de auto voor ongeveer 4.000 euro kopen. Mijn ondergrens… eigenlijk mijn bovengrens is 4.500 euro. Ik heb dus 500 euro speelruimte."], ["Objetivo","Limite","Margem"], 20, "Preparação.", ["v-ondergrens","v-speelruimte"]),
+    WO("Quanta margem tens?", ["Hoeveel","speelruimte","heb","je?"], "Ordem.", ["v-speelruimte"]),
+  ], diff=4, mins=5)
+
+L(11, "A primeira oferta", "Ik doe een openingsbod.",
+  ["Fazer uma primeira oferta com estratégia"],
+  vocab=[N("v-openingsbod","openingsbod","primeira oferta","het"), X("v-een-bod-doen","een bod doen","fazer uma oferta"),
+         X("v-hoog-inzetten","hoog inzetten","começar alto|pedir alto","verb")],
+  ex=[("Mijn openingsbod is 3.000 euro.","A minha primeira oferta é 3.000 euros."),("Mag ik een bod doen?","Posso fazer uma oferta?"),("Bij een salarisgesprek kun je beter hoog inzetten.","Numa negociação salarial é melhor começar alto.")],
+  review=["v-bod","v-redelijk"],
+  cefr=C, exs=[
+    MA([("openingsbod","primeira oferta"),("een bod doen","fazer uma oferta"),("hoog inzetten","começar alto"),("redelijk","razoável")], "Oferta.", ["v-openingsbod","v-een-bod-doen","v-hoog-inzetten","v-redelijk"]),
+    AR("openingsbod", "primeira oferta", "het", "het bod → het openingsbod.", ["v-openingsbod"]),
+    TR("pt-nl","Posso fazer uma oferta?", ["Mag ik een bod doen","Mag ik een bod doen?","Kan ik een bod doen"], "een bod doen.", ["v-een-bod-doen"]),
+    TR("pt-nl","A minha primeira oferta é 3.000 euros.", ["Mijn openingsbod is 3.000 euro","Mijn openingsbod is drieduizend euro"], "Note: «euro» no singular com números.", ["v-openingsbod"]),
+    MC("«Ik bied 150 euro» — «bied» vem de…", ["*bieden (oferecer)","bidden (rezar)|Não.","bijten|Não."], "Verbo bieden.", ["v-een-bod-doen"]),
+    FB("Ik ___ u 250 euro voor de bank.", ["bied"], "ik: bied.", ["v-een-bod-doen"], choices=["bied","biedt","bod"], tr="Ofereço-lhe 250 euros pelo sofá."),
+    FE(["Hij","heeft","een","bod","gedaant."], 4, "gedaan.", "Particípio: gedaan.", ["v-een-bod-doen"]),
+    DL([("Verkoper","De vraagprijs is 400 euro.","O preço pedido é 400 euros."),("Jij","","")], ["*Hij ziet er goed uit, maar er zitten wat krassen op. Mag ik een bod doen? 300 euro.","400 is goed.|Sem negociar.","Te duur, dag.|Fecha a porta."], "Oferta fundamentada.", ["v-een-bod-doen"]),
+    LI("Met een redelijk openingsbod laat je zien dat je serieus bent.", ["Met een redelijk openingsbod laat je zien dat je serieus bent"], "Com uma primeira oferta razoável mostras que és sério.", "Estratégia.", ["v-openingsbod","v-redelijk"]),
+  ], diff=4, mins=5)
+
+L(12, "Contraproposta", "Mijn tegenbod is…",
+  ["Responder a uma oferta com uma contraproposta"],
+  vocab=[N("v-tegenbod","tegenbod","contraproposta","het"), X("v-het-verschil-delen","het verschil delen","dividir a diferença"),
+         X("v-in-ruil-voor","in ruil voor","em troca de")],
+  ex=[("Mijn tegenbod is 350 euro.","A minha contraproposta é 350 euros."),("Zullen we het verschil delen?","Dividimos a diferença?"),("Ik wil wel zaterdag werken, in ruil voor een vrije maandag.","Posso trabalhar ao sábado, em troca de uma segunda livre.")],
+  review=["v-in-het-midden","v-concessie","v-daar-staat-tegenover"],
+  cefr=C, exs=[
+    MA([("tegenbod","contraproposta"),("het verschil delen","dividir a diferença"),("in ruil voor","em troca de"),("concessie","cedência")], "Contraproposta.", ["v-tegenbod","v-het-verschil-delen","v-in-ruil-voor","v-concessie"]),
+    MC("Oferta 300, pedido 400. «Het verschil delen» dá…", ["*350","300|Não.","400|Não."], "Meio.", ["v-het-verschil-delen"]),
+    TR("pt-nl","Dividimos a diferença?", ["Zullen we het verschil delen","Zullen we het verschil delen?","Laten we het verschil delen"], "Proposta.", ["v-het-verschil-delen"]),
+    TR("pt-nl","Em troca de uma segunda livre.", ["In ruil voor een vrije maandag"], "in ruil voor.", ["v-in-ruil-voor"]),
+    FB("Ik doe het, ___ ruil voor een extra vrije dag.", ["in"], "Expressão.", ["v-in-ruil-voor"], choices=["in","als","voor"], tr="Eu faço, em troca de um dia livre extra."),
+    FE(["Mijn","tegenbod","zijn","350","euro."], 2, "is", "Singular: is.", ["v-tegenbod"]),
+    DL([("Verkoper","300 is te laag. Ik wil minstens 380.","300 é pouco. Quero pelo menos 380."),("Jij","","")], ["*Zullen we het verschil delen? 340 euro, en ik haal hem vandaag nog op.","Oké, 380.|Cede tudo.","Dan niet.|Fecha."], "Contraproposta.", ["v-het-verschil-delen"]),
+    LI("Daar staat tegenover dat ik de bank zelf ophaal.", ["Daar staat tegenover dat ik de bank zelf ophaal"], "Em contrapartida, vou eu buscar o sofá.", "Contrapartida.", ["v-daar-staat-tegenover"]),
+    WO("Dividimos a diferença?", ["Zullen","we","het","verschil","delen?"], "Ordem.", ["v-het-verschil-delen"]),
+  ], diff=4, mins=5)
+
+L(13, "Negociar o salário", "Is er ruimte voor een loonsverhoging?",
+  ["Pedir um aumento ou negociar condições"],
+  vocab=[N("v-loonsverhoging","loonsverhoging","aumento salarial","de","loonsverhogingen"), N("v-dertiende-maand","dertiende maand","13.º mês","de"),
+         X("v-onderbouwen-met","onderbouwen met voorbeelden","fundamentar com exemplos","verb")],
+  ex=[("Is er ruimte voor een loonsverhoging?","Há margem para um aumento?"),("Krijg ik een dertiende maand?","Recebo 13.º mês?"),("Onderbouw je verzoek met concrete voorbeelden.","Fundamenta o teu pedido com exemplos concretos.")],
+  review=["v-salaris","v-arbeidsvoorwaarden","v-bruto","v-functioneringsgesprek"],
+  cefr=C, exs=[
+    MA([("loonsverhoging","aumento salarial"),("dertiende maand","13.º mês"),("onderbouwen met voorbeelden","fundamentar com exemplos"),("arbeidsvoorwaarden","condições de trabalho")], "Salário.", ["v-loonsverhoging","v-dertiende-maand","v-onderbouwen-met","v-arbeidsvoorwaarden"]),
+    MC("O melhor momento para pedir um aumento costuma ser…", ["*o functioneringsgesprek, com resultados preparados","no corredor, de improviso|Pouco profissional.","por SMS à noite|Não."], "Momento.", ["v-functioneringsgesprek"]),
+    TR("pt-nl","Há margem para um aumento?", ["Is er ruimte voor een loonsverhoging","Is er ruimte voor een loonsverhoging?","Is er ruimte voor salarisverhoging"], "ruimte voor.", ["v-loonsverhoging"]),
+    TR("pt-nl","Fundamenta o teu pedido com exemplos.", ["Onderbouw je verzoek met voorbeelden","Onderbouw je verzoek met concrete voorbeelden"], "onderbouwen.", ["v-onderbouwen-met"]),
+    FB("Als ik geen ___ kan krijgen, wil ik graag een extra opleiding.", ["loonsverhoging"], "Aumento.", ["v-loonsverhoging"], choices=["loonsverhoging","dertiende maand","speelruimte"], tr="Se não puder ter aumento, gostaria de uma formação extra."),
+    FE(["Ik","heb","het","afgelopen","jaar","drie","projecten","afgerond","en","verdienen","daarom","meer."], 9, "verdien", "ik: verdien.", ["v-loonsverhoging"]),
+    DL([("Leidinggevende","Waarom vind je dat je meer moet verdienen?","Porque achas que deves ganhar mais?"),("Jij","","")], ["*Ik heb dit jaar twee grote klanten binnengehaald en ik begeleid nu ook nieuwe collega's.","Omdat alles duurder wordt.|Fraco sozinho.","Gewoon.|Sem argumento."], "Argumentar com resultados.", ["v-onderbouwen-met"]),
+    LI("Naast het salaris zijn ook de secundaire voorwaarden belangrijk.", ["Naast het salaris zijn ook de secundaire voorwaarden belangrijk"], "Além do salário, também as condições secundárias são importantes.", "Visão global.", ["v-arbeidsvoorwaarden"]),
+  ], diff=5, mins=6)
+
+L(14, "Negociar uma casa arrendada", "Kan de huur nog iets omlaag?",
+  ["Negociar renda e condições com um senhorio"],
+  vocab=[X("v-huur-omlaag","de huur omlaag krijgen","conseguir baixar a renda"), X("v-gestoffeerd","gestoffeerd","com chão e cortinas (sem mobília)","adjective"),
+         N("v-overname","overname","retoma (de móveis do inquilino anterior)","de")],
+  ex=[("Kan de huur nog iets omlaag als ik voor twee jaar teken?","A renda pode baixar um pouco se assinar por dois anos?"),("Het appartement wordt gestoffeerd verhuurd.","O apartamento é arrendado com chão e cortinas."),("De vorige huurder vraagt 500 euro overname voor de keuken.","O inquilino anterior pede 500 euros pela retoma da cozinha.")],
+  review=["v-verhuurder","v-borg","v-huurprijs"],
+  cefr=C, exs=[
+    MA([("de huur omlaag krijgen","baixar a renda"),("gestoffeerd","com chão e cortinas"),("overname","retoma de móveis"),("borg","caução")], "Arrendar.", ["v-huur-omlaag","v-gestoffeerd","v-overname","v-borg"]),
+    MC("Diferença: «kaal», «gestoffeerd», «gemeubileerd»:", ["*vazio → com chão/cortinas → mobilado","mobilado → vazio → com chão|Ordem errada.","são iguais|Não."], "Tipos de arrendamento.", ["v-gestoffeerd"]),
+    TR("pt-nl","A renda pode baixar um pouco?", ["Kan de huur nog iets omlaag","Kan de huur iets omlaag","Kan de huur nog iets omlaag?"], "omlaag.", ["v-huur-omlaag"]),
+    TR("pt-nl","O apartamento é arrendado sem mobília, com chão e cortinas.", ["Het appartement wordt gestoffeerd verhuurd"], "gestoffeerd.", ["v-gestoffeerd"]),
+    FB("De vorige huurder vraagt geld voor de ___ van de vloer.", ["overname"], "Retoma.", ["v-overname"], choices=["overname","borg","huur"], tr="O inquilino anterior pede dinheiro pela retoma do chão."),
+    FE(["Het","appartement","worden","gestoffeerd","verhuurd."], 2, "wordt", "Singular: wordt.", ["v-gestoffeerd"]),
+    DL([("Verhuurder","De huur is 1.250 euro per maand.","A renda é 1.250 euros por mês."),("Jij","","")], ["*Ik ben zeer geïnteresseerd. Kan de huur nog iets omlaag als ik meteen voor twee jaar teken?","Te duur!|Fecha.","Oké.|Sem tentar."], "Negociar com argumento.", ["v-huur-omlaag"]),
+    LI("Een overnamebedrag is niet verplicht; je mag ook nee zeggen.", ["Een overnamebedrag is niet verplicht; je mag ook nee zeggen","Een overnamebedrag is niet verplicht, je mag ook nee zeggen"], "Um valor de retoma não é obrigatório; também podes dizer não.", "Informação geral.", ["v-overname"]),
+    WO("A renda pode baixar?", ["Kan","de","huur","omlaag?"], "Ordem.", ["v-huur-omlaag"]),
+  ], diff=4, mins=5)
+
+L(15, "Comprar em segunda mão", "Wat is je laatste prijs?",
+  ["Regatear com educação num mercado ou numa app"],
+  vocab=[X("v-laatste-prijs","wat is je laatste prijs?","qual é o teu último preço?"), X("v-onderhandelbaar","onderhandelbaar","negociável","adjective"),
+         X("v-vaste-prijs","vaste prijs","preço fixo")],
+  ex=[("Wat is je laatste prijs?","Qual é o teu último preço?"),("Is de prijs nog onderhandelbaar?","O preço ainda é negociável?"),("Sorry, dit is een vaste prijs.","Desculpe, este é um preço fixo.")],
+  review=["v-afdingen","v-contant","v-marktplaats"],
+  cefr=C, exs=[
+    MA([("wat is je laatste prijs?","último preço?"),("onderhandelbaar","negociável"),("vaste prijs","preço fixo"),("afdingen","regatear")], "Usados.", ["v-laatste-prijs","v-onderhandelbaar","v-vaste-prijs","v-afdingen"]),
+    TR("pt-nl","O preço ainda é negociável?", ["Is de prijs nog onderhandelbaar","Is de prijs nog onderhandelbaar?","Is de prijs onderhandelbaar"], "onderhandelbaar.", ["v-onderhandelbaar"]),
+    TR("pt-nl","Qual é o teu último preço?", ["Wat is je laatste prijs","Wat is je laatste prijs?","Wat is jouw laatste prijs"], "Expressão.", ["v-laatste-prijs"]),
+    MC("Num anúncio vê «Vaste prijs». Faz sentido regatear?", ["*Pouco: o vendedor não quer negociar","Sim, muito|Não.","É obrigatório|Não."], "Ler o anúncio.", ["v-vaste-prijs"]),
+    FB("Als ik ___ betaal, kan er dan nog wat vanaf?", ["contant"], "Em dinheiro.", ["v-contant"], choices=["contant","vast","laatste"], tr="Se pagar em dinheiro, pode baixar mais um pouco?"),
+    FE(["Is","de","prijs","nog","onderhandelbare?"], 4, "onderhandelbaar?", "Predicativo: sem -e.", ["v-onderhandelbaar"]),
+    DL([("Verkoper (Marktplaats)","De lamp kost 40 euro.","O candeeiro custa 40 euros."),("Jij","","")], ["*Mooie lamp! Is de prijs nog onderhandelbaar? Ik kan vanavond langskomen en contant betalen.","40? Belachelijk!|Rude.","Ik neem hem voor 5.|Desrespeitoso."], "Regatear com educação.", ["v-onderhandelbaar","v-contant"]),
+    LI("Er kan nog wel vijf euro vanaf, maar dat is echt mijn laatste prijs.", ["Er kan nog wel vijf euro vanaf, maar dat is echt mijn laatste prijs","Er kan nog wel 5 euro vanaf, maar dat is echt mijn laatste prijs"], "Ainda posso baixar cinco euros, mas é mesmo o meu último preço.", "Resposta do vendedor.", ["v-laatste-prijs"]),
+    WO("O preço é fixo.", ["De","prijs","is","vast"], "Ordem.", ["v-vaste-prijs"]),
+  ], diff=4, mins=5)
+
+L(16, "Negociar com um fornecedor", "Krijgen we korting bij afname van 100 stuks?",
+  ["Negociar preço, prazo de entrega e pagamento"],
+  vocab=[X("v-korting-bij-afname","korting bij afname van…","desconto na compra de…"), N("v-levertijd","levertijd","prazo de entrega","de"),
+         N("v-betalingstermijn","betalingstermijn","prazo de pagamento","de"),
+         N("v-offerte","offerte","orçamento (proposta comercial)","de","offertes"), N("v-leverancier","leverancier","fornecedor","de","leveranciers")],
+  ex=[("Krijgen we korting bij afname van 100 stuks?","Temos desconto na compra de 100 unidades?"),("Wat is de levertijd?","Qual é o prazo de entrega?"),("De betalingstermijn is dertig dagen.","O prazo de pagamento é de trinta dias.")],
+  review=["v-korting"],
+  cefr=C, exs=[
+    MA([("korting bij afname van…","desconto na compra de…"),("levertijd","prazo de entrega"),("betalingstermijn","prazo de pagamento"),("offerte","orçamento")], "Fornecedor.", ["v-korting-bij-afname","v-levertijd","v-betalingstermijn","v-offerte"]),
+    TR("pt-nl","Qual é o prazo de entrega?", ["Wat is de levertijd","Wat is de levertijd?","Hoe lang is de levertijd"], "levertijd.", ["v-levertijd"]),
+    TR("pt-nl","O prazo de pagamento é de trinta dias.", ["De betalingstermijn is dertig dagen","De betalingstermijn is 30 dagen"], "betalingstermijn.", ["v-betalingstermijn"]),
+    MC("Para negociar com um fornecedor, um bom trunfo é…", ["*encomendar mais unidades ou pagar mais depressa","ameaçar|Mau.","não dizer nada|Fraco."], "Estratégia.", ["v-korting-bij-afname"]),
+    FB("Bij ___ van 500 stuks geven we 10% korting.", ["afname"], "Compra.", ["v-korting-bij-afname"], choices=["afname","levertijd","termijn"], tr="Na compra de 500 unidades damos 10% de desconto."),
+    FE(["De","levertijd","zijn","drie","weken."], 2, "is", "Singular: is.", ["v-levertijd"]),
+    DL([("Leverancier","De levertijd is zes weken.","O prazo de entrega é de seis semanas."),("Jij","","")], ["*Dat is te lang voor ons. Als we nu bestellen en binnen veertien dagen betalen, kan het dan in vier weken?","Oké.|Sem negociar.","Zes weken is belachelijk!|Rude."], "Negociar prazo.", ["v-levertijd","v-betalingstermijn"]),
+    LI("Kunt u ons een aangepaste offerte sturen?", ["Kunt u ons een aangepaste offerte sturen","Kunt u ons een aangepaste offerte sturen?"], "Pode enviar-nos um orçamento ajustado?", "Pedido.", ["v-offerte"]),
+    WO("Qual é o prazo de entrega?", ["Wat","is","de","levertijd?"], "Ordem.", ["v-levertijd"]),
+  ], diff=4, mins=5)
+
+L(17, "Ganhar os dois", "Een gemeenschappelijk belang.",
+  ["Procurar soluções em que as duas partes ganham"],
+  vocab=[X("v-beide-partijen","beide partijen","ambas as partes"), X("v-gemeenschappelijk-belang","gemeenschappelijk belang","interesse comum"),
+         X("v-meedenken","meedenken","pensar em conjunto|colaborar","verb")],
+  ex=[("Deze oplossing is goed voor beide partijen.","Esta solução é boa para ambas as partes."),("We hebben een gemeenschappelijk belang: een tevreden klant.","Temos um interesse comum: um cliente satisfeito."),("Bedankt voor het meedenken!","Obrigado por pensar connosco!")],
+  review=["v-win-win","v-compromis"],
+  cefr=C, exs=[
+    MA([("beide partijen","ambas as partes"),("gemeenschappelijk belang","interesse comum"),("meedenken","pensar em conjunto"),("compromis","compromisso")], "Win-win.", ["v-beide-partijen","v-gemeenschappelijk-belang","v-meedenken","v-compromis"]),
+    TR("pt-nl","Esta solução é boa para ambas as partes.", ["Deze oplossing is goed voor beide partijen"], "beide.", ["v-beide-partijen"]),
+    TR("pt-nl","Obrigado por pensar connosco!", ["Bedankt voor het meedenken","Bedankt voor het meedenken!","Dank je voor het meedenken"], "meedenken.", ["v-meedenken"]),
+    MC("«Meedenken» é muito valorizado no trabalho neerlandês porque…", ["*mostra iniciativa e colaboração","significa obedecer|Não.","é uma ordem|Não."], "Cultura.", ["v-meedenken"]),
+    FB("We hebben een ___ belang: dat het project slaagt.", ["gemeenschappelijk"], "het belang → sem -e com «een».", ["v-gemeenschappelijk-belang"], choices=["gemeenschappelijk","gemeenschappelijke","beide"], tr="Temos um interesse comum: que o projeto tenha sucesso."),
+    FE(["Dit","is","goed","voor","beiden","partijen."], 4, "beide", "Antes de substantivo: beide.", ["v-beide-partijen"]),
+    DL([("Klant","Ik wil een lagere prijs, anders ga ik naar de concurrent.","Quero um preço mais baixo, senão vou à concorrência."),("Jij","","")], ["*We willen allebei een goede samenwerking. Wat als we de prijs gelijk houden, maar gratis onderhoud toevoegen?","Ga maar.|Perde o cliente.","Oké, de helft.|Cede demasiado."], "Procurar win-win.", ["v-gemeenschappelijk-belang"]),
+    LI("Een goede deal voelt voor beide partijen eerlijk.", ["Een goede deal voelt voor beide partijen eerlijk"], "Um bom negócio parece justo para ambas as partes.", "Princípio.", ["v-beide-partijen","v-deal"]),
+    WO("Temos um interesse comum.", ["We","hebben","een","gemeenschappelijk","belang"], "Ordem.", ["v-gemeenschappelijk-belang"]),
+  ], diff=4, mins=5)
+
+L(18, "Resistir à pressão", "Daar moet ik even over nadenken.",
+  ["Ganhar tempo e não decidir sob pressão"],
+  vocab=[X("v-onder-druk-zetten","iemand onder druk zetten","pressionar alguém","verb"), X("v-daar-moet-ik-over-nadenken","daar moet ik even over nadenken","tenho de pensar nisso"),
+         X("v-ik-laat-het-weten","ik laat het je weten","depois digo-te")],
+  ex=[("Ik laat me niet onder druk zetten.","Não me deixo pressionar."),("Daar moet ik even over nadenken.","Tenho de pensar nisso."),("Ik laat het je morgen weten.","Amanhã digo-te.")],
+  review=["v-bedenktijd"],
+  cefr=C, exs=[
+    MA([("iemand onder druk zetten","pressionar"),("daar moet ik even over nadenken","tenho de pensar"),("ik laat het je weten","depois digo-te"),("bedenktijd","tempo para pensar")], "Pressão.", ["v-onder-druk-zetten","v-daar-moet-ik-over-nadenken","v-ik-laat-het-weten","v-bedenktijd"]),
+    MC("O vendedor diz: «Deze aanbieding geldt alleen vandaag!» Uma boa resposta:", ["*Daar moet ik even over nadenken.","Oké, ik teken nu!|Decide sob pressão.","Je liegt!|Agressivo."], "Ganhar tempo.", ["v-daar-moet-ik-over-nadenken"]),
+    TR("pt-nl","Não me deixo pressionar.", ["Ik laat me niet onder druk zetten","Ik laat mij niet onder druk zetten"], "laten + zetten.", ["v-onder-druk-zetten"]),
+    TR("pt-nl","Amanhã digo-te.", ["Ik laat het je morgen weten","Morgen laat ik het je weten"], "laten weten.", ["v-ik-laat-het-weten"]),
+    FB("Mag ik een week ___?", ["bedenktijd"], "Tempo para pensar.", ["v-bedenktijd"], choices=["bedenktijd","druk","nadenken"], tr="Posso ter uma semana para pensar?"),
+    FE(["Daar","moet","ik","even","over","nadenkt."], 5, "nadenken.", "Depois de moet: infinitivo.", ["v-daar-moet-ik-over-nadenken"]),
+    DL([("Verkoper","Als u nu niet tekent, is de woning morgen weg!","Se não assinar agora, amanhã a casa já foi!"),("Jij","","")], ["*Dat risico neem ik. Ik wil eerst het contract rustig lezen. Ik laat het u morgen weten.","Oké, waar moet ik tekenen?|Cede à pressão.","Dan niet!|Impulsivo."], "Firmeza.", ["v-onder-druk-zetten","v-ik-laat-het-weten"]),
+    LI("Een goed aanbod is morgen ook nog goed.", ["Een goed aanbod is morgen ook nog goed"], "Uma boa oferta amanhã continua a ser boa.", "Princípio.", ["v-onder-druk-zetten"]),
+    WO("Tenho de pensar nisso.", ["Daar","moet","ik","over","nadenken"], "Ordem.", ["v-daar-moet-ik-over-nadenken"]),
+  ], diff=4, mins=5)
+
+L(19, "A linha vermelha", "Dat is voor mij een breekpunt.",
+  ["Dizer claramente o que não é aceitável"],
+  vocab=[N("v-breekpunt","breekpunt","linha vermelha|ponto inegociável","het"), X("v-daar-kan-ik-niet-mee-akkoord","daar kan ik niet mee akkoord gaan","não posso concordar com isso"),
+         X("v-geen-optie","dat is geen optie","isso não é opção")],
+  ex=[("Werken in het weekend is voor mij een breekpunt.","Trabalhar ao fim de semana é para mim uma linha vermelha."),("Daar kan ik niet mee akkoord gaan.","Não posso concordar com isso."),("Minder salaris is geen optie.","Menos salário não é opção.")],
+  review=["v-onacceptabel","v-grens-bereikt","v-akkoord-gaan"],
+  cefr=C, exs=[
+    MA([("breekpunt","linha vermelha"),("daar kan ik niet mee akkoord gaan","não posso concordar"),("dat is geen optie","não é opção"),("onacceptabel","inaceitável")], "Limites.", ["v-breekpunt","v-daar-kan-ik-niet-mee-akkoord","v-geen-optie","v-onacceptabel"]),
+    AR("breekpunt", "linha vermelha", "het", "het punt → het breekpunt.", ["v-breekpunt"]),
+    TR("pt-nl","Não posso concordar com isso.", ["Daar kan ik niet mee akkoord gaan","Ik kan daar niet mee akkoord gaan"], "akkoord gaan met.", ["v-daar-kan-ik-niet-mee-akkoord"]),
+    TR("pt-nl","Isso não é opção.", ["Dat is geen optie"], "geen.", ["v-geen-optie"]),
+    MC("Qual é a forma mais firme mas educada?", ["*Ik begrijp uw positie, maar daar kan ik niet mee akkoord gaan.","Nee! Nooit!|Agressivo.","Misschien…|Pouco claro."], "Firmeza educada.", ["v-daar-kan-ik-niet-mee-akkoord"]),
+    FB("Een kleiner kantoor is voor ons geen ___.", ["optie"], "Opção.", ["v-geen-optie"], choices=["optie","breekpunt","akkoord"], tr="Um escritório mais pequeno não é opção para nós."),
+    FE(["Daar","kan","ik","niet","met","akkoord","gaan."], 4, "mee", "Com «daar»: daar … mee.", ["v-daar-kan-ik-niet-mee-akkoord"]),
+    DL([("Werkgever","We willen dat je ook op zondag beschikbaar bent.","Queremos que estejas também disponível ao domingo."),("Jij","","")], ["*Ik ben flexibel, maar de zondag is voor mij een breekpunt: dan ben ik bij mijn gezin.","Oké.|Sem limite.","Nooit, dag!|Brusco."], "Linha vermelha.", ["v-breekpunt"]),
+    WO("Isso não é opção.", ["Dat","is","geen","optie"], "Ordem.", ["v-geen-optie"]),
+  ], diff=5, mins=5)
+
+L(20, "Fechar o acordo", "We zijn eruit!",
+  ["Fechar um acordo e confirmá-lo"],
+  vocab=[X("v-we-zijn-eruit","we zijn eruit!","chegámos a acordo!"), X("v-afgesproken","afgesproken!","combinado!"),
+         X("v-de-handen-schudden","elkaar de hand schudden","apertar as mãos")],
+  ex=[("Na twee uur praten: we zijn eruit!","Depois de duas horas de conversa: chegámos a acordo!"),("350 euro, inclusief bezorging? Afgesproken!","350 euros com entrega incluída? Combinado!"),("Ze schudden elkaar de hand.","Apertaram as mãos.")],
+  review=["v-deal","v-op-papier-zetten","v-bevestigen-schriftelijk"],
+  cefr=C, exs=[
+    MA([("we zijn eruit!","chegámos a acordo!"),("afgesproken!","combinado!"),("elkaar de hand schudden","apertar as mãos"),("op papier zetten","pôr por escrito")], "Fechar.", ["v-we-zijn-eruit","v-afgesproken","v-de-handen-schudden","v-op-papier-zetten"]),
+    TR("pt-nl","Chegámos a acordo!", ["We zijn eruit","We zijn eruit!","Wij zijn eruit"], "Expressão.", ["v-we-zijn-eruit"]),
+    TR("pt-nl","Combinado!", ["Afgesproken","Afgesproken!","Deal"], "Expressão.", ["v-afgesproken"]),
+    MC("Depois de um acordo verbal importante, é sensato…", ["*pô-lo por escrito","esquecê-lo|Não.","mudar de ideia|Não."], "Prudência.", ["v-op-papier-zetten"]),
+    FB("Ze ___ elkaar de hand.", ["schudden"], "Presente plural.", ["v-de-handen-schudden"], choices=["schudden","schudt","geschud"], tr="Eles apertam as mãos."),
+    FE(["Na","lang","praten","we","zijn","eruit."], 3, "zijn", "Inversão: …praten zijn we eruit.", ["v-we-zijn-eruit"]),
+    LI("Zal ik de afspraken even op papier zetten en naar u mailen?", ["Zal ik de afspraken even op papier zetten en naar u mailen","Zal ik de afspraken even op papier zetten en naar u mailen?"], "Ponho os acordos por escrito e envio-lhe por e-mail?", "Confirmar.", ["v-op-papier-zetten"]),
+    DL([("Verkoper","Oké, 340 euro en ik breng hem morgen.","Ok, 340 euros e entrego amanhã."),("Jij","","")], ["*Afgesproken! Kunt u me de afspraak nog even per mail bevestigen?","Nee.|Contradiz.","Eruit.|Incompleto."], "Fechar e confirmar.", ["v-afgesproken","v-bevestigen-schriftelijk"]),
+    WO("Combinado, então.", ["Afgesproken","dan"], "Ordem.", ["v-afgesproken"]),
+  ], diff=4, mins=5)
+
+L(21, "Negociar com crianças", "Als je je huiswerk af hebt, dan mag je…",
+  ["Negociar regras em casa com crianças e adolescentes"],
+  vocab=[N("v-beloning","beloning","recompensa","de","beloningen"), X("v-als-dan-mag-je","als …, dan mag je …","se …, então podes …"),
+         X("v-afspraken-maken","afspraken maken","fazer combinados","verb")],
+  ex=[("Als je je huiswerk af hebt, dan mag je gamen.","Se acabares os trabalhos de casa, podes jogar."),("Een beloning werkt beter dan straf.","Uma recompensa funciona melhor do que um castigo."),("We maken samen afspraken over schermtijd.","Fazemos combinados juntos sobre o tempo de ecrã.")],
+  review=["v-schermtijd","v-afspraak-is-afspraak","v-huiswerk"],
+  cefr=C, exs=[
+    MA([("beloning","recompensa"),("als …, dan mag je …","se …, podes …"),("afspraken maken","fazer combinados"),("schermtijd","tempo de ecrã")], "Em casa.", ["v-beloning","v-als-dan-mag-je","v-afspraken-maken","v-schermtijd"]),
+    TR("pt-nl","Se acabares os trabalhos de casa, podes jogar.", ["Als je je huiswerk af hebt, dan mag je gamen","Als je je huiswerk af hebt, mag je gamen","Als je klaar bent met je huiswerk, mag je gamen"], "Inversão depois de als.", ["v-als-dan-mag-je"]),
+    TR("pt-nl","Fazemos combinados juntos.", ["We maken samen afspraken","Wij maken samen afspraken"], "afspraken maken.", ["v-afspraken-maken"]),
+    MC("Depois da oração com «als», a principal…", ["*começa com o verbo (dan mag je / mag je)","começa com o sujeito|Não.","não tem verbo|Não."], "Inversão.", ["v-als-dan-mag-je"]),
+    FB("Als je je kamer opruimt, ___ je straks een ijsje.", ["krijg"], "Inversão: krijg je (sem -t).", ["v-als-dan-mag-je"], choices=["krijg","krijgt","kreeg"], tr="Se arrumares o quarto, depois recebes um gelado."),
+    FE(["Als","je","klaar","bent,","dan","je","mag","buiten","spelen."], 5, "mag", "Inversão: dan mag je.", ["v-als-dan-mag-je"]),
+    DL([("Kind (12)","Mag ik nog een uurtje op de tablet?","Posso ficar mais uma horinha no tablet?"),("Jij","","")], ["*Als je eerst je tas inpakt voor morgen, dan mag je nog een half uur. Afspraak is afspraak!","Nee, nooit meer!|Rígido.","Oké, de hele nacht.|Sem limites."], "Negociar com criança.", ["v-als-dan-mag-je","v-afspraak-is-afspraak"]),
+    LI("Een kleine beloning kan helpen, maar hoeft niet altijd.", ["Een kleine beloning kan helpen, maar hoeft niet altijd","Een kleine beloning kan helpen maar hoeft niet altijd"], "Uma pequena recompensa pode ajudar, mas nem sempre é necessária.", "Equilíbrio.", ["v-beloning"]),
+    WO("Fazemos combinados.", ["We","maken","afspraken"], "Ordem.", ["v-afspraken-maken"]),
+  ], diff=4, mins=5)
+
+L(22, "Dividir as tarefas de casa", "Om de beurt de afwas.",
+  ["Negociar a divisão das tarefas domésticas"],
+  vocab=[N("v-huishoudtaken","huishoudtaken","tarefas domésticas","de"), X("v-om-de-beurt","om de beurt","à vez|por turnos"),
+         N("v-rooster-taken","takenrooster","escala de tarefas","het")],
+  ex=[("We verdelen de huishoudtaken eerlijk.","Dividimos as tarefas domésticas de forma justa."),("We doen om de beurt de afwas.","Lavamos a loiça à vez."),("Op de koelkast hangt een takenrooster.","No frigorífico está pendurada uma escala de tarefas.")],
+  review=["v-eerlijk-verdelen","v-taken-verdelen"],
+  cefr=C, exs=[
+    MA([("huishoudtaken","tarefas domésticas"),("om de beurt","à vez"),("takenrooster","escala de tarefas"),("eerlijk verdelen","dividir de forma justa")], "Tarefas.", ["v-huishoudtaken","v-om-de-beurt","v-rooster-taken","v-eerlijk-verdelen"]),
+    TR("pt-nl","Lavamos a loiça à vez.", ["We doen om de beurt de afwas","Wij doen om de beurt de afwas","We wassen om de beurt af"], "om de beurt.", ["v-om-de-beurt"]),
+    TR("pt-nl","Dividimos as tarefas de forma justa.", ["We verdelen de huishoudtaken eerlijk","We verdelen de taken eerlijk"], "verdelen.", ["v-huishoudtaken"]),
+    AR("takenrooster", "escala de tarefas", "het", "het rooster → het takenrooster.", ["v-rooster-taken"]),
+    FB("Wie is er deze week aan de ___ met stofzuigen?", ["beurt"], "aan de beurt = ser a vez.", ["v-om-de-beurt"], choices=["beurt","taak","rooster"], tr="De quem é a vez de aspirar esta semana?"),
+    FE(["Wij","doet","om","de","beurt","de","afwas."], 1, "doen", "Plural: doen.", ["v-om-de-beurt"]),
+    DL([("Huisgenoot","Ik heb deze week al drie keer gekookt…","Esta semana já cozinhei três vezes…"),("Jij","","")], ["*Je hebt gelijk. Zullen we een takenrooster maken? Dan doen we het om de beurt.","Jammer.|Desvaloriza.","Ik kook nooit.|Não ajuda."], "Propor solução.", ["v-rooster-taken","v-om-de-beurt"]),
+    LI("Ik kook, dan doe jij de afwas. Eerlijk is eerlijk.", ["Ik kook, dan doe jij de afwas. Eerlijk is eerlijk","Ik kook dan doe jij de afwas eerlijk is eerlijk","Ik kook, dan doe jij de afwas. Eerlijk is eerlijk."], "Eu cozinho, tu lavas a loiça. Justiça seja feita.", "Troca justa.", ["v-eerlijk-verdelen"]),
+    WO("À vez.", ["Om","de","beurt"], "Expressão.", ["v-om-de-beurt"]),
+  ], diff=3, mins=5)
+
+L(23, "Negociar à neerlandesa", "Het poldermodel.",
+  ["Perceber o estilo neerlandês de negociação e consenso"],
+  vocab=[N("v-poldermodel","poldermodel","modelo de concertação (polder)","het"), N("v-omgangsvormen","omgangsvormen","normas de convivência|etiqueta","de"),
+         X("v-recht-door-zee","recht door zee","direto|franco")],
+  ex=[("Het poldermodel draait om overleg en compromissen.","O modelo polder assenta em diálogo e compromissos."),("Zakelijke omgangsvormen verschillen per land.","As normas de conduta profissional variam de país para país."),("Nederlanders zijn vaak recht door zee.","Os neerlandeses são muitas vezes diretos.")],
+  review=["v-polderen","v-direct","v-compromis"],
+  cefr=C, exs=[
+    MA([("poldermodel","modelo de concertação"),("omgangsvormen","normas de convivência"),("recht door zee","direto"),("polderen","negociar até ao consenso")], "Cultura.", ["v-poldermodel","v-omgangsvormen","v-recht-door-zee","v-polderen"]),
+    EX("recht door zee", "reto pelo mar", "O que significa?", ["*direto, franco, sem rodeios","perdido|Não.","navegar bem|Literal."], "Imagem: navegar a direito.", ["v-recht-door-zee"]),
+    MC("No estilo neerlandês, numa negociação é comum…", ["*dizer claramente o que se pensa e procurar consenso","nunca dizer «não»|Não.","decidir só o chefe sem diálogo|Pouco típico."], "Cultura (generalização a usar com cuidado).", ["v-poldermodel"]),
+    TR("pt-nl","Os neerlandeses são muitas vezes diretos.", ["Nederlanders zijn vaak recht door zee","Nederlanders zijn vaak direct"], "Expressão.", ["v-recht-door-zee"]),
+    TR("pt-nl","As normas de conduta variam de país para país.", ["Omgangsvormen verschillen per land","De omgangsvormen verschillen per land"], "per land.", ["v-omgangsvormen"]),
+    FB("Het ___ draait om overleg tussen werkgevers, vakbonden en overheid.", ["poldermodel"], "Modelo polder.", ["v-poldermodel"], choices=["poldermodel","breekpunt","openingsbod"], tr="O modelo polder assenta no diálogo entre empregadores, sindicatos e governo."),
+    FE(["Omgangsvormen","verschilt","per","land."], 1, "verschillen", "Plural: verschillen.", ["v-omgangsvormen"]),
+    LI("Wat in Portugal beleefd is, kan in Nederland omslachtig lijken, en andersom.", ["Wat in Portugal beleefd is, kan in Nederland omslachtig lijken, en andersom","Wat in Portugal beleefd is kan in Nederland omslachtig lijken en andersom"], "O que em Portugal é educado pode parecer complicado nos Países Baixos, e vice-versa.", "Perspetiva intercultural.", ["v-omgangsvormen"]),
+    SW("Escreva 3–4 frases a comparar a forma de negociar ou dar opinião em Portugal e nos Países Baixos, segundo a sua experiência (evite generalizações absolutas).", ["In mijn ervaring zijn Nederlanders vaak recht door zee: ze zeggen meteen wat ze vinden. In Portugal draaien mensen er soms meer omheen om beleefd te zijn. Allebei hebben voordelen. Het belangrijkste is dat je elkaars omgangsvormen begrijpt."], ["Comparação","Nuance","Vocabulário da lição"], 30, "Intercultural.", ["v-recht-door-zee","v-omgangsvormen"]),
+  ], diff=4, mins=6)
+
+L(24, "Mediar um conflito", "Kunnen we samen naar een oplossing zoeken?",
+  ["Ajudar duas pessoas a chegar a acordo"],
+  vocab=[X("v-bemiddelen","bemiddelen","mediar","verb"), X("v-beide-kanten-horen","beide kanten horen","ouvir os dois lados","verb"),
+         X("v-samen-oplossing-zoeken","samen naar een oplossing zoeken","procurar juntos uma solução","verb")],
+  ex=[("Mijn collega bemiddelde tussen de twee teams.","O meu colega mediou entre as duas equipas."),("Eerst wil ik beide kanten horen.","Primeiro quero ouvir os dois lados."),("Kunnen we samen naar een oplossing zoeken?","Podemos procurar juntos uma solução?")],
+  review=["v-bemiddelaar","v-buurtbemiddeling","v-actief-luisteren"],
+  cefr=C, exs=[
+    MA([("bemiddelen","mediar"),("beide kanten horen","ouvir os dois lados"),("samen naar een oplossing zoeken","procurar solução juntos"),("bemiddelaar","mediador")], "Mediação.", ["v-bemiddelen","v-beide-kanten-horen","v-samen-oplossing-zoeken","v-bemiddelaar"]),
+    MC("Primeiro passo de um bom mediador:", ["*ouvir os dois lados sem julgar","dar razão a quem fala mais alto|Não.","decidir logo|Não."], "Mediação.", ["v-beide-kanten-horen"]),
+    TR("pt-nl","Primeiro quero ouvir os dois lados.", ["Eerst wil ik beide kanten horen","Ik wil eerst beide kanten horen"], "Inversão.", ["v-beide-kanten-horen"]),
+    TR("pt-nl","Podemos procurar juntos uma solução?", ["Kunnen we samen naar een oplossing zoeken","Kunnen we samen een oplossing zoeken","Kunnen we samen naar een oplossing zoeken?"], "zoeken naar.", ["v-samen-oplossing-zoeken"]),
+    FB("Een collega ___ tussen de twee teams.", ["bemiddelde"], "Passado.", ["v-bemiddelen"], choices=["bemiddelde","bemiddelt","bemiddeld"], tr="Uma colega mediou entre as duas equipas."),
+    FE(["Ik","wil","eerst","beide","kanten","hoort."], 5, "horen.", "Depois de wil: infinitivo.", ["v-beide-kanten-horen"]),
+    DL([("Buurman A","Hij parkeert altijd voor mijn deur!","Ele estaciona sempre à frente da minha porta!"),("Jij (bemiddelaar)","","")], ["*Ik begrijp dat dat vervelend is. Laten we ook even horen hoe uw buurman het ziet, en dan samen naar een oplossing zoeken.","U heeft gelijk!|Toma partido.","Niet mijn probleem.|Não media."], "Mediar.", ["v-beide-kanten-horen","v-samen-oplossing-zoeken"]),
+    LI("Een goede bemiddelaar kiest geen partij.", ["Een goede bemiddelaar kiest geen partij"], "Um bom mediador não toma partido.", "Princípio.", ["v-bemiddelaar"]),
+    WO("Quero ouvir os dois lados.", ["Ik","wil","beide","kanten","horen"], "Ordem.", ["v-beide-kanten-horen"]),
+  ], diff=4, mins=5)
+
+L(25, "Prática: uma negociação completa", "Van openingsbod tot handdruk.",
+  ["Conduzir uma negociação do início ao fim"],
+  vocab=[N("v-onderhandelaar","onderhandelaar","negociador","de","onderhandelaars")],
+  ex=[("Ze is een sterke onderhandelaar.","Ela é uma negociadora forte.")],
+  review=["v-ondergrens","v-openingsbod","v-tegenbod","v-het-verschil-delen","v-in-ruil-voor","v-daar-moet-ik-over-nadenken","v-breekpunt","v-we-zijn-eruit","v-gemeenschappelijk-belang"],
+  cefr=C, exs=[
+    CO("dialogue","Een tweedehands bakfiets","Koper: Hallo, ik kom voor de bakfiets. Is de prijs nog onderhandelbaar?\nVerkoper: Een beetje. Ik vraag 900 euro.\nKoper: Hij ziet er goed uit, maar de banden zijn versleten. Mijn openingsbod is 700.\nVerkoper: Dat is te laag. Mijn tegenbod is 850.\nKoper: Zullen we het verschil delen? 775, en ik neem hem vandaag mee.\nVerkoper: Hm… 800, in ruil daarvoor krijg je de regenhoes erbij.\nKoper: Afgesproken! We zijn eruit.",
+       [("Qual era o preço pedido?", ["*900","850","700"]),("Que defeito aponta o comprador?", ["*Pneus gastos","Travões","Corrente"]),("Preço final?", ["*800 com capa de chuva","775","850"])],
+       "Negociação completa (fictícia).", ["v-onderhandelaar","v-openingsbod","v-tegenbod","v-het-verschil-delen"]),
+    MA([("openingsbod","primeira oferta"),("tegenbod","contraproposta"),("het verschil delen","dividir a diferença"),("breekpunt","linha vermelha")], "Revisão.", ["v-openingsbod","v-tegenbod","v-het-verschil-delen","v-breekpunt"]),
+    MC("No diálogo, porque é que o comprador menciona os pneus?", ["*Para justificar uma oferta mais baixa","Para mudar de assunto|Não.","Para elogiar|Não."], "Estratégia.", ["v-openingsbod"]),
+    TR("pt-nl","Ela é uma negociadora forte.", ["Ze is een sterke onderhandelaar","Zij is een sterke onderhandelaar","Ze is een sterke onderhandelaarster"], "onderhandelaar.", ["v-onderhandelaar"]),
+    FB("In ___ daarvoor krijg je de regenhoes erbij.", ["ruil"], "Revisão.", ["v-in-ruil-voor"], choices=["ruil","plaats","verband"], tr="Em troca disso, levas também a capa de chuva."),
+    FE(["Daar","moet","ik","even","over","nagedacht."], 5, "nadenken.", "Infinitivo depois de moet.", ["v-daar-moet-ik-over-nadenken"]),
+    SW("Escreva um diálogo de negociação (8–10 falas) sobre algo à sua escolha (renda, salário, móvel usado). Inclua: primeira oferta, contraproposta, uma linha vermelha, uma troca («in ruil voor») e o fecho.", ["Huurder: Ik ben geïnteresseerd in het appartement. Is de huur onderhandelbaar?\nVerhuurder: Een beetje. Ik vraag 1.300 euro.\nHuurder: Mijn bod is 1.150, als ik voor twee jaar teken.\nVerhuurder: Te laag. 1.250.\nHuurder: Zullen we het verschil delen? 1.200.\nVerhuurder: Goed, maar dan zonder overname van de gordijnen.\nHuurder: Huisdieren zijn voor mij een breekpunt: mijn kat moet mee.\nVerhuurder: Dat mag, in ruil voor een extra borg van 200 euro.\nHuurder: Afgesproken! We zijn eruit."], ["Primeira oferta","Contraproposta","Linha vermelha","in ruil voor","Fecho"], 70, "Negociação completa.", ["v-onderhandelaar"]),
+  ], diff=5, mins=8)
+
+W()
