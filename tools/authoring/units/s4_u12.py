@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s4-u12")
+C = "A2-B1"
+
+L(1, "A estrutura de um e-mail", "Onderwerp, aanhef, kern, afsluiting, groet",
+  ["Conhecer as partes de um e-mail e o vocabulário associado"],
+  vocab=[V("v-onderwerp","onderwerp","assunto","noun","het"), V("v-aanhef","aanhef","saudação inicial","noun","de"),
+         V("v-afsluiting","afsluiting","fecho","noun","de"), V("v-e-mail","e-mail","e-mail","noun","de",note="Também se escreve «mail»: ik mail je."),
+         V("v-ontvanger","ontvanger","destinatário","noun","de")],
+  ex=[("Vergeet het onderwerp niet!","Não te esqueças do assunto!"),("De aanhef is «Beste Mark».","A saudação é «Caro Mark»."),("Ik mail je morgen.","Mando-te um e-mail amanhã."),("Wie is de ontvanger?","Quem é o destinatário?")],
+  gram=[G("g-email-structuur","Partes do e-mail","**Onderwerp** (curto e claro) → **aanhef** (*Beste…, / Geachte…,*) → **kern** (o assunto, em parágrafos curtos) → **afsluiting** (*Ik hoor graag van je.*) → **groet** (*Groetjes / Met vriendelijke groet*) + nome.",
+    [("Onderwerp: Vraag over factuur 2024-118","Assunto: Pergunta sobre a fatura 2024-118")],
+    "O e-mail neerlandês vai direto ao assunto; não é preciso introdução longa.")],
+  review=["v-beste","v-geachte","v-met-vriendelijke-groet","v-bijlage"],
+  cefr=C, exs=[
+    MA([("onderwerp","assunto"),("aanhef","saudação"),("afsluiting","fecho"),("ontvanger","destinatário")], "Partes do e-mail.", ["v-onderwerp","v-aanhef","v-afsluiting","v-ontvanger"]),
+    AR("onderwerp","o assunto","het", "Het onderwerp.", ["v-onderwerp"]),
+    AR("aanhef","a saudação","de", "De aanhef.", ["v-aanhef"]),
+    TR("pt-nl","Mando-te um e-mail amanhã.", ["Ik mail je morgen","Ik stuur je morgen een e-mail","Ik mail jou morgen"], "mailen.", ["v-e-mail"]),
+    MC("Melhor assunto para pedir uma cópia do contrato:", ["*Verzoek kopie huurcontract","Hoi!|Não diz nada.","Vraag|Demasiado vago."], "Curto e claro.", ["v-onderwerp"]),
+    MC("Ordem certa:", ["*aanhef → kern → afsluiting → groet","groet → kern → aanhef|Trocado.","kern → groet → aanhef|Trocado."], "Estrutura.", ["v-aanhef","v-afsluiting"]),
+    FB("Zet een duidelijk ___ boven je e-mail.", ["onderwerp"], "het onderwerp.", ["v-onderwerp"], choices=["onderwerp","ontvanger","aanhef"], tr="Põe um assunto claro no teu e-mail."),
+    LI("Ik heb je e-mail ontvangen, bedankt!", ["Ik heb je e-mail ontvangen(,) bedankt","Ik heb jouw e-mail ontvangen(,) bedankt"], "Recebi o teu e-mail, obrigado!", "ontvangen.", ["v-e-mail"]),
+    WO("Quem é o destinatário?", ["Wie","is","de","ontvanger?"], "ontvanger.", ["v-ontvanger"]),
+    FE(["Ik","heb","de","e-mail","gestuurd","naar","de","verkeerd","ontvanger."], 7, "verkeerde", "Antes de um nome de-woord: verkeerde.", ["v-ontvanger"]),
+  ], diff=3, mins=6)
+
+L(2, "Registo informal vs. formal", "Hoi Sanne / Geachte mevrouw Jansen; je/jij vs. u",
+  ["Escolher o registo adequado a cada destinatário"],
+  vocab=[V("v-formeel","formeel","formal","adjective"), V("v-informeel","informeel","informal","adjective"),
+         V("v-tutoyeren","tutoyeren","tratar por tu","verb",note="Je mag me tutoyeren."), V("v-vousvoyeren","vousvoyeren","tratar por você/senhor","verb")],
+  ex=[("Mag ik je tutoyeren?","Posso tratar-te por tu?"),("Zeg maar je.","Trata-me por tu."),("Deze e-mail is te informeel.","Este e-mail é demasiado informal."),("Aan de gemeente schrijf je formeel.","À câmara escreve-se de forma formal.")],
+  gram=[G("g-je-u","Je ou u?","Nos Países Baixos usa-se **je** muito cedo, mesmo no trabalho e com chefes. **u** é para: desconhecidos mais velhos, autoridades, clientes em contexto formal. Na dúvida, comece com **u** e passe para **je** quando a outra pessoa disser **Zeg maar je** ou assinar só com o primeiro nome.",
+    [("Zegt u maar je hoor!","Pode tratar-me por tu!")],
+    "O «você/o senhor» português é usado muito mais tempo do que o «u» neerlandês.")],
+  review=["v-u","v-uw","v-je-jouw","v-beste"],
+  cefr=C, exs=[
+    MA([("formeel","formal"),("informeel","informal"),("tutoyeren","tratar por tu"),("vousvoyeren","tratar por você")], "Registo.", ["v-formeel","v-informeel","v-tutoyeren","v-vousvoyeren"]),
+    MC("Escreve à Belastingdienst (Finanças). Usa…", ["*u en uw","je en jouw|Demasiado informal.","jullie|É plural."], "Autoridade → u.", ["v-formeel"]),
+    MC("Um colega assina «Groetjes, Bas». Responde com…", ["*Hoi Bas, … Groetjes,","Geachte heer Bas,|Formal demais — e com «heer» usa-se o apelido.","Hallo meneer,|Estranho."], "Espelhar o registo.", ["v-informeel"]),
+    TR("pt-nl","Posso tratar-te por tu?", ["Mag ik je tutoyeren","Mag ik jij zeggen","Mag ik je zeggen"], "tutoyeren.", ["v-tutoyeren"]),
+    TR("nl-pt","Zeg maar je.", ["Trata-me por tu","Pode tratar-me por tu","Podes tratar-me por tu"], "Convite à informalidade.", ["v-tutoyeren"]),
+    FE(["Geachte","mevrouw","Jansen,","hoe","gaat","het","met","jou?"], 7, "u", "Num e-mail formal: met u.", ["v-u"]),
+    FB("Kunt u mij ___ adres sturen?", ["uw"], "Formal: uw.", ["v-uw"], choices=["uw","jouw","je"], tr="Pode enviar-me a sua morada?"),
+    LI("Zegt u maar je, hoor!", ["Zegt u maar je(,) hoor","Zeg maar je(,) hoor"], "Pode tratar-me por tu!", "hoor = partícula de reforço.", ["v-tutoyeren"]),
+    DL([("Nieuwe manager","Goedemorgen, ik ben Karin, de nieuwe manager.","Bom dia, sou a Karin, a nova gestora."),("Rui","")], ["*Goedemorgen Karin, welkom! Ik ben Rui.","Goedemorgen mevrouw manager.|Muito rígido.","Hoi schat!|Demasiado íntimo."], "No trabalho usa-se o primeiro nome.", ["v-informeel"]),
+    AR("e-mail","o e-mail","de", "De e-mail.", ["v-e-mail"]),
+  ], diff=3, mins=6)
+
+L(3, "Pedir informações por e-mail", "Ik heb een vraag over… Zou u mij kunnen laten weten…?",
+  ["Escrever um pedido de informação claro e educado"],
+  vocab=[V("v-verzoek","verzoek","pedido (formal)","noun","het"), V("v-laten-weten","laten weten","informar|dizer","expression",note="Kunt u mij laten weten of…?"),
+         V("v-of-conj","of (se)","se (pergunta indireta)","conjunction",note="Ik vraag me af of… — verbo no fim."), V("v-alvast-bedankt","alvast bedankt","desde já obrigado","expression")],
+  ex=[("Ik heb een vraag over mijn bestelling.","Tenho uma pergunta sobre a minha encomenda."),("Kunt u mij laten weten of er nog plek is?","Pode dizer-me se ainda há vaga?"),("Ik heb een verzoek.","Tenho um pedido."),("Alvast bedankt!","Desde já obrigado!")],
+  gram=[G("g-of-indirect","Pergunta indireta com of","**of** = «se» numa pergunta indireta, com o **verbo no fim**: *Weet u **of** de winkel open **is**?* Com palavra interrogativa: *Kunt u laten weten **wanneer** het pakket **komt**?*",
+    [("Ik wil graag weten of ik kan betalen met iDEAL.","Gostaria de saber se posso pagar com iDEAL.")],
+    "Atenção: «of» também significa «ou». O contexto e o verbo no fim ajudam a distinguir.")],
+  review=["v-vraag","v-zou","v-informatie","v-bestellen"],
+  cefr=C, exs=[
+    MA([("verzoek","pedido"),("laten weten","informar"),("of","se"),("alvast bedankt","desde já obrigado")], "Pedidos.", ["v-verzoek","v-laten-weten","v-of-conj","v-alvast-bedankt"]),
+    WO("Pode dizer-me se ainda há vaga?", ["Kunt","u","mij","laten","weten","of","er","nog","plek","is?"], "of + verbo no fim.", ["v-laten-weten","v-of-conj"]),
+    WO("Gostaria de saber quando chega a encomenda.", ["Ik","wil","graag","weten","wanneer","de","bestelling","komt"], "wanneer + verbo no fim.", ["v-of-conj"]),
+    FE(["Weet","u","of","de","winkel","is","open?"], 5, "open is", "Depois de of, o verbo vai para o fim: of de winkel open is.", ["v-of-conj"]),
+    TR("pt-nl","Tenho uma pergunta sobre a minha encomenda.", ["Ik heb een vraag over mijn bestelling"], "vraag over.", []),
+    TR("nl-pt","Alvast bedankt!", ["Desde já obrigado","Obrigado desde já","Antecipadamente obrigado"], "alvast.", ["v-alvast-bedankt"]),
+    AR("verzoek","o pedido","het", "Het verzoek.", ["v-verzoek"]),
+    MC("Em «Ik weet niet of hij komt», «of» significa…", ["*se","ou|Aqui é pergunta indireta.","porque|Não."], "of = se.", ["v-of-conj"]),
+    LI("Kunt u mij laten weten of dat mogelijk is?", ["Kunt u mij laten weten of dat mogelijk is"], "Pode dizer-me se isso é possível?", "of.", ["v-of-conj"]),
+    SW("Escreva um e-mail curto a uma escola de línguas a perguntar se ainda há vagas no curso de setembro e quanto custa.", ["Beste heer/mevrouw,\nIk heb een vraag over de cursus Nederlands in september. Kunt u mij laten weten of er nog plek is en wat de cursus kost?\nAlvast bedankt!\nMet vriendelijke groet,\nAna Silva"], ["Aanhef adequado", "**of** + verbo no fim", "**wat … kost** com verbo no fim", "Fecho e groet"], 25, "Pedido de informação.", ["v-laten-weten","v-of-conj"]),
+  ], diff=4, mins=8)
+
+L(4, "Responder e pedir desculpa", "Bedankt voor je bericht. Excuses voor de late reactie.",
+  ["Responder a e-mails e pedir desculpa por atrasos ou erros"],
+  vocab=[V("v-excuses","excuses","desculpas","noun","de",note="Excuses voor… = Peço desculpa por…"), V("v-reactie","reactie","resposta|reação","noun","de"),
+         V("v-naar-aanleiding-van","naar aanleiding van","na sequência de","expression"), V("v-per-ongeluk","per ongeluk","sem querer","expression")],
+  ex=[("Bedankt voor je snelle reactie.","Obrigado pela resposta rápida."),("Excuses voor de late reactie.","Peço desculpa pela demora na resposta."),("Naar aanleiding van ons gesprek stuur ik u de offerte.","Na sequência da nossa conversa envio-lhe o orçamento."),("Ik heb de bijlage per ongeluk vergeten.","Esqueci-me do anexo sem querer.")],
+  review=["v-sorry","v-bijlage","v-vergeten"],
+  cefr=C, exs=[
+    MA([("excuses","desculpas"),("reactie","resposta"),("naar aanleiding van","na sequência de"),("per ongeluk","sem querer")], "Responder.", ["v-excuses","v-reactie","v-naar-aanleiding-van","v-per-ongeluk"]),
+    TR("pt-nl","Peço desculpa pela demora na resposta.", ["Excuses voor de late reactie","Sorry voor de late reactie","Mijn excuses voor de late reactie"], "excuses voor.", ["v-excuses"]),
+    TR("nl-pt","Bedankt voor je snelle reactie.", ["Obrigado pela [resposta rápida|rápida resposta]"], "reactie.", ["v-reactie"]),
+    TR("pt-nl","Esqueci-me do anexo sem querer.", ["Ik heb de bijlage per ongeluk vergeten","Ik ben de bijlage per ongeluk vergeten"], "per ongeluk.", ["v-per-ongeluk"]),
+    AR("reactie","a resposta","de", "De reactie.", ["v-reactie"]),
+    FB("Naar ___ van ons gesprek stuur ik u meer informatie.", ["aanleiding"], "Expressão fixa.", ["v-naar-aanleiding-van"], choices=["aanleiding","ongeluk","reactie"], tr="Na sequência da nossa conversa envio-lhe mais informação."),
+    FE(["Excuses","van","de","late","reactie."], 1, "voor", "excuses voor.", ["v-excuses"]),
+    MC("Enviou um e-mail sem o anexo. Escreve:", ["*Excuses, ik ben de bijlage vergeten. Hierbij alsnog.","Hier is niks.|Confuso.","Gefeliciteerd met de bijlage.|Não faz sentido."], "Desculpa + anexo.", ["v-excuses","v-per-ongeluk"]),
+    LI("Hierbij stuur ik u de gevraagde documenten.", ["Hierbij stuur ik u de gevraagde documenten"], "Envio-lhe em anexo os documentos pedidos.", "hierbij.", []),
+    WO("Obrigado pelo teu e-mail.", ["Bedankt","voor","je","e-mail"], "bedankt voor.", ["v-e-mail"]),
+  ], diff=3, mins=6)
+
+L(5, "Escrever um e-mail completo", "Juntar estrutura, registo e frases úteis.",
+  ["Escrever e-mails completos informais e formais"],
+  vocab=[V("v-ik-hoor-graag","ik hoor graag van je/u","aguardo notícias tuas/suas","expression"), V("v-hierbij","hierbij","em anexo|pela presente","adverb"),
+         V("v-met-betrekking-tot","met betrekking tot","relativamente a","expression",note="abrev. m.b.t."), V("v-in-de-cc","in de cc","em cópia (cc)","expression")],
+  ex=[("Ik hoor graag van u.","Aguardo notícias suas."),("Hierbij stuur ik mijn cv.","Envio em anexo o meu currículo."),("Met betrekking tot uw vraag…","Relativamente à sua pergunta…"),("Ik zet mijn collega in de cc.","Ponho o meu colega em cópia.")],
+  review=["v-aanhef","v-afsluiting","v-onderwerp","v-met-vriendelijke-groet","v-groeten"],
+  cefr=C, exs=[
+    MA([("ik hoor graag van u","aguardo notícias suas"),("hierbij","em anexo"),("met betrekking tot","relativamente a"),("in de cc","em cópia")], "Fórmulas.", ["v-ik-hoor-graag","v-hierbij","v-met-betrekking-tot","v-in-de-cc"]),
+    TR("pt-nl","Aguardo notícias suas.", ["Ik hoor graag van u"], "Fórmula de fecho.", ["v-ik-hoor-graag"]),
+    TR("pt-nl","Envio em anexo o meu currículo.", ["Hierbij stuur ik mijn cv","Hierbij stuur ik u mijn cv","In de bijlage stuur ik mijn cv"], "hierbij + inversão.", ["v-hierbij"]),
+    MC("O que significa «m.b.t.»?", ["*met betrekking tot (relativamente a)","met beste toekomst|Não existe.","mijn beste tijd|Não existe."], "Abreviatura formal.", ["v-met-betrekking-tot"]),
+    CO("text","E-mail aan de huisbaas", "Onderwerp: Lekkage badkamer\n\nBeste meneer Smit,\n\nSinds maandag lekt de kraan in de badkamer. Ik heb de hoofdkraan al dichtgedraaid, maar er komt nog steeds water uit. Zou u zo snel mogelijk een loodgieter kunnen sturen? Ik ben deze week elke middag thuis.\n\nIk hoor graag van u.\n\nMet vriendelijke groet,\nInês Rocha",
+       [("Qual é o problema?", ["*A torneira da casa de banho pinga","Não há aquecimento","A porta está partida"]),("O que pede a Inês?", ["*Que mande um canalizador depressa","Que baixe a renda","Que lhe ligue à noite"]),("Quando está em casa?", ["*Todas as tardes desta semana","Só ao fim de semana","De manhã"])],
+       "lekken = pingar/verter.", ["v-ik-hoor-graag","v-onderwerp"]),
+    FE(["Hierbij","ik","stuur","u","de","factuur."], 1, "stuur ik", "Depois de «Hierbij» vem o verbo: Hierbij stuur ik…", ["v-hierbij"]),
+    WO("Ponho o meu colega em cópia.", ["Ik","zet","mijn","collega","in","de","cc"], "in de cc.", ["v-in-de-cc"]),
+    LI("Met betrekking tot uw vraag kan ik het volgende zeggen.", ["Met betrekking tot uw vraag kan ik het volgende zeggen"], "Relativamente à sua pergunta, posso dizer o seguinte.", "m.b.t.", ["v-met-betrekking-tot"]),
+    SW("Escreva um e-mail informal a um amigo a convidá-lo para jantar no sábado (assunto, saudação, convite, fecho).", ["Onderwerp: Etentje zaterdag\n\nHoi Tim,\n\nHeb je zin om zaterdag bij ons te komen eten? We beginnen om half zeven. Laat je even weten of je kunt?\n\nGroetjes,\nMarta"], ["Assunto", "**Hoi** + nome", "Convite com **zin om … te**", "**Groetjes**"], 25, "E-mail informal completo.", ["v-onderwerp","v-aanhef"]),
+    SW("Escreva um e-mail formal a uma empresa a pedir uma fatura que não recebeu.", ["Onderwerp: Factuur bestelling 4521\n\nGeachte heer/mevrouw,\n\nIk heb op 3 mei een bestelling geplaatst, maar ik heb nog geen factuur ontvangen. Zou u mij de factuur kunnen sturen?\n\nIk hoor graag van u.\n\nMet vriendelijke groet,\nPedro Alves"], ["Assunto concreto", "**Geachte heer/mevrouw**", "Pedido com **zou u … kunnen**", "**Ik hoor graag van u** + **Met vriendelijke groet**"], 30, "E-mail formal completo.", ["v-ik-hoor-graag"]),
+  ], diff=4, mins=8)
+
+W()
