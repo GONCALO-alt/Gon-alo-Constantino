@@ -32,7 +32,7 @@ L(2, "Receber encomendas", "bezorgen, de bezorger, bij de buren afgeven, niet th
   review=["v-pakketje","v-buurman","v-thuis","v-aannemen"],
   cefr=C, exs=[
     MA([("bezorgen","entregar"),("bezorger","estafeta"),("afgeven","deixar"),("ophalen","ir buscar")], "Entregas.", ["v-bezorgen","v-bezorger","v-afgeven","v-ophalen"]),
-    TR("nl-pt","Mijn pakket wordt morgen bezorgd.", ["O meu pacote (é|vai ser) entregue amanhã"], "Passiva: wordt bezorgd.", ["v-bezorgen"]),
+    TR("nl-pt","Mijn pakket wordt morgen bezorgd.", ["O meu pacote [é|vai ser] entregue amanhã"], "Passiva: wordt bezorgd.", ["v-bezorgen"]),
     TR("pt-nl","Posso levantar o pacote amanhã?", ["Kan ik het pakket morgen ophalen","Kan ik morgen het pakket ophalen"], "ophalen junto no fim.", ["v-ophalen"]),
     WO("Vou buscar o pacote ao ponto de recolha.", ["Ik","haal","het","pakket","op","bij","het","servicepunt"], "Separável: haal … op.", ["v-ophalen"]),
     FE(["Ik","ophaal","mijn","pakket."], 1, "haal … op", "Separável: ik haal mijn pakket op.", ["v-ophalen"]),

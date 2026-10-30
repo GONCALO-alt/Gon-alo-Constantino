@@ -83,7 +83,7 @@ L(4, "Comida típica neerlandesa", "stamppot, erwtensoep, stroopwafels e poffert
   cefr=C, exs=[
     MA([("stamppot","puré com legumes"),("soep","sopa"),("stroopwafel","bolacha de caramelo"),("patat","batatas fritas")], "Comida típica.", ["v-stamppot","v-soep","v-stroopwafel","v-patat"]),
     MC("O que é «een patatje met»?", ["*Batatas fritas com maionese","Batatas com carne|«met» aqui significa «com maionese».","Uma sopa|Não."], "patatje met = com maionese.", ["v-patat"]),
-    TR("nl-pt","Stamppot is typisch Nederlands.", ["O stamppot é (tipicamente|um prato típico) neerlandês","Stamppot é típico dos Países Baixos"], "typisch = típico.", ["v-stamppot","v-typisch"]),
+    TR("nl-pt","Stamppot is typisch Nederlands.", ["O stamppot é [tipicamente|um prato típico] neerlandês","Stamppot é típico dos Países Baixos"], "typisch = típico.", ["v-stamppot","v-typisch"]),
     TR("pt-nl","No inverno comemos sopa.", ["In de winter eten we soep","We eten in de winter soep"], "Inversão.", ["v-soep"]),
     AR("soep","a sopa","de", "«De soep».", ["v-soep"]),
     FB("Een ___ is zoet: twee dunne wafels met stroop.", ["stroopwafel"], "stroop = caramelo/xarope.", ["v-stroopwafel"], choices=["stroopwafel","stamppot","soep"], tr="Uma stroopwafel é doce: duas bolachas finas com caramelo."),

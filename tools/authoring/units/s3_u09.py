@@ -72,7 +72,7 @@ L(4, "DigiD e serviços online", "inloggen, het wachtwoord, de code, aanvragen."
     MA([("DigiD","identidade digital"),("inloggen","fazer login"),("wachtwoord","palavra-passe"),("aanvragen","requerer"),("Belastingdienst","finanças")], "Online.", ["v-digid","v-inloggen","v-wachtwoord","v-aanvragen","v-belastingdienst"]),
     WO("Entra com o teu DigiD.", ["Log","in","met","je","DigiD"], "Imperativo separável.", ["v-inloggen"]),
     TR("pt-nl","Esqueci-me da palavra-passe.", ["Ik ben mijn wachtwoord vergeten"], "vergeten com zijn.", ["v-wachtwoord"]),
-    TR("nl-pt","Je kunt een DigiD online aanvragen.", ["Podes (requerer|pedir) um DigiD online"], "aanvragen.", ["v-aanvragen"]),
+    TR("nl-pt","Je kunt een DigiD online aanvragen.", ["Podes [requerer|pedir] um DigiD online"], "aanvragen.", ["v-aanvragen"]),
     AR("wachtwoord","a palavra-passe","het", "woord → het.", ["v-wachtwoord"]),
     FE(["Ik","inlog","op","de","website."], 1, "log … in", "Separável: ik log in op de website.", ["v-inloggen"]),
     MC("Com o DigiD pode…", ["*Tratar de impostos e assuntos da câmara online","Pagar no supermercado|Não.","Andar de comboio|Não."], "DigiD = identidade digital oficial.", ["v-digid"]),

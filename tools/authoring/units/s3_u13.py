@@ -74,7 +74,7 @@ L(4, "Férias e planos de viagem", "op vakantie gaan, de bestemming, het strand,
   cefr=C, exs=[
     MA([("vakantie","férias"),("bestemming","destino"),("strand","praia"),("camping","campismo"),("buitenland","estrangeiro")], "Férias.", ["v-vakantie","v-bestemming","v-strand","v-camping","v-buitenland"]),
     TR("pt-nl","Vamos de férias em agosto.", ["We gaan in augustus op vakantie","In augustus gaan we op vakantie"], "op vakantie gaan.", ["v-vakantie"]),
-    TR("nl-pt","Wat is je favoriete bestemming?", ["Qual é o teu destino (preferido|favorito)"], "bestemming.", ["v-bestemming"]),
+    TR("nl-pt","Wat is je favoriete bestemming?", ["Qual é o teu destino [preferido|favorito]"], "bestemming.", ["v-bestemming"]),
     AR("strand","a praia","het", "«Het strand».", ["v-strand"]),
     FE(["We","gaan","naar","vakantie","in","juli."], 2, "op", "op vakantie gaan.", ["v-vakantie"]),
     LI("We liggen de hele dag op het strand.", ["We liggen de hele dag op het strand"], "Ficamos o dia todo deitados na praia.", "op het strand.", ["v-strand"]),

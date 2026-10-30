@@ -58,7 +58,7 @@ L(3, "Reclamar com educação", "Ik wil graag een klacht indienen. Het spijt me,
   cefr=C, exs=[
     MA([("een klacht indienen","apresentar reclamação"),("het spijt me","lamento"),("teleurgesteld","desiludido"),("oplossing","solução")], "Reclamar.", ["v-klacht-indienen","v-het-spijt-me","v-teleurgesteld","v-oplossing"]),
     TR("pt-nl","Queria apresentar uma reclamação.", ["Ik wil graag een klacht indienen"], "een klacht indienen.", ["v-klacht-indienen"]),
-    TR("nl-pt","Het spijt me, maar dit is niet goed.", ["Lamento, mas isto não está (bem|certo)"], "het spijt me.", ["v-het-spijt-me"]),
+    TR("nl-pt","Het spijt me, maar dit is niet goed.", ["Lamento, mas isto não está [bem|certo]"], "het spijt me.", ["v-het-spijt-me"]),
     TR("pt-nl","Estou muito desiludido.", ["Ik ben erg teleurgesteld","Ik ben heel teleurgesteld"], "teleurgesteld.", ["v-teleurgesteld"]),
     AR("oplossing","a solução","de", "-ing → de.", ["v-oplossing"]),
     MC("Qual é a forma mais educada de reclamar?", ["*Het spijt me, maar de soep is koud. Zou u hem kunnen opwarmen?","De soep is koud! Slecht!|Agressivo.","Ik betaal niet!|Agressivo."], "Firme mas educado.", ["v-het-spijt-me"]),

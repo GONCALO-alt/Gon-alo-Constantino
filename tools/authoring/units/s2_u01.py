@@ -63,7 +63,7 @@ L(3, "À noite", "Cozinhar, jantar, ver televisão e ir dormir.",
   cefr=C, exs=[
     MA([("koken","cozinhar"),("avondeten","jantar"),("tv kijken","ver televisão"),("rusten","descansar")], "À noite.", ["v-koken","v-avondeten","v-tv-kijken","v-rusten"]),
     TR("pt-nl","À noite vejo televisão.", ["'s [Avonds|avonds] kijk ik tv","Ik kijk 's avonds tv"], "Inversão depois de 's avonds.", ["v-s-avonds","v-tv-kijken"]),
-    TR("nl-pt","Om elf uur ga ik naar bed.", ["Às onze( horas) vou (para a cama|dormir)","Às onze( horas) deito-me"], "naar bed gaan = ir para a cama.", ["v-naar-bed"]),
+    TR("nl-pt","Om elf uur ga ik naar bed.", ["Às onze( horas) vou [para a cama|dormir]","Às onze( horas) deito-me"], "naar bed gaan = ir para a cama.", ["v-naar-bed"]),
     AR("avondeten","o jantar","het", "«Het avondeten».", ["v-avondeten"]),
     CJ("koken","wie","Wie ___ vanavond?", ["kookt"], "koken → hij kookt (ko-ken → kook).", ["v-koken"]),
     FB("We eten om ___ zeven: om half zeven.", ["half"], "half zeven = 6h30.", ["v-avondeten"], choices=["half","kwart","halve"], tr="Jantamos às seis e meia."),

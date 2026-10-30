@@ -56,7 +56,7 @@ L(3, "Caro, barato e pagar", "Preços, descontos e formas de pagamento.",
   review=["v-pinnen","v-betalen","v-kosten","v-euro","v-hoeveel"],
   cefr=C, exs=[
     MA([("duur","caro"),("goedkoop","barato"),("contant","em dinheiro"),("korting","desconto")], "Preços e pagamentos.", ["v-duur","v-goedkoop","v-contant","v-korting"]),
-    TR("pt-nl","Isso é muito caro!", ["Dat is (heel |erg )duur"], "duur = caro.", ["v-duur"]),
+    TR("pt-nl","Isso é muito caro!", ["Dat is [heel |erg |]duur"], "duur = caro.", ["v-duur"]),
     TR("pt-nl","Posso pagar em dinheiro?", ["Kan ik contant betalen"], "contant betalen.", ["v-contant","v-betalen"]),
     TR("nl-pt","Wij accepteren alleen pin.", ["Só aceitamos cartão","(Nós )só aceitamos pagamentos com cartão"], "alleen = só.", ["v-pinnen"]),
     FB("Tien euro? Dat is niet duur, dat is ___!", ["goedkoop"], "goedkoop = barato.", ["v-goedkoop"], choices=["goedkoop","korting","contant"], tr="Dez euros? Não é caro, é barato!"),

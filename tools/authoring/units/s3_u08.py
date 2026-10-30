@@ -96,7 +96,7 @@ L(5, "Cuidar da saúde", "Revisão: farmácia, sintomas e seguro.",
   cefr=C, exs=[
     MC("Tem uma receita do médico. Para onde vai?", ["*naar de apotheek","naar de drogist|Com receita: apotheek.","naar de kapper|Não."], "recept → apotheek.", ["v-apotheek"]),
     TR("pt-nl","Tome um comprimido duas vezes por dia.", ["Neem twee keer per dag één [tablet|pil] in","Neem één pil twee keer per dag in"], "Separável.", ["v-innemen"]),
-    TR("nl-pt","Heeft u iets tegen keelpijn?", ["Tem alguma coisa para (as dores de garganta|a garganta)"], "iets tegen.", ["v-keel"]),
+    TR("nl-pt","Heeft u iets tegen keelpijn?", ["Tem alguma coisa para [as dores de garganta|a garganta]"], "iets tegen.", ["v-keel"]),
     FE(["Ik","ga","naar","de","apotheek","voor","tandpasta."], 4, "drogist", "Pasta de dentes compra-se na drogist.", ["v-drogist"]),
     LI("U moet dit medicijn nuchter innemen.", ["U moet dit medicijn nuchter innemen"], "Tem de tomar este medicamento em jejum.", "nuchter.", ["v-nuchter"]),
     CO("dialogue","Na farmácia", "Apotheker: Goedemiddag, kan ik u helpen?\nAna: Ik kom dit recept ophalen.\nApotheker: Alstublieft. Neem twee keer per dag één tablet in, na het eten. Heeft u nog vragen?\nAna: Heeft het bijwerkingen?\nApotheker: U kunt een beetje moe worden. Lees ook de bijsluiter.",

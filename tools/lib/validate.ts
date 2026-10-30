@@ -81,6 +81,8 @@ export function checkExercise(ex: Exercise): string[] {
         p.push(`Resposta com parênteses desequilibrados: "${a}".`);
       }
       if (expandAnswerPattern(a).length === 0) p.push(`Resposta vazia depois de expandir: "${a}".`);
+      if (/\([^()[\]]*\|[^()[\]]*\)/.test(a)) p.push(`Alternativas devem ir entre [ ], não ( ): "${a}".`);
+      if (expandAnswerPattern(a).some((x) => x.includes('|'))) p.push(`Resposta com «|» fora de [ ]: "${a}".`);
     }
   };
   /** As peças disponíveis permitem construir pelo menos uma resposta aceite? */
