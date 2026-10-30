@@ -64,10 +64,9 @@ L(3, "Preparar uma apresentação", "Ik ga het hebben over… Eerst… dan… to
 
 L(4, "Apresentar resultados", "Zoals u ziet… De grafiek laat zien dat… Dit betekent dat…",
   ["Descrever gráficos e explicar resultados"],
-  vocab=[V("v-grafiek","grafiek","gráfico","noun","de"), V("v-laten-zien","laten zien","mostrar","expression"),
-         V("v-opvallend","opvallend","notável|que salta à vista","adjective"), V("v-resultaat","resultaat","resultado","noun","het")],
+  vocab=[V("v-grafiek","grafiek","gráfico","noun","de"), V("v-opvallend","opvallend","notável|que salta à vista","adjective"), V("v-resultaat","resultaat","resultado","noun","het")],
   ex=[("Zoals u ziet, zijn de cijfers gestegen.","Como vê, os números subiram."),("De grafiek laat zien dat de verkoop daalt.","O gráfico mostra que as vendas estão a descer."),("Opvallend is dat jongeren meer kopen.","É notável que os jovens comprem mais."),("Dit betekent dat we moeten investeren.","Isto significa que temos de investir.")],
-  review=["v-stijgen","v-dalen","v-toename","v-afname","v-procent"],
+  review=["v-laten-zien","v-stijgen","v-dalen","v-toename","v-afname","v-procent"],
   cefr=C, exs=[
     MA([("grafiek","gráfico"),("laten zien","mostrar"),("opvallend","notável"),("resultaat","resultado")], "Resultados.", ["v-grafiek","v-laten-zien","v-opvallend","v-resultaat"]),
     TR("pt-nl","Como vê, os números subiram.", ["Zoals u ziet(,) zijn de cijfers gestegen","Zoals jullie zien(,) zijn de cijfers gestegen"], "zoals u ziet + inversão.", ["v-laten-zien"]),

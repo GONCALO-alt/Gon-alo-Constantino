@@ -90,10 +90,9 @@ L(4, "Perguntas indiretas", "Weet u waar het station is? Ik vraag me af wat hij 
 
 L(5, "Prática: frases complexas", "Juntar dat, omdat, als, toen e perguntas indiretas.",
   ["Construir frases com várias orações corretamente"],
-  vocab=[V("v-hoewel","hoewel","embora","conjunction",note="Hoewel het regent, ga ik fietsen."), V("v-zodat","zodat","para que|de modo que","conjunction"),
-         V("v-sinds-conj","sinds (conj.)","desde que","conjunction"), V("v-totdat","totdat","até que","conjunction")],
+  vocab=[V("v-hoewel","hoewel","embora","conjunction",note="Hoewel het regent, ga ik fietsen."), V("v-sinds-conj","sinds (conj.)","desde que","conjunction"), V("v-totdat","totdat","até que","conjunction")],
   ex=[("Hoewel het regent, ga ik fietsen.","Embora esteja a chover, vou de bicicleta."),("Ik spreek langzaam, zodat je me begrijpt.","Falo devagar para que me compreendas."),("Sinds ik hier woon, fiets ik elke dag.","Desde que moro aqui, ando de bicicleta todos os dias."),("Wacht hier totdat ik terug ben.","Espera aqui até eu voltar.")],
-  review=["v-dat-conj","v-omdat","v-als-conj","v-toen-conj"],
+  review=["v-zodat","v-dat-conj","v-omdat","v-als-conj","v-toen-conj"],
   cefr=C, exs=[
     MA([("hoewel","embora"),("zodat","para que"),("sinds","desde que"),("totdat","até que")], "Mais conjunções.", ["v-hoewel","v-zodat","v-sinds-conj","v-totdat"]),
     WO("Embora esteja a chover, vou de bicicleta.", ["Hoewel","het","regent,","ga","ik","fietsen"], "Verbo, verbo.", ["v-hoewel"]),
