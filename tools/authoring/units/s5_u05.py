@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s5-u05")
+C = "B1"
+
+L(1, "O sistema escolar", "basisschool, groep 8, vmbo, havo, vwo",
+  ["Conhecer as etapas do ensino neerlandês"],
+  vocab=[V("v-groep","groep","ano (na escola primária)","noun","de",note="groep 1–8"), V("v-vmbo","vmbo","ensino secundário profissional (4 anos)","noun","het"),
+         V("v-havo","havo","secundário geral (5 anos)","noun","de"), V("v-vwo","vwo","secundário pré-universitário (6 anos)","noun","het"),
+         V("v-schooladvies","schooladvies","recomendação escolar","noun","het")],
+  ex=[("Mijn dochter zit in groep 5.","A minha filha anda no 5.º grupo (3.º ano)."),("Na de basisschool gaat hij naar het vwo.","Depois da primária vai para o vwo."),("Ze kreeg een havo-advies.","Recebeu uma recomendação para havo."),("Het vmbo duurt vier jaar.","O vmbo dura quatro anos.")],
+  gram=[G("g-schoolsysteem","Etapas","**basisschool**: groep 1–8 (4 aos 12 anos). Em groep 8 a escola dá um **schooladvies** para o secundário: **vmbo** (4 anos, profissional) → mbo; **havo** (5 anos) → hbo; **vwo** (6 anos, inclui o gymnasium) → universidade.",
+    [("Ze zit in de brugklas.","Está no primeiro ano do secundário.")],
+    "A escolha da via aos 12 anos é muito mais cedo do que em Portugal, mas é possível mudar depois.")],
+  review=["v-basisschool","v-middelbare-school","v-school","v-klas"],
+  cefr=C, exs=[
+    MA([("groep","ano (primária)"),("vmbo","secundário profissional"),("havo","secundário geral"),("vwo","pré-universitário"),("schooladvies","recomendação escolar")], "Escola.", ["v-groep","v-vmbo","v-havo","v-vwo","v-schooladvies"]),
+    MC("Qual prepara para a universidade?", ["*vwo","vmbo|Prepara para o mbo.","groep 8|É o último ano da primária."], "vwo → universiteit.", ["v-vwo"]),
+    MC("Quando recebem as crianças o schooladvies?", ["*Em groep 8 (cerca de 12 anos)","Aos 18|Não.","No primeiro ano|Não."], "Groep 8.", ["v-schooladvies"]),
+    TR("nl-pt","Het vmbo duurt vier jaar.", ["O vmbo dura quatro anos"], "duren.", ["v-vmbo"]),
+    TR("pt-nl","A minha filha anda no grupo 5.", ["Mijn dochter zit in groep 5","Mijn dochter zit in groep vijf"], "zitten in.", ["v-groep"]),
+    AR("schooladvies","a recomendação escolar","het", "Het advies.", ["v-schooladvies"]),
+    FB("Na de basisschool gaat hij naar het ___.", ["vwo","vmbo"], "Tipo de secundário (het).", ["v-vwo"], choices=["vwo","havo","groep"], tr="Depois da primária vai para o vwo."),
+    LI("Mijn zoon zit in de brugklas.", ["Mijn zoon zit in de brugklas"], "O meu filho está no primeiro ano do secundário.", "brugklas.", []),
+    FE(["Mijn","zoon","is","in","groep","drie."], 2, "zit", "Na escola diz-se «zitten in»: Hij zit in groep drie.", ["v-groep"]),
+    CO("text","Na de basisschool", "In groep 8 maken leerlingen een doorstroomtoets. Daarna geeft de leerkracht een schooladvies. Lars kreeg een havo-advies, maar zijn toets ging heel goed. Daarom kreeg hij een hoger advies: havo/vwo. Hij begint in september in een havo/vwo-brugklas.",
+       [("Que recomendação recebeu primeiro?", ["*Havo","Vmbo","Vwo"]),("Porque mudou?", ["*O teste correu muito bem","Os pais pediram","Mudou de escola"])],
+       "doorstroomtoets = teste final da primária.", ["v-schooladvies","v-havo"]),
+  ], diff=4, mins=7)
+
+L(2, "Ensino superior e formação", "mbo, hbo, universiteit, studiefinanciering",
+  ["Falar de estudos superiores e profissionais"],
+  vocab=[V("v-mbo","mbo","ensino profissional","noun","het"), V("v-hbo","hbo","ensino superior politécnico","noun","het"),
+         V("v-universiteit","universiteit","universidade","noun","de"), V("v-studiefinanciering","studiefinanciering","apoio financeiro aos estudos","noun","de"),
+         V("v-stage","stage","estágio","noun","de")],
+  ex=[("Ze studeert verpleegkunde op het hbo.","Ela estuda enfermagem no ensino politécnico."),("Hij doet een mbo-opleiding tot kok.","Ele faz um curso profissional de cozinheiro."),("Ik loop stage bij een architectenbureau.","Estou a fazer estágio num atelier de arquitetura."),("Studenten kunnen geld lenen van DUO.","Os estudantes podem pedir dinheiro emprestado à DUO.")],
+  review=["v-studeren","v-opleiding","v-diploma","v-student"],
+  cefr=C, exs=[
+    MA([("mbo","ensino profissional"),("hbo","politécnico"),("universiteit","universidade"),("studiefinanciering","apoio aos estudos"),("stage","estágio")], "Estudos.", ["v-mbo","v-hbo","v-universiteit","v-studiefinanciering","v-stage"]),
+    TR("pt-nl","Estou a fazer estágio num hospital.", ["Ik loop stage in een ziekenhuis","Ik loop stage bij een ziekenhuis","Ik doe stage in een ziekenhuis"], "stage lopen.", ["v-stage"]),
+    TR("nl-pt","Ze studeert verpleegkunde op het hbo.", ["Ela estuda enfermagem no [politécnico|ensino politécnico|ensino superior]"], "hbo.", ["v-hbo"]),
+    MC("A DUO é…", ["*a organização que trata da studiefinanciering","uma universidade|Não.","um banco privado|Não."], "DUO.", ["v-studiefinanciering"]),
+    AR("universiteit","a universidade","de", "-iteit → de.", ["v-universiteit"]),
+    AR("stage","o estágio","de", "De stage.", ["v-stage"]),
+    FE(["Hij","studeert","aan","het","universiteit."], 3, "de", "Universiteit é de-woord: aan de universiteit.", ["v-universiteit"]),
+    LI("Na het mbo wil ik naar het hbo.", ["Na het mbo wil ik naar het hbo"], "Depois do curso profissional quero ir para o politécnico.", "mbo → hbo.", ["v-mbo","v-hbo"]),
+    FB("Hij studeert geneeskunde aan de ___ van Amsterdam.", ["universiteit"], "Universidade.", ["v-universiteit"], choices=["universiteit","stage","groep"], tr="Ele estuda medicina na Universidade de Amesterdão."),
+    WO("Os estudantes podem pedir dinheiro emprestado à DUO.", ["Studenten","kunnen","geld","lenen","van","DUO"], "lenen van.", ["v-studiefinanciering"]),
+  ], diff=4, mins=6)
+
+L(3, "Falar com a escola dos filhos", "het tienminutengesprek, de mentor, het rapport",
+  ["Comunicar com professores e compreender relatórios"],
+  vocab=[V("v-tienminutengesprek","tienminutengesprek","reunião de pais (curta)","noun","het"), V("v-mentor","mentor","diretor de turma","noun","de"),
+         V("v-rapport","rapport","boletim (de notas)","noun","het"), V("v-ouderavond","ouderavond","reunião de pais (coletiva)","noun","de"),
+         V("v-ziekmelden-kind","je kind ziekmelden","comunicar que o filho está doente","expression")],
+  ex=[("Volgende week is het tienminutengesprek.","Para a semana é a reunião de pais."),("De mentor belt ons over zijn cijfers.","O diretor de turma liga-nos sobre as notas dele."),("Ze heeft een goed rapport.","Ela tem um bom boletim."),("Ik wil mijn zoon ziekmelden.","Queria comunicar que o meu filho está doente.")],
+  review=["v-cijfer","v-leraar","v-huiswerk","v-ziekmelden"],
+  cefr=C, exs=[
+    MA([("tienminutengesprek","reunião de pais"),("mentor","diretor de turma"),("rapport","boletim"),("ouderavond","reunião coletiva")], "Escola dos filhos.", ["v-tienminutengesprek","v-mentor","v-rapport","v-ouderavond"]),
+    TR("pt-nl","Queria comunicar que o meu filho está doente.", ["Ik wil mijn zoon ziekmelden","Ik wil graag mijn zoon ziekmelden","Ik wil mijn zoon ziek melden"], "ziekmelden.", ["v-ziekmelden-kind"]),
+    TR("nl-pt","Ze heeft een goed rapport.", ["Ela tem um bom boletim","Ela tem boas notas no boletim"], "rapport.", ["v-rapport"]),
+    AR("rapport","o boletim","het", "Het rapport.", ["v-rapport"]),
+    MC("Nos Países Baixos, as notas vão de…", ["*1 a 10 (5,5 é suficiente)","0 a 20|Isso é Portugal.","A a F|Não."], "Escala 1–10.", ["v-cijfer"]),
+    MC("Quanto tempo dura um tienminutengesprek?", ["*Cerca de dez minutos","Uma hora|Não.","Um dia|Não."], "tien minuten.", ["v-tienminutengesprek"]),
+    DL([("Mentor","Uw dochter doet het goed, maar ze moet meer aan wiskunde doen.","A sua filha está a ir bem, mas tem de se esforçar mais a matemática."),("Pai","")], ["*Dank u. Hoe kunnen we haar thuis helpen?","Wiskunde is saai.|Não ajuda.","Ze is ziek.|Não responde."], "Colaborar com a escola.", ["v-mentor"]),
+    LI("Het rapport komt vlak voor de kerstvakantie.", ["Het rapport komt vlak voor de kerstvakantie"], "O boletim chega mesmo antes das férias de Natal.", "rapport.", ["v-rapport"]),
+    FE(["Ze","heeft","een","goede","rapport."], 3, "goed", "Het rapport → een goed rapport (sem -e).", ["v-rapport"]),
+    SW("Escreva uma mensagem curta à escola a comunicar que o seu filho está doente hoje.", ["Beste juf Anke, mijn zoon Tiago is vandaag ziek en komt niet naar school. Hij heeft koorts. Met vriendelijke groet, Rita Lopes"], ["Saudação adequada", "Nome do filho + **ziek**", "Fecho"], 15, "Mensagem à escola.", ["v-ziekmelden-kind"]),
+  ], diff=4, mins=7)
+
+L(4, "Debates sobre educação", "Moet huiswerk verboden worden? Is de school te duur?",
+  ["Exprimir opinião sobre temas de educação"],
+  vocab=[V("v-leerling","leerling","aluno","noun","de"), V("v-lerarentekort","lerarentekort","falta de professores","noun","het"),
+         V("v-kansengelijkheid","kansengelijkheid","igualdade de oportunidades","noun","de"), V("v-prestatiedruk","prestatiedruk","pressão para ter resultados","noun","de")],
+  ex=[("Er is een groot lerarentekort.","Há uma grande falta de professores."),("Leerlingen ervaren veel prestatiedruk.","Os alunos sentem muita pressão."),("Kansengelijkheid is belangrijk.","A igualdade de oportunidades é importante."),("Klassen zijn te groot.","As turmas são demasiado grandes.")],
+  review=["v-volgens-mij","v-aan-de-ene-kant","v-mening"],
+  cefr=C, exs=[
+    MA([("leerling","aluno"),("lerarentekort","falta de professores"),("kansengelijkheid","igualdade de oportunidades"),("prestatiedruk","pressão de resultados")], "Debate.", ["v-leerling","v-lerarentekort","v-kansengelijkheid","v-prestatiedruk"]),
+    TR("pt-nl","Há uma grande falta de professores.", ["Er is een groot lerarentekort"], "het lerarentekort → groot.", ["v-lerarentekort"]),
+    TR("nl-pt","Leerlingen ervaren veel prestatiedruk.", ["Os alunos sentem muita pressão","Os alunos sentem muita pressão para ter bons resultados"], "prestatiedruk.", ["v-prestatiedruk"]),
+    AR("lerarentekort","a falta de professores","het", "Composto com «tekort» (het).", ["v-lerarentekort"]),
+    FE(["Er","is","een","grote","lerarentekort."], 3, "groot", "het lerarentekort → een groot.", ["v-lerarentekort"]),
+    WO("A igualdade de oportunidades é importante.", ["Kansengelijkheid","is","belangrijk"], "Simples.", ["v-kansengelijkheid"]),
+    CO("text","Huiswerk: ja of nee?", "Steeds meer basisscholen geven geen huiswerk meer. Volgens voorstanders hebben kinderen na school tijd nodig om te spelen. Tegenstanders vinden dat huiswerk goed is om te oefenen en om ouders te laten zien wat hun kind leert. Onderzoek laat zien dat huiswerk vooral op de middelbare school effect heeft.",
+       [("O que dizem os defensores de «sem trabalhos de casa»?", ["*As crianças precisam de tempo para brincar","Os pais não querem","Os professores não têm tempo"]),("Segundo a investigação, onde tem mais efeito?", ["*No secundário","Na primária","Na universidade"])],
+       "voorstander/tegenstander = defensor/opositor.", ["v-leerling"]),
+    LI("Volgens mij zijn de klassen te groot.", ["Volgens mij zijn de klassen te groot"], "Na minha opinião as turmas são demasiado grandes.", "Inversão.", ["v-volgens-mij"]),
+    MC("Defensor = …", ["*voorstander","tegenstander|Opositor.","leerling|Aluno."], "voor/tegen.", []),
+    SW("Dê a sua opinião (3 frases): as crianças devem ter trabalhos de casa na primária?", ["Ik vind dat kinderen op de basisschool weinig huiswerk moeten krijgen. Aan de ene kant is oefenen goed, aan de andere kant moeten ze ook spelen. Kortom: een beetje huiswerk is genoeg."], ["Opinião com **ik vind dat** + verbo no fim", "Dois lados", "Conclusão"], 25, "Opinião estruturada.", ["v-aan-de-ene-kant"]),
+  ], diff=4, mins=8)
+
+L(5, "Aprender ao longo da vida", "inburgering, taalcursus, bijscholen, een diploma laten erkennen",
+  ["Falar de cursos para adultos e do percurso de integração"],
+  vocab=[V("v-inburgering","inburgering","integração (cívica)","noun","de"), V("v-taalcursus","taalcursus","curso de línguas","noun","de"),
+         V("v-bijscholen","bijscholen","fazer formação contínua","verb"), V("v-erkennen","erkennen","reconhecer","verb",note="een diploma laten erkennen")],
+  ex=[("Ik doe het inburgeringsexamen in mei.","Faço o exame de integração em maio."),("Ze volgt een taalcursus op B1-niveau.","Ela frequenta um curso de línguas de nível B1."),("Ik wil me bijscholen in IT.","Quero fazer formação em informática."),("Ik heb mijn diploma laten erkennen.","Pedi o reconhecimento do meu diploma.")],
+  review=["v-examen","v-diploma","v-leren","v-les"],
+  cefr=C, exs=[
+    MA([("inburgering","integração"),("taalcursus","curso de línguas"),("bijscholen","formação contínua"),("erkennen","reconhecer")], "Formação de adultos.", ["v-inburgering","v-taalcursus","v-bijscholen","v-erkennen"]),
+    TR("pt-nl","Faço o exame de integração em maio.", ["Ik doe het inburgeringsexamen in mei"], "inburgeringsexamen.", ["v-inburgering"]),
+    TR("nl-pt","Ik heb mijn diploma laten erkennen.", ["Pedi o reconhecimento do meu diploma","Fiz reconhecer o meu diploma","Mandei reconhecer o meu diploma"], "laten + inf.", ["v-erkennen"]),
+    TR("pt-nl","Ela frequenta um curso de línguas.", ["Ze volgt een taalcursus","Zij volgt een taalcursus","Ze doet een taalcursus"], "een cursus volgen.", ["v-taalcursus"]),
+    MC("Os cidadãos da UE (como os portugueses) são obrigados a fazer a inburgering?", ["*Não, mas podem fazer cursos voluntariamente","Sim, sempre|Não para cidadãos da UE.","Só se tiverem filhos|Não."], "Regras de inburgering.", ["v-inburgering"]),
+    AR("taalcursus","o curso de línguas","de", "De cursus.", ["v-taalcursus"]),
+    WO("Quero fazer formação em informática.", ["Ik","wil","me","bijscholen","in","IT"], "Reflexivo.", ["v-bijscholen"]),
+    FE(["Ik","heb","mijn","diploma","laten","erkend."], 5, "erkennen", "Com laten, o outro verbo fica no infinitivo: laten erkennen.", ["v-erkennen"]),
+    LI("Volg je nog een taalcursus?", ["Volg je nog een taalcursus","Volg jij nog een taalcursus"], "Ainda andas num curso de línguas?", "volgen.", ["v-taalcursus"]),
+    FB("Je kunt je diploma laten ___ via het IDW.", ["erkennen","waarderen"], "Reconhecimento.", ["v-erkennen"], choices=["erkennen","bijscholen","volgen"], tr="Podes pedir o reconhecimento do teu diploma através do IDW."),
+  ], diff=4, mins=6)
+
+W()
