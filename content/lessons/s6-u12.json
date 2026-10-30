@@ -2569,6 +2569,4091 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s6-u12-l010",
+      "unitId": "s6-u12",
+      "order": 10,
+      "title": "Quem fez? O agente com door",
+      "description": "Hij werd door de politie bekeurd.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar a passiva com agente (door)"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bekeuren",
+          "nl": "bekeuren",
+          "pt": [
+            "multar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-bekeurd-worden",
+          "nl": "bekeurd worden",
+          "pt": [
+            "ser multado"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-door-agent",
+        "v-lijdende-vorm",
+        "v-werd"
+      ],
+      "examples": [
+        {
+          "nl": "Hij werd door de politie bekeurd.",
+          "pt": "Ele foi multado pela polícia."
+        },
+        {
+          "nl": "Ik ben gisteren bekeurd voor fietsen zonder licht.",
+          "pt": "Ontem fui multado por andar de bicicleta sem luz."
+        },
+        {
+          "nl": "Het schilderij werd door Vermeer gemaakt.",
+          "pt": "O quadro foi feito por Vermeer."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Passiva.",
+          "vocabRefs": [
+            "v-bekeuren",
+            "v-bekeurd-worden",
+            "v-door-agent",
+            "v-lijdende-vorm"
+          ],
+          "pairs": [
+            {
+              "nl": "bekeuren",
+              "pt": "multar"
+            },
+            {
+              "nl": "bekeurd worden",
+              "pt": "ser multado"
+            },
+            {
+              "nl": "door (agente)",
+              "pt": "por (agente)"
+            },
+            {
+              "nl": "lijdende vorm",
+              "pt": "voz passiva"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l010-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Transformar.",
+          "vocabRefs": [
+            "v-door-agent"
+          ],
+          "prompt": "Ativa: «De politie bekeurde hem.» Passiva:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij werd door de politie bekeurd.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij bekeurde door de politie.",
+              "correct": false,
+              "feedback": "Não é passiva."
+            },
+            {
+              "id": "c",
+              "text": "Hij is de politie bekeurd.",
+              "correct": false,
+              "feedback": "Falta «door»."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l010-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "door.",
+          "vocabRefs": [
+            "v-bekeurd-worden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele foi multado pela polícia.",
+          "answers": [
+            "Hij werd door de politie bekeurd",
+            "Hij is door de politie bekeurd"
+          ]
+        },
+        {
+          "id": "s6-u12-l010-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "bekeurd voor.",
+          "vocabRefs": [
+            "v-bekeurd-worden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Fui multado por andar sem luz.",
+          "answers": [
+            "Ik ben bekeurd voor fietsen zonder licht",
+            "Ik werd bekeurd voor fietsen zonder licht",
+            "Ik heb een boete gekregen voor fietsen zonder licht"
+          ]
+        },
+        {
+          "id": "s6-u12-l010-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Agente.",
+          "vocabRefs": [
+            "v-door-agent"
+          ],
+          "sentence": "Het schilderij werd ___ Vermeer gemaakt.",
+          "translation": "O quadro foi feito por Vermeer.",
+          "answers": [
+            "door"
+          ],
+          "choices": [
+            "door",
+            "van",
+            "met"
+          ]
+        },
+        {
+          "id": "s6-u12-l010-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Agente: door.",
+          "vocabRefs": [
+            "v-door-agent"
+          ],
+          "tokens": [
+            "Hij",
+            "werd",
+            "van",
+            "de",
+            "politie",
+            "bekeurd."
+          ],
+          "errorIndex": 2,
+          "correction": "door"
+        },
+        {
+          "id": "s6-u12-l010-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-bekeurd-worden"
+          ],
+          "audioText": "Fietsers worden vaak bekeurd voor door rood rijden.",
+          "answers": [
+            "Fietsers worden vaak bekeurd voor door rood rijden"
+          ],
+          "translation": "Os ciclistas são muitas vezes multados por passarem no vermelho."
+        },
+        {
+          "id": "s6-u12-l010-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Regra.",
+          "vocabRefs": [
+            "v-door-agent"
+          ],
+          "prompt": "Na passiva, o agente com «door» é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "opcional: só se diz se for importante",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "obrigatório",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "proibido",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l010-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-bekeurd-worden"
+          ],
+          "translation": "Ele foi multado.",
+          "tokens": [
+            "Hij",
+            "werd",
+            "bekeurd"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l011",
+      "unitId": "s6-u12",
+      "order": 11,
+      "title": "Obras e renovações",
+      "description": "Het station wordt verbouwd.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Falar de obras com a passiva no presente e no perfeito"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-verbouwen",
+          "nl": "verbouwen",
+          "pt": [
+            "remodelar",
+            "fazer obras em"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-renoveren",
+          "nl": "renoveren",
+          "pt": [
+            "renovar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-gebouwd",
+        "v-bouwen",
+        "v-geopend"
+      ],
+      "examples": [
+        {
+          "nl": "Het station wordt verbouwd.",
+          "pt": "A estação está em obras."
+        },
+        {
+          "nl": "Onze keuken is vorig jaar gerenoveerd.",
+          "pt": "A nossa cozinha foi renovada no ano passado."
+        },
+        {
+          "nl": "Het museum werd in 2013 heropend.",
+          "pt": "O museu foi reaberto em 2013."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Obras.",
+          "vocabRefs": [
+            "v-verbouwen",
+            "v-renoveren",
+            "v-gebouwd",
+            "v-geopend"
+          ],
+          "pairs": [
+            {
+              "nl": "verbouwen",
+              "pt": "remodelar"
+            },
+            {
+              "nl": "renoveren",
+              "pt": "renovar"
+            },
+            {
+              "nl": "gebouwd",
+              "pt": "construído"
+            },
+            {
+              "nl": "geopend",
+              "pt": "aberto (inaugurado)"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Presente = em curso.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "prompt": "«Het station wordt verbouwd» descreve…",
+          "options": [
+            {
+              "id": "a",
+              "text": "algo em curso agora",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "algo terminado",
+              "correct": false,
+              "feedback": "Isso seria «is verbouwd»."
+            },
+            {
+              "id": "c",
+              "text": "algo futuro",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "wordt + particípio.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A estação está em obras.",
+          "answers": [
+            "Het station wordt verbouwd"
+          ]
+        },
+        {
+          "id": "s6-u12-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "is/werd + particípio.",
+          "vocabRefs": [
+            "v-renoveren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A cozinha foi renovada no ano passado.",
+          "answers": [
+            "De keuken is vorig jaar gerenoveerd",
+            "De keuken werd vorig jaar gerenoveerd"
+          ]
+        },
+        {
+          "id": "s6-u12-l011-e05",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "ver- sem ge-.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "verb": "verbouwen",
+          "pronoun": "het huis",
+          "tense": "passado-perfeito",
+          "sentence": "Het huis is vorig jaar helemaal ___.",
+          "answers": [
+            "verbouwd"
+          ]
+        },
+        {
+          "id": "s6-u12-l011-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Verbos com ver- não levam ge-.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "tokens": [
+            "Het",
+            "huis",
+            "wordt",
+            "geverbouwd."
+          ],
+          "errorIndex": 3,
+          "correction": "verbouwd."
+        },
+        {
+          "id": "s6-u12-l011-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Aviso.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "audioText": "Tijdens de verbouwing is de ingang aan de achterkant.",
+          "answers": [
+            "Tijdens de verbouwing is de ingang aan de achterkant"
+          ],
+          "translation": "Durante as obras, a entrada é pelas traseiras."
+        },
+        {
+          "id": "s6-u12-l011-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Explicar.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "lines": [
+            {
+              "speaker": "Buurman",
+              "nl": "Wat is dat lawaai?",
+              "pt": "Que barulho é este?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "De badkamer van nummer 5 wordt verbouwd. Het duurt nog twee weken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik verbouw.",
+              "correct": false,
+              "feedback": "Não é o caso."
+            },
+            {
+              "id": "c",
+              "text": "Gerenoveerd.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l011-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "translation": "A estação está em obras.",
+          "tokens": [
+            "Het",
+            "station",
+            "wordt",
+            "verbouwd"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l012",
+      "unitId": "s6-u12",
+      "order": 12,
+      "title": "Passiva no futuro",
+      "description": "Het park zal feestelijk worden geopend.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar a passiva com zullen e gaan"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-feestelijk-geopend",
+          "nl": "feestelijk geopend worden",
+          "pt": [
+            "ser inaugurado (com festa)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-zal-worden",
+          "nl": "zal worden + particípio",
+          "pt": [
+            "será …"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-moet-worden",
+        "v-kan-worden"
+      ],
+      "examples": [
+        {
+          "nl": "Het nieuwe park zal in mei feestelijk worden geopend.",
+          "pt": "O novo parque será inaugurado em maio."
+        },
+        {
+          "nl": "De brug gaat volgend jaar vervangen worden.",
+          "pt": "A ponte vai ser substituída no próximo ano."
+        },
+        {
+          "nl": "De winnaar wordt morgen bekendgemaakt.",
+          "pt": "O vencedor é anunciado amanhã."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Futuro passivo.",
+          "vocabRefs": [
+            "v-feestelijk-geopend",
+            "v-zal-worden",
+            "v-moet-worden",
+            "v-kan-worden"
+          ],
+          "pairs": [
+            {
+              "nl": "feestelijk geopend worden",
+              "pt": "ser inaugurado"
+            },
+            {
+              "nl": "zal worden + particípio",
+              "pt": "será…"
+            },
+            {
+              "nl": "moet … worden",
+              "pt": "tem de ser…"
+            },
+            {
+              "nl": "kan … worden",
+              "pt": "pode ser…"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l012-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zal worden.",
+          "vocabRefs": [
+            "v-zal-worden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O parque será inaugurado em maio.",
+          "answers": [
+            "Het park zal in mei worden geopend",
+            "Het park wordt in mei geopend",
+            "Het park zal in mei geopend worden"
+          ]
+        },
+        {
+          "id": "s6-u12-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Presente com sentido futuro.",
+          "vocabRefs": [
+            "v-zal-worden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O vencedor é anunciado amanhã.",
+          "answers": [
+            "De winnaar wordt morgen bekendgemaakt"
+          ]
+        },
+        {
+          "id": "s6-u12-l012-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Duas ordens.",
+          "vocabRefs": [
+            "v-zal-worden"
+          ],
+          "prompt": "Ordem no fim: «zal worden geopend» ou «zal geopend worden»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ambas são corretas",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Só a primeira",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Só a segunda",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "gaan + passiva.",
+          "vocabRefs": [
+            "v-zal-worden"
+          ],
+          "sentence": "De brug ___ volgend jaar vervangen worden.",
+          "translation": "A ponte vai ser substituída no próximo ano.",
+          "answers": [
+            "gaat"
+          ],
+          "choices": [
+            "gaat",
+            "wordt",
+            "is"
+          ]
+        },
+        {
+          "id": "s6-u12-l012-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Infinitivo: worden.",
+          "vocabRefs": [
+            "v-zal-worden"
+          ],
+          "tokens": [
+            "Het",
+            "park",
+            "zal",
+            "in",
+            "mei",
+            "geopend",
+            "werden."
+          ],
+          "errorIndex": 6,
+          "correction": "worden."
+        },
+        {
+          "id": "s6-u12-l012-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Notícia.",
+          "vocabRefs": [
+            "v-feestelijk-geopend"
+          ],
+          "audioText": "Het nieuwe zwembad wordt zaterdag door de burgemeester geopend.",
+          "answers": [
+            "Het nieuwe zwembad wordt zaterdag door de burgemeester geopend"
+          ],
+          "translation": "A nova piscina é inaugurada no sábado pelo presidente da câmara."
+        },
+        {
+          "id": "s6-u12-l012-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Informar.",
+          "vocabRefs": [
+            "v-feestelijk-geopend"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Wanneer gaat de nieuwe kantine open?",
+              "pt": "Quando abre a nova cantina?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Die zal na de zomer feestelijk worden geopend.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Die opent zich.",
+              "correct": false,
+              "feedback": "Errado."
+            },
+            {
+              "id": "c",
+              "text": "Geopend worden.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l012-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-zal-worden"
+          ],
+          "translation": "Será inaugurado em maio.",
+          "tokens": [
+            "Het",
+            "wordt",
+            "in",
+            "mei",
+            "geopend"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l013",
+      "unitId": "s6-u12",
+      "order": 13,
+      "title": "Passiva em avisos",
+      "description": "Fout geparkeerde fietsen worden verwijderd.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Perceber avisos públicos na voz passiva"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-verwijderen",
+          "nl": "verwijderen",
+          "pt": [
+            "remover"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-worden-weggesleept",
+          "nl": "worden weggesleept",
+          "pt": [
+            "ser rebocado"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-wegslepen",
+        "v-mag-niet-worden",
+        "v-er-wordt"
+      ],
+      "examples": [
+        {
+          "nl": "Fout geparkeerde fietsen worden verwijderd.",
+          "pt": "As bicicletas mal estacionadas são removidas."
+        },
+        {
+          "nl": "Auto's zonder vergunning worden weggesleept.",
+          "pt": "Os carros sem licença são rebocados."
+        },
+        {
+          "nl": "Hier wordt niet gerookt.",
+          "pt": "Aqui não se fuma."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Avisos.",
+          "vocabRefs": [
+            "v-verwijderen",
+            "v-worden-weggesleept",
+            "v-mag-niet-worden",
+            "v-er-wordt"
+          ],
+          "pairs": [
+            {
+              "nl": "verwijderen",
+              "pt": "remover"
+            },
+            {
+              "nl": "worden weggesleept",
+              "pt": "ser rebocado"
+            },
+            {
+              "nl": "mag niet … worden",
+              "pt": "não pode ser…"
+            },
+            {
+              "nl": "er wordt…",
+              "pt": "(impessoal)"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Aviso.",
+          "vocabRefs": [
+            "v-verwijderen"
+          ],
+          "prompt": "Aviso: «Fietsen worden verwijderd» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "As bicicletas (aqui) serão retiradas",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Bicicletas à venda",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Estacionamento de bicicletas",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "worden + particípio.",
+          "vocabRefs": [
+            "v-worden-weggesleept"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Os carros sem licença são rebocados.",
+          "answers": [
+            "Auto's zonder vergunning worden weggesleept"
+          ]
+        },
+        {
+          "id": "s6-u12-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Aviso.",
+          "vocabRefs": [
+            "v-verwijderen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "As bicicletas mal estacionadas são removidas.",
+          "answers": [
+            "Fout geparkeerde fietsen worden verwijderd"
+          ]
+        },
+        {
+          "id": "s6-u12-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Modal + passiva.",
+          "vocabRefs": [
+            "v-mag-niet-worden"
+          ],
+          "sentence": "Deze deur mag niet ___ geblokkeerd.",
+          "translation": "Esta porta não pode ser bloqueada.",
+          "answers": [
+            "worden"
+          ],
+          "choices": [
+            "worden",
+            "zijn",
+            "werden"
+          ]
+        },
+        {
+          "id": "s6-u12-l013-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Plural: worden.",
+          "vocabRefs": [
+            "v-verwijderen"
+          ],
+          "tokens": [
+            "Fietsen",
+            "wordt",
+            "hier",
+            "verwijderd."
+          ],
+          "errorIndex": 1,
+          "correction": "worden"
+        },
+        {
+          "id": "s6-u12-l013-e07",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Impessoal.",
+          "vocabRefs": [
+            "v-er-wordt"
+          ],
+          "prompt": "Aviso num comboio: «Er wordt gecontroleerd.» Significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Há revisão de bilhetes",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Proibido controlar",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Comboio fora de controlo",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l013-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Aviso de estação.",
+          "vocabRefs": [
+            "v-verwijderen"
+          ],
+          "audioText": "Achtergelaten bagage wordt verwijderd en kan worden vernietigd.",
+          "answers": [
+            "Achtergelaten bagage wordt verwijderd en kan worden vernietigd"
+          ],
+          "translation": "A bagagem abandonada é removida e pode ser destruída."
+        },
+        {
+          "id": "s6-u12-l013-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-verwijderen"
+          ],
+          "translation": "As bicicletas são removidas.",
+          "tokens": [
+            "Fietsen",
+            "worden",
+            "verwijderd"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l014",
+      "unitId": "s6-u12",
+      "order": 14,
+      "title": "Processos e receitas",
+      "description": "Het deeg wordt gekneed.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Descrever processos com a passiva"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kneden",
+          "nl": "kneden",
+          "pt": [
+            "amassar (massa)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-verwerken",
+          "nl": "verwerken",
+          "pt": [
+            "processar",
+            "transformar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-gemaakt-worden"
+      ],
+      "examples": [
+        {
+          "nl": "Het deeg wordt tien minuten gekneed.",
+          "pt": "A massa é amassada durante dez minutos."
+        },
+        {
+          "nl": "De melk wordt in de fabriek verwerkt tot kaas.",
+          "pt": "O leite é transformado em queijo na fábrica."
+        },
+        {
+          "nl": "Daarna worden de kazen gepekeld.",
+          "pt": "Depois os queijos são postos em salmoura."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Processos.",
+          "vocabRefs": [
+            "v-kneden",
+            "v-verwerken",
+            "v-gemaakt-worden",
+            "v-lijdende-vorm"
+          ],
+          "pairs": [
+            {
+              "nl": "kneden",
+              "pt": "amassar"
+            },
+            {
+              "nl": "verwerken",
+              "pt": "processar"
+            },
+            {
+              "nl": "gemaakt worden",
+              "pt": "ser feito"
+            },
+            {
+              "nl": "lijdende vorm",
+              "pt": "voz passiva"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l014-e02",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Processo descrito na passiva.",
+          "vocabRefs": [
+            "v-verwerken"
+          ],
+          "kind": "text",
+          "title": "Hoe wordt Goudse kaas gemaakt?",
+          "text": "Eerst wordt de melk verwarmd en wordt er stremsel toegevoegd. De melk wordt dik en wordt in stukjes gesneden. De wrongel wordt daarna in vormen geperst. Vervolgens worden de kazen een paar dagen in pekel gelegd. Ten slotte rijpen ze weken tot jaren.",
+          "questions": [
+            {
+              "prompt": "O que se faz primeiro?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Aquece-se o leite",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Põe-se em salmoura",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Corta-se",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Onde se prensa a coalhada?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Em formas",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Em sacos",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Em barris",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quanto tempo amadurecem?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Semanas a anos",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Uma hora",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Um dia",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "kneden → gekneed.",
+          "vocabRefs": [
+            "v-kneden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A massa é amassada durante dez minutos.",
+          "answers": [
+            "Het deeg wordt tien minuten gekneed",
+            "Het deeg wordt 10 minuten gekneed"
+          ]
+        },
+        {
+          "id": "s6-u12-l014-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verwerken tot.",
+          "vocabRefs": [
+            "v-verwerken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O leite é transformado em queijo.",
+          "answers": [
+            "De melk wordt verwerkt tot kaas",
+            "De melk wordt tot kaas verwerkt"
+          ]
+        },
+        {
+          "id": "s6-u12-l014-e05",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "d → -d.",
+          "vocabRefs": [
+            "v-kneden"
+          ],
+          "verb": "kneden",
+          "pronoun": "het deeg",
+          "tense": "passado-perfeito",
+          "sentence": "Het deeg wordt goed ___.",
+          "answers": [
+            "gekneed"
+          ]
+        },
+        {
+          "id": "s6-u12-l014-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Particípio: gekneed.",
+          "vocabRefs": [
+            "v-kneden"
+          ],
+          "tokens": [
+            "Het",
+            "deeg",
+            "wordt",
+            "geknede."
+          ],
+          "errorIndex": 3,
+          "correction": "gekneed."
+        },
+        {
+          "id": "s6-u12-l014-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Processo.",
+          "vocabRefs": [
+            "v-verwerken"
+          ],
+          "prompt": "Descreva em 4–5 frases na passiva como se faz um prato ou produto que conhece (pão, café, vinho…).",
+          "referenceAnswers": [
+            "Eerst worden de druiven geplukt. Daarna worden ze geperst. Het sap wordt in vaten bewaard. Na een paar maanden wordt de wijn in flessen gedaan."
+          ],
+          "checklist": [
+            "Passiva",
+            "Sequência (eerst, daarna…)"
+          ],
+          "minWords": 35
+        },
+        {
+          "id": "s6-u12-l014-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Processo.",
+          "vocabRefs": [
+            "v-verwerken"
+          ],
+          "audioText": "Daarna worden de kazen in pekel gelegd.",
+          "answers": [
+            "Daarna worden de kazen in pekel gelegd"
+          ],
+          "translation": "Depois os queijos são postos em salmoura."
+        },
+        {
+          "id": "s6-u12-l014-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-gemaakt-worden"
+          ],
+          "translation": "O pão é cozido no forno.",
+          "tokens": [
+            "Het",
+            "brood",
+            "wordt",
+            "in",
+            "de",
+            "oven",
+            "gebakken"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l015",
+      "unitId": "s6-u12",
+      "order": 15,
+      "title": "Passiva nas notícias",
+      "description": "Er is een man aangehouden.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Perceber notícias curtas escritas na passiva"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-overgebracht",
+          "nl": "naar het ziekenhuis overgebracht",
+          "pt": [
+            "levado para o hospital"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-gewond-raken-pass",
+          "nl": "lichtgewond",
+          "pt": [
+            "ferido ligeiro"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aangehouden",
+        "v-gewond-raken",
+        "v-verdachte"
+      ],
+      "examples": [
+        {
+          "nl": "Bij het ongeluk is een fietser lichtgewond geraakt.",
+          "pt": "No acidente um ciclista ficou ligeiramente ferido."
+        },
+        {
+          "nl": "Hij is naar het ziekenhuis overgebracht.",
+          "pt": "Foi levado para o hospital."
+        },
+        {
+          "nl": "Er is een verdachte aangehouden.",
+          "pt": "Foi detido um suspeito."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l015-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Notícias.",
+          "vocabRefs": [
+            "v-overgebracht",
+            "v-gewond-raken-pass",
+            "v-aangehouden",
+            "v-verdachte"
+          ],
+          "pairs": [
+            {
+              "nl": "naar het ziekenhuis overgebracht",
+              "pt": "levado para o hospital"
+            },
+            {
+              "nl": "lichtgewond",
+              "pt": "ferido ligeiro"
+            },
+            {
+              "nl": "aangehouden",
+              "pt": "detido"
+            },
+            {
+              "nl": "verdachte",
+              "pt": "suspeito"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l015-e02",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Notícia (fictícia).",
+          "vocabRefs": [
+            "v-overgebracht",
+            "v-gewond-raken-pass"
+          ],
+          "kind": "text",
+          "title": "Nieuwsbericht (fictief)",
+          "text": "Gisteravond is op de Croeselaan in Utrecht een fietser aangereden door een bestelbus. De fietser is lichtgewond naar het ziekenhuis overgebracht. De bestuurder van de bus is aangehouden. De politie zoekt getuigen.",
+          "questions": [
+            {
+              "prompt": "O que aconteceu?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Um ciclista foi atropelado",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Um assalto",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Um incêndio",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Estado do ciclista?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Ferido ligeiro",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Grave",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Ileso",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que procura a polícia?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Testemunhas",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "O ciclista",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "A carrinha",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Er is … aangehouden.",
+          "vocabRefs": [
+            "v-aangehouden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Foi detido um suspeito.",
+          "answers": [
+            "Er is een verdachte aangehouden",
+            "Een verdachte is aangehouden"
+          ]
+        },
+        {
+          "id": "s6-u12-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "overgebracht.",
+          "vocabRefs": [
+            "v-overgebracht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Foi levado para o hospital.",
+          "answers": [
+            "Hij is naar het ziekenhuis overgebracht",
+            "Hij werd naar het ziekenhuis overgebracht",
+            "Hij is naar het ziekenhuis gebracht"
+          ]
+        },
+        {
+          "id": "s6-u12-l015-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Ferido ligeiro.",
+          "vocabRefs": [
+            "v-gewond-raken-pass"
+          ],
+          "sentence": "De fietser is ___ naar het ziekenhuis overgebracht.",
+          "translation": "O ciclista foi levado para o hospital com ferimentos ligeiros.",
+          "answers": [
+            "lichtgewond"
+          ],
+          "choices": [
+            "lichtgewond",
+            "gewond raken",
+            "aangehouden"
+          ]
+        },
+        {
+          "id": "s6-u12-l015-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular: is.",
+          "vocabRefs": [
+            "v-aangehouden"
+          ],
+          "tokens": [
+            "Er",
+            "zijn",
+            "een",
+            "verdachte",
+            "aangehouden."
+          ],
+          "errorIndex": 1,
+          "correction": "is"
+        },
+        {
+          "id": "s6-u12-l015-e07",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Função.",
+          "vocabRefs": [
+            "v-lijdende-vorm"
+          ],
+          "prompt": "Porque é que as notícias usam tanto a passiva?",
+          "options": [
+            {
+              "id": "a",
+              "text": "O foco está no que aconteceu, não em quem fez",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Porque é obrigatório",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Para esconder factos",
+              "correct": false,
+              "feedback": "Não necessariamente."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l015-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Notícia.",
+          "vocabRefs": [
+            "v-gewond-raken"
+          ],
+          "audioText": "Niemand raakte ernstig gewond.",
+          "answers": [
+            "Niemand raakte ernstig gewond"
+          ],
+          "translation": "Ninguém ficou gravemente ferido."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l016",
+      "unitId": "s6-u12",
+      "order": 16,
+      "title": "Passiva com krijgen",
+      "description": "Ik kreeg een boete opgelegd.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar krijgen + particípio como passiva do recetor"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-krijgen-passief",
+          "nl": "krijgen + particípio",
+          "pt": [
+            "receber (passiva do recetor)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-te-horen-krijgen",
+          "nl": "te horen krijgen",
+          "pt": [
+            "ficar a saber",
+            "ouvir (notícia)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vergoed-krijgen",
+        "v-lijdende-vorm"
+      ],
+      "examples": [
+        {
+          "nl": "Ik kreeg een boete opgelegd.",
+          "pt": "Foi-me aplicada uma multa."
+        },
+        {
+          "nl": "Ze kreeg een nieuwe laptop toegestuurd.",
+          "pt": "Enviaram-lhe um portátil novo."
+        },
+        {
+          "nl": "Gisteren kreeg ik te horen dat ik ben aangenomen.",
+          "pt": "Ontem soube que fui contratado."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l016-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Krijgen.",
+          "vocabRefs": [
+            "v-krijgen-passief",
+            "v-te-horen-krijgen",
+            "v-vergoed-krijgen",
+            "v-lijdende-vorm"
+          ],
+          "pairs": [
+            {
+              "nl": "krijgen + particípio",
+              "pt": "receber (passiva)"
+            },
+            {
+              "nl": "te horen krijgen",
+              "pt": "ficar a saber"
+            },
+            {
+              "nl": "vergoed krijgen",
+              "pt": "ser reembolsado"
+            },
+            {
+              "nl": "lijdende vorm",
+              "pt": "passiva"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l016-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Equivalência.",
+          "vocabRefs": [
+            "v-krijgen-passief"
+          ],
+          "prompt": "«Ik kreeg een pakket bezorgd» = …",
+          "options": [
+            {
+              "id": "a",
+              "text": "Er werd een pakket bij mij bezorgd.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik bezorgde een pakket.",
+              "correct": false,
+              "feedback": "Ativa, sentido oposto."
+            },
+            {
+              "id": "c",
+              "text": "Ik krijg een pakket.",
+              "correct": false,
+              "feedback": "Tempo diferente."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l016-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "krijgen + opgelegd.",
+          "vocabRefs": [
+            "v-krijgen-passief"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Foi-me aplicada uma multa.",
+          "answers": [
+            "Ik kreeg een boete opgelegd",
+            "Ik heb een boete opgelegd gekregen",
+            "Ik kreeg een boete"
+          ]
+        },
+        {
+          "id": "s6-u12-l016-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "te horen krijgen.",
+          "vocabRefs": [
+            "v-te-horen-krijgen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ontem soube que fui contratado.",
+          "answers": [
+            "Gisteren kreeg ik te horen dat ik ben aangenomen",
+            "Gisteren hoorde ik dat ik ben aangenomen"
+          ]
+        },
+        {
+          "id": "s6-u12-l016-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Passado.",
+          "vocabRefs": [
+            "v-krijgen-passief"
+          ],
+          "sentence": "Ze ___ een nieuwe laptop toegestuurd.",
+          "translation": "Enviaram-lhe um portátil novo.",
+          "answers": [
+            "kreeg"
+          ],
+          "choices": [
+            "kreeg",
+            "werd",
+            "had"
+          ]
+        },
+        {
+          "id": "s6-u12-l016-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "te + infinitivo.",
+          "vocabRefs": [
+            "v-te-horen-krijgen"
+          ],
+          "tokens": [
+            "Ik",
+            "kreeg",
+            "te",
+            "hoort",
+            "dat",
+            "de",
+            "cursus",
+            "vol",
+            "is."
+          ],
+          "errorIndex": 3,
+          "correction": "horen"
+        },
+        {
+          "id": "s6-u12-l016-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta útil.",
+          "vocabRefs": [
+            "v-vergoed-krijgen"
+          ],
+          "audioText": "Krijg ik de reiskosten vergoed?",
+          "answers": [
+            "Krijg ik de reiskosten vergoed",
+            "Krijg ik de reiskosten vergoed?"
+          ],
+          "translation": "As despesas de viagem são-me reembolsadas?"
+        },
+        {
+          "id": "s6-u12-l016-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Boa notícia.",
+          "vocabRefs": [
+            "v-te-horen-krijgen"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriendin",
+              "nl": "Hoe ging je sollicitatie?",
+              "pt": "Como correu a candidatura?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik kreeg vanochtend te horen dat ik ben aangenomen!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik werd horen.",
+              "correct": false,
+              "feedback": "Errado."
+            },
+            {
+              "id": "c",
+              "text": "Te horen.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l016-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-krijgen-passief"
+          ],
+          "translation": "Recebi uma multa.",
+          "tokens": [
+            "Ik",
+            "kreeg",
+            "een",
+            "boete",
+            "opgelegd"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l017",
+      "unitId": "s6-u12",
+      "order": 17,
+      "title": "Ativa ou passiva?",
+      "description": "Bedrijvende en lijdende vorm.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Decidir quando usar a ativa em vez da passiva"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bedrijvende-vorm",
+          "nl": "bedrijvende vorm",
+          "pt": [
+            "voz ativa"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-lijdende-vorm",
+        "v-begrijpelijke-taal"
+      ],
+      "examples": [
+        {
+          "nl": "In een brief aan een klant klinkt de bedrijvende vorm vaak persoonlijker.",
+          "pt": "Numa carta a um cliente a voz ativa soa muitas vezes mais pessoal."
+        },
+        {
+          "nl": "«Uw aanvraag is ontvangen» → «Wij hebben uw aanvraag ontvangen.»",
+          "pt": "«O seu pedido foi recebido» → «Recebemos o seu pedido.»"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l017-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Vozes.",
+          "vocabRefs": [
+            "v-bedrijvende-vorm",
+            "v-lijdende-vorm",
+            "v-begrijpelijke-taal",
+            "v-door-agent"
+          ],
+          "pairs": [
+            {
+              "nl": "bedrijvende vorm",
+              "pt": "voz ativa"
+            },
+            {
+              "nl": "lijdende vorm",
+              "pt": "voz passiva"
+            },
+            {
+              "nl": "begrijpelijke taal",
+              "pt": "linguagem clara"
+            },
+            {
+              "nl": "door (agente)",
+              "pt": "por (agente)"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l017-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Transformar.",
+          "vocabRefs": [
+            "v-bedrijvende-vorm"
+          ],
+          "prompt": "Ativa de «Er wordt door ons contact met u opgenomen.»",
+          "options": [
+            {
+              "id": "a",
+              "text": "Wij nemen contact met u op.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "U neemt contact op.",
+              "correct": false,
+              "feedback": "Sujeito errado."
+            },
+            {
+              "id": "c",
+              "text": "Contact wordt opgenomen.",
+              "correct": false,
+              "feedback": "Ainda passiva."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l017-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-lijdende-vorm"
+          ],
+          "prompt": "Quando é a passiva a melhor escolha?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Quando não se sabe ou não importa quem fez",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Sempre em e-mails pessoais",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Nunca",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l017-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Ativa.",
+          "vocabRefs": [
+            "v-bedrijvende-vorm"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Recebemos o seu pedido.",
+          "answers": [
+            "Wij hebben uw aanvraag ontvangen",
+            "We hebben uw aanvraag ontvangen"
+          ]
+        },
+        {
+          "id": "s6-u12-l017-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Passiva.",
+          "vocabRefs": [
+            "v-lijdende-vorm"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O seu pedido foi recebido.",
+          "answers": [
+            "Uw aanvraag is ontvangen",
+            "Uw aanvraag werd ontvangen"
+          ]
+        },
+        {
+          "id": "s6-u12-l017-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular: wordt.",
+          "vocabRefs": [
+            "v-lijdende-vorm"
+          ],
+          "tokens": [
+            "Uw",
+            "factuur",
+            "worden",
+            "binnen",
+            "een",
+            "week",
+            "betaald."
+          ],
+          "errorIndex": 2,
+          "correction": "wordt"
+        },
+        {
+          "id": "s6-u12-l017-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Reescrever.",
+          "vocabRefs": [
+            "v-bedrijvende-vorm"
+          ],
+          "prompt": "Transforme em voz ativa (sujeito «wij»): «Uw klacht is door ons ontvangen. Er zal binnen vijf dagen door een medewerker contact met u worden opgenomen.»",
+          "referenceAnswers": [
+            "Wij hebben uw klacht ontvangen. Een medewerker neemt binnen vijf dagen contact met u op."
+          ],
+          "checklist": [
+            "Voz ativa",
+            "Mais curto",
+            "Mesmo sentido"
+          ],
+          "minWords": 15
+        },
+        {
+          "id": "s6-u12-l017-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Dica.",
+          "vocabRefs": [
+            "v-bedrijvende-vorm"
+          ],
+          "audioText": "Actieve zinnen zijn meestal korter en duidelijker.",
+          "answers": [
+            "Actieve zinnen zijn meestal korter en duidelijker"
+          ],
+          "translation": "As frases ativas são geralmente mais curtas e claras."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l018",
+      "unitId": "s6-u12",
+      "order": 18,
+      "title": "Estado ou ação: is gesloten / wordt gesloten",
+      "description": "De winkel is gesloten.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Distinguir estado (zijn) e ação (worden) com particípios"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-is-gesloten",
+          "nl": "is gesloten",
+          "pt": [
+            "está fechado (estado)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-wordt-gesloten",
+          "nl": "wordt gesloten",
+          "pt": [
+            "é fechado (ação)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-gesloten",
+        "v-geopend"
+      ],
+      "examples": [
+        {
+          "nl": "De winkel is op zondag gesloten.",
+          "pt": "A loja está fechada ao domingo."
+        },
+        {
+          "nl": "De winkel wordt om zes uur gesloten.",
+          "pt": "A loja é fechada às seis."
+        },
+        {
+          "nl": "De deur is op slot.",
+          "pt": "A porta está trancada."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l018-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Estado/ação.",
+          "vocabRefs": [
+            "v-is-gesloten",
+            "v-wordt-gesloten",
+            "v-gesloten",
+            "v-geopend"
+          ],
+          "pairs": [
+            {
+              "nl": "is gesloten",
+              "pt": "está fechado"
+            },
+            {
+              "nl": "wordt gesloten",
+              "pt": "é fechado"
+            },
+            {
+              "nl": "gesloten",
+              "pt": "fechado"
+            },
+            {
+              "nl": "geopend",
+              "pt": "aberto"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l018-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estado.",
+          "vocabRefs": [
+            "v-is-gesloten"
+          ],
+          "prompt": "Placa na porta às 20h: «Gesloten». Significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "estado: está fechado",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "ação: alguém está a fechar",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "futuro",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l018-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ação.",
+          "vocabRefs": [
+            "v-wordt-gesloten"
+          ],
+          "prompt": "«De brug wordt opengedraaid» descreve…",
+          "options": [
+            {
+              "id": "a",
+              "text": "a ação de abrir a ponte (agora)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "o estado da ponte aberta",
+              "correct": false,
+              "feedback": "Isso seria «is opengedraaid»."
+            },
+            {
+              "id": "c",
+              "text": "um plano",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l018-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Estado.",
+          "vocabRefs": [
+            "v-is-gesloten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A loja está fechada ao domingo.",
+          "answers": [
+            "De winkel is op zondag gesloten",
+            "De winkel is zondag gesloten",
+            "Op zondag is de winkel gesloten"
+          ]
+        },
+        {
+          "id": "s6-u12-l018-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Ação.",
+          "vocabRefs": [
+            "v-wordt-gesloten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A loja é fechada às seis.",
+          "answers": [
+            "De winkel wordt om zes uur gesloten",
+            "De winkel gaat om zes uur dicht"
+          ]
+        },
+        {
+          "id": "s6-u12-l018-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Estado.",
+          "vocabRefs": [
+            "v-is-gesloten"
+          ],
+          "sentence": "Het museum ___ morgen wegens verbouwing gesloten.",
+          "translation": "O museu está fechado amanhã por obras.",
+          "answers": [
+            "is"
+          ],
+          "choices": [
+            "is",
+            "wordt",
+            "werd"
+          ]
+        },
+        {
+          "id": "s6-u12-l018-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Estado durante o dia: is.",
+          "vocabRefs": [
+            "v-is-gesloten"
+          ],
+          "tokens": [
+            "Het",
+            "raam",
+            "wordt",
+            "al",
+            "de",
+            "hele",
+            "dag",
+            "open."
+          ],
+          "errorIndex": 2,
+          "correction": "is"
+        },
+        {
+          "id": "s6-u12-l018-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ação e estado.",
+          "vocabRefs": [
+            "v-wordt-gesloten"
+          ],
+          "audioText": "De weg wordt vannacht afgesloten en is morgen weer open.",
+          "answers": [
+            "De weg wordt vannacht afgesloten en is morgen weer open"
+          ],
+          "translation": "A estrada é cortada esta noite e amanhã está outra vez aberta."
+        },
+        {
+          "id": "s6-u12-l018-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-is-gesloten"
+          ],
+          "translation": "A loja está fechada.",
+          "tokens": [
+            "De",
+            "winkel",
+            "is",
+            "gesloten"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l019",
+      "unitId": "s6-u12",
+      "order": 19,
+      "title": "Passiva com modal no passado",
+      "description": "Dat had eerder moeten worden gemeld.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar a passiva com modais no passado"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-had-moeten-worden",
+          "nl": "had moeten worden + particípio",
+          "pt": [
+            "devia ter sido…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-kon-worden",
+          "nl": "kon worden + particípio",
+          "pt": [
+            "podia ser…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-moet-worden",
+        "v-had-moeten"
+      ],
+      "examples": [
+        {
+          "nl": "Dat had eerder moeten worden gemeld.",
+          "pt": "Isso devia ter sido comunicado mais cedo."
+        },
+        {
+          "nl": "Het probleem kon snel worden opgelost.",
+          "pt": "O problema pôde ser resolvido depressa."
+        },
+        {
+          "nl": "De vergadering moest worden uitgesteld.",
+          "pt": "A reunião teve de ser adiada."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l019-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Modais.",
+          "vocabRefs": [
+            "v-had-moeten-worden",
+            "v-kon-worden",
+            "v-moet-worden",
+            "v-had-moeten"
+          ],
+          "pairs": [
+            {
+              "nl": "had moeten worden …",
+              "pt": "devia ter sido…"
+            },
+            {
+              "nl": "kon worden …",
+              "pt": "podia ser…"
+            },
+            {
+              "nl": "moest worden …",
+              "pt": "teve de ser…"
+            },
+            {
+              "nl": "moet … worden",
+              "pt": "tem de ser…"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l019-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "had moeten worden.",
+          "vocabRefs": [
+            "v-had-moeten-worden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Isso devia ter sido comunicado mais cedo.",
+          "answers": [
+            "Dat had eerder moeten worden gemeld",
+            "Dat had eerder gemeld moeten worden"
+          ]
+        },
+        {
+          "id": "s6-u12-l019-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "moest worden.",
+          "vocabRefs": [
+            "v-kon-worden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A reunião teve de ser adiada.",
+          "answers": [
+            "De vergadering moest worden uitgesteld",
+            "De vergadering moest uitgesteld worden"
+          ]
+        },
+        {
+          "id": "s6-u12-l019-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Irreal passado.",
+          "vocabRefs": [
+            "v-had-moeten-worden"
+          ],
+          "prompt": "«Het had voorkomen kunnen worden» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "podia ter sido evitado",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "foi evitado",
+              "correct": false,
+              "feedback": "Não aconteceu."
+            },
+            {
+              "id": "c",
+              "text": "vai ser evitado",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l019-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Passado de kunnen.",
+          "vocabRefs": [
+            "v-kon-worden"
+          ],
+          "sentence": "Het probleem ___ snel worden opgelost.",
+          "translation": "O problema pôde ser resolvido depressa.",
+          "answers": [
+            "kon"
+          ],
+          "choices": [
+            "kon",
+            "kan",
+            "had"
+          ]
+        },
+        {
+          "id": "s6-u12-l019-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Infinitivo: worden.",
+          "vocabRefs": [
+            "v-had-moeten-worden"
+          ],
+          "tokens": [
+            "Dat",
+            "had",
+            "eerder",
+            "moeten",
+            "geworden",
+            "gemeld."
+          ],
+          "errorIndex": 4,
+          "correction": "worden"
+        },
+        {
+          "id": "s6-u12-l019-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Crítica.",
+          "vocabRefs": [
+            "v-had-moeten-worden"
+          ],
+          "audioText": "Dit ongeluk had voorkomen kunnen worden.",
+          "answers": [
+            "Dit ongeluk had voorkomen kunnen worden"
+          ],
+          "translation": "Este acidente podia ter sido evitado."
+        },
+        {
+          "id": "s6-u12-l019-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Assumir.",
+          "vocabRefs": [
+            "v-had-moeten-worden"
+          ],
+          "lines": [
+            {
+              "speaker": "Klant",
+              "nl": "Waarom hoor ik pas nu dat mijn bestelling vertraagd is?",
+              "pt": "Porque só agora sei que a encomenda está atrasada?"
+            },
+            {
+              "speaker": "Jij (medewerker)",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "U heeft gelijk; dat had eerder moeten worden gemeld. Excuses daarvoor.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dat werd gemeld.",
+              "correct": false,
+              "feedback": "Contraditório."
+            },
+            {
+              "id": "c",
+              "text": "Moest worden.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l019-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-kon-worden"
+          ],
+          "translation": "Teve de ser adiada.",
+          "tokens": [
+            "Het",
+            "moest",
+            "worden",
+            "uitgesteld"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l020",
+      "unitId": "s6-u12",
+      "order": 20,
+      "title": "Passiva na história",
+      "description": "Nederland werd in 1945 bevrijd.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Falar de acontecimentos históricos com a passiva"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bezetten",
+          "nl": "bezetten",
+          "pt": [
+            "ocupar (militarmente)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-bevrijden",
+          "nl": "bevrijden",
+          "pt": [
+            "libertar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-werd",
+        "v-gebouwd",
+        "v-uitgevonden"
+      ],
+      "examples": [
+        {
+          "nl": "Nederland werd in mei 1940 bezet.",
+          "pt": "Os Países Baixos foram ocupados em maio de 1940."
+        },
+        {
+          "nl": "In 1945 werd het land bevrijd.",
+          "pt": "Em 1945 o país foi libertado."
+        },
+        {
+          "nl": "Op 5 mei wordt de bevrijding gevierd.",
+          "pt": "A 5 de maio celebra-se a libertação."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l020-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "História.",
+          "vocabRefs": [
+            "v-bezetten",
+            "v-bevrijden",
+            "v-werd",
+            "v-uitgevonden"
+          ],
+          "pairs": [
+            {
+              "nl": "bezetten",
+              "pt": "ocupar"
+            },
+            {
+              "nl": "bevrijden",
+              "pt": "libertar"
+            },
+            {
+              "nl": "werd / werden",
+              "pt": "foi / foram"
+            },
+            {
+              "nl": "uitgevonden",
+              "pt": "inventado"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l020-e02",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Cultura e história.",
+          "vocabRefs": [
+            "v-bevrijden",
+            "v-bezetten"
+          ],
+          "kind": "text",
+          "title": "4 en 5 mei",
+          "text": "Op 4 mei worden in Nederland de slachtoffers van oorlog herdacht. Om acht uur 's avonds is het overal twee minuten stil. Op 5 mei wordt de bevrijding gevierd met festivals in het hele land. In 1945 werd Nederland bevrijd na vijf jaar bezetting.",
+          "questions": [
+            {
+              "prompt": "O que acontece a 4 de maio?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Homenagem às vítimas da guerra",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Festa da libertação",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Dia do Rei",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que se faz às 20h?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Dois minutos de silêncio",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Fogo de artifício",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Desfile",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quantos anos durou a ocupação?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Cinco",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Dois",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Dez",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l020-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "werd + particípio.",
+          "vocabRefs": [
+            "v-bevrijden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Em 1945 o país foi libertado.",
+          "answers": [
+            "In 1945 werd het land bevrijd",
+            "Het land werd in 1945 bevrijd"
+          ]
+        },
+        {
+          "id": "s6-u12-l020-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Passiva.",
+          "vocabRefs": [
+            "v-bevrijden"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A libertação é celebrada a 5 de maio.",
+          "answers": [
+            "De bevrijding wordt op 5 mei gevierd",
+            "Op 5 mei wordt de bevrijding gevierd"
+          ]
+        },
+        {
+          "id": "s6-u12-l020-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio de bezetten (sem ge-).",
+          "vocabRefs": [
+            "v-bezetten"
+          ],
+          "sentence": "Nederland werd in mei 1940 ___.",
+          "translation": "Os Países Baixos foram ocupados em maio de 1940.",
+          "answers": [
+            "bezet"
+          ],
+          "choices": [
+            "bezet",
+            "gebezet",
+            "bezetten"
+          ]
+        },
+        {
+          "id": "s6-u12-l020-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "be- sem ge-.",
+          "vocabRefs": [
+            "v-bevrijden"
+          ],
+          "tokens": [
+            "Het",
+            "land",
+            "werd",
+            "in",
+            "1945",
+            "gebevrijd."
+          ],
+          "errorIndex": 5,
+          "correction": "bevrijd."
+        },
+        {
+          "id": "s6-u12-l020-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Cultura.",
+          "vocabRefs": [
+            "v-bevrijden"
+          ],
+          "audioText": "Op 4 mei worden de slachtoffers herdacht.",
+          "answers": [
+            "Op 4 mei worden de slachtoffers herdacht",
+            "Op vier mei worden de slachtoffers herdacht"
+          ],
+          "translation": "A 4 de maio as vítimas são homenageadas."
+        },
+        {
+          "id": "s6-u12-l020-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Regra.",
+          "vocabRefs": [
+            "v-bezetten"
+          ],
+          "prompt": "Prefixos sem «ge-» no particípio:",
+          "options": [
+            {
+              "id": "a",
+              "text": "be-, ge-, her-, ont-, ver-, er-",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "in-, uit-, op-",
+              "correct": false,
+              "feedback": "Esses são separáveis e levam ge-."
+            },
+            {
+              "id": "c",
+              "text": "todos",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l021",
+      "unitId": "s6-u12",
+      "order": 21,
+      "title": "Instruções técnicas",
+      "description": "Het apparaat moet worden uitgeschakeld.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Perceber instruções de manuais na passiva"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-uitschakelen",
+          "nl": "uitschakelen",
+          "pt": [
+            "desligar (aparelho)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-worden-aangesloten",
+          "nl": "worden aangesloten",
+          "pt": [
+            "ser ligado (à corrente/rede)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-inschakelen",
+        "v-apparaat"
+      ],
+      "examples": [
+        {
+          "nl": "Het apparaat moet na gebruik worden uitgeschakeld.",
+          "pt": "O aparelho deve ser desligado após utilização."
+        },
+        {
+          "nl": "De printer moet op het netwerk worden aangesloten.",
+          "pt": "A impressora deve ser ligada à rede."
+        },
+        {
+          "nl": "Schakel de stroom uit voordat u begint.",
+          "pt": "Desligue a corrente antes de começar."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l021-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Técnico.",
+          "vocabRefs": [
+            "v-uitschakelen",
+            "v-inschakelen",
+            "v-worden-aangesloten",
+            "v-apparaat"
+          ],
+          "pairs": [
+            {
+              "nl": "uitschakelen",
+              "pt": "desligar"
+            },
+            {
+              "nl": "inschakelen",
+              "pt": "ligar"
+            },
+            {
+              "nl": "worden aangesloten",
+              "pt": "ser ligado à rede"
+            },
+            {
+              "nl": "apparaat",
+              "pt": "aparelho"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l021-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-uitschakelen"
+          ],
+          "prompt": "«Uitschakelen» é mais formal do que…",
+          "options": [
+            {
+              "id": "a",
+              "text": "uitzetten",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "inschakelen",
+              "correct": false,
+              "feedback": "É o contrário."
+            },
+            {
+              "id": "c",
+              "text": "aansluiten",
+              "correct": false,
+              "feedback": "Outro sentido."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l021-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Passiva com modal.",
+          "vocabRefs": [
+            "v-uitschakelen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O aparelho deve ser desligado após utilização.",
+          "answers": [
+            "Het apparaat moet na gebruik worden uitgeschakeld",
+            "Het apparaat moet na gebruik uitgeschakeld worden"
+          ]
+        },
+        {
+          "id": "s6-u12-l021-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-uitschakelen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Desligue a corrente antes de começar.",
+          "answers": [
+            "Schakel de stroom uit voordat u begint",
+            "Schakel de stroom uit voor u begint"
+          ]
+        },
+        {
+          "id": "s6-u12-l021-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio.",
+          "vocabRefs": [
+            "v-worden-aangesloten"
+          ],
+          "sentence": "De printer moet op het netwerk worden ___.",
+          "translation": "A impressora deve ser ligada à rede.",
+          "answers": [
+            "aangesloten"
+          ],
+          "choices": [
+            "aangesloten",
+            "aansluiten",
+            "geaansloten"
+          ]
+        },
+        {
+          "id": "s6-u12-l021-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "l → -d.",
+          "vocabRefs": [
+            "v-uitschakelen"
+          ],
+          "tokens": [
+            "Het",
+            "apparaat",
+            "moet",
+            "worden",
+            "uitgeschakelt."
+          ],
+          "errorIndex": 4,
+          "correction": "uitgeschakeld."
+        },
+        {
+          "id": "s6-u12-l021-e07",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Manual na passiva.",
+          "vocabRefs": [
+            "v-uitschakelen",
+            "v-apparaat"
+          ],
+          "kind": "text",
+          "title": "Handleiding (fragment)",
+          "text": "Veiligheid: het apparaat mag niet worden gebruikt in de badkamer. Voordat het apparaat wordt schoongemaakt, moet de stekker uit het stopcontact worden gehaald. Het apparaat mag alleen door een erkende monteur worden gerepareerd.",
+          "questions": [
+            {
+              "prompt": "Onde não se pode usar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Na casa de banho",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Na cozinha",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Na sala",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Antes de limpar…",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Tirar a ficha da tomada",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Ligar o aparelho",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Molhar",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quem pode reparar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Um técnico certificado",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Qualquer pessoa",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "O dono",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l021-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-uitschakelen"
+          ],
+          "audioText": "Het apparaat schakelt zichzelf na tien minuten uit.",
+          "answers": [
+            "Het apparaat schakelt zichzelf na tien minuten uit",
+            "Het apparaat schakelt zichzelf na 10 minuten uit"
+          ],
+          "translation": "O aparelho desliga-se sozinho ao fim de dez minutos."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l022",
+      "unitId": "s6-u12",
+      "order": 22,
+      "title": "Expectativas: er wordt van je verwacht",
+      "description": "Er wordt van je verwacht dat je op tijd bent.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Falar de regras e expectativas na passiva impessoal"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-er-wordt-verwacht",
+          "nl": "er wordt van je verwacht dat…",
+          "pt": [
+            "espera-se de ti que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-geacht-worden",
+          "nl": "geacht worden te",
+          "pt": [
+            "supostamente dever (formal)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-verwachtingen",
+        "v-er-wordt"
+      ],
+      "examples": [
+        {
+          "nl": "Er wordt van je verwacht dat je op tijd bent.",
+          "pt": "Espera-se de ti que sejas pontual."
+        },
+        {
+          "nl": "Medewerkers worden geacht hun e-mail dagelijks te lezen.",
+          "pt": "Os funcionários devem ler o e-mail diariamente."
+        },
+        {
+          "nl": "Wat wordt er van mij verwacht?",
+          "pt": "O que se espera de mim?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l022-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Expectativas.",
+          "vocabRefs": [
+            "v-er-wordt-verwacht",
+            "v-geacht-worden",
+            "v-verwachtingen",
+            "v-er-wordt"
+          ],
+          "pairs": [
+            {
+              "nl": "er wordt van je verwacht dat…",
+              "pt": "espera-se de ti que…"
+            },
+            {
+              "nl": "geacht worden te",
+              "pt": "dever (formal)"
+            },
+            {
+              "nl": "verwachtingen",
+              "pt": "expectativas"
+            },
+            {
+              "nl": "er wordt…",
+              "pt": "impessoal"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l022-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Pergunta útil num emprego novo.",
+          "vocabRefs": [
+            "v-er-wordt-verwacht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O que se espera de mim?",
+          "answers": [
+            "Wat wordt er van mij verwacht",
+            "Wat wordt er van mij verwacht?",
+            "Wat wordt er van me verwacht"
+          ]
+        },
+        {
+          "id": "s6-u12-l022-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Impessoal.",
+          "vocabRefs": [
+            "v-er-wordt-verwacht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Espera-se de ti que sejas pontual.",
+          "answers": [
+            "Er wordt van je verwacht dat je op tijd bent",
+            "Er wordt verwacht dat je op tijd bent"
+          ]
+        },
+        {
+          "id": "s6-u12-l022-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Formal.",
+          "vocabRefs": [
+            "v-geacht-worden"
+          ],
+          "prompt": "«U wordt geacht om 9.00 uur aanwezig te zijn» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "deve estar presente às 9h",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "é estimado às 9h",
+              "correct": false,
+              "feedback": "Literal errado."
+            },
+            {
+              "id": "c",
+              "text": "pode faltar",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l022-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Formal.",
+          "vocabRefs": [
+            "v-geacht-worden"
+          ],
+          "sentence": "Medewerkers worden ___ hun badge altijd te dragen.",
+          "translation": "Os funcionários devem usar sempre o cartão.",
+          "answers": [
+            "geacht"
+          ],
+          "choices": [
+            "geacht",
+            "verwacht",
+            "gedacht"
+          ]
+        },
+        {
+          "id": "s6-u12-l022-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Impessoal: wordt.",
+          "vocabRefs": [
+            "v-er-wordt-verwacht"
+          ],
+          "tokens": [
+            "Er",
+            "worden",
+            "van",
+            "je",
+            "verwacht",
+            "dat",
+            "je",
+            "meedenkt."
+          ],
+          "errorIndex": 1,
+          "correction": "wordt"
+        },
+        {
+          "id": "s6-u12-l022-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Acolher.",
+          "vocabRefs": [
+            "v-er-wordt-verwacht"
+          ],
+          "lines": [
+            {
+              "speaker": "Nieuwe collega",
+              "nl": "Wat wordt er eigenlijk van mij verwacht in de eerste week?",
+              "pt": "Afinal, o que se espera de mim na primeira semana?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Vooral kennismaken en meelopen. Er wordt niet verwacht dat je meteen alles weet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Alles.",
+              "correct": false,
+              "feedback": "Assustador e vago."
+            },
+            {
+              "id": "c",
+              "text": "Geacht.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l022-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Cultura (tendência geral).",
+          "vocabRefs": [
+            "v-er-wordt-verwacht"
+          ],
+          "audioText": "In Nederland wordt van je verwacht dat je je mening geeft.",
+          "answers": [
+            "In Nederland wordt van je verwacht dat je je mening geeft"
+          ],
+          "translation": "Nos Países Baixos espera-se que dês a tua opinião."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l023",
+      "unitId": "s6-u12",
+      "order": 23,
+      "title": "Te + infinitivo com sentido passivo",
+      "description": "Dat is niet te doen!",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar zijn + te + infinitivo com sentido passivo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-niet-te-doen",
+          "nl": "dat is niet te doen",
+          "pt": [
+            "não se consegue fazer",
+            "é impossível"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-valt-te-bezien",
+          "nl": "dat valt te bezien",
+          "pt": [
+            "isso está para se ver"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-te-koop",
+        "v-niet-te-geloven"
+      ],
+      "examples": [
+        {
+          "nl": "Al dat werk in één dag? Dat is niet te doen!",
+          "pt": "Todo esse trabalho num dia? É impossível!"
+        },
+        {
+          "nl": "Of het lukt, valt nog te bezien.",
+          "pt": "Se vai resultar, ainda está para se ver."
+        },
+        {
+          "nl": "Dit huis is te koop.",
+          "pt": "Esta casa está à venda."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l023-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Zijn + te.",
+          "vocabRefs": [
+            "v-niet-te-doen",
+            "v-valt-te-bezien",
+            "v-te-koop",
+            "v-niet-te-geloven"
+          ],
+          "pairs": [
+            {
+              "nl": "dat is niet te doen",
+              "pt": "é impossível"
+            },
+            {
+              "nl": "dat valt te bezien",
+              "pt": "está para se ver"
+            },
+            {
+              "nl": "te koop",
+              "pt": "à venda"
+            },
+            {
+              "nl": "niet te geloven",
+              "pt": "inacreditável"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l023-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sentido passivo.",
+          "vocabRefs": [
+            "v-niet-te-doen"
+          ],
+          "prompt": "«Dit is goed te doen» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "isto faz-se bem (é exequível)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "isto foi feito",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "tens de fazer isto",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l023-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sentido passivo.",
+          "vocabRefs": [
+            "v-niet-te-doen"
+          ],
+          "prompt": "«Het boek is overal te krijgen» = …",
+          "options": [
+            {
+              "id": "a",
+              "text": "O livro arranja-se em todo o lado",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "O livro tem de ser recebido",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "O livro está esgotado",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l023-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-niet-te-doen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "É impossível!",
+          "answers": [
+            "Dat is niet te doen",
+            "Dat is niet te doen!",
+            "Dat is onmogelijk"
+          ]
+        },
+        {
+          "id": "s6-u12-l023-e05",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-valt-te-bezien"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Of het lukt, valt nog te bezien.",
+          "answers": [
+            "Se vai resultar, ainda está para se ver",
+            "Ainda não se sabe se resulta"
+          ]
+        },
+        {
+          "id": "s6-u12-l023-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-valt-te-bezien"
+          ],
+          "sentence": "Of hij komt, valt nog te ___.",
+          "translation": "Se ele vem, ainda está para se ver.",
+          "answers": [
+            "bezien"
+          ],
+          "choices": [
+            "bezien",
+            "zien",
+            "doen"
+          ]
+        },
+        {
+          "id": "s6-u12-l023-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Expressão fixa: te koop.",
+          "vocabRefs": [
+            "v-te-koop"
+          ],
+          "tokens": [
+            "Dit",
+            "huis",
+            "is",
+            "te",
+            "kopen."
+          ],
+          "errorIndex": 4,
+          "correction": "koop."
+        },
+        {
+          "id": "s6-u12-l023-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Sentido passivo.",
+          "vocabRefs": [
+            "v-niet-te-doen"
+          ],
+          "audioText": "Met de fiets is het centrum goed te bereiken.",
+          "answers": [
+            "Met de fiets is het centrum goed te bereiken"
+          ],
+          "translation": "De bicicleta o centro é de fácil acesso."
+        },
+        {
+          "id": "s6-u12-l023-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-niet-te-doen"
+          ],
+          "translation": "É impossível.",
+          "tokens": [
+            "Dat",
+            "is",
+            "niet",
+            "te",
+            "doen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l024",
+      "unitId": "s6-u12",
+      "order": 24,
+      "title": "Particípio ou -end?",
+      "description": "Verbaasd of verbazend?",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Distinguir quem sente (particípio) e o que causa (-end)"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-verbazend",
+          "nl": "verbazend",
+          "pt": [
+            "surpreendente"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-vermoeiend",
+          "nl": "vermoeiend",
+          "pt": [
+            "cansativo"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-verbaasd",
+        "v-teleurstellend",
+        "v-teleurgesteld"
+      ],
+      "examples": [
+        {
+          "nl": "Ik was verbaasd.",
+          "pt": "Fiquei surpreendido."
+        },
+        {
+          "nl": "Het resultaat was verbazend.",
+          "pt": "O resultado foi surpreendente."
+        },
+        {
+          "nl": "Een vermoeiende dag maakt je moe.",
+          "pt": "Um dia cansativo deixa-te cansado."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-deelwoord-end",
+          "title": "Particípio vs. -end",
+          "body": "O **particípio** descreve quem **sente**: *Ik ben **verbaasd**/**teleurgesteld**.* O **particípio presente (-end)** descreve **o que causa** o sentimento: *Het nieuws is **verbazend**/**teleurstellend**.* Como em português: *surpreendido* vs. *surpreendente*.",
+          "examples": [
+            {
+              "nl": "Ik ben verveeld. / Het is vervelend.",
+              "pt": "Estou aborrecido. / É aborrecido."
+            },
+            {
+              "nl": "Ze was geïnteresseerd. / Het was interessant.",
+              "pt": "Ela estava interessada. / Era interessante."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u12-l024-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pares.",
+          "vocabRefs": [
+            "v-verbaasd",
+            "v-verbazend",
+            "v-teleurgesteld",
+            "v-teleurstellend"
+          ],
+          "pairs": [
+            {
+              "nl": "verbaasd",
+              "pt": "surpreendido"
+            },
+            {
+              "nl": "verbazend",
+              "pt": "surpreendente"
+            },
+            {
+              "nl": "teleurgesteld",
+              "pt": "desiludido"
+            },
+            {
+              "nl": "teleurstellend",
+              "pt": "dececionante"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l024-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Causa.",
+          "vocabRefs": [
+            "v-teleurstellend"
+          ],
+          "prompt": "«O jogo foi dececionante»:",
+          "options": [
+            {
+              "id": "a",
+              "text": "De wedstrijd was teleurstellend.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De wedstrijd was teleurgesteld.",
+              "correct": false,
+              "feedback": "O jogo não sente."
+            },
+            {
+              "id": "c",
+              "text": "De wedstrijd teleurstelde.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l024-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pessoa.",
+          "vocabRefs": [
+            "v-verbaasd"
+          ],
+          "prompt": "«Fiquei surpreendido»:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik was verbaasd.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik was verbazend.",
+              "correct": false,
+              "feedback": "Significaria «eu era surpreendente»."
+            },
+            {
+              "id": "c",
+              "text": "Ik verbaasde.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l024-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "-end + e.",
+          "vocabRefs": [
+            "v-vermoeiend"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Foi um dia cansativo.",
+          "answers": [
+            "Het was een vermoeiende dag"
+          ]
+        },
+        {
+          "id": "s6-u12-l024-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verbazend.",
+          "vocabRefs": [
+            "v-verbazend"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O resultado foi surpreendente.",
+          "answers": [
+            "Het resultaat was verbazend",
+            "Het resultaat was verrassend"
+          ]
+        },
+        {
+          "id": "s6-u12-l024-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "de reis → -e.",
+          "vocabRefs": [
+            "v-vermoeiend"
+          ],
+          "sentence": "Na die ___ reis was ik doodmoe.",
+          "translation": "Depois daquela viagem cansativa estava morto de cansaço.",
+          "answers": [
+            "vermoeiende"
+          ],
+          "choices": [
+            "vermoeiende",
+            "vermoeid",
+            "vermoeiend"
+          ]
+        },
+        {
+          "id": "s6-u12-l024-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Pessoa que sente: verbaasd.",
+          "vocabRefs": [
+            "v-verbaasd"
+          ],
+          "tokens": [
+            "Ik",
+            "was",
+            "erg",
+            "verbazend",
+            "over",
+            "de",
+            "prijs."
+          ],
+          "errorIndex": 3,
+          "correction": "verbaasd"
+        },
+        {
+          "id": "s6-u12-l024-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-verbazend"
+          ],
+          "audioText": "Het was verbazend hoe snel ze Nederlands leerde.",
+          "answers": [
+            "Het was verbazend hoe snel ze Nederlands leerde"
+          ],
+          "translation": "Foi surpreendente a rapidez com que aprendeu neerlandês."
+        },
+        {
+          "id": "s6-u12-l024-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-teleurgesteld"
+          ],
+          "translation": "Fiquei desiludido.",
+          "tokens": [
+            "Ik",
+            "was",
+            "teleurgesteld"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u12-l025",
+      "unitId": "s6-u12",
+      "order": 25,
+      "title": "Prática: escrever uma notícia",
+      "description": "Nieuws in de lijdende vorm.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Escrever uma notícia curta usando a passiva"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kort-bericht",
+          "nl": "een kort bericht",
+          "pt": [
+            "uma notícia breve"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-bekeurd-worden",
+        "v-verbouwen",
+        "v-zal-worden",
+        "v-verwijderen",
+        "v-overgebracht",
+        "v-krijgen-passief",
+        "v-is-gesloten",
+        "v-bevrijden"
+      ],
+      "examples": [
+        {
+          "nl": "Schrijf een kort bericht voor de buurtkrant.",
+          "pt": "Escreve uma notícia breve para o jornal do bairro."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u12-l025-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-bekeurd-worden",
+            "v-verbouwen",
+            "v-verwijderen",
+            "v-overgebracht"
+          ],
+          "pairs": [
+            {
+              "nl": "bekeurd worden",
+              "pt": "ser multado"
+            },
+            {
+              "nl": "verbouwen",
+              "pt": "remodelar"
+            },
+            {
+              "nl": "verwijderen",
+              "pt": "remover"
+            },
+            {
+              "nl": "overgebracht",
+              "pt": "levado"
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l025-e02",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Notícia na passiva.",
+          "vocabRefs": [
+            "v-verbouwen",
+            "v-zal-worden",
+            "v-is-gesloten"
+          ],
+          "kind": "text",
+          "title": "Buurtkrant (fictief)",
+          "text": "Het buurthuis in de Lindenstraat wordt deze zomer verbouwd. Tijdens de verbouwing is het gebouw gesloten. De activiteiten worden tijdelijk verplaatst naar de school. Het vernieuwde buurthuis zal in oktober feestelijk worden geopend door de wethouder. Bewoners worden uitgenodigd om ideeën in te sturen.",
+          "questions": [
+            {
+              "prompt": "O que vai acontecer?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "O centro comunitário vai ter obras",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Vai fechar para sempre",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Vai mudar de rua",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Para onde vão as atividades?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Para a escola",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Para a igreja",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Cancelam-se",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quando reabre?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Em outubro",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Em julho",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "No inverno",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l025-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-is-gesloten"
+          ],
+          "prompt": "No texto, «Het gebouw is gesloten» descreve…",
+          "options": [
+            {
+              "id": "a",
+              "text": "um estado",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "uma ação em curso",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "um passado distante",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u12-l025-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular: wordt.",
+          "vocabRefs": [
+            "v-verbouwen"
+          ],
+          "tokens": [
+            "Het",
+            "buurthuis",
+            "word",
+            "deze",
+            "zomer",
+            "verbouwd."
+          ],
+          "errorIndex": 2,
+          "correction": "wordt"
+        },
+        {
+          "id": "s6-u12-l025-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "kort bericht.",
+          "vocabRefs": [
+            "v-kort-bericht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Escreve uma notícia breve.",
+          "answers": [
+            "Schrijf een kort bericht",
+            "Schrijf een kort nieuwsbericht"
+          ]
+        },
+        {
+          "id": "s6-u12-l025-e06",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Notícia.",
+          "vocabRefs": [
+            "v-kort-bericht"
+          ],
+          "prompt": "Escreva uma notícia breve (5–6 frases) para o jornal do seu bairro (real ou inventada). Use pelo menos quatro frases na passiva (presente, passado, futuro, com modal).",
+          "referenceAnswers": [
+            "Afgelopen zaterdag is in het park een nieuwe speeltuin geopend. De speeltuin werd gebouwd met geld van de gemeente. Er werden ook twintig bomen geplant. Volgend jaar zal er een kiosk worden geplaatst. Bewoners worden gevraagd de speeltuin schoon te houden."
+          ],
+          "checklist": [
+            "4+ frases passivas",
+            "Tempos variados",
+            "Estilo de notícia"
+          ],
+          "minWords": 50
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }
