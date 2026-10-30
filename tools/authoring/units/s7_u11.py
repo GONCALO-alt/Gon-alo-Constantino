@@ -26,12 +26,11 @@ L(1, "Fala rápida e reduções", "'k heb 't niet gezien. Wa's dat? Hoe gaat 't?
 
 L(2, "Sotaques e variedades", "Flemish, Randstad, Limburgs, Gronings",
   ["Reconhecer diferenças entre variedades do neerlandês"],
-  vocab=[V("v-accent","accent","sotaque","noun","het"), V("v-dialect","dialect","dialeto","noun","het"),
-         V("v-vlaams","Vlaams","flamengo (neerlandês da Bélgica)","noun","het"), V("v-standaardtaal","standaardtaal","língua padrão","noun","de")],
+  vocab=[V("v-accent","accent","sotaque","noun","het"), V("v-vlaams","Vlaams","flamengo (neerlandês da Bélgica)","noun","het"), V("v-standaardtaal","standaardtaal","língua padrão","noun","de")],
   ex=[("Ze heeft een Limburgs accent.","Ela tem sotaque do Limburgo."),("In Groningen spreken ouderen nog dialect.","Em Groningen os mais velhos ainda falam dialeto."),("In België spreekt men Vlaams.","Na Bélgica fala-se flamengo."),("Het journaal is in de standaardtaal.","O telejornal é em língua padrão.")],
   gram=[G("g-variatie","Variedades","**Standaardnederlands**: o que se aprende e ouve no telejornal. **Vlaams** (Bélgica): outra pronúncia e algumas palavras (*goesting* = zin, *amai* = uau, *gij* = jij). **Sul (Brabante/Limburgo)**: g suave, mais melodia. **Randstad** (Amesterdão, Roterdão, Haia): g forte, sotaques urbanos. Os neerlandeses entendem-se todos — e também o vão entender a si.",
     [("Amai, dat is lekker! (Vlaams) = Wauw, dat is lekker!","Uau, isto é bom!")])],
-  review=["v-zachte-g","v-houdoe","v-uitspraak"],
+  review=["v-dialect","v-zachte-g","v-houdoe","v-uitspraak"],
   cefr=C, exs=[
     MA([("accent","sotaque"),("dialect","dialeto"),("Vlaams","flamengo"),("standaardtaal","língua padrão")], "Variedades.", ["v-accent","v-dialect","v-vlaams","v-standaardtaal"]),
     AR("accent","o sotaque","het", "Het accent.", ["v-accent"]),
@@ -88,9 +87,9 @@ L(4, "Ouvir rádio, podcasts e entrevistas", "Hoofdpunten noteren tijdens het lu
 L(5, "Compreensão de uma discussão rápida", "Een discussie met onderbrekingen en ironie.",
   ["Seguir uma discussão rápida com interrupções, ironia e mudanças de tema"],
   vocab=[V("v-door-elkaar-praten","door elkaar praten","falar todos ao mesmo tempo","expression"), V("v-ironie","ironie","ironia","noun","de"),
-         V("v-van-onderwerp-veranderen","van onderwerp veranderen","mudar de assunto","expression"), V("v-instemmen","instemmen met","concordar com|aprovar","expression")],
+         V("v-instemmen","instemmen met","concordar com|aprovar","expression")],
   ex=[("Iedereen praatte door elkaar.","Toda a gente falava ao mesmo tempo."),("Dat was ironie, hoor!","Aquilo era ironia!"),("Hij veranderde snel van onderwerp.","Ele mudou rapidamente de assunto."),("De meeste mensen stemden in met het voorstel.","A maioria concordou com a proposta.")],
-  review=["v-ironisch","v-onderbreken","v-afdwalen"],
+  review=["v-van-onderwerp-veranderen","v-ironisch","v-onderbreken","v-afdwalen"],
   cefr=C, exs=[
     MA([("door elkaar praten","falar ao mesmo tempo"),("ironie","ironia"),("van onderwerp veranderen","mudar de assunto"),("instemmen met","concordar com")], "Discussão rápida.", ["v-door-elkaar-praten","v-ironie","v-van-onderwerp-veranderen","v-instemmen"]),
     CO("dialogue","Vergadering van de voetbalclub", "Voorzitter: Dus we verhogen de contributie met tien euro.\nKees: Tien euro? Nou, fantastisch, daar word ik blij van.\nSandra: Kees, laat hem even uitpraten…\nKees: Ja ja.\nVoorzitter: …omdat de kantine een nieuwe keuken nodig heeft. Wie stemt in?\nSandra: Ik. Maar kunnen we het ook over de trainingstijden hebben?\nVoorzitter: Daar komen we straks op.\nKees: Ik stem in, maar ik vind het nog steeds veel.",
