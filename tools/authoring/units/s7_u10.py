@@ -88,9 +88,9 @@ L(4, "Comunicação de empresa", "missie, visie, kernwaarden, klanttevredenheid"
 L(5, "Linguagem técnica e explicação simples", "Jargon vermijden. In gewone taal betekent dat…",
   ["Explicar conceitos técnicos em linguagem simples"],
   vocab=[V("v-jargon","jargon","jargão","noun","het"), V("v-vakterm","vakterm","termo técnico","noun","de"),
-         V("v-in-gewone-taal","in gewone taal","em linguagem corrente","expression"), V("v-uitleggen-eenvoudig","eenvoudig uitleggen","explicar de forma simples","expression")],
+         V("v-uitleggen-eenvoudig","eenvoudig uitleggen","explicar de forma simples","expression")],
   ex=[("Vermijd jargon als je met klanten praat.","Evita o jargão quando falas com clientes."),("Dat is een vakterm uit de geneeskunde.","É um termo técnico da medicina."),("In gewone taal betekent dat: je moet meer rusten.","Em linguagem corrente isso significa: tens de descansar mais."),("Kun je dat eenvoudig uitleggen?","Consegues explicar isso de forma simples?")],
-  review=["v-uitleggen","v-andere-woorden","v-een-soort"],
+  review=["v-in-gewone-taal","v-uitleggen","v-andere-woorden","v-een-soort"],
   cefr=C, exs=[
     MA([("jargon","jargão"),("vakterm","termo técnico"),("in gewone taal","em linguagem corrente"),("eenvoudig uitleggen","explicar de forma simples")], "Explicar.", ["v-jargon","v-vakterm","v-in-gewone-taal","v-uitleggen-eenvoudig"]),
     MC("Explicação simples de «hypotheekrenteaftrek»:", ["*Je mag de rente die je voor je huis betaalt van je belasting aftrekken.","Hypotheekrenteaftrek is de aftrek van hypotheekrente.|Circular.","Het is een fiscale faciliteit conform artikel 3.120.|Jargão."], "Simplificar.", ["v-in-gewone-taal"]),
