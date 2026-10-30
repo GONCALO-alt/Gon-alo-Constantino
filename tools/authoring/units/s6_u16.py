@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u16")
+C = "B1-B2"
+
+L(1, "Inferir: ler nas entrelinhas", "Wat bedoelt de schrijver eigenlijk?",
+  ["Tirar conclusões que não estão escritas explicitamente"],
+  vocab=[V("v-afleiden","afleiden","deduzir","verb",note="Wat kun je hieruit afleiden?"), V("v-impliciet","impliciet","implícito","adjective"),
+         V("v-expliciet","expliciet","explícito","adjective"), V("v-suggereren","suggereren","sugerir","verb")],
+  ex=[("Wat kun je uit de tekst afleiden?","O que se pode deduzir do texto?"),("De kritiek is impliciet.","A crítica é implícita."),("Dat staat er niet expliciet.","Isso não está escrito explicitamente."),("De schrijver suggereert dat het beleid faalt.","O autor sugere que a política está a falhar.")],
+  review=["v-schrijfdoel","v-feit","v-mening"],
+  cefr=C, exs=[
+    MA([("afleiden","deduzir"),("impliciet","implícito"),("expliciet","explícito"),("suggereren","sugerir")], "Inferir.", ["v-afleiden","v-impliciet","v-expliciet","v-suggereren"]),
+    CO("text","Een bericht van de buurman", "Hoi! Fijn dat jullie zaterdag een feestje geven. Wij zijn zondag om zeven uur op, want onze dochter heeft een zwemwedstrijd. Groetjes, Kees (nr. 14)",
+       [("O que quer o Kees, implicitamente?", ["*Que a festa não acabe muito tarde / não faça muito barulho","Ser convidado","Que a filha vá à festa"]),("O pedido está explícito?", ["*Não, está implícito","Sim, pede claramente silêncio","Não há pedido"])],
+       "Muitas vezes o pedido vem «disfarçado» de informação.", ["v-impliciet","v-afleiden"]),
+    CO("text","Recensie", "Het nieuwe restaurant aan de gracht heeft een prachtig interieur en een uitgebreide wijnkaart. Over het eten kunnen we kort zijn: de borden zagen er mooi uit.",
+       [("O que sugere o crítico sobre a comida?", ["*Que era fraca (só elogia o aspeto)","Que era excelente","Que era barata"]),("Como chegamos a essa conclusão?", ["*Ele elogia tudo menos o sabor","Ele diz «a comida é má»","Pelo preço"])],
+       "Crítica implícita através do que NÃO se diz.", ["v-suggereren","v-impliciet"]),
+    TR("pt-nl","O que se pode deduzir do texto?", ["Wat kun je uit de tekst afleiden","Wat kan je uit de tekst afleiden"], "afleiden uit.", ["v-afleiden"]),
+    TR("nl-pt","De schrijver suggereert dat het beleid faalt.", ["O autor sugere que a política está a falhar","O autor sugere que a política falha"], "suggereren.", ["v-suggereren"]),
+    MC("«Dat staat er niet expliciet» significa…", ["*Não está dito diretamente","Está escrito claramente|Ao contrário.","Está em inglês|Não."], "expliciet.", ["v-expliciet"]),
+    FE(["Wat","kun","je","afleiden","van","de","tekst?"], 4, "uit", "afleiden uit.", ["v-afleiden"]),
+    LI("Tussen de regels door lees je dat hij niet blij is.", ["Tussen de regels door lees je dat hij niet blij is"], "Nas entrelinhas lê-se que ele não está contente.", "tussen de regels door.", ["v-impliciet"]),
+    FB("In de brief staat ___ dat we moeten betalen: het staat er letterlijk.", ["expliciet"], "Explicitamente.", ["v-expliciet"], choices=["expliciet","impliciet","ironisch"], tr="Na carta está escrito explicitamente que temos de pagar: está lá à letra."),
+    MC("Antónimo de «impliciet»:", ["*expliciet","impulsief|Não.","implicatie|É substantivo."], "Antónimos.", ["v-expliciet"]),
+  ], diff=5, mins=7)
+
+L(2, "Interpretar o tom", "Ironisch, kritisch, neutraal, enthousiast",
+  ["Reconhecer o tom e a atitude do autor"],
+  vocab=[V("v-ironisch","ironisch","irónico","adjective"), V("v-kritisch","kritisch","crítico","adjective"),
+         V("v-neutraal","neutraal","neutro","adjective"), V("v-enthousiast","enthousiast","entusiasta","adjective"),
+         V("v-sarcastisch","sarcastisch","sarcástico","adjective")],
+  ex=[("De toon van het artikel is kritisch.","O tom do artigo é crítico."),("Hij zei het op een ironische manier.","Ele disse-o de forma irónica."),("Een nieuwsbericht is meestal neutraal.","Uma notícia é normalmente neutra."),("Ze reageerde enthousiast.","Ela reagiu com entusiasmo.")],
+  review=["v-toon","v-objectief","v-subjectief"],
+  cefr=C, exs=[
+    MA([("ironisch","irónico"),("kritisch","crítico"),("neutraal","neutro"),("enthousiast","entusiasta"),("sarcastisch","sarcástico")], "Tom.", ["v-ironisch","v-kritisch","v-neutraal","v-enthousiast","v-sarcastisch"]),
+    MC("«Geweldig, weer een uur vertraging. Echt fantastisch, NS!» O tom é…", ["*sarcástico","enthousiast|As palavras positivas são irónicas.","neutraal|Não."], "Sarcasmo.", ["v-sarcastisch"]),
+    MC("«De trein had gisteren een uur vertraging door een storing.» O tom é…", ["*neutraal","kritisch|Só informa.","ironisch|Não."], "Neutro.", ["v-neutraal"]),
+    MC("«Het plan klinkt mooi, maar wie gaat dat betalen?» O tom é…", ["*kritisch","enthousiast|Há dúvida.","neutraal|Há avaliação."], "Crítico.", ["v-kritisch"]),
+    TR("pt-nl","O tom do artigo é crítico.", ["De toon van het artikel is kritisch"], "kritisch.", ["v-kritisch"]),
+    TR("nl-pt","Hij zei het op een ironische manier.", ["Ele disse-o de forma irónica","Ele disse isso de maneira irónica"], "ironisch.", ["v-ironisch"]),
+    FE(["Ze","reageerde","enthousiaste."], 2, "enthousiast", "Como advérbio, sem -e.", ["v-enthousiast"]),
+    LI("Nou, dat heb je weer mooi geregeld!", ["Nou(,) dat heb je weer mooi geregeld"], "Bem, arranjaste-a bonita! (irónico)", "Ironia pela entoação.", ["v-ironisch"]),
+    MC("Na frase anterior, «mooi geregeld» quer dizer…", ["*o contrário: correu mal (ironia)","que correu mesmo bem|Literal.","que é bonito|Literal."], "Ironia.", ["v-ironisch"]),
+    FB("Een goed nieuwsbericht is ___: het geeft geen mening.", ["neutraal"], "Neutro.", ["v-neutraal"], choices=["neutraal","sarcastisch","enthousiast"], tr="Uma boa notícia é neutra: não dá opinião."),
+  ], diff=5, mins=7)
+
+L(3, "Interpretar conversas", "Wat bedoelt de spreker? Waarom zegt hij dat?",
+  ["Interpretar intenções e reações numa conversa"],
+  vocab=[V("v-hint","hint","indireta|pista","noun","de"), V("v-bedoeling","bedoeling","intenção","noun","de"),
+         V("v-reactie-interpreteren","interpreteren","interpretar","verb"), V("v-misverstand","misverstand","mal-entendido","noun","het")],
+  ex=[("Dat was een duidelijke hint.","Isso foi uma indireta clara."),("Wat is de bedoeling van zijn opmerking?","Qual é a intenção do comentário dele?"),("Je moet het niet verkeerd interpreteren.","Não deves interpretar mal."),("Het was een misverstand.","Foi um mal-entendido.")],
+  review=["v-impliciet","v-afleiden","v-toon"],
+  cefr=C, exs=[
+    MA([("hint","indireta"),("bedoeling","intenção"),("interpreteren","interpretar"),("misverstand","mal-entendido")], "Interpretar.", ["v-hint","v-bedoeling","v-reactie-interpreteren","v-misverstand"]),
+    CO("dialogue","Op kantoor", "Mark: Heb jij het rapport al af?\nSofia: Bijna. Ik moest gisteren nog drie andere dingen doen.\nMark: Hm. De klant belt om twee uur.\nSofia: Oké, ik zorg dat het er om één uur ligt.",
+       [("O que quer o Mark dizer com «A cliente liga às duas»?", ["*Que o relatório tem de estar pronto antes disso","Que ele vai almoçar","Que a cliente é simpática"]),("Porque menciona a Sofia as outras tarefas?", ["*Para justificar o atraso","Para pedir ajuda","Para mudar de assunto"])],
+       "Muita informação é dada de forma indireta.", ["v-hint","v-bedoeling"]),
+    CO("dialogue","Bij vrienden", "Lisa: Wil je nog een stukje taart?\nTom: Nou, het was heerlijk, maar ik zit echt vol.\nLisa: Neem dan een stukje mee naar huis!\nTom: Als je erop staat…",
+       [("O Tom quer mais bolo agora?", ["*Não, está cheio","Sim, muito","Não gosta de bolo"]),("«Als je erop staat…» indica que…", ["*aceita levar, educadamente","recusa firmemente","está zangado"])],
+       "erop staan = insistir.", ["v-bedoeling","v-reactie-interpreteren"]),
+    TR("pt-nl","Foi um mal-entendido.", ["Het was een misverstand"], "het misverstand.", ["v-misverstand"]),
+    TR("nl-pt","Wat is de bedoeling van zijn opmerking?", ["Qual é a intenção do comentário dele","O que pretende ele com esse comentário"], "bedoeling.", ["v-bedoeling"]),
+    AR("misverstand","o mal-entendido","het", "Het misverstand.", ["v-misverstand"]),
+    FE(["Het","was","niet","mijn","bedoelen","om","je","te","kwetsen."], 4, "bedoeling", "Substantivo: mijn bedoeling.", ["v-bedoeling"]),
+    LI("Volgens mij was dat een hint dat we moeten gaan.", ["Volgens mij was dat een hint dat we moeten gaan"], "Acho que aquilo foi uma indireta para irmos embora.", "hint.", ["v-hint"]),
+    MC("O anfitrião diz às 23h: «Morgen moet ik vroeg op…» Provavelmente quer…", ["*que os convidados comecem a ir embora","mais café|Não.","que fiquem até tarde|Ao contrário."], "Indireta.", ["v-hint"]),
+  ], diff=5, mins=7)
+
+L(4, "Comparar fontes", "Twee artikelen, twee perspectieven.",
+  ["Comparar dois textos sobre o mesmo tema"],
+  vocab=[V("v-perspectief","perspectief","perspetiva","noun","het"), V("v-overeenkomst-tekst","overeenkomst","semelhança","noun","de"),
+         V("v-eenzijdig","eenzijdig","parcial|unilateral","adjective"), V("v-betrouwbaar-bron","betrouwbare bron","fonte fiável","expression")],
+  ex=[("Beide artikelen hebben een ander perspectief.","Ambos os artigos têm uma perspetiva diferente."),("Een overeenkomst is dat ze allebei de cijfers noemen.","Uma semelhança é que ambos referem os números."),("Dit artikel is nogal eenzijdig.","Este artigo é bastante parcial."),("Is dit een betrouwbare bron?","Esta é uma fonte fiável?")],
+  review=["v-bron","v-verschil","v-objectief","v-subjectief"],
+  cefr=C, exs=[
+    MA([("perspectief","perspetiva"),("overeenkomst","semelhança"),("eenzijdig","parcial"),("betrouwbare bron","fonte fiável")], "Fontes.", ["v-perspectief","v-overeenkomst-tekst","v-eenzijdig","v-betrouwbaar-bron"]),
+    CO("text","Twee berichten over hetzelfde plan", "Bericht A (website van de gemeente): «Met de nieuwe parkeerregels wordt het centrum veiliger en schoner. Bewoners krijgen een gratis vergunning.»\n\nBericht B (lokale ondernemersvereniging): «De nieuwe parkeerregels jagen klanten weg. Winkeliers vrezen tot 20 procent minder omzet. Over de gevolgen voor de winkels zegt de gemeente niets.»",
+       [("Que perspetiva tem o texto A?", ["*Positiva, da câmara","Negativa, dos comerciantes","Neutra, de um jornal"]),("Qual é a crítica do texto B à câmara?", ["*Não fala das consequências para as lojas","Os moradores pagam demasiado","O centro fica mais sujo"]),("Qual é uma semelhança?", ["*Ambos falam das novas regras de estacionamento","Ambos são contra","Ambos dão números de vendas"])],
+       "omzet = volume de vendas; vrezen = temer.", ["v-perspectief","v-eenzijdig"]),
+    TR("pt-nl","Esta é uma fonte fiável?", ["Is dit een betrouwbare bron"], "betrouwbare bron.", ["v-betrouwbaar-bron"]),
+    TR("nl-pt","Dit artikel is nogal eenzijdig.", ["Este artigo é bastante parcial","Este artigo é muito unilateral"], "eenzijdig.", ["v-eenzijdig"]),
+    AR("perspectief","a perspetiva","het", "Het perspectief.", ["v-perspectief"]),
+    MC("Qual é normalmente a fonte mais neutra?", ["*Um serviço público de notícias com várias fontes","O site de um partido|Parcial.","Uma publicidade|Parcial."], "Fiabilidade.", ["v-betrouwbaar-bron"]),
+    FE(["Beide","artikelen","heeft","een","ander","perspectief."], 2, "hebben", "Plural: hebben.", ["v-perspectief"]),
+    LI("Een overeenkomst tussen de teksten is het onderwerp.", ["Een overeenkomst tussen de teksten is het onderwerp"], "Uma semelhança entre os textos é o tema.", "overeenkomst.", ["v-overeenkomst-tekst"]),
+    SW("Compare os textos A e B (2–3 frases): uma semelhança, uma diferença de perspetiva e qual lhe parece mais parcial.", ["Beide teksten gaan over de nieuwe parkeerregels. Tekst A is positief en komt van de gemeente, terwijl tekst B de nadelen voor winkeliers benadrukt. Volgens mij zijn beide teksten een beetje eenzijdig."], ["Semelhança", "Diferença com **terwijl** ou **maar**", "Avaliação"], 35, "Comparar fontes.", ["v-perspectief","v-eenzijdig"]),
+    FB("Een goede journalist gebruikt meerdere ___.", ["bronnen"], "Plural de bron.", ["v-bron"], choices=["bronnen","bron","bronnes"], tr="Um bom jornalista usa várias fontes."),
+  ], diff=5, mins=8)
+
+L(5, "Revisão da Secção 6", "Argumentação, registos, gramática avançada e interpretação.",
+  ["Rever as competências principais da Secção 6"],
+  vocab=[V("v-beheersen","beheersen","dominar","verb"), V("v-vooruitgang-boeken","vooruitgang boeken","fazer progressos","expression"),
+         V("v-uitdagend","uitdagend","desafiante","adjective"), V("v-trots-zijn-op","trots zijn op","ter orgulho em","expression")],
+  ex=[("Ik beheers de passieve vorm nu goed.","Agora domino bem a voz passiva."),("Je hebt veel vooruitgang geboekt.","Fizeste muitos progressos."),("Dit niveau is uitdagend.","Este nível é desafiante."),("Je mag trots zijn op jezelf.","Podes ter orgulho em ti.")],
+  review=["v-betoog","v-lijdende-vorm","v-die-rel","v-indirecte-rede","v-besluit-nemen","v-impliciet"],
+  cefr=C, exs=[
+    MA([("beheersen","dominar"),("vooruitgang boeken","fazer progressos"),("uitdagend","desafiante"),("trots zijn op","ter orgulho em")], "Balanço.", ["v-beheersen","v-vooruitgang-boeken","v-uitdagend","v-trots-zijn-op"]),
+    FB("Het boek ___ ik las, was spannend.", ["dat"], "het boek → dat.", ["v-dat-rel"], choices=["dat","die","wat"], tr="O livro que li era emocionante."),
+    FB("Het huis ___ in 1920 gebouwd.", ["werd","is"], "Passiva passada.", ["v-werd"], choices=["werd","wordt","heeft"], tr="A casa foi construída em 1920."),
+    FB("Ze vroeg ___ ik mee wilde.", ["of"], "Pergunta indireta.", ["v-vroeg-vragen"], choices=["of","dat","wat"], tr="Ela perguntou se eu queria vir."),
+    FB("We moeten nu een besluit ___.", ["nemen"], "Colocação.", ["v-besluit-nemen"], choices=["nemen","maken","doen"], tr="Temos agora de tomar uma decisão."),
+    FE(["Hij","zei","dat","hij","heeft","het","niet","kunnen","doen."], 4, "het niet heeft", "Grupo verbal no fim: dat hij het niet heeft kunnen doen.", ["v-werkwoordscluster"]),
+    TR("pt-nl","Fizeste muitos progressos.", ["Je hebt veel vooruitgang geboekt","Jij hebt veel vooruitgang geboekt"], "vooruitgang boeken.", ["v-vooruitgang-boeken"]),
+    TR("nl-pt","Je mag trots zijn op jezelf.", ["Podes ter orgulho em ti","Podes estar orgulhoso de ti"], "trots op.", ["v-trots-zijn-op"]),
+    LI("Ik beheers het Nederlands steeds beter.", ["Ik beheers het Nederlands steeds beter"], "Domino o neerlandês cada vez melhor.", "beheersen.", ["v-beheersen"]),
+    SW("Escreva um parágrafo (4–5 frases) sobre o que mais o desafiou na Secção 6, usando pelo menos: uma relativa, uma passiva e uma frase em discurso indireto.", ["Het onderdeel dat ik het moeilijkst vond, was de passieve vorm. In het begin werd ik vaak verward door worden en zijn. Mijn docent zei dat ik veel moest lezen. Dat heb ik gedaan, en nu beheers ik het beter. Ik ben trots op de vooruitgang die ik heb geboekt."], ["Uma relativa (**die/dat**)", "Uma passiva (**werd/wordt**)", "Discurso indireto (**zei dat**)", "Coerência"], 50, "Balanço com gramática avançada.", ["v-beheersen","v-vooruitgang-boeken"]),
+  ], diff=5, mins=8)
+
+W()
