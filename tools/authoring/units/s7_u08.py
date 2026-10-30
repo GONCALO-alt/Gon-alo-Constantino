@@ -81,9 +81,9 @@ L(4, "Expressões bíblicas e históricas", "een Pyrrusoverwinning, de gouden ee
 L(5, "Usar expressões com mestria", "Wanneer werkt een uitdrukking, wanneer niet?",
   ["Integrar expressões avançadas na escrita e na fala com adequação"],
   vocab=[V("v-cliche-vermijden","clichés vermijden","evitar clichés","expression"), V("v-gepast","gepast","adequado","adjective"),
-         V("v-ongepast","ongepast","inadequado","adjective"), V("v-natuurlijk-klinken","natuurlijk klinken","soar natural","expression")],
+         V("v-ongepast","ongepast","inadequado","adjective")],
   ex=[("Probeer clichés te vermijden.","Tenta evitar clichés."),("Die uitdrukking is hier niet gepast.","Essa expressão não é adequada aqui."),("Een grap op een begrafenis is ongepast.","Uma piada num funeral é inadequada."),("Je Nederlands klinkt heel natuurlijk.","O teu neerlandês soa muito natural.")],
-  review=["v-boter-op-je-hoofd","v-knoop-doorhakken","v-water-bij-de-wijn","v-gezegde"],
+  review=["v-natuurlijk-klinken","v-boter-op-je-hoofd","v-knoop-doorhakken","v-water-bij-de-wijn","v-gezegde"],
   cefr=C, exs=[
     MA([("clichés vermijden","evitar clichés"),("gepast","adequado"),("ongepast","inadequado"),("natuurlijk klinken","soar natural")], "Adequação.", ["v-cliche-vermijden","v-gepast","v-ongepast","v-natuurlijk-klinken"]),
     MC("Num relatório técnico para a direção, é adequado escrever…", ["*Na lang overleg hebben we de knoop doorgehakt.","Boontje komt om zijn loontje, haha.|Inadequado.","Als de kat van huis is…|Inadequado."], "Expressão neutra-profissional.", ["v-gepast"]),
