@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s7-u06")
+C = "B2"
+
+L(1, "Estilo jornalístico", "Kort, actueel, citaten, de lead",
+  ["Reconhecer as marcas do estilo jornalístico"],
+  vocab=[V("v-lead","lead","lead (primeiro parágrafo)","noun","de"), V("v-bericht-nieuws","nieuwsbericht","notícia","noun","het"),
+         V("v-aldus","aldus","segundo|disse (após citação)","adverb"), V("v-naar-verluidt","naar verluidt","segundo consta","expression")],
+  ex=[("De lead beantwoordt de belangrijkste vragen.","O lead responde às perguntas principais."),("«We zijn tevreden,» aldus de directeur.","«Estamos satisfeitos», disse o diretor."),("Naar verluidt stapt de minister op.","Segundo consta, o ministro demite-se."),("Het nieuwsbericht is kort en zakelijk.","A notícia é curta e objetiva.")],
+  gram=[G("g-journalistiek","Marcas do estilo jornalístico","**Lead** com quem/o quê/onde/quando. **Presente ou perfectum** para factos recentes. **Citações** com *aldus*, *zegt*, *laat weten*. Distância: *naar verluidt*, *volgens bronnen*. Frases curtas, sem opinião (na notícia).",
+    [("De politie laat weten dat het onderzoek nog loopt.","A polícia informa que a investigação continua.")])],
+  review=["v-citaat","v-kop-artikel","v-neutraal"],
+  cefr=C, exs=[
+    MA([("lead","primeiro parágrafo"),("nieuwsbericht","notícia"),("aldus","segundo/disse"),("naar verluidt","segundo consta")], "Jornalismo.", ["v-lead","v-bericht-nieuws","v-aldus","v-naar-verluidt"]),
+    MC("Qual frase tem estilo jornalístico?", ["*De gemeente Utrecht opent maandag een nieuw zwembad, zo laat de wethouder weten.","Wow, er komt een supergaaf zwembad!|Coloquial.","Ik vind zwemmen leuk.|Opinião pessoal."], "Estilo.", ["v-bericht-nieuws"]),
+    TR("nl-pt","Naar verluidt stapt de minister op.", ["Segundo consta, o ministro demite-se","Ao que parece, o ministro vai demitir-se"], "naar verluidt.", ["v-naar-verluidt"]),
+    TR("pt-nl","«Estamos satisfeitos», disse o diretor.", ["«We zijn tevreden(,)» aldus de directeur","We zijn tevreden(,) aldus de directeur","«We zijn tevreden(,)» zegt de directeur"], "aldus.", ["v-aldus"]),
+    AR("nieuwsbericht","a notícia","het", "Het bericht.", ["v-bericht-nieuws"]),
+    FE(["Naar","verluidt","de","minister","stapt","op."], 2, "stapt de minister", "Inversão: Naar verluidt stapt de minister op.", ["v-naar-verluidt"]),
+    LI("De politie laat weten dat het onderzoek nog loopt.", ["De politie laat weten dat het onderzoek nog loopt"], "A polícia informa que a investigação continua.", "laten weten.", ["v-bericht-nieuws"]),
+    MC("O que contém um bom lead?", ["*Quem, o quê, onde e quando","A opinião do jornalista|Não.","A conclusão moral|Não."], "Lead.", ["v-lead"]),
+    FB("«Het was een zware nacht,» ___ een brandweerman.", ["aldus"], "Após citação.", ["v-aldus"], choices=["aldus","naar","volgens"], tr="«Foi uma noite difícil», disse um bombeiro."),
+    SW("Escreva o lead (2 frases) de uma notícia: «inauguração de uma biblioteca nova em Leiden no sábado».", ["Zaterdag opent in het centrum van Leiden een nieuwe bibliotheek. De burgemeester verricht om 14.00 uur de officiële opening, zo laat de gemeente weten."], ["Quem/o quê/onde/quando", "Estilo neutro", "Fonte (**zo laat … weten**)"], 25, "Lead.", ["v-lead"]),
+  ], diff=5, mins=8)
+
+L(2, "Estilo académico", "Uit dit onderzoek blijkt… Er kan worden geconcludeerd dat…",
+  ["Reconhecer e usar fórmulas do estilo académico"],
+  vocab=[V("v-concluderen","concluderen","concluir","verb"), V("v-hypothese","hypothese","hipótese","noun","de"),
+         V("v-literatuur","literatuur","bibliografia|literatura","noun","de"), V("v-methode","methode","método","noun","de")],
+  ex=[("Er kan worden geconcludeerd dat de hypothese klopt.","Pode concluir-se que a hipótese está certa."),("In deze studie wordt een nieuwe methode gebruikt.","Neste estudo é usado um método novo."),("Volgens de literatuur…","Segundo a bibliografia…"),("Uit de resultaten blijkt dat…","Dos resultados resulta que…")],
+  gram=[G("g-academisch","Marcas do estilo académico","**Impessoal**: passiva e *er*: *Er wordt aangetoond dat…* / *Er kan worden geconcludeerd…* **Cauteloso**: *lijkt, mogelijk, waarschijnlijk, wijst erop dat*. **Referências**: *(Jansen, 2020)*. Evita-se *ik* em muitos campos (mas não em todos).",
+    [("De resultaten wijzen erop dat…","Os resultados apontam para…")])],
+  review=["v-onderzoek","v-aantonen","v-wijzen-op","v-lijdende-vorm"],
+  cefr=C, exs=[
+    MA([("concluderen","concluir"),("hypothese","hipótese"),("literatuur","bibliografia"),("methode","método")], "Académico.", ["v-concluderen","v-hypothese","v-literatuur","v-methode"]),
+    MC("Qual frase é mais académica?", ["*Er kan worden geconcludeerd dat de interventie effect heeft.","Ik denk dat het wel werkt.|Pessoal e vago.","Het werkt supergoed!|Coloquial."], "Registo.", ["v-concluderen"]),
+    MC("Qual expressa cautela?", ["*De resultaten wijzen erop dat…","Het is 100% zeker dat…|Sem cautela.","Iedereen weet dat…|Generalização."], "Cautela.", ["v-wijzen-op"]),
+    TR("pt-nl","Pode concluir-se que a hipótese está certa.", ["Er kan worden geconcludeerd dat de hypothese klopt","Er kan geconcludeerd worden dat de hypothese klopt"], "Passiva modal.", ["v-concluderen","v-hypothese"]),
+    TR("nl-pt","In deze studie wordt een nieuwe methode gebruikt.", ["Neste estudo é usado um método novo","Neste estudo usa-se um novo método"], "Passiva.", ["v-methode"]),
+    AR("hypothese","a hipótese","de", "De hypothese.", ["v-hypothese"]),
+    FE(["Er","kan","worden","geconcludeert","dat","het","werkt."], 3, "geconcludeerd", "Particípio: geconcludeerd (r → -d).", ["v-concluderen"]),
+    LI("De resultaten wijzen erop dat de hypothese juist is.", ["De resultaten wijzen erop dat de hypothese juist is"], "Os resultados apontam para que a hipótese esteja correta.", "wijzen op.", ["v-wijzen-op"]),
+    FB("Volgens de ___ is dit effect al eerder gevonden.", ["literatuur"], "Bibliografia.", ["v-literatuur"], choices=["literatuur","methode","hypothese"], tr="Segundo a bibliografia, este efeito já foi encontrado antes."),
+    SW("Reescreva em estilo académico: «Ik heb ontdekt dat studenten die bijbaantjes hebben, slechtere cijfers halen, denk ik.»", ["Uit het onderzoek blijkt dat studenten met een bijbaan gemiddeld lagere cijfers halen. Dit wijst erop dat werken naast de studie een negatief effect kan hebben."], ["Impessoal (**uit … blijkt**)", "Cauteloso (**wijst erop / kan**)", "Sem «ik denk»"], 25, "Estilo académico.", ["v-concluderen","v-wijzen-op"]),
+  ], diff=5, mins=8)
+
+L(3, "Estilo coloquial e regional", "Ik ga effe… Hoe is 't? Hoi hoi!",
+  ["Compreender a fala coloquial e algumas marcas regionais"],
+  vocab=[V("v-effe","effe","(coloquial) even","adverb"), V("v-gezellig-he","'t","(forma reduzida de) het","pronoun"),
+         V("v-zachte-g","zachte g","g suave (sul)","noun","de"), V("v-houdoe","houdoe","adeus (Brabante)","expression"),
+         V("v-ff-zo","joh / man","pá / homem (coloquial)","expression")],
+  ex=[("Ik ga effe boodschappen doen.","Vou só ali às compras."),("Hoe is 't?","Como é que é?"),("In Brabant zeggen ze «houdoe».","No Brabante dizem «houdoe»."),("Ze spreekt met een zachte g.","Ela fala com «g» suave.")],
+  gram=[G("g-spreektaal-reductie","Reduções na fala","Na fala rápida: *het → 't*, *een → 'n*, *even → effe*, *wij → we*, *zijn → z'n*, *mijn → m'n*. No **sul** (Brabante, Limburgo) o **g** é suave e há expressões próprias (*houdoe* = adeus). Em Amesterdão e Roterdão há sotaques fortes. Compreender ≠ ter de imitar.",
+    [("Heb je m'n jas gezien?","Viste o meu casaco?")])],
+  review=["v-even","v-informeel","v-gaaf"],
+  cefr=C, exs=[
+    MA([("effe","even"),("'t","het"),("m'n","mijn"),("'n","een")], "Reduções.", ["v-effe","v-gezellig-he"]),
+    MA([("zachte g","g suave"),("houdoe","adeus (Brabante)"),("joh","pá")], "Regional e coloquial.", ["v-zachte-g","v-houdoe","v-ff-zo"]),
+    MC("«Heb je z'n fiets gezien?» — z'n =", ["*zijn (dele)","zij|Não.","zo|Não."], "Redução.", ["v-gezellig-he"]),
+    MC("Onde se diz tipicamente «houdoe»?", ["*No Brabante","Em Groningen|Não.","Em Amesterdão|Não."], "Regional.", ["v-houdoe"]),
+    MC("A «zachte g» é típica…", ["*do sul (Brabante, Limburgo)","do norte|Lá é forte.","da Bélgica apenas|Também, mas não só."], "Sotaques.", ["v-zachte-g"]),
+    TR("nl-pt","Ik ga effe boodschappen doen.", ["Vou só ali às compras","Vou rapidinho fazer compras"], "effe.", ["v-effe"]),
+    TR("nl-pt","Hoe is 't?", ["Como é que é","Como estás","Tudo bem"], "'t = het.", ["v-gezellig-he"]),
+    LI("Heb je m'n sleutels gezien?", ["Heb je m'n sleutels gezien","Heb je mijn sleutels gezien"], "Viste as minhas chaves?", "m'n.", ["v-gezellig-he"]),
+    FE(["Geachte","heer,","ik","stuur","u","effe","de","factuur."], 5, "hierbij", "Num e-mail formal, «effe» é inadequado.", ["v-effe"]),
+    FB("Houdoe en tot ___ keer!", ["de volgende","volgende"], "Despedida.", ["v-houdoe"], choices=["de volgende","effe","'t"], tr="Adeus e até à próxima!"),
+  ], diff=5, mins=7)
+
+L(4, "Linguagem jurídica e administrativa", "huurovereenkomst, ingangsdatum, opzegtermijn, partijen",
+  ["Compreender a linguagem de contratos e documentos oficiais"],
+  vocab=[V("v-partijen","partijen","as partes (contrato)","noun","de"), V("v-bepaling","bepaling","disposição|cláusula","noun","de"),
+         V("v-ondergetekende","ondergetekende","abaixo assinado","noun","de"), V("v-van-kracht","van kracht","em vigor","expression"),
+         V("v-nalatig","nalatig","negligente","adjective")],
+  ex=[("Beide partijen gaan akkoord met de voorwaarden.","Ambas as partes aceitam as condições."),("Volgens artikel 5 van de bepalingen…","Segundo o artigo 5 das disposições…"),("Ondergetekende verklaart dat…","O abaixo assinado declara que…"),("De wet is per 1 januari van kracht.","A lei está em vigor desde 1 de janeiro.")],
+  gram=[G("g-juridisch","Marcas jurídicas","Frases longas, muitas **passivas** e **substantivos** (*opzegging, ingebrekestelling*). Fórmulas: **ondergetekende** (o abaixo assinado), **hierna te noemen** (doravante designado), **met inachtneming van** (tendo em conta). Leia devagar e procure: quem, o quê, prazos e consequências.",
+    [("De huurder, hierna te noemen 'huurder', …","O inquilino, doravante designado «inquilino», …")])],
+  review=["v-huurcontract","v-opzegtermijn","v-overeenkomst","v-verplicht"],
+  cefr=C, exs=[
+    MA([("partijen","as partes"),("bepaling","cláusula"),("ondergetekende","abaixo assinado"),("van kracht","em vigor"),("nalatig","negligente")], "Jurídico.", ["v-partijen","v-bepaling","v-ondergetekende","v-van-kracht","v-nalatig"]),
+    CO("text","Uit een huurovereenkomst", "Artikel 4 – Opzegging\n4.1 De huurder kan de overeenkomst opzeggen met inachtneming van een opzegtermijn van één maand.\n4.2 De opzegging dient schriftelijk te geschieden.\n4.3 Indien de huurder nalatig is in het betalen van de huur gedurende drie maanden, is de verhuurder gerechtigd de overeenkomst te ontbinden.",
+       [("Qual é o prazo de pré-aviso do inquilino?", ["*Um mês","Três meses","Uma semana"]),("Como deve ser a denúncia?", ["*Por escrito","Por telefone","Pessoalmente"]),("O que pode o senhorio fazer após três meses sem pagamento?", ["*Rescindir o contrato","Aumentar a renda","Nada"])],
+       "geschieden = acontecer (formal); ontbinden = rescindir; gerechtigd = autorizado.", ["v-bepaling","v-nalatig"]),
+    TR("nl-pt","De wet is per 1 januari van kracht.", ["A lei está em vigor desde 1 de janeiro","A lei entra em vigor a 1 de janeiro"], "van kracht.", ["v-van-kracht"]),
+    TR("pt-nl","Ambas as partes aceitam as condições.", ["Beide partijen gaan akkoord met de voorwaarden"], "partijen.", ["v-partijen"]),
+    MC("«De opzegging dient schriftelijk te geschieden» em linguagem simples:", ["*Je moet schriftelijk opzeggen.","Je mag niet opzeggen.|Não.","Je moet bellen.|Não."], "Simplificar.", ["v-bepaling"]),
+    AR("bepaling","a cláusula","de", "-ing → de.", ["v-bepaling"]),
+    FE(["De","nieuwe","regels","zijn","van","krachtig","sinds","maart."], 5, "kracht", "Expressão fixa: van kracht.", ["v-van-kracht"]),
+    LI("Ondergetekende verklaart hierbij dat alle gegevens juist zijn.", ["Ondergetekende verklaart hierbij dat alle gegevens juist zijn"], "O abaixo assinado declara que todos os dados são corretos.", "Fórmula.", ["v-ondergetekende"]),
+    MC("O que deve fazer antes de assinar um contrato que não percebe bem?", ["*Pedir explicação ou aconselhamento (ex.: Juridisch Loket)","Assinar logo|Arriscado.","Traduzir só o título|Insuficiente."], "Prudência.", ["v-juridisch-loket"]),
+    FB("Als u ___ bent met betalen, kunnen er kosten volgen.", ["nalatig"], "Negligente.", ["v-nalatig"], choices=["nalatig","van kracht","ondergetekende"], tr="Se for negligente nos pagamentos, poderão seguir-se custos."),
+  ], diff=5, mins=8)
+
+L(5, "Mudar de estilo", "O mesmo facto em quatro estilos.",
+  ["Reescrever um conteúdo em estilos diferentes"],
+  vocab=[V("v-stijl","stijl","estilo","noun","de"), V("v-herschrijven","herschrijven","reescrever","verb"),
+         V("v-zakelijk","zakelijk","objetivo|profissional","adjective"), V("v-beeldend","beeldend","expressivo|visual","adjective")],
+  ex=[("Herschrijf de tekst in een zakelijke stijl.","Reescreve o texto num estilo objetivo."),("Haar stijl is erg beeldend.","O estilo dela é muito expressivo."),("Pas je stijl aan je lezer aan.","Adapta o teu estilo ao leitor."),("Een zakelijke e-mail is kort.","Um e-mail profissional é curto.")],
+  review=["v-toon","v-formeel","v-informeel","v-lijdende-vorm"],
+  cefr=C, exs=[
+    MA([("stijl","estilo"),("herschrijven","reescrever"),("zakelijk","objetivo"),("beeldend","expressivo")], "Estilos.", ["v-stijl","v-herschrijven","v-zakelijk","v-beeldend"]),
+    MC("Facto: o comboio atrasou 1 hora. Estilo JORNALÍSTICO:", ["*Door een seinstoring hadden treinen tussen Utrecht en Amsterdam dinsdag een uur vertraging.","Pff, weer een uur vertraging, echt balen!|Coloquial.","Er kan worden geconcludeerd dat de vertraging zestig minuten bedroeg.|Académico."], "Jornalístico.", ["v-stijl"]),
+    MC("O mesmo facto, estilo COLOQUIAL (mensagem):", ["*Trein heeft een uur vertraging, ben later!","Hierbij deel ik u mede dat…|Formal.","Uit onderzoek blijkt…|Académico."], "Coloquial.", ["v-informeel"]),
+    MC("O mesmo facto, estilo FORMAL (e-mail ao cliente):", ["*Geachte heer Smit, door een storing bij de NS kom ik helaas een uur later. Mijn excuses voor het ongemak.","Sorry joh, trein kapot!|Coloquial.","De trein was laat.|Seco e incompleto."], "Formal.", ["v-formeel"]),
+    MC("O mesmo facto, estilo LITERÁRIO/expressivo:", ["*De trein stond stil in het grijze niets, en de minuten kropen voorbij als slakken.","Vertraging: 60 min.|Telegráfico.","Ik ben laat.|Neutro."], "Expressivo.", ["v-beeldend"]),
+    TR("pt-nl","Adapta o teu estilo ao leitor.", ["Pas je stijl aan je lezer aan","Pas je stijl aan de lezer aan"], "aanpassen aan.", ["v-stijl"]),
+    TR("nl-pt","Haar stijl is erg beeldend.", ["O estilo dela é muito expressivo","O estilo dela é muito visual"], "beeldend.", ["v-beeldend"]),
+    FE(["Herschrijf","de","tekst","in","een","zakelijk","stijl."], 5, "zakelijke", "de stijl → een zakelijke.", ["v-zakelijk"]),
+    LI("Een zakelijke e-mail is kort en duidelijk.", ["Een zakelijke e-mail is kort en duidelijk"], "Um e-mail profissional é curto e claro.", "zakelijk.", ["v-zakelijk"]),
+    SW("Reescreva o facto «A loja vai fechar por obras durante duas semanas» em dois estilos: aviso formal da loja e mensagem informal a um amigo.", ["Formeel: Wegens een verbouwing is onze winkel van 1 tot en met 14 maart gesloten. Excuses voor het ongemak.\nInformeel: Hé, die winkel waar we altijd koffie halen is twee weken dicht, ze gaan verbouwen!"], ["Versão formal (**wegens**, passiva ou fórmula)", "Versão informal", "Mesmo conteúdo"], 35, "Dois estilos.", ["v-herschrijven","v-zakelijk"]),
+  ], diff=5, mins=8)
+
+W()
