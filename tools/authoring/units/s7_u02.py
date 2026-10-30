@@ -49,11 +49,10 @@ L(2, "Debater um tema atual: habitação e migração", "Hoe kijk jij tegen … 
 
 L(3, "Economia do dia a dia", "inflatie, koopkracht, rente, recessie",
   ["Compreender notícias económicas básicas"],
-  vocab=[V("v-inflatie","inflatie","inflação","noun","de"), V("v-koopkracht","koopkracht","poder de compra","noun","de"),
-         V("v-rente","rente","juro","noun","de"), V("v-recessie","recessie","recessão","noun","de"),
+  vocab=[V("v-inflatie","inflatie","inflação","noun","de"), V("v-rente","rente","juro","noun","de"), V("v-recessie","recessie","recessão","noun","de"),
          V("v-hypotheek","hypotheek","crédito à habitação","noun","de")],
   ex=[("De inflatie is gedaald naar 3 procent.","A inflação desceu para 3 por cento."),("Veel mensen gaan er in koopkracht op achteruit.","Muitas pessoas perdem poder de compra."),("De rente op hypotheken stijgt.","Os juros do crédito à habitação estão a subir."),("Economen verwachten geen recessie.","Os economistas não esperam uma recessão.")],
-  review=["v-prijs","v-stijgen","v-dalen","v-procent"],
+  review=["v-koopkracht","v-prijs","v-stijgen","v-dalen","v-procent"],
   cefr=C, exs=[
     MA([("inflatie","inflação"),("koopkracht","poder de compra"),("rente","juro"),("recessie","recessão"),("hypotheek","crédito à habitação")], "Economia.", ["v-inflatie","v-koopkracht","v-rente","v-recessie","v-hypotheek"]),
     TR("pt-nl","A inflação desceu para 3 por cento.", ["De inflatie is gedaald naar 3 procent","De inflatie is naar drie procent gedaald"], "dalen naar.", ["v-inflatie"]),
@@ -93,9 +92,9 @@ L(4, "Ciência e tecnologia nas notícias", "kunstmatige intelligentie, doorbraa
 L(5, "Acompanhar a atualidade", "Bronnen, nieuwsapps, talkshows, podcasts",
   ["Saber onde e como seguir a atualidade em neerlandês"],
   vocab=[V("v-actualiteit","actualiteit","atualidade","noun","de"), V("v-talkshow","talkshow","programa de entrevistas","noun","de"),
-         V("v-op-de-hoogte","op de hoogte blijven","manter-se informado","expression"), V("v-nepnieuws","nepnieuws","notícias falsas","noun","het")],
+         V("v-nepnieuws","nepnieuws","notícias falsas","noun","het")],
   ex=[("Hoe blijf jij op de hoogte van het nieuws?","Como te manténs informado?"),("Ik kijk elke avond naar een talkshow.","Vejo um programa de entrevistas todas as noites."),("Pas op voor nepnieuws.","Cuidado com as notícias falsas."),("Ik volg de actualiteit via podcasts.","Acompanho a atualidade através de podcasts.")],
-  review=["v-nieuws","v-bron","v-betrouwbaar-bron"],
+  review=["v-op-de-hoogte","v-nieuws","v-bron","v-betrouwbaar-bron"],
   cefr=C, exs=[
     MA([("actualiteit","atualidade"),("talkshow","programa de entrevistas"),("op de hoogte blijven","manter-se informado"),("nepnieuws","notícias falsas")], "Atualidade.", ["v-actualiteit","v-talkshow","v-op-de-hoogte","v-nepnieuws"]),
     TR("pt-nl","Como te manténs informado?", ["Hoe blijf jij op de hoogte","Hoe blijf je op de hoogte","Hoe blijf je op de hoogte van het nieuws"], "op de hoogte blijven.", ["v-op-de-hoogte"]),

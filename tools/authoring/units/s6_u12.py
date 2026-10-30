@@ -11,7 +11,7 @@ L(1, "A passiva com worden (presente)", "Het pakket wordt bezorgd. De brieven wo
   gram=[G("g-passief-presens","Passiva: worden + particípio","**worden** (conjugado) + **particípio** no fim: *Het pakket **wordt** morgen **bezorgd**.* Plural: **worden**. O agente (quem faz) vem com **door**: *door de postbode*. Muitas vezes o agente é omitido.",
     [("De weg wordt gerepareerd.","A estrada está a ser reparada.")],
     "Corresponde ao nosso «é feito» ou ao «se» impessoal («fala-se»).")],
-  review=["v-worden","v-bezorgen","v-er-passief"],
+  review=["v-worden","v-bezorgen","v-er-wordt"],
   cefr=C, exs=[
     MA([("lijdende vorm","voz passiva"),("door","por (agente)"),("bezorgd worden","ser entregue"),("gemaakt worden","ser feito")], "Passiva.", ["v-lijdende-vorm","v-door-agent","v-bezorgen-pass","v-gemaakt-worden"]),
     CJ("worden","het pakket","Het pakket ___ morgen bezorgd.", ["wordt"], "Singular: wordt.", ["v-bezorgen-pass"]),
@@ -43,7 +43,7 @@ L(2, "A passiva no passado: werd e is … geworden", "Het huis werd in 1900 gebo
     FE(["De","brug","heeft","vorig","jaar","geopend."], 2, "is", "Passiva perfeita: De brug is … geopend.", ["v-lijdende-vorm"]),
     FE(["De","huizen","werd","in","1950","gebouwd."], 2, "werden", "Plural: werden.", ["v-werd"]),
     LI("De brug is vorig jaar geopend door de koning.", ["De brug is vorig jaar geopend door de koning","De brug is vorig jaar door de koning geopend"], "A ponte foi inaugurada no ano passado pelo rei.", "Passiva + door.", ["v-door-agent"]),
-    MC("«Er werd veel gelachen» significa…", ["*Riu-se muito (houve muitos risos)","Ele riu muito|Não há sujeito pessoal.","Vai rir-se muito|Não é futuro."], "Passiva impessoal.", ["v-er-passief"]),
+    MC("«Er werd veel gelachen» significa…", ["*Riu-se muito (houve muitos risos)","Ele riu muito|Não há sujeito pessoal.","Vai rir-se muito|Não é futuro."], "Passiva impessoal.", ["v-er-wordt"]),
     WO("A casa foi construída em 1900.", ["Het","huis","werd","in","1900","gebouwd"], "werd + particípio.", ["v-gebouwd"]),
   ], diff=5, mins=7)
 

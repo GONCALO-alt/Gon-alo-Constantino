@@ -29,14 +29,13 @@ L(1, "Água: viver abaixo do nível do mar", "de dijk, de polder, het waterschap
 
 L(2, "Energia e casa", "zonnepanelen, de energierekening, isoleren, warmtepomp",
   ["Falar de energia doméstica e poupança"],
-  vocab=[V("v-zonnepanelen","zonnepanelen","painéis solares","noun","de"), V("v-energierekening","energierekening","fatura da energia","noun","de"),
-         V("v-isoleren","isoleren","isolar","verb"), V("v-besparen","besparen","poupar (energia)","verb"),
+  vocab=[V("v-zonnepanelen","zonnepanelen","painéis solares","noun","de"), V("v-isoleren","isoleren","isolar","verb"), V("v-besparen","besparen","poupar (energia)","verb"),
          V("v-warmtepomp","warmtepomp","bomba de calor","noun","de")],
   ex=[("We hebben zonnepanelen op het dak.","Temos painéis solares no telhado."),("De energierekening is flink gestegen.","A fatura da energia subiu bastante."),("Door het huis te isoleren bespaar je energie.","Isolando a casa poupas energia."),("Steeds meer huizen hebben een warmtepomp.","Cada vez mais casas têm bomba de calor.")],
   gram=[G("g-door-te","Door … te + infinitivo","**door** + **te** + infinitivo = «ao…/fazendo…» (meio): *Door het huis **te isoleren** bespaar je energie.* A seguir à oração com door vem a inversão (verbo-sujeito).",
     [("Door minder te douchen bespaar je water.","Tomando duches mais curtos poupas água.")],
     "Corresponde ao nosso gerúndio de meio («isolando a casa…»).")],
-  review=["v-verwarming","v-licht","v-duur"],
+  review=["v-energierekening","v-verwarming","v-licht","v-duur"],
   cefr=C, exs=[
     MA([("zonnepanelen","painéis solares"),("energierekening","fatura da energia"),("isoleren","isolar"),("besparen","poupar"),("warmtepomp","bomba de calor")], "Energia.", ["v-zonnepanelen","v-energierekening","v-isoleren","v-besparen","v-warmtepomp"]),
     WO("Isolando a casa poupas energia.", ["Door","het","huis","te","isoleren","bespaar","je","energie"], "door … te + inversão.", ["v-isoleren","v-besparen"]),
@@ -94,10 +93,9 @@ L(4, "Clima e alterações climáticas", "klimaatverandering, CO₂-uitstoot, du
 
 L(5, "Debate: medidas ambientais", "Moet vlees duurder worden? Moeten auto's de stad uit?",
   ["Argumentar a favor e contra uma medida"],
-  vocab=[V("v-maatregel","maatregel","medida","noun","de"), V("v-invoeren","invoeren","introduzir|implementar","verb"),
-         V("v-belasting","belasting","imposto","noun","de"), V("v-autovrij","autovrij","sem carros","adjective")],
+  vocab=[V("v-belasting","belasting","imposto","noun","de"), V("v-autovrij","autovrij","sem carros","adjective")],
   ex=[("De gemeente wil een nieuwe maatregel invoeren.","A câmara quer introduzir uma nova medida."),("Er komt een belasting op vliegtickets.","Vai haver um imposto sobre os bilhetes de avião."),("Het centrum wordt autovrij.","O centro vai ficar sem carros."),("Ik ben voor deze maatregel.","Sou a favor desta medida.")],
-  review=["v-aan-de-ene-kant","v-eens","v-oneens","v-omdat"],
+  review=["v-invoeren","v-maatregel","v-aan-de-ene-kant","v-eens","v-oneens","v-omdat"],
   cefr=C, exs=[
     MA([("maatregel","medida"),("invoeren","introduzir"),("belasting","imposto"),("autovrij","sem carros")], "Políticas.", ["v-maatregel","v-invoeren","v-belasting","v-autovrij"]),
     TR("pt-nl","Sou a favor desta medida.", ["Ik ben voor deze maatregel"], "voor/tegen.", ["v-maatregel"]),
