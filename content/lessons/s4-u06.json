@@ -3854,21 +3854,26 @@
         },
         {
           "id": "s4-u06-l013-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem: Je ziet er netjes uit.",
           "vocabRefs": [
             "v-eruitzien"
           ],
-          "tokens": [
-            "Je",
-            "ziet",
-            "netjes",
-            "er",
-            "uit."
-          ],
-          "errorIndex": 2,
-          "correction": "er"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Je ziet er netjes uit.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Je ziet netjes er uit.",
+              "correct": false,
+              "feedback": "Ordem: Je ziet er netjes uit."
+            }
+          ]
         },
         {
           "id": "s4-u06-l013-e09",

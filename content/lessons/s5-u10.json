@@ -7222,22 +7222,26 @@
         },
         {
           "id": "s5-u10-l024-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Daardoor moet ik…",
           "vocabRefs": [
             "v-knelpunt"
           ],
-          "tokens": [
-            "Daardoor",
-            "ik",
-            "moet",
-            "het",
-            "snel",
-            "afmaken."
-          ],
-          "errorIndex": 1,
-          "correction": "moet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Daardoor moet ik het snel afmaken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Daardoor ik moet het snel afmaken.",
+              "correct": false,
+              "feedback": "Inversão: Daardoor moet ik…"
+            }
+          ]
         },
         {
           "id": "s5-u10-l024-e07",

@@ -4645,23 +4645,26 @@
         },
         {
           "id": "s4-u05-l015-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Met veel belangstelling».",
           "vocabRefs": [
             "v-belangstelling"
           ],
-          "tokens": [
-            "Met",
-            "veel",
-            "belangstelling",
-            "ik",
-            "volg",
-            "uw",
-            "bedrijf."
-          ],
-          "errorIndex": 3,
-          "correction": "volg ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Met veel belangstelling volg ik uw bedrijf.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Met veel belangstelling ik volg uw bedrijf.",
+              "correct": false,
+              "feedback": "Inversão depois de «Met veel belangstelling»."
+            }
+          ]
         },
         {
           "id": "s4-u05-l015-e09",
@@ -5507,22 +5510,26 @@
         },
         {
           "id": "s4-u05-l018-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Hierbij».",
           "vocabRefs": [
             "v-hierbij"
           ],
-          "tokens": [
-            "Hierbij",
-            "ik",
-            "solliciteer",
-            "naar",
-            "de",
-            "functie."
-          ],
-          "errorIndex": 1,
-          "correction": "solliciteer ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hierbij solliciteer ik naar de functie.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hierbij ik solliciteer naar de functie.",
+              "correct": false,
+              "feedback": "Inversão depois de «Hierbij»."
+            }
+          ]
         },
         {
           "id": "s4-u05-l018-e07",
@@ -5835,22 +5842,26 @@
         },
         {
           "id": "s4-u05-l019-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Graag».",
           "vocabRefs": [
             "v-toelichten"
           ],
-          "tokens": [
-            "Graag",
-            "ik",
-            "licht",
-            "mijn",
-            "motivatie",
-            "toe."
-          ],
-          "errorIndex": 1,
-          "correction": "licht ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Graag licht ik mijn motivatie toe.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Graag ik licht mijn motivatie toe.",
+              "correct": false,
+              "feedback": "Inversão depois de «Graag»."
+            }
+          ]
         },
         {
           "id": "s4-u05-l019-e07",

@@ -5799,23 +5799,26 @@
         },
         {
           "id": "s4-u13-l020-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem: …dat ze niet kan komen.",
           "vocabRefs": [
             "v-of-ik-mag"
           ],
-          "tokens": [
-            "Ze",
-            "zegt",
-            "dat",
-            "ze",
-            "kan",
-            "niet",
-            "komen."
-          ],
-          "errorIndex": 4,
-          "correction": "niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze zegt dat ze niet kan komen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze zegt dat ze kan niet komen.",
+              "correct": false,
+              "feedback": "Ordem: …dat ze niet kan komen."
+            }
+          ]
         },
         {
           "id": "s4-u13-l020-e07",

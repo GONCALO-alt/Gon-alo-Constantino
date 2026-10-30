@@ -2877,24 +2877,26 @@
         },
         {
           "id": "s4-u02-l010-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois da oração com toen: verbo + sujeito (had ik).",
           "vocabRefs": [
             "v-had"
           ],
-          "tokens": [
-            "Toen",
-            "ik",
-            "klein",
-            "was,",
-            "ik",
-            "had",
-            "een",
-            "hond."
-          ],
-          "errorIndex": 4,
-          "correction": "had ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Toen ik klein was, had ik een hond.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Toen ik klein was, ik had een hond.",
+              "correct": false,
+              "feedback": "Depois da oração com toen: verbo + sujeito (had ik)."
+            }
+          ]
         },
         {
           "id": "s4-u02-l010-e09",
@@ -5090,21 +5092,26 @@
         },
         {
           "id": "s4-u02-l017-e09",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Tegenwoordig heeft iedereen…",
           "vocabRefs": [
             "v-tegenwoordig"
           ],
-          "tokens": [
-            "Tegenwoordig",
-            "iedereen",
-            "heeft",
-            "een",
-            "mobiel."
-          ],
-          "errorIndex": 1,
-          "correction": "heeft iedereen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Tegenwoordig heeft iedereen een mobiel.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Tegenwoordig iedereen heeft een mobiel.",
+              "correct": false,
+              "feedback": "Inversão: Tegenwoordig heeft iedereen…"
+            }
+          ]
         },
         {
           "id": "s4-u02-l017-e10",
@@ -6641,23 +6648,26 @@
         },
         {
           "id": "s4-u02-l022-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Op een dag».",
           "vocabRefs": [
             "v-op-een-dag"
           ],
-          "tokens": [
-            "Op",
-            "een",
-            "dag",
-            "ik",
-            "kreeg",
-            "een",
-            "brief."
-          ],
-          "errorIndex": 3,
-          "correction": "kreeg ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Op een dag kreeg ik een brief.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Op een dag ik kreeg een brief.",
+              "correct": false,
+              "feedback": "Inversão depois de «Op een dag»."
+            }
+          ]
         },
         {
           "id": "s4-u02-l022-e07",

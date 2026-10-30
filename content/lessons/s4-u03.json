@@ -3535,22 +3535,26 @@
         },
         {
           "id": "s4-u03-l012-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Volgende zomer».",
           "vocabRefs": [
             "v-vakantieplannen"
           ],
-          "tokens": [
-            "Volgende",
-            "zomer",
-            "we",
-            "gaan",
-            "naar",
-            "Noorwegen."
-          ],
-          "errorIndex": 2,
-          "correction": "gaan we"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Volgende zomer gaan we naar Noorwegen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Volgende zomer we gaan naar Noorwegen.",
+              "correct": false,
+              "feedback": "Inversão depois de «Volgende zomer»."
+            }
+          ]
         },
         {
           "id": "s4-u03-l012-e09",
@@ -5394,21 +5398,26 @@
         },
         {
           "id": "s4-u03-l018-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Waarschijnlijk zullen we…",
           "vocabRefs": [
             "v-waarschijnlijk"
           ],
-          "tokens": [
-            "Waarschijnlijk",
-            "we",
-            "zullen",
-            "minder",
-            "vliegen."
-          ],
-          "errorIndex": 1,
-          "correction": "zullen we"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Waarschijnlijk zullen we minder vliegen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Waarschijnlijk we zullen minder vliegen.",
+              "correct": false,
+              "feedback": "Inversão: Waarschijnlijk zullen we…"
+            }
+          ]
         },
         {
           "id": "s4-u03-l018-e06",
@@ -5766,23 +5775,26 @@
         },
         {
           "id": "s4-u03-l019-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Overmorgen».",
           "vocabRefs": [
             "v-overmorgen"
           ],
-          "tokens": [
-            "Overmorgen",
-            "ik",
-            "ben",
-            "de",
-            "hele",
-            "dag",
-            "vrij."
-          ],
-          "errorIndex": 1,
-          "correction": "ben ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Overmorgen ben ik de hele dag vrij.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Overmorgen ik ben de hele dag vrij.",
+              "correct": false,
+              "feedback": "Inversão depois de «Overmorgen»."
+            }
+          ]
         },
         {
           "id": "s4-u03-l019-e08",
@@ -6077,21 +6089,26 @@
         },
         {
           "id": "s4-u03-l020-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Hopelijk».",
           "vocabRefs": [
             "v-hopelijk"
           ],
-          "tokens": [
-            "Hopelijk",
-            "ik",
-            "krijg",
-            "die",
-            "baan."
-          ],
-          "errorIndex": 1,
-          "correction": "krijg ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hopelijk krijg ik die baan.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hopelijk ik krijg die baan.",
+              "correct": false,
+              "feedback": "Inversão depois de «Hopelijk»."
+            }
+          ]
         },
         {
           "id": "s4-u03-l020-e07",
@@ -6746,22 +6763,26 @@
         },
         {
           "id": "s4-u03-l022-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Morgen».",
           "vocabRefs": [
             "v-zullen"
           ],
-          "tokens": [
-            "Morgen",
-            "ik",
-            "zal",
-            "je",
-            "helpen,",
-            "beloofd!"
-          ],
-          "errorIndex": 1,
-          "correction": "zal ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Morgen zal ik je helpen, beloofd!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Morgen ik zal je helpen, beloofd!",
+              "correct": false,
+              "feedback": "Inversão depois de «Morgen»."
+            }
+          ]
         },
         {
           "id": "s4-u03-l022-e08",

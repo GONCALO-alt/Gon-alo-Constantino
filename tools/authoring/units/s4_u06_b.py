@@ -81,7 +81,7 @@ L(13, "O que vestir", "Representatieve kleding: netjes, maar niet te formeel.",
     TR("pt-nl","Há um código de vestuário?", ["Is er een dresscode","Is er een dresscode?"], "Is er…?", ["v-dresscode"]),
     DL([("Kandidaat","Is er een dresscode voor het gesprek?","Há código de vestuário para a entrevista?"),("Recruiter","","")], ["*Nee hoor, gewoon netjes. Een pak is niet nodig.","Ja, de dresscode is morgen.|Não faz sentido.","Ik draag een colbert.|Não responde."], "Resposta típica neerlandesa: informal mas cuidado.", ["v-dresscode","v-netjes"]),
     FB("Voor een gesprek bij een bank draag je ___ kleding.", ["representatieve"], "Adjetivo antes de nome sem artigo: representatieve.", ["v-representatief"], choices=["representatieve","representatief","netje"], tr="Para uma entrevista num banco vestes roupa apresentável."),
-    FE(["Je","ziet","netjes","er","uit."], 2, "er", "Ordem: Je ziet er netjes uit.", ["v-eruitzien"]),
+    MC("Qual é a ordem correta?", ["*Je ziet er netjes uit.","Je ziet netjes er uit.|Ordem: Je ziet er netjes uit."], "Ordem: Je ziet er netjes uit.", ["v-eruitzien"]),
     LI("Bij een start-up is een spijkerbroek meestal geen probleem.", ["Bij een start-up is een spijkerbroek meestal geen probleem","Bij een startup is een spijkerbroek meestal geen probleem"], "Numa start-up, calças de ganga normalmente não são problema.", "meestal = normalmente.", ["v-dresscode"]),
     WO("Usa roupa apresentável.", ["Draag","representatieve","kleding"], "Imperativo.", ["v-representatief"]),
   ], diff=3, mins=6)

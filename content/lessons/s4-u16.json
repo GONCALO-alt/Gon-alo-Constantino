@@ -4718,21 +4718,26 @@
         },
         {
           "id": "s4-u16-l016-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Morgen meld ik me aan.",
           "vocabRefs": [
             "v-aanmelden"
           ],
-          "tokens": [
-            "Morgen",
-            "ik",
-            "meld",
-            "me",
-            "aan."
-          ],
-          "errorIndex": 1,
-          "correction": "meld"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Morgen meld ik me aan.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Morgen ik meld me aan.",
+              "correct": false,
+              "feedback": "Inversão: Morgen meld ik me aan."
+            }
+          ]
         },
         {
           "id": "s4-u16-l016-e07",

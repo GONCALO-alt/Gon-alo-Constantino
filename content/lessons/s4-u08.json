@@ -2939,23 +2939,26 @@
         },
         {
           "id": "s4-u08-l010-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Na subordinada: …dat hij niet kwam.",
           "vocabRefs": [
             "v-verbaasd"
           ],
-          "tokens": [
-            "Ik",
-            "was",
-            "verbaasd",
-            "dat",
-            "hij",
-            "kwam",
-            "niet."
-          ],
-          "errorIndex": 5,
-          "correction": "niet kwam"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik was verbaasd dat hij niet kwam.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik was verbaasd dat hij kwam niet.",
+              "correct": false,
+              "feedback": "Na subordinada: …dat hij niet kwam."
+            }
+          ]
         },
         {
           "id": "s4-u08-l010-e09",
@@ -6132,20 +6135,26 @@
         },
         {
           "id": "s4-u08-l020-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem: Ik voel me rot.",
           "vocabRefs": [
             "v-zich-rot-voelen"
           ],
-          "tokens": [
-            "Ik",
-            "voel",
-            "rot",
-            "me."
-          ],
-          "errorIndex": 2,
-          "correction": "me"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik voel me rot.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik voel rot me.",
+              "correct": false,
+              "feedback": "Ordem: Ik voel me rot."
+            }
+          ]
         },
         {
           "id": "s4-u08-l020-e09",
@@ -6682,20 +6691,26 @@
         },
         {
           "id": "s4-u08-l022-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Enerzijds».",
           "vocabRefs": [
             "v-enerzijds"
           ],
-          "tokens": [
-            "Enerzijds",
-            "ik",
-            "ben",
-            "blij."
-          ],
-          "errorIndex": 1,
-          "correction": "ben ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Enerzijds ben ik blij.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Enerzijds ik ben blij.",
+              "correct": false,
+              "feedback": "Inversão depois de «Enerzijds»."
+            }
+          ]
         },
         {
           "id": "s4-u08-l022-e07",

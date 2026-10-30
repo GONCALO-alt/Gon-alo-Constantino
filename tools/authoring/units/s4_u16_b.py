@@ -141,7 +141,7 @@ L(16, "Reflexivos com modais e subordinadas", "Ik weet niet of ik me kan aanmeld
     BS("Quero fixar-me aqui.", ["Ik","wil","me","hier","vestigen","mezelf"], ["Ik wil me hier vestigen"], "Pronome logo depois do modal.", ["v-zich-vestigen"]),
     BS("Ele diz que se aborrece.", ["Hij","zegt","dat","hij","zich","verveelt","hem"], ["Hij zegt dat hij zich verveelt"], "Subordinada: sujeito + zich.", ["v-zich-vervelen"]),
     TR("pt-nl","Apercebi-me de que estava atrasado.", ["Ik realiseerde me dat ik te laat was","Ik realiseerde mij dat ik te laat was"], "zich realiseren dat.", ["v-zich-realiseren"]),
-    FE(["Morgen","ik","meld","me","aan."], 1, "meld", "Inversão: Morgen meld ik me aan.", ["v-aanmelden"]),
+    MC("Qual é a ordem correta?", ["*Morgen meld ik me aan.","Morgen ik meld me aan.|Inversão: Morgen meld ik me aan."], "Inversão: Morgen meld ik me aan.", ["v-aanmelden"]),
     FB("Ik kan ___ zijn naam niet herinneren.", ["me"], "Pronome depois do modal.", ["v-zich-herinneren"], choices=["me","mezelf","mij zelf"], tr="Não me consigo lembrar do nome dele."),
     LI("Weet je of ze zich al heeft aangemeld?", ["Weet je of ze zich al heeft aangemeld","Weet je of ze zich al aangemeld heeft"], "Sabes se ela já se inscreveu?", "Subordinada.", ["v-aanmelden"]),
     WO("Não me lembro disso.", ["Ik","herinner","me","dat","niet"], "Ordem.", ["v-zich-herinneren"]),

@@ -20,7 +20,7 @@ L(10, "Quando eu era pequeno", "Toen ik klein was, speelde ik altijd buiten.",
     CJ("wonen","mijn opa","Mijn opa ___ in een klein dorp.", ["woonde"], "wonen → woonde.", ["v-woonde"], tense="passado-simples"),
     TR("pt-nl","Quando eu era pequeno, morava em Braga.", ["Toen ik klein was, woonde ik in Braga","Toen ik klein was woonde ik in Braga"], "toen + verbo no fim, depois inversão.", ["v-toen-ik-klein-was","v-woonde"]),
     TR("nl-pt","Ik had een gelukkige jeugd.", ["Tive uma infância feliz","Eu tive uma infância feliz"], "jeugd = infância/juventude.", ["v-jeugd"]),
-    FE(["Toen","ik","klein","was,","ik","had","een","hond."], 4, "had ik", "Depois da oração com toen: verbo + sujeito (had ik).", ["v-had"]),
+    MC("Qual é a ordem correta?", ["*Toen ik klein was, had ik een hond.","Toen ik klein was, ik had een hond.|Depois da oração com toen: verbo + sujeito (had ik)."], "Depois da oração com toen: verbo + sujeito (had ik).", ["v-had"]),
     LI("Elke zomer gingen we naar het strand.", ["Elke zomer gingen we naar het strand"], "Todos os verões íamos à praia.", "gaan → ging/gingen.", ["v-elke-zomer"]),
     SW("Descreva a sua infância em 4–5 frases: onde morava, com que brincava, o que fazia no verão.", ["Toen ik klein was, woonde ik in een dorp bij Viseu. Ik had niet veel speelgoed, maar ik speelde altijd buiten met mijn neven. We speelden verstoppertje in het bos. Elke zomer gingen we naar de zee in Figueira da Foz."], ["Use o imperfectum", "Use «toen ik klein was» ou «vroeger»", "Inversão correta"], 30, "Memórias de infância.", ["v-toen-ik-klein-was","v-jeugd"]),
   ], diff=3, mins=7)
@@ -165,7 +165,7 @@ L(17, "Antigamente era diferente", "Vroeger was alles anders: geen internet, gee
     CO("text","Opa vertelt", "Toen ik twintig was, hadden we thuis geen telefoon. Als ik mijn verloofde wilde spreken, ging ik naar de telefooncel op de hoek. Je betaalde met muntjes en na drie minuten werd het gesprek afgebroken. Tegenwoordig appen jongeren de hele dag. Dat is handig, maar ik vond die brieven van vroeger romantischer.",
        [("Onde telefonava o avô?", ["*Na cabine da esquina","Em casa","No trabalho"]),("Como se pagava?", ["*Com moedas","Com cartão","Não se pagava"]),("O que acha o avô mais romântico?", ["*As cartas de antigamente","As mensagens","As chamadas longas"])],
        "Contraste passado/presente.", ["v-telefooncel","v-tegenwoordig"]),
-    FE(["Tegenwoordig","iedereen","heeft","een","mobiel."], 1, "heeft iedereen", "Inversão: Tegenwoordig heeft iedereen…", ["v-tegenwoordig"]),
+    MC("Qual é a ordem correta?", ["*Tegenwoordig heeft iedereen een mobiel.","Tegenwoordig iedereen heeft een mobiel.|Inversão: Tegenwoordig heeft iedereen…"], "Inversão: Tegenwoordig heeft iedereen…", ["v-tegenwoordig"]),
     LI("Vroeger schreven we elkaar brieven.", ["Vroeger schreven we elkaar brieven"], "Antigamente escrevíamos cartas uns aos outros.", "schrijven → schreven.", ["v-vroeger"]),
   ], diff=3, mins=7)
 
@@ -263,7 +263,7 @@ L(22, "Prática: a minha história no passado", "Een verhaal schrijven met begin
     MC("Qual conector liga o passado ao presente?", ["*Sindsdien","Ineens|Marca surpresa.","Toen|Marca sequência."], "sindsdien + presente: Sindsdien woon ik hier.", ["v-sindsdien"]),
     TR("pt-nl","Desde então somos bons amigos.", ["Sindsdien zijn we goede vrienden","Sindsdien zijn wij goede vrienden"], "sindsdien + presente.", ["v-sindsdien"]),
     TR("nl-pt","Gelukkig liep het goed af.", ["Felizmente acabou bem","Felizmente correu bem"], "aflopen = acabar.", ["v-afloop-goed"]),
-    FE(["Op","een","dag","ik","kreeg","een","brief."], 3, "kreeg ik", "Inversão depois de «Op een dag».", ["v-op-een-dag"]),
+    MC("Qual é a ordem correta?", ["*Op een dag kreeg ik een brief.","Op een dag ik kreeg een brief.|Inversão depois de «Op een dag»."], "Inversão depois de «Op een dag».", ["v-op-een-dag"]),
     BS("Um dia conheci um português no comboio.", ["Op","een","dag","ontmoette","ik","een","Portugees","in","de","trein","ontmoet"], ["Op een dag ontmoette ik een Portugees in de trein"], "ontmoeten → ontmoette; inversão.", ["v-op-een-dag"]),
     CO("text","Een ontmoeting", "Op een dag zat ik in de trein van Utrecht naar Amsterdam. Naast mij zat een vrouw die een Portugese krant las. Ik vroeg in het Portugees of ze uit Portugal kwam. Ineens begon ze te lachen: ze kwam uit hetzelfde dorp als mijn moeder! We praatten de hele reis. Sindsdien spreken we elke maand af om samen Portugees te koken.",
        [("O que lia a senhora?", ["*Um jornal português","Um livro neerlandês","Uma revista"]),("Porque se riu?", ["*Era da mesma aldeia que a mãe do narrador","Achou a pergunta estranha","Não percebeu"]),("O que fazem desde então?", ["*Encontram-se todos os meses para cozinhar","Viajam juntas de comboio","Escrevem cartas"])],

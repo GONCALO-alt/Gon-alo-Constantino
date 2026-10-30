@@ -3203,20 +3203,26 @@
         },
         {
           "id": "s4-u12-l011-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão.",
           "vocabRefs": [
             "v-helaas"
           ],
-          "tokens": [
-            "Helaas",
-            "ik",
-            "ben",
-            "verhinderd."
-          ],
-          "errorIndex": 1,
-          "correction": "ben ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Helaas ben ik verhinderd.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Helaas ik ben verhinderd.",
+              "correct": false,
+              "feedback": "Inversão."
+            }
+          ]
         },
         {
           "id": "s4-u12-l011-e07",
@@ -5780,20 +5786,26 @@
         },
         {
           "id": "s4-u12-l019-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Graag».",
           "vocabRefs": [
             "v-taalschool"
           ],
-          "tokens": [
-            "Graag",
-            "ik",
-            "ontvang",
-            "informatie."
-          ],
-          "errorIndex": 1,
-          "correction": "ontvang ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Graag ontvang ik informatie.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Graag ik ontvang informatie.",
+              "correct": false,
+              "feedback": "Inversão depois de «Graag»."
+            }
+          ]
         },
         {
           "id": "s4-u12-l019-e09",

@@ -5139,22 +5139,26 @@
         },
         {
           "id": "s5-u11-l017-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: …dat je boos bent.",
           "vocabRefs": [
             "v-erkennen-gevoel"
           ],
-          "tokens": [
-            "Ik",
-            "begrijp",
-            "dat",
-            "je",
-            "bent",
-            "boos."
-          ],
-          "errorIndex": 4,
-          "correction": "boos bent"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik begrijp dat je boos bent.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik begrijp dat je bent boos.",
+              "correct": false,
+              "feedback": "Verbo no fim: …dat je boos bent."
+            }
+          ]
         },
         {
           "id": "s5-u11-l017-e08",

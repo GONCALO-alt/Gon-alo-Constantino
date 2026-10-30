@@ -3786,23 +3786,26 @@
         },
         {
           "id": "s4-u01-l013-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de «Zondag» vem o verbo: Zondag ben ik…",
           "vocabRefs": [
             "v-oma"
           ],
-          "tokens": [
-            "Zondag",
-            "ik",
-            "ben",
-            "naar",
-            "mijn",
-            "oma",
-            "gegaan."
-          ],
-          "errorIndex": 1,
-          "correction": "ben ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zondag ben ik naar mijn oma gegaan.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zondag ik ben naar mijn oma gegaan.",
+              "correct": false,
+              "feedback": "Depois de «Zondag» vem o verbo: Zondag ben ik…"
+            }
+          ]
         },
         {
           "id": "s4-u01-l013-e07",
@@ -6565,22 +6568,26 @@
         },
         {
           "id": "s4-u01-l022-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de «Gelukkig» na primeira posição: inversão.",
           "vocabRefs": [
             "v-gelukkig-adv"
           ],
-          "tokens": [
-            "Gelukkig",
-            "ik",
-            "heb",
-            "mijn",
-            "tas",
-            "teruggevonden."
-          ],
-          "errorIndex": 1,
-          "correction": "heb ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Gelukkig heb ik mijn tas teruggevonden.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gelukkig ik heb mijn tas teruggevonden.",
+              "correct": false,
+              "feedback": "Depois de «Gelukkig» na primeira posição: inversão."
+            }
+          ]
         },
         {
           "id": "s4-u01-l022-e07",

@@ -4621,23 +4621,26 @@
         },
         {
           "id": "s5-u02-l015-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: …dat slaap belangrijk is.",
           "vocabRefs": [
             "v-uit-onderzoek-blijkt"
           ],
-          "tokens": [
-            "Uit",
-            "onderzoek",
-            "blijkt",
-            "dat",
-            "slaap",
-            "is",
-            "belangrijk."
-          ],
-          "errorIndex": 5,
-          "correction": "belangrijk is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Uit onderzoek blijkt dat slaap belangrijk is.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Uit onderzoek blijkt dat slaap is belangrijk.",
+              "correct": false,
+              "feedback": "Verbo no fim: …dat slaap belangrijk is."
+            }
+          ]
         },
         {
           "id": "s5-u02-l015-e08",

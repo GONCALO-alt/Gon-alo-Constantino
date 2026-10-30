@@ -5248,22 +5248,26 @@
         },
         {
           "id": "s4-u04-l017-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Om tien uur».",
           "vocabRefs": [
             "v-overleg"
           ],
-          "tokens": [
-            "Om",
-            "tien",
-            "uur",
-            "ik",
-            "heb",
-            "overleg."
-          ],
-          "errorIndex": 3,
-          "correction": "heb ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Om tien uur heb ik overleg.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Om tien uur ik heb overleg.",
+              "correct": false,
+              "feedback": "Inversão depois de «Om tien uur»."
+            }
+          ]
         },
         {
           "id": "s4-u04-l017-e08",
@@ -5891,21 +5895,26 @@
         },
         {
           "id": "s4-u04-l019-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem: doet het niet.",
           "vocabRefs": [
             "v-het-doen"
           ],
-          "tokens": [
-            "De",
-            "printer",
-            "doet",
-            "niet",
-            "het."
-          ],
-          "errorIndex": 3,
-          "correction": "het niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De printer doet het niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De printer doet niet het.",
+              "correct": false,
+              "feedback": "Ordem: doet het niet."
+            }
+          ]
         },
         {
           "id": "s4-u04-l019-e08",

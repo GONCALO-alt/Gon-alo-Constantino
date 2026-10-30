@@ -3156,22 +3156,26 @@
         },
         {
           "id": "s4-u09-l011-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «In principe».",
           "vocabRefs": [
             "v-in-principe"
           ],
-          "tokens": [
-            "In",
-            "principe",
-            "ik",
-            "ben",
-            "het",
-            "eens."
-          ],
-          "errorIndex": 2,
-          "correction": "ben ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "In principe ben ik het eens.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "In principe ik ben het eens.",
+              "correct": false,
+              "feedback": "Inversão depois de «In principe»."
+            }
+          ]
         },
         {
           "id": "s4-u09-l011-e07",
@@ -3836,22 +3840,26 @@
         },
         {
           "id": "s4-u09-l013-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de mits, verbo no fim: …mits het niet regent.",
           "vocabRefs": [
             "v-mits"
           ],
-          "tokens": [
-            "Ik",
-            "kom,",
-            "mits",
-            "het",
-            "regent",
-            "niet."
-          ],
-          "errorIndex": 4,
-          "correction": "niet regent"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik kom, mits het niet regent.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik kom, mits het regent niet.",
+              "correct": false,
+              "feedback": "Depois de mits, verbo no fim: …mits het niet regent."
+            }
+          ]
         },
         {
           "id": "s4-u09-l013-e08",
@@ -6006,23 +6014,26 @@
         },
         {
           "id": "s4-u09-l020-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Na subordinada: …dat je gelijk had.",
           "vocabRefs": [
             "v-toegeven"
           ],
-          "tokens": [
-            "Ik",
-            "geef",
-            "toe",
-            "dat",
-            "je",
-            "had",
-            "gelijk."
-          ],
-          "errorIndex": 5,
-          "correction": "gelijk had"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik geef toe dat je gelijk had.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik geef toe dat je had gelijk.",
+              "correct": false,
+              "feedback": "Na subordinada: …dat je gelijk had."
+            }
+          ]
         },
         {
           "id": "s4-u09-l020-e08",
@@ -6342,20 +6353,26 @@
         },
         {
           "id": "s4-u09-l021-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Zo».",
           "vocabRefs": [
             "v-iedereen-tevreden"
           ],
-          "tokens": [
-            "Zo",
-            "iedereen",
-            "is",
-            "tevreden."
-          ],
-          "errorIndex": 1,
-          "correction": "is iedereen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zo is iedereen tevreden.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zo iedereen is tevreden.",
+              "correct": false,
+              "feedback": "Inversão depois de «Zo»."
+            }
+          ]
         },
         {
           "id": "s4-u09-l021-e08",

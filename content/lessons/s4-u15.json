@@ -3232,20 +3232,26 @@
         },
         {
           "id": "s4-u15-l011-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Daarnaast is het goedkoop.",
           "vocabRefs": [
             "v-daarnaast"
           ],
-          "tokens": [
-            "Daarnaast",
-            "het",
-            "is",
-            "goedkoop."
-          ],
-          "errorIndex": 1,
-          "correction": "is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Daarnaast is het goedkoop.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Daarnaast het is goedkoop.",
+              "correct": false,
+              "feedback": "Inversão: Daarnaast is het goedkoop."
+            }
+          ]
         },
         {
           "id": "s4-u15-l011-e07",
@@ -3569,23 +3575,26 @@
         },
         {
           "id": "s4-u15-l012-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Desondanks gingen we…",
           "vocabRefs": [
             "v-desondanks"
           ],
-          "tokens": [
-            "Het",
-            "was",
-            "koud.",
-            "Desondanks",
-            "we",
-            "gingen",
-            "zwemmen."
-          ],
-          "errorIndex": 4,
-          "correction": "gingen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het was koud. Desondanks gingen we zwemmen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het was koud. Desondanks we gingen zwemmen.",
+              "correct": false,
+              "feedback": "Inversão: Desondanks gingen we…"
+            }
+          ]
         },
         {
           "id": "s4-u15-l012-e07",
@@ -4523,23 +4532,26 @@
         },
         {
           "id": "s4-u15-l015-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de anders: anders missen we…",
           "vocabRefs": [
             "v-anders"
           ],
-          "tokens": [
-            "Schiet",
-            "op,",
-            "anders",
-            "we",
-            "missen",
-            "de",
-            "trein."
-          ],
-          "errorIndex": 3,
-          "correction": "missen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Schiet op, anders missen we de trein.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Schiet op, anders we missen de trein.",
+              "correct": false,
+              "feedback": "Inversão depois de anders: anders missen we…"
+            }
+          ]
         },
         {
           "id": "s4-u15-l015-e07",
@@ -4860,21 +4872,26 @@
         },
         {
           "id": "s4-u15-l016-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Ondertussen kook ik.",
           "vocabRefs": [
             "v-ondertussen"
           ],
-          "tokens": [
-            "Ondertussen",
-            "ik",
-            "kook",
-            "het",
-            "eten."
-          ],
-          "errorIndex": 1,
-          "correction": "kook"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ondertussen kook ik het eten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ondertussen ik kook het eten.",
+              "correct": false,
+              "feedback": "Inversão: Ondertussen kook ik."
+            }
+          ]
         },
         {
           "id": "s4-u15-l016-e08",
@@ -5164,21 +5181,26 @@
         },
         {
           "id": "s4-u15-l017-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Samengevat is het project geslaagd.",
           "vocabRefs": [
             "v-samengevat"
           ],
-          "tokens": [
-            "Samengevat",
-            "het",
-            "project",
-            "is",
-            "geslaagd."
-          ],
-          "errorIndex": 1,
-          "correction": "is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Samengevat is het project geslaagd.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Samengevat het project is geslaagd.",
+              "correct": false,
+              "feedback": "Inversão: Samengevat is het project geslaagd."
+            }
+          ]
         },
         {
           "id": "s4-u15-l017-e07",
@@ -5470,21 +5492,26 @@
         },
         {
           "id": "s4-u15-l018-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Verder wil ik…",
           "vocabRefs": [
             "v-verder"
           ],
-          "tokens": [
-            "Verder",
-            "ik",
-            "wil",
-            "jullie",
-            "bedanken."
-          ],
-          "errorIndex": 1,
-          "correction": "wil"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Verder wil ik jullie bedanken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Verder ik wil jullie bedanken.",
+              "correct": false,
+              "feedback": "Inversão: Verder wil ik…"
+            }
+          ]
         },
         {
           "id": "s4-u15-l018-e07",
@@ -5764,23 +5791,26 @@
         },
         {
           "id": "s4-u15-l019-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Even later stond hij…",
           "vocabRefs": [
             "v-even-later"
           ],
-          "tokens": [
-            "Even",
-            "later",
-            "hij",
-            "stond",
-            "voor",
-            "de",
-            "deur."
-          ],
-          "errorIndex": 2,
-          "correction": "stond"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Even later stond hij voor de deur.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Even later hij stond voor de deur.",
+              "correct": false,
+              "feedback": "Inversão: Even later stond hij…"
+            }
+          ]
         },
         {
           "id": "s4-u15-l019-e06",
@@ -6119,24 +6149,26 @@
         },
         {
           "id": "s4-u15-l020-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Naar mijn mening is het…",
           "vocabRefs": [
             "v-naar-mijn-mening"
           ],
-          "tokens": [
-            "Naar",
-            "mijn",
-            "mening",
-            "het",
-            "is",
-            "een",
-            "goed",
-            "idee."
-          ],
-          "errorIndex": 3,
-          "correction": "is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Naar mijn mening is het een goed idee.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Naar mijn mening het is een goed idee.",
+              "correct": false,
+              "feedback": "Inversão: Naar mijn mening is het…"
+            }
+          ]
         },
         {
           "id": "s4-u15-l020-e07",
@@ -6458,22 +6490,26 @@
         },
         {
           "id": "s4-u15-l021-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Ondanks de regen gingen we…",
           "vocabRefs": [
             "v-ondanks"
           ],
-          "tokens": [
-            "Ondanks",
-            "de",
-            "regen,",
-            "we",
-            "gingen",
-            "fietsen."
-          ],
-          "errorIndex": 3,
-          "correction": "gingen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ondanks de regen gingen we fietsen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ondanks de regen, we gingen fietsen.",
+              "correct": false,
+              "feedback": "Inversão: Ondanks de regen gingen we…"
+            }
+          ]
         },
         {
           "id": "s4-u15-l021-e09",

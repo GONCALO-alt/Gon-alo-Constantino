@@ -3813,22 +3813,26 @@
         },
         {
           "id": "s4-u14-l013-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois da subordinada.",
           "vocabRefs": [
             "v-aangezien"
           ],
-          "tokens": [
-            "Aangezien",
-            "het",
-            "regent,",
-            "we",
-            "blijven",
-            "binnen."
-          ],
-          "errorIndex": 3,
-          "correction": "blijven we"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Aangezien het regent, blijven we binnen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Aangezien het regent, we blijven binnen.",
+              "correct": false,
+              "feedback": "Inversão depois da subordinada."
+            }
+          ]
         },
         {
           "id": "s4-u14-l013-e08",
@@ -4147,23 +4151,26 @@
         },
         {
           "id": "s4-u14-l014-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão (e sem -t com je depois do verbo).",
           "vocabRefs": [
             "v-zolang"
           ],
-          "tokens": [
-            "Zolang",
-            "je",
-            "hier",
-            "woont,",
-            "je",
-            "betaalt",
-            "huur."
-          ],
-          "errorIndex": 4,
-          "correction": "betaal je"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zolang je hier woont, betaal je huur.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zolang je hier woont, je betaalt huur.",
+              "correct": false,
+              "feedback": "Inversão (e sem -t com je depois do verbo)."
+            }
+          ]
         },
         {
           "id": "s4-u14-l014-e08",
@@ -5003,24 +5010,26 @@
         },
         {
           "id": "s4-u14-l017-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois da subordinada.",
           "vocabRefs": [
             "v-nadat"
           ],
-          "tokens": [
-            "Omdat",
-            "het",
-            "druk",
-            "was,",
-            "we",
-            "kwamen",
-            "te",
-            "laat."
-          ],
-          "errorIndex": 4,
-          "correction": "kwamen we"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Omdat het druk was, kwamen we te laat.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Omdat het druk was, we kwamen te laat.",
+              "correct": false,
+              "feedback": "Inversão depois da subordinada."
+            }
+          ]
         },
         {
           "id": "s4-u14-l017-e06",
@@ -6365,23 +6374,26 @@
         },
         {
           "id": "s4-u14-l021-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de toen-zin.",
           "vocabRefs": [
             "v-toen-conj"
           ],
-          "tokens": [
-            "Toen",
-            "ik",
-            "aankwam,",
-            "ik",
-            "zag",
-            "veel",
-            "mensen."
-          ],
-          "errorIndex": 3,
-          "correction": "zag ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Toen ik aankwam, zag ik veel mensen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Toen ik aankwam, ik zag veel mensen.",
+              "correct": false,
+              "feedback": "Inversão depois de toen-zin."
+            }
+          ]
         },
         {
           "id": "s4-u14-l021-e08",
