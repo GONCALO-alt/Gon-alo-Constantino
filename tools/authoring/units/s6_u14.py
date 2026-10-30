@@ -90,11 +90,10 @@ L(4, "Verbos com preposição fixa", "afhangen van, bestaan uit, deelnemen aan, 
 
 L(5, "Colocações em contexto profissional", "een afspraak maken, een deadline halen, verantwoordelijkheid nemen",
   ["Usar colocações típicas do mundo do trabalho"],
-  vocab=[V("v-deadline-halen","een deadline halen","cumprir um prazo","expression"), V("v-verantwoordelijkheid-nemen","verantwoordelijkheid nemen","assumir responsabilidade","expression"),
-         V("v-prioriteit-geven","prioriteit geven aan","dar prioridade a","expression"), V("v-beslag-leggen","tijd in beslag nemen","ocupar tempo","expression"),
+  vocab=[V("v-deadline-halen","een deadline halen","cumprir um prazo","expression"), V("v-prioriteit-geven","prioriteit geven aan","dar prioridade a","expression"), V("v-beslag-leggen","tijd in beslag nemen","ocupar tempo","expression"),
          V("v-contact-opnemen","contact opnemen met","contactar","expression")],
   ex=[("We hebben de deadline net gehaald.","Cumprimos o prazo mesmo à justa."),("Hij neemt verantwoordelijkheid voor zijn fouten.","Ele assume a responsabilidade pelos erros."),("We geven prioriteit aan veiligheid.","Damos prioridade à segurança."),("Neem gerust contact met ons op.","Contacte-nos à vontade.")],
-  review=["v-afspraak-maken","v-besluit-nemen","v-vraag-stellen"],
+  review=["v-verantwoordelijkheid-nemen","v-afspraak-maken","v-besluit-nemen","v-vraag-stellen"],
   cefr=C, exs=[
     MA([("een deadline halen","cumprir um prazo"),("verantwoordelijkheid nemen","assumir responsabilidade"),("prioriteit geven aan","dar prioridade a"),("tijd in beslag nemen","ocupar tempo"),("contact opnemen met","contactar")], "Trabalho.", ["v-deadline-halen","v-verantwoordelijkheid-nemen","v-prioriteit-geven","v-beslag-leggen","v-contact-opnemen"]),
     FB("We hebben de deadline niet ___.", ["gehaald"], "deadline halen.", ["v-deadline-halen"], choices=["gehaald","gemaakt","gedaan"], tr="Não cumprimos o prazo."),

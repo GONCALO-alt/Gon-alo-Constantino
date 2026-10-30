@@ -47,11 +47,11 @@ L(2, "Inversão e posição do sujeito", "Wat ik niet begrijp, is… Daarom heef
 L(3, "Infinitivo com te e om … te", "Het is belangrijk om… Ik probeer… te… zonder te…",
   ["Usar construções de infinitivo complexas"],
   vocab=[V("v-zonder-te","zonder … te","sem …","expression"), V("v-in-plaats-van-te","in plaats van … te","em vez de …","expression"),
-         V("v-het-is-de-bedoeling","het is de bedoeling om … te","a ideia é …","expression"), V("v-voorkomen","voorkomen","evitar|prevenir","verb")],
+         V("v-het-is-de-bedoeling","het is de bedoeling om … te","a ideia é …","expression")],
   ex=[("Het is de bedoeling om om negen uur te beginnen.","A ideia é começar às nove."),("Hij vertrok zonder iets te zeggen.","Ele saiu sem dizer nada."),("In plaats van te klagen, kun je helpen.","Em vez de te queixares, podes ajudar."),("Om problemen te voorkomen, controleren we alles.","Para evitar problemas, verificamos tudo.")],
   gram=[G("g-om-te-zonder","Om/zonder/in plaats van + te","**om … te** = para (finalidade): *Om problemen te voorkomen…* **zonder … te** = sem: *zonder iets te zeggen*. **in plaats van … te** = em vez de. Separáveis: **te** entre partícula e verbo: *op te bellen, mee te nemen*.",
     [("Ik ga naar huis om uit te rusten.","Vou para casa para descansar.")])],
-  review=["v-proberen","v-in-plaats-van","v-te"],
+  review=["v-voorkomen","v-proberen","v-in-plaats-van","v-te"],
   cefr=C, exs=[
     MA([("zonder … te","sem …"),("in plaats van … te","em vez de"),("het is de bedoeling om … te","a ideia é"),("voorkomen","evitar")], "Infinitivo.", ["v-zonder-te","v-in-plaats-van-te","v-het-is-de-bedoeling","v-voorkomen"]),
     WO("Ele saiu sem dizer nada.", ["Hij","vertrok","zonder","iets","te","zeggen"], "zonder … te.", ["v-zonder-te"]),

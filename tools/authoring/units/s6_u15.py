@@ -65,12 +65,12 @@ L(3, "A carta formal de reclamação", "Een klachtbrief schrijven aan een bedrij
 
 L(4, "Resumo e paráfrase", "Samenvatten zonder te kopiëren.",
   ["Resumir e parafrasear um texto com as próprias palavras"],
-  vocab=[V("v-parafraseren","parafraseren","parafrasear","verb"), V("v-kopieren","kopiëren","copiar","verb"),
+  vocab=[V("v-kopieren","kopiëren","copiar","verb"),
          V("v-in-eigen-woorden","in je eigen woorden","por palavras tuas","expression"), V("v-hoofdpunt","hoofdpunt","ponto principal","noun","het")],
   ex=[("Vat de tekst samen in je eigen woorden.","Resume o texto por palavras tuas."),("Kopieer geen hele zinnen.","Não copies frases inteiras."),("Noem alleen de hoofdpunten.","Refere só os pontos principais."),("Probeer de zin te parafraseren.","Tenta parafrasear a frase.")],
   gram=[G("g-samenvatten","Como resumir","1) Leia o texto todo. 2) Sublinhe a **ideia principal** de cada parágrafo. 3) Escreva-as **por palavras suas**, sem exemplos nem pormenores. 4) Use conectores para ligar as ideias. Um resumo tem cerca de **1/4 a 1/3** do original.",
     [("De schrijver stelt dat… / Volgens de auteur… / Het artikel gaat over…","O autor defende que… / Segundo o autor… / O artigo trata de…")])],
-  review=["v-samenvatting","v-kern","v-hoofdzaak","v-bijzaak"],
+  review=["v-parafraseren","v-samenvatting","v-kern","v-hoofdzaak","v-bijzaak"],
   cefr=C, exs=[
     MA([("parafraseren","parafrasear"),("kopiëren","copiar"),("in je eigen woorden","por palavras tuas"),("hoofdpunt","ponto principal")], "Resumir.", ["v-parafraseren","v-kopieren","v-in-eigen-woorden","v-hoofdpunt"]),
     MC("Paráfrase de «Het aantal fietsers is de afgelopen jaren fors gestegen»:", ["*Er fietsen nu veel meer mensen dan vroeger.","Het aantal fietsers is fors gestegen.|Cópia.","Fietsen is leuk.|Muda o sentido."], "Palavras próprias.", ["v-parafraseren"]),

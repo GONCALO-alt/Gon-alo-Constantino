@@ -70,10 +70,9 @@ L(3, "Simulação: problema com o senhorio", "Van melding tot Huurcommissie",
 
 L(4, "Simulação: acidente de trânsito", "Schadeformulier, getuigen, verzekering",
   ["Lidar com um pequeno acidente e o seguro"],
-  vocab=[V("v-aanrijding","aanrijding","colisão","noun","de"), V("v-schadeformulier","schadeformulier","declaração amigável","noun","het"),
-         V("v-verzekering","verzekering","seguro","noun","de"), V("v-aansprakelijk","aansprakelijk","responsável (legalmente)","adjective")],
+  vocab=[V("v-verzekering","verzekering","seguro","noun","de"), V("v-aansprakelijk","aansprakelijk","responsável (legalmente)","adjective")],
   ex=[("Ik heb een kleine aanrijding gehad.","Tive uma pequena colisão."),("We vullen samen het schadeformulier in.","Preenchemos juntos a declaração amigável."),("Mijn verzekering betaalt de schade.","O meu seguro paga os danos."),("Wie is aansprakelijk?","Quem é responsável?")],
-  review=["v-getuige","v-politie","v-ongeval","v-invullen"],
+  review=["v-schadeformulier","v-aanrijding","v-getuige","v-politie","v-ongeval","v-invullen"],
   cefr=C, exs=[
     MA([("aanrijding","colisão"),("schadeformulier","declaração amigável"),("verzekering","seguro"),("aansprakelijk","responsável")], "Acidente.", ["v-aanrijding","v-schadeformulier","v-verzekering","v-aansprakelijk"]),
     TR("pt-nl","Tive uma pequena colisão.", ["Ik heb een kleine aanrijding gehad","Ik had een kleine aanrijding"], "aanrijding.", ["v-aanrijding"]),
