@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s4-u16")
+C = "A2-B1"
+
+L(1, "Pronomes reflexivos", "me, je, zich, ons, je, zich",
+  ["Conjugar verbos reflexivos no presente"],
+  vocab=[V("v-zich-voelen","zich voelen","sentir-se","verb"), V("v-zich-wassen","zich wassen","lavar-se","verb"),
+         V("v-zich-aankleden","zich aankleden","vestir-se","verb",note="separável: ik kleed me aan"), V("v-zich","zich","se (reflexivo)","pronoun")],
+  ex=[("Ik voel me goed.","Sinto-me bem."),("Hoe voel je je?","Como te sentes?"),("Hij wast zich elke ochtend.","Ele lava-se todas as manhãs."),("We kleden ons snel aan.","Vestimo-nos depressa.")],
+  gram=[G("g-reflexief","Pronomes reflexivos","ik **me** · jij **je** · u **zich/u** · hij/zij **zich** · wij **ons** · jullie **je** · zij **zich**. Na frase principal, o pronome vem **logo depois do verbo** conjugado (ou do sujeito, se houver inversão): *Ik voel **me** goed. / Hoe voel je **je**?*",
+    [("Voelt u zich beter?","Sente-se melhor?"),("Ze voelen zich thuis.","Eles sentem-se em casa.")],
+    "Tal como em português («sinto-me»), mas a forma depende da pessoa de modo um pouco diferente: «zich» serve para ele, ela, eles e (muitas vezes) você.")],
+  review=["v-moe","v-goed","v-wassen"],
+  cefr=C, exs=[
+    MA([("ik … me","eu … me"),("hij … zich","ele … se"),("wij … ons","nós … nos"),("jullie … je","vocês … se")], "Pronomes.", ["v-zich"]),
+    CJ("zich voelen","ik","Ik voel ___ vandaag niet zo goed.", ["me","mij"], "ik → me.", ["v-zich-voelen"]),
+    CJ("zich voelen","wij","We voelen ___ hier erg thuis.", ["ons"], "wij → ons.", ["v-zich-voelen"]),
+    CJ("zich wassen","hij","Hij wast ___ elke ochtend.", ["zich"], "hij → zich.", ["v-zich-wassen"]),
+    TR("pt-nl","Como te sentes?", ["Hoe voel je je","Hoe voel jij je"], "voel je je.", ["v-zich-voelen"]),
+    TR("pt-nl","Sente-se melhor? (formal)", ["Voelt u zich beter","Voelt u zich al beter"], "u → zich.", ["v-zich-voelen"]),
+    FE(["Wij","voelen","zich","goed."], 2, "ons", "wij → ons.", ["v-zich"]),
+    WO("Vestimo-nos depressa.", ["We","kleden","ons","snel","aan"], "Separável: aan no fim.", ["v-zich-aankleden"]),
+    LI("Ik voel me een beetje ziek.", ["Ik voel me een beetje ziek","Ik voel mij een beetje ziek"], "Sinto-me um bocadinho doente.", "voel me.", ["v-zich-voelen"]),
+    MC("«Jullie» + verbo reflexivo usa…", ["*je","zich|É para hij/zij/zij (plural).","ons|É para wij."], "jullie → je.", ["v-zich"]),
+  ], diff=3, mins=6)
+
+L(2, "Reflexivos frequentes", "zich vergissen, zich herinneren, zich haasten, zich vervelen",
+  ["Usar reflexivos frequentes que não são reflexivos em português"],
+  vocab=[V("v-zich-vergissen","zich vergissen","enganar-se","verb"), V("v-zich-herinneren","zich herinneren","lembrar-se","verb"),
+         V("v-zich-haasten","zich haasten","apressar-se","verb"), V("v-zich-vervelen","zich vervelen","aborrecer-se","verb"),
+         V("v-zich-schamen","zich schamen","ter vergonha","verb")],
+  ex=[("Sorry, ik vergis me.","Desculpe, enganei-me."),("Ik herinner me haar naam niet.","Não me lembro do nome dela."),("Haast je niet!","Não te apresses!"),("De kinderen vervelen zich.","As crianças estão aborrecidas.")],
+  gram=[G("g-reflexief-nl-pt","Reflexivo cá, não reflexivo lá","Alguns verbos são reflexivos em neerlandês e não em português, ou vice-versa: *zich schamen* (ter vergonha), *zich vervelen* (estar aborrecido). Outros coincidem: *zich vergissen* (enganar-se), *zich herinneren* (lembrar-se).",
+    [("Ik schaam me.","Tenho vergonha."),("Verveel je je?","Estás aborrecido?")])],
+  review=["v-zich","v-vergeten","v-snel"],
+  cefr=C, exs=[
+    MA([("zich vergissen","enganar-se"),("zich herinneren","lembrar-se"),("zich haasten","apressar-se"),("zich vervelen","aborrecer-se"),("zich schamen","ter vergonha")], "Reflexivos.", ["v-zich-vergissen","v-zich-herinneren","v-zich-haasten","v-zich-vervelen","v-zich-schamen"]),
+    TR("pt-nl","Desculpe, enganei-me.", ["Sorry(,) ik vergis me","Sorry(,) ik heb me vergist","Pardon(,) ik vergis me"], "zich vergissen.", ["v-zich-vergissen"]),
+    TR("pt-nl","Não me lembro do nome dela.", ["Ik herinner me haar naam niet","Ik herinner mij haar naam niet"], "zich herinneren.", ["v-zich-herinneren"]),
+    TR("nl-pt","De kinderen vervelen zich.", ["As crianças estão aborrecidas","As crianças aborrecem-se","Os miúdos estão aborrecidos"], "zich vervelen.", ["v-zich-vervelen"]),
+    TR("pt-nl","Tenho vergonha.", ["Ik schaam me","Ik schaam mij"], "zich schamen.", ["v-zich-schamen"]),
+    FE(["Ik","verveel","mij","je."], 3, "Ik verveel me", "Só um pronome reflexivo: Ik verveel me.", ["v-zich-vervelen"]),
+    CJ("zich haasten","jij","Haast ___ niet, we hebben tijd.", ["je"], "Imperativo: haast je.", ["v-zich-haasten"]),
+    LI("Herinner je je die dag nog?", ["Herinner je je die dag nog","Herinner jij je die dag nog"], "Ainda te lembras desse dia?", "Duas vezes «je»: sujeito e reflexivo.", ["v-zich-herinneren"]),
+    MC("Em «Verveel je je?», os dois «je» são…", ["*sujeito (tu) e pronome reflexivo (te)","um erro de repetição|Não é erro.","um plural|Não."], "Sujeito + reflexivo.", ["v-zich-vervelen"]),
+    DL([("Ober","Dat is dan 24 euro.","São então 24 euros."),("Cliente","")], ["*Volgens mij vergist u zich: we hadden maar twee koffie.","Ik vergis het.|Errado: zich vergissen.","Ik herinner.|Incompleto."], "Apontar um erro com educação.", ["v-zich-vergissen"]),
+  ], diff=4, mins=7)
+
+L(3, "Posição de zich na frase", "Na inversão, no perfectum e na subordinada.",
+  ["Colocar o pronome reflexivo corretamente em vários tipos de frase"],
+  vocab=[V("v-zich-ergeren","zich ergeren (aan)","irritar-se (com)","verb"), V("v-zich-verheugen","zich verheugen (op)","estar ansioso por (coisa boa)","verb"),
+         V("v-zich-zorgen-maken","zich zorgen maken (over)","preocupar-se (com)","expression"), V("v-zich-afmelden","zich afmelden","cancelar a inscrição|avisar que não vai","verb")],
+  ex=[("Ik erger me aan het lawaai.","O barulho irrita-me."),("We verheugen ons op de vakantie.","Estamos ansiosos pelas férias."),("Maak je geen zorgen!","Não te preocupes!"),("Ik heb me afgemeld voor de cursus.","Cancelei a inscrição no curso.")],
+  gram=[G("g-zich-positie","Onde fica o reflexivo?","**Principal**: depois do verbo: *Ik erger **me**…* **Inversão**: depois do sujeito: *Morgen meld ik **me** af.* **Perfectum**: depois do auxiliar (ou do sujeito invertido); o reflexivo do perfectum usa **hebben**: *Ik **heb me** vergist.* **Subordinada**: logo depois do sujeito: *…omdat ik **me** zorgen maak.*",
+    [("Ik denk dat hij zich vergist.","Acho que ele se engana."),("Gisteren heb ik me afgemeld.","Ontem cancelei a inscrição.")])],
+  review=["v-zich","v-zich-vergissen","v-omdat"],
+  cefr=C, exs=[
+    MA([("zich ergeren aan","irritar-se com"),("zich verheugen op","estar ansioso por"),("zich zorgen maken","preocupar-se"),("zich afmelden","cancelar a inscrição")], "Reflexivos + preposição.", ["v-zich-ergeren","v-zich-verheugen","v-zich-zorgen-maken","v-zich-afmelden"]),
+    TR("pt-nl","Não te preocupes!", ["Maak je geen zorgen","Maak je maar geen zorgen"], "Imperativo reflexivo.", ["v-zich-zorgen-maken"]),
+    TR("pt-nl","Estamos ansiosos pelas férias.", ["We verheugen ons op de vakantie","Wij verheugen ons op de vakantie"], "zich verheugen op.", ["v-zich-verheugen"]),
+    WO("Ontem cancelei a inscrição.", ["Gisteren","heb","ik","me","afgemeld"], "Inversão + reflexivo depois do sujeito.", ["v-zich-afmelden"]),
+    WO("Acho que ele se engana.", ["Ik","denk","dat","hij","zich","vergist"], "Subordinada: zich depois do sujeito.", ["v-zich-vergissen"]),
+    FE(["Ik","ben","me","vergist."], 1, "heb", "Reflexivos fazem o perfectum com hebben: Ik heb me vergist.", ["v-zich-vergissen"]),
+    FB("Ik erger me ___ de vertraging.", ["aan"], "zich ergeren aan.", ["v-zich-ergeren"], choices=["aan","op","over"], tr="O atraso irrita-me."),
+    FB("Mijn moeder maakt zich zorgen ___ mij.", ["over"], "zich zorgen maken over.", ["v-zich-zorgen-maken"], choices=["over","aan","op"], tr="A minha mãe preocupa-se comigo."),
+    LI("Ik maak me zorgen omdat hij nog niet thuis is.", ["Ik maak me zorgen omdat hij nog niet thuis is","Ik maak mij zorgen omdat hij nog niet thuis is"], "Estou preocupado porque ele ainda não chegou a casa.", "zich zorgen maken.", ["v-zich-zorgen-maken"]),
+    MC("Onde fica «zich» em «Ik weet dat hij ___ ergert ___ het lawaai ___»?", ["*dat hij zich aan het lawaai ergert","dat hij ergert zich aan het lawaai|O verbo vai para o fim.","dat zich hij ergert|Ordem errada."], "Subordinada.", ["v-zich-ergeren"]),
+  ], diff=4, mins=7)
+
+L(4, "Reflexivos e rotina diária", "Ik scheer me, ik kleed me om, ik rust uit…",
+  ["Descrever a rotina com verbos reflexivos"],
+  vocab=[V("v-zich-scheren","zich scheren","fazer a barba","verb"), V("v-zich-omkleden","zich omkleden","mudar de roupa","verb"),
+         V("v-zich-ontspannen","zich ontspannen","descontrair","verb"), V("v-zich-klaarmaken","zich klaarmaken","arranjar-se|preparar-se","verb")],
+  ex=[("Ik scheer me elke ochtend.","Faço a barba todas as manhãs."),("Na het sporten kleed ik me om.","Depois do desporto mudo de roupa."),("'s Avonds ontspan ik me met een boek.","À noite descontraio com um livro."),("Ze maakt zich klaar voor het feest.","Ela está a arranjar-se para a festa.")],
+  review=["v-zich-aankleden","v-zich-wassen","v-douchen","v-opstaan"],
+  cefr=C, exs=[
+    MA([("zich scheren","fazer a barba"),("zich omkleden","mudar de roupa"),("zich ontspannen","descontrair"),("zich klaarmaken","arranjar-se")], "Rotina.", ["v-zich-scheren","v-zich-omkleden","v-zich-ontspannen","v-zich-klaarmaken"]),
+    WO("Depois do desporto mudo de roupa.", ["Na","het","sporten","kleed","ik","me","om"], "Inversão + separável.", ["v-zich-omkleden"]),
+    TR("pt-nl","Faço a barba todas as manhãs.", ["Ik scheer me elke ochtend","Ik scheer mij elke ochtend","Elke ochtend scheer ik me"], "zich scheren.", ["v-zich-scheren"]),
+    TR("nl-pt","'s Avonds ontspan ik me met een boek.", ["À noite descontraio com um livro","À noite relaxo com um livro"], "zich ontspannen.", ["v-zich-ontspannen"]),
+    CJ("zich klaarmaken","zij (ela)","Ze maakt ___ klaar voor het feest.", ["zich"], "zij → zich.", ["v-zich-klaarmaken"]),
+    FE(["Ik","kleed","me","snel","uit","voor","het","sporten."], 4, "om", "Mudar de roupa = zich omkleden.", ["v-zich-omkleden"]),
+    MC("«Douchen» é reflexivo?", ["*Não: ik douche (sem «me»)","Sim: ik douche me|Não se diz assim.","Só no passado|Não."], "Ao contrário de «duchar-se».", ["v-douchen"]),
+    LI("Ik maak me even klaar, ik ben er over tien minuten.", ["Ik maak me even klaar(,) ik ben er over tien minuten"], "Vou arranjar-me, chego daqui a dez minutos.", "klaarmaken.", ["v-zich-klaarmaken"]),
+    CO("text","De ochtend van Bart", "Bart staat om half zeven op. Eerst doucht hij en scheert hij zich. Daarna kleedt hij zich aan en ontbijt hij met zijn dochter. Om half acht fietst hij naar zijn werk. Na het werk gaat hij naar de sportschool, waar hij zich omkleedt. 's Avonds ontspant hij zich op de bank.",
+       [("O que faz o Bart depois do duche?", ["*Faz a barba","Toma o pequeno-almoço","Vai para o trabalho"]),("Onde muda de roupa?", ["*No ginásio","No trabalho","Em casa de manhã"])],
+       "Repare: douchen não é reflexivo; scheren, aankleden e omkleden são.", ["v-zich-scheren","v-zich-omkleden"]),
+    SW("Descreva a sua manhã em 3 frases, com pelo menos dois verbos reflexivos.", ["Ik sta om zeven uur op. Ik douche en ik kleed me aan. Daarna maak ik me klaar voor mijn werk."], ["Dois reflexivos com o pronome certo", "Inversão depois de daarna/eerst", "Separáveis com a partícula no fim"], 15, "Rotina com reflexivos.", ["v-zich-aankleden","v-zich-klaarmaken"]),
+  ], diff=3, mins=7)
+
+L(5, "Revisão da Secção 4", "Passado, futuro, modais, subordinadas e reflexivos em contexto.",
+  ["Rever a gramática principal da Secção 4"],
+  vocab=[V("v-terugblikken","terugblikken","olhar para trás|fazer o balanço","verb"), V("v-vooruitkijken","vooruitkijken","olhar para o futuro","verb"),
+         V("v-vooruitgang","vooruitgang","progresso","noun","de"), V("v-zelfvertrouwen","zelfvertrouwen","autoconfiança","noun","het")],
+  ex=[("Laten we even terugblikken.","Vamos fazer um pequeno balanço."),("Ik heb veel vooruitgang geboekt.","Fiz muitos progressos."),("Mijn zelfvertrouwen is gegroeid.","A minha autoconfiança cresceu."),("Ik kijk vooruit naar de volgende stap.","Estou a olhar para o próximo passo.")],
+  review=["v-moeten","v-hoeven","v-omdat","v-zich-voelen","v-toen-conj","v-gaan"],
+  cefr=C, exs=[
+    MA([("terugblikken","fazer o balanço"),("vooruitkijken","olhar para o futuro"),("vooruitgang","progresso"),("zelfvertrouwen","autoconfiança")], "Balanço.", ["v-terugblikken","v-vooruitkijken","v-vooruitgang","v-zelfvertrouwen"]),
+    WO("Não precisas de vir amanhã.", ["Je","hoeft","morgen","niet","te","komen"], "niet hoeven te.", ["v-hoeven"]),
+    WO("Quando cheguei, estava toda a gente lá.", ["Toen","ik","aankwam,","was","iedereen","er"], "toen + verbo, verbo.", ["v-toen-conj"]),
+    FE(["Ik","heb","gisteren","niet","gekund","komen."], 4, "kunnen", "Duplo infinitivo: niet kunnen komen.", ["v-heb-kunnen"]),
+    FE(["Ik","leer","Nederlands","omdat","ik","wil","hier","blijven."], 5, "hier wil blijven", "Depois de omdat, verbos no fim: omdat ik hier wil blijven.", ["v-omdat"]),
+    TR("pt-nl","Sinto-me mais confiante do que no ano passado.", ["Ik voel me zekerder dan vorig jaar","Ik voel mij zekerder dan vorig jaar","Ik heb meer zelfvertrouwen dan vorig jaar"], "zich voelen + comparativo.", ["v-zich-voelen","v-zelfvertrouwen"]),
+    TR("nl-pt","Ik heb veel vooruitgang geboekt.", ["Fiz muitos progressos","Progredi muito","Fiz muito progresso"], "vooruitgang boeken.", ["v-vooruitgang"]),
+    MC("Qual frase está toda correta?", ["*Volgend jaar ga ik een cursus doen, omdat ik beter wil schrijven.","Volgend jaar ik ga een cursus doen, omdat ik wil beter schrijven.|Dois erros de ordem.","Volgend jaar ga ik een cursus doen, omdat ik wil schrijven beter.|Verbos fora do fim."], "Inversão + verbos no fim.", ["v-gaan","v-omdat"]),
+    CO("text","Terugblik", "Een jaar geleden kon ik bijna geen Nederlands. Ik moest alles in het Engels vragen en ik voelde me vaak onzeker. Nu kan ik bellen met de huisarts en e-mails schrijven aan mijn huisbaas. Ik heb veel vooruitgang geboekt, hoewel ik me soms nog vergis. Volgend jaar wil ik het staatsexamen doen. Ik verheug me erop!",
+       [("Como se sentia há um ano?", ["*Inseguro","Confiante","Aborrecido"]),("O que quer fazer no próximo ano?", ["*O exame estatal de neerlandês","Mudar de casa","Voltar para Portugal"]),("Ainda comete erros?", ["*Às vezes","Nunca","Sempre"])],
+       "staatsexamen NT2 = exame estatal de neerlandês como segunda língua.", ["v-vooruitgang","v-zich-verheugen"]),
+    SW("Faça o seu balanço: escreva 3–4 frases sobre o que conseguia fazer antes, o que consegue agora e o que quer fazer a seguir.", ["Vroeger kon ik alleen mezelf voorstellen. Nu kan ik over mijn werk praten en e-mails schrijven. Ik voel me zekerder. Volgend jaar wil ik B1 halen."], ["Passado (**kon / was**)", "Presente com modal", "Reflexivo (**ik voel me**)", "Plano com inversão (**Volgend jaar wil ik…**)"], 25, "Balanço com a gramática da secção.", ["v-terugblikken","v-vooruitgang"]),
+  ], diff=4, mins=8)
+
+W()
