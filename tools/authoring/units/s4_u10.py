@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s4-u10")
+C = "A2-B1"
+
+L(1, "Explicar um problema", "Er is een probleem met… Het werkt niet. Het doet het niet meer.",
+  ["Descrever um problema de forma clara"],
+  vocab=[V("v-het-doet-het-niet","het doet het niet","não funciona","expression",note="Mijn laptop doet het niet meer."), V("v-sinds-gisteren","sinds gisteren","desde ontem","expression"),
+         V("v-gebeurt-telkens","telkens","sempre que|de cada vez","adverb"), V("v-foutmelding","foutmelding","mensagem de erro","noun","de")],
+  ex=[("Mijn laptop doet het niet meer.","O meu portátil já não funciona."),("Sinds gisteren is er geen warm water.","Desde ontem não há água quente."),("Telkens als ik inlog, krijg ik een foutmelding.","Sempre que entro, aparece uma mensagem de erro."),("Er is iets mis met mijn rekening.","Há algo errado com a minha conta.")],
+  gram=[G("g-probleem-beschrijven","Descrever um problema","1) **Wat**: *Er is een probleem met…* / *… doet het niet.* 2) **Sinds wanneer**: *sinds gisteren / sinds vorige week*. 3) **Wanneer acontece**: *Telkens als…* (verbo no fim). 4) O que já tentou: *Ik heb al … geprobeerd.*",
+    [("Ik heb de computer al opnieuw opgestart.","Já reiniciei o computador.")])],
+  review=["v-probleem","v-kapot","v-storing","v-sinds"],
+  cefr=C, exs=[
+    MA([("het doet het niet","não funciona"),("sinds gisteren","desde ontem"),("telkens","sempre que"),("foutmelding","mensagem de erro")], "Problemas.", ["v-het-doet-het-niet","v-sinds-gisteren","v-gebeurt-telkens","v-foutmelding"]),
+    TR("pt-nl","O meu portátil já não funciona.", ["Mijn laptop doet het niet meer","Mijn laptop werkt niet meer"], "het doet het niet (meer).", ["v-het-doet-het-niet"]),
+    TR("nl-pt","Sinds gisteren is er geen warm water.", ["Desde ontem não há água quente"], "sinds + inversão.", ["v-sinds-gisteren"]),
+    WO("Há algo errado com a minha conta.", ["Er","is","iets","mis","met","mijn","rekening"], "iets mis.", []),
+    AR("foutmelding","a mensagem de erro","de", "-ing → de.", ["v-foutmelding"]),
+    FE(["Telkens","als","ik","inlog,","ik","krijg","een","foutmelding."], 4, "krijg ik", "Depois da oração subordinada no início, vem o verbo: …, krijg ik een foutmelding.", ["v-gebeurt-telkens"]),
+    MC("O técnico pergunta «Wat heeft u al geprobeerd?». Ele quer saber…", ["*o que já tentou fazer","quanto pagou|Não.","quando comprou|Não."], "proberen = tentar.", []),
+    LI("Ik heb de computer al opnieuw opgestart.", ["Ik heb de computer al opnieuw opgestart"], "Já reiniciei o computador.", "opnieuw opstarten.", []),
+    DL([("Helpdesk","Wat is het probleem?","Qual é o problema?"),("Cliente","")], ["*Sinds gisteren doet mijn internet het niet. Ik heb de router al opnieuw opgestart.","Mijn internet.|Incompleto.","Ik heb geen probleem.|Contraditório."], "Problema + desde quando + o que tentou.", ["v-het-doet-het-niet","v-sinds-gisteren"]),
+    FB("Mijn telefoon doet ___ niet meer.", ["het"], "het doet het niet.", ["v-het-doet-het-niet"], choices=["het","de","er"], tr="O meu telemóvel já não funciona."),
+  ], diff=3, mins=7)
+
+L(2, "Propor soluções", "Misschien kun je… Je zou … kunnen. Wat als we…?",
+  ["Sugerir soluções com cortesia"],
+  vocab=[V("v-je-zou-kunnen","je zou … kunnen","podias…","expression"), V("v-wat-als","wat als…?","e se…?","expression"),
+         V("v-proberen","proberen","tentar|experimentar","verb",note="geprobeerd"), V("v-advies","advies","conselho","noun","het")],
+  ex=[("Je zou de huisbaas kunnen bellen.","Podias ligar ao senhorio."),("Wat als we een andere dag kiezen?","E se escolhermos outro dia?"),("Probeer het nog een keer.","Tenta outra vez."),("Mag ik je een advies geven?","Posso dar-te um conselho?")],
+  gram=[G("g-advies-geven","Dar conselhos","Suave: **Je zou … kunnen** + infinitivo no fim. Neutro: **Misschien kun je…** Direto: **Je moet…** ou o imperativo **Probeer…!** Pergunta: **Wat als we…?** (ordem de subordinada: verbo no fim): *Wat als we morgen **gaan**?*",
+    [("Misschien kun je een e-mail sturen.","Talvez possas mandar um e-mail.")])],
+  review=["v-zou","v-misschien","v-oplossing","v-kunnen"],
+  cefr=C, exs=[
+    MA([("je zou … kunnen","podias…"),("wat als…?","e se…?"),("proberen","tentar"),("advies","conselho")], "Soluções.", ["v-je-zou-kunnen","v-wat-als","v-proberen","v-advies"]),
+    WO("Podias ligar ao senhorio.", ["Je","zou","de","huisbaas","kunnen","bellen"], "Dois infinitivos no fim.", ["v-je-zou-kunnen"]),
+    WO("E se escolhermos outro dia?", ["Wat","als","we","een","andere","dag","kiezen?"], "Verbo no fim.", ["v-wat-als"]),
+    TR("pt-nl","Tenta outra vez.", ["Probeer het nog een keer","Probeer het nog eens","Probeer het opnieuw"], "Imperativo.", ["v-proberen"]),
+    TR("nl-pt","Mag ik je een advies geven?", ["Posso dar-te um conselho","Posso dar-te uma sugestão"], "het advies.", ["v-advies"]),
+    AR("advies","o conselho","het", "Het advies.", ["v-advies"]),
+    CJ("proberen","ik","Ik heb het al drie keer ___.", ["geprobeerd"], "proberen → geprobeerd.", ["v-proberen"], tense="passado-perfeito"),
+    FE(["Je","zou","de","winkel","kunnen","belt."], 5, "bellen", "Depois de zou … kunnen vem o infinitivo: bellen.", ["v-je-zou-kunnen"]),
+    LI("Misschien kun je een e-mail sturen.", ["Misschien kun je een e-mail sturen","Misschien kan je een e-mail sturen"], "Talvez possas mandar um e-mail.", "Inversão depois de misschien.", ["v-misschien"]),
+    DL([("Vriendin","Mijn buren maken elke nacht lawaai.","Os meus vizinhos fazem barulho todas as noites."),("Joana","")], ["*Je zou eens met ze kunnen praten. Wat als je een briefje schrijft?","Je bent lawaai.|Não faz sentido.","Ik maak geen lawaai.|Não ajuda."], "Duas sugestões suaves.", ["v-je-zou-kunnen","v-wat-als"]),
+  ], diff=3, mins=7)
+
+L(3, "Reclamar num serviço", "Ik wil graag een oplossing. Kunt u het repareren of vervangen?",
+  ["Pedir uma solução concreta (reparar, trocar, devolver o dinheiro)"],
+  vocab=[V("v-vervangen","vervangen","substituir","verb"), V("v-garantie","garantie","garantia","noun","de"),
+         V("v-geld-terug","geld terug","reembolso","expression",note="Kan ik mijn geld terugkrijgen?"), V("v-bonnetje","bonnetje","talão|recibo","noun","het")],
+  ex=[("Het apparaat valt nog onder de garantie.","O aparelho ainda está dentro da garantia."),("Kunt u het vervangen?","Pode substituí-lo?"),("Ik wil graag mijn geld terug.","Queria o reembolso."),("Heeft u het bonnetje nog?","Ainda tem o talão?")],
+  review=["v-klacht-indienen","v-repareren","v-oplossing","v-terugbetalen"],
+  cefr=C, exs=[
+    MA([("vervangen","substituir"),("garantie","garantia"),("geld terug","reembolso"),("bonnetje","talão")], "Na loja.", ["v-vervangen","v-garantie","v-geld-terug","v-bonnetje"]),
+    TR("pt-nl","Pode substituí-lo?", ["Kunt u het vervangen","Kan u het vervangen"], "vervangen.", ["v-vervangen"]),
+    TR("pt-nl","Queria o reembolso.", ["Ik wil graag mijn geld terug","Ik wil mijn geld terug"], "geld terug.", ["v-geld-terug"]),
+    TR("nl-pt","Het apparaat valt nog onder de garantie.", ["O aparelho ainda está [dentro da|na|coberto pela] garantia"], "onder de garantie vallen.", ["v-garantie"]),
+    AR("bonnetje","o talão","het", "Diminutivo → het.", ["v-bonnetje"]),
+    MC("Sem talão, a loja pode dizer…", ["*Zonder bonnetje kunnen we helaas niets doen.","Gefeliciteerd!|Não.","U krijgt twee keer uw geld terug.|Improvável."], "Bonnetje é importante.", ["v-bonnetje"]),
+    DL([("Verkoper","Wat kan ik voor u doen?","Em que posso ajudar?"),("Cliente","")], ["*Deze waterkoker is na een week kapot. Kunt u hem vervangen? Hier is het bonnetje.","Ik wil een waterkoker.|Não explica o problema.","U bent kapot.|Ofensivo e errado."], "Problema + pedido + prova.", ["v-vervangen","v-bonnetje"]),
+    FB("De telefoon heeft twee jaar ___.", ["garantie"], "garantia.", ["v-garantie"], choices=["garantie","bonnetje","korting"], tr="O telemóvel tem dois anos de garantia."),
+    LI("Kan ik mijn geld terugkrijgen?", ["Kan ik mijn geld terugkrijgen","Kan ik mijn geld terug krijgen"], "Posso receber o meu dinheiro de volta?", "terugkrijgen.", ["v-geld-terug"]),
+    WO("Ainda tem o talão?", ["Heeft","u","het","bonnetje","nog?"], "nog no fim.", ["v-bonnetje"]),
+  ], diff=3, mins=6)
+
+L(4, "Resolver com o senhorio ou o vizinho", "Kunnen we samen naar een oplossing kijken?",
+  ["Negociar uma solução com alguém de forma colaborativa"],
+  vocab=[V("v-afspraak-maken-over","afspraken maken over","combinar regras sobre","expression"), V("v-lawaai","lawaai","barulho","noun","het"),
+         V("v-rekening-houden","rekening houden met","ter em conta|ter consideração por","expression"), V("v-overlast","overlast","incómodo (causado a outros)","noun","de")],
+  ex=[("Ik heb veel last van het lawaai.","O barulho incomoda-me muito."),("Kunt u een beetje rekening met ons houden?","Pode ter-nos um pouco em consideração?"),("Laten we afspraken maken over de tuin.","Vamos combinar regras para o jardim."),("De gemeente kan helpen bij overlast.","A câmara pode ajudar em casos de incómodo.")],
+  gram=[G("g-last-hebben","Last hebben van","**last hebben van** = ser incomodado por: *Ik heb last van het lawaai.* Também para dores: *Ik heb last van mijn rug.* **overlast** = incómodo que alguém causa aos outros (barulho, lixo).",
+    [("Heeft u last van de muziek?","A música incomoda-o?")])],
+  review=["v-buurman","v-verhuurder","v-oplossing","v-wat-als"],
+  cefr=C, exs=[
+    MA([("lawaai","barulho"),("rekening houden met","ter em conta"),("overlast","incómodo"),("afspraken maken","combinar regras")], "Vizinhança.", ["v-lawaai","v-rekening-houden","v-overlast","v-afspraak-maken-over"]),
+    TR("pt-nl","O barulho incomoda-me muito.", ["Ik heb veel last van het lawaai","Ik heb erg last van het lawaai"], "last hebben van.", ["v-lawaai"]),
+    TR("nl-pt","Kunt u een beetje rekening met ons houden?", ["Pode ter-nos um pouco em consideração","Pode ter um pouco de consideração por nós"], "rekening houden met.", ["v-rekening-houden"]),
+    AR("lawaai","o barulho","het", "Het lawaai.", ["v-lawaai"]),
+    FB("Ik heb last ___ mijn rug.", ["van"], "last van.", [], choices=["van","met","op"], tr="Tenho dores nas costas."),
+    FE(["Wij","houden","rekening","op","de","buren."], 3, "met", "rekening houden met.", ["v-rekening-houden"]),
+    MC("Primeiro passo recomendado com um vizinho barulhento:", ["*Falar com ele com calma e propor um acordo","Chamar logo a polícia|Só em casos graves.","Fazer ainda mais barulho|Não resolve."], "Conversa primeiro.", ["v-overlast"]),
+    LI("Zullen we afspreken dat het na tien uur stil is?", ["Zullen we afspreken dat het na tien uur stil is"], "Combinamos que depois das dez há silêncio?", "dat + verbo no fim.", ["v-afspraak-maken-over"]),
+    CO("text","Briefje aan de buren", "Beste buren,\n\nWe hebben de laatste weken veel last van harde muziek, vooral 's nachts. Onze dochter kan daardoor slecht slapen. Kunnen we afspreken dat het na 23.00 uur rustig is? Als u vragen heeft, kom gerust langs (nr. 12).\n\nVriendelijke groet,\nFamilie Costa",
+       [("Qual é o problema?", ["*Música alta à noite","Lixo na rua","Um cão a ladrar"]),("O que propõem?", ["*Silêncio depois das 23h","Mudar de casa","Chamar a polícia"])],
+       "rustig = sossegado.", ["v-lawaai","v-afspraak-maken-over"]),
+    SW("Escreva um bilhete curto ao vizinho sobre um problema (barulho, bicicletas na entrada…) com uma proposta de solução.", ["Beste buurman, ik heb last van de fietsen in de gang, want ik kan er niet langs. Kunnen we afspreken dat ze in de schuur staan? Groetjes, Ana"], ["Problema com **last hebben van**", "Proposta (**kunnen we afspreken dat…**)", "Tom educado"], 20, "Bilhete de vizinhança.", ["v-afspraak-maken-over"]),
+  ], diff=4, mins=8)
+
+L(5, "Pedir e oferecer ajuda", "Kun je me even helpen? Zal ik het voor je doen?",
+  ["Pedir ajuda e oferecê-la"],
+  vocab=[V("v-hulp","hulp","ajuda","noun","de"), V("v-zal-ik","zal ik…?","queres que eu…?","expression"),
+         V("v-lukken","lukken","conseguir|correr bem","verb",note="Het lukt me niet. = Não consigo."), V("v-handig","handig","prático|jeitoso","adjective")],
+  ex=[("Het lukt me niet.","Não consigo."),("Kun je me even helpen?","Podes ajudar-me um bocadinho?"),("Zal ik het voor je doen?","Queres que o faça por ti?"),("Wat handig!","Que prático!")],
+  gram=[G("g-lukken","Lukken","**lukken** é impessoal: o sujeito é a tarefa (*het*) e a pessoa vem como objeto: ***Het** lukt **me** niet* (não consigo). *Is het gelukt?* (Conseguiste?) Perfectum com **zijn**.",
+    [("Het is me gelukt!","Consegui!"),("Lukt het?","Estás a conseguir?")],
+    "Em português a pessoa é o sujeito («eu consigo»); em neerlandês é «isso resulta para mim».")],
+  review=["v-helpen","v-even","v-zullen"],
+  cefr=C, exs=[
+    MA([("hulp","ajuda"),("zal ik…?","queres que eu…?"),("lukken","conseguir"),("handig","prático")], "Ajuda.", ["v-hulp","v-zal-ik","v-lukken","v-handig"]),
+    TR("pt-nl","Não consigo.", ["Het lukt me niet","Het lukt mij niet"], "Het lukt me niet.", ["v-lukken"]),
+    TR("pt-nl","Consegui!", ["Het is me gelukt","Het is mij gelukt","Het lukte me"], "lukken → zijn gelukt.", ["v-lukken"]),
+    TR("nl-pt","Zal ik het voor je doen?", ["Queres que o faça por ti","Queres que eu faça isso por ti"], "Oferta.", ["v-zal-ik"]),
+    FE(["Ik","lukt","het","niet."], 0, "Het lukt me", "lukken é impessoal: Het lukt me niet.", ["v-lukken"]),
+    FE(["Het","heeft","me","gelukt!"], 1, "is", "lukken usa zijn: Het is me gelukt.", ["v-lukken"]),
+    AR("hulp","a ajuda","de", "De hulp.", ["v-hulp"]),
+    DL([("Buurvrouw","Die doos is zo zwaar…","Esta caixa é tão pesada…"),("Tiago","")], ["*Zal ik u even helpen?","Het lukt me niet.|Quem está com dificuldade é ela.","Wat handig!|Não faz sentido."], "Oferecer ajuda.", ["v-zal-ik"]),
+    LI("Bedankt voor je hulp, dat is heel handig!", ["Bedankt voor je hulp(,) dat is heel handig"], "Obrigado pela ajuda, é muito prático!", "hulp / handig.", ["v-hulp","v-handig"]),
+    MC("«Lukt het?» quer dizer…", ["*Estás a conseguir?","Tens sorte?|Isso é «heb je geluk?».","Gostas?|Não."], "lukken.", ["v-lukken"]),
+  ], diff=3, mins=6)
+
+W()

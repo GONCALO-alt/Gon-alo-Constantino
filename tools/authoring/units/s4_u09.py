@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s4-u09")
+C = "A2-B1"
+
+L(1, "Concordar", "Ik ben het met je eens. Dat klopt. Precies!",
+  ["Exprimir concordância com várias intensidades"],
+  vocab=[V("v-eens","het eens zijn (met)","concordar (com)","expression",note="Ik ben het met je eens."), V("v-dat-klopt","dat klopt","isso está certo|é verdade","expression"),
+         V("v-helemaal","helemaal","completamente|totalmente","adverb"), V("v-gelijk-hebben","gelijk hebben","ter razão","expression")],
+  ex=[("Ik ben het helemaal met je eens.","Concordo totalmente contigo."),("Dat klopt.","Isso é verdade."),("Je hebt gelijk.","Tens razão."),("Precies!","Exatamente!")],
+  gram=[G("g-het-eens-zijn","Het eens zijn met","A estrutura é fixa: sujeito + **zijn** + **het** + (advérbio) + **met** + pessoa + **eens**: *Ik ben **het** (helemaal) **met** je **eens**.* Sobre um assunto: *Ik ben het **ermee** eens* (concordo com isso).",
+    [("Zijn jullie het met elkaar eens?","Vocês concordam um com o outro?"),("Daar ben ik het mee eens.","Com isso eu concordo.")],
+    "Em português «concordar» é um só verbo; em neerlandês é uma expressão com «zijn», «het» e «eens».")],
+  review=["v-precies","v-volgens-mij","v-mening"],
+  cefr=C, exs=[
+    MA([("het eens zijn","concordar"),("dat klopt","é verdade"),("helemaal","totalmente"),("gelijk hebben","ter razão")], "Concordar.", ["v-eens","v-dat-klopt","v-helemaal","v-gelijk-hebben"]),
+    WO("Concordo totalmente contigo.", ["Ik","ben","het","helemaal","met","je","eens"], "Estrutura fixa.", ["v-eens","v-helemaal"]),
+    TR("pt-nl","Tens razão.", ["Je hebt gelijk","Jij hebt gelijk"], "gelijk hebben.", ["v-gelijk-hebben"]),
+    TR("nl-pt","Daar ben ik het mee eens.", ["Com isso eu concordo","Concordo com isso"], "ermee/daarmee.", ["v-eens"]),
+    FE(["Ik","ben","met","je","eens."], 2, "het met", "Falta «het»: Ik ben het met je eens.", ["v-eens"]),
+    FE(["Je","bent","gelijk."], 1, "hebt", "Ter razão = gelijk hebben: Je hebt gelijk.", ["v-gelijk-hebben"]),
+    MC("Concordância mais forte:", ["*Ik ben het helemaal met je eens!","Dat kan.|Concordância fraca.","Misschien.|Hesitação."], "helemaal.", ["v-helemaal"]),
+    LI("Dat klopt helemaal.", ["Dat klopt helemaal"], "Isso está totalmente certo.", "klopt.", ["v-dat-klopt"]),
+    DL([("Collega","Ik vind dat we vaker thuis moeten werken.","Acho que devíamos trabalhar mais vezes em casa."),("Rita","")], ["*Ik ben het met je eens, dat scheelt veel reistijd.","Je bent gelijk.|Erro: hebt gelijk.","Ik ben eens.|Falta «het met je»."], "Concordar e justificar.", ["v-eens"]),
+    CJ("zijn","jullie","___ jullie het met elkaar eens?", ["Zijn"], "jullie → zijn.", ["v-eens"]),
+  ], diff=3, mins=6)
+
+L(2, "Discordar com educação", "Ik ben het niet met je eens. Daar denk ik anders over.",
+  ["Discordar de forma direta mas respeitosa"],
+  vocab=[V("v-oneens","het oneens zijn","discordar","expression"), V("v-anders-denken","daar denk ik anders over","tenho outra opinião sobre isso","expression"),
+         V("v-ik-zie-het-anders","ik zie het anders","vejo as coisas de outra forma","expression"), V("v-juist","juist","pelo contrário|precisamente","adverb",note="Ik vind het juist leuk. = Eu até acho giro (ao contrário).")],
+  ex=[("Ik ben het niet met je eens.","Não concordo contigo."),("Daar denk ik anders over.","Tenho outra opinião sobre isso."),("Ik ben het oneens met dit plan.","Discordo deste plano."),("Ik vind het juist goed.","Eu, pelo contrário, acho bem.")],
+  gram=[G("g-directheid","A franqueza neerlandesa","Nos Países Baixos é normal discordar abertamente, mesmo com chefes. Fórmulas úteis: **Ik ben het niet met je eens, want…** / **Daar denk ik anders over.** O importante é dar uma **razão**. Atenção: *oneens* escreve-se junto.",
+    [("Ik begrijp je punt, maar ik zie het anders.","Percebo o teu ponto, mas vejo de outra forma.")],
+    "A franqueza não é falta de educação: é valorizada. Mas evite ataques pessoais.")],
+  review=["v-eens","v-maar","v-want"],
+  cefr=C, exs=[
+    MA([("het oneens zijn","discordar"),("daar denk ik anders over","tenho outra opinião"),("ik zie het anders","vejo de outra forma"),("juist","pelo contrário")], "Discordar.", ["v-oneens","v-anders-denken","v-ik-zie-het-anders","v-juist"]),
+    TR("pt-nl","Não concordo contigo.", ["Ik ben het niet met je eens","Ik ben het niet met jou eens","Ik ben het oneens met je"], "niet … eens / oneens.", ["v-oneens"]),
+    TR("nl-pt","Daar denk ik anders over.", ["Tenho outra opinião sobre isso","Penso de maneira diferente sobre isso","Vejo isso de outra forma"], "Expressão.", ["v-anders-denken"]),
+    TR("nl-pt","Ik vind het juist goed.", ["Eu, pelo contrário, acho bem","Pelo contrário, eu acho bem","Eu até acho bem"], "juist = ao contrário do esperado.", ["v-juist"]),
+    WO("Percebo o teu ponto, mas vejo de outra forma.", ["Ik","begrijp","je","punt,","maar","ik","zie","het","anders"], "maar → ordem normal.", ["v-ik-zie-het-anders"]),
+    MC("Qual é a forma mais adequada de discordar no trabalho?", ["*Ik ben het niet met je eens, want de klant wil iets anders.","Dat is dom.|Ataque pessoal.","Ja hoor.|Irónico e vago."], "Discordar + razão.", ["v-oneens"]),
+    FE(["Ik","ben","het","on","eens."], 3, "oneens", "Escreve-se junto: oneens.", ["v-oneens"]),
+    LI("Ik ben het daar niet mee eens.", ["Ik ben het daar niet mee eens"], "Não concordo com isso.", "daar … mee.", ["v-oneens"]),
+    DL([("Manager","Ik denk dat we het project moeten uitstellen.","Acho que devíamos adiar o projeto."),("Inês","")], ["*Daar denk ik anders over. Het team is bijna klaar.","Ja, u heeft altijd gelijk.|Não é discordância.","Nee!|Seco, sem razão."], "Discordar com razão.", ["v-anders-denken"]),
+    FB("Ik vind regen ___ fijn, dan is het rustig op straat.", ["juist"], "Contraste com a expectativa.", ["v-juist"], choices=["juist","eens","helemaal"], tr="Eu até gosto da chuva: assim a rua fica calma."),
+  ], diff=4, mins=7)
+
+L(3, "Alternativas suaves", "Dat is waar, maar… Je hebt een punt, maar… Ik weet het niet zeker.",
+  ["Concordar em parte e mostrar dúvida"],
+  vocab=[V("v-deels","deels","em parte","adverb",note="Ik ben het deels met je eens."), V("v-een-punt","je hebt een punt","tens alguma razão","expression"),
+         V("v-dat-is-waar","dat is waar","isso é verdade","expression"), V("v-twijfelen","twijfelen","ter dúvidas|hesitar","verb")],
+  ex=[("Dat is waar, maar het is wel duur.","Isso é verdade, mas é caro."),("Je hebt een punt.","Tens alguma razão."),("Ik ben het deels met je eens.","Concordo em parte contigo."),("Ik twijfel nog.","Ainda tenho dúvidas.")],
+  review=["v-eens","v-oneens","v-maar","v-misschien"],
+  cefr=C, exs=[
+    MA([("deels","em parte"),("je hebt een punt","tens alguma razão"),("dat is waar","é verdade"),("twijfelen","ter dúvidas")], "Matizar.", ["v-deels","v-een-punt","v-dat-is-waar","v-twijfelen"]),
+    TR("pt-nl","Concordo em parte contigo.", ["Ik ben het deels met je eens","Ik ben het gedeeltelijk met je eens","Ik ben het deels met jou eens"], "deels antes de met.", ["v-deels"]),
+    TR("pt-nl","Ainda tenho dúvidas.", ["Ik twijfel nog"], "twijfelen.", ["v-twijfelen"]),
+    TR("nl-pt","Je hebt een punt, maar het is wel duur.", ["Tens alguma razão, mas é caro","Tens razão em parte, mas é caro"], "een punt hebben.", ["v-een-punt"]),
+    MC("Qual expressa concordância parcial?", ["*Dat is waar, maar…","Precies!|Concordância total.","Helemaal niet!|Discordância total."], "Dat is waar, maar.", ["v-dat-is-waar"]),
+    WO("Isso é verdade, mas é caro.", ["Dat","is","waar,","maar","het","is","wel","duur"], "maar.", ["v-dat-is-waar"]),
+    MC("Ordene de mais concordância para menos:", ["*Precies! → Dat is waar, maar… → Ik twijfel → Daar denk ik anders over","Daar denk ik anders over → Precies! → Ik twijfel|Ordem trocada.","Ik twijfel → Precies! → Dat is waar|Ordem trocada."], "Escala.", ["v-twijfelen"]),
+    LI("Ik twijfel nog tussen de twee opties.", ["Ik twijfel nog tussen de twee opties"], "Ainda hesito entre as duas opções.", "twijfelen tussen.", ["v-twijfelen"]),
+    FB("Ik ben het ___ met je eens: het idee is goed, maar te duur.", ["deels"], "Em parte.", ["v-deels"], choices=["deels","helemaal","niet"], tr="Concordo em parte: a ideia é boa, mas cara demais."),
+    DL([("Vriend","Amsterdam is de mooiste stad van Nederland.","Amesterdão é a cidade mais bonita dos Países Baixos."),("Rui","")], ["*Je hebt een punt, maar Utrecht vind ik ook heel mooi.","Je hebt een punt.|Fica incompleto — falta matizar.","Ik ben het helemaal oneens, dom!|Agressivo."], "Concordância parcial.", ["v-een-punt"]),
+  ], diff=4, mins=6)
+
+L(4, "Pedir a opinião dos outros", "Wat vind jij ervan? Hoe denk jij daarover?",
+  ["Pedir opiniões e reagir"],
+  vocab=[V("v-ervan","ervan","disso","adverb",note="Wat vind je ervan?"), V("v-daarover","daarover","sobre isso","adverb"),
+         V("v-standpunt","standpunt","posição|ponto de vista","noun","het"), V("v-voorstel","voorstel","proposta","noun","het")],
+  ex=[("Wat vind jij ervan?","O que achas disso?"),("Hoe denk jij daarover?","O que pensas sobre isso?"),("Wat is jouw standpunt?","Qual é a tua posição?"),("Wat vinden jullie van dit voorstel?","O que acham desta proposta?")],
+  gram=[G("g-er-daar-voorzetsel","Er/daar + preposição","Em vez de «van het» ou «over dat» (para coisas), usa-se **er/daar + preposição**: *Wat vind je **ervan**?* (de isso), *Hoe denk je **daarover**?* (sobre isso). Para pessoas usa-se a preposição + pronome: *Wat vind je **van hem**?*",
+    [("Ik heb er geen mening over.","Não tenho opinião sobre isso."),("Daar ben ik het mee eens.","Concordo com isso.")],
+    "Não se diz «van het» para coisas: diz-se «ervan».")],
+  review=["v-mening","v-vinden","v-denken-aan"],
+  cefr=C, exs=[
+    MA([("ervan","disso"),("daarover","sobre isso"),("standpunt","posição"),("voorstel","proposta")], "Pedir opinião.", ["v-ervan","v-daarover","v-standpunt","v-voorstel"]),
+    TR("pt-nl","O que achas disso?", ["Wat vind je ervan","Wat vind jij ervan","Wat vind je daarvan"], "ervan.", ["v-ervan"]),
+    TR("pt-nl","O que acham desta proposta?", ["Wat vinden jullie van dit voorstel"], "het voorstel → dit.", ["v-voorstel"]),
+    AR("voorstel","a proposta","het", "Het voorstel.", ["v-voorstel"]),
+    AR("standpunt","a posição","het", "Het standpunt.", ["v-standpunt"]),
+    FE(["Wat","vind","je","van","het?"], 3, "ervan", "Para coisas: Wat vind je ervan?", ["v-ervan"]),
+    FB("Hoe denk jij ___?", ["daarover","erover"], "Sobre isso.", ["v-daarover"], choices=["daarover","van het","over het"], tr="O que pensas sobre isso?"),
+    LI("Ik heb er nog geen mening over.", ["Ik heb er nog geen mening over"], "Ainda não tenho opinião sobre isso.", "er … over.", ["v-daarover"]),
+    WO("Qual é a tua posição?", ["Wat","is","jouw","standpunt?"], "standpunt.", ["v-standpunt"]),
+    DL([("Teamleider","Dat was mijn voorstel. Wat vinden jullie ervan?","Essa era a minha proposta. O que acham?"),("Marco","")], ["*Ik vind het een goed voorstel, maar het is wel veel werk.","Ik vind van het.|Errado: ervan.","Wat vind jij ervan?|Devolve a pergunta."], "Dar opinião com nuance.", ["v-voorstel"]),
+  ], diff=4, mins=6)
+
+L(5, "Discussão de grupo", "Uma conversa com várias opiniões.",
+  ["Seguir e participar numa discussão curta"],
+  vocab=[V("v-aan-de-ene-kant","aan de ene kant … aan de andere kant","por um lado … por outro","expression"), V("v-overtuigd","overtuigd","convencido","adjective"),
+         V("v-compromis","compromis","compromisso|meio-termo","noun","het"), V("v-stemmen","stemmen","votar","verb")],
+  ex=[("Aan de ene kant is het goedkoop, aan de andere kant is het ver.","Por um lado é barato, por outro é longe."),("Ik ben niet overtuigd.","Não estou convencido."),("Laten we een compromis zoeken.","Vamos procurar um meio-termo."),("Zullen we stemmen?","Votamos?")],
+  review=["v-eens","v-oneens","v-voorstel","v-volgens-mij"],
+  cefr=C, exs=[
+    MA([("aan de ene kant","por um lado"),("overtuigd","convencido"),("compromis","meio-termo"),("stemmen","votar")], "Discussão.", ["v-aan-de-ene-kant","v-overtuigd","v-compromis","v-stemmen"]),
+    TR("pt-nl","Não estou convencido.", ["Ik ben niet overtuigd"], "overtuigd.", ["v-overtuigd"]),
+    TR("pt-nl","Vamos procurar um meio-termo.", ["Laten we een compromis zoeken"], "Laten we + infinitivo.", ["v-compromis"]),
+    WO("Por um lado é barato, por outro é longe.", ["Aan","de","ene","kant","is","het","goedkoop,","aan","de","andere","kant","is","het","ver"], "Inversão em ambas.", ["v-aan-de-ene-kant"]),
+    AR("compromis","o meio-termo","het", "Het compromis.", ["v-compromis"]),
+    CO("dialogue","Waar gaan we heen met het team?", "Anouk: Ik stel voor dat we naar het strand gaan.\nBas: Aan de ene kant leuk, maar aan de andere kant: wat als het regent?\nMei: Ik ben het met Bas eens. Volgens mij is een museum veiliger.\nAnouk: Daar denk ik anders over, een museum is saai.\nBas: Laten we een compromis zoeken: eerst een museum in Scheveningen, daarna naar het strand als het mooi weer is.\nMei: Prima, daar ben ik het mee eens.",
+       [("Quem concorda com o Bas?", ["*A Mei","A Anouk","Ninguém"]),("Qual é o compromisso?", ["*Museu primeiro e praia se estiver bom tempo","Só praia","Ficar no escritório"]),("O que acha a Anouk dos museus?", ["*Aborrecidos","Interessantes","Caros"])],
+       "saai = aborrecido.", ["v-compromis","v-aan-de-ene-kant"]),
+    FE(["Ik","ben","niet","overtuigt."], 3, "overtuigd", "Particípio de overtuigen: overtuigd (com -d).", ["v-overtuigd"]),
+    LI("Zullen we gewoon stemmen?", ["Zullen we gewoon stemmen"], "Que tal simplesmente votarmos?", "stemmen.", ["v-stemmen"]),
+    MC("«Laten we…» serve para…", ["*propor algo ao grupo (Vamos…)","proibir|Não.","pedir desculpa|Não."], "Laten we gaan! = Vamos!", []),
+    SW("Num grupo, decide-se entre ir ao cinema ou jantar fora. Escreva 2–3 frases com a sua opinião, usando «aan de ene kant… aan de andere kant» e uma proposta de compromisso.", ["Aan de ene kant is de bioscoop leuk, aan de andere kant kunnen we dan niet praten. Laten we eerst eten en daarna naar de film gaan."], ["**Aan de ene kant … aan de andere kant** com inversão", "Uma opinião clara", "Proposta (**laten we…**)"], 20, "Opinião ponderada.", ["v-aan-de-ene-kant","v-compromis"]),
+  ], diff=4, mins=8)
+
+W()
