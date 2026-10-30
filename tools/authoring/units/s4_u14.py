@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s4-u14")
+C = "A2-B1"
+
+L(1, "Dat: o verbo vai para o fim", "Ik weet dat… Hij zegt dat…",
+  ["Formar orações com dat e o verbo no fim"],
+  vocab=[V("v-dat-conj","dat (conj.)","que","conjunction",note="Ik denk dat hij komt."), V("v-zeker-weten","zeker weten","ter a certeza","expression"),
+         V("v-zeggen-dat","zeggen dat","dizer que","expression"), V("v-merken","merken","reparar|notar","verb")],
+  ex=[("Ik weet dat je moe bent.","Sei que estás cansado."),("Hij zegt dat hij later komt.","Ele diz que vem mais tarde."),("Weet je zeker dat de winkel open is?","Tens a certeza de que a loja está aberta?"),("Ik merk dat mijn Nederlands beter wordt.","Noto que o meu neerlandês está a melhorar.")],
+  gram=[G("g-dat-bijzin","Oração subordinada com dat","Depois de **dat** (que), o verbo conjugado vai para o **fim** da oração: *Ik weet dat je moe **bent**.* Se houver mais verbos, ficam todos no fim: *…dat hij later **wil komen**.*",
+    [("Ze vertelt dat ze een nieuwe baan heeft.","Ela conta que tem um emprego novo."),("Ik denk dat het gaat regenen.","Acho que vai chover.")],
+    "Em português a ordem não muda depois de «que»; em neerlandês muda sempre.")],
+  review=["v-weten","v-zeggen","v-ik-denk-dat"],
+  cefr=C, exs=[
+    MA([("dat","que"),("zeker weten","ter a certeza"),("zeggen dat","dizer que"),("merken","notar")], "Dat.", ["v-dat-conj","v-zeker-weten","v-zeggen-dat","v-merken"]),
+    WO("Sei que estás cansado.", ["Ik","weet","dat","je","moe","bent"], "Verbo no fim.", ["v-dat-conj"]),
+    WO("Ele diz que vem mais tarde.", ["Hij","zegt","dat","hij","later","komt"], "Verbo no fim.", ["v-zeggen-dat"]),
+    WO("Noto que o meu neerlandês está a melhorar.", ["Ik","merk","dat","mijn","Nederlands","beter","wordt"], "worden no fim.", ["v-merken"]),
+    FE(["Ik","weet","dat","hij","heeft","een","auto."], 4, "een auto heeft", "Depois de dat, o verbo vai para o fim: dat hij een auto heeft.", ["v-dat-conj"]),
+    TR("pt-nl","Tens a certeza de que a loja está aberta?", ["Weet je zeker dat de winkel open is","Weet jij zeker dat de winkel open is"], "zeker weten dat.", ["v-zeker-weten"]),
+    TR("nl-pt","Ze vertelt dat ze een nieuwe baan heeft.", ["Ela conta que tem um [emprego novo|novo emprego]","Ela diz que tem um [emprego novo|novo emprego]"], "dat.", ["v-dat-conj"]),
+    FB("Ik denk ___ hij gelijk heeft.", ["dat"], "que = dat.", ["v-dat-conj"], choices=["dat","wat","die"], tr="Acho que ele tem razão."),
+    LI("Ik hoop dat jullie het leuk vinden.", ["Ik hoop dat jullie het leuk vinden"], "Espero que gostem.", "Verbo no fim.", ["v-dat-conj"]),
+    MC("Qual está certa?", ["*Hij zegt dat hij morgen wil komen.","Hij zegt dat hij wil morgen komen.|Os verbos ficam juntos no fim.","Hij zegt dat wil hij morgen komen.|Inversão errada."], "Verbos juntos no fim.", ["v-zeggen-dat"]),
+  ], diff=4, mins=6)
+
+L(2, "Als e wanneer", "Condição e tempo: als het regent…, wanneer ik thuis ben…",
+  ["Usar als (se/quando) e wanneer (quando) com o verbo no fim"],
+  vocab=[V("v-als-conj","als (conj.)","se|quando","conjunction",note="Als het regent, blijf ik thuis."), V("v-wanneer-conj","wanneer (conj.)","quando","conjunction"),
+         V("v-zodra","zodra","assim que","conjunction"), V("v-tenzij","tenzij","a não ser que","conjunction")],
+  ex=[("Als het regent, blijf ik thuis.","Se chover, fico em casa."),("Wanneer ik thuiskom, ga ik koken.","Quando chegar a casa, vou cozinhar."),("Bel me zodra je er bent.","Liga-me assim que chegares."),("We gaan wandelen, tenzij het regent.","Vamos passear, a não ser que chova.")],
+  gram=[G("g-als-bijzin-voor","Subordinada no início","Se a frase **começa** pela subordinada, esta conta como 1.ª posição: a seguir vem logo o **verbo principal** e depois o sujeito: *Als het regent, **blijf ik** thuis.* (verbo – verbo no meio, separados pela vírgula). **als** = se/quando (presente/futuro e hábitos); **wanneer** = quando (pergunta ou tempo).",
+    [("Zodra ik klaar ben, bel ik je.","Assim que acabar, ligo-te.")],
+    "O padrão «verbo, verbo» à volta da vírgula é uma boa forma de verificar.")],
+  review=["v-regenen","v-thuis","v-bellen"],
+  cefr=C, exs=[
+    MA([("als","se/quando"),("wanneer","quando"),("zodra","assim que"),("tenzij","a não ser que")], "Conjunções.", ["v-als-conj","v-wanneer-conj","v-zodra","v-tenzij"]),
+    WO("Se chover, fico em casa.", ["Als","het","regent,","blijf","ik","thuis"], "Verbo, verbo.", ["v-als-conj"]),
+    WO("Assim que acabar, ligo-te.", ["Zodra","ik","klaar","ben,","bel","ik","je"], "Verbo, verbo.", ["v-zodra"]),
+    FE(["Als","het","regent,","ik","blijf","thuis."], 3, "blijf ik", "Depois da subordinada vem o verbo: Als het regent, blijf ik thuis.", ["v-als-conj"]),
+    FE(["Bel","me","zodra","je","bent","er."], 4, "er bent", "Verbo no fim: zodra je er bent.", ["v-zodra"]),
+    TR("pt-nl","Liga-me assim que chegares.", ["Bel me zodra je er bent","Bel mij zodra je er bent","Bel me zodra je aankomt"], "zodra + verbo no fim.", ["v-zodra"]),
+    TR("nl-pt","We gaan wandelen, tenzij het regent.", ["Vamos passear, a não ser que chova","Vamos dar um passeio, a não ser que chova"], "tenzij.", ["v-tenzij"]),
+    TR("pt-nl","Quando chegar a casa, vou cozinhar.", ["Als ik thuiskom(,) ga ik koken","Wanneer ik thuiskom(,) ga ik koken","Als ik thuis ben(,) ga ik koken"], "Verbo, verbo.", ["v-wanneer-conj"]),
+    LI("Als je vragen hebt, kun je mij bellen.", ["Als je vragen hebt(,) kun je mij bellen","Als je vragen hebt(,) kun je me bellen"], "Se tiveres perguntas, podes ligar-me.", "als.", ["v-als-conj"]),
+    FB("We gaan naar het strand, ___ het te koud is.", ["tenzij"], "a não ser que.", ["v-tenzij"], choices=["tenzij","zodra","omdat"], tr="Vamos à praia, a não ser que esteja demasiado frio."),
+  ], diff=4, mins=7)
+
+L(3, "Toen, terwijl, nadat, voordat", "Orações de tempo no passado.",
+  ["Ligar acontecimentos no tempo com toen, terwijl, nadat e voordat"],
+  vocab=[V("v-toen-conj","toen (conj.)","quando (uma vez, no passado)","conjunction",note="Toen ik klein was…"), V("v-terwijl","terwijl","enquanto","conjunction"),
+         V("v-nadat","nadat","depois de/que","conjunction"), V("v-voordat","voordat","antes de/que","conjunction")],
+  ex=[("Toen ik klein was, woonde ik in Faro.","Quando era pequeno, morava em Faro."),("Terwijl ik kookte, belde mijn moeder.","Enquanto cozinhava, a minha mãe ligou."),("Nadat we gegeten hadden, gingen we wandelen.","Depois de comermos, fomos passear."),("Was je handen voordat je eet.","Lava as mãos antes de comer.")],
+  gram=[G("g-toen-als","Toen vs. als/wanneer","**toen** (conj.) = quando, para **um momento ou período único no passado**: *Toen ik in Lissabon woonde…* **als/wanneer** = quando, para o **presente/futuro** ou **hábitos**: *Als ik moe ben, slaap ik.* Atenção: *toen* também é advérbio («então»), com ordem diferente.",
+    [("Toen ik binnenkwam, was iedereen stil.","Quando entrei, estavam todos calados.")],
+    "Em português «quando» serve para tudo; em neerlandês, um momento passado único pede «toen».")],
+  review=["v-toen","v-als-conj","v-vroeger"],
+  cefr=C, exs=[
+    MA([("toen","quando (passado)"),("terwijl","enquanto"),("nadat","depois de"),("voordat","antes de")], "Tempo.", ["v-toen-conj","v-terwijl","v-nadat","v-voordat"]),
+    FB("___ ik klein was, woonde ik in Faro.", ["Toen"], "Período único no passado.", ["v-toen-conj"], choices=["Toen","Als","Wanneer"], tr="Quando era pequeno, morava em Faro."),
+    FB("___ ik moe ben, ga ik vroeg slapen.", ["Als","Wanneer"], "Hábito no presente.", ["v-als-conj"], choices=["Als","Toen","Nadat"], tr="Quando estou cansado, vou dormir cedo."),
+    WO("Enquanto cozinhava, a minha mãe ligou.", ["Terwijl","ik","kookte,","belde","mijn","moeder"], "Verbo, verbo.", ["v-terwijl"]),
+    WO("Lava as mãos antes de comer.", ["Was","je","handen","voordat","je","eet"], "voordat + verbo no fim.", ["v-voordat"]),
+    TR("pt-nl","Quando entrei, estavam todos calados.", ["Toen ik binnenkwam(,) was iedereen stil"], "toen + verbo, verbo.", ["v-toen-conj"]),
+    TR("nl-pt","Nadat we gegeten hadden, gingen we wandelen.", ["Depois de comermos, fomos passear","Depois de termos comido, fomos passear","Depois de jantarmos, fomos passear"], "nadat.", ["v-nadat"]),
+    FE(["Als","ik","gisteren","thuiskwam,","was","het","donker."], 0, "Toen", "Momento único no passado → toen.", ["v-toen-conj"]),
+    MC("«Toen gingen we naar huis» — aqui «toen» é…", ["*advérbio («então»), com inversão","conjunção («quando»)|Com a conjunção, o verbo iria para o fim.","preposição|Não."], "Duas funções.", ["v-toen"]),
+    LI("Terwijl hij sliep, ging de telefoon.", ["Terwijl hij sliep(,) ging de telefoon"], "Enquanto ele dormia, o telefone tocou.", "terwijl.", ["v-terwijl"]),
+  ], diff=4, mins=7)
+
+L(4, "Perguntas indiretas", "Weet u waar het station is? Ik vraag me af wat hij bedoelt.",
+  ["Fazer perguntas indiretas (mais educadas) com o verbo no fim"],
+  vocab=[V("v-zich-afvragen","zich afvragen","perguntar-se|interrogar-se","verb",note="Ik vraag me af of…"), V("v-bedoelen","bedoelen","querer dizer","verb"),
+         V("v-weet-u","weet u…?","sabe…?","expression"), V("v-hoeveel-conj","hoeveel","quanto(s)","adverb")],
+  ex=[("Weet u waar het station is?","Sabe onde fica a estação?"),("Ik vraag me af wat hij bedoelt.","Pergunto-me o que é que ele quer dizer."),("Kunt u zeggen hoe laat de trein vertrekt?","Pode dizer-me a que horas parte o comboio?"),("Weet jij hoeveel het kost?","Sabes quanto custa?")],
+  gram=[G("g-indirecte-vraag","Pergunta indireta","Palavra interrogativa (**waar, wat, wie, hoe, wanneer, hoeveel, waarom**) ou **of** + oração com o **verbo no fim**: *Waar **is** het station?* → *Weet u waar het station **is**?* É mais educado do que a pergunta direta.",
+    [("Ik weet niet wie dat is.","Não sei quem é."),("Mag ik vragen waarom u belt?","Posso perguntar porque está a ligar?")])],
+  review=["v-waar","v-wat","v-hoe-laat","v-of-conj"],
+  cefr=C, exs=[
+    MA([("zich afvragen","perguntar-se"),("bedoelen","querer dizer"),("weet u…?","sabe…?"),("hoeveel","quanto")], "Perguntas indiretas.", ["v-zich-afvragen","v-bedoelen","v-weet-u","v-hoeveel-conj"]),
+    WO("Sabe onde fica a estação?", ["Weet","u","waar","het","station","is?"], "Verbo no fim.", ["v-weet-u"]),
+    WO("Sabes quanto custa?", ["Weet","jij","hoeveel","het","kost?"], "Verbo no fim.", ["v-hoeveel-conj"]),
+    FE(["Weet","u","hoe","laat","vertrekt","de","trein?"], 4, "de trein vertrekt", "Pergunta indireta → verbo no fim: hoe laat de trein vertrekt.", ["v-weet-u"]),
+    TR("pt-nl","Pergunto-me o que é que ele quer dizer.", ["Ik vraag me af wat hij bedoelt","Ik vraag mij af wat hij bedoelt"], "zich afvragen + verbo no fim.", ["v-zich-afvragen","v-bedoelen"]),
+    TR("pt-nl","Não sei quem é.", ["Ik weet niet wie dat is","Ik weet niet wie het is"], "wie + verbo no fim.", []),
+    TR("nl-pt","Mag ik vragen waarom u belt?", ["Posso perguntar porque está a ligar","Posso perguntar porque liga"], "waarom + verbo no fim.", []),
+    MC("Transforme «Wanneer begint de les?» numa pergunta indireta:", ["*Weet je wanneer de les begint?","Weet je wanneer begint de les?|O verbo vai para o fim.","Weet je de les wanneer begint?|Ordem errada."], "Verbo no fim.", []),
+    LI("Ik vraag me af of het morgen droog blijft.", ["Ik vraag me af of het morgen droog blijft","Ik vraag mij af of het morgen droog blijft"], "Pergunto-me se amanhã continua seco.", "of + verbo no fim.", ["v-zich-afvragen"]),
+    FB("Wat ___ je daarmee?", ["bedoel"], "jij → bedoel (inversão, sem -t).", ["v-bedoelen"], choices=["bedoel","bedoelt","bedoelen"], tr="O que queres dizer com isso?"),
+  ], diff=4, mins=7)
+
+L(5, "Prática: frases complexas", "Juntar dat, omdat, als, toen e perguntas indiretas.",
+  ["Construir frases com várias orações corretamente"],
+  vocab=[V("v-hoewel","hoewel","embora","conjunction",note="Hoewel het regent, ga ik fietsen."), V("v-zodat","zodat","para que|de modo que","conjunction"),
+         V("v-sinds-conj","sinds (conj.)","desde que","conjunction"), V("v-totdat","totdat","até que","conjunction")],
+  ex=[("Hoewel het regent, ga ik fietsen.","Embora esteja a chover, vou de bicicleta."),("Ik spreek langzaam, zodat je me begrijpt.","Falo devagar para que me compreendas."),("Sinds ik hier woon, fiets ik elke dag.","Desde que moro aqui, ando de bicicleta todos os dias."),("Wacht hier totdat ik terug ben.","Espera aqui até eu voltar.")],
+  review=["v-dat-conj","v-omdat","v-als-conj","v-toen-conj"],
+  cefr=C, exs=[
+    MA([("hoewel","embora"),("zodat","para que"),("sinds","desde que"),("totdat","até que")], "Mais conjunções.", ["v-hoewel","v-zodat","v-sinds-conj","v-totdat"]),
+    WO("Embora esteja a chover, vou de bicicleta.", ["Hoewel","het","regent,","ga","ik","fietsen"], "Verbo, verbo.", ["v-hoewel"]),
+    WO("Falo devagar para que me compreendas.", ["Ik","spreek","langzaam,","zodat","je","me","begrijpt"], "zodat + verbo no fim.", ["v-zodat"]),
+    TR("pt-nl","Espera aqui até eu voltar.", ["Wacht hier totdat ik terug ben","Wacht hier tot ik terug ben","Wacht hier totdat ik terugkom"], "totdat.", ["v-totdat"]),
+    TR("nl-pt","Sinds ik hier woon, fiets ik elke dag.", ["Desde que moro aqui, ando de bicicleta todos os dias","Desde que vivo aqui, ando de bicicleta todos os dias"], "sinds + verbo, verbo.", ["v-sinds-conj"]),
+    FE(["Hoewel","ik","ben","moe,","ga","ik","sporten."], 2, "moe ben", "Verbo no fim: Hoewel ik moe ben, …", ["v-hoewel"]),
+    MC("Qual frase está correta?", ["*Ik weet niet of hij komt, omdat hij ziek is.","Ik weet niet of komt hij, omdat hij is ziek.|Verbos fora do lugar.","Ik weet niet of hij komt, omdat is hij ziek.|Verbo no lugar errado."], "Verbos no fim das subordinadas.", ["v-omdat"]),
+    FB("Ik zet de wekker, ___ ik niet te laat kom.", ["zodat"], "Finalidade.", ["v-zodat"], choices=["zodat","hoewel","totdat"], tr="Ponho o despertador para não chegar atrasado."),
+    LI("Hoewel het druk was, hebben we een tafel gevonden.", ["Hoewel het druk was(,) hebben we een tafel gevonden"], "Embora estivesse cheio, encontrámos uma mesa.", "hoewel.", ["v-hoewel"]),
+    SW("Escreva 3 frases sobre a sua vida nos Países Baixos (ou em Portugal) usando sinds, hoewel e omdat.", ["Sinds ik in Utrecht woon, fiets ik veel. Hoewel het vaak regent, vind ik het hier fijn. Ik leer Nederlands omdat ik hier wil blijven."], ["**sinds** + verbo, verbo", "**hoewel** + verbo no fim", "**omdat** + verbo no fim"], 20, "Frases complexas.", ["v-sinds-conj","v-hoewel","v-omdat"]),
+  ], diff=4, mins=8)
+
+W()
