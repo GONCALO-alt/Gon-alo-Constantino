@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s7-u01")
+C = "B2"
+
+L(1, "Desenvolver um tema", "Om daar even op door te gaan… Wat ik daar interessant aan vind…",
+  ["Aprofundar um tema numa conversa longa"],
+  vocab=[V("v-doorgaan-op","doorgaan op","desenvolver (um ponto)","expression",note="Om daar even op door te gaan…"), V("v-uitweiden","uitweiden","alongar-se|divagar","verb"),
+         V("v-aanhaken","aanhaken bij","pegar em (algo que foi dito)","expression"), V("v-de-draad-kwijt","de draad kwijt zijn","perder o fio à meada","expression")],
+  ex=[("Om daar even op door te gaan: hoe zit het met de kosten?","Desenvolvendo esse ponto: e os custos?"),("Ik wil even aanhaken bij wat Sanne zei.","Queria pegar no que a Sanne disse."),("Sorry, ik wijd een beetje uit.","Desculpem, estou a alongar-me."),("Waar was ik? Ik ben de draad kwijt.","Onde é que eu ia? Perdi o fio à meada.")],
+  gram=[G("g-gesprek-uitbouwen","Estratégias para conversas longas","Para **ligar** ao que foi dito: *Om daarop door te gaan… / Aanhakend bij…*. Para **voltar** ao tema: *Maar goed, waar het om gaat is…* Para **pedir tempo**: *Laat me even nadenken.* Para **retomar o fio**: *Waar was ik gebleven?*",
+    [("Maar goed, waar het eigenlijk om gaat, is…","Mas pronto, o que interessa mesmo é…")])],
+  review=["v-trouwens","v-over-gesproken","v-terugkomen-op"],
+  cefr=C, exs=[
+    MA([("doorgaan op","desenvolver"),("uitweiden","alongar-se"),("aanhaken bij","pegar em"),("de draad kwijt zijn","perder o fio")], "Conversa longa.", ["v-doorgaan-op","v-uitweiden","v-aanhaken","v-de-draad-kwijt"]),
+    TR("pt-nl","Queria pegar no que a Sanne disse.", ["Ik wil even aanhaken bij wat Sanne zei","Ik wil graag aanhaken bij wat Sanne zei","Ik wil even aanhaken bij wat Sanne heeft gezegd"], "aanhaken bij.", ["v-aanhaken"]),
+    TR("pt-nl","Onde é que eu ia? Perdi o fio à meada.", ["Waar was ik(?) Ik ben de draad kwijt","Waar was ik gebleven(?) Ik ben de draad kwijt"], "de draad kwijt.", ["v-de-draad-kwijt"]),
+    TR("nl-pt","Sorry, ik wijd een beetje uit.", ["Desculpem, estou a alongar-me","Desculpa, estou a divagar um bocado"], "uitweiden.", ["v-uitweiden"]),
+    WO("Mas pronto, o que interessa mesmo é o preço.", ["Maar","goed,","waar","het","eigenlijk","om","gaat,","is","de","prijs"], "Oração como 1.ª posição.", ["v-doorgaan-op"]),
+    FE(["Ik","wil","aanhaken","op","wat","je","zei."], 3, "bij", "aanhaken bij.", ["v-aanhaken"]),
+    MC("Quando alguém diz «Ik dwaal af», está…", ["*a desviar-se do tema","a perder-se na rua|Pode ser literal, mas aqui é a conversa.","a concordar|Não."], "afdwalen.", ["v-uitweiden"]),
+    LI("Om daar nog even op door te gaan: wat vinden de bewoners ervan?", ["Om daar nog even op door te gaan(:) wat vinden de bewoners ervan","Om daar nog even op door te gaan(,) wat vinden de bewoners ervan"], "Desenvolvendo isso: o que acham os moradores?", "doorgaan op.", ["v-doorgaan-op"]),
+    CO("dialogue","Aan de keukentafel", "Jeroen: …en toen bleek dat de verhuurder het al maanden wist.\nMarta: Om daar even op door te gaan: had je dat niet schriftelijk?\nJeroen: Goeie vraag. Nee, alles ging mondeling. Maar goed, waar het eigenlijk om gaat, is dat we nu een nieuw huis moeten zoeken.\nMarta: Ik wil even aanhaken bij wat je eerder zei over de buurt. Zou je in Noord willen wonen?\nJeroen: Misschien wel. Sorry, waar was ik? Ik ben de draad kwijt.",
+       [("O que pergunta a Marta primeiro?", ["*Se ele tinha algo por escrito","Se queria café","Onde trabalha"]),("Qual é o problema principal do Jeroen?", ["*Tem de procurar casa nova","O senhorio é simpático","Não gosta de Noord"]),("Como ia tudo com o senhorio?", ["*Oralmente","Por e-mail","Por advogado"])],
+       "mondeling = oralmente.", ["v-doorgaan-op","v-aanhaken","v-de-draad-kwijt"]),
+    FB("Sorry, ik ___ een beetje af van het onderwerp.", ["dwaal"], "afdwalen = desviar-se.", ["v-uitweiden"], choices=["dwaal","wijd","haak"], tr="Desculpa, estou a desviar-me um pouco do tema."),
+  ], diff=5, mins=8)
+
+L(2, "Contar histórias com detalhe e suspense", "Je raadt nooit wat er toen gebeurde…",
+  ["Contar episódios de forma envolvente"],
+  vocab=[V("v-je-raadt-nooit","je raadt nooit…","nunca vais adivinhar…","expression"), V("v-uiteindelijk-bleek","uiteindelijk bleek","afinal veio-se a saber","expression"),
+         V("v-het-gekke-was","het gekke was dat…","o mais estranho foi que…","expression"), V("v-spannend","spannend","emocionante|tenso","adjective")],
+  ex=[("Je raadt nooit wie ik tegenkwam!","Nunca vais adivinhar com quem me cruzei!"),("Het gekke was dat niemand iets zei.","O mais estranho foi que ninguém disse nada."),("Uiteindelijk bleek het een misverstand.","Afinal veio-se a saber que era um mal-entendido."),("Het was echt spannend.","Foi mesmo emocionante.")],
+  review=["v-plotseling","v-toen","v-uiteindelijk","v-destijds"],
+  cefr=C, exs=[
+    MA([("je raadt nooit…","nunca vais adivinhar"),("uiteindelijk bleek","afinal soube-se"),("het gekke was dat…","o mais estranho foi"),("spannend","emocionante")], "Contar.", ["v-je-raadt-nooit","v-uiteindelijk-bleek","v-het-gekke-was","v-spannend"]),
+    TR("pt-nl","Nunca vais adivinhar com quem me cruzei!", ["Je raadt nooit wie ik tegenkwam","Je raadt nooit wie ik ben tegengekomen"], "je raadt nooit + verbo no fim.", ["v-je-raadt-nooit"]),
+    TR("pt-nl","O mais estranho foi que ninguém disse nada.", ["Het gekke was dat niemand iets zei","Het rare was dat niemand iets zei"], "dat + verbo no fim.", ["v-het-gekke-was"]),
+    TR("nl-pt","Uiteindelijk bleek het een misverstand.", ["Afinal era um mal-entendido","No fim veio-se a saber que era um mal-entendido"], "blijken.", ["v-uiteindelijk-bleek"]),
+    FE(["Je","raadt","nooit","wie","kwam","ik","tegen!"], 4, "ik tegenkwam", "Verbo no fim: wie ik tegenkwam.", ["v-je-raadt-nooit"]),
+    CO("text","Een rare treinreis", "Je raadt nooit wat me vorige week overkwam. Ik zat in de trein naar Groningen en ineens stopte de trein midden in een weiland. Niemand wist wat er aan de hand was. Het gekke was dat de conducteur gewoon koffie bleef schenken. Na een halfuur bleek dat er een koe op het spoor stond! Uiteindelijk kwam ik twee uur te laat aan, maar ik had wel een mooi verhaal.",
+       [("Onde parou o comboio?", ["*No meio de um prado","Numa estação","Num túnel"]),("O que achou estranho?", ["*O revisor continuou a servir café","Ninguém tinha bilhete","O comboio estava vazio"]),("Qual foi a causa?", ["*Uma vaca na linha","Uma greve","Neve"])],
+       "overkomen = acontecer a alguém; weiland = prado.", ["v-je-raadt-nooit","v-het-gekke-was","v-uiteindelijk-bleek"]),
+    LI("Het was zo spannend dat ik niet kon slapen.", ["Het was zo spannend dat ik niet kon slapen"], "Foi tão emocionante que não consegui dormir.", "zo … dat.", ["v-spannend"]),
+    MC("Qual frase cria mais suspense?", ["*En toen… ging plotseling het licht uit.","Het licht ging uit.|Neutra.","Er was licht.|Sem tensão."], "Técnica narrativa.", ["v-spannend"]),
+    FB("Wat is er ___? — Ik ben mijn paspoort kwijt!", ["gebeurd"], "gebeuren → gebeurd.", ["v-gebeurd"], choices=["gebeurd","gebeurt","gebeuren"], tr="O que aconteceu? — Perdi o passaporte!"),
+    SW("Conte um episódio curioso que lhe aconteceu (5–6 frases), com uma frase de suspense e «uiteindelijk bleek…».", ["Je raadt nooit wat er vorige zomer gebeurde. Ik was in Porto en zocht een restaurant. Plotseling riep iemand mijn naam. Het gekke was dat ik die persoon niet herkende. Uiteindelijk bleek het een oude klasgenoot van de basisschool te zijn! We hebben de hele avond gepraat."], ["Abertura envolvente", "Sequência no passado", "**uiteindelijk bleek**", "Final"], 60, "Narrativa envolvente.", ["v-je-raadt-nooit","v-uiteindelijk-bleek"]),
+  ], diff=5, mins=8)
+
+L(3, "Conversas com várias opiniões", "Gerir uma discussão animada entre amigos.",
+  ["Participar numa conversa longa com várias pessoas e opiniões"],
+  vocab=[V("v-ertegenin-gaan","ertegenin gaan","contrariar","expression"), V("v-zich-aansluiten","zich aansluiten bij","juntar-se a (uma opinião)","expression"),
+         V("v-afdwalen","afdwalen","desviar-se do tema","verb"), V("v-op-het-scherpst-van-de-snede","op het scherpst van de snede","de forma muito acesa","expression")],
+  ex=[("Ik wil er toch even tegenin gaan.","Ainda assim quero contrariar isso."),("Ik sluit me aan bij Bram.","Concordo com o Bram."),("We dwalen af.","Estamos a desviar-nos do tema."),("De discussie werd op het scherpst van de snede gevoerd.","A discussão foi muito acesa.")],
+  review=["v-onderbreken","v-laat-me-uitpraten","v-op-een-lijn"],
+  cefr=C, exs=[
+    MA([("ertegenin gaan","contrariar"),("zich aansluiten bij","juntar-se a"),("afdwalen","desviar-se"),("op het scherpst van de snede","de forma acesa")], "Discussão.", ["v-ertegenin-gaan","v-zich-aansluiten","v-afdwalen","v-op-het-scherpst-van-de-snede"]),
+    TR("pt-nl","Concordo com o Bram.", ["Ik sluit me aan bij Bram","Ik ben het met Bram eens","Ik sluit mij aan bij Bram"], "zich aansluiten bij.", ["v-zich-aansluiten"]),
+    TR("pt-nl","Estamos a desviar-nos do tema.", ["We dwalen af","Wij dwalen af","We dwalen af van het onderwerp"], "afdwalen.", ["v-afdwalen"]),
+    TR("nl-pt","Ik wil er toch even tegenin gaan.", ["Ainda assim quero contrariar isso","Mesmo assim quero discordar"], "ertegenin gaan.", ["v-ertegenin-gaan"]),
+    FE(["Ik","sluit","me","aan","met","Bram."], 4, "bij", "zich aansluiten bij.", ["v-zich-aansluiten"]),
+    CO("dialogue","Moet je kinderen een telefoon geven?", "Eva: Mijn dochter van tien wil een telefoon. Ik twijfel.\nBram: Ik zou het niet doen. Ze zitten dan de hele dag op TikTok.\nNadia: Ik wil er toch even tegenin gaan: het is ook handig voor de veiligheid, als ze alleen naar school fietst.\nPieter: Ik sluit me aan bij Nadia. Je kunt toch een simpele telefoon zonder internet geven?\nBram: Dat is een goed compromis, eigenlijk.\nEva: Maar we dwalen af: wat doen jullie met je eigen schermtijd?",
+       [("Qual é a posição do Bram no início?", ["*Contra o telemóvel","A favor","Indiferente"]),("Qual argumento usa a Nadia?", ["*Segurança quando vai sozinha para a escola","É barato","Todos têm"]),("Qual é a solução do Pieter?", ["*Um telemóvel simples sem internet","Um tablet","Nenhum telemóvel até aos 18"])],
+       "Repare nas fórmulas de entrada e de mudança de tema.", ["v-ertegenin-gaan","v-zich-aansluiten","v-afdwalen"]),
+    LI("Ik sluit me helemaal aan bij wat Pieter zegt.", ["Ik sluit me helemaal aan bij wat Pieter zegt","Ik sluit mij helemaal aan bij wat Pieter zegt"], "Concordo totalmente com o que o Pieter diz.", "aansluiten.", ["v-zich-aansluiten"]),
+    MC("Para regressar ao tema principal diz…", ["*Maar goed, we dwalen af. Waar het om gaat…","Laten we afdwalen!|Ao contrário.","Ik ga ertegenin.|Contrariar."], "Retomar.", ["v-afdwalen"]),
+    FB("De debatten werden op het scherpst van de ___ gevoerd.", ["snede"], "Expressão.", ["v-op-het-scherpst-van-de-snede"], choices=["snede","mes","rand"], tr="Os debates foram muito acesos."),
+    SW("Responda na conversa acima (2–3 frases): junte-se a uma opinião e acrescente um argumento novo.", ["Ik sluit me aan bij Nadia, maar ik zou ook duidelijke afspraken maken. Bijvoorbeeld: geen telefoon aan tafel en 's avonds in de keuken leggen."], ["**Ik sluit me aan bij…**", "Argumento novo", "Exemplo concreto"], 25, "Participar.", ["v-zich-aansluiten"]),
+  ], diff=5, mins=8)
+
+L(4, "Falar de experiências e lições de vida", "Wat ik daarvan geleerd heb, is… Achteraf gezien…",
+  ["Refletir sobre experiências passadas"],
+  vocab=[V("v-achteraf-gezien","achteraf gezien","em retrospetiva","expression"), V("v-ervan-leren","ervan leren","aprender com isso","expression"),
+         V("v-keerpunt","keerpunt","ponto de viragem","noun","het"), V("v-terugblikkend","terugblikkend","olhando para trás","adverb")],
+  ex=[("Achteraf gezien was het de juiste keuze.","Em retrospetiva, foi a escolha certa."),("Wat ik ervan geleerd heb, is geduld.","O que aprendi com isso foi paciência."),("De verhuizing was een keerpunt in mijn leven.","A mudança foi um ponto de viragem na minha vida."),("Terugblikkend ben ik dankbaar.","Olhando para trás, estou grato.")],
+  review=["v-achteraf","v-terugblikken","v-ervaring"],
+  cefr=C, exs=[
+    MA([("achteraf gezien","em retrospetiva"),("ervan leren","aprender com isso"),("keerpunt","ponto de viragem"),("terugblikkend","olhando para trás")], "Reflexão.", ["v-achteraf-gezien","v-ervan-leren","v-keerpunt","v-terugblikkend"]),
+    TR("pt-nl","Em retrospetiva, foi a escolha certa.", ["Achteraf gezien was het de juiste keuze","Achteraf gezien was het de goede keuze"], "Inversão.", ["v-achteraf-gezien"]),
+    TR("pt-nl","O que aprendi com isso foi paciência.", ["Wat ik ervan geleerd heb(,) is geduld","Wat ik ervan heb geleerd(,) is geduld"], "Oração como sujeito.", ["v-ervan-leren"]),
+    TR("nl-pt","De verhuizing was een keerpunt in mijn leven.", ["A mudança foi um ponto de viragem na minha vida"], "keerpunt.", ["v-keerpunt"]),
+    AR("keerpunt","o ponto de viragem","het", "Het punt.", ["v-keerpunt"]),
+    FE(["Achteraf","gezien","het","was","een","goede","beslissing."], 2, "was het", "Inversão: Achteraf gezien was het…", ["v-achteraf-gezien"]),
+    LI("Terugblikkend zou ik niets anders doen.", ["Terugblikkend zou ik niets anders doen"], "Olhando para trás, não faria nada de diferente.", "zou.", ["v-terugblikkend"]),
+    MC("«Daar heb ik veel van geleerd» significa…", ["*Aprendi muito com isso","Ensinei muito|Ao contrário.","Esqueci tudo|Não."], "leren van.", ["v-ervan-leren"]),
+    FB("Mijn eerste baan was een echt ___ in mijn leven.", ["keerpunt"], "Ponto de viragem.", ["v-keerpunt"], choices=["keerpunt","achteraf","terugblik"], tr="O meu primeiro emprego foi um verdadeiro ponto de viragem na minha vida."),
+    SW("Fale de um ponto de viragem na sua vida (4–5 frases): o que aconteceu, como se sentiu e o que aprendeu.", ["Een keerpunt in mijn leven was mijn verhuizing naar Nederland. In het begin voelde ik me eenzaam en sprak ik de taal niet. Achteraf gezien was het de beste beslissing die ik ooit heb genomen. Wat ik ervan geleerd heb, is dat je meer kunt dan je denkt."], ["**keerpunt**", "Passado bem usado", "**achteraf gezien** + inversão", "Lição aprendida"], 50, "Reflexão pessoal.", ["v-keerpunt","v-achteraf-gezien"]),
+  ], diff=5, mins=8)
+
+L(5, "Conversa longa: entrevista pessoal", "Ouvir e responder em profundidade.",
+  ["Compreender e participar numa entrevista pessoal extensa"],
+  vocab=[V("v-levensloop","levensloop","percurso de vida","noun","de"), V("v-drijfveer","drijfveer","motivação (força motriz)","noun","de"),
+         V("v-passie","passie","paixão","noun","de"), V("v-uitdaging-aangaan","een uitdaging aangaan","aceitar um desafio","expression")],
+  ex=[("Kun je iets vertellen over je levensloop?","Podes falar um pouco do teu percurso de vida?"),("Wat is je grootste drijfveer?","Qual é a tua maior motivação?"),("Koken is mijn passie.","Cozinhar é a minha paixão."),("Ik ga graag nieuwe uitdagingen aan.","Gosto de aceitar novos desafios.")],
+  review=["v-achtergrond","v-keerpunt","v-toekomst"],
+  cefr=C, exs=[
+    MA([("levensloop","percurso de vida"),("drijfveer","motivação"),("passie","paixão"),("een uitdaging aangaan","aceitar um desafio")], "Entrevista.", ["v-levensloop","v-drijfveer","v-passie","v-uitdaging-aangaan"]),
+    CO("dialogue","Podcast: Nieuwe Nederlanders", "Interviewer: Welkom, Inês. Kun je iets vertellen over je levensloop?\nInês: Ik ben opgegroeid in een klein dorp in de Alentejo. Na mijn studie biologie werkte ik in Lissabon, maar ik wilde meer internationale ervaring.\nInterviewer: Wat was je drijfveer om naar Nederland te komen?\nInês: Eerlijk gezegd een vacature bij een onderzoeksinstituut in Wageningen. Ik dacht: die uitdaging ga ik aan.\nInterviewer: En nu, zes jaar later?\nInês: Nu leid ik een eigen onderzoeksgroep. Achteraf gezien was het een keerpunt. Mijn passie is nog steeds hetzelfde: de natuur beschermen.",
+       [("Onde cresceu a Inês?", ["*Numa aldeia do Alentejo","Em Lisboa","Em Wageningen"]),("O que a trouxe para os Países Baixos?", ["*Uma vaga num instituto de investigação","O marido","O clima"]),("O que faz agora?", ["*Lidera um grupo de investigação próprio","Estuda biologia","Trabalha num restaurante"])],
+       "leiden = dirigir; onderzoeksinstituut = instituto de investigação.", ["v-levensloop","v-drijfveer","v-uitdaging-aangaan"]),
+    TR("pt-nl","Qual é a tua maior motivação?", ["Wat is je grootste drijfveer","Wat is jouw grootste drijfveer"], "drijfveer.", ["v-drijfveer"]),
+    TR("nl-pt","Ik ga graag nieuwe uitdagingen aan.", ["Gosto de aceitar novos desafios","Gosto de enfrentar novos desafios"], "aangaan.", ["v-uitdaging-aangaan"]),
+    AR("drijfveer","a motivação","de", "De drijfveer.", ["v-drijfveer"]),
+    FE(["Ik","aanga","graag","een","uitdaging."], 1, "ga … aan", "Separável: Ik ga graag een uitdaging aan.", ["v-uitdaging-aangaan"]),
+    LI("Kun je iets vertellen over je levensloop?", ["Kun je iets vertellen over je levensloop","Kan je iets vertellen over je levensloop"], "Podes falar do teu percurso de vida?", "levensloop.", ["v-levensloop"]),
+    MC("«Mijn passie is nog steeds hetzelfde» indica…", ["*continuidade apesar das mudanças","que perdeu o interesse|Ao contrário.","que mudou de paixão|Ao contrário."], "Interpretação.", ["v-passie"]),
+    WO("Cozinhar é a minha paixão.", ["Koken","is","mijn","passie"], "Infinitivo como sujeito.", ["v-passie"]),
+    SW("Responda como na entrevista (5–6 frases): o seu percurso, a sua motivação e a sua paixão.", ["Ik ben geboren in Braga en heb in Porto economie gestudeerd. Daarna werkte ik drie jaar bij een bank. Mijn drijfveer om naar Nederland te komen was de wens om in een internationale omgeving te werken. Hier heb ik een nieuwe uitdaging aangegaan bij een start-up. Mijn passie is nieuwe dingen leren, en dat doe ik elke dag."], ["Percurso com passado", "**drijfveer**", "**passie**", "Coerência"], 60, "Entrevista pessoal.", ["v-levensloop","v-drijfveer","v-passie"]),
+  ], diff=5, mins=8)
+
+W()

@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s7-u02")
+C = "B2"
+
+L(1, "Política neerlandesa: o básico", "de Tweede Kamer, het kabinet, coalitie, verkiezingen",
+  ["Conhecer o vocabulário básico da política neerlandesa"],
+  vocab=[V("v-tweede-kamer","Tweede Kamer","Câmara dos Deputados (parlamento)","noun","de"), V("v-coalitie","coalitie","coligação","noun","de"),
+         V("v-verkiezingen","verkiezingen","eleições","noun","de"), V("v-partij","partij","partido","noun","de"),
+         V("v-minister-president","minister-president","primeiro-ministro","noun","de")],
+  ex=[("De Tweede Kamer heeft 150 zetels.","A Câmara tem 150 lugares."),("Na de verkiezingen wordt een coalitie gevormd.","Depois das eleições forma-se uma coligação."),("Welke partij heeft de meeste stemmen?","Que partido tem mais votos?"),("De minister-president leidt het kabinet.","O primeiro-ministro dirige o governo.")],
+  gram=[G("g-nl-politiek","Como funciona","Os Países Baixos são uma monarquia constitucional com sistema **proporcional**: muitos **partijen** entram na **Tweede Kamer** (150 lugares). Nenhum partido tem maioria, por isso forma-se uma **coalitie** após longas negociações (**formatie**). A **Eerste Kamer** (Senado) revê as leis.",
+    [("De formatie duurde maanden.","A formação do governo durou meses.")],
+    "Em Portugal há governos de um só partido mais vezes; nos Países Baixos as coligações são a regra.")],
+  review=["v-kabinet","v-stemmen","v-koning"],
+  cefr=C, exs=[
+    MA([("Tweede Kamer","parlamento"),("coalitie","coligação"),("verkiezingen","eleições"),("partij","partido"),("minister-president","primeiro-ministro")], "Política.", ["v-tweede-kamer","v-coalitie","v-verkiezingen","v-partij","v-minister-president"]),
+    MC("Quantos lugares tem a Tweede Kamer?", ["*150","230|Isso é a Assembleia da República.","75|Isso é a Eerste Kamer."], "Facto.", ["v-tweede-kamer"]),
+    MC("Porque se formam quase sempre coligações?", ["*Muitos partidos e nenhum com maioria","O rei manda|Não.","É obrigatório por lei ter 3 partidos|Não."], "Sistema proporcional.", ["v-coalitie"]),
+    TR("pt-nl","Depois das eleições forma-se uma coligação.", ["Na de verkiezingen wordt een coalitie gevormd"], "Passiva.", ["v-coalitie","v-verkiezingen"]),
+    TR("nl-pt","Welke partij heeft de meeste stemmen?", ["Que partido tem mais votos","Qual é o partido com mais votos"], "stemmen = votos.", ["v-partij"]),
+    AR("coalitie","a coligação","de", "De coalitie.", ["v-coalitie"]),
+    FE(["De","verkiezingen","is","in","oktober."], 2, "zijn", "Plural: zijn.", ["v-verkiezingen"]),
+    LI("De formatie heeft maanden geduurd.", ["De formatie heeft maanden geduurd"], "A formação do governo durou meses.", "formatie.", ["v-coalitie"]),
+    MC("Cidadãos da UE residentes nos Países Baixos podem votar…", ["*nas eleições municipais e europeias","nas eleições da Tweede Kamer|Só cidadãos neerlandeses.","em nenhuma|Não."], "Direitos de voto.", ["v-verkiezingen"]),
+    FB("De ___ bestaat uit vier partijen.", ["coalitie"], "Coligação.", ["v-coalitie"], choices=["coalitie","partij","Kamer"], tr="A coligação é composta por quatro partidos."),
+  ], diff=5, mins=7)
+
+L(2, "Debater um tema atual: habitação e migração", "Hoe kijk jij tegen … aan?",
+  ["Discutir temas atuais sensíveis com nuance"],
+  vocab=[V("v-tegen-aankijken","tegen iets aankijken","ver algo (de certa forma)","expression"), V("v-gevoelig","gevoelig","sensível","adjective"),
+         V("v-polarisatie","polarisatie","polarização","noun","de"), V("v-draagvlak","draagvlak","apoio (público)","noun","het")],
+  ex=[("Hoe kijk jij tegen dat plan aan?","Como vês esse plano?"),("Migratie is een gevoelig onderwerp.","A migração é um tema sensível."),("Er is steeds meer polarisatie.","Há cada vez mais polarização."),("Er is weinig draagvlak voor die maatregel.","Há pouco apoio para essa medida.")],
+  review=["v-woningnood","v-integratie","v-volgens-mij","v-nuanceren"],
+  cefr=C, exs=[
+    MA([("tegen iets aankijken","ver algo"),("gevoelig","sensível"),("polarisatie","polarização"),("draagvlak","apoio público")], "Temas atuais.", ["v-tegen-aankijken","v-gevoelig","v-polarisatie","v-draagvlak"]),
+    TR("pt-nl","Como vês esse plano?", ["Hoe kijk jij tegen dat plan aan","Hoe kijk je tegen dat plan aan","Wat vind je van dat plan"], "tegen … aankijken.", ["v-tegen-aankijken"]),
+    TR("nl-pt","Er is weinig draagvlak voor die maatregel.", ["Há pouco apoio para essa medida","Essa medida tem pouco apoio"], "draagvlak.", ["v-draagvlak"]),
+    TR("pt-nl","A migração é um tema sensível.", ["Migratie is een gevoelig onderwerp"], "het onderwerp → gevoelig.", ["v-gevoelig"]),
+    AR("draagvlak","o apoio público","het", "Het draagvlak.", ["v-draagvlak"]),
+    FE(["Hoe","kijk","jij","naar","dat","plan","aan?"], 3, "tegen", "tegen iets aankijken.", ["v-tegen-aankijken"]),
+    CO("text","Woningnood en migratie", "In het debat over de woningnood wordt vaak naar migratie gewezen. Sommige politici zeggen dat er minder mensen moeten komen. Experts nuanceren dat: volgens hen is de belangrijkste oorzaak dat er jarenlang te weinig is gebouwd. Ook het groeiende aantal eenpersoonshuishoudens speelt een rol. Het debat is gevoelig en leidt tot polarisatie, wat het moeilijk maakt om draagvlak te vinden voor oplossingen.",
+       [("Segundo os especialistas, qual é a causa principal?", ["*Construiu-se pouco durante anos","A migração","Os preços dos materiais"]),("Que outro fator é mencionado?", ["*Mais agregados de uma só pessoa","Menos estudantes","Mais turistas"]),("Que efeito tem a polarização?", ["*Torna difícil encontrar apoio para soluções","Acelera as soluções","Nenhum"])],
+       "eenpersoonshuishouden = agregado de uma pessoa.", ["v-polarisatie","v-draagvlak","v-gevoelig"]),
+    LI("Ik wil dat graag nuanceren.", ["Ik wil dat graag nuanceren"], "Gostaria de matizar isso.", "nuanceren.", ["v-nuanceren"]),
+    MC("Numa conversa sobre um tema sensível, é útil…", ["*mostrar nuance e ouvir o outro","generalizar|Aumenta a polarização.","atacar a pessoa|Falácia."], "Comunicação.", ["v-gevoelig"]),
+    SW("Dê uma opinião com nuance (3–4 frases) sobre a crise da habitação, reconhecendo outro ponto de vista.", ["Ik begrijp dat mensen zich zorgen maken over de woningnood. Volgens mij is de belangrijkste oorzaak echter dat er te weinig gebouwd wordt. Migratie speelt misschien een rol, maar het is te makkelijk om alleen daarnaar te wijzen. We hebben vooral meer betaalbare woningen nodig."], ["Reconhece outra perspetiva", "Opinião própria com **volgens mij / echter**", "Nuance", "Proposta"], 50, "Debate com nuance.", ["v-nuanceren","v-gevoelig"]),
+  ], diff=5, mins=8)
+
+L(3, "Economia do dia a dia", "inflatie, koopkracht, rente, recessie",
+  ["Compreender notícias económicas básicas"],
+  vocab=[V("v-inflatie","inflatie","inflação","noun","de"), V("v-koopkracht","koopkracht","poder de compra","noun","de"),
+         V("v-rente","rente","juro","noun","de"), V("v-recessie","recessie","recessão","noun","de"),
+         V("v-hypotheek","hypotheek","crédito à habitação","noun","de")],
+  ex=[("De inflatie is gedaald naar 3 procent.","A inflação desceu para 3 por cento."),("Veel mensen gaan er in koopkracht op achteruit.","Muitas pessoas perdem poder de compra."),("De rente op hypotheken stijgt.","Os juros do crédito à habitação estão a subir."),("Economen verwachten geen recessie.","Os economistas não esperam uma recessão.")],
+  review=["v-prijs","v-stijgen","v-dalen","v-procent"],
+  cefr=C, exs=[
+    MA([("inflatie","inflação"),("koopkracht","poder de compra"),("rente","juro"),("recessie","recessão"),("hypotheek","crédito à habitação")], "Economia.", ["v-inflatie","v-koopkracht","v-rente","v-recessie","v-hypotheek"]),
+    TR("pt-nl","A inflação desceu para 3 por cento.", ["De inflatie is gedaald naar 3 procent","De inflatie is naar drie procent gedaald"], "dalen naar.", ["v-inflatie"]),
+    TR("nl-pt","De rente op hypotheken stijgt.", ["Os juros do crédito à habitação estão a subir","A taxa de juro das hipotecas está a subir"], "rente op.", ["v-rente","v-hypotheek"]),
+    TR("nl-pt","Veel mensen gaan er in koopkracht op achteruit.", ["Muitas pessoas perdem poder de compra","Muitas pessoas ficam com menos poder de compra"], "erop achteruitgaan.", ["v-koopkracht"]),
+    MC("Se a inflação é maior do que o aumento salarial, a koopkracht…", ["*desce","sobe|Ao contrário.","fica igual|Não."], "Lógica económica.", ["v-koopkracht"]),
+    AR("hypotheek","o crédito à habitação","de", "De hypotheek.", ["v-hypotheek"]),
+    FE(["De","rente","van","hypotheken","stijgt."], 2, "op", "rente op.", ["v-rente"]),
+    LI("Economen verwachten dit jaar geen recessie.", ["Economen verwachten dit jaar geen recessie"], "Os economistas não esperam uma recessão este ano.", "recessie.", ["v-recessie"]),
+    CO("text","Koopkracht 2025", "Volgens het Centraal Planbureau (CPB) gaan de meeste huishoudens er volgend jaar licht op vooruit. De lonen stijgen gemiddeld met 4 procent, terwijl de inflatie naar verwachting 2,5 procent bedraagt. Toch zijn er verschillen: vooral huurders met een laag inkomen merken weinig van de verbetering, omdat hun vaste lasten sterk zijn gestegen.",
+       [("Como vai evoluir o poder de compra da maioria?", ["*Melhora ligeiramente","Piora muito","Fica igual"]),("Quem sente menos a melhoria?", ["*Inquilinos com rendimentos baixos","Proprietários ricos","Estudantes com bolsa"]),("Porquê?", ["*As despesas fixas subiram muito","Os salários desceram","Não pagam impostos"])],
+       "vaste lasten = despesas fixas; erop vooruitgaan = melhorar.", ["v-koopkracht","v-inflatie"]),
+    FB("De ___ is dit jaar hoger dan de loonstijging.", ["inflatie"], "Inflação.", ["v-inflatie"], choices=["inflatie","koopkracht","hypotheek"], tr="A inflação este ano é maior do que o aumento salarial."),
+  ], diff=5, mins=8)
+
+L(4, "Ciência e tecnologia nas notícias", "kunstmatige intelligentie, doorbraak, ethiek",
+  ["Discutir avanços científicos e as suas implicações"],
+  vocab=[V("v-kunstmatige-intelligentie","kunstmatige intelligentie","inteligência artificial","noun","de",note="abrev. AI / KI"), V("v-doorbraak","doorbraak","avanço decisivo","noun","de"),
+         V("v-ethiek","ethiek","ética","noun","de"), V("v-risico","risico","risco","noun","het"),
+         V("v-toepassing","toepassing","aplicação","noun","de")],
+  ex=[("Kunstmatige intelligentie verandert ons werk.","A inteligência artificial está a mudar o nosso trabalho."),("Onderzoekers melden een doorbraak.","Os investigadores anunciam um avanço decisivo."),("De ethiek van AI is een belangrijk thema.","A ética da IA é um tema importante."),("Wat zijn de risico's?","Quais são os riscos?")],
+  review=["v-onderzoek","v-onderzoeker","v-ontwikkeling"],
+  cefr=C, exs=[
+    MA([("kunstmatige intelligentie","inteligência artificial"),("doorbraak","avanço decisivo"),("ethiek","ética"),("risico","risco"),("toepassing","aplicação")], "Ciência.", ["v-kunstmatige-intelligentie","v-doorbraak","v-ethiek","v-risico","v-toepassing"]),
+    AR("risico","o risco","het", "Het risico.", ["v-risico"]),
+    TR("pt-nl","Quais são os riscos?", ["Wat zijn de risico's"], "risico's.", ["v-risico"]),
+    TR("nl-pt","Onderzoekers melden een doorbraak.", ["Os investigadores anunciam um avanço decisivo","Investigadores anunciam uma descoberta importante"], "doorbraak.", ["v-doorbraak"]),
+    TR("pt-nl","A inteligência artificial está a mudar o nosso trabalho.", ["Kunstmatige intelligentie verandert ons werk","AI verandert ons werk"], "kunstmatige intelligentie.", ["v-kunstmatige-intelligentie"]),
+    FE(["Er","zijn","veel","risicos","aan","AI."], 3, "risico's", "Plural com apóstrofo: risico's.", ["v-risico"]),
+    CO("text","AI in de zorg", "In verschillende Nederlandse ziekenhuizen helpt kunstmatige intelligentie al bij het beoordelen van röntgenfoto's. Volgens artsen is dat een belangrijke toepassing: de computer ziet soms afwijkingen die een mens mist. Toch blijven er vragen over ethiek en privacy. Wie is verantwoordelijk als de computer een fout maakt? En wat gebeurt er met de gegevens van patiënten?",
+       [("Para que se usa a IA nos hospitais?", ["*Avaliar radiografias","Marcar consultas","Fazer cirurgias sozinha"]),("Qual é a vantagem?", ["*Por vezes deteta anomalias que um humano não vê","É mais barata que um médico","Substitui todos os médicos"]),("Que questões continuam?", ["*Ética, responsabilidade e privacidade","O preço dos computadores","O horário dos médicos"])],
+       "afwijking = anomalia.", ["v-toepassing","v-ethiek"]),
+    LI("Wie is verantwoordelijk als de computer een fout maakt?", ["Wie is verantwoordelijk als de computer een fout maakt"], "Quem é responsável se o computador errar?", "verantwoordelijk.", ["v-ethiek"]),
+    MC("«Een praktische toepassing» é…", ["*uma aplicação prática","um risco|Não.","uma regra|Não."], "toepassing.", ["v-toepassing"]),
+    SW("Dê a sua opinião (3–4 frases) sobre a IA no trabalho: uma vantagem, um risco e uma conclusão.", ["Kunstmatige intelligentie kan saai werk overnemen, waardoor we meer tijd hebben voor creatieve taken. Een risico is echter dat sommige banen verdwijnen. Bovendien moeten we goed nadenken over privacy. Kortom: AI biedt kansen, maar we moeten duidelijke regels maken."], ["Vantagem", "Risco com **echter/maar**", "Conclusão"], 50, "Opinião sobre tecnologia.", ["v-kunstmatige-intelligentie","v-risico"]),
+  ], diff=5, mins=8)
+
+L(5, "Acompanhar a atualidade", "Bronnen, nieuwsapps, talkshows, podcasts",
+  ["Saber onde e como seguir a atualidade em neerlandês"],
+  vocab=[V("v-actualiteit","actualiteit","atualidade","noun","de"), V("v-talkshow","talkshow","programa de entrevistas","noun","de"),
+         V("v-op-de-hoogte","op de hoogte blijven","manter-se informado","expression"), V("v-nepnieuws","nepnieuws","notícias falsas","noun","het")],
+  ex=[("Hoe blijf jij op de hoogte van het nieuws?","Como te manténs informado?"),("Ik kijk elke avond naar een talkshow.","Vejo um programa de entrevistas todas as noites."),("Pas op voor nepnieuws.","Cuidado com as notícias falsas."),("Ik volg de actualiteit via podcasts.","Acompanho a atualidade através de podcasts.")],
+  review=["v-nieuws","v-bron","v-betrouwbaar-bron"],
+  cefr=C, exs=[
+    MA([("actualiteit","atualidade"),("talkshow","programa de entrevistas"),("op de hoogte blijven","manter-se informado"),("nepnieuws","notícias falsas")], "Atualidade.", ["v-actualiteit","v-talkshow","v-op-de-hoogte","v-nepnieuws"]),
+    TR("pt-nl","Como te manténs informado?", ["Hoe blijf jij op de hoogte","Hoe blijf je op de hoogte","Hoe blijf je op de hoogte van het nieuws"], "op de hoogte blijven.", ["v-op-de-hoogte"]),
+    TR("nl-pt","Pas op voor nepnieuws.", ["Cuidado com as notícias falsas","Atenção às notícias falsas"], "nepnieuws.", ["v-nepnieuws"]),
+    AR("nepnieuws","as notícias falsas","het", "Het nieuws → het nepnieuws.", ["v-nepnieuws"]),
+    MC("Uma boa forma de praticar compreensão com notícias simples em neerlandês é…", ["*o NOS Jeugdjournaal ou notícias em «makkelijke taal»","só ler jornais académicos|Difícil demais no início.","não ouvir nada|Não ajuda."], "Recursos.", ["v-actualiteit"]),
+    MC("Como verificar se algo é nepnieuws?", ["*Comparar com fontes fiáveis","Partilhar logo|Não.","Confiar no título|Não."], "Verificação.", ["v-nepnieuws"]),
+    FE(["Ik","blijf","op","het","hoogte","van","het","nieuws."], 3, "de", "Expressão fixa: op de hoogte.", ["v-op-de-hoogte"]),
+    LI("Ik luister elke ochtend naar een nieuwspodcast.", ["Ik luister elke ochtend naar een nieuwspodcast"], "Ouço um podcast de notícias todas as manhãs.", "podcast.", ["v-actualiteit"]),
+    FB("Via de app blijf ik op de ___ van het nieuws.", ["hoogte"], "Expressão.", ["v-op-de-hoogte"], choices=["hoogte","diepte","breedte"], tr="Através da aplicação mantenho-me informado."),
+    SW("Explique como acompanha (ou quer acompanhar) a atualidade neerlandesa (3 frases).", ["Ik blijf op de hoogte via de NOS-app en ik luister naar een podcast in de trein. Soms kijk ik naar een talkshow om mijn luistervaardigheid te oefenen. Ik controleer altijd de bron om nepnieuws te vermijden."], ["Duas fontes", "**op de hoogte blijven**", "Uma estratégia contra nepnieuws"], 35, "Hábitos de informação.", ["v-op-de-hoogte","v-nepnieuws"]),
+  ], diff=5, mins=7)
+
+W()
