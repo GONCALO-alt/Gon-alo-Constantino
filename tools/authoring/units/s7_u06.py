@@ -6,11 +6,11 @@ C = "B2"
 L(1, "Estilo jornalístico", "Kort, actueel, citaten, de lead",
   ["Reconhecer as marcas do estilo jornalístico"],
   vocab=[V("v-lead","lead","lead (primeiro parágrafo)","noun","de"), V("v-bericht-nieuws","nieuwsbericht","notícia","noun","het"),
-         V("v-aldus","aldus","segundo|disse (após citação)","adverb"), V("v-naar-verluidt","naar verluidt","segundo consta","expression")],
+         V("v-naar-verluidt","naar verluidt","segundo consta","expression")],
   ex=[("De lead beantwoordt de belangrijkste vragen.","O lead responde às perguntas principais."),("«We zijn tevreden,» aldus de directeur.","«Estamos satisfeitos», disse o diretor."),("Naar verluidt stapt de minister op.","Segundo consta, o ministro demite-se."),("Het nieuwsbericht is kort en zakelijk.","A notícia é curta e objetiva.")],
   gram=[G("g-journalistiek","Marcas do estilo jornalístico","**Lead** com quem/o quê/onde/quando. **Presente ou perfectum** para factos recentes. **Citações** com *aldus*, *zegt*, *laat weten*. Distância: *naar verluidt*, *volgens bronnen*. Frases curtas, sem opinião (na notícia).",
     [("De politie laat weten dat het onderzoek nog loopt.","A polícia informa que a investigação continua.")])],
-  review=["v-citaat","v-kop-artikel","v-neutraal"],
+  review=["v-aldus","v-citaat","v-kop-artikel","v-neutraal"],
   cefr=C, exs=[
     MA([("lead","primeiro parágrafo"),("nieuwsbericht","notícia"),("aldus","segundo/disse"),("naar verluidt","segundo consta")], "Jornalismo.", ["v-lead","v-bericht-nieuws","v-aldus","v-naar-verluidt"]),
     MC("Qual frase tem estilo jornalístico?", ["*De gemeente Utrecht opent maandag een nieuw zwembad, zo laat de wethouder weten.","Wow, er komt een supergaaf zwembad!|Coloquial.","Ik vind zwemmen leuk.|Opinião pessoal."], "Estilo.", ["v-bericht-nieuws"]),

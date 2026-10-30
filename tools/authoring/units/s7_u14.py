@@ -5,10 +5,10 @@ C = "B2"
 
 L(1, "Teste de leitura (1)", "Twee teksten, vragen van examenniveau. (Não certificado.)",
   ["Praticar leitura ao nível de um exame B2"],
-  vocab=[V("v-leesvaardigheid","leesvaardigheid","compreensão de leitura","noun","de"), V("v-examenvraag","examenvraag","pergunta de exame","noun","de"),
+  vocab=[V("v-examenvraag","examenvraag","pergunta de exame","noun","de"),
          V("v-tekstsoort","tekstsoort","tipo de texto","noun","de"), V("v-strekking-tekst","de strekking van de tekst","o sentido geral do texto","expression")],
   ex=[("Dit onderdeel test je leesvaardigheid.","Esta parte testa a tua compreensão de leitura."),("Lees eerst de examenvraag, dan de tekst.","Lê primeiro a pergunta, depois o texto."),("Welke tekstsoort is dit?","Que tipo de texto é este?"),("Wat is de strekking van de tekst?","Qual é o sentido geral do texto?")],
-  review=["v-kern","v-schrijfdoel","v-impliciet"],
+  review=["v-leesvaardigheid","v-kern","v-schrijfdoel","v-impliciet"],
   cefr=C, exs=[
     MA([("leesvaardigheid","compreensão de leitura"),("examenvraag","pergunta de exame"),("tekstsoort","tipo de texto"),("de strekking van de tekst","sentido geral")], "Exame.", ["v-leesvaardigheid","v-examenvraag","v-tekstsoort","v-strekking-tekst"]),
     CO("text","Tekst 1 – De opkomst van de deelfiets", "In steeds meer Nederlandse steden staan deelfietsen: fietsen die je met een app ontgrendelt en per minuut betaalt. Voorstanders wijzen erop dat minder mensen een eigen fiets nodig hebben, wat ruimte bespaart in drukke binnensteden. Gemeenten zijn echter niet onverdeeld positief. Deelfietsen worden vaak slordig neergezet en blokkeren stoepen. Amsterdam besloot daarom in 2019 het aantal aanbieders te beperken. Inmiddels werken veel steden met vaste parkeerzones. Of de deelfiets een blijvertje is, hangt volgens verkeersdeskundigen vooral af van de prijs: zolang een eigen tweedehands fiets goedkoper is, blijft de deelfiets voor de meeste Nederlanders een uitzondering.",
