@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s7-u09")
+C = "B2"
+
+L(1, "Ordem das palavras: revisão completa", "V2, inversão, verbo no fim, grupo verbal",
+  ["Aplicar todas as regras de ordem das palavras"],
+  vocab=[V("v-hoofdregel","hoofdregel","regra principal","noun","de"), V("v-uitzondering","uitzondering","exceção","noun","de"),
+         V("v-zinsbouw","zinsbouw","construção frásica","noun","de"), V("v-plaats-werkwoord","plaats van het werkwoord","posição do verbo","expression")],
+  ex=[("De hoofdregel is: het werkwoord staat op de tweede plaats.","A regra principal é: o verbo está na segunda posição."),("Elke regel heeft uitzonderingen.","Toda a regra tem exceções."),("Let op de zinsbouw.","Atenção à construção frásica."),("Wat is de plaats van het werkwoord in een bijzin?","Qual é a posição do verbo numa subordinada?")],
+  gram=[G("g-woordvolgorde-overzicht","Resumo","1) **Principal**: verbo conjugado em 2.º (*Morgen **ga** ik…*). 2) **Pergunta sim/não e imperativo**: verbo em 1.º (*Ga je mee? Kom hier!*). 3) **Subordinada**: verbos no fim (*…omdat ik morgen **ga**.*). 4) **want/maar/en/of**: ordem normal. 5) **Infinitivos e particípios** no fim da principal. 6) **TeKoMaPla**: tempo – causa – modo – lugar (*Ik ga morgen met de trein naar Utrecht*).",
+    [("Ik ga morgen vanwege de staking met de fiets naar mijn werk.","Amanhã, por causa da greve, vou de bicicleta para o trabalho.")])],
+  review=["v-woordvolgorde","v-werkwoordscluster","v-omdat","v-want"],
+  cefr=C, exs=[
+    MA([("hoofdregel","regra principal"),("uitzondering","exceção"),("zinsbouw","construção frásica"),("plaats van het werkwoord","posição do verbo")], "Gramática.", ["v-hoofdregel","v-uitzondering","v-zinsbouw","v-plaats-werkwoord"]),
+    WO("Amanhã vou de comboio para Utrecht.", ["Morgen","ga","ik","met","de","trein","naar","Utrecht"], "Inversão + tempo-modo-lugar.", ["v-woordvolgorde"]),
+    WO("…porque amanhã não posso vir.", ["omdat","ik","morgen","niet","kan","komen"], "Subordinada.", ["v-omdat"]),
+    WO("Ontem não consegui encontrá-lo.", ["Gisteren","heb","ik","het","niet","kunnen","vinden"], "Inversão + duplo infinitivo.", ["v-werkwoordscluster"]),
+    FE(["Ik","ga","naar","Utrecht","morgen","met","de","trein."], 2, "morgen met de trein naar Utrecht", "Ordem tempo–modo–lugar: Ik ga morgen met de trein naar Utrecht.", ["v-zinsbouw"]),
+    FE(["Ik","blijf","thuis,","want","ik","ziek","ben."], 5, "ben ziek", "Depois de want: ordem normal.", ["v-want"]),
+    FE(["Als","je","tijd","hebt,","je","kunt","me","helpen."], 4, "kun je", "Depois da subordinada: kun je me helpen.", ["v-plaats-werkwoord"]),
+    MC("Qual está correta?", ["*Volgend jaar wil ik in Amsterdam gaan studeren.","Volgend jaar ik wil in Amsterdam gaan studeren.|Falta inversão.","Volgend jaar wil ik gaan studeren in Amsterdam wil.|Erro."], "V2.", ["v-hoofdregel"]),
+    LI("Omdat het regende, zijn we thuisgebleven.", ["Omdat het regende(,) zijn we thuisgebleven","Omdat het regende(,) zijn wij thuisgebleven"], "Como chovia, ficámos em casa.", "Verbo, verbo.", ["v-plaats-werkwoord"]),
+    TR("pt-nl","Amanhã, por causa da greve, vou de bicicleta para o trabalho.", ["Morgen ga ik vanwege de staking met de fiets naar mijn werk","Ik ga morgen vanwege de staking met de fiets naar mijn werk","Morgen ga ik door de staking met de fiets naar mijn werk"], "TeKoMaPla.", ["v-zinsbouw"]),
+  ], diff=5, mins=8)
+
+L(2, "Tempos verbais: revisão completa", "presens, perfectum, imperfectum, plusquamperfectum, futurum, conditionalis",
+  ["Escolher e formar todos os tempos verbais com segurança"],
+  vocab=[V("v-tijden","werkwoordstijden","tempos verbais","noun","de"), V("v-voltooid","voltooid","perfeito (completo)","adjective"),
+         V("v-onvoltooid","onvoltooid","imperfeito (não completo)","adjective"), V("v-toekomende-tijd","toekomende tijd","futuro","noun","de")],
+  ex=[("Het Nederlands heeft acht werkwoordstijden.","O neerlandês tem oito tempos verbais."),("Ik heb gegeten (voltooid tegenwoordige tijd).","Comi (perfeito do presente)."),("Ik at (onvoltooid verleden tijd).","Comia/comi (imperfeito do passado)."),("Ik zal eten (onvoltooid toekomende tijd).","Comerei (futuro).")],
+  gram=[G("g-tijden-overzicht","Os tempos","**ott** (presente): ik werk. **ovt** (imperfectum): ik werkte. **vtt** (perfectum): ik heb gewerkt. **vvt** (plusquamperfectum): ik had gewerkt. **ottt** (futuro): ik zal werken. **vttt**: ik zal hebben gewerkt. **ovtt** (condicional): ik zou werken. **vvtt**: ik zou hebben gewerkt. Na prática, os mais usados são ott, vtt, ovt e zou.",
+    [("Als ik tijd had gehad, zou ik je hebben geholpen.","Se tivesse tido tempo, ter-te-ia ajudado.")])],
+  review=["v-al-gedaan","v-zou","v-zullen","v-werkte"],
+  cefr=C, exs=[
+    MA([("werkwoordstijden","tempos verbais"),("voltooid","perfeito"),("onvoltooid","imperfeito"),("toekomende tijd","futuro")], "Tempos.", ["v-tijden","v-voltooid","v-onvoltooid","v-toekomende-tijd"]),
+    CJ("werken","ik","Gisteren ___ ik tot acht uur. (imperfectum)", ["werkte"], "ovt.", ["v-werkte"], tense="passado-simples"),
+    CJ("eten","wij","Toen jij kwam, ___ wij al gegeten.", ["hadden"], "vvt: hadden + particípio.", ["v-al-gedaan"], tense="passado-perfeito"),
+    CJ("helpen","ik","Als ik tijd had, ___ ik je helpen.", ["zou"], "Condicional.", ["v-zou"]),
+    TR("pt-nl","Se tivesse tido tempo, ter-te-ia ajudado.", ["Als ik tijd had gehad(,) zou ik je hebben geholpen","Als ik tijd had gehad(,) had ik je geholpen"], "vvtt (ou had … in fala).", ["v-zou"]),
+    TR("nl-pt","Ik zal het morgen doen.", ["Faço-o amanhã","Hei de fazê-lo amanhã","Vou fazê-lo amanhã"], "ottt.", ["v-zullen"]),
+    FE(["Gisteren","ben","ik","naar","de","film","gaan."], 6, "gegaan", "Perfectum: particípio gegaan.", ["v-voltooid"]),
+    FE(["Toen","ik","aankwam,","is","de","trein","al","vertrokken."], 3, "was", "Anterior ao passado → plusquamperfectum: was vertrokken.", ["v-al-gedaan"]),
+    MC("«Als ik jou was, zou ik het doen» usa…", ["*o condicional (ovtt)","o perfectum|Não.","o presente|Não."], "Condicional.", ["v-zou"]),
+    LI("Als het morgen mooi weer is, gaan we naar het strand.", ["Als het morgen mooi weer is(,) gaan we naar het strand"], "Se amanhã estiver bom tempo, vamos à praia.", "Presente com sentido futuro.", ["v-toekomende-tijd"]),
+  ], diff=5, mins=8)
+
+L(3, "De/het, adjetivos e diminutivos", "Revisão: artigo, -e no adjetivo, -je",
+  ["Rever artigo, flexão do adjetivo e diminutivos"],
+  vocab=[V("v-lidwoord","lidwoord","artigo","noun","het"), V("v-verkleinwoord","verkleinwoord","diminutivo","noun","het"),
+         V("v-buigen","buigen","flexionar","verb"), V("v-onzijdig","onzijdig","neutro (género)","adjective")],
+  ex=[("Welk lidwoord hoort bij «huis»?","Que artigo vai com «huis»?"),("Verkleinwoorden zijn altijd het-woorden.","Os diminutivos são sempre palavras com het."),("Na «een» buig je het adjectief niet bij het-woorden.","Depois de «een» não se flexiona o adjetivo com palavras het."),("«Het» is het onzijdige lidwoord.","«Het» é o artigo neutro.")],
+  gram=[G("g-dehet-overzicht","Regras úteis","**het**: diminutivos (-je), infinitivos como nome (*het eten*), muitas palavras com *ge-/be-/ver-* + -sel/-te (*het gebouw*), línguas, metais. **de**: plural de tudo, pessoas, -ing, -heid, -tie, -teit. **Adjetivo**: leva **-e**, exceto **een/geen/geen artigo + het-woord singular**: *een groot huis*, mas *het grote huis*.",
+    [("een mooi huisje / het mooie huisje / mooie huisjes","uma casinha bonita / a casinha bonita / casinhas bonitas")])],
+  review=["v-de","v-het"],
+  cefr=C, exs=[
+    MA([("lidwoord","artigo"),("verkleinwoord","diminutivo"),("buigen","flexionar"),("onzijdig","neutro")], "Gramática.", ["v-lidwoord","v-verkleinwoord","v-buigen","v-onzijdig"]),
+    AR("gebouw","o edifício","het", "Palavras com ge- muitas vezes het.", ["v-onzijdig"]),
+    AR("vrijheid","a liberdade","de", "-heid → de.", ["v-lidwoord"]),
+    AR("informatie","a informação","de", "-tie → de.", ["v-lidwoord"]),
+    AR("meisje","a rapariga","het", "Diminutivo → het.", ["v-verkleinwoord"]),
+    FB("Ik heb een ___ huis gekocht.", ["groot"], "een + het-woord → sem -e.", ["v-buigen"], choices=["groot","grote","groten"], tr="Comprei uma casa grande."),
+    FB("Het ___ huis staat aan de gracht.", ["grote"], "het + adjetivo → -e.", ["v-buigen"], choices=["grote","groot","groten"], tr="A casa grande fica junto ao canal."),
+    FE(["Dat","is","een","mooie","boek."], 3, "mooi", "het boek → een mooi boek.", ["v-buigen"]),
+    MC("Plural de «het huisje»:", ["*de huisjes","het huisjes|O plural é sempre de.","de huisen|Não."], "Plural → de.", ["v-verkleinwoord"]),
+    LI("Wat een gezellig cafeetje!", ["Wat een gezellig cafeetje"], "Que cafezinho tão acolhedor!", "Diminutivo + adjetivo sem -e.", ["v-verkleinwoord"]),
+  ], diff=5, mins=7)
+
+L(4, "Preposições e pronomes: revisão", "er, die/dat, hem/het, zich",
+  ["Rever pronomes difíceis e preposições"],
+  vocab=[V("v-voornaamwoord","voornaamwoord","pronome","noun","het"), V("v-voorzetsel","voorzetsel","preposição","noun","het"),
+         V("v-verwijzen","verwijzen naar","referir-se a","expression"), V("v-wederkerend","wederkerend","reflexivo","adjective")],
+  ex=[("Waar verwijst «die» naar?","A que se refere «die»?"),("«Zich» is een wederkerend voornaamwoord.","«Zich» é um pronome reflexivo."),("Welk voorzetsel hoort bij «wachten»?","Que preposição vai com «wachten»?"),("De fiets? Ik heb hem verkocht.","A bicicleta? Vendi-a.")],
+  gram=[G("g-hem-het","Hem ou het para coisas?","Para coisas **de**-woord no singular usa-se **hem** (objeto) ou **die** (demonstrativo): *De fiets? Ik heb **hem** verkocht.* Para **het**-woorden: **het** / **dat**: *Het boek? Ik heb **het** gelezen.* Plural: **ze** / **die**.",
+    [("Waar is de sleutel? — Ik heb hem niet.","Onde está a chave? — Não a tenho.")],
+    "Em português «-a/-o» segue o género gramatical; em neerlandês depende de de/het.")],
+  review=["v-er-existentieel","v-die-rel","v-zich","v-afhangen-van"],
+  cefr=C, exs=[
+    MA([("voornaamwoord","pronome"),("voorzetsel","preposição"),("verwijzen naar","referir-se a"),("wederkerend","reflexivo")], "Gramática.", ["v-voornaamwoord","v-voorzetsel","v-verwijzen","v-wederkerend"]),
+    FB("De fiets? Ik heb ___ verkocht.", ["hem"], "de fiets → hem.", ["v-voornaamwoord"], choices=["hem","het","hen"], tr="A bicicleta? Vendi-a."),
+    FB("Het boek? Ik heb ___ al gelezen.", ["het"], "het boek → het.", ["v-voornaamwoord"], choices=["het","hem","die"], tr="O livro? Já o li."),
+    FB("Ik wacht al een uur ___ de bus.", ["op"], "wachten op.", ["v-voorzetsel"], choices=["op","naar","voor"], tr="Estou à espera do autocarro há uma hora."),
+    FB("Ze verheugen ___ op de vakantie.", ["zich"], "Reflexivo: zij → zich.", ["v-wederkerend"], choices=["zich","ze","hun"], tr="Eles estão ansiosos pelas férias."),
+    FE(["Waar","is","mijn","jas?","Ik","zie","het","niet."], 6, "hem", "de jas → hem.", ["v-voornaamwoord"]),
+    FE(["Ik","denk","vaak","op","mijn","familie."], 3, "aan", "denken aan.", ["v-voorzetsel"]),
+    TR("pt-nl","Onde está a chave? — Não a tenho.", ["Waar is de sleutel(?) Ik heb hem niet","Waar is de sleutel(?) Ik heb hem niet bij me"], "de sleutel → hem.", ["v-voornaamwoord"]),
+    MC("Em «Ik heb er drie», «er» refere-se a…", ["*uma quantidade de algo já mencionado","um lugar|Aqui não.","uma pessoa|Não."], "Er quantitativo.", ["v-er-aantal"]),
+    LI("Het hangt ervan af of het regent.", ["Het hangt ervan af of het regent"], "Depende de chover ou não.", "afhangen van → ervan af.", ["v-afhangen-van"]),
+  ], diff=5, mins=7)
+
+L(5, "Teste gramatical integrado", "Todas as estruturas num só texto.",
+  ["Corrigir e produzir textos com gramática B2"],
+  vocab=[V("v-foutloos","foutloos","sem erros","adjective"), V("v-verbeterpunt-gram","grammaticale fout","erro gramatical","expression"),
+         V("v-nauwkeurigheid","nauwkeurigheid","precisão","noun","de"), V("v-vloeiendheid","vloeiendheid","fluência","noun","de")],
+  ex=[("Niemand schrijft helemaal foutloos.","Ninguém escreve totalmente sem erros."),("Dat is een grammaticale fout.","Isso é um erro gramatical."),("Nauwkeurigheid en vloeiendheid zijn allebei belangrijk.","Precisão e fluência são ambas importantes."),("Je vloeiendheid is enorm verbeterd.","A tua fluência melhorou imenso.")],
+  review=["v-woordvolgorde","v-tijden","v-buigen","v-lijdende-vorm","v-die-rel"],
+  cefr=C, exs=[
+    MA([("foutloos","sem erros"),("grammaticale fout","erro gramatical"),("nauwkeurigheid","precisão"),("vloeiendheid","fluência")], "Balanço.", ["v-foutloos","v-verbeterpunt-gram","v-nauwkeurigheid","v-vloeiendheid"]),
+    FE(["Vorig","jaar","ik","ben","naar","Nederland","verhuisd."], 2, "ben ik", "Inversão.", ["v-woordvolgorde"]),
+    FE(["Het","huis","die","ik","huur,","is","oud."], 2, "dat", "het huis → dat.", ["v-die-rel"]),
+    FE(["Ik","woon","in","een","klein","appartement","met","een","groot","balkon","dat","is","mooi."], 11, "mooi is", "Relativa: dat mooi is.", ["v-die-rel"]),
+    FE(["De","brief","werd","gisteren","door","de","postbode","gebrengd."], 7, "gebracht", "Particípio irregular de brengen: gebracht.", ["v-lijdende-vorm"]),
+    FE(["Toen","ik","jong","was,","speel","ik","veel","buiten."], 4, "speelde", "Passado habitual: speelde.", ["v-tijden"]),
+    CO("text","Een brief vol fouten (gecorrigeerd)", "Beste Lisa,\n\nVorige week ben ik eindelijk verhuisd. Het nieuwe appartement, dat in het centrum ligt, is kleiner dan mijn oude huis, maar het heeft een prachtig uitzicht. De verhuizing werd door twee vrienden geholpen… nee: ik werd door twee vrienden geholpen. Als je tijd hebt, moet je snel langskomen!\n\nLiefs,\nMarta",
+       [("Porque se corrige a frase da mudança?", ["*Quem é ajudado é a Marta, não a mudança","Por causa do tempo verbal","Por causa do artigo"]),("Que tipo de oração é «dat in het centrum ligt»?", ["*Relativa explicativa","Principal","Pergunta indireta"])],
+       "Atenção ao sujeito da passiva.", ["v-lijdende-vorm","v-die-rel"]),
+    TR("pt-nl","Ninguém escreve totalmente sem erros.", ["Niemand schrijft helemaal foutloos","Niemand schrijft volledig foutloos"], "foutloos.", ["v-foutloos"]),
+    LI("Je vloeiendheid is enorm verbeterd.", ["Je vloeiendheid is enorm verbeterd","Jouw vloeiendheid is enorm verbeterd"], "A tua fluência melhorou imenso.", "vloeiendheid.", ["v-vloeiendheid"]),
+    SW("Corrija e reescreva: «Gisteren ik heb een nieuwe boek gekocht die heel spannend is. Ik denk dat ik ga het vanavond lezen, omdat ik heb morgen vrij.»", ["Gisteren heb ik een nieuw boek gekocht dat heel spannend is. Ik denk dat ik het vanavond ga lezen, omdat ik morgen vrij heb."], ["**Gisteren heb ik**", "**een nieuw boek … dat**", "**dat ik het vanavond ga lezen**", "**omdat ik morgen vrij heb**"], 25, "Correção integrada.", ["v-nauwkeurigheid"]),
+  ], diff=5, mins=8)
+
+W()
