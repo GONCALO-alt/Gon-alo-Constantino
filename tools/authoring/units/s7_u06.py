@@ -93,9 +93,9 @@ L(4, "Linguagem jurídica e administrativa", "huurovereenkomst, ingangsdatum, op
 
 L(5, "Mudar de estilo", "O mesmo facto em quatro estilos.",
   ["Reescrever um conteúdo em estilos diferentes"],
-  vocab=[V("v-stijl","stijl","estilo","noun","de"), V("v-zakelijk","zakelijk","objetivo|profissional","adjective"), V("v-beeldend","beeldend","expressivo|visual","adjective")],
+  vocab=[V("v-stijl","stijl","estilo","noun","de"), V("v-beeldend","beeldend","expressivo|visual","adjective")],
   ex=[("Herschrijf de tekst in een zakelijke stijl.","Reescreve o texto num estilo objetivo."),("Haar stijl is erg beeldend.","O estilo dela é muito expressivo."),("Pas je stijl aan je lezer aan.","Adapta o teu estilo ao leitor."),("Een zakelijke e-mail is kort.","Um e-mail profissional é curto.")],
-  review=["v-herschrijven","v-toon","v-formeel","v-informeel","v-lijdende-vorm"],
+  review=["v-zakelijk","v-herschrijven","v-toon","v-formeel","v-informeel","v-lijdende-vorm"],
   cefr=C, exs=[
     MA([("stijl","estilo"),("herschrijven","reescrever"),("zakelijk","objetivo"),("beeldend","expressivo")], "Estilos.", ["v-stijl","v-herschrijven","v-zakelijk","v-beeldend"]),
     MC("Facto: o comboio atrasou 1 hora. Estilo JORNALÍSTICO:", ["*Door een seinstoring hadden treinen tussen Utrecht en Amsterdam dinsdag een uur vertraging.","Pff, weer een uur vertraging, echt balen!|Coloquial.","Er kan worden geconcludeerd dat de vertraging zestig minuten bedroeg.|Académico."], "Jornalístico.", ["v-stijl"]),

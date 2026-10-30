@@ -87,9 +87,9 @@ L(4, "Cartas de motivação avançadas", "Concreet, specifiek, resultaatgericht"
 L(5, "Revisão e edição final", "Woordkeus, structuur, toon, fouten",
   ["Rever um texto próprio de forma sistemática"],
   vocab=[V("v-woordkeus","woordkeus","escolha de palavras","noun","de"), V("v-samenhang","samenhang","coerência","noun","de"),
-         V("v-redigeren","redigeren","redigir|editar","verb"), V("v-eindversie","eindversie","versão final","noun","de")],
+         V("v-redigeren","redigeren","redigir|editar","verb")],
   ex=[("Let op je woordkeus.","Atenção à escolha de palavras."),("De samenhang tussen de alinea's is zwak.","A coerência entre os parágrafos é fraca."),("Ik heb de tekst nog een keer geredigeerd.","Editei o texto mais uma vez."),("Dit is de eindversie.","Esta é a versão final.")],
-  review=["v-nakijken","v-beknopt","v-herhaling","v-variatie"],
+  review=["v-eindversie","v-nakijken","v-beknopt","v-herhaling","v-variatie"],
   cefr=C, exs=[
     MA([("woordkeus","escolha de palavras"),("samenhang","coerência"),("redigeren","editar"),("eindversie","versão final")], "Edição.", ["v-woordkeus","v-samenhang","v-redigeren","v-eindversie"]),
     MC("Ordem útil de revisão:", ["*inhoud → structuur → zinnen → spelling","spelling → inhoud|Começa pelo pormenor.","alleen spelling|Insuficiente."], "Do geral ao particular.", ["v-redigeren"]),
