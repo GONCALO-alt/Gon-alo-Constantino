@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u12")
+C = "B1-B2"
+
+L(1, "A passiva com worden (presente)", "Het pakket wordt bezorgd. De brieven worden verstuurd.",
+  ["Formar a passiva no presente"],
+  vocab=[V("v-lijdende-vorm","lijdende vorm","voz passiva","noun","de"), V("v-door-agent","door (agente)","por (na passiva)","preposition",note="De brief wordt door de postbode gebracht."),
+         V("v-bezorgen-pass","bezorgd worden","ser entregue","expression"), V("v-gemaakt-worden","gemaakt worden","ser feito","expression")],
+  ex=[("Het pakket wordt morgen bezorgd.","O pacote é entregue amanhã."),("De brieven worden door de postbode gebracht.","As cartas são trazidas pelo carteiro."),("Hier wordt Nederlands gesproken.","Aqui fala-se neerlandês."),("Kaas wordt in Gouda gemaakt.","O queijo é feito em Gouda.")],
+  gram=[G("g-passief-presens","Passiva: worden + particípio","**worden** (conjugado) + **particípio** no fim: *Het pakket **wordt** morgen **bezorgd**.* Plural: **worden**. O agente (quem faz) vem com **door**: *door de postbode*. Muitas vezes o agente é omitido.",
+    [("De weg wordt gerepareerd.","A estrada está a ser reparada.")],
+    "Corresponde ao nosso «é feito» ou ao «se» impessoal («fala-se»).")],
+  review=["v-worden","v-bezorgen","v-er-passief"],
+  cefr=C, exs=[
+    MA([("lijdende vorm","voz passiva"),("door","por (agente)"),("bezorgd worden","ser entregue"),("gemaakt worden","ser feito")], "Passiva.", ["v-lijdende-vorm","v-door-agent","v-bezorgen-pass","v-gemaakt-worden"]),
+    CJ("worden","het pakket","Het pakket ___ morgen bezorgd.", ["wordt"], "Singular: wordt.", ["v-bezorgen-pass"]),
+    CJ("worden","de brieven","De brieven ___ vandaag verstuurd.", ["worden"], "Plural: worden.", ["v-lijdende-vorm"]),
+    TR("pt-nl","O queijo é feito em Gouda.", ["Kaas wordt in Gouda gemaakt","De kaas wordt in Gouda gemaakt"], "wordt + gemaakt.", ["v-gemaakt-worden"]),
+    TR("pt-nl","Aqui fala-se neerlandês.", ["Hier wordt Nederlands gesproken"], "Passiva.", ["v-lijdende-vorm"]),
+    TR("nl-pt","De brieven worden door de postbode gebracht.", ["As cartas são trazidas pelo carteiro","As cartas são entregues pelo carteiro"], "door = por.", ["v-door-agent"]),
+    FE(["Het","huis","worden","geschilderd."], 2, "wordt", "Singular: wordt.", ["v-lijdende-vorm"]),
+    FE(["De","brief","wordt","van","de","directeur","ondertekend."], 3, "door", "Agente da passiva: door.", ["v-door-agent"]),
+    LI("De weg wordt deze week gerepareerd.", ["De weg wordt deze week gerepareerd"], "A estrada está a ser reparada esta semana.", "Passiva.", ["v-lijdende-vorm"]),
+    WO("O pacote é entregue amanhã.", ["Het","pakket","wordt","morgen","bezorgd"], "Particípio no fim.", ["v-bezorgen-pass"]),
+  ], diff=5, mins=7)
+
+L(2, "A passiva no passado: werd e is … geworden", "Het huis werd in 1900 gebouwd. Het huis is in 1900 gebouwd.",
+  ["Formar a passiva no imperfectum e no perfectum"],
+  vocab=[V("v-werd","werd / werden","foi / foram (passiva)","verb"), V("v-gebouwd","gebouwd","construído","verb"),
+         V("v-uitgevonden","uitgevonden","inventado","verb"), V("v-ontdekt","ontdekt","descoberto","verb")],
+  ex=[("Het huis werd in 1900 gebouwd.","A casa foi construída em 1900."),("De fiets is in de negentiende eeuw uitgevonden.","A bicicleta foi inventada no século XIX."),("Er werd veel gelachen.","Riu-se muito."),("Het schilderij werd pas later ontdekt.","O quadro só foi descoberto mais tarde.")],
+  gram=[G("g-passief-verleden","Passiva no passado","**Imperfectum**: **werd/werden** + particípio: *Het huis **werd** in 1900 **gebouwd**.* **Perfectum**: **is/zijn** + particípio (**sem** *geworden* — normalmente omite-se): *Het huis **is** in 1900 **gebouwd**.* Forma completa (*is gebouwd geworden*) é rara.",
+    [("De brug is vorig jaar geopend.","A ponte foi inaugurada no ano passado.")],
+    "Atenção: «Het huis is gebouwd» pode ser passiva perfeita (foi construída) — não é «está construída» no sentido de estado, embora às vezes coincida.")],
+  review=["v-lijdende-vorm","v-gebeurd"],
+  cefr=C, exs=[
+    MA([("werd","foi (passiva)"),("gebouwd","construído"),("uitgevonden","inventado"),("ontdekt","descoberto")], "Passiva no passado.", ["v-werd","v-gebouwd","v-uitgevonden","v-ontdekt"]),
+    CJ("worden","het huis","Het huis ___ in 1900 gebouwd.", ["werd"], "Imperfectum singular: werd.", ["v-werd"], tense="passado-simples"),
+    CJ("worden","de huizen","De huizen ___ na de oorlog gebouwd.", ["werden"], "Plural: werden.", ["v-werd"], tense="passado-simples"),
+    TR("pt-nl","A bicicleta foi inventada no século XIX.", ["De fiets is in de negentiende eeuw uitgevonden","De fiets werd in de negentiende eeuw uitgevonden","De fiets is in de 19e eeuw uitgevonden"], "is/werd uitgevonden.", ["v-uitgevonden"]),
+    TR("nl-pt","Het schilderij werd pas later ontdekt.", ["O quadro só foi descoberto mais tarde","A pintura só foi descoberta mais tarde"], "werd ontdekt.", ["v-ontdekt"]),
+    FE(["De","brug","heeft","vorig","jaar","geopend."], 2, "is", "Passiva perfeita: De brug is … geopend.", ["v-lijdende-vorm"]),
+    FE(["De","huizen","werd","in","1950","gebouwd."], 2, "werden", "Plural: werden.", ["v-werd"]),
+    LI("De brug is vorig jaar geopend door de koning.", ["De brug is vorig jaar geopend door de koning","De brug is vorig jaar door de koning geopend"], "A ponte foi inaugurada no ano passado pelo rei.", "Passiva + door.", ["v-door-agent"]),
+    MC("«Er werd veel gelachen» significa…", ["*Riu-se muito (houve muitos risos)","Ele riu muito|Não há sujeito pessoal.","Vai rir-se muito|Não é futuro."], "Passiva impessoal.", ["v-er-passief"]),
+    WO("A casa foi construída em 1900.", ["Het","huis","werd","in","1900","gebouwd"], "werd + particípio.", ["v-gebouwd"]),
+  ], diff=5, mins=7)
+
+L(3, "Worden vs. zijn: ação e estado", "De deur wordt gesloten / De deur is gesloten.",
+  ["Distinguir passiva de ação (worden) e de estado (zijn)"],
+  vocab=[V("v-geopend","geopend","aberto (inaugurado)","adjective"),
+         V("v-afgelast","afgelast","cancelado","adjective"), V("v-verkocht","verkocht","vendido","adjective")],
+  ex=[("De winkel wordt om zes uur gesloten.","A loja é fechada às seis (ação)."),("De winkel is gesloten.","A loja está fechada (estado)."),("De wedstrijd is afgelast.","O jogo foi cancelado / está cancelado."),("Het huis is al verkocht.","A casa já está vendida.")],
+  gram=[G("g-worden-zijn","Ação vs. resultado","**worden** + particípio = a **ação** a acontecer: *De deur **wordt** gesloten* (alguém está a fechá-la). **zijn** + particípio = o **estado/resultado**: *De deur **is** gesloten* (está fechada). Igual a «é fechada» vs. «está fechada» em português.",
+    [("Het museum wordt gerenoveerd. — Het museum is gerenoveerd.","O museu está a ser renovado. — O museu foi/está renovado.")])],
+  review=["v-lijdende-vorm","v-dicht","v-gesloten"],
+  cefr=C, exs=[
+    MA([("gesloten","fechado"),("geopend","inaugurado"),("afgelast","cancelado"),("verkocht","vendido")], "Particípios.", ["v-gesloten","v-geopend","v-afgelast","v-verkocht"]),
+    MC("«O museu está a ser renovado» (ação em curso):", ["*Het museum wordt gerenoveerd.","Het museum is gerenoveerd.|Isso é o resultado.","Het museum renoveert.|Não é passiva."], "worden = ação.", ["v-lijdende-vorm"]),
+    MC("«A loja está fechada» (estado):", ["*De winkel is gesloten.","De winkel wordt gesloten.|Isso é a ação.","De winkel sluit gesloten.|Agramatical."], "zijn = estado.", ["v-gesloten"]),
+    FB("Kijk, het huis ___ al verkocht! Er hangt een bord.", ["is"], "Estado.", ["v-verkocht"], choices=["is","wordt","werd"], tr="Olha, a casa já está vendida! Há uma placa."),
+    FB("De nieuwe brug ___ morgen door de burgemeester geopend.", ["wordt"], "Ação (futura).", ["v-geopend"], choices=["wordt","is","was"], tr="A nova ponte é inaugurada amanhã pelo presidente da câmara."),
+    TR("nl-pt","De wedstrijd is afgelast.", ["O jogo foi cancelado","O jogo está cancelado"], "afgelast.", ["v-afgelast"]),
+    TR("pt-nl","A casa já está vendida.", ["Het huis is al verkocht"], "Estado: is.", ["v-verkocht"]),
+    FE(["Het","concert","wordt","gisteren","afgelast."], 2, "werd", "Passado: werd afgelast (ou is afgelast).", ["v-afgelast"]),
+    LI("Het museum wordt dit jaar gerenoveerd.", ["Het museum wordt dit jaar gerenoveerd"], "O museu está a ser renovado este ano.", "Ação.", ["v-lijdende-vorm"]),
+    WO("O jogo foi cancelado.", ["De","wedstrijd","is","afgelast"], "is + particípio.", ["v-afgelast"]),
+  ], diff=5, mins=7)
+
+L(4, "Passiva com modais", "Het moet gedaan worden. Dit kan niet gerepareerd worden.",
+  ["Usar a passiva com moeten, kunnen e mogen"],
+  vocab=[V("v-moet-worden","moet … worden","tem de ser …","expression"), V("v-kan-worden","kan … worden","pode ser …","expression"),
+         V("v-mag-niet-worden","mag niet … worden","não pode ser … (proibido)","expression"), V("v-ingevuld","ingevuld","preenchido","adjective")],
+  ex=[("Het formulier moet volledig ingevuld worden.","O formulário tem de ser preenchido na totalidade."),("Deze telefoon kan niet meer gerepareerd worden.","Este telemóvel já não pode ser reparado."),("Hier mag niet gerookt worden.","Aqui não se pode fumar."),("De afspraak kan online gemaakt worden.","A marcação pode ser feita online.")],
+  gram=[G("g-passief-modaal","Modal + particípio + worden","O modal conjuga-se em 2.º lugar; no fim: **particípio + worden** (ou **worden + particípio**): *Het formulier **moet** ingevuld **worden** / **worden** ingevuld.* Muito comum em instruções e avisos.",
+    [("Dit document moet ondertekend worden.","Este documento tem de ser assinado.")])],
+  review=["v-moeten","v-kunnen","v-mogen","v-formulier"],
+  cefr=C, exs=[
+    MA([("moet … worden","tem de ser"),("kan … worden","pode ser"),("mag niet … worden","não pode ser"),("ingevuld","preenchido")], "Modais na passiva.", ["v-moet-worden","v-kan-worden","v-mag-niet-worden","v-ingevuld"]),
+    WO("O formulário tem de ser preenchido na totalidade.", ["Het","formulier","moet","volledig","ingevuld","worden"], "Modal … particípio + worden.", ["v-moet-worden"], alt=["Het formulier moet volledig worden ingevuld"]),
+    TR("pt-nl","Aqui não se pode fumar.", ["Hier mag niet gerookt worden","Hier mag niet worden gerookt","Roken is hier niet toegestaan"], "mag niet … worden.", ["v-mag-niet-worden"]),
+    TR("pt-nl","Este telemóvel já não pode ser reparado.", ["Deze telefoon kan niet meer gerepareerd worden","Deze telefoon kan niet meer worden gerepareerd"], "kan … worden.", ["v-kan-worden"]),
+    TR("nl-pt","De afspraak kan online gemaakt worden.", ["A marcação pode ser feita online","A consulta pode ser marcada online"], "kan … worden.", ["v-kan-worden"]),
+    FE(["Het","formulier","moet","worden","ingevullen."], 4, "ingevuld", "Particípio: ingevuld.", ["v-ingevuld"]),
+    FE(["Dit","document","moet","ondertekend","wordt."], 4, "worden", "Depois do modal: worden (infinitivo).", ["v-moet-worden"]),
+    LI("Dit document moet door beide partijen ondertekend worden.", ["Dit document moet door beide partijen ondertekend worden","Dit document moet door beide partijen worden ondertekend"], "Este documento tem de ser assinado pelas duas partes.", "Passiva + door.", ["v-moet-worden"]),
+    MC("Num aviso: «Fietsen mogen hier niet geplaatst worden.» Significa…", ["*É proibido deixar bicicletas aqui","Pode deixar bicicletas aqui|Ao contrário.","As bicicletas são vendidas aqui|Não."], "Aviso.", ["v-mag-niet-worden"]),
+    FB("Je aanvraag kan pas behandeld ___ als alles compleet is.", ["worden"], "kan … worden.", ["v-kan-worden"], choices=["worden","wordt","werd"], tr="O teu pedido só pode ser tratado quando estiver tudo completo."),
+  ], diff=5, mins=7)
+
+L(5, "Passiva em textos reais", "Notícias, instruções e avisos.",
+  ["Compreender e usar a passiva em textos autênticos"],
+  vocab=[V("v-aangehouden","aangehouden","detido","adjective"), V("v-vervangen-pass","vervangen worden","ser substituído","expression"),
+         V("v-verzocht","verzocht","solicitado","adjective",note="U wordt verzocht…"), V("v-gewaarschuwd","gewaarschuwd","avisado","adjective")],
+  ex=[("Een man is aangehouden voor diefstal.","Um homem foi detido por furto."),("De oude bussen worden vervangen.","Os autocarros velhos vão ser substituídos."),("Reizigers worden verzocht uit te stappen.","Pede-se aos passageiros que saiam."),("Bewoners zijn gewaarschuwd voor de storm.","Os moradores foram avisados da tempestade.")],
+  review=["v-lijdende-vorm","v-werd","v-moet-worden","v-door-agent"],
+  cefr=C, exs=[
+    MA([("aangehouden","detido"),("vervangen worden","ser substituído"),("verzocht","solicitado"),("gewaarschuwd","avisado")], "Textos reais.", ["v-aangehouden","v-vervangen-pass","v-verzocht","v-gewaarschuwd"]),
+    CO("text","Nieuwsberichten", "1) In Rotterdam is gisteren een 34-jarige man aangehouden. Hij wordt verdacht van een reeks fietsdiefstallen.\n2) Vanaf maart worden alle stadsbussen in Utrecht vervangen door elektrische bussen.\n3) Bewoners van de kustgebieden zijn gewaarschuwd voor zware windstoten. Zij worden verzocht binnen te blijven.",
+       [("De que é suspeito o homem?", ["*De uma série de furtos de bicicletas","De um assalto a um banco","De condução perigosa"]),("O que acontece em março em Utrecht?", ["*Os autocarros passam a ser elétricos","Os autocarros são suprimidos","Abre uma nova estação"]),("O que se pede aos moradores da costa?", ["*Que fiquem dentro de casa","Que vão à praia","Que liguem à polícia"])],
+       "verdacht van = suspeito de; windstoten = rajadas de vento.", ["v-aangehouden","v-vervangen-pass","v-gewaarschuwd"]),
+    TR("nl-pt","Reizigers worden verzocht uit te stappen.", ["Pede-se aos passageiros que saiam","Solicita-se aos passageiros que saiam"], "worden verzocht.", ["v-verzocht"]),
+    TR("pt-nl","Um homem foi detido.", ["Een man is aangehouden","Er is een man aangehouden","Een man werd aangehouden"], "is aangehouden.", ["v-aangehouden"]),
+    MC("Porque se usa tanto a passiva nas notícias?", ["*O importante é o que aconteceu, não quem fez","Porque é mais curta|Nem sempre.","Porque é obrigatório|Não."], "Foco na ação.", ["v-lijdende-vorm"]),
+    FE(["Bewoners","zijn","gewaarschuwt","voor","de","storm."], 2, "gewaarschuwd", "Particípio: gewaarschuwd (com -d).", ["v-gewaarschuwd"]),
+    LI("Het station wordt van 2025 tot 2027 verbouwd.", ["Het station wordt van 2025 tot 2027 verbouwd"], "A estação vai estar em obras de 2025 a 2027.", "Passiva.", ["v-lijdende-vorm"]),
+    MC("Transforme em ativa: «De brief werd door Ana geschreven.»", ["*Ana schreef de brief.","De brief schreef Ana.|Muda o sentido.","Ana werd geschreven.|Não."], "Ativa.", ["v-door-agent"]),
+    FB("Alle oude lampen moeten ___ worden.", ["vervangen"], "Particípio = infinitivo neste verbo.", ["v-vervangen-pass"], choices=["vervangen","vervangt","vervang"], tr="Todos os candeeiros antigos têm de ser substituídos."),
+    SW("Escreva uma notícia curta (3 frases) na passiva sobre uma obra na sua rua.", ["In de Kerkstraat wordt vanaf maandag de weg opnieuw geasfalteerd. Het verkeer wordt omgeleid via de Molenweg. Bewoners worden verzocht hun auto elders te parkeren."], ["Pelo menos 2 passivas com **wordt/worden**", "Particípio no fim", "Estilo de notícia"], 30, "Passiva em notícia.", ["v-lijdende-vorm","v-verzocht"]),
+  ], diff=5, mins=8)
+
+W()

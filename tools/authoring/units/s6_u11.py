@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u11")
+C = "B1-B2"
+
+L(1, "Die e dat", "De man die… Het huis dat…",
+  ["Escolher entre die e dat nas orações relativas"],
+  vocab=[V("v-die-rel","die (relativo)","que (para de-woorden e plural)","pronoun"), V("v-dat-rel","dat (relativo)","que (para het-woorden no singular)","pronoun"),
+         V("v-betrekkelijk","betrekkelijke bijzin","oração relativa","noun","de"), V("v-antecedent","antecedent","antecedente","noun","het")],
+  ex=[("De man die daar staat, is mijn buurman.","O homem que ali está é o meu vizinho."),("Het huis dat we gekocht hebben, is oud.","A casa que comprámos é velha."),("De boeken die op tafel liggen, zijn van mij.","Os livros que estão na mesa são meus."),("Het meisje dat zingt, is mijn nicht.","A rapariga que canta é a minha prima.")],
+  gram=[G("g-die-dat-rel","Die ou dat?","O relativo concorda com o **antecedente**: **de**-woord ou **plural** → **die**; **het**-woord singular → **dat**. Na oração relativa o verbo vai para o **fim**: *Het huis **dat** we gekocht **hebben**…*",
+    [("de fiets die… / het boek dat… / de boeken die…","a bicicleta que… / o livro que… / os livros que…")],
+    "Em português «que» serve para tudo; em neerlandês depende do artigo do nome.")],
+  review=["v-dat-conj","v-die","v-de","v-het"],
+  cefr=C, exs=[
+    MA([("de man die…","o homem que…"),("het huis dat…","a casa que…"),("de huizen die…","as casas que…"),("betrekkelijke bijzin","oração relativa")], "Relativos.", ["v-die-rel","v-dat-rel","v-betrekkelijk"]),
+    FB("De fiets ___ ik gisteren kocht, is al kapot.", ["die"], "de fiets → die.", ["v-die-rel"], choices=["die","dat","wat"], tr="A bicicleta que comprei ontem já está avariada."),
+    FB("Het boek ___ je me gaf, is heel mooi.", ["dat"], "het boek → dat.", ["v-dat-rel"], choices=["dat","die","wie"], tr="O livro que me deste é muito bonito."),
+    FB("De kinderen ___ buiten spelen, zijn van de buren.", ["die"], "Plural → die.", ["v-die-rel"], choices=["die","dat","wat"], tr="As crianças que brincam lá fora são dos vizinhos."),
+    FB("Het meisje ___ daar zingt, is mijn nicht.", ["dat"], "het meisje → dat.", ["v-dat-rel"], choices=["dat","die","wie"], tr="A rapariga que ali canta é a minha prima."),
+    FE(["Het","huis","die","we","kochten,","is","oud."], 2, "dat", "het huis → dat.", ["v-dat-rel"]),
+    FE(["De","man","die","staat","daar,","is","mijn","buurman."], 3, "daar staat", "Na relativa o verbo vai para o fim: die daar staat.", ["v-betrekkelijk"]),
+    WO("A casa que comprámos é velha.", ["Het","huis","dat","we","gekocht","hebben,","is","oud"], "Verbo no fim, depois o verbo principal.", ["v-dat-rel"]),
+    TR("pt-nl","O homem que ali está é o meu vizinho.", ["De man die daar staat(,) is mijn buurman"], "die + verbo no fim.", ["v-die-rel"]),
+    LI("De collega die ik gisteren sprak, werkt hier al twintig jaar.", ["De collega die ik gisteren sprak(,) werkt hier al twintig jaar"], "O colega com quem falei ontem trabalha aqui há vinte anos.", "die.", ["v-die-rel"]),
+  ], diff=5, mins=7)
+
+L(2, "Wie e wat como relativos", "Wie dit leest… Alles wat… Het enige wat…",
+  ["Usar wie e wat como relativos"],
+  vocab=[V("v-wie-rel","wie (relativo)","quem","pronoun",note="Wie dit leest, is slim."), V("v-wat-rel","wat (relativo)","o que","pronoun",note="alles wat, iets wat, het enige wat"),
+         V("v-het-enige","het enige","a única coisa","expression"), V("v-alles-wat","alles wat","tudo o que","expression")],
+  ex=[("Wie te laat komt, mag niet meer naar binnen.","Quem chegar atrasado já não pode entrar."),("Alles wat je zegt, klopt.","Tudo o que dizes está certo."),("Het enige wat ik wil, is slapen.","A única coisa que quero é dormir."),("Hij zei iets wat ik niet begreep.","Ele disse algo que não percebi.")],
+  gram=[G("g-wie-wat-rel","Wie e wat","**wie** = quem (sem antecedente, pessoas): *Wie wil, mag komen.* **wat** depois de **alles, iets, niets, veel, het enige, het mooiste…** ou de uma frase inteira: *Hij kwam te laat, **wat** ik vervelend vond.*",
+    [("Hij hielp me, wat ik heel lief vond.","Ele ajudou-me, o que achei muito querido.")],
+    "Depois de «iets», ouve-se muitas vezes «dat» na fala, mas «wat» é a forma recomendada.")],
+  review=["v-die-rel","v-dat-rel","v-wie","v-wat"],
+  cefr=C, exs=[
+    MA([("wie","quem"),("alles wat","tudo o que"),("het enige wat","a única coisa que"),("iets wat","algo que")], "Wie/wat.", ["v-wie-rel","v-wat-rel","v-het-enige","v-alles-wat"]),
+    FB("Alles ___ je zegt, klopt.", ["wat"], "alles → wat.", ["v-alles-wat"], choices=["wat","dat","die"], tr="Tudo o que dizes está certo."),
+    FB("___ te laat komt, mag niet meer naar binnen.", ["Wie"], "Sem antecedente → wie.", ["v-wie-rel"], choices=["Wie","Die","Wat"], tr="Quem chegar atrasado já não pode entrar."),
+    FB("Het enige ___ ik wil, is slapen.", ["wat"], "het enige → wat.", ["v-het-enige"], choices=["wat","dat","die"], tr="A única coisa que quero é dormir."),
+    FB("Hij hielp me, ___ ik heel lief vond.", ["wat"], "Refere-se à frase inteira → wat.", ["v-wat-rel"], choices=["wat","dat","die"], tr="Ele ajudou-me, o que achei muito querido."),
+    FE(["Alles","dat","hij","zegt,","is","waar."], 1, "wat", "Depois de alles → wat.", ["v-alles-wat"]),
+    TR("pt-nl","A única coisa que quero é dormir.", ["Het enige wat ik wil(,) is slapen"], "het enige wat.", ["v-het-enige"]),
+    TR("nl-pt","Hij zei iets wat ik niet begreep.", ["Ele disse algo que não percebi","Ele disse uma coisa que eu não percebi"], "iets wat.", ["v-wat-rel"]),
+    LI("Wie wil meedoen, kan zich aanmelden.", ["Wie wil meedoen(,) kan zich aanmelden","Wie mee wil doen(,) kan zich aanmelden"], "Quem quiser participar pode inscrever-se.", "wie.", ["v-wie-rel"]),
+    MC("«Het mooiste ___ ik ooit gezien heb»:", ["*wat","dat|Depois de superlativo substantivado usa-se wat.","die|Não."], "Superlativo → wat.", ["v-wat-rel"]),
+  ], diff=5, mins=7)
+
+L(3, "Preposição + relativo", "De vriend met wie ik… Het huis waarin… waarover, waarmee",
+  ["Usar relativos com preposição"],
+  vocab=[V("v-met-wie","met wie","com quem","expression"), V("v-waarin","waarin","em que|onde","adverb"),
+         V("v-waarover","waarover","sobre o qual|de que (falar)","adverb"), V("v-waarmee","waarmee","com o qual","adverb")],
+  ex=[("De vriend met wie ik op vakantie ging, woont in Gent.","O amigo com quem fui de férias mora em Gante."),("Het huis waarin ik woon, is honderd jaar oud.","A casa em que moro tem cem anos."),("Het onderwerp waarover we spraken, was gevoelig.","O assunto sobre o qual falámos era sensível."),("De pen waarmee ik schrijf, is van mijn opa.","A caneta com que escrevo é do meu avô.")],
+  gram=[G("g-voorzetsel-relatief","Preposição + relativo","**Pessoas**: preposição + **wie**: *de man **met wie** ik praat*. **Coisas**: **waar** + preposição: *het huis **waarin**, de pen **waarmee**, het boek **waarover***. Na fala, *waar* e a preposição separam-se muitas vezes: *het huis **waar** ik **in** woon*.",
+    [("Het bedrijf waar ik voor werk… = Het bedrijf waarvoor ik werk…","A empresa para a qual trabalho…")])],
+  review=["v-wie-rel","v-waar","v-ervan"],
+  cefr=C, exs=[
+    MA([("met wie","com quem"),("waarin","em que"),("waarover","sobre o qual"),("waarmee","com o qual")], "Preposição + relativo.", ["v-met-wie","v-waarin","v-waarover","v-waarmee"]),
+    FB("De collega ___ ik samenwerk, is heel aardig.", ["met wie","waarmee"], "Pessoa → met wie.", ["v-met-wie"], choices=["met wie","waarmee","die"], tr="A colega com quem trabalho é muito simpática."),
+    FB("Het huis ___ ik woon, is honderd jaar oud.", ["waarin","waar"], "Coisa → waarin.", ["v-waarin"], choices=["waarin","in wie","dat"], tr="A casa em que moro tem cem anos."),
+    FB("De pen ___ ik schrijf, is van mijn opa.", ["waarmee"], "Coisa → waarmee.", ["v-waarmee"], choices=["waarmee","met wie","die"], tr="A caneta com que escrevo é do meu avô."),
+    FE(["Het","onderwerp","over","wat","we","spraken,","was","moeilijk."], 2, "waarover", "Coisa + preposição → waarover.", ["v-waarover"]),
+    FE(["De","vrouw","waarmee","ik","praatte,","is","arts."], 2, "met wie", "Para pessoas prefere-se «met wie».", ["v-met-wie"]),
+    TR("pt-nl","O amigo com quem fui de férias mora em Gante.", ["De vriend met wie ik op vakantie ging(,) woont in Gent","De vriend met wie ik op vakantie ben gegaan(,) woont in Gent"], "met wie.", ["v-met-wie"]),
+    TR("nl-pt","Het bedrijf waar ik voor werk, is Duits.", ["A empresa para a qual trabalho é alemã","A empresa onde trabalho é alemã"], "waar … voor.", ["v-waarin"]),
+    LI("Dat is het probleem waarover ik je vertelde.", ["Dat is het probleem waarover ik je vertelde","Dat is het probleem waar ik je over vertelde"], "Esse é o problema de que te falei.", "waarover.", ["v-waarover"]),
+    WO("A caneta com que escrevo é do meu avô.", ["De","pen","waarmee","ik","schrijf,","is","van","mijn","opa"], "waarmee + verbo no fim.", ["v-waarmee"]),
+  ], diff=5, mins=8)
+
+L(4, "Relativas restritivas e explicativas", "Mijn broer, die in Parijs woont, … / De broer die in Parijs woont…",
+  ["Distinguir orações relativas restritivas e explicativas (vírgulas)"],
+  vocab=[V("v-beperkend","beperkend","restritivo","adjective"), V("v-uitbreidend","uitbreidend","explicativo (não restritivo)","adjective"),
+         V("v-komma","komma","vírgula","noun","de"), V("v-overigens","overigens","aliás","adverb")],
+  ex=[("Mijn broer, die in Parijs woont, komt morgen.","O meu irmão, que mora em Paris, vem amanhã."),("De broer die in Parijs woont, komt morgen.","O irmão que mora em Paris vem amanhã. (tenho vários)"),("Let op de komma's.","Atenção às vírgulas."),("Amsterdam, dat overigens niet de regeringszetel is, is de hoofdstad.","Amesterdão, que aliás não é a sede do governo, é a capital.")],
+  gram=[G("g-komma-relatief","Com ou sem vírgulas?","**Restritiva** (sem vírgulas): identifica qual: *De broer die in Parijs woont* (há outros irmãos). **Explicativa** (entre vírgulas): acrescenta informação: *Mijn broer, die in Parijs woont,* (só tenho um). Igual ao português.",
+    [("Studenten die hard werken, slagen.","Os estudantes que trabalham muito passam. (só esses)")])],
+  review=["v-die-rel","v-dat-rel","v-hoofdstad"],
+  cefr=C, exs=[
+    MA([("beperkend","restritivo"),("uitbreidend","explicativo"),("komma","vírgula"),("overigens","aliás")], "Relativas.", ["v-beperkend","v-uitbreidend","v-komma","v-overigens"]),
+    MC("«Mijn moeder, die lerares is, …» — tem quantas mães?", ["*Uma (oração explicativa)","Várias|Com vírgulas é explicativa.","Nenhuma|Não."], "Vírgulas.", ["v-uitbreidend"]),
+    MC("«De collega die Spaans spreekt, helpt je.» — Significa que…", ["*há vários colegas e é aquele que fala espanhol","todos os colegas falam espanhol|Não.","só há um colega|Seria com vírgulas."], "Restritiva.", ["v-beperkend"]),
+    TR("pt-nl","O meu irmão, que mora em Paris, vem amanhã.", ["Mijn broer(,) die in Parijs woont(,) komt morgen"], "Explicativa.", ["v-uitbreidend"]),
+    TR("nl-pt","Studenten die hard werken, slagen.", ["Os estudantes que trabalham muito passam","Os alunos que se esforçam passam"], "Restritiva.", ["v-beperkend"]),
+    FE(["Amsterdam,","die","de","hoofdstad","is,","is","erg","druk."], 1, "dat", "Nomes de cidades são het: Amsterdam, dat…", ["v-dat-rel"]),
+    AR("komma","a vírgula","de", "De komma.", ["v-komma"]),
+    LI("Utrecht, dat in het midden van het land ligt, heeft een groot station.", ["Utrecht(,) dat in het midden van het land ligt(,) heeft een groot station"], "Utrecht, que fica no centro do país, tem uma estação grande.", "Explicativa com dat.", ["v-uitbreidend"]),
+    FB("Den Haag, ___ overigens geen hoofdstad is, is de regeringszetel.", ["dat"], "Cidade → dat.", ["v-overigens"], choices=["dat","die","wie"], tr="A Haia, que aliás não é capital, é a sede do governo."),
+    WO("Atenção às vírgulas.", ["Let","op","de","komma's"], "letten op.", ["v-komma"]),
+  ], diff=5, mins=7)
+
+L(5, "Prática: descrever com relativas", "Pessoas, lugares e objetos.",
+  ["Usar orações relativas para descrever de forma rica"],
+  vocab=[V("v-omschrijven","omschrijven","descrever","verb"), V("v-kenmerk","kenmerk","característica","noun","het"),
+         V("v-bijzonder","bijzonder","especial|particular","adjective"), V("v-dierbaar","dierbaar","querido|de grande valor afetivo","adjective")],
+  ex=[("Kun je het huis omschrijven?","Consegues descrever a casa?"),("Een belangrijk kenmerk is de grote tuin.","Uma característica importante é o jardim grande."),("Het is een bijzondere plek.","É um lugar especial."),("Dat is een foto die me erg dierbaar is.","É uma fotografia que me é muito querida.")],
+  review=["v-die-rel","v-dat-rel","v-waarin","v-met-wie","v-wat-rel"],
+  cefr=C, exs=[
+    MA([("omschrijven","descrever"),("kenmerk","característica"),("bijzonder","especial"),("dierbaar","querido")], "Descrever.", ["v-omschrijven","v-kenmerk","v-bijzonder","v-dierbaar"]),
+    TR("pt-nl","É uma fotografia que me é muito querida.", ["Dat is een foto die me erg dierbaar is","Het is een foto die me heel dierbaar is","Het is een foto die mij erg dierbaar is"], "die + verbo no fim.", ["v-dierbaar"]),
+    TR("nl-pt","Een belangrijk kenmerk is de grote tuin.", ["Uma característica importante é o jardim grande"], "het kenmerk.", ["v-kenmerk"]),
+    AR("kenmerk","a característica","het", "Het kenmerk.", ["v-kenmerk"]),
+    CO("text","Mijn favoriete plek", "De plek die mij het meest dierbaar is, is een klein café in Porto waar mijn opa elke ochtend koffie dronk. Het café, dat al sinds 1950 bestaat, heeft houten tafels en oude foto's aan de muur. De eigenaar, met wie mijn opa bevriend was, kent nog steeds iedereen bij naam. Het bijzondere is dat er niets veranderd is.",
+       [("Quem bebia café lá todas as manhãs?", ["*O avô","O pai","O próprio autor"]),("Desde quando existe o café?", ["*1950","1990","2000"]),("O que tem de especial?", ["*Nada mudou","É muito moderno","É muito grande"])],
+       "Repare: die, waar, dat, met wie.", ["v-dierbaar","v-bijzonder"]),
+    FE(["Het","café,","die","al","oud","is,","is","gezellig."], 2, "dat", "het café → dat.", ["v-dat-rel"]),
+    FE(["De","eigenaar,","met","die","mijn","opa","bevriend","was,","is","aardig."], 3, "wie", "Pessoa + preposição → met wie.", ["v-met-wie"]),
+    LI("Het bijzondere is dat er niets veranderd is.", ["Het bijzondere is dat er niets veranderd is","Het bijzondere is dat er niets is veranderd"], "O que tem de especial é que nada mudou.", "Het bijzondere.", ["v-bijzonder"]),
+    FB("Kun je de persoon ___ je zoekt, omschrijven?", ["die"], "de persoon → die.", ["v-omschrijven"], choices=["die","dat","wat"], tr="Consegues descrever a pessoa que procuras?"),
+    SW("Descreva um lugar ou objeto que lhe é querido (3–4 frases) usando pelo menos três relativos diferentes (die, dat, waar/waarin, met wie, wat).", ["Het voorwerp dat mij het meest dierbaar is, is een horloge van mijn vader. Het is een horloge waarmee hij elke dag naar zijn werk ging. De winkel waar hij het kocht, bestaat niet meer. Het enige wat ik hoop, is dat het nooit kapot gaat."], ["Três relativos diferentes", "Verbo no fim das relativas", "die/dat conforme o artigo"], 40, "Descrição rica.", ["v-dierbaar","v-omschrijven"]),
+  ], diff=5, mins=8)
+
+W()
