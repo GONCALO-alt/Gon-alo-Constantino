@@ -5901,24 +5901,26 @@
         },
         {
           "id": "s5-u15-l020-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: dat ik het fout had.",
           "vocabRefs": [
             "v-ik-geef-toe"
           ],
-          "tokens": [
-            "Ik",
-            "geef",
-            "toe",
-            "dat",
-            "ik",
-            "had",
-            "het",
-            "fout."
-          ],
-          "errorIndex": 5,
-          "correction": "het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik geef toe dat ik het fout had.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik geef toe dat ik had het fout.",
+              "correct": false,
+              "feedback": "Verbo no fim: dat ik het fout had."
+            }
+          ]
         },
         {
           "id": "s5-u15-l020-e08",

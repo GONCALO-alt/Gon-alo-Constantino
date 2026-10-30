@@ -4237,23 +4237,26 @@
         },
         {
           "id": "s5-u16-l015-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Met veel interesse las ik.",
           "vocabRefs": [
             "v-met-interesse"
           ],
-          "tokens": [
-            "Met",
-            "veel",
-            "interesse",
-            "ik",
-            "las",
-            "uw",
-            "vacature."
-          ],
-          "errorIndex": 3,
-          "correction": "las"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Met veel interesse las ik uw vacature.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Met veel interesse ik las uw vacature.",
+              "correct": false,
+              "feedback": "Inversão: Met veel interesse las ik."
+            }
+          ]
         },
         {
           "id": "s5-u16-l015-e07",
@@ -5173,23 +5176,26 @@
         },
         {
           "id": "s5-u16-l018-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Na subordinada o verbo vai para o fim: …productiever is.",
           "vocabRefs": [
             "v-de-schrijver-stelt"
           ],
-          "tokens": [
-            "De",
-            "schrijver",
-            "stelt",
-            "dat",
-            "thuiswerken",
-            "is",
-            "productiever."
-          ],
-          "errorIndex": 5,
-          "correction": "productiever"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De schrijver stelt dat thuiswerken productiever is.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De schrijver stelt dat thuiswerken is productiever.",
+              "correct": false,
+              "feedback": "Na subordinada o verbo vai para o fim: …productiever is."
+            }
+          ]
         },
         {
           "id": "s5-u16-l018-e08",
@@ -5389,27 +5395,26 @@
         },
         {
           "id": "s5-u16-l019-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: …dat de les morgen niet doorgaat.",
           "vocabRefs": [
             "v-liet-weten"
           ],
-          "tokens": [
-            "De",
-            "school",
-            "liet",
-            "weten",
-            "dat",
-            "de",
-            "les",
-            "morgen",
-            "gaat",
-            "niet",
-            "door."
-          ],
-          "errorIndex": 8,
-          "correction": "niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De school liet weten dat de les morgen niet doorgaat.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De school liet weten dat de les morgen gaat niet door.",
+              "correct": false,
+              "feedback": "Subordinada: …dat de les morgen niet doorgaat."
+            }
+          ]
         },
         {
           "id": "s5-u16-l019-e07",
@@ -5943,22 +5948,26 @@
         },
         {
           "id": "s5-u16-l021-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: verbo em 2.º lugar.",
           "vocabRefs": [
             "v-op-de-achtergrond"
           ],
-          "tokens": [
-            "Op",
-            "de",
-            "achtergrond",
-            "een",
-            "molen",
-            "staat."
-          ],
-          "errorIndex": 3,
-          "correction": "staat"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Op de achtergrond staat een molen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Op de achtergrond een molen staat.",
+              "correct": false,
+              "feedback": "Inversão: verbo em 2.º lugar."
+            }
+          ]
         },
         {
           "id": "s5-u16-l021-e07",

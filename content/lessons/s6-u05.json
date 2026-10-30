@@ -5353,22 +5353,26 @@
         },
         {
           "id": "s6-u05-l020-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: …praten zijn we eruit.",
           "vocabRefs": [
             "v-we-zijn-eruit"
           ],
-          "tokens": [
-            "Na",
-            "lang",
-            "praten",
-            "we",
-            "zijn",
-            "eruit."
-          ],
-          "errorIndex": 3,
-          "correction": "zijn"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Na lang praten zijn we eruit.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Na lang praten we zijn eruit.",
+              "correct": false,
+              "feedback": "Inversão: …praten zijn we eruit."
+            }
+          ]
         },
         {
           "id": "s6-u05-l020-e07",
@@ -5622,25 +5626,26 @@
         },
         {
           "id": "s6-u05-l021-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: dan mag je.",
           "vocabRefs": [
             "v-als-dan-mag-je"
           ],
-          "tokens": [
-            "Als",
-            "je",
-            "klaar",
-            "bent,",
-            "dan",
-            "je",
-            "mag",
-            "buiten",
-            "spelen."
-          ],
-          "errorIndex": 5,
-          "correction": "mag"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als je klaar bent, dan mag je buiten spelen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Als je klaar bent, dan je mag buiten spelen.",
+              "correct": false,
+              "feedback": "Inversão: dan mag je."
+            }
+          ]
         },
         {
           "id": "s6-u05-l021-e07",

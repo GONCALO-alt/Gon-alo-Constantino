@@ -2538,6 +2538,4029 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s6-u10-l010",
+      "unitId": "s6-u10",
+      "order": 10,
+      "title": "Modais no passado composto",
+      "description": "Ik had willen komen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar modais no perfeito e no mais-que-perfeito com duplo infinitivo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-had-willen",
+          "nl": "had willen",
+          "pt": [
+            "teria querido",
+            "queria ter"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-heeft-moeten",
+          "nl": "heeft moeten",
+          "pt": [
+            "teve de"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-had-kunnen",
+        "v-had-moeten",
+        "v-werkwoordscluster"
+      ],
+      "examples": [
+        {
+          "nl": "Ik had graag willen komen, maar ik was ziek.",
+          "pt": "Teria gostado de vir, mas estava doente."
+        },
+        {
+          "nl": "Hij heeft lang moeten wachten.",
+          "pt": "Ele teve de esperar muito tempo."
+        },
+        {
+          "nl": "We hebben het niet kunnen vinden.",
+          "pt": "Não o conseguimos encontrar."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-modaal-perfectum",
+          "title": "Modal no perfeito",
+          "body": "No perfeito, o modal fica no **infinitivo** (não particípio) e vai para o fim junto do outro verbo: *Ik heb moeten werken* (não ~~gemoeten~~). Chama-se **duplo infinitivo**. Na subordinada: *…dat ik heb moeten werken*.",
+          "examples": [
+            {
+              "nl": "Ze heeft niet kunnen komen.",
+              "pt": "Ela não pôde vir."
+            },
+            {
+              "nl": "Ik had het willen zeggen.",
+              "pt": "Eu queria tê-lo dito."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Modais.",
+          "vocabRefs": [
+            "v-had-willen",
+            "v-heeft-moeten",
+            "v-had-kunnen",
+            "v-had-moeten"
+          ],
+          "pairs": [
+            {
+              "nl": "had willen",
+              "pt": "teria querido"
+            },
+            {
+              "nl": "heeft moeten",
+              "pt": "teve de"
+            },
+            {
+              "nl": "had kunnen",
+              "pt": "podia ter"
+            },
+            {
+              "nl": "had moeten",
+              "pt": "devia ter"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l010-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Duplo infinitivo.",
+          "vocabRefs": [
+            "v-heeft-moeten"
+          ],
+          "prompt": "Ela não pôde vir:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze heeft niet kunnen komen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze heeft niet gekund komen.",
+              "correct": false,
+              "feedback": "Sem particípio."
+            },
+            {
+              "id": "c",
+              "text": "Ze is niet kunnen komen.",
+              "correct": false,
+              "feedback": "Auxiliar: hebben."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l010-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Duplo infinitivo.",
+          "vocabRefs": [
+            "v-heeft-moeten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele teve de esperar muito.",
+          "answers": [
+            "Hij heeft lang moeten wachten"
+          ]
+        },
+        {
+          "id": "s6-u10-l010-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "had willen.",
+          "vocabRefs": [
+            "v-had-willen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Teria gostado de vir.",
+          "answers": [
+            "Ik had graag willen komen",
+            "Ik was graag gekomen"
+          ]
+        },
+        {
+          "id": "s6-u10-l010-e05",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "Infinitivo, não particípio.",
+          "vocabRefs": [
+            "v-heeft-moeten"
+          ],
+          "verb": "kunnen",
+          "pronoun": "we",
+          "tense": "passado-perfeito",
+          "sentence": "We hebben het niet ___ vinden.",
+          "answers": [
+            "kunnen"
+          ]
+        },
+        {
+          "id": "s6-u10-l010-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Duplo infinitivo: moeten werken.",
+          "vocabRefs": [
+            "v-heeft-moeten"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "gisteren",
+            "moeten",
+            "gewerkt."
+          ],
+          "errorIndex": 4,
+          "correction": "werken."
+        },
+        {
+          "id": "s6-u10-l010-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Modal no infinitivo.",
+          "vocabRefs": [
+            "v-heeft-moeten"
+          ],
+          "tokens": [
+            "Ze",
+            "heeft",
+            "niet",
+            "gekund",
+            "komen."
+          ],
+          "errorIndex": 3,
+          "correction": "kunnen"
+        },
+        {
+          "id": "s6-u10-l010-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Arrependimento.",
+          "vocabRefs": [
+            "v-had-willen"
+          ],
+          "audioText": "Ik had het je eerder willen vertellen.",
+          "answers": [
+            "Ik had het je eerder willen vertellen"
+          ],
+          "translation": "Queria ter-te contado mais cedo."
+        },
+        {
+          "id": "s6-u10-l010-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-heeft-moeten"
+          ],
+          "translation": "Ele teve de esperar.",
+          "tokens": [
+            "Hij",
+            "heeft",
+            "moeten",
+            "wachten"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l011",
+      "unitId": "s6-u10",
+      "order": 11,
+      "title": "Ver e ouvir alguém fazer",
+      "description": "Ik zag hem komen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar zien e horen com infinitivo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zien-doen",
+          "nl": "iemand iets zien doen",
+          "pt": [
+            "ver alguém fazer algo"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-horen-doen",
+          "nl": "iemand iets horen doen",
+          "pt": [
+            "ouvir alguém fazer algo"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zien",
+        "v-horen"
+      ],
+      "examples": [
+        {
+          "nl": "Ik zag hem de straat oversteken.",
+          "pt": "Vi-o atravessar a rua."
+        },
+        {
+          "nl": "We hoorden de buren ruziemaken.",
+          "pt": "Ouvimos os vizinhos a discutir."
+        },
+        {
+          "nl": "Ik heb haar nog nooit horen zingen.",
+          "pt": "Nunca a ouvi cantar."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u10-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Perceção.",
+          "vocabRefs": [
+            "v-zien-doen",
+            "v-horen-doen",
+            "v-zien",
+            "v-horen"
+          ],
+          "pairs": [
+            {
+              "nl": "iemand iets zien doen",
+              "pt": "ver alguém fazer"
+            },
+            {
+              "nl": "iemand iets horen doen",
+              "pt": "ouvir alguém fazer"
+            },
+            {
+              "nl": "zien",
+              "pt": "ver"
+            },
+            {
+              "nl": "horen",
+              "pt": "ouvir"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Duplo infinitivo.",
+          "vocabRefs": [
+            "v-horen-doen"
+          ],
+          "prompt": "No perfeito: «Nunca a ouvi cantar»:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik heb haar nog nooit horen zingen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik heb haar nog nooit gehoord zingen.",
+              "correct": false,
+              "feedback": "Duplo infinitivo."
+            },
+            {
+              "id": "c",
+              "text": "Ik heb haar nooit zingen gehoord.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zien + infinitivo.",
+          "vocabRefs": [
+            "v-zien-doen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Vi-o atravessar a rua.",
+          "answers": [
+            "Ik zag hem de straat oversteken"
+          ]
+        },
+        {
+          "id": "s6-u10-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "horen + infinitivo.",
+          "vocabRefs": [
+            "v-horen-doen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ouvimos os vizinhos a discutir.",
+          "answers": [
+            "We hoorden de buren ruziemaken",
+            "We hoorden de buren ruzie maken",
+            "Wij hoorden de buren ruziemaken"
+          ]
+        },
+        {
+          "id": "s6-u10-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Duplo infinitivo.",
+          "vocabRefs": [
+            "v-zien-doen"
+          ],
+          "sentence": "Ik heb de kinderen in de tuin ___ spelen.",
+          "translation": "Vi as crianças a brincar no jardim.",
+          "answers": [
+            "zien"
+          ],
+          "choices": [
+            "zien",
+            "gezien",
+            "zag"
+          ]
+        },
+        {
+          "id": "s6-u10-l011-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "zien + infinitivo.",
+          "vocabRefs": [
+            "v-zien-doen"
+          ],
+          "tokens": [
+            "Ik",
+            "zag",
+            "hem",
+            "komt."
+          ],
+          "errorIndex": 3,
+          "correction": "komen."
+        },
+        {
+          "id": "s6-u10-l011-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-horen-doen"
+          ],
+          "audioText": "Heb je de bel horen gaan?",
+          "answers": [
+            "Heb je de bel horen gaan",
+            "Heb je de bel horen gaan?"
+          ],
+          "translation": "Ouviste a campainha tocar?"
+        },
+        {
+          "id": "s6-u10-l011-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Perceção.",
+          "vocabRefs": [
+            "v-zien-doen"
+          ],
+          "prompt": "«Ik voel de vloer trillen» segue a mesma regra porque…",
+          "options": [
+            {
+              "id": "a",
+              "text": "«voelen» também é verbo de perceção",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "é um erro",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "é futuro",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l011-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-zien-doen"
+          ],
+          "translation": "Vi-o chegar.",
+          "tokens": [
+            "Ik",
+            "zag",
+            "hem",
+            "komen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l012",
+      "unitId": "s6-u10",
+      "order": 12,
+      "title": "Mandar fazer: laten",
+      "description": "Ik laat mijn fiets repareren.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar laten para mandar fazer algo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-laten-causaal",
+          "nl": "laten + infinitivo",
+          "pt": [
+            "mandar fazer",
+            "deixar fazer"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-laten-nakijken",
+          "nl": "laten nakijken",
+          "pt": [
+            "mandar verificar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-laten-repareren",
+        "v-laten-knippen",
+        "v-laten-maken",
+        "v-laten-zien"
+      ],
+      "examples": [
+        {
+          "nl": "Ik laat mijn fiets repareren.",
+          "pt": "Vou mandar arranjar a bicicleta."
+        },
+        {
+          "nl": "Ze heeft haar haar laten knippen.",
+          "pt": "Ela foi cortar o cabelo (mandou cortar)."
+        },
+        {
+          "nl": "Laat je auto voor de vakantie nakijken.",
+          "pt": "Manda verificar o carro antes das férias."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-laten-causatief",
+          "title": "Laten = mandar fazer",
+          "body": "**Laten + infinitivo** significa que outra pessoa faz a ação por nós: *Ik laat mijn haar knippen* (o cabeleireiro corta). No perfeito: duplo infinitivo — *Ik heb mijn haar laten knippen*. Também pode significar «deixar»: *Laat hem maar slapen.*",
+          "examples": [
+            {
+              "nl": "We hebben een nieuwe keuken laten plaatsen.",
+              "pt": "Mandámos instalar uma cozinha nova."
+            },
+            {
+              "nl": "Laat me even nadenken.",
+              "pt": "Deixa-me pensar."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Laten.",
+          "vocabRefs": [
+            "v-laten-causaal",
+            "v-laten-nakijken",
+            "v-laten-repareren",
+            "v-laten-knippen"
+          ],
+          "pairs": [
+            {
+              "nl": "laten + infinitivo",
+              "pt": "mandar fazer"
+            },
+            {
+              "nl": "laten nakijken",
+              "pt": "mandar verificar"
+            },
+            {
+              "nl": "laten repareren",
+              "pt": "mandar arranjar"
+            },
+            {
+              "nl": "je haar laten knippen",
+              "pt": "ir cortar o cabelo"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Causativo.",
+          "vocabRefs": [
+            "v-laten-causaal"
+          ],
+          "prompt": "«Ik knip mijn haar» vs. «Ik laat mijn haar knippen»:",
+          "options": [
+            {
+              "id": "a",
+              "text": "eu próprio corto vs. alguém corta por mim",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "iguais",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "passado vs. presente",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "laten.",
+          "vocabRefs": [
+            "v-laten-repareren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Vou mandar arranjar a bicicleta.",
+          "answers": [
+            "Ik laat mijn fiets repareren",
+            "Ik ga mijn fiets laten repareren"
+          ]
+        },
+        {
+          "id": "s6-u10-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Duplo infinitivo.",
+          "vocabRefs": [
+            "v-laten-knippen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela foi cortar o cabelo.",
+          "answers": [
+            "Ze heeft haar haar laten knippen",
+            "Zij heeft haar haar laten knippen"
+          ]
+        },
+        {
+          "id": "s6-u10-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Infinitivo.",
+          "vocabRefs": [
+            "v-laten-causaal"
+          ],
+          "sentence": "We hebben een nieuwe badkamer laten ___.",
+          "translation": "Mandámos instalar uma casa de banho nova.",
+          "answers": [
+            "plaatsen"
+          ],
+          "choices": [
+            "plaatsen",
+            "geplaatst",
+            "plaatst"
+          ]
+        },
+        {
+          "id": "s6-u10-l012-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Duplo infinitivo: laten nakijken.",
+          "vocabRefs": [
+            "v-laten-nakijken"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "mijn",
+            "auto",
+            "gelaten",
+            "nakijken."
+          ],
+          "errorIndex": 4,
+          "correction": "laten"
+        },
+        {
+          "id": "s6-u10-l012-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Causativo.",
+          "vocabRefs": [
+            "v-laten-causaal"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Heb je zelf je huis geschilderd?",
+              "pt": "Pintaste tu a casa?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Nee, ik heb het laten doen; ik heb er geen tijd voor.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, ik laat schilderen.",
+              "correct": false,
+              "feedback": "Contraditório."
+            },
+            {
+              "id": "c",
+              "text": "Laten nakijken.",
+              "correct": false,
+              "feedback": "Sem sentido."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l012-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Conselho.",
+          "vocabRefs": [
+            "v-laten-causaal"
+          ],
+          "audioText": "Laat je ogen regelmatig controleren.",
+          "answers": [
+            "Laat je ogen regelmatig controleren"
+          ],
+          "translation": "Manda verificar os olhos regularmente."
+        },
+        {
+          "id": "s6-u10-l012-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-laten-repareren"
+          ],
+          "translation": "Mandei arranjar a bicicleta.",
+          "tokens": [
+            "Ik",
+            "heb",
+            "mijn",
+            "fiets",
+            "laten",
+            "repareren"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l013",
+      "unitId": "s6-u10",
+      "order": 13,
+      "title": "Onde fica o «niet»?",
+      "description": "Ik heb hem niet gezien.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Colocar niet corretamente e usar negações enfáticas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-helemaal-niet",
+          "nl": "helemaal niet",
+          "pt": [
+            "nada",
+            "de todo"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-allerminst",
+          "nl": "allerminst",
+          "pt": [
+            "de modo nenhum",
+            "nada mesmo"
+          ],
+          "pos": "adverb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-niet-meer",
+        "v-nog-niet"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ben helemaal niet moe.",
+          "pt": "Não estou nada cansado."
+        },
+        {
+          "nl": "Hij is allerminst tevreden.",
+          "pt": "Ele não está nada satisfeito."
+        },
+        {
+          "nl": "Ik heb hem gisteren niet gezien.",
+          "pt": "Não o vi ontem."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-plaats-niet",
+          "title": "Posição de niet",
+          "body": "Regra geral: **niet** vem **depois** do objeto direto definido e das expressões de tempo, mas **antes** de adjetivos, preposições, advérbios de modo e da parte separável/infinitivo/particípio no fim. *Ik zie hem niet.* · *Ik ben niet moe.* · *Ik ga niet naar huis.* · *Ik heb het niet gedaan.* Para negar a frase toda, fica o mais tarde possível.",
+          "examples": [
+            {
+              "nl": "Hij komt morgen niet.",
+              "pt": "Ele não vem amanhã."
+            },
+            {
+              "nl": "Ze woont niet in Utrecht.",
+              "pt": "Ela não vive em Utrecht."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Negação.",
+          "vocabRefs": [
+            "v-helemaal-niet",
+            "v-allerminst",
+            "v-niet-meer",
+            "v-nog-niet"
+          ],
+          "pairs": [
+            {
+              "nl": "helemaal niet",
+              "pt": "de todo"
+            },
+            {
+              "nl": "allerminst",
+              "pt": "de modo nenhum"
+            },
+            {
+              "nl": "niet meer",
+              "pt": "já não"
+            },
+            {
+              "nl": "nog niet",
+              "pt": "ainda não"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Posição.",
+          "vocabRefs": [
+            "v-helemaal-niet"
+          ],
+          "prompt": "Qual está correto?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik heb het boek niet gelezen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik heb niet het boek gelezen.",
+              "correct": false,
+              "feedback": "Objeto definido antes de niet."
+            },
+            {
+              "id": "c",
+              "text": "Ik niet heb het boek gelezen.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l013-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Antes da preposição.",
+          "vocabRefs": [
+            "v-helemaal-niet"
+          ],
+          "prompt": "Qual está correto?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze woont niet in Amsterdam.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze woont in Amsterdam niet.",
+              "correct": false,
+              "feedback": "Antes da preposição."
+            },
+            {
+              "id": "c",
+              "text": "Ze niet woont in Amsterdam.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "helemaal niet.",
+          "vocabRefs": [
+            "v-helemaal-niet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não estou nada cansado.",
+          "answers": [
+            "Ik ben helemaal niet moe",
+            "Ik ben totaal niet moe"
+          ]
+        },
+        {
+          "id": "s6-u10-l013-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Depois do tempo.",
+          "vocabRefs": [
+            "v-helemaal-niet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não o vi ontem.",
+          "answers": [
+            "Ik heb hem gisteren niet gezien",
+            "Gisteren heb ik hem niet gezien"
+          ]
+        },
+        {
+          "id": "s6-u10-l013-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Tempo antes de niet: Hij komt morgen niet.",
+          "vocabRefs": [
+            "v-helemaal-niet"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij komt morgen niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij komt niet morgen.",
+              "correct": false,
+              "feedback": "Tempo antes de niet: Hij komt morgen niet."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l013-e07",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Formal enfático.",
+          "vocabRefs": [
+            "v-allerminst"
+          ],
+          "sentence": "De minister was ___ blij met de kritiek.",
+          "translation": "O ministro não ficou nada contente com as críticas.",
+          "answers": [
+            "allerminst"
+          ],
+          "choices": [
+            "allerminst",
+            "helemaal",
+            "minst"
+          ]
+        },
+        {
+          "id": "s6-u10-l013-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-helemaal-niet"
+          ],
+          "audioText": "Dat is helemaal niet wat ik bedoelde.",
+          "answers": [
+            "Dat is helemaal niet wat ik bedoelde"
+          ],
+          "translation": "Isso não é nada o que eu queria dizer."
+        },
+        {
+          "id": "s6-u10-l013-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-helemaal-niet"
+          ],
+          "translation": "Ela não vive em Utrecht.",
+          "tokens": [
+            "Ze",
+            "woont",
+            "niet",
+            "in",
+            "Utrecht"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l014",
+      "unitId": "s6-u10",
+      "order": 14,
+      "title": "Tempo – modo – lugar",
+      "description": "Ik ga morgen met de trein naar Utrecht.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Ordenar complementos de tempo, modo e lugar"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-tijd-manier-plaats",
+          "nl": "tijd – manier – plaats",
+          "pt": [
+            "tempo – modo – lugar (ordem)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-nauwkeurig-volgorde"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ga morgen met de trein naar Utrecht.",
+          "pt": "Amanhã vou de comboio para Utrecht."
+        },
+        {
+          "nl": "Ze fietst elke dag samen met haar zus naar school.",
+          "pt": "Ela vai todos os dias de bicicleta com a irmã para a escola."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-tmp",
+          "title": "Tempo – Modo – Lugar",
+          "body": "Quando há vários complementos, a ordem habitual é **Tempo → Modo → Lugar**: *Ik ga **morgen** (T) **met de trein** (M) **naar Utrecht** (L).* Qualquer um pode ir para o início para dar ênfase — e então o verbo vem logo a seguir: *Morgen ga ik met de trein naar Utrecht.*",
+          "examples": [
+            {
+              "nl": "We eten vanavond gezellig thuis.",
+              "pt": "Hoje à noite jantamos tranquilamente em casa."
+            },
+            {
+              "nl": "Hij werkt sinds maart hard in de haven.",
+              "pt": "Desde março ele trabalha muito no porto."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "TML.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats",
+            "v-nauwkeurig-volgorde",
+            "v-tijd-manier-plaats"
+          ],
+          "pairs": [
+            {
+              "nl": "morgen",
+              "pt": "tempo"
+            },
+            {
+              "nl": "met de trein",
+              "pt": "modo"
+            },
+            {
+              "nl": "naar Utrecht",
+              "pt": "lugar"
+            },
+            {
+              "nl": "tijd – manier – plaats",
+              "pt": "ordem T-M-L"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l014-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "T-M-L.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "prompt": "Qual é a ordem mais natural?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ga morgen met de bus naar het werk.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ga naar het werk met de bus morgen.",
+              "correct": false,
+              "feedback": "Lugar antes do tempo."
+            },
+            {
+              "id": "c",
+              "text": "Ik ga met de bus naar het werk morgen.",
+              "correct": false,
+              "feedback": "Tempo no fim."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "T-M-L.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Amanhã vou de comboio para Utrecht.",
+          "answers": [
+            "Ik ga morgen met de trein naar Utrecht",
+            "Morgen ga ik met de trein naar Utrecht"
+          ]
+        },
+        {
+          "id": "s6-u10-l014-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "T-L.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Hoje à noite jantamos em casa.",
+          "answers": [
+            "We eten vanavond thuis",
+            "Vanavond eten we thuis",
+            "Wij eten vanavond thuis"
+          ]
+        },
+        {
+          "id": "s6-u10-l014-e05",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "T-M-L.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "translation": "Ela vai todos os dias de bicicleta para a escola.",
+          "tokens": [
+            "Ze",
+            "fietst",
+            "elke",
+            "dag",
+            "samen",
+            "met",
+            "haar",
+            "zus",
+            "naar",
+            "school"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s6-u10-l014-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Tempo primeiro: Ik ga morgen met de trein naar Utrecht.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ga morgen met de trein naar Utrecht.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ga naar Utrecht morgen met de trein.",
+              "correct": false,
+              "feedback": "Tempo primeiro: Ik ga morgen met de trein naar Utrecht."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l014-e07",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "T-M-L.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "prompt": "Amanhã vamos de carro à praia.",
+          "tokens": [
+            "We",
+            "gaan",
+            "morgen",
+            "met",
+            "de",
+            "auto",
+            "naar",
+            "het",
+            "strand"
+          ],
+          "answers": [
+            "We gaan morgen met de auto naar het strand"
+          ]
+        },
+        {
+          "id": "s6-u10-l014-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "T-M-L.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "audioText": "Hij werkt sinds maart met veel plezier in de haven.",
+          "answers": [
+            "Hij werkt sinds maart met veel plezier in de haven"
+          ],
+          "translation": "Desde março ele trabalha com muito gosto no porto."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l015",
+      "unitId": "s6-u10",
+      "order": 15,
+      "title": "Começar pela subordinada",
+      "description": "Omdat het regende, bleven we thuis.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Pôr a oração subordinada no início e inverter a principal"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-subordinada-eerst",
+          "nl": "bijzin vooraan",
+          "pt": [
+            "subordinada à frente"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aangezien",
+        "v-omdat",
+        "v-zodra"
+      ],
+      "examples": [
+        {
+          "nl": "Omdat het regende, bleven we thuis.",
+          "pt": "Como chovia, ficámos em casa."
+        },
+        {
+          "nl": "Aangezien je er toch bent, kun je helpen.",
+          "pt": "Já que estás cá, podes ajudar."
+        },
+        {
+          "nl": "Als je klaar bent, mag je gaan.",
+          "pt": "Quando acabares, podes ir."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-bijzin-vooraan",
+          "title": "Subordinada no início",
+          "body": "Se a frase começa com uma **subordinada**, esta ocupa a 1.ª posição; por isso a oração principal começa **com o verbo**: *Omdat het regende, **bleven** we thuis.* Padrão: *[bijzin], verbo – sujeito – resto.*",
+          "examples": [
+            {
+              "nl": "Toen ik thuiskwam, was iedereen weg.",
+              "pt": "Quando cheguei a casa, já não estava ninguém."
+            },
+            {
+              "nl": "Hoewel het duur is, koop ik het.",
+              "pt": "Embora seja caro, compro-o."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l015-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Conectores.",
+          "vocabRefs": [
+            "v-omdat",
+            "v-aangezien",
+            "v-zodra",
+            "v-subordinada-eerst"
+          ],
+          "pairs": [
+            {
+              "nl": "omdat",
+              "pt": "porque"
+            },
+            {
+              "nl": "aangezien",
+              "pt": "visto que"
+            },
+            {
+              "nl": "zodra",
+              "pt": "assim que"
+            },
+            {
+              "nl": "bijzin vooraan",
+              "pt": "subordinada à frente"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-subordinada-eerst"
+          ],
+          "prompt": "Qual está correto?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Omdat het regende, bleven we thuis.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Omdat het regende, we bleven thuis.",
+              "correct": false,
+              "feedback": "Falta a inversão."
+            },
+            {
+              "id": "c",
+              "text": "Omdat regende het, bleven we thuis.",
+              "correct": false,
+              "feedback": "Ordem errada na subordinada."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-subordinada-eerst"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Como chovia, ficámos em casa.",
+          "answers": [
+            "Omdat het regende, bleven we thuis",
+            "Omdat het regende bleven we thuis",
+            "Doordat het regende, bleven we thuis"
+          ]
+        },
+        {
+          "id": "s6-u10-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aangezien.",
+          "vocabRefs": [
+            "v-aangezien"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Já que estás cá, podes ajudar.",
+          "answers": [
+            "Aangezien je er toch bent, kun je helpen",
+            "Aangezien je er bent, kun je helpen"
+          ]
+        },
+        {
+          "id": "s6-u10-l015-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Inversão: verbo primeiro.",
+          "vocabRefs": [
+            "v-zodra"
+          ],
+          "sentence": "Zodra de trein stopt, ___ we uit.",
+          "translation": "Assim que o comboio parar, saímos.",
+          "answers": [
+            "stappen"
+          ],
+          "choices": [
+            "stappen",
+            "we stappen",
+            "stapt"
+          ]
+        },
+        {
+          "id": "s6-u10-l015-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Inversão: …, mag je gaan.",
+          "vocabRefs": [
+            "v-subordinada-eerst"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als je klaar bent, mag je gaan.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Als je klaar bent, je mag gaan.",
+              "correct": false,
+              "feedback": "Inversão: …, mag je gaan."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l015-e07",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-subordinada-eerst"
+          ],
+          "prompt": "Embora seja caro, compro-o.",
+          "tokens": [
+            "Hoewel",
+            "het",
+            "duur",
+            "is,",
+            "koop",
+            "ik",
+            "het"
+          ],
+          "answers": [
+            "Hoewel het duur is, koop ik het",
+            "Hoewel het duur is koop ik het"
+          ]
+        },
+        {
+          "id": "s6-u10-l015-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Narração.",
+          "vocabRefs": [
+            "v-subordinada-eerst"
+          ],
+          "audioText": "Toen ik in Nederland aankwam, sprak ik nog geen woord Nederlands.",
+          "answers": [
+            "Toen ik in Nederland aankwam, sprak ik nog geen woord Nederlands",
+            "Toen ik in Nederland aankwam sprak ik nog geen woord Nederlands"
+          ],
+          "translation": "Quando cheguei aos Países Baixos, ainda não falava uma palavra de neerlandês."
+        },
+        {
+          "id": "s6-u10-l015-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-subordinada-eerst"
+          ],
+          "translation": "Quando acabares, podes ir.",
+          "tokens": [
+            "Als",
+            "je",
+            "klaar",
+            "bent,",
+            "mag",
+            "je",
+            "gaan"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l016",
+      "unitId": "s6-u10",
+      "order": 16,
+      "title": "Verbos com te",
+      "description": "Hij weigert te betalen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar verbos seguidos de te + infinitivo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-weigeren",
+          "nl": "weigeren",
+          "pt": [
+            "recusar(-se)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-dreigen",
+          "nl": "dreigen",
+          "pt": [
+            "ameaçar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-proberen-te",
+          "nl": "proberen te",
+          "pt": [
+            "tentar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-beloven",
+        "v-vergeten",
+        "v-durven"
+      ],
+      "examples": [
+        {
+          "nl": "Hij weigert de boete te betalen.",
+          "pt": "Ele recusa-se a pagar a multa."
+        },
+        {
+          "nl": "De rivier dreigt te overstromen.",
+          "pt": "O rio ameaça transbordar."
+        },
+        {
+          "nl": "Ik probeer elke dag Nederlands te spreken.",
+          "pt": "Tento falar neerlandês todos os dias."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-te-infinitief",
+          "title": "Verbos + te + infinitivo",
+          "body": "Muitos verbos pedem **te + infinitivo**: *proberen, beginnen, weigeren, beloven, vergeten, dreigen, hopen*. Os modais (*kunnen, moeten, willen, mogen*) **não** levam *te*. *Durven* e *hoeven* aceitam os dois (*hoeven* quase sempre com *te* em frases negativas: *Je hoeft niet te komen*).",
+          "examples": [
+            {
+              "nl": "Ze begon te huilen.",
+              "pt": "Ela começou a chorar."
+            },
+            {
+              "nl": "Je hoeft niet te betalen.",
+              "pt": "Não tens de pagar."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l016-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Verbos + te.",
+          "vocabRefs": [
+            "v-weigeren",
+            "v-dreigen",
+            "v-proberen-te",
+            "v-beloven"
+          ],
+          "pairs": [
+            {
+              "nl": "weigeren",
+              "pt": "recusar"
+            },
+            {
+              "nl": "dreigen",
+              "pt": "ameaçar"
+            },
+            {
+              "nl": "proberen te",
+              "pt": "tentar"
+            },
+            {
+              "nl": "beloven",
+              "pt": "prometer"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l016-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Modais sem te.",
+          "vocabRefs": [
+            "v-proberen-te"
+          ],
+          "prompt": "Qual NÃO leva «te»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik kan … zwemmen",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik probeer … zwemmen",
+              "correct": false,
+              "feedback": "Leva te."
+            },
+            {
+              "id": "c",
+              "text": "Ik begin … zwemmen",
+              "correct": false,
+              "feedback": "Leva te."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l016-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "weigeren te.",
+          "vocabRefs": [
+            "v-weigeren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele recusa-se a pagar.",
+          "answers": [
+            "Hij weigert te betalen"
+          ]
+        },
+        {
+          "id": "s6-u10-l016-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "dreigen te.",
+          "vocabRefs": [
+            "v-dreigen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O rio ameaça transbordar.",
+          "answers": [
+            "De rivier dreigt te overstromen",
+            "De rivier dreigt buiten haar oevers te treden"
+          ]
+        },
+        {
+          "id": "s6-u10-l016-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "hoeven niet te.",
+          "vocabRefs": [
+            "v-proberen-te"
+          ],
+          "sentence": "Je hoeft morgen niet ___ komen.",
+          "translation": "Não precisas de vir amanhã.",
+          "answers": [
+            "te"
+          ],
+          "choices": [
+            "te",
+            "om",
+            "-"
+          ]
+        },
+        {
+          "id": "s6-u10-l016-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "beloven + te.",
+          "vocabRefs": [
+            "v-beloven"
+          ],
+          "tokens": [
+            "Hij",
+            "belooft",
+            "op",
+            "tijd",
+            "komen."
+          ],
+          "errorIndex": 4,
+          "correction": "te komen."
+        },
+        {
+          "id": "s6-u10-l016-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Depois de kan: infinitivo (sem te).",
+          "vocabRefs": [
+            "v-proberen-te"
+          ],
+          "tokens": [
+            "Ik",
+            "kan",
+            "goed",
+            "zwemt."
+          ],
+          "errorIndex": 3,
+          "correction": "zwemmen."
+        },
+        {
+          "id": "s6-u10-l016-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "vergeten te.",
+          "vocabRefs": [
+            "v-vergeten"
+          ],
+          "audioText": "Vergeet niet de deur op slot te doen.",
+          "answers": [
+            "Vergeet niet de deur op slot te doen"
+          ],
+          "translation": "Não te esqueças de trancar a porta."
+        },
+        {
+          "id": "s6-u10-l016-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-proberen-te"
+          ],
+          "translation": "Tento falar neerlandês.",
+          "tokens": [
+            "Ik",
+            "probeer",
+            "Nederlands",
+            "te",
+            "spreken"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l017",
+      "unitId": "s6-u10",
+      "order": 17,
+      "title": "Parecer: lijken te, schijnen te, blijken te",
+      "description": "Hij lijkt moe te zijn.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Exprimir aparência e evidência com te + infinitivo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-lijken-te",
+          "nl": "lijken te",
+          "pt": [
+            "parecer"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-blijken-te",
+          "nl": "blijken te",
+          "pt": [
+            "revelar-se"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-schijnen",
+        "v-blijken"
+      ],
+      "examples": [
+        {
+          "nl": "Hij lijkt moe te zijn.",
+          "pt": "Ele parece estar cansado."
+        },
+        {
+          "nl": "Het restaurant schijnt erg goed te zijn.",
+          "pt": "Parece que o restaurante é muito bom (ouvi dizer)."
+        },
+        {
+          "nl": "De oplossing bleek eenvoudig te zijn.",
+          "pt": "A solução revelou-se simples."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u10-l017-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Parecer.",
+          "vocabRefs": [
+            "v-lijken-te",
+            "v-schijnen",
+            "v-blijken-te",
+            "v-het-lijkt-erop"
+          ],
+          "pairs": [
+            {
+              "nl": "lijken te",
+              "pt": "parecer (aparência)"
+            },
+            {
+              "nl": "schijnen te",
+              "pt": "parecer (ouvi dizer)"
+            },
+            {
+              "nl": "blijken te",
+              "pt": "revelar-se"
+            },
+            {
+              "nl": "het lijkt erop dat…",
+              "pt": "parece que…"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l017-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Fonte indireta.",
+          "vocabRefs": [
+            "v-schijnen"
+          ],
+          "prompt": "«Het schijnt goed te zijn» indica que…",
+          "options": [
+            {
+              "id": "a",
+              "text": "ouviste dizer",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "viste com os teus olhos",
+              "correct": false,
+              "feedback": "Isso seria «lijkt»."
+            },
+            {
+              "id": "c",
+              "text": "é certo",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l017-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Confirmação.",
+          "vocabRefs": [
+            "v-blijken-te"
+          ],
+          "prompt": "«Het bleek een misverstand te zijn» — no fim, era…",
+          "options": [
+            {
+              "id": "a",
+              "text": "mesmo um mal-entendido (confirmado)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "talvez um mal-entendido",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "uma mentira",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l017-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "lijken te.",
+          "vocabRefs": [
+            "v-lijken-te"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele parece estar cansado.",
+          "answers": [
+            "Hij lijkt moe te zijn",
+            "Hij lijkt moe"
+          ]
+        },
+        {
+          "id": "s6-u10-l017-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "blijken.",
+          "vocabRefs": [
+            "v-blijken-te"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A solução revelou-se simples.",
+          "answers": [
+            "De oplossing bleek eenvoudig te zijn",
+            "De oplossing bleek eenvoudig"
+          ]
+        },
+        {
+          "id": "s6-u10-l017-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "schijnen te.",
+          "vocabRefs": [
+            "v-schijnen"
+          ],
+          "sentence": "Die film schijnt erg spannend ___ zijn.",
+          "translation": "Parece que esse filme é muito emocionante.",
+          "answers": [
+            "te"
+          ],
+          "choices": [
+            "te",
+            "om",
+            "-"
+          ]
+        },
+        {
+          "id": "s6-u10-l017-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "te + infinitivo: te zijn.",
+          "vocabRefs": [
+            "v-blijken-te"
+          ],
+          "tokens": [
+            "Het",
+            "huis",
+            "bleek",
+            "te",
+            "klein",
+            "te",
+            "is."
+          ],
+          "errorIndex": 6,
+          "correction": "zijn."
+        },
+        {
+          "id": "s6-u10-l017-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-het-lijkt-erop"
+          ],
+          "audioText": "Het lijkt erop dat het gaat sneeuwen.",
+          "answers": [
+            "Het lijkt erop dat het gaat sneeuwen"
+          ],
+          "translation": "Parece que vai nevar."
+        },
+        {
+          "id": "s6-u10-l017-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-lijken-te"
+          ],
+          "translation": "Ele parece cansado.",
+          "tokens": [
+            "Hij",
+            "lijkt",
+            "moe",
+            "te",
+            "zijn"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l018",
+      "unitId": "s6-u10",
+      "order": 18,
+      "title": "Er + preposição",
+      "description": "Ik reken erop.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar er + preposição para retomar uma ideia"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-rekenen-op",
+          "nl": "rekenen op",
+          "pt": [
+            "contar com"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-zich-verheugen-op",
+          "nl": "zich verheugen op",
+          "pt": [
+            "estar ansioso por (coisa boa)"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-nadenken-over",
+        "v-denken-aan"
+      ],
+      "examples": [
+        {
+          "nl": "Kan ik op je rekenen? — Ja, reken er maar op!",
+          "pt": "Posso contar contigo? — Sim, conta com isso!"
+        },
+        {
+          "nl": "Ik verheug me op de vakantie.",
+          "pt": "Estou ansioso pelas férias."
+        },
+        {
+          "nl": "Ik verheug me er enorm op.",
+          "pt": "Estou muito ansioso por isso."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-er-voorzetsel",
+          "title": "Er + preposição",
+          "body": "Para retomar uma **coisa** com preposição, usa-se **er + preposição** (não *het*): *op de vakantie → erop*, *aan het plan → eraan*, *over het probleem → erover*. Muitas vezes separa-se: *Ik **reken er** maar **op**.* Para **pessoas** usa-se o pronome: *op hem, aan haar*.",
+          "examples": [
+            {
+              "nl": "Denk eraan!",
+              "pt": "Lembra-te disso!"
+            },
+            {
+              "nl": "Ik heb erover nagedacht.",
+              "pt": "Pensei nisso."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l018-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Verbos + prep.",
+          "vocabRefs": [
+            "v-rekenen-op",
+            "v-zich-verheugen-op",
+            "v-nadenken-over",
+            "v-denken-aan"
+          ],
+          "pairs": [
+            {
+              "nl": "rekenen op",
+              "pt": "contar com"
+            },
+            {
+              "nl": "zich verheugen op",
+              "pt": "estar ansioso por"
+            },
+            {
+              "nl": "nadenken over",
+              "pt": "pensar em"
+            },
+            {
+              "nl": "denken aan",
+              "pt": "lembrar-se de"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l018-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "er + op.",
+          "vocabRefs": [
+            "v-zich-verheugen-op"
+          ],
+          "prompt": "«Ik verheug me op het concert.» Retomando: Ik verheug me ___.",
+          "options": [
+            {
+              "id": "a",
+              "text": "erop",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "op het",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "op hem",
+              "correct": false,
+              "feedback": "Para pessoas."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l018-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pessoa = pronome.",
+          "vocabRefs": [
+            "v-rekenen-op"
+          ],
+          "prompt": "«Kan ik op Lisa rekenen?» → Ja, je kunt ___ rekenen.",
+          "options": [
+            {
+              "id": "a",
+              "text": "op haar",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "erop",
+              "correct": false,
+              "feedback": "É pessoa."
+            },
+            {
+              "id": "c",
+              "text": "eraan",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l018-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zich verheugen op.",
+          "vocabRefs": [
+            "v-zich-verheugen-op"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Estou ansioso pelas férias.",
+          "answers": [
+            "Ik verheug me op de vakantie",
+            "Ik verheug mij op de vakantie"
+          ]
+        },
+        {
+          "id": "s6-u10-l018-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "er … op.",
+          "vocabRefs": [
+            "v-rekenen-op"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Conta com isso!",
+          "answers": [
+            "Reken er maar op",
+            "Reken er maar op!",
+            "Reken erop"
+          ]
+        },
+        {
+          "id": "s6-u10-l018-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "nadenken over.",
+          "vocabRefs": [
+            "v-nadenken-over"
+          ],
+          "sentence": "Ik heb er lang ___ nagedacht.",
+          "translation": "Pensei muito nisso.",
+          "answers": [
+            "over"
+          ],
+          "choices": [
+            "over",
+            "op",
+            "aan"
+          ]
+        },
+        {
+          "id": "s6-u10-l018-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "zich verheugen op.",
+          "vocabRefs": [
+            "v-zich-verheugen-op"
+          ],
+          "tokens": [
+            "Ik",
+            "verheug",
+            "me",
+            "aan",
+            "de",
+            "vakantie."
+          ],
+          "errorIndex": 3,
+          "correction": "op"
+        },
+        {
+          "id": "s6-u10-l018-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "eraan.",
+          "vocabRefs": [
+            "v-denken-aan"
+          ],
+          "audioText": "Denk eraan dat de winkels zondag dicht zijn.",
+          "answers": [
+            "Denk eraan dat de winkels zondag dicht zijn"
+          ],
+          "translation": "Lembra-te de que as lojas estão fechadas ao domingo."
+        },
+        {
+          "id": "s6-u10-l018-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-rekenen-op"
+          ],
+          "translation": "Conto contigo.",
+          "tokens": [
+            "Ik",
+            "reken",
+            "op",
+            "je"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l019",
+      "unitId": "s6-u10",
+      "order": 19,
+      "title": "Passiva impessoal com er",
+      "description": "Er wordt gezegd dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar er + worden para ações sem sujeito concreto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-er-wordt-gezegd",
+          "nl": "er wordt gezegd dat…",
+          "pt": [
+            "diz-se que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-er-werd-aangebeld",
+          "nl": "er werd aangebeld",
+          "pt": [
+            "tocaram à campainha"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-er-wordt",
+        "v-men-zegt"
+      ],
+      "examples": [
+        {
+          "nl": "Er wordt gezegd dat de winkel sluit.",
+          "pt": "Diz-se que a loja vai fechar."
+        },
+        {
+          "nl": "Er werd aangebeld, maar niemand deed open.",
+          "pt": "Tocaram à campainha, mas ninguém abriu."
+        },
+        {
+          "nl": "In dit restaurant wordt niet gerookt.",
+          "pt": "Neste restaurante não se fuma."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u10-l019-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Impessoal.",
+          "vocabRefs": [
+            "v-er-wordt-gezegd",
+            "v-er-werd-aangebeld",
+            "v-er-wordt",
+            "v-men-zegt"
+          ],
+          "pairs": [
+            {
+              "nl": "er wordt gezegd dat…",
+              "pt": "diz-se que…"
+            },
+            {
+              "nl": "er werd aangebeld",
+              "pt": "tocaram à campainha"
+            },
+            {
+              "nl": "er wordt …",
+              "pt": "faz-se…"
+            },
+            {
+              "nl": "men zegt dat…",
+              "pt": "diz-se que… (formal)"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l019-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Impessoal.",
+          "vocabRefs": [
+            "v-er-wordt"
+          ],
+          "prompt": "«Er wordt hier hard gewerkt» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "aqui trabalha-se muito",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "aqui trabalhou-se",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "aqui vai trabalhar-se",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l019-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "er wordt gezegd.",
+          "vocabRefs": [
+            "v-er-wordt-gezegd"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Diz-se que a loja vai fechar.",
+          "answers": [
+            "Er wordt gezegd dat de winkel sluit",
+            "Er wordt gezegd dat de winkel dichtgaat",
+            "Men zegt dat de winkel sluit"
+          ]
+        },
+        {
+          "id": "s6-u10-l019-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Passado.",
+          "vocabRefs": [
+            "v-er-werd-aangebeld"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Tocaram à campainha.",
+          "answers": [
+            "Er werd aangebeld",
+            "Er is aangebeld"
+          ]
+        },
+        {
+          "id": "s6-u10-l019-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio.",
+          "vocabRefs": [
+            "v-er-wordt"
+          ],
+          "sentence": "Op het feest werd er tot drie uur ___.",
+          "translation": "Na festa dançou-se até às três.",
+          "answers": [
+            "gedanst"
+          ],
+          "choices": [
+            "gedanst",
+            "dansen",
+            "gedanst worden"
+          ]
+        },
+        {
+          "id": "s6-u10-l019-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Impessoal: singular.",
+          "vocabRefs": [
+            "v-er-wordt-gezegd"
+          ],
+          "tokens": [
+            "Er",
+            "worden",
+            "gezegd",
+            "dat",
+            "hij",
+            "vertrekt."
+          ],
+          "errorIndex": 1,
+          "correction": "wordt"
+        },
+        {
+          "id": "s6-u10-l019-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-er-wordt"
+          ],
+          "audioText": "Er wordt in Nederland veel gefietst.",
+          "answers": [
+            "Er wordt in Nederland veel gefietst"
+          ],
+          "translation": "Nos Países Baixos anda-se muito de bicicleta."
+        },
+        {
+          "id": "s6-u10-l019-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Avisos.",
+          "vocabRefs": [
+            "v-er-wordt"
+          ],
+          "prompt": "Placa: «Hier wordt niet geparkeerd.» Significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Proibido estacionar aqui",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Aqui estaciona-se",
+              "correct": false,
+              "feedback": "É o contrário."
+            },
+            {
+              "id": "c",
+              "text": "Parque fechado",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l019-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-er-wordt-gezegd"
+          ],
+          "translation": "Diz-se que…",
+          "tokens": [
+            "Er",
+            "wordt",
+            "gezegd",
+            "dat"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l020",
+      "unitId": "s6-u10",
+      "order": 20,
+      "title": "Pares de conectores",
+      "description": "Zowel … als, niet alleen … maar ook.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar conectores correlativos"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zowel-als",
+          "nl": "zowel … als",
+          "pt": [
+            "tanto … como"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ofwel-ofwel",
+          "nl": "ofwel … ofwel",
+          "pt": [
+            "ou … ou"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-noch-noch",
+          "nl": "noch … noch",
+          "pt": [
+            "nem … nem"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-niet-alleen-maar-ook",
+        "v-enerzijds"
+      ],
+      "examples": [
+        {
+          "nl": "Zowel mijn broer als mijn zus woont in Utrecht.",
+          "pt": "Tanto o meu irmão como a minha irmã vivem em Utrecht."
+        },
+        {
+          "nl": "We gaan ofwel naar zee, ofwel naar de bergen.",
+          "pt": "Vamos ou para o mar ou para as montanhas."
+        },
+        {
+          "nl": "Ik heb noch tijd noch zin.",
+          "pt": "Não tenho nem tempo nem vontade."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u10-l020-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pares.",
+          "vocabRefs": [
+            "v-zowel-als",
+            "v-ofwel-ofwel",
+            "v-noch-noch",
+            "v-niet-alleen-maar-ook"
+          ],
+          "pairs": [
+            {
+              "nl": "zowel … als",
+              "pt": "tanto … como"
+            },
+            {
+              "nl": "ofwel … ofwel",
+              "pt": "ou … ou"
+            },
+            {
+              "nl": "noch … noch",
+              "pt": "nem … nem"
+            },
+            {
+              "nl": "niet alleen … maar ook",
+              "pt": "não só … mas também"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l020-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-noch-noch"
+          ],
+          "prompt": "«Noch … noch» é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "formal (no dia a dia diz-se «geen … en ook geen»)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "calão",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "só para crianças",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l020-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zowel … als.",
+          "vocabRefs": [
+            "v-zowel-als"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Tanto o meu irmão como a minha irmã vivem em Utrecht.",
+          "answers": [
+            "Zowel mijn broer als mijn zus woont in Utrecht",
+            "Zowel mijn broer als mijn zus wonen in Utrecht"
+          ]
+        },
+        {
+          "id": "s6-u10-l020-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "noch … noch.",
+          "vocabRefs": [
+            "v-noch-noch"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não tenho nem tempo nem vontade.",
+          "answers": [
+            "Ik heb noch tijd noch zin",
+            "Ik heb geen tijd en ook geen zin"
+          ]
+        },
+        {
+          "id": "s6-u10-l020-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "tanto … como.",
+          "vocabRefs": [
+            "v-zowel-als"
+          ],
+          "sentence": "Het boek is ___ spannend als grappig.",
+          "translation": "O livro é tanto emocionante como engraçado.",
+          "answers": [
+            "zowel"
+          ],
+          "choices": [
+            "zowel",
+            "noch",
+            "ofwel"
+          ]
+        },
+        {
+          "id": "s6-u10-l020-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "niet alleen … maar ook.",
+          "vocabRefs": [
+            "v-niet-alleen-maar-ook"
+          ],
+          "tokens": [
+            "Het",
+            "is",
+            "niet",
+            "alleen",
+            "goedkoop,",
+            "maar",
+            "al",
+            "goed."
+          ],
+          "errorIndex": 6,
+          "correction": "ook"
+        },
+        {
+          "id": "s6-u10-l020-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "ofwel.",
+          "vocabRefs": [
+            "v-ofwel-ofwel"
+          ],
+          "audioText": "Je kunt ofwel online betalen, ofwel contant bij de kassa.",
+          "answers": [
+            "Je kunt ofwel online betalen, ofwel contant bij de kassa",
+            "Je kunt ofwel online betalen ofwel contant bij de kassa"
+          ],
+          "translation": "Podes pagar ou online ou em dinheiro na caixa."
+        },
+        {
+          "id": "s6-u10-l020-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-zowel-als"
+          ],
+          "translation": "Tanto o meu irmão como a minha irmã.",
+          "tokens": [
+            "Zowel",
+            "mijn",
+            "broer",
+            "als",
+            "mijn",
+            "zus"
+          ],
+          "alternatives": []
+        },
+        {
+          "id": "s6-u10-l020-e09",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sentido.",
+          "vocabRefs": [
+            "v-zowel-als"
+          ],
+          "prompt": "«Zowel A als B» também pode traduzir-se por…",
+          "options": [
+            {
+              "id": "a",
+              "text": "A e também B",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "A ou B",
+              "correct": false,
+              "feedback": "Isso é ofwel."
+            },
+            {
+              "id": "c",
+              "text": "nem A nem B",
+              "correct": false,
+              "feedback": "Isso é noch."
+            }
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l021",
+      "unitId": "s6-u10",
+      "order": 21,
+      "title": "Reflexivos no lugar certo",
+      "description": "Ik heb me vergist.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Colocar o pronome reflexo corretamente"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zich-voorbereiden-op",
+          "nl": "zich voorbereiden op",
+          "pt": [
+            "preparar-se para"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-zich-verbazen-over",
+          "nl": "zich verbazen over",
+          "pt": [
+            "espantar-se com"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zich-vergissen",
+        "v-zich-herinneren",
+        "v-zich-schamen"
+      ],
+      "examples": [
+        {
+          "nl": "Ik heb me goed voorbereid op het examen.",
+          "pt": "Preparei-me bem para o exame."
+        },
+        {
+          "nl": "Ze verbaasde zich over de prijzen.",
+          "pt": "Ela espantou-se com os preços."
+        },
+        {
+          "nl": "Ik denk dat hij zich vergist.",
+          "pt": "Acho que ele se engana."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-reflexief-plaats",
+          "title": "Posição do pronome reflexo",
+          "body": "O pronome reflexo (**me, je, zich, ons, jullie, zich**) vem logo **depois do verbo conjugado** (ou do sujeito, se houver inversão): *Ik vergis **me**.* · *Heb je **je** vergist?* · Na subordinada, logo **depois do sujeito**: *…dat hij **zich** vergist.*",
+          "examples": [
+            {
+              "nl": "Gisteren heb ik me verslapen.",
+              "pt": "Ontem adormeci (não acordei a tempo)."
+            },
+            {
+              "nl": "Ik hoop dat jullie je vermaken.",
+              "pt": "Espero que vos divirtam."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l021-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Reflexivos.",
+          "vocabRefs": [
+            "v-zich-voorbereiden-op",
+            "v-zich-verbazen-over",
+            "v-zich-vergissen",
+            "v-zich-herinneren"
+          ],
+          "pairs": [
+            {
+              "nl": "zich voorbereiden op",
+              "pt": "preparar-se para"
+            },
+            {
+              "nl": "zich verbazen over",
+              "pt": "espantar-se com"
+            },
+            {
+              "nl": "zich vergissen",
+              "pt": "enganar-se"
+            },
+            {
+              "nl": "zich herinneren",
+              "pt": "lembrar-se"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l021-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Posição.",
+          "vocabRefs": [
+            "v-zich-vergissen"
+          ],
+          "prompt": "Qual está correto?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik heb me vergist.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik heb vergist me.",
+              "correct": false,
+              "feedback": "Pronome logo após o verbo conjugado."
+            },
+            {
+              "id": "c",
+              "text": "Me ik heb vergist.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l021-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Particípio: voorbereid.",
+          "vocabRefs": [
+            "v-zich-voorbereiden-op"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Preparei-me bem para o exame.",
+          "answers": [
+            "Ik heb me goed voorbereid op het examen",
+            "Ik heb mij goed voorbereid op het examen"
+          ]
+        },
+        {
+          "id": "s6-u10-l021-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zich verbazen over.",
+          "vocabRefs": [
+            "v-zich-verbazen-over"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela espantou-se com os preços.",
+          "answers": [
+            "Ze verbaasde zich over de prijzen",
+            "Zij verbaasde zich over de prijzen"
+          ]
+        },
+        {
+          "id": "s6-u10-l021-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "3.ª pessoa.",
+          "vocabRefs": [
+            "v-zich-vergissen"
+          ],
+          "sentence": "Ik denk dat hij ___ vergist.",
+          "translation": "Acho que ele se engana.",
+          "answers": [
+            "zich"
+          ],
+          "choices": [
+            "zich",
+            "hem",
+            "zijn"
+          ]
+        },
+        {
+          "id": "s6-u10-l021-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pronome reflexo logo após o verbo conjugado.",
+          "vocabRefs": [
+            "v-zich-vergissen"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij heeft zich vergist.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij heeft vergist zich.",
+              "correct": false,
+              "feedback": "Pronome reflexo logo após o verbo conjugado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l021-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "zich voorbereiden op.",
+          "vocabRefs": [
+            "v-zich-voorbereiden-op"
+          ],
+          "tokens": [
+            "We",
+            "moeten",
+            "ons",
+            "voorbereiden",
+            "aan",
+            "de",
+            "verhuizing."
+          ],
+          "errorIndex": 4,
+          "correction": "op"
+        },
+        {
+          "id": "s6-u10-l021-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-zich-verbazen-over"
+          ],
+          "audioText": "Ik verbaas me er elke keer weer over hoe vriendelijk iedereen is.",
+          "answers": [
+            "Ik verbaas me er elke keer weer over hoe vriendelijk iedereen is"
+          ],
+          "translation": "Espanto-me sempre com a simpatia de toda a gente."
+        },
+        {
+          "id": "s6-u10-l021-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-zich-vergissen"
+          ],
+          "translation": "Enganei-me.",
+          "tokens": [
+            "Ik",
+            "heb",
+            "me",
+            "vergist"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l022",
+      "unitId": "s6-u10",
+      "order": 22,
+      "title": "Separáveis no fim da frase",
+      "description": "…dat ik morgen vroeg op moet staan.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Colocar verbos separáveis em subordinadas com modais"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-vroeg-opstaan",
+        "v-uitslapen",
+        "v-aanzetten",
+        "v-opstaan"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ga vroeg slapen, omdat ik morgen vroeg op moet staan.",
+          "pt": "Vou dormir cedo porque amanhã tenho de me levantar cedo."
+        },
+        {
+          "nl": "Weet je of hij al is aangekomen?",
+          "pt": "Sabes se ele já chegou?"
+        },
+        {
+          "nl": "Ik hoop dat de film snel begint.",
+          "pt": "Espero que o filme comece depressa."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-scheidbaar-bijzin",
+          "title": "Separáveis em subordinadas",
+          "body": "Na subordinada, o verbo separável **volta a juntar-se** no fim: *…omdat hij om zeven uur **opstaat**.* Com modal, a partícula pode ficar **antes do modal** ou junto ao infinitivo: *…dat ik vroeg **op moet staan**/**moet opstaan**.* No perfeito: *…dat hij al is **aangekomen***.",
+          "examples": [
+            {
+              "nl": "Ik weet niet hoe laat de trein vertrekt.",
+              "pt": "Não sei a que horas parte o comboio."
+            },
+            {
+              "nl": "…omdat ze de tv aan wil zetten.",
+              "pt": "…porque ela quer ligar a TV."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u10-l022-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Separáveis.",
+          "vocabRefs": [
+            "v-vroeg-opstaan",
+            "v-uitslapen",
+            "v-aanzetten",
+            "v-opstaan"
+          ],
+          "pairs": [
+            {
+              "nl": "vroeg opstaan",
+              "pt": "levantar-se cedo"
+            },
+            {
+              "nl": "uitslapen",
+              "pt": "dormir até tarde"
+            },
+            {
+              "nl": "aanzetten",
+              "pt": "ligar"
+            },
+            {
+              "nl": "opstaan",
+              "pt": "levantar-se"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l022-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Junto no fim.",
+          "vocabRefs": [
+            "v-opstaan"
+          ],
+          "prompt": "Qual está correto?",
+          "options": [
+            {
+              "id": "a",
+              "text": "…omdat hij om zeven uur opstaat.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "…omdat hij staat om zeven uur op.",
+              "correct": false,
+              "feedback": "Separado na subordinada."
+            },
+            {
+              "id": "c",
+              "text": "…omdat hij op om zeven uur staat.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l022-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Duas ordens possíveis.",
+          "vocabRefs": [
+            "v-vroeg-opstaan"
+          ],
+          "direction": "pt-nl",
+          "prompt": "…porque amanhã tenho de me levantar cedo.",
+          "answers": [
+            "omdat ik morgen vroeg op moet staan",
+            "omdat ik morgen vroeg moet opstaan"
+          ]
+        },
+        {
+          "id": "s6-u10-l022-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Particípio separável.",
+          "vocabRefs": [
+            "v-opstaan"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Sabes se ele já chegou?",
+          "answers": [
+            "Weet je of hij al is aangekomen",
+            "Weet je of hij al aangekomen is",
+            "Weet je of hij er al is"
+          ]
+        },
+        {
+          "id": "s6-u10-l022-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Verbo no fim.",
+          "vocabRefs": [
+            "v-opstaan"
+          ],
+          "sentence": "Ik weet niet hoe laat de trein ___.",
+          "translation": "Não sei a que horas parte o comboio.",
+          "answers": [
+            "vertrekt"
+          ],
+          "choices": [
+            "vertrekt",
+            "vertrekken",
+            "trekt ver"
+          ]
+        },
+        {
+          "id": "s6-u10-l022-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Verbo no fim: …dat de film snel begint.",
+          "vocabRefs": [
+            "v-opstaan"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik hoop dat de film snel begint.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik hoop dat de film begint snel.",
+              "correct": false,
+              "feedback": "Verbo no fim: …dat de film snel begint."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l022-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Infinitivo junto: uitslapen.",
+          "vocabRefs": [
+            "v-uitslapen"
+          ],
+          "tokens": [
+            "Zaterdag",
+            "wil",
+            "ik",
+            "lekker",
+            "slapen",
+            "uit."
+          ],
+          "errorIndex": 4,
+          "correction": "uitslapen."
+        },
+        {
+          "id": "s6-u10-l022-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Infinitivo junto.",
+          "vocabRefs": [
+            "v-aanzetten"
+          ],
+          "audioText": "Kun je de verwarming aanzetten? Het is koud.",
+          "answers": [
+            "Kun je de verwarming aanzetten? Het is koud",
+            "Kun je de verwarming aanzetten het is koud"
+          ],
+          "translation": "Podes ligar o aquecimento? Está frio."
+        },
+        {
+          "id": "s6-u10-l022-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-vroeg-opstaan"
+          ],
+          "translation": "…porque tenho de me levantar cedo.",
+          "tokens": [
+            "omdat",
+            "ik",
+            "vroeg",
+            "moet",
+            "opstaan"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l023",
+      "unitId": "s6-u10",
+      "order": 23,
+      "title": "Frases mais curtas com particípios",
+      "description": "Eenmaal thuis, ging ik meteen slapen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Encurtar frases com particípios e «eenmaal»"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-eenmaal-thuis",
+          "nl": "eenmaal thuis",
+          "pt": [
+            "uma vez em casa",
+            "já em casa"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-thuisgekomen",
+          "nl": "thuisgekomen",
+          "pt": [
+            "chegado a casa"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aangekomen",
+        "v-nadat"
+      ],
+      "examples": [
+        {
+          "nl": "Eenmaal thuis ging ik meteen slapen.",
+          "pt": "Já em casa, fui logo dormir."
+        },
+        {
+          "nl": "Thuisgekomen zette hij koffie.",
+          "pt": "Chegado a casa, fez café."
+        },
+        {
+          "nl": "Aangekomen in Utrecht, nam ze een taxi.",
+          "pt": "Chegada a Utrecht, apanhou um táxi."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u10-l023-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Particípios.",
+          "vocabRefs": [
+            "v-eenmaal-thuis",
+            "v-thuisgekomen",
+            "v-aangekomen",
+            "v-nadat"
+          ],
+          "pairs": [
+            {
+              "nl": "eenmaal thuis",
+              "pt": "já em casa"
+            },
+            {
+              "nl": "thuisgekomen",
+              "pt": "chegado a casa"
+            },
+            {
+              "nl": "aangekomen",
+              "pt": "chegado"
+            },
+            {
+              "nl": "nadat",
+              "pt": "depois de"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l023-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Equivalência.",
+          "vocabRefs": [
+            "v-thuisgekomen"
+          ],
+          "prompt": "«Thuisgekomen zette hij koffie» = …",
+          "options": [
+            {
+              "id": "a",
+              "text": "Nadat hij thuisgekomen was, zette hij koffie.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij zette koffie en kwam thuis.",
+              "correct": false,
+              "feedback": "Ordem errada."
+            },
+            {
+              "id": "c",
+              "text": "Hij komt thuis met koffie.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l023-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-thuisgekomen"
+          ],
+          "prompt": "Este tipo de construção é típico de…",
+          "options": [
+            {
+              "id": "a",
+              "text": "textos escritos/narrativos",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "conversa informal",
+              "correct": false,
+              "feedback": "Pouco."
+            },
+            {
+              "id": "c",
+              "text": "receitas",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l023-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "eenmaal.",
+          "vocabRefs": [
+            "v-eenmaal-thuis"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Já em casa, fui logo dormir.",
+          "answers": [
+            "Eenmaal thuis ging ik meteen slapen",
+            "Eenmaal thuis ging ik direct slapen"
+          ]
+        },
+        {
+          "id": "s6-u10-l023-e05",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Particípio.",
+          "vocabRefs": [
+            "v-aangekomen"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Aangekomen in Utrecht, nam ze een taxi.",
+          "answers": [
+            "Chegada a Utrecht, apanhou um táxi",
+            "Quando chegou a Utrecht, apanhou um táxi"
+          ]
+        },
+        {
+          "id": "s6-u10-l023-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-eenmaal-thuis"
+          ],
+          "sentence": "___ thuis trok ik meteen mijn schoenen uit.",
+          "translation": "Já em casa, tirei logo os sapatos.",
+          "answers": [
+            "Eenmaal"
+          ],
+          "choices": [
+            "Eenmaal",
+            "Eens",
+            "Eén"
+          ]
+        },
+        {
+          "id": "s6-u10-l023-e07",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Inversão: Eenmaal thuis ging ik…",
+          "vocabRefs": [
+            "v-eenmaal-thuis"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Eenmaal thuis ging ik slapen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Eenmaal thuis ik ging slapen.",
+              "correct": false,
+              "feedback": "Inversão: Eenmaal thuis ging ik…"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l023-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Encurtar.",
+          "vocabRefs": [
+            "v-eenmaal-thuis"
+          ],
+          "prompt": "Reescreva com «eenmaal» ou um particípio: «Nadat ik op kantoor was aangekomen, las ik mijn mail.»",
+          "referenceAnswers": [
+            "Eenmaal op kantoor las ik mijn mail.",
+            "Op kantoor aangekomen, las ik mijn mail."
+          ],
+          "checklist": [
+            "Frase mais curta",
+            "Inversão correta"
+          ],
+          "minWords": 6
+        },
+        {
+          "id": "s6-u10-l023-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-eenmaal-thuis",
+            "v-gewend-zijn"
+          ],
+          "audioText": "Eenmaal gewend aan het klimaat, ging alles makkelijker.",
+          "answers": [
+            "Eenmaal gewend aan het klimaat, ging alles makkelijker",
+            "Eenmaal gewend aan het klimaat ging alles makkelijker"
+          ],
+          "translation": "Uma vez habituado ao clima, tudo ficou mais fácil."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l024",
+      "unitId": "s6-u10",
+      "order": 24,
+      "title": "Frases longas e legíveis",
+      "description": "Een leesbare zin.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Decidir quando partir uma frase longa"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-leesbaar",
+          "nl": "leesbaar",
+          "pt": [
+            "legível"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-te-lang",
+          "nl": "te lange zinnen",
+          "pt": [
+            "frases demasiado longas"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-opsplitsen",
+        "v-overzichtelijk",
+        "v-ingewikkeld",
+        "v-bijzin-in-bijzin"
+      ],
+      "examples": [
+        {
+          "nl": "Deze tekst is goed leesbaar.",
+          "pt": "Este texto lê-se bem."
+        },
+        {
+          "nl": "Vermijd te lange zinnen.",
+          "pt": "Evita frases demasiado longas."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u10-l024-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Clareza.",
+          "vocabRefs": [
+            "v-leesbaar",
+            "v-te-lang",
+            "v-opsplitsen",
+            "v-overzichtelijk"
+          ],
+          "pairs": [
+            {
+              "nl": "leesbaar",
+              "pt": "legível"
+            },
+            {
+              "nl": "te lange zinnen",
+              "pt": "frases demasiado longas"
+            },
+            {
+              "nl": "opsplitsen",
+              "pt": "dividir"
+            },
+            {
+              "nl": "overzichtelijk",
+              "pt": "claro|organizado"
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l024-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Clareza.",
+          "vocabRefs": [
+            "v-ingewikkeld",
+            "v-opsplitsen"
+          ],
+          "prompt": "Uma frase com três subordinadas encaixadas é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "difícil de ler; melhor dividir",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "sempre elegante",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "obrigatória em textos formais",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l024-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Dividir.",
+          "vocabRefs": [
+            "v-opsplitsen"
+          ],
+          "prompt": "Versão mais legível de: «De vergadering die gepland was voor de dag nadat de directeur die net terug was van vakantie zou spreken, is verzet.»",
+          "options": [
+            {
+              "id": "a",
+              "text": "De directeur is net terug van vakantie. Hij zou spreken op de vergadering, maar die is verzet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Igual, mas com vírgulas.",
+              "correct": false,
+              "feedback": "Continua confuso."
+            },
+            {
+              "id": "c",
+              "text": "De vergadering verzet.",
+              "correct": false,
+              "feedback": "Perde informação."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l024-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "leesbaar.",
+          "vocabRefs": [
+            "v-leesbaar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Este texto lê-se bem.",
+          "answers": [
+            "Deze tekst is goed leesbaar",
+            "Deze tekst leest goed"
+          ]
+        },
+        {
+          "id": "s6-u10-l024-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-te-lang"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Evita frases demasiado longas.",
+          "answers": [
+            "Vermijd te lange zinnen",
+            "Vermijd te lange zinnen."
+          ]
+        },
+        {
+          "id": "s6-u10-l024-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Dividir.",
+          "vocabRefs": [
+            "v-opsplitsen"
+          ],
+          "sentence": "Kun je deze lange zin ___ in twee kortere zinnen?",
+          "translation": "Consegues dividir esta frase longa em duas mais curtas?",
+          "answers": [
+            "opsplitsen"
+          ],
+          "choices": [
+            "opsplitsen",
+            "opgesplitst",
+            "splitst op"
+          ]
+        },
+        {
+          "id": "s6-u10-l024-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Predicativo: sem -e.",
+          "vocabRefs": [
+            "v-leesbaar"
+          ],
+          "tokens": [
+            "Deze",
+            "tekst",
+            "is",
+            "goed",
+            "leesbare."
+          ],
+          "errorIndex": 4,
+          "correction": "leesbaar."
+        },
+        {
+          "id": "s6-u10-l024-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Dividir.",
+          "vocabRefs": [
+            "v-opsplitsen",
+            "v-leesbaar"
+          ],
+          "prompt": "Divida em 2–3 frases claras: «Omdat de trein die ik elke dag neem, die normaal om acht uur vertrekt, vandaag door een storing die al sinds gisteren duurt niet reed, kwam ik te laat.»",
+          "referenceAnswers": [
+            "Ik neem elke dag de trein van acht uur. Vandaag reed die niet, door een storing die al sinds gisteren duurt. Daardoor kwam ik te laat."
+          ],
+          "checklist": [
+            "2–3 frases",
+            "Sem perder informação",
+            "Conectores claros"
+          ],
+          "minWords": 20
+        },
+        {
+          "id": "s6-u10-l024-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Dica.",
+          "vocabRefs": [
+            "v-leesbaar"
+          ],
+          "audioText": "Een goede zin heeft één hoofdgedachte.",
+          "answers": [
+            "Een goede zin heeft één hoofdgedachte",
+            "Een goede zin heeft een hoofdgedachte"
+          ],
+          "translation": "Uma boa frase tem uma ideia principal."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u10-l025",
+      "unitId": "s6-u10",
+      "order": 25,
+      "title": "Prática: construir frases complexas",
+      "description": "Van eenvoudig naar complex.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Combinar as estruturas da unidade numa escrita fluente"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-vloeiend-schrijven",
+          "nl": "vloeiend schrijven",
+          "pt": [
+            "escrever com fluência"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-had-willen",
+        "v-zien-doen",
+        "v-laten-causaal",
+        "v-helemaal-niet",
+        "v-tijd-manier-plaats",
+        "v-weigeren",
+        "v-lijken-te",
+        "v-rekenen-op",
+        "v-zowel-als",
+        "v-eenmaal-thuis"
+      ],
+      "examples": [
+        {
+          "nl": "Na veel oefenen schrijf ik steeds vloeiender.",
+          "pt": "Depois de muito praticar, escrevo cada vez com mais fluência."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u10-l025-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-laten-causaal"
+          ],
+          "prompt": "Qual frase está totalmente correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Gisteren heb ik mijn fiets laten repareren, omdat de remmen niet meer werkten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gisteren ik heb mijn fiets laten repareren…",
+              "correct": false,
+              "feedback": "Falta inversão."
+            },
+            {
+              "id": "c",
+              "text": "…omdat de remmen werkten niet meer.",
+              "correct": false,
+              "feedback": "Verbo no fim."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l025-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-had-willen"
+          ],
+          "prompt": "Qual frase está totalmente correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik had graag willen komen, maar ik heb moeten werken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik had graag gewild komen…",
+              "correct": false,
+              "feedback": "Duplo infinitivo."
+            },
+            {
+              "id": "c",
+              "text": "…maar ik heb gemoeten werken.",
+              "correct": false,
+              "feedback": "Duplo infinitivo."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l025-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Inversão depois da subordinada.",
+          "vocabRefs": [
+            "v-subordinada-eerst"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Omdat het regende, bleven we thuis.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Omdat het regende, we bleven thuis.",
+              "correct": false,
+              "feedback": "Inversão depois da subordinada."
+            }
+          ]
+        },
+        {
+          "id": "s6-u10-l025-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Hij weigert de rekening te betalen.",
+          "vocabRefs": [
+            "v-weigeren"
+          ],
+          "tokens": [
+            "Hij",
+            "weigert",
+            "betalen",
+            "de",
+            "rekening."
+          ],
+          "errorIndex": 2,
+          "correction": "te"
+        },
+        {
+          "id": "s6-u10-l025-e05",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "T-M-L.",
+          "vocabRefs": [
+            "v-tijd-manier-plaats"
+          ],
+          "prompt": "Amanhã vou de comboio para Haia.",
+          "tokens": [
+            "Ik",
+            "ga",
+            "morgen",
+            "met",
+            "de",
+            "trein",
+            "naar",
+            "Den",
+            "Haag"
+          ],
+          "answers": [
+            "Ik ga morgen met de trein naar Den Haag"
+          ]
+        },
+        {
+          "id": "s6-u10-l025-e06",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Comparativo.",
+          "vocabRefs": [
+            "v-vloeiend-schrijven"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Escrevo cada vez com mais fluência.",
+          "answers": [
+            "Ik schrijf steeds vloeiender",
+            "Ik schrijf steeds vloeiender."
+          ]
+        },
+        {
+          "id": "s6-u10-l025-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Produção.",
+          "vocabRefs": [
+            "v-vloeiend-schrijven"
+          ],
+          "prompt": "Escreva um parágrafo (6–8 frases) sobre uma semana atarefada. Use pelo menos: um modal no perfeito (heb moeten …), «laten + infinitivo», uma subordinada no início, um verbo com «te» e «zowel … als».",
+          "referenceAnswers": [
+            "Vorige week was erg druk. Ik heb elke dag moeten overwerken. Omdat mijn auto kapot was, heb ik hem laten repareren. Zowel mijn baas als mijn collega's waren gestrest. Ik probeerde rustig te blijven. Eenmaal thuis ging ik meteen slapen. Gelukkig lijkt deze week rustiger te worden."
+          ],
+          "checklist": [
+            "Modal no perfeito",
+            "laten",
+            "Subordinada à frente",
+            "te + inf.",
+            "zowel … als"
+          ],
+          "minWords": 60
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 8,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }

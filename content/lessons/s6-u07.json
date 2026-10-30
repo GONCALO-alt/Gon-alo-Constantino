@@ -3506,23 +3506,26 @@
         },
         {
           "id": "s6-u07-l012-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: …, kunt u bellen.",
           "vocabRefs": [
             "v-indien"
           ],
-          "tokens": [
-            "Indien",
-            "u",
-            "vragen",
-            "heeft,",
-            "u",
-            "kunt",
-            "bellen."
-          ],
-          "errorIndex": 4,
-          "correction": "kunt"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Indien u vragen heeft, kunt u bellen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Indien u vragen heeft, u kunt bellen.",
+              "correct": false,
+              "feedback": "Inversão: …, kunt u bellen."
+            }
+          ]
         },
         {
           "id": "s6-u07-l012-e08",
@@ -3734,24 +3737,26 @@
         },
         {
           "id": "s6-u07-l013-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Conform de afspraak sturen wij…",
           "vocabRefs": [
             "v-conform"
           ],
-          "tokens": [
-            "Conform",
-            "de",
-            "afspraak",
-            "wij",
-            "sturen",
-            "u",
-            "de",
-            "factuur."
-          ],
-          "errorIndex": 3,
-          "correction": "sturen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Conform de afspraak sturen wij u de factuur.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Conform de afspraak wij sturen u de factuur.",
+              "correct": false,
+              "feedback": "Inversão: Conform de afspraak sturen wij…"
+            }
+          ]
         },
         {
           "id": "s6-u07-l013-e07",
@@ -5704,21 +5709,26 @@
         },
         {
           "id": "s6-u07-l020-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Pergunta: Waarmee kan ik…",
           "vocabRefs": [
             "v-waarmee-kan-ik-u-helpen"
           ],
-          "tokens": [
-            "Waarmee",
-            "ik",
-            "kan",
-            "u",
-            "helpen?"
-          ],
-          "errorIndex": 1,
-          "correction": "kan"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Waarmee kan ik u helpen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Waarmee ik kan u helpen?",
+              "correct": false,
+              "feedback": "Pergunta: Waarmee kan ik…"
+            }
+          ]
         },
         {
           "id": "s6-u07-l020-e07",
@@ -5973,24 +5983,26 @@
         },
         {
           "id": "s6-u07-l021-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: …dat uw pakket te laat is.",
           "vocabRefs": [
             "v-wij-betreuren"
           ],
-          "tokens": [
-            "Wij",
-            "betreuren",
-            "dat",
-            "uw",
-            "pakket",
-            "is",
-            "te",
-            "laat."
-          ],
-          "errorIndex": 5,
-          "correction": "te"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Wij betreuren dat uw pakket te laat is.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Wij betreuren dat uw pakket is te laat.",
+              "correct": false,
+              "feedback": "Subordinada: …dat uw pakket te laat is."
+            }
+          ]
         },
         {
           "id": "s6-u07-l021-e07",
@@ -6460,26 +6472,26 @@
         },
         {
           "id": "s6-u07-l023-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: …dat u dit snel oplost.",
           "vocabRefs": [
             "v-ik-ga-ervan-uit"
           ],
-          "tokens": [
-            "Ik",
-            "ga",
-            "ervan",
-            "uit",
-            "dat",
-            "u",
-            "lost",
-            "dit",
-            "snel",
-            "op."
-          ],
-          "errorIndex": 6,
-          "correction": "dit"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ga ervan uit dat u dit snel oplost.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ga ervan uit dat u lost dit snel op.",
+              "correct": false,
+              "feedback": "Subordinada: …dat u dit snel oplost."
+            }
+          ]
         },
         {
           "id": "s6-u07-l023-e07",
@@ -6965,26 +6977,26 @@
         },
         {
           "id": "s6-u07-l025-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: …, dient u niets te doen.",
           "vocabRefs": [
             "v-indien"
           ],
-          "tokens": [
-            "Indien",
-            "u",
-            "reeds",
-            "betaald",
-            "heeft,",
-            "u",
-            "dient",
-            "niets",
-            "te",
-            "doen."
-          ],
-          "errorIndex": 5,
-          "correction": "dient"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Indien u reeds betaald heeft, dient u niets te doen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Indien u reeds betaald heeft, u dient niets te doen.",
+              "correct": false,
+              "feedback": "Inversão: …, dient u niets te doen."
+            }
+          ]
         },
         {
           "id": "s6-u07-l025-e06",

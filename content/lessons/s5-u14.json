@@ -5696,21 +5696,26 @@
         },
         {
           "id": "s5-u14-l021-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Vanaf nu eet ik.",
           "vocabRefs": [
             "v-vanaf-nu"
           ],
-          "tokens": [
-            "Vanaf",
-            "nu",
-            "ik",
-            "eet",
-            "gezonder."
-          ],
-          "errorIndex": 2,
-          "correction": "eet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Vanaf nu eet ik gezonder.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Vanaf nu ik eet gezonder.",
+              "correct": false,
+              "feedback": "Inversão: Vanaf nu eet ik."
+            }
+          ]
         },
         {
           "id": "s5-u14-l021-e07",

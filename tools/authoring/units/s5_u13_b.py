@@ -39,7 +39,7 @@ L(11, "Nou eenmaal: é assim", "Zo is het nou eenmaal.",
     TR("pt-nl","Não podes fazer nada.", ["Je kunt er niets aan doen","Je kunt er niks aan doen"], "er … aan.", ["v-je-kunt-er-niets-aan-doen"]),
     DL([("Collega","Ik baal zo van al die regen!","Estou tão farto desta chuva toda!"),("Jij","","")], ["*Ja, maar het is nou eenmaal Nederland. Je kunt er niets aan doen.","Het regent nooit.|Falso.","Nou eenmaal regen.|Incompleto."], "Aceitação com humor.", ["v-nou-eenmaal"]),
     FB("Kinderen maken ___ eenmaal lawaai.", ["nou"], "nou eenmaal.", ["v-nou-eenmaal"], choices=["nou","toch","wel"], tr="As crianças fazem barulho, é mesmo assim."),
-    FE(["Zo","het","is","nou","eenmaal."], 1, "is", "Inversão: Zo is het…", ["v-zo-is-het"]),
+    MC("Qual é a ordem correta?", ["*Zo is het nou eenmaal.","Zo het is nou eenmaal.|Inversão: Zo is het…"], "Inversão: Zo is het…", ["v-zo-is-het"]),
     LI("Het leven is nou eenmaal niet altijd eerlijk.", ["Het leven is nou eenmaal niet altijd eerlijk"], "A vida não é sempre justa, é mesmo assim.", "Uso.", ["v-nou-eenmaal"]),
     WO("É assim mesmo.", ["Zo","is","het","nou","eenmaal"], "Ordem.", ["v-zo-is-het"]),
   ], diff=3, mins=5)

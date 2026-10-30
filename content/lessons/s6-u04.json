@@ -2964,22 +2964,26 @@
         },
         {
           "id": "s6-u04-l011-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Dan beginnen we.",
           "vocabRefs": [
             "v-zijn-we-compleet"
           ],
-          "tokens": [
-            "Zijn",
-            "wij",
-            "compleet?",
-            "Dan",
-            "we",
-            "beginnen."
-          ],
-          "errorIndex": 4,
-          "correction": "beginnen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zijn wij compleet? Dan beginnen we.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zijn wij compleet? Dan we beginnen.",
+              "correct": false,
+              "feedback": "Inversão: Dan beginnen we."
+            }
+          ]
         },
         {
           "id": "s6-u04-l011-e07",
@@ -4284,23 +4288,26 @@
         },
         {
           "id": "s6-u04-l016-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Zoals besproken stuur ik…",
           "vocabRefs": [
             "v-zoals-besproken"
           ],
-          "tokens": [
-            "Zoals",
-            "besproken",
-            "ik",
-            "stuur",
-            "je",
-            "de",
-            "notulen."
-          ],
-          "errorIndex": 2,
-          "correction": "stuur"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zoals besproken stuur ik je de notulen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zoals besproken ik stuur je de notulen.",
+              "correct": false,
+              "feedback": "Inversão: Zoals besproken stuur ik…"
+            }
+          ]
         },
         {
           "id": "s6-u04-l016-e07",
@@ -4577,21 +4584,26 @@
         },
         {
           "id": "s6-u04-l017-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Vandaag presenteer ik.",
           "vocabRefs": [
             "v-presenteren"
           ],
-          "tokens": [
-            "Vandaag",
-            "ik",
-            "presenteer",
-            "de",
-            "resultaten."
-          ],
-          "errorIndex": 1,
-          "correction": "presenteer"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Vandaag presenteer ik de resultaten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Vandaag ik presenteer de resultaten.",
+              "correct": false,
+              "feedback": "Inversão: Vandaag presenteer ik."
+            }
+          ]
         },
         {
           "id": "s6-u04-l017-e07",
@@ -4825,23 +4837,26 @@
         },
         {
           "id": "s6-u04-l018-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: …, zijn de kosten gedaald.",
           "vocabRefs": [
             "v-zoals-u-ziet"
           ],
-          "tokens": [
-            "Zoals",
-            "u",
-            "ziet,",
-            "de",
-            "kosten",
-            "zijn",
-            "gedaald."
-          ],
-          "errorIndex": 3,
-          "correction": "zijn"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zoals u ziet, zijn de kosten gedaald.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zoals u ziet, de kosten zijn gedaald.",
+              "correct": false,
+              "feedback": "Inversão: …, zijn de kosten gedaald."
+            }
+          ]
         },
         {
           "id": "s6-u04-l018-e07",

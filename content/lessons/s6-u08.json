@@ -6319,21 +6319,26 @@
         },
         {
           "id": "s6-u08-l023-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Eindelijk heb ik…",
           "vocabRefs": [
             "v-eindelijk"
           ],
-          "tokens": [
-            "Eindelijk",
-            "ik",
-            "heb",
-            "mijn",
-            "diploma!"
-          ],
-          "errorIndex": 1,
-          "correction": "heb"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Eindelijk heb ik mijn diploma!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Eindelijk ik heb mijn diploma!",
+              "correct": false,
+              "feedback": "Inversão: Eindelijk heb ik…"
+            }
+          ]
         },
         {
           "id": "s6-u08-l023-e08",

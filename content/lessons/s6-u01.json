@@ -2786,25 +2786,26 @@
         },
         {
           "id": "s6-u01-l010-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem: …dat we minder moeten vliegen.",
           "vocabRefs": [
             "v-ik-ben-van-mening"
           ],
-          "tokens": [
-            "Ik",
-            "ben",
-            "van",
-            "mening",
-            "dat",
-            "we",
-            "moeten",
-            "minder",
-            "vliegen."
-          ],
-          "errorIndex": 6,
-          "correction": "minder"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben van mening dat we minder moeten vliegen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben van mening dat we moeten minder vliegen.",
+              "correct": false,
+              "feedback": "Ordem: …dat we minder moeten vliegen."
+            }
+          ]
         },
         {
           "id": "s6-u01-l010-e07",
@@ -3062,22 +3063,26 @@
         },
         {
           "id": "s6-u01-l011-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Niettemin blijf ik.",
           "vocabRefs": [
             "v-niettemin"
           ],
-          "tokens": [
-            "Niettemin",
-            "ik",
-            "blijf",
-            "bij",
-            "mijn",
-            "standpunt."
-          ],
-          "errorIndex": 1,
-          "correction": "blijf"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Niettemin blijf ik bij mijn standpunt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Niettemin ik blijf bij mijn standpunt.",
+              "correct": false,
+              "feedback": "Inversão: Niettemin blijf ik."
+            }
+          ]
         },
         {
           "id": "s6-u01-l011-e07",
@@ -3324,22 +3329,26 @@
         },
         {
           "id": "s6-u01-l012-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Uiteindelijk gaf de prijs…",
           "vocabRefs": [
             "v-de-doorslag-geven"
           ],
-          "tokens": [
-            "Uiteindelijk",
-            "de",
-            "prijs",
-            "gaf",
-            "de",
-            "doorslag."
-          ],
-          "errorIndex": 1,
-          "correction": "gaf"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Uiteindelijk gaf de prijs de doorslag.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Uiteindelijk de prijs gaf de doorslag.",
+              "correct": false,
+              "feedback": "Inversão: Uiteindelijk gaf de prijs…"
+            }
+          ]
         },
         {
           "id": "s6-u01-l012-e07",
@@ -5569,23 +5578,26 @@
         },
         {
           "id": "s6-u01-l020-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: …dat ik niet luister.",
           "vocabRefs": [
             "v-verwijten"
           ],
-          "tokens": [
-            "Hij",
-            "verwijt",
-            "mij",
-            "dat",
-            "ik",
-            "luister",
-            "niet."
-          ],
-          "errorIndex": 5,
-          "correction": "niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij verwijt mij dat ik niet luister.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij verwijt mij dat ik luister niet.",
+              "correct": false,
+              "feedback": "Subordinada: …dat ik niet luister."
+            }
+          ]
         },
         {
           "id": "s6-u01-l020-e07",

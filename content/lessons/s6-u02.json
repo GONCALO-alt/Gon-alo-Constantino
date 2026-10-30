@@ -2757,23 +2757,26 @@
         },
         {
           "id": "s6-u02-l010-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: …dat hij niet komt.",
           "vocabRefs": [
             "v-het-lijkt-erop"
           ],
-          "tokens": [
-            "Het",
-            "lijkt",
-            "erop",
-            "dat",
-            "hij",
-            "komt",
-            "niet."
-          ],
-          "errorIndex": 5,
-          "correction": "niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het lijkt erop dat hij niet komt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het lijkt erop dat hij komt niet.",
+              "correct": false,
+              "feedback": "Subordinada: …dat hij niet komt."
+            }
+          ]
         },
         {
           "id": "s6-u02-l010-e07",
@@ -3014,24 +3017,26 @@
         },
         {
           "id": "s6-u02-l011-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: …dat de datum niet verandert.",
           "vocabRefs": [
             "v-het-staat-vast"
           ],
-          "tokens": [
-            "Het",
-            "staat",
-            "vast",
-            "dat",
-            "de",
-            "datum",
-            "verandert",
-            "niet."
-          ],
-          "errorIndex": 6,
-          "correction": "niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het staat vast dat de datum niet verandert.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het staat vast dat de datum verandert niet.",
+              "correct": false,
+              "feedback": "Subordinada: …dat de datum niet verandert."
+            }
+          ]
         },
         {
           "id": "s6-u02-l011-e07",
@@ -4122,24 +4127,26 @@
         },
         {
           "id": "s6-u02-l015-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: …jaar zijn er meer toeristen.",
           "vocabRefs": [
             "v-vergeleken-met"
           ],
-          "tokens": [
-            "Vergeleken",
-            "met",
-            "vorig",
-            "jaar",
-            "er",
-            "zijn",
-            "meer",
-            "toeristen."
-          ],
-          "errorIndex": 4,
-          "correction": "zijn"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Vergeleken met vorig jaar zijn er meer toeristen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Vergeleken met vorig jaar er zijn meer toeristen.",
+              "correct": false,
+              "feedback": "Inversão: …jaar zijn er meer toeristen."
+            }
+          ]
         },
         {
           "id": "s6-u02-l015-e07",
@@ -6311,22 +6318,26 @@
         },
         {
           "id": "s6-u02-l023-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Met verbazing las ik…",
           "vocabRefs": [
             "v-met-verbazing"
           ],
-          "tokens": [
-            "Met",
-            "verbazing",
-            "ik",
-            "las",
-            "uw",
-            "artikel."
-          ],
-          "errorIndex": 2,
-          "correction": "las"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Met verbazing las ik uw artikel.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Met verbazing ik las uw artikel.",
+              "correct": false,
+              "feedback": "Inversão: Met verbazing las ik…"
+            }
+          ]
         },
         {
           "id": "s6-u02-l023-e06",

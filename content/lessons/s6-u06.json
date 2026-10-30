@@ -4820,23 +4820,26 @@
         },
         {
           "id": "s6-u06-l018-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem: …dat jij het eens bent.",
           "vocabRefs": [
             "v-veronderstellen"
           ],
-          "tokens": [
-            "Ik",
-            "veronderstel",
-            "dat",
-            "jij",
-            "bent",
-            "het",
-            "eens."
-          ],
-          "errorIndex": 4,
-          "correction": "het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik veronderstel dat jij het eens bent.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik veronderstel dat jij bent het eens.",
+              "correct": false,
+              "feedback": "Ordem: …dat jij het eens bent."
+            }
+          ]
         },
         {
           "id": "s6-u06-l018-e07",

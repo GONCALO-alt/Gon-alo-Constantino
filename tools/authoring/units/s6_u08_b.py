@@ -256,7 +256,7 @@ L(23, "Finalmente: eindelijk, uiteindelijk, ten slotte", "Eindelijk vakantie!",
     MC("Último ponto de uma apresentação: «___ wil ik u bedanken.»", ["*Ten slotte","Eindelijk|Soa a «até que enfim acabou».","Uiteindelijk|Não."], "Lista.", ["v-ten-slotte"]),
     TR("pt-nl","Até que enfim, férias!", ["Eindelijk vakantie","Eindelijk vakantie!"], "eindelijk.", ["v-eindelijk"]),
     FB("___ ben je er! Ik wacht al een uur.", ["Eindelijk"], "Alívio.", ["v-eindelijk"], choices=["Eindelijk","Uiteindelijk","Tot slot"], tr="Finalmente chegaste! Estou à espera há uma hora."),
-    FE(["Eindelijk","ik","heb","mijn","diploma!"], 1, "heb", "Inversão: Eindelijk heb ik…", ["v-eindelijk"]),
+    MC("Qual é a ordem correta?", ["*Eindelijk heb ik mijn diploma!","Eindelijk ik heb mijn diploma!|Inversão: Eindelijk heb ik…"], "Inversão: Eindelijk heb ik…", ["v-eindelijk"]),
     LI("Uiteindelijk is alles goed gekomen.", ["Uiteindelijk is alles goed gekomen"], "No fim correu tudo bem.", "Resultado.", ["v-uiteindelijk"]),
     WO("Finalmente fim de semana!", ["Eindelijk","weekend!"], "Ordem.", ["v-eindelijk"]),
   ], diff=4, mins=5)

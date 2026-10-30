@@ -3725,25 +3725,26 @@
         },
         {
           "id": "s6-u03-l013-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Hiermee»: Hiermee zijn reizigers sneller thuis.",
           "vocabRefs": [
             "v-hiermee"
           ],
-          "tokens": [
-            "De",
-            "bus",
-            "rijdt",
-            "vaker.",
-            "Hiermee",
-            "reizigers",
-            "sneller",
-            "thuis",
-            "zijn."
-          ],
-          "errorIndex": 5,
-          "correction": "zijn"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hiermee zijn reizigers sneller thuis.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De bus rijdt vaker. Hiermee reizigers sneller thuis zijn.",
+              "correct": false,
+              "feedback": "Inversão depois de «Hiermee»: Hiermee zijn reizigers sneller thuis."
+            }
+          ]
         },
         {
           "id": "s6-u03-l013-e07",
@@ -4040,22 +4041,26 @@
         },
         {
           "id": "s6-u03-l014-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Uiteraard was de minister…",
           "vocabRefs": [
             "v-uiteraard"
           ],
-          "tokens": [
-            "Uiteraard",
-            "de",
-            "minister",
-            "was",
-            "niet",
-            "blij."
-          ],
-          "errorIndex": 1,
-          "correction": "was"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Uiteraard was de minister niet blij.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Uiteraard de minister was niet blij.",
+              "correct": false,
+              "feedback": "Inversão: Uiteraard was de minister…"
+            }
+          ]
         },
         {
           "id": "s6-u03-l014-e08",
@@ -6090,22 +6095,26 @@
         },
         {
           "id": "s6-u03-l021-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: «…», lacht hij.",
           "vocabRefs": [
             "v-lacht-hij"
           ],
-          "tokens": [
-            "«Ik",
-            "kan",
-            "niet",
-            "koken»,",
-            "hij",
-            "lacht."
-          ],
-          "errorIndex": 4,
-          "correction": "lacht"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "«Ik kan niet koken», lacht hij.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "«Ik kan niet koken», hij lacht.",
+              "correct": false,
+              "feedback": "Inversão: «…», lacht hij."
+            }
+          ]
         },
         {
           "id": "s6-u03-l021-e07",

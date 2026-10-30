@@ -208,7 +208,7 @@ L(20, "Dar razão em parte", "Daar zit wat in.",
     TR("pt-nl","Admito que estava errado.", ["Ik geef toe dat ik het fout had","Ik geef toe dat ik ongelijk had"], "Subordinada.", ["v-ik-geef-toe"]),
     DL([("Partner","Zullen we de auto verkopen? We fietsen toch bijna altijd.","Vendemos o carro? Andamos quase sempre de bicicleta."),("Jij","","")], ["*Daar zit wat in. Maar hoe gaan we dan naar je ouders in Limburg?","Goed punt, auto.|Incompleto.","Ik geef toe.|Incompleto."], "Concordar em parte.", ["v-daar-zit-wat-in"]),
     FB("Ik geef toe ___ het een beetje duur is.", ["dat"], "dat + verbo no fim.", ["v-ik-geef-toe"], choices=["dat","of","om"], tr="Admito que é um bocado caro."),
-    FE(["Ik","geef","toe","dat","ik","had","het","fout."], 5, "het", "Verbo no fim: dat ik het fout had.", ["v-ik-geef-toe"]),
+    MC("Qual é a ordem correta?", ["*Ik geef toe dat ik het fout had.","Ik geef toe dat ik had het fout.|Verbo no fim: dat ik het fout had."], "Verbo no fim: dat ik het fout had.", ["v-ik-geef-toe"]),
     LI("Goed punt, daar had ik nog niet aan gedacht.", ["Goed punt, daar had ik nog niet aan gedacht","Goed punt daar had ik nog niet aan gedacht"], "Bem visto, ainda não tinha pensado nisso.", "Reconhecer.", ["v-goed-punt"]),
     WO("Isso faz sentido.", ["Daar","zit","wat","in"], "Ordem.", ["v-daar-zit-wat-in"]),
   ], diff=4, mins=5)

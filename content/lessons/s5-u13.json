@@ -3123,21 +3123,26 @@
         },
         {
           "id": "s5-u13-l011-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Zo is het…",
           "vocabRefs": [
             "v-zo-is-het"
           ],
-          "tokens": [
-            "Zo",
-            "het",
-            "is",
-            "nou",
-            "eenmaal."
-          ],
-          "errorIndex": 1,
-          "correction": "is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zo is het nou eenmaal.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zo het is nou eenmaal.",
+              "correct": false,
+              "feedback": "Inversão: Zo is het…"
+            }
+          ]
         },
         {
           "id": "s5-u13-l011-e08",
