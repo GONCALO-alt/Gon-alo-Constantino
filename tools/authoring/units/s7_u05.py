@@ -65,10 +65,9 @@ L(3, "Técnicas de persuasão", "framing, emotie, autoriteit, herhaling",
 
 L(4, "Ler um artigo de opinião", "Columns en opiniestukken in de krant.",
   ["Distinguir tese, argumentos e tom num artigo de opinião"],
-  vocab=[V("v-column","column","crónica|coluna de opinião","noun","de"), V("v-opiniestuk","opiniestuk","artigo de opinião","noun","het"),
-         V("v-standpunt-auteur","de auteur vindt dat","o autor considera que","expression"), V("v-pleiten-voor","pleiten voor","defender|advogar","expression")],
+  vocab=[V("v-column","column","crónica|coluna de opinião","noun","de"), V("v-standpunt-auteur","de auteur vindt dat","o autor considera que","expression"), V("v-pleiten-voor","pleiten voor","defender|advogar","expression")],
   ex=[("Ze schrijft elke week een column.","Ela escreve uma crónica todas as semanas."),("In zijn opiniestuk pleit hij voor gratis openbaar vervoer.","No artigo de opinião ele defende transportes públicos gratuitos."),("De auteur vindt dat het onderwijs beter moet.","O autor considera que o ensino deve melhorar."),("Waar pleit de schrijver voor?","O que defende o autor?")],
-  review=["v-stelling","v-ironisch","v-kritisch","v-subjectief"],
+  review=["v-opiniestuk","v-stelling","v-ironisch","v-kritisch","v-subjectief"],
   cefr=C, exs=[
     MA([("column","crónica"),("opiniestuk","artigo de opinião"),("de auteur vindt dat","o autor considera"),("pleiten voor","defender")], "Opinião.", ["v-column","v-opiniestuk","v-standpunt-auteur","v-pleiten-voor"]),
     CO("text","Column: De zegen van de regen", "Iedereen klaagt over het Nederlandse weer. Ik niet. Want wat is er heerlijker dan een regenachtige zondag met een boek en een pot thee? De regen dwingt ons tot rust, iets wat we in deze drukke tijd hard nodig hebben. Natuurlijk, een fietstocht in een stortbui is geen pretje. Maar zonder regen geen groene weilanden, geen tulpen en geen gezellige cafés vol natte jassen. Ik pleit dus voor meer waardering voor ons grijze klimaat. Of, zoals mijn oma altijd zei: 'Wie niet tegen een beetje water kan, moet in de woestijn gaan wonen.'",
