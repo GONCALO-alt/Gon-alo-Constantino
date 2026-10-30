@@ -1,0 +1,113 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s5-u14")
+C = "B1"
+
+L(1, "Plusquamperfectum: o passado do passado", "Ik had al gegeten toen hij kwam.",
+  ["Usar o mais-que-perfeito (had/was + particípio)"],
+  vocab=[V("v-al-gedaan","al … hadden","já tinha(m) …","expression"), V("v-nog-nooit-eerder","nog nooit eerder","nunca antes","expression"),
+         V("v-vergeten-was","was vergeten","tinha-se esquecido","expression"), V("v-vertrokken","vertrokken","partido|ido embora","verb",note="vertrekken → (zijn) vertrokken")],
+  ex=[("Toen ik aankwam, was de trein al vertrokken.","Quando cheguei, o comboio já tinha partido."),("Ik had nog nooit eerder sushi gegeten.","Nunca antes tinha comido sushi."),("Ze had haar sleutels vergeten.","Ela tinha-se esquecido das chaves."),("We hadden al gegeten.","Já tínhamos comido.")],
+  gram=[G("g-plusquamperfectum","Plusquamperfectum","**had/hadden** ou **was/waren** + particípio: ação **anterior** a outra no passado. O auxiliar segue a mesma regra do perfectum (zijn para movimento/mudança de estado): *De trein **was** al **vertrokken**.* *Ik **had** al **gegeten**.*",
+    [("Hij was al naar huis gegaan.","Ele já tinha ido para casa.")],
+    "Corresponde ao nosso «tinha + particípio».")],
+  review=["v-had","v-was","v-toen-conj"],
+  cefr=C, exs=[
+    MA([("al … hadden","já tinham"),("nog nooit eerder","nunca antes"),("was vergeten","tinha-se esquecido"),("vertrokken","partido")], "Passado do passado.", ["v-al-gedaan","v-nog-nooit-eerder","v-vergeten-was","v-vertrokken"]),
+    WO("Quando cheguei, o comboio já tinha partido.", ["Toen","ik","aankwam,","was","de","trein","al","vertrokken"], "toen + plusquamperfectum.", ["v-vertrokken"]),
+    TR("pt-nl","Já tínhamos comido.", ["We hadden al gegeten","Wij hadden al gegeten"], "hadden + particípio.", ["v-al-gedaan"]),
+    TR("pt-nl","Nunca antes tinha comido sushi.", ["Ik had nog nooit eerder sushi gegeten"], "had + nog nooit eerder.", ["v-nog-nooit-eerder"]),
+    TR("nl-pt","Ze had haar sleutels vergeten.", ["Ela tinha-se esquecido das chaves","Ela esqueceu-se das chaves"], "had vergeten.", ["v-vergeten-was"]),
+    FE(["De","trein","had","al","vertrokken."], 2, "was", "vertrekken usa zijn: was vertrokken.", ["v-vertrokken"]),
+    CJ("gaan","hij","Hij ___ al naar huis gegaan.", ["was"], "gaan → zijn → was.", ["v-was"], tense="passado-perfeito"),
+    MC("Qual ação aconteceu primeiro? «Toen ik belde, was ze al vertrokken.»", ["*Ela partiu","Eu liguei|Aconteceu depois.","Ao mesmo tempo|Não."], "Plusquamperfectum = anterior.", ["v-vertrokken"]),
+    LI("We hadden de film al gezien.", ["We hadden de film al gezien","Wij hadden de film al gezien"], "Já tínhamos visto o filme.", "hadden gezien.", ["v-al-gedaan"]),
+    FB("Toen we aankwamen, ___ het concert al begonnen.", ["was"], "beginnen → zijn.", ["v-was"], choices=["was","had","werd"], tr="Quando chegámos, o concerto já tinha começado."),
+  ], diff=4, mins=7)
+
+L(2, "Zou/zouden: futuro no passado e hipóteses", "Hij zei dat hij zou komen. Ik zou graag…",
+  ["Usar zou para futuro no passado, desejos e conselhos"],
+  vocab=[V("v-zouden","zouden","(condicional plural) -iam","verb"), V("v-zou-graag","ik zou graag…","gostaria de…","expression"),
+         V("v-als-ik-jou-was","als ik jou was","se eu fosse a ti","expression"), V("v-beloofd","beloofd","prometido","verb")],
+  ex=[("Hij zei dat hij zou komen.","Ele disse que vinha."),("Ik zou graag in Amsterdam wonen.","Gostaria de viver em Amesterdão."),("Als ik jou was, zou ik het doen.","Se eu fosse a ti, fazia-o."),("Ze hadden beloofd dat ze zouden helpen.","Tinham prometido que ajudariam.")],
+  gram=[G("g-zou-gebruik","Zou: três usos","1) **Futuro no passado**: *Hij zei dat hij **zou** komen.* 2) **Desejo/cortesia**: *Ik **zou** graag…* 3) **Conselho/hipótese**: *Als ik jou was, **zou** ik…* (com inversão depois da oração com als). Plural: **zouden**.",
+    [("Wat zou je doen als je de loterij won?","O que farias se ganhasses a lotaria?")],
+    "Equivale ao nosso condicional («faria», «viria»), que na fala muitas vezes trocamos pelo imperfeito («fazia»).")],
+  review=["v-zou","v-zou-moeten","v-beloven"],
+  cefr=C, exs=[
+    MA([("zouden","-iam"),("ik zou graag…","gostaria de…"),("als ik jou was","se eu fosse a ti"),("beloofd","prometido")], "Zou.", ["v-zouden","v-zou-graag","v-als-ik-jou-was","v-beloofd"]),
+    WO("Ele disse que vinha.", ["Hij","zei","dat","hij","zou","komen"], "Futuro no passado.", ["v-zou"]),
+    WO("Se eu fosse a ti, fazia-o.", ["Als","ik","jou","was,","zou","ik","het","doen"], "Verbo, verbo.", ["v-als-ik-jou-was"]),
+    TR("pt-nl","Gostaria de viver em Amesterdão.", ["Ik zou graag in Amsterdam wonen","Ik zou graag in Amsterdam willen wonen"], "zou graag.", ["v-zou-graag"]),
+    TR("nl-pt","Wat zou je doen als je de loterij won?", ["O que farias se ganhasses a lotaria","O que é que fazias se ganhasses a lotaria"], "zou + hipótese.", ["v-zou"]),
+    CJ("zullen","zij (eles)","Ze hadden beloofd dat ze ___ helpen.", ["zouden"], "Plural: zouden.", ["v-zouden"], tense="passado-simples"),
+    FE(["Als","ik","jou","was,","ik","zou","het","doen."], 4, "zou ik", "Depois da oração com als: zou ik het doen.", ["v-als-ik-jou-was"]),
+    LI("Ik zou graag een kopje thee willen.", ["Ik zou graag een kopje thee willen"], "Gostaria de uma chávena de chá.", "Cortesia.", ["v-zou-graag"]),
+    MC("«Ze zouden om acht uur komen» pode significar…", ["*Era suposto virem às oito (mas talvez não tenham vindo)","Vieram às oito de certeza|Não.","Vêm amanhã às oito|Não."], "Plano no passado.", ["v-zouden"]),
+    SW("Dê um conselho a um amigo que quer aprender neerlandês depressa (use «als ik jou was»).", ["Als ik jou was, zou ik elke dag een Nederlandse podcast luisteren en met je buren praten."], ["**Als ik jou was,** + **zou ik**", "Infinitivo no fim", "Conselho concreto"], 12, "Conselho com zou.", ["v-als-ik-jou-was"]),
+  ], diff=4, mins=7)
+
+L(3, "Misturar tempos num relato", "Perfectum, imperfectum e plusquamperfectum juntos.",
+  ["Escolher o tempo certo num relato completo"],
+  vocab=[V("v-verhuizing","verhuizing","mudança (de casa)","noun","de"), V("v-achteraf","achteraf","depois (em retrospetiva)","adverb"),
+         V("v-inmiddels","inmiddels","entretanto|já (agora)","adverb"), V("v-destijds","destijds","naquela altura","adverb")],
+  ex=[("Achteraf was het een goede beslissing.","Em retrospetiva foi uma boa decisão."),("Inmiddels woon ik hier vijf jaar.","Entretanto já moro aqui há cinco anos."),("Destijds sprak ik geen woord Nederlands.","Naquela altura não falava uma palavra de neerlandês."),("De verhuizing was zwaar.","A mudança foi dura.")],
+  review=["v-vroeger","v-toen-conj","v-al-gedaan","v-geleden"],
+  cefr=C, exs=[
+    MA([("verhuizing","mudança"),("achteraf","em retrospetiva"),("inmiddels","entretanto"),("destijds","naquela altura")], "Relato.", ["v-verhuizing","v-achteraf","v-inmiddels","v-destijds"]),
+    TR("pt-nl","Em retrospetiva foi uma boa decisão.", ["Achteraf was het een goede beslissing","Achteraf gezien was het een goede beslissing"], "achteraf.", ["v-achteraf"]),
+    TR("pt-nl","Entretanto já moro aqui há cinco anos.", ["Inmiddels woon ik hier vijf jaar","Inmiddels woon ik hier al vijf jaar"], "inmiddels + presente.", ["v-inmiddels"]),
+    TR("nl-pt","Destijds sprak ik geen woord Nederlands.", ["Naquela altura não falava uma palavra de neerlandês","Na altura não falava nem uma palavra de neerlandês"], "destijds.", ["v-destijds"]),
+    AR("verhuizing","a mudança","de", "-ing → de.", ["v-verhuizing"]),
+    CO("text","Mijn eerste jaar", "Vijf jaar geleden ben ik naar Eindhoven verhuisd. Ik had een baan gevonden bij een technisch bedrijf. Destijds sprak ik geen woord Nederlands en ik kende niemand. De eerste maanden waren moeilijk: het regende vaak en ik miste mijn familie. Maar ik ging naar een taalcursus en daar leerde ik mijn beste vriendin kennen. Inmiddels spreek ik vloeiend Nederlands. Achteraf was de verhuizing de beste beslissing van mijn leven.",
+       [("Porque se mudou?", ["*Tinha arranjado emprego","Por causa da família","Para estudar"]),("Onde conheceu a melhor amiga?", ["*No curso de línguas","No trabalho","Na rua"]),("Como vê hoje a mudança?", ["*A melhor decisão da vida","Um erro","Indiferente"])],
+       "Repare: ben verhuisd (facto), had gevonden (anterior), sprak/regende (descrição), spreek (agora).", ["v-destijds","v-inmiddels","v-achteraf"]),
+    MC("No texto, porque se usa «had gevonden»?", ["*Encontrar o emprego aconteceu antes da mudança","É presente|Não.","É futuro|Não."], "Plusquamperfectum.", ["v-al-gedaan"]),
+    MC("E porque «het regende vaak»?", ["*Descrição/hábito no passado → imperfectum","Facto único|É repetido.","Futuro|Não."], "Imperfectum.", []),
+    FE(["Vijf","jaar","geleden","heb","ik","naar","Eindhoven","verhuisd."], 3, "ben", "verhuizen usa zijn.", ["v-verhuisd"]),
+    SW("Conte em 4 frases uma mudança importante na sua vida, usando pelo menos dois tempos do passado e «inmiddels».", ["Drie jaar geleden ben ik naar Nederland gekomen. Ik had net mijn studie afgerond. Destijds vond ik alles moeilijk. Inmiddels voel ik me hier thuis."], ["Perfectum para o facto", "Plusquamperfectum ou imperfectum", "**inmiddels** + presente"], 30, "Relato com tempos misturados.", ["v-inmiddels","v-destijds"]),
+  ], diff=5, mins=8)
+
+L(4, "Planos, previsões e condições", "Als het lukt, ga ik… Waarschijnlijk wordt het…",
+  ["Falar do futuro com graus de certeza"],
+  vocab=[V("v-waarschijnlijk","waarschijnlijk","provavelmente","adverb"), V("v-misschien-wel","misschien wel","talvez sim","expression"),
+         V("v-sowieso","sowieso","de qualquer forma|de certeza","adverb"), V("v-verwachten","verwachten","esperar|prever","verb")],
+  ex=[("Waarschijnlijk wordt het morgen droog.","Provavelmente amanhã fica seco."),("Als het lukt, kom ik vrijdag.","Se der, venho na sexta."),("Ik kom sowieso.","Venho de certeza."),("We verwachten veel gasten.","Esperamos muitos convidados.")],
+  gram=[G("g-zekerheid-toekomst","Graus de certeza","**sowieso / zeker** (certo) > **waarschijnlijk** (provável) > **misschien** (talvez) > **waarschijnlijk niet** (improvável). Condição: **als** + presente, depois inversão: *Als het lukt, **kom ik**.*",
+    [("Misschien ga ik volgend jaar naar Japan.","Talvez vá ao Japão para o ano.")])],
+  review=["v-misschien","v-zeker","v-als-conj","v-gaan"],
+  cefr=C, exs=[
+    MA([("waarschijnlijk","provavelmente"),("misschien wel","talvez sim"),("sowieso","de qualquer forma"),("verwachten","prever")], "Certeza.", ["v-waarschijnlijk","v-misschien-wel","v-sowieso","v-verwachten"]),
+    MC("Ordene do mais certo ao menos certo:", ["*sowieso → waarschijnlijk → misschien → waarschijnlijk niet","misschien → sowieso → waarschijnlijk|Trocado.","waarschijnlijk niet → sowieso|Trocado."], "Escala.", ["v-sowieso","v-waarschijnlijk"]),
+    TR("pt-nl","Provavelmente amanhã fica seco.", ["Waarschijnlijk wordt het morgen droog","Morgen wordt het waarschijnlijk droog","Het wordt morgen waarschijnlijk droog"], "Inversão.", ["v-waarschijnlijk"]),
+    TR("pt-nl","Se der, venho na sexta.", ["Als het lukt(,) kom ik vrijdag","Als het lukt(,) kom ik op vrijdag"], "als + inversão.", ["v-lukken"]),
+    TR("nl-pt","Ik kom sowieso.", ["Venho de certeza","Venho de qualquer forma","Eu venho de qualquer maneira"], "sowieso.", ["v-sowieso"]),
+    FE(["Waarschijnlijk","het","wordt","morgen","droog."], 1, "wordt het", "Inversão: Waarschijnlijk wordt het…", ["v-waarschijnlijk"]),
+    WO("Esperamos muitos convidados.", ["We","verwachten","veel","gasten"], "verwachten.", ["v-verwachten"]),
+    LI("Misschien ga ik volgend jaar naar Japan.", ["Misschien ga ik volgend jaar naar Japan"], "Talvez vá ao Japão para o ano.", "misschien + inversão.", ["v-misschien"]),
+    DL([("Vriend","Kom je zaterdag naar mijn feest?","Vens à minha festa no sábado?"),("Ana","")], ["*Waarschijnlijk wel, maar ik moet nog even kijken of het lukt.","Sowieso niet misschien.|Contraditório.","Ik verwacht.|Incompleto."], "Resposta provável.", ["v-waarschijnlijk"]),
+    FB("De weerman ___ dat het gaat sneeuwen.", ["verwacht"], "Prever.", ["v-verwachten"], choices=["verwacht","verwachten","verwachtte"], tr="O meteorologista prevê que vai nevar."),
+  ], diff=4, mins=6)
+
+L(5, "Prática: passado, presente e futuro", "Uma conversa sobre a vida: o que foi, o que é, o que vai ser.",
+  ["Combinar tempos verbais numa conversa natural"],
+  vocab=[V("v-toekomst","toekomst","futuro","noun","de"), V("v-verleden","verleden","passado","noun","het"),
+         V("v-heden","heden","presente","noun","het"), V("v-terugkijken","terugkijken op","olhar para trás|recordar","expression")],
+  ex=[("Hoe zie jij de toekomst?","Como vês o futuro?"),("Dat is verleden tijd.","Isso é passado."),("Ik kijk met plezier terug op die tijd.","Recordo esse tempo com prazer."),("In het heden leven.","Viver o presente.")],
+  review=["v-al-gedaan","v-zou","v-waarschijnlijk","v-inmiddels"],
+  cefr=C, exs=[
+    MA([("toekomst","futuro"),("verleden","passado"),("heden","presente"),("terugkijken op","recordar")], "Tempo.", ["v-toekomst","v-verleden","v-heden","v-terugkijken"]),
+    AR("toekomst","o futuro","de", "De toekomst.", ["v-toekomst"]),
+    AR("verleden","o passado","het", "Het verleden.", ["v-verleden"]),
+    TR("pt-nl","Como vês o futuro?", ["Hoe zie jij de toekomst","Hoe zie je de toekomst"], "de toekomst.", ["v-toekomst"]),
+    TR("nl-pt","Ik kijk met plezier terug op die tijd.", ["Recordo esse tempo com prazer","Lembro-me com prazer dessa altura","Olho para trás para essa altura com prazer"], "terugkijken op.", ["v-terugkijken"]),
+    CO("dialogue","Reünie", "Mark: Wat leuk je weer te zien! Wat heb je allemaal gedaan sinds de middelbare school?\nSofia: Ik ben na school naar Portugal gegaan. Daar had ik familie wonen. Ik studeerde er toerisme.\nMark: En nu?\nSofia: Inmiddels woon ik weer in Utrecht en werk ik bij een reisbureau. Volgend jaar wil ik mijn eigen bedrijf beginnen.\nMark: Wauw. Als ik jou was, zou ik met fietsvakanties beginnen!\nSofia: Haha, misschien wel!",
+       [("O que estudou a Sofia?", ["*Turismo","Medicina","Engenharia"]),("Onde trabalha agora?", ["*Numa agência de viagens em Utrecht","Em Portugal","Numa escola"]),("O que quer fazer no próximo ano?", ["*Abrir a própria empresa","Voltar a estudar","Mudar-se para Portugal"])],
+       "Passado (ben gegaan, studeerde), presente (woon, werk), futuro (wil beginnen), hipótese (zou).", ["v-inmiddels","v-zou"]),
+    FE(["Volgend","jaar","ik","wil","mijn","eigen","bedrijf","beginnen."], 2, "wil ik", "Inversão: Volgend jaar wil ik…", ["v-toekomst"]),
+    MC("Qual frase mistura corretamente passado e presente?", ["*Ik woon hier sinds 2020, maar ik ben in Porto geboren.","Ik woon hier sinds 2020, maar ik word in Porto geboren.|Tempo errado.","Ik woonde hier sinds 2020 en nu.|Incompleto."], "Coerência temporal.", []),
+    LI("Wat zou je anders doen als je opnieuw kon beginnen?", ["Wat zou je anders doen als je opnieuw kon beginnen"], "O que farias de forma diferente se pudesses recomeçar?", "zou + kon.", ["v-zou"]),
+    SW("Responda em 4 frases: o que fez nos últimos 5 anos, o que faz agora e o que vai/quer fazer.", ["Vijf jaar geleden ben ik naar Nederland verhuisd. Eerst werkte ik in een restaurant. Inmiddels werk ik als verpleegkundige. Over twee jaar wil ik een huis kopen."], ["Passado (perfectum/imperfectum)", "Presente com **inmiddels/nu**", "Futuro com **gaan/willen/over**", "Inversões corretas"], 30, "Linha do tempo pessoal.", ["v-toekomst","v-verleden"]),
+  ], diff=5, mins=8)
+
+W()
