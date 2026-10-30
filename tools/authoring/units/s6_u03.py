@@ -72,12 +72,11 @@ L(3, "Facto, opinião e intenção do autor", "Wil de schrijver informeren, over
 L(4, "Vocabulário de textos informativos", "aantal, toename, afname, gevolg, oorzaak",
   ["Dominar palavras frequentes em textos informativos"],
   vocab=[V("v-toename","toename","aumento","noun","de"), V("v-afname","afname","diminuição","noun","de"),
-         V("v-oorzaak","oorzaak","causa","noun","de"), V("v-gevolg","gevolg","consequência","noun","het","gevolgen"),
          V("v-aantal","aantal","número (quantidade)","noun","het")],
   ex=[("Er is een toename van het aantal fietsers.","Há um aumento do número de ciclistas."),("De afname komt door de hoge prijzen.","A diminuição deve-se aos preços altos."),("Wat is de oorzaak?","Qual é a causa?"),("Dat heeft grote gevolgen.","Isso tem grandes consequências.")],
   gram=[G("g-aantal-enkelvoud","Het aantal + verbo","**Het aantal** (o número de) leva o verbo no **singular**: *Het aantal fietsers **stijgt**.* Mas **een aantal** (alguns) leva normalmente plural: *Een aantal mensen **zijn** ziek.* Oorzaak → **door/doordat**; gevolg → **daardoor/dus**.",
     [("Het aantal toeristen is gestegen.","O número de turistas subiu.")])],
-  review=["v-stijgen","v-dalen","v-door","v-daardoor"],
+  review=["v-gevolg","v-oorzaak","v-stijgen","v-dalen","v-door","v-daardoor"],
   cefr=C, exs=[
     MA([("toename","aumento"),("afname","diminuição"),("oorzaak","causa"),("gevolg","consequência"),("aantal","número")], "Textos informativos.", ["v-toename","v-afname","v-oorzaak","v-gevolg","v-aantal"]),
     FB("Het aantal fietsers ___ elk jaar.", ["stijgt"], "het aantal → singular.", ["v-aantal"], choices=["stijgt","stijgen","gestegen"], tr="O número de ciclistas sobe todos os anos."),

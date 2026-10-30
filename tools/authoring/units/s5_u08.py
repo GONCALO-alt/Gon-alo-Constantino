@@ -88,10 +88,9 @@ L(4, "Alojamento e reservas", "Airbnb, een jeugdherberg, ontbijt inbegrepen, ann
 
 L(5, "Recomendar um destino", "Je moet echt naar… gaan! Het is de moeite waard.",
   ["Recomendar lugares e dar dicas de viagem"],
-  vocab=[V("v-moeite-waard","de moeite waard","vale a pena","expression"), V("v-aanraden","aanraden","recomendar","verb",note="Ik raad het je aan."),
-         V("v-bezienswaardigheid","bezienswaardigheid","ponto de interesse turístico","noun","de"), V("v-tip","tip","dica","noun","de")],
+  vocab=[V("v-moeite-waard","de moeite waard","vale a pena","expression"), V("v-bezienswaardigheid","bezienswaardigheid","ponto de interesse turístico","noun","de"), V("v-tip","tip","dica","noun","de")],
   ex=[("Sintra is echt de moeite waard.","Sintra vale mesmo a pena."),("Ik raad je het Rijksmuseum aan.","Recomendo-te o Rijksmuseum."),("Wat zijn de belangrijkste bezienswaardigheden?","Quais são os principais pontos de interesse?"),("Heb je nog tips?","Tens mais dicas?")],
-  review=["v-echt-moeten","v-museum","v-zeker"],
+  review=["v-aanraden","v-echt-moeten","v-museum","v-zeker"],
   cefr=C, exs=[
     MA([("de moeite waard","vale a pena"),("aanraden","recomendar"),("bezienswaardigheid","ponto turístico"),("tip","dica")], "Recomendar.", ["v-moeite-waard","v-aanraden","v-bezienswaardigheid","v-tip"]),
     TR("pt-nl","Sintra vale mesmo a pena.", ["Sintra is echt de moeite waard","Sintra is zeker de moeite waard"], "de moeite waard.", ["v-moeite-waard"]),

@@ -50,11 +50,10 @@ L(2, "Ensino superior e formação", "mbo, hbo, universiteit, studiefinanciering
 
 L(3, "Falar com a escola dos filhos", "het tienminutengesprek, de mentor, het rapport",
   ["Comunicar com professores e compreender relatórios"],
-  vocab=[V("v-tienminutengesprek","tienminutengesprek","reunião de pais (curta)","noun","het"), V("v-mentor","mentor","diretor de turma","noun","de"),
-         V("v-rapport","rapport","boletim (de notas)","noun","het"), V("v-ouderavond","ouderavond","reunião de pais (coletiva)","noun","de"),
+  vocab=[V("v-tienminutengesprek","tienminutengesprek","reunião de pais (curta)","noun","het"), V("v-rapport","rapport","boletim (de notas)","noun","het"), V("v-ouderavond","ouderavond","reunião de pais (coletiva)","noun","de"),
          V("v-ziekmelden-kind","je kind ziekmelden","comunicar que o filho está doente","expression")],
   ex=[("Volgende week is het tienminutengesprek.","Para a semana é a reunião de pais."),("De mentor belt ons over zijn cijfers.","O diretor de turma liga-nos sobre as notas dele."),("Ze heeft een goed rapport.","Ela tem um bom boletim."),("Ik wil mijn zoon ziekmelden.","Queria comunicar que o meu filho está doente.")],
-  review=["v-cijfer","v-leraar","v-huiswerk","v-ziekmelden"],
+  review=["v-mentor","v-cijfer","v-leraar","v-huiswerk","v-ziekmelden"],
   cefr=C, exs=[
     MA([("tienminutengesprek","reunião de pais"),("mentor","diretor de turma"),("rapport","boletim"),("ouderavond","reunião coletiva")], "Escola dos filhos.", ["v-tienminutengesprek","v-mentor","v-rapport","v-ouderavond"]),
     TR("pt-nl","Queria comunicar que o meu filho está doente.", ["Ik wil mijn zoon ziekmelden","Ik wil graag mijn zoon ziekmelden","Ik wil mijn zoon ziek melden"], "ziekmelden.", ["v-ziekmelden-kind"]),

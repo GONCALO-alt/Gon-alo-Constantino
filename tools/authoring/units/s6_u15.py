@@ -44,10 +44,10 @@ L(2, "Introduções e conclusões fortes", "Openen met een vraag, feit of anekdo
 
 L(3, "A carta formal de reclamação", "Een klachtbrief schrijven aan een bedrijf of instantie.",
   ["Escrever uma carta formal de reclamação completa"],
-  vocab=[V("v-klachtbrief","klachtbrief","carta de reclamação","noun","de"), V("v-ongenoegen","ongenoegen","descontentamento","noun","het"),
+  vocab=[V("v-ongenoegen","ongenoegen","descontentamento","noun","het"),
          V("v-verzoek-om","verzoek om","pedido de","expression"), V("v-tegemoetzien","tegemoetzien","aguardar","verb",note="Ik zie uw reactie graag tegemoet.")],
   ex=[("Met deze brief wil ik mijn ongenoegen uiten over…","Com esta carta quero manifestar o meu descontentamento com…"),("Ik verzoek u om het bedrag terug te betalen.","Solicito que me reembolse o montante."),("Ik zie uw reactie binnen tien werkdagen tegemoet.","Aguardo a sua resposta dentro de dez dias úteis."),("In de bijlage vindt u een kopie van de factuur.","Em anexo encontra uma cópia da fatura.")],
-  review=["v-geachte","v-klacht","v-in-gebreke-stellen","v-hierbij"],
+  review=["v-klachtbrief","v-geachte","v-klacht","v-in-gebreke-stellen","v-hierbij"],
   cefr=C, exs=[
     MA([("klachtbrief","carta de reclamação"),("ongenoegen","descontentamento"),("verzoek om","pedido de"),("tegemoetzien","aguardar")], "Reclamação formal.", ["v-klachtbrief","v-ongenoegen","v-verzoek-om","v-tegemoetzien"]),
     TR("pt-nl","Solicito que me reembolse o montante.", ["Ik verzoek u om het bedrag terug te betalen","Ik verzoek u het bedrag terug te betalen"], "verzoeken om te.", ["v-verzoek-om"]),
