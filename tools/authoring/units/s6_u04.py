@@ -83,9 +83,9 @@ L(4, "Apresentar resultados", "Zoals u ziet… De grafiek laat zien dat… Dit b
 L(5, "Concluir e responder a perguntas", "Dan rond ik af. Zijn er nog vragen? Goede vraag!",
   ["Fechar uma apresentação e lidar com perguntas"],
   vocab=[V("v-afronden","afronden","concluir|terminar","verb"), V("v-goede-vraag","goede vraag","boa pergunta","expression"),
-         V("v-daar-kom-ik-op-terug","daar kom ik later op terug","volto a isso mais tarde","expression"), V("v-uitzoeken","uitzoeken","averiguar|descobrir","verb")],
+         V("v-uitzoeken","uitzoeken","averiguar|descobrir","verb")],
   ex=[("Dan rond ik af.","Então vou concluir."),("Zijn er nog vragen?","Há perguntas?"),("Goede vraag! Dat weet ik niet precies.","Boa pergunta! Não sei exatamente."),("Ik zoek het voor u uit.","Vou averiguar isso para si.")],
-  review=["v-kortom","v-samenvattend","v-presentatie"],
+  review=["v-daar-kom-ik-op-terug","v-kortom","v-samenvattend","v-presentatie"],
   cefr=C, exs=[
     MA([("afronden","concluir"),("goede vraag","boa pergunta"),("daar kom ik later op terug","volto a isso depois"),("uitzoeken","averiguar")], "Concluir.", ["v-afronden","v-goede-vraag","v-daar-kom-ik-op-terug","v-uitzoeken"]),
     TR("pt-nl","Então vou concluir.", ["Dan rond ik af","Dan ga ik afronden"], "afronden.", ["v-afronden"]),

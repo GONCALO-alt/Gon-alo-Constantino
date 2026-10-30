@@ -66,10 +66,9 @@ L(3, "Exemplos e comparações", "Neem nou… Vergelijk het met… In tegenstell
 
 L(4, "Opinião sobre temas sociais", "wonen, werk, integratie",
   ["Exprimir opiniões fundamentadas sobre temas sociais atuais"],
-  vocab=[V("v-woningnood","woningnood","crise da habitação","noun","de"), V("v-betaalbaar","betaalbaar","acessível (preço)","adjective"),
-         V("v-integratie","integratie","integração","noun","de"), V("v-ongelijkheid","ongelijkheid","desigualdade","noun","de")],
+  vocab=[V("v-woningnood","woningnood","crise da habitação","noun","de"), V("v-integratie","integratie","integração","noun","de"), V("v-ongelijkheid","ongelijkheid","desigualdade","noun","de")],
   ex=[("Er is een grote woningnood.","Há uma grande crise da habitação."),("Er zijn te weinig betaalbare woningen.","Há poucas casas a preços acessíveis."),("Taal is de sleutel tot integratie.","A língua é a chave da integração."),("De ongelijkheid groeit.","A desigualdade está a aumentar.")],
-  review=["v-huur","v-woning","v-volgens-mij","v-maatregel"],
+  review=["v-betaalbaar","v-huur","v-woning","v-volgens-mij","v-maatregel"],
   cefr=C, exs=[
     MA([("woningnood","crise da habitação"),("betaalbaar","acessível"),("integratie","integração"),("ongelijkheid","desigualdade")], "Sociedade.", ["v-woningnood","v-betaalbaar","v-integratie","v-ongelijkheid"]),
     TR("pt-nl","Há poucas casas a preços acessíveis.", ["Er zijn te weinig betaalbare woningen","Er zijn weinig betaalbare woningen","Er zijn te weinig betaalbare huizen"], "betaalbare.", ["v-betaalbaar"]),

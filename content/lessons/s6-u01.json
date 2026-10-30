@@ -2617,6 +2617,4351 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s6-u01-l010",
+      "unitId": "s6-u01",
+      "order": 10,
+      "title": "Afirmar a tese com convicção",
+      "description": "Ik ben ervan overtuigd dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Formular uma tese clara com diferentes graus de convicção"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ik-ben-van-mening",
+          "nl": "ik ben van mening dat…",
+          "pt": [
+            "sou da opinião de que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ik-ben-ervan-overtuigd",
+          "nl": "ik ben ervan overtuigd dat…",
+          "pt": [
+            "estou convencido de que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-beargumenteren",
+          "nl": "beargumenteren",
+          "pt": [
+            "argumentar",
+            "fundamentar com argumentos"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-stelling",
+        "v-naar-mijn-mening",
+        "v-onderbouwen"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ben van mening dat we minder moeten vliegen.",
+          "pt": "Sou da opinião de que devemos voar menos."
+        },
+        {
+          "nl": "Ik ben ervan overtuigd dat dit plan werkt.",
+          "pt": "Estou convencido de que este plano funciona."
+        },
+        {
+          "nl": "Kun je dat beargumenteren?",
+          "pt": "Consegues fundamentar isso?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Tese.",
+          "vocabRefs": [
+            "v-ik-ben-van-mening",
+            "v-ik-ben-ervan-overtuigd",
+            "v-beargumenteren",
+            "v-stelling"
+          ],
+          "pairs": [
+            {
+              "nl": "ik ben van mening dat…",
+              "pt": "sou da opinião de que…"
+            },
+            {
+              "nl": "ik ben ervan overtuigd dat…",
+              "pt": "estou convencido de que…"
+            },
+            {
+              "nl": "beargumenteren",
+              "pt": "fundamentar"
+            },
+            {
+              "nl": "stelling",
+              "pt": "tese"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l010-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Graus.",
+          "vocabRefs": [
+            "v-ik-ben-ervan-overtuigd"
+          ],
+          "prompt": "Ordene do MAIS forte: qual exprime mais convicção?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben ervan overtuigd dat…",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik denk dat…",
+              "correct": false,
+              "feedback": "Mais fraco."
+            },
+            {
+              "id": "c",
+              "text": "Misschien…",
+              "correct": false,
+              "feedback": "Muito fraco."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l010-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Verbo no fim.",
+          "vocabRefs": [
+            "v-ik-ben-van-mening"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Sou da opinião de que devemos voar menos.",
+          "answers": [
+            "Ik ben van mening dat we minder moeten vliegen",
+            "Ik ben van mening dat wij minder moeten vliegen"
+          ]
+        },
+        {
+          "id": "s6-u01-l010-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "ervan overtuigd.",
+          "vocabRefs": [
+            "v-ik-ben-ervan-overtuigd"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Estou convencido de que isto funciona.",
+          "answers": [
+            "Ik ben ervan overtuigd dat dit werkt",
+            "Ik ben er van overtuigd dat dit werkt"
+          ]
+        },
+        {
+          "id": "s6-u01-l010-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "overtuigd van → ervan.",
+          "vocabRefs": [
+            "v-ik-ben-ervan-overtuigd"
+          ],
+          "sentence": "Ik ben ___ overtuigd dat dit de beste oplossing is.",
+          "translation": "Estou convencido de que esta é a melhor solução.",
+          "answers": [
+            "ervan"
+          ],
+          "choices": [
+            "ervan",
+            "erop",
+            "eraan"
+          ]
+        },
+        {
+          "id": "s6-u01-l010-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Ordem: …dat we minder moeten vliegen.",
+          "vocabRefs": [
+            "v-ik-ben-van-mening"
+          ],
+          "tokens": [
+            "Ik",
+            "ben",
+            "van",
+            "mening",
+            "dat",
+            "we",
+            "moeten",
+            "minder",
+            "vliegen."
+          ],
+          "errorIndex": 6,
+          "correction": "minder"
+        },
+        {
+          "id": "s6-u01-l010-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Abrir com tese.",
+          "vocabRefs": [
+            "v-ik-ben-van-mening",
+            "v-vierdaagse-werkweek"
+          ],
+          "lines": [
+            {
+              "speaker": "Debatleider",
+              "nl": "Wat is uw standpunt over de vierdaagse werkweek?",
+              "pt": "Qual é a sua posição sobre a semana de quatro dias?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben van mening dat een vierdaagse werkweek goed is voor zowel werknemers als werkgevers.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Vierdaagse.",
+              "correct": false,
+              "feedback": "Incompleto."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben overtuigd.",
+              "correct": false,
+              "feedback": "Sem conteúdo."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l010-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Anunciar estrutura.",
+          "vocabRefs": [
+            "v-beargumenteren"
+          ],
+          "audioText": "Ik zal mijn standpunt met drie argumenten beargumenteren.",
+          "answers": [
+            "Ik zal mijn standpunt met drie argumenten beargumenteren",
+            "Ik zal mijn standpunt met 3 argumenten beargumenteren"
+          ],
+          "translation": "Vou fundamentar a minha posição com três argumentos."
+        },
+        {
+          "id": "s6-u01-l010-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-ik-ben-ervan-overtuigd"
+          ],
+          "translation": "Estou convencido disso.",
+          "tokens": [
+            "Ik",
+            "ben",
+            "ervan",
+            "overtuigd"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l011",
+      "unitId": "s6-u01",
+      "order": 11,
+      "title": "Conceder e continuar",
+      "description": "Het is weliswaar duur, maar…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Reconhecer um ponto contrário e manter a posição"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-weliswaar",
+          "nl": "weliswaar",
+          "pt": [
+            "é certo que",
+            "embora"
+          ],
+          "pos": "adverb"
+        },
+        {
+          "id": "v-niettemin",
+          "nl": "niettemin",
+          "pt": [
+            "no entanto",
+            "ainda assim"
+          ],
+          "pos": "adverb"
+        },
+        {
+          "id": "v-tegenwerping",
+          "nl": "tegenwerping",
+          "pt": [
+            "objeção"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "tegenwerpingen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-echter",
+        "v-desondanks",
+        "v-tegenargument"
+      ],
+      "examples": [
+        {
+          "nl": "Het is weliswaar duur, maar het levert veel op.",
+          "pt": "É certo que é caro, mas compensa muito."
+        },
+        {
+          "nl": "Niettemin blijf ik bij mijn standpunt.",
+          "pt": "Ainda assim, mantenho a minha posição."
+        },
+        {
+          "nl": "Een veelgehoorde tegenwerping is dat het te veel kost.",
+          "pt": "Uma objeção frequente é que custa demasiado."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Concessão.",
+          "vocabRefs": [
+            "v-weliswaar",
+            "v-niettemin",
+            "v-tegenwerping",
+            "v-desondanks"
+          ],
+          "pairs": [
+            {
+              "nl": "weliswaar",
+              "pt": "é certo que"
+            },
+            {
+              "nl": "niettemin",
+              "pt": "ainda assim"
+            },
+            {
+              "nl": "tegenwerping",
+              "pt": "objeção"
+            },
+            {
+              "nl": "desondanks",
+              "pt": "apesar disso"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estrutura weliswaar … maar.",
+          "vocabRefs": [
+            "v-weliswaar"
+          ],
+          "prompt": "«Weliswaar» anuncia quase sempre…",
+          "options": [
+            {
+              "id": "a",
+              "text": "um «maar» a seguir",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "uma conclusão",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "um exemplo",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "weliswaar … maar.",
+          "vocabRefs": [
+            "v-weliswaar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "É certo que é caro, mas compensa.",
+          "answers": [
+            "Het is weliswaar duur, maar het loont",
+            "Het is weliswaar duur, maar het levert veel op",
+            "Weliswaar is het duur, maar het loont"
+          ]
+        },
+        {
+          "id": "s6-u01-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-niettemin"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ainda assim, mantenho a minha posição.",
+          "answers": [
+            "Niettemin blijf ik bij mijn standpunt",
+            "Toch blijf ik bij mijn standpunt"
+          ]
+        },
+        {
+          "id": "s6-u01-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Concessão.",
+          "vocabRefs": [
+            "v-weliswaar"
+          ],
+          "sentence": "Het plan is ___ ambitieus, maar het is haalbaar.",
+          "translation": "O plano é, é certo, ambicioso, mas é exequível.",
+          "answers": [
+            "weliswaar"
+          ],
+          "choices": [
+            "weliswaar",
+            "niettemin",
+            "daardoor"
+          ]
+        },
+        {
+          "id": "s6-u01-l011-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Inversão: Niettemin blijf ik.",
+          "vocabRefs": [
+            "v-niettemin"
+          ],
+          "tokens": [
+            "Niettemin",
+            "ik",
+            "blijf",
+            "bij",
+            "mijn",
+            "standpunt."
+          ],
+          "errorIndex": 1,
+          "correction": "blijf"
+        },
+        {
+          "id": "s6-u01-l011-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Conceder e responder.",
+          "vocabRefs": [
+            "v-weliswaar"
+          ],
+          "lines": [
+            {
+              "speaker": "Tegenstander",
+              "nl": "Maar dat kost de gemeente miljoenen!",
+              "pt": "Mas isso custa milhões à câmara!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat klopt weliswaar, maar op lange termijn besparen we juist geld.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee.",
+              "correct": false,
+              "feedback": "Sem argumento."
+            },
+            {
+              "id": "c",
+              "text": "Niettemin.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l011-e08",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "-ing → de.",
+          "vocabRefs": [
+            "v-tegenwerping"
+          ],
+          "noun": "tegenwerping",
+          "pt": "objeção",
+          "article": "de"
+        },
+        {
+          "id": "s6-u01-l011-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Responder.",
+          "vocabRefs": [
+            "v-tegenwerping",
+            "v-niettemin"
+          ],
+          "audioText": "Een begrijpelijke tegenwerping, maar niettemin onjuist.",
+          "answers": [
+            "Een begrijpelijke tegenwerping, maar niettemin onjuist",
+            "Een begrijpelijke tegenwerping maar niettemin onjuist"
+          ],
+          "translation": "Uma objeção compreensível, mas ainda assim incorreta."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l012",
+      "unitId": "s6-u01",
+      "order": 12,
+      "title": "Pesar prós e contras",
+      "description": "De prijs gaf de doorslag.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Comparar vantagens e desvantagens e dizer o que decide"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-voor-en-nadelen",
+          "nl": "de voor- en nadelen",
+          "pt": [
+            "os prós e contras"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-de-doorslag-geven",
+          "nl": "de doorslag geven",
+          "pt": [
+            "ser decisivo"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-doorslaggevend",
+          "nl": "doorslaggevend",
+          "pt": [
+            "decisivo"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-afwegen",
+        "v-aan-de-ene-kant"
+      ],
+      "examples": [
+        {
+          "nl": "Laten we de voor- en nadelen op een rij zetten.",
+          "pt": "Vamos pôr os prós e contras lado a lado."
+        },
+        {
+          "nl": "Uiteindelijk gaf de prijs de doorslag.",
+          "pt": "No fim, o preço foi decisivo."
+        },
+        {
+          "nl": "Veiligheid is voor mij doorslaggevend.",
+          "pt": "Para mim a segurança é decisiva."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Ponderar.",
+          "vocabRefs": [
+            "v-voor-en-nadelen",
+            "v-de-doorslag-geven",
+            "v-doorslaggevend",
+            "v-afwegen"
+          ],
+          "pairs": [
+            {
+              "nl": "de voor- en nadelen",
+              "pt": "prós e contras"
+            },
+            {
+              "nl": "de doorslag geven",
+              "pt": "ser decisivo"
+            },
+            {
+              "nl": "doorslaggevend",
+              "pt": "decisivo"
+            },
+            {
+              "nl": "afwegen",
+              "pt": "ponderar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l012-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "de doorslag geven.",
+          "vocabRefs": [
+            "v-de-doorslag-geven"
+          ],
+          "direction": "pt-nl",
+          "prompt": "No fim, o preço foi decisivo.",
+          "answers": [
+            "Uiteindelijk gaf de prijs de doorslag",
+            "Uiteindelijk was de prijs doorslaggevend"
+          ]
+        },
+        {
+          "id": "s6-u01-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "afwegen.",
+          "vocabRefs": [
+            "v-voor-en-nadelen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Vamos ponderar os prós e contras.",
+          "answers": [
+            "Laten we de voor- en nadelen afwegen",
+            "Laten we de voor en nadelen afwegen"
+          ]
+        },
+        {
+          "id": "s6-u01-l012-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-de-doorslag-geven"
+          ],
+          "prompt": "«Wat gaf voor jou de doorslag?» pergunta…",
+          "options": [
+            {
+              "id": "a",
+              "text": "qual foi o fator decisivo",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "quem ganhou",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "quanto custou",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Adjetivo.",
+          "vocabRefs": [
+            "v-doorslaggevend"
+          ],
+          "sentence": "De locatie was ___ voor onze keuze.",
+          "translation": "A localização foi decisiva para a nossa escolha.",
+          "answers": [
+            "doorslaggevend"
+          ],
+          "choices": [
+            "doorslaggevend",
+            "doorslag",
+            "weliswaar"
+          ]
+        },
+        {
+          "id": "s6-u01-l012-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Inversão: Uiteindelijk gaf de prijs…",
+          "vocabRefs": [
+            "v-de-doorslag-geven"
+          ],
+          "tokens": [
+            "Uiteindelijk",
+            "de",
+            "prijs",
+            "gaf",
+            "de",
+            "doorslag."
+          ],
+          "errorIndex": 1,
+          "correction": "gaf"
+        },
+        {
+          "id": "s6-u01-l012-e07",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Ponderar.",
+          "vocabRefs": [
+            "v-voor-en-nadelen",
+            "v-de-doorslag-geven"
+          ],
+          "kind": "text",
+          "title": "Huren of kopen?",
+          "text": "Kopen heeft voordelen: je bouwt vermogen op en je mag je huis verbouwen zoals je wilt. Aan de andere kant heb je bij kopen een hoge aanbetaling nodig en ben je zelf verantwoordelijk voor onderhoud. Huren is flexibeler. Voor Sara gaf de flexibiliteit de doorslag: ze weet nog niet of ze in Nederland blijft.",
+          "questions": [
+            {
+              "prompt": "Vantagem de comprar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Constrói património",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "É mais flexível",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não há manutenção",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Desvantagem de comprar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Entrada alta",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Não se pode remodelar",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Renda alta",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que decidiu para a Sara?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A flexibilidade",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "O preço",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "A localização",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l012-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Decisão.",
+          "vocabRefs": [
+            "v-voor-en-nadelen",
+            "v-de-doorslag-geven"
+          ],
+          "prompt": "Escreva 4–5 frases a pesar os prós e contras de uma decisão sua (por ex. carro ou bicicleta, cidade ou aldeia). Diga o que foi decisivo.",
+          "referenceAnswers": [
+            "Ik twijfelde tussen een auto en een e-bike. Een auto is comfortabel, maar duur. Een e-bike is goedkoper en gezonder, maar in de regen minder fijn. Uiteindelijk gaf de prijs de doorslag: ik koos de e-bike."
+          ],
+          "checklist": [
+            "Prós",
+            "Contras",
+            "de doorslag geven"
+          ],
+          "minWords": 30
+        },
+        {
+          "id": "s6-u01-l012-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-de-doorslag-geven"
+          ],
+          "translation": "O preço foi decisivo.",
+          "tokens": [
+            "De",
+            "prijs",
+            "gaf",
+            "de",
+            "doorslag"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l013",
+      "unitId": "s6-u01",
+      "order": 13,
+      "title": "Simplificar demais",
+      "description": "Dat is wel erg kort door de bocht.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Criticar simplificações e pedir nuance"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kort-door-de-bocht",
+          "nl": "kort door de bocht",
+          "pt": [
+            "simplista",
+            "apressado"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-zwart-wit",
+          "nl": "zwart-wit denken",
+          "pt": [
+            "pensar a preto e branco"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-nuance",
+          "nl": "nuance",
+          "pt": [
+            "nuance"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "nuances"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-generalisatie"
+      ],
+      "examples": [
+        {
+          "nl": "Dat is wel erg kort door de bocht.",
+          "pt": "Isso é bastante simplista."
+        },
+        {
+          "nl": "Je moet niet zo zwart-wit denken.",
+          "pt": "Não deves pensar tanto a preto e branco."
+        },
+        {
+          "nl": "Ik wil graag een nuance aanbrengen.",
+          "pt": "Gostaria de acrescentar uma nuance."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Nuance.",
+          "vocabRefs": [
+            "v-kort-door-de-bocht",
+            "v-zwart-wit",
+            "v-nuance"
+          ],
+          "pairs": [
+            {
+              "nl": "kort door de bocht",
+              "pt": "simplista"
+            },
+            {
+              "nl": "zwart-wit denken",
+              "pt": "pensar a preto e branco"
+            },
+            {
+              "nl": "nuance",
+              "pt": "nuance"
+            },
+            {
+              "nl": "nuanceren",
+              "pt": "matizar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Criticar.",
+          "vocabRefs": [
+            "v-kort-door-de-bocht"
+          ],
+          "prompt": "«Alle jongeren zitten alleen maar op hun telefoon.» Resposta adequada:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat is wel erg kort door de bocht; veel jongeren doen ook vrijwilligerswerk.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, altijd.",
+              "correct": false,
+              "feedback": "Aceita a generalização."
+            },
+            {
+              "id": "c",
+              "text": "Jongeren zijn zwart-wit.",
+              "correct": false,
+              "feedback": "Sem sentido."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-kort-door-de-bocht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Isso é bastante simplista.",
+          "answers": [
+            "Dat is wel erg kort door de bocht",
+            "Dat is erg kort door de bocht",
+            "Dat is nogal kort door de bocht"
+          ]
+        },
+        {
+          "id": "s6-u01-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "een nuance aanbrengen.",
+          "vocabRefs": [
+            "v-nuance"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Gostaria de acrescentar uma nuance.",
+          "answers": [
+            "Ik wil graag een nuance aanbrengen",
+            "Ik zou graag een nuance willen aanbrengen"
+          ]
+        },
+        {
+          "id": "s6-u01-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-zwart-wit"
+          ],
+          "sentence": "Het is niet zo ___: er zijn ook grijze gebieden.",
+          "translation": "Não é tão preto e branco: também há zonas cinzentas.",
+          "answers": [
+            "zwart-wit"
+          ],
+          "choices": [
+            "zwart-wit",
+            "kort",
+            "doorslaggevend"
+          ]
+        },
+        {
+          "id": "s6-u01-l013-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Depois de wil: infinitivo.",
+          "vocabRefs": [
+            "v-nuance"
+          ],
+          "tokens": [
+            "Ik",
+            "wil",
+            "graag",
+            "een",
+            "nuance",
+            "aanbrengt."
+          ],
+          "errorIndex": 5,
+          "correction": "aanbrengen"
+        },
+        {
+          "id": "s6-u01-l013-e07",
+          "type": "expression",
+          "instruction": "Escolha a opção certa.",
+          "explanation": "Imagem: cortar a curva.",
+          "vocabRefs": [
+            "v-kort-door-de-bocht"
+          ],
+          "expression": "kort door de bocht",
+          "literal": "curto pela curva",
+          "prompt": "O que significa?",
+          "options": [
+            {
+              "id": "a",
+              "text": "simplista, sem nuance",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "rápido e eficiente",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "uma estrada perigosa",
+              "correct": false,
+              "feedback": "Literal."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l013-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pedir nuance.",
+          "vocabRefs": [],
+          "audioText": "Volgens mij is de werkelijkheid iets genuanceerder.",
+          "answers": [
+            "Volgens mij is de werkelijkheid iets genuanceerder"
+          ],
+          "translation": "Na minha opinião a realidade é um pouco mais matizada."
+        },
+        {
+          "id": "s6-u01-l013-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-zwart-wit"
+          ],
+          "translation": "Não penses tão a preto e branco.",
+          "tokens": [
+            "Denk",
+            "niet",
+            "zo",
+            "zwart-wit"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l014",
+      "unitId": "s6-u01",
+      "order": 14,
+      "title": "Falácias: círculo e espantalho",
+      "description": "Dat is een cirkelredenering.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Reconhecer o raciocínio circular e o argumento do espantalho"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-cirkelredenering",
+          "nl": "cirkelredenering",
+          "pt": [
+            "raciocínio circular"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-stropop",
+          "nl": "stropopredenering",
+          "pt": [
+            "argumento do espantalho"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-aanname",
+          "nl": "aanname",
+          "pt": [
+            "pressuposto"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "aannames"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-drogreden",
+        "v-redenering"
+      ],
+      "examples": [
+        {
+          "nl": "«Het is waar, omdat het zo is» is een cirkelredenering.",
+          "pt": "«É verdade porque é assim» é um raciocínio circular."
+        },
+        {
+          "nl": "Dat heb ik niet gezegd; dat is een stropopredenering.",
+          "pt": "Eu não disse isso; isso é o argumento do espantalho."
+        },
+        {
+          "nl": "Je argument berust op een verkeerde aanname.",
+          "pt": "O teu argumento assenta num pressuposto errado."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-drogredenen1",
+          "title": "Duas falácias comuns",
+          "body": "**Cirkelredenering**: a conclusão já está na premissa (*Dit boek is betrouwbaar, want het staat in dit boek.*). **Stropopredenering**: deformar o argumento do outro para o atacar mais facilmente (*Jij wilt minder auto's? Dus jij wilt dat niemand meer naar zijn werk kan!*).",
+          "examples": [
+            {
+              "nl": "Dat zeg ik helemaal niet.",
+              "pt": "Eu não digo nada disso."
+            },
+            {
+              "nl": "Je verdraait mijn woorden.",
+              "pt": "Estás a distorcer as minhas palavras."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u01-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Falácias.",
+          "vocabRefs": [
+            "v-cirkelredenering",
+            "v-stropop",
+            "v-aanname",
+            "v-drogreden"
+          ],
+          "pairs": [
+            {
+              "nl": "cirkelredenering",
+              "pt": "raciocínio circular"
+            },
+            {
+              "nl": "stropopredenering",
+              "pt": "argumento do espantalho"
+            },
+            {
+              "nl": "aanname",
+              "pt": "pressuposto"
+            },
+            {
+              "nl": "drogreden",
+              "pt": "falácia"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l014-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Circular.",
+          "vocabRefs": [
+            "v-cirkelredenering"
+          ],
+          "prompt": "«Ik heb gelijk, want ik zeg altijd de waarheid, en dat is waar omdat ik het zeg.»",
+          "options": [
+            {
+              "id": "a",
+              "text": "cirkelredenering",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "stropopredenering",
+              "correct": false,
+              "feedback": "Não deforma o outro."
+            },
+            {
+              "id": "c",
+              "text": "een goed argument",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l014-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Deformação.",
+          "vocabRefs": [
+            "v-stropop"
+          ],
+          "prompt": "A: «We moeten iets minder vlees eten.» B: «Dus jij wilt alle boeren werkloos maken!»",
+          "options": [
+            {
+              "id": "a",
+              "text": "stropopredenering",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "cirkelredenering",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "een nuance",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l014-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Defender-se.",
+          "vocabRefs": [
+            "v-stropop"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Eu não disse isso.",
+          "answers": [
+            "Dat heb ik niet gezegd",
+            "Dat zei ik niet"
+          ]
+        },
+        {
+          "id": "s6-u01-l014-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "berusten op.",
+          "vocabRefs": [
+            "v-aanname"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O teu argumento assenta num pressuposto errado.",
+          "answers": [
+            "Je argument berust op een verkeerde aanname",
+            "Jouw argument berust op een verkeerde aanname",
+            "Je argument is gebaseerd op een verkeerde aanname"
+          ]
+        },
+        {
+          "id": "s6-u01-l014-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pressuposto.",
+          "vocabRefs": [
+            "v-aanname"
+          ],
+          "sentence": "Je argument berust op een ___ die niet klopt.",
+          "translation": "O teu argumento assenta num pressuposto que não está certo.",
+          "answers": [
+            "aanname"
+          ],
+          "choices": [
+            "aanname",
+            "stropop",
+            "nuance"
+          ]
+        },
+        {
+          "id": "s6-u01-l014-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular.",
+          "vocabRefs": [
+            "v-cirkelredenering"
+          ],
+          "tokens": [
+            "Dat",
+            "is",
+            "een",
+            "typische",
+            "cirkelredeneringen."
+          ],
+          "errorIndex": 4,
+          "correction": "cirkelredenering."
+        },
+        {
+          "id": "s6-u01-l014-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Defesa.",
+          "vocabRefs": [
+            "v-stropop"
+          ],
+          "audioText": "Je verdraait mijn woorden.",
+          "answers": [
+            "Je verdraait mijn woorden"
+          ],
+          "translation": "Estás a distorcer as minhas palavras."
+        },
+        {
+          "id": "s6-u01-l014-e09",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Desmontar o espantalho.",
+          "vocabRefs": [
+            "v-stropop"
+          ],
+          "lines": [
+            {
+              "speaker": "Tegenstander",
+              "nl": "Dus jij vindt dat niemand meer mag autorijden?",
+              "pt": "Então achas que ninguém pode andar de carro?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat heb ik niet gezegd. Ik pleit alleen voor minder auto's in het centrum.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, niemand!",
+              "correct": false,
+              "feedback": "Aceita o espantalho."
+            },
+            {
+              "id": "c",
+              "text": "Cirkel.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l015",
+      "unitId": "s6-u01",
+      "order": 15,
+      "title": "Falácias: rampa e autoridade",
+      "description": "Dat is een hellend vlak.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Reconhecer a rampa escorregadia, o argumento de autoridade e conclusões precipitadas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-hellend-vlak",
+          "nl": "een hellend vlak",
+          "pt": [
+            "uma rampa escorregadia"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-autoriteitsargument",
+          "nl": "autoriteitsargument",
+          "pt": [
+            "argumento de autoridade"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-voorbarig",
+          "nl": "voorbarig",
+          "pt": [
+            "precipitado"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-drogreden",
+        "v-generalisatie",
+        "v-op-de-persoon"
+      ],
+      "examples": [
+        {
+          "nl": "Als we dit toestaan, komen we op een hellend vlak.",
+          "pt": "Se permitirmos isto, entramos numa rampa escorregadia."
+        },
+        {
+          "nl": "«Een bekende zanger zegt het, dus het klopt» is een autoriteitsargument.",
+          "pt": "«Um cantor famoso diz isso, logo está certo» é um argumento de autoridade."
+        },
+        {
+          "nl": "Dat is een voorbarige conclusie.",
+          "pt": "Isso é uma conclusão precipitada."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l015-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Falácias.",
+          "vocabRefs": [
+            "v-hellend-vlak",
+            "v-autoriteitsargument",
+            "v-voorbarig",
+            "v-op-de-persoon"
+          ],
+          "pairs": [
+            {
+              "nl": "een hellend vlak",
+              "pt": "rampa escorregadia"
+            },
+            {
+              "nl": "autoriteitsargument",
+              "pt": "argumento de autoridade"
+            },
+            {
+              "nl": "voorbarig",
+              "pt": "precipitado"
+            },
+            {
+              "nl": "op de persoon spelen",
+              "pt": "atacar a pessoa"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Rampa.",
+          "vocabRefs": [
+            "v-hellend-vlak"
+          ],
+          "prompt": "«Als we de winkels op zondag openen, moeten straks ook scholen op zondag open!»",
+          "options": [
+            {
+              "id": "a",
+              "text": "hellend vlak",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "autoriteitsargument",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "nuance",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l015-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Autoridade.",
+          "vocabRefs": [
+            "v-autoriteitsargument"
+          ],
+          "prompt": "«Deze crème werkt, want een beroemde voetballer gebruikt hem.»",
+          "options": [
+            {
+              "id": "a",
+              "text": "autoriteitsargument (autoridade irrelevante)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "cirkelredenering",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "een sterk argument",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l015-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Generalização.",
+          "vocabRefs": [
+            "v-voorbarig",
+            "v-generalisatie"
+          ],
+          "prompt": "«Eén buurman is onvriendelijk, dus alle Nederlanders zijn onvriendelijk.»",
+          "options": [
+            {
+              "id": "a",
+              "text": "voorbarige generalisatie",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "hellend vlak",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "goed onderbouwd",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l015-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "voorbarig + e.",
+          "vocabRefs": [
+            "v-voorbarig"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Isso é uma conclusão precipitada.",
+          "answers": [
+            "Dat is een voorbarige conclusie",
+            "Dat is een te voorbarige conclusie"
+          ]
+        },
+        {
+          "id": "s6-u01-l015-e06",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het argument → het autoriteitsargument.",
+          "vocabRefs": [
+            "v-autoriteitsargument"
+          ],
+          "noun": "autoriteitsargument",
+          "pt": "argumento de autoridade",
+          "article": "het"
+        },
+        {
+          "id": "s6-u01-l015-e07",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Predicativo: sem -e.",
+          "vocabRefs": [
+            "v-voorbarig"
+          ],
+          "sentence": "Het is te ___ om nu al conclusies te trekken.",
+          "translation": "É demasiado precipitado tirar já conclusões.",
+          "answers": [
+            "voorbarig"
+          ],
+          "choices": [
+            "voorbarig",
+            "voorbarige",
+            "hellend"
+          ]
+        },
+        {
+          "id": "s6-u01-l015-e08",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Atributivo com de-palavra: -e.",
+          "vocabRefs": [
+            "v-voorbarig"
+          ],
+          "tokens": [
+            "Dat",
+            "is",
+            "een",
+            "voorbarig",
+            "conclusie."
+          ],
+          "errorIndex": 3,
+          "correction": "voorbarige"
+        },
+        {
+          "id": "s6-u01-l015-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Contra a autoridade.",
+          "vocabRefs": [
+            "v-autoriteitsargument"
+          ],
+          "audioText": "Een expert op het ene gebied is niet automatisch een expert op het andere.",
+          "answers": [
+            "Een expert op het ene gebied is niet automatisch een expert op het andere"
+          ],
+          "translation": "Um especialista numa área não é automaticamente especialista noutra."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l016",
+      "unitId": "s6-u01",
+      "order": 16,
+      "title": "Credível ou não?",
+      "description": "Dat klinkt aannemelijk.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Avaliar a plausibilidade e a credibilidade de uma afirmação"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-aannemelijk",
+          "nl": "aannemelijk",
+          "pt": [
+            "plausível"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-geloofwaardig",
+          "nl": "geloofwaardig",
+          "pt": [
+            "credível"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-veronderstelling",
+          "nl": "veronderstelling",
+          "pt": [
+            "suposição"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "veronderstellingen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-betrouwbaar",
+        "v-bron",
+        "v-bewijs"
+      ],
+      "examples": [
+        {
+          "nl": "Zijn verklaring klinkt aannemelijk.",
+          "pt": "A explicação dele parece plausível."
+        },
+        {
+          "nl": "De getuige was niet erg geloofwaardig.",
+          "pt": "A testemunha não era muito credível."
+        },
+        {
+          "nl": "Dat is maar een veronderstelling.",
+          "pt": "Isso é só uma suposição."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l016-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Credibilidade.",
+          "vocabRefs": [
+            "v-aannemelijk",
+            "v-geloofwaardig",
+            "v-veronderstelling",
+            "v-bewijs"
+          ],
+          "pairs": [
+            {
+              "nl": "aannemelijk",
+              "pt": "plausível"
+            },
+            {
+              "nl": "geloofwaardig",
+              "pt": "credível"
+            },
+            {
+              "nl": "veronderstelling",
+              "pt": "suposição"
+            },
+            {
+              "nl": "bewijs",
+              "pt": "prova"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l016-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Graus.",
+          "vocabRefs": [
+            "v-aannemelijk"
+          ],
+          "prompt": "Diferença: «aannemelijk» vs. «bewezen»",
+          "options": [
+            {
+              "id": "a",
+              "text": "plausível vs. provado",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "iguais",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "falso vs. verdadeiro",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l016-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aannemelijk.",
+          "vocabRefs": [
+            "v-aannemelijk"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Isso parece plausível.",
+          "answers": [
+            "Dat klinkt aannemelijk",
+            "Dat lijkt aannemelijk"
+          ]
+        },
+        {
+          "id": "s6-u01-l016-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "maar = só.",
+          "vocabRefs": [
+            "v-veronderstelling"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Isso é só uma suposição.",
+          "answers": [
+            "Dat is maar een veronderstelling",
+            "Dat is slechts een veronderstelling",
+            "Dat is alleen een veronderstelling"
+          ]
+        },
+        {
+          "id": "s6-u01-l016-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Suposição.",
+          "vocabRefs": [
+            "v-veronderstelling"
+          ],
+          "sentence": "Zonder bewijs is het slechts een ___.",
+          "translation": "Sem provas é apenas uma suposição.",
+          "answers": [
+            "veronderstelling"
+          ],
+          "choices": [
+            "veronderstelling",
+            "bewijs",
+            "bron"
+          ]
+        },
+        {
+          "id": "s6-u01-l016-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Predicativo: sem -e.",
+          "vocabRefs": [
+            "v-geloofwaardig"
+          ],
+          "tokens": [
+            "Zijn",
+            "verhaal",
+            "is",
+            "niet",
+            "erg",
+            "geloofwaardige."
+          ],
+          "errorIndex": 5,
+          "correction": "geloofwaardig."
+        },
+        {
+          "id": "s6-u01-l016-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Espírito crítico.",
+          "vocabRefs": [
+            "v-aannemelijk",
+            "v-bron"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Ik heb gelezen dat koffie je leven met tien jaar verlengt!",
+              "pt": "Li que o café prolonga a vida em dez anos!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hm, dat klinkt niet erg aannemelijk. Uit welke bron komt dat?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Geloofwaardig!",
+              "correct": false,
+              "feedback": "Sem espírito crítico."
+            },
+            {
+              "id": "c",
+              "text": "Veronderstelling koffie.",
+              "correct": false,
+              "feedback": "Sem sentido."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l016-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Precisão.",
+          "vocabRefs": [
+            "v-aannemelijk"
+          ],
+          "audioText": "Het is aannemelijk, maar nog niet bewezen.",
+          "answers": [
+            "Het is aannemelijk, maar nog niet bewezen",
+            "Het is aannemelijk maar nog niet bewezen"
+          ],
+          "translation": "É plausível, mas ainda não está provado."
+        },
+        {
+          "id": "s6-u01-l016-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-geloofwaardig"
+          ],
+          "translation": "A testemunha não era credível.",
+          "tokens": [
+            "De",
+            "getuige",
+            "was",
+            "niet",
+            "geloofwaardig"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l017",
+      "unitId": "s6-u01",
+      "order": 17,
+      "title": "Lógica e consequências",
+      "description": "Het een sluit het ander niet uit.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Usar expressões de lógica e consequência num argumento"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-logisch",
+          "nl": "logisch",
+          "pt": [
+            "lógico"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-consequentie",
+          "nl": "consequentie",
+          "pt": [
+            "consequência"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "consequenties"
+        },
+        {
+          "id": "v-sluit-niet-uit",
+          "nl": "het een sluit het ander niet uit",
+          "pt": [
+            "uma coisa não exclui a outra"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-gevolg",
+        "v-oorzaak",
+        "v-redenering"
+      ],
+      "examples": [
+        {
+          "nl": "Dat is een logische stap.",
+          "pt": "Isso é um passo lógico."
+        },
+        {
+          "nl": "Heb je over de consequenties nagedacht?",
+          "pt": "Pensaste nas consequências?"
+        },
+        {
+          "nl": "Je kunt sparen én genieten; het een sluit het ander niet uit.",
+          "pt": "Podes poupar e aproveitar; uma coisa não exclui a outra."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l017-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Lógica.",
+          "vocabRefs": [
+            "v-logisch",
+            "v-consequentie",
+            "v-sluit-niet-uit",
+            "v-oorzaak"
+          ],
+          "pairs": [
+            {
+              "nl": "logisch",
+              "pt": "lógico"
+            },
+            {
+              "nl": "consequentie",
+              "pt": "consequência"
+            },
+            {
+              "nl": "het een sluit het ander niet uit",
+              "pt": "uma coisa não exclui a outra"
+            },
+            {
+              "nl": "oorzaak",
+              "pt": "causa"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l017-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-sluit-niet-uit"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Uma coisa não exclui a outra.",
+          "answers": [
+            "Het een sluit het ander niet uit",
+            "Het ene sluit het andere niet uit"
+          ]
+        },
+        {
+          "id": "s6-u01-l017-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "nadenken over.",
+          "vocabRefs": [
+            "v-consequentie"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Pensaste nas consequências?",
+          "answers": [
+            "Heb je over de consequenties nagedacht",
+            "Heb je aan de consequenties gedacht",
+            "Heb je over de consequenties nagedacht?"
+          ]
+        },
+        {
+          "id": "s6-u01-l017-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Compatibilidade.",
+          "vocabRefs": [
+            "v-sluit-niet-uit"
+          ],
+          "prompt": "«Je kunt milieubewust zijn én van reizen houden.» Que expressão encaixa?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het een sluit het ander niet uit.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dat is een cirkelredenering.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Dat is voorbarig.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l017-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Lógico.",
+          "vocabRefs": [
+            "v-logisch"
+          ],
+          "sentence": "Het is niet meer dan ___ dat de prijzen stijgen als de vraag groeit.",
+          "translation": "É mais do que lógico que os preços subam se a procura crescer.",
+          "answers": [
+            "logisch"
+          ],
+          "choices": [
+            "logisch",
+            "logische",
+            "consequentie"
+          ]
+        },
+        {
+          "id": "s6-u01-l017-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de stap → logische.",
+          "vocabRefs": [
+            "v-logisch"
+          ],
+          "tokens": [
+            "Dat",
+            "is",
+            "een",
+            "logisch",
+            "stap."
+          ],
+          "errorIndex": 3,
+          "correction": "logische"
+        },
+        {
+          "id": "s6-u01-l017-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-consequentie"
+          ],
+          "audioText": "Elke keuze heeft consequenties.",
+          "answers": [
+            "Elke keuze heeft consequenties"
+          ],
+          "translation": "Cada escolha tem consequências."
+        },
+        {
+          "id": "s6-u01-l017-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Contrariar.",
+          "vocabRefs": [
+            "v-sluit-niet-uit"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriend",
+              "nl": "Je kunt niet tegelijk carrière maken en een gezin hebben.",
+              "pt": "Não podes fazer carreira e ter família ao mesmo tempo."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Waarom niet? Het een sluit het ander niet uit, al is het soms zwaar.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Logisch.",
+              "correct": false,
+              "feedback": "Aceita sem pensar."
+            },
+            {
+              "id": "c",
+              "text": "Consequentie!",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l017-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-logisch"
+          ],
+          "translation": "Isso é lógico.",
+          "tokens": [
+            "Dat",
+            "is",
+            "logisch"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l018",
+      "unitId": "s6-u01",
+      "order": 18,
+      "title": "Emoção e razão",
+      "description": "Laten we rationeel blijven.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Distinguir argumentos emocionais e racionais"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-emotioneel",
+          "nl": "emotioneel",
+          "pt": [
+            "emocional"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-rationeel",
+          "nl": "rationeel",
+          "pt": [
+            "racional"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-overdrijving",
+          "nl": "overdrijving",
+          "pt": [
+            "exagero"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "overdrijvingen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-overdrijven"
+      ],
+      "examples": [
+        {
+          "nl": "Laten we rationeel blijven.",
+          "pt": "Vamos manter-nos racionais."
+        },
+        {
+          "nl": "Hij reageerde erg emotioneel.",
+          "pt": "Ele reagiu de forma muito emocional."
+        },
+        {
+          "nl": "Dat is een flinke overdrijving.",
+          "pt": "Isso é um exagero e peras."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l018-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Emoção/razão.",
+          "vocabRefs": [
+            "v-emotioneel",
+            "v-rationeel",
+            "v-overdrijving",
+            "v-overdrijven"
+          ],
+          "pairs": [
+            {
+              "nl": "emotioneel",
+              "pt": "emocional"
+            },
+            {
+              "nl": "rationeel",
+              "pt": "racional"
+            },
+            {
+              "nl": "overdrijving",
+              "pt": "exagero"
+            },
+            {
+              "nl": "overdrijven",
+              "pt": "exagerar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l018-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Racional.",
+          "vocabRefs": [
+            "v-rationeel"
+          ],
+          "prompt": "Qual é um argumento racional?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Uit cijfers van de gemeente blijkt dat er minder ongelukken zijn sinds de nieuwe regels.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Denk aan de arme kinderen!",
+              "correct": false,
+              "feedback": "Apelo emocional."
+            },
+            {
+              "id": "c",
+              "text": "Iedereen weet dat!",
+              "correct": false,
+              "feedback": "Sem prova."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l018-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Exagero.",
+          "vocabRefs": [
+            "v-overdrijving"
+          ],
+          "prompt": "«Dit is de ergste beslissing in de geschiedenis van de mensheid!»",
+          "options": [
+            {
+              "id": "a",
+              "text": "overdrijving",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "nuance",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "rationeel argument",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l018-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "laten we.",
+          "vocabRefs": [
+            "v-rationeel"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Vamos manter-nos racionais.",
+          "answers": [
+            "Laten we rationeel blijven"
+          ]
+        },
+        {
+          "id": "s6-u01-l018-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Advérbio = adjetivo.",
+          "vocabRefs": [
+            "v-emotioneel"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele reagiu de forma muito emocional.",
+          "answers": [
+            "Hij reageerde erg emotioneel",
+            "Hij reageerde heel emotioneel"
+          ]
+        },
+        {
+          "id": "s6-u01-l018-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Exagero.",
+          "vocabRefs": [
+            "v-overdrijving"
+          ],
+          "sentence": "Dat is toch een flinke ___!",
+          "translation": "Isso é mesmo um grande exagero!",
+          "answers": [
+            "overdrijving"
+          ],
+          "choices": [
+            "overdrijving",
+            "overdrijven",
+            "overdreven"
+          ]
+        },
+        {
+          "id": "s6-u01-l018-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Advérbio: sem -e.",
+          "vocabRefs": [
+            "v-emotioneel"
+          ],
+          "tokens": [
+            "Hij",
+            "reageerde",
+            "erg",
+            "emotionele."
+          ],
+          "errorIndex": 3,
+          "correction": "emotioneel."
+        },
+        {
+          "id": "s6-u01-l018-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Equilíbrio.",
+          "vocabRefs": [
+            "v-emotioneel"
+          ],
+          "prompt": "Num debate, os apelos emocionais…",
+          "options": [
+            {
+              "id": "a",
+              "text": "podem convencer, mas sem factos são fracos",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "são sempre proibidos",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "são sempre os melhores",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l018-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Acalmar.",
+          "vocabRefs": [
+            "v-rationeel"
+          ],
+          "audioText": "Ik begrijp dat u boos bent, maar laten we naar de feiten kijken.",
+          "answers": [
+            "Ik begrijp dat u boos bent, maar laten we naar de feiten kijken",
+            "Ik begrijp dat u boos bent maar laten we naar de feiten kijken"
+          ],
+          "translation": "Compreendo que esteja zangado, mas vamos olhar para os factos."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l019",
+      "unitId": "s6-u01",
+      "order": 19,
+      "title": "O debate formal",
+      "description": "U heeft nog één minuut spreektijd.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Perceber as regras e a linguagem de um debate formal"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-debat",
+          "nl": "debat",
+          "pt": [
+            "debate"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "debatten"
+        },
+        {
+          "id": "v-spreektijd",
+          "nl": "spreektijd",
+          "pt": [
+            "tempo de intervenção"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-interruptie",
+          "nl": "interruptie",
+          "pt": [
+            "interrupção (pedido de palavra)"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "interrupties"
+        },
+        {
+          "id": "v-debatteren",
+          "nl": "debatteren",
+          "pt": [
+            "debater"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-voorzitter",
+        "v-voorstander",
+        "v-tegenstander"
+      ],
+      "examples": [
+        {
+          "nl": "U heeft nog één minuut spreektijd.",
+          "pt": "Tem ainda um minuto de intervenção."
+        },
+        {
+          "nl": "Mag ik een interruptie plaatsen?",
+          "pt": "Posso fazer uma interrupção?"
+        },
+        {
+          "nl": "We debatteren vandaag over de woningnood.",
+          "pt": "Hoje debatemos a crise da habitação."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l019-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Debate.",
+          "vocabRefs": [
+            "v-debat",
+            "v-spreektijd",
+            "v-interruptie",
+            "v-debatteren"
+          ],
+          "pairs": [
+            {
+              "nl": "debat",
+              "pt": "debate"
+            },
+            {
+              "nl": "spreektijd",
+              "pt": "tempo de intervenção"
+            },
+            {
+              "nl": "interruptie",
+              "pt": "interrupção"
+            },
+            {
+              "nl": "debatteren",
+              "pt": "debater"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l019-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het debat.",
+          "vocabRefs": [
+            "v-debat"
+          ],
+          "noun": "debat",
+          "pt": "debate",
+          "article": "het"
+        },
+        {
+          "id": "s6-u01-l019-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "spreektijd.",
+          "vocabRefs": [
+            "v-spreektijd"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Tem ainda um minuto.",
+          "answers": [
+            "U heeft nog één minuut spreektijd",
+            "U heeft nog een minuut",
+            "U heeft nog één minuut"
+          ]
+        },
+        {
+          "id": "s6-u01-l019-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "debatteren over.",
+          "vocabRefs": [
+            "v-debatteren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Hoje debatemos a habitação.",
+          "answers": [
+            "Vandaag debatteren we over wonen",
+            "We debatteren vandaag over de woningnood",
+            "Vandaag debatteren we over de woningnood"
+          ]
+        },
+        {
+          "id": "s6-u01-l019-e05",
+          "type": "comprehension",
+          "instruction": "Leia o diálogo e responda.",
+          "explanation": "Debate municipal (fictício).",
+          "vocabRefs": [
+            "v-interruptie",
+            "v-spreektijd"
+          ],
+          "kind": "dialogue",
+          "title": "In de gemeenteraad",
+          "text": "Voorzitter: Het woord is aan mevrouw Bakker.\nBakker: Dank u, voorzitter. Wij zijn voorstander van meer sociale huurwoningen.\nVoorzitter: Er is een interruptie van de heer Smit.\nSmit: Hoe wilt u dat betalen?\nBakker: Goede vraag. Daar kom ik zo op terug.\nVoorzitter: U heeft nog twee minuten spreektijd.",
+          "questions": [
+            {
+              "prompt": "O que defende a sra. Bakker?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Mais habitação social",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Menos impostos",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Mais estradas",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que pergunta o sr. Smit?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Como vai pagar",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Quando começa",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Onde",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quanto tempo resta?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Dois minutos",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Um minuto",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Cinco minutos",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l019-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pedido de palavra.",
+          "vocabRefs": [
+            "v-interruptie"
+          ],
+          "sentence": "Mag ik een ___ plaatsen, voorzitter?",
+          "translation": "Posso fazer uma interrupção, senhor presidente?",
+          "answers": [
+            "interruptie"
+          ],
+          "choices": [
+            "interruptie",
+            "debat",
+            "spreektijd"
+          ]
+        },
+        {
+          "id": "s6-u01-l019-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "we: debatteren.",
+          "vocabRefs": [
+            "v-debatteren"
+          ],
+          "tokens": [
+            "We",
+            "debatteert",
+            "vandaag",
+            "over",
+            "het",
+            "klimaat."
+          ],
+          "errorIndex": 1,
+          "correction": "debatteren"
+        },
+        {
+          "id": "s6-u01-l019-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Formalidade.",
+          "vocabRefs": [
+            "v-voorzitter"
+          ],
+          "prompt": "Num debate formal neerlandês fala-se ao presidente com…",
+          "options": [
+            {
+              "id": "a",
+              "text": "«voorzitter»",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "«jij»",
+              "correct": false,
+              "feedback": "Informal demais."
+            },
+            {
+              "id": "c",
+              "text": "«hé»",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l019-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Fórmula.",
+          "vocabRefs": [
+            "v-debat"
+          ],
+          "audioText": "Het woord is aan de heer De Jong.",
+          "answers": [
+            "Het woord is aan de heer De Jong",
+            "Het woord is aan de heer de Jong"
+          ],
+          "translation": "A palavra é do senhor De Jong."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l020",
+      "unitId": "s6-u01",
+      "order": 20,
+      "title": "A réplica",
+      "description": "U legt mij woorden in de mond.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Responder a ataques e corrigir quem deturpa as nossas palavras"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-repliek",
+          "nl": "repliek",
+          "pt": [
+            "réplica"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-woorden-in-de-mond",
+          "nl": "iemand woorden in de mond leggen",
+          "pt": [
+            "pôr palavras na boca de alguém"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-verwijten",
+          "nl": "verwijten",
+          "pt": [
+            "censurar",
+            "acusar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-reageren-op",
+        "v-terugkomen-op",
+        "v-stropop"
+      ],
+      "examples": [
+        {
+          "nl": "In de repliek reageren de sprekers op elkaar.",
+          "pt": "Na réplica os oradores respondem uns aos outros."
+        },
+        {
+          "nl": "U legt mij woorden in de mond.",
+          "pt": "Está a pôr-me palavras na boca."
+        },
+        {
+          "nl": "Hij verwijt mij dat ik niet luister.",
+          "pt": "Ele acusa-me de não ouvir."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l020-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Réplica.",
+          "vocabRefs": [
+            "v-repliek",
+            "v-woorden-in-de-mond",
+            "v-verwijten",
+            "v-reageren-op"
+          ],
+          "pairs": [
+            {
+              "nl": "repliek",
+              "pt": "réplica"
+            },
+            {
+              "nl": "iemand woorden in de mond leggen",
+              "pt": "pôr palavras na boca"
+            },
+            {
+              "nl": "verwijten",
+              "pt": "censurar"
+            },
+            {
+              "nl": "reageren op",
+              "pt": "reagir a"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l020-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-woorden-in-de-mond"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Está a pôr-me palavras na boca.",
+          "answers": [
+            "U legt mij woorden in de mond",
+            "Je legt me woorden in de mond",
+            "U legt me woorden in de mond"
+          ]
+        },
+        {
+          "id": "s6-u01-l020-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verwijten + dat.",
+          "vocabRefs": [
+            "v-verwijten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele acusa-me de não ouvir.",
+          "answers": [
+            "Hij verwijt mij dat ik niet luister",
+            "Hij verwijt me dat ik niet luister"
+          ]
+        },
+        {
+          "id": "s6-u01-l020-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Réplica.",
+          "vocabRefs": [
+            "v-verwijten"
+          ],
+          "prompt": "«U verwijt mij dat ik niets doe, maar…» A pessoa está a…",
+          "options": [
+            {
+              "id": "a",
+              "text": "retomar a acusação para a rebater",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "concordar",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "mudar de assunto",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l020-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "reageren op.",
+          "vocabRefs": [
+            "v-reageren-op"
+          ],
+          "sentence": "Ik wil graag ___ op wat de vorige spreker zei.",
+          "translation": "Gostaria de reagir ao que disse o orador anterior.",
+          "answers": [
+            "reageren"
+          ],
+          "choices": [
+            "reageren",
+            "verwijten",
+            "debatteren"
+          ]
+        },
+        {
+          "id": "s6-u01-l020-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Subordinada: …dat ik niet luister.",
+          "vocabRefs": [
+            "v-verwijten"
+          ],
+          "tokens": [
+            "Hij",
+            "verwijt",
+            "mij",
+            "dat",
+            "ik",
+            "luister",
+            "niet."
+          ],
+          "errorIndex": 5,
+          "correction": "niet"
+        },
+        {
+          "id": "s6-u01-l020-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Corrigir.",
+          "vocabRefs": [
+            "v-woorden-in-de-mond"
+          ],
+          "lines": [
+            {
+              "speaker": "Tegenstander",
+              "nl": "U wilt dus de belastingen verdubbelen!",
+              "pt": "Então quer duplicar os impostos!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Nu legt u mij woorden in de mond. Ik heb gezegd dat we de belastingen eerlijker willen verdelen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, verdubbelen.",
+              "correct": false,
+              "feedback": "Aceita."
+            },
+            {
+              "id": "c",
+              "text": "Repliek!",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l020-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Anunciar.",
+          "vocabRefs": [
+            "v-repliek",
+            "v-terugkomen-op"
+          ],
+          "audioText": "Daar wil ik in mijn repliek graag op terugkomen.",
+          "answers": [
+            "Daar wil ik in mijn repliek graag op terugkomen"
+          ],
+          "translation": "Gostaria de voltar a isso na minha réplica."
+        },
+        {
+          "id": "s6-u01-l020-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-woorden-in-de-mond"
+          ],
+          "translation": "Está a pôr-me palavras na boca.",
+          "tokens": [
+            "U",
+            "legt",
+            "mij",
+            "woorden",
+            "in",
+            "de",
+            "mond"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l021",
+      "unitId": "s6-u01",
+      "order": 21,
+      "title": "Defender uma causa",
+      "description": "Ik houd een pleidooi voor…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Fazer uma defesa final convincente"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-pleidooi",
+          "nl": "pleidooi",
+          "pt": [
+            "defesa",
+            "apelo"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "pleidooien"
+        },
+        {
+          "id": "v-een-beroep-doen-op",
+          "nl": "een beroep doen op",
+          "pt": [
+            "apelar a"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ik-roep-u-op",
+          "nl": "ik roep u op om … te",
+          "pt": [
+            "apelo-vos a …"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-tot-slot",
+        "v-overtuigen",
+        "v-kortom"
+      ],
+      "examples": [
+        {
+          "nl": "Ik houd een pleidooi voor meer groen in de stad.",
+          "pt": "Faço uma defesa de mais espaços verdes na cidade."
+        },
+        {
+          "nl": "Ik doe een beroep op uw gezond verstand.",
+          "pt": "Apelo ao vosso bom senso."
+        },
+        {
+          "nl": "Ik roep u op om voor dit voorstel te stemmen.",
+          "pt": "Apelo-vos a votar a favor desta proposta."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l021-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Apelo final.",
+          "vocabRefs": [
+            "v-pleidooi",
+            "v-een-beroep-doen-op",
+            "v-ik-roep-u-op",
+            "v-overtuigen"
+          ],
+          "pairs": [
+            {
+              "nl": "pleidooi",
+              "pt": "defesa"
+            },
+            {
+              "nl": "een beroep doen op",
+              "pt": "apelar a"
+            },
+            {
+              "nl": "ik roep u op om … te",
+              "pt": "apelo-vos a"
+            },
+            {
+              "nl": "overtuigen",
+              "pt": "convencer"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l021-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het pleidooi.",
+          "vocabRefs": [
+            "v-pleidooi"
+          ],
+          "noun": "pleidooi",
+          "pt": "defesa",
+          "article": "het"
+        },
+        {
+          "id": "s6-u01-l021-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "een beroep doen op.",
+          "vocabRefs": [
+            "v-een-beroep-doen-op"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Apelo ao vosso bom senso.",
+          "answers": [
+            "Ik doe een beroep op uw gezond verstand",
+            "Ik doe een beroep op jullie gezond verstand"
+          ]
+        },
+        {
+          "id": "s6-u01-l021-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "oproepen om … te.",
+          "vocabRefs": [
+            "v-ik-roep-u-op"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Apelo-vos a votar a favor.",
+          "answers": [
+            "Ik roep u op om voor te stemmen",
+            "Ik roep jullie op om voor te stemmen",
+            "Ik roep u op voor te stemmen"
+          ]
+        },
+        {
+          "id": "s6-u01-l021-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Expressão: een pleidooi houden.",
+          "vocabRefs": [
+            "v-pleidooi"
+          ],
+          "sentence": "Ik houd een ___ voor gratis openbaar vervoer voor ouderen.",
+          "translation": "Faço uma defesa de transporte público gratuito para idosos.",
+          "answers": [
+            "pleidooi"
+          ],
+          "choices": [
+            "pleidooi",
+            "beroep",
+            "debat"
+          ]
+        },
+        {
+          "id": "s6-u01-l021-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "beroep doen op.",
+          "vocabRefs": [
+            "v-een-beroep-doen-op"
+          ],
+          "tokens": [
+            "Ik",
+            "doe",
+            "een",
+            "beroep",
+            "aan",
+            "uw",
+            "verstand."
+          ],
+          "errorIndex": 4,
+          "correction": "op"
+        },
+        {
+          "id": "s6-u01-l021-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Apelo.",
+          "vocabRefs": [
+            "v-pleidooi",
+            "v-ik-roep-u-op"
+          ],
+          "prompt": "Escreva um pequeno apelo final (4–5 frases) para um debate sobre «mais ciclovias na sua cidade». Use «tot slot», «ik doe een beroep op» e «ik roep u op om … te».",
+          "referenceAnswers": [
+            "Tot slot wil ik nog één ding zeggen. Fietspaden maken onze stad veiliger, gezonder en stiller. Ik doe een beroep op uw verantwoordelijkheid voor de volgende generatie. Ik roep u op om vanavond voor dit plan te stemmen."
+          ],
+          "checklist": [
+            "tot slot",
+            "een beroep doen op",
+            "oproepen om … te"
+          ],
+          "minWords": 30
+        },
+        {
+          "id": "s6-u01-l021-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Fecho.",
+          "vocabRefs": [
+            "v-ik-roep-u-op"
+          ],
+          "audioText": "Kortom: ik roep u op om dit voorstel te steunen.",
+          "answers": [
+            "Kortom: ik roep u op om dit voorstel te steunen",
+            "Kortom, ik roep u op om dit voorstel te steunen"
+          ],
+          "translation": "Em suma: apelo-vos a apoiar esta proposta."
+        },
+        {
+          "id": "s6-u01-l021-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-een-beroep-doen-op"
+          ],
+          "translation": "Apelo ao vosso bom senso.",
+          "tokens": [
+            "Ik",
+            "doe",
+            "een",
+            "beroep",
+            "op",
+            "uw",
+            "gezond",
+            "verstand"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l022",
+      "unitId": "s6-u01",
+      "order": 22,
+      "title": "Perguntas difíceis",
+      "description": "Daar kom ik zo op terug.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Lidar com perguntas difíceis sem fugir"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ontwijken",
+          "nl": "een vraag ontwijken",
+          "pt": [
+            "fugir a uma pergunta"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-daar-kom-ik-op-terug",
+          "nl": "daar kom ik zo op terug",
+          "pt": [
+            "já volto a isso"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-eerlijk-antwoord",
+          "nl": "een eerlijk antwoord",
+          "pt": [
+            "uma resposta sincera"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-terugkomen-op"
+      ],
+      "examples": [
+        {
+          "nl": "U ontwijkt de vraag.",
+          "pt": "Está a fugir à pergunta."
+        },
+        {
+          "nl": "Goede vraag, daar kom ik zo op terug.",
+          "pt": "Boa pergunta, já volto a isso."
+        },
+        {
+          "nl": "Ik wil graag een eerlijk antwoord.",
+          "pt": "Queria uma resposta sincera."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l022-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Perguntas.",
+          "vocabRefs": [
+            "v-ontwijken",
+            "v-daar-kom-ik-op-terug",
+            "v-eerlijk-antwoord"
+          ],
+          "pairs": [
+            {
+              "nl": "een vraag ontwijken",
+              "pt": "fugir a uma pergunta"
+            },
+            {
+              "nl": "daar kom ik zo op terug",
+              "pt": "já volto a isso"
+            },
+            {
+              "nl": "een eerlijk antwoord",
+              "pt": "resposta sincera"
+            },
+            {
+              "nl": "goede vraag",
+              "pt": "boa pergunta"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l022-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "ontwijken.",
+          "vocabRefs": [
+            "v-ontwijken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Está a fugir à pergunta.",
+          "answers": [
+            "U ontwijkt de vraag",
+            "Je ontwijkt de vraag",
+            "Jij ontwijkt de vraag"
+          ]
+        },
+        {
+          "id": "s6-u01-l022-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "terugkomen op.",
+          "vocabRefs": [
+            "v-daar-kom-ik-op-terug"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Já volto a isso.",
+          "answers": [
+            "Daar kom ik zo op terug",
+            "Ik kom daar zo op terug"
+          ]
+        },
+        {
+          "id": "s6-u01-l022-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Honestidade.",
+          "vocabRefs": [
+            "v-eerlijk-antwoord"
+          ],
+          "prompt": "Se não sabe a resposta, o mais honesto é dizer…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat weet ik niet precies; ik zoek het voor u uit.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Volgende vraag!",
+              "correct": false,
+              "feedback": "Foge."
+            },
+            {
+              "id": "c",
+              "text": "Dat is een domme vraag.",
+              "correct": false,
+              "feedback": "Rude."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l022-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "u + t.",
+          "vocabRefs": [
+            "v-ontwijken"
+          ],
+          "sentence": "U ___ mijn vraag. Kunt u gewoon ja of nee zeggen?",
+          "translation": "Está a fugir à minha pergunta. Pode simplesmente dizer sim ou não?",
+          "answers": [
+            "ontwijkt"
+          ],
+          "choices": [
+            "ontwijkt",
+            "ontwijk",
+            "ontwijken"
+          ]
+        },
+        {
+          "id": "s6-u01-l022-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Separável: kom … terug.",
+          "vocabRefs": [
+            "v-daar-kom-ik-op-terug"
+          ],
+          "tokens": [
+            "Daar",
+            "kom",
+            "ik",
+            "zo",
+            "op",
+            "terugkomen."
+          ],
+          "errorIndex": 5,
+          "correction": "terug."
+        },
+        {
+          "id": "s6-u01-l022-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder com franqueza.",
+          "vocabRefs": [
+            "v-eerlijk-antwoord"
+          ],
+          "lines": [
+            {
+              "speaker": "Journalist",
+              "nl": "Gaat u de belastingen verhogen, ja of nee?",
+              "pt": "Vai aumentar os impostos, sim ou não?"
+            },
+            {
+              "speaker": "Wethouder",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Eerlijk antwoord: voor de meeste inwoners niet, maar voor bedrijven met hoge winsten wel.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Wat een mooi weer vandaag.",
+              "correct": false,
+              "feedback": "Foge."
+            },
+            {
+              "id": "c",
+              "text": "Daar kom ik op terug.",
+              "correct": false,
+              "feedback": "Adia sem responder."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l022-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Compromisso.",
+          "vocabRefs": [
+            "v-ontwijken"
+          ],
+          "audioText": "Ik ga uw vraag niet ontwijken.",
+          "answers": [
+            "Ik ga uw vraag niet ontwijken"
+          ],
+          "translation": "Não vou fugir à sua pergunta."
+        },
+        {
+          "id": "s6-u01-l022-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Expressão.",
+          "vocabRefs": [],
+          "translation": "Boa pergunta.",
+          "tokens": [
+            "Goede",
+            "vraag"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l023",
+      "unitId": "s6-u01",
+      "order": 23,
+      "title": "Debate: um imposto sobre a carne?",
+      "description": "Moet vlees duurder worden?",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Argumentar sobre um tema social com vocabulário próprio"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-vleestaks",
+          "nl": "vleestaks",
+          "pt": [
+            "imposto sobre a carne"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-klimaat",
+          "nl": "klimaat",
+          "pt": [
+            "clima"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-betaalbaar",
+          "nl": "betaalbaar",
+          "pt": [
+            "acessível (preço)"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-dierenwelzijn",
+        "v-uitstoot",
+        "v-voorstander",
+        "v-tegenstander"
+      ],
+      "examples": [
+        {
+          "nl": "Sommige partijen willen een vleestaks.",
+          "pt": "Alguns partidos querem um imposto sobre a carne."
+        },
+        {
+          "nl": "Vleesproductie heeft invloed op het klimaat.",
+          "pt": "A produção de carne tem impacto no clima."
+        },
+        {
+          "nl": "Eten moet betaalbaar blijven.",
+          "pt": "A comida tem de continuar acessível."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l023-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Tema.",
+          "vocabRefs": [
+            "v-vleestaks",
+            "v-klimaat",
+            "v-betaalbaar",
+            "v-dierenwelzijn"
+          ],
+          "pairs": [
+            {
+              "nl": "vleestaks",
+              "pt": "imposto sobre a carne"
+            },
+            {
+              "nl": "klimaat",
+              "pt": "clima"
+            },
+            {
+              "nl": "betaalbaar",
+              "pt": "acessível"
+            },
+            {
+              "nl": "dierenwelzijn",
+              "pt": "bem-estar animal"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l023-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het klimaat.",
+          "vocabRefs": [
+            "v-klimaat"
+          ],
+          "noun": "klimaat",
+          "pt": "clima",
+          "article": "het"
+        },
+        {
+          "id": "s6-u01-l023-e03",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "Argumentos dos dois lados (resumo geral, sem números).",
+          "vocabRefs": [
+            "v-vleestaks",
+            "v-betaalbaar"
+          ],
+          "kind": "text",
+          "title": "Twee standpunten",
+          "text": "Voorstanders van een vleestaks zeggen dat de prijs van vlees nu niet de echte kosten voor klimaat en dierenwelzijn bevat. Met de opbrengst kun je groenten goedkoper maken. Tegenstanders vinden dat eten betaalbaar moet blijven, vooral voor gezinnen met een laag inkomen. Bovendien, zeggen ze, kopen mensen dan gewoon vlees over de grens.",
+          "questions": [
+            {
+              "prompt": "O que dizem os defensores sobre o preço atual?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Não inclui os custos reais",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "É demasiado alto",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "É justo",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que fazer com a receita?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Baixar o preço dos legumes",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Construir estradas",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Nada",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Argumento extra dos opositores?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Compram carne do outro lado da fronteira",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "A carne é saudável",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Os agricultores protestam",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l023-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "blijven.",
+          "vocabRefs": [
+            "v-betaalbaar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A comida tem de continuar acessível.",
+          "answers": [
+            "Eten moet betaalbaar blijven",
+            "Voedsel moet betaalbaar blijven"
+          ]
+        },
+        {
+          "id": "s6-u01-l023-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "tegen.",
+          "vocabRefs": [
+            "v-vleestaks"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Sou contra um imposto sobre a carne.",
+          "answers": [
+            "Ik ben tegen een vleestaks",
+            "Ik ben tegenstander van een vleestaks"
+          ]
+        },
+        {
+          "id": "s6-u01-l023-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Clima.",
+          "vocabRefs": [
+            "v-klimaat"
+          ],
+          "sentence": "Een vleestaks is goed voor het ___, maar slecht voor je portemonnee.",
+          "translation": "Um imposto sobre a carne é bom para o clima, mas mau para a carteira.",
+          "answers": [
+            "klimaat"
+          ],
+          "choices": [
+            "klimaat",
+            "weer",
+            "betaalbaar"
+          ]
+        },
+        {
+          "id": "s6-u01-l023-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Predicativo: sem -e.",
+          "vocabRefs": [
+            "v-betaalbaar"
+          ],
+          "tokens": [
+            "Eten",
+            "moet",
+            "betaalbare",
+            "blijven."
+          ],
+          "errorIndex": 2,
+          "correction": "betaalbaar"
+        },
+        {
+          "id": "s6-u01-l023-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Posição.",
+          "vocabRefs": [
+            "v-vleestaks",
+            "v-weliswaar"
+          ],
+          "prompt": "Tome posição (5–6 frases) sobre a pergunta «Moet vlees duurder worden?». Use uma concessão (weliswaar … maar) e uma conclusão.",
+          "referenceAnswers": [
+            "Ik ben van mening dat vlees iets duurder mag worden. Een vleestaks is weliswaar niet populair, maar de huidige prijs is eigenlijk te laag. Met de opbrengst kunnen groenten en fruit goedkoper worden. Zo blijft gezond eten betaalbaar. Kortom: een kleine vleestaks is een eerlijke oplossing."
+          ],
+          "checklist": [
+            "Tese",
+            "weliswaar … maar",
+            "Argumento",
+            "Conclusão"
+          ],
+          "minWords": 40
+        },
+        {
+          "id": "s6-u01-l023-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Notícia.",
+          "vocabRefs": [
+            "v-vleestaks",
+            "v-debat"
+          ],
+          "audioText": "Het debat over een vleestaks laait steeds weer op.",
+          "answers": [
+            "Het debat over een vleestaks laait steeds weer op"
+          ],
+          "translation": "O debate sobre um imposto sobre a carne volta sempre a acender-se."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l024",
+      "unitId": "s6-u01",
+      "order": 24,
+      "title": "Debate: centros sem carros?",
+      "description": "Moet de binnenstad autovrij worden?",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Argumentar sobre mobilidade urbana"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bereikbaarheid",
+          "nl": "bereikbaarheid",
+          "pt": [
+            "acessibilidade"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-winkelier",
+          "nl": "winkelier",
+          "pt": [
+            "lojista"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "winkeliers"
+        },
+        {
+          "id": "v-vervuiling",
+          "nl": "luchtvervuiling",
+          "pt": [
+            "poluição do ar"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-autovrij",
+        "v-ondernemer",
+        "v-hellend-vlak",
+        "v-weliswaar"
+      ],
+      "examples": [
+        {
+          "nl": "Winkeliers maken zich zorgen over de bereikbaarheid.",
+          "pt": "Os lojistas preocupam-se com a acessibilidade."
+        },
+        {
+          "nl": "Minder auto's betekent minder luchtvervuiling.",
+          "pt": "Menos carros significa menos poluição do ar."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l024-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Mobilidade.",
+          "vocabRefs": [
+            "v-bereikbaarheid",
+            "v-winkelier",
+            "v-vervuiling",
+            "v-autovrij"
+          ],
+          "pairs": [
+            {
+              "nl": "bereikbaarheid",
+              "pt": "acessibilidade"
+            },
+            {
+              "nl": "winkelier",
+              "pt": "lojista"
+            },
+            {
+              "nl": "luchtvervuiling",
+              "pt": "poluição do ar"
+            },
+            {
+              "nl": "autovrij",
+              "pt": "sem carros"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l024-e02",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder com empatia e argumento.",
+          "vocabRefs": [
+            "v-winkelier",
+            "v-autovrij"
+          ],
+          "lines": [
+            {
+              "speaker": "Winkelier",
+              "nl": "Als de auto's weg moeten, komen mijn klanten niet meer!",
+              "pt": "Se os carros tiverem de sair, os meus clientes deixam de vir!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik begrijp uw zorg. Maar in andere steden komen er juist meer voetgangers als het centrum autovrij is.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Jammer dan.",
+              "correct": false,
+              "feedback": "Rude."
+            },
+            {
+              "id": "c",
+              "text": "Bereikbaarheid!",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l024-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zich zorgen maken over.",
+          "vocabRefs": [
+            "v-bereikbaarheid"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Os lojistas preocupam-se com a acessibilidade.",
+          "answers": [
+            "Winkeliers maken zich zorgen over de bereikbaarheid",
+            "De winkeliers maken zich zorgen over de bereikbaarheid"
+          ]
+        },
+        {
+          "id": "s6-u01-l024-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "betekenen.",
+          "vocabRefs": [
+            "v-vervuiling"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Menos carros significa menos poluição.",
+          "answers": [
+            "Minder auto's betekent minder vervuiling",
+            "Minder auto's betekent minder luchtvervuiling",
+            "Minder auto's betekenen minder luchtvervuiling"
+          ]
+        },
+        {
+          "id": "s6-u01-l024-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Revisão de falácias.",
+          "vocabRefs": [
+            "v-hellend-vlak"
+          ],
+          "prompt": "«Eerst een autovrij centrum, straks mag je nergens meer met de auto komen!» é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "um hellend vlak",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "um argumento racional",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "uma nuance",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l024-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Acessibilidade.",
+          "vocabRefs": [
+            "v-bereikbaarheid"
+          ],
+          "sentence": "Een goede ___ met het openbaar vervoer is essentieel.",
+          "translation": "Um bom acesso por transportes públicos é essencial.",
+          "answers": [
+            "bereikbaarheid"
+          ],
+          "choices": [
+            "bereikbaarheid",
+            "vervuiling",
+            "winkelier"
+          ]
+        },
+        {
+          "id": "s6-u01-l024-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Plural: maken.",
+          "vocabRefs": [
+            "v-winkelier"
+          ],
+          "tokens": [
+            "De",
+            "winkeliers",
+            "maakt",
+            "zich",
+            "zorgen."
+          ],
+          "errorIndex": 2,
+          "correction": "maken"
+        },
+        {
+          "id": "s6-u01-l024-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Concessão.",
+          "vocabRefs": [
+            "v-weliswaar"
+          ],
+          "audioText": "Het centrum is weliswaar minder bereikbaar met de auto, maar wel veel gezelliger.",
+          "answers": [
+            "Het centrum is weliswaar minder bereikbaar met de auto, maar wel veel gezelliger",
+            "Het centrum is weliswaar minder bereikbaar met de auto maar wel veel gezelliger"
+          ],
+          "translation": "O centro é, é certo, menos acessível de carro, mas muito mais agradável."
+        },
+        {
+          "id": "s6-u01-l024-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-winkelier"
+          ],
+          "translation": "Os lojistas estão preocupados.",
+          "tokens": [
+            "De",
+            "winkeliers",
+            "maken",
+            "zich",
+            "zorgen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u01-l025",
+      "unitId": "s6-u01",
+      "order": 25,
+      "title": "Prática: o meu debate",
+      "description": "Van stelling tot slotpleidooi.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Construir uma intervenção completa num debate"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-slotpleidooi",
+          "nl": "slotpleidooi",
+          "pt": [
+            "alegações finais",
+            "apelo final"
+          ],
+          "pos": "noun",
+          "article": "het"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-ik-ben-van-mening",
+        "v-weliswaar",
+        "v-de-doorslag-geven",
+        "v-kort-door-de-bocht",
+        "v-stropop",
+        "v-pleidooi",
+        "v-ik-roep-u-op",
+        "v-ontwijken"
+      ],
+      "examples": [
+        {
+          "nl": "In haar slotpleidooi vatte ze alles samen.",
+          "pt": "Nas alegações finais, ela resumiu tudo."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u01-l025-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estrutura.",
+          "vocabRefs": [
+            "v-ik-ben-van-mening",
+            "v-pleidooi"
+          ],
+          "prompt": "Qual é a ordem mais eficaz de uma intervenção?",
+          "options": [
+            {
+              "id": "a",
+              "text": "tese → argumentos → responder a objeção → apelo final",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "apelo → tese → nada",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "só emoções",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l025-e02",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-ik-ben-van-mening",
+            "v-weliswaar",
+            "v-kort-door-de-bocht",
+            "v-slotpleidooi"
+          ],
+          "pairs": [
+            {
+              "nl": "ik ben van mening dat…",
+              "pt": "sou da opinião de que…"
+            },
+            {
+              "nl": "weliswaar … maar",
+              "pt": "é certo que … mas"
+            },
+            {
+              "nl": "kort door de bocht",
+              "pt": "simplista"
+            },
+            {
+              "nl": "slotpleidooi",
+              "pt": "alegações finais"
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l025-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-stropop"
+          ],
+          "prompt": "Uma oponente diz: «Dus u wilt alle auto's verbieden?» quando você só falou do centro. Ela faz…",
+          "options": [
+            {
+              "id": "a",
+              "text": "uma stropopredenering",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "um argumento racional",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "uma concessão",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u01-l025-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "samenvatten.",
+          "vocabRefs": [
+            "v-slotpleidooi"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Nas alegações finais, ela resumiu tudo.",
+          "answers": [
+            "In haar slotpleidooi vatte ze alles samen",
+            "In haar slotpleidooi heeft ze alles samengevat"
+          ]
+        },
+        {
+          "id": "s6-u01-l025-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-weliswaar"
+          ],
+          "sentence": "Het is ___ duur, maar het loont op lange termijn.",
+          "translation": "É, é certo, caro, mas compensa a longo prazo.",
+          "answers": [
+            "weliswaar"
+          ],
+          "choices": [
+            "weliswaar",
+            "niettemin",
+            "voorbarig"
+          ]
+        },
+        {
+          "id": "s6-u01-l025-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "om … te + infinitivo.",
+          "vocabRefs": [
+            "v-ik-roep-u-op"
+          ],
+          "tokens": [
+            "Ik",
+            "roep",
+            "u",
+            "op",
+            "om",
+            "dit",
+            "voorstel",
+            "steunen."
+          ],
+          "errorIndex": 7,
+          "correction": "te steunen."
+        },
+        {
+          "id": "s6-u01-l025-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-ontwijken"
+          ],
+          "audioText": "U ontwijkt opnieuw de vraag.",
+          "answers": [
+            "U ontwijkt opnieuw de vraag",
+            "U ontwijkt de vraag opnieuw"
+          ],
+          "translation": "Volta a fugir à pergunta."
+        },
+        {
+          "id": "s6-u01-l025-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Debate completo.",
+          "vocabRefs": [
+            "v-slotpleidooi",
+            "v-ik-ben-van-mening"
+          ],
+          "prompt": "Escreva uma intervenção completa de debate (cerca de 100 palavras) sobre um tema à sua escolha (por ex. «Moet thuiswerken een recht worden?»). Inclua: tese, dois argumentos, uma objeção com resposta (weliswaar … maar), e um apelo final.",
+          "referenceAnswers": [
+            "Voorzitter, ik ben ervan overtuigd dat thuiswerken een recht moet worden. Ten eerste besparen werknemers veel reistijd. Ten tweede zijn er minder files, wat goed is voor het klimaat. Tegenstanders zeggen dat collega's elkaar dan minder zien. Dat klopt weliswaar, maar met twee vaste kantoordagen los je dat op. Het een sluit het ander niet uit. Tot slot doe ik een beroep op uw gezond verstand: ik roep u op om dit voorstel te steunen."
+          ],
+          "checklist": [
+            "Tese",
+            "2 argumentos",
+            "Objeção + resposta",
+            "Apelo final"
+          ],
+          "minWords": 80
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 8,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }

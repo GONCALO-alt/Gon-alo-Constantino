@@ -45,9 +45,9 @@ L(2, "Transições e sinais", "Dan kom ik nu bij… Dit brengt me bij… Samenva
 L(3, "Perguntas difíceis", "Dat is een terechte vraag. Daar kan ik nu geen antwoord op geven.",
   ["Responder a perguntas difíceis ou críticas com profissionalismo"],
   vocab=[V("v-terecht","terecht","pertinente|justo","adjective"), V("v-kritische-vraag","kritische vraag","pergunta crítica","noun","de"),
-         V("v-buiten-scope","dat valt buiten…","isso fica fora de…","expression"), V("v-eerlijk-antwoord","eerlijk antwoord","resposta sincera","noun","het")],
+         V("v-buiten-scope","dat valt buiten…","isso fica fora de…","expression")],
   ex=[("Dat is een terechte vraag.","É uma pergunta pertinente."),("Daar kan ik nu geen antwoord op geven.","Não lhe consigo responder agora."),("Dat valt buiten het onderwerp van vandaag.","Isso fica fora do tema de hoje."),("Het eerlijke antwoord is: dat weten we nog niet.","A resposta sincera é: ainda não sabemos.")],
-  review=["v-goede-vraag","v-uitzoeken","v-kritisch"],
+  review=["v-eerlijk-antwoord","v-goede-vraag","v-uitzoeken","v-kritisch"],
   cefr=C, exs=[
     MA([("terecht","pertinente"),("kritische vraag","pergunta crítica"),("dat valt buiten…","fica fora de…"),("eerlijk antwoord","resposta sincera")], "Perguntas difíceis.", ["v-terecht","v-kritische-vraag","v-buiten-scope","v-eerlijk-antwoord"]),
     TR("pt-nl","É uma pergunta pertinente.", ["Dat is een terechte vraag","Dat is een goede vraag"], "terechte.", ["v-terecht"]),
