@@ -1,0 +1,111 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s5-u15")
+C = "B1"
+
+L(1, "Uma conversa a três: planear um fim de semana", "Seguir quem diz o quê.",
+  ["Compreender uma conversa com três pessoas e as suas posições"],
+  vocab=[V("v-uitje","uitje","passeio|saída","noun","het"), V("v-voorkeur","voorkeur","preferência","noun","de",note="Mijn voorkeur gaat uit naar…"),
+         V("v-meerderheid","meerderheid","maioria","noun","de"), V("v-maakt-mij-niet","mij maakt het niet uit","para mim tanto faz","expression")],
+  ex=[("Wat voor uitje zullen we doen?","Que passeio vamos fazer?"),("Mijn voorkeur gaat uit naar het strand.","A minha preferência vai para a praia."),("De meerderheid wil naar het museum.","A maioria quer ir ao museu."),("Mij maakt het niet uit.","Para mim tanto faz.")],
+  review=["v-voorstel","v-akkoord","v-compromis"],
+  cefr=C, exs=[
+    MA([("uitje","passeio"),("voorkeur","preferência"),("meerderheid","maioria"),("mij maakt het niet uit","para mim tanto faz")], "Planear.", ["v-uitje","v-voorkeur","v-meerderheid","v-maakt-mij-niet"]),
+    CO("dialogue","Wat gaan we zaterdag doen?", "Eva: Zaterdag is het mooi weer. Zullen we naar het strand?\nJoost: Strand vind ik niet zo leuk, het is altijd zo druk. Mijn voorkeur gaat uit naar een fietstocht.\nMaria: Mij maakt het niet uit, maar ik heb geen fiets.\nEva: Je kunt mijn oude fiets lenen.\nJoost: Of we huren er een bij het station.\nMaria: Oké, dan fietsen we naar het strand! Dan heeft iedereen iets.\nEva: Goed plan, dat is een mooi compromis.",
+       [("Porque não gosta o Joost da praia?", ["*Está sempre cheia","É longe","Faz frio"]),("Qual é o problema da Maria?", ["*Não tem bicicleta","Não sabe nadar","Tem de trabalhar"]),("Qual é a decisão final?", ["*Ir de bicicleta até à praia","Ficar em casa","Ir ao museu"])],
+       "fietstocht = passeio de bicicleta.", ["v-voorkeur","v-maakt-mij-niet","v-compromis"]),
+    TR("pt-nl","A minha preferência vai para a praia.", ["Mijn voorkeur gaat uit naar het strand"], "voorkeur gaat uit naar.", ["v-voorkeur"]),
+    TR("nl-pt","De meerderheid wil naar het museum.", ["A maioria quer ir ao museu"], "meerderheid.", ["v-meerderheid"]),
+    AR("uitje","o passeio","het", "Diminutivo → het.", ["v-uitje"]),
+    FE(["Mijn","voorkeur","gaat","uit","op","het","strand."], 4, "naar", "voorkeur gaat uit naar.", ["v-voorkeur"]),
+    LI("Mij maakt het niet uit, kies jij maar.", ["Mij maakt het niet uit(,) kies jij maar","Mij maakt het niet uit(,) kies je maar"], "Para mim tanto faz, escolhe tu.", "maar.", ["v-maakt-mij-niet"]),
+    MC("Na conversa, quem é mais flexível?", ["*A Maria","O Joost|Tem uma preferência forte.","A Eva|Propôs primeiro a praia."], "«Mij maakt het niet uit».", ["v-maakt-mij-niet"]),
+    FB("Wat voor ___ zullen we met de kinderen doen?", ["uitje"], "Passeio.", ["v-uitje"], choices=["uitje","voorkeur","meerderheid"], tr="Que passeio vamos fazer com as crianças?"),
+    WO("Para mim tanto faz.", ["Mij","maakt","het","niet","uit"], "Expressão.", ["v-maakt-mij-niet"]),
+  ], diff=4, mins=7)
+
+L(2, "Na reunião de condomínio", "Uma reunião com várias opiniões.",
+  ["Seguir uma discussão formal com vários intervenientes"],
+  vocab=[V("v-vve","VvE","associação de condóminos","noun","de",note="Vereniging van Eigenaren"), V("v-onderhoud","onderhoud","manutenção","noun","het"),
+         V("v-stemming","stemming","votação","noun","de"), V("v-agenda-punt","agendapunt","ponto da ordem de trabalhos","noun","het")],
+  ex=[("De VvE vergadert twee keer per jaar.","Os condóminos reúnem-se duas vezes por ano."),("Het dak heeft onderhoud nodig.","O telhado precisa de manutenção."),("We gaan over tot de stemming.","Passamos à votação."),("Het volgende agendapunt is de tuin.","O próximo ponto é o jardim.")],
+  review=["v-vergadering","v-voorstel","v-meerderheid","v-kosten"],
+  cefr=C, exs=[
+    MA([("VvE","condóminos"),("onderhoud","manutenção"),("stemming","votação"),("agendapunt","ponto da ordem de trabalhos")], "Condomínio.", ["v-vve","v-onderhoud","v-stemming","v-agenda-punt"]),
+    CO("dialogue","Vergadering VvE", "Voorzitter: Het volgende agendapunt is het dak. Het moet dit jaar gerepareerd worden. Dat kost ongeveer 20.000 euro.\nMevrouw Smit: Dat is veel geld. Kunnen we het niet uitstellen tot volgend jaar?\nMeneer Ahmed: Ik zou dat niet doen. Bij mij lekt het al als het hard regent.\nMevrouw De Wit: Ik ben het met meneer Ahmed eens. Uitstellen maakt het alleen maar duurder.\nVoorzitter: Dan gaan we over tot de stemming. Wie is voor reparatie dit jaar? … Dat is een ruime meerderheid. Het voorstel is aangenomen.",
+       [("Quanto custa a reparação?", ["*Cerca de 20 000 euros","2000 euros","200 000 euros"]),("Porque quer o Sr. Ahmed reparar já?", ["*Já tem infiltrações quando chove muito","Porque é barato","Porque vai vender a casa"]),("Qual foi o resultado?", ["*Aprovado por larga maioria","Rejeitado","Adiado"])],
+       "uitstellen = adiar; aangenomen = aprovado.", ["v-onderhoud","v-stemming","v-agenda-punt"]),
+    TR("pt-nl","O telhado precisa de manutenção.", ["Het dak heeft onderhoud nodig"], "onderhoud nodig hebben.", ["v-onderhoud"]),
+    TR("nl-pt","We gaan over tot de stemming.", ["Passamos à votação","Vamos passar à votação"], "overgaan tot.", ["v-stemming"]),
+    AR("onderhoud","a manutenção","het", "Het onderhoud.", ["v-onderhoud"]),
+    AR("agendapunt","o ponto da ordem de trabalhos","het", "Het punt.", ["v-agenda-punt"]),
+    MC("«Het voorstel is aangenomen» significa…", ["*A proposta foi aprovada","A proposta foi rejeitada|Isso é «verworpen».","A proposta foi adiada|Isso é «uitgesteld»."], "aannemen = aprovar.", ["v-voorstel"]),
+    LI("Wie is voor dit voorstel?", ["Wie is voor dit voorstel"], "Quem é a favor desta proposta?", "voor = a favor.", ["v-stemming"]),
+    FE(["Het","dak","moet","dit","jaar","gerepareerd","wordt."], 6, "worden", "Depois do modal moet, o auxiliar fica no infinitivo: gerepareerd worden.", ["v-onderhoud"]),
+    FB("Kunnen we de reparatie niet ___?", ["uitstellen"], "Adiar.", [], choices=["uitstellen","aannemen","stemmen"], tr="Não podemos adiar a reparação?"),
+  ], diff=5, mins=8)
+
+L(3, "No médico com intérprete informal", "Uma consulta em que um familiar ajuda.",
+  ["Seguir uma consulta com várias pessoas e informação médica"],
+  vocab=[V("v-klachten","klachten","queixas (sintomas)","noun","de"), V("v-onderzoeken-arts","onderzoeken","examinar","verb"),
+         V("v-doorverwijzing","doorverwijzing","credencial|encaminhamento","noun","de"), V("v-controle","controle","consulta de controlo","noun","de")],
+  ex=[("Wat zijn uw klachten?","Quais são as suas queixas?"),("Ik ga u even onderzoeken.","Vou examiná-lo."),("U krijgt een doorverwijzing naar de specialist.","Vai receber um encaminhamento para o especialista."),("Over twee weken komt u terug voor controle.","Daqui a duas semanas volta para controlo.")],
+  review=["v-huisarts","v-koorts","v-recept-med","v-doorverwijzen"],
+  cefr=C, exs=[
+    MA([("klachten","queixas"),("onderzoeken","examinar"),("doorverwijzing","encaminhamento"),("controle","controlo")], "Consulta.", ["v-klachten","v-onderzoeken-arts","v-doorverwijzing","v-controle"]),
+    CO("dialogue","Bij de huisarts", "Huisarts: Goedemorgen. Wat kan ik voor u doen?\nInês: Mijn moeder spreekt weinig Nederlands, ik vertaal voor haar. Ze heeft al een week last van haar knie.\nHuisarts: Is ze gevallen?\nInês (na overleg): Nee, het begon vanzelf. Vooral 's ochtends is het stijf.\nHuisarts: Ik ga even kijken. … Het is een beetje dik. Ik geef een doorverwijzing voor een foto in het ziekenhuis. Tot die tijd mag ze paracetamol nemen. Over twee weken komt u terug voor controle.",
+       [("Quem tem o problema?", ["*A mãe da Inês","A Inês","A médica"]),("A mãe caiu?", ["*Não, começou sozinho","Sim, de bicicleta","Sim, nas escadas"]),("O que receita a médica até lá?", ["*Paracetamol","Antibiótico","Nada"])],
+       "stijf = rígido; overleg = consulta (entre elas).", ["v-klachten","v-doorverwijzing","v-controle"]),
+    TR("pt-nl","Quais são as suas queixas?", ["Wat zijn uw klachten"], "klachten.", ["v-klachten"]),
+    TR("nl-pt","U krijgt een doorverwijzing naar de specialist.", ["Vai receber um encaminhamento para o especialista","Recebe uma credencial para o especialista"], "doorverwijzing.", ["v-doorverwijzing"]),
+    AR("controle","o controlo","de", "De controle.", ["v-controle"]),
+    MC("Pode levar um familiar para traduzir no huisarts?", ["*Sim, é comum; também existem intérpretes profissionais por telefone","Não, é proibido|Não é.","Só com autorização do tribunal|Não."], "Prático.", ["v-klachten"]),
+    LI("Over twee weken komt u terug voor controle.", ["Over twee weken komt u terug voor controle"], "Daqui a duas semanas volta para controlo.", "controle.", ["v-controle"]),
+    FE(["Ik","ga","u","even","onderzoekt."], 4, "onderzoeken", "Depois de ga, infinitivo: onderzoeken.", ["v-onderzoeken-arts"]),
+    WO("Vou examiná-lo.", ["Ik","ga","u","even","onderzoeken"], "gaan + inf.", ["v-onderzoeken-arts"]),
+    DL([("Huisarts","Sinds wanneer heeft u deze klachten?","Desde quando tem estas queixas?"),("Paciente","")], ["*Sinds ongeveer een week, vooral 's avonds.","Ik heb klachten.|Não responde.","Over een week.|Isso é futuro."], "Responder com duração.", ["v-klachten"]),
+  ], diff=5, mins=8)
+
+L(4, "Numa entrevista de rádio", "Ouvir um entrevistador e um convidado.",
+  ["Compreender uma entrevista de rádio curta"],
+  vocab=[V("v-luisteraar","luisteraar","ouvinte","noun","de"), V("v-gast","gast","convidado","noun","de"),
+         V("v-vrijwilliger","vrijwilliger","voluntário","noun","de"), V("v-initiatief","initiatief","iniciativa","noun","het")],
+  ex=[("Welkom aan alle luisteraars.","Bem-vindos, todos os ouvintes."),("Onze gast vandaag is Ahmed.","O nosso convidado hoje é o Ahmed."),("Ik werk als vrijwilliger bij de voedselbank.","Trabalho como voluntário no banco alimentar."),("Het is een mooi initiatief.","É uma bela iniciativa.")],
+  review=["v-helpen","v-buurt"],
+  cefr=C, exs=[
+    MA([("luisteraar","ouvinte"),("gast","convidado"),("vrijwilliger","voluntário"),("initiatief","iniciativa")], "Rádio.", ["v-luisteraar","v-gast","v-vrijwilliger","v-initiatief"]),
+    CO("dialogue","Radio Utrecht", "Presentator: Goedemiddag, luisteraars! Mijn gast vandaag is Fatima. Fatima, je bent begonnen met een taalcafé in je wijk. Hoe kwam je op dat idee?\nFatima: Toen ik zelf naar Nederland kwam, had ik weinig kans om Nederlands te oefenen. Daarom wilde ik een plek waar mensen gewoon kunnen praten.\nPresentator: En wie komen er?\nFatima: Iedereen! Nieuwkomers, maar ook gepensioneerde Nederlanders die het gezellig vinden. Alle begeleiders zijn vrijwilligers.\nPresentator: Een prachtig initiatief. Waar en wanneer?\nFatima: Elke donderdagavond in de bibliotheek, en het is gratis.",
+       [("Porque começou a Fatima o café de línguas?", ["*Ela própria teve pouca oportunidade de praticar neerlandês","Para ganhar dinheiro","Porque é professora"]),("Quem participa?", ["*Recém-chegados e reformados neerlandeses","Só estudantes","Só professores"]),("Quando e onde?", ["*Quinta à noite, na biblioteca, grátis","Sábado de manhã, pago","Todos os dias, num café"])],
+       "nieuwkomer = recém-chegado; gepensioneerd = reformado.", ["v-vrijwilliger","v-initiatief"]),
+    TR("pt-nl","Trabalho como voluntário no banco alimentar.", ["Ik werk als vrijwilliger bij de voedselbank"], "als vrijwilliger.", ["v-vrijwilliger"]),
+    TR("nl-pt","Het is een mooi initiatief.", ["É uma bela iniciativa","É uma iniciativa bonita"], "het initiatief.", ["v-initiatief"]),
+    AR("initiatief","a iniciativa","het", "Het initiatief.", ["v-initiatief"]),
+    FE(["Het","is","een","mooie","initiatief."], 3, "mooi", "het initiatief → een mooi.", ["v-initiatief"]),
+    LI("Hoe kwam je op dat idee?", ["Hoe kwam je op dat idee","Hoe kwam jij op dat idee"], "Como tiveste essa ideia?", "op een idee komen.", []),
+    MC("«Op een idee komen» significa…", ["*ter uma ideia","chegar a uma ideia de carro|Literal.","esquecer uma ideia|Não."], "Expressão.", []),
+    FB("Onze ___ van vandaag is schrijver.", ["gast"], "Convidado.", ["v-gast"], choices=["gast","luisteraar","initiatief"], tr="O nosso convidado de hoje é escritor."),
+    WO("Bem-vindos, todos os ouvintes.", ["Welkom","aan","alle","luisteraars"], "welkom aan.", ["v-luisteraar"]),
+  ], diff=5, mins=8)
+
+L(5, "Discussão em família", "Uma conversa animada à mesa.",
+  ["Compreender uma conversa informal rápida com interrupções"],
+  vocab=[V("v-onderbreken","onderbreken","interromper","verb"), V("v-laat-me-uitpraten","laat me even uitpraten","deixa-me acabar","expression"),
+         V("v-zeuren","zeuren","resmungar|chatear","verb"), V("v-overdrijven","overdrijven","exagerar","verb")],
+  ex=[("Sorry dat ik je onderbreek.","Desculpa interromper-te."),("Laat me even uitpraten!","Deixa-me acabar de falar!"),("Niet zo zeuren!","Não resmungues tanto!"),("Je overdrijft!","Estás a exagerar!")],
+  review=["v-ruzie","v-toch-part","v-nou"],
+  cefr=C, exs=[
+    MA([("onderbreken","interromper"),("laat me even uitpraten","deixa-me acabar"),("zeuren","resmungar"),("overdrijven","exagerar")], "Família.", ["v-onderbreken","v-laat-me-uitpraten","v-zeuren","v-overdrijven"]),
+    CO("dialogue","Aan tafel", "Vader: Wie heeft er weer de melk laten staan?\nLotte: Ik niet!\nDaan: Ik ook niet, ik drink toch nooit melk.\nVader: Nou, iemand heeft het gedaan. En de vaatwasser is ook nog niet uitgeruimd.\nLotte: Dat was Daans beurt!\nDaan: Ja, maar ik had…\nLotte: Je hebt altijd een excuus!\nDaan: Laat me even uitpraten! Ik had gisteren een toets, dus we hadden geruild.\nMoeder: Oké, niet zo zeuren allemaal. Lotte, jij ruimt nu de vaatwasser uit, Daan doet het morgen.",
+       [("Porque não arrumou o Daan a máquina?", ["*Tinha teste e tinham trocado o turno","Esqueceu-se","Está doente"]),("Qual é a decisão da mãe?", ["*A Lotte arruma hoje e o Daan amanhã","O pai arruma","Ninguém arruma"]),("Quem diz que nunca bebe leite?", ["*O Daan","A Lotte","O pai"])],
+       "beurt = vez/turno; ruilen = trocar.", ["v-laat-me-uitpraten","v-zeuren"]),
+    TR("pt-nl","Desculpa interromper-te.", ["Sorry dat ik je onderbreek","Sorry dat ik jou onderbreek"], "dat + verbo no fim.", ["v-onderbreken"]),
+    TR("pt-nl","Estás a exagerar!", ["Je overdrijft","Jij overdrijft"], "overdrijven.", ["v-overdrijven"]),
+    TR("nl-pt","Niet zo zeuren!", ["Não resmungues tanto","Não te queixes tanto","Deixa de resmungar"], "zeuren.", ["v-zeuren"]),
+    CJ("onderbreken","jij","Waarom ___ je me steeds?", ["onderbreek"], "Inversão sem -t.", ["v-onderbreken"]),
+    FE(["Laat","me","even","uitpraat!"], 3, "uitpraten", "Depois de laten vem o infinitivo: uitpraten.", ["v-laat-me-uitpraten"]),
+    LI("Je hebt altijd een excuus!", ["Je hebt altijd een excuus","Jij hebt altijd een excuus"], "Tens sempre uma desculpa!", "excuus.", []),
+    MC("«Dat was jouw beurt» significa…", ["*Era a tua vez","Era o teu bairro|Isso é «buurt».","Era a tua bolsa|Não."], "beurt ≠ buurt.", []),
+    FB("Hij ___ altijd: zo erg is het niet.", ["overdrijft"], "Exagerar.", ["v-overdrijven"], choices=["overdrijft","onderbreekt","zeurt"], tr="Ele exagera sempre: não é assim tão grave."),
+  ], diff=5, mins=8)
+
+W()
