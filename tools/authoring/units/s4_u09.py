@@ -91,9 +91,9 @@ L(4, "Pedir a opinião dos outros", "Wat vind jij ervan? Hoe denk jij daarover?"
 L(5, "Discussão de grupo", "Uma conversa com várias opiniões.",
   ["Seguir e participar numa discussão curta"],
   vocab=[V("v-aan-de-ene-kant","aan de ene kant … aan de andere kant","por um lado … por outro","expression"), V("v-overtuigd","overtuigd","convencido","adjective"),
-         V("v-compromis","compromis","compromisso|meio-termo","noun","het"), V("v-stemmen","stemmen","votar","verb")],
+         V("v-compromis","compromis","compromisso|meio-termo","noun","het")],
   ex=[("Aan de ene kant is het goedkoop, aan de andere kant is het ver.","Por um lado é barato, por outro é longe."),("Ik ben niet overtuigd.","Não estou convencido."),("Laten we een compromis zoeken.","Vamos procurar um meio-termo."),("Zullen we stemmen?","Votamos?")],
-  review=["v-eens","v-oneens","v-voorstel","v-volgens-mij"],
+  review=["v-stemmen","v-eens","v-oneens","v-voorstel","v-volgens-mij"],
   cefr=C, exs=[
     MA([("aan de ene kant","por um lado"),("overtuigd","convencido"),("compromis","meio-termo"),("stemmen","votar")], "Discussão.", ["v-aan-de-ene-kant","v-overtuigd","v-compromis","v-stemmen"]),
     TR("pt-nl","Não estou convencido.", ["Ik ben niet overtuigd"], "overtuigd.", ["v-overtuigd"]),

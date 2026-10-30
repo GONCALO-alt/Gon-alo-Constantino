@@ -50,13 +50,12 @@ L(2, "Registo informal vs. formal", "Hoi Sanne / Geachte mevrouw Jansen; je/jij 
 
 L(3, "Pedir informações por e-mail", "Ik heb een vraag over… Zou u mij kunnen laten weten…?",
   ["Escrever um pedido de informação claro e educado"],
-  vocab=[V("v-verzoek","verzoek","pedido (formal)","noun","het"), V("v-laten-weten","laten weten","informar|dizer","expression",note="Kunt u mij laten weten of…?"),
-         V("v-of-conj","of (se)","se (pergunta indireta)","conjunction",note="Ik vraag me af of… — verbo no fim."), V("v-alvast-bedankt","alvast bedankt","desde já obrigado","expression")],
+  vocab=[V("v-verzoek","verzoek","pedido (formal)","noun","het"), V("v-of-conj","of (se)","se (pergunta indireta)","conjunction",note="Ik vraag me af of… — verbo no fim."), V("v-alvast-bedankt","alvast bedankt","desde já obrigado","expression")],
   ex=[("Ik heb een vraag over mijn bestelling.","Tenho uma pergunta sobre a minha encomenda."),("Kunt u mij laten weten of er nog plek is?","Pode dizer-me se ainda há vaga?"),("Ik heb een verzoek.","Tenho um pedido."),("Alvast bedankt!","Desde já obrigado!")],
   gram=[G("g-of-indirect","Pergunta indireta com of","**of** = «se» numa pergunta indireta, com o **verbo no fim**: *Weet u **of** de winkel open **is**?* Com palavra interrogativa: *Kunt u laten weten **wanneer** het pakket **komt**?*",
     [("Ik wil graag weten of ik kan betalen met iDEAL.","Gostaria de saber se posso pagar com iDEAL.")],
     "Atenção: «of» também significa «ou». O contexto e o verbo no fim ajudam a distinguir.")],
-  review=["v-vraag","v-zou","v-informatie","v-bestellen"],
+  review=["v-laten-weten","v-vraag","v-zou","v-informatie","v-bestellen"],
   cefr=C, exs=[
     MA([("verzoek","pedido"),("laten weten","informar"),("of","se"),("alvast bedankt","desde já obrigado")], "Pedidos.", ["v-verzoek","v-laten-weten","v-of-conj","v-alvast-bedankt"]),
     WO("Pode dizer-me se ainda há vaga?", ["Kunt","u","mij","laten","weten","of","er","nog","plek","is?"], "of + verbo no fim.", ["v-laten-weten","v-of-conj"]),

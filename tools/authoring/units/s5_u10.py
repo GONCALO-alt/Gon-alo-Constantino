@@ -87,9 +87,9 @@ L(4, "Pedir algo ao chefe", "Zou ik vrij kunnen krijgen? Ik wil het graag hebben
 L(5, "Small talk no trabalho", "Hoe was je weekend? Lekker weer, hè?",
   ["Fazer conversa de circunstância no trabalho"],
   vocab=[V("v-he-tag","hè?","não é?","expression",note="Lekker weer, hè?"), V("v-druk-gehad","het druk gehad","ter tido muito que fazer","expression"),
-         V("v-borrel-vrijdag","vrijdagmiddagborrel","copo de sexta à tarde","noun","de"), V("v-bijpraten","bijpraten","pôr a conversa em dia","verb")],
+         V("v-borrel-vrijdag","vrijdagmiddagborrel","copo de sexta à tarde","noun","de")],
   ex=[("Lekker weer, hè?","Está um tempo ótimo, não está?"),("Heb je het druk gehad?","Tens tido muito que fazer?"),("Kom je ook naar de vrijdagmiddagborrel?","Também vens ao copo de sexta à tarde?"),("We moeten snel weer eens bijpraten.","Temos de pôr a conversa em dia em breve.")],
-  review=["v-o-ja","v-en-jij","v-weekend","v-borrel"],
+  review=["v-bijpraten","v-o-ja","v-en-jij","v-weekend","v-borrel"],
   cefr=C, exs=[
     MA([("hè?","não é?"),("het druk gehad","ter tido muito que fazer"),("vrijdagmiddagborrel","copo de sexta"),("bijpraten","pôr a conversa em dia")], "Small talk.", ["v-he-tag","v-druk-gehad","v-borrel-vrijdag","v-bijpraten"]),
     TR("pt-nl","Está um tempo ótimo, não está?", ["Lekker weer(,) hè","Mooi weer(,) hè","Lekker weertje(,) hè"], "hè.", ["v-he-tag"]),

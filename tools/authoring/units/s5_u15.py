@@ -5,10 +5,10 @@ C = "B1"
 
 L(1, "Uma conversa a três: planear um fim de semana", "Seguir quem diz o quê.",
   ["Compreender uma conversa com três pessoas e as suas posições"],
-  vocab=[V("v-uitje","uitje","passeio|saída","noun","het"), V("v-voorkeur","voorkeur","preferência","noun","de",note="Mijn voorkeur gaat uit naar…"),
+  vocab=[V("v-voorkeur","voorkeur","preferência","noun","de",note="Mijn voorkeur gaat uit naar…"),
          V("v-meerderheid","meerderheid","maioria","noun","de"), V("v-maakt-mij-niet","mij maakt het niet uit","para mim tanto faz","expression")],
   ex=[("Wat voor uitje zullen we doen?","Que passeio vamos fazer?"),("Mijn voorkeur gaat uit naar het strand.","A minha preferência vai para a praia."),("De meerderheid wil naar het museum.","A maioria quer ir ao museu."),("Mij maakt het niet uit.","Para mim tanto faz.")],
-  review=["v-voorstel","v-akkoord","v-compromis"],
+  review=["v-uitje","v-voorstel","v-akkoord","v-compromis"],
   cefr=C, exs=[
     MA([("uitje","passeio"),("voorkeur","preferência"),("meerderheid","maioria"),("mij maakt het niet uit","para mim tanto faz")], "Planear.", ["v-uitje","v-voorkeur","v-meerderheid","v-maakt-mij-niet"]),
     CO("dialogue","Wat gaan we zaterdag doen?", "Eva: Zaterdag is het mooi weer. Zullen we naar het strand?\nJoost: Strand vind ik niet zo leuk, het is altijd zo druk. Mijn voorkeur gaat uit naar een fietstocht.\nMaria: Mij maakt het niet uit, maar ik heb geen fiets.\nEva: Je kunt mijn oude fiets lenen.\nJoost: Of we huren er een bij het station.\nMaria: Oké, dan fietsen we naar het strand! Dan heeft iedereen iets.\nEva: Goed plan, dat is een mooi compromis.",
