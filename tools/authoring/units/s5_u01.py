@@ -1,0 +1,110 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s5-u01")
+C = "B1"
+
+L(1, "Reagir enquanto o outro fala", "O ja? Echt? Goh! Wat goed!",
+  ["Mostrar interesse com pequenas reações"],
+  vocab=[V("v-o-ja","o ja?","ah sim?","expression"), V("v-goh","goh!","olha! / caramba!","expression"),
+         V("v-meen-je-dat","meen je dat?","estás a falar a sério?","expression"), V("v-nee-joh","nee joh!","não me digas! / nada disso!","expression"),
+         V("v-wat-goed","wat goed!","que bom!","expression")],
+  ex=[("O ja? Dat wist ik niet.","Ah sim? Não sabia."),("Goh, wat een verhaal!","Caramba, que história!"),("Meen je dat?","Estás a falar a sério?"),("Nee joh, dat is niet erg.","Não, deixa lá, não faz mal.")],
+  gram=[G("g-reacties","Reações curtas","Numa conversa neerlandesa, quem ouve reage com frequência: **o ja?** (interesse), **echt?** (surpresa), **goh!** (admiração), **meen je dat?** (incredulidade), **wat goed/leuk/jammer!** (avaliação). **joh** torna a frase mais calorosa e informal: *Nee joh!*",
+    [("Echt? Wat leuk voor je!","A sério? Que bom para ti!")],
+    "Não fazer reações nenhumas pode parecer desinteresse.")],
+  review=["v-echt","v-wat-fijn","v-jammer"],
+  cefr=C, exs=[
+    MA([("o ja?","ah sim?"),("goh!","caramba!"),("meen je dat?","a sério?"),("nee joh!","não me digas!"),("wat goed!","que bom!")], "Reações.", ["v-o-ja","v-goh","v-meen-je-dat","v-nee-joh","v-wat-goed"]),
+    MC("O colega diz: «Ik heb de loterij gewonnen!» Reage com…", ["*Meen je dat?! Wat goed!","Wat jammer.|Inadequado.","O.|Pouco interessado."], "Surpresa + avaliação.", ["v-meen-je-dat","v-wat-goed"]),
+    MC("Alguém pede desculpa por chegar 2 minutos atrasado:", ["*Nee joh, geen probleem!","Meen je dat?|Exagerado.","Goh!|Não responde."], "Desvalorizar.", ["v-nee-joh"]),
+    TR("pt-nl","Ah sim? Não sabia.", ["O ja(?) Dat wist ik niet","Oh ja(?) Dat wist ik niet"], "o ja?", ["v-o-ja"]),
+    TR("nl-pt","Goh, wat een verhaal!", ["Caramba, que história","Olha, que história","Uau, que história"], "goh.", ["v-goh"]),
+    LI("Echt? Wat leuk voor je!", ["Echt(?) Wat leuk voor je"], "A sério? Que bom para ti!", "Reação.", ["v-echt"]),
+    DL([("Sanne","Ik ga volgende maand in Lissabon wonen!","Vou viver para Lisboa no mês que vem!"),("Rui","")], ["*Echt? Wat leuk! Waar ga je wonen?","O.|Pouco interessado.","Nee joh.|Parece rejeitar a notícia."], "Reagir e perguntar mais.", ["v-wat-goed"]),
+    FE(["Meen","jij","het?"], 1, "je dat", "A fórmula é «Meen je dat?».", ["v-meen-je-dat"]),
+    FB("___, wat een mooi huis!", ["Goh"], "Admiração.", ["v-goh"], choices=["Goh","Nee joh","O ja"], tr="Caramba, que casa bonita!"),
+    MC("«Joh» numa frase serve para…", ["*tornar o tom mais caloroso e informal","mostrar raiva|Não necessariamente.","formalizar|Pelo contrário."], "Partícula afetiva.", ["v-nee-joh"]),
+  ], diff=4, mins=6)
+
+L(2, "Pedir esclarecimentos", "Wat bedoel je precies? Kun je een voorbeeld geven?",
+  ["Pedir para explicar, exemplificar ou reformular"],
+  vocab=[V("v-precies-bedoelen","wat bedoel je precies?","o que queres dizer exatamente?","expression"), V("v-voorbeeld","voorbeeld","exemplo","noun","het"),
+         V("v-uitleggen","uitleggen","explicar","verb",note="Kun je dat uitleggen?"), V("v-andere-woorden","in andere woorden","por outras palavras","expression")],
+  ex=[("Wat bedoel je precies?","O que queres dizer exatamente?"),("Kun je een voorbeeld geven?","Podes dar um exemplo?"),("Kun je dat nog eens uitleggen?","Podes explicar isso outra vez?"),("Dus in andere woorden…","Então, por outras palavras…")],
+  review=["v-bedoelen","v-herhalen","v-begrijpen"],
+  cefr=C, exs=[
+    MA([("wat bedoel je precies?","o que queres dizer?"),("voorbeeld","exemplo"),("uitleggen","explicar"),("in andere woorden","por outras palavras")], "Esclarecer.", ["v-precies-bedoelen","v-voorbeeld","v-uitleggen","v-andere-woorden"]),
+    TR("pt-nl","Podes dar um exemplo?", ["Kun je een voorbeeld geven","Kan je een voorbeeld geven","Kun jij een voorbeeld geven"], "het voorbeeld.", ["v-voorbeeld"]),
+    TR("pt-nl","Podes explicar isso outra vez?", ["Kun je dat nog eens uitleggen","Kun je dat nog een keer uitleggen","Kan je dat nog eens uitleggen"], "uitleggen.", ["v-uitleggen"]),
+    AR("voorbeeld","o exemplo","het", "Het voorbeeld.", ["v-voorbeeld"]),
+    TR("pt-nl","Ele explica isso muito bem.", ["Hij legt het heel goed uit","Hij legt dat heel goed uit","Hij legt het heel duidelijk uit"], "Separável: legt … uit.", ["v-uitleggen"]),
+    WO("O que queres dizer exatamente?", ["Wat","bedoel","je","precies?"], "Inversão sem -t.", ["v-precies-bedoelen"]),
+    FE(["Wat","bedoelt","je","precies?"], 1, "bedoel", "Com inversão, jij perde o -t: bedoel je.", ["v-precies-bedoelen"]),
+    LI("Als ik je goed begrijp, wil je verhuizen?", ["Als ik je goed begrijp(,) wil je verhuizen"], "Se te percebo bem, queres mudar de casa?", "Confirmar compreensão.", ["v-begrijpen"]),
+    DL([("Collega","We moeten het proces efficiënter maken.","Temos de tornar o processo mais eficiente."),("Inês","")], ["*Wat bedoel je precies? Kun je een voorbeeld geven?","Ik ben efficiënt.|Não pede esclarecimento.","Ja, precies.|Concorda sem perceber."], "Pedir precisão.", ["v-precies-bedoelen","v-voorbeeld"]),
+    MC("«Dus in andere woorden…» usa-se para…", ["*reformular e confirmar que percebeu","mudar de assunto|Não.","terminar a conversa|Não."], "Reformular.", ["v-andere-woorden"]),
+  ], diff=4, mins=6)
+
+L(3, "Manter a conversa", "En jij? Hoe zit het met…? Over … gesproken…",
+  ["Fazer perguntas de seguimento e mudar de tema com naturalidade"],
+  vocab=[V("v-en-jij","en jij?","e tu?","expression"), V("v-hoe-zit-het-met","hoe zit het met…?","e quanto a…? / como está…?","expression"),
+         V("v-over-gesproken","over … gesproken","por falar em…","expression"), V("v-trouwens","trouwens","a propósito|aliás","adverb")],
+  ex=[("Ik werk in de zorg. En jij?","Trabalho na área da saúde. E tu?"),("Hoe zit het met je nieuwe baan?","Então e o teu emprego novo?"),("Over eten gesproken: heb je al gegeten?","Por falar em comida: já comeste?"),("Trouwens, wanneer is je verjaardag?","A propósito, quando é o teu aniversário?")],
+  review=["v-vraag","v-o-ja"],
+  cefr=C, exs=[
+    MA([("en jij?","e tu?"),("hoe zit het met…?","e quanto a…?"),("over … gesproken","por falar em…"),("trouwens","a propósito")], "Manter a conversa.", ["v-en-jij","v-hoe-zit-het-met","v-over-gesproken","v-trouwens"]),
+    TR("pt-nl","Então e o teu emprego novo?", ["Hoe zit het met je nieuwe baan","Hoe zit het met jouw nieuwe baan","Hoe gaat het met je nieuwe baan"], "hoe zit het met.", ["v-hoe-zit-het-met"]),
+    TR("pt-nl","A propósito, quando é o teu aniversário?", ["Trouwens(,) wanneer is je verjaardag","Trouwens(,) wanneer ben je jarig"], "trouwens.", ["v-trouwens"]),
+    TR("nl-pt","Over eten gesproken: heb je al gegeten?", ["Por falar em comida: já comeste","Por falar em comer: já comeste"], "over … gesproken.", ["v-over-gesproken"]),
+    FB("Over vakantie ___: waar ga jij heen?", ["gesproken"], "Expressão fixa.", ["v-over-gesproken"], choices=["gesproken","gezegd","gepraat"], tr="Por falar em férias: para onde vais?"),
+    MC("Qual destas é uma boa pergunta de seguimento?", ["*O ja? Hoe was dat?","Oké.|Fecha a conversa.","Ik ook.|Não abre nada."], "Pergunta aberta.", ["v-o-ja"]),
+    LI("Trouwens, hoe zit het met je moeder?", ["Trouwens(,) hoe zit het met je moeder","Trouwens(,) hoe zit het met jouw moeder"], "A propósito, como está a tua mãe?", "trouwens.", ["v-trouwens"]),
+    CO("dialogue","Bij de koffieautomaat", "Mark: Hé, hoe was je weekend?\nAna: Leuk! We zijn naar Texel geweest. En jij?\nMark: Rustig, ik heb vooral geklust. Over Texel gesproken: hebben jullie zeehonden gezien?\nAna: Ja, bij het Ecomare! Trouwens, hoe zit het met je verbouwing?\nMark: Bijna klaar, gelukkig.",
+       [("Onde foi a Ana?", ["*A Texel","A Amesterdão","Ficou em casa"]),("O que fez o Mark?", ["*Bricolage/obras em casa","Foi a Texel","Trabalhou no escritório"]),("Como está a obra do Mark?", ["*Quase acabada","Ainda nem começou","Parada"])],
+       "klussen = fazer bricolage; verbouwing = obras.", ["v-en-jij","v-over-gesproken","v-trouwens"]),
+    WO("Trabalho na área da saúde. E tu?", ["Ik","werk","in","de","zorg.","En","jij?"], "en jij?", ["v-en-jij"]),
+    SW("Responda a «Hoe was je weekend?» com 2 frases e faça uma pergunta de seguimento.", ["Gezellig! Ik ben met vrienden gaan fietsen. En jij, heb je nog iets leuks gedaan?"], ["Resposta com perfectum", "Pergunta de seguimento (**en jij? / hoe zit het met…?**)", "Tom informal"], 12, "Conversa de corredor.", ["v-en-jij"]),
+  ], diff=4, mins=7)
+
+L(4, "Ganhar tempo e reformular", "Even denken… Hoe zeg je dat? Het is een soort…",
+  ["Usar estratégias quando falta uma palavra"],
+  vocab=[V("v-even-denken","even denken","deixa-me pensar","expression"), V("v-hoe-zeg-je","hoe zeg je…?","como se diz…?","expression"),
+         V("v-een-soort","een soort","uma espécie de","expression"), V("v-ding","ding","coisa","noun","het","dingen")],
+  ex=[("Even denken…","Deixa-me pensar…"),("Hoe zeg je dat in het Nederlands?","Como se diz isso em neerlandês?"),("Het is een soort taart.","É uma espécie de bolo."),("Dat ding waarmee je blikken opent.","Aquela coisa com que se abrem latas.")],
+  gram=[G("g-omschrijven","Descrever uma palavra que falta","Se não sabe a palavra: **Het is een soort…** (categoria) + **die/dat je gebruikt om… te…** (função) ou **het ding waarmee je…** (instrumento). Exemplo: *Het is een soort mes waarmee je brood snijdt.*",
+    [("Hoe heet dat ook alweer?","Como é que se chama aquilo mesmo?")],
+    "Os neerlandeses costumam ajudar de bom grado: é melhor descrever do que mudar para inglês.")],
+  review=["v-woord","v-zeggen"],
+  cefr=C, exs=[
+    MA([("even denken","deixa-me pensar"),("hoe zeg je…?","como se diz…?"),("een soort","uma espécie de"),("ding","coisa")], "Estratégias.", ["v-even-denken","v-hoe-zeg-je","v-een-soort","v-ding"]),
+    TR("pt-nl","Como se diz isso em neerlandês?", ["Hoe zeg je dat in het Nederlands"], "hoe zeg je.", ["v-hoe-zeg-je"]),
+    TR("pt-nl","É uma espécie de bolo.", ["Het is een soort taart","Het is een soort cake","Het is een soort koek"], "een soort.", ["v-een-soort"]),
+    AR("ding","a coisa","het", "Het ding.", ["v-ding"]),
+    MC("Não sabe «abre-latas». Diz…", ["*Het ding waarmee je blikken opent.","Ik weet het niet, sorry.|Desiste.","Blik-blik.|Pouco claro."], "Descrever a função.", ["v-ding"]),
+    WO("É uma espécie de faca com que se corta pão.", ["Het","is","een","soort","mes","waarmee","je","brood","snijdt"], "waarmee + verbo no fim.", ["v-een-soort"]),
+    LI("Hoe heet dat ook alweer?", ["Hoe heet dat ook alweer"], "Como é que se chama aquilo mesmo?", "ook alweer.", []),
+    FB("Even ___… ah ja, nu weet ik het weer.", ["denken"], "Ganhar tempo.", ["v-even-denken"], choices=["denken","zeggen","weten"], tr="Deixa-me pensar… ah sim, agora já me lembro."),
+    DL([("Verkoper","Waar bent u naar op zoek?","Do que está à procura?"),("Cliente","")], ["*Hoe zeg je dat… een soort lamp die je op je hoofd zet.","Ik zoek… nee.|Desiste.","Lamp hoofd!|Pouco natural."], "Descrever.", ["v-hoe-zeg-je","v-een-soort"]),
+    SW("Descreva, sem dizer o nome, um objeto da cozinha (2 frases).", ["Het is een soort pan. Je gebruikt het om water te koken. (= de waterkoker)"], ["**Het is een soort…**", "Função com **om … te** ou **waarmee**", "Verbo no fim na subordinada"], 12, "Circunlocução.", ["v-een-soort","v-ding"]),
+  ], diff=4, mins=6)
+
+L(5, "Terminar uma conversa com simpatia", "Ik moet er weer vandoor. Leuk je gesproken te hebben!",
+  ["Terminar conversas sem parecer brusco"],
+  vocab=[V("v-ervandoor","er vandoor moeten","ter de ir andando","expression"), V("v-leuk-gesproken","leuk je gesproken te hebben","foi bom falar contigo","expression"),
+         V("v-we-spreken-elkaar","we spreken elkaar","falamos","expression"), V("v-de-groeten-aan","doe de groeten aan…","dá cumprimentos a…","expression")],
+  ex=[("Ik moet er weer vandoor.","Tenho de ir andando."),("Leuk je gesproken te hebben!","Foi bom falar contigo!"),("We spreken elkaar nog!","Depois falamos!"),("Doe de groeten aan je vrouw!","Dá cumprimentos à tua mulher!")],
+  review=["v-tot-de-volgende-keer","v-doei","v-tot-ziens"],
+  cefr=C, exs=[
+    MA([("er vandoor moeten","ter de ir andando"),("leuk je gesproken te hebben","foi bom falar contigo"),("we spreken elkaar","falamos"),("doe de groeten aan…","cumprimentos a…")], "Despedidas.", ["v-ervandoor","v-leuk-gesproken","v-we-spreken-elkaar","v-de-groeten-aan"]),
+    TR("pt-nl","Tenho de ir andando.", ["Ik moet er weer vandoor","Ik moet ervandoor","Ik moet er vandoor"], "er vandoor.", ["v-ervandoor"]),
+    TR("pt-nl","Dá cumprimentos à tua mulher!", ["Doe de groeten aan je vrouw","Doe de groetjes aan je vrouw","Doe de groeten aan jouw vrouw"], "de groeten doen aan.", ["v-de-groeten-aan"]),
+    TR("nl-pt","We spreken elkaar nog!", ["Depois falamos","Falamos depois","Vamos falando"], "elkaar spreken.", ["v-we-spreken-elkaar"]),
+    MC("Qual é a forma mais simpática de terminar?", ["*Ik moet er helaas vandoor. Leuk je gesproken te hebben!","Doei.|Brusco no meio de conversa.","Ik ga.|Seco."], "Razão + simpatia.", ["v-ervandoor","v-leuk-gesproken"]),
+    WO("Foi bom falar contigo!", ["Leuk","je","gesproken","te","hebben!"], "Fórmula.", ["v-leuk-gesproken"]),
+    LI("Doe de groeten thuis!", ["Doe de groeten thuis"], "Cumprimentos lá em casa!", "Fórmula.", ["v-de-groeten-aan"]),
+    FE(["Doe","de","groeten","voor","je","vrouw!"], 3, "aan", "A expressão é «de groeten doen aan».", ["v-de-groeten-aan"]),
+    DL([("Buurman","…en toen zei ik tegen hem…","…e então eu disse-lhe…"),("Joana","")], ["*Sorry dat ik je onderbreek, maar ik moet er echt vandoor. We spreken elkaar!","Stop!|Muito brusco.","Doei!|Sai sem explicar."], "Interromper com educação.", ["v-ervandoor","v-we-spreken-elkaar"]),
+    FB("Leuk je ___ te hebben!", ["gesproken"], "Particípio de spreken.", ["v-leuk-gesproken"], choices=["gesproken","gesprokt","spreken"], tr="Foi bom falar contigo!"),
+  ], diff=3, mins=6)
+
+W()

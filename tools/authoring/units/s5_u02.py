@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s5-u02")
+C = "B1"
+
+L(1, "Vocabulário das notícias", "het nieuws, de krantenkop, het artikel, volgens…",
+  ["Reconhecer o vocabulário básico das notícias"],
+  vocab=[V("v-nieuws","nieuws","notícias","noun","het",note="Het nieuws is… (singular!)"), V("v-krantenkop","krantenkop","manchete","noun","de"),
+         V("v-artikel","artikel","artigo","noun","het"), V("v-volgens","volgens","segundo|de acordo com","preposition"),
+         V("v-bron","bron","fonte","noun","de")],
+  ex=[("Heb je het nieuws gezien?","Viste as notícias?"),("Volgens de politie was niemand gewond.","Segundo a polícia, ninguém ficou ferido."),("Ik lees een artikel over het klimaat.","Estou a ler um artigo sobre o clima."),("Wat is de bron?","Qual é a fonte?")],
+  gram=[G("g-nieuws-enkelvoud","Het nieuws (singular)","Em neerlandês **het nieuws** é singular: *Het nieuws **is** goed.* Uma notícia = **een nieuwsbericht**. **volgens** + fonte = segundo: *volgens de NOS* (a televisão pública).",
+    [("Dat is goed nieuws!","Isso são boas notícias!")],
+    "Em português «as notícias» é plural; em neerlandês é singular.")],
+  review=["v-krant","v-lezen","v-informatie"],
+  cefr=C, exs=[
+    MA([("nieuws","notícias"),("krantenkop","manchete"),("artikel","artigo"),("volgens","segundo"),("bron","fonte")], "Notícias.", ["v-nieuws","v-krantenkop","v-artikel","v-volgens","v-bron"]),
+    AR("nieuws","as notícias","het", "Het nieuws.", ["v-nieuws"]),
+    AR("artikel","o artigo","het", "Het artikel.", ["v-artikel"]),
+    FB("Het nieuws ___ vandaag niet zo goed.", ["is"], "Singular.", ["v-nieuws"], choices=["is","zijn","waren"], tr="As notícias hoje não são muito boas."),
+    TR("pt-nl","Segundo a polícia, ninguém ficou ferido.", ["Volgens de politie was niemand gewond","Volgens de politie is niemand gewond geraakt","Volgens de politie raakte niemand gewond"], "volgens + inversão.", ["v-volgens"]),
+    TR("nl-pt","Dat is goed nieuws!", ["Isso são boas notícias","São boas notícias","Isso é uma boa notícia"], "Singular em NL.", ["v-nieuws"]),
+    FE(["Het","nieuws","zijn","heel","slecht."], 2, "is", "Het nieuws é singular: is.", ["v-nieuws"]),
+    LI("Volgens de NOS komt er morgen een storm.", ["Volgens de NOS komt er morgen een storm"], "Segundo a NOS, amanhã vem aí uma tempestade.", "volgens.", ["v-volgens"]),
+    MC("A NOS é…", ["*o serviço público de notícias neerlandês","um supermercado|Não.","um partido|Não."], "NOS Journaal.", ["v-nieuws"]),
+    WO("Qual é a fonte?", ["Wat","is","de","bron?"], "de bron.", ["v-bron"]),
+  ], diff=4, mins=6)
+
+L(2, "Ler manchetes", "Manchetes curtas: sem artigos, verbos no presente.",
+  ["Compreender o estilo comprimido das manchetes"],
+  vocab=[V("v-kabinet","kabinet","governo (conselho de ministros)","noun","het"), V("v-staking","staking","greve","noun","de"),
+         V("v-stijgen","stijgen","subir","verb",note="gestegen"), V("v-dalen","dalen","descer","verb",note="gedaald"),
+         V("v-prijs","prijs","preço","noun","de","prijzen"), V("v-bouwen","bouwen","construir","verb",note="gebouwd")],
+  ex=[("Prijzen in supermarkt stijgen weer","Preços no supermercado voltam a subir"),("Kabinet wil meer woningen bouwen","Governo quer construir mais casas"),("Staking NS: geen treinen in Utrecht","Greve na NS: sem comboios em Utrecht"),("Werkloosheid daalt","Desemprego desce")],
+  gram=[G("g-krantenkoppen","Estilo das manchetes","Nas manchetes omitem-se artigos e verbos auxiliares, e usa-se o **presente** mesmo para o passado: *Man (is) gered uit gracht* = Um homem foi salvo de um canal. Os dois pontos substituem «sobre/em»: *Staking NS: …*",
+    [("Brand in Rotterdam: twee gewonden","Incêndio em Roterdão: dois feridos")])],
+  review=["v-trein","v-woning"],
+  cefr=C, exs=[
+    MA([("kabinet","governo"),("staking","greve"),("stijgen","subir"),("dalen","descer"),("prijs","preço")], "Manchetes.", ["v-kabinet","v-staking","v-stijgen","v-dalen","v-prijs"]),
+    TR("nl-pt","Prijzen in supermarkt stijgen weer", ["Os preços no supermercado voltam a subir","Preços no supermercado voltam a subir","Os preços nos supermercados sobem outra vez"], "stijgen.", ["v-stijgen","v-prijs"]),
+    TR("nl-pt","Werkloosheid daalt", ["O desemprego desce","Desemprego desce","O desemprego está a descer"], "dalen.", ["v-dalen"]),
+    MC("«Staking NS: geen treinen in Utrecht» significa…", ["*Há greve na NS e não há comboios em Utrecht","A NS abriu uma nova linha|Não.","Os comboios estão mais baratos|Não."], "staking = greve.", ["v-staking"]),
+    MC("«Man gered uit gracht» — aconteceu quando?", ["*Já aconteceu (as manchetes omitem «is»)","Vai acontecer amanhã|Não.","Está a acontecer agora|Provavelmente já aconteceu."], "Estilo comprimido.", []),
+    AR("kabinet","o governo","het", "Het kabinet.", ["v-kabinet"]),
+    AR("staking","a greve","de", "-ing → de.", ["v-staking"]),
+    MC("O contrário de «stijgen» é…", ["*dalen","stappen|Não.","staken|Isso é fazer greve."], "subir ↔ descer.", ["v-dalen"]),
+    LI("De prijzen zijn dit jaar flink gestegen.", ["De prijzen zijn dit jaar flink gestegen"], "Os preços subiram bastante este ano.", "stijgen → zijn gestegen.", ["v-stijgen"]),
+    FE(["De","prijzen","hebben","gestegen."], 2, "zijn", "stijgen (mudança de estado) usa zijn.", ["v-stijgen"]),
+  ], diff=4, mins=6)
+
+L(3, "Ler uma notícia curta", "Wie, wat, waar, wanneer, waarom?",
+  ["Extrair os factos principais de uma notícia simples"],
+  vocab=[V("v-ongeval","ongeval","acidente","noun","het"), V("v-gewonde","gewonde","ferido","noun","de",note="gewonden (plural)"),
+         V("v-getuige","getuige","testemunha","noun","de"), V("v-onderzoek","onderzoek","investigação|estudo","noun","het"), V("v-politie","politie","polícia","noun","de")],
+  ex=[("Bij het ongeval vielen twee gewonden.","No acidente houve dois feridos."),("De politie zoekt getuigen.","A polícia procura testemunhas."),("Er is een onderzoek gestart.","Foi aberta uma investigação."),("Het ongeluk gebeurde rond acht uur.","O acidente aconteceu por volta das oito.")],
+  review=["v-ongeluk","v-gewond","v-gebeuren"],
+  cefr=C, exs=[
+    MA([("ongeval","acidente"),("gewonde","ferido"),("getuige","testemunha"),("onderzoek","investigação")], "Notícia.", ["v-ongeval","v-gewonde","v-getuige","v-onderzoek"]),
+    CO("text","Botsing op de A2", "UTRECHT – Op de A2 bij Utrecht zijn dinsdagochtend drie auto's op elkaar gebotst. Twee mensen raakten lichtgewond. Volgens de politie was het erg glad door de regen. De weg was twee uur dicht, waardoor er lange files ontstonden. De politie zoekt getuigen.",
+       [("Quando foi o acidente?", ["*Terça de manhã","Segunda à noite","Domingo"]),("Qual foi a causa provável?", ["*Estrada escorregadia por causa da chuva","Neve","Excesso de velocidade"]),("Quanto tempo esteve a estrada fechada?", ["*Duas horas","Um dia","Meia hora"])],
+       "botsen = colidir; file = fila de trânsito.", ["v-ongeval","v-getuige"]),
+    TR("nl-pt","De politie zoekt getuigen.", ["A polícia procura testemunhas","A polícia está à procura de testemunhas"], "getuigen.", ["v-getuige"]),
+    TR("pt-nl","Foi aberta uma investigação.", ["Er is een onderzoek gestart","Er is een onderzoek begonnen","Er is een onderzoek ingesteld"], "het onderzoek.", ["v-onderzoek"]),
+    AR("ongeval","o acidente","het", "Het ongeval.", ["v-ongeval"]),
+    AR("onderzoek","a investigação","het", "Het onderzoek.", ["v-onderzoek"]),
+    MC("«Lichtgewond» significa…", ["*ferido ligeiramente","gravemente ferido|Isso é «zwaargewond».","ileso|Não."], "licht = leve.", ["v-gewonde"]),
+    LI("Er vielen geen gewonden.", ["Er vielen geen gewonden"], "Não houve feridos.", "vallen (em notícias) = haver.", ["v-gewonde"]),
+    MC("Uma notícia responde normalmente a…", ["*wie, wat, waar, wanneer en waarom","alleen wie|Incompleto.","alleen wanneer|Incompleto."], "As 5 perguntas.", []),
+    WO("O acidente aconteceu por volta das oito.", ["Het","ongeval","gebeurde","rond","acht","uur"], "rond = por volta de.", ["v-ongeval"]),
+  ], diff=4, mins=7)
+
+L(4, "Notícias faladas e o tempo", "Ouvir o boletim: het weerbericht, het verkeer, de file.",
+  ["Compreender boletins curtos de rádio (tempo e trânsito)"],
+  vocab=[V("v-file","file","fila de trânsito","noun","de","files"), V("v-onweer","onweer","trovoada","noun","het"),
+         V("v-opklaringen","opklaringen","abertas (no céu)","noun","de"), V("v-code-oranje","code oranje","aviso laranja","expression")],
+  ex=[("Er staat een file van tien kilometer op de A4.","Há uma fila de dez quilómetros na A4."),("Vanmiddag kans op onweer.","Esta tarde há possibilidade de trovoada."),("Morgen zon en opklaringen.","Amanhã sol e abertas."),("Het KNMI geeft code oranje af.","O KNMI emite aviso laranja.")],
+  review=["v-weerbericht","v-regen","v-waaien","v-graad"],
+  cefr=C, exs=[
+    MA([("file","fila de trânsito"),("onweer","trovoada"),("opklaringen","abertas"),("code oranje","aviso laranja")], "Rádio.", ["v-file","v-onweer","v-opklaringen","v-code-oranje"]),
+    LI("Er staat een file van tien kilometer op de A4.", ["Er staat een file van tien kilometer op de A4"], "Há uma fila de dez quilómetros na A4.", "file.", ["v-file"]),
+    LI("Vanmiddag kans op onweer.", ["Vanmiddag kans op onweer"], "Esta tarde há possibilidade de trovoada.", "kans op.", ["v-onweer"]),
+    TR("nl-pt","Morgen zon en opklaringen.", ["Amanhã sol e abertas","Amanhã sol e céu limpo por vezes"], "opklaringen.", ["v-opklaringen"]),
+    MC("O KNMI é…", ["*o instituto meteorológico neerlandês","um banco|Não.","uma estação de comboios|Não."], "KNMI.", ["v-code-oranje"]),
+    MC("Com «code oranje» por causa do vento deve…", ["*ter cuidado e evitar viagens desnecessárias","ir à praia|Perigoso.","ignorar|Não é recomendável."], "Aviso sério.", ["v-code-oranje"]),
+    AR("onweer","a trovoada","het", "Het onweer.", ["v-onweer"]),
+    CO("text","Weer en verkeer", "Goedemorgen, het is acht uur. Het verkeer: op de A12 bij Den Haag staat een file van zes kilometer door een ongeluk. Reken op een halfuur extra reistijd. Het weer: vanochtend nog regen, vanmiddag droog met opklaringen. Maximumtemperatuur veertien graden. Vanavond kans op onweer in het zuiden.",
+       [("Quanto tempo extra na A12?", ["*Meia hora","Uma hora","Dez minutos"]),("Como estará a tarde?", ["*Seca com abertas","Chuva forte","Neve"]),("Onde pode haver trovoada à noite?", ["*No sul","No norte","Em todo o país"])],
+       "reken op = conte com.", ["v-file","v-opklaringen","v-onweer"]),
+    FB("Door een ongeluk staat er een lange ___.", ["file"], "Fila de trânsito.", ["v-file"], choices=["file","rij","lijn"], tr="Por causa de um acidente há uma longa fila."),
+    TR("pt-nl","Amanhã há possibilidade de trovoada.", ["Morgen is er kans op onweer","Morgen kans op onweer"], "kans op.", ["v-onweer"]),
+  ], diff=4, mins=7)
+
+L(5, "Comentar uma notícia", "Heb je gehoord dat…? Ik las dat… Wat vind jij ervan?",
+  ["Contar e comentar uma notícia numa conversa"],
+  vocab=[V("v-heb-je-gehoord","heb je gehoord dat…?","ouviste que…?","expression"), V("v-ik-las-dat","ik las dat…","li que…","expression"),
+         V("v-schijnbaar","schijnbaar","pelos vistos|aparentemente","adverb"), V("v-ophef","ophef","alvoroço|polémica","noun","de")],
+  ex=[("Heb je gehoord dat de huren weer stijgen?","Ouviste que as rendas vão subir outra vez?"),("Ik las dat er een nieuwe brug komt.","Li que vai haver uma ponte nova."),("Schijnbaar is het museum gesloten.","Pelos vistos o museu está fechado."),("Er is veel ophef over het plan.","Há muita polémica em torno do plano.")],
+  review=["v-volgens","v-nieuws","v-ervan","v-dat-conj"],
+  cefr=C, exs=[
+    MA([("heb je gehoord dat…?","ouviste que…?"),("ik las dat…","li que…"),("schijnbaar","pelos vistos"),("ophef","polémica")], "Comentar.", ["v-heb-je-gehoord","v-ik-las-dat","v-schijnbaar","v-ophef"]),
+    WO("Ouviste que as rendas vão subir outra vez?", ["Heb","je","gehoord","dat","de","huren","weer","stijgen?"], "dat + verbo no fim.", ["v-heb-je-gehoord"]),
+    TR("pt-nl","Li que vai haver uma ponte nova.", ["Ik las dat er een nieuwe brug komt","Ik heb gelezen dat er een nieuwe brug komt"], "dat + verbo no fim.", ["v-ik-las-dat"]),
+    TR("nl-pt","Schijnbaar is het museum gesloten.", ["Pelos vistos o museu está fechado","Aparentemente o museu está fechado"], "schijnbaar.", ["v-schijnbaar"]),
+    FE(["Ik","las","dat","er","komt","een","nieuwe","brug."], 4, "een nieuwe brug komt", "Verbo no fim: dat er een nieuwe brug komt.", ["v-ik-las-dat"]),
+    AR("ophef","a polémica","de", "De ophef.", ["v-ophef"]),
+    LI("Er is veel ophef over het nieuwe plan.", ["Er is veel ophef over het nieuwe plan"], "Há muita polémica sobre o novo plano.", "ophef over.", ["v-ophef"]),
+    DL([("Collega","Heb je gehoord dat de NS de prijzen verhoogt?","Ouviste que a NS vai aumentar os preços?"),("Pedro","")], ["*Ja, ik las het vanochtend. Belachelijk, vind je niet?","Ik ben de NS.|Não faz sentido.","Nee, ik heb gehoord.|Contraditório."], "Reagir e comentar.", ["v-heb-je-gehoord","v-ik-las-dat"]),
+    MC("«Schijnbaar» indica que…", ["*a informação é indireta, pode não ser certa","é totalmente certo|Não.","é uma opinião pessoal forte|Não."], "Distância da informação.", ["v-schijnbaar"]),
+    SW("Conte uma notícia recente a um colega (2–3 frases) e peça a opinião dele.", ["Heb je gehoord dat er een nieuw zwembad komt in onze wijk? Ik las het in de krant. Wat vind jij ervan?"], ["**Heb je gehoord dat** / **Ik las dat** + verbo no fim", "Fonte (**volgens / in de krant**)", "Pergunta de opinião (**wat vind jij ervan?**)"], 20, "Partilhar notícias.", ["v-heb-je-gehoord","v-ik-las-dat"]),
+  ], diff=4, mins=7)
+
+W()
