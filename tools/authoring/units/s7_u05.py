@@ -47,10 +47,9 @@ L(2, "Analisar a argumentação", "Is het argument sterk? Klopt de redenering?",
 
 L(3, "Técnicas de persuasão", "framing, emotie, autoriteit, herhaling",
   ["Reconhecer técnicas de persuasão em textos e publicidade"],
-  vocab=[V("v-framing","framing","enquadramento (framing)","noun","de"), V("v-beinvloeden","beïnvloeden","influenciar","verb"),
-         V("v-inspelen-op","inspelen op","jogar com|aproveitar-se de","expression"), V("v-autoriteit","autoriteit","autoridade","noun","de")],
+  vocab=[V("v-framing","framing","enquadramento (framing)","noun","de"), V("v-inspelen-op","inspelen op","jogar com|aproveitar-se de","expression"), V("v-autoriteit","autoriteit","autoridade","noun","de")],
   ex=[("De advertentie speelt in op angst.","O anúncio joga com o medo."),("Media beïnvloeden onze mening.","Os media influenciam a nossa opinião."),("«Belastingverlichting» is een vorm van framing.","«Alívio fiscal» é uma forma de framing."),("Ze gebruiken een arts als autoriteit.","Usam um médico como figura de autoridade.")],
-  review=["v-overtuigen","v-toon","v-suggereren"],
+  review=["v-beinvloeden","v-overtuigen","v-toon","v-suggereren"],
   cefr=C, exs=[
     MA([("framing","enquadramento"),("beïnvloeden","influenciar"),("inspelen op","jogar com"),("autoriteit","autoridade")], "Persuasão.", ["v-framing","v-beinvloeden","v-inspelen-op","v-autoriteit"]),
     MC("«9 van de 10 tandartsen raden deze tandpasta aan.» Que técnica?", ["*Autoriteit","Humor|Não.","Angst|Não."], "Autoridade.", ["v-autoriteit"]),

@@ -68,9 +68,9 @@ L(3, "Ouvir com ruído e várias vozes", "Op het station, in een café, aan de t
 L(4, "Ouvir rádio, podcasts e entrevistas", "Hoofdpunten noteren tijdens het luisteren",
   ["Tirar notas dos pontos principais enquanto ouve"],
   vocab=[V("v-aantekeningen","aantekeningen","apontamentos","noun","de"), V("v-terugspoelen","terugspoelen","retroceder (áudio)","verb"),
-         V("v-afspelen","afspelen","reproduzir","verb"), V("v-ondertiteling","ondertiteling","legendas","noun","de")],
+         V("v-afspelen","afspelen","reproduzir","verb")],
   ex=[("Maak aantekeningen tijdens het luisteren.","Toma notas enquanto ouves."),("Spoel even terug, ik miste dat.","Recua um pouco, perdi isso."),("Speel het fragment nog een keer af.","Reproduz o excerto mais uma vez."),("Zet de Nederlandse ondertiteling aan.","Liga as legendas em neerlandês.")],
-  review=["v-hoofdpunt","v-samenvatting","v-kern"],
+  review=["v-ondertiteling","v-hoofdpunt","v-samenvatting","v-kern"],
   cefr=C, exs=[
     MA([("aantekeningen","apontamentos"),("terugspoelen","retroceder"),("afspelen","reproduzir"),("ondertiteling","legendas")], "Ouvir ativamente.", ["v-aantekeningen","v-terugspoelen","v-afspelen","v-ondertiteling"]),
     TR("pt-nl","Toma notas enquanto ouves.", ["Maak aantekeningen tijdens het luisteren"], "aantekeningen maken.", ["v-aantekeningen"]),

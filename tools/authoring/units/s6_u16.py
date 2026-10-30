@@ -5,10 +5,10 @@ C = "B1-B2"
 
 L(1, "Inferir: ler nas entrelinhas", "Wat bedoelt de schrijver eigenlijk?",
   ["Tirar conclusões que não estão escritas explicitamente"],
-  vocab=[V("v-afleiden","afleiden","deduzir","verb",note="Wat kun je hieruit afleiden?"), V("v-impliciet","impliciet","implícito","adjective"),
+  vocab=[V("v-impliciet","impliciet","implícito","adjective"),
          V("v-expliciet","expliciet","explícito","adjective"), V("v-suggereren","suggereren","sugerir","verb")],
   ex=[("Wat kun je uit de tekst afleiden?","O que se pode deduzir do texto?"),("De kritiek is impliciet.","A crítica é implícita."),("Dat staat er niet expliciet.","Isso não está escrito explicitamente."),("De schrijver suggereert dat het beleid faalt.","O autor sugere que a política está a falhar.")],
-  review=["v-schrijfdoel","v-feit","v-mening"],
+  review=["v-afleiden","v-schrijfdoel","v-feit","v-mening"],
   cefr=C, exs=[
     MA([("afleiden","deduzir"),("impliciet","implícito"),("expliciet","explícito"),("suggereren","sugerir")], "Inferir.", ["v-afleiden","v-impliciet","v-expliciet","v-suggereren"]),
     CO("text","Een bericht van de buurman", "Hoi! Fijn dat jullie zaterdag een feestje geven. Wij zijn zondag om zeven uur op, want onze dochter heeft een zwemwedstrijd. Groetjes, Kees (nr. 14)",
