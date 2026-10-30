@@ -34,7 +34,7 @@ L(2, "Encontrar a ideia principal", "De kern van de tekst. Waar gaat het over?",
   review=["v-hoofdgedachte","v-samenvatting","v-kernzin"],
   cefr=C, exs=[
     MA([("kern","cerne"),("bijzaak","pormenor"),("hoofdzaak","essencial"),("strekking","sentido geral")], "Ideia principal.", ["v-kern","v-bijzaak","v-hoofdzaak","v-strekking"]),
-    CO("text","Minder vlees, meer bonen", "Nederlanders eten steeds minder vlees. Volgens het Voedingscentrum daalde de vleesconsumptie de afgelopen tien jaar met ongeveer tien procent. Vooral jongeren kiezen vaker voor vegetarische maaltijden. Supermarkten spelen daarop in: het aanbod van vleesvervangers is sterk gegroeid. Toch blijft Nederland in Europa een van de grotere vleeseters. Volgens experts is er dus nog werk aan de winkel.",
+    CO("text","Minder vlees, meer bonen", "Nederlanders eten steeds minder vlees. Volgens recente cijfers is de vleesconsumptie de afgelopen jaren licht gedaald. Vooral jongeren kiezen vaker voor vegetarische maaltijden. Supermarkten spelen daarop in: het aanbod van vleesvervangers is sterk gegroeid. Toch blijft Nederland in Europa een van de grotere vleeseters. Volgens experts is er dus nog werk aan de winkel.",
        [("Qual é a ideia principal?", ["*Os neerlandeses comem menos carne, mas ainda comem bastante","Os supermercados vendem mais feijão","Os jovens não gostam de carne"]),("Qual destas é um pormenor (bijzaak)?", ["*O aumento da oferta de substitutos de carne nos supermercados","A diminuição do consumo de carne","Ainda há trabalho a fazer"])],
        "werk aan de winkel = trabalho por fazer.", ["v-kern","v-bijzaak"]),
     TR("pt-nl","Qual é o cerne do artigo?", ["Wat is de kern van het artikel"], "de kern.", ["v-kern"]),
