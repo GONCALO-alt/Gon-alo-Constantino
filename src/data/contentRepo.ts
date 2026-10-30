@@ -105,4 +105,17 @@ export class ContentRepository {
   }
 }
 
-export const contentRepo = new ContentRepository(`${import.meta.env?.BASE_URL ?? '/'}content/`);
+/**
+ * Na versão de ficheiro único (dist-single/), o conteúdo vem embutido na página
+ * em `window.__DUTCHPATH_CONTENT__` (caminho relativo → JSON), para funcionar sem servidor.
+ */
+const embedded = (globalThis as { __DUTCHPATH_CONTENT__?: Record<string, unknown> }).__DUTCHPATH_CONTENT__;
+const embeddedFetcher: Fetcher = async (url) => {
+  const key = url.replace(/^.*?content\//, '');
+  const data = embedded?.[key];
+  return { ok: data !== undefined, status: data !== undefined ? 200 : 404, json: async () => data };
+};
+
+export const contentRepo = embedded
+  ? new ContentRepository('content/', embeddedFetcher)
+  : new ContentRepository(`${import.meta.env?.BASE_URL ?? '/'}content/`);

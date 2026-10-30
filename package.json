@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "npm run content:build && vite",
     "build": "npm run content:build && tsc -b && vite build",
+    "build:single": "npm run build && node tools/build-single.ts",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "test": "vitest run",
