@@ -2507,6 +2507,4183 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s6-u04-l010",
+      "unitId": "s6-u04",
+      "order": 10,
+      "title": "Convocar uma reunião",
+      "description": "Ik stuur de agenda vooraf rond.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Convidar para uma reunião e preparar a agenda"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-vergaderverzoek",
+          "nl": "vergaderverzoek",
+          "pt": [
+            "convite para reunião"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "vergaderverzoeken"
+        },
+        {
+          "id": "v-agenda-rondsturen",
+          "nl": "de agenda rondsturen",
+          "pt": [
+            "enviar a agenda a todos"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-aanschuiven",
+          "nl": "aanschuiven",
+          "pt": [
+            "juntar-se (a uma reunião/mesa)"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vergadering",
+        "v-agenda-punt"
+      ],
+      "examples": [
+        {
+          "nl": "Ik stuur je een vergaderverzoek voor dinsdag.",
+          "pt": "Envio-te um convite para reunião para terça."
+        },
+        {
+          "nl": "Ik stuur de agenda vooraf rond.",
+          "pt": "Envio a agenda a todos com antecedência."
+        },
+        {
+          "nl": "Mag Sanne ook aanschuiven?",
+          "pt": "A Sanne também se pode juntar?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Convocar.",
+          "vocabRefs": [
+            "v-vergaderverzoek",
+            "v-agenda-rondsturen",
+            "v-aanschuiven",
+            "v-vergadering"
+          ],
+          "pairs": [
+            {
+              "nl": "vergaderverzoek",
+              "pt": "convite para reunião"
+            },
+            {
+              "nl": "de agenda rondsturen",
+              "pt": "enviar a agenda"
+            },
+            {
+              "nl": "aanschuiven",
+              "pt": "juntar-se"
+            },
+            {
+              "nl": "vergadering",
+              "pt": "reunião"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l010-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het verzoek → het vergaderverzoek.",
+          "vocabRefs": [
+            "v-vergaderverzoek"
+          ],
+          "noun": "vergaderverzoek",
+          "pt": "convite para reunião",
+          "article": "het"
+        },
+        {
+          "id": "s6-u04-l010-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-agenda-rondsturen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Envio a agenda com antecedência.",
+          "answers": [
+            "Ik stuur de agenda vooraf rond",
+            "Ik stuur vooraf de agenda rond"
+          ]
+        },
+        {
+          "id": "s6-u04-l010-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aanschuiven.",
+          "vocabRefs": [
+            "v-aanschuiven"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A Sanne também se pode juntar?",
+          "answers": [
+            "Mag Sanne ook aanschuiven",
+            "Kan Sanne ook aanschuiven",
+            "Mag Sanne ook aanschuiven?"
+          ]
+        },
+        {
+          "id": "s6-u04-l010-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio separável.",
+          "vocabRefs": [
+            "v-agenda-rondsturen"
+          ],
+          "sentence": "Ik heb de agenda gisteren ___.",
+          "translation": "Enviei a agenda ontem.",
+          "answers": [
+            "rondgestuurd"
+          ],
+          "choices": [
+            "rondgestuurd",
+            "gerondstuurd",
+            "rondsturen"
+          ]
+        },
+        {
+          "id": "s6-u04-l010-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "r → -d.",
+          "vocabRefs": [
+            "v-vergaderverzoek"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "je",
+            "een",
+            "vergaderverzoek",
+            "gestuurt."
+          ],
+          "errorIndex": 5,
+          "correction": "gestuurd."
+        },
+        {
+          "id": "s6-u04-l010-e07",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "E-mail de convocatória.",
+          "vocabRefs": [
+            "v-vergaderverzoek",
+            "v-aanschuiven"
+          ],
+          "kind": "text",
+          "title": "E-mail",
+          "text": "Beste collega's,\n\nHierbij een vergaderverzoek voor donderdag 10.00 uur over de verhuizing van ons kantoor. De agenda stuur ik morgen rond. Heb je punten die je wilt toevoegen? Laat het me vóór woensdag weten. Ook Pieter van Facilitaire Zaken schuift aan.\n\nGroet,\nInês",
+          "questions": [
+            {
+              "prompt": "De que trata a reunião?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Da mudança de escritório",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "De férias",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "De salários",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quando envia a agenda?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Amanhã",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Hoje",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Na quinta",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quem se junta?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "O Pieter",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "A Inês",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Ninguém",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l010-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-agenda-punt"
+          ],
+          "audioText": "Heb je nog punten voor de agenda?",
+          "answers": [
+            "Heb je nog punten voor de agenda",
+            "Heb je nog punten voor de agenda?"
+          ],
+          "translation": "Tens mais pontos para a agenda?"
+        },
+        {
+          "id": "s6-u04-l010-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-aanschuiven"
+          ],
+          "translation": "A Sanne junta-se.",
+          "tokens": [
+            "Sanne",
+            "schuift",
+            "aan"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l011",
+      "unitId": "s6-u04",
+      "order": 11,
+      "title": "Abrir a reunião",
+      "description": "Laten we beginnen met een voorstelrondje.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Abrir uma reunião e apresentar os participantes"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-voorstelrondje",
+          "nl": "voorstelrondje",
+          "pt": [
+            "ronda de apresentações"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-we-hebben-tot",
+          "nl": "we hebben tot … de tijd",
+          "pt": [
+            "temos até às … "
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-zijn-we-compleet",
+          "nl": "zijn we compleet?",
+          "pt": [
+            "estamos todos?"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-voorzitter",
+        "v-welkom-heten"
+      ],
+      "examples": [
+        {
+          "nl": "Zijn we compleet? Dan beginnen we.",
+          "pt": "Estamos todos? Então começamos."
+        },
+        {
+          "nl": "Laten we beginnen met een kort voorstelrondje.",
+          "pt": "Vamos começar com uma breve ronda de apresentações."
+        },
+        {
+          "nl": "We hebben tot elf uur de tijd.",
+          "pt": "Temos até às onze."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Abrir.",
+          "vocabRefs": [
+            "v-voorstelrondje",
+            "v-we-hebben-tot",
+            "v-zijn-we-compleet",
+            "v-welkom-heten"
+          ],
+          "pairs": [
+            {
+              "nl": "voorstelrondje",
+              "pt": "ronda de apresentações"
+            },
+            {
+              "nl": "we hebben tot … de tijd",
+              "pt": "temos até…"
+            },
+            {
+              "nl": "zijn we compleet?",
+              "pt": "estamos todos?"
+            },
+            {
+              "nl": "welkom heten",
+              "pt": "dar as boas-vindas"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sequência.",
+          "vocabRefs": [
+            "v-zijn-we-compleet",
+            "v-voorstelrondje"
+          ],
+          "prompt": "Ordem natural da abertura:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zijn we compleet? → welkom → voorstelrondje → agenda",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "agenda → afscheid → welkom",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "rondvraag → welkom",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-zijn-we-compleet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Estamos todos?",
+          "answers": [
+            "Zijn we compleet",
+            "Zijn we compleet?",
+            "Is iedereen er"
+          ]
+        },
+        {
+          "id": "s6-u04-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "tot … de tijd.",
+          "vocabRefs": [
+            "v-we-hebben-tot"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Temos até às onze.",
+          "answers": [
+            "We hebben tot elf uur de tijd",
+            "We hebben tot elf uur",
+            "Wij hebben tot elf uur de tijd"
+          ]
+        },
+        {
+          "id": "s6-u04-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Apresentações.",
+          "vocabRefs": [
+            "v-voorstelrondje"
+          ],
+          "sentence": "Laten we beginnen met een kort ___.",
+          "translation": "Vamos começar com uma breve ronda de apresentações.",
+          "answers": [
+            "voorstelrondje"
+          ],
+          "choices": [
+            "voorstelrondje",
+            "rondvraag",
+            "actiepunt"
+          ]
+        },
+        {
+          "id": "s6-u04-l011-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Inversão: Dan beginnen we.",
+          "vocabRefs": [
+            "v-zijn-we-compleet"
+          ],
+          "tokens": [
+            "Zijn",
+            "wij",
+            "compleet?",
+            "Dan",
+            "we",
+            "beginnen."
+          ],
+          "errorIndex": 4,
+          "correction": "beginnen"
+        },
+        {
+          "id": "s6-u04-l011-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Apresentar-se.",
+          "vocabRefs": [
+            "v-voorstelrondje"
+          ],
+          "lines": [
+            {
+              "speaker": "Voorzitter",
+              "nl": "Laten we een voorstelrondje doen. Wil jij beginnen?",
+              "pt": "Vamos fazer uma ronda de apresentações. Queres começar?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Natuurlijk. Ik ben Rui, ik werk sinds maart op de afdeling inkoop.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja.",
+              "correct": false,
+              "feedback": "Seco."
+            },
+            {
+              "id": "c",
+              "text": "Rondvraag.",
+              "correct": false,
+              "feedback": "Errado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l011-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Abertura.",
+          "vocabRefs": [
+            "v-welkom-heten"
+          ],
+          "audioText": "Welkom allemaal, fijn dat jullie er zijn.",
+          "answers": [
+            "Welkom allemaal, fijn dat jullie er zijn",
+            "Welkom allemaal fijn dat jullie er zijn"
+          ],
+          "translation": "Bem-vindos todos, que bom que estão aqui."
+        },
+        {
+          "id": "s6-u04-l011-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-zijn-we-compleet"
+          ],
+          "translation": "Estamos todos?",
+          "tokens": [
+            "Zijn",
+            "we",
+            "compleet?"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l012",
+      "unitId": "s6-u04",
+      "order": 12,
+      "title": "Gerir os pontos da agenda",
+      "description": "Dit punt schuiven we door.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Avançar, adiar e fechar pontos da agenda"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-het-volgende-punt",
+          "nl": "het volgende punt",
+          "pt": [
+            "o próximo ponto"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-doorschuiven",
+          "nl": "doorschuiven",
+          "pt": [
+            "adiar (para outra reunião)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-parkeren-punt",
+          "nl": "dat parkeren we even",
+          "pt": [
+            "deixamos isso em suspenso"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-agenda-punt",
+        "v-afronden"
+      ],
+      "examples": [
+        {
+          "nl": "Dan gaan we naar het volgende punt.",
+          "pt": "Então passamos ao próximo ponto."
+        },
+        {
+          "nl": "Dit punt schuiven we door naar volgende week.",
+          "pt": "Este ponto adiamos para a próxima semana."
+        },
+        {
+          "nl": "Goed idee, maar dat parkeren we even.",
+          "pt": "Boa ideia, mas deixamos isso em suspenso."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Agenda.",
+          "vocabRefs": [
+            "v-het-volgende-punt",
+            "v-doorschuiven",
+            "v-parkeren-punt",
+            "v-afronden"
+          ],
+          "pairs": [
+            {
+              "nl": "het volgende punt",
+              "pt": "o próximo ponto"
+            },
+            {
+              "nl": "doorschuiven",
+              "pt": "adiar"
+            },
+            {
+              "nl": "dat parkeren we even",
+              "pt": "fica em suspenso"
+            },
+            {
+              "nl": "afronden",
+              "pt": "concluir"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Metáfora.",
+          "vocabRefs": [
+            "v-parkeren-punt"
+          ],
+          "prompt": "«Dat parkeren we even» numa reunião significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "vamos deixar o tema para depois",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "vamos estacionar o carro",
+              "correct": false,
+              "feedback": "Literal."
+            },
+            {
+              "id": "c",
+              "text": "está decidido",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "het volgende punt.",
+          "vocabRefs": [
+            "v-het-volgende-punt"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Passamos ao próximo ponto.",
+          "answers": [
+            "We gaan naar het volgende punt",
+            "Dan gaan we naar het volgende punt",
+            "We gaan door naar het volgende punt"
+          ]
+        },
+        {
+          "id": "s6-u04-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "doorschuiven.",
+          "vocabRefs": [
+            "v-doorschuiven"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Adiamos este ponto para a próxima semana.",
+          "answers": [
+            "Dit punt schuiven we door naar volgende week",
+            "We schuiven dit punt door naar volgende week"
+          ]
+        },
+        {
+          "id": "s6-u04-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-doorschuiven"
+          ],
+          "sentence": "We hebben geen tijd meer; we schuiven dit punt ___.",
+          "translation": "Já não temos tempo; adiamos este ponto.",
+          "answers": [
+            "door"
+          ],
+          "choices": [
+            "door",
+            "aan",
+            "op"
+          ]
+        },
+        {
+          "id": "s6-u04-l012-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Particípio forte: doorgeschoven.",
+          "vocabRefs": [
+            "v-doorschuiven"
+          ],
+          "tokens": [
+            "Dit",
+            "punt",
+            "wordt",
+            "naar",
+            "maandag",
+            "doorgeschuift."
+          ],
+          "errorIndex": 5,
+          "correction": "doorgeschoven."
+        },
+        {
+          "id": "s6-u04-l012-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Gerir a agenda.",
+          "vocabRefs": [
+            "v-parkeren-punt"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Zullen we het ook nog over de kerstborrel hebben?",
+              "pt": "Falamos também do convívio de Natal?"
+            },
+            {
+              "speaker": "Voorzitter",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Goed punt, maar dat parkeren we even. Eerst het budget.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee.",
+              "correct": false,
+              "feedback": "Seco."
+            },
+            {
+              "id": "c",
+              "text": "Volgende punt kerst.",
+              "correct": false,
+              "feedback": "Confuso."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l012-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Fechar.",
+          "vocabRefs": [
+            "v-afronden"
+          ],
+          "audioText": "Kunnen we dit punt afronden?",
+          "answers": [
+            "Kunnen we dit punt afronden",
+            "Kunnen we dit punt afronden?"
+          ],
+          "translation": "Podemos fechar este ponto?"
+        },
+        {
+          "id": "s6-u04-l012-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-het-volgende-punt"
+          ],
+          "translation": "O próximo ponto.",
+          "tokens": [
+            "Het",
+            "volgende",
+            "punt"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l013",
+      "unitId": "s6-u04",
+      "order": 13,
+      "title": "Dar e pedir a palavra",
+      "description": "Ik geef het woord aan Lisa.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Gerir quem fala numa reunião"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-het-woord-geven",
+          "nl": "het woord geven aan",
+          "pt": [
+            "dar a palavra a"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-wil-jij-iets-zeggen",
+          "nl": "wil jij daar iets over zeggen?",
+          "pt": [
+            "queres dizer algo sobre isso?"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-nog-niet-gehoord",
+          "nl": "we hebben … nog niet gehoord",
+          "pt": [
+            "ainda não ouvimos …"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aan-het-woord",
+        "v-inhaken",
+        "v-onderbreken"
+      ],
+      "examples": [
+        {
+          "nl": "Ik geef het woord aan Lisa.",
+          "pt": "Dou a palavra à Lisa."
+        },
+        {
+          "nl": "Tom, wil jij daar iets over zeggen?",
+          "pt": "Tom, queres dizer algo sobre isso?"
+        },
+        {
+          "nl": "We hebben Fatima nog niet gehoord.",
+          "pt": "Ainda não ouvimos a Fatima."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Palavra.",
+          "vocabRefs": [
+            "v-het-woord-geven",
+            "v-wil-jij-iets-zeggen",
+            "v-nog-niet-gehoord",
+            "v-aan-het-woord"
+          ],
+          "pairs": [
+            {
+              "nl": "het woord geven aan",
+              "pt": "dar a palavra a"
+            },
+            {
+              "nl": "wil jij daar iets over zeggen?",
+              "pt": "queres dizer algo?"
+            },
+            {
+              "nl": "we hebben … nog niet gehoord",
+              "pt": "ainda não ouvimos…"
+            },
+            {
+              "nl": "aan het woord zijn",
+              "pt": "ter a palavra"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Inclusão.",
+          "vocabRefs": [
+            "v-nog-niet-gehoord"
+          ],
+          "prompt": "Um bom presidente de reunião, para incluir quem está calado, diz…",
+          "options": [
+            {
+              "id": "a",
+              "text": "We hebben Fatima nog niet gehoord. Wat vind jij?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Fatima, zeg iets!",
+              "correct": false,
+              "feedback": "Brusco."
+            },
+            {
+              "id": "c",
+              "text": "Niemand anders?",
+              "correct": false,
+              "feedback": "Exclui."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "het woord geven.",
+          "vocabRefs": [
+            "v-het-woord-geven"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Dou a palavra à Lisa.",
+          "answers": [
+            "Ik geef het woord aan Lisa",
+            "Ik geef Lisa het woord"
+          ]
+        },
+        {
+          "id": "s6-u04-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "daar … over.",
+          "vocabRefs": [
+            "v-wil-jij-iets-zeggen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Queres dizer algo sobre isso?",
+          "answers": [
+            "Wil jij daar iets over zeggen",
+            "Wil je daar iets over zeggen",
+            "Wil jij daar iets over zeggen?"
+          ]
+        },
+        {
+          "id": "s6-u04-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio.",
+          "vocabRefs": [
+            "v-nog-niet-gehoord"
+          ],
+          "sentence": "We hebben Pieter nog niet ___.",
+          "translation": "Ainda não ouvimos o Pieter.",
+          "answers": [
+            "gehoord"
+          ],
+          "choices": [
+            "gehoord",
+            "horen",
+            "gehoort"
+          ]
+        },
+        {
+          "id": "s6-u04-l013-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "het woord geven aan.",
+          "vocabRefs": [
+            "v-het-woord-geven"
+          ],
+          "tokens": [
+            "Ik",
+            "geef",
+            "het",
+            "woord",
+            "op",
+            "Lisa."
+          ],
+          "errorIndex": 4,
+          "correction": "aan"
+        },
+        {
+          "id": "s6-u04-l013-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-inhaken"
+          ],
+          "audioText": "Mag ik daar even op inhaken voordat we verdergaan?",
+          "answers": [
+            "Mag ik daar even op inhaken voordat we verdergaan",
+            "Mag ik daar even op inhaken voordat we verdergaan?"
+          ],
+          "translation": "Posso pegar nisso antes de continuarmos?"
+        },
+        {
+          "id": "s6-u04-l013-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Passar a palavra.",
+          "vocabRefs": [
+            "v-het-woord-geven"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "…en daarom denk ik dat we moeten wachten.",
+              "pt": "…e por isso acho que devemos esperar."
+            },
+            {
+              "speaker": "Voorzitter (jij)",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Dank je, Mark. Ik geef het woord aan Esther; jij had een andere mening, toch?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Klaar.",
+              "correct": false,
+              "feedback": "Seco."
+            },
+            {
+              "id": "c",
+              "text": "Wachten!",
+              "correct": false,
+              "feedback": "Sem sentido."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l013-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-het-woord-geven"
+          ],
+          "translation": "Dou a palavra à Lisa.",
+          "tokens": [
+            "Ik",
+            "geef",
+            "het",
+            "woord",
+            "aan",
+            "Lisa"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l014",
+      "unitId": "s6-u04",
+      "order": 14,
+      "title": "Reuniões online",
+      "description": "Je staat op mute!",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Resolver problemas típicos de videochamadas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-op-mute",
+          "nl": "je staat op mute",
+          "pt": [
+            "estás sem som (microfone desligado)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-beeld-bevriest",
+          "nl": "je beeld bevriest",
+          "pt": [
+            "a tua imagem está a congelar"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-online-vergaderen",
+          "nl": "online vergaderen",
+          "pt": [
+            "reunir online"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-camera"
+      ],
+      "examples": [
+        {
+          "nl": "Je staat op mute!",
+          "pt": "Estás com o microfone desligado!"
+        },
+        {
+          "nl": "Je beeld bevriest steeds.",
+          "pt": "A tua imagem está sempre a congelar."
+        },
+        {
+          "nl": "We vergaderen vandaag online.",
+          "pt": "Hoje reunimos online."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Online.",
+          "vocabRefs": [
+            "v-op-mute",
+            "v-beeld-bevriest",
+            "v-online-vergaderen",
+            "v-camera"
+          ],
+          "pairs": [
+            {
+              "nl": "je staat op mute",
+              "pt": "estás sem som"
+            },
+            {
+              "nl": "je beeld bevriest",
+              "pt": "a imagem congela"
+            },
+            {
+              "nl": "online vergaderen",
+              "pt": "reunir online"
+            },
+            {
+              "nl": "camera",
+              "pt": "câmara"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l014-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-op-mute"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Estás com o microfone desligado!",
+          "answers": [
+            "Je staat op mute",
+            "Je staat op mute!",
+            "Jij staat op mute"
+          ]
+        },
+        {
+          "id": "s6-u04-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "bevriezen.",
+          "vocabRefs": [
+            "v-beeld-bevriest"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A tua imagem está a congelar.",
+          "answers": [
+            "Je beeld bevriest",
+            "Je beeld bevriest steeds",
+            "Jouw beeld bevriest"
+          ]
+        },
+        {
+          "id": "s6-u04-l014-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pedir repetição.",
+          "vocabRefs": [
+            "v-beeld-bevriest"
+          ],
+          "prompt": "A ligação está má. O que diz?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Je valt weg; kun je het nog een keer zeggen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Je bent slecht.",
+              "correct": false,
+              "feedback": "Rude."
+            },
+            {
+              "id": "c",
+              "text": "Op mute!",
+              "correct": false,
+              "feedback": "Não é o problema."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l014-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Câmara.",
+          "vocabRefs": [
+            "v-camera"
+          ],
+          "sentence": "Kun je je ___ even aanzetten? We zien je niet.",
+          "translation": "Podes ligar a câmara? Não te vemos.",
+          "answers": [
+            "camera"
+          ],
+          "choices": [
+            "camera",
+            "mute",
+            "beeld"
+          ]
+        },
+        {
+          "id": "s6-u04-l014-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "je: staat.",
+          "vocabRefs": [
+            "v-op-mute"
+          ],
+          "tokens": [
+            "Je",
+            "staan",
+            "op",
+            "mute!"
+          ],
+          "errorIndex": 1,
+          "correction": "staat"
+        },
+        {
+          "id": "s6-u04-l014-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Ligação instável.",
+          "vocabRefs": [
+            "v-beeld-bevriest"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "…dus wat vinden jullie van mijn voorstel?",
+              "pt": "…então o que acham da minha proposta?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Sorry, je viel even weg. Kun je de laatste zin herhalen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Je staat op mute.",
+              "correct": false,
+              "feedback": "Ele falou, ouviu-se o fim."
+            },
+            {
+              "id": "c",
+              "text": "Ja.",
+              "correct": false,
+              "feedback": "Não ouviu a proposta."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l014-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Revisão.",
+          "vocabRefs": [],
+          "audioText": "Ik deel even mijn scherm, zien jullie het?",
+          "answers": [
+            "Ik deel even mijn scherm, zien jullie het",
+            "Ik deel even mijn scherm, zien jullie het?",
+            "Ik deel even mijn scherm zien jullie het"
+          ],
+          "translation": "Vou partilhar o ecrã, estão a ver?"
+        },
+        {
+          "id": "s6-u04-l014-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-op-mute"
+          ],
+          "translation": "Estás sem som!",
+          "tokens": [
+            "Je",
+            "staat",
+            "op",
+            "mute!"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l015",
+      "unitId": "s6-u04",
+      "order": 15,
+      "title": "Decidir por votação",
+      "description": "Het besluit is unaniem genomen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Tomar decisões em grupo e anunciar o resultado"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-unaniem",
+          "nl": "unaniem",
+          "pt": [
+            "por unanimidade",
+            "unânime"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-bij-meerderheid",
+          "nl": "bij meerderheid",
+          "pt": [
+            "por maioria"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-onthouden-stem",
+          "nl": "zich van stemming onthouden",
+          "pt": [
+            "abster-se"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-stemmen",
+        "v-meerderheid",
+        "v-een-voorstel-doen"
+      ],
+      "examples": [
+        {
+          "nl": "Het besluit is unaniem genomen.",
+          "pt": "A decisão foi tomada por unanimidade."
+        },
+        {
+          "nl": "Het voorstel is bij meerderheid aangenomen.",
+          "pt": "A proposta foi aprovada por maioria."
+        },
+        {
+          "nl": "Twee mensen onthielden zich van stemming.",
+          "pt": "Duas pessoas abstiveram-se."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l015-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Votar.",
+          "vocabRefs": [
+            "v-unaniem",
+            "v-bij-meerderheid",
+            "v-onthouden-stem",
+            "v-stemmen"
+          ],
+          "pairs": [
+            {
+              "nl": "unaniem",
+              "pt": "por unanimidade"
+            },
+            {
+              "nl": "bij meerderheid",
+              "pt": "por maioria"
+            },
+            {
+              "nl": "zich van stemming onthouden",
+              "pt": "abster-se"
+            },
+            {
+              "nl": "stemmen",
+              "pt": "votar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Unanimidade.",
+          "vocabRefs": [
+            "v-unaniem"
+          ],
+          "prompt": "10 a favor, 0 contra, 0 abstenções:",
+          "options": [
+            {
+              "id": "a",
+              "text": "unaniem",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "bij meerderheid",
+              "correct": false,
+              "feedback": "Também, mas é unânime."
+            },
+            {
+              "id": "c",
+              "text": "verworpen",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l015-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Vocabulário.",
+          "vocabRefs": [
+            "v-bij-meerderheid"
+          ],
+          "prompt": "«Het voorstel is verworpen» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "a proposta foi rejeitada",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "aprovada",
+              "correct": false,
+              "feedback": "É «aangenomen»."
+            },
+            {
+              "id": "c",
+              "text": "adiada",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aangenomen.",
+          "vocabRefs": [
+            "v-bij-meerderheid"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A proposta foi aprovada por maioria.",
+          "answers": [
+            "Het voorstel is bij meerderheid aangenomen",
+            "Het voorstel werd bij meerderheid aangenomen"
+          ]
+        },
+        {
+          "id": "s6-u04-l015-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "unaniem.",
+          "vocabRefs": [
+            "v-unaniem"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A decisão foi unânime.",
+          "answers": [
+            "Het besluit was unaniem",
+            "Het besluit is unaniem genomen"
+          ]
+        },
+        {
+          "id": "s6-u04-l015-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Passado de onthouden.",
+          "vocabRefs": [
+            "v-onthouden-stem"
+          ],
+          "sentence": "Twee leden ___ zich van stemming.",
+          "translation": "Dois membros abstiveram-se.",
+          "answers": [
+            "onthielden"
+          ],
+          "choices": [
+            "onthielden",
+            "onthouden",
+            "onthoudt"
+          ]
+        },
+        {
+          "id": "s6-u04-l015-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Particípio de aannemen: aangenomen.",
+          "vocabRefs": [
+            "v-bij-meerderheid"
+          ],
+          "tokens": [
+            "Het",
+            "voorstel",
+            "is",
+            "bij",
+            "meerderheid",
+            "aangenoemd."
+          ],
+          "errorIndex": 5,
+          "correction": "aangenomen."
+        },
+        {
+          "id": "s6-u04-l015-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Fórmula de votação.",
+          "vocabRefs": [
+            "v-stemmen",
+            "v-onthouden-stem"
+          ],
+          "audioText": "Wie is voor? Wie is tegen? Wie onthoudt zich?",
+          "answers": [
+            "Wie is voor? Wie is tegen? Wie onthoudt zich?",
+            "Wie is voor wie is tegen wie onthoudt zich"
+          ],
+          "translation": "Quem é a favor? Quem é contra? Quem se abstém?"
+        },
+        {
+          "id": "s6-u04-l015-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-bij-meerderheid"
+          ],
+          "translation": "Foi aprovado por maioria.",
+          "tokens": [
+            "Het",
+            "is",
+            "bij",
+            "meerderheid",
+            "aangenomen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l016",
+      "unitId": "s6-u04",
+      "order": 16,
+      "title": "Confirmar por e-mail",
+      "description": "Zoals besproken stuur ik je…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Confirmar acordos de uma reunião por escrito"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zoals-besproken",
+          "nl": "zoals besproken",
+          "pt": [
+            "conforme combinado",
+            "como falámos"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ter-bevestiging",
+          "nl": "ter bevestiging",
+          "pt": [
+            "para confirmação"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-hierbij",
+        "v-notulen",
+        "v-actiepunt",
+        "v-bijlage"
+      ],
+      "examples": [
+        {
+          "nl": "Zoals besproken stuur ik je de offerte.",
+          "pt": "Conforme combinado, envio-te o orçamento."
+        },
+        {
+          "nl": "Ter bevestiging: we zien elkaar op 4 mei.",
+          "pt": "Para confirmar: vemo-nos a 4 de maio."
+        },
+        {
+          "nl": "Hierbij de notulen van gisteren.",
+          "pt": "Junto envio a ata de ontem."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l016-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Confirmar.",
+          "vocabRefs": [
+            "v-zoals-besproken",
+            "v-ter-bevestiging",
+            "v-hierbij",
+            "v-notulen"
+          ],
+          "pairs": [
+            {
+              "nl": "zoals besproken",
+              "pt": "conforme combinado"
+            },
+            {
+              "nl": "ter bevestiging",
+              "pt": "para confirmação"
+            },
+            {
+              "nl": "hierbij",
+              "pt": "junto envio"
+            },
+            {
+              "nl": "notulen",
+              "pt": "ata"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l016-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-zoals-besproken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Conforme combinado, envio-te o orçamento.",
+          "answers": [
+            "Zoals besproken stuur ik je de offerte",
+            "Zoals besproken stuur ik jou de offerte"
+          ]
+        },
+        {
+          "id": "s6-u04-l016-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "hierbij.",
+          "vocabRefs": [
+            "v-hierbij"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Junto envio a ata.",
+          "answers": [
+            "Hierbij de notulen",
+            "Hierbij stuur ik de notulen",
+            "Hierbij stuur ik je de notulen"
+          ]
+        },
+        {
+          "id": "s6-u04-l016-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Fórmula.",
+          "vocabRefs": [
+            "v-hierbij"
+          ],
+          "prompt": "«Hierbij» no início de um e-mail significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "junto envio / com este e-mail",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "aqui perto",
+              "correct": false,
+              "feedback": "Literal."
+            },
+            {
+              "id": "c",
+              "text": "adeus",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l016-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Expressão fixa.",
+          "vocabRefs": [
+            "v-ter-bevestiging"
+          ],
+          "sentence": "___ bevestiging: de deadline is vrijdag.",
+          "translation": "Para confirmação: o prazo é sexta.",
+          "answers": [
+            "Ter"
+          ],
+          "choices": [
+            "Ter",
+            "Voor",
+            "Als"
+          ]
+        },
+        {
+          "id": "s6-u04-l016-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Inversão: Zoals besproken stuur ik…",
+          "vocabRefs": [
+            "v-zoals-besproken"
+          ],
+          "tokens": [
+            "Zoals",
+            "besproken",
+            "ik",
+            "stuur",
+            "je",
+            "de",
+            "notulen."
+          ],
+          "errorIndex": 2,
+          "correction": "stuur"
+        },
+        {
+          "id": "s6-u04-l016-e07",
+          "type": "comprehension",
+          "instruction": "Leia o texto e responda.",
+          "explanation": "E-mail pós-reunião.",
+          "vocabRefs": [
+            "v-hierbij",
+            "v-ter-bevestiging",
+            "v-actiepunt"
+          ],
+          "kind": "text",
+          "title": "E-mail na vergadering",
+          "text": "Hoi team,\n\nHierbij de notulen van de vergadering van vanochtend. Ter bevestiging de belangrijkste actiepunten:\n- Inês maakt vóór vrijdag de planning.\n- Tom vraagt offertes op bij drie leveranciers.\n- Zoals besproken schuiven we het punt over de kerstborrel door naar januari.\n\nGroet,\nSanne",
+          "questions": [
+            {
+              "prompt": "O que faz a Inês?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "O planeamento",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Pede orçamentos",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Nada",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Até quando?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Antes de sexta",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Janeiro",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Hoje",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que foi adiado?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "O convívio de Natal",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "A planificação",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Os orçamentos",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l016-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "E-mail.",
+          "vocabRefs": [
+            "v-zoals-besproken",
+            "v-hierbij"
+          ],
+          "prompt": "Escreva um e-mail curto (4–5 linhas) a confirmar os pontos de uma reunião. Use «hierbij», «zoals besproken» e «ter bevestiging».",
+          "referenceAnswers": [
+            "Beste Mark,\n\nHierbij de notulen van ons overleg. Zoals besproken lever ik het rapport op 12 juni in. Ter bevestiging: jij regelt de zaal.\n\nMet vriendelijke groet,\nAna"
+          ],
+          "checklist": [
+            "hierbij",
+            "zoals besproken",
+            "ter bevestiging"
+          ],
+          "minWords": 30
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l017",
+      "unitId": "s6-u04",
+      "order": 17,
+      "title": "Abrir uma apresentação",
+      "description": "Graag neem ik u mee in…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Começar uma apresentação de forma profissional"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-meenemen-in",
+          "nl": "iemand meenemen in",
+          "pt": [
+            "guiar alguém por",
+            "apresentar (um tema)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ruimte-voor-vragen",
+          "nl": "er is ruimte voor vragen",
+          "pt": [
+            "há espaço para perguntas"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-presenteren",
+          "nl": "presenteren",
+          "pt": [
+            "apresentar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-presentatie",
+        "v-indeling",
+        "v-onderwerp-presentatie"
+      ],
+      "examples": [
+        {
+          "nl": "Graag neem ik u mee in onze nieuwe strategie.",
+          "pt": "Gostaria de vos guiar pela nossa nova estratégia."
+        },
+        {
+          "nl": "Aan het eind is er ruimte voor vragen.",
+          "pt": "No fim há espaço para perguntas."
+        },
+        {
+          "nl": "Vandaag presenteer ik de resultaten van ons onderzoek.",
+          "pt": "Hoje apresento os resultados do nosso estudo."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l017-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Abrir.",
+          "vocabRefs": [
+            "v-meenemen-in",
+            "v-ruimte-voor-vragen",
+            "v-presenteren",
+            "v-indeling"
+          ],
+          "pairs": [
+            {
+              "nl": "iemand meenemen in",
+              "pt": "guiar alguém por"
+            },
+            {
+              "nl": "er is ruimte voor vragen",
+              "pt": "há espaço para perguntas"
+            },
+            {
+              "nl": "presenteren",
+              "pt": "apresentar"
+            },
+            {
+              "nl": "indeling",
+              "pt": "estrutura"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l017-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Abertura.",
+          "vocabRefs": [
+            "v-indeling"
+          ],
+          "prompt": "Uma abertura profissional inclui…",
+          "options": [
+            {
+              "id": "a",
+              "text": "tema, estrutura e quando há perguntas",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "só uma piada",
+              "correct": false,
+              "feedback": "Pouco."
+            },
+            {
+              "id": "c",
+              "text": "logo os números",
+              "correct": false,
+              "feedback": "Sem contexto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l017-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-ruimte-voor-vragen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "No fim há espaço para perguntas.",
+          "answers": [
+            "Aan het eind is er ruimte voor vragen",
+            "Aan het einde is er ruimte voor vragen"
+          ]
+        },
+        {
+          "id": "s6-u04-l017-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-presenteren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Hoje apresento os resultados.",
+          "answers": [
+            "Vandaag presenteer ik de resultaten",
+            "Ik presenteer vandaag de resultaten"
+          ]
+        },
+        {
+          "id": "s6-u04-l017-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-meenemen-in"
+          ],
+          "sentence": "Graag neem ik u ___ in de cijfers van dit kwartaal.",
+          "translation": "Gostaria de vos guiar pelos números deste trimestre.",
+          "answers": [
+            "mee"
+          ],
+          "choices": [
+            "mee",
+            "aan",
+            "op"
+          ]
+        },
+        {
+          "id": "s6-u04-l017-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Inversão: Vandaag presenteer ik.",
+          "vocabRefs": [
+            "v-presenteren"
+          ],
+          "tokens": [
+            "Vandaag",
+            "ik",
+            "presenteer",
+            "de",
+            "resultaten."
+          ],
+          "errorIndex": 1,
+          "correction": "presenteer"
+        },
+        {
+          "id": "s6-u04-l017-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Estrutura.",
+          "vocabRefs": [
+            "v-indeling"
+          ],
+          "audioText": "Mijn presentatie bestaat uit drie delen.",
+          "answers": [
+            "Mijn presentatie bestaat uit drie delen",
+            "Mijn presentatie bestaat uit 3 delen"
+          ],
+          "translation": "A minha apresentação tem três partes."
+        },
+        {
+          "id": "s6-u04-l017-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Abertura.",
+          "vocabRefs": [
+            "v-meenemen-in",
+            "v-ruimte-voor-vragen"
+          ],
+          "prompt": "Escreva a abertura de uma apresentação (3–4 frases): cumprimento, tema, estrutura e perguntas.",
+          "referenceAnswers": [
+            "Goedemorgen allemaal. Graag neem ik u mee in de resultaten van onze klantenenquête. Eerst bespreek ik de cijfers, daarna de conclusies. Aan het eind is er ruimte voor vragen."
+          ],
+          "checklist": [
+            "Cumprimento",
+            "Tema",
+            "Estrutura",
+            "Perguntas"
+          ],
+          "minWords": 30
+        },
+        {
+          "id": "s6-u04-l017-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-ruimte-voor-vragen"
+          ],
+          "translation": "Há espaço para perguntas.",
+          "tokens": [
+            "Er",
+            "is",
+            "ruimte",
+            "voor",
+            "vragen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l018",
+      "unitId": "s6-u04",
+      "order": 18,
+      "title": "Falar dos diapositivos",
+      "description": "Zoals u ziet…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Comentar diapositivos durante a apresentação"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zoals-u-ziet",
+          "nl": "zoals u ziet",
+          "pt": [
+            "como podem ver"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-op-deze-dia",
+          "nl": "op deze dia",
+          "pt": [
+            "neste diapositivo"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-dan-kom-ik-bij",
+          "nl": "dan kom ik bij…",
+          "pt": [
+            "passo então a…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-dia",
+        "v-opvallend"
+      ],
+      "examples": [
+        {
+          "nl": "Zoals u ziet, zijn de kosten gedaald.",
+          "pt": "Como podem ver, os custos desceram."
+        },
+        {
+          "nl": "Op deze dia ziet u de planning.",
+          "pt": "Neste diapositivo veem o planeamento."
+        },
+        {
+          "nl": "Dan kom ik nu bij het tweede deel.",
+          "pt": "Passo agora à segunda parte."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l018-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Diapositivos.",
+          "vocabRefs": [
+            "v-zoals-u-ziet",
+            "v-op-deze-dia",
+            "v-dan-kom-ik-bij",
+            "v-opvallend"
+          ],
+          "pairs": [
+            {
+              "nl": "zoals u ziet",
+              "pt": "como podem ver"
+            },
+            {
+              "nl": "op deze dia",
+              "pt": "neste diapositivo"
+            },
+            {
+              "nl": "dan kom ik bij…",
+              "pt": "passo a…"
+            },
+            {
+              "nl": "opvallend",
+              "pt": "notável"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l018-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-zoals-u-ziet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Como podem ver, os custos desceram.",
+          "answers": [
+            "Zoals u ziet, zijn de kosten gedaald",
+            "Zoals jullie zien, zijn de kosten gedaald",
+            "Zoals u ziet zijn de kosten gedaald"
+          ]
+        },
+        {
+          "id": "s6-u04-l018-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Transição.",
+          "vocabRefs": [
+            "v-dan-kom-ik-bij"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Passo agora à segunda parte.",
+          "answers": [
+            "Dan kom ik nu bij het tweede deel",
+            "Nu kom ik bij het tweede deel"
+          ]
+        },
+        {
+          "id": "s6-u04-l018-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Transição.",
+          "vocabRefs": [
+            "v-op-deze-dia"
+          ],
+          "prompt": "Para passar de diapositivo com naturalidade:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Op de volgende dia ziet u…",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Volgende!",
+              "correct": false,
+              "feedback": "Brusco."
+            },
+            {
+              "id": "c",
+              "text": "Klik.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l018-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Diapositivo.",
+          "vocabRefs": [
+            "v-op-deze-dia"
+          ],
+          "sentence": "Op deze ___ ziet u de cijfers per regio.",
+          "translation": "Neste diapositivo veem os números por região.",
+          "answers": [
+            "dia"
+          ],
+          "choices": [
+            "dia",
+            "tabel",
+            "rij"
+          ]
+        },
+        {
+          "id": "s6-u04-l018-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Inversão: …, zijn de kosten gedaald.",
+          "vocabRefs": [
+            "v-zoals-u-ziet"
+          ],
+          "tokens": [
+            "Zoals",
+            "u",
+            "ziet,",
+            "de",
+            "kosten",
+            "zijn",
+            "gedaald."
+          ],
+          "errorIndex": 3,
+          "correction": "zijn"
+        },
+        {
+          "id": "s6-u04-l018-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Destacar.",
+          "vocabRefs": [
+            "v-opvallend"
+          ],
+          "audioText": "Wat hier vooral opvalt, is de stijging in het noorden.",
+          "answers": [
+            "Wat hier vooral opvalt, is de stijging in het noorden",
+            "Wat hier vooral opvalt is de stijging in het noorden"
+          ],
+          "translation": "O que aqui salta mais à vista é a subida no norte."
+        },
+        {
+          "id": "s6-u04-l018-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Dica.",
+          "vocabRefs": [
+            "v-dia"
+          ],
+          "prompt": "Erro comum: ler os diapositivos palavra por palavra. Melhor…",
+          "options": [
+            {
+              "id": "a",
+              "text": "comentar e explicar o essencial",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "ler mais depressa",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "não olhar para o público",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l018-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-zoals-u-ziet"
+          ],
+          "translation": "Como podem ver.",
+          "tokens": [
+            "Zoals",
+            "u",
+            "ziet"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l019",
+      "unitId": "s6-u04",
+      "order": 19,
+      "title": "Explicar um gráfico",
+      "description": "De piek ligt in juli.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Descrever gráficos com picos, mínimos e eixos"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-piek",
+          "nl": "piek",
+          "pt": [
+            "pico"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "pieken"
+        },
+        {
+          "id": "v-dieptepunt",
+          "nl": "dieptepunt",
+          "pt": [
+            "ponto mais baixo"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-verticale-as",
+          "nl": "op de verticale as",
+          "pt": [
+            "no eixo vertical"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-grafiek",
+        "v-stijging",
+        "v-daling"
+      ],
+      "examples": [
+        {
+          "nl": "De piek ligt in juli.",
+          "pt": "O pico é em julho."
+        },
+        {
+          "nl": "In februari bereikten de verkopen een dieptepunt.",
+          "pt": "Em fevereiro as vendas atingiram o ponto mais baixo."
+        },
+        {
+          "nl": "Op de verticale as staat het aantal bezoekers.",
+          "pt": "No eixo vertical está o número de visitantes."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l019-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Gráficos.",
+          "vocabRefs": [
+            "v-piek",
+            "v-dieptepunt",
+            "v-verticale-as",
+            "v-grafiek"
+          ],
+          "pairs": [
+            {
+              "nl": "piek",
+              "pt": "pico"
+            },
+            {
+              "nl": "dieptepunt",
+              "pt": "ponto mais baixo"
+            },
+            {
+              "nl": "op de verticale as",
+              "pt": "no eixo vertical"
+            },
+            {
+              "nl": "grafiek",
+              "pt": "gráfico"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l019-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het punt → het dieptepunt.",
+          "vocabRefs": [
+            "v-dieptepunt"
+          ],
+          "noun": "dieptepunt",
+          "pt": "ponto mais baixo",
+          "article": "het"
+        },
+        {
+          "id": "s6-u04-l019-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "liggen.",
+          "vocabRefs": [
+            "v-piek"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O pico é em julho.",
+          "answers": [
+            "De piek ligt in juli",
+            "De piek is in juli"
+          ]
+        },
+        {
+          "id": "s6-u04-l019-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-verticale-as"
+          ],
+          "direction": "pt-nl",
+          "prompt": "No eixo vertical está o número de visitantes.",
+          "answers": [
+            "Op de verticale as staat het aantal bezoekers"
+          ]
+        },
+        {
+          "id": "s6-u04-l019-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Eixos.",
+          "vocabRefs": [
+            "v-verticale-as"
+          ],
+          "prompt": "No eixo horizontal (horizontale as) de um gráfico temporal costuma estar…",
+          "options": [
+            {
+              "id": "a",
+              "text": "o tempo (meses, anos)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "o título",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "a legenda",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l019-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Mínimo.",
+          "vocabRefs": [
+            "v-dieptepunt"
+          ],
+          "sentence": "In februari bereikten de verkopen een ___.",
+          "translation": "Em fevereiro as vendas atingiram o ponto mais baixo.",
+          "answers": [
+            "dieptepunt"
+          ],
+          "choices": [
+            "dieptepunt",
+            "piek",
+            "stijging"
+          ]
+        },
+        {
+          "id": "s6-u04-l019-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular: ligt.",
+          "vocabRefs": [
+            "v-piek"
+          ],
+          "tokens": [
+            "De",
+            "piek",
+            "liggen",
+            "in",
+            "juli."
+          ],
+          "errorIndex": 2,
+          "correction": "ligt"
+        },
+        {
+          "id": "s6-u04-l019-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Descrever gráfico.",
+          "vocabRefs": [
+            "v-piek",
+            "v-dieptepunt"
+          ],
+          "prompt": "Descreva em 3–4 frases um gráfico imaginário das vendas de gelado ao longo do ano: eixos, pico e mínimo.",
+          "referenceAnswers": [
+            "Op de horizontale as staan de maanden, op de verticale as de verkopen. In de winter zijn de verkopen laag, met een dieptepunt in januari. Vanaf april stijgen ze. De piek ligt in juli."
+          ],
+          "checklist": [
+            "Eixos",
+            "Pico",
+            "Mínimo",
+            "Tendência"
+          ],
+          "minWords": 30
+        },
+        {
+          "id": "s6-u04-l019-e09",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Tendência.",
+          "vocabRefs": [
+            "v-piek",
+            "v-daling"
+          ],
+          "audioText": "Na de piek in de zomer zien we een duidelijke daling.",
+          "answers": [
+            "Na de piek in de zomer zien we een duidelijke daling"
+          ],
+          "translation": "Depois do pico no verão vemos uma descida clara."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l020",
+      "unitId": "s6-u04",
+      "order": 20,
+      "title": "Nervos e postura",
+      "description": "Ik heb last van spreekangst.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Falar sobre o nervosismo e dar dicas para apresentar"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-spreekangst",
+          "nl": "spreekangst",
+          "pt": [
+            "medo de falar em público"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-rustig-ademhalen",
+          "nl": "rustig ademhalen",
+          "pt": [
+            "respirar com calma"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-oefenen-voor-spiegel",
+          "nl": "voor de spiegel oefenen",
+          "pt": [
+            "treinar ao espelho"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zenuwachtig",
+        "v-oogcontact"
+      ],
+      "examples": [
+        {
+          "nl": "Veel mensen hebben last van spreekangst.",
+          "pt": "Muitas pessoas sofrem de medo de falar em público."
+        },
+        {
+          "nl": "Haal rustig adem voordat je begint.",
+          "pt": "Respira com calma antes de começar."
+        },
+        {
+          "nl": "Ik heb mijn presentatie voor de spiegel geoefend.",
+          "pt": "Treinei a minha apresentação ao espelho."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l020-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Nervos.",
+          "vocabRefs": [
+            "v-spreekangst",
+            "v-rustig-ademhalen",
+            "v-oefenen-voor-spiegel",
+            "v-oogcontact"
+          ],
+          "pairs": [
+            {
+              "nl": "spreekangst",
+              "pt": "medo de falar em público"
+            },
+            {
+              "nl": "rustig ademhalen",
+              "pt": "respirar com calma"
+            },
+            {
+              "nl": "voor de spiegel oefenen",
+              "pt": "treinar ao espelho"
+            },
+            {
+              "nl": "oogcontact",
+              "pt": "contacto visual"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l020-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "ademhalen (separável).",
+          "vocabRefs": [
+            "v-rustig-ademhalen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Respira com calma antes de começar.",
+          "answers": [
+            "Haal rustig adem voordat je begint",
+            "Adem rustig voordat je begint"
+          ]
+        },
+        {
+          "id": "s6-u04-l020-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "last hebben van.",
+          "vocabRefs": [
+            "v-spreekangst"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Tenho medo de falar em público.",
+          "answers": [
+            "Ik heb last van spreekangst",
+            "Ik heb spreekangst"
+          ]
+        },
+        {
+          "id": "s6-u04-l020-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Dica.",
+          "vocabRefs": [
+            "v-oogcontact"
+          ],
+          "prompt": "Qual é uma boa dica?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Maak oogcontact met verschillende mensen in de zaal.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Kijk alleen naar je laptop.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Praat zo snel mogelijk.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l020-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio.",
+          "vocabRefs": [
+            "v-oefenen-voor-spiegel"
+          ],
+          "sentence": "Ik heb mijn presentatie voor de spiegel ___.",
+          "translation": "Treinei a minha apresentação ao espelho.",
+          "answers": [
+            "geoefend"
+          ],
+          "choices": [
+            "geoefend",
+            "geoefent",
+            "oefenen"
+          ]
+        },
+        {
+          "id": "s6-u04-l020-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "je: begint.",
+          "vocabRefs": [
+            "v-rustig-ademhalen"
+          ],
+          "tokens": [
+            "Haal",
+            "rustig",
+            "adem",
+            "voordat",
+            "je",
+            "beginnen."
+          ],
+          "errorIndex": 5,
+          "correction": "begint."
+        },
+        {
+          "id": "s6-u04-l020-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Encorajar.",
+          "vocabRefs": [
+            "v-rustig-ademhalen"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Ik moet morgen presenteren en ik ben zo zenuwachtig!",
+              "pt": "Tenho de apresentar amanhã e estou tão nervoso!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat is normaal. Oefen vanavond nog een keer en haal morgen rustig adem. Het komt goed!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ook niet.",
+              "correct": false,
+              "feedback": "Sem sentido."
+            },
+            {
+              "id": "c",
+              "text": "Spreekangst!",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l020-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Perspetiva.",
+          "vocabRefs": [
+            "v-zenuwachtig"
+          ],
+          "audioText": "Een beetje spanning is goed: het houdt je scherp.",
+          "answers": [
+            "Een beetje spanning is goed: het houdt je scherp",
+            "Een beetje spanning is goed, het houdt je scherp"
+          ],
+          "translation": "Um pouco de tensão é bom: mantém-te atento."
+        },
+        {
+          "id": "s6-u04-l020-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-rustig-ademhalen"
+          ],
+          "translation": "Respira com calma.",
+          "tokens": [
+            "Haal",
+            "rustig",
+            "adem"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l021",
+      "unitId": "s6-u04",
+      "order": 21,
+      "title": "Responder a perguntas do público",
+      "description": "Daar moet ik even induiken.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Responder com honestidade e ganhar tempo quando necessário"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-induiken",
+          "nl": "ergens in induiken",
+          "pt": [
+            "investigar algo a fundo"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-dat-zoek-ik-uit",
+          "nl": "dat zoek ik voor u uit",
+          "pt": [
+            "vou averiguar isso para si"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-als-ik-uw-vraag",
+          "nl": "als ik uw vraag goed begrijp",
+          "pt": [
+            "se percebi bem a sua pergunta"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-uitzoeken",
+        "v-goede-vraag",
+        "v-eerlijk-antwoord"
+      ],
+      "examples": [
+        {
+          "nl": "Goede vraag; daar moet ik even induiken.",
+          "pt": "Boa pergunta; tenho de investigar isso a fundo."
+        },
+        {
+          "nl": "Dat weet ik niet precies, maar dat zoek ik voor u uit.",
+          "pt": "Não sei exatamente, mas vou averiguar isso para si."
+        },
+        {
+          "nl": "Als ik uw vraag goed begrijp, wilt u weten wat het kost.",
+          "pt": "Se percebi bem a sua pergunta, quer saber quanto custa."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l021-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Perguntas.",
+          "vocabRefs": [
+            "v-induiken",
+            "v-dat-zoek-ik-uit",
+            "v-als-ik-uw-vraag",
+            "v-uitzoeken"
+          ],
+          "pairs": [
+            {
+              "nl": "ergens in induiken",
+              "pt": "investigar a fundo"
+            },
+            {
+              "nl": "dat zoek ik voor u uit",
+              "pt": "vou averiguar"
+            },
+            {
+              "nl": "als ik uw vraag goed begrijp",
+              "pt": "se percebi bem"
+            },
+            {
+              "nl": "uitzoeken",
+              "pt": "averiguar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l021-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Honestidade.",
+          "vocabRefs": [
+            "v-dat-zoek-ik-uit"
+          ],
+          "prompt": "Se não sabe a resposta, o mais profissional é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat weet ik niet precies; ik zoek het voor u uit en mail u morgen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Inventar um número.",
+              "correct": false,
+              "feedback": "Desonesto."
+            },
+            {
+              "id": "c",
+              "text": "Ignorar a pergunta.",
+              "correct": false,
+              "feedback": "Mau."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l021-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "uitzoeken.",
+          "vocabRefs": [
+            "v-dat-zoek-ik-uit"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Vou averiguar isso para si.",
+          "answers": [
+            "Dat zoek ik voor u uit",
+            "Ik zoek dat voor u uit"
+          ]
+        },
+        {
+          "id": "s6-u04-l021-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-als-ik-uw-vraag"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Se percebi bem a sua pergunta…",
+          "answers": [
+            "Als ik uw vraag goed begrijp",
+            "Als ik je vraag goed begrijp"
+          ]
+        },
+        {
+          "id": "s6-u04-l021-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Separável com «in».",
+          "vocabRefs": [
+            "v-induiken"
+          ],
+          "sentence": "Daar moet ik even in ___.",
+          "translation": "Tenho de investigar isso.",
+          "answers": [
+            "duiken"
+          ],
+          "choices": [
+            "duiken",
+            "induiken",
+            "gedoken"
+          ]
+        },
+        {
+          "id": "s6-u04-l021-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "uitzoeken (averiguar).",
+          "vocabRefs": [
+            "v-dat-zoek-ik-uit"
+          ],
+          "tokens": [
+            "Dat",
+            "zoek",
+            "ik",
+            "voor",
+            "u",
+            "op."
+          ],
+          "errorIndex": 5,
+          "correction": "uit."
+        },
+        {
+          "id": "s6-u04-l021-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Resposta honesta.",
+          "vocabRefs": [
+            "v-dat-zoek-ik-uit"
+          ],
+          "lines": [
+            {
+              "speaker": "Publiek",
+              "nl": "Hoeveel kost dit project per jaar?",
+              "pt": "Quanto custa este projeto por ano?"
+            },
+            {
+              "speaker": "Jij (presentator)",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Goede vraag. Het precieze bedrag heb ik nu niet paraat; dat zoek ik voor u uit.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Weet ik niet. Volgende.",
+              "correct": false,
+              "feedback": "Seco."
+            },
+            {
+              "id": "c",
+              "text": "Een miljard!",
+              "correct": false,
+              "feedback": "Inventado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l021-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Adiar com cortesia.",
+          "vocabRefs": [
+            "v-terugkomen-op"
+          ],
+          "audioText": "Ik kom daar na de presentatie graag bij u op terug.",
+          "answers": [
+            "Ik kom daar na de presentatie graag bij u op terug"
+          ],
+          "translation": "Volto a isso consigo com gosto depois da apresentação."
+        },
+        {
+          "id": "s6-u04-l021-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-dat-zoek-ik-uit"
+          ],
+          "translation": "Vou averiguar isso.",
+          "tokens": [
+            "Dat",
+            "zoek",
+            "ik",
+            "uit"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l022",
+      "unitId": "s6-u04",
+      "order": 22,
+      "title": "Um pitch curto",
+      "description": "Wat is de toegevoegde waarde?",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Apresentar uma ideia em um minuto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-toegevoegde-waarde",
+          "nl": "toegevoegde waarde",
+          "pt": [
+            "valor acrescentado"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-in-een-notendop",
+          "nl": "in een notendop",
+          "pt": [
+            "em poucas palavras",
+            "resumidamente"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-wat-ons-onderscheidt",
+          "nl": "wat ons onderscheidt",
+          "pt": [
+            "o que nos distingue"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [],
+      "examples": [
+        {
+          "nl": "Wat is de toegevoegde waarde van jullie app?",
+          "pt": "Qual é o valor acrescentado da vossa app?"
+        },
+        {
+          "nl": "In een notendop: wij brengen buren samen.",
+          "pt": "Em poucas palavras: juntamos vizinhos."
+        },
+        {
+          "nl": "Wat ons onderscheidt, is onze persoonlijke service.",
+          "pt": "O que nos distingue é o nosso serviço personalizado."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l022-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pitch.",
+          "vocabRefs": [
+            "v-toegevoegde-waarde",
+            "v-in-een-notendop",
+            "v-wat-ons-onderscheidt"
+          ],
+          "pairs": [
+            {
+              "nl": "toegevoegde waarde",
+              "pt": "valor acrescentado"
+            },
+            {
+              "nl": "in een notendop",
+              "pt": "em poucas palavras"
+            },
+            {
+              "nl": "wat ons onderscheidt",
+              "pt": "o que nos distingue"
+            },
+            {
+              "nl": "doelgroep",
+              "pt": "público-alvo"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l022-e02",
+          "type": "expression",
+          "instruction": "Escolha a opção certa.",
+          "explanation": "Imagem: cabe numa casca de noz.",
+          "vocabRefs": [
+            "v-in-een-notendop"
+          ],
+          "expression": "in een notendop",
+          "literal": "numa casca de noz",
+          "prompt": "O que significa?",
+          "options": [
+            {
+              "id": "a",
+              "text": "resumidamente",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "com dificuldade",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "em segredo",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l022-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "toegevoegde waarde.",
+          "vocabRefs": [
+            "v-toegevoegde-waarde"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Qual é o valor acrescentado?",
+          "answers": [
+            "Wat is de toegevoegde waarde",
+            "Wat is de toegevoegde waarde?"
+          ]
+        },
+        {
+          "id": "s6-u04-l022-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Construção com wat.",
+          "vocabRefs": [
+            "v-wat-ons-onderscheidt"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O que nos distingue é o serviço.",
+          "answers": [
+            "Wat ons onderscheidt, is de service",
+            "Wat ons onderscheidt is onze service",
+            "Wat ons onderscheidt, is onze service"
+          ]
+        },
+        {
+          "id": "s6-u04-l022-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-in-een-notendop"
+          ],
+          "sentence": "In een ___: wij leveren verse groenten aan huis.",
+          "translation": "Em poucas palavras: entregamos legumes frescos ao domicílio.",
+          "answers": [
+            "notendop"
+          ],
+          "choices": [
+            "notendop",
+            "pitch",
+            "doelgroep"
+          ]
+        },
+        {
+          "id": "s6-u04-l022-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Construção com «wat»: is.",
+          "vocabRefs": [
+            "v-wat-ons-onderscheidt"
+          ],
+          "tokens": [
+            "Wat",
+            "ons",
+            "onderscheidt,",
+            "zijn",
+            "onze",
+            "persoonlijke",
+            "service."
+          ],
+          "errorIndex": 3,
+          "correction": "is"
+        },
+        {
+          "id": "s6-u04-l022-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Pitch.",
+          "vocabRefs": [
+            "v-toegevoegde-waarde",
+            "v-in-een-notendop"
+          ],
+          "prompt": "Escreva um pitch de 4–5 frases para uma ideia de negócio sua (real ou inventada): problema, solução, público-alvo e o que a distingue.",
+          "referenceAnswers": [
+            "Veel ouderen eten alleen. In een notendop: wij koppelen ouderen aan buren die graag samen koken. Onze doelgroep zijn mensen boven de 70 in grote steden. Wat ons onderscheidt, is dat alles lokaal en persoonlijk is. De toegevoegde waarde: minder eenzaamheid en gezonder eten."
+          ],
+          "checklist": [
+            "Problema",
+            "Solução",
+            "Público-alvo",
+            "Distinção"
+          ],
+          "minWords": 40
+        },
+        {
+          "id": "s6-u04-l022-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Público.",
+          "vocabRefs": [],
+          "audioText": "Onze doelgroep zijn jonge gezinnen in de stad.",
+          "answers": [
+            "Onze doelgroep zijn jonge gezinnen in de stad",
+            "Onze doelgroep is jonge gezinnen in de stad"
+          ],
+          "translation": "O nosso público-alvo são famílias jovens na cidade."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l023",
+      "unitId": "s6-u04",
+      "order": 23,
+      "title": "Brainstorming",
+      "description": "Er zijn geen domme ideeën.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Participar num brainstorming e desenvolver ideias"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-brainstormen",
+          "nl": "brainstormen",
+          "pt": [
+            "fazer brainstorming"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-geen-domme-ideeen",
+          "nl": "er zijn geen domme ideeën",
+          "pt": [
+            "não há ideias parvas"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-uitwerken",
+          "nl": "uitwerken",
+          "pt": [
+            "desenvolver (uma ideia)"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-voorstel",
+        "v-aanvullen"
+      ],
+      "examples": [
+        {
+          "nl": "Laten we tien minuten brainstormen.",
+          "pt": "Vamos fazer brainstorming durante dez minutos."
+        },
+        {
+          "nl": "Zeg het maar, er zijn geen domme ideeën.",
+          "pt": "Diz lá, não há ideias parvas."
+        },
+        {
+          "nl": "Wie wil dit idee verder uitwerken?",
+          "pt": "Quem quer desenvolver esta ideia?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l023-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Brainstorm.",
+          "vocabRefs": [
+            "v-brainstormen",
+            "v-geen-domme-ideeen",
+            "v-uitwerken",
+            "v-aanvullen"
+          ],
+          "pairs": [
+            {
+              "nl": "brainstormen",
+              "pt": "fazer brainstorming"
+            },
+            {
+              "nl": "er zijn geen domme ideeën",
+              "pt": "não há ideias parvas"
+            },
+            {
+              "nl": "uitwerken",
+              "pt": "desenvolver"
+            },
+            {
+              "nl": "aanvullen",
+              "pt": "complementar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l023-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "uitwerken.",
+          "vocabRefs": [
+            "v-uitwerken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quem quer desenvolver esta ideia?",
+          "answers": [
+            "Wie wil dit idee verder uitwerken",
+            "Wie wil dit idee uitwerken",
+            "Wie wil dit idee verder uitwerken?"
+          ]
+        },
+        {
+          "id": "s6-u04-l023-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-geen-domme-ideeen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não há ideias parvas.",
+          "answers": [
+            "Er zijn geen domme ideeën",
+            "Er zijn geen domme ideeen"
+          ]
+        },
+        {
+          "id": "s6-u04-l023-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Regra.",
+          "vocabRefs": [
+            "v-brainstormen"
+          ],
+          "prompt": "Durante um brainstorming, é melhor…",
+          "options": [
+            {
+              "id": "a",
+              "text": "aceitar todas as ideias primeiro e avaliar depois",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "criticar logo cada ideia",
+              "correct": false,
+              "feedback": "Bloqueia."
+            },
+            {
+              "id": "c",
+              "text": "falar só o chefe",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l023-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Complementar.",
+          "vocabRefs": [
+            "v-aanvullen"
+          ],
+          "sentence": "Mag ik het idee van Lisa even ___?",
+          "translation": "Posso complementar a ideia da Lisa?",
+          "answers": [
+            "aanvullen"
+          ],
+          "choices": [
+            "aanvullen",
+            "uitwerken",
+            "brainstormen"
+          ]
+        },
+        {
+          "id": "s6-u04-l023-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Depois de laten we: infinitivo.",
+          "vocabRefs": [
+            "v-brainstormen"
+          ],
+          "tokens": [
+            "Laten",
+            "we",
+            "tien",
+            "minuten",
+            "brainstormt."
+          ],
+          "errorIndex": 4,
+          "correction": "brainstormen."
+        },
+        {
+          "id": "s6-u04-l023-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Construir sobre ideias.",
+          "vocabRefs": [
+            "v-aanvullen",
+            "v-geen-domme-ideeen"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Misschien kunnen we een buurtfeest organiseren voor de klanten?",
+              "pt": "Talvez possamos organizar uma festa de bairro para os clientes?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Leuk idee! En als aanvulling: we kunnen er ook lokale ondernemers bij betrekken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dom idee.",
+              "correct": false,
+              "feedback": "Contra a regra."
+            },
+            {
+              "id": "c",
+              "text": "Uitwerken!",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l023-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-uitwerken"
+          ],
+          "audioText": "Ik werk het voorstel deze week verder uit.",
+          "answers": [
+            "Ik werk het voorstel deze week verder uit"
+          ],
+          "translation": "Desenvolvo a proposta esta semana."
+        },
+        {
+          "id": "s6-u04-l023-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-brainstormen"
+          ],
+          "translation": "Vamos fazer brainstorming.",
+          "tokens": [
+            "Laten",
+            "we",
+            "brainstormen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l024",
+      "unitId": "s6-u04",
+      "order": 24,
+      "title": "Feedback depois de apresentar",
+      "description": "Tops en tips",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Dar e receber feedback construtivo sobre uma apresentação"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-tops-en-tips",
+          "nl": "tops en tips",
+          "pt": [
+            "pontos fortes e sugestões"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-wat-ging-goed",
+          "nl": "wat ging er goed?",
+          "pt": [
+            "o que correu bem?"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-een-tip-voor-de-volgende-keer",
+          "nl": "een tip voor de volgende keer",
+          "pt": [
+            "uma sugestão para a próxima vez"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-feedback",
+        "v-verbeterpunt"
+      ],
+      "examples": [
+        {
+          "nl": "Zullen we tops en tips geven?",
+          "pt": "Damos pontos fortes e sugestões?"
+        },
+        {
+          "nl": "Wat ging er goed?",
+          "pt": "O que correu bem?"
+        },
+        {
+          "nl": "Een tip voor de volgende keer: praat iets langzamer.",
+          "pt": "Uma sugestão para a próxima vez: fala um bocadinho mais devagar."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l024-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Feedback.",
+          "vocabRefs": [
+            "v-tops-en-tips",
+            "v-wat-ging-goed",
+            "v-een-tip-voor-de-volgende-keer",
+            "v-verbeterpunt"
+          ],
+          "pairs": [
+            {
+              "nl": "tops en tips",
+              "pt": "pontos fortes e sugestões"
+            },
+            {
+              "nl": "wat ging er goed?",
+              "pt": "o que correu bem?"
+            },
+            {
+              "nl": "een tip voor de volgende keer",
+              "pt": "sugestão para a próxima"
+            },
+            {
+              "nl": "verbeterpunt",
+              "pt": "ponto a melhorar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l024-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Feedback útil.",
+          "vocabRefs": [
+            "v-een-tip-voor-de-volgende-keer"
+          ],
+          "prompt": "Uma boa «tip» é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "concreta e realizável: «Maak meer oogcontact.»",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "vaga: «Het kan beter.»",
+              "correct": false,
+              "feedback": "Pouco útil."
+            },
+            {
+              "id": "c",
+              "text": "pessoal: «Je bent saai.»",
+              "correct": false,
+              "feedback": "Ofensivo."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l024-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-wat-ging-goed"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O que correu bem?",
+          "answers": [
+            "Wat ging er goed",
+            "Wat ging er goed?",
+            "Wat ging goed"
+          ]
+        },
+        {
+          "id": "s6-u04-l024-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-een-tip-voor-de-volgende-keer"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Uma sugestão: fala mais devagar.",
+          "answers": [
+            "Een tip: praat langzamer",
+            "Een tip: praat iets langzamer",
+            "Een tip: spreek langzamer"
+          ]
+        },
+        {
+          "id": "s6-u04-l024-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Fórmula.",
+          "vocabRefs": [
+            "v-tops-en-tips"
+          ],
+          "sentence": "Eerst de tops, dan de ___.",
+          "translation": "Primeiro os pontos fortes, depois as sugestões.",
+          "answers": [
+            "tips"
+          ],
+          "choices": [
+            "tips",
+            "tops",
+            "punten"
+          ]
+        },
+        {
+          "id": "s6-u04-l024-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Passado: ging.",
+          "vocabRefs": [
+            "v-wat-ging-goed"
+          ],
+          "tokens": [
+            "Wat",
+            "gaat",
+            "er",
+            "gisteren",
+            "goed?"
+          ],
+          "errorIndex": 1,
+          "correction": "ging"
+        },
+        {
+          "id": "s6-u04-l024-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Feedback equilibrado.",
+          "vocabRefs": [
+            "v-tops-en-tips"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Wat vond je van mijn presentatie?",
+              "pt": "O que achaste da minha apresentação?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Top: je dia's waren heel duidelijk. Tip: je mag wat vaker naar het publiek kijken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Saai.",
+              "correct": false,
+              "feedback": "Ofensivo."
+            },
+            {
+              "id": "c",
+              "text": "Tops.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l024-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Receber feedback.",
+          "vocabRefs": [
+            "v-feedback"
+          ],
+          "audioText": "Dank je voor de feedback, daar kan ik wat mee.",
+          "answers": [
+            "Dank je voor de feedback, daar kan ik wat mee",
+            "Dank je voor de feedback daar kan ik wat mee"
+          ],
+          "translation": "Obrigado pelo feedback, é útil para mim."
+        },
+        {
+          "id": "s6-u04-l024-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-wat-ging-goed"
+          ],
+          "translation": "O que correu bem?",
+          "tokens": [
+            "Wat",
+            "ging",
+            "er",
+            "goed?"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u04-l025",
+      "unitId": "s6-u04",
+      "order": 25,
+      "title": "Prática: da reunião à apresentação",
+      "description": "Een werkweek vol overleg.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Combinar linguagem de reuniões e apresentações"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-overleg",
+        "v-zijn-we-compleet",
+        "v-doorschuiven",
+        "v-het-woord-geven",
+        "v-unaniem",
+        "v-zoals-besproken",
+        "v-meenemen-in",
+        "v-zoals-u-ziet",
+        "v-piek",
+        "v-dat-zoek-ik-uit"
+      ],
+      "examples": [
+        {
+          "nl": "Ik heb om twee uur overleg met het team.",
+          "pt": "Às duas tenho reunião com a equipa."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u04-l025-e01",
+          "type": "comprehension",
+          "instruction": "Leia o diálogo e responda.",
+          "explanation": "Reunião completa (fictícia).",
+          "vocabRefs": [
+            "v-overleg",
+            "v-zijn-we-compleet",
+            "v-piek",
+            "v-doorschuiven"
+          ],
+          "kind": "dialogue",
+          "title": "Teamoverleg",
+          "text": "Sanne: Zijn we compleet? Mooi. We hebben tot half elf de tijd.\nTom: Kunnen we eerst het budget doen?\nSanne: Goed. Inês, ik geef het woord aan jou.\nInês: Dank je. Zoals jullie zien, ligt de piek van de kosten in het voorjaar.\nTom: Waardoor komt dat?\nInês: Goede vraag; dat zoek ik voor je uit.\nSanne: Het punt over de nieuwe printer schuiven we door. Zoals besproken stuur ik de notulen vanmiddag rond.",
+          "questions": [
+            {
+              "prompt": "Até quando têm tempo?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10h30",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "11h",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "12h",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Onde está o pico dos custos?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Na primavera",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "No verão",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "No inverno",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "O que foi adiado?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A impressora nova",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "O orçamento",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "As atas",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l025-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "Het overleg.",
+          "vocabRefs": [
+            "v-overleg"
+          ],
+          "noun": "overleg",
+          "pt": "reunião",
+          "article": "het"
+        },
+        {
+          "id": "s6-u04-l025-e03",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-zijn-we-compleet",
+            "v-doorschuiven",
+            "v-zoals-besproken",
+            "v-unaniem"
+          ],
+          "pairs": [
+            {
+              "nl": "zijn we compleet?",
+              "pt": "estamos todos?"
+            },
+            {
+              "nl": "doorschuiven",
+              "pt": "adiar"
+            },
+            {
+              "nl": "zoals besproken",
+              "pt": "conforme combinado"
+            },
+            {
+              "nl": "unaniem",
+              "pt": "por unanimidade"
+            }
+          ]
+        },
+        {
+          "id": "s6-u04-l025-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "overleg.",
+          "vocabRefs": [
+            "v-overleg"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Às duas tenho reunião com a equipa.",
+          "answers": [
+            "Ik heb om twee uur overleg met het team",
+            "Om twee uur heb ik overleg met het team"
+          ]
+        },
+        {
+          "id": "s6-u04-l025-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-meenemen-in"
+          ],
+          "sentence": "Graag neem ik jullie ___ in de nieuwe planning.",
+          "translation": "Gostaria de vos guiar pelo novo planeamento.",
+          "answers": [
+            "mee"
+          ],
+          "choices": [
+            "mee",
+            "aan",
+            "door"
+          ]
+        },
+        {
+          "id": "s6-u04-l025-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Revisão: aangenomen.",
+          "vocabRefs": [
+            "v-unaniem"
+          ],
+          "tokens": [
+            "Het",
+            "voorstel",
+            "is",
+            "unaniem",
+            "aangenoemd."
+          ],
+          "errorIndex": 4,
+          "correction": "aangenomen."
+        },
+        {
+          "id": "s6-u04-l025-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Guião.",
+          "vocabRefs": [
+            "v-overleg"
+          ],
+          "prompt": "Escreva um pequeno guião (8–10 linhas) de uma reunião de equipa: abertura, um ponto com dados (gráfico), uma pergunta difícil, um ponto adiado e o fecho com confirmação por e-mail.",
+          "referenceAnswers": [
+            "Voorzitter: Goedemorgen, zijn we compleet? We hebben tot elf uur.\nVoorzitter: Ik geef het woord aan Ana.\nAna: Zoals jullie zien, ligt de piek van de klachten in december.\nTom: Hoe komt dat?\nAna: Daar moet ik even induiken; dat zoek ik voor je uit.\nVoorzitter: Dank je. Het punt over het personeelsuitje schuiven we door.\nVoorzitter: Zoals besproken stuur ik vanmiddag de notulen rond. Bedankt allemaal!"
+          ],
+          "checklist": [
+            "Abertura",
+            "Dados",
+            "Pergunta difícil",
+            "Ponto adiado",
+            "Fecho"
+          ],
+          "minWords": 70
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 8,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }

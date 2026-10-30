@@ -1,0 +1,298 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u04")
+C = "B1-B2"
+# Lições de aprofundamento (10–25): reuniões e apresentações.
+
+def X(id, nl, pt, pos="expression"): return V(id, nl, pt, pos)
+def N(id, nl, pt, art, pl=None): return V(id, nl, pt, "noun", art, pl)
+
+L(10, "Convocar uma reunião", "Ik stuur de agenda vooraf rond.",
+  ["Convidar para uma reunião e preparar a agenda"],
+  vocab=[N("v-vergaderverzoek","vergaderverzoek","convite para reunião","het","vergaderverzoeken"), X("v-agenda-rondsturen","de agenda rondsturen","enviar a agenda a todos"),
+         X("v-aanschuiven","aanschuiven","juntar-se (a uma reunião/mesa)","verb")],
+  ex=[("Ik stuur je een vergaderverzoek voor dinsdag.","Envio-te um convite para reunião para terça."),("Ik stuur de agenda vooraf rond.","Envio a agenda a todos com antecedência."),("Mag Sanne ook aanschuiven?","A Sanne também se pode juntar?")],
+  review=["v-vergadering","v-agenda-punt"],
+  cefr=C, exs=[
+    MA([("vergaderverzoek","convite para reunião"),("de agenda rondsturen","enviar a agenda"),("aanschuiven","juntar-se"),("vergadering","reunião")], "Convocar.", ["v-vergaderverzoek","v-agenda-rondsturen","v-aanschuiven","v-vergadering"]),
+    AR("vergaderverzoek", "convite para reunião", "het", "het verzoek → het vergaderverzoek.", ["v-vergaderverzoek"]),
+    TR("pt-nl","Envio a agenda com antecedência.", ["Ik stuur de agenda vooraf rond","Ik stuur vooraf de agenda rond"], "Separável.", ["v-agenda-rondsturen"]),
+    TR("pt-nl","A Sanne também se pode juntar?", ["Mag Sanne ook aanschuiven","Kan Sanne ook aanschuiven","Mag Sanne ook aanschuiven?"], "aanschuiven.", ["v-aanschuiven"]),
+    FB("Ik heb de agenda gisteren ___.", ["rondgestuurd"], "Particípio separável.", ["v-agenda-rondsturen"], choices=["rondgestuurd","gerondstuurd","rondsturen"], tr="Enviei a agenda ontem."),
+    FE(["Ik","heb","je","een","vergaderverzoek","gestuurt."], 5, "gestuurd.", "r → -d.", ["v-vergaderverzoek"]),
+    CO("text","E-mail","Beste collega's,\n\nHierbij een vergaderverzoek voor donderdag 10.00 uur over de verhuizing van ons kantoor. De agenda stuur ik morgen rond. Heb je punten die je wilt toevoegen? Laat het me vóór woensdag weten. Ook Pieter van Facilitaire Zaken schuift aan.\n\nGroet,\nInês",
+       [("De que trata a reunião?", ["*Da mudança de escritório","De férias","De salários"]),("Quando envia a agenda?", ["*Amanhã","Hoje","Na quinta"]),("Quem se junta?", ["*O Pieter","A Inês","Ninguém"])],
+       "E-mail de convocatória.", ["v-vergaderverzoek","v-aanschuiven"]),
+    LI("Heb je nog punten voor de agenda?", ["Heb je nog punten voor de agenda","Heb je nog punten voor de agenda?"], "Tens mais pontos para a agenda?", "Pergunta.", ["v-agenda-punt"]),
+    WO("A Sanne junta-se.", ["Sanne","schuift","aan"], "Separável.", ["v-aanschuiven"]),
+  ], diff=4, mins=5)
+
+L(11, "Abrir a reunião", "Laten we beginnen met een voorstelrondje.",
+  ["Abrir uma reunião e apresentar os participantes"],
+  vocab=[N("v-voorstelrondje","voorstelrondje","ronda de apresentações","het"), X("v-we-hebben-tot","we hebben tot … de tijd","temos até às … "),
+         X("v-zijn-we-compleet","zijn we compleet?","estamos todos?")],
+  ex=[("Zijn we compleet? Dan beginnen we.","Estamos todos? Então começamos."),("Laten we beginnen met een kort voorstelrondje.","Vamos começar com uma breve ronda de apresentações."),("We hebben tot elf uur de tijd.","Temos até às onze.")],
+  review=["v-voorzitter","v-welkom-heten"],
+  cefr=C, exs=[
+    MA([("voorstelrondje","ronda de apresentações"),("we hebben tot … de tijd","temos até…"),("zijn we compleet?","estamos todos?"),("welkom heten","dar as boas-vindas")], "Abrir.", ["v-voorstelrondje","v-we-hebben-tot","v-zijn-we-compleet","v-welkom-heten"]),
+    MC("Ordem natural da abertura:", ["*Zijn we compleet? → welkom → voorstelrondje → agenda","agenda → afscheid → welkom|Não.","rondvraag → welkom|Não."], "Sequência.", ["v-zijn-we-compleet","v-voorstelrondje"]),
+    TR("pt-nl","Estamos todos?", ["Zijn we compleet","Zijn we compleet?","Is iedereen er"], "Expressão.", ["v-zijn-we-compleet"]),
+    TR("pt-nl","Temos até às onze.", ["We hebben tot elf uur de tijd","We hebben tot elf uur","Wij hebben tot elf uur de tijd"], "tot … de tijd.", ["v-we-hebben-tot"]),
+    FB("Laten we beginnen met een kort ___.", ["voorstelrondje"], "Apresentações.", ["v-voorstelrondje"], choices=["voorstelrondje","rondvraag","actiepunt"], tr="Vamos começar com uma breve ronda de apresentações."),
+    FE(["Zijn","wij","compleet?","Dan","we","beginnen."], 4, "beginnen", "Inversão: Dan beginnen we.", ["v-zijn-we-compleet"]),
+    DL([("Voorzitter","Laten we een voorstelrondje doen. Wil jij beginnen?","Vamos fazer uma ronda de apresentações. Queres começar?"),("Jij","","")], ["*Natuurlijk. Ik ben Rui, ik werk sinds maart op de afdeling inkoop.","Ja.|Seco.","Rondvraag.|Errado."], "Apresentar-se.", ["v-voorstelrondje"]),
+    LI("Welkom allemaal, fijn dat jullie er zijn.", ["Welkom allemaal, fijn dat jullie er zijn","Welkom allemaal fijn dat jullie er zijn"], "Bem-vindos todos, que bom que estão aqui.", "Abertura.", ["v-welkom-heten"]),
+    WO("Estamos todos?", ["Zijn","we","compleet?"], "Ordem.", ["v-zijn-we-compleet"]),
+  ], diff=4, mins=5)
+
+L(12, "Gerir os pontos da agenda", "Dit punt schuiven we door.",
+  ["Avançar, adiar e fechar pontos da agenda"],
+  vocab=[X("v-het-volgende-punt","het volgende punt","o próximo ponto"), X("v-doorschuiven","doorschuiven","adiar (para outra reunião)","verb"),
+         X("v-parkeren-punt","dat parkeren we even","deixamos isso em suspenso")],
+  ex=[("Dan gaan we naar het volgende punt.","Então passamos ao próximo ponto."),("Dit punt schuiven we door naar volgende week.","Este ponto adiamos para a próxima semana."),("Goed idee, maar dat parkeren we even.","Boa ideia, mas deixamos isso em suspenso.")],
+  review=["v-agenda-punt","v-afronden"],
+  cefr=C, exs=[
+    MA([("het volgende punt","o próximo ponto"),("doorschuiven","adiar"),("dat parkeren we even","fica em suspenso"),("afronden","concluir")], "Agenda.", ["v-het-volgende-punt","v-doorschuiven","v-parkeren-punt","v-afronden"]),
+    MC("«Dat parkeren we even» numa reunião significa…", ["*vamos deixar o tema para depois","vamos estacionar o carro|Literal.","está decidido|Não."], "Metáfora.", ["v-parkeren-punt"]),
+    TR("pt-nl","Passamos ao próximo ponto.", ["We gaan naar het volgende punt","Dan gaan we naar het volgende punt","We gaan door naar het volgende punt"], "het volgende punt.", ["v-het-volgende-punt"]),
+    TR("pt-nl","Adiamos este ponto para a próxima semana.", ["Dit punt schuiven we door naar volgende week","We schuiven dit punt door naar volgende week"], "doorschuiven.", ["v-doorschuiven"]),
+    FB("We hebben geen tijd meer; we schuiven dit punt ___.", ["door"], "Separável.", ["v-doorschuiven"], choices=["door","aan","op"], tr="Já não temos tempo; adiamos este ponto."),
+    FE(["Dit","punt","wordt","naar","maandag","doorgeschuift."], 5, "doorgeschoven.", "Particípio forte: doorgeschoven.", ["v-doorschuiven"]),
+    DL([("Collega","Zullen we het ook nog over de kerstborrel hebben?","Falamos também do convívio de Natal?"),("Voorzitter","","")], ["*Goed punt, maar dat parkeren we even. Eerst het budget.","Nee.|Seco.","Volgende punt kerst.|Confuso."], "Gerir a agenda.", ["v-parkeren-punt"]),
+    LI("Kunnen we dit punt afronden?", ["Kunnen we dit punt afronden","Kunnen we dit punt afronden?"], "Podemos fechar este ponto?", "Fechar.", ["v-afronden"]),
+    WO("O próximo ponto.", ["Het","volgende","punt"], "Ordem.", ["v-het-volgende-punt"]),
+  ], diff=4, mins=5)
+
+L(13, "Dar e pedir a palavra", "Ik geef het woord aan Lisa.",
+  ["Gerir quem fala numa reunião"],
+  vocab=[X("v-het-woord-geven","het woord geven aan","dar a palavra a"), X("v-wil-jij-iets-zeggen","wil jij daar iets over zeggen?","queres dizer algo sobre isso?"),
+         X("v-nog-niet-gehoord","we hebben … nog niet gehoord","ainda não ouvimos …")],
+  ex=[("Ik geef het woord aan Lisa.","Dou a palavra à Lisa."),("Tom, wil jij daar iets over zeggen?","Tom, queres dizer algo sobre isso?"),("We hebben Fatima nog niet gehoord.","Ainda não ouvimos a Fatima.")],
+  review=["v-aan-het-woord","v-inhaken","v-onderbreken"],
+  cefr=C, exs=[
+    MA([("het woord geven aan","dar a palavra a"),("wil jij daar iets over zeggen?","queres dizer algo?"),("we hebben … nog niet gehoord","ainda não ouvimos…"),("aan het woord zijn","ter a palavra")], "Palavra.", ["v-het-woord-geven","v-wil-jij-iets-zeggen","v-nog-niet-gehoord","v-aan-het-woord"]),
+    MC("Um bom presidente de reunião, para incluir quem está calado, diz…", ["*We hebben Fatima nog niet gehoord. Wat vind jij?","Fatima, zeg iets!|Brusco.","Niemand anders?|Exclui."], "Inclusão.", ["v-nog-niet-gehoord"]),
+    TR("pt-nl","Dou a palavra à Lisa.", ["Ik geef het woord aan Lisa","Ik geef Lisa het woord"], "het woord geven.", ["v-het-woord-geven"]),
+    TR("pt-nl","Queres dizer algo sobre isso?", ["Wil jij daar iets over zeggen","Wil je daar iets over zeggen","Wil jij daar iets over zeggen?"], "daar … over.", ["v-wil-jij-iets-zeggen"]),
+    FB("We hebben Pieter nog niet ___.", ["gehoord"], "Particípio.", ["v-nog-niet-gehoord"], choices=["gehoord","horen","gehoort"], tr="Ainda não ouvimos o Pieter."),
+    FE(["Ik","geef","het","woord","op","Lisa."], 4, "aan", "het woord geven aan.", ["v-het-woord-geven"]),
+    LI("Mag ik daar even op inhaken voordat we verdergaan?", ["Mag ik daar even op inhaken voordat we verdergaan","Mag ik daar even op inhaken voordat we verdergaan?"], "Posso pegar nisso antes de continuarmos?", "Revisão.", ["v-inhaken"]),
+    DL([("Collega","…en daarom denk ik dat we moeten wachten.","…e por isso acho que devemos esperar."),("Voorzitter (jij)","","")], ["*Dank je, Mark. Ik geef het woord aan Esther; jij had een andere mening, toch?","Klaar.|Seco.","Wachten!|Sem sentido."], "Passar a palavra.", ["v-het-woord-geven"]),
+    WO("Dou a palavra à Lisa.", ["Ik","geef","het","woord","aan","Lisa"], "Ordem.", ["v-het-woord-geven"]),
+  ], diff=4, mins=5)
+
+L(14, "Reuniões online", "Je staat op mute!",
+  ["Resolver problemas típicos de videochamadas"],
+  vocab=[X("v-op-mute","je staat op mute","estás sem som (microfone desligado)"), X("v-beeld-bevriest","je beeld bevriest","a tua imagem está a congelar"),
+         X("v-online-vergaderen","online vergaderen","reunir online","verb")],
+  ex=[("Je staat op mute!","Estás com o microfone desligado!"),("Je beeld bevriest steeds.","A tua imagem está sempre a congelar."),("We vergaderen vandaag online.","Hoje reunimos online.")],
+  review=["v-camera"],
+  cefr=C, exs=[
+    MA([("je staat op mute","estás sem som"),("je beeld bevriest","a imagem congela"),("online vergaderen","reunir online"),("camera","câmara")], "Online.", ["v-op-mute","v-beeld-bevriest","v-online-vergaderen","v-camera"]),
+    TR("pt-nl","Estás com o microfone desligado!", ["Je staat op mute","Je staat op mute!","Jij staat op mute"], "Expressão.", ["v-op-mute"]),
+    TR("pt-nl","A tua imagem está a congelar.", ["Je beeld bevriest","Je beeld bevriest steeds","Jouw beeld bevriest"], "bevriezen.", ["v-beeld-bevriest"]),
+    MC("A ligação está má. O que diz?", ["*Je valt weg; kun je het nog een keer zeggen?","Je bent slecht.|Rude.","Op mute!|Não é o problema."], "Pedir repetição.", ["v-beeld-bevriest"]),
+    FB("Kun je je ___ even aanzetten? We zien je niet.", ["camera"], "Câmara.", ["v-camera"], choices=["camera","mute","beeld"], tr="Podes ligar a câmara? Não te vemos."),
+    FE(["Je","staan","op","mute!"], 1, "staat", "je: staat.", ["v-op-mute"]),
+    DL([("Collega","…dus wat vinden jullie van mijn voorstel?","…então o que acham da minha proposta?"),("Jij","","")], ["*Sorry, je viel even weg. Kun je de laatste zin herhalen?","Je staat op mute.|Ele falou, ouviu-se o fim.","Ja.|Não ouviu a proposta."], "Ligação instável.", ["v-beeld-bevriest"]),
+    LI("Ik deel even mijn scherm, zien jullie het?", ["Ik deel even mijn scherm, zien jullie het","Ik deel even mijn scherm, zien jullie het?","Ik deel even mijn scherm zien jullie het"], "Vou partilhar o ecrã, estão a ver?", "Revisão.", []),
+    WO("Estás sem som!", ["Je","staat","op","mute!"], "Ordem.", ["v-op-mute"]),
+  ], diff=3, mins=5)
+
+L(15, "Decidir por votação", "Het besluit is unaniem genomen.",
+  ["Tomar decisões em grupo e anunciar o resultado"],
+  vocab=[X("v-unaniem","unaniem","por unanimidade|unânime","adjective"), X("v-bij-meerderheid","bij meerderheid","por maioria"),
+         X("v-onthouden-stem","zich van stemming onthouden","abster-se")],
+  ex=[("Het besluit is unaniem genomen.","A decisão foi tomada por unanimidade."),("Het voorstel is bij meerderheid aangenomen.","A proposta foi aprovada por maioria."),("Twee mensen onthielden zich van stemming.","Duas pessoas abstiveram-se.")],
+  review=["v-stemmen","v-meerderheid","v-een-voorstel-doen"],
+  cefr=C, exs=[
+    MA([("unaniem","por unanimidade"),("bij meerderheid","por maioria"),("zich van stemming onthouden","abster-se"),("stemmen","votar")], "Votar.", ["v-unaniem","v-bij-meerderheid","v-onthouden-stem","v-stemmen"]),
+    MC("10 a favor, 0 contra, 0 abstenções:", ["*unaniem","bij meerderheid|Também, mas é unânime.","verworpen|Não."], "Unanimidade.", ["v-unaniem"]),
+    MC("«Het voorstel is verworpen» significa…", ["*a proposta foi rejeitada","aprovada|É «aangenomen».","adiada|Não."], "Vocabulário.", ["v-bij-meerderheid"]),
+    TR("pt-nl","A proposta foi aprovada por maioria.", ["Het voorstel is bij meerderheid aangenomen","Het voorstel werd bij meerderheid aangenomen"], "aangenomen.", ["v-bij-meerderheid"]),
+    TR("pt-nl","A decisão foi unânime.", ["Het besluit was unaniem","Het besluit is unaniem genomen"], "unaniem.", ["v-unaniem"]),
+    FB("Twee leden ___ zich van stemming.", ["onthielden"], "Passado de onthouden.", ["v-onthouden-stem"], choices=["onthielden","onthouden","onthoudt"], tr="Dois membros abstiveram-se."),
+    FE(["Het","voorstel","is","bij","meerderheid","aangenoemd."], 5, "aangenomen.", "Particípio de aannemen: aangenomen.", ["v-bij-meerderheid"]),
+    LI("Wie is voor? Wie is tegen? Wie onthoudt zich?", ["Wie is voor? Wie is tegen? Wie onthoudt zich?","Wie is voor wie is tegen wie onthoudt zich"], "Quem é a favor? Quem é contra? Quem se abstém?", "Fórmula de votação.", ["v-stemmen","v-onthouden-stem"]),
+    WO("Foi aprovado por maioria.", ["Het","is","bij","meerderheid","aangenomen"], "Ordem.", ["v-bij-meerderheid"]),
+  ], diff=4, mins=5)
+
+L(16, "Confirmar por e-mail", "Zoals besproken stuur ik je…",
+  ["Confirmar acordos de uma reunião por escrito"],
+  vocab=[X("v-zoals-besproken","zoals besproken","conforme combinado|como falámos"), X("v-ter-bevestiging","ter bevestiging","para confirmação")],
+  ex=[("Zoals besproken stuur ik je de offerte.","Conforme combinado, envio-te o orçamento."),("Ter bevestiging: we zien elkaar op 4 mei.","Para confirmar: vemo-nos a 4 de maio."),("Hierbij de notulen van gisteren.","Junto envio a ata de ontem.")],
+  review=["v-hierbij","v-notulen","v-actiepunt","v-bijlage"],
+  cefr=C, exs=[
+    MA([("zoals besproken","conforme combinado"),("ter bevestiging","para confirmação"),("hierbij","junto envio"),("notulen","ata")], "Confirmar.", ["v-zoals-besproken","v-ter-bevestiging","v-hierbij","v-notulen"]),
+    TR("pt-nl","Conforme combinado, envio-te o orçamento.", ["Zoals besproken stuur ik je de offerte","Zoals besproken stuur ik jou de offerte"], "Inversão.", ["v-zoals-besproken"]),
+    TR("pt-nl","Junto envio a ata.", ["Hierbij de notulen","Hierbij stuur ik de notulen","Hierbij stuur ik je de notulen"], "hierbij.", ["v-hierbij"]),
+    MC("«Hierbij» no início de um e-mail significa…", ["*junto envio / com este e-mail","aqui perto|Literal.","adeus|Não."], "Fórmula.", ["v-hierbij"]),
+    FB("___ bevestiging: de deadline is vrijdag.", ["Ter"], "Expressão fixa.", ["v-ter-bevestiging"], choices=["Ter","Voor","Als"], tr="Para confirmação: o prazo é sexta."),
+    FE(["Zoals","besproken","ik","stuur","je","de","notulen."], 2, "stuur", "Inversão: Zoals besproken stuur ik…", ["v-zoals-besproken"]),
+    CO("text","E-mail na vergadering","Hoi team,\n\nHierbij de notulen van de vergadering van vanochtend. Ter bevestiging de belangrijkste actiepunten:\n- Inês maakt vóór vrijdag de planning.\n- Tom vraagt offertes op bij drie leveranciers.\n- Zoals besproken schuiven we het punt over de kerstborrel door naar januari.\n\nGroet,\nSanne",
+       [("O que faz a Inês?", ["*O planeamento","Pede orçamentos","Nada"]),("Até quando?", ["*Antes de sexta","Janeiro","Hoje"]),("O que foi adiado?", ["*O convívio de Natal","A planificação","Os orçamentos"])],
+       "E-mail pós-reunião.", ["v-hierbij","v-ter-bevestiging","v-actiepunt"]),
+    SW("Escreva um e-mail curto (4–5 linhas) a confirmar os pontos de uma reunião. Use «hierbij», «zoals besproken» e «ter bevestiging».", ["Beste Mark,\n\nHierbij de notulen van ons overleg. Zoals besproken lever ik het rapport op 12 juni in. Ter bevestiging: jij regelt de zaal.\n\nMet vriendelijke groet,\nAna"], ["hierbij","zoals besproken","ter bevestiging"], 30, "E-mail.", ["v-zoals-besproken","v-hierbij"]),
+  ], diff=4, mins=6)
+
+L(17, "Abrir uma apresentação", "Graag neem ik u mee in…",
+  ["Começar uma apresentação de forma profissional"],
+  vocab=[X("v-meenemen-in","iemand meenemen in","guiar alguém por|apresentar (um tema)"), X("v-ruimte-voor-vragen","er is ruimte voor vragen","há espaço para perguntas"),
+         X("v-presenteren","presenteren","apresentar","verb")],
+  ex=[("Graag neem ik u mee in onze nieuwe strategie.","Gostaria de vos guiar pela nossa nova estratégia."),("Aan het eind is er ruimte voor vragen.","No fim há espaço para perguntas."),("Vandaag presenteer ik de resultaten van ons onderzoek.","Hoje apresento os resultados do nosso estudo.")],
+  review=["v-presentatie","v-indeling","v-onderwerp-presentatie"],
+  cefr=C, exs=[
+    MA([("iemand meenemen in","guiar alguém por"),("er is ruimte voor vragen","há espaço para perguntas"),("presenteren","apresentar"),("indeling","estrutura")], "Abrir.", ["v-meenemen-in","v-ruimte-voor-vragen","v-presenteren","v-indeling"]),
+    MC("Uma abertura profissional inclui…", ["*tema, estrutura e quando há perguntas","só uma piada|Pouco.","logo os números|Sem contexto."], "Abertura.", ["v-indeling"]),
+    TR("pt-nl","No fim há espaço para perguntas.", ["Aan het eind is er ruimte voor vragen","Aan het einde is er ruimte voor vragen"], "Expressão.", ["v-ruimte-voor-vragen"]),
+    TR("pt-nl","Hoje apresento os resultados.", ["Vandaag presenteer ik de resultaten","Ik presenteer vandaag de resultaten"], "Inversão.", ["v-presenteren"]),
+    FB("Graag neem ik u ___ in de cijfers van dit kwartaal.", ["mee"], "Separável.", ["v-meenemen-in"], choices=["mee","aan","op"], tr="Gostaria de vos guiar pelos números deste trimestre."),
+    FE(["Vandaag","ik","presenteer","de","resultaten."], 1, "presenteer", "Inversão: Vandaag presenteer ik.", ["v-presenteren"]),
+    LI("Mijn presentatie bestaat uit drie delen.", ["Mijn presentatie bestaat uit drie delen","Mijn presentatie bestaat uit 3 delen"], "A minha apresentação tem três partes.", "Estrutura.", ["v-indeling"]),
+    SW("Escreva a abertura de uma apresentação (3–4 frases): cumprimento, tema, estrutura e perguntas.", ["Goedemorgen allemaal. Graag neem ik u mee in de resultaten van onze klantenenquête. Eerst bespreek ik de cijfers, daarna de conclusies. Aan het eind is er ruimte voor vragen."], ["Cumprimento","Tema","Estrutura","Perguntas"], 30, "Abertura.", ["v-meenemen-in","v-ruimte-voor-vragen"]),
+    WO("Há espaço para perguntas.", ["Er","is","ruimte","voor","vragen"], "Ordem.", ["v-ruimte-voor-vragen"]),
+  ], diff=4, mins=5)
+
+L(18, "Falar dos diapositivos", "Zoals u ziet…",
+  ["Comentar diapositivos durante a apresentação"],
+  vocab=[X("v-zoals-u-ziet","zoals u ziet","como podem ver"), X("v-op-deze-dia","op deze dia","neste diapositivo"),
+         X("v-dan-kom-ik-bij","dan kom ik bij…","passo então a…")],
+  ex=[("Zoals u ziet, zijn de kosten gedaald.","Como podem ver, os custos desceram."),("Op deze dia ziet u de planning.","Neste diapositivo veem o planeamento."),("Dan kom ik nu bij het tweede deel.","Passo agora à segunda parte.")],
+  review=["v-dia","v-opvallend"],
+  cefr=C, exs=[
+    MA([("zoals u ziet","como podem ver"),("op deze dia","neste diapositivo"),("dan kom ik bij…","passo a…"),("opvallend","notável")], "Diapositivos.", ["v-zoals-u-ziet","v-op-deze-dia","v-dan-kom-ik-bij","v-opvallend"]),
+    TR("pt-nl","Como podem ver, os custos desceram.", ["Zoals u ziet, zijn de kosten gedaald","Zoals jullie zien, zijn de kosten gedaald","Zoals u ziet zijn de kosten gedaald"], "Inversão.", ["v-zoals-u-ziet"]),
+    TR("pt-nl","Passo agora à segunda parte.", ["Dan kom ik nu bij het tweede deel","Nu kom ik bij het tweede deel"], "Transição.", ["v-dan-kom-ik-bij"]),
+    MC("Para passar de diapositivo com naturalidade:", ["*Op de volgende dia ziet u…","Volgende!|Brusco.","Klik.|Não."], "Transição.", ["v-op-deze-dia"]),
+    FB("Op deze ___ ziet u de cijfers per regio.", ["dia"], "Diapositivo.", ["v-op-deze-dia"], choices=["dia","tabel","rij"], tr="Neste diapositivo veem os números por região."),
+    FE(["Zoals","u","ziet,","de","kosten","zijn","gedaald."], 3, "zijn", "Inversão: …, zijn de kosten gedaald.", ["v-zoals-u-ziet"]),
+    LI("Wat hier vooral opvalt, is de stijging in het noorden.", ["Wat hier vooral opvalt, is de stijging in het noorden","Wat hier vooral opvalt is de stijging in het noorden"], "O que aqui salta mais à vista é a subida no norte.", "Destacar.", ["v-opvallend"]),
+    MC("Erro comum: ler os diapositivos palavra por palavra. Melhor…", ["*comentar e explicar o essencial","ler mais depressa|Não.","não olhar para o público|Não."], "Dica.", ["v-dia"]),
+    WO("Como podem ver.", ["Zoals","u","ziet"], "Ordem.", ["v-zoals-u-ziet"]),
+  ], diff=4, mins=5)
+
+L(19, "Explicar um gráfico", "De piek ligt in juli.",
+  ["Descrever gráficos com picos, mínimos e eixos"],
+  vocab=[N("v-piek","piek","pico","de","pieken"), N("v-dieptepunt","dieptepunt","ponto mais baixo","het"),
+         X("v-verticale-as","op de verticale as","no eixo vertical")],
+  ex=[("De piek ligt in juli.","O pico é em julho."),("In februari bereikten de verkopen een dieptepunt.","Em fevereiro as vendas atingiram o ponto mais baixo."),("Op de verticale as staat het aantal bezoekers.","No eixo vertical está o número de visitantes.")],
+  review=["v-grafiek","v-stijging","v-daling"],
+  cefr=C, exs=[
+    MA([("piek","pico"),("dieptepunt","ponto mais baixo"),("op de verticale as","no eixo vertical"),("grafiek","gráfico")], "Gráficos.", ["v-piek","v-dieptepunt","v-verticale-as","v-grafiek"]),
+    AR("dieptepunt", "ponto mais baixo", "het", "het punt → het dieptepunt.", ["v-dieptepunt"]),
+    TR("pt-nl","O pico é em julho.", ["De piek ligt in juli","De piek is in juli"], "liggen.", ["v-piek"]),
+    TR("pt-nl","No eixo vertical está o número de visitantes.", ["Op de verticale as staat het aantal bezoekers"], "Inversão.", ["v-verticale-as"]),
+    MC("No eixo horizontal (horizontale as) de um gráfico temporal costuma estar…", ["*o tempo (meses, anos)","o título|Não.","a legenda|Não."], "Eixos.", ["v-verticale-as"]),
+    FB("In februari bereikten de verkopen een ___.", ["dieptepunt"], "Mínimo.", ["v-dieptepunt"], choices=["dieptepunt","piek","stijging"], tr="Em fevereiro as vendas atingiram o ponto mais baixo."),
+    FE(["De","piek","liggen","in","juli."], 2, "ligt", "Singular: ligt.", ["v-piek"]),
+    SW("Descreva em 3–4 frases um gráfico imaginário das vendas de gelado ao longo do ano: eixos, pico e mínimo.", ["Op de horizontale as staan de maanden, op de verticale as de verkopen. In de winter zijn de verkopen laag, met een dieptepunt in januari. Vanaf april stijgen ze. De piek ligt in juli."], ["Eixos","Pico","Mínimo","Tendência"], 30, "Descrever gráfico.", ["v-piek","v-dieptepunt"]),
+    LI("Na de piek in de zomer zien we een duidelijke daling.", ["Na de piek in de zomer zien we een duidelijke daling"], "Depois do pico no verão vemos uma descida clara.", "Tendência.", ["v-piek","v-daling"]),
+  ], diff=4, mins=6)
+
+L(20, "Nervos e postura", "Ik heb last van spreekangst.",
+  ["Falar sobre o nervosismo e dar dicas para apresentar"],
+  vocab=[N("v-spreekangst","spreekangst","medo de falar em público","de"), X("v-rustig-ademhalen","rustig ademhalen","respirar com calma","verb"),
+         X("v-oefenen-voor-spiegel","voor de spiegel oefenen","treinar ao espelho","verb")],
+  ex=[("Veel mensen hebben last van spreekangst.","Muitas pessoas sofrem de medo de falar em público."),("Haal rustig adem voordat je begint.","Respira com calma antes de começar."),("Ik heb mijn presentatie voor de spiegel geoefend.","Treinei a minha apresentação ao espelho.")],
+  review=["v-zenuwachtig","v-oogcontact"],
+  cefr=C, exs=[
+    MA([("spreekangst","medo de falar em público"),("rustig ademhalen","respirar com calma"),("voor de spiegel oefenen","treinar ao espelho"),("oogcontact","contacto visual")], "Nervos.", ["v-spreekangst","v-rustig-ademhalen","v-oefenen-voor-spiegel","v-oogcontact"]),
+    TR("pt-nl","Respira com calma antes de começar.", ["Haal rustig adem voordat je begint","Adem rustig voordat je begint"], "ademhalen (separável).", ["v-rustig-ademhalen"]),
+    TR("pt-nl","Tenho medo de falar em público.", ["Ik heb last van spreekangst","Ik heb spreekangst"], "last hebben van.", ["v-spreekangst"]),
+    MC("Qual é uma boa dica?", ["*Maak oogcontact met verschillende mensen in de zaal.","Kijk alleen naar je laptop.|Não.","Praat zo snel mogelijk.|Não."], "Dica.", ["v-oogcontact"]),
+    FB("Ik heb mijn presentatie voor de spiegel ___.", ["geoefend"], "Particípio.", ["v-oefenen-voor-spiegel"], choices=["geoefend","geoefent","oefenen"], tr="Treinei a minha apresentação ao espelho."),
+    FE(["Haal","rustig","adem","voordat","je","beginnen."], 5, "begint.", "je: begint.", ["v-rustig-ademhalen"]),
+    DL([("Collega","Ik moet morgen presenteren en ik ben zo zenuwachtig!","Tenho de apresentar amanhã e estou tão nervoso!"),("Jij","","")], ["*Dat is normaal. Oefen vanavond nog een keer en haal morgen rustig adem. Het komt goed!","Ik ook niet.|Sem sentido.","Spreekangst!|Incompleto."], "Encorajar.", ["v-rustig-ademhalen"]),
+    LI("Een beetje spanning is goed: het houdt je scherp.", ["Een beetje spanning is goed: het houdt je scherp","Een beetje spanning is goed, het houdt je scherp"], "Um pouco de tensão é bom: mantém-te atento.", "Perspetiva.", ["v-zenuwachtig"]),
+    WO("Respira com calma.", ["Haal","rustig","adem"], "Imperativo.", ["v-rustig-ademhalen"]),
+  ], diff=3, mins=5)
+
+L(21, "Responder a perguntas do público", "Daar moet ik even induiken.",
+  ["Responder com honestidade e ganhar tempo quando necessário"],
+  vocab=[X("v-induiken","ergens in induiken","investigar algo a fundo","verb"), X("v-dat-zoek-ik-uit","dat zoek ik voor u uit","vou averiguar isso para si"),
+         X("v-als-ik-uw-vraag","als ik uw vraag goed begrijp","se percebi bem a sua pergunta")],
+  ex=[("Goede vraag; daar moet ik even induiken.","Boa pergunta; tenho de investigar isso a fundo."),("Dat weet ik niet precies, maar dat zoek ik voor u uit.","Não sei exatamente, mas vou averiguar isso para si."),("Als ik uw vraag goed begrijp, wilt u weten wat het kost.","Se percebi bem a sua pergunta, quer saber quanto custa.")],
+  review=["v-uitzoeken","v-goede-vraag","v-eerlijk-antwoord"],
+  cefr=C, exs=[
+    MA([("ergens in induiken","investigar a fundo"),("dat zoek ik voor u uit","vou averiguar"),("als ik uw vraag goed begrijp","se percebi bem"),("uitzoeken","averiguar")], "Perguntas.", ["v-induiken","v-dat-zoek-ik-uit","v-als-ik-uw-vraag","v-uitzoeken"]),
+    MC("Se não sabe a resposta, o mais profissional é…", ["*Dat weet ik niet precies; ik zoek het voor u uit en mail u morgen.","Inventar um número.|Desonesto.","Ignorar a pergunta.|Mau."], "Honestidade.", ["v-dat-zoek-ik-uit"]),
+    TR("pt-nl","Vou averiguar isso para si.", ["Dat zoek ik voor u uit","Ik zoek dat voor u uit"], "uitzoeken.", ["v-dat-zoek-ik-uit"]),
+    TR("pt-nl","Se percebi bem a sua pergunta…", ["Als ik uw vraag goed begrijp","Als ik je vraag goed begrijp"], "Expressão.", ["v-als-ik-uw-vraag"]),
+    FB("Daar moet ik even in ___.", ["duiken"], "Separável com «in».", ["v-induiken"], choices=["duiken","induiken","gedoken"], tr="Tenho de investigar isso."),
+    FE(["Dat","zoek","ik","voor","u","op."], 5, "uit.", "uitzoeken (averiguar).", ["v-dat-zoek-ik-uit"]),
+    DL([("Publiek","Hoeveel kost dit project per jaar?","Quanto custa este projeto por ano?"),("Jij (presentator)","","")], ["*Goede vraag. Het precieze bedrag heb ik nu niet paraat; dat zoek ik voor u uit.","Weet ik niet. Volgende.|Seco.","Een miljard!|Inventado."], "Resposta honesta.", ["v-dat-zoek-ik-uit"]),
+    LI("Ik kom daar na de presentatie graag bij u op terug.", ["Ik kom daar na de presentatie graag bij u op terug"], "Volto a isso consigo com gosto depois da apresentação.", "Adiar com cortesia.", ["v-terugkomen-op"]),
+    WO("Vou averiguar isso.", ["Dat","zoek","ik","uit"], "Ordem.", ["v-dat-zoek-ik-uit"]),
+  ], diff=4, mins=5)
+
+L(22, "Um pitch curto", "Wat is de toegevoegde waarde?",
+  ["Apresentar uma ideia em um minuto"],
+  vocab=[X("v-toegevoegde-waarde","toegevoegde waarde","valor acrescentado"), X("v-in-een-notendop","in een notendop","em poucas palavras|resumidamente"),
+         X("v-wat-ons-onderscheidt","wat ons onderscheidt","o que nos distingue")],
+  ex=[("Wat is de toegevoegde waarde van jullie app?","Qual é o valor acrescentado da vossa app?"),("In een notendop: wij brengen buren samen.","Em poucas palavras: juntamos vizinhos."),("Wat ons onderscheidt, is onze persoonlijke service.","O que nos distingue é o nosso serviço personalizado.")],
+  review=[],
+  cefr=C, exs=[
+    MA([("toegevoegde waarde","valor acrescentado"),("in een notendop","em poucas palavras"),("wat ons onderscheidt","o que nos distingue"),("doelgroep","público-alvo")], "Pitch.", ["v-toegevoegde-waarde","v-in-een-notendop","v-wat-ons-onderscheidt"]),
+    EX("in een notendop", "numa casca de noz", "O que significa?", ["*resumidamente","com dificuldade|Não.","em segredo|Não."], "Imagem: cabe numa casca de noz.", ["v-in-een-notendop"]),
+    TR("pt-nl","Qual é o valor acrescentado?", ["Wat is de toegevoegde waarde","Wat is de toegevoegde waarde?"], "toegevoegde waarde.", ["v-toegevoegde-waarde"]),
+    TR("pt-nl","O que nos distingue é o serviço.", ["Wat ons onderscheidt, is de service","Wat ons onderscheidt is onze service","Wat ons onderscheidt, is onze service"], "Construção com wat.", ["v-wat-ons-onderscheidt"]),
+    FB("In een ___: wij leveren verse groenten aan huis.", ["notendop"], "Expressão.", ["v-in-een-notendop"], choices=["notendop","pitch","doelgroep"], tr="Em poucas palavras: entregamos legumes frescos ao domicílio."),
+    FE(["Wat","ons","onderscheidt,","zijn","onze","persoonlijke","service."], 3, "is", "Construção com «wat»: is.", ["v-wat-ons-onderscheidt"]),
+    SW("Escreva um pitch de 4–5 frases para uma ideia de negócio sua (real ou inventada): problema, solução, público-alvo e o que a distingue.", ["Veel ouderen eten alleen. In een notendop: wij koppelen ouderen aan buren die graag samen koken. Onze doelgroep zijn mensen boven de 70 in grote steden. Wat ons onderscheidt, is dat alles lokaal en persoonlijk is. De toegevoegde waarde: minder eenzaamheid en gezonder eten."], ["Problema","Solução","Público-alvo","Distinção"], 40, "Pitch.", ["v-toegevoegde-waarde","v-in-een-notendop"]),
+    LI("Onze doelgroep zijn jonge gezinnen in de stad.", ["Onze doelgroep zijn jonge gezinnen in de stad","Onze doelgroep is jonge gezinnen in de stad"], "O nosso público-alvo são famílias jovens na cidade.", "Público.", []),
+  ], diff=5, mins=6)
+
+L(23, "Brainstorming", "Er zijn geen domme ideeën.",
+  ["Participar num brainstorming e desenvolver ideias"],
+  vocab=[X("v-brainstormen","brainstormen","fazer brainstorming","verb"), X("v-geen-domme-ideeen","er zijn geen domme ideeën","não há ideias parvas"),
+         X("v-uitwerken","uitwerken","desenvolver (uma ideia)","verb")],
+  ex=[("Laten we tien minuten brainstormen.","Vamos fazer brainstorming durante dez minutos."),("Zeg het maar, er zijn geen domme ideeën.","Diz lá, não há ideias parvas."),("Wie wil dit idee verder uitwerken?","Quem quer desenvolver esta ideia?")],
+  review=["v-voorstel","v-aanvullen"],
+  cefr=C, exs=[
+    MA([("brainstormen","fazer brainstorming"),("er zijn geen domme ideeën","não há ideias parvas"),("uitwerken","desenvolver"),("aanvullen","complementar")], "Brainstorm.", ["v-brainstormen","v-geen-domme-ideeen","v-uitwerken","v-aanvullen"]),
+    TR("pt-nl","Quem quer desenvolver esta ideia?", ["Wie wil dit idee verder uitwerken","Wie wil dit idee uitwerken","Wie wil dit idee verder uitwerken?"], "uitwerken.", ["v-uitwerken"]),
+    TR("pt-nl","Não há ideias parvas.", ["Er zijn geen domme ideeën","Er zijn geen domme ideeen"], "Expressão.", ["v-geen-domme-ideeen"]),
+    MC("Durante um brainstorming, é melhor…", ["*aceitar todas as ideias primeiro e avaliar depois","criticar logo cada ideia|Bloqueia.","falar só o chefe|Não."], "Regra.", ["v-brainstormen"]),
+    FB("Mag ik het idee van Lisa even ___?", ["aanvullen"], "Complementar.", ["v-aanvullen"], choices=["aanvullen","uitwerken","brainstormen"], tr="Posso complementar a ideia da Lisa?"),
+    FE(["Laten","we","tien","minuten","brainstormt."], 4, "brainstormen.", "Depois de laten we: infinitivo.", ["v-brainstormen"]),
+    DL([("Collega","Misschien kunnen we een buurtfeest organiseren voor de klanten?","Talvez possamos organizar uma festa de bairro para os clientes?"),("Jij","","")], ["*Leuk idee! En als aanvulling: we kunnen er ook lokale ondernemers bij betrekken.","Dom idee.|Contra a regra.","Uitwerken!|Incompleto."], "Construir sobre ideias.", ["v-aanvullen","v-geen-domme-ideeen"]),
+    LI("Ik werk het voorstel deze week verder uit.", ["Ik werk het voorstel deze week verder uit"], "Desenvolvo a proposta esta semana.", "Separável.", ["v-uitwerken"]),
+    WO("Vamos fazer brainstorming.", ["Laten","we","brainstormen"], "Ordem.", ["v-brainstormen"]),
+  ], diff=4, mins=5)
+
+L(24, "Feedback depois de apresentar", "Tops en tips",
+  ["Dar e receber feedback construtivo sobre uma apresentação"],
+  vocab=[X("v-tops-en-tips","tops en tips","pontos fortes e sugestões"), X("v-wat-ging-goed","wat ging er goed?","o que correu bem?"),
+         X("v-een-tip-voor-de-volgende-keer","een tip voor de volgende keer","uma sugestão para a próxima vez")],
+  ex=[("Zullen we tops en tips geven?","Damos pontos fortes e sugestões?"),("Wat ging er goed?","O que correu bem?"),("Een tip voor de volgende keer: praat iets langzamer.","Uma sugestão para a próxima vez: fala um bocadinho mais devagar.")],
+  review=["v-feedback","v-verbeterpunt"],
+  cefr=C, exs=[
+    MA([("tops en tips","pontos fortes e sugestões"),("wat ging er goed?","o que correu bem?"),("een tip voor de volgende keer","sugestão para a próxima"),("verbeterpunt","ponto a melhorar")], "Feedback.", ["v-tops-en-tips","v-wat-ging-goed","v-een-tip-voor-de-volgende-keer","v-verbeterpunt"]),
+    MC("Uma boa «tip» é…", ["*concreta e realizável: «Maak meer oogcontact.»","vaga: «Het kan beter.»|Pouco útil.","pessoal: «Je bent saai.»|Ofensivo."], "Feedback útil.", ["v-een-tip-voor-de-volgende-keer"]),
+    TR("pt-nl","O que correu bem?", ["Wat ging er goed","Wat ging er goed?","Wat ging goed"], "Pergunta.", ["v-wat-ging-goed"]),
+    TR("pt-nl","Uma sugestão: fala mais devagar.", ["Een tip: praat langzamer","Een tip: praat iets langzamer","Een tip: spreek langzamer"], "Imperativo.", ["v-een-tip-voor-de-volgende-keer"]),
+    FB("Eerst de tops, dan de ___.", ["tips"], "Fórmula.", ["v-tops-en-tips"], choices=["tips","tops","punten"], tr="Primeiro os pontos fortes, depois as sugestões."),
+    FE(["Wat","gaat","er","gisteren","goed?"], 1, "ging", "Passado: ging.", ["v-wat-ging-goed"]),
+    DL([("Collega","Wat vond je van mijn presentatie?","O que achaste da minha apresentação?"),("Jij","","")], ["*Top: je dia's waren heel duidelijk. Tip: je mag wat vaker naar het publiek kijken.","Saai.|Ofensivo.","Tops.|Incompleto."], "Feedback equilibrado.", ["v-tops-en-tips"]),
+    LI("Dank je voor de feedback, daar kan ik wat mee.", ["Dank je voor de feedback, daar kan ik wat mee","Dank je voor de feedback daar kan ik wat mee"], "Obrigado pelo feedback, é útil para mim.", "Receber feedback.", ["v-feedback"]),
+    WO("O que correu bem?", ["Wat","ging","er","goed?"], "Ordem.", ["v-wat-ging-goed"]),
+  ], diff=4, mins=5)
+
+L(25, "Prática: da reunião à apresentação", "Een werkweek vol overleg.",
+  ["Combinar linguagem de reuniões e apresentações"],
+  vocab=[],
+  ex=[("Ik heb om twee uur overleg met het team.","Às duas tenho reunião com a equipa.")],
+  review=["v-overleg","v-zijn-we-compleet","v-doorschuiven","v-het-woord-geven","v-unaniem","v-zoals-besproken","v-meenemen-in","v-zoals-u-ziet","v-piek","v-dat-zoek-ik-uit"],
+  cefr=C, exs=[
+    CO("dialogue","Teamoverleg","Sanne: Zijn we compleet? Mooi. We hebben tot half elf de tijd.\nTom: Kunnen we eerst het budget doen?\nSanne: Goed. Inês, ik geef het woord aan jou.\nInês: Dank je. Zoals jullie zien, ligt de piek van de kosten in het voorjaar.\nTom: Waardoor komt dat?\nInês: Goede vraag; dat zoek ik voor je uit.\nSanne: Het punt over de nieuwe printer schuiven we door. Zoals besproken stuur ik de notulen vanmiddag rond.",
+       [("Até quando têm tempo?", ["*10h30","11h","12h"]),("Onde está o pico dos custos?", ["*Na primavera","No verão","No inverno"]),("O que foi adiado?", ["*A impressora nova","O orçamento","As atas"])],
+       "Reunião completa (fictícia).", ["v-overleg","v-zijn-we-compleet","v-piek","v-doorschuiven"]),
+    AR("overleg", "reunião", "het", "Het overleg.", ["v-overleg"]),
+    MA([("zijn we compleet?","estamos todos?"),("doorschuiven","adiar"),("zoals besproken","conforme combinado"),("unaniem","por unanimidade")], "Revisão.", ["v-zijn-we-compleet","v-doorschuiven","v-zoals-besproken","v-unaniem"]),
+    TR("pt-nl","Às duas tenho reunião com a equipa.", ["Ik heb om twee uur overleg met het team","Om twee uur heb ik overleg met het team"], "overleg.", ["v-overleg"]),
+    FB("Graag neem ik jullie ___ in de nieuwe planning.", ["mee"], "Revisão.", ["v-meenemen-in"], choices=["mee","aan","door"], tr="Gostaria de vos guiar pelo novo planeamento."),
+    FE(["Het","voorstel","is","unaniem","aangenoemd."], 4, "aangenomen.", "Revisão: aangenomen.", ["v-unaniem"]),
+    SW("Escreva um pequeno guião (8–10 linhas) de uma reunião de equipa: abertura, um ponto com dados (gráfico), uma pergunta difícil, um ponto adiado e o fecho com confirmação por e-mail.", ["Voorzitter: Goedemorgen, zijn we compleet? We hebben tot elf uur.\nVoorzitter: Ik geef het woord aan Ana.\nAna: Zoals jullie zien, ligt de piek van de klachten in december.\nTom: Hoe komt dat?\nAna: Daar moet ik even induiken; dat zoek ik voor je uit.\nVoorzitter: Dank je. Het punt over het personeelsuitje schuiven we door.\nVoorzitter: Zoals besproken stuur ik vanmiddag de notulen rond. Bedankt allemaal!"], ["Abertura","Dados","Pergunta difícil","Ponto adiado","Fecho"], 70, "Guião.", ["v-overleg"]),
+  ], diff=5, mins=8)
+
+W()
