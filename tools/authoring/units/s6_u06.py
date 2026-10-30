@@ -1,0 +1,110 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u06")
+C = "B1-B2"
+
+L(1, "Substantivos abstratos em -heid e -ing", "vrijheid, gezondheid, verandering, ervaring",
+  ["Formar e usar substantivos abstratos"],
+  vocab=[V("v-gelijkheid","gelijkheid","igualdade","noun","de"), V("v-zekerheid","zekerheid","segurança|certeza","noun","de"),
+         V("v-verandering","verandering","mudança","noun","de"), V("v-verbetering","verbetering","melhoria","noun","de"),
+         V("v-waarde","waarde","valor","noun","de",note="waarden = valores (princípios)")],
+  ex=[("Gelijkheid is een belangrijke waarde.","A igualdade é um valor importante."),("Verandering kost tijd.","A mudança leva tempo."),("Er is een duidelijke verbetering.","Há uma melhoria clara."),("Een vast contract geeft zekerheid.","Um contrato sem termo dá segurança.")],
+  gram=[G("g-abstracte-woorden","Formar substantivos","**adjetivo + -heid** → *vrij → vrijheid, gelijk → gelijkheid, zeker → zekerheid*. **verbo + -ing** → *veranderen → verandering, verbeteren → verbetering*. Todos são **de**-woorden.",
+    [("De vrijheid van meningsuiting","A liberdade de expressão")],
+    "Muitos correspondem às nossas palavras em -dade e -ção.")],
+  review=["v-vrijheid","v-gezond","v-ervaring"],
+  cefr=C, exs=[
+    MA([("gelijkheid","igualdade"),("zekerheid","segurança"),("verandering","mudança"),("verbetering","melhoria"),("waarde","valor")], "Abstratos.", ["v-gelijkheid","v-zekerheid","v-verandering","v-verbetering","v-waarde"]),
+    MC("Qual é o substantivo de «eerlijk»?", ["*eerlijkheid","eerlijking|Adjetivo → -heid.","eerlijkte|Não existe."], "-heid.", ["v-gelijkheid"]),
+    MC("Qual é o substantivo de «ontwikkelen»?", ["*ontwikkeling","ontwikkelheid|Verbo → -ing.","ontwikkelt|É forma verbal."], "-ing.", ["v-verandering"]),
+    TR("pt-nl","A mudança leva tempo.", ["Verandering kost tijd","Een verandering kost tijd"], "kosten (tempo).", ["v-verandering"]),
+    TR("nl-pt","Een vast contract geeft zekerheid.", ["Um contrato sem termo dá segurança","Um contrato efetivo dá segurança"], "zekerheid.", ["v-zekerheid"]),
+    AR("verbetering","a melhoria","de", "-ing → de.", ["v-verbetering"]),
+    AR("gelijkheid","a igualdade","de", "-heid → de.", ["v-gelijkheid"]),
+    FE(["Het","verandering","gaat","langzaam."], 0, "De", "-ing → de verandering.", ["v-verandering"]),
+    LI("Gelijkheid en vrijheid zijn belangrijke waarden.", ["Gelijkheid en vrijheid zijn belangrijke waarden"], "A igualdade e a liberdade são valores importantes.", "waarden.", ["v-waarde","v-gelijkheid"]),
+    FB("Er is een grote ___ zichtbaar sinds vorig jaar.", ["verbetering"], "Melhoria.", ["v-verbetering"], choices=["verbetering","verbeteren","verbeterd"], tr="Desde o ano passado vê-se uma grande melhoria."),
+  ], diff=5, mins=6)
+
+L(2, "Processos e mudanças", "ontstaan, ontwikkelen, toenemen, afnemen, leiden tot",
+  ["Descrever processos e relações de causa"],
+  vocab=[V("v-ontstaan","ontstaan","surgir|originar-se","verb",note="(zijn) ontstaan"), V("v-toenemen","toenemen","aumentar","verb"),
+         V("v-afnemen","afnemen","diminuir","verb"), V("v-leiden-tot","leiden tot","levar a|resultar em","expression"),
+         V("v-invloed","invloed","influência","noun","de")],
+  ex=[("Het probleem is langzaam ontstaan.","O problema surgiu lentamente."),("Het verkeer neemt toe.","O trânsito está a aumentar."),("Het aantal rokers neemt af.","O número de fumadores está a diminuir."),("Dat leidt tot problemen.","Isso leva a problemas.")],
+  review=["v-toename","v-afname","v-oorzaak","v-gevolg"],
+  cefr=C, exs=[
+    MA([("ontstaan","surgir"),("toenemen","aumentar"),("afnemen","diminuir"),("leiden tot","levar a"),("invloed","influência")], "Processos.", ["v-ontstaan","v-toenemen","v-afnemen","v-leiden-tot","v-invloed"]),
+    TR("pt-nl","O trânsito está a aumentar.", ["Het verkeer neemt toe"], "toenemen (separável).", ["v-toenemen"]),
+    TR("pt-nl","Isso leva a problemas.", ["Dat leidt tot problemen"], "leiden tot.", ["v-leiden-tot"]),
+    TR("nl-pt","Het probleem is langzaam ontstaan.", ["O problema surgiu lentamente","O problema foi surgindo lentamente"], "ontstaan (zijn).", ["v-ontstaan"]),
+    FE(["Dat","leidt","naar","problemen."], 2, "tot", "leiden tot.", ["v-leiden-tot"]),
+    FE(["Het","aantal","rokers","afneemt."], 3, "neemt af", "Separável: neemt … af.", ["v-afnemen"]),
+    MC("«Sociale media hebben veel invloed op jongeren» — invloed op = …", ["*influência sobre/em","influência de|Não.","influência para|Não."], "invloed op.", ["v-invloed"]),
+    LI("Het gebruik van de fiets is de laatste jaren toegenomen.", ["Het gebruik van de fiets is de laatste jaren toegenomen"], "O uso da bicicleta aumentou nos últimos anos.", "toegenomen (zijn).", ["v-toenemen"]),
+    FB("Stress kan ___ slaapproblemen.", ["leiden tot"], "Levar a.", ["v-leiden-tot"], choices=["leiden tot","toenemen","ontstaan"], tr="O stress pode levar a problemas de sono."),
+    WO("A influência da internet é grande.", ["De","invloed","van","het","internet","is","groot"], "invloed van.", ["v-invloed"]),
+  ], diff=5, mins=6)
+
+L(3, "Ideias e conceitos", "begrip, aspect, kwestie, uitgangspunt",
+  ["Usar vocabulário para falar de ideias de forma abstrata"],
+  vocab=[V("v-aspect","aspect","aspeto","noun","het"), V("v-kwestie","kwestie","questão","noun","de"),
+         V("v-uitgangspunt","uitgangspunt","ponto de partida","noun","het"), V("v-begrip-concept","begrip (concept)","conceito","noun","het"),
+         V("v-context","context","contexto","noun","de")],
+  ex=[("Dat is een belangrijk aspect.","Esse é um aspeto importante."),("Het is een kwestie van tijd.","É uma questão de tempo."),("Ons uitgangspunt is dat iedereen meedoet.","O nosso ponto de partida é que todos participam."),("Je moet het in de context zien.","Tens de ver isso no contexto.")],
+  review=["v-begrip","v-standpunt"],
+  cefr=C, exs=[
+    MA([("aspect","aspeto"),("kwestie","questão"),("uitgangspunt","ponto de partida"),("begrip","conceito"),("context","contexto")], "Ideias.", ["v-aspect","v-kwestie","v-uitgangspunt","v-begrip-concept","v-context"]),
+    TR("pt-nl","É uma questão de tempo.", ["Het is een kwestie van tijd"], "kwestie van.", ["v-kwestie"]),
+    TR("pt-nl","Esse é um aspeto importante.", ["Dat is een belangrijk aspect"], "het aspect → belangrijk.", ["v-aspect"]),
+    TR("nl-pt","Je moet het in de context zien.", ["Tens de ver isso no contexto","Tens de ver isso em contexto"], "context.", ["v-context"]),
+    AR("aspect","o aspeto","het", "Het aspect.", ["v-aspect"]),
+    AR("uitgangspunt","o ponto de partida","het", "Het punt.", ["v-uitgangspunt"]),
+    FE(["Dat","is","een","belangrijke","aspect."], 3, "belangrijk", "het aspect → een belangrijk.", ["v-aspect"]),
+    MC("«Begrip» pode significar…", ["*compreensão ou conceito, conforme o contexto","só «comida»|Não.","só «exame»|Não."], "Polissemia.", ["v-begrip-concept"]),
+    LI("Het uitgangspunt is dat iedereen gelijke kansen krijgt.", ["Het uitgangspunt is dat iedereen gelijke kansen krijgt"], "O ponto de partida é que todos tenham iguais oportunidades.", "uitgangspunt.", ["v-uitgangspunt"]),
+    FB("Het is maar een ___ van tijd voordat het gebeurt.", ["kwestie"], "Questão.", ["v-kwestie"], choices=["kwestie","aspect","context"], tr="É só uma questão de tempo até acontecer."),
+  ], diff=5, mins=6)
+
+L(4, "Verbos abstratos frequentes", "beschouwen als, benadrukken, aantonen, betrekken bij",
+  ["Usar verbos típicos de textos formais e académicos"],
+  vocab=[V("v-beschouwen-als","beschouwen als","considerar como","expression"), V("v-benadrukken","benadrukken","sublinhar|enfatizar","verb"),
+         V("v-aantonen","aantonen","demonstrar","verb"), V("v-betrekken-bij","betrekken bij","envolver em","expression"),
+         V("v-wijzen-op","wijzen op","apontar para|indicar","expression")],
+  ex=[("Ik beschouw het als een kans.","Considero isso uma oportunidade."),("De minister benadrukte het belang van onderwijs.","O ministro sublinhou a importância da educação."),("Het onderzoek toont aan dat het werkt.","A investigação demonstra que funciona."),("We willen bewoners bij het plan betrekken.","Queremos envolver os moradores no plano.")],
+  review=["v-blijken","v-onderzoek"],
+  cefr=C, exs=[
+    MA([("beschouwen als","considerar como"),("benadrukken","sublinhar"),("aantonen","demonstrar"),("betrekken bij","envolver em"),("wijzen op","indicar")], "Verbos formais.", ["v-beschouwen-als","v-benadrukken","v-aantonen","v-betrekken-bij","v-wijzen-op"]),
+    TR("pt-nl","Considero isso uma oportunidade.", ["Ik beschouw het als een kans","Ik zie het als een kans"], "beschouwen als.", ["v-beschouwen-als"]),
+    TR("pt-nl","A investigação demonstra que funciona.", ["Het onderzoek toont aan dat het werkt","Uit het onderzoek blijkt dat het werkt"], "aantonen (separável).", ["v-aantonen"]),
+    TR("nl-pt","We willen bewoners bij het plan betrekken.", ["Queremos envolver os moradores no plano"], "betrekken bij.", ["v-betrekken-bij"]),
+    FE(["Het","onderzoek","aantoont","dat","het","werkt."], 2, "toont … aan", "Separável: Het onderzoek toont aan dat…", ["v-aantonen"]),
+    FE(["De","cijfers","wijzen","naar","een","stijging."], 3, "op", "wijzen op.", ["v-wijzen-op"]),
+    CJ("benadrukken","hij","De minister ___ het belang van onderwijs.", ["benadrukt","benadrukte"], "hij benadrukt (presente) / benadrukte (passado).", ["v-benadrukken"]),
+    LI("Ik wil benadrukken dat dit een eerste stap is.", ["Ik wil benadrukken dat dit een eerste stap is"], "Quero sublinhar que este é um primeiro passo.", "benadrukken.", ["v-benadrukken"]),
+    MC("Qual verbo usaria num relatório para «a investigação mostra»?", ["*aantonen","afdingen|Regatear.","bijpraten|Pôr conversa em dia."], "Registo formal.", ["v-aantonen"]),
+    FB("Alle signalen ___ op een economische groei.", ["wijzen"], "wijzen op.", ["v-wijzen-op"], choices=["wijzen","tonen","leiden"], tr="Todos os sinais apontam para crescimento económico."),
+  ], diff=5, mins=7)
+
+L(5, "Texto abstrato: a felicidade", "Wat is geluk? Een korte beschouwing.",
+  ["Ler e discutir um texto com vocabulário abstrato"],
+  vocab=[V("v-geluk","geluk","felicidade|sorte","noun","het"), V("v-tevredenheid","tevredenheid","satisfação","noun","de"),
+         V("v-zingeving","zingeving","sentido (da vida)","noun","de"), V("v-welzijn","welzijn","bem-estar","noun","het")],
+  ex=[("Geld maakt niet altijd gelukkig.","O dinheiro nem sempre dá felicidade."),("Tevredenheid is belangrijker dan rijkdom.","A satisfação é mais importante do que a riqueza."),("Werk geeft veel mensen zingeving.","O trabalho dá sentido à vida de muitas pessoas."),("Het welzijn van de bewoners staat centraal.","O bem-estar dos moradores está no centro.")],
+  review=["v-gelijkheid","v-zekerheid","v-uitgangspunt","v-aantonen"],
+  cefr=C, exs=[
+    MA([("geluk","felicidade/sorte"),("tevredenheid","satisfação"),("zingeving","sentido da vida"),("welzijn","bem-estar")], "Felicidade.", ["v-geluk","v-tevredenheid","v-zingeving","v-welzijn"]),
+    CO("text","Wat maakt ons gelukkig?", "Nederlanders behoren volgens internationale onderzoeken tot de gelukkigste mensen ter wereld. Maar wat betekent geluk eigenlijk? Onderzoekers maken onderscheid tussen kortdurend plezier en langdurige tevredenheid. Een hoger inkomen verhoogt de tevredenheid, maar alleen tot een bepaald niveau. Daarna spelen andere factoren een grotere rol: goede relaties, gezondheid, zekerheid en het gevoel dat je leven zin heeft. Opvallend is dat vrijwilligerswerk het welzijn aantoonbaar verbetert.",
+       [("Que distinção fazem os investigadores?", ["*Prazer de curta duração vs. satisfação duradoura","Ricos vs. pobres","Jovens vs. velhos"]),("O que diz o texto sobre o rendimento?", ["*Aumenta a satisfação só até certo nível","Nunca influencia","Aumenta sempre a felicidade"]),("O que melhora comprovadamente o bem-estar?", ["*O voluntariado","Trabalhar mais horas","Ter mais coisas"])],
+       "onderscheid maken = distinguir; aantoonbaar = comprovadamente.", ["v-geluk","v-tevredenheid","v-welzijn"]),
+    MC("«Geluk» pode significar…", ["*felicidade ou sorte (Wat een geluk! = Que sorte!)","só felicidade|Também sorte.","só tristeza|Não."], "Dois sentidos.", ["v-geluk"]),
+    TR("pt-nl","O dinheiro nem sempre dá felicidade.", ["Geld maakt niet altijd gelukkig"], "maken + adjetivo.", ["v-geluk"]),
+    TR("nl-pt","Werk geeft veel mensen zingeving.", ["O trabalho dá sentido à vida de muitas pessoas","O trabalho dá sentido a muitas pessoas"], "zingeving.", ["v-zingeving"]),
+    AR("welzijn","o bem-estar","het", "Het welzijn.", ["v-welzijn"]),
+    AR("geluk","a felicidade","het", "Het geluk.", ["v-geluk"]),
+    FE(["Het","tevredenheid","van","de","klanten","stijgt."], 0, "De", "-heid → de tevredenheid.", ["v-tevredenheid"]),
+    LI("Het welzijn van de medewerkers staat bij ons centraal.", ["Het welzijn van de medewerkers staat bij ons centraal"], "Para nós, o bem-estar dos funcionários está em primeiro lugar.", "centraal staan.", ["v-welzijn"]),
+    SW("O que é para si a felicidade? Escreva 3–4 frases com pelo menos três palavras abstratas desta unidade.", ["Voor mij is geluk vooral tevredenheid met kleine dingen. Gezondheid en goede relaties zijn belangrijker dan geld. Bovendien geeft mijn werk me zingeving. Zekerheid speelt ook een rol, maar het is niet het belangrijkste."], ["Três palavras abstratas", "Comparação (**belangrijker dan**)", "Conector com ordem certa"], 35, "Reflexão abstrata.", ["v-geluk","v-tevredenheid","v-zingeving"]),
+  ], diff=5, mins=8)
+
+W()
