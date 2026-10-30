@@ -89,10 +89,9 @@ L(4, "Numa entrevista de rádio", "Ouvir um entrevistador e um convidado.",
 
 L(5, "Discussão em família", "Uma conversa animada à mesa.",
   ["Compreender uma conversa informal rápida com interrupções"],
-  vocab=[V("v-onderbreken","onderbreken","interromper","verb"), V("v-laat-me-uitpraten","laat me even uitpraten","deixa-me acabar","expression"),
-         V("v-zeuren","zeuren","resmungar|chatear","verb"), V("v-overdrijven","overdrijven","exagerar","verb")],
+  vocab=[V("v-zeuren","zeuren","resmungar|chatear","verb"), V("v-overdrijven","overdrijven","exagerar","verb")],
   ex=[("Sorry dat ik je onderbreek.","Desculpa interromper-te."),("Laat me even uitpraten!","Deixa-me acabar de falar!"),("Niet zo zeuren!","Não resmungues tanto!"),("Je overdrijft!","Estás a exagerar!")],
-  review=["v-ruzie","v-toch-part","v-nou"],
+  review=["v-laat-me-uitpraten","v-onderbreken","v-ruzie","v-toch-part","v-nou"],
   cefr=C, exs=[
     MA([("onderbreken","interromper"),("laat me even uitpraten","deixa-me acabar"),("zeuren","resmungar"),("overdrijven","exagerar")], "Família.", ["v-onderbreken","v-laat-me-uitpraten","v-zeuren","v-overdrijven"]),
     CO("dialogue","Aan tafel", "Vader: Wie heeft er weer de melk laten staan?\nLotte: Ik niet!\nDaan: Ik ook niet, ik drink toch nooit melk.\nVader: Nou, iemand heeft het gedaan. En de vaatwasser is ook nog niet uitgeruimd.\nLotte: Dat was Daans beurt!\nDaan: Ja, maar ik had…\nLotte: Je hebt altijd een excuus!\nDaan: Laat me even uitpraten! Ik had gisteren een toets, dus we hadden geruild.\nMoeder: Oké, niet zo zeuren allemaal. Lotte, jij ruimt nu de vaatwasser uit, Daan doet het morgen.",

@@ -27,9 +27,9 @@ L(1, "Exprimir desacordo com calma", "Ik snap je punt, maar… Ik zie dat anders
 L(2, "Ouvir o outro lado", "Als ik je goed begrijp… Wat heb je nodig?",
   ["Mostrar compreensão e reformular o ponto de vista do outro"],
   vocab=[V("v-begrip","begrip","compreensão","noun","het",note="Ik heb er begrip voor."), V("v-standpunt-ander","jouw kant","o teu lado (da história)","expression"),
-         V("v-nodig-hebben","nodig hebben","precisar de","expression"), V("v-samenvatten","samenvatten","resumir","verb")],
+         V("v-nodig-hebben","nodig hebben","precisar de","expression")],
   ex=[("Ik heb begrip voor je situatie.","Compreendo a tua situação."),("Vertel eens jouw kant van het verhaal.","Conta lá o teu lado da história."),("Wat heb je van mij nodig?","De que precisas da minha parte?"),("Als ik het even samenvat…","Se eu resumir…")],
-  review=["v-begrijpen","v-andere-woorden","v-luisteren"],
+  review=["v-samenvatten","v-begrijpen","v-andere-woorden","v-luisteren"],
   cefr=C, exs=[
     MA([("begrip","compreensão"),("jouw kant","o teu lado"),("nodig hebben","precisar de"),("samenvatten","resumir")], "Ouvir.", ["v-begrip","v-standpunt-ander","v-nodig-hebben","v-samenvatten"]),
     TR("pt-nl","Compreendo a tua situação.", ["Ik heb begrip voor je situatie","Ik heb begrip voor jouw situatie","Ik begrijp je situatie"], "begrip hebben voor.", ["v-begrip"]),

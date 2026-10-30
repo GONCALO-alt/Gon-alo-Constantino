@@ -88,10 +88,10 @@ L(4, "Opinião sobre temas sociais", "wonen, werk, integratie",
 
 L(5, "Mudar de opinião e manter a posição", "Je hebt me overtuigd. Ik blijf erbij dat…",
   ["Mostrar que se mudou de ideias ou manter uma posição com firmeza"],
-  vocab=[V("v-van-mening-veranderen","van mening veranderen","mudar de opinião","expression"), V("v-erbij-blijven","erbij blijven dat","manter que","expression"),
+  vocab=[V("v-erbij-blijven","erbij blijven dat","manter que","expression"),
          V("v-nuanceren","nuanceren","matizar","verb"), V("v-heroverwegen","heroverwegen","reconsiderar","verb")],
   ex=[("Je hebt me overtuigd, ik ben van mening veranderd.","Convenceste-me, mudei de opinião."),("Ik blijf erbij dat het een slecht idee is.","Mantenho que é uma má ideia."),("Ik wil mijn standpunt nuanceren.","Quero matizar a minha posição."),("Misschien moeten we het plan heroverwegen.","Talvez devamos reconsiderar o plano.")],
-  review=["v-overtuigen","v-standpunt","v-toegeven"],
+  review=["v-van-mening-veranderen","v-overtuigen","v-standpunt","v-toegeven"],
   cefr=C, exs=[
     MA([("van mening veranderen","mudar de opinião"),("erbij blijven dat","manter que"),("nuanceren","matizar"),("heroverwegen","reconsiderar")], "Posições.", ["v-van-mening-veranderen","v-erbij-blijven","v-nuanceren","v-heroverwegen"]),
     TR("pt-nl","Mudei de opinião.", ["Ik ben van mening veranderd"], "zijn + veranderd.", ["v-van-mening-veranderen"]),

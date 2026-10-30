@@ -6,11 +6,11 @@ C = "B1-B2"
 L(1, "Expressões no trabalho", "de kat de bel aanbinden, met de deur in huis vallen, iets op de lange baan schuiven",
   ["Usar expressões idiomáticas frequentes no contexto profissional"],
   vocab=[V("v-deur-in-huis","met de deur in huis vallen","ir direto ao assunto","expression"), V("v-lange-baan","iets op de lange baan schuiven","adiar indefinidamente","expression"),
-         V("v-kat-de-bel","de kat de bel aanbinden","ser o primeiro a tocar num assunto delicado","expression"), V("v-knoop-doorhakken","de knoop doorhakken","tomar uma decisão (difícil)","expression")],
+         V("v-kat-de-bel","de kat de bel aanbinden","ser o primeiro a tocar num assunto delicado","expression")],
   ex=[("Ik val maar meteen met de deur in huis: we moeten bezuinigen.","Vou direto ao assunto: temos de cortar custos."),("Het project is op de lange baan geschoven.","O projeto foi adiado indefinidamente."),("Wie durft de kat de bel aan te binden?","Quem se atreve a tocar no assunto?"),("We moeten nu de knoop doorhakken.","Temos agora de tomar uma decisão.")],
   gram=[G("g-idioom-werkwoord","Expressões com verbo separável","Muitas expressões contêm verbos separáveis — conjugue normalmente: *Ik **hak** de knoop **door**. Ze **heeft** de knoop **doorgehakt**. Wie **bindt** de kat de bel **aan**?*",
     [("Na lang twijfelen hakte ze de knoop door.","Depois de muito hesitar, ela decidiu-se.")])],
-  review=["v-besluit","v-vergadering"],
+  review=["v-knoop-doorhakken","v-besluit","v-vergadering"],
   cefr=C, exs=[
     MA([("met de deur in huis vallen","ir direto ao assunto"),("op de lange baan schuiven","adiar indefinidamente"),("de kat de bel aanbinden","tocar primeiro no assunto delicado"),("de knoop doorhakken","tomar a decisão")], "Trabalho.", ["v-deur-in-huis","v-lange-baan","v-kat-de-bel","v-knoop-doorhakken"]),
     EX("met de deur in huis vallen","cair com a porta dentro de casa","O chefe começa a reunião: «Ik val maar met de deur in huis…». Ele vai…", ["*dizer logo o assunto principal sem rodeios","partir uma porta|Literal.","chegar atrasado|Não."], "Direto.", ["v-deur-in-huis"]),

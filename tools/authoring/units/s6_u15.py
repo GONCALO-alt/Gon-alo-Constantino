@@ -5,12 +5,11 @@ C = "B1-B2"
 
 L(1, "O texto argumentativo", "Stelling, argumenten, tegenargument, conclusie",
   ["Planear um texto argumentativo completo"],
-  vocab=[V("v-betoog","betoog","texto argumentativo","noun","het"), V("v-conclusie","conclusie","conclusão","noun","de"),
-         V("v-weerlegging","weerlegging","refutação","noun","de"), V("v-schrijfplan","schrijfplan","plano de escrita","noun","het")],
+  vocab=[V("v-betoog","betoog","texto argumentativo","noun","het"), V("v-weerlegging","weerlegging","refutação","noun","de"), V("v-schrijfplan","schrijfplan","plano de escrita","noun","het")],
   ex=[("Een betoog heeft een duidelijke stelling.","Um texto argumentativo tem uma tese clara."),("Maak eerst een schrijfplan.","Faz primeiro um plano de escrita."),("Na het tegenargument volgt de weerlegging.","Depois do contra-argumento vem a refutação."),("De conclusie herhaalt de stelling.","A conclusão retoma a tese.")],
   gram=[G("g-betoog","Estrutura de um betoog","**Inleiding**: tema + **stelling**. **Middenstuk**: 2–3 **argumenten** (cada um num parágrafo, com fundamentação), um **tegenargument** + **weerlegging**. **Slot**: **conclusie** que retoma a tese, eventualmente um apelo.",
     [("Ik ben van mening dat… / Dit betoog laat zien dat…","Sou de opinião que… / Este texto mostra que…")])],
-  review=["v-stelling","v-argument","v-tegenargument","v-inleiding","v-slot-tekst"],
+  review=["v-conclusie","v-stelling","v-argument","v-tegenargument","v-inleiding","v-slot-tekst"],
   cefr=C, exs=[
     MA([("betoog","texto argumentativo"),("conclusie","conclusão"),("weerlegging","refutação"),("schrijfplan","plano de escrita")], "Betoog.", ["v-betoog","v-conclusie","v-weerlegging","v-schrijfplan"]),
     AR("betoog","o texto argumentativo","het", "Het betoog.", ["v-betoog"]),

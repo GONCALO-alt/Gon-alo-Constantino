@@ -29,9 +29,9 @@ L(1, "Formal, neutro e informal", "ontvangen / krijgen; verzoeken / vragen; reed
 L(2, "Linguagem oficial: cartas da gemeente", "Ingevolge… Ten behoeve van… Hierbij delen wij u mede…",
   ["Compreender cartas oficiais e as suas fórmulas"],
   vocab=[V("v-hierbij-mededelen","hierbij delen wij u mede","vimos por este meio informar","expression"), V("v-ten-behoeve-van","ten behoeve van","para efeitos de|a favor de","expression"),
-         V("v-bezwaar","bezwaar","objeção|reclamação formal","noun","het",note="bezwaar maken = reclamar formalmente"), V("v-besluit","besluit","decisão","noun","het")],
+         V("v-besluit","besluit","decisão","noun","het")],
   ex=[("Hierbij delen wij u mede dat uw aanvraag is goedgekeurd.","Vimos por este meio informar que o seu pedido foi aprovado."),("U kunt bezwaar maken tegen dit besluit.","Pode contestar esta decisão."),("Ten behoeve van uw aanvraag hebben wij uw paspoort nodig.","Para efeitos do seu pedido precisamos do seu passaporte."),("Het besluit is definitief.","A decisão é definitiva.")],
-  review=["v-gemeente","v-aanvragen","v-formulier","v-wegens"],
+  review=["v-bezwaar","v-gemeente","v-aanvragen","v-formulier","v-wegens"],
   cefr=C, exs=[
     MA([("hierbij delen wij u mede","vimos informar"),("ten behoeve van","para efeitos de"),("bezwaar","contestação"),("besluit","decisão")], "Cartas oficiais.", ["v-hierbij-mededelen","v-ten-behoeve-van","v-bezwaar","v-besluit"]),
     CO("text","Brief van de gemeente", "Geachte heer Silva,\n\nHierbij delen wij u mede dat uw aanvraag voor een parkeervergunning is afgewezen. Uw adres valt buiten het vergunningsgebied.\n\nBent u het niet eens met dit besluit? Dan kunt u binnen zes weken na de datum van deze brief schriftelijk bezwaar maken. Vermeld daarbij uw naam, adres, de datum en de reden van uw bezwaar.\n\nHoogachtend,\nAfdeling Vergunningen",
