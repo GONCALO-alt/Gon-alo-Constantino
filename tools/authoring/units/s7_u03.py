@@ -84,10 +84,9 @@ L(4, "Pitch: convencer em dois minutos", "Het probleem… Onze oplossing… Waar
 
 L(5, "Apresentações online", "Kunnen jullie mijn scherm zien? Je staat op mute.",
   ["Gerir uma apresentação ou reunião online"],
-  vocab=[V("v-scherm-delen","je scherm delen","partilhar o ecrã","expression"), V("v-dempen","dempen","silenciar (microfone)","verb",note="Je staat op mute / gedempt."),
-         V("v-chat","chat","chat","noun","de")],
+  vocab=[V("v-scherm-delen","je scherm delen","partilhar o ecrã","expression"), V("v-chat","chat","chat","noun","de")],
   ex=[("Kunnen jullie mijn scherm zien?","Conseguem ver o meu ecrã?"),("Je staat nog op mute.","Ainda tens o microfone desligado."),("Je beeld hapert een beetje.","A tua imagem está a falhar um pouco."),("Zet je vragen gerust in de chat.","Ponham as vossas perguntas no chat à vontade.")],
-  review=["v-haperen","v-verbinding","v-wegvallen","v-presentatie"],
+  review=["v-dempen","v-haperen","v-verbinding","v-wegvallen","v-presentatie"],
   cefr=C, exs=[
     MA([("je scherm delen","partilhar o ecrã"),("dempen","silenciar"),("haperen","falhar"),("chat","chat")], "Online.", ["v-scherm-delen","v-dempen","v-haperen","v-chat"]),
     TR("pt-nl","Conseguem ver o meu ecrã?", ["Kunnen jullie mijn scherm zien","Kunnen jullie mijn scherm zien(?)"], "scherm.", ["v-scherm-delen"]),

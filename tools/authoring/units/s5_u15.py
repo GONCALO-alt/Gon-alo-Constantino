@@ -47,10 +47,10 @@ L(2, "Na reunião de condomínio", "Uma reunião com várias opiniões.",
 
 L(3, "No médico com intérprete informal", "Uma consulta em que um familiar ajuda.",
   ["Seguir uma consulta com várias pessoas e informação médica"],
-  vocab=[V("v-klachten","klachten","queixas (sintomas)","noun","de"), V("v-onderzoeken-arts","onderzoeken","examinar","verb"),
+  vocab=[V("v-onderzoeken-arts","onderzoeken","examinar","verb"),
          V("v-doorverwijzing","doorverwijzing","credencial|encaminhamento","noun","de"), V("v-controle","controle","consulta de controlo","noun","de")],
   ex=[("Wat zijn uw klachten?","Quais são as suas queixas?"),("Ik ga u even onderzoeken.","Vou examiná-lo."),("U krijgt een doorverwijzing naar de specialist.","Vai receber um encaminhamento para o especialista."),("Over twee weken komt u terug voor controle.","Daqui a duas semanas volta para controlo.")],
-  review=["v-huisarts","v-koorts","v-recept-med","v-doorverwijzen"],
+  review=["v-klachten","v-huisarts","v-koorts","v-recept-med","v-doorverwijzen"],
   cefr=C, exs=[
     MA([("klachten","queixas"),("onderzoeken","examinar"),("doorverwijzing","encaminhamento"),("controle","controlo")], "Consulta.", ["v-klachten","v-onderzoeken-arts","v-doorverwijzing","v-controle"]),
     CO("dialogue","Bij de huisarts", "Huisarts: Goedemorgen. Wat kan ik voor u doen?\nInês: Mijn moeder spreekt weinig Nederlands, ik vertaal voor haar. Ze heeft al een week last van haar knie.\nHuisarts: Is ze gevallen?\nInês (na overleg): Nee, het begon vanzelf. Vooral 's ochtends is het stijf.\nHuisarts: Ik ga even kijken. … Het is een beetje dik. Ik geef een doorverwijzing voor een foto in het ziekenhuis. Tot die tijd mag ze paracetamol nemen. Over twee weken komt u terug voor controle.",

@@ -49,13 +49,12 @@ L(2, "Sinónimos próximos", "mooi/prachtig, groot/enorm, belangrijk/essentieel"
 
 L(3, "Verbos de dizer", "zeggen, vertellen, praten, spreken, melden, beweren",
   ["Escolher o verbo de comunicação certo"],
-  vocab=[V("v-vertellen","vertellen","contar","verb"), V("v-melden","melden","comunicar|informar","verb"),
-         V("v-beweren","beweren","afirmar (sem prova)","verb"), V("v-noemen","noemen","mencionar|chamar","verb"),
+  vocab=[V("v-vertellen","vertellen","contar","verb"), V("v-beweren","beweren","afirmar (sem prova)","verb"), V("v-noemen","noemen","mencionar|chamar","verb"),
          V("v-opmerken","opmerken","observar|comentar","verb")],
   ex=[("Hij vertelde een grappig verhaal.","Ele contou uma história engraçada."),("U moet een verhuizing melden bij de gemeente.","Tem de comunicar uma mudança à câmara."),("Hij beweert dat hij niets wist.","Ele afirma que não sabia de nada."),("Ze noemde drie voorbeelden.","Ela mencionou três exemplos.")],
   gram=[G("g-zeggen-vertellen","Verbos de dizer","**zeggen** + o que se diz (*zeggen dat…*); **vertellen** + história/informação a alguém; **praten** = conversar (*praten over*); **spreken** = falar (língua, formal); **melden** = comunicar oficialmente; **beweren** = afirmar (com dúvida); **noemen** = mencionar ou chamar (*Ze noemen hem Bas*).",
     [("Volgens de krant beweert de minister dat…","Segundo o jornal, o ministro afirma que…")])],
-  review=["v-zeggen","v-praten-over","v-spreken"],
+  review=["v-melden","v-zeggen","v-praten-over","v-spreken"],
   cefr=C, exs=[
     MA([("vertellen","contar"),("melden","comunicar"),("beweren","afirmar"),("noemen","mencionar"),("opmerken","observar")], "Verbos de dizer.", ["v-vertellen","v-melden","v-beweren","v-noemen","v-opmerken"]),
     FB("Opa ___ altijd verhalen over de oorlog.", ["vertelt","vertelde"], "Contar histórias.", ["v-vertellen"], choices=["vertelt","zegt","spreekt"], tr="O avô conta sempre histórias sobre a guerra."),
