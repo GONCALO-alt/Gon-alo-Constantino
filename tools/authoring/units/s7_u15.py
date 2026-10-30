@@ -88,10 +88,9 @@ L(4, "Projeto 4: entrevista e retrato", "Iemand interviewen en een portret schri
 L(5, "Projeto final: o meu percurso com o neerlandês", "Een reflectieverslag schrijven.",
   ["Escrever um relatório de reflexão sobre a própria aprendizagem"],
   vocab=[V("v-reflectie","reflectie","reflexão","noun","de"), V("v-leerproces","leerproces","processo de aprendizagem","noun","het"),
-         V("v-groeien","groeien","crescer","verb"), V("v-afsluiten","afsluiten","concluir|encerrar","verb"),
-         V("v-dankbaar","dankbaar","grato","adjective")],
+         V("v-groeien","groeien","crescer","verb"), V("v-dankbaar","dankbaar","grato","adjective")],
   ex=[("In deze reflectie kijk ik terug op mijn leerproces.","Nesta reflexão olho para trás para o meu processo de aprendizagem."),("Ik ben enorm gegroeid.","Cresci imenso."),("Met dit project sluit ik de cursus af.","Com este projeto encerro o curso."),("Ik ben dankbaar voor alle hulp.","Estou grato por toda a ajuda.")],
-  review=["v-terugblikken","v-keerpunt","v-vooruitgang-boeken","v-achteraf-gezien","v-blijven-oefenen"],
+  review=["v-afsluiten","v-terugblikken","v-keerpunt","v-vooruitgang-boeken","v-achteraf-gezien","v-blijven-oefenen"],
   cefr=C, exs=[
     MA([("reflectie","reflexão"),("leerproces","processo de aprendizagem"),("groeien","crescer"),("afsluiten","concluir"),("dankbaar","grato")], "Reflexão.", ["v-reflectie","v-leerproces","v-groeien","v-afsluiten","v-dankbaar"]),
     TR("pt-nl","Cresci imenso.", ["Ik ben enorm gegroeid","Ik ben heel erg gegroeid"], "groeien → zijn gegroeid.", ["v-groeien"]),

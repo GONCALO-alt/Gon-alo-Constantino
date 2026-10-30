@@ -6,11 +6,11 @@ C = "B2"
 L(1, "O método STAR", "Situatie, Taak, Actie, Resultaat",
   ["Responder a perguntas de competências com o método STAR"],
   vocab=[V("v-star-methode","STAR-methode","método STAR","noun","de"), V("v-competentie","competentie","competência","noun","de"),
-         V("v-aanpakken","aanpakken","abordar|tratar de","verb"), V("v-resultaat-behalen","een resultaat behalen","alcançar um resultado","expression")],
+         V("v-resultaat-behalen","een resultaat behalen","alcançar um resultado","expression")],
   ex=[("Geef een voorbeeld van een situatie waarin je een conflict oploste.","Dê um exemplo de uma situação em que resolveu um conflito."),("Hoe heb je dat aangepakt?","Como abordou isso?"),("Uiteindelijk hebben we een goed resultaat behaald.","No fim alcançámos um bom resultado."),("Welke competenties heb je daarbij gebruikt?","Que competências usou nisso?")],
   gram=[G("g-star","STAR","**S**ituatie: *In mijn vorige baan…* **T**aak: *Mijn taak was om…* **A**ctie: *Ik heb toen… / Eerst… daarna…* **R**esultaat: *Uiteindelijk… / Het resultaat was dat…* Use o **passado** e fale na **1.ª pessoa** (*ik*, não *we*, quando foi você).",
     [("Mijn taak was om de klant tevreden te houden.","A minha tarefa era manter o cliente satisfeito.")])],
-  review=["v-sollicitatiegesprek","v-taak","v-resultaat"],
+  review=["v-aanpakken","v-sollicitatiegesprek","v-taak","v-resultaat"],
   cefr=C, exs=[
     MA([("STAR-methode","método STAR"),("competentie","competência"),("aanpakken","abordar"),("een resultaat behalen","alcançar um resultado")], "STAR.", ["v-star-methode","v-competentie","v-aanpakken","v-resultaat-behalen"]),
     MC("O que significa o «A» de STAR?", ["*Actie — o que VOCÊ fez","Antwoord|Não.","Afdeling|Não."], "STAR.", ["v-star-methode"]),

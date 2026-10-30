@@ -69,9 +69,9 @@ L(3, "Recusar com tato", "Wat jammer, maar ik kan helaas niet. Misschien een and
 L(4, "Conhecer pessoas novas", "Hoe ken jij de gastvrouw? Wat doe jij in het dagelijks leven?",
   ["Iniciar e manter conversa numa festa"],
   vocab=[V("v-gastvrouw","gastvrouw","anfitriã","noun","de",note="gastheer = anfitrião"), V("v-kennen-via","kennen via","conhecer através de","expression"),
-         V("v-dagelijks-leven","in het dagelijks leven","no dia a dia (profissionalmente)","expression"), V("v-kennismaken","kennismaken (met)","conhecer (alguém pela primeira vez)","verb")],
+         V("v-dagelijks-leven","in het dagelijks leven","no dia a dia (profissionalmente)","expression")],
   ex=[("Hoe ken jij Sanne?","Como é que conheces a Sanne?"),("Ik ken haar via mijn werk.","Conheço-a do trabalho."),("Wat doe je in het dagelijks leven?","O que fazes no dia a dia?"),("Leuk kennis te maken!","Prazer em conhecer!")],
-  review=["v-kennen","v-leuk-je-te-ontmoeten","v-collega","v-vriend"],
+  review=["v-kennismaken","v-kennen","v-leuk-je-te-ontmoeten","v-collega","v-vriend"],
   cefr=C, exs=[
     MA([("gastvrouw","anfitriã"),("kennen via","conhecer através de"),("in het dagelijks leven","no dia a dia"),("kennismaken","conhecer pela primeira vez")], "Festa.", ["v-gastvrouw","v-kennen-via","v-dagelijks-leven","v-kennismaken"]),
     TR("pt-nl","Como é que conheces a Sanne?", ["Hoe ken je Sanne","Hoe ken jij Sanne"], "kennen.", ["v-kennen-via"]),

@@ -5,12 +5,12 @@ C = "B1-B2"
 
 L(1, "Abrir e conduzir uma reunião", "Welkom allemaal. Op de agenda staat… Laten we beginnen.",
   ["Usar as fórmulas para abrir e conduzir uma reunião"],
-  vocab=[V("v-voorzitter","voorzitter","presidente (da reunião)","noun","de"), V("v-notulen","notulen","ata","noun","de"),
+  vocab=[V("v-notulen","notulen","ata","noun","de"),
          V("v-rondvraag","rondvraag","ponto «outros assuntos»","noun","de"), V("v-actiepunt","actiepunt","tarefa a cumprir (ação)","noun","het")],
   ex=[("Welkom allemaal, laten we beginnen.","Bem-vindos todos, vamos começar."),("Wie maakt de notulen?","Quem faz a ata?"),("Zijn er nog punten voor de rondvraag?","Há mais algum ponto para «outros assuntos»?"),("Dit is een actiepunt voor Lisa.","Esta é uma tarefa para a Lisa.")],
   gram=[G("g-vergadering-verloop","Estrutura típica","**Opening** → **notulen vorige keer** (aprovação da ata) → **agendapunten** → **rondvraag** (cada um pode dizer algo) → **sluiting**. Fórmulas: *Op de agenda staat…*, *Het volgende punt is…*, *Dan sluit ik de vergadering.*",
     [("Dan gaan we naar punt drie.","Então passamos ao ponto três.")])],
-  review=["v-vergadering","v-agenda-punt","v-agenda"],
+  review=["v-voorzitter","v-vergadering","v-agenda-punt","v-agenda"],
   cefr=C, exs=[
     MA([("voorzitter","presidente da reunião"),("notulen","ata"),("rondvraag","outros assuntos"),("actiepunt","tarefa")], "Reuniões.", ["v-voorzitter","v-notulen","v-rondvraag","v-actiepunt"]),
     TR("pt-nl","Quem faz a ata?", ["Wie maakt de notulen","Wie notuleert"], "notulen maken.", ["v-notulen"]),

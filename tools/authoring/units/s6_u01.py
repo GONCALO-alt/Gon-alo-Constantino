@@ -49,9 +49,9 @@ L(2, "Responder a objeções", "Je zou kunnen zeggen dat… maar… Dat is een g
 L(3, "Tomar a palavra num debate", "Mag ik hier iets op zeggen? Ik wil graag reageren op…",
   ["Pedir a palavra, interromper e reagir com correção"],
   vocab=[V("v-reageren-op","reageren op","reagir a","expression"), V("v-het-woord","het woord geven/krijgen","dar/ter a palavra","expression"),
-         V("v-aanvullen","aanvullen","complementar","verb"), V("v-terugkomen-op","terugkomen op","voltar a (um ponto)","expression")],
+         V("v-terugkomen-op","terugkomen op","voltar a (um ponto)","expression")],
   ex=[("Mag ik hier iets op zeggen?","Posso dizer algo sobre isto?"),("Ik wil graag reageren op wat Mark zei.","Gostaria de reagir ao que o Mark disse."),("Mag ik even aanvullen?","Posso só acrescentar?"),("Ik wil nog even terugkomen op het eerste punt.","Queria voltar ao primeiro ponto.")],
-  review=["v-onderbreken","v-laat-me-uitpraten","v-sorry"],
+  review=["v-aanvullen","v-onderbreken","v-laat-me-uitpraten","v-sorry"],
   cefr=C, exs=[
     MA([("reageren op","reagir a"),("het woord krijgen","ter a palavra"),("aanvullen","complementar"),("terugkomen op","voltar a")], "Debate.", ["v-reageren-op","v-het-woord","v-aanvullen","v-terugkomen-op"]),
     TR("pt-nl","Posso dizer algo sobre isto?", ["Mag ik hier iets op zeggen","Mag ik daar iets op zeggen"], "hier … op.", ["v-reageren-op"]),
