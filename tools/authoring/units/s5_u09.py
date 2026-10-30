@@ -47,10 +47,9 @@ L(2, "Desporto e atividade física", "lid worden van een club, trainen, een bles
 L(3, "Stress e bem-estar", "Ik heb het druk. Ik ben gestrest. Een burn-out.",
   ["Falar de stress, cansaço e equilíbrio"],
   vocab=[V("v-gestrest","gestrest","stressado","adjective"), V("v-burn-out","burn-out","esgotamento (burnout)","noun","de"),
-         V("v-ontspanning","ontspanning","descontração|relaxamento","noun","de"), V("v-grens","grens","limite","noun","de",note="je grenzen aangeven = impor limites"),
-         V("v-werkdruk","werkdruk","pressão no trabalho","noun","de")],
+         V("v-ontspanning","ontspanning","descontração|relaxamento","noun","de"), V("v-grens","grens","limite","noun","de",note="je grenzen aangeven = impor limites")],
   ex=[("Ik ben de laatste tijd erg gestrest.","Ultimamente ando muito stressado."),("De werkdruk is te hoog.","A pressão no trabalho é demasiado alta."),("Ze zit thuis met een burn-out.","Está em casa com um esgotamento."),("Je moet je grenzen aangeven.","Tens de impor os teus limites.")],
-  review=["v-druk-adj","v-moe","v-rust","v-zich-ontspannen"],
+  review=["v-werkdruk","v-druk-adj","v-moe","v-rust","v-zich-ontspannen"],
   cefr=C, exs=[
     MA([("gestrest","stressado"),("burn-out","esgotamento"),("ontspanning","relaxamento"),("grens","limite"),("werkdruk","pressão no trabalho")], "Bem-estar.", ["v-gestrest","v-burn-out","v-ontspanning","v-grens","v-werkdruk"]),
     TR("pt-nl","Ultimamente ando muito stressado.", ["Ik ben de laatste tijd erg gestrest","Ik ben de laatste tijd heel gestrest","De laatste tijd ben ik erg gestrest"], "de laatste tijd.", ["v-gestrest"]),

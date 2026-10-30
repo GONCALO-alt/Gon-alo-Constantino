@@ -66,10 +66,10 @@ L(3, "Entrevista nos media", "Een interview met een journalist.",
 
 L(4, "Negociar o contrato", "arbeidsvoorwaarden, secundaire voorwaarden, opleidingsbudget",
   ["Negociar condições de trabalho depois de uma proposta"],
-  vocab=[V("v-arbeidsvoorwaarden","arbeidsvoorwaarden","condições de trabalho","noun","de"), V("v-secundaire-voorwaarden","secundaire arbeidsvoorwaarden","benefícios adicionais","noun","de"),
+  vocab=[V("v-secundaire-voorwaarden","secundaire arbeidsvoorwaarden","benefícios adicionais","noun","de"),
          V("v-opleidingsbudget","opleidingsbudget","orçamento para formação","noun","het"), V("v-ruimte","ruimte (voor)","margem (para)","noun","de")],
   ex=[("De arbeidsvoorwaarden zijn goed.","As condições de trabalho são boas."),("Is er ruimte om over het salaris te praten?","Há margem para falar sobre o salário?"),("Ik heb een opleidingsbudget van 1500 euro per jaar.","Tenho um orçamento de formação de 1500 euros por ano."),("De secundaire voorwaarden zijn uitstekend.","Os benefícios adicionais são excelentes.")],
-  review=["v-salarisverwachting","v-onderhandelen","v-vakantiegeld","v-op-voorwaarde-dat"],
+  review=["v-arbeidsvoorwaarden","v-salarisverwachting","v-onderhandelen","v-vakantiegeld","v-op-voorwaarde-dat"],
   cefr=C, exs=[
     MA([("arbeidsvoorwaarden","condições de trabalho"),("secundaire arbeidsvoorwaarden","benefícios adicionais"),("opleidingsbudget","orçamento de formação"),("ruimte","margem")], "Contrato.", ["v-arbeidsvoorwaarden","v-secundaire-voorwaarden","v-opleidingsbudget","v-ruimte"]),
     TR("pt-nl","Há margem para falar sobre o salário?", ["Is er ruimte om over het salaris te praten","Is er ruimte om over het salaris te onderhandelen"], "ruimte om … te.", ["v-ruimte"]),

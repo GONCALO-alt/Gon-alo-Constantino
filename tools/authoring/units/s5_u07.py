@@ -68,10 +68,9 @@ L(3, "Privacidade e segurança online", "persoonsgegevens, phishing, tweestapsve
 L(4, "Pedir ajuda técnica", "Het werkt niet. Heb je het al opnieuw opgestart?",
   ["Explicar um problema técnico e seguir instruções"],
   vocab=[V("v-opnieuw-opstarten","opnieuw opstarten","reiniciar","verb"), V("v-instellingen","instellingen","definições","noun","de"),
-         V("v-aanzetten","aanzetten","ligar (aparelho)","verb"), V("v-uitzetten","uitzetten","desligar (aparelho)","verb"),
-         V("v-vastlopen","vastlopen","bloquear (encravar)","verb",note="Mijn laptop loopt vast.")],
+         V("v-aanzetten","aanzetten","ligar (aparelho)","verb"), V("v-uitzetten","uitzetten","desligar (aparelho)","verb")],
   ex=[("Mijn laptop loopt steeds vast.","O meu portátil está sempre a bloquear."),("Zet hem uit en weer aan.","Desliga-o e volta a ligá-lo."),("Ga naar instellingen.","Vai às definições."),("Heb je hem al opnieuw opgestart?","Já o reiniciaste?")],
-  review=["v-het-doet-het-niet","v-foutmelding","v-probleem"],
+  review=["v-vastlopen","v-het-doet-het-niet","v-foutmelding","v-probleem"],
   cefr=C, exs=[
     MA([("opnieuw opstarten","reiniciar"),("instellingen","definições"),("aanzetten","ligar"),("uitzetten","desligar"),("vastlopen","bloquear")], "Técnico.", ["v-opnieuw-opstarten","v-instellingen","v-aanzetten","v-uitzetten","v-vastlopen"]),
     TR("pt-nl","Desliga-o e volta a ligá-lo.", ["Zet hem uit en weer aan","Zet het uit en weer aan"], "uit- en aanzetten.", ["v-uitzetten","v-aanzetten"]),
