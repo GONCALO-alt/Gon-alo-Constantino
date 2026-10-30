@@ -64,10 +64,10 @@ L(3, "Recusar com firmeza e educação", "Daar kunnen we helaas niet mee akkoord
 
 L(4, "Chegar a acordo", "Dan hebben we een deal. Laten we het op papier zetten.",
   ["Fechar um acordo e confirmar os termos"],
-  vocab=[V("v-overeenkomst","overeenkomst","acordo|contrato","noun","de"), V("v-op-papier-zetten","op papier zetten","pôr por escrito","expression"),
+  vocab=[V("v-op-papier-zetten","op papier zetten","pôr por escrito","expression"),
          V("v-bevestigen-schriftelijk","schriftelijk bevestigen","confirmar por escrito","expression"), V("v-deal","deal","negócio fechado","noun","de")],
   ex=[("Dan hebben we een deal.","Então temos negócio."),("Laten we het op papier zetten.","Vamos pôr isto por escrito."),("Ik bevestig het morgen schriftelijk.","Confirmo amanhã por escrito."),("De overeenkomst gaat in op 1 januari.","O acordo entra em vigor a 1 de janeiro.")],
-  review=["v-akkoord","v-huurcontract","v-bevestigen"],
+  review=["v-overeenkomst","v-akkoord","v-huurcontract","v-bevestigen"],
   cefr=C, exs=[
     MA([("overeenkomst","acordo"),("op papier zetten","pôr por escrito"),("schriftelijk bevestigen","confirmar por escrito"),("deal","negócio")], "Acordo.", ["v-overeenkomst","v-op-papier-zetten","v-bevestigen-schriftelijk","v-deal"]),
     TR("pt-nl","Vamos pôr isto por escrito.", ["Laten we het op papier zetten"], "op papier zetten.", ["v-op-papier-zetten"]),

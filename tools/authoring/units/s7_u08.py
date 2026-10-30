@@ -62,10 +62,9 @@ L(3, "Expressões idiomáticas avançadas", "iets in de doofpot stoppen, de bui 
 
 L(4, "Expressões bíblicas e históricas", "een Pyrrusoverwinning, de gouden eeuw, van Pontius naar Pilatus",
   ["Reconhecer expressões com origem histórica ou cultural"],
-  vocab=[V("v-pontius-pilatus","van het kastje naar de muur","de Herodes para Pilatos","expression"), V("v-gouden-eeuw","Gouden Eeuw","Século de Ouro (séc. XVII)","noun","de"),
-         V("v-pyrrusoverwinning","pyrrusoverwinning","vitória de Pirro","noun","de"), V("v-zijn-handen-in-onschuld","zijn handen in onschuld wassen","lavar as mãos (de responsabilidade)","expression")],
+  vocab=[V("v-pontius-pilatus","van het kastje naar de muur","de Herodes para Pilatos","expression"), V("v-pyrrusoverwinning","pyrrusoverwinning","vitória de Pirro","noun","de"), V("v-zijn-handen-in-onschuld","zijn handen in onschuld wassen","lavar as mãos (de responsabilidade)","expression")],
   ex=[("Ik word van het kastje naar de muur gestuurd.","Andam a mandar-me de Herodes para Pilatos."),("In de Gouden Eeuw was Amsterdam heel rijk.","No Século de Ouro Amesterdão era muito rica."),("Het was een pyrrusoverwinning.","Foi uma vitória de Pirro."),("De directeur wast zijn handen in onschuld.","O diretor lava as mãos.")],
-  review=["v-gezegde","v-figuurlijk"],
+  review=["v-gouden-eeuw","v-gezegde","v-figuurlijk"],
   cefr=C, exs=[
     MA([("van het kastje naar de muur","de Herodes para Pilatos"),("Gouden Eeuw","Século de Ouro"),("pyrrusoverwinning","vitória de Pirro"),("zijn handen in onschuld wassen","lavar as mãos")], "Origem histórica.", ["v-pontius-pilatus","v-gouden-eeuw","v-pyrrusoverwinning","v-zijn-handen-in-onschuld"]),
     EX("van het kastje naar de muur gestuurd worden","ser mandado do armário para a parede","Liga para o apoio ao cliente e cada pessoa reencaminha-o para outra.", ["*Ik word van het kastje naar de muur gestuurd.","Het is een pyrrusoverwinning.|Não.","Ik was mijn handen in onschuld.|Não."], "Burocracia.", ["v-pontius-pilatus"]),

@@ -46,10 +46,10 @@ L(2, "Imprevistos em viagem", "Mijn koffer is zoek. De vlucht is geannuleerd.",
 
 L(3, "Comparar culturas", "Wat me opviel… In Portugal is het gebruikelijk dat…",
   ["Comentar diferenças culturais com tato"],
-  vocab=[V("v-opvallen","opvallen","dar nas vistas|chamar a atenção","verb",note="Wat me opviel, was…"), V("v-gebruikelijk","gebruikelijk","habitual","adjective"),
-         V("v-verschil","verschil","diferença","noun","het","verschillen"), V("v-wennen","wennen (aan)","habituar-se (a)","verb")],
+  vocab=[V("v-gebruikelijk","gebruikelijk","habitual","adjective"),
+         V("v-wennen","wennen (aan)","habituar-se (a)","verb")],
   ex=[("Wat me opviel, was dat iedereen fietst.","O que me chamou a atenção foi que toda a gente anda de bicicleta."),("In Portugal is het gebruikelijk om laat te eten.","Em Portugal é habitual jantar tarde."),("Het grootste verschil is het eten.","A maior diferença é a comida."),("Ik moest wennen aan het weer.","Tive de me habituar ao tempo.")],
-  review=["v-terwijl","v-in-tegenstelling-tot","v-gewoonte"],
+  review=["v-verschil","v-opvallen","v-terwijl","v-in-tegenstelling-tot","v-gewoonte"],
   cefr=C, exs=[
     MA([("opvallen","chamar a atenção"),("gebruikelijk","habitual"),("verschil","diferença"),("wennen aan","habituar-se a")], "Culturas.", ["v-opvallen","v-gebruikelijk","v-verschil","v-wennen"]),
     WO("O que me chamou a atenção foi que toda a gente anda de bicicleta.", ["Wat","me","opviel,","was","dat","iedereen","fietst"], "Wat me opviel, was dat…", ["v-opvallen"]),
