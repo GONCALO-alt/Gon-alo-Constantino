@@ -121,10 +121,13 @@ async function answerCorrectly(user: ReturnType<typeof userEvent.setup>, ex: Exe
       await user.click(screen.getByRole('button', { name: /Saltar este exercício/ }));
       return 'skipped';
     case 'shortWriting':
+      // Escrita livre: confirma-se com Enter.
       await user.type(screen.getByRole('textbox'), first(ex.referenceAnswers));
+      await user.keyboard('{Enter}');
       break;
   }
-  await user.click(screen.getByRole('button', { name: 'Verificar' }));
+  // Não há botão «Verificar»: uma resposta certa é corrigida sozinha.
+  expect(screen.queryByRole('button', { name: 'Verificar' })).toBeNull();
   return 'answered';
 }
 
@@ -204,7 +207,6 @@ describe('lição completa', () => {
     render(<App />);
     await user.click(await screen.findByRole('button', { name: /Começar/ }));
     await user.click(screen.getByRole('radio', { name: /doei/ }));
-    await user.click(screen.getByRole('button', { name: 'Verificar' }));
     const fb = await screen.findByRole('status');
     expect(fb.textContent).toMatch(/hoi/);
     expect(fb.textContent).toMatch(/despedida/); // feedback específico da opção
@@ -229,12 +231,34 @@ describe('«Não me lembro»', () => {
     expect(screen.queryByRole('button', { name: 'Não me lembro' })).toBeNull();
     // O aluno responde com a resposta que acabou de ver.
     await user.click(screen.getByRole('radio', { name: new RegExp(correct.text) }));
-    await user.click(screen.getByRole('button', { name: 'Verificar' }));
     expect((await screen.findByRole('status')).textContent).toMatch(/volta a aparecer no fim/);
     await user.click(screen.getByRole('button', { name: 'Continuar' }));
     // O botão volta a estar disponível no exercício seguinte.
     expect(await screen.findByRole('button', { name: 'Não me lembro' })).toBeTruthy();
   });
+});
+
+describe('sem botão «Verificar»', () => {
+  it('texto escrito errado confirma-se com Enter; certo avança sozinho', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    const idx = lesson.exercises.findIndex((e) => e.type === 'translate' && !e.wordBank);
+    const ex = lesson.exercises[idx]!;
+    if (ex.type !== 'translate') throw new Error('o teste espera uma tradução escrita');
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    for (const e of lesson.exercises.slice(0, idx)) {
+      await screen.findByRole('heading', { name: e.instruction });
+      await answerCorrectly(user, e);
+      await user.click(await screen.findByRole('button', { name: 'Continuar' }));
+    }
+    await screen.findByRole('heading', { name: ex.instruction });
+    await user.type(screen.getByRole('textbox'), 'xyz');
+    expect(screen.queryByRole('status')).toBeNull(); // errado: não corrige sozinho
+    await user.keyboard('{Enter}');
+    expect((await screen.findByRole('status')).textContent).toMatch(/Ainda não|Não é bem|incorreta/);
+  }, 30_000);
 });
 
 describe('sair de uma lição', () => {
@@ -269,7 +293,7 @@ describe('revisão', () => {
     expect(await screen.findByText('Para rever agora')).toBeTruthy();
     expect(screen.getByText(/Erros recentes/)).toBeTruthy();
     await user.click(screen.getByRole('link', { name: /Rever \d+ palavras/ }));
-    expect(await screen.findByRole('button', { name: 'Verificar' })).toBeTruthy();
+    expect(await screen.findByRole('button', { name: 'Não me lembro' })).toBeTruthy();
     expect(screen.getByRole('progressbar')).toBeTruthy();
   });
 });

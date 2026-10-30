@@ -1,5 +1,5 @@
 /**
- * Executa uma sequência de exercícios: mostra o exercício, verifica a resposta,
+ * Executa uma sequência de exercícios: mostra o exercício, corrige a resposta sozinho,
  * dá feedback imediato com explicação e repete os errados no fim (uma vez).
  * Usado tanto pelas lições como pelas sessões de revisão.
  */
@@ -26,6 +26,8 @@ export interface RunnerProps {
   title: string;
 }
 
+const wordCount = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
+
 const VERDICT_TEXT = {
   correct: ['Certo!', 'Muito bem!', 'Exatamente!', 'Correto!'],
   almost: ['Quase!', 'Aceite, com um reparo.'],
@@ -46,8 +48,19 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
   const ex = currentExercise(session);
   const opts = { lenientAccents };
 
+  /** Espera curta antes de corrigir texto escrito, para não aceitar a meio de uma palavra. */
+  const typingTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const autoTyped = useRef(false);
+  useEffect(() => () => clearTimeout(typingTimer.current), []);
+
   useEffect(() => {
-    if (result) continueRef.current?.focus();
+    if (!result) return;
+    // Depois de escrever, o foco não salta para «Continuar» (um espaço carregaria no botão);
+    // Enter continua a funcionar.
+    if (!autoTyped.current) { continueRef.current?.focus(); return; }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Enter') { e.preventDefault(); continueRef.current?.click(); } };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [result]);
 
   useEffect(() => {
@@ -66,6 +79,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
 
   const reveal = () => {
     if (result || revealed) return;
+    clearTimeout(typingTimer.current);
     setRevealed(true);
     if (!firstAttempts.current.has(ex.id)) {
       firstAttempts.current.set(ex.id, {
@@ -77,6 +91,8 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
 
   const check = () => {
     if (!response || result) return;
+    clearTimeout(typingTimer.current);
+    autoTyped.current = response.kind === 'text';
     if (ex.type === 'shortWriting' && response.kind === 'text' && needsSelfAssessment(ex, response.value, opts)) {
       setSelfCheck(response.value);
       return;
@@ -84,7 +100,32 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
     finalize(gradeExercise(ex, response, opts));
   };
 
+  /**
+   * Sem botão «Verificar»: a resposta é corrigida sozinha.
+   * - escolhas, associação e encontrar o erro: assim que a resposta fica completa;
+   * - peças (ordenar / construir): quando a frase está certa ou tem o número de palavras esperado;
+   * - texto escrito: quando fica certo; outra resposta confirma-se com Enter.
+   */
+  const onResponse = (r: ExerciseResponse | null) => {
+    setResponse(r);
+    clearTimeout(typingTimer.current);
+    if (!r || result || selfCheck !== null) return;
+    if (r.kind !== 'text') return finalize(gradeExercise(ex, r, opts));
+    if (ex.type === 'shortWriting') return;
+    const graded = gradeExercise(ex, r, opts);
+    const isTokens = ex.type === 'wordOrder' || ex.type === 'buildSentence' || (ex.type === 'translate' && !!ex.wordBank);
+    if (isTokens || (ex.type === 'fillBlank' && !!ex.choices)) {
+      if (graded.verdict === 'correct' || !isTokens || wordCount(r.value) >= wordCount(expectedAnswer(ex))) finalize(graded);
+      return;
+    }
+    if (graded.verdict === 'correct') {
+      typingTimer.current = setTimeout(() => { autoTyped.current = true; finalize(graded); }, 500);
+    }
+  };
+
   const next = () => {
+    clearTimeout(typingTimer.current);
+    autoTyped.current = false;
     setResult(null);
     setResponse(null);
     setSelfCheck(null);
@@ -122,7 +163,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
         {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
         <h1 className="instruction">{ex.instruction}</h1>
         <ExerciseView key={`${ex.id}-${session.position}`} exercise={ex} locked={!!result || !!selfCheck}
-          onResponse={setResponse} onSubmit={check} onSkip={skip}
+          onResponse={onResponse} onSubmit={check} onSkip={skip}
           speechRate={speechRate} audioEnabled={audioEnabled} />
       </main>
 
@@ -173,12 +214,9 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
             result ? (
               <button ref={continueRef} type="button" className="btn btn-primary btn-wide" onClick={next}>Continuar</button>
             ) : (
-              <div className="check-row">
-                {!revealed && (
-                  <button type="button" className="btn btn-secondary" onClick={reveal}>Não me lembro</button>
-                )}
-                <button type="button" className="btn btn-primary btn-wide" disabled={!response} onClick={check}>Verificar</button>
-              </div>
+              !revealed && (
+                <button type="button" className="btn btn-secondary btn-wide" onClick={reveal}>Não me lembro</button>
+              )
             )
           )}
           {selfCheck !== null && result && (
