@@ -67,10 +67,10 @@ L(3, "Receber feedback", "Dank je voor de feedback. Wat bedoel je precies met…
 
 L(4, "Pedir algo ao chefe", "Zou ik vrij kunnen krijgen? Ik wil het graag hebben over mijn salaris.",
   ["Fazer pedidos formais no trabalho: folga, aumento, teletrabalho"],
-  vocab=[V("v-vrij-vragen","vrij vragen","pedir folga","expression"), V("v-salarisverhoging","salarisverhoging","aumento salarial","noun","de"),
+  vocab=[V("v-salarisverhoging","salarisverhoging","aumento salarial","noun","de"),
          V("v-het-hebben-over","het hebben over","falar sobre","expression"), V("v-functioneringsgesprek","functioneringsgesprek","entrevista de avaliação","noun","het")],
   ex=[("Zou ik vrijdag vrij kunnen krijgen?","Podia ter folga na sexta?"),("Ik wil het graag hebben over mijn salaris.","Gostaria de falar sobre o meu salário."),("Ik vraag een salarisverhoging aan.","Vou pedir um aumento."),("Volgende week heb ik mijn functioneringsgesprek.","Para a semana tenho a minha entrevista de avaliação.")],
-  review=["v-zou","v-salaris","v-thuiswerken"],
+  review=["v-vrij-vragen","v-zou","v-salaris","v-thuiswerken"],
   cefr=C, exs=[
     MA([("vrij vragen","pedir folga"),("salarisverhoging","aumento"),("het hebben over","falar sobre"),("functioneringsgesprek","avaliação de desempenho")], "Pedidos.", ["v-vrij-vragen","v-salarisverhoging","v-het-hebben-over","v-functioneringsgesprek"]),
     WO("Podia ter folga na sexta?", ["Zou","ik","vrijdag","vrij","kunnen","krijgen?"], "zou … kunnen krijgen.", ["v-vrij-vragen"]),
