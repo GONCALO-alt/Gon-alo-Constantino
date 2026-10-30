@@ -1,0 +1,112 @@
+import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from dsl import *
+U("s6-u07")
+C = "B1-B2"
+
+L(1, "Formal, neutro e informal", "ontvangen / krijgen; verzoeken / vragen; reeds / al",
+  ["Reconhecer pares de palavras formais e informais"],
+  vocab=[V("v-reeds","reeds","já (formal)","adverb",note="informal: al"), V("v-verzoeken","verzoeken","solicitar (formal)","verb",note="informal: vragen"),
+         V("v-ontvangen","ontvangen","receber (formal)","verb",note="informal: krijgen"), V("v-thans","thans","atualmente (muito formal)","adverb",note="informal: nu"),
+         V("v-wegens","wegens","devido a (formal)","preposition",note="informal: door/vanwege")],
+  ex=[("Wij hebben uw brief reeds ontvangen.","Já recebemos a sua carta."),("U wordt verzocht uw jas op te hangen.","Solicita-se que pendure o casaco."),("Wegens ziekte is de winkel gesloten.","Devido a doença, a loja está fechada."),("Thans is het kantoor gesloten.","Atualmente o escritório está fechado.")],
+  gram=[G("g-register","Registo","Textos oficiais usam palavras mais formais: **reeds** (al), **ontvangen** (krijgen), **verzoeken** (vragen), **wegens** (door), **thans** (nu), **indien** (als), **echter** (maar). Na conversa, essas palavras soam rígidas — use as informais.",
+    [("Indien u vragen heeft, kunt u contact opnemen.","Caso tenha dúvidas, pode entrar em contacto.")],
+    "É como a diferença entre «solicita-se» e «pede-se».")],
+  review=["v-al","v-vraag","v-echter","v-formeel","v-informeel"],
+  cefr=C, exs=[
+    MA([("reeds","al"),("verzoeken","vragen"),("ontvangen","krijgen"),("thans","nu"),("wegens","door")], "Formal ↔ informal.", ["v-reeds","v-verzoeken","v-ontvangen","v-thans","v-wegens"]),
+    MC("Versão informal de «Wij hebben uw e-mail reeds ontvangen»:", ["*We hebben je mail al gekregen.","Wij ontvangen reeds.|Continua formal.","Jij hebt het.|Muda o sentido."], "al / krijgen.", ["v-reeds","v-ontvangen"]),
+    MC("Versão formal de «Door de storm gaat de trein niet»:", ["*Wegens de storm rijden er geen treinen.","Door storm trein nee.|Agramatical.","De storm is leuk.|Não."], "wegens.", ["v-wegens"]),
+    TR("nl-pt","Wegens ziekte is de winkel gesloten.", ["Devido a doença, a loja está fechada","Por motivo de doença, a loja está fechada"], "wegens.", ["v-wegens"]),
+    TR("nl-pt","U wordt verzocht uw jas op te hangen.", ["Solicita-se que pendure o casaco","Pede-se que pendure o casaco"], "verzoeken.", ["v-verzoeken"]),
+    FE(["Hoi","Tim,","ik","heb","je","berichtje","reeds","ontvangen!"], 6, "al", "Numa mensagem informal, «reeds» soa estranho: al.", ["v-reeds"]),
+    MC("Onde encontraria «Indien u vragen heeft…»?", ["*Numa carta oficial","Numa mensagem a um amigo|Demasiado formal.","Num grito no futebol|Não."], "Registo formal.", ["v-formeel"]),
+    LI("Indien u vragen heeft, kunt u contact met ons opnemen.", ["Indien u vragen heeft(,) kunt u contact met ons opnemen"], "Caso tenha dúvidas, pode contactar-nos.", "indien = als.", ["v-formeel"]),
+    FB("De vergadering is ___ de staking uitgesteld.", ["wegens"], "Formal.", ["v-wegens"], choices=["wegens","reeds","thans"], tr="A reunião foi adiada devido à greve."),
+    WO("Já recebemos a sua carta.", ["Wij","hebben","uw","brief","reeds","ontvangen"], "Formal.", ["v-ontvangen"]),
+  ], diff=5, mins=7)
+
+L(2, "Linguagem oficial: cartas da gemeente", "Ingevolge… Ten behoeve van… Hierbij delen wij u mede…",
+  ["Compreender cartas oficiais e as suas fórmulas"],
+  vocab=[V("v-hierbij-mededelen","hierbij delen wij u mede","vimos por este meio informar","expression"), V("v-ten-behoeve-van","ten behoeve van","para efeitos de|a favor de","expression"),
+         V("v-bezwaar","bezwaar","objeção|reclamação formal","noun","het",note="bezwaar maken = reclamar formalmente"), V("v-besluit","besluit","decisão","noun","het")],
+  ex=[("Hierbij delen wij u mede dat uw aanvraag is goedgekeurd.","Vimos por este meio informar que o seu pedido foi aprovado."),("U kunt bezwaar maken tegen dit besluit.","Pode contestar esta decisão."),("Ten behoeve van uw aanvraag hebben wij uw paspoort nodig.","Para efeitos do seu pedido precisamos do seu passaporte."),("Het besluit is definitief.","A decisão é definitiva.")],
+  review=["v-gemeente","v-aanvragen","v-formulier","v-wegens"],
+  cefr=C, exs=[
+    MA([("hierbij delen wij u mede","vimos informar"),("ten behoeve van","para efeitos de"),("bezwaar","contestação"),("besluit","decisão")], "Cartas oficiais.", ["v-hierbij-mededelen","v-ten-behoeve-van","v-bezwaar","v-besluit"]),
+    CO("text","Brief van de gemeente", "Geachte heer Silva,\n\nHierbij delen wij u mede dat uw aanvraag voor een parkeervergunning is afgewezen. Uw adres valt buiten het vergunningsgebied.\n\nBent u het niet eens met dit besluit? Dan kunt u binnen zes weken na de datum van deze brief schriftelijk bezwaar maken. Vermeld daarbij uw naam, adres, de datum en de reden van uw bezwaar.\n\nHoogachtend,\nAfdeling Vergunningen",
+       [("Qual foi a decisão?", ["*O pedido de dístico de estacionamento foi recusado","Foi aprovado","Ainda está em análise"]),("Porquê?", ["*A morada fica fora da zona","Faltam documentos","Já tem dístico"]),("Qual é o prazo para contestar?", ["*Seis semanas","Seis dias","Seis meses"])],
+       "afgewezen = recusado; hoogachtend = com consideração (fecho muito formal).", ["v-besluit","v-bezwaar"]),
+    TR("pt-nl","Pode contestar esta decisão.", ["U kunt bezwaar maken tegen dit besluit"], "bezwaar maken tegen.", ["v-bezwaar"]),
+    TR("nl-pt","Het besluit is definitief.", ["A decisão é definitiva"], "het besluit.", ["v-besluit"]),
+    AR("besluit","a decisão","het", "Het besluit.", ["v-besluit"]),
+    AR("bezwaar","a contestação","het", "Het bezwaar.", ["v-bezwaar"]),
+    FE(["Ik","maak","bezwaar","voor","dit","besluit."], 3, "tegen", "bezwaar maken tegen.", ["v-bezwaar"]),
+    MC("«Hoogachtend» é…", ["*um fecho muito formal de carta","uma saudação inicial|É fecho.","um insulto|Não."], "Fecho formal.", ["v-hierbij-mededelen"]),
+    LI("Hierbij delen wij u mede dat uw aanvraag is goedgekeurd.", ["Hierbij delen wij u mede dat uw aanvraag is goedgekeurd","Hierbij delen wij u mee dat uw aanvraag is goedgekeurd"], "Vimos informar que o seu pedido foi aprovado.", "mededelen.", ["v-hierbij-mededelen"]),
+    SW("Escreva o início de uma carta de contestação (bezwaarschrift) contra a recusa do dístico de estacionamento.", ["Geachte heer/mevrouw,\nHierbij maak ik bezwaar tegen uw besluit van 3 mei over mijn parkeervergunning. Mijn adres ligt volgens mij wel binnen het vergunningsgebied."], ["**Hierbij maak ik bezwaar tegen**", "Referência à decisão e data", "Razão"], 30, "Carta formal.", ["v-bezwaar","v-besluit"]),
+  ], diff=5, mins=8)
+
+L(3, "Linguagem coloquial e calão leve", "Gaaf! Balen! Lekker bezig! Chill.",
+  ["Compreender linguagem coloquial frequente entre jovens e amigos"],
+  vocab=[V("v-gaaf","gaaf","fixe|espetacular","adjective"), V("v-lekker-bezig","lekker bezig!","boa! (bem feito / estás a ir bem)","expression"),
+         V("v-chill","chill","descontraído","adjective"), V("v-vet","vet","fixe (calão)","adjective",note="Também «gordo» no sentido literal."),
+         V("v-ff-checken","even checken","verificar rapidinho","expression")],
+  ex=[("Wat gaaf!","Que fixe!"),("Lekker bezig, man!","Boa, pá!"),("Het was heel chill.","Foi muito descontraído."),("Vet concert gisteren!","Concerto brutal ontem!")],
+  gram=[G("g-spreektaal","Coloquial","Muitas palavras coloquiais vêm do inglês (*chill, nice, random*). **gaaf/vet/tof** = fixe. **Lekker** usa-se para muito mais do que comida: *lekker weer, lekker slapen, lekker bezig*. Evite este registo em e-mails formais ou entrevistas.",
+    [("Lekker geslapen?","Dormiste bem?")])],
+  review=["v-lekker","v-top","v-balen","v-informeel"],
+  cefr=C, exs=[
+    MA([("gaaf","fixe"),("lekker bezig","boa!"),("chill","descontraído"),("vet","brutal")], "Coloquial.", ["v-gaaf","v-lekker-bezig","v-chill","v-vet"]),
+    MC("Um amigo mostra-lhe a bicicleta nova. Diz…", ["*Wat gaaf!","Geachte fiets.|Formal e absurdo.","Hierbij delen wij u mede.|Linguagem oficial."], "Registo informal.", ["v-gaaf"]),
+    MC("«Lekker bezig!» diz-se a alguém que…", ["*está a fazer algo bem (elogio)","está a comer|Não necessariamente.","está ocupado demais|Não."], "Elogio.", ["v-lekker-bezig"]),
+    MC("Em qual contexto NÃO usaria «vet»?", ["*Numa carta à Belastingdienst","Com amigos sobre um concerto|Adequado.","Numa mensagem ao irmão|Adequado."], "Registo.", ["v-vet"]),
+    TR("nl-pt","Het was heel chill.", ["Foi muito descontraído","Foi muito tranquilo","Estava-se muito bem"], "chill.", ["v-chill"]),
+    TR("nl-pt","Lekker geslapen?", ["Dormiste bem","Dormiu bem"], "lekker.", ["v-lekker"]),
+    TR("pt-nl","Que fixe!", ["Wat gaaf","Wat vet","Wat tof","Wat leuk"], "gaaf/vet/tof.", ["v-gaaf"]),
+    LI("Vet concert gisteren, hè?", ["Vet concert gisteren(,) hè"], "Concerto brutal ontem, não foi?", "vet.", ["v-vet"]),
+    FB("Je hebt al drie kilo afgevallen? Lekker ___!", ["bezig"], "Elogio.", ["v-lekker-bezig"], choices=["bezig","chill","vet"], tr="Já perdeste três quilos? Boa!"),
+    FE(["Geachte","heer","De","Vries,","uw","voorstel","is","echt","vet."], 8, "uitstekend", "Num e-mail formal, «vet» é inadequado: uitstekend / zeer goed.", ["v-vet"]),
+  ], diff=4, mins=6)
+
+L(4, "Adaptar o registo", "O mesmo conteúdo para o chefe, um colega e um amigo.",
+  ["Reescrever uma mensagem em registos diferentes"],
+  vocab=[V("v-toon","toon","tom","noun","de"), V("v-afstand","afstand","distância","noun","de"),
+         V("v-beleefd","beleefd","educado|cortês","adjective"), V("v-joviaal","joviaal","jovial|bem-disposto","adjective")],
+  ex=[("Let op je toon.","Atenção ao tom."),("Met u houd je meer afstand.","Com «u» manténs mais distância."),("Hij is altijd erg beleefd.","Ele é sempre muito educado."),("Haar toon was joviaal.","O tom dela era jovial.")],
+  review=["v-formeel","v-informeel","v-tutoyeren","v-u"],
+  cefr=C, exs=[
+    MA([("toon","tom"),("afstand","distância"),("beleefd","educado"),("joviaal","jovial")], "Registo.", ["v-toon","v-afstand","v-beleefd","v-joviaal"]),
+    MC("Avisar que vai faltar a uma reunião — ao diretor de outra empresa:", ["*Geachte heer Jansen, helaas ben ik verhinderd op de vergadering van donderdag.","Hoi Jan, ik kan niet donderdag, sorry!|Informal demais.","Donderdag nee.|Brusco."], "Formal.", ["v-beleefd"]),
+    MC("O mesmo aviso a um colega próximo:", ["*Hoi Jan, ik kan donderdag helaas niet bij het overleg zijn. Kun je me bijpraten?","Hierbij deel ik u mede dat…|Formal demais.","Jan, weg.|Brusco."], "Neutro-informal.", ["v-joviaal"]),
+    MC("«Verhinderd zijn» significa…", ["*estar impedido (não poder comparecer)","estar atrasado|Não.","estar zangado|Não."], "Formal.", ["v-beleefd"]),
+    TR("pt-nl","Atenção ao tom.", ["Let op je toon","Let op jouw toon"], "letten op.", ["v-toon"]),
+    TR("nl-pt","Hij is altijd erg beleefd.", ["Ele é sempre muito educado","Ele é sempre muito cortês"], "beleefd.", ["v-beleefd"]),
+    AR("toon","o tom","de", "De toon.", ["v-toon"]),
+    FE(["Geachte","mevrouw,","hoe","is","het","met","je?"], 6, "u", "Registo formal: met u.", ["v-u"]),
+    LI("Helaas ben ik op donderdag verhinderd.", ["Helaas ben ik op donderdag verhinderd","Helaas ben ik donderdag verhinderd"], "Infelizmente estou impedido na quinta-feira.", "verhinderd.", ["v-beleefd"]),
+    SW("Escreva a MESMA informação (vai chegar 30 min atrasado por causa do comboio) em duas versões: para o chefe (formal) e para um amigo (informal).", ["Formal: Geachte heer Bakker, door een storing bij de NS kom ik helaas een halfuur later. Excuses voor het ongemak.\nInformeel: Hé! Trein heeft vertraging, ben er een halfuurtje later. Sorry!"], ["Versão formal com **u/geachte/excuses**", "Versão informal com **hé/sorry**", "Mesmo conteúdo nas duas"], 30, "Dois registos.", ["v-toon","v-beleefd"]),
+  ], diff=5, mins=7)
+
+L(5, "Registo profissional escrito", "Afspraken bevestigen, follow-up, managementtaal",
+  ["Escrever mensagens profissionais claras e no registo certo"],
+  vocab=[V("v-n-a-v","n.a.v.","na sequência de (abrev.)","expression",note="naar aanleiding van"), V("v-i-v-m","i.v.m.","por causa de|relacionado com (abrev.)","expression",note="in verband met"),
+         V("v-graag-ontvang-ik","graag ontvang ik","agradecia receber","expression"), V("v-terugkoppelen","terugkoppelen","dar retorno|dar feedback","verb")],
+  ex=[("N.a.v. ons gesprek stuur ik u de planning.","Na sequência da nossa conversa envio-lhe o planeamento."),("I.v.m. de feestdagen is het kantoor gesloten.","Devido aos feriados, o escritório está fechado."),("Graag ontvang ik uw reactie vóór vrijdag.","Agradecia receber a sua resposta até sexta."),("Ik koppel het terug naar het team.","Vou dar o retorno à equipa.")],
+  review=["v-naar-aanleiding-van","v-met-betrekking-tot","v-hierbij"],
+  cefr=C, exs=[
+    MA([("n.a.v.","na sequência de"),("i.v.m.","devido a"),("graag ontvang ik","agradecia receber"),("terugkoppelen","dar retorno")], "Profissional.", ["v-n-a-v","v-i-v-m","v-graag-ontvang-ik","v-terugkoppelen"]),
+    MC("«i.v.m.» significa…", ["*in verband met","in vergelijking met|Não.","in voorbereiding met|Não existe."], "Abreviatura.", ["v-i-v-m"]),
+    TR("pt-nl","Agradecia receber a sua resposta até sexta.", ["Graag ontvang ik uw reactie vóór vrijdag","Graag ontvang ik uw reactie voor vrijdag"], "Inversão.", ["v-graag-ontvang-ik"]),
+    TR("nl-pt","I.v.m. de feestdagen is het kantoor gesloten.", ["Devido aos feriados, o escritório está fechado","Por causa dos feriados, o escritório está fechado"], "i.v.m.", ["v-i-v-m"]),
+    TR("nl-pt","Ik koppel het terug naar het team.", ["Vou dar o retorno à equipa","Dou feedback à equipa"], "terugkoppelen.", ["v-terugkoppelen"]),
+    FE(["Graag","ik","ontvang","uw","reactie."], 1, "ontvang ik", "Inversão: Graag ontvang ik…", ["v-graag-ontvang-ik"]),
+    CO("text","Follow-up e-mail", "Beste Mariska,\n\nN.a.v. ons overleg van vanochtend stuur ik je hierbij de aangepaste planning. I.v.m. de vakantie van Peter schuift de oplevering een week op, naar 14 juni. Kun je dit terugkoppelen naar de klant? Graag ontvang ik je reactie vóór donderdag.\n\nGroet,\nRui",
+       [("Porque muda o prazo?", ["*Por causa das férias do Peter","Por causa do cliente","Por doença da Mariska"]),("Nova data de entrega?", ["*14 de junho","7 de junho","Quinta-feira"]),("O que pede o Rui à Mariska?", ["*Que informe o cliente e responda até quinta","Que trabalhe ao fim de semana","Que cancele o projeto"])],
+       "oplevering = entrega (de projeto); opschuiven = adiar.", ["v-n-a-v","v-i-v-m","v-terugkoppelen"]),
+    LI("Ik koppel het zo snel mogelijk aan je terug.", ["Ik koppel het zo snel mogelijk aan je terug","Ik koppel het zo snel mogelijk aan jou terug"], "Dou-te retorno o mais depressa possível.", "terugkoppelen aan.", ["v-terugkoppelen"]),
+    FB("___ ons gesprek stuur ik u de offerte.", ["N.a.v.","Naar aanleiding van"], "Na sequência de.", ["v-n-a-v"], choices=["N.a.v.","I.v.m.","Ff"], tr="Na sequência da nossa conversa envio-lhe o orçamento."),
+    WO("Vou dar o retorno à equipa.", ["Ik","koppel","het","terug","naar","het","team"], "Separável.", ["v-terugkoppelen"]),
+  ], diff=5, mins=8)
+
+W()
