@@ -84,9 +84,9 @@ L(4, "Expressões com tempo e sorte", "met de neus in de boter vallen, achter he
 L(5, "Usar expressões com naturalidade", "Quando usar e quando evitar.",
   ["Integrar expressões idiomáticas de forma natural e adequada"],
   vocab=[V("v-gezegde","gezegde","expressão (feita)","noun","het"), V("v-letterlijk","letterlijk","literal(mente)","adjective"),
-         V("v-figuurlijk","figuurlijk","figurado|em sentido figurado","adjective"), V("v-ouderwets","ouderwets","antiquado","adjective")],
+         V("v-figuurlijk","figuurlijk","figurado|em sentido figurado","adjective")],
   ex=[("Dat is een bekend gezegde.","É uma expressão conhecida."),("Je moet het niet letterlijk nemen.","Não deves levar isso à letra."),("In figuurlijke zin betekent het iets anders.","Em sentido figurado significa outra coisa."),("Die uitdrukking is een beetje ouderwets.","Essa expressão é um bocado antiquada.")],
-  review=["v-deur-in-huis","v-knoop-doorhakken","v-water-bij-de-wijn","v-spijker-op-de-kop","v-eindjes"],
+  review=["v-ouderwets","v-deur-in-huis","v-knoop-doorhakken","v-water-bij-de-wijn","v-spijker-op-de-kop","v-eindjes"],
   cefr=C, exs=[
     MA([("gezegde","expressão feita"),("letterlijk","literal"),("figuurlijk","figurado"),("ouderwets","antiquado")], "Expressões.", ["v-gezegde","v-letterlijk","v-figuurlijk","v-ouderwets"]),
     MC("Numa entrevista de emprego, qual expressão é adequada?", ["*Ik steek graag de handen uit de mouwen.","Ik zit op rozen.|Inadequado no contexto.","Ik loop vaak tegen de lamp.|Prejudica."], "Contexto profissional.", ["v-handen-uit-de-mouwen"]),

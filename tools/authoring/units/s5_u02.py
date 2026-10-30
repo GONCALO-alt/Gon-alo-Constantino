@@ -93,9 +93,9 @@ L(4, "Notícias faladas e o tempo", "Ouvir o boletim: het weerbericht, het verke
 L(5, "Comentar uma notícia", "Heb je gehoord dat…? Ik las dat… Wat vind jij ervan?",
   ["Contar e comentar uma notícia numa conversa"],
   vocab=[V("v-heb-je-gehoord","heb je gehoord dat…?","ouviste que…?","expression"), V("v-ik-las-dat","ik las dat…","li que…","expression"),
-         V("v-schijnbaar","schijnbaar","pelos vistos|aparentemente","adverb"), V("v-ophef","ophef","alvoroço|polémica","noun","de")],
+         V("v-ophef","ophef","alvoroço|polémica","noun","de")],
   ex=[("Heb je gehoord dat de huren weer stijgen?","Ouviste que as rendas vão subir outra vez?"),("Ik las dat er een nieuwe brug komt.","Li que vai haver uma ponte nova."),("Schijnbaar is het museum gesloten.","Pelos vistos o museu está fechado."),("Er is veel ophef over het plan.","Há muita polémica em torno do plano.")],
-  review=["v-volgens","v-nieuws","v-ervan","v-dat-conj"],
+  review=["v-schijnbaar","v-volgens","v-nieuws","v-ervan","v-dat-conj"],
   cefr=C, exs=[
     MA([("heb je gehoord dat…?","ouviste que…?"),("ik las dat…","li que…"),("schijnbaar","pelos vistos"),("ophef","polémica")], "Comentar.", ["v-heb-je-gehoord","v-ik-las-dat","v-schijnbaar","v-ophef"]),
     WO("Ouviste que as rendas vão subir outra vez?", ["Heb","je","gehoord","dat","de","huren","weer","stijgen?"], "dat + verbo no fim.", ["v-heb-je-gehoord"]),

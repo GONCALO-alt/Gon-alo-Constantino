@@ -149,7 +149,7 @@ L(17, "O exame de condução", "Ben je geslaagd of gezakt?",
   vocab=[V("v-rijles","rijles","aula de condução","noun","de","rijlessen"), V("v-rijexamen","rijexamen","exame de condução","noun","het"),
          V("v-zakken","zakken (voor)","chumbar (num exame)","verb",note="Ik ben gezakt voor mijn examen."), V("v-herkansing","herkansing","segunda tentativa|repetição de exame","noun","de")],
   ex=[("Ik heb dertig rijlessen gehad.","Tive trinta aulas de condução."),("Ze is in één keer geslaagd voor haar rijexamen.","Ela passou no exame de condução à primeira."),("Ik ben gezakt, dus ik moet een herkansing doen.","Chumbei, por isso tenho de repetir.")],
-  review=["v-slagen","v-rijbewijs","v-zenuwachtig","v-auto"],
+  review=["v-slagen","v-rijbewijs","v-auto"],
   cefr=C, exs=[
     MA([("rijles","aula de condução"),("rijexamen","exame de condução"),("zakken","chumbar"),("herkansing","segunda tentativa")], "Exames.", ["v-rijles","v-rijexamen","v-zakken","v-herkansing"]),
     MC("O contrário de «slagen voor een examen» é…", ["*zakken voor een examen","halen|«Halen» é sinónimo de passar.","leren|Leren = estudar/aprender."], "slagen ≠ zakken.", ["v-zakken","v-slagen"]),
@@ -159,7 +159,7 @@ L(17, "O exame de condução", "Ben je geslaagd of gezakt?",
     TR("pt-nl","Passei no exame de condução!", ["Ik ben geslaagd voor mijn rijexamen","Ik ben geslaagd voor het rijexamen","Ik heb mijn rijexamen gehaald"], "slagen voor (zijn) ou halen (hebben).", ["v-slagen","v-rijexamen"]),
     DL([("Vriend","En? Heb je je rijbewijs?","Então? Tens a carta?"),("Inês","","")], ["*Nee, helaas ben ik gezakt. Volgende maand heb ik een herkansing.","Ja, ik ben gezakt!|«Gezakt» é chumbar: contradiz o «ja».","Nee, ik heb geen auto.|Não responde."], "zakken + herkansing.", ["v-zakken","v-herkansing"]),
     FE(["Ik","heb","voor","mijn","examen","gezakt."], 1, "ben", "zakken usa zijn: Ik ben gezakt.", ["v-zakken"]),
-    LI("Ik was zo zenuwachtig dat ik door rood ben gereden.", ["Ik was zo zenuwachtig dat ik door rood ben gereden","Ik was zo zenuwachtig dat ik door rood gereden ben"], "Estava tão nervoso que passei um sinal vermelho.", "zo … dat = tão … que.", ["v-zenuwachtig"]),
+    LI("Ik was zo zenuwachtig dat ik door rood ben gereden.", ["Ik was zo zenuwachtig dat ik door rood ben gereden","Ik was zo zenuwachtig dat ik door rood gereden ben"], "Estava tão nervoso que passei um sinal vermelho.", "zo … dat = tão … que.", ["v-rijexamen"]),
     TR("nl-pt","Hoeveel rijlessen heb je gehad?", ["Quantas aulas de condução tiveste","Quantas aulas de condução teve"], "hebben → gehad.", ["v-rijles"]),
   ], diff=3, mins=7)
 
