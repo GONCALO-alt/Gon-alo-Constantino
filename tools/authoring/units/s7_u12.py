@@ -5,13 +5,12 @@ C = "B2"
 
 L(1, "Simulação: comprar casa", "Bezichtiging, bod, hypotheek, notaris",
   ["Percorrer o processo de compra de uma casa"],
-  vocab=[V("v-notaris","notaris","notário","noun","de"), V("v-overdracht","overdracht","escritura|transferência","noun","de"),
-         V("v-koopovereenkomst","koopovereenkomst","contrato-promessa de compra","noun","de"), V("v-bouwkundige-keuring","bouwkundige keuring","inspeção técnica (casa)","noun","de"),
+  vocab=[V("v-notaris","notaris","notário","noun","de"), V("v-koopovereenkomst","koopovereenkomst","contrato-promessa de compra","noun","de"), V("v-bouwkundige-keuring","bouwkundige keuring","inspeção técnica (casa)","noun","de"),
          V("v-overbieden","overbieden","oferecer acima do preço pedido","verb")],
   ex=[("We hebben een bezichtiging om drie uur.","Temos uma visita às três."),("In de Randstad wordt vaak overboden.","No Randstad oferece-se muitas vezes acima do preço."),("Laat altijd een bouwkundige keuring doen.","Faz sempre uma inspeção técnica."),("De overdracht is bij de notaris.","A escritura é no notário.")],
   gram=[G("g-huis-kopen","O processo","1) **Bezichtiging** (visita) → 2) **bod** (oferta; em zonas procuradas, *overbieden*) → 3) **koopovereenkomst** (com 3 dias de reflexão) → 4) **bouwkundige keuring** e **hypotheek** → 5) **overdracht** no **notaris**. Um **makelaar** pode ajudar.",
     [("We hebben een voorbehoud van financiering.","Temos uma cláusula de financiamento (a compra depende do empréstimo).")])],
-  review=["v-bod","v-hypotheek","v-bezichtiging","v-makelaar"],
+  review=["v-overdracht","v-bod","v-hypotheek","v-bezichtiging","v-makelaar"],
   cefr=C, exs=[
     MA([("notaris","notário"),("overdracht","escritura"),("koopovereenkomst","contrato-promessa"),("bouwkundige keuring","inspeção técnica"),("overbieden","oferecer acima")], "Comprar casa.", ["v-notaris","v-overdracht","v-koopovereenkomst","v-bouwkundige-keuring","v-overbieden"]),
     MC("Ordem do processo:", ["*bezichtiging → bod → koopovereenkomst → overdracht bij de notaris","notaris → bod → bezichtiging|Trocado.","overdracht → bezichtiging|Trocado."], "Processo.", ["v-overdracht"]),
