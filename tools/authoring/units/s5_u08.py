@@ -88,20 +88,20 @@ L(4, "Alojamento e reservas", "Airbnb, een jeugdherberg, ontbijt inbegrepen, ann
 
 L(5, "Recomendar um destino", "Je moet echt naar… gaan! Het is de moeite waard.",
   ["Recomendar lugares e dar dicas de viagem"],
-  vocab=[V("v-moeite-waard","de moeite waard","vale a pena","expression"), V("v-bezienswaardigheid","bezienswaardigheid","ponto de interesse turístico","noun","de"), V("v-tip","tip","dica","noun","de")],
+  vocab=[V("v-bezienswaardigheid","bezienswaardigheid","ponto de interesse turístico","noun","de"), V("v-tip","tip","dica","noun","de")],
   ex=[("Sintra is echt de moeite waard.","Sintra vale mesmo a pena."),("Ik raad je het Rijksmuseum aan.","Recomendo-te o Rijksmuseum."),("Wat zijn de belangrijkste bezienswaardigheden?","Quais são os principais pontos de interesse?"),("Heb je nog tips?","Tens mais dicas?")],
-  review=["v-aanraden","v-echt-moeten","v-museum","v-zeker"],
+  review=["v-de-moeite-waard","v-aanraden","v-echt-moeten","v-museum","v-zeker"],
   cefr=C, exs=[
-    MA([("de moeite waard","vale a pena"),("aanraden","recomendar"),("bezienswaardigheid","ponto turístico"),("tip","dica")], "Recomendar.", ["v-moeite-waard","v-aanraden","v-bezienswaardigheid","v-tip"]),
-    TR("pt-nl","Sintra vale mesmo a pena.", ["Sintra is echt de moeite waard","Sintra is zeker de moeite waard"], "de moeite waard.", ["v-moeite-waard"]),
+    MA([("de moeite waard","vale a pena"),("aanraden","recomendar"),("bezienswaardigheid","ponto turístico"),("tip","dica")], "Recomendar.", ["v-de-moeite-waard","v-aanraden","v-bezienswaardigheid","v-tip"]),
+    TR("pt-nl","Sintra vale mesmo a pena.", ["Sintra is echt de moeite waard","Sintra is zeker de moeite waard"], "de moeite waard.", ["v-de-moeite-waard"]),
     TR("pt-nl","Recomendo-te o Rijksmuseum.", ["Ik raad je het Rijksmuseum aan","Ik raad jou het Rijksmuseum aan"], "Separável: raad … aan.", ["v-aanraden"]),
     TR("nl-pt","Heb je nog tips?", ["Tens mais dicas","Tens mais alguma dica","Tens outras dicas"], "tips.", ["v-tip"]),
     FE(["Ik","aanraad","je","Porto."], 1, "raad … aan", "Separável: Ik raad je Porto aan.", ["v-aanraden"]),
     AR("bezienswaardigheid","o ponto turístico","de", "-heid → de.", ["v-bezienswaardigheid"]),
     LI("Als je naar Lissabon gaat, moet je echt pasteis de nata proeven.", ["Als je naar Lissabon gaat(,) moet je echt pasteis de nata proeven"], "Se fores a Lisboa, tens mesmo de provar pastéis de nata.", "Recomendação.", ["v-echt-moeten"]),
-    DL([("Collega","Ik ga in mei naar Portugal. Heb je tips?","Vou a Portugal em maio. Tens dicas?"),("Joana","")], ["*Ga zeker naar de Douro-vallei, dat is echt de moeite waard!","Ja, ik heb tips.|Não dá nenhuma.","Portugal is een land.|Não ajuda."], "Recomendar concretamente.", ["v-moeite-waard"]),
+    DL([("Collega","Ik ga in mei naar Portugal. Heb je tips?","Vou a Portugal em maio. Tens dicas?"),("Joana","")], ["*Ga zeker naar de Douro-vallei, dat is echt de moeite waard!","Ja, ik heb tips.|Não dá nenhuma.","Portugal is een land.|Não ajuda."], "Recomendar concretamente.", ["v-de-moeite-waard"]),
     FB("Welk museum kun je ___?", ["aanraden"], "Recomendar (infinitivo no fim).", ["v-aanraden"], choices=["aanraden","raadt aan","aangeraden"], tr="Que museu recomendas?"),
-    SW("Recomende um lugar em Portugal a um amigo neerlandês (3 frases, com «de moeite waard» e «aanraden»).", ["Je moet echt naar de Algarve gaan. De stranden zijn prachtig en het eten is heerlijk. Ik raad je vooral Lagos aan, dat is echt de moeite waard!"], ["Recomendação forte (**je moet echt…**)", "**aanraden** com separação correta", "**de moeite waard**"], 25, "Recomendação de viagem.", ["v-aanraden","v-moeite-waard"]),
+    SW("Recomende um lugar em Portugal a um amigo neerlandês (3 frases, com «de moeite waard» e «aanraden»).", ["Je moet echt naar de Algarve gaan. De stranden zijn prachtig en het eten is heerlijk. Ik raad je vooral Lagos aan, dat is echt de moeite waard!"], ["Recomendação forte (**je moet echt…**)", "**aanraden** com separação correta", "**de moeite waard**"], 25, "Recomendação de viagem.", ["v-aanraden","v-de-moeite-waard"]),
   ], diff=4, mins=7)
 
 W()

@@ -10,7 +10,7 @@ L(1, "Fazer uma proposta", "Wij stellen voor om… Wat zou u ervan vinden als…
   ex=[("We moeten nog onderhandelen over de prijs.","Ainda temos de negociar o preço."),("We doen u een bod van 300.000 euro.","Fazemos-lhe uma oferta de 300 000 euros."),("Wat zou u ervan vinden als we de levertijd verkorten?","O que acharia se encurtássemos o prazo de entrega?"),("We willen u graag tegemoetkomen.","Gostaríamos de ir ao seu encontro.")],
   gram=[G("g-hypothetisch-voorstel","Propor com o condicional","Propostas diplomáticas usam o passado/condicional: *Wat zou u ervan vinden als we… **verkortten**?* (passado depois de *als* hipotético) ou *Zou het mogelijk zijn om…?* Mais direto: *Wij stellen voor om…*",
     [("Zou het mogelijk zijn om in termijnen te betalen?","Seria possível pagar em prestações?")])],
-  review=["v-tegemoetkomen","v-voorstellen","v-prijs","v-compromis"],
+  review=["v-tegemoetkomen","v-voorstellen-idee","v-prijs","v-compromis"],
   cefr=C, exs=[
     MA([("onderhandelen","negociar"),("bod","oferta"),("wat zou u ervan vinden als…?","o que acharia se…?"),("tegemoetkomen","ir ao encontro")], "Negociar.", ["v-onderhandelen","v-bod","v-wat-zou-u-ervan-vinden","v-tegemoetkomen"]),
     TR("pt-nl","Ainda temos de negociar o preço.", ["We moeten nog over de prijs onderhandelen","We moeten nog onderhandelen over de prijs","Wij moeten nog over de prijs onderhandelen"], "onderhandelen over.", ["v-onderhandelen"]),
@@ -20,7 +20,7 @@ L(1, "Fazer uma proposta", "Wij stellen voor om… Wat zou u ervan vinden als…
     WO("O que acharia se encurtássemos o prazo?", ["Wat","zou","u","ervan","vinden","als","we","de","termijn","verkortten?"], "als + passado hipotético.", ["v-wat-zou-u-ervan-vinden"]),
     FE(["We","onderhandelen","van","de","prijs."], 2, "over", "onderhandelen over.", ["v-onderhandelen"]),
     MC("Na compra de casa nos Países Baixos, «een bod doen» é…", ["*fazer uma oferta de compra ao vendedor","pagar logo|Não.","pedir um empréstimo|Não."], "Mercado imobiliário.", ["v-bod"]),
-    LI("Wij stellen voor om de prijs met vijf procent te verlagen.", ["Wij stellen voor om de prijs met vijf procent te verlagen","We stellen voor om de prijs met vijf procent te verlagen"], "Propomos baixar o preço em cinco por cento.", "voorstellen om … te.", ["v-voorstellen"]),
+    LI("Wij stellen voor om de prijs met vijf procent te verlagen.", ["Wij stellen voor om de prijs met vijf procent te verlagen","We stellen voor om de prijs met vijf procent te verlagen"], "Propomos baixar o preço em cinco por cento.", "voorstellen om … te.", ["v-voorstellen-idee"]),
     FB("We hebben een ___ gedaan op het huis.", ["bod"], "Oferta.", ["v-bod"], choices=["bod","prijs","bieden"], tr="Fizemos uma oferta pela casa."),
   ], diff=5, mins=7)
 

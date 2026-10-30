@@ -29,7 +29,7 @@ L(2, "Participar ativamente", "Ik wil graag iets toevoegen. Mag ik een voorstel 
   vocab=[V("v-toevoegen","toevoegen","acrescentar","verb"), V("v-een-voorstel-doen","een voorstel doen","fazer uma proposta","expression"),
          V("v-verduidelijken","verduidelijken","clarificar","verb"), V("v-samenvattend","samenvattend","resumindo","adverb")],
   ex=[("Ik wil graag iets toevoegen.","Gostaria de acrescentar algo."),("Mag ik een voorstel doen?","Posso fazer uma proposta?"),("Kun je dat verduidelijken?","Podes clarificar isso?"),("Samenvattend: we beginnen in maart.","Resumindo: começamos em março.")],
-  review=["v-aanvullen","v-reageren-op","v-voorstellen"],
+  review=["v-aanvullen","v-reageren-op","v-voorstellen-idee"],
   cefr=C, exs=[
     MA([("toevoegen","acrescentar"),("een voorstel doen","fazer uma proposta"),("verduidelijken","clarificar"),("samenvattend","resumindo")], "Participar.", ["v-toevoegen","v-een-voorstel-doen","v-verduidelijken","v-samenvattend"]),
     TR("pt-nl","Gostaria de acrescentar algo.", ["Ik wil graag iets toevoegen","Ik zou graag iets willen toevoegen"], "toevoegen.", ["v-toevoegen"]),

@@ -5,12 +5,12 @@ C = "B2"
 
 L(1, "Revisão: Secções 1 e 2 (A1–A2)", "Básico em contexto: apresentar-se, rotina, compras, casa.",
   ["Rever as bases com frases mais ricas"],
-  vocab=[V("v-herhaling-basis","basiskennis","conhecimentos básicos","noun","de"), V("v-opfrissen","opfrissen","refrescar (a memória)","verb"),
+  vocab=[V("v-opfrissen","opfrissen","refrescar (a memória)","verb"),
          V("v-vanzelfsprekend","vanzelfsprekend","evidente|óbvio","adjective"), V("v-automatisch","automatisch","automático","adjective")],
   ex=[("Laten we onze basiskennis even opfrissen.","Vamos refrescar os conhecimentos básicos."),("Dat gaat nu automatisch.","Isso agora sai automaticamente."),("Wat eerst moeilijk was, is nu vanzelfsprekend.","O que antes era difícil agora é óbvio."),("Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige.","Moro em Utrecht há três anos e trabalho como enfermeira.")],
-  review=["v-wonen","v-werken","v-boodschappen","v-gezin","v-familie"],
+  review=["v-basiskennis","v-wonen","v-werken","v-boodschappen","v-gezin","v-familie"],
   cefr=C, exs=[
-    MA([("basiskennis","conhecimentos básicos"),("opfrissen","refrescar"),("vanzelfsprekend","evidente"),("automatisch","automático")], "Revisão.", ["v-herhaling-basis","v-opfrissen","v-vanzelfsprekend","v-automatisch"]),
+    MA([("basiskennis","conhecimentos básicos"),("opfrissen","refrescar"),("vanzelfsprekend","evidente"),("automatisch","automático")], "Revisão.", ["v-basiskennis","v-opfrissen","v-vanzelfsprekend","v-automatisch"]),
     TR("pt-nl","Moro em Utrecht há três anos e trabalho como enfermeira.", ["Ik woon al drie jaar in Utrecht en werk als verpleegkundige","Ik woon sinds drie jaar in Utrecht en werk als verpleegkundige","Ik woon al drie jaar in Utrecht en ik werk als verpleegkundige"], "al + presente; als.", ["v-wonen"]),
     TR("pt-nl","Quanto custam estas maçãs?", ["Hoeveel kosten deze appels","Wat kosten deze appels"], "deze + plural.", ["v-kosten"]),
     AR("appartement","o apartamento","het", "Het appartement.", ["v-appartement"]),
