@@ -2636,6 +2636,4010 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s6-u13-l010",
+      "unitId": "s6-u13",
+      "order": 10,
+      "title": "Mudar pronomes e tempos",
+      "description": "«Ik kom morgen» → Hij zei dat hij de volgende dag zou komen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Transformar afirmações em discurso indireto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zei-dat",
+          "nl": "hij zei dat…",
+          "pt": [
+            "ele disse que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-de-volgende-dag",
+          "nl": "de volgende dag",
+          "pt": [
+            "no dia seguinte"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-indirecte-rede",
+        "v-directe-rede",
+        "v-zei"
+      ],
+      "examples": [
+        {
+          "nl": "«Ik ben moe», zegt ze. → Ze zegt dat ze moe is.",
+          "pt": "«Estou cansada», diz ela. → Ela diz que está cansada."
+        },
+        {
+          "nl": "«Ik kom morgen», zei hij. → Hij zei dat hij de volgende dag zou komen.",
+          "pt": "«Venho amanhã», disse ele. → Ele disse que vinha no dia seguinte."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-indirecte-rede-tijd",
+          "title": "Pronomes e tempos",
+          "body": "No discurso indireto: (1) os **pronomes** mudam (*ik → hij/ze*); (2) com verbo introdutor no **passado**, o tempo costuma recuar: presente → passado (*is → was*), futuro → *zou* (*komt → zou komen*); (3) expressões de tempo mudam: *morgen → de volgende dag*, *gisteren → de dag ervoor*. A oração com *dat* tem o verbo no fim.",
+          "examples": [
+            {
+              "nl": "«Ik heb honger.» → Hij zei dat hij honger had.",
+              "pt": "«Tenho fome.» → Disse que tinha fome."
+            },
+            {
+              "nl": "«We gaan verhuizen.» → Ze vertelden dat ze gingen verhuizen.",
+              "pt": "«Vamos mudar-nos.» → Contaram que se iam mudar."
+            }
+          ]
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s6-u13-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Indireto.",
+          "vocabRefs": [
+            "v-zei-dat",
+            "v-de-volgende-dag",
+            "v-indirecte-rede",
+            "v-directe-rede"
+          ],
+          "pairs": [
+            {
+              "nl": "hij zei dat…",
+              "pt": "ele disse que…"
+            },
+            {
+              "nl": "de volgende dag",
+              "pt": "no dia seguinte"
+            },
+            {
+              "nl": "indirecte rede",
+              "pt": "discurso indireto"
+            },
+            {
+              "nl": "directe rede",
+              "pt": "discurso direto"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l010-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Transformar.",
+          "vocabRefs": [
+            "v-zei-dat"
+          ],
+          "prompt": "«Ik heb geen tijd», zei Lisa. →",
+          "options": [
+            {
+              "id": "a",
+              "text": "Lisa zei dat ze geen tijd had.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Lisa zei dat ik geen tijd heb.",
+              "correct": false,
+              "feedback": "Pronome errado."
+            },
+            {
+              "id": "c",
+              "text": "Lisa zei dat ze had geen tijd.",
+              "correct": false,
+              "feedback": "Verbo no fim."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l010-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Tempo.",
+          "vocabRefs": [
+            "v-de-volgende-dag"
+          ],
+          "prompt": "«Ik kom morgen» (dito ontem) → Hij zei dat hij ___ zou komen.",
+          "options": [
+            {
+              "id": "a",
+              "text": "vandaag / de volgende dag",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "morgen",
+              "correct": false,
+              "feedback": "O «amanhã» dele já passou."
+            },
+            {
+              "id": "c",
+              "text": "gisteren",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l010-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Presente.",
+          "vocabRefs": [
+            "v-zei-dat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela diz que está cansada.",
+          "answers": [
+            "Ze zegt dat ze moe is",
+            "Zij zegt dat ze moe is"
+          ]
+        },
+        {
+          "id": "s6-u13-l010-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zou komen.",
+          "vocabRefs": [
+            "v-de-volgende-dag"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele disse que vinha no dia seguinte.",
+          "answers": [
+            "Hij zei dat hij de volgende dag zou komen",
+            "Hij zei dat hij de volgende dag kwam"
+          ]
+        },
+        {
+          "id": "s6-u13-l010-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Passado.",
+          "vocabRefs": [
+            "v-zei-dat"
+          ],
+          "sentence": "Ze vertelden dat ze ___ verhuizen.",
+          "translation": "Contaram que se iam mudar.",
+          "answers": [
+            "gingen"
+          ],
+          "choices": [
+            "gingen",
+            "gaan",
+            "zullen"
+          ]
+        },
+        {
+          "id": "s6-u13-l010-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Pronome: ik → hij.",
+          "vocabRefs": [
+            "v-zei-dat"
+          ],
+          "tokens": [
+            "Hij",
+            "zei",
+            "dat",
+            "ik",
+            "moe",
+            "was."
+          ],
+          "errorIndex": 3,
+          "correction": "hij"
+        },
+        {
+          "id": "s6-u13-l010-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Indireto.",
+          "vocabRefs": [
+            "v-de-volgende-dag"
+          ],
+          "audioText": "Ze zei dat ze de volgende dag zou terugbellen.",
+          "answers": [
+            "Ze zei dat ze de volgende dag zou terugbellen"
+          ],
+          "translation": "Ela disse que ligaria de volta no dia seguinte."
+        },
+        {
+          "id": "s6-u13-l010-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-zei-dat"
+          ],
+          "translation": "Ele disse que estava cansado.",
+          "tokens": [
+            "Hij",
+            "zei",
+            "dat",
+            "hij",
+            "moe",
+            "was"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l011",
+      "unitId": "s6-u13",
+      "order": 11,
+      "title": "Relatar perguntas sim/não",
+      "description": "Ze vroeg of ik mee wilde.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar perguntas fechadas com of"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-vroeg-of",
+          "nl": "vroeg of…",
+          "pt": [
+            "perguntou se…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-wilde-weten-of",
+          "nl": "wilde weten of…",
+          "pt": [
+            "queria saber se…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vroeg-vragen",
+        "v-wilde-weten"
+      ],
+      "examples": [
+        {
+          "nl": "«Kom je mee?» → Ze vroeg of ik meeging.",
+          "pt": "«Vens?» → Ela perguntou se eu ia."
+        },
+        {
+          "nl": "«Heb je mijn sleutels gezien?» → Hij wilde weten of ik zijn sleutels had gezien.",
+          "pt": "«Viste as minhas chaves?» → Ele queria saber se eu tinha visto as chaves dele."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Perguntas.",
+          "vocabRefs": [
+            "v-vroeg-of",
+            "v-wilde-weten-of",
+            "v-vroeg-vragen",
+            "v-wilde-weten"
+          ],
+          "pairs": [
+            {
+              "nl": "vroeg of…",
+              "pt": "perguntou se…"
+            },
+            {
+              "nl": "wilde weten of…",
+              "pt": "queria saber se…"
+            },
+            {
+              "nl": "vroeg / vroegen",
+              "pt": "perguntou/perguntaram"
+            },
+            {
+              "nl": "wilde weten",
+              "pt": "queria saber"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "of.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "prompt": "«Ben je ziek?», vroeg de juf. →",
+          "options": [
+            {
+              "id": "a",
+              "text": "De juf vroeg of ik ziek was.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De juf vroeg dat ik ziek was.",
+              "correct": false,
+              "feedback": "Pergunta → of."
+            },
+            {
+              "id": "c",
+              "text": "De juf vroeg of was ik ziek.",
+              "correct": false,
+              "feedback": "Verbo no fim."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "of.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela perguntou se eu ia.",
+          "answers": [
+            "Ze vroeg of ik meeging",
+            "Ze vroeg of ik mee ging",
+            "Ze vroeg of ik meekwam"
+          ]
+        },
+        {
+          "id": "s6-u13-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "wilde weten of.",
+          "vocabRefs": [
+            "v-wilde-weten-of"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele queria saber se eu tinha tempo.",
+          "answers": [
+            "Hij wilde weten of ik tijd had"
+          ]
+        },
+        {
+          "id": "s6-u13-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pergunta sim/não.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "sentence": "Mijn moeder vroeg ___ ik al gegeten had.",
+          "translation": "A minha mãe perguntou se eu já tinha comido.",
+          "answers": [
+            "of"
+          ],
+          "choices": [
+            "of",
+            "dat",
+            "als"
+          ]
+        },
+        {
+          "id": "s6-u13-l011-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Pergunta sim/não: of.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "tokens": [
+            "Hij",
+            "vroeg",
+            "dat",
+            "ik",
+            "mee",
+            "wilde."
+          ],
+          "errorIndex": 2,
+          "correction": "of"
+        },
+        {
+          "id": "s6-u13-l011-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Contexto real.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "audioText": "De dokter vroeg of ik medicijnen gebruik.",
+          "answers": [
+            "De dokter vroeg of ik medicijnen gebruik",
+            "De dokter vroeg of ik medicijnen gebruikte"
+          ],
+          "translation": "O médico perguntou se tomo medicamentos."
+        },
+        {
+          "id": "s6-u13-l011-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Falso amigo.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "prompt": "Em PT diz-se «perguntou se». Em NL o «se» das perguntas indiretas é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "of",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "als",
+              "correct": false,
+              "feedback": "«als» é condicional."
+            },
+            {
+              "id": "c",
+              "text": "dat",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l011-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "translation": "Ela perguntou se eu vinha.",
+          "tokens": [
+            "Ze",
+            "vroeg",
+            "of",
+            "ik",
+            "kwam"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l012",
+      "unitId": "s6-u13",
+      "order": 12,
+      "title": "Relatar perguntas abertas",
+      "description": "Hij vroeg waar het station was.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar perguntas com waar, wanneer, hoe, waarom"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-vroeg-waar",
+          "nl": "vroeg waar…",
+          "pt": [
+            "perguntou onde…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-vroeg-waarom",
+          "nl": "vroeg waarom…",
+          "pt": [
+            "perguntou porquê…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vroeg-vragen"
+      ],
+      "examples": [
+        {
+          "nl": "«Waar is het station?» → Hij vroeg waar het station was.",
+          "pt": "«Onde é a estação?» → Perguntou onde era a estação."
+        },
+        {
+          "nl": "«Waarom ben je te laat?» → Ze vroeg waarom ik te laat was.",
+          "pt": "«Porque chegaste tarde?» → Ela perguntou porque é que eu tinha chegado tarde."
+        },
+        {
+          "nl": "«Hoe laat begint het?» → Ik vroeg hoe laat het begon.",
+          "pt": "«A que horas começa?» → Perguntei a que horas começava."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Perguntas abertas.",
+          "vocabRefs": [
+            "v-vroeg-waar",
+            "v-vroeg-waarom",
+            "v-vroeg-vragen",
+            "v-vroeg-of"
+          ],
+          "pairs": [
+            {
+              "nl": "vroeg waar…",
+              "pt": "perguntou onde…"
+            },
+            {
+              "nl": "vroeg waarom…",
+              "pt": "perguntou porquê…"
+            },
+            {
+              "nl": "vroeg hoe laat…",
+              "pt": "perguntou a que horas…"
+            },
+            {
+              "nl": "vroeg of…",
+              "pt": "perguntou se…"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "prompt": "«Wanneer vertrekt de trein?» →",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze vroeg wanneer de trein vertrok.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze vroeg wanneer vertrok de trein.",
+              "correct": false,
+              "feedback": "Verbo no fim."
+            },
+            {
+              "id": "c",
+              "text": "Ze vroeg of wanneer de trein vertrok.",
+              "correct": false,
+              "feedback": "Sem «of»."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "waar + verbo no fim.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Perguntou onde era a estação.",
+          "answers": [
+            "Hij vroeg waar het station was",
+            "Ze vroeg waar het station was"
+          ]
+        },
+        {
+          "id": "s6-u13-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "waarom.",
+          "vocabRefs": [
+            "v-vroeg-waarom"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela perguntou porque é que eu estava atrasado.",
+          "answers": [
+            "Ze vroeg waarom ik te laat was",
+            "Zij vroeg waarom ik te laat was"
+          ]
+        },
+        {
+          "id": "s6-u13-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Verbo no fim, passado.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "sentence": "Ik vroeg hoe laat de winkel ___.",
+          "translation": "Perguntei a que horas fechava a loja.",
+          "answers": [
+            "sloot"
+          ],
+          "choices": [
+            "sloot",
+            "sluit",
+            "sluiten"
+          ]
+        },
+        {
+          "id": "s6-u13-l012-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Verbo no fim da subordinada.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij vroeg waar ik nu woon.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij vroeg waar ik woon nu.",
+              "correct": false,
+              "feedback": "Verbo no fim da subordinada."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l012-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Contexto.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "audioText": "De conducteur vroeg waar ik naartoe ging.",
+          "answers": [
+            "De conducteur vroeg waar ik naartoe ging",
+            "De conducteur vroeg waar ik heen ging"
+          ],
+          "translation": "O revisor perguntou para onde eu ia."
+        },
+        {
+          "id": "s6-u13-l012-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Relatar.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Wat vroeg de klant?",
+              "pt": "O que perguntou o cliente?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij vroeg wanneer zijn bestelling geleverd zou worden.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij vroeg wanneer wordt zijn bestelling geleverd.",
+              "correct": false,
+              "feedback": "Ordem."
+            },
+            {
+              "id": "c",
+              "text": "Wanneer.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l012-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "translation": "Perguntou onde eu morava.",
+          "tokens": [
+            "Hij",
+            "vroeg",
+            "waar",
+            "ik",
+            "woonde"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l013",
+      "unitId": "s6-u13",
+      "order": 13,
+      "title": "Relatar ordens e pedidos",
+      "description": "Ze zei dat ik moest wachten.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar imperativos com moeten ou vragen om … te"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zei-dat-ik-moest",
+          "nl": "zei dat ik moest…",
+          "pt": [
+            "disse que eu tinha de…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-vroeg-me-om",
+          "nl": "vroeg me om … te",
+          "pt": [
+            "pediu-me para…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vragen-om-te",
+        "v-opdragen"
+      ],
+      "examples": [
+        {
+          "nl": "«Wacht hier!» → Ze zei dat ik moest wachten.",
+          "pt": "«Espera aqui!» → Ela disse-me para esperar."
+        },
+        {
+          "nl": "«Kun je me helpen?» → Hij vroeg me om hem te helpen.",
+          "pt": "«Podes ajudar-me?» → Ele pediu-me para o ajudar."
+        },
+        {
+          "nl": "«Doe de deur dicht.» → Ze vroeg me de deur dicht te doen.",
+          "pt": "«Fecha a porta.» → Ela pediu-me para fechar a porta."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Ordens.",
+          "vocabRefs": [
+            "v-zei-dat-ik-moest",
+            "v-vroeg-me-om",
+            "v-vragen-om-te",
+            "v-opdragen"
+          ],
+          "pairs": [
+            {
+              "nl": "zei dat ik moest…",
+              "pt": "disse que eu tinha de…"
+            },
+            {
+              "nl": "vroeg me om … te",
+              "pt": "pediu-me para…"
+            },
+            {
+              "nl": "vragen om … te",
+              "pt": "pedir para"
+            },
+            {
+              "nl": "opdragen",
+              "pt": "ordenar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ordem → moeten.",
+          "vocabRefs": [
+            "v-zei-dat-ik-moest"
+          ],
+          "prompt": "«Bel me terug!», zei ze. →",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze zei dat ik haar moest terugbellen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze zei dat ik bel haar terug.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Ze zei bel me terug.",
+              "correct": false,
+              "feedback": "Discurso direto sem aspas."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "moest.",
+          "vocabRefs": [
+            "v-zei-dat-ik-moest"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela disse-me para esperar.",
+          "answers": [
+            "Ze zei dat ik moest wachten",
+            "Zij zei dat ik moest wachten"
+          ]
+        },
+        {
+          "id": "s6-u13-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "vragen om … te.",
+          "vocabRefs": [
+            "v-vroeg-me-om"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele pediu-me para o ajudar.",
+          "answers": [
+            "Hij vroeg me om hem te helpen",
+            "Hij vroeg me hem te helpen",
+            "Hij vroeg mij om hem te helpen"
+          ]
+        },
+        {
+          "id": "s6-u13-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "vragen om … te.",
+          "vocabRefs": [
+            "v-vroeg-me-om"
+          ],
+          "sentence": "De docent vroeg ons ___ onze telefoons weg te leggen.",
+          "translation": "O professor pediu-nos para guardarmos os telemóveis.",
+          "answers": [
+            "om"
+          ],
+          "choices": [
+            "om",
+            "of",
+            "dat"
+          ]
+        },
+        {
+          "id": "s6-u13-l013-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Passado: moest.",
+          "vocabRefs": [
+            "v-zei-dat-ik-moest"
+          ],
+          "tokens": [
+            "Ze",
+            "zei",
+            "dat",
+            "ik",
+            "moet",
+            "wachten."
+          ],
+          "errorIndex": 4,
+          "correction": "moest"
+        },
+        {
+          "id": "s6-u13-l013-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ordem relatada.",
+          "vocabRefs": [
+            "v-zei-dat-ik-moest"
+          ],
+          "audioText": "De agent zei dat we door moesten lopen.",
+          "answers": [
+            "De agent zei dat we door moesten lopen",
+            "De agent zei dat we moesten doorlopen"
+          ],
+          "translation": "O polícia disse-nos para continuarmos a andar."
+        },
+        {
+          "id": "s6-u13-l013-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Relatar pedido.",
+          "vocabRefs": [
+            "v-vroeg-me-om"
+          ],
+          "lines": [
+            {
+              "speaker": "Huisgenoot",
+              "nl": "Wat zei de verhuurder?",
+              "pt": "O que disse o senhorio?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij vroeg ons om de fietsen niet meer in de gang te zetten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij zei: zet de fietsen!",
+              "correct": false,
+              "feedback": "Direto e confuso."
+            },
+            {
+              "id": "c",
+              "text": "Fietsen.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l013-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-vroeg-me-om"
+          ],
+          "translation": "Pediu-me para esperar.",
+          "tokens": [
+            "Hij",
+            "vroeg",
+            "me",
+            "om",
+            "te",
+            "wachten"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l014",
+      "unitId": "s6-u13",
+      "order": 14,
+      "title": "Verbos introdutores variados",
+      "description": "Ze legde uit dat… Hij kondigde aan dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Variar os verbos que introduzem o discurso indireto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-uitleggen-dat",
+          "nl": "uitleggen dat…",
+          "pt": [
+            "explicar que…"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-aankondigen",
+          "nl": "aankondigen",
+          "pt": [
+            "anunciar"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-opmerken-dat",
+          "nl": "opmerken dat…",
+          "pt": [
+            "observar que…"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-beweren",
+        "v-bevestigen-rede",
+        "v-klagen-dat"
+      ],
+      "examples": [
+        {
+          "nl": "Ze legde uit dat het systeem nieuw was.",
+          "pt": "Ela explicou que o sistema era novo."
+        },
+        {
+          "nl": "De directeur kondigde aan dat er een nieuwe vestiging komt.",
+          "pt": "O diretor anunciou que vai abrir uma nova filial."
+        },
+        {
+          "nl": "Hij merkte op dat het erg stil was.",
+          "pt": "Ele observou que estava muito silencioso."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Verbos.",
+          "vocabRefs": [
+            "v-uitleggen-dat",
+            "v-aankondigen",
+            "v-opmerken-dat",
+            "v-beweren"
+          ],
+          "pairs": [
+            {
+              "nl": "uitleggen dat…",
+              "pt": "explicar que…"
+            },
+            {
+              "nl": "aankondigen",
+              "pt": "anunciar"
+            },
+            {
+              "nl": "opmerken dat…",
+              "pt": "observar que…"
+            },
+            {
+              "nl": "beweren",
+              "pt": "afirmar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l014-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Nuance.",
+          "vocabRefs": [
+            "v-beweren"
+          ],
+          "prompt": "Para mostrar dúvida sobre o que alguém disse, usa-se…",
+          "options": [
+            {
+              "id": "a",
+              "text": "beweren («Hij beweert dat…»)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "uitleggen",
+              "correct": false,
+              "feedback": "Neutro."
+            },
+            {
+              "id": "c",
+              "text": "bevestigen",
+              "correct": false,
+              "feedback": "Confirma."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aankondigen.",
+          "vocabRefs": [
+            "v-aankondigen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O diretor anunciou que vai haver uma nova filial.",
+          "answers": [
+            "De directeur kondigde aan dat er een nieuwe vestiging komt",
+            "De directeur heeft aangekondigd dat er een nieuwe vestiging komt"
+          ]
+        },
+        {
+          "id": "s6-u13-l014-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "uitleggen.",
+          "vocabRefs": [
+            "v-uitleggen-dat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela explicou que o sistema era novo.",
+          "answers": [
+            "Ze legde uit dat het systeem nieuw was",
+            "Zij legde uit dat het systeem nieuw was"
+          ]
+        },
+        {
+          "id": "s6-u13-l014-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "opmerken (separável).",
+          "vocabRefs": [
+            "v-opmerken-dat"
+          ],
+          "sentence": "Hij ___ op dat het erg stil was.",
+          "translation": "Ele observou que estava muito silencioso.",
+          "answers": [
+            "merkte"
+          ],
+          "choices": [
+            "merkte",
+            "opmerkte",
+            "merkt"
+          ]
+        },
+        {
+          "id": "s6-u13-l014-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "gisteren → passado.",
+          "vocabRefs": [
+            "v-aankondigen"
+          ],
+          "tokens": [
+            "De",
+            "minister",
+            "kondigt",
+            "gisteren",
+            "nieuwe",
+            "maatregelen",
+            "aan."
+          ],
+          "errorIndex": 2,
+          "correction": "kondigde"
+        },
+        {
+          "id": "s6-u13-l014-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Notícia.",
+          "vocabRefs": [
+            "v-bevestigen-rede"
+          ],
+          "audioText": "De woordvoerder bevestigde dat er gesprekken zijn.",
+          "answers": [
+            "De woordvoerder bevestigde dat er gesprekken zijn",
+            "De woordvoerder bevestigde dat er gesprekken waren"
+          ],
+          "translation": "O porta-voz confirmou que há conversações."
+        },
+        {
+          "id": "s6-u13-l014-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Relatar.",
+          "vocabRefs": [
+            "v-uitleggen-dat"
+          ],
+          "prompt": "Relate uma reunião ou aula recente em 3 frases, usando três verbos introdutores diferentes (uitleggen, aankondigen, opmerken, beweren, klagen…).",
+          "referenceAnswers": [
+            "De docent legde uit dat de toets volgende week is. Ze kondigde ook aan dat er een excursie komt. Een student klaagde dat er te veel huiswerk is."
+          ],
+          "checklist": [
+            "3 verbos diferentes",
+            "Verbo no fim"
+          ],
+          "minWords": 25
+        },
+        {
+          "id": "s6-u13-l014-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-aankondigen"
+          ],
+          "translation": "Ela anunciou que…",
+          "tokens": [
+            "Ze",
+            "kondigde",
+            "aan",
+            "dat"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l015",
+      "unitId": "s6-u13",
+      "order": 15,
+      "title": "Relatar sugestões",
+      "description": "Hij stelde voor om te gaan wandelen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar propostas e conselhos"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-voorstellen-om",
+          "nl": "voorstellen om … te",
+          "pt": [
+            "propor",
+            "sugerir"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-aanraden-om",
+          "nl": "aanraden om … te",
+          "pt": [
+            "aconselhar a"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-adviseren",
+        "v-een-voorstel-doen"
+      ],
+      "examples": [
+        {
+          "nl": "«Zullen we gaan wandelen?» → Hij stelde voor om te gaan wandelen.",
+          "pt": "«Vamos passear?» → Ele sugeriu irmos passear."
+        },
+        {
+          "nl": "«Je moet echt naar de dokter.» → Ze raadde me aan om naar de dokter te gaan.",
+          "pt": "«Tens mesmo de ir ao médico.» → Ela aconselhou-me a ir ao médico."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l015-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Sugestões.",
+          "vocabRefs": [
+            "v-voorstellen-om",
+            "v-aanraden-om",
+            "v-adviseren",
+            "v-een-voorstel-doen"
+          ],
+          "pairs": [
+            {
+              "nl": "voorstellen om … te",
+              "pt": "sugerir"
+            },
+            {
+              "nl": "aanraden om … te",
+              "pt": "aconselhar a"
+            },
+            {
+              "nl": "adviseren",
+              "pt": "aconselhar"
+            },
+            {
+              "nl": "een voorstel doen",
+              "pt": "fazer uma proposta"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sugestão.",
+          "vocabRefs": [
+            "v-voorstellen-om"
+          ],
+          "prompt": "«Laten we pizza bestellen!», zei Tom. →",
+          "options": [
+            {
+              "id": "a",
+              "text": "Tom stelde voor om pizza te bestellen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Tom vroeg of pizza.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Tom zei dat ik moest pizza.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "voorstellen om.",
+          "vocabRefs": [
+            "v-voorstellen-om"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele sugeriu irmos passear.",
+          "answers": [
+            "Hij stelde voor om te gaan wandelen",
+            "Hij stelde voor te gaan wandelen",
+            "Hij stelde voor om een wandeling te maken"
+          ]
+        },
+        {
+          "id": "s6-u13-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aanraden.",
+          "vocabRefs": [
+            "v-aanraden-om"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela aconselhou-me a ir ao médico.",
+          "answers": [
+            "Ze raadde me aan om naar de dokter te gaan",
+            "Ze raadde me aan naar de dokter te gaan"
+          ]
+        },
+        {
+          "id": "s6-u13-l015-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "voorstellen (separável).",
+          "vocabRefs": [
+            "v-voorstellen-om"
+          ],
+          "sentence": "Mijn collega ___ voor om de vergadering te verzetten.",
+          "translation": "O meu colega sugeriu adiar a reunião.",
+          "answers": [
+            "stelde"
+          ],
+          "choices": [
+            "stelde",
+            "voorstelde",
+            "stelt"
+          ]
+        },
+        {
+          "id": "s6-u13-l015-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "om … te.",
+          "vocabRefs": [
+            "v-aanraden-om"
+          ],
+          "tokens": [
+            "Ze",
+            "raadde",
+            "me",
+            "aan",
+            "om",
+            "naar",
+            "huis",
+            "gaan."
+          ],
+          "errorIndex": 7,
+          "correction": "te gaan."
+        },
+        {
+          "id": "s6-u13-l015-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Conselho.",
+          "vocabRefs": [
+            "v-aanraden-om"
+          ],
+          "audioText": "De huisarts raadde me aan om meer te bewegen.",
+          "answers": [
+            "De huisarts raadde me aan om meer te bewegen",
+            "De huisarts raadde mij aan om meer te bewegen"
+          ],
+          "translation": "O médico aconselhou-me a fazer mais exercício."
+        },
+        {
+          "id": "s6-u13-l015-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Relatar conselho.",
+          "vocabRefs": [
+            "v-aanraden-om"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriend",
+              "nl": "Wat zei de fietsenmaker?",
+              "pt": "O que disse o mecânico?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij raadde me aan om nieuwe remmen te nemen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij zei: remmen.",
+              "correct": false,
+              "feedback": "Vago."
+            },
+            {
+              "id": "c",
+              "text": "Hij stelde voor of remmen.",
+              "correct": false,
+              "feedback": "Errado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l015-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-voorstellen-om"
+          ],
+          "translation": "Ele sugeriu ir passear.",
+          "tokens": [
+            "Hij",
+            "stelde",
+            "voor",
+            "om",
+            "te",
+            "wandelen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l016",
+      "unitId": "s6-u13",
+      "order": 16,
+      "title": "Promessas e ameaças relatadas",
+      "description": "Hij beloofde dat hij zou helpen.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar promessas, ameaças e avisos"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-beloofde-dat",
+          "nl": "beloofde dat…",
+          "pt": [
+            "prometeu que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-dreigde-met",
+          "nl": "dreigde met…",
+          "pt": [
+            "ameaçou com…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-beloven",
+        "v-dreigen",
+        "v-waarschuwen"
+      ],
+      "examples": [
+        {
+          "nl": "«Ik help je morgen.» → Hij beloofde dat hij me de volgende dag zou helpen.",
+          "pt": "«Ajudo-te amanhã.» → Prometeu que me ajudava no dia seguinte."
+        },
+        {
+          "nl": "De verhuurder dreigde met een rechtszaak.",
+          "pt": "O senhorio ameaçou com um processo."
+        },
+        {
+          "nl": "Ze waarschuwde dat de weg glad was.",
+          "pt": "Ela avisou que a estrada estava escorregadia."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l016-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Promessas.",
+          "vocabRefs": [
+            "v-beloofde-dat",
+            "v-dreigde-met",
+            "v-waarschuwen",
+            "v-beloven"
+          ],
+          "pairs": [
+            {
+              "nl": "beloofde dat…",
+              "pt": "prometeu que…"
+            },
+            {
+              "nl": "dreigde met…",
+              "pt": "ameaçou com…"
+            },
+            {
+              "nl": "waarschuwen",
+              "pt": "avisar"
+            },
+            {
+              "nl": "beloven",
+              "pt": "prometer"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l016-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zou.",
+          "vocabRefs": [
+            "v-beloofde-dat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Prometeu que ajudava.",
+          "answers": [
+            "Hij beloofde dat hij zou helpen",
+            "Hij beloofde te helpen"
+          ]
+        },
+        {
+          "id": "s6-u13-l016-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "dreigen met.",
+          "vocabRefs": [
+            "v-dreigde-met"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O senhorio ameaçou com um processo.",
+          "answers": [
+            "De verhuurder dreigde met een rechtszaak"
+          ]
+        },
+        {
+          "id": "s6-u13-l016-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ameaça.",
+          "vocabRefs": [
+            "v-dreigde-met"
+          ],
+          "prompt": "«Als je niet betaalt, bel ik de politie!» → Hij ___ de politie te bellen.",
+          "options": [
+            {
+              "id": "a",
+              "text": "dreigde",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "beloofde",
+              "correct": false,
+              "feedback": "Não é promessa simpática."
+            },
+            {
+              "id": "c",
+              "text": "stelde voor",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l016-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Avisar.",
+          "vocabRefs": [
+            "v-waarschuwen"
+          ],
+          "sentence": "Ze ___ dat de weg glad was.",
+          "translation": "Ela avisou que a estrada estava escorregadia.",
+          "answers": [
+            "waarschuwde"
+          ],
+          "choices": [
+            "waarschuwde",
+            "beloofde",
+            "dreigde"
+          ]
+        },
+        {
+          "id": "s6-u13-l016-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Passado: zou.",
+          "vocabRefs": [
+            "v-beloofde-dat"
+          ],
+          "tokens": [
+            "Hij",
+            "beloofde",
+            "dat",
+            "hij",
+            "zal",
+            "komen."
+          ],
+          "errorIndex": 4,
+          "correction": "zou"
+        },
+        {
+          "id": "s6-u13-l016-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Notícia.",
+          "vocabRefs": [
+            "v-dreigde-met"
+          ],
+          "audioText": "De vakbond dreigt met een staking.",
+          "answers": [
+            "De vakbond dreigt met een staking"
+          ],
+          "translation": "O sindicato ameaça com uma greve."
+        },
+        {
+          "id": "s6-u13-l016-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Relatar promessa.",
+          "vocabRefs": [
+            "v-beloofde-dat"
+          ],
+          "lines": [
+            {
+              "speaker": "Huisgenoot",
+              "nl": "Komt de loodgieter nog?",
+              "pt": "O canalizador ainda vem?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij beloofde dat hij vóór vijf uur zou komen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij beloofde dat hij komt.",
+              "correct": false,
+              "feedback": "Tempo menos natural."
+            },
+            {
+              "id": "c",
+              "text": "Dreigde.",
+              "correct": false,
+              "feedback": "Errado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l016-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-beloofde-dat"
+          ],
+          "translation": "Prometeu que vinha.",
+          "tokens": [
+            "Hij",
+            "beloofde",
+            "dat",
+            "hij",
+            "zou",
+            "komen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l017",
+      "unitId": "s6-u13",
+      "order": 17,
+      "title": "Relatar uma chamada",
+      "description": "Ze belde om te zeggen dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar o conteúdo de um telefonema a outra pessoa"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-belde-om-te-zeggen",
+          "nl": "belde om te zeggen dat…",
+          "pt": [
+            "ligou a dizer que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-laat-weten",
+          "nl": "laat weten dat…",
+          "pt": [
+            "manda dizer que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-boodschap",
+          "nl": "boodschap",
+          "pt": [
+            "recado",
+            "mensagem"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "boodschappen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-terugbellen"
+      ],
+      "examples": [
+        {
+          "nl": "Je moeder belde om te zeggen dat ze later komt.",
+          "pt": "A tua mãe ligou a dizer que chega mais tarde."
+        },
+        {
+          "nl": "De garage laat weten dat de auto klaar is.",
+          "pt": "A oficina manda dizer que o carro está pronto."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l017-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Telefonema.",
+          "vocabRefs": [
+            "v-belde-om-te-zeggen",
+            "v-laat-weten",
+            "v-terugbellen",
+            "v-boodschap"
+          ],
+          "pairs": [
+            {
+              "nl": "belde om te zeggen dat…",
+              "pt": "ligou a dizer que…"
+            },
+            {
+              "nl": "laat weten dat…",
+              "pt": "manda dizer que…"
+            },
+            {
+              "nl": "terugbellen",
+              "pt": "ligar de volta"
+            },
+            {
+              "nl": "boodschap",
+              "pt": "recado"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l017-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "belde om te zeggen.",
+          "vocabRefs": [
+            "v-belde-om-te-zeggen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A tua mãe ligou a dizer que chega mais tarde.",
+          "answers": [
+            "Je moeder belde om te zeggen dat ze later komt",
+            "Je moeder belde om te zeggen dat ze later kwam"
+          ]
+        },
+        {
+          "id": "s6-u13-l017-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "laat weten.",
+          "vocabRefs": [
+            "v-laat-weten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A oficina manda dizer que o carro está pronto.",
+          "answers": [
+            "De garage laat weten dat de auto klaar is"
+          ]
+        },
+        {
+          "id": "s6-u13-l017-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Recado.",
+          "vocabRefs": [
+            "v-boodschap"
+          ],
+          "prompt": "Deixar um recado: «Kunt u een ___ doorgeven?»",
+          "options": [
+            {
+              "id": "a",
+              "text": "boodschap",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "nieuws",
+              "correct": false,
+              "feedback": "Menos usado assim."
+            },
+            {
+              "id": "c",
+              "text": "brief",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l017-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "om … te.",
+          "vocabRefs": [
+            "v-belde-om-te-zeggen"
+          ],
+          "sentence": "De tandarts belde ___ te zeggen dat de afspraak niet doorgaat.",
+          "translation": "O dentista ligou a dizer que a consulta não se realiza.",
+          "answers": [
+            "om"
+          ],
+          "choices": [
+            "om",
+            "voor",
+            "dat"
+          ]
+        },
+        {
+          "id": "s6-u13-l017-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "om … te.",
+          "vocabRefs": [
+            "v-belde-om-te-zeggen"
+          ],
+          "tokens": [
+            "Hij",
+            "belde",
+            "om",
+            "zeggen",
+            "dat",
+            "hij",
+            "ziek",
+            "is."
+          ],
+          "errorIndex": 3,
+          "correction": "te zeggen"
+        },
+        {
+          "id": "s6-u13-l017-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Relatar recado.",
+          "vocabRefs": [
+            "v-belde-om-te-zeggen",
+            "v-terugbellen"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Heeft er iemand voor mij gebeld?",
+              "pt": "Alguém ligou para mim?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, mevrouw Jansen belde om te zeggen dat ze de offerte heeft ontvangen. Ze vraagt of je haar wilt terugbellen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja.",
+              "correct": false,
+              "feedback": "Sem informação."
+            },
+            {
+              "id": "c",
+              "text": "Mevrouw Jansen: ‹ik heb›…",
+              "correct": false,
+              "feedback": "Direto confuso."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l017-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Recado.",
+          "vocabRefs": [
+            "v-laat-weten"
+          ],
+          "audioText": "Hij laat weten dat hij vandaag thuiswerkt.",
+          "answers": [
+            "Hij laat weten dat hij vandaag thuiswerkt"
+          ],
+          "translation": "Ele manda dizer que hoje trabalha de casa."
+        },
+        {
+          "id": "s6-u13-l017-e09",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Recado.",
+          "vocabRefs": [
+            "v-belde-om-te-zeggen"
+          ],
+          "prompt": "Recebeu uma chamada para um colega. Escreva-lhe uma mensagem (3 frases) a relatar: quem ligou, o que disse e o que pediu.",
+          "referenceAnswers": [
+            "Hoi Mark, Peter van de drukkerij belde. Hij zei dat de folders pas vrijdag klaar zijn. Hij vroeg of je hem vandaag nog wilt terugbellen."
+          ],
+          "checklist": [
+            "Quem",
+            "O que disse",
+            "O que pediu"
+          ],
+          "minWords": 25
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l018",
+      "unitId": "s6-u13",
+      "order": 18,
+      "title": "O que diz um aviso ou texto",
+      "description": "Op het bord staat dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar o que está escrito"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-op-het-bord-staat",
+          "nl": "op het bord staat dat…",
+          "pt": [
+            "no quadro/placa diz que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-volgens-de-website",
+          "nl": "volgens de website",
+          "pt": [
+            "segundo o site"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-volgens-x"
+      ],
+      "examples": [
+        {
+          "nl": "Op het bord staat dat de trein vertraging heeft.",
+          "pt": "No painel diz que o comboio está atrasado."
+        },
+        {
+          "nl": "Volgens de website is het museum op maandag dicht.",
+          "pt": "Segundo o site, o museu está fechado à segunda."
+        },
+        {
+          "nl": "In de brief staat dat ik moet betalen.",
+          "pt": "Na carta diz que tenho de pagar."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l018-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Escrito.",
+          "vocabRefs": [
+            "v-op-het-bord-staat",
+            "v-volgens-de-website",
+            "v-volgens-x",
+            "v-op-het-bord-staat"
+          ],
+          "pairs": [
+            {
+              "nl": "op het bord staat dat…",
+              "pt": "na placa diz que…"
+            },
+            {
+              "nl": "volgens de website",
+              "pt": "segundo o site"
+            },
+            {
+              "nl": "volgens …",
+              "pt": "segundo…"
+            },
+            {
+              "nl": "in de brief staat…",
+              "pt": "na carta diz…"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l018-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estrutura.",
+          "vocabRefs": [
+            "v-op-het-bord-staat"
+          ],
+          "prompt": "Para relatar o que está escrito, em NL usa-se…",
+          "options": [
+            {
+              "id": "a",
+              "text": "er staat (dat)…",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "er zegt…",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "het praat…",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l018-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "staan.",
+          "vocabRefs": [
+            "v-op-het-bord-staat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Na carta diz que tenho de pagar.",
+          "answers": [
+            "In de brief staat dat ik moet betalen"
+          ]
+        },
+        {
+          "id": "s6-u13-l018-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-volgens-de-website"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Segundo o site, o museu está fechado à segunda.",
+          "answers": [
+            "Volgens de website is het museum op maandag dicht",
+            "Volgens de website is het museum maandag gesloten"
+          ]
+        },
+        {
+          "id": "s6-u13-l018-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Escrito: staat.",
+          "vocabRefs": [
+            "v-op-het-bord-staat"
+          ],
+          "sentence": "Op het bord ___ dat spoor 5 vervalt.",
+          "translation": "No painel diz que a linha 5 foi cancelada.",
+          "answers": [
+            "staat"
+          ],
+          "choices": [
+            "staat",
+            "zegt",
+            "spreekt"
+          ]
+        },
+        {
+          "id": "s6-u13-l018-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Escrito: er staat.",
+          "vocabRefs": [
+            "v-op-het-bord-staat"
+          ],
+          "tokens": [
+            "In",
+            "de",
+            "mail",
+            "zegt",
+            "dat",
+            "de",
+            "cursus",
+            "vol",
+            "is."
+          ],
+          "errorIndex": 3,
+          "correction": "staat"
+        },
+        {
+          "id": "s6-u13-l018-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-op-het-bord-staat"
+          ],
+          "audioText": "Wat staat er in de brief van de belastingdienst?",
+          "answers": [
+            "Wat staat er in de brief van de belastingdienst",
+            "Wat staat er in de brief van de belastingdienst?"
+          ],
+          "translation": "O que diz a carta das finanças?"
+        },
+        {
+          "id": "s6-u13-l018-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Relatar.",
+          "vocabRefs": [
+            "v-volgens-de-website",
+            "v-op-het-bord-staat"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriend",
+              "nl": "Gaat het concert nog door?",
+              "pt": "O concerto ainda se realiza?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Volgens de website wel, maar er staat dat de deuren een uur later opengaan.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het bord zegt ja.",
+              "correct": false,
+              "feedback": "Pouco natural."
+            },
+            {
+              "id": "c",
+              "text": "Website.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l018-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-op-het-bord-staat"
+          ],
+          "translation": "No painel diz que…",
+          "tokens": [
+            "Op",
+            "het",
+            "bord",
+            "staat",
+            "dat"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l019",
+      "unitId": "s6-u13",
+      "order": 19,
+      "title": "Expressões de tempo e lugar",
+      "description": "Gisteren → de dag ervoor.",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Ajustar expressões de tempo e lugar no discurso indireto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-de-dag-ervoor",
+          "nl": "de dag ervoor",
+          "pt": [
+            "o dia anterior",
+            "na véspera"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-die-week",
+          "nl": "die week",
+          "pt": [
+            "nessa semana"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-de-volgende-dag",
+        "v-indirecte-rede"
+      ],
+      "examples": [
+        {
+          "nl": "«Ik was gisteren ziek.» → Ze zei dat ze de dag ervoor ziek was geweest.",
+          "pt": "«Ontem estava doente.» → Disse que tinha estado doente no dia anterior."
+        },
+        {
+          "nl": "«Ik werk hier deze week.» → Hij zei dat hij daar die week werkte.",
+          "pt": "«Trabalho aqui esta semana.» → Disse que trabalhava lá nessa semana."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l019-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Tempo.",
+          "vocabRefs": [
+            "v-de-dag-ervoor",
+            "v-de-volgende-dag",
+            "v-die-week",
+            "v-indirecte-rede"
+          ],
+          "pairs": [
+            {
+              "nl": "de dag ervoor",
+              "pt": "o dia anterior"
+            },
+            {
+              "nl": "de volgende dag",
+              "pt": "o dia seguinte"
+            },
+            {
+              "nl": "die week",
+              "pt": "nessa semana"
+            },
+            {
+              "nl": "indirecte rede",
+              "pt": "discurso indireto"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l019-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Lugar.",
+          "vocabRefs": [
+            "v-die-week"
+          ],
+          "prompt": "Discurso direto «hier» → indireto (noutro sítio):",
+          "options": [
+            {
+              "id": "a",
+              "text": "daar",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "hier",
+              "correct": false,
+              "feedback": "Depende, mas normalmente muda."
+            },
+            {
+              "id": "c",
+              "text": "ergens",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l019-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Tempo.",
+          "vocabRefs": [
+            "v-de-dag-ervoor"
+          ],
+          "prompt": "«Gisteren» → indireto (relatado dias depois):",
+          "options": [
+            {
+              "id": "a",
+              "text": "de dag ervoor",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "morgen",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "vandaag",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l019-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Plusquamperfectum.",
+          "vocabRefs": [
+            "v-de-dag-ervoor"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela disse que tinha estado doente no dia anterior.",
+          "answers": [
+            "Ze zei dat ze de dag ervoor ziek was geweest",
+            "Ze zei dat ze de dag ervoor ziek was"
+          ]
+        },
+        {
+          "id": "s6-u13-l019-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "die week, daar.",
+          "vocabRefs": [
+            "v-die-week"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele disse que trabalhava lá nessa semana.",
+          "answers": [
+            "Hij zei dat hij daar die week werkte"
+          ]
+        },
+        {
+          "id": "s6-u13-l019-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "deze → die.",
+          "vocabRefs": [
+            "v-die-week"
+          ],
+          "sentence": "Hij zei dat hij ___ week op vakantie was.",
+          "translation": "Ele disse que estava de férias nessa semana.",
+          "answers": [
+            "die"
+          ],
+          "choices": [
+            "die",
+            "deze",
+            "dit"
+          ]
+        },
+        {
+          "id": "s6-u13-l019-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Relatado no passado: de volgende dag.",
+          "vocabRefs": [
+            "v-de-volgende-dag"
+          ],
+          "tokens": [
+            "Ze",
+            "zei",
+            "dat",
+            "ze",
+            "daar",
+            "morgen",
+            "zou",
+            "zijn."
+          ],
+          "errorIndex": 5,
+          "correction": "de volgende dag"
+        },
+        {
+          "id": "s6-u13-l019-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Indireto.",
+          "vocabRefs": [
+            "v-de-dag-ervoor"
+          ],
+          "audioText": "Hij vertelde dat hij de dag ervoor was aangekomen.",
+          "answers": [
+            "Hij vertelde dat hij de dag ervoor was aangekomen",
+            "Hij vertelde dat hij de dag ervoor aangekomen was"
+          ],
+          "translation": "Ele contou que tinha chegado no dia anterior."
+        },
+        {
+          "id": "s6-u13-l019-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-de-dag-ervoor"
+          ],
+          "translation": "No dia anterior.",
+          "tokens": [
+            "De",
+            "dag",
+            "ervoor"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l020",
+      "unitId": "s6-u13",
+      "order": 20,
+      "title": "Citar ou parafrasear?",
+      "description": "Letterlijk of in je eigen woorden?",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Escolher entre citar literalmente e parafrasear"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-citaat-tussen-aanhalingstekens",
+          "nl": "tussen aanhalingstekens",
+          "pt": [
+            "entre aspas"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-parafraseren",
+        "v-letterlijk-zeggen",
+        "v-navertellen"
+      ],
+      "examples": [
+        {
+          "nl": "Kun je dat in je eigen woorden parafraseren?",
+          "pt": "Consegues parafrasear isso por palavras tuas?"
+        },
+        {
+          "nl": "Zet een letterlijk citaat altijd tussen aanhalingstekens.",
+          "pt": "Põe sempre uma citação literal entre aspas."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l020-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Citar.",
+          "vocabRefs": [
+            "v-parafraseren",
+            "v-citaat-tussen-aanhalingstekens",
+            "v-letterlijk-zeggen",
+            "v-navertellen"
+          ],
+          "pairs": [
+            {
+              "nl": "parafraseren",
+              "pt": "parafrasear"
+            },
+            {
+              "nl": "tussen aanhalingstekens",
+              "pt": "entre aspas"
+            },
+            {
+              "nl": "letterlijk zeggen",
+              "pt": "dizer textualmente"
+            },
+            {
+              "nl": "navertellen",
+              "pt": "recontar"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l020-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ética.",
+          "vocabRefs": [
+            "v-citaat-tussen-aanhalingstekens"
+          ],
+          "prompt": "Num texto académico, uma frase copiada de outro autor deve…",
+          "options": [
+            {
+              "id": "a",
+              "text": "ir entre aspas com a fonte",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "ir sem nada",
+              "correct": false,
+              "feedback": "Plágio."
+            },
+            {
+              "id": "c",
+              "text": "ir em maiúsculas",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l020-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "parafraseren.",
+          "vocabRefs": [
+            "v-parafraseren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Consegues parafrasear isso?",
+          "answers": [
+            "Kun je dat parafraseren",
+            "Kun je dat in je eigen woorden zeggen",
+            "Kun je dat parafraseren?"
+          ]
+        },
+        {
+          "id": "s6-u13-l020-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "letterlijk.",
+          "vocabRefs": [
+            "v-letterlijk-zeggen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele disse textualmente: «Nunca mais.»",
+          "answers": [
+            "Hij zei letterlijk: «Nooit meer.»",
+            "Hij zei letterlijk: Nooit meer",
+            "Hij zei letterlijk: \"Nooit meer.\""
+          ]
+        },
+        {
+          "id": "s6-u13-l020-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Aspas.",
+          "vocabRefs": [
+            "v-citaat-tussen-aanhalingstekens"
+          ],
+          "sentence": "Een letterlijk citaat staat tussen ___.",
+          "translation": "Uma citação literal fica entre aspas.",
+          "answers": [
+            "aanhalingstekens"
+          ],
+          "choices": [
+            "aanhalingstekens",
+            "komma's",
+            "haakjes"
+          ]
+        },
+        {
+          "id": "s6-u13-l020-e06",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Parafrasear.",
+          "vocabRefs": [
+            "v-parafraseren"
+          ],
+          "prompt": "Parafraseie em discurso indireto: A diretora disse: «We gaan volgend jaar een nieuwe school bouwen, maar eerst moeten we geld vinden.»",
+          "referenceAnswers": [
+            "De directrice zei dat ze het jaar erna een nieuwe school gingen bouwen, maar dat ze eerst geld moesten vinden."
+          ],
+          "checklist": [
+            "Discurso indireto",
+            "Pronomes/tempos ajustados"
+          ],
+          "minWords": 20
+        },
+        {
+          "id": "s6-u13-l020-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-letterlijk-zeggen"
+          ],
+          "audioText": "Ik citeer letterlijk wat de minister zei.",
+          "answers": [
+            "Ik citeer letterlijk wat de minister zei"
+          ],
+          "translation": "Cito literalmente o que o ministro disse."
+        },
+        {
+          "id": "s6-u13-l020-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-citaat-tussen-aanhalingstekens"
+          ],
+          "translation": "Entre aspas.",
+          "tokens": [
+            "Tussen",
+            "aanhalingstekens"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l021",
+      "unitId": "s6-u13",
+      "order": 21,
+      "title": "Mal-entendidos",
+      "description": "Ik dacht dat je zei dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Esclarecer mal-entendidos sobre o que foi dito"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ik-dacht-dat-je-zei",
+          "nl": "ik dacht dat je zei dat…",
+          "pt": [
+            "pensei que tinhas dito que…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zo-bedoelde-ik-het-niet",
+        "v-verkeerd-begrijpen",
+        "v-hoe-bedoel-je",
+        "v-misverstand"
+      ],
+      "examples": [
+        {
+          "nl": "Ik dacht dat je zei dat de vergadering om tien uur was.",
+          "pt": "Pensei que tinhas dito que a reunião era às dez."
+        },
+        {
+          "nl": "Sorry, zo bedoelde ik het niet.",
+          "pt": "Desculpa, não foi isso que eu quis dizer."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l021-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Mal-entendidos.",
+          "vocabRefs": [
+            "v-ik-dacht-dat-je-zei",
+            "v-zo-bedoelde-ik-het-niet",
+            "v-verkeerd-begrijpen",
+            "v-misverstand"
+          ],
+          "pairs": [
+            {
+              "nl": "ik dacht dat je zei dat…",
+              "pt": "pensei que tinhas dito…"
+            },
+            {
+              "nl": "zo bedoelde ik het niet",
+              "pt": "não foi isso que quis dizer"
+            },
+            {
+              "nl": "verkeerd begrijpen",
+              "pt": "perceber mal"
+            },
+            {
+              "nl": "misverstand",
+              "pt": "mal-entendido"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l021-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Indireto.",
+          "vocabRefs": [
+            "v-ik-dacht-dat-je-zei"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Pensei que tinhas dito que era às dez.",
+          "answers": [
+            "Ik dacht dat je zei dat het om tien uur was",
+            "Ik dacht dat jij zei dat het om tien uur was"
+          ]
+        },
+        {
+          "id": "s6-u13-l021-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-zo-bedoelde-ik-het-niet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não foi isso que eu quis dizer.",
+          "answers": [
+            "Zo bedoelde ik het niet",
+            "Dat bedoelde ik niet"
+          ]
+        },
+        {
+          "id": "s6-u13-l021-e04",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Esclarecer.",
+          "vocabRefs": [
+            "v-ik-dacht-dat-je-zei"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Waarom ben je er niet? We beginnen om negen uur!",
+              "pt": "Porque não estás cá? Começamos às nove!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "O nee! Ik dacht dat je zei dat we om tien uur begonnen. Ik kom eraan!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zo bedoelde ik het niet.",
+              "correct": false,
+              "feedback": "Não encaixa."
+            },
+            {
+              "id": "c",
+              "text": "Negen uur?",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l021-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Mal-entendido.",
+          "vocabRefs": [
+            "v-misverstand"
+          ],
+          "sentence": "Er is een ___ ontstaan over de datum.",
+          "translation": "Surgiu um mal-entendido sobre a data.",
+          "answers": [
+            "misverstand"
+          ],
+          "choices": [
+            "misverstand",
+            "verkeerd",
+            "bedoeling"
+          ]
+        },
+        {
+          "id": "s6-u13-l021-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Passado: zei.",
+          "vocabRefs": [
+            "v-ik-dacht-dat-je-zei"
+          ],
+          "tokens": [
+            "Ik",
+            "dacht",
+            "dat",
+            "je",
+            "zegt",
+            "dat",
+            "het",
+            "gratis",
+            "was."
+          ],
+          "errorIndex": 4,
+          "correction": "zei"
+        },
+        {
+          "id": "s6-u13-l021-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Esclarecer.",
+          "vocabRefs": [
+            "v-verkeerd-begrijpen"
+          ],
+          "audioText": "Volgens mij hebben we elkaar verkeerd begrepen.",
+          "answers": [
+            "Volgens mij hebben we elkaar verkeerd begrepen"
+          ],
+          "translation": "Acho que nos entendemos mal."
+        },
+        {
+          "id": "s6-u13-l021-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Dica.",
+          "vocabRefs": [
+            "v-misverstand"
+          ],
+          "prompt": "Para evitar mal-entendidos numa reunião, é útil…",
+          "options": [
+            {
+              "id": "a",
+              "text": "resumir os acordos por escrito",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "falar mais alto",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "não dizer nada",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l022",
+      "unitId": "s6-u13",
+      "order": 22,
+      "title": "Rumores",
+      "description": "Het verhaal gaat dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Relatar rumores e informações não confirmadas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-het-verhaal-gaat",
+          "nl": "het verhaal gaat dat…",
+          "pt": [
+            "conta-se que…",
+            "diz-se que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ik-heb-gehoord-dat",
+          "nl": "ik heb gehoord dat…",
+          "pt": [
+            "ouvi dizer que…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-gerucht",
+        "v-zou-gerucht",
+        "v-er-wordt-gezegd"
+      ],
+      "examples": [
+        {
+          "nl": "Het verhaal gaat dat er een geest in het kasteel woont.",
+          "pt": "Conta-se que vive um fantasma no castelo."
+        },
+        {
+          "nl": "Ik heb gehoord dat de bakker gaat stoppen.",
+          "pt": "Ouvi dizer que o padeiro vai fechar."
+        },
+        {
+          "nl": "Naar verluidt is de zanger ziek.",
+          "pt": "Ao que consta, o cantor está doente."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l022-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Rumores.",
+          "vocabRefs": [
+            "v-het-verhaal-gaat",
+            "v-ik-heb-gehoord-dat",
+            "v-gerucht",
+            "v-er-wordt-gezegd"
+          ],
+          "pairs": [
+            {
+              "nl": "het verhaal gaat dat…",
+              "pt": "conta-se que…"
+            },
+            {
+              "nl": "ik heb gehoord dat…",
+              "pt": "ouvi dizer que…"
+            },
+            {
+              "nl": "gerucht",
+              "pt": "boato"
+            },
+            {
+              "nl": "er wordt gezegd dat…",
+              "pt": "diz-se que…"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l022-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-ik-heb-gehoord-dat"
+          ],
+          "prompt": "Qual é o mais informal?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik heb gehoord dat…",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Naar verluidt…",
+              "correct": false,
+              "feedback": "Formal."
+            },
+            {
+              "id": "c",
+              "text": "Er wordt beweerd dat…",
+              "correct": false,
+              "feedback": "Formal."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l022-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "gehoord dat.",
+          "vocabRefs": [
+            "v-ik-heb-gehoord-dat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ouvi dizer que o padeiro vai fechar.",
+          "answers": [
+            "Ik heb gehoord dat de bakker gaat stoppen",
+            "Ik heb gehoord dat de bakker stopt",
+            "Ik hoorde dat de bakker gaat stoppen"
+          ]
+        },
+        {
+          "id": "s6-u13-l022-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Lenda.",
+          "vocabRefs": [
+            "v-het-verhaal-gaat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Conta-se que vive um fantasma no castelo.",
+          "answers": [
+            "Het verhaal gaat dat er een geest in het kasteel woont",
+            "Het verhaal gaat dat er een spook in het kasteel woont"
+          ]
+        },
+        {
+          "id": "s6-u13-l022-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Boato.",
+          "vocabRefs": [
+            "v-gerucht"
+          ],
+          "sentence": "Er gaat een ___ dat de fabriek dichtgaat.",
+          "translation": "Corre um boato de que a fábrica vai fechar.",
+          "answers": [
+            "gerucht"
+          ],
+          "choices": [
+            "gerucht",
+            "verhaal",
+            "bericht"
+          ]
+        },
+        {
+          "id": "s6-u13-l022-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Infinitivo depois de gaat.",
+          "vocabRefs": [
+            "v-ik-heb-gehoord-dat"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "gehoord",
+            "dat",
+            "hij",
+            "gaat",
+            "verhuist."
+          ],
+          "errorIndex": 6,
+          "correction": "verhuizen."
+        },
+        {
+          "id": "s6-u13-l022-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Lenda.",
+          "vocabRefs": [
+            "v-het-verhaal-gaat"
+          ],
+          "audioText": "Het verhaal gaat dat de molen ooit door een reus is gebouwd.",
+          "answers": [
+            "Het verhaal gaat dat de molen ooit door een reus is gebouwd",
+            "Het verhaal gaat dat de molen ooit door een reus gebouwd is"
+          ],
+          "translation": "Conta-se que o moinho foi construído por um gigante."
+        },
+        {
+          "id": "s6-u13-l022-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Prudência.",
+          "vocabRefs": [
+            "v-ik-heb-gehoord-dat",
+            "v-gerucht"
+          ],
+          "lines": [
+            {
+              "speaker": "Buurvrouw",
+              "nl": "Weet jij of de supermarkt gaat sluiten?",
+              "pt": "Sabes se o supermercado vai fechar?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik heb gehoord van wel, maar het is nog niet zeker. Het kan ook een gerucht zijn.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zeker weten!",
+              "correct": false,
+              "feedback": "Afirma sem base."
+            },
+            {
+              "id": "c",
+              "text": "Het verhaal gaat.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l023",
+      "unitId": "s6-u13",
+      "order": 23,
+      "title": "Recados por escrito",
+      "description": "Hij liet zeggen dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Escrever recados com discurso indireto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-liet-zeggen",
+          "nl": "liet zeggen dat…",
+          "pt": [
+            "mandou dizer que…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-de-groeten-doen-van",
+          "nl": "de groeten van…",
+          "pt": [
+            "cumprimentos de…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-laat-weten",
+        "v-boodschap"
+      ],
+      "examples": [
+        {
+          "nl": "Je broer liet zeggen dat hij later komt.",
+          "pt": "O teu irmão mandou dizer que chega mais tarde."
+        },
+        {
+          "nl": "De groeten van Lisa! Ze vroeg of je zaterdag kunt.",
+          "pt": "Cumprimentos da Lisa! Perguntou se podes no sábado."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l023-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Recados.",
+          "vocabRefs": [
+            "v-liet-zeggen",
+            "v-de-groeten-doen-van",
+            "v-laat-weten",
+            "v-boodschap"
+          ],
+          "pairs": [
+            {
+              "nl": "liet zeggen dat…",
+              "pt": "mandou dizer que…"
+            },
+            {
+              "nl": "de groeten van…",
+              "pt": "cumprimentos de…"
+            },
+            {
+              "nl": "laat weten dat…",
+              "pt": "manda dizer que…"
+            },
+            {
+              "nl": "boodschap",
+              "pt": "recado"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l023-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "liet zeggen.",
+          "vocabRefs": [
+            "v-liet-zeggen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O teu irmão mandou dizer que chega mais tarde.",
+          "answers": [
+            "Je broer liet zeggen dat hij later komt",
+            "Je broer liet weten dat hij later komt"
+          ]
+        },
+        {
+          "id": "s6-u13-l023-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-de-groeten-doen-van"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Cumprimentos da Lisa!",
+          "answers": [
+            "De groeten van Lisa",
+            "De groeten van Lisa!"
+          ]
+        },
+        {
+          "id": "s6-u13-l023-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "liet zeggen.",
+          "vocabRefs": [
+            "v-liet-zeggen"
+          ],
+          "sentence": "De loodgieter liet ___ dat hij morgen komt.",
+          "translation": "O canalizador mandou dizer que vem amanhã.",
+          "answers": [
+            "zeggen"
+          ],
+          "choices": [
+            "zeggen",
+            "gezegd",
+            "zegt"
+          ]
+        },
+        {
+          "id": "s6-u13-l023-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "ze (singular) is.",
+          "vocabRefs": [
+            "v-liet-zeggen"
+          ],
+          "tokens": [
+            "Ze",
+            "liet",
+            "zeggen",
+            "dat",
+            "ze",
+            "ziek",
+            "zijn."
+          ],
+          "errorIndex": 6,
+          "correction": "is."
+        },
+        {
+          "id": "s6-u13-l023-e06",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Recado.",
+          "vocabRefs": [
+            "v-liet-zeggen"
+          ],
+          "prompt": "Escreva um bilhete para um colega de casa (3 frases): o senhorio passou e disse duas coisas e pediu uma coisa.",
+          "referenceAnswers": [
+            "Hoi Sam! De verhuurder kwam langs. Hij zei dat de ramen volgende week worden gewassen en dat er dinsdag geen water is. Hij vroeg of je je fiets uit de gang wilt halen."
+          ],
+          "checklist": [
+            "Relata 2 afirmações",
+            "Relata 1 pedido"
+          ],
+          "minWords": 25
+        },
+        {
+          "id": "s6-u13-l023-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Fórmula.",
+          "vocabRefs": [
+            "v-de-groeten-doen-van"
+          ],
+          "audioText": "Ik moest je de groeten doen van je oma.",
+          "answers": [
+            "Ik moest je de groeten doen van je oma"
+          ],
+          "translation": "Tenho de te dar cumprimentos da tua avó."
+        },
+        {
+          "id": "s6-u13-l023-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Direção.",
+          "vocabRefs": [
+            "v-de-groeten-doen-van"
+          ],
+          "prompt": "«Doe de groeten aan je moeder» vs. «De groeten van mijn moeder»:",
+          "options": [
+            {
+              "id": "a",
+              "text": "envia cumprimentos vs. traz cumprimentos de alguém",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "iguais",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "ambos significam despedida",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l023-e09",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-liet-zeggen"
+          ],
+          "translation": "Mandou dizer que vem.",
+          "tokens": [
+            "Hij",
+            "liet",
+            "zeggen",
+            "dat",
+            "hij",
+            "komt"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l024",
+      "unitId": "s6-u13",
+      "order": 24,
+      "title": "Relatar uma entrevista de emprego",
+      "description": "Ze vroegen waarom ik…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Contar a alguém como correu uma entrevista"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ze-vroegen-naar",
+          "nl": "ze vroegen naar…",
+          "pt": [
+            "perguntaram sobre…"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ik-antwoordde-dat",
+          "nl": "ik antwoordde dat…",
+          "pt": [
+            "respondi que…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-sollicitatiegesprek",
+        "v-informeren-naar"
+      ],
+      "examples": [
+        {
+          "nl": "Ze vroegen naar mijn ervaring.",
+          "pt": "Perguntaram sobre a minha experiência."
+        },
+        {
+          "nl": "Ze vroegen waarom ik naar Nederland ben verhuisd.",
+          "pt": "Perguntaram porque é que me mudei para os Países Baixos."
+        },
+        {
+          "nl": "Ik antwoordde dat ik nieuwe uitdagingen zocht.",
+          "pt": "Respondi que procurava novos desafios."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l024-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Entrevista.",
+          "vocabRefs": [
+            "v-ze-vroegen-naar",
+            "v-ik-antwoordde-dat",
+            "v-informeren-naar",
+            "v-sollicitatiegesprek"
+          ],
+          "pairs": [
+            {
+              "nl": "ze vroegen naar…",
+              "pt": "perguntaram sobre…"
+            },
+            {
+              "nl": "ik antwoordde dat…",
+              "pt": "respondi que…"
+            },
+            {
+              "nl": "informeren naar",
+              "pt": "informar-se sobre"
+            },
+            {
+              "nl": "sollicitatiegesprek",
+              "pt": "entrevista de emprego"
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l024-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "vragen naar.",
+          "vocabRefs": [
+            "v-ze-vroegen-naar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Perguntaram sobre a minha experiência.",
+          "answers": [
+            "Ze vroegen naar mijn ervaring",
+            "Zij vroegen naar mijn ervaring"
+          ]
+        },
+        {
+          "id": "s6-u13-l024-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "antwoorden dat.",
+          "vocabRefs": [
+            "v-ik-antwoordde-dat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Respondi que procurava novos desafios.",
+          "answers": [
+            "Ik antwoordde dat ik nieuwe uitdagingen zocht",
+            "Ik antwoordde dat ik op zoek was naar nieuwe uitdagingen"
+          ]
+        },
+        {
+          "id": "s6-u13-l024-e04",
+          "type": "comprehension",
+          "instruction": "Leia o diálogo e responda.",
+          "explanation": "Relatar uma entrevista.",
+          "vocabRefs": [
+            "v-ze-vroegen-naar",
+            "v-ik-antwoordde-dat"
+          ],
+          "kind": "dialogue",
+          "title": "Na het sollicitatiegesprek",
+          "text": "Vriend: En? Hoe ging het?\nAna: Goed, denk ik! Eerst vroegen ze naar mijn ervaring in Lissabon.\nVriend: En toen?\nAna: Toen wilden ze weten waarom ik in Nederland wil blijven. Ik antwoordde dat ik me hier thuis voel.\nVriend: Mooi antwoord! Zeiden ze wanneer je iets hoort?\nAna: Ze beloofden dat ze vóór vrijdag zouden bellen.",
+          "questions": [
+            {
+              "prompt": "Primeira pergunta?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A experiência em Lisboa",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "O salário",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Os hobbies",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Porque quer ficar?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Sente-se em casa",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Pelo clima",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Pelo salário",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Quando ligam?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Antes de sexta",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Amanhã",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Daqui a um mês",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l024-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pergunta aberta.",
+          "vocabRefs": [
+            "v-ze-vroegen-naar"
+          ],
+          "sentence": "Ze wilden weten ___ ik kon beginnen.",
+          "translation": "Queriam saber quando eu podia começar.",
+          "answers": [
+            "wanneer"
+          ],
+          "choices": [
+            "wanneer",
+            "of",
+            "dat"
+          ]
+        },
+        {
+          "id": "s6-u13-l024-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Verbos juntos no fim.",
+          "vocabRefs": [
+            "v-ze-vroegen-naar"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze vroegen waarom ik hier wil werken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze vroegen waarom ik wil hier werken.",
+              "correct": false,
+              "feedback": "Verbos juntos no fim."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l024-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Relatar.",
+          "vocabRefs": [
+            "v-ze-vroegen-naar",
+            "v-ik-antwoordde-dat"
+          ],
+          "prompt": "Conte a um amigo, em discurso indireto (4–5 frases), uma entrevista (real ou imaginada): 2 perguntas que lhe fizeram, 1 resposta sua e o que prometeram.",
+          "referenceAnswers": [
+            "Ze vroegen eerst naar mijn opleiding. Daarna wilden ze weten of ik in het weekend kan werken. Ik antwoordde dat dat soms kan. Ze beloofden dat ik binnen een week iets zou horen."
+          ],
+          "checklist": [
+            "2 perguntas relatadas",
+            "1 resposta",
+            "1 promessa"
+          ],
+          "minWords": 35
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s6-u13-l025",
+      "unitId": "s6-u13",
+      "order": 25,
+      "title": "Prática: contar uma conversa",
+      "description": "En toen zei ze dat…",
+      "cefr": "B1-B2",
+      "objectives": [
+        "Contar uma conversa inteira em discurso indireto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-en-toen-zei",
+          "nl": "en toen zei hij dat…",
+          "pt": [
+            "e depois ele disse que…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zei-dat",
+        "v-vroeg-of",
+        "v-vroeg-waar",
+        "v-zei-dat-ik-moest",
+        "v-voorstellen-om",
+        "v-beloofde-dat",
+        "v-de-volgende-dag",
+        "v-ik-heb-gehoord-dat"
+      ],
+      "examples": [
+        {
+          "nl": "En toen zei hij dat hij het niet meer wist.",
+          "pt": "E depois ele disse que já não sabia."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s6-u13-l025-e01",
+          "type": "comprehension",
+          "instruction": "Leia o diálogo e responda.",
+          "explanation": "Diálogo direto.",
+          "vocabRefs": [
+            "v-en-toen-zei"
+          ],
+          "kind": "dialogue",
+          "title": "Bij de huisarts (direct)",
+          "text": "Huisarts: Hoe lang heeft u deze klachten al?\nRui: Sinds een week.\nHuisarts: Heeft u koorts gehad?\nRui: Nee.\nHuisarts: Neem twee keer per dag een paracetamol en drink veel water. Als het niet beter wordt, komt u volgende week terug.",
+          "questions": [
+            {
+              "prompt": "Desde quando?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Há uma semana",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Há um mês",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Desde ontem",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Teve febre?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Não",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Sim",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Não se sabe",
+                  "correct": false
+                }
+              ]
+            },
+            {
+              "prompt": "Conselho?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Paracetamol e muita água",
+                  "correct": true
+                },
+                {
+                  "id": "b",
+                  "text": "Antibiótico",
+                  "correct": false
+                },
+                {
+                  "id": "c",
+                  "text": "Repouso total",
+                  "correct": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l025-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pergunta aberta.",
+          "vocabRefs": [
+            "v-vroeg-waar"
+          ],
+          "prompt": "Relato correto da 1.ª pergunta:",
+          "options": [
+            {
+              "id": "a",
+              "text": "De huisarts vroeg hoe lang ik die klachten al had.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De huisarts vroeg hoe lang heeft u klachten.",
+              "correct": false,
+              "feedback": "Direto misturado."
+            },
+            {
+              "id": "c",
+              "text": "De huisarts vroeg of hoe lang.",
+              "correct": false,
+              "feedback": "Errado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l025-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sim/não.",
+          "vocabRefs": [
+            "v-vroeg-of"
+          ],
+          "prompt": "Relato correto da 2.ª pergunta:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze vroeg of ik koorts had gehad.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze vroeg dat ik koorts had.",
+              "correct": false,
+              "feedback": "Pergunta → of."
+            },
+            {
+              "id": "c",
+              "text": "Ze vroeg had ik koorts.",
+              "correct": false,
+              "feedback": "Errado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l025-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ordem → moest.",
+          "vocabRefs": [
+            "v-zei-dat-ik-moest"
+          ],
+          "prompt": "Relato correto do conselho:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze zei dat ik twee keer per dag een paracetamol moest nemen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze zei: neem paracetamol.",
+              "correct": false,
+              "feedback": "Direto."
+            },
+            {
+              "id": "c",
+              "text": "Ze zei dat ik neem paracetamol.",
+              "correct": false,
+              "feedback": "Errado."
+            }
+          ]
+        },
+        {
+          "id": "s6-u13-l025-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "en toen.",
+          "vocabRefs": [
+            "v-en-toen-zei"
+          ],
+          "direction": "pt-nl",
+          "prompt": "E depois ele disse que já não sabia.",
+          "answers": [
+            "En toen zei hij dat hij het niet meer wist"
+          ]
+        },
+        {
+          "id": "s6-u13-l025-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Passado: moest.",
+          "vocabRefs": [
+            "v-zei-dat-ik-moest"
+          ],
+          "tokens": [
+            "Ze",
+            "zei",
+            "dat",
+            "ik",
+            "volgende",
+            "week",
+            "terug",
+            "moet",
+            "komen."
+          ],
+          "errorIndex": 7,
+          "correction": "moest"
+        },
+        {
+          "id": "s6-u13-l025-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Relato completo.",
+          "vocabRefs": [
+            "v-en-toen-zei"
+          ],
+          "prompt": "Conte a conversa com o médico (acima) a um amigo, toda em discurso indireto (5–6 frases).",
+          "referenceAnswers": [
+            "Ik was vandaag bij de huisarts. Ze vroeg hoe lang ik die klachten al had. Ik zei dat ik ze sinds een week had. Toen vroeg ze of ik koorts had gehad, maar dat was niet zo. Ze zei dat ik twee keer per dag een paracetamol moest nemen en veel water moest drinken. Als het niet beter wordt, moet ik volgende week terugkomen."
+          ],
+          "checklist": [
+            "Perguntas relatadas",
+            "Ordens relatadas",
+            "Pronomes corretos"
+          ],
+          "minWords": 60
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 8,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }
