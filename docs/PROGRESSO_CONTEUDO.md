@@ -28,7 +28,7 @@ Regras: IDs de vocabulário únicos em todo o curso (rever com `reviewVocabulary
 | 2 A vida quotidiana | 15/15 | 75 | 700 |
 | 3 Viver nos Países Baixos | 16/16 | 80 | 700 |
 | 4 Comunicação independente | 16/16 | 80 | 700 |
-| 5 Fluência prática | 0/16 | 0 | 700 |
+| 5 Fluência prática | 16/16 | 80 | 700 |
 | 6 Neerlandês avançado | 0/16 | 0 | 600 |
 | 7 Domínio e utilização real | 0/15 | 0 | 500 |
 
