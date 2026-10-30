@@ -88,9 +88,9 @@ L(4, "Rever o próprio texto", "Controleer werkwoorden, woordvolgorde en spellin
 L(5, "Revisão da Secção 5", "Conversa, cultura, partículas, tempos e escrita.",
   ["Rever as principais competências da Secção 5"],
   vocab=[V("v-vloeiend","vloeiend","fluente","adjective"), V("v-zelfverzekerd","zelfverzekerd","seguro de si","adjective"),
-         V("v-oefening-baart-kunst","oefening baart kunst","a prática faz o mestre","expression"), V("v-volhouden","volhouden","aguentar|persistir","verb")],
+         V("v-oefening-baart-kunst","oefening baart kunst","a prática faz o mestre","expression")],
   ex=[("Ik spreek steeds vloeiender.","Falo cada vez mais fluentemente."),("Ik voel me zelfverzekerder.","Sinto-me mais seguro de mim."),("Oefening baart kunst!","A prática faz o mestre!"),("Volhouden!","Aguenta! / Não desistas!")],
-  review=["v-meevallen","v-toch-part","v-al-gedaan","v-echter","v-gezellig"],
+  review=["v-volhouden","v-meevallen","v-toch-part","v-al-gedaan","v-echter","v-gezellig"],
   cefr=C, exs=[
     MA([("vloeiend","fluente"),("zelfverzekerd","seguro de si"),("oefening baart kunst","a prática faz o mestre"),("volhouden","persistir")], "Balanço.", ["v-vloeiend","v-zelfverzekerd","v-oefening-baart-kunst","v-volhouden"]),
     TR("pt-nl","Falo cada vez mais fluentemente.", ["Ik spreek steeds vloeiender"], "steeds + comparativo.", ["v-vloeiend"]),

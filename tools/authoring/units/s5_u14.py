@@ -69,12 +69,12 @@ L(3, "Misturar tempos num relato", "Perfectum, imperfectum e plusquamperfectum j
 
 L(4, "Planos, previsões e condições", "Als het lukt, ga ik… Waarschijnlijk wordt het…",
   ["Falar do futuro com graus de certeza"],
-  vocab=[V("v-waarschijnlijk","waarschijnlijk","provavelmente","adverb"), V("v-misschien-wel","misschien wel","talvez sim","expression"),
+  vocab=[V("v-misschien-wel","misschien wel","talvez sim","expression"),
          V("v-sowieso","sowieso","de qualquer forma|de certeza","adverb"), V("v-verwachten","verwachten","esperar|prever","verb")],
   ex=[("Waarschijnlijk wordt het morgen droog.","Provavelmente amanhã fica seco."),("Als het lukt, kom ik vrijdag.","Se der, venho na sexta."),("Ik kom sowieso.","Venho de certeza."),("We verwachten veel gasten.","Esperamos muitos convidados.")],
   gram=[G("g-zekerheid-toekomst","Graus de certeza","**sowieso / zeker** (certo) > **waarschijnlijk** (provável) > **misschien** (talvez) > **waarschijnlijk niet** (improvável). Condição: **als** + presente, depois inversão: *Als het lukt, **kom ik**.*",
     [("Misschien ga ik volgend jaar naar Japan.","Talvez vá ao Japão para o ano.")])],
-  review=["v-misschien","v-zeker","v-als-conj","v-gaan"],
+  review=["v-waarschijnlijk","v-misschien","v-zeker","v-als-conj","v-gaan"],
   cefr=C, exs=[
     MA([("waarschijnlijk","provavelmente"),("misschien wel","talvez sim"),("sowieso","de qualquer forma"),("verwachten","prever")], "Certeza.", ["v-waarschijnlijk","v-misschien-wel","v-sowieso","v-verwachten"]),
     MC("Ordene do mais certo ao menos certo:", ["*sowieso → waarschijnlijk → misschien → waarschijnlijk niet","misschien → sowieso → waarschijnlijk|Trocado.","waarschijnlijk niet → sowieso|Trocado."], "Escala.", ["v-sowieso","v-waarschijnlijk"]),

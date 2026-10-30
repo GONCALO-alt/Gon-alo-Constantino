@@ -76,10 +76,9 @@ L(3, "Aniversários à neerlandesa", "De kring, gefeliciteerd met je zus, taart.
 L(4, "Natal e Ano Novo", "Kerst, oud en nieuw, oliebollen, vuurwerk.",
   ["Falar das festas de fim de ano"],
   vocab=[V("v-oud-en-nieuw","oud en nieuw","passagem de ano","expression"), V("v-oliebol","oliebol","bolinho frito (de fim de ano)","noun","de","oliebollen"),
-         V("v-vuurwerk","vuurwerk","fogo de artifício","noun","het"), V("v-gourmetten","gourmetten","grelhar em mini-grelhadores à mesa","verb"),
-         V("v-goede-voornemens","goede voornemens","resoluções de ano novo","noun","de")],
+         V("v-vuurwerk","vuurwerk","fogo de artifício","noun","het"), V("v-gourmetten","gourmetten","grelhar em mini-grelhadores à mesa","verb")],
   ex=[("Fijne feestdagen!","Boas festas!"),("Met oud en nieuw eten we oliebollen.","Na passagem de ano comemos oliebollen."),("Om twaalf uur kijken we naar het vuurwerk.","À meia-noite vemos o fogo de artifício."),("Wat zijn je goede voornemens?","Quais são as tuas resoluções de ano novo?")],
-  review=["v-kerst","v-feestdag","v-familie"],
+  review=["v-goede-voornemens","v-kerst","v-feestdag","v-familie"],
   cefr=C, exs=[
     MA([("oud en nieuw","passagem de ano"),("oliebol","bolinho frito"),("vuurwerk","fogo de artifício"),("gourmetten","grelhar à mesa"),("goede voornemens","resoluções")], "Fim de ano.", ["v-oud-en-nieuw","v-oliebol","v-vuurwerk","v-gourmetten","v-goede-voornemens"]),
     TR("pt-nl","Boas festas!", ["Fijne feestdagen","Prettige feestdagen"], "Desejo típico.", ["v-feestdag"]),

@@ -5,13 +5,12 @@ C = "A2-B1"
 
 L(1, "Dat: o verbo vai para o fim", "Ik weet dat… Hij zegt dat…",
   ["Formar orações com dat e o verbo no fim"],
-  vocab=[V("v-dat-conj","dat (conj.)","que","conjunction",note="Ik denk dat hij komt."), V("v-zeker-weten","zeker weten","ter a certeza","expression"),
-         V("v-zeggen-dat","zeggen dat","dizer que","expression"), V("v-merken","merken","reparar|notar","verb")],
+  vocab=[V("v-dat-conj","dat (conj.)","que","conjunction",note="Ik denk dat hij komt."), V("v-zeggen-dat","zeggen dat","dizer que","expression"), V("v-merken","merken","reparar|notar","verb")],
   ex=[("Ik weet dat je moe bent.","Sei que estás cansado."),("Hij zegt dat hij later komt.","Ele diz que vem mais tarde."),("Weet je zeker dat de winkel open is?","Tens a certeza de que a loja está aberta?"),("Ik merk dat mijn Nederlands beter wordt.","Noto que o meu neerlandês está a melhorar.")],
   gram=[G("g-dat-bijzin","Oração subordinada com dat","Depois de **dat** (que), o verbo conjugado vai para o **fim** da oração: *Ik weet dat je moe **bent**.* Se houver mais verbos, ficam todos no fim: *…dat hij later **wil komen**.*",
     [("Ze vertelt dat ze een nieuwe baan heeft.","Ela conta que tem um emprego novo."),("Ik denk dat het gaat regenen.","Acho que vai chover.")],
     "Em português a ordem não muda depois de «que»; em neerlandês muda sempre.")],
-  review=["v-weten","v-zeggen","v-ik-denk-dat"],
+  review=["v-zeker-weten","v-weten","v-zeggen","v-ik-denk-dat"],
   cefr=C, exs=[
     MA([("dat","que"),("zeker weten","ter a certeza"),("zeggen dat","dizer que"),("merken","notar")], "Dat.", ["v-dat-conj","v-zeker-weten","v-zeggen-dat","v-merken"]),
     WO("Sei que estás cansado.", ["Ik","weet","dat","je","moe","bent"], "Verbo no fim.", ["v-dat-conj"]),
