@@ -49,9 +49,9 @@ L(2, "Zou/zouden: futuro no passado e hipóteses", "Hij zei dat hij zou komen. I
 
 L(3, "Misturar tempos num relato", "Perfectum, imperfectum e plusquamperfectum juntos.",
   ["Escolher o tempo certo num relato completo"],
-  vocab=[V("v-verhuizing","verhuizing","mudança (de casa)","noun","de"), V("v-inmiddels","inmiddels","entretanto|já (agora)","adverb")],
+  vocab=[V("v-verhuizing","verhuizing","mudança (de casa)","noun","de")],
   ex=[("Achteraf was het een goede beslissing.","Em retrospetiva foi uma boa decisão."),("Inmiddels woon ik hier vijf jaar.","Entretanto já moro aqui há cinco anos."),("Destijds sprak ik geen woord Nederlands.","Naquela altura não falava uma palavra de neerlandês."),("De verhuizing was zwaar.","A mudança foi dura.")],
-  review=["v-destijds","v-achteraf","v-vroeger","v-toen-conj","v-al-gedaan","v-geleden"],
+  review=["v-inmiddels","v-destijds","v-achteraf","v-vroeger","v-toen-conj","v-al-gedaan","v-geleden"],
   cefr=C, exs=[
     MA([("verhuizing","mudança"),("achteraf","em retrospetiva"),("inmiddels","entretanto"),("destijds","naquela altura")], "Relato.", ["v-verhuizing","v-achteraf","v-inmiddels","v-destijds"]),
     TR("pt-nl","Em retrospetiva foi uma boa decisão.", ["Achteraf was het een goede beslissing","Achteraf gezien was het een goede beslissing"], "achteraf.", ["v-achteraf"]),

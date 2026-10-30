@@ -26,12 +26,11 @@ L(1, "Ordem dos verbos no fim: o «cacho verbal»", "…dat ik het niet heb kunn
 
 L(2, "Inversão e posição do sujeito", "Wat ik niet begrijp, is… Daarom heeft de gemeente besloten…",
   ["Aplicar a regra do verbo em 2.ª posição em frases longas"],
-  vocab=[V("v-besluiten","besluiten","decidir","verb",note="besloten"), V("v-wat-ik-bedoel","wat ik bedoel, is…","o que quero dizer é…","expression"),
-         V("v-desondanks","desondanks","apesar disso","adverb"), V("v-vervolgens","vervolgens","em seguida","adverb")],
+  vocab=[V("v-besluiten","besluiten","decidir","verb",note="besloten"), V("v-wat-ik-bedoel","wat ik bedoel, is…","o que quero dizer é…","expression")],
   ex=[("Wat ik niet begrijp, is waarom hij weg is.","O que não percebo é porque é que ele se foi embora."),("Daarom heeft de gemeente besloten de weg af te sluiten.","Por isso a câmara decidiu fechar a estrada."),("Desondanks bleef hij optimistisch.","Apesar disso, continuou otimista."),("Vervolgens ging iedereen naar huis.","Em seguida toda a gente foi para casa.")],
   gram=[G("g-v2-lang","V2 em frases longas","A 1.ª posição pode ser **longa** (uma oração inteira, um complemento extenso): *[Wat ik niet begrijp,] **is**…* / *[Na een lange vergadering met alle collega's] **besloot** de directeur…* O verbo conjugado vem logo a seguir, depois o sujeito.",
     [("Na drie jaar hard werken heeft ze eindelijk haar diploma.","Depois de três anos de muito trabalho, ela finalmente tem o diploma.")])],
-  review=["v-daarom","v-daarna","v-woordvolgorde"],
+  review=["v-vervolgens","v-desondanks","v-daarom","v-daarna","v-woordvolgorde"],
   cefr=C, exs=[
     MA([("besluiten","decidir"),("wat ik bedoel, is…","o que quero dizer é…"),("desondanks","apesar disso"),("vervolgens","em seguida")], "Frases longas.", ["v-besluiten","v-wat-ik-bedoel","v-desondanks","v-vervolgens"]),
     WO("Depois de três anos de muito trabalho, ela finalmente tem o diploma.", ["Na","drie","jaar","hard","werken","heeft","ze","eindelijk","haar","diploma"], "V2 após 1.ª posição longa.", ["v-woordvolgorde"]),

@@ -87,9 +87,9 @@ L(4, "Verbos introdutores", "beweren, toegeven, ontkennen, benadrukken, beloven"
 
 L(5, "Relatar uma conversa", "Juntar afirmações, perguntas e pedidos.",
   ["Relatar uma conversa completa a outra pessoa"],
-  vocab=[V("v-navertellen","navertellen","recontar","verb"), V("v-letterlijk-zeggen","letterlijk zeggen","dizer textualmente","expression"), V("v-samengevat","samengevat","em resumo","adverb")],
+  vocab=[V("v-navertellen","navertellen","recontar","verb"), V("v-letterlijk-zeggen","letterlijk zeggen","dizer textualmente","expression")],
   ex=[("Kun je het gesprek even navertellen?","Podes contar como foi a conversa?"),("Volgens haar is het project te duur.","Segundo ela, o projeto é demasiado caro."),("Hij zei letterlijk: «Dit is onacceptabel.»","Ele disse textualmente: «Isto é inaceitável.»"),("Samengevat: ze willen meer tijd.","Em resumo: querem mais tempo.")],
-  review=["v-volgens-haar","v-zei","v-vroeg-vragen","v-vragen-om-te","v-ontkennen"],
+  review=["v-samengevat","v-volgens-haar","v-zei","v-vroeg-vragen","v-vragen-om-te","v-ontkennen"],
   cefr=C, exs=[
     MA([("navertellen","recontar"),("volgens haar","segundo ela"),("letterlijk zeggen","dizer textualmente"),("samengevat","em resumo")], "Relatar.", ["v-navertellen","v-volgens-haar","v-letterlijk-zeggen","v-samengevat"]),
     CO("dialogue","Gesprek met de huisbaas", "Huisbaas: Ik wil de huur per 1 juli verhogen met vijftig euro.\nAna: Waarom zo veel?\nHuisbaas: De kosten voor onderhoud zijn gestegen.\nAna: Kunt u dan eerst de lekkende kraan repareren?\nHuisbaas: Ik stuur volgende week een loodgieter.",
