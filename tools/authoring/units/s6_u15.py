@@ -26,10 +26,10 @@ L(1, "O texto argumentativo", "Stelling, argumenten, tegenargument, conclusie",
 
 L(2, "Introduções e conclusões fortes", "Openen met een vraag, feit of anekdote.",
   ["Escrever introduções e conclusões eficazes"],
-  vocab=[V("v-aandacht-trekken","de aandacht trekken","chamar a atenção","expression"), V("v-anekdote","anekdote","episódio|história curta","noun","de"),
+  vocab=[V("v-anekdote","anekdote","episódio|história curta","noun","de"),
          V("v-retorische-vraag","retorische vraag","pergunta retórica","noun","de"), V("v-oproep","oproep","apelo","noun","de")],
   ex=[("Begin met een feit dat de aandacht trekt.","Começa com um facto que chame a atenção."),("Wie heeft er nooit in de file gestaan?","Quem nunca esteve numa fila de trânsito?"),("Eindig met een oproep aan de lezer.","Termina com um apelo ao leitor."),("Een korte anekdote maakt de tekst levendig.","Um episódio curto torna o texto vivo.")],
-  review=["v-inleiding","v-conclusie","v-kortom"],
+  review=["v-aandacht-trekken","v-inleiding","v-conclusie","v-kortom"],
   cefr=C, exs=[
     MA([("de aandacht trekken","chamar a atenção"),("anekdote","episódio"),("retorische vraag","pergunta retórica"),("oproep","apelo")], "Abrir e fechar.", ["v-aandacht-trekken","v-anekdote","v-retorische-vraag","v-oproep"]),
     MC("Qual é uma abertura com pergunta retórica?", ["*Wie wil er nu niet gezonder leven?","Ik schrijf over gezondheid.|Abertura fraca.","Kortom, gezond leven is belangrijk.|É conclusão."], "Retórica.", ["v-retorische-vraag"]),

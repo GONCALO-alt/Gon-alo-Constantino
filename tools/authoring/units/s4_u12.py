@@ -91,10 +91,9 @@ L(4, "Responder e pedir desculpa", "Bedankt voor je bericht. Excuses voor de lat
 
 L(5, "Escrever um e-mail completo", "Juntar estrutura, registo e frases úteis.",
   ["Escrever e-mails completos informais e formais"],
-  vocab=[V("v-ik-hoor-graag","ik hoor graag van je/u","aguardo notícias tuas/suas","expression"), V("v-hierbij","hierbij","em anexo|pela presente","adverb"),
-         V("v-met-betrekking-tot","met betrekking tot","relativamente a","expression",note="abrev. m.b.t."), V("v-in-de-cc","in de cc","em cópia (cc)","expression")],
+  vocab=[V("v-ik-hoor-graag","ik hoor graag van je/u","aguardo notícias tuas/suas","expression"), V("v-met-betrekking-tot","met betrekking tot","relativamente a","expression",note="abrev. m.b.t."), V("v-in-de-cc","in de cc","em cópia (cc)","expression")],
   ex=[("Ik hoor graag van u.","Aguardo notícias suas."),("Hierbij stuur ik mijn cv.","Envio em anexo o meu currículo."),("Met betrekking tot uw vraag…","Relativamente à sua pergunta…"),("Ik zet mijn collega in de cc.","Ponho o meu colega em cópia.")],
-  review=["v-aanhef","v-afsluiting","v-onderwerp","v-met-vriendelijke-groet","v-groeten"],
+  review=["v-hierbij","v-aanhef","v-afsluiting","v-onderwerp","v-met-vriendelijke-groet","v-groeten"],
   cefr=C, exs=[
     MA([("ik hoor graag van u","aguardo notícias suas"),("hierbij","em anexo"),("met betrekking tot","relativamente a"),("in de cc","em cópia")], "Fórmulas.", ["v-ik-hoor-graag","v-hierbij","v-met-betrekking-tot","v-in-de-cc"]),
     TR("pt-nl","Aguardo notícias suas.", ["Ik hoor graag van u"], "Fórmula de fecho.", ["v-ik-hoor-graag"]),

@@ -68,10 +68,9 @@ L(3, "Cartas formais às autoridades", "Bezwaar, zienswijze, verzoek aan de geme
 
 L(4, "Cartas de motivação avançadas", "Concreet, specifiek, resultaatgericht",
   ["Escrever uma carta de motivação de nível B2"],
-  vocab=[V("v-resultaatgericht","resultaatgericht","orientado para resultados","adjective"), V("v-aansluiten-bij","aansluiten bij","corresponder a|encaixar em","expression"),
-         V("v-bijdragen-aan","bijdragen aan","contribuir para","expression"), V("v-aantoonbaar","aantoonbaar","comprovado|demonstrável","adjective")],
+  vocab=[V("v-bijdragen-aan","bijdragen aan","contribuir para","expression"), V("v-aantoonbaar","aantoonbaar","comprovado|demonstrável","adjective")],
   ex=[("Mijn ervaring sluit goed aan bij uw vacature.","A minha experiência corresponde bem à vossa vaga."),("Ik wil graag bijdragen aan uw duurzaamheidsdoelen.","Gostaria de contribuir para os vossos objetivos de sustentabilidade."),("Ik werk resultaatgericht.","Trabalho orientado para resultados."),("Ik heb aantoonbare ervaring met projectmanagement.","Tenho experiência comprovada em gestão de projetos.")],
-  review=["v-sollicitatiebrief","v-gemotiveerd","v-star-methode"],
+  review=["v-aansluiten-bij","v-resultaatgericht","v-sollicitatiebrief","v-gemotiveerd","v-star-methode"],
   cefr=C, exs=[
     MA([("resultaatgericht","orientado para resultados"),("aansluiten bij","corresponder a"),("bijdragen aan","contribuir para"),("aantoonbaar","comprovado")], "Carta avançada.", ["v-resultaatgericht","v-aansluiten-bij","v-bijdragen-aan","v-aantoonbaar"]),
     MC("Qual frase é mais forte numa carta?", ["*In mijn vorige functie verlaagde ik de wachttijd voor klanten met 30 procent.","Ik ben een harde werker.|Vago.","Ik vind uw bedrijf leuk.|Vago."], "Concreto.", ["v-resultaatgericht"]),
