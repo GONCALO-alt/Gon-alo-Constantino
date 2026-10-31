@@ -67,10 +67,10 @@ L(3, "Comparar culturas", "Wat me opviel… In Portugal is het gebruikelijk dat�
 
 L(4, "Alojamento e reservas", "Airbnb, een jeugdherberg, ontbijt inbegrepen, annuleringsvoorwaarden",
   ["Comparar alojamentos e compreender condições de reserva"],
-  vocab=[V("v-jeugdherberg","jeugdherberg","pousada de juventude","noun","de"), V("v-annuleringsvoorwaarden","annuleringsvoorwaarden","condições de cancelamento","noun","de"),
+  vocab=[V("v-annuleringsvoorwaarden","annuleringsvoorwaarden","condições de cancelamento","noun","de"),
          V("v-kosteloos","kosteloos","sem custos|grátis","adjective"), V("v-beoordeling","beoordeling","avaliação (review)","noun","de")],
   ex=[("Annuleren is tot 48 uur van tevoren kosteloos.","Cancelar é grátis até 48 horas antes."),("De jeugdherberg heeft goede beoordelingen.","A pousada de juventude tem boas avaliações."),("Is het ontbijt inbegrepen?","O pequeno-almoço está incluído?"),("Lees eerst de annuleringsvoorwaarden.","Lê primeiro as condições de cancelamento.")],
-  review=["v-reserveren","v-inbegrepen","v-hotel","v-tweepersoonskamer"],
+  review=["v-jeugdherberg","v-reserveren","v-inbegrepen","v-hotel","v-tweepersoonskamer"],
   cefr=C, exs=[
     MA([("jeugdherberg","pousada de juventude"),("annuleringsvoorwaarden","condições de cancelamento"),("kosteloos","sem custos"),("beoordeling","avaliação")], "Alojamento.", ["v-jeugdherberg","v-annuleringsvoorwaarden","v-kosteloos","v-beoordeling"]),
     TR("nl-pt","Annuleren is tot 48 uur van tevoren kosteloos.", ["Cancelar é [grátis|gratuito|sem custos] até 48 horas antes"], "van tevoren = antes.", ["v-kosteloos"]),

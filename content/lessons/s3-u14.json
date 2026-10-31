@@ -2587,6 +2587,1260 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s3-u14-l010",
+      "unitId": "s3-u14",
+      "order": 10,
+      "title": "Mais do que, menos do que",
+      "description": "Meer dan, minder dan.",
+      "cefr": "A2",
+      "objectives": [
+        "Comparar quantidades"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-meer",
+        "v-minder",
+        "v-dan-comp",
+        "v-te-weinig"
+      ],
+      "examples": [
+        {
+          "nl": "Ik werk meer dan veertig uur per week.",
+          "pt": "Trabalho mais de quarenta horas por semana."
+        },
+        {
+          "nl": "Hier regent het minder dan in Bergen.",
+          "pt": "Aqui chove menos do que em Bergen."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u14-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Quantidades.",
+          "vocabRefs": [
+            "v-meer",
+            "v-minder",
+            "v-genoeg2",
+            "v-te-weinig"
+          ],
+          "pairs": [
+            {
+              "nl": "meer dan",
+              "pt": "mais do que"
+            },
+            {
+              "nl": "minder dan",
+              "pt": "menos do que"
+            },
+            {
+              "nl": "te veel",
+              "pt": "demasiado"
+            },
+            {
+              "nl": "te weinig",
+              "pt": "demasiado pouco"
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l010-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "dan.",
+          "vocabRefs": [
+            "v-dan-comp"
+          ],
+          "prompt": "«Trabalho mais do que tu.»",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik werk meer dan jij.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik werk meer als jij.",
+              "correct": false,
+              "feedback": "Na escrita cuidada: dan."
+            },
+            {
+              "id": "c",
+              "text": "Ik werk meest jij.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l010-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "minder dan.",
+          "vocabRefs": [
+            "v-minder"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Aqui chove menos do que em Portugal?",
+          "answers": [
+            "Regent het hier minder dan in Portugal?"
+          ]
+        },
+        {
+          "id": "s3-u14-l010-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "meer dan.",
+          "vocabRefs": [
+            "v-meer"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ela tem mais tempo do que eu.",
+          "answers": [
+            "Zij heeft meer tijd dan ik(.)",
+            "Ze heeft meer tijd dan ik(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l010-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Menos.",
+          "vocabRefs": [
+            "v-minder"
+          ],
+          "sentence": "Ik verdien ___ dan mijn collega. (menos)",
+          "translation": "Ganho menos do que o meu colega.",
+          "answers": [
+            "minder"
+          ],
+          "choices": [
+            "minder",
+            "meer",
+            "minst"
+          ]
+        },
+        {
+          "id": "s3-u14-l010-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-minder"
+          ],
+          "audioText": "In de winter fiets ik minder dan in de zomer.",
+          "answers": [
+            "In de winter fiets ik minder dan in de zomer(.)"
+          ],
+          "translation": "No inverno ando menos de bicicleta do que no verão."
+        },
+        {
+          "id": "s3-u14-l010-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Comparativo: dan.",
+          "vocabRefs": [
+            "v-dan-comp"
+          ],
+          "tokens": [
+            "Hij",
+            "is",
+            "ouder",
+            "als",
+            "ik."
+          ],
+          "errorIndex": 3,
+          "correction": "dan"
+        },
+        {
+          "id": "s3-u14-l010-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-meer"
+          ],
+          "translation": "Mais do que eu.",
+          "tokens": [
+            "Meer",
+            "dan",
+            "ik."
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u14-l011",
+      "unitId": "s3-u14",
+      "order": 11,
+      "title": "Igual ou diferente?",
+      "description": "Hetzelfde of anders?",
+      "cefr": "A2",
+      "objectives": [
+        "Dizer que duas coisas são iguais ou diferentes"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-hetzelfde",
+          "nl": "hetzelfde",
+          "pt": [
+            "o mesmo, igual"
+          ],
+          "pos": "pronoun"
+        },
+        {
+          "id": "v-anders-dan",
+          "nl": "anders dan",
+          "pt": [
+            "diferente de"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-net-zo",
+        "v-even-adj"
+      ],
+      "examples": [
+        {
+          "nl": "Wij hebben hetzelfde telefoonnummer!",
+          "pt": "Temos o mesmo número de telefone!"
+        },
+        {
+          "nl": "Het eten hier is anders dan in Portugal.",
+          "pt": "A comida aqui é diferente da de Portugal."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s3u14c-1",
+          "title": "Hetzelfde / dezelfde",
+          "body": "**hetzelfde** com palavras **het**: *hetzelfde huis*. **dezelfde** com palavras **de** e plural: *dezelfde fiets*, *dezelfde schoenen*. Sozinho: *Dat is hetzelfde* (é igual).",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u14-l011-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "de-palavra.",
+          "vocabRefs": [
+            "v-hetzelfde"
+          ],
+          "prompt": "«A mesma bicicleta» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "dezelfde fiets",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "hetzelfde fiets",
+              "correct": false,
+              "feedback": "fiets é de → dezelfde."
+            },
+            {
+              "id": "c",
+              "text": "de zelfde fiets",
+              "correct": false,
+              "feedback": "Escreve-se junto."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "het-palavra.",
+          "vocabRefs": [
+            "v-hetzelfde"
+          ],
+          "prompt": "«A mesma casa» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "hetzelfde huis",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "dezelfde huis",
+              "correct": false,
+              "feedback": "huis é het → hetzelfde."
+            },
+            {
+              "id": "c",
+              "text": "hetzelf huis",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "hetzelfde.",
+          "vocabRefs": [
+            "v-hetzelfde"
+          ],
+          "direction": "pt-nl",
+          "prompt": "É igual.",
+          "answers": [
+            "Het is hetzelfde(.)",
+            "Dat is hetzelfde(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "anders.",
+          "vocabRefs": [
+            "v-anders-dan"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A comida aqui é diferente.",
+          "answers": [
+            "Het eten hier is anders(.)",
+            "Het eten is hier anders(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Diferente.",
+          "vocabRefs": [
+            "v-anders-dan"
+          ],
+          "sentence": "Het weer hier is ___ dan in Portugal.",
+          "translation": "O tempo aqui é diferente do de Portugal.",
+          "answers": [
+            "anders"
+          ],
+          "choices": [
+            "anders",
+            "hetzelfde",
+            "even"
+          ]
+        },
+        {
+          "id": "s3-u14-l011-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-hetzelfde"
+          ],
+          "audioText": "We dragen dezelfde jas!",
+          "answers": [
+            "We dragen dezelfde jas(!)",
+            "Wij dragen dezelfde jas(!)"
+          ],
+          "translation": "Temos o mesmo casaco!"
+        },
+        {
+          "id": "s3-u14-l011-e07",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Igualdade.",
+          "vocabRefs": [
+            "v-net-zo"
+          ],
+          "prompt": "«Net zo groot als» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "tão grande como",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "maior do que",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "menos grande",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l011-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-hetzelfde"
+          ],
+          "translation": "É igual.",
+          "tokens": [
+            "Het",
+            "is",
+            "hetzelfde."
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u14-l012",
+      "unitId": "s3-u14",
+      "order": 12,
+      "title": "Bom, melhor, o melhor",
+      "description": "Goed, beter, best.",
+      "cefr": "A2",
+      "objectives": [
+        "Usar os comparativos irregulares mais comuns"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-beter-dan",
+        "v-best",
+        "v-meest",
+        "v-erger"
+      ],
+      "examples": [
+        {
+          "nl": "Mijn Nederlands wordt beter.",
+          "pt": "O meu neerlandês está a melhorar."
+        },
+        {
+          "nl": "Dit is de beste koffie van de stad.",
+          "pt": "Este é o melhor café da cidade."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s3u14c-2",
+          "title": "Irregulares",
+          "body": "**goed → beter → best** · **veel → meer → meest** · **weinig → minder → minst** · **graag → liever → liefst**. Superlativo antes do nome leva artigo e -e: *de **beste** koffie*; depois de *zijn*: *het **best***.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u14-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Irregulares.",
+          "vocabRefs": [
+            "v-goed",
+            "v-beter-dan",
+            "v-best",
+            "v-erger"
+          ],
+          "pairs": [
+            {
+              "nl": "goed",
+              "pt": "bom"
+            },
+            {
+              "nl": "beter",
+              "pt": "melhor"
+            },
+            {
+              "nl": "best",
+              "pt": "o melhor"
+            },
+            {
+              "nl": "erger",
+              "pt": "pior"
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Superlativo.",
+          "vocabRefs": [
+            "v-best"
+          ],
+          "prompt": "«O melhor restaurante» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "het beste restaurant",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "het best restaurant",
+              "correct": false,
+              "feedback": "Antes do nome: -e."
+            },
+            {
+              "id": "c",
+              "text": "het goedste restaurant",
+              "correct": false,
+              "feedback": "Irregular: beste."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "beter.",
+          "vocabRefs": [
+            "v-beter-dan"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O meu neerlandês está melhor.",
+          "answers": [
+            "Mijn Nederlands is beter(.)",
+            "Mijn Nederlands wordt beter(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "beste.",
+          "vocabRefs": [
+            "v-best"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Este é o melhor café.",
+          "answers": [
+            "Dit is de beste koffie(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pior.",
+          "vocabRefs": [
+            "v-erger"
+          ],
+          "sentence": "Vandaag is het weer nog ___ dan gisteren. (pior)",
+          "translation": "Hoje o tempo está ainda pior do que ontem.",
+          "answers": [
+            "erger"
+          ],
+          "choices": [
+            "erger",
+            "slechter",
+            "beter"
+          ]
+        },
+        {
+          "id": "s3-u14-l012-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "veel → meest.",
+          "vocabRefs": [
+            "v-meest"
+          ],
+          "sentence": "Wie werkt het ___? (mais)",
+          "translation": "Quem trabalha mais?",
+          "answers": [
+            "meest"
+          ],
+          "choices": [
+            "meest",
+            "meer",
+            "veel"
+          ]
+        },
+        {
+          "id": "s3-u14-l012-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-best"
+          ],
+          "audioText": "Dat was de beste dag van mijn vakantie.",
+          "answers": [
+            "Dat was de beste dag van mijn vakantie(.)"
+          ],
+          "translation": "Esse foi o melhor dia das minhas férias."
+        },
+        {
+          "id": "s3-u14-l012-e08",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Irregular: beter.",
+          "vocabRefs": [
+            "v-beter-dan"
+          ],
+          "tokens": [
+            "Mijn",
+            "uitspraak",
+            "is",
+            "goeder",
+            "dan",
+            "vorig",
+            "jaar."
+          ],
+          "errorIndex": 3,
+          "correction": "beter"
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u14-l013",
+      "unitId": "s3-u14",
+      "order": 13,
+      "title": "Tão… como",
+      "description": "Even groot als, net zo duur als.",
+      "cefr": "A2",
+      "objectives": [
+        "Comparar com igualdade"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-net-zo",
+        "v-even-adj",
+        "v-groter",
+        "v-kleiner"
+      ],
+      "examples": [
+        {
+          "nl": "Mijn broer is even groot als ik.",
+          "pt": "O meu irmão é tão alto como eu."
+        },
+        {
+          "nl": "De trein is net zo duur als de bus.",
+          "pt": "O comboio é tão caro como o autocarro."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u14-l013-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "als vs dan.",
+          "vocabRefs": [
+            "v-net-zo"
+          ],
+          "prompt": "«Tão caro como» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "net zo duur als",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "net zo duur dan",
+              "correct": false,
+              "feedback": "Igualdade: als."
+            },
+            {
+              "id": "c",
+              "text": "duurder als",
+              "correct": false,
+              "feedback": "Isso é comparativo."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "dan / als.",
+          "vocabRefs": [
+            "v-even-adj",
+            "v-dan-comp"
+          ],
+          "prompt": "Qual está correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij is groter dan ik, maar even oud als ik.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij is groter als ik.",
+              "correct": false,
+              "feedback": "Comparativo: dan."
+            },
+            {
+              "id": "c",
+              "text": "Hij is even oud dan ik.",
+              "correct": false,
+              "feedback": "Igualdade: als."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "even … als.",
+          "vocabRefs": [
+            "v-even-adj"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O meu irmão é tão alto como eu.",
+          "answers": [
+            "Mijn broer is even lang als ik(.)",
+            "Mijn broer is net zo lang als ik(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "net zo … als.",
+          "vocabRefs": [
+            "v-net-zo"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A casa é tão grande como a nossa.",
+          "answers": [
+            "Het huis is net zo groot als het onze(.)",
+            "Het huis is even groot als ons huis(.)",
+            "Het huis is net zo groot als ons huis(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Igualdade.",
+          "vocabRefs": [
+            "v-even-adj"
+          ],
+          "sentence": "Amsterdam is niet ___ groot als Lissabon? Eigenlijk wel ongeveer.",
+          "translation": "Amesterdão não é tão grande como Lisboa? Na verdade é mais ou menos.",
+          "answers": [
+            "even"
+          ],
+          "choices": [
+            "even",
+            "meer",
+            "dan"
+          ]
+        },
+        {
+          "id": "s3-u14-l013-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-net-zo"
+          ],
+          "audioText": "Het is hier net zo warm als in Portugal!",
+          "answers": [
+            "Het is hier net zo warm als in Portugal(!)"
+          ],
+          "translation": "Aqui está tanto calor como em Portugal!"
+        },
+        {
+          "id": "s3-u14-l013-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Igualdade: als.",
+          "vocabRefs": [
+            "v-net-zo"
+          ],
+          "tokens": [
+            "Ik",
+            "ben",
+            "net",
+            "zo",
+            "moe",
+            "dan",
+            "jij."
+          ],
+          "errorIndex": 5,
+          "correction": "als"
+        },
+        {
+          "id": "s3-u14-l013-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-even-adj"
+          ],
+          "translation": "Tão alto como eu.",
+          "tokens": [
+            "Even",
+            "lang",
+            "als",
+            "ik."
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u14-l014",
+      "unitId": "s3-u14",
+      "order": 14,
+      "title": "Comparar cidades",
+      "description": "Rotterdam of Amsterdam?",
+      "cefr": "A2",
+      "objectives": [
+        "Comparar duas cidades"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-groter",
+        "v-grootst",
+        "v-ouder",
+        "v-meest"
+      ],
+      "examples": [
+        {
+          "nl": "Rotterdam is moderner dan Amsterdam.",
+          "pt": "Roterdão é mais moderna do que Amesterdão."
+        },
+        {
+          "nl": "Amsterdam is de grootste stad van Nederland.",
+          "pt": "Amesterdão é a maior cidade dos Países Baixos."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u14-l014-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Facto.",
+          "vocabRefs": [
+            "v-grootst"
+          ],
+          "prompt": "A maior cidade dos Países Baixos é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Amsterdam",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Utrecht",
+              "correct": false,
+              "feedback": "É menor."
+            },
+            {
+              "id": "c",
+              "text": "Groningen",
+              "correct": false,
+              "feedback": "É menor."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l014-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "moderner dan.",
+          "vocabRefs": [
+            "v-dan-comp"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Roterdão é mais moderna do que Amesterdão.",
+          "answers": [
+            "Rotterdam is moderner dan Amsterdam(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "ouder dan.",
+          "vocabRefs": [
+            "v-ouder"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Lisboa é mais antiga do que o Porto?",
+          "answers": [
+            "Is Lissabon ouder dan Porto?"
+          ]
+        },
+        {
+          "id": "s3-u14-l014-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Comparativo.",
+          "vocabRefs": [
+            "v-groter"
+          ],
+          "sentence": "Den Haag is ___ dan Delft. (maior)",
+          "translation": "Haia é maior do que Delft.",
+          "answers": [
+            "groter"
+          ],
+          "choices": [
+            "groter",
+            "grootst",
+            "groot"
+          ]
+        },
+        {
+          "id": "s3-u14-l014-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Superlativo depois de «het».",
+          "vocabRefs": [
+            "v-meest"
+          ],
+          "sentence": "Welke stad vind jij het ___? (mais bonita)",
+          "translation": "Que cidade achas a mais bonita?",
+          "answers": [
+            "mooist"
+          ],
+          "choices": [
+            "mooist",
+            "mooiste",
+            "mooier"
+          ]
+        },
+        {
+          "id": "s3-u14-l014-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-kleiner"
+          ],
+          "audioText": "Utrecht is kleiner, maar gezelliger.",
+          "answers": [
+            "Utrecht is kleiner(,) maar gezelliger(.)"
+          ],
+          "translation": "Utrecht é mais pequena, mas mais acolhedora."
+        },
+        {
+          "id": "s3-u14-l014-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Comparar.",
+          "vocabRefs": [
+            "v-groter"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriend",
+              "nl": "Wat vind je mooier: Lissabon of Amsterdam?",
+              "pt": "O que achas mais bonito: Lisboa ou Amesterdão?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Lissabon is zonniger, maar Amsterdam heeft mooiere grachten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben mooier.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Grootst.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l014-e08",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "meest + adjetivo.",
+          "vocabRefs": [
+            "v-meest"
+          ],
+          "prompt": "Amesterdão é a cidade mais visitada.",
+          "tokens": [
+            "Amsterdam",
+            "is",
+            "de",
+            "meest",
+            "bezochte",
+            "stad."
+          ],
+          "answers": [
+            "Amsterdam is de meest bezochte stad."
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u14-l015",
+      "unitId": "s3-u14",
+      "order": 15,
+      "title": "Prática: Portugal e os Países Baixos",
+      "description": "Twee landen vergelijken.",
+      "cefr": "A2",
+      "objectives": [
+        "Escrever uma comparação entre dois países"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-dan-comp",
+        "v-net-zo",
+        "v-hetzelfde",
+        "v-anders-dan",
+        "v-best",
+        "v-meer"
+      ],
+      "examples": [
+        {
+          "nl": "(Exemplo) Portugal is zonniger dan Nederland, maar Nederland is vlakker. Het eten is anders, maar allebei lekker.",
+          "pt": "Portugal tem mais sol, mas os Países Baixos são mais planos…"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u14-l015-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Geografia.",
+          "vocabRefs": [
+            "v-dan-comp"
+          ],
+          "prompt": "Os Países Baixos são, comparados com Portugal…",
+          "options": [
+            {
+              "id": "a",
+              "text": "mais planos",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "mais montanhosos",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "mais quentes",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l015-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Comparativo.",
+          "vocabRefs": [
+            "v-dan-comp"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Portugal tem mais sol do que os Países Baixos.",
+          "answers": [
+            "Portugal is zonniger dan Nederland(.)",
+            "In Portugal schijnt de zon meer dan in Nederland(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "anders / net zo.",
+          "vocabRefs": [
+            "v-anders-dan",
+            "v-net-zo"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A comida é diferente, mas igualmente boa.",
+          "answers": [
+            "Het eten is anders(,) maar net zo lekker(.)",
+            "Het eten is anders(,) maar even lekker(.)"
+          ]
+        },
+        {
+          "id": "s3-u14-l015-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-meer"
+          ],
+          "audioText": "In Nederland fietsen meer mensen dan in Portugal.",
+          "answers": [
+            "In Nederland fietsen meer mensen dan in Portugal(.)"
+          ],
+          "translation": "Nos Países Baixos mais pessoas andam de bicicleta do que em Portugal."
+        },
+        {
+          "id": "s3-u14-l015-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Comparativo: dan.",
+          "vocabRefs": [
+            "v-dan-comp"
+          ],
+          "tokens": [
+            "Het",
+            "leven",
+            "hier",
+            "is",
+            "duurder",
+            "als",
+            "in",
+            "Portugal."
+          ],
+          "errorIndex": 5,
+          "correction": "dan"
+        },
+        {
+          "id": "s3-u14-l015-e06",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Superlativo.",
+          "vocabRefs": [
+            "v-best"
+          ],
+          "prompt": "O melhor é a bicicleta.",
+          "tokens": [
+            "Het",
+            "beste",
+            "is",
+            "de",
+            "fiets."
+          ],
+          "answers": [
+            "Het beste is de fiets."
+          ]
+        },
+        {
+          "id": "s3-u14-l015-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Opinião.",
+          "vocabRefs": [
+            "v-meer"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Wat vind je het grootste verschil?",
+              "pt": "Qual achas a maior diferença?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Het weer! Hier regent het veel meer.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hetzelfde.",
+              "correct": false,
+              "feedback": "Não responde."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben verschil.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u14-l015-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Comparar.",
+          "vocabRefs": [
+            "v-dan-comp",
+            "v-net-zo"
+          ],
+          "prompt": "Compare Portugal e os Países Baixos em 4–5 frases (tempo, comida, transporte, pessoas).",
+          "referenceAnswers": [
+            "Portugal is warmer en zonniger dan Nederland. In Nederland fietsen veel meer mensen. Het eten is anders, maar net zo lekker. De mensen zijn in allebei de landen vriendelijk. Het beste vind ik de Portugese zee."
+          ],
+          "checklist": [
+            "Comparativos",
+            "Igualdade",
+            "Superlativo"
+          ],
+          "minWords": 30
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }

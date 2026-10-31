@@ -71,10 +71,10 @@ L(3, "Pedir informações por e-mail", "Ik heb een vraag over… Zou u mij kunne
 
 L(4, "Responder e pedir desculpa", "Bedankt voor je bericht. Excuses voor de late reactie.",
   ["Responder a e-mails e pedir desculpa por atrasos ou erros"],
-  vocab=[V("v-excuses","excuses","desculpas","noun","de",note="Excuses voor… = Peço desculpa por…"), V("v-reactie","reactie","resposta|reação","noun","de"),
+  vocab=[V("v-reactie","reactie","resposta|reação","noun","de"),
          V("v-naar-aanleiding-van","naar aanleiding van","na sequência de","expression"), V("v-per-ongeluk","per ongeluk","sem querer","expression")],
   ex=[("Bedankt voor je snelle reactie.","Obrigado pela resposta rápida."),("Excuses voor de late reactie.","Peço desculpa pela demora na resposta."),("Naar aanleiding van ons gesprek stuur ik u de offerte.","Na sequência da nossa conversa envio-lhe o orçamento."),("Ik heb de bijlage per ongeluk vergeten.","Esqueci-me do anexo sem querer.")],
-  review=["v-sorry","v-bijlage","v-vergeten"],
+  review=["v-excuses","v-sorry","v-bijlage","v-vergeten"],
   cefr=C, exs=[
     MA([("excuses","desculpas"),("reactie","resposta"),("naar aanleiding van","na sequência de"),("per ongeluk","sem querer")], "Responder.", ["v-excuses","v-reactie","v-naar-aanleiding-van","v-per-ongeluk"]),
     TR("pt-nl","Peço desculpa pela demora na resposta.", ["Excuses voor de late reactie","Sorry voor de late reactie","Mijn excuses voor de late reactie"], "excuses voor.", ["v-excuses"]),

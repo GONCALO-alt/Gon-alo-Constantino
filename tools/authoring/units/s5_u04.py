@@ -94,9 +94,9 @@ L(4, "Natal e Ano Novo", "Kerst, oud en nieuw, oliebollen, vuurwerk.",
 
 L(5, "Comparar tradições", "In Portugal… terwijl in Nederland…",
   ["Comparar tradições portuguesas e neerlandesas"],
-  vocab=[V("v-traditie","traditie","tradição","noun","de"), V("v-vieren","vieren","celebrar|festejar","verb",note="gevierd"), V("v-hetzelfde","hetzelfde","o mesmo","pronoun")],
+  vocab=[V("v-traditie","traditie","tradição","noun","de"), V("v-vieren","vieren","celebrar|festejar","verb",note="gevierd")],
   ex=[("In Portugal vieren we Santo António in juni.","Em Portugal celebramos o Santo António em junho."),("Dat is een oude traditie.","É uma tradição antiga."),("Bij ons is dat hetzelfde.","Connosco é igual."),("Het is een gewoonte om bloemen mee te nemen.","É costume levar flores.")],
-  review=["v-gewoonte","v-terwijl","v-in-tegenstelling-tot","v-net-zo"],
+  review=["v-hetzelfde","v-gewoonte","v-terwijl","v-in-tegenstelling-tot","v-net-zo"],
   cefr=C, exs=[
     MA([("traditie","tradição"),("gewoonte","hábito"),("vieren","celebrar"),("hetzelfde","o mesmo")], "Comparar.", ["v-traditie","v-gewoonte","v-vieren","v-hetzelfde"]),
     TR("pt-nl","Em Portugal celebramos o Santo António em junho.", ["In Portugal vieren we Santo António in juni","In Portugal vieren wij Santo António in juni"], "Inversão.", ["v-vieren"]),
