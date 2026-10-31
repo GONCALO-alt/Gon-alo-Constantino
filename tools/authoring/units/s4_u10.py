@@ -48,9 +48,9 @@ L(2, "Propor soluções", "Misschien kun je… Je zou … kunnen. Wat als we…?
 L(3, "Reclamar num serviço", "Ik wil graag een oplossing. Kunt u het repareren of vervangen?",
   ["Pedir uma solução concreta (reparar, trocar, devolver o dinheiro)"],
   vocab=[V("v-vervangen","vervangen","substituir","verb"), V("v-garantie","garantie","garantia","noun","de"),
-         V("v-geld-terug","geld terug","reembolso","expression",note="Kan ik mijn geld terugkrijgen?"), V("v-bonnetje","bonnetje","talão|recibo","noun","het")],
+         V("v-bonnetje","bonnetje","talão|recibo","noun","het")],
   ex=[("Het apparaat valt nog onder de garantie.","O aparelho ainda está dentro da garantia."),("Kunt u het vervangen?","Pode substituí-lo?"),("Ik wil graag mijn geld terug.","Queria o reembolso."),("Heeft u het bonnetje nog?","Ainda tem o talão?")],
-  review=["v-klacht-indienen","v-repareren","v-oplossing","v-terugbetalen"],
+  review=["v-geld-terug","v-klacht-indienen","v-repareren","v-oplossing","v-terugbetalen"],
   cefr=C, exs=[
     MA([("vervangen","substituir"),("garantie","garantia"),("geld terug","reembolso"),("bonnetje","talão")], "Na loja.", ["v-vervangen","v-garantie","v-geld-terug","v-bonnetje"]),
     TR("pt-nl","Pode substituí-lo?", ["Kunt u het vervangen","Kan u het vervangen"], "vervangen.", ["v-vervangen"]),
