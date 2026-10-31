@@ -95,6 +95,8 @@ try {
   // Sem internet: depois de guardar as lições, a app e uma lição abrem com a rede desligada.
   {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'pt-PT' });
+    // Como o Netlify: /index.html redireciona para /.
+    await ctx.route('**/index.html', (r) => r.fulfill({ status: 301, headers: { Location: base } }));
     const page = await ctx.newPage();
     await page.goto(base + '#/definicoes');
     await page.waitForSelector('text=Todas as lições estão guardadas', { timeout: 60000 });

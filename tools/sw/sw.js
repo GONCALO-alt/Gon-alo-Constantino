@@ -48,6 +48,8 @@ async function precache() {
         if (!res) {
           res = await fetch(key, { cache: 'no-cache' });
           if (!res.ok) throw new Error(`${path}: ${res.status}`);
+          // Uma resposta que veio de um redirecionamento não pode servir uma página (Safari/Chrome recusam).
+          if (res.redirected) res = new Response(await res.blob(), { status: res.status, statusText: res.statusText, headers: res.headers });
         }
         await cache.put(key, res);
       }
@@ -92,7 +94,7 @@ self.addEventListener('fetch', (event) => {
     const cache = await caches.open(CACHE);
     if (req.mode === 'navigate') {
       // A página abre sempre, com ou sem internet.
-      return (await cache.match(url('index.html'))) ?? fetch(req);
+      return (await cache.match(url('./'), { ignoreSearch: true, ignoreVary: true })) ?? fetch(req);
     }
     const hit = await cache.match(req, { ignoreSearch: true, ignoreVary: true });
     if (hit) return hit;

@@ -20,7 +20,9 @@ const files = walk(DIST)
   .map((f) => relative(DIST, f).split('\\').join('/'))
   .filter((f) => !SKIP.has(f))
   .sort();
-const entries = files.map((f) => [f, createHash('sha256').update(readFileSync(join(DIST, f))).digest('hex').slice(0, 16)] as const);
+// A página principal guarda-se como «./» e não como «index.html»: o Netlify redireciona
+// /index.html para /, e o Safari e o Chrome recusam abrir uma página guardada que veio de um redirecionamento.
+const entries = files.map((f) => [f === 'index.html' ? './' : f, createHash('sha256').update(readFileSync(join(DIST, f))).digest('hex').slice(0, 16)] as const);
 const version = createHash('sha256').update(JSON.stringify(entries)).digest('hex').slice(0, 12);
 const body = readFileSync('tools/sw/sw.js', 'utf8');
 const sw = `const VERSION = ${JSON.stringify(version)};\nconst PRECACHE = ${JSON.stringify(entries)};\n${body}`;
