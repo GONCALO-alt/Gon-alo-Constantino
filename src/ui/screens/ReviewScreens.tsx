@@ -6,6 +6,7 @@ import { getAllReviews, getRecentAttempts, recordReviewSession, type CompletionO
 import { encouragement, lastNDays, localDate, XP_RULES } from '../../engine/progression.ts';
 import { buildReviewExercise, seededRandom, shuffle, type ReviewVocab } from '../../engine/session.ts';
 import { isDue, isHard, isMastered, pickDue } from '../../engine/srs.ts';
+import { celebrate } from '../../services/sounds.ts';
 import { useAppData, type AppData } from '../AppState.tsx';
 import { Card, EmptyState, Icon } from '../components/common.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
@@ -186,7 +187,7 @@ export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'gramma
 
   return (
     <ExerciseRunner title="Revisão" exercises={exercises.list}
-      speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} lenientAccents={app.settings.lenientAccents}
+      speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
       onExit={() => navigate(href.review())}
       onFinish={async (answers: RunnerAnswer[]) => {
         setSaving(true);
@@ -200,6 +201,7 @@ export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'gramma
           xp, startedAt, Date.now(), app.countUnits,
         );
         setDone({ correct, total: answers.length, xp, outcome });
+        celebrate(outcome.newAchievements.length > 0);
         setSaving(false);
         await app.refresh();
       }} />

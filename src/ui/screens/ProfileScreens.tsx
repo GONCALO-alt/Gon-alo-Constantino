@@ -7,6 +7,7 @@ import { contentRepo } from '../../data/contentRepo.ts';
 import { currentStreak, lastNDays, localDate, longestStreak, orderedUnits } from '../../engine/progression.ts';
 import { isMastered } from '../../engine/srs.ts';
 import { hasDutchVoice, loadVoices, speak } from '../../services/speech.ts';
+import { configureSounds, playSound } from '../../services/sounds.ts';
 import { APP_CONFIG } from '../../config/app.ts';
 import { useAppData } from '../AppState.tsx';
 import { Card, formatMinutes, Icon } from '../components/common.tsx';
@@ -239,6 +240,8 @@ export function SettingsScreen() {
       <Card>
         <h2>Áudio</h2>
         <Toggle label="Pronúncia e exercícios de áudio" checked={s.audioEnabled} onChange={(v) => app.updateSettings({ audioEnabled: v })} />
+        <Toggle label="Ler a resposta certa em voz alta" hint="Depois de cada exercício, ouve a frase certa em neerlandês." checked={s.speakAnswers} disabled={!s.audioEnabled} onChange={(v) => app.updateSettings({ speakAnswers: v })} />
+        <Toggle label="Efeitos sonoros" hint="Sons curtos para resposta certa, quase certa, errada e lição concluída." checked={s.soundEffects} onChange={(v) => { app.updateSettings({ soundEffects: v }); if (v) { configureSounds({ enabled: true }); playSound('correct'); } }} />
         <label className="field">
           <span>Velocidade da voz: {s.speechRate.toFixed(2)}×</span>
           <input type="range" min={0.5} max={1.2} step={0.05} value={s.speechRate} onChange={(e) => app.updateSettings({ speechRate: Number(e.target.value) })} />

@@ -8,7 +8,10 @@ import type { Exercise } from '../../domain/schemas.ts';
 import { expectedAnswer, gradeExercise, needsSelfAssessment, type ExerciseResponse, type ExerciseResult } from '../../engine/grading.ts';
 import { expandAnswerPattern } from '../../engine/answers.ts';
 import { advance, answer, currentExercise, isFinished, progressFraction, startSession, type SessionState } from '../../engine/session.ts';
-import { Icon, ProgressBar, RichText } from '../components/common.tsx';
+import { dutchAnswerText } from '../../engine/spoken.ts';
+import { playSound } from '../../services/sounds.ts';
+import { speak, stopSpeaking } from '../../services/speech.ts';
+import { Icon, ProgressBar, RichText, SpeakButton } from '../components/common.tsx';
 import { ExerciseView } from './ExerciseView.tsx';
 
 export interface RunnerAnswer {
@@ -20,6 +23,8 @@ export interface RunnerProps {
   exercises: Exercise[];
   speechRate: number;
   audioEnabled: boolean;
+  /** Ler em voz alta a resposta certa (neerlandês) depois de responder. */
+  speakAnswers?: boolean;
   lenientAccents: boolean;
   onFinish: (firstAttempts: RunnerAnswer[], skipped: string[]) => void;
   onExit: () => void;
@@ -34,7 +39,7 @@ const VERDICT_TEXT = {
   incorrect: ['Ainda não.', 'Não é bem assim.', 'Resposta incorreta.'],
 } as const;
 
-export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAccents, onFinish, onExit, title }: RunnerProps) {
+export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswers = false, lenientAccents, onFinish, onExit, title }: RunnerProps) {
   const [session, setSession] = useState<SessionState>(() => startSession(exercises));
   const [response, setResponse] = useState<ExerciseResponse | null>(null);
   const [result, setResult] = useState<ExerciseResult | null>(null);
@@ -51,7 +56,8 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
   /** Espera curta antes de corrigir texto escrito, para não aceitar a meio de uma palavra. */
   const typingTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const autoTyped = useRef(false);
-  useEffect(() => () => clearTimeout(typingTimer.current), []);
+  const speakTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => { clearTimeout(typingTimer.current); clearTimeout(speakTimer.current); }, []);
 
   useEffect(() => {
     if (!result) return;
@@ -72,6 +78,11 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
 
   const finalize = (r: ExerciseResult) => {
     setResult(r);
+    playSound(revealed && r.verdict !== 'incorrect' ? 'almost' : r.verdict);
+    const nl = audioEnabled && speakAnswers ? dutchAnswerText(ex) : null;
+    // Depois do efeito sonoro, a voz lê a frase certa em neerlandês.
+    clearTimeout(speakTimer.current);
+    if (nl) speakTimer.current = setTimeout(() => void speak(nl, speechRate), 450);
     if (!firstAttempts.current.has(ex.id)) firstAttempts.current.set(ex.id, { exercise: ex, result: r });
     // Depois de ver a resposta, o exercício conta como não sabido e volta a aparecer mais tarde.
     setSession((s) => answer(s, revealed ? 'incorrect' : r.verdict));
@@ -81,6 +92,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
     if (result || revealed) return;
     clearTimeout(typingTimer.current);
     setRevealed(true);
+    playSound('reveal');
     if (!firstAttempts.current.has(ex.id)) {
       firstAttempts.current.set(ex.id, {
         exercise: ex,
@@ -125,6 +137,8 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
 
   const next = () => {
     clearTimeout(typingTimer.current);
+    clearTimeout(speakTimer.current);
+    stopSpeaking();
     autoTyped.current = false;
     setResult(null);
     setResponse(null);
@@ -138,6 +152,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
     next();
   };
 
+  const spokenAnswer = result && audioEnabled ? dutchAnswerText(ex) : null;
   const verdictText = result ? VERDICT_TEXT[result.verdict][session.position % VERDICT_TEXT[result.verdict].length] : '';
   const isRetry = session.position >= exercises.length;
 
@@ -196,6 +211,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, lenientAcc
             <div className="feedback" role="status" aria-live="assertive">
               <p className="verdict">
                 <Icon name={result.verdict === 'incorrect' ? 'close' : 'check'} size={26} /> {verdictText}
+                {spokenAnswer && <SpeakButton text={spokenAnswer} rate={speechRate} label="Ouvir a resposta em neerlandês" />}
               </p>
               {result.verdict !== 'correct' && (
                 <p className="expected">

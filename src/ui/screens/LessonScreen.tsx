@@ -3,6 +3,7 @@ import type { PublishedLesson } from '../../domain/schemas.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
 import { recordLessonCompletion, type CompletionOutcome } from '../../data/progressRepo.ts';
 import { computeLessonStates, encouragement, lessonXp, nextLesson, orderedUnits } from '../../engine/progression.ts';
+import { celebrate } from '../../services/sounds.ts';
 import { useAppData } from '../AppState.tsx';
 import { Icon, RichText, SpeakButton } from '../components/common.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
@@ -57,7 +58,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   if (phase === 'running') {
     return (
       <ExerciseRunner key={runKey} title={lesson.title} exercises={lesson.exercises}
-        speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} lenientAccents={app.settings.lenientAccents}
+        speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
         onExit={() => navigate(href.course(unit.sectionId))}
         onFinish={async (answers: RunnerAnswer[]) => {
           setPhase('saving');
@@ -73,6 +74,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
             }, app.countUnits);
             setOutcome({ correct, total: answers.length, xp, seconds: Math.round((endedAt - startedAt) / 1000), result });
             setPhase('done');
+            celebrate(result.newAchievements.length > 0);
             await app.refresh();
           } catch (e) {
             setError(`Não foi possível guardar o progresso: ${(e as Error).message}`);

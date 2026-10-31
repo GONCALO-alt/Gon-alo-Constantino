@@ -8,7 +8,8 @@ import type { AnswerOption, Exercise, ExerciseOf } from '../../domain/schemas.ts
 import type { ExerciseResponse } from '../../engine/grading.ts';
 import { joinTokens } from '../../engine/answers.ts';
 import { seededRandom, shuffle } from '../../engine/session.ts';
-import { canSpeak, hasDutchVoice } from '../../services/speech.ts';
+import { canSpeak, hasDutchVoice, speak } from '../../services/speech.ts';
+import { playSound } from '../../services/sounds.ts';
 import { RichText, SpeakButton } from '../components/common.tsx';
 
 export interface ExerciseProps<E extends Exercise = Exercise> {
@@ -231,6 +232,7 @@ function TokenExercise({ exercise, locked, onResponse, prompt, tokens, speakProm
   const bank = useMemo(() => shuffle(tokens.map((t, i) => ({ t, i })), seededRandom(seedOf(exercise.id))), [exercise.id, tokens]);
   const [chosen, setChosen] = useState<number[]>([]);
   const update = (next: number[]) => {
+    playSound('tap');
     setChosen(next);
     onResponse(next.length ? { kind: 'text', value: joinTokens(next.map((i) => tokens[i]!)) } : null);
   };
@@ -260,7 +262,7 @@ function TokenExercise({ exercise, locked, onResponse, prompt, tokens, speakProm
 // ---------------------------------------------------------------------------
 // Associação
 // ---------------------------------------------------------------------------
-function MatchExercise({ exercise, locked, onResponse }: ExerciseProps<ExerciseOf<'match'>>) {
+function MatchExercise({ exercise, locked, onResponse, speechRate, audioEnabled }: ExerciseProps<ExerciseOf<'match'>>) {
   const rnd = useMemo(() => seededRandom(seedOf(exercise.id)), [exercise.id]);
   const left = useMemo(() => shuffle(exercise.pairs.map((p, i) => ({ text: p.nl, i })), rnd), [exercise.pairs, rnd]);
   const right = useMemo(() => shuffle(exercise.pairs.map((p, i) => ({ text: p.pt, i })), rnd), [exercise.pairs, rnd]);
@@ -271,14 +273,18 @@ function MatchExercise({ exercise, locked, onResponse }: ExerciseProps<ExerciseO
 
   const pick = (side: 'l' | 'r', i: number) => {
     if (locked || done.has(i)) return;
+    // Ao tocar numa palavra neerlandesa, ouve-se a pronúncia.
+    if (side === 'l' && audioEnabled) void speak(exercise.pairs[i]!.nl, speechRate);
     if (!sel || sel.side === side) return setSel({ side, i });
     if (sel.i === i) {
       const next = new Set(done).add(i);
+      if (next.size < exercise.pairs.length) playSound('pairMatch');
       setDone(next);
       setSel(null);
       if (next.size === exercise.pairs.length) onResponse({ kind: 'match', mistakes });
     } else {
       setMistakes((m) => m + 1);
+      playSound('pairMiss');
       setFlash(`${sel.side}${sel.i}-${side}${i}`);
       setTimeout(() => setFlash(null), 500);
       setSel(null);

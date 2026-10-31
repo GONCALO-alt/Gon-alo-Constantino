@@ -8,6 +8,7 @@ import { HomeScreen } from './screens/HomeScreen.tsx';
 import { LessonScreen } from './screens/LessonScreen.tsx';
 import { ProfileScreen, SettingsScreen, StatsScreen } from './screens/ProfileScreens.tsx';
 import { ReviewScreen, ReviewSessionScreen } from './screens/ReviewScreens.tsx';
+import { configureSounds } from '../services/sounds.ts';
 
 const NAV = [
   { key: 'home', label: 'Início', icon: 'home', to: href.home() },
@@ -46,6 +47,9 @@ function Shell() {
   useEffect(() => {
     document.title = APP_CONFIG.name;
   }, []);
+  useEffect(() => {
+    configureSounds({ enabled: data?.settings.soundEffects ?? true });
+  }, [data?.settings.soundEffects]);
   useEffect(() => {
     document.documentElement.dataset.motion = data?.settings.reducedMotion ? 'reduce' : 'auto';
   }, [data?.settings.reducedMotion]);

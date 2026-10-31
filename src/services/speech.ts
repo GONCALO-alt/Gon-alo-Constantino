@@ -66,3 +66,8 @@ export function speak(text: string, rate = 0.9, audioUrl?: string): Promise<void
     s.speak(u);
   });
 }
+
+/** Interrompe a leitura em curso (ex.: ao passar para o exercício seguinte). */
+export function stopSpeaking(): void {
+  synth()?.cancel();
+}
