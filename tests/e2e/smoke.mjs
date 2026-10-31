@@ -64,6 +64,7 @@ try {
     await page.screenshot({ path: join(shots, `${vp.name}-licao-intro.png`), fullPage: true });
     await page.getByRole('button', { name: /Começar/ }).click();
     await page.getByRole('radio', { name: /hoi/ }).click();
+    await page.getByRole('button', { name: 'Verificar' }).click();
     await page.getByRole('status').waitFor();
     check((await page.getByRole('status').textContent()).match(/Certo|Muito bem|Exatamente|Correto/), `${vp.name}: feedback de resposta certa`);
     await noHorizontalScroll(page, `${vp.name} / exercício`);

@@ -83,14 +83,14 @@ async function answerCorrectly(user: ReturnType<typeof userEvent.setup>, ex: Exe
       break;
     case 'fillBlank':
       if (ex.choices) await user.click(screen.getByRole('radio', { name: new RegExp(`^\\d?${escape(first(ex.answers))}$`) }));
-      else await user.type(screen.getByRole('textbox'), first(ex.answers));
+      else await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
       break;
     case 'translate':
       if (ex.wordBank) { await clickTokens(user, first(ex.answers)); break; }
-      await user.type(screen.getByRole('textbox'), first(ex.answers));
+      await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
       break;
     case 'conjugation':
-      await user.type(screen.getByRole('textbox'), first(ex.answers));
+      await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
       break;
     case 'buildSentence':
       await clickTokens(user, first(ex.answers));
@@ -126,8 +126,11 @@ async function answerCorrectly(user: ReturnType<typeof userEvent.setup>, ex: Exe
       await user.keyboard('{Enter}');
       break;
   }
-  // Não há botão «Verificar»: uma resposta certa é corrigida sozinha.
-  expect(screen.queryByRole('button', { name: 'Verificar' })).toBeNull();
+  // Nada é corrigido antes de carregar em «Verificar» (a escrita livre verifica-se com Enter).
+  if (ex.type !== 'shortWriting') {
+    expect(screen.queryByRole('status')).toBeNull();
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
+  }
   return 'answered';
 }
 
@@ -207,6 +210,7 @@ describe('lição completa', () => {
     render(<App />);
     await user.click(await screen.findByRole('button', { name: /Começar/ }));
     await user.click(screen.getByRole('radio', { name: /doei/ }));
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
     const fb = await screen.findByRole('status');
     expect(fb.textContent).toMatch(/hoi/);
     expect(fb.textContent).toMatch(/despedida/); // feedback específico da opção
@@ -231,6 +235,7 @@ describe('«Não me lembro»', () => {
     expect(screen.queryByRole('button', { name: 'Não me lembro' })).toBeNull();
     // O aluno responde com a resposta que acabou de ver.
     await user.click(screen.getByRole('radio', { name: new RegExp(correct.text) }));
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
     expect((await screen.findByRole('status')).textContent).toMatch(/volta a aparecer no fim/);
     await user.click(screen.getByRole('button', { name: 'Continuar' }));
     // O botão volta a estar disponível no exercício seguinte.
@@ -238,8 +243,22 @@ describe('«Não me lembro»', () => {
   });
 });
 
-describe('sem botão «Verificar»', () => {
-  it('texto escrito errado confirma-se com Enter; certo avança sozinho', async () => {
+describe('botão «Verificar»', () => {
+  it('fica desativado sem resposta e só corrige quando se carrega nele', async () => {
+    const user = userEvent.setup();
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    const btn = screen.getByRole('button', { name: 'Verificar' });
+    expect((btn as HTMLButtonElement).disabled).toBe(true);
+    await user.click(screen.getByRole('radio', { name: /hoi/ }));
+    expect(screen.queryByRole('status')).toBeNull(); // escolher não corrige
+    expect((btn as HTMLButtonElement).disabled).toBe(false);
+    await user.click(btn);
+    expect((await screen.findByRole('status')).textContent).toMatch(/Certo|Muito bem|Exatamente|Correto/);
+  });
+
+  it('texto escrito verifica-se com Enter, mesmo quando está certo', async () => {
     const user = userEvent.setup();
     const lesson = lessonOf(realFiles(), 's1-u01-l001');
     const idx = lesson.exercises.findIndex((e) => e.type === 'translate' && !e.wordBank);
@@ -254,10 +273,11 @@ describe('sem botão «Verificar»', () => {
       await user.click(await screen.findByRole('button', { name: 'Continuar' }));
     }
     await screen.findByRole('heading', { name: ex.instruction });
-    await user.type(screen.getByRole('textbox'), 'xyz');
-    expect(screen.queryByRole('status')).toBeNull(); // errado: não corrige sozinho
+    await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
+    await new Promise((r) => setTimeout(r, 700));
+    expect(screen.queryByRole('status')).toBeNull(); // certo, mas não avança sozinho
     await user.keyboard('{Enter}');
-    expect((await screen.findByRole('status')).textContent).toMatch(/Ainda não|Não é bem|incorreta/);
+    expect((await screen.findByRole('status')).textContent).toMatch(/Certo|Muito bem|Exatamente|Correto/);
   }, 30_000);
 });
 

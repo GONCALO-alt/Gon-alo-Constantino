@@ -17,7 +17,7 @@ export interface ExerciseProps<E extends Exercise = Exercise> {
   /** Depois de verificar, a resposta fica bloqueada. */
   locked: boolean;
   onResponse: (r: ExerciseResponse | null) => void;
-  /** Pedido para confirmar a resposta (Enter). */
+  /** Pedido para verificar (Enter). */
   onSubmit: () => void;
   /** Saltar sem penalização (ex.: sem áudio). */
   onSkip: () => void;
@@ -118,9 +118,6 @@ function TextAnswer({ locked, onResponse, onSubmit, lang, label, multiline = fal
       ) : (
         <input {...common} type="text" enterKeyHint="done" onChange={(e) => update(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); onSubmit(); } }} />
-      )}
-      {!locked && !multiline && (
-        <p className="muted small">Se estiver certo, avança sozinho. Para confirmar outra resposta, carregue em Enter.</p>
       )}
       {!locked && (
         <div className="char-row" aria-label="Caracteres especiais">
@@ -405,7 +402,7 @@ function WritingExercise(props: ExerciseProps<ExerciseOf<'shortWriting'>>) {
         <ul>{ex.checklist.map((c, i) => <li key={i}><RichText text={c} /></li>)}</ul>
       </details>
       <TextAnswer {...props} lang="nl" multiline label="A sua resposta em neerlandês" placeholder="Escreva em neerlandês…" />
-      <p className="muted small">Mínimo de {ex.minWords} palavras. Carregue em Enter para confirmar (Shift+Enter muda de linha).</p>
+      <p className="muted small">Mínimo de {ex.minWords} palavras. Carregue em «Verificar» ou Enter (Shift+Enter muda de linha).</p>
     </div>
   );
 }

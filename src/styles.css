@@ -225,6 +225,9 @@ a.path-link:hover { background: var(--bg); }
 .selfcheck { margin-bottom: 12px; }
 .reveal { margin-bottom: 12px; padding: 10px 12px; border-radius: 12px; background: var(--warn-soft); animation: rise 0.2s ease; }
 .reveal p { margin: 0 0 4px; }
+.check-row { display: flex; gap: 8px; align-items: stretch; }
+.check-row .btn-wide { flex: 1; width: auto; }
+.check-row .btn-secondary { flex: 0 0 auto; white-space: nowrap; }
 .model { font-weight: 700; font-size: 1.05rem; }
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
