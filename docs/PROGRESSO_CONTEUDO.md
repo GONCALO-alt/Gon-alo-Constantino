@@ -24,16 +24,16 @@ Regras: IDs de vocabulário únicos em todo o curso (rever com `reviewVocabulary
 
 | Secção | Unidades | Lições publicadas | Previstas |
 |---|---|---|---|
-| 1 Primeiros passos | 15/15 | 154 | 600 |
-| 2 A vida quotidiana | 15/15 | 135 | 700 |
-| 3 Viver nos Países Baixos | 16/16 | 144 | 700 |
+| 1 Primeiros passos | 15/15 | 244 | 600 |
+| 2 A vida quotidiana | 15/15 | 225 | 700 |
+| 3 Viver nos Países Baixos | 16/16 | 240 | 700 |
 | 4 Comunicação independente | 16/16 | 348 | 700 |
 | 5 Fluência prática | 16/16 | 384 | 700 |
 | 6 Neerlandês avançado | 16/16 | 400 | 600 |
 | 7 Domínio e utilização real | 15/15 | 435 | 500 |
 
-**Total:** 2000 lições publicadas (18 863 exercícios, 4907 palavras).
-- 1549 lições escritas;
+**Total:** 2276 lições publicadas (21 071 exercícios, 5131 palavras).
+- 1825 lições escritas;
 - 451 lições de revisão e prática **geradas automaticamente** a partir do vocabulário e das frases
   das lições escritas (`python3 tools/authoring/review_gen.py`): 4 por unidade (5 na Secção 1) —
   «Revisão: vocabulário», «Revisão: frases», «Prática mista», «Desafio da unidade» (e «Revisão rápida»).
@@ -53,6 +53,13 @@ Controlo de qualidade aplicado a esta ronda:
   passaram a escolha da frase correta (incluindo 88 exercícios antigos com resposta ambígua);
 - textos, nomes, empresas e números dos exemplos são fictícios e estão assinalados como tal.
 
-Próximo passo: revisão por um falante nativo; depois, mais lições nas Secções 1–3.
+**Ronda seguinte (+276 lições escritas nas Secções 1–3, A1–A2):** 6 lições a mais em cada uma
+das 46 unidades (ficheiros `tools/authoring/units/sX_uYY_c.py`). Mais prática onde quem começa mais
+precisa: pronúncia, números, perguntas e negação (S1); rotina, comida, compras, casa e tempo (S2);
+transportes, saúde, câmara municipal, casa, correio, banco, viagens e registo formal (S3). Cada
+unidade da Secção 1 e 2 termina com uma revisão; nenhuma lição nova repete exercícios existentes e
+o vocabulário novo só aparece depois de ensinado.
+
+Próximo passo: revisão por um falante nativo.
 
 Todo o conteúdo foi redigido com IA e **não foi revisto por um falante nativo**.
