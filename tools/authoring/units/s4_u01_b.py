@@ -124,10 +124,9 @@ L(15, "Coisas que nunca fiz", "Ik heb nog nooit … maar ik wil het graag eens d
 
 L(16, "Concertos e festivais", "Op een festival: wat hebben we gezien en gehoord?",
   ["Contar uma ida a um concerto ou festival"],
-  vocab=[V("v-festival","festival","festival","noun","het","festivals"), V("v-uitverkocht","uitverkocht","esgotado","adjective"),
-         V("v-podium","podium","palco","noun","het"), V("v-optreden","optreden","atuação|concerto","noun","het",note="Também verbo: optreden = atuar.")],
+  vocab=[V("v-festival","festival","festival","noun","het","festivals"), V("v-podium","podium","palco","noun","het"), V("v-optreden","optreden","atuação|concerto","noun","het",note="Também verbo: optreden = atuar.")],
   ex=[("Het festival was helemaal uitverkocht.","O festival estava completamente esgotado."),("De band heeft twee uur opgetreden.","A banda atuou duas horas."),("We stonden vlak voor het podium.","Estávamos mesmo em frente ao palco.")],
-  review=["v-concert","v-kaartje"],
+  review=["v-uitverkocht","v-concert","v-kaartje"],
   cefr=C, exs=[
     MA([("festival","festival"),("uitverkocht","esgotado"),("podium","palco"),("optreden","atuação")], "Música ao vivo.", ["v-festival","v-uitverkocht","v-podium","v-optreden"]),
     AR("festival","o festival","het", "Het festival.", ["v-festival"]),
