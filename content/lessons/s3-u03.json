@@ -2631,6 +2631,1410 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s3-u03-l010",
+      "unitId": "s3-u03",
+      "order": 10,
+      "title": "Com o mapa",
+      "description": "Op de kaart.",
+      "cefr": "A2",
+      "objectives": [
+        "Usar um mapa para te orientares"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kaart",
+          "nl": "kaart",
+          "pt": [
+            "mapa"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "kaarten"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-in-de-buurt",
+        "v-hoe-ver",
+        "v-ergens"
+      ],
+      "examples": [
+        {
+          "nl": "Kunt u het op de kaart aanwijzen?",
+          "pt": "Pode indicá-lo no mapa?"
+        },
+        {
+          "nl": "Volgens de kaart is het hier vlakbij.",
+          "pt": "Segundo o mapa é aqui perto."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u03-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Orientar.",
+          "vocabRefs": [
+            "v-kaart",
+            "v-in-de-buurt",
+            "v-hoe-ver",
+            "v-ergens"
+          ],
+          "pairs": [
+            {
+              "nl": "kaart",
+              "pt": "mapa"
+            },
+            {
+              "nl": "in de buurt",
+              "pt": "perto, nas redondezas"
+            },
+            {
+              "nl": "hoe ver?",
+              "pt": "a que distância?"
+            },
+            {
+              "nl": "ergens",
+              "pt": "algures"
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l010-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "op de kaart.",
+          "vocabRefs": [
+            "v-kaart"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Pode mostrar no mapa?",
+          "answers": [
+            "Kunt u het op de kaart aanwijzen?",
+            "Kunt u het op de kaart laten zien?"
+          ]
+        },
+        {
+          "id": "s3-u03-l010-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "in de buurt.",
+          "vocabRefs": [
+            "v-in-de-buurt"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Há um supermercado aqui perto?",
+          "answers": [
+            "Is er een supermarkt in de buurt?",
+            "Is hier een supermarkt in de buurt?"
+          ]
+        },
+        {
+          "id": "s3-u03-l010-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Mapa.",
+          "vocabRefs": [
+            "v-kaart"
+          ],
+          "sentence": "Volgens de ___ moeten we links.",
+          "translation": "Segundo o mapa temos de ir à esquerda.",
+          "answers": [
+            "kaart"
+          ],
+          "choices": [
+            "kaart",
+            "kerk",
+            "brug"
+          ]
+        },
+        {
+          "id": "s3-u03-l010-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Vários sentidos.",
+          "vocabRefs": [
+            "v-kaart"
+          ],
+          "prompt": "«kaart» também pode ser…",
+          "options": [
+            {
+              "id": "a",
+              "text": "cartão ou bilhete, conforme o contexto",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "só mapa",
+              "correct": false,
+              "feedback": "Também cartão (pinpas, OV-chipkaart)."
+            },
+            {
+              "id": "c",
+              "text": "só carta de jogar",
+              "correct": false,
+              "feedback": "Também, mas não só."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l010-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-ergens"
+          ],
+          "audioText": "Het museum ligt ergens in het centrum.",
+          "answers": [
+            "Het museum ligt ergens in het centrum(.)"
+          ],
+          "translation": "O museu fica algures no centro."
+        },
+        {
+          "id": "s3-u03-l010-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder.",
+          "vocabRefs": [
+            "v-hoe-ver"
+          ],
+          "lines": [
+            {
+              "speaker": "Toerist",
+              "nl": "Hoe ver is het naar de markt?",
+              "pt": "A que distância fica o mercado?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Niet ver: vijf minuten lopen. Kijk, hier op de kaart.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Op de kaart.",
+              "correct": false,
+              "feedback": "Incompleto."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben ver.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l010-e08",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "de kaart.",
+          "vocabRefs": [
+            "v-kaart"
+          ],
+          "noun": "kaart",
+          "pt": "mapa",
+          "article": "de"
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u03-l011",
+      "unitId": "s3-u03",
+      "order": 11,
+      "title": "Ao fundo da rua",
+      "description": "Aan het eind van de straat.",
+      "cefr": "A2",
+      "objectives": [
+        "Dar direções com fim, esquina e ponte"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-aan-het-eind",
+          "nl": "aan het eind van",
+          "pt": [
+            "ao fundo de, no fim de"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-einde",
+        "v-hoek",
+        "v-brug",
+        "v-voorbij",
+        "v-langs"
+      ],
+      "examples": [
+        {
+          "nl": "De bakker is aan het eind van de straat.",
+          "pt": "A padaria fica ao fundo da rua."
+        },
+        {
+          "nl": "Ga over de brug en dan de hoek om.",
+          "pt": "Passe a ponte e depois vire a esquina."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u03-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Direções.",
+          "vocabRefs": [
+            "v-aan-het-eind",
+            "v-hoek",
+            "v-brug",
+            "v-voorbij"
+          ],
+          "pairs": [
+            {
+              "nl": "aan het eind van",
+              "pt": "ao fundo de"
+            },
+            {
+              "nl": "hoek",
+              "pt": "esquina"
+            },
+            {
+              "nl": "brug",
+              "pt": "ponte"
+            },
+            {
+              "nl": "voorbij",
+              "pt": "depois de, para lá de"
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l011-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aan het eind van.",
+          "vocabRefs": [
+            "v-aan-het-eind"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A farmácia fica ao fundo da rua.",
+          "answers": [
+            "De apotheek is aan het eind van de straat(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "over de brug.",
+          "vocabRefs": [
+            "v-brug"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Passe a ponte.",
+          "answers": [
+            "Ga over de brug(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l011-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Esquina.",
+          "vocabRefs": [
+            "v-hoek"
+          ],
+          "sentence": "Het café is op de ___ van de straat.",
+          "translation": "O café fica na esquina da rua.",
+          "answers": [
+            "hoek"
+          ],
+          "choices": [
+            "hoek",
+            "brug",
+            "kant"
+          ]
+        },
+        {
+          "id": "s3-u03-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Passar.",
+          "vocabRefs": [
+            "v-voorbij",
+            "v-kerk"
+          ],
+          "sentence": "Loop ___ de kerk en dan links.",
+          "translation": "Passe a igreja e depois à esquerda.",
+          "answers": [
+            "voorbij"
+          ],
+          "choices": [
+            "voorbij",
+            "aan",
+            "op"
+          ]
+        },
+        {
+          "id": "s3-u03-l011-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-langs",
+            "v-brug"
+          ],
+          "audioText": "Fiets langs het kanaal tot de brug.",
+          "answers": [
+            "Fiets langs het kanaal tot de brug(.)"
+          ],
+          "translation": "Vai de bicicleta ao longo do canal até à ponte."
+        },
+        {
+          "id": "s3-u03-l011-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Direções.",
+          "vocabRefs": [
+            "v-plein"
+          ],
+          "lines": [
+            {
+              "speaker": "Voorbijganger",
+              "nl": "Pardon, waar is het plein?",
+              "pt": "Desculpe, onde é a praça?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Aan het eind van deze straat, voorbij de kerk.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben plein.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Hoek.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l011-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-aan-het-eind"
+          ],
+          "translation": "Fica ao fundo da rua.",
+          "tokens": [
+            "Het",
+            "is",
+            "aan",
+            "het",
+            "eind",
+            "van",
+            "de",
+            "straat."
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u03-l012",
+      "unitId": "s3-u03",
+      "order": 12,
+      "title": "Norte e sul",
+      "description": "Noord, zuid, oost, west.",
+      "cefr": "A2",
+      "objectives": [
+        "Usar os pontos cardeais"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-noord",
+          "nl": "noord",
+          "pt": [
+            "norte"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-zuid",
+          "nl": "zuid",
+          "pt": [
+            "sul"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-oost-richting",
+          "nl": "oost",
+          "pt": [
+            "este"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-west-richting",
+          "nl": "west",
+          "pt": [
+            "oeste"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-kant",
+        "v-ver"
+      ],
+      "examples": [
+        {
+          "nl": "Groningen ligt in het noorden.",
+          "pt": "Groningen fica no norte."
+        },
+        {
+          "nl": "Maastricht ligt in het zuiden.",
+          "pt": "Maastricht fica no sul."
+        },
+        {
+          "nl": "Amsterdam-Noord",
+          "pt": "Amesterdão Norte (bairro)"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s3u03c-1",
+          "title": "het noorden, in het zuiden",
+          "body": "Para regiões usa-se o substantivo com **het** e **-en**: **in het noorden**, **in het zuiden**, **in het oosten**, **in het westen**. Em nomes de lugares e sinais aparece a forma curta: *Rotterdam-Zuid*, *uitgang Noord*.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s3-u03-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pontos cardeais.",
+          "vocabRefs": [
+            "v-noord",
+            "v-zuid",
+            "v-oost-richting",
+            "v-west-richting"
+          ],
+          "pairs": [
+            {
+              "nl": "noord",
+              "pt": "norte"
+            },
+            {
+              "nl": "zuid",
+              "pt": "sul"
+            },
+            {
+              "nl": "oost",
+              "pt": "este"
+            },
+            {
+              "nl": "west",
+              "pt": "oeste"
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Geografia.",
+          "vocabRefs": [
+            "v-zuid"
+          ],
+          "prompt": "Maastricht fica…",
+          "options": [
+            {
+              "id": "a",
+              "text": "in het zuiden",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "in het noorden",
+              "correct": false,
+              "feedback": "Groningen é no norte."
+            },
+            {
+              "id": "c",
+              "text": "in het westen",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "in het noorden.",
+          "vocabRefs": [
+            "v-noord"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Groningen fica no norte.",
+          "answers": [
+            "Groningen ligt in het noorden(.)",
+            "Groningen is in het noorden(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "in het zuiden van.",
+          "vocabRefs": [
+            "v-zuid",
+            "v-europa"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Portugal fica no sul da Europa.",
+          "answers": [
+            "Portugal ligt in het zuiden van Europa(.)",
+            "Portugal is in het zuiden van Europa(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Este.",
+          "vocabRefs": [
+            "v-oost-richting"
+          ],
+          "sentence": "De zon komt op in het ___.",
+          "translation": "O sol nasce a este.",
+          "answers": [
+            "oosten"
+          ],
+          "choices": [
+            "oosten",
+            "westen",
+            "noorden"
+          ]
+        },
+        {
+          "id": "s3-u03-l012-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Na estação.",
+          "vocabRefs": [
+            "v-zuid"
+          ],
+          "audioText": "Neem de uitgang Zuid.",
+          "answers": [
+            "Neem de uitgang Zuid(.)",
+            "Neem de uitgang zuid(.)"
+          ],
+          "translation": "Apanhe a saída Sul."
+        },
+        {
+          "id": "s3-u03-l012-e07",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sinais.",
+          "vocabRefs": [
+            "v-west-richting"
+          ],
+          "prompt": "«Uitgang West» numa estação é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "a saída oeste",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "o comboio para oeste",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "a casa de banho",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l012-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder.",
+          "vocabRefs": [
+            "v-oost-richting"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Waar woon je precies?",
+              "pt": "Onde moras exatamente?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "In Utrecht-Oost, vlak bij het park.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "In het noord.",
+              "correct": false,
+              "feedback": "Forma errada: in het noorden."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben west.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u03-l013",
+      "unitId": "s3-u03",
+      "order": 13,
+      "title": "Atravessar a rua",
+      "description": "Oversteken bij het zebrapad.",
+      "cefr": "A2",
+      "objectives": [
+        "Atravessar em segurança como peão"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-zebrapad",
+          "nl": "zebrapad",
+          "pt": [
+            "passadeira"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "zebrapaden"
+        },
+        {
+          "id": "v-voetganger",
+          "nl": "voetganger",
+          "pt": [
+            "peão"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "voetgangers"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-oversteken",
+        "v-stoplicht",
+        "v-voorrang"
+      ],
+      "examples": [
+        {
+          "nl": "Steek over bij het zebrapad.",
+          "pt": "Atravesse na passadeira."
+        },
+        {
+          "nl": "Voetgangers hebben voorrang op het zebrapad.",
+          "pt": "Os peões têm prioridade na passadeira."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u03-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Atravessar.",
+          "vocabRefs": [
+            "v-zebrapad",
+            "v-voetganger",
+            "v-oversteken",
+            "v-stoplicht"
+          ],
+          "pairs": [
+            {
+              "nl": "zebrapad",
+              "pt": "passadeira"
+            },
+            {
+              "nl": "voetganger",
+              "pt": "peão"
+            },
+            {
+              "nl": "oversteken",
+              "pt": "atravessar"
+            },
+            {
+              "nl": "stoplicht",
+              "pt": "semáforo"
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l013-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het pad.",
+          "vocabRefs": [
+            "v-zebrapad"
+          ],
+          "noun": "zebrapad",
+          "pt": "passadeira",
+          "article": "het"
+        },
+        {
+          "id": "s3-u03-l013-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Segurança.",
+          "vocabRefs": [
+            "v-oversteken"
+          ],
+          "prompt": "Antes de atravessar uma ciclovia, deves…",
+          "options": [
+            {
+              "id": "a",
+              "text": "olhar também para as bicicletas (vêm depressa!)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "olhar só para os carros",
+              "correct": false,
+              "feedback": "As bicicletas também."
+            },
+            {
+              "id": "c",
+              "text": "correr sem olhar",
+              "correct": false,
+              "feedback": "Nunca."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "oversteken.",
+          "vocabRefs": [
+            "v-zebrapad"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Atravesse na passadeira.",
+          "answers": [
+            "Steek over bij het zebrapad(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l013-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "voetganger.",
+          "vocabRefs": [
+            "v-voetganger"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Os peões têm prioridade.",
+          "answers": [
+            "Voetgangers hebben voorrang(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l013-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Subordinada: verbo junto no fim.",
+          "vocabRefs": [
+            "v-oversteken"
+          ],
+          "sentence": "Wacht op het groene licht voordat je ___.",
+          "translation": "Espera pelo verde antes de atravessares.",
+          "answers": [
+            "oversteekt"
+          ],
+          "choices": [
+            "oversteekt",
+            "steekt over",
+            "oversteken"
+          ]
+        },
+        {
+          "id": "s3-u03-l013-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-oversteken"
+          ],
+          "audioText": "Kijk eerst links, dan rechts.",
+          "answers": [
+            "Kijk eerst links(,) dan rechts(.)"
+          ],
+          "translation": "Olha primeiro para a esquerda, depois para a direita."
+        },
+        {
+          "id": "s3-u03-l013-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Imperativo separável.",
+          "vocabRefs": [
+            "v-oversteken"
+          ],
+          "translation": "Atravessa aqui.",
+          "tokens": [
+            "Steek",
+            "hier",
+            "over."
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u03-l014",
+      "unitId": "s3-u03",
+      "order": 14,
+      "title": "Pedir ajuda a um estranho",
+      "description": "Mag ik u iets vragen?",
+      "cefr": "A2",
+      "objectives": [
+        "Abordar alguém com educação na rua"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-mag-ik-u-iets-vragen",
+          "nl": "mag ik u iets vragen?",
+          "pt": [
+            "posso fazer-lhe uma pergunta?"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-de-weg-vragen",
+        "v-hoe-kom-ik",
+        "v-pardon"
+      ],
+      "examples": [
+        {
+          "nl": "Pardon, mag ik u iets vragen? Ik ben de weg kwijt.",
+          "pt": "Desculpe, posso perguntar-lhe uma coisa? Estou perdido."
+        },
+        {
+          "nl": "Sorry, ik ben hier ook niet bekend.",
+          "pt": "Desculpe, também não sou daqui."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u03-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Abordar.",
+          "vocabRefs": [
+            "v-mag-ik-u-iets-vragen",
+            "v-de-weg-vragen",
+            "v-hoe-kom-ik",
+            "v-pardon"
+          ],
+          "pairs": [
+            {
+              "nl": "mag ik u iets vragen?",
+              "pt": "posso perguntar?"
+            },
+            {
+              "nl": "de weg vragen",
+              "pt": "pedir direções"
+            },
+            {
+              "nl": "hoe kom ik bij…?",
+              "pt": "como chego a…?"
+            },
+            {
+              "nl": "pardon",
+              "pt": "com licença"
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l014-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Educado.",
+          "vocabRefs": [
+            "v-mag-ik-u-iets-vragen"
+          ],
+          "prompt": "Estás perdido. Começas com:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Pardon, mag ik u iets vragen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hé, jij!",
+              "correct": false,
+              "feedback": "Brusco."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben kwijt.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "hoe kom ik bij.",
+          "vocabRefs": [
+            "v-hoe-kom-ik"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Como chego à estação?",
+          "answers": [
+            "Hoe kom ik bij het station?"
+          ]
+        },
+        {
+          "id": "s3-u03-l014-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "bekend.",
+          "vocabRefs": [
+            "v-de-weg-vragen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Também não sou daqui.",
+          "answers": [
+            "Ik ben hier ook niet bekend(.)",
+            "Ik woon hier ook niet(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l014-e05",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Perguntar.",
+          "vocabRefs": [
+            "v-hoe-kom-ik"
+          ],
+          "lines": [
+            {
+              "speaker": "Voorbijganger",
+              "nl": "Natuurlijk, zeg het maar.",
+              "pt": "Claro, diga."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoe kom ik bij de bibliotheek?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben pardon.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Tot ziens!",
+              "correct": false,
+              "feedback": "Ainda não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l014-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Agradecer.",
+          "vocabRefs": [
+            "v-dank-u-wel"
+          ],
+          "lines": [
+            {
+              "speaker": "Voorbijganger",
+              "nl": "Rechtdoor en dan de tweede links.",
+              "pt": "Em frente e depois a segunda à esquerda."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Dank u wel, heel vriendelijk!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee.",
+              "correct": false,
+              "feedback": "Rude."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben links.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l014-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-mag-ik-u-iets-vragen"
+          ],
+          "audioText": "Pardon, mag ik u iets vragen?",
+          "answers": [
+            "Pardon(,) mag ik u iets vragen(?)"
+          ],
+          "translation": "Desculpe, posso fazer-lhe uma pergunta?"
+        },
+        {
+          "id": "s3-u03-l014-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-mag-ik-u-iets-vragen"
+          ],
+          "translation": "Posso perguntar-lhe uma coisa?",
+          "tokens": [
+            "Mag",
+            "ik",
+            "u",
+            "iets",
+            "vragen?"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s3-u03-l015",
+      "unitId": "s3-u03",
+      "order": 15,
+      "title": "Prática: guiar um turista",
+      "description": "Een toerist helpen.",
+      "cefr": "A2",
+      "objectives": [
+        "Dar direções completas"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-aan-het-eind",
+        "v-brug",
+        "v-plein",
+        "v-kant",
+        "v-zebrapad",
+        "v-noord",
+        "v-kaart"
+      ],
+      "examples": [
+        {
+          "nl": "(Fictício) Ga rechtdoor tot het plein. Daar ga je linksaf, over de brug. Het museum is aan het eind van de straat, aan de rechterkant.",
+          "pt": "Siga em frente até à praça…"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s3-u03-l015-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Compreensão.",
+          "vocabRefs": [
+            "v-aan-het-eind",
+            "v-kant"
+          ],
+          "prompt": "(Fictício) «Het museum is aan het eind van de straat, aan de rechterkant.» Onde fica o museu?",
+          "options": [
+            {
+              "id": "a",
+              "text": "ao fundo da rua, à direita",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "no início da rua",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "do lado esquerdo",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Compreensão.",
+          "vocabRefs": [
+            "v-brug"
+          ],
+          "prompt": "(Fictício) «Daar ga je linksaf, over de brug.» O que fazes na praça?",
+          "options": [
+            {
+              "id": "a",
+              "text": "viras à esquerda e passas a ponte",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "viras à direita",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "páras",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "tot.",
+          "vocabRefs": [
+            "v-plein"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Siga em frente até à praça.",
+          "answers": [
+            "Ga rechtdoor tot het plein(.)",
+            "Loop rechtdoor tot het plein(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aan de linkerkant.",
+          "vocabRefs": [
+            "v-kant"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Fica do lado esquerdo.",
+          "answers": [
+            "Het is aan de linkerkant(.)"
+          ]
+        },
+        {
+          "id": "s3-u03-l015-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-noord"
+          ],
+          "audioText": "Het is ongeveer tien minuten lopen naar het noorden.",
+          "answers": [
+            "Het is ongeveer tien minuten lopen naar het noorden(.)"
+          ],
+          "translation": "São cerca de dez minutos a pé para norte."
+        },
+        {
+          "id": "s3-u03-l015-e06",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Imperativos.",
+          "vocabRefs": [
+            "v-brug",
+            "v-zebrapad"
+          ],
+          "prompt": "Passe a ponte e atravesse na passadeira.",
+          "tokens": [
+            "Ga",
+            "over",
+            "de",
+            "brug",
+            "en",
+            "steek",
+            "over",
+            "bij",
+            "het",
+            "zebrapad."
+          ],
+          "answers": [
+            "Ga over de brug en steek over bij het zebrapad."
+          ]
+        },
+        {
+          "id": "s3-u03-l015-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder.",
+          "vocabRefs": [
+            "v-kaart"
+          ],
+          "lines": [
+            {
+              "speaker": "Toerist",
+              "nl": "Is het ver?",
+              "pt": "É longe?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Nee, vijf minuten. Ik wijs het even aan op de kaart.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ja, in het zuid.",
+              "correct": false,
+              "feedback": "Errado."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben ver.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s3-u03-l015-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Escrever.",
+          "vocabRefs": [
+            "v-aan-het-eind"
+          ],
+          "prompt": "Escreva as direções da sua casa até ao supermercado mais próximo (4 passos).",
+          "referenceAnswers": [
+            "Ga de deur uit en ga linksaf. Loop rechtdoor tot de rotonde. Steek over bij het zebrapad. De supermarkt is aan de rechterkant."
+          ],
+          "checklist": [
+            "4 passos",
+            "Imperativo",
+            "Preposições"
+          ],
+          "minWords": 20
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }

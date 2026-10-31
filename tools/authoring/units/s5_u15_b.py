@@ -9,10 +9,9 @@ def N(id, nl, pt, art, pl=None): return V(id, nl, pt, "noun", art, pl)
 
 L(10, "Na oficina de bicicletas", "Mijn band is lek.",
   ["Explicar uma avaria da bicicleta e pedir a reparação"],
-  vocab=[N("v-fietsenmaker","fietsenmaker","oficina de bicicletas|mecânico de bicicletas","de","fietsenmakers"), N("v-ketting","ketting","corrente","de","kettingen"),
-         X("v-band-plakken","een band plakken","remendar um pneu")],
+  vocab=[N("v-ketting","ketting","corrente","de","kettingen")],
   ex=[("Kunt u mijn band plakken?","Pode remendar-me o pneu?"),("Mijn ketting loopt steeds van het tandwiel.","A corrente está sempre a saltar."),("Mijn remmen piepen.","Os meus travões chiam."),("Wanneer is de fiets klaar?","Quando está a bicicleta pronta?")],
-  review=["v-lekke-band","v-rem"],
+  review=["v-band-plakken","v-fietsenmaker","v-lekke-band","v-rem"],
   cefr=C, exs=[
     MA([("fietsenmaker","oficina de bicicletas"),("ketting","corrente"),("een band plakken","remendar um pneu"),("lekke band","pneu furado")], "Bicicleta.", ["v-fietsenmaker","v-ketting","v-band-plakken","v-lekke-band"]),
     AR("ketting", "corrente", "de", "De ketting.", ["v-ketting"]),

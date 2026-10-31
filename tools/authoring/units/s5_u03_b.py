@@ -6,10 +6,10 @@ C = "B1"
 
 L(10, "Um país de bicicletas", "Fietsen hoort bij het dagelijks leven.",
   ["Falar da cultura da bicicleta nos Países Baixos"],
-  vocab=[V("v-fietsenstalling","fietsenstalling","parque de bicicletas","noun","de"), V("v-bakfiets","bakfiets","bicicleta de carga","noun","de"),
+  vocab=[V("v-bakfiets","bakfiets","bicicleta de carga","noun","de"),
          V("v-fietsbel","fietsbel","campainha da bicicleta","noun","de")],
   ex=[("Bij het station is een grote fietsenstalling.","Na estação há um grande parque de bicicletas."),("Veel ouders brengen hun kinderen met de bakfiets.","Muitos pais levam os filhos na bicicleta de carga."),("Fietsers hebben hier voorrang.","Aqui os ciclistas têm prioridade."),("Gebruik je fietsbel!","Usa a campainha!")],
-  review=["v-voorrang","v-fietspad","v-fiets"],
+  review=["v-fietsenstalling","v-voorrang","v-fietspad","v-fiets"],
   cefr=C, exs=[
     MA([("fietsenstalling","parque de bicicletas"),("bakfiets","bicicleta de carga"),("voorrang","prioridade"),("fietsbel","campainha")], "Bicicletas.", ["v-fietsenstalling","v-bakfiets","v-voorrang","v-fietsbel"]),
     CO("text","Fietsland", "Nederland is een echt fietsland: er zijn meer fietsen dan inwoners. Kinderen fietsen al jong zelf naar school, en ook ministers komen soms op de fiets naar hun werk. Bij grote stations staan enorme fietsenstallingen. Ouders vervoeren hun kinderen vaak in een bakfiets. Het land is vlak en er zijn veel aparte fietspaden. Alleen de wind en de regen maken het soms zwaar.",
