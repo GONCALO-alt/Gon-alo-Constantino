@@ -94,9 +94,9 @@ L(14, "Projeto B (1): o convite", "Een aperitief en een uitnodiging.",
 
 L(15, "Projeto B (2): restrições alimentares", "Allergieën en dieetwensen.",
   ["Perguntar por alergias e adaptar o menu"],
-  vocab=[N("v-allergie","allergie","alergia","de","allergieën")],
+  vocab=[],
   ex=[("Is er iemand met een allergie?","Há alguém com alguma alergia?"),("Mijn buurvrouw is allergisch voor noten.","A minha vizinha é alérgica a frutos secos.")],
-  review=["v-dieetwensen","v-vegetarisch"],
+  review=["v-allergie","v-dieetwensen","v-vegetarisch"],
   cefr=C, exs=[
     MA([("allergie","alergia"),("dieetwensen","restrições alimentares"),("vegetarisch","vegetariano"),("allergisch voor","alérgico a")], "Dieta.", ["v-allergie","v-dieetwensen","v-vegetarisch"]),
     MC("«Allergisch» usa-se com…", ["*voor (allergisch voor noten)","op|Não.","met|Não."], "Preposição.", ["v-allergie"]),
