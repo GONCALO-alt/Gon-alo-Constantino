@@ -2808,6 +2808,4462 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s7-u12-l010",
+      "unitId": "s7-u12",
+      "order": 10,
+      "title": "Comprar casa (1): a visita",
+      "description": "Bouwjaar en energielabel.",
+      "cefr": "B2",
+      "objectives": [
+        "Fazer perguntas técnicas numa visita a uma casa"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bouwjaar",
+          "nl": "bouwjaar",
+          "pt": [
+            "ano de construção"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-energielabel",
+          "nl": "energielabel",
+          "pt": [
+            "certificado energético"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "energielabels"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-bezichtiging",
+        "v-makelaar",
+        "v-vraagprijs"
+      ],
+      "examples": [
+        {
+          "nl": "Wat is het bouwjaar van de woning?",
+          "pt": "Qual é o ano de construção da casa?"
+        },
+        {
+          "nl": "Het huis heeft energielabel C.",
+          "pt": "A casa tem certificado energético C."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u12b-1",
+          "title": "O energielabel",
+          "body": "Na venda ou arrendamento de uma casa nos Países Baixos indica-se o **energielabel**: quanto mais perto de A, mais eficiente (menos custos de aquecimento). Numa visita é normal perguntar pelo *bouwjaar*, pelo *energielabel* e pelas *servicekosten* (num apartamento).",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u12-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Comprar casa.",
+          "vocabRefs": [
+            "v-bouwjaar",
+            "v-energielabel",
+            "v-vraagprijs",
+            "v-bezichtiging"
+          ],
+          "pairs": [
+            {
+              "nl": "bouwjaar",
+              "pt": "ano de construção"
+            },
+            {
+              "nl": "energielabel",
+              "pt": "certificado energético"
+            },
+            {
+              "nl": "vraagprijs",
+              "pt": "preço pedido"
+            },
+            {
+              "nl": "bezichtiging",
+              "pt": "visita"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l010-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het jaar.",
+          "vocabRefs": [
+            "v-bouwjaar"
+          ],
+          "noun": "bouwjaar",
+          "pt": "ano de construção",
+          "article": "het"
+        },
+        {
+          "id": "s7-u12-l010-e03",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het label.",
+          "vocabRefs": [
+            "v-energielabel"
+          ],
+          "noun": "energielabel",
+          "pt": "certificado energético",
+          "article": "het"
+        },
+        {
+          "id": "s7-u12-l010-e04",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Escala.",
+          "vocabRefs": [
+            "v-energielabel"
+          ],
+          "prompt": "Energielabel A vs G:",
+          "options": [
+            {
+              "id": "a",
+              "text": "A gasta menos energia que G",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "G é o mais eficiente",
+              "correct": false,
+              "feedback": "Ao contrário."
+            },
+            {
+              "id": "c",
+              "text": "são iguais",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l010-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "het bouwjaar.",
+          "vocabRefs": [
+            "v-bouwjaar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Qual é o ano de construção?",
+          "answers": [
+            "Wat is het bouwjaar?",
+            "Wat is het bouwjaar"
+          ]
+        },
+        {
+          "id": "s7-u12-l010-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Agente.",
+          "vocabRefs": [
+            "v-makelaar"
+          ],
+          "sentence": "De ___ laat ons vanmiddag het appartement zien.",
+          "translation": "O agente mostra-nos o apartamento esta tarde.",
+          "answers": [
+            "makelaar"
+          ],
+          "choices": [
+            "makelaar",
+            "notaris",
+            "verhuurder"
+          ]
+        },
+        {
+          "id": "s7-u12-l010-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Perguntas úteis.",
+          "vocabRefs": [
+            "v-energielabel"
+          ],
+          "lines": [
+            {
+              "speaker": "Makelaar",
+              "nl": "Heeft u nog vragen over de woning?",
+              "pt": "Tem mais perguntas sobre a casa?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja: wat is het energielabel, en is het dak ooit vervangen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, hij is mooi.",
+              "correct": false,
+              "feedback": "Perde a oportunidade de perguntar."
+            },
+            {
+              "id": "c",
+              "text": "Hoeveel kost u?",
+              "correct": false,
+              "feedback": "Sem sentido."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l010-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Informação técnica.",
+          "vocabRefs": [
+            "v-bouwjaar"
+          ],
+          "audioText": "Het bouwjaar is 1932; de kozijnen zijn in 2015 vervangen.",
+          "answers": [
+            "Het bouwjaar is 1932; de kozijnen zijn in 2015 vervangen",
+            "Het bouwjaar is 1932, de kozijnen zijn in 2015 vervangen"
+          ],
+          "translation": "O ano de construção é 1932; as caixilharias foram substituídas em 2015."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l011",
+      "unitId": "s7-u12",
+      "order": 11,
+      "title": "Comprar casa (2): a oferta",
+      "description": "Een bod uitbrengen.",
+      "cefr": "B2",
+      "objectives": [
+        "Fazer uma oferta com condições"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bod-uitbrengen",
+          "nl": "een bod uitbrengen",
+          "pt": [
+            "fazer uma oferta (formal)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-voorbehoud-financiering",
+          "nl": "onder voorbehoud van financiering",
+          "pt": [
+            "sob condição de obter financiamento"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-bod",
+        "v-hypotheek",
+        "v-bedenktijd"
+      ],
+      "examples": [
+        {
+          "nl": "We brengen een bod uit van 340.000 euro.",
+          "pt": "Fazemos uma oferta de 340 000 euros."
+        },
+        {
+          "nl": "Ons bod is onder voorbehoud van financiering.",
+          "pt": "A nossa oferta está sujeita a obtermos financiamento."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u12b-2",
+          "title": "Voorbehoud",
+          "body": "Uma oferta *onder voorbehoud van financiering* permite desistir sem multa se o banco não der o crédito. Depois de assinar, o comprador de uma casa tem ainda por lei **drie dagen bedenktijd** (três dias para pensar).",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u12-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Oferta.",
+          "vocabRefs": [
+            "v-bod-uitbrengen",
+            "v-voorbehoud-financiering",
+            "v-hypotheek",
+            "v-bedenktijd"
+          ],
+          "pairs": [
+            {
+              "nl": "een bod uitbrengen",
+              "pt": "fazer uma oferta"
+            },
+            {
+              "nl": "voorbehoud van financiering",
+              "pt": "condição de financiamento"
+            },
+            {
+              "nl": "hypotheek",
+              "pt": "crédito à habitação"
+            },
+            {
+              "nl": "bedenktijd",
+              "pt": "prazo de reflexão"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Função.",
+          "vocabRefs": [
+            "v-voorbehoud-financiering"
+          ],
+          "prompt": "Porque se faz uma oferta «onder voorbehoud van financiering»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Para poder desistir se o banco recusar o crédito",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Para pagar menos impostos",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Para comprar mais depressa",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "bod uitbrengen.",
+          "vocabRefs": [
+            "v-bod-uitbrengen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Fazemos uma oferta de 300 000 euros.",
+          "answers": [
+            "We brengen een bod uit van 300.000 euro",
+            "Wij brengen een bod uit van 300.000 euro",
+            "We doen een bod van 300.000 euro"
+          ]
+        },
+        {
+          "id": "s7-u12-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão fixa.",
+          "vocabRefs": [
+            "v-voorbehoud-financiering"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A nossa oferta está sujeita a financiamento.",
+          "answers": [
+            "Ons bod is onder voorbehoud van financiering"
+          ]
+        },
+        {
+          "id": "s7-u12-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Oferta.",
+          "vocabRefs": [
+            "v-bod"
+          ],
+          "sentence": "De verkoper heeft ons ___ geaccepteerd!",
+          "translation": "O vendedor aceitou a nossa oferta!",
+          "answers": [
+            "bod"
+          ],
+          "choices": [
+            "bod",
+            "hypotheek",
+            "bouwjaar"
+          ]
+        },
+        {
+          "id": "s7-u12-l011-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "een bod uitbrengen.",
+          "vocabRefs": [
+            "v-bod-uitbrengen"
+          ],
+          "tokens": [
+            "We",
+            "brengen",
+            "een",
+            "bod",
+            "op",
+            "van",
+            "300.000",
+            "euro."
+          ],
+          "errorIndex": 4,
+          "correction": "uit"
+        },
+        {
+          "id": "s7-u12-l011-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Oferta.",
+          "vocabRefs": [
+            "v-bod-uitbrengen"
+          ],
+          "lines": [
+            {
+              "speaker": "Makelaar verkoper",
+              "nl": "De vraagprijs is 360.000. Wat is uw bod?",
+              "pt": "O preço pedido é 360 000. Qual é a sua oferta?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "We bieden 345.000 euro, onder voorbehoud van financiering.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik wil hem.",
+              "correct": false,
+              "feedback": "Não faz oferta."
+            },
+            {
+              "id": "c",
+              "text": "Doe maar de helft.",
+              "correct": false,
+              "feedback": "Irrealista e brusco."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l011-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Direito do comprador.",
+          "vocabRefs": [
+            "v-bedenktijd"
+          ],
+          "audioText": "Wij hebben drie dagen bedenktijd na het tekenen.",
+          "answers": [
+            "Wij hebben drie dagen bedenktijd na het tekenen",
+            "We hebben drie dagen bedenktijd na het tekenen"
+          ],
+          "translation": "Temos três dias para pensar depois de assinar."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l012",
+      "unitId": "s7-u12",
+      "order": 12,
+      "title": "Comprar casa (3): o crédito",
+      "description": "De hypotheekadviseur.",
+      "cefr": "B2",
+      "objectives": [
+        "Conversar com um consultor de crédito"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-hypotheekadviseur",
+          "nl": "hypotheekadviseur",
+          "pt": [
+            "consultor de crédito à habitação"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-maandlasten",
+          "nl": "maandlasten",
+          "pt": [
+            "encargos mensais"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-hypotheek",
+        "v-notaris",
+        "v-koopovereenkomst",
+        "v-sleuteloverdracht"
+      ],
+      "examples": [
+        {
+          "nl": "De hypotheekadviseur berekent hoeveel we kunnen lenen.",
+          "pt": "O consultor calcula quanto podemos pedir emprestado."
+        },
+        {
+          "nl": "Wat worden onze maandlasten?",
+          "pt": "Quais vão ser os nossos encargos mensais?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Crédito.",
+          "vocabRefs": [
+            "v-hypotheekadviseur",
+            "v-maandlasten",
+            "v-notaris",
+            "v-koopovereenkomst"
+          ],
+          "pairs": [
+            {
+              "nl": "hypotheekadviseur",
+              "pt": "consultor de crédito"
+            },
+            {
+              "nl": "maandlasten",
+              "pt": "encargos mensais"
+            },
+            {
+              "nl": "notaris",
+              "pt": "notário"
+            },
+            {
+              "nl": "koopovereenkomst",
+              "pt": "contrato-promessa"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Processo.",
+          "vocabRefs": [
+            "v-koopovereenkomst",
+            "v-notaris"
+          ],
+          "prompt": "Ordem habitual:",
+          "options": [
+            {
+              "id": "a",
+              "text": "oferta aceite → koopovereenkomst → hipoteca aprovada → notário → chaves",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "chaves → oferta → notário",
+              "correct": false,
+              "feedback": "Ao contrário."
+            },
+            {
+              "id": "c",
+              "text": "notário → visita → oferta",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "maandlasten.",
+          "vocabRefs": [
+            "v-maandlasten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quais vão ser os nossos encargos mensais?",
+          "answers": [
+            "Wat worden onze maandlasten?",
+            "Wat zijn onze maandlasten?",
+            "Hoe hoog worden onze maandlasten?"
+          ]
+        },
+        {
+          "id": "s7-u12-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Subordinada.",
+          "vocabRefs": [
+            "v-hypotheekadviseur"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O consultor calcula quanto podemos pedir emprestado.",
+          "answers": [
+            "De hypotheekadviseur berekent hoeveel we kunnen lenen",
+            "De adviseur berekent hoeveel we kunnen lenen"
+          ]
+        },
+        {
+          "id": "s7-u12-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Notário.",
+          "vocabRefs": [
+            "v-notaris"
+          ],
+          "sentence": "Bij de ___ tekenen we de akte en krijgen we de sleutels.",
+          "translation": "No notário assinamos a escritura e recebemos as chaves.",
+          "answers": [
+            "notaris"
+          ],
+          "choices": [
+            "notaris",
+            "makelaar",
+            "hypotheekadviseur"
+          ]
+        },
+        {
+          "id": "s7-u12-l012-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Plural: worden.",
+          "vocabRefs": [
+            "v-maandlasten"
+          ],
+          "tokens": [
+            "Onze",
+            "maandlasten",
+            "wordt",
+            "1.400",
+            "euro."
+          ],
+          "errorIndex": 2,
+          "correction": "worden"
+        },
+        {
+          "id": "s7-u12-l012-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Consultor (valores fictícios).",
+          "vocabRefs": [
+            "v-hypotheekadviseur"
+          ],
+          "audioText": "Met dit inkomen kunt u ongeveer 300.000 euro lenen.",
+          "answers": [
+            "Met dit inkomen kunt u ongeveer 300.000 euro lenen"
+          ],
+          "translation": "Com este rendimento pode pedir cerca de 300 000 euros."
+        },
+        {
+          "id": "s7-u12-l012-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-hypotheekadviseur"
+          ],
+          "translation": "Quanto podemos pedir?",
+          "tokens": [
+            "Hoeveel",
+            "kunnen",
+            "we",
+            "lenen"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l013",
+      "unitId": "s7-u12",
+      "order": 13,
+      "title": "Nas urgências",
+      "description": "Triage en pijnscore.",
+      "cefr": "B2",
+      "objectives": [
+        "Descrever dor e urgência no hospital"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-triage",
+          "nl": "triage",
+          "pt": [
+            "triagem"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-pijnscore",
+          "nl": "pijnscore",
+          "pt": [
+            "escala de dor"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-spoedeisende-hulp",
+        "v-ambulance",
+        "v-verpleegkundige"
+      ],
+      "examples": [
+        {
+          "nl": "Bij de triage bepaalt de verpleegkundige hoe urgent het is.",
+          "pt": "Na triagem a enfermeira decide a urgência."
+        },
+        {
+          "nl": "Welk cijfer geeft u de pijn, van nul tot tien?",
+          "pt": "Que número dá à dor, de zero a dez?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Urgências.",
+          "vocabRefs": [
+            "v-triage",
+            "v-pijnscore",
+            "v-spoedeisende-hulp",
+            "v-ambulance"
+          ],
+          "pairs": [
+            {
+              "nl": "triage",
+              "pt": "triagem"
+            },
+            {
+              "nl": "pijnscore",
+              "pt": "escala de dor"
+            },
+            {
+              "nl": "spoedeisende hulp",
+              "pt": "urgências"
+            },
+            {
+              "nl": "ambulance",
+              "pt": "ambulância"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Triagem.",
+          "vocabRefs": [
+            "v-triage"
+          ],
+          "prompt": "Porque é que outra pessoa entra antes de ti nas urgências?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A triagem dá prioridade aos casos mais graves",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Chegou primeiro sempre",
+              "correct": false,
+              "feedback": "Não necessariamente."
+            },
+            {
+              "id": "c",
+              "text": "Pagou mais",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "pijnscore.",
+          "vocabRefs": [
+            "v-pijnscore"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Dou uma sete à dor.",
+          "answers": [
+            "Ik geef de pijn een zeven",
+            "Ik geef mijn pijn een zeven"
+          ]
+        },
+        {
+          "id": "s7-u12-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "pijn doen.",
+          "vocabRefs": [
+            "v-pijnscore"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Dói desde ontem à noite.",
+          "answers": [
+            "Het doet pijn sinds gisteravond",
+            "Het doet sinds gisteravond pijn",
+            "Ik heb sinds gisteravond pijn"
+          ]
+        },
+        {
+          "id": "s7-u12-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Triagem.",
+          "vocabRefs": [
+            "v-triage"
+          ],
+          "sentence": "Na de ___ moest ik nog een uur wachten.",
+          "translation": "Depois da triagem ainda tive de esperar uma hora.",
+          "answers": [
+            "triage"
+          ],
+          "choices": [
+            "triage",
+            "pijnscore",
+            "ambulance"
+          ]
+        },
+        {
+          "id": "s7-u12-l013-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de pijn.",
+          "vocabRefs": [
+            "v-pijnscore"
+          ],
+          "tokens": [
+            "Het",
+            "pijn",
+            "is",
+            "heel",
+            "erg."
+          ],
+          "errorIndex": 0,
+          "correction": "De"
+        },
+        {
+          "id": "s7-u12-l013-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Descrever.",
+          "vocabRefs": [
+            "v-pijnscore"
+          ],
+          "lines": [
+            {
+              "speaker": "Verpleegkundige",
+              "nl": "Op een schaal van nul tot tien, hoeveel pijn heeft u?",
+              "pt": "Numa escala de zero a dez, quanta dor tem?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Een acht. Het is een stekende pijn rechts in mijn buik.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Veel.",
+              "correct": false,
+              "feedback": "Pouco preciso."
+            },
+            {
+              "id": "c",
+              "text": "Ik weet het niet.",
+              "correct": false,
+              "feedback": "Não ajuda."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l013-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Receção.",
+          "vocabRefs": [
+            "v-triage"
+          ],
+          "audioText": "Neem plaats in de wachtkamer; u wordt zo geroepen.",
+          "answers": [
+            "Neem plaats in de wachtkamer; u wordt zo geroepen",
+            "Neem plaats in de wachtkamer, u wordt zo geroepen"
+          ],
+          "translation": "Sente-se na sala de espera; será chamado em breve."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l014",
+      "unitId": "s7-u12",
+      "order": 14,
+      "title": "Alta do hospital",
+      "description": "U mag naar huis.",
+      "cefr": "B2",
+      "objectives": [
+        "Compreender instruções de alta e consulta de seguimento"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-naar-huis-mogen",
+          "nl": "naar huis mogen",
+          "pt": [
+            "ter alta"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-controleafspraak",
+          "nl": "controleafspraak",
+          "pt": [
+            "consulta de seguimento"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-medicatie",
+          "nl": "medicatie",
+          "pt": [
+            "medicação"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-opname",
+        "v-nazorg",
+        "v-uitslag"
+      ],
+      "examples": [
+        {
+          "nl": "U mag morgen naar huis.",
+          "pt": "Amanhã tem alta."
+        },
+        {
+          "nl": "Over twee weken heeft u een controleafspraak.",
+          "pt": "Daqui a duas semanas tem consulta de seguimento."
+        },
+        {
+          "nl": "Neem uw medicatie twee keer per dag in.",
+          "pt": "Tome a medicação duas vezes por dia."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Alta.",
+          "vocabRefs": [
+            "v-naar-huis-mogen",
+            "v-controleafspraak",
+            "v-medicatie",
+            "v-nazorg"
+          ],
+          "pairs": [
+            {
+              "nl": "naar huis mogen",
+              "pt": "ter alta"
+            },
+            {
+              "nl": "controleafspraak",
+              "pt": "consulta de seguimento"
+            },
+            {
+              "nl": "medicatie",
+              "pt": "medicação"
+            },
+            {
+              "nl": "nazorg",
+              "pt": "cuidados posteriores"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l014-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "naar huis mogen.",
+          "vocabRefs": [
+            "v-naar-huis-mogen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Amanhã tem alta.",
+          "answers": [
+            "U mag morgen naar huis",
+            "Morgen mag u naar huis"
+          ]
+        },
+        {
+          "id": "s7-u12-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "innemen.",
+          "vocabRefs": [
+            "v-medicatie"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Tome a medicação duas vezes por dia.",
+          "answers": [
+            "Neem uw medicatie twee keer per dag in",
+            "Neem de medicatie twee keer per dag in",
+            "Neem uw medicatie tweemaal per dag in"
+          ]
+        },
+        {
+          "id": "s7-u12-l014-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Resultado.",
+          "vocabRefs": [
+            "v-uitslag"
+          ],
+          "sentence": "De ___ van het bloedonderzoek krijgt u bij de controleafspraak.",
+          "translation": "O resultado da análise ao sangue recebe na consulta de seguimento.",
+          "answers": [
+            "uitslag"
+          ],
+          "choices": [
+            "uitslag",
+            "opname",
+            "medicatie"
+          ]
+        },
+        {
+          "id": "s7-u12-l014-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "ik mag.",
+          "vocabRefs": [
+            "v-naar-huis-mogen"
+          ],
+          "tokens": [
+            "Wanneer",
+            "mogen",
+            "ik",
+            "naar",
+            "huis?"
+          ],
+          "errorIndex": 1,
+          "correction": "mag"
+        },
+        {
+          "id": "s7-u12-l014-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Perguntar.",
+          "vocabRefs": [
+            "v-nazorg"
+          ],
+          "prompt": "Antes de sair, uma boa pergunta é:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Waar moet ik op letten thuis, en wanneer moet ik terugbellen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Mag ik nu gaan?",
+              "correct": false,
+              "feedback": "Pouco útil."
+            },
+            {
+              "id": "c",
+              "text": "Wat eten jullie vanavond?",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l014-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Instrução.",
+          "vocabRefs": [
+            "v-nazorg"
+          ],
+          "audioText": "Bij koorts boven de 38,5 graden belt u direct de afdeling.",
+          "answers": [
+            "Bij koorts boven de 38,5 graden belt u direct de afdeling",
+            "Bij koorts boven de 38,5 graden belt u meteen de afdeling"
+          ],
+          "translation": "Com febre acima de 38,5 graus, ligue logo para o serviço."
+        },
+        {
+          "id": "s7-u12-l014-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-naar-huis-mogen"
+          ],
+          "translation": "Amanhã tenho alta.",
+          "tokens": [
+            "Ik",
+            "mag",
+            "morgen",
+            "naar",
+            "huis"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l015",
+      "unitId": "s7-u12",
+      "order": 15,
+      "title": "Médico fora de horas",
+      "description": "De huisartsenpost.",
+      "cefr": "B2",
+      "objectives": [
+        "Ligar para o serviço de médico de família fora de horas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-huisartsenpost",
+          "nl": "huisartsenpost",
+          "pt": [
+            "serviço de médico de família fora de horas"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-wachtkamer",
+          "nl": "wachtkamer",
+          "pt": [
+            "sala de espera"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-bellen-112",
+        "v-doorverwijzen",
+        "v-huisarts"
+      ],
+      "examples": [
+        {
+          "nl": "'s Avonds en in het weekend bel je de huisartsenpost.",
+          "pt": "À noite e ao fim de semana ligas para o serviço de médico fora de horas."
+        },
+        {
+          "nl": "Ga eerst bellen; je kunt niet zomaar langskomen.",
+          "pt": "Liga primeiro; não podes simplesmente aparecer."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u12b-3",
+          "title": "Quem chamar?",
+          "body": "Em perigo de vida: **112**. Problema urgente à noite ou ao fim de semana que não pode esperar: **huisartsenpost** (liga-se sempre antes). Durante o dia: o teu **huisarts**. A ida às urgências do hospital é normalmente por indicação do médico ou da ambulância.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u12-l015-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Quem chamar.",
+          "vocabRefs": [
+            "v-huisartsenpost"
+          ],
+          "prompt": "Sábado à noite, o teu filho tem febre alta há dois dias. Ligas para…",
+          "options": [
+            {
+              "id": "a",
+              "text": "a huisartsenpost",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "112",
+              "correct": false,
+              "feedback": "Só em perigo de vida."
+            },
+            {
+              "id": "c",
+              "text": "o teu huisarts na segunda",
+              "correct": false,
+              "feedback": "Não pode esperar."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Emergência.",
+          "vocabRefs": [
+            "v-bellen-112"
+          ],
+          "prompt": "Alguém desmaia e não respira. Ligas para…",
+          "options": [
+            {
+              "id": "a",
+              "text": "112",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "a huisartsenpost",
+              "correct": false,
+              "feedback": "Perigo de vida: 112."
+            },
+            {
+              "id": "c",
+              "text": "a farmácia",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "huisartsenpost.",
+          "vocabRefs": [
+            "v-huisartsenpost"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ao fim de semana ligas para o serviço de médico fora de horas.",
+          "answers": [
+            "In het weekend bel je de huisartsenpost",
+            "In het weekend bel je naar de huisartsenpost"
+          ]
+        },
+        {
+          "id": "s7-u12-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "wachtkamer.",
+          "vocabRefs": [
+            "v-wachtkamer"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Espere na sala de espera.",
+          "answers": [
+            "Wacht in de wachtkamer",
+            "Wacht u maar in de wachtkamer"
+          ]
+        },
+        {
+          "id": "s7-u12-l015-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Encaminhar.",
+          "vocabRefs": [
+            "v-doorverwijzen"
+          ],
+          "sentence": "De arts op de post kan je ___ naar het ziekenhuis.",
+          "translation": "O médico do posto pode encaminhar-te para o hospital.",
+          "answers": [
+            "doorverwijzen"
+          ],
+          "choices": [
+            "doorverwijzen",
+            "opnemen",
+            "ontslaan"
+          ]
+        },
+        {
+          "id": "s7-u12-l015-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de post.",
+          "vocabRefs": [
+            "v-huisartsenpost"
+          ],
+          "tokens": [
+            "Het",
+            "huisartsenpost",
+            "is",
+            "'s",
+            "nachts",
+            "open."
+          ],
+          "errorIndex": 0,
+          "correction": "De"
+        },
+        {
+          "id": "s7-u12-l015-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Descrever bem.",
+          "vocabRefs": [
+            "v-huisartsenpost"
+          ],
+          "lines": [
+            {
+              "speaker": "Huisartsenpost",
+              "nl": "Huisartsenpost, waarmee kan ik u helpen?",
+              "pt": "Serviço de médico, em que posso ajudar?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Mijn dochter van vier heeft al twee dagen 39,5 graden koorts en ze drinkt bijna niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze is ziek.",
+              "correct": false,
+              "feedback": "Pouco informativo."
+            },
+            {
+              "id": "c",
+              "text": "Kan ik langskomen?",
+              "correct": false,
+              "feedback": "Primeiro descreve o problema."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l015-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Instrução.",
+          "vocabRefs": [
+            "v-huisartsenpost"
+          ],
+          "audioText": "Kom over een half uur naar de post; neem uw zorgpas mee.",
+          "answers": [
+            "Kom over een half uur naar de post; neem uw zorgpas mee",
+            "Kom over een half uur naar de post, neem uw zorgpas mee"
+          ],
+          "translation": "Venha ao posto daqui a meia hora; traga o cartão de saúde."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l016",
+      "unitId": "s7-u12",
+      "order": 16,
+      "title": "Senhorio (1): avaria urgente",
+      "description": "De verwarming doet het niet.",
+      "cefr": "B2",
+      "objectives": [
+        "Comunicar uma avaria urgente ao senhorio"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-contactformulier",
+          "nl": "contactformulier",
+          "pt": [
+            "formulário de contacto"
+          ],
+          "pos": "noun",
+          "article": "het"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-het-doet-het-niet",
+        "v-storingsdienst",
+        "v-verhuurder",
+        "v-lekkage"
+      ],
+      "examples": [
+        {
+          "nl": "Ik heb de storing via het contactformulier gemeld.",
+          "pt": "Comuniquei a avaria pelo formulário de contacto."
+        },
+        {
+          "nl": "De verwarming doet het al drie dagen niet.",
+          "pt": "O aquecimento não funciona há três dias."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l016-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Avarias.",
+          "vocabRefs": [
+            "v-contactformulier",
+            "v-het-doet-het-niet",
+            "v-storingsdienst",
+            "v-lekkage"
+          ],
+          "pairs": [
+            {
+              "nl": "contactformulier",
+              "pt": "formulário de contacto"
+            },
+            {
+              "nl": "het doet het niet",
+              "pt": "não funciona"
+            },
+            {
+              "nl": "storingsdienst",
+              "pt": "serviço de avarias"
+            },
+            {
+              "nl": "lekkage",
+              "pt": "infiltração"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l016-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het formulier.",
+          "vocabRefs": [
+            "v-contactformulier"
+          ],
+          "noun": "contactformulier",
+          "pt": "formulário de contacto",
+          "article": "het"
+        },
+        {
+          "id": "s7-u12-l016-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "al … niet.",
+          "vocabRefs": [
+            "v-het-doet-het-niet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O aquecimento não funciona há três dias.",
+          "answers": [
+            "De verwarming doet het al drie dagen niet"
+          ]
+        },
+        {
+          "id": "s7-u12-l016-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "storingsdienst.",
+          "vocabRefs": [
+            "v-storingsdienst"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Liguei para o serviço de avarias.",
+          "answers": [
+            "Ik heb de storingsdienst gebeld",
+            "Ik belde de storingsdienst"
+          ]
+        },
+        {
+          "id": "s7-u12-l016-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Infiltração.",
+          "vocabRefs": [
+            "v-lekkage"
+          ],
+          "sentence": "Er is ___ in de badkamer; het plafond is nat.",
+          "translation": "Há uma infiltração na casa de banho; o teto está molhado.",
+          "answers": [
+            "lekkage"
+          ],
+          "choices": [
+            "lekkage",
+            "storing",
+            "verwarming"
+          ]
+        },
+        {
+          "id": "s7-u12-l016-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "het doet het niet.",
+          "vocabRefs": [
+            "v-het-doet-het-niet"
+          ],
+          "tokens": [
+            "De",
+            "verwarming",
+            "doet",
+            "het",
+            "niets."
+          ],
+          "errorIndex": 4,
+          "correction": "niet."
+        },
+        {
+          "id": "s7-u12-l016-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Mensagem formal (fictícia).",
+          "vocabRefs": [
+            "v-het-doet-het-niet"
+          ],
+          "prompt": "Escreva uma mensagem curta à verhuurder: o aquecimento não funciona há 3 dias, há crianças em casa, pede reparação urgente e diz quando está em casa.",
+          "referenceAnswers": [
+            "Geachte heer De Wit,\n\nSinds maandag doet de verwarming het niet meer. Het is 14 graden in huis en we hebben twee kleine kinderen. Ik heb de storing ook via het contactformulier gemeld. Kunt u zo snel mogelijk een monteur sturen? Ik ben elke dag na 15.00 uur thuis.\n\nMet vriendelijke groet,\nAna Ribeiro"
+          ],
+          "checklist": [
+            "Problema e desde quando",
+            "Urgência",
+            "Disponibilidade"
+          ],
+          "minWords": 60
+        },
+        {
+          "id": "s7-u12-l016-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Resposta.",
+          "vocabRefs": [
+            "v-storingsdienst"
+          ],
+          "audioText": "Er komt morgen tussen acht en twaalf een monteur.",
+          "answers": [
+            "Er komt morgen tussen acht en twaalf een monteur",
+            "Er komt morgen tussen 8 en 12 een monteur"
+          ],
+          "translation": "Amanhã vem um técnico entre as oito e o meio-dia."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l017",
+      "unitId": "s7-u12",
+      "order": 17,
+      "title": "Senhorio (2): sair da casa",
+      "description": "De waarborgsom terugkrijgen.",
+      "cefr": "B2",
+      "objectives": [
+        "Tratar da entrega da casa e da caução"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-waarborgsom",
+          "nl": "waarborgsom",
+          "pt": [
+            "caução (depósito)"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-eindinspectie",
+          "nl": "eindinspectie",
+          "pt": [
+            "vistoria final"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-borg",
+        "v-opzegtermijn",
+        "v-opleveren",
+        "v-huurder"
+      ],
+      "examples": [
+        {
+          "nl": "Bij de eindinspectie loopt de verhuurder door de woning.",
+          "pt": "Na vistoria final o senhorio percorre a casa."
+        },
+        {
+          "nl": "Wanneer krijg ik mijn waarborgsom terug?",
+          "pt": "Quando recebo a caução de volta?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l017-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Sair.",
+          "vocabRefs": [
+            "v-waarborgsom",
+            "v-eindinspectie",
+            "v-opzegtermijn",
+            "v-opleveren"
+          ],
+          "pairs": [
+            {
+              "nl": "waarborgsom",
+              "pt": "caução"
+            },
+            {
+              "nl": "eindinspectie",
+              "pt": "vistoria final"
+            },
+            {
+              "nl": "opzegtermijn",
+              "pt": "pré-aviso"
+            },
+            {
+              "nl": "opleveren",
+              "pt": "entregar (a casa)"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l017-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sinónimos.",
+          "vocabRefs": [
+            "v-waarborgsom",
+            "v-borg"
+          ],
+          "prompt": "«Waarborgsom» e «borg» são…",
+          "options": [
+            {
+              "id": "a",
+              "text": "sinónimos",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "opostos",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "coisas diferentes",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l017-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "terugkrijgen.",
+          "vocabRefs": [
+            "v-waarborgsom"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quando recebo a caução de volta?",
+          "answers": [
+            "Wanneer krijg ik mijn waarborgsom terug?",
+            "Wanneer krijg ik mijn borg terug?",
+            "Wanneer krijg ik de waarborgsom terug?"
+          ]
+        },
+        {
+          "id": "s7-u12-l017-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "opleveren.",
+          "vocabRefs": [
+            "v-opleveren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Temos de entregar a casa vazia e limpa.",
+          "answers": [
+            "We moeten de woning leeg en schoon opleveren",
+            "Wij moeten het huis leeg en schoon opleveren"
+          ]
+        },
+        {
+          "id": "s7-u12-l017-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Pré-aviso.",
+          "vocabRefs": [
+            "v-opzegtermijn"
+          ],
+          "sentence": "De ___ is één maand; ik moet dus vóór 1 mei opzeggen.",
+          "translation": "O pré-aviso é de um mês; tenho de rescindir antes de 1 de maio.",
+          "answers": [
+            "opzegtermijn"
+          ],
+          "choices": [
+            "opzegtermijn",
+            "waarborgsom",
+            "eindinspectie"
+          ]
+        },
+        {
+          "id": "s7-u12-l017-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de muur … is (singular).",
+          "vocabRefs": [
+            "v-borg"
+          ],
+          "tokens": [
+            "De",
+            "verhuurder",
+            "houdt",
+            "een",
+            "deel",
+            "van",
+            "de",
+            "borg",
+            "in",
+            "omdat",
+            "de",
+            "muur",
+            "beschadigd",
+            "zijn."
+          ],
+          "errorIndex": 13,
+          "correction": "is."
+        },
+        {
+          "id": "s7-u12-l017-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Defender-se com factos.",
+          "vocabRefs": [
+            "v-waarborgsom"
+          ],
+          "lines": [
+            {
+              "speaker": "Verhuurder",
+              "nl": "Ik houd 300 euro in voor de schade aan de vloer.",
+              "pt": "Vou reter 300 euros pelos danos no chão."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Die schade was er al bij het begin van de huur; dat staat in het intakerapport. Kunt u dat nakijken?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Oké.",
+              "correct": false,
+              "feedback": "Aceitas sem verificar."
+            },
+            {
+              "id": "c",
+              "text": "Dat is diefstal!",
+              "correct": false,
+              "feedback": "Agressivo."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l017-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Dica.",
+          "vocabRefs": [
+            "v-sleuteloverdracht"
+          ],
+          "audioText": "Maak foto's bij de sleuteloverdracht, dan heb je bewijs.",
+          "answers": [
+            "Maak foto's bij de sleuteloverdracht, dan heb je bewijs",
+            "Maak foto's bij de sleuteloverdracht dan heb je bewijs"
+          ],
+          "translation": "Tira fotos na entrega das chaves; assim tens provas."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l018",
+      "unitId": "s7-u12",
+      "order": 18,
+      "title": "Senhorio (3): aumento de renda",
+      "description": "Een huurverhoging aanvechten.",
+      "cefr": "B2",
+      "objectives": [
+        "Contestar um aumento de renda"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-aanvechten",
+          "nl": "aanvechten",
+          "pt": [
+            "contestar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-huurverhoging",
+        "v-bezwaar-maken",
+        "v-huurcommissie"
+      ],
+      "examples": [
+        {
+          "nl": "Je kunt een te hoge huurverhoging aanvechten.",
+          "pt": "Podes contestar um aumento de renda demasiado alto."
+        },
+        {
+          "nl": "Ik maak bezwaar tegen de huurverhoging.",
+          "pt": "Apresento oposição ao aumento de renda."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l018-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Renda.",
+          "vocabRefs": [
+            "v-aanvechten",
+            "v-huurverhoging",
+            "v-bezwaar-maken",
+            "v-huurcommissie"
+          ],
+          "pairs": [
+            {
+              "nl": "aanvechten",
+              "pt": "contestar"
+            },
+            {
+              "nl": "huurverhoging",
+              "pt": "aumento de renda"
+            },
+            {
+              "nl": "bezwaar maken",
+              "pt": "apresentar objeção"
+            },
+            {
+              "nl": "Huurcommissie",
+              "pt": "comissão de arrendamento"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l018-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Instituição.",
+          "vocabRefs": [
+            "v-huurcommissie"
+          ],
+          "prompt": "Se não chegas a acordo com o senhorio sobre a renda, podes recorrer à…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Huurcommissie",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "polícia",
+              "correct": false,
+              "feedback": "Não é crime."
+            },
+            {
+              "id": "c",
+              "text": "CJIB",
+              "correct": false,
+              "feedback": "Isso é para multas."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l018-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aanvechten.",
+          "vocabRefs": [
+            "v-aanvechten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Podes contestar o aumento.",
+          "answers": [
+            "Je kunt de verhoging aanvechten",
+            "Je kunt de huurverhoging aanvechten"
+          ]
+        },
+        {
+          "id": "s7-u12-l018-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "bezwaar maken tegen.",
+          "vocabRefs": [
+            "v-bezwaar-maken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Apresento oposição ao aumento de renda.",
+          "answers": [
+            "Ik maak bezwaar tegen de huurverhoging"
+          ]
+        },
+        {
+          "id": "s7-u12-l018-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio.",
+          "vocabRefs": [
+            "v-aanvechten"
+          ],
+          "sentence": "Hij heeft de beslissing bij de rechter ___.",
+          "translation": "Ele contestou a decisão no tribunal.",
+          "answers": [
+            "aangevochten"
+          ],
+          "choices": [
+            "aangevochten",
+            "aanvecht",
+            "geaanvecht"
+          ]
+        },
+        {
+          "id": "s7-u12-l018-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "bezwaar maken tegen.",
+          "vocabRefs": [
+            "v-bezwaar-maken"
+          ],
+          "tokens": [
+            "Ik",
+            "maak",
+            "bezwaar",
+            "op",
+            "de",
+            "huurverhoging."
+          ],
+          "errorIndex": 3,
+          "correction": "tegen"
+        },
+        {
+          "id": "s7-u12-l018-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Carta (fictícia).",
+          "vocabRefs": [
+            "v-aanvechten",
+            "v-bezwaar-maken"
+          ],
+          "prompt": "Escreva 3–4 frases ao senhorio a contestar um aumento de 9% (diz que é mais do que o permitido e pede justificação).",
+          "referenceAnswers": [
+            "Geachte mevrouw Bakker,\n\nIk heb uw brief over de huurverhoging van 9% ontvangen. Volgens mij is deze verhoging hoger dan wettelijk is toegestaan. Daarom maak ik bezwaar. Kunt u de verhoging schriftelijk onderbouwen?\n\nMet vriendelijke groet,\nPedro Lopes"
+          ],
+          "checklist": [
+            "Referência à carta",
+            "Objeção",
+            "Pedido de justificação"
+          ],
+          "minWords": 50
+        },
+        {
+          "id": "s7-u12-l018-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-aanvechten"
+          ],
+          "audioText": "Ik ga deze huurverhoging aanvechten.",
+          "answers": [
+            "Ik ga deze huurverhoging aanvechten"
+          ],
+          "translation": "Vou contestar este aumento de renda."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l019",
+      "unitId": "s7-u12",
+      "order": 19,
+      "title": "Acidente (1): no local",
+      "description": "Het Europees schadeformulier.",
+      "cefr": "B2",
+      "objectives": [
+        "Preencher a declaração amigável depois de um acidente"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-europees-schadeformulier",
+          "nl": "Europees schadeformulier",
+          "pt": [
+            "declaração amigável de acidente"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-schuldvraag",
+          "nl": "schuldvraag",
+          "pt": [
+            "questão da culpa"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aanrijding",
+        "v-schadeformulier",
+        "v-voorrang"
+      ],
+      "examples": [
+        {
+          "nl": "We vullen samen het Europees schadeformulier in.",
+          "pt": "Preenchemos juntos a declaração amigável."
+        },
+        {
+          "nl": "De verzekeraars beslissen over de schuldvraag.",
+          "pt": "As seguradoras decidem a questão da culpa."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u12b-4",
+          "title": "A declaração amigável",
+          "body": "Depois de um pequeno acidente sem feridos, os condutores preenchem juntos o **Europees schadeformulier** (igual à declaração amigável portuguesa). Assinar não significa admitir culpa: assinas que os factos descritos estão corretos. As seguradoras decidem depois a **schuldvraag**.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u12-l019-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Acidente.",
+          "vocabRefs": [
+            "v-europees-schadeformulier",
+            "v-schuldvraag",
+            "v-aanrijding",
+            "v-voorrang"
+          ],
+          "pairs": [
+            {
+              "nl": "Europees schadeformulier",
+              "pt": "declaração amigável"
+            },
+            {
+              "nl": "schuldvraag",
+              "pt": "questão da culpa"
+            },
+            {
+              "nl": "aanrijding",
+              "pt": "colisão"
+            },
+            {
+              "nl": "voorrang",
+              "pt": "prioridade"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l019-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Facto.",
+          "vocabRefs": [
+            "v-europees-schadeformulier"
+          ],
+          "prompt": "Assinar o schadeformulier significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "confirmar que os factos estão corretos",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "admitir a culpa",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "pagar os danos",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l019-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "invullen.",
+          "vocabRefs": [
+            "v-europees-schadeformulier"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Preenchemos juntos a declaração.",
+          "answers": [
+            "We vullen samen het schadeformulier in",
+            "We vullen samen het Europees schadeformulier in"
+          ]
+        },
+        {
+          "id": "s7-u12-l019-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "voorrang geven.",
+          "vocabRefs": [
+            "v-voorrang"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele não me deu prioridade.",
+          "answers": [
+            "Hij gaf me geen voorrang",
+            "Hij heeft me geen voorrang gegeven"
+          ]
+        },
+        {
+          "id": "s7-u12-l019-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Culpa.",
+          "vocabRefs": [
+            "v-schuldvraag"
+          ],
+          "sentence": "Wie had er ___? Dat bepaalt wie de schade betaalt.",
+          "translation": "Quem teve a culpa? Isso decide quem paga os danos.",
+          "answers": [
+            "schuld"
+          ],
+          "choices": [
+            "schuld",
+            "voorrang",
+            "schade"
+          ]
+        },
+        {
+          "id": "s7-u12-l019-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de vraag.",
+          "vocabRefs": [
+            "v-schuldvraag"
+          ],
+          "tokens": [
+            "Het",
+            "schuldvraag",
+            "is",
+            "nog",
+            "niet",
+            "duidelijk."
+          ],
+          "errorIndex": 0,
+          "correction": "De"
+        },
+        {
+          "id": "s7-u12-l019-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Manter a calma.",
+          "vocabRefs": [
+            "v-schuldvraag"
+          ],
+          "lines": [
+            {
+              "speaker": "Andere bestuurder",
+              "nl": "Dit is allemaal uw schuld!",
+              "pt": "Isto é tudo culpa sua!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Laten we rustig het schadeformulier invullen; de verzekeraars bepalen wie schuld heeft.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, uw schuld!",
+              "correct": false,
+              "feedback": "Escala o conflito."
+            },
+            {
+              "id": "c",
+              "text": "Ik bel de televisie.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l019-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-europees-schadeformulier"
+          ],
+          "audioText": "Is er iemand gewond? Nee? Dan vullen we het formulier in.",
+          "answers": [
+            "Is er iemand gewond? Nee? Dan vullen we het formulier in",
+            "Is er iemand gewond nee dan vullen we het formulier in"
+          ],
+          "translation": "Há feridos? Não? Então preenchemos o formulário."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l020",
+      "unitId": "s7-u12",
+      "order": 20,
+      "title": "Acidente (2): a polícia",
+      "description": "Een verklaring afleggen.",
+      "cefr": "B2",
+      "objectives": [
+        "Prestar declarações à polícia"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-verklaring-afleggen",
+          "nl": "een verklaring afleggen",
+          "pt": [
+            "prestar declarações"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-proces-verbaal",
+          "nl": "proces-verbaal",
+          "pt": [
+            "auto (relatório policial)"
+          ],
+          "pos": "noun",
+          "article": "het"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-getuige",
+        "v-aangifte-doen"
+      ],
+      "examples": [
+        {
+          "nl": "De getuige legt een verklaring af bij de politie.",
+          "pt": "A testemunha presta declarações à polícia."
+        },
+        {
+          "nl": "De agent maakt een proces-verbaal op.",
+          "pt": "O agente lavra um auto."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l020-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Polícia.",
+          "vocabRefs": [
+            "v-verklaring-afleggen",
+            "v-proces-verbaal",
+            "v-getuige",
+            "v-aangifte-doen"
+          ],
+          "pairs": [
+            {
+              "nl": "een verklaring afleggen",
+              "pt": "prestar declarações"
+            },
+            {
+              "nl": "proces-verbaal",
+              "pt": "auto policial"
+            },
+            {
+              "nl": "getuige",
+              "pt": "testemunha"
+            },
+            {
+              "nl": "aangifte doen",
+              "pt": "apresentar queixa"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l020-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het proces-verbaal.",
+          "vocabRefs": [
+            "v-proces-verbaal"
+          ],
+          "noun": "proces-verbaal",
+          "pt": "auto policial",
+          "article": "het"
+        },
+        {
+          "id": "s7-u12-l020-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-verklaring-afleggen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A testemunha presta declarações.",
+          "answers": [
+            "De getuige legt een verklaring af"
+          ]
+        },
+        {
+          "id": "s7-u12-l020-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "door rood rijden.",
+          "vocabRefs": [
+            "v-getuige"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Vi tudo: o carro passou o vermelho.",
+          "answers": [
+            "Ik heb alles gezien: de auto reed door rood",
+            "Ik heb alles gezien, de auto reed door rood"
+          ]
+        },
+        {
+          "id": "s7-u12-l020-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Infinitivo.",
+          "vocabRefs": [
+            "v-verklaring-afleggen"
+          ],
+          "sentence": "Wilt u een verklaring ___?",
+          "translation": "Quer prestar declarações?",
+          "answers": [
+            "afleggen"
+          ],
+          "choices": [
+            "afleggen",
+            "aflegt",
+            "leggen af"
+          ]
+        },
+        {
+          "id": "s7-u12-l020-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Particípio: afgelegd.",
+          "vocabRefs": [
+            "v-verklaring-afleggen"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "een",
+            "verklaring",
+            "afgelegt."
+          ],
+          "errorIndex": 4,
+          "correction": "afgelegd."
+        },
+        {
+          "id": "s7-u12-l020-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Descrição clara.",
+          "vocabRefs": [
+            "v-verklaring-afleggen"
+          ],
+          "lines": [
+            {
+              "speaker": "Agent",
+              "nl": "Kunt u vertellen wat u heeft gezien?",
+              "pt": "Pode contar o que viu?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik stond bij het zebrapad. De fietser kwam van links en de auto reed hem aan zonder te remmen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Een ongeluk.",
+              "correct": false,
+              "feedback": "Pouco preciso."
+            },
+            {
+              "id": "c",
+              "text": "Ik weet het niet meer, sorry.",
+              "correct": false,
+              "feedback": "Só se for verdade."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l020-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-proces-verbaal"
+          ],
+          "audioText": "U krijgt een kopie van het proces-verbaal.",
+          "answers": [
+            "U krijgt een kopie van het proces-verbaal"
+          ],
+          "translation": "Recebe uma cópia do auto."
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l021",
+      "unitId": "s7-u12",
+      "order": 21,
+      "title": "Uma multa",
+      "description": "Een bekeuring van het CJIB.",
+      "cefr": "B2",
+      "objectives": [
+        "Perceber uma multa e como reagir"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bekeuring",
+          "nl": "bekeuring",
+          "pt": [
+            "multa (de trânsito)"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "bekeuringen"
+        },
+        {
+          "id": "v-cjib",
+          "nl": "CJIB",
+          "pt": [
+            "entidade que cobra multas (Países Baixos)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-boete",
+        "v-bezwaar-maken"
+      ],
+      "examples": [
+        {
+          "nl": "Ik kreeg een bekeuring voor te hard rijden.",
+          "pt": "Recebi uma multa por excesso de velocidade."
+        },
+        {
+          "nl": "De acceptgiro komt van het CJIB.",
+          "pt": "A carta de pagamento vem do CJIB."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l021-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Multas.",
+          "vocabRefs": [
+            "v-bekeuring",
+            "v-cjib",
+            "v-boete",
+            "v-bezwaar-maken"
+          ],
+          "pairs": [
+            {
+              "nl": "bekeuring",
+              "pt": "multa de trânsito"
+            },
+            {
+              "nl": "CJIB",
+              "pt": "entidade de cobrança de multas"
+            },
+            {
+              "nl": "boete",
+              "pt": "multa"
+            },
+            {
+              "nl": "bezwaar maken",
+              "pt": "contestar"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l021-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Instituição.",
+          "vocabRefs": [
+            "v-cjib"
+          ],
+          "prompt": "Uma carta do CJIB é normalmente sobre…",
+          "options": [
+            {
+              "id": "a",
+              "text": "uma multa a pagar",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "o teu salário",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "o teu contrato de arrendamento",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l021-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "te hard rijden.",
+          "vocabRefs": [
+            "v-bekeuring"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Recebi uma multa por excesso de velocidade.",
+          "answers": [
+            "Ik kreeg een bekeuring voor te hard rijden",
+            "Ik heb een bekeuring gekregen voor te hard rijden",
+            "Ik kreeg een boete voor te hard rijden"
+          ]
+        },
+        {
+          "id": "s7-u12-l021-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "bezwaar maken tegen.",
+          "vocabRefs": [
+            "v-bezwaar-maken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Posso contestar esta multa?",
+          "answers": [
+            "Kan ik bezwaar maken tegen deze boete?",
+            "Kan ik bezwaar maken tegen deze bekeuring?"
+          ]
+        },
+        {
+          "id": "s7-u12-l021-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Multa.",
+          "vocabRefs": [
+            "v-boete"
+          ],
+          "sentence": "Als je niet op tijd betaalt, wordt de ___ hoger.",
+          "translation": "Se não pagares a tempo, a multa aumenta.",
+          "answers": [
+            "boete"
+          ],
+          "choices": [
+            "boete",
+            "bekeuring",
+            "CJIB"
+          ]
+        },
+        {
+          "id": "s7-u12-l021-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "een bekeuring voor.",
+          "vocabRefs": [
+            "v-bekeuring"
+          ],
+          "tokens": [
+            "Ik",
+            "kreeg",
+            "een",
+            "bekeuring",
+            "door",
+            "te",
+            "hard",
+            "rijden."
+          ],
+          "errorIndex": 4,
+          "correction": "voor"
+        },
+        {
+          "id": "s7-u12-l021-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Prazo (verifique sempre na carta).",
+          "vocabRefs": [
+            "v-bezwaar-maken"
+          ],
+          "audioText": "U heeft zes weken om beroep in te stellen.",
+          "answers": [
+            "U heeft zes weken om beroep in te stellen",
+            "U heeft 6 weken om beroep in te stellen"
+          ],
+          "translation": "Tem seis semanas para recorrer."
+        },
+        {
+          "id": "s7-u12-l021-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-bekeuring"
+          ],
+          "translation": "Recebi uma multa.",
+          "tokens": [
+            "Ik",
+            "kreeg",
+            "een",
+            "bekeuring"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l022",
+      "unitId": "s7-u12",
+      "order": 22,
+      "title": "Organizar um evento (1)",
+      "description": "Een vergunning aanvragen.",
+      "cefr": "B2",
+      "objectives": [
+        "Pedir autorização à câmara para um evento"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-evenementenvergunning",
+          "nl": "evenementenvergunning",
+          "pt": [
+            "licença para evento"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aanvragen",
+        "v-gemeente",
+        "v-draaiboek",
+        "v-locatie"
+      ],
+      "examples": [
+        {
+          "nl": "Voor het buurtfeest vragen we een evenementenvergunning aan.",
+          "pt": "Para a festa do bairro pedimos uma licença de evento."
+        },
+        {
+          "nl": "De gemeente wil een draaiboek en een plattegrond zien.",
+          "pt": "A câmara quer ver um plano e uma planta."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l022-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Licença.",
+          "vocabRefs": [
+            "v-evenementenvergunning",
+            "v-aanvragen",
+            "v-draaiboek",
+            "v-locatie"
+          ],
+          "pairs": [
+            {
+              "nl": "evenementenvergunning",
+              "pt": "licença de evento"
+            },
+            {
+              "nl": "aanvragen",
+              "pt": "requerer"
+            },
+            {
+              "nl": "draaiboek",
+              "pt": "guião/plano"
+            },
+            {
+              "nl": "locatie",
+              "pt": "local"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l022-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Instituição.",
+          "vocabRefs": [
+            "v-evenementenvergunning",
+            "v-gemeente"
+          ],
+          "prompt": "Onde se pede a evenementenvergunning?",
+          "options": [
+            {
+              "id": "a",
+              "text": "na gemeente (câmara)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "na polícia",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "no CJIB",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l022-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aanvragen.",
+          "vocabRefs": [
+            "v-evenementenvergunning"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Pedimos uma licença para a festa.",
+          "answers": [
+            "We vragen een vergunning aan voor het feest",
+            "We vragen een evenementenvergunning aan voor het feest"
+          ]
+        },
+        {
+          "id": "s7-u12-l022-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "draaiboek.",
+          "vocabRefs": [
+            "v-draaiboek"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A câmara quer ver o plano.",
+          "answers": [
+            "De gemeente wil het draaiboek zien"
+          ]
+        },
+        {
+          "id": "s7-u12-l022-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-aanvragen"
+          ],
+          "sentence": "Vraag de vergunning op tijd ___; dat duurt soms weken.",
+          "translation": "Pede a licença a tempo; às vezes demora semanas.",
+          "answers": [
+            "aan"
+          ],
+          "choices": [
+            "aan",
+            "op",
+            "uit"
+          ]
+        },
+        {
+          "id": "s7-u12-l022-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Plural: hebben.",
+          "vocabRefs": [
+            "v-aanvragen"
+          ],
+          "tokens": [
+            "Wij",
+            "heeft",
+            "een",
+            "vergunning",
+            "aangevraagd."
+          ],
+          "errorIndex": 1,
+          "correction": "hebben"
+        },
+        {
+          "id": "s7-u12-l022-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-evenementenvergunning"
+          ],
+          "audioText": "Is er een vergunning nodig als we de straat afsluiten?",
+          "answers": [
+            "Is er een vergunning nodig als we de straat afsluiten",
+            "Is er een vergunning nodig als we de straat afsluiten?"
+          ],
+          "translation": "É precisa licença se fecharmos a rua?"
+        },
+        {
+          "id": "s7-u12-l022-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-aanvragen"
+          ],
+          "translation": "Pedimos uma licença.",
+          "tokens": [
+            "We",
+            "vragen",
+            "een",
+            "vergunning",
+            "aan"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l023",
+      "unitId": "s7-u12",
+      "order": 23,
+      "title": "Organizar um evento (2)",
+      "description": "Taakverdeling met vrijwilligers.",
+      "cefr": "B2",
+      "objectives": [
+        "Distribuir tarefas por voluntários"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-taakverdeling",
+          "nl": "taakverdeling",
+          "pt": [
+            "distribuição de tarefas"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vrijwilliger",
+        "v-catering",
+        "v-deelnemer"
+      ],
+      "examples": [
+        {
+          "nl": "Een duidelijke taakverdeling voorkomt chaos.",
+          "pt": "Uma distribuição clara de tarefas evita o caos."
+        },
+        {
+          "nl": "Wie doet de kassa en wie zet de stoelen klaar?",
+          "pt": "Quem fica na caixa e quem prepara as cadeiras?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l023-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Equipa.",
+          "vocabRefs": [
+            "v-taakverdeling",
+            "v-vrijwilliger",
+            "v-catering",
+            "v-deelnemer"
+          ],
+          "pairs": [
+            {
+              "nl": "taakverdeling",
+              "pt": "distribuição de tarefas"
+            },
+            {
+              "nl": "vrijwilliger",
+              "pt": "voluntário"
+            },
+            {
+              "nl": "catering",
+              "pt": "catering"
+            },
+            {
+              "nl": "deelnemer",
+              "pt": "participante"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l023-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "voorkómen.",
+          "vocabRefs": [
+            "v-taakverdeling"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Uma distribuição clara de tarefas evita o caos.",
+          "answers": [
+            "Een duidelijke taakverdeling voorkomt chaos"
+          ]
+        },
+        {
+          "id": "s7-u12-l023-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "klaarzetten.",
+          "vocabRefs": [
+            "v-taakverdeling"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Quem prepara as cadeiras?",
+          "answers": [
+            "Wie zet de stoelen klaar?",
+            "Wie zet de stoelen klaar"
+          ]
+        },
+        {
+          "id": "s7-u12-l023-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Plural.",
+          "vocabRefs": [
+            "v-vrijwilliger"
+          ],
+          "sentence": "We zoeken nog drie ___ voor de bar.",
+          "translation": "Ainda procuramos três voluntários para o bar.",
+          "answers": [
+            "vrijwilligers"
+          ],
+          "choices": [
+            "vrijwilligers",
+            "deelnemers",
+            "taakverdeling"
+          ]
+        },
+        {
+          "id": "s7-u12-l023-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "klaarzetten.",
+          "vocabRefs": [
+            "v-taakverdeling"
+          ],
+          "tokens": [
+            "Wie",
+            "zet",
+            "de",
+            "stoelen",
+            "op?"
+          ],
+          "errorIndex": 4,
+          "correction": "klaar?"
+        },
+        {
+          "id": "s7-u12-l023-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Tarefa concreta.",
+          "vocabRefs": [
+            "v-taakverdeling"
+          ],
+          "lines": [
+            {
+              "speaker": "Vrijwilliger",
+              "nl": "Wat moet ik doen?",
+              "pt": "O que devo fazer?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Wil jij van twee tot vier bij de ingang staan en de deelnemers verwelkomen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Iets.",
+              "correct": false,
+              "feedback": "Vago."
+            },
+            {
+              "id": "c",
+              "text": "Kweenie.",
+              "correct": false,
+              "feedback": "Pouco profissional."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l023-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Mensagem (fictícia).",
+          "vocabRefs": [
+            "v-taakverdeling"
+          ],
+          "prompt": "Escreva uma mensagem curta aos voluntários com a taakverdeling (3 tarefas com horas).",
+          "referenceAnswers": [
+            "Hoi allemaal!\nTaakverdeling zaterdag:\n- Sanne en Joris: 10.00–12.00 opbouwen\n- Fatima: 12.00–16.00 kassa\n- Pedro: 16.00–17.00 opruimen\nBedankt voor jullie hulp!"
+          ],
+          "checklist": [
+            "3 tarefas",
+            "Horas",
+            "Agradecimento"
+          ],
+          "minWords": 40
+        },
+        {
+          "id": "s7-u12-l023-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-taakverdeling"
+          ],
+          "audioText": "Iedereen weet nu wat hij moet doen.",
+          "answers": [
+            "Iedereen weet nu wat hij moet doen"
+          ],
+          "translation": "Agora todos sabem o que têm de fazer."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l024",
+      "unitId": "s7-u12",
+      "order": 24,
+      "title": "Organizar um evento (3): no dia",
+      "description": "Opbouwen en afbreken.",
+      "cefr": "B2",
+      "objectives": [
+        "Coordenar montagem e desmontagem"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-opbouwen-event",
+          "nl": "opbouwen",
+          "pt": [
+            "montar (palco, tendas)"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-afbreken",
+          "nl": "afbreken",
+          "pt": [
+            "desmontar"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-podium",
+        "v-draaiboek",
+        "v-vrijwilliger"
+      ],
+      "examples": [
+        {
+          "nl": "Om acht uur beginnen we met opbouwen.",
+          "pt": "Às oito começamos a montar."
+        },
+        {
+          "nl": "Na afloop breken we het podium samen af.",
+          "pt": "No fim desmontamos o palco juntos."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l024-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "No dia.",
+          "vocabRefs": [
+            "v-opbouwen-event",
+            "v-afbreken",
+            "v-podium",
+            "v-draaiboek"
+          ],
+          "pairs": [
+            {
+              "nl": "opbouwen",
+              "pt": "montar"
+            },
+            {
+              "nl": "afbreken",
+              "pt": "desmontar"
+            },
+            {
+              "nl": "podium",
+              "pt": "palco"
+            },
+            {
+              "nl": "draaiboek",
+              "pt": "guião"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l024-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "beginnen met.",
+          "vocabRefs": [
+            "v-opbouwen-event"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Às oito começamos a montar.",
+          "answers": [
+            "Om acht uur beginnen we met opbouwen",
+            "We beginnen om acht uur met opbouwen"
+          ]
+        },
+        {
+          "id": "s7-u12-l024-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-afbreken"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Desmontamos o palco juntos.",
+          "answers": [
+            "We breken het podium samen af",
+            "Wij breken samen het podium af"
+          ]
+        },
+        {
+          "id": "s7-u12-l024-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Particípio.",
+          "vocabRefs": [
+            "v-opbouwen-event"
+          ],
+          "sentence": "Het podium is gisteren al ___.",
+          "translation": "O palco já foi montado ontem.",
+          "answers": [
+            "opgebouwd"
+          ],
+          "choices": [
+            "opgebouwd",
+            "opgebouwt",
+            "geopbouwd"
+          ]
+        },
+        {
+          "id": "s7-u12-l024-e05",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "afbreken.",
+          "vocabRefs": [
+            "v-afbreken"
+          ],
+          "tokens": [
+            "Na",
+            "afloop",
+            "breken",
+            "we",
+            "alles",
+            "op."
+          ],
+          "errorIndex": 5,
+          "correction": "af."
+        },
+        {
+          "id": "s7-u12-l024-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Plano.",
+          "vocabRefs": [
+            "v-draaiboek"
+          ],
+          "prompt": "Algo corre mal (chuva). Consultas…",
+          "options": [
+            {
+              "id": "a",
+              "text": "o draaiboek (plano B)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "o energielabel",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "a polis do carro",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l024-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Pedido.",
+          "vocabRefs": [
+            "v-afbreken"
+          ],
+          "audioText": "Wie helpt er na afloop met afbreken?",
+          "answers": [
+            "Wie helpt er na afloop met afbreken",
+            "Wie helpt er na afloop met afbreken?"
+          ],
+          "translation": "Quem ajuda a desmontar no fim?"
+        },
+        {
+          "id": "s7-u12-l024-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-afbreken"
+          ],
+          "translation": "Desmontamos tudo.",
+          "tokens": [
+            "We",
+            "breken",
+            "alles",
+            "af"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l025",
+      "unitId": "s7-u12",
+      "order": 25,
+      "title": "Escola dos filhos",
+      "description": "Het rapportgesprek.",
+      "cefr": "B2",
+      "objectives": [
+        "Conversar com o professor sobre o progresso de um filho"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-leerkracht",
+          "nl": "leerkracht",
+          "pt": [
+            "professor(a) (ensino básico)"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "leerkrachten"
+        },
+        {
+          "id": "v-rapportgesprek",
+          "nl": "rapportgesprek",
+          "pt": [
+            "reunião sobre as notas"
+          ],
+          "pos": "noun",
+          "article": "het"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-ouderavond",
+        "v-schooladvies",
+        "v-basisschool"
+      ],
+      "examples": [
+        {
+          "nl": "De leerkracht van groep 6 is erg betrokken.",
+          "pt": "A professora do 6.º grupo é muito dedicada."
+        },
+        {
+          "nl": "Bij het rapportgesprek bespreken we de cijfers.",
+          "pt": "Na reunião sobre as notas falamos dos resultados."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l025-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Escola.",
+          "vocabRefs": [
+            "v-leerkracht",
+            "v-rapportgesprek",
+            "v-ouderavond",
+            "v-schooladvies"
+          ],
+          "pairs": [
+            {
+              "nl": "leerkracht",
+              "pt": "professor(a)"
+            },
+            {
+              "nl": "rapportgesprek",
+              "pt": "reunião sobre notas"
+            },
+            {
+              "nl": "ouderavond",
+              "pt": "reunião de pais"
+            },
+            {
+              "nl": "schooladvies",
+              "pt": "recomendação escolar"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l025-e02",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het gesprek.",
+          "vocabRefs": [
+            "v-rapportgesprek"
+          ],
+          "noun": "rapportgesprek",
+          "pt": "reunião sobre notas",
+          "article": "het"
+        },
+        {
+          "id": "s7-u12-l025-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sistema.",
+          "vocabRefs": [
+            "v-basisschool"
+          ],
+          "prompt": "Na escola primária neerlandesa, os anos chamam-se…",
+          "options": [
+            {
+              "id": "a",
+              "text": "groepen (groep 1 a 8)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "klassen 1 a 4",
+              "correct": false,
+              "feedback": "Não no primário."
+            },
+            {
+              "id": "c",
+              "text": "semesters",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l025-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-rapportgesprek"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Como está o meu filho na leitura?",
+          "answers": [
+            "Hoe gaat het met mijn zoon met lezen?",
+            "Hoe gaat het lezen bij mijn zoon?",
+            "Hoe doet mijn zoon het met lezen?"
+          ]
+        },
+        {
+          "id": "s7-u12-l025-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-leerkracht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Em casa falamos português.",
+          "answers": [
+            "Thuis spreken we Portugees",
+            "Thuis praten we Portugees",
+            "We spreken thuis Portugees"
+          ]
+        },
+        {
+          "id": "s7-u12-l025-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Recomendação.",
+          "vocabRefs": [
+            "v-schooladvies"
+          ],
+          "sentence": "In groep 8 krijgt elk kind een ___ voor de middelbare school.",
+          "translation": "No grupo 8 cada criança recebe uma recomendação para o secundário.",
+          "answers": [
+            "schooladvies"
+          ],
+          "choices": [
+            "schooladvies",
+            "rapportgesprek",
+            "leerkracht"
+          ]
+        },
+        {
+          "id": "s7-u12-l025-e07",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de leerkracht.",
+          "vocabRefs": [
+            "v-leerkracht"
+          ],
+          "tokens": [
+            "Het",
+            "leerkracht",
+            "is",
+            "ziek."
+          ],
+          "errorIndex": 0,
+          "correction": "De"
+        },
+        {
+          "id": "s7-u12-l025-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Colaborar.",
+          "vocabRefs": [
+            "v-rapportgesprek"
+          ],
+          "lines": [
+            {
+              "speaker": "Leerkracht",
+              "nl": "Uw dochter is goed in rekenen, maar begrijpend lezen gaat nog moeizaam.",
+              "pt": "A sua filha é boa a matemática, mas a compreensão de leitura ainda custa."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Wat kunnen wij thuis doen om haar te helpen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dat is uw probleem.",
+              "correct": false,
+              "feedback": "Não colabora."
+            },
+            {
+              "id": "c",
+              "text": "Oké, doei.",
+              "correct": false,
+              "feedback": "Abrupto."
+            }
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l026",
+      "unitId": "s7-u12",
+      "order": 26,
+      "title": "Alarme no escritório",
+      "description": "De BHV'er en de verzamelplaats.",
+      "cefr": "B2",
+      "objectives": [
+        "Seguir instruções numa evacuação"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-bhv-er",
+          "nl": "BHV'er",
+          "pt": [
+            "socorrista da empresa"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "BHV'ers"
+        },
+        {
+          "id": "v-verzamelplaats",
+          "nl": "verzamelplaats",
+          "pt": [
+            "ponto de encontro"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-brandalarm",
+        "v-ontruimen"
+      ],
+      "examples": [
+        {
+          "nl": "Volg de aanwijzingen van de BHV'er.",
+          "pt": "Segue as instruções do socorrista da empresa."
+        },
+        {
+          "nl": "De verzamelplaats is op het parkeerterrein.",
+          "pt": "O ponto de encontro é no parque de estacionamento."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u12b-5",
+          "title": "BHV",
+          "body": "**BHV** = *bedrijfshulpverlening*: em empresas neerlandesas há funcionários com formação para primeiros socorros e evacuação (os **BHV'ers**). Numa evacuação: não uses o elevador, deixa as coisas e vai para a **verzamelplaats**.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u12-l026-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Evacuação.",
+          "vocabRefs": [
+            "v-bhv-er",
+            "v-verzamelplaats",
+            "v-brandalarm",
+            "v-ontruimen"
+          ],
+          "pairs": [
+            {
+              "nl": "BHV'er",
+              "pt": "socorrista da empresa"
+            },
+            {
+              "nl": "verzamelplaats",
+              "pt": "ponto de encontro"
+            },
+            {
+              "nl": "brandalarm",
+              "pt": "alarme de incêndio"
+            },
+            {
+              "nl": "ontruimen",
+              "pt": "evacuar"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l026-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Segurança.",
+          "vocabRefs": [
+            "v-verzamelplaats"
+          ],
+          "prompt": "O alarme toca. O que fazes?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Deixo tudo, uso as escadas e vou para a verzamelplaats",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Uso o elevador",
+              "correct": false,
+              "feedback": "Nunca numa evacuação."
+            },
+            {
+              "id": "c",
+              "text": "Acabo o e-mail primeiro",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l026-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aanwijzingen.",
+          "vocabRefs": [
+            "v-bhv-er"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Segue as instruções do socorrista.",
+          "answers": [
+            "Volg de aanwijzingen van de BHV'er",
+            "Volg de instructies van de BHV'er"
+          ]
+        },
+        {
+          "id": "s7-u12-l026-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Passiva.",
+          "vocabRefs": [
+            "v-ontruimen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O edifício está a ser evacuado.",
+          "answers": [
+            "Het gebouw wordt ontruimd"
+          ]
+        },
+        {
+          "id": "s7-u12-l026-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Ponto de encontro.",
+          "vocabRefs": [
+            "v-verzamelplaats"
+          ],
+          "sentence": "Ga direct naar de ___ en meld je bij de BHV'er.",
+          "translation": "Vai logo para o ponto de encontro e apresenta-te ao socorrista.",
+          "answers": [
+            "verzamelplaats"
+          ],
+          "choices": [
+            "verzamelplaats",
+            "wachtkamer",
+            "kantine"
+          ]
+        },
+        {
+          "id": "s7-u12-l026-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Particípio: ontruimd.",
+          "vocabRefs": [
+            "v-ontruimen"
+          ],
+          "tokens": [
+            "Het",
+            "gebouw",
+            "wordt",
+            "ontruimt."
+          ],
+          "errorIndex": 3,
+          "correction": "ontruimd."
+        },
+        {
+          "id": "s7-u12-l026-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Aviso.",
+          "vocabRefs": [
+            "v-ontruimen"
+          ],
+          "audioText": "Dit is een ontruiming. Verlaat het gebouw via de dichtstbijzijnde uitgang.",
+          "answers": [
+            "Dit is een ontruiming. Verlaat het gebouw via de dichtstbijzijnde uitgang",
+            "Dit is een ontruiming verlaat het gebouw via de dichtstbijzijnde uitgang"
+          ],
+          "translation": "Isto é uma evacuação. Saia do edifício pela saída mais próxima."
+        },
+        {
+          "id": "s7-u12-l026-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-verzamelplaats"
+          ],
+          "translation": "Vai para o ponto de encontro.",
+          "tokens": [
+            "Ga",
+            "naar",
+            "de",
+            "verzamelplaats"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l027",
+      "unitId": "s7-u12",
+      "order": 27,
+      "title": "Assalto a casa",
+      "description": "Inbraak en verzekeraar.",
+      "cefr": "B2",
+      "objectives": [
+        "Tratar de polícia e seguro depois de um assalto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-inbraak",
+          "nl": "inbraak",
+          "pt": [
+            "assalto (a casa)"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "inbraken"
+        },
+        {
+          "id": "v-verzekeraar",
+          "nl": "verzekeraar",
+          "pt": [
+            "seguradora"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "verzekeraars"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aangifte-doen",
+        "v-polis",
+        "v-schade"
+      ],
+      "examples": [
+        {
+          "nl": "Na de inbraak deden we aangifte bij de politie.",
+          "pt": "Depois do assalto apresentámos queixa à polícia."
+        },
+        {
+          "nl": "De verzekeraar wil een kopie van de aangifte.",
+          "pt": "A seguradora quer uma cópia da queixa."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l027-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Assalto.",
+          "vocabRefs": [
+            "v-inbraak",
+            "v-verzekeraar",
+            "v-aangifte-doen",
+            "v-polis"
+          ],
+          "pairs": [
+            {
+              "nl": "inbraak",
+              "pt": "assalto"
+            },
+            {
+              "nl": "verzekeraar",
+              "pt": "seguradora"
+            },
+            {
+              "nl": "aangifte doen",
+              "pt": "apresentar queixa"
+            },
+            {
+              "nl": "polis",
+              "pt": "apólice"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l027-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-inbraak"
+          ],
+          "prompt": "Primeiros passos depois de um assalto:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Não mexer em nada, ligar à polícia, depois à seguradora",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Arrumar tudo primeiro",
+              "correct": false,
+              "feedback": "Destróis pistas."
+            },
+            {
+              "id": "c",
+              "text": "Esperar uma semana",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l027-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "aangifte doen.",
+          "vocabRefs": [
+            "v-aangifte-doen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Apresentámos queixa à polícia.",
+          "answers": [
+            "We hebben aangifte gedaan bij de politie",
+            "We deden aangifte bij de politie"
+          ]
+        },
+        {
+          "id": "s7-u12-l027-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verzekeraar.",
+          "vocabRefs": [
+            "v-verzekeraar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A seguradora quer uma cópia.",
+          "answers": [
+            "De verzekeraar wil een kopie"
+          ]
+        },
+        {
+          "id": "s7-u12-l027-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Apólice.",
+          "vocabRefs": [
+            "v-polis"
+          ],
+          "sentence": "Valt diefstal onder mijn ___? Even nakijken.",
+          "translation": "O roubo está coberto pela minha apólice? Vou verificar.",
+          "answers": [
+            "polis"
+          ],
+          "choices": [
+            "polis",
+            "politie",
+            "inbraak"
+          ]
+        },
+        {
+          "id": "s7-u12-l027-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de inbraak.",
+          "vocabRefs": [
+            "v-inbraak"
+          ],
+          "tokens": [
+            "Het",
+            "inbraak",
+            "gebeurde",
+            "'s",
+            "nachts."
+          ],
+          "errorIndex": 0,
+          "correction": "De"
+        },
+        {
+          "id": "s7-u12-l027-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Lista concreta.",
+          "vocabRefs": [
+            "v-verzekeraar"
+          ],
+          "lines": [
+            {
+              "speaker": "Verzekeraar",
+              "nl": "Wat is er precies gestolen?",
+              "pt": "O que foi roubado exatamente?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Een laptop, een fototoestel en wat sieraden. Ik heb de aankoopbonnen van de laptop nog.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Alles.",
+              "correct": false,
+              "feedback": "Pouco preciso."
+            },
+            {
+              "id": "c",
+              "text": "Weet ik niet.",
+              "correct": false,
+              "feedback": "Não ajuda."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l027-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Relato.",
+          "vocabRefs": [
+            "v-inbraak"
+          ],
+          "audioText": "De inbrekers kwamen binnen via een open raam.",
+          "answers": [
+            "De inbrekers kwamen binnen via een open raam"
+          ],
+          "translation": "Os assaltantes entraram por uma janela aberta."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l028",
+      "unitId": "s7-u12",
+      "order": 28,
+      "title": "Mudar de casa",
+      "description": "De adreswijziging doorgeven.",
+      "cefr": "B2",
+      "objectives": [
+        "Comunicar a mudança de morada às entidades"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-adreswijziging",
+          "nl": "adreswijziging",
+          "pt": [
+            "mudança de morada"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-verhuizing-doorgeven",
+        "v-gemeente",
+        "v-verhuisdoos",
+        "v-bsn"
+      ],
+      "examples": [
+        {
+          "nl": "Geef je adreswijziging binnen vijf dagen na de verhuizing door aan de gemeente.",
+          "pt": "Comunica a mudança de morada à câmara até cinco dias depois da mudança."
+        },
+        {
+          "nl": "Vergeet je bank en je zorgverzekeraar niet.",
+          "pt": "Não te esqueças do banco e do seguro de saúde."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l028-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Mudança.",
+          "vocabRefs": [
+            "v-adreswijziging",
+            "v-verhuizing-doorgeven",
+            "v-verhuisdoos",
+            "v-bsn"
+          ],
+          "pairs": [
+            {
+              "nl": "adreswijziging",
+              "pt": "mudança de morada"
+            },
+            {
+              "nl": "een verhuizing doorgeven",
+              "pt": "comunicar a mudança"
+            },
+            {
+              "nl": "verhuisdoos",
+              "pt": "caixa de mudanças"
+            },
+            {
+              "nl": "BSN",
+              "pt": "número de cidadão"
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l028-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Instituição.",
+          "vocabRefs": [
+            "v-gemeente"
+          ],
+          "prompt": "A quem comunicas primeiro a mudança (oficialmente)?",
+          "options": [
+            {
+              "id": "a",
+              "text": "à gemeente",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "ao supermercado",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "ao CJIB",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l028-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "doorgeven.",
+          "vocabRefs": [
+            "v-adreswijziging"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Comuniquei a mudança de morada.",
+          "answers": [
+            "Ik heb mijn adreswijziging doorgegeven",
+            "Ik heb de adreswijziging doorgegeven"
+          ]
+        },
+        {
+          "id": "s7-u12-l028-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Imperativo.",
+          "vocabRefs": [
+            "v-adreswijziging"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Não te esqueças do banco.",
+          "answers": [
+            "Vergeet je bank niet",
+            "Vergeet de bank niet"
+          ]
+        },
+        {
+          "id": "s7-u12-l028-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Número.",
+          "vocabRefs": [
+            "v-bsn"
+          ],
+          "sentence": "Voor de inschrijving heb je je ___ en een huurcontract nodig.",
+          "translation": "Para o registo precisas do BSN e de um contrato de arrendamento.",
+          "answers": [
+            "BSN"
+          ],
+          "choices": [
+            "BSN",
+            "CJIB",
+            "KNMI"
+          ]
+        },
+        {
+          "id": "s7-u12-l028-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Particípio irregular: doorgegeven.",
+          "vocabRefs": [
+            "v-adreswijziging"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "mijn",
+            "adreswijziging",
+            "doorgegeefd."
+          ],
+          "errorIndex": 4,
+          "correction": "doorgegeven."
+        },
+        {
+          "id": "s7-u12-l028-e07",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Lista.",
+          "vocabRefs": [
+            "v-adreswijziging"
+          ],
+          "prompt": "Faça uma lista (5 itens) de quem deve receber a sua adreswijziging.",
+          "referenceAnswers": [
+            "1. de gemeente\n2. de bank\n3. de zorgverzekeraar\n4. mijn werkgever\n5. de energieleverancier"
+          ],
+          "checklist": [
+            "5 entidades"
+          ],
+          "minWords": 15
+        },
+        {
+          "id": "s7-u12-l028-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Confirmação.",
+          "vocabRefs": [
+            "v-verhuizing-doorgeven"
+          ],
+          "audioText": "Uw verhuizing is verwerkt; u staat nu op het nieuwe adres ingeschreven.",
+          "answers": [
+            "Uw verhuizing is verwerkt; u staat nu op het nieuwe adres ingeschreven",
+            "Uw verhuizing is verwerkt, u staat nu op het nieuwe adres ingeschreven"
+          ],
+          "translation": "A sua mudança foi processada; está agora registado na nova morada."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u12-l029",
+      "unitId": "s7-u12",
+      "order": 29,
+      "title": "Prática: um problema do início ao fim",
+      "description": "Van melding tot ingebrekestelling.",
+      "cefr": "B2",
+      "objectives": [
+        "Escalar um problema com o senhorio de forma formal e correta"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ingebrekestelling",
+          "nl": "ingebrekestelling",
+          "pt": [
+            "notificação formal de incumprimento"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-lekkage",
+        "v-contactformulier",
+        "v-verhuurder",
+        "v-huurcommissie",
+        "v-aanvechten"
+      ],
+      "examples": [
+        {
+          "nl": "Als de verhuurder niets doet, stuur je een ingebrekestelling met een redelijke termijn.",
+          "pt": "Se o senhorio não fizer nada, envias uma notificação formal com um prazo razoável."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u12-l029-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Escalar.",
+          "vocabRefs": [
+            "v-ingebrekestelling"
+          ],
+          "prompt": "Ordem lógica para escalar:",
+          "options": [
+            {
+              "id": "a",
+              "text": "telefone/formulário → e-mail escrito → ingebrekestelling → Huurcommissie/jurídico",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "ingebrekestelling logo no primeiro dia",
+              "correct": false,
+              "feedback": "Primeiro tenta o normal."
+            },
+            {
+              "id": "c",
+              "text": "nada; esperar",
+              "correct": false,
+              "feedback": "Não resolve."
+            }
+          ]
+        },
+        {
+          "id": "s7-u12-l029-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "termijn.",
+          "vocabRefs": [
+            "v-ingebrekestelling"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Envio uma notificação formal com um prazo de duas semanas.",
+          "answers": [
+            "Ik stuur een ingebrekestelling met een termijn van twee weken",
+            "Ik stuur een ingebrekestelling met een termijn van 2 weken"
+          ]
+        },
+        {
+          "id": "s7-u12-l029-e03",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Problema.",
+          "vocabRefs": [
+            "v-lekkage"
+          ],
+          "sentence": "Ik heb de ___ al drie keer via het contactformulier gemeld.",
+          "translation": "Já comuniquei a infiltração três vezes pelo formulário.",
+          "answers": [
+            "lekkage"
+          ],
+          "choices": [
+            "lekkage",
+            "inbraak",
+            "adreswijziging"
+          ]
+        },
+        {
+          "id": "s7-u12-l029-e04",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "om … te + infinitivo.",
+          "vocabRefs": [
+            "v-ingebrekestelling"
+          ],
+          "tokens": [
+            "Ik",
+            "geef",
+            "u",
+            "twee",
+            "weken",
+            "de",
+            "tijd",
+            "om",
+            "het",
+            "te",
+            "repareert."
+          ],
+          "errorIndex": 10,
+          "correction": "repareren."
+        },
+        {
+          "id": "s7-u12-l029-e05",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Carta formal (fictícia).",
+          "vocabRefs": [
+            "v-ingebrekestelling"
+          ],
+          "prompt": "Escreva uma ingebrekestelling curta (80–100 palavras): problema (infiltração), datas em que comunicou, prazo de 14 dias, consequência se nada acontecer.",
+          "referenceAnswers": [
+            "Geachte heer Jansen,\n\nOp 3, 10 en 24 maart heb ik u via het contactformulier gemeld dat er lekkage is in de badkamer. Tot nu toe is er niets gerepareerd en de schimmel wordt erger. Hierbij stel ik u formeel in gebreke. Ik verzoek u de lekkage binnen 14 dagen na dagtekening van deze brief te laten repareren. Gebeurt dat niet, dan zal ik de Huurcommissie inschakelen en juridische stappen overwegen.\n\nMet vriendelijke groet,\nMarta Gomes"
+          ],
+          "checklist": [
+            "Problema",
+            "Datas",
+            "Prazo",
+            "Consequência"
+          ],
+          "minWords": 90
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 8,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }
