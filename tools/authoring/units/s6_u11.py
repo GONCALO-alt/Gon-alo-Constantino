@@ -49,12 +49,12 @@ L(2, "Wie e wat como relativos", "Wie dit leest… Alles wat… Het enige wat…
 
 L(3, "Preposição + relativo", "De vriend met wie ik… Het huis waarin… waarover, waarmee",
   ["Usar relativos com preposição"],
-  vocab=[V("v-met-wie","met wie","com quem","expression"), V("v-waarin","waarin","em que|onde","adverb"),
+  vocab=[V("v-waarin","waarin","em que|onde","adverb"),
          V("v-waarover","waarover","sobre o qual|de que (falar)","adverb"), V("v-waarmee","waarmee","com o qual","adverb")],
   ex=[("De vriend met wie ik op vakantie ging, woont in Gent.","O amigo com quem fui de férias mora em Gante."),("Het huis waarin ik woon, is honderd jaar oud.","A casa em que moro tem cem anos."),("Het onderwerp waarover we spraken, was gevoelig.","O assunto sobre o qual falámos era sensível."),("De pen waarmee ik schrijf, is van mijn opa.","A caneta com que escrevo é do meu avô.")],
   gram=[G("g-voorzetsel-relatief","Preposição + relativo","**Pessoas**: preposição + **wie**: *de man **met wie** ik praat*. **Coisas**: **waar** + preposição: *het huis **waarin**, de pen **waarmee**, het boek **waarover***. Na fala, *waar* e a preposição separam-se muitas vezes: *het huis **waar** ik **in** woon*.",
     [("Het bedrijf waar ik voor werk… = Het bedrijf waarvoor ik werk…","A empresa para a qual trabalho…")])],
-  review=["v-wie-rel","v-waar","v-ervan"],
+  review=["v-met-wie","v-wie-rel","v-waar","v-ervan"],
   cefr=C, exs=[
     MA([("met wie","com quem"),("waarin","em que"),("waarover","sobre o qual"),("waarmee","com o qual")], "Preposição + relativo.", ["v-met-wie","v-waarin","v-waarover","v-waarmee"]),
     FB("De collega ___ ik samenwerk, is heel aardig.", ["met wie","waarmee"], "Pessoa → met wie.", ["v-met-wie"], choices=["met wie","waarmee","die"], tr="A colega com quem trabalho é muito simpática."),

@@ -3176,6 +3176,1494 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s1-u15-l011",
+      "unitId": "s1-u15",
+      "order": 11,
+      "title": "No café: pedir e pagar",
+      "description": "Mag ik betalen?",
+      "cefr": "A1",
+      "objectives": [
+        "Pedir bebidas e pagar"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-mag-ik-betalen",
+          "nl": "mag ik betalen?",
+          "pt": [
+            "posso pagar? / a conta, por favor"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-thee",
+        "v-bier",
+        "v-willen",
+        "v-betalen",
+        "v-pinnen"
+      ],
+      "examples": [
+        {
+          "nl": "Een thee en een bier, alstublieft.",
+          "pt": "Um chá e uma cerveja, por favor."
+        },
+        {
+          "nl": "Mag ik betalen? — Natuurlijk. Pinnen?",
+          "pt": "Posso pagar? — Claro. Com cartão?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u15-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "No café.",
+          "vocabRefs": [
+            "v-thee",
+            "v-bier",
+            "v-pinnen",
+            "v-betalen"
+          ],
+          "pairs": [
+            {
+              "nl": "thee",
+              "pt": "chá"
+            },
+            {
+              "nl": "bier",
+              "pt": "cerveja"
+            },
+            {
+              "nl": "pinnen",
+              "pt": "pagar com cartão"
+            },
+            {
+              "nl": "betalen",
+              "pt": "pagar"
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Pedir a conta.",
+          "vocabRefs": [
+            "v-mag-ik-betalen"
+          ],
+          "prompt": "Queres a conta:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Mag ik betalen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Mag ik pinnen bier?",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Ik wil een feest.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Pedido.",
+          "vocabRefs": [
+            "v-thee"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Um chá, por favor.",
+          "answers": [
+            "Een thee(,) alstublieft(.)",
+            "Een thee(,) graag(.)",
+            "Ik wil graag een thee(.)"
+          ]
+        },
+        {
+          "id": "s1-u15-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "pinnen.",
+          "vocabRefs": [
+            "v-pinnen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Posso pagar com cartão?",
+          "answers": [
+            "Kan ik pinnen?",
+            "Mag ik pinnen?"
+          ]
+        },
+        {
+          "id": "s1-u15-l011-e05",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "ik wil.",
+          "vocabRefs": [
+            "v-willen"
+          ],
+          "verb": "willen",
+          "pronoun": "ik",
+          "tense": "presente",
+          "sentence": "Ik ___ graag een koffie.",
+          "answers": [
+            "wil"
+          ]
+        },
+        {
+          "id": "s1-u15-l011-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pedir.",
+          "vocabRefs": [
+            "v-bier"
+          ],
+          "lines": [
+            {
+              "speaker": "Ober",
+              "nl": "Wat wilt u drinken?",
+              "pt": "O que quer beber?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Een bier, alstublieft.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben bier.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Tot ziens.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l011-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pagar.",
+          "vocabRefs": [
+            "v-pinnen"
+          ],
+          "lines": [
+            {
+              "speaker": "Ober",
+              "nl": "Dat is dan zeven euro. Pinnen?",
+              "pt": "São sete euros. Com cartão?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, graag.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, ik heb geen dorst.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            },
+            {
+              "id": "c",
+              "text": "Gefeliciteerd!",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l011-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-mag-ik-betalen"
+          ],
+          "audioText": "Mag ik betalen, alstublieft?",
+          "answers": [
+            "Mag ik betalen(,) alstublieft(?)"
+          ],
+          "translation": "Posso pagar, por favor?"
+        }
+      ],
+      "difficulty": 1,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u15-l012",
+      "unitId": "s1-u15",
+      "order": 12,
+      "title": "Combinar um encontro",
+      "description": "Om hoe laat spreken we af?",
+      "cefr": "A1",
+      "objectives": [
+        "Combinar dia, hora e lugar"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-om-hoe-laat",
+          "nl": "om hoe laat?",
+          "pt": [
+            "a que horas?"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-afspreken",
+        "v-prima-combinado",
+        "v-tot-dan",
+        "v-samen"
+      ],
+      "examples": [
+        {
+          "nl": "Zullen we morgen afspreken? — Prima! Om hoe laat?",
+          "pt": "Combinamos amanhã? — Ótimo! A que horas?"
+        },
+        {
+          "nl": "Om drie uur bij het station. — Tot dan!",
+          "pt": "Às três na estação. — Até lá!"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u15-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Combinar.",
+          "vocabRefs": [
+            "v-afspreken",
+            "v-prima-combinado",
+            "v-tot-dan",
+            "v-om-hoe-laat"
+          ],
+          "pairs": [
+            {
+              "nl": "afspreken",
+              "pt": "combinar"
+            },
+            {
+              "nl": "prima",
+              "pt": "ótimo, combinado"
+            },
+            {
+              "nl": "tot dan",
+              "pt": "até lá"
+            },
+            {
+              "nl": "om hoe laat?",
+              "pt": "a que horas?"
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Fechar.",
+          "vocabRefs": [
+            "v-tot-dan"
+          ],
+          "prompt": "Combinaram tudo. Despedes-te com:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Prima, tot dan!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Om hoe laat?",
+              "correct": false,
+              "feedback": "Já combinaram a hora."
+            },
+            {
+              "id": "c",
+              "text": "Mag ik betalen?",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l012-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "om hoe laat.",
+          "vocabRefs": [
+            "v-om-hoe-laat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A que horas?",
+          "answers": [
+            "Om hoe laat?",
+            "Hoe laat?"
+          ]
+        },
+        {
+          "id": "s1-u15-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "om + bij.",
+          "vocabRefs": [
+            "v-om",
+            "v-station"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Às três na estação.",
+          "answers": [
+            "Om drie uur bij het station(.)"
+          ]
+        },
+        {
+          "id": "s1-u15-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Combinar.",
+          "vocabRefs": [
+            "v-afspreken"
+          ],
+          "sentence": "Zullen we morgen ___?",
+          "translation": "Combinamos amanhã?",
+          "answers": [
+            "afspreken"
+          ],
+          "choices": [
+            "afspreken",
+            "betalen",
+            "bellen"
+          ]
+        },
+        {
+          "id": "s1-u15-l012-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Aceitar e perguntar a hora.",
+          "vocabRefs": [
+            "v-om-hoe-laat"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriendin",
+              "nl": "Zullen we zaterdag samen koffie drinken?",
+              "pt": "Bebemos um café juntos no sábado?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Leuk! Om hoe laat?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, niemand.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Mag ik pinnen?",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l012-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-prima-combinado"
+          ],
+          "audioText": "Prima, tot zaterdag!",
+          "answers": [
+            "Prima(,) tot zaterdag(!)"
+          ],
+          "translation": "Ótimo, até sábado!"
+        },
+        {
+          "id": "s1-u15-l012-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Separável: af no fim.",
+          "vocabRefs": [
+            "v-om-hoe-laat",
+            "v-afspreken"
+          ],
+          "translation": "A que horas combinamos?",
+          "tokens": [
+            "Om",
+            "hoe",
+            "laat",
+            "spreken",
+            "we",
+            "af?"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u15-l013",
+      "unitId": "s1-u15",
+      "order": 13,
+      "title": "Atender o telefone",
+      "description": "Met Ana!",
+      "cefr": "A1",
+      "objectives": [
+        "Atender e terminar uma chamada"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-met-naam",
+          "nl": "met …",
+          "pt": [
+            "fala … (ao atender o telefone)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-bellen",
+        "v-tot-straks",
+        "v-iemand"
+      ],
+      "examples": [
+        {
+          "nl": "Met Ana. — Hoi Ana, met Joost!",
+          "pt": "Fala a Ana. — Olá Ana, é o Joost!"
+        },
+        {
+          "nl": "Ik bel je straks terug.",
+          "pt": "Ligo-te de volta daqui a pouco."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s1u15c-1",
+          "title": "Atender com «met»",
+          "body": "Nos Países Baixos atende-se o telefone com **met + o nome**: *Met Ana* (fala a Ana), *Met Pieter de Vries*. Quem liga também se apresenta assim: *Hoi, met Joost!*",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s1-u15-l013-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "met + nome.",
+          "vocabRefs": [
+            "v-met-naam"
+          ],
+          "prompt": "O telefone toca. Atendes:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Met Rui.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben telefoon.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Doei!",
+              "correct": false,
+              "feedback": "É despedida."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Uso ao telefone.",
+          "vocabRefs": [
+            "v-met-naam"
+          ],
+          "prompt": "«Met Joost» ao telefone significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Fala o Joost.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Estou com o Joost.",
+              "correct": false,
+              "feedback": "Ao telefone, «met» apresenta quem fala."
+            },
+            {
+              "id": "c",
+              "text": "Liga ao Joost.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "met + nome.",
+          "vocabRefs": [
+            "v-met-naam"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Fala a Marta.",
+          "answers": [
+            "Met Marta(.)"
+          ]
+        },
+        {
+          "id": "s1-u15-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "bellen.",
+          "vocabRefs": [
+            "v-bellen",
+            "v-nu-straks"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ligo-te mais logo.",
+          "answers": [
+            "Ik bel je straks(.)",
+            "Ik bel je straks terug(.)"
+          ]
+        },
+        {
+          "id": "s1-u15-l013-e05",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Apresentar-se.",
+          "vocabRefs": [
+            "v-met-naam"
+          ],
+          "lines": [
+            {
+              "speaker": "Telefoon",
+              "nl": "Met Sanne.",
+              "pt": "Fala a Sanne."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoi Sanne, met Pedro! Hoe gaat het?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Met Sanne.",
+              "correct": false,
+              "feedback": "Repete."
+            },
+            {
+              "id": "c",
+              "text": "Wie ben ik?",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l013-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "ik bel.",
+          "vocabRefs": [
+            "v-bellen"
+          ],
+          "sentence": "Ik ___ je morgen.",
+          "translation": "Ligo-te amanhã.",
+          "answers": [
+            "bel"
+          ],
+          "choices": [
+            "bel",
+            "belt",
+            "bellen"
+          ]
+        },
+        {
+          "id": "s1-u15-l013-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-met-naam"
+          ],
+          "audioText": "Hallo, met Femke. Is Tom thuis?",
+          "answers": [
+            "Hallo(,) met Femke(.) Is Tom thuis(?)"
+          ],
+          "translation": "Olá, fala a Femke. O Tom está em casa?"
+        },
+        {
+          "id": "s1-u15-l013-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Terminar.",
+          "vocabRefs": [
+            "v-tot-straks"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriend",
+              "nl": "Ik moet gaan. Doei!",
+              "pt": "Tenho de ir. Adeus!"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Doei, tot straks!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Met Pedro.",
+              "correct": false,
+              "feedback": "Já não é altura."
+            },
+            {
+              "id": "c",
+              "text": "Mag ik betalen?",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u15-l014",
+      "unitId": "s1-u15",
+      "order": 14,
+      "title": "Direções simples",
+      "description": "De eerste straat links.",
+      "cefr": "A1",
+      "objectives": [
+        "Dar e seguir direções curtas"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-eerste-straat-links",
+          "nl": "de eerste straat links",
+          "pt": [
+            "a primeira rua à esquerda"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-links",
+        "v-rechts",
+        "v-rechtdoor",
+        "v-zoeken",
+        "v-eerste",
+        "v-tweede"
+      ],
+      "examples": [
+        {
+          "nl": "Ga rechtdoor en dan de eerste straat links.",
+          "pt": "Siga em frente e depois a primeira rua à esquerda."
+        },
+        {
+          "nl": "Het station is rechts.",
+          "pt": "A estação fica à direita."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u15-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Direções.",
+          "vocabRefs": [
+            "v-links",
+            "v-rechts",
+            "v-rechtdoor",
+            "v-zoeken"
+          ],
+          "pairs": [
+            {
+              "nl": "links",
+              "pt": "à esquerda"
+            },
+            {
+              "nl": "rechts",
+              "pt": "à direita"
+            },
+            {
+              "nl": "rechtdoor",
+              "pt": "em frente"
+            },
+            {
+              "nl": "zoeken",
+              "pt": "procurar"
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l014-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Direções.",
+          "vocabRefs": [
+            "v-tweede",
+            "v-rechts"
+          ],
+          "prompt": "«De tweede straat rechts» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "a segunda rua à direita",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "a primeira rua à direita",
+              "correct": false,
+              "feedback": "«tweede» = segunda."
+            },
+            {
+              "id": "c",
+              "text": "a segunda rua à esquerda",
+              "correct": false,
+              "feedback": "«rechts» = direita."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "rechtdoor.",
+          "vocabRefs": [
+            "v-rechtdoor"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Siga em frente.",
+          "answers": [
+            "Ga rechtdoor(.)"
+          ]
+        },
+        {
+          "id": "s1-u15-l014-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-eerste-straat-links"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A primeira rua à esquerda.",
+          "answers": [
+            "De eerste straat links(.)"
+          ]
+        },
+        {
+          "id": "s1-u15-l014-e05",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Dar direções.",
+          "vocabRefs": [
+            "v-zoeken"
+          ],
+          "lines": [
+            {
+              "speaker": "Toerist",
+              "nl": "Pardon, ik zoek het station.",
+              "pt": "Desculpe, procuro a estação."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ga rechtdoor en dan de eerste straat links.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik zoek ook niemand.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Met Ana.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l014-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Em frente.",
+          "vocabRefs": [
+            "v-rechtdoor"
+          ],
+          "sentence": "Ga ___ en dan rechts.",
+          "translation": "Siga em frente e depois à direita.",
+          "answers": [
+            "rechtdoor"
+          ],
+          "choices": [
+            "rechtdoor",
+            "links",
+            "eerste"
+          ]
+        },
+        {
+          "id": "s1-u15-l014-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-links"
+          ],
+          "audioText": "Het restaurant is links, naast de supermarkt.",
+          "answers": [
+            "Het restaurant is links(,) naast de supermarkt(.)"
+          ],
+          "translation": "O restaurante fica à esquerda, ao lado do supermercado."
+        },
+        {
+          "id": "s1-u15-l014-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-rechtdoor"
+          ],
+          "translation": "Siga em frente.",
+          "tokens": [
+            "Ga",
+            "rechtdoor."
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u15-l015",
+      "unitId": "s1-u15",
+      "order": 15,
+      "title": "Numa festa",
+      "description": "Gezellig!",
+      "cefr": "A1",
+      "objectives": [
+        "Conversar numa festa e elogiar o ambiente"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-feest",
+        "v-gezellig",
+        "v-iemand",
+        "v-kennen",
+        "v-niemand"
+      ],
+      "examples": [
+        {
+          "nl": "Wat een gezellig feest!",
+          "pt": "Que festa tão agradável!"
+        },
+        {
+          "nl": "Ken je iemand hier? — Nee, nog niemand.",
+          "pt": "Conheces alguém aqui? — Não, ainda ninguém."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u15-l015-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Palavra típica.",
+          "vocabRefs": [
+            "v-gezellig"
+          ],
+          "prompt": "«Gezellig» descreve…",
+          "options": [
+            {
+              "id": "a",
+              "text": "um ambiente agradável e acolhedor",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "algo caro",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "algo aborrecido",
+              "correct": false,
+              "feedback": "É o contrário."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Opostos.",
+          "vocabRefs": [
+            "v-iemand",
+            "v-niemand"
+          ],
+          "prompt": "«iemand» é o contrário de…",
+          "options": [
+            {
+              "id": "a",
+              "text": "niemand",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "niets",
+              "correct": false,
+              "feedback": "«niets» é o contrário de «iets»."
+            },
+            {
+              "id": "c",
+              "text": "samen",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "gezellig.",
+          "vocabRefs": [
+            "v-gezellig",
+            "v-feest"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Que festa tão agradável!",
+          "answers": [
+            "Wat een gezellig feest(!)"
+          ]
+        },
+        {
+          "id": "s1-u15-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "iemand.",
+          "vocabRefs": [
+            "v-iemand",
+            "v-kennen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Conheces alguém aqui?",
+          "answers": [
+            "Ken je iemand hier?",
+            "Ken jij iemand hier?",
+            "Ken je hier iemand?"
+          ]
+        },
+        {
+          "id": "s1-u15-l015-e05",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder.",
+          "vocabRefs": [
+            "v-collega"
+          ],
+          "lines": [
+            {
+              "speaker": "Gast",
+              "nl": "Hoi! Ik ben Lars. Hoe ken jij Sanne?",
+              "pt": "Olá, sou o Lars. De onde conheces a Sanne?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoi Lars! Ze is mijn collega.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gezellig.",
+              "correct": false,
+              "feedback": "Não responde."
+            },
+            {
+              "id": "c",
+              "text": "Mag ik betalen?",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l015-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Aceitar.",
+          "vocabRefs": [
+            "v-thee"
+          ],
+          "lines": [
+            {
+              "speaker": "Sanne",
+              "nl": "Wil je iets drinken?",
+              "pt": "Queres beber alguma coisa?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, graag. Een thee, alsjeblieft.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, niemand.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Tot dan.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l015-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-gezellig"
+          ],
+          "audioText": "Het is heel gezellig hier!",
+          "answers": [
+            "Het is heel gezellig hier(!)"
+          ],
+          "translation": "Está muito agradável aqui!"
+        },
+        {
+          "id": "s1-u15-l015-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-gezellig"
+          ],
+          "translation": "Que festa agradável!",
+          "tokens": [
+            "Wat",
+            "een",
+            "gezellig",
+            "feest!"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s1-u15-l016",
+      "unitId": "s1-u15",
+      "order": 16,
+      "title": "Revisão da Secção 1: uma conversa completa",
+      "description": "Alles samen.",
+      "cefr": "A1",
+      "objectives": [
+        "Usar numa conversa tudo o que aprendeste na Secção 1"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-heten",
+        "v-komen-uit",
+        "v-wonen",
+        "v-docent",
+        "v-hebben",
+        "v-graag",
+        "v-geen",
+        "v-om-hoe-laat",
+        "v-gezellig"
+      ],
+      "examples": [
+        {
+          "nl": "(Fictício) Hoi! Ik ben Rui. Ik kom uit Portugal en ik woon nu in Leiden. Ik ben docent. Ik heb een zus en een broertje.",
+          "pt": "Olá! Sou o Rui…"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s1-u15-l016-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Compreensão.",
+          "vocabRefs": [
+            "v-wonen"
+          ],
+          "prompt": "(Fictício) «Ik ben Rui. Ik kom uit Portugal en ik woon nu in Leiden.» Onde mora o Rui?",
+          "options": [
+            {
+              "id": "a",
+              "text": "em Leiden",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "em Portugal",
+              "correct": false,
+              "feedback": "É de onde vem."
+            },
+            {
+              "id": "c",
+              "text": "no Porto",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l016-e02",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Apresentar-se.",
+          "vocabRefs": [
+            "v-heten"
+          ],
+          "lines": [
+            {
+              "speaker": "Nieuwe buurvrouw",
+              "nl": "Hoi! Ik ben Eva. Hoe heet jij?",
+              "pt": "Olá! Sou a Eva. Como te chamas?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoi Eva! Ik heet Rui. Leuk je te ontmoeten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hoe heet jij?",
+              "correct": false,
+              "feedback": "Repetes a pergunta sem responder."
+            },
+            {
+              "id": "c",
+              "text": "Doei!",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l016-e03",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Origem.",
+          "vocabRefs": [
+            "v-komen-uit"
+          ],
+          "lines": [
+            {
+              "speaker": "Eva",
+              "nl": "Waar kom je vandaan?",
+              "pt": "De onde és?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Uit Portugal, uit Porto.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "In Leiden.",
+              "correct": false,
+              "feedback": "É onde moras."
+            },
+            {
+              "id": "c",
+              "text": "Om drie uur.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l016-e04",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Profissão.",
+          "vocabRefs": [
+            "v-docent"
+          ],
+          "lines": [
+            {
+              "speaker": "Eva",
+              "nl": "Wat doe je?",
+              "pt": "O que fazes?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben docent. En jij?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben moe.",
+              "correct": false,
+              "feedback": "Não é a profissão."
+            },
+            {
+              "id": "c",
+              "text": "Ja, graag.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l016-e05",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Combinar.",
+          "vocabRefs": [
+            "v-om-hoe-laat"
+          ],
+          "lines": [
+            {
+              "speaker": "Eva",
+              "nl": "Zullen we morgen koffie drinken?",
+              "pt": "Bebemos café amanhã?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Gezellig! Om hoe laat?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Nee, ik ken niemand.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Ik heb geen broer.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s1-u15-l016-e06",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Duas frases com en.",
+          "vocabRefs": [
+            "v-wonen",
+            "v-veel"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Moro em Leiden e trabalho muito.",
+          "answers": [
+            "Ik woon in Leiden en ik werk veel(.)",
+            "Ik woon in Leiden en werk veel(.)"
+          ]
+        },
+        {
+          "id": "s1-u15-l016-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-geen"
+          ],
+          "audioText": "Ik heb geen tijd vandaag, maar morgen wel.",
+          "answers": [
+            "Ik heb geen tijd vandaag(,) maar morgen wel(.)"
+          ],
+          "translation": "Hoje não tenho tempo, mas amanhã sim."
+        },
+        {
+          "id": "s1-u15-l016-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Revisão.",
+          "vocabRefs": [
+            "v-heten",
+            "v-graag"
+          ],
+          "prompt": "Escreva uma apresentação de 5–6 frases: nome, origem, morada, profissão, família e o que gosta de fazer.",
+          "referenceAnswers": [
+            "Hallo! Ik heet Rui. Ik kom uit Porto, maar ik woon nu in Leiden. Ik ben docent. Ik heb een zus en een broertje. Ik lees graag en ik fiets elke dag."
+          ],
+          "checklist": [
+            "Nome e origem",
+            "Morada e profissão",
+            "Família",
+            "Gostos"
+          ],
+          "minWords": 25
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 6,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }

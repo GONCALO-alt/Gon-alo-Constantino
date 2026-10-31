@@ -5,13 +5,13 @@ C = "A2-B1"
 
 L(1, "Atender e começar uma chamada", "Met Ana. Hoi, met Pedro! Stoor ik?",
   ["Atender e iniciar chamadas como os neerlandeses"],
-  vocab=[V("v-met-naam","met + nome","(ao telefone) é o/a…","expression",note="Met Ana. = Daqui fala a Ana."), V("v-storen","storen","incomodar","verb",note="Stoor ik? = Estou a incomodar?"),
+  vocab=[V("v-storen","storen","incomodar","verb",note="Stoor ik? = Estou a incomodar?"),
          V("v-bellen-over","bellen over","ligar por causa de","expression"), V("v-uitkomen-nu","komt het nu uit?","dá jeito agora?","expression")],
   ex=[("Met Ana de Vries.","Fala Ana de Vries."),("Hoi, met Pedro! Stoor ik?","Olá, é o Pedro! Estou a incomodar?"),("Ik bel over het feest van zaterdag.","Ligo por causa da festa de sábado."),("Komt het nu uit?","Dá jeito agora?")],
   gram=[G("g-telefoon-nl","Atender com o nome","Os neerlandeses atendem dizendo o próprio nome: **Met Ana** ou só o apelido. Quem liga também se identifica: **Hoi, met Pedro.** Depois é educado perguntar **Stoor ik?** e dizer o motivo: **Ik bel over…**",
     [("Goedemiddag, met Tom Bakker van Bakker Installaties.","Boa tarde, fala Tom Bakker, da Bakker Installaties.")],
     "Em Portugal atende-se com «Estou?» ou «Sim?»; nos Países Baixos isso soa estranho.")],
-  review=["v-bellen","v-spreken-met","v-hallo"],
+  review=["v-met-naam","v-bellen","v-spreken-met","v-hallo"],
   cefr=C, exs=[
     MA([("met + nome","fala…"),("storen","incomodar"),("bellen over","ligar por causa de"),("komt het nu uit?","dá jeito agora?")], "Ao telefone.", ["v-met-naam","v-storen","v-bellen-over","v-uitkomen-nu"]),
     MC("O telefone toca. Como atende à neerlandesa?", ["*Met Rita.","Estou?|Não se usa.","Wie ben jij?|Brusco."], "Met + nome.", ["v-met-naam"]),
