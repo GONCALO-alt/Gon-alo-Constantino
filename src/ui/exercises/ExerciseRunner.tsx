@@ -8,10 +8,11 @@ import type { Exercise } from '../../domain/schemas.ts';
 import { expectedAnswer, gradeExercise, needsSelfAssessment, type ExerciseResponse, type ExerciseResult } from '../../engine/grading.ts';
 import { expandAnswerPattern } from '../../engine/answers.ts';
 import { advance, answer, currentExercise, isFinished, progressFraction, startSession, type SessionState } from '../../engine/session.ts';
-import { dutchAnswerText } from '../../engine/spoken.ts';
+import { answerMeaning, dutchAnswerText } from '../../engine/spoken.ts';
 import { playCorrect, playSound, soundLength, vibrate } from '../../services/sounds.ts';
 import { speak, stopSpeaking } from '../../services/speech.ts';
 import { Icon, ProgressBar, RichText, SpeakButton } from '../components/common.tsx';
+import { GlossaryProvider, GlossText } from '../components/Gloss.tsx';
 import { ExerciseView } from './ExerciseView.tsx';
 
 export interface RunnerAnswer {
@@ -131,10 +132,17 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
   };
 
   const spokenAnswer = result && audioEnabled ? dutchAnswerText(ex) : null;
+  /** Só há explicação, resposta certa e significado quando o aluno erra (ou viu a resposta). */
+  const showDetails = !!result && (result.verdict !== 'correct' || revealed);
+  const meaning = showDetails ? answerMeaning(ex) : null;
+  /** A resposta certa está em neerlandês? (só então as palavras são clicáveis) */
+  const expectedIsDutch = ex.type === 'listening'
+    || (ex.type === 'translate' ? ex.direction === 'pt-nl' : ex.type !== 'expression' && dutchAnswerText(ex) !== null);
   const verdictText = result ? VERDICT_TEXT[result.verdict][session.position % VERDICT_TEXT[result.verdict].length] : '';
   const isRetry = session.position >= exercises.length;
 
   return (
+    <GlossaryProvider>
     <div className="runner">
       <header className="runner-header">
         <button type="button" className="icon-btn" onClick={() => setConfirmExit(true)} aria-label="Sair">
@@ -192,16 +200,20 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
                 {streakShown > 0 && <span className="streak-tag">{streakShown} seguidas!</span>}
                 {spokenAnswer && <SpeakButton text={spokenAnswer} rate={speechRate} label="Ouvir a resposta em neerlandês" />}
               </p>
-              {result.verdict !== 'correct' && (
+              {/* Quando acerta, basta o «Certo!»; a explicação só aparece quando há erro. */}
+              {showDetails && (
                 <p className="expected">
                   <span className="muted small">{ex.type === 'shortWriting' ? 'Resposta-modelo:' : 'Resposta certa:'}</span>{' '}
-                  <span lang="nl">{result.expected}</span>
+                  {expectedIsDutch ? <GlossText text={result.expected} /> : <span>{result.expected}</span>}
                 </p>
+              )}
+              {showDetails && meaning && (
+                <p className="meaning"><span className="muted small">Significado:</span> {meaning}</p>
               )}
               {result.note && <p className="note">{result.note}</p>}
               {revealed && <p className="note">Viu a resposta antes de responder: este exercício volta a aparecer no fim.</p>}
-              {result.optionFeedback && <p className="note">{result.optionFeedback}</p>}
-              <p className="explanation"><RichText text={ex.explanation} /></p>
+              {showDetails && result.optionFeedback && <p className="note">{result.optionFeedback}</p>}
+              {showDetails && <p className="explanation"><RichText text={ex.explanation} /></p>}
             </div>
           )}
 
@@ -223,5 +235,6 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
         </div>
       </footer>
     </div>
+    </GlossaryProvider>
   );
 }

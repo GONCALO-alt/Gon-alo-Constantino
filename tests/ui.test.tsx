@@ -281,6 +281,48 @@ describe('botão «Verificar»', () => {
   }, 30_000);
 });
 
+describe('feedback e palavras clicáveis', () => {
+  it('ao acertar não mostra a explicação; ao errar mostra a resposta, o significado e a explicação', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    const [ex1, ex2] = lesson.exercises as [Exercise, Exercise];
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await user.click(screen.getByRole('radio', { name: /hoi/ }));
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
+    const ok = await screen.findByRole('status');
+    expect(ok.textContent).toMatch(/Certo|Muito bem|Exatamente|Correto/);
+    expect(ok.textContent).not.toContain(ex1.explanation.slice(0, 20));
+    await user.click(screen.getByRole('button', { name: 'Continuar' }));
+    // 2.º exercício: errar de propósito.
+    await screen.findByRole('heading', { name: ex2.instruction });
+    await user.type(screen.getByRole('textbox'), 'xyz');
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
+    const bad = await screen.findByText('Resposta certa:');
+    const panel = bad.closest('.feedback')!;
+    expect(panel.textContent).toContain(ex2.explanation.slice(0, 20));
+  }, 30_000);
+
+  it('tocar numa palavra neerlandesa mostra a tradução', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await user.click(screen.getByRole('radio', { name: /hoi/ }));
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
+    await user.click(await screen.findByRole('button', { name: 'Continuar' }));
+    await screen.findByRole('heading', { name: lesson.exercises[1]!.instruction });
+    const word = await screen.findByRole('button', { name: 'Tradução de «tot»' }, { timeout: 5000 });
+    await user.click(word);
+    const card = document.querySelector('.gloss-card')!;
+    expect(card.textContent).toMatch(/até/);
+    await user.click(screen.getByRole('button', { name: 'Fechar tradução' }));
+    expect(document.querySelector('.gloss-card')).toBeNull();
+  }, 30_000);
+});
+
 describe('sair de uma lição', () => {
   it('pede confirmação dentro da página e permite continuar ou sair', async () => {
     const user = userEvent.setup();

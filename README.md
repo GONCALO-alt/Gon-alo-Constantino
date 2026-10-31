@@ -32,6 +32,7 @@ npm run preview
 - **Revisão espaçada** (caixas de Leitner configuráveis), palavras difíceis, esquecidas e erros recentes.
 - XP, objetivo diário, sequência sem castigos, conquistas, estatísticas.
 - Sons: pronúncia com a voz do sistema; depois de cada exercício a resposta certa é lida em neerlandês; nos pares, cada palavra neerlandesa é pronunciada ao tocar; efeitos sonoros (três variações de «certo», errado suave, sons para 3, 5 e 10 respostas certas seguidas, fanfarra de fim de lição e outra para lição sem erros, conquista; vibração curta no telemóvel; volume ajustável) gerados no navegador, sem ficheiros nem serviços externos.
+- Durante a lição, tocar numa palavra neerlandesa mostra a tradução (dicionário feito com o vocabulário do curso, reconhece formas como *werkt* → *werken*). Ao acertar aparece só «Certo!»; ao errar aparecem a resposta certa, o significado e a explicação.
 - Definições: objetivo, áudio (voz, leitura da resposta, efeitos sonoros), navegação livre, acentos, movimento reduzido.
 - Privacidade: sem contas nem servidores; exportar, restaurar e apagar todos os dados.
 

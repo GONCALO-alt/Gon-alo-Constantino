@@ -11,6 +11,7 @@ import { seededRandom, shuffle } from '../../engine/session.ts';
 import { canSpeak, hasDutchVoice, speak } from '../../services/speech.ts';
 import { playSound } from '../../services/sounds.ts';
 import { RichText, SpeakButton } from '../components/common.tsx';
+import { GlossText } from '../components/Gloss.tsx';
 
 export interface ExerciseProps<E extends Exercise = Exercise> {
   exercise: E;
@@ -47,7 +48,7 @@ export function ExerciseView(props: ExerciseProps) {
       return (
         <OptionsExercise {...props} options={ex.options}
           prompt={<>
-            <p className="prompt-nl"><SpeakIf {...props} text={ex.expression} /> {ex.expression}</p>
+            <p className="prompt-nl"><SpeakIf {...props} text={ex.expression} /> <GlossText text={ex.expression} /></p>
             {ex.literal && <p className="muted">À letra: «{ex.literal}»</p>}
             <p className="prompt">{ex.prompt}</p>
           </>} />
@@ -135,7 +136,7 @@ function TranslateText(props: ExerciseProps<ExerciseOf<'translate'>>) {
   const fromNl = ex.direction === 'nl-pt';
   return (
     <div className="exercise">
-      <p className={fromNl ? 'prompt-nl' : 'prompt'}>{fromNl && <SpeakIf {...props} text={ex.prompt} />} {ex.prompt}</p>
+      <p className={fromNl ? 'prompt-nl' : 'prompt'}>{fromNl && <SpeakIf {...props} text={ex.prompt} />} {fromNl ? <GlossText text={ex.prompt} /> : ex.prompt}</p>
       <TextAnswer {...props} lang={fromNl ? 'pt' : 'nl'} label={fromNl ? 'Tradução em português' : 'Tradução em neerlandês'} />
     </div>
   );
@@ -146,7 +147,7 @@ function ConjugationExercise(props: ExerciseProps<ExerciseOf<'conjugation'>>) {
   return (
     <div className="exercise">
       <p className="muted">Verbo <strong lang="nl">{ex.verb}</strong> · {ex.pronoun} · {ex.tense.replace('-', ' ')}</p>
-      {ex.sentence && <p className="prompt-nl" lang="nl">{ex.sentence}</p>}
+      {ex.sentence && <p className="prompt-nl" lang="nl"><GlossText text={ex.sentence} /></p>}
       <TextAnswer {...props} lang="nl" label={`Forma de ${ex.verb} para ${ex.pronoun}`} placeholder="Forma do verbo…" />
     </div>
   );
@@ -157,7 +158,7 @@ function FillBlankExercise(props: ExerciseProps<ExerciseOf<'fillBlank'>>) {
   const [before, after] = ex.sentence.split('___') as [string, string];
   const sentence = (
     <>
-      <p className="prompt-nl" lang="nl">{before}<span className="blank" aria-label="espaço em branco">____</span>{after}</p>
+      <p className="prompt-nl" lang="nl"><GlossText text={before} /><span className="blank" aria-label="espaço em branco">____</span><GlossText text={after} /></p>
       {ex.translation && <p className="muted">{ex.translation}</p>}
     </>
   );
@@ -212,7 +213,7 @@ function DialogueExercise(props: ExerciseProps<ExerciseOf<'dialogue'>>) {
             <li key={i} className={`bubble ${i % 2 ? 'right' : 'left'}`}>
               <span className="speaker">{l.speaker}</span>
               {i === ex.blankLine ? <span className="blank">…</span> : (
-                <span lang="nl">{l.nl} {props.audioEnabled && <SpeakButton text={l.nl} rate={props.speechRate} />}</span>
+                <span lang="nl"><GlossText text={l.nl} /> {props.audioEnabled && <SpeakButton text={l.nl} rate={props.speechRate} />}</span>
               )}
               {l.pt && i !== ex.blankLine && <span className="muted small">{l.pt}</span>}
             </li>
@@ -341,7 +342,7 @@ function ComprehensionExercise({ exercise, locked, onResponse, speechRate, audio
     <div className="exercise">
       <article className="reading" lang="nl">
         {exercise.title && <h3 lang="pt-PT">{exercise.title} {audioEnabled && <SpeakButton text={exercise.text.replace(/^[^:\n]+:/gm, '')} rate={speechRate} label="Ouvir o texto" />}</h3>}
-        {exercise.text.split('\n').map((line, i) => <p key={i}>{line}</p>)}
+        {exercise.text.split('\n').map((line, i) => <GlossText key={i} as="p" text={line} />)}
       </article>
       {exercise.questions.map((q, qi) => (
         <fieldset key={qi} className="question">

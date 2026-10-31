@@ -65,3 +65,25 @@ export function dutchAnswerText(ex: Exercise): string | null {
       return null;
   }
 }
+
+/**
+ * Significado (em português) da resposta certa, para mostrar quando o aluno erra.
+ * null quando a resposta certa já está em português ou não há tradução disponível.
+ */
+export function answerMeaning(ex: Exercise): string | null {
+  switch (ex.type) {
+    case 'translate':
+      return ex.direction === 'pt-nl' ? ex.prompt : null;
+    case 'fillBlank':
+      return ex.translation ?? null;
+    case 'wordOrder':
+    case 'listening':
+      return ex.translation;
+    case 'buildSentence':
+      return ex.prompt;
+    case 'articleChoice':
+      return ex.pt;
+    default:
+      return null;
+  }
+}
