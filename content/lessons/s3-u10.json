@@ -1145,21 +1145,26 @@
         },
         {
           "id": "s3-u10-l004-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Expressão fixa: de lift doet het niet.",
           "vocabRefs": [
             "v-verwarming"
           ],
-          "tokens": [
-            "De",
-            "lift",
-            "doet",
-            "niet",
-            "het."
-          ],
-          "errorIndex": 3,
-          "correction": "het niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De lift doet het niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De lift doet niet het.",
+              "correct": false,
+              "feedback": "Expressão fixa: de lift doet het niet."
+            }
+          ]
         },
         {
           "id": "s3-u10-l004-e07",

@@ -85,7 +85,7 @@ L(4, "A horas, cedo, atrasado", "Pontualidade — muito valorizada nos Países B
     FB("Ik sta altijd ___ op: om zes uur.", ["vroeg"], "vroeg = cedo.", ["v-vroeg"], choices=["vroeg","laat","op tijd"], tr="Levanto-me sempre cedo: às seis."),
     AR("vertraging","o atraso","de", "-ing → de.", ["v-vertraging"]),
     LI("Gelukkig ben je op tijd!", ["Gelukkig ben je op tijd"], "Ainda bem que chegaste a horas!", "gelukkig = felizmente.", ["v-op-tijd"]),
-    FE(["Ik","ben","laat","te."], 2, "te laat", "A ordem é «te laat».", ["v-te-laat"]),
+    MC("Qual é a ordem correta?", ["*Ik ben te laat.","Ik ben laat te.|A ordem é «te laat»."], "A ordem é «te laat».", ["v-te-laat"]),
     DL([("Chefe","Je bent te laat!","Estás atrasado!"),("Pedro","")], ["*Sorry, de trein had vertraging.","Graag gedaan!|Não faz sentido.","Ik ben vroeg.|Contradiz a situação."], "Pedir desculpa e explicar.", ["v-vertraging"]),
     CO("text","Mensagem da Eva", "Hoi Sanne! Sorry, ik ben iets later. De bus heeft vertraging. Ik ben er om kwart over acht in plaats van om acht uur. Tot zo!",
        [("Porque se atrasa a Eva?", ["*O autocarro está atrasado","Acordou tarde","Está doente"]),("A que horas chega?", ["*Às 8h15","Às 8h00","Às 7h45"])],

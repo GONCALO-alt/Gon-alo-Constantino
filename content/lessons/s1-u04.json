@@ -1446,20 +1446,26 @@
         },
         {
           "id": "s1-u04-l005-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "A ordem certa é «ik begrijp het niet»: «niet» depois de «het».",
           "vocabRefs": [
             "v-niet"
           ],
-          "tokens": [
-            "Ik",
-            "begrijp",
-            "niet",
-            "het."
-          ],
-          "errorIndex": 2,
-          "correction": "het niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik begrijp het niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik begrijp niet het.",
+              "correct": false,
+              "feedback": "A ordem certa é «ik begrijp het niet»: «niet» depois de «het»."
+            }
+          ]
         },
         {
           "id": "s1-u04-l005-e06",

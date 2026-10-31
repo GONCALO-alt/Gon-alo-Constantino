@@ -822,23 +822,26 @@
         },
         {
           "id": "s4-u08-l003-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de dat, os verbos vão para o fim: dat het morgen gaat regenen.",
           "vocabRefs": [
             "v-ik-denk-dat"
           ],
-          "tokens": [
-            "Ik",
-            "denk",
-            "dat",
-            "het",
-            "gaat",
-            "morgen",
-            "regenen."
-          ],
-          "errorIndex": 4,
-          "correction": "dat het morgen gaat regenen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik denk dat het morgen gaat regenen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik denk dat het gaat morgen regenen.",
+              "correct": false,
+              "feedback": "Depois de dat, os verbos vão para o fim: dat het morgen gaat regenen."
+            }
+          ]
         },
         {
           "id": "s4-u08-l003-e06",
@@ -1094,23 +1097,26 @@
         },
         {
           "id": "s4-u08-l004-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Com omdat, o verbo vai para o fim: omdat ik ziek ben.",
           "vocabRefs": [
             "v-omdat"
           ],
-          "tokens": [
-            "Ik",
-            "blijf",
-            "thuis",
-            "omdat",
-            "ik",
-            "ben",
-            "ziek."
-          ],
-          "errorIndex": 5,
-          "correction": "omdat ik ziek ben"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik blijf thuis omdat ik ziek ben.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik blijf thuis omdat ik ben ziek.",
+              "correct": false,
+              "feedback": "Com omdat, o verbo vai para o fim: omdat ik ziek ben."
+            }
+          ]
         },
         {
           "id": "s4-u08-l004-e05",
@@ -1466,23 +1472,26 @@
         },
         {
           "id": "s4-u08-l005-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de dat: dat je niet kunt komen.",
           "vocabRefs": [
             "v-jammer"
           ],
-          "tokens": [
-            "Wat",
-            "jammer",
-            "dat",
-            "je",
-            "kunt",
-            "niet",
-            "komen."
-          ],
-          "errorIndex": 4,
-          "correction": "niet kunt"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Wat jammer dat je niet kunt komen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Wat jammer dat je kunt niet komen.",
+              "correct": false,
+              "feedback": "Depois de dat: dat je niet kunt komen."
+            }
+          ]
         },
         {
           "id": "s4-u08-l005-e08",

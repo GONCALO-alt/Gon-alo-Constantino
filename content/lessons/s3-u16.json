@@ -828,23 +828,26 @@
         },
         {
           "id": "s3-u16-l003-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Expressão fixa: het spijt me.",
           "vocabRefs": [
             "v-het-spijt-me"
           ],
-          "tokens": [
-            "Ik",
-            "spijt",
-            "het,",
-            "maar",
-            "dit",
-            "klopt",
-            "niet."
-          ],
-          "errorIndex": 0,
-          "correction": "Het spijt me"
+          "prompt": "Qual é a frase correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het spijt me, maar dit klopt niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik spijt het, maar dit klopt niet.",
+              "correct": false,
+              "feedback": "Expressão fixa: het spijt me."
+            }
+          ]
         },
         {
           "id": "s3-u16-l003-e08",

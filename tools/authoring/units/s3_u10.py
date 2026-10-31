@@ -78,7 +78,7 @@ L(4, "Problemas em casa", "lekken, kapot, de verwarming, de loodgieter, reparere
     TR("pt-nl","A torneira está a pingar.", ["De kraan lekt"], "lekken.", ["v-lekken","v-kraan"]),
     TR("nl-pt","Kunt u een loodgieter sturen?", ["Pode [mandar|enviar] um canalizador"], "sturen = enviar.", ["v-loodgieter"]),
     AR("verwarming","o aquecimento","de", "-ing → de.", ["v-verwarming"]),
-    FE(["De","lift","doet","niet","het."], 3, "het niet", "Expressão fixa: de lift doet het niet.", ["v-verwarming"]),
+    MC("Qual é a ordem correta?", ["*De lift doet het niet.","De lift doet niet het.|Expressão fixa: de lift doet het niet."], "Expressão fixa: de lift doet het niet.", ["v-verwarming"]),
     LI("Er zit schimmel op de muur.", ["Er zit schimmel op de muur"], "Há bolor na parede.", "er zit = há.", ["v-schimmel"]),
     FB("Wanneer komt iemand de verwarming ___?", ["repareren"], "reparar.", ["v-repareren"], choices=["repareren","lekken","huren"], tr="Quando vem alguém reparar o aquecimento?"),
     DL([("Senhorio","Wat is het probleem?","Qual é o problema?"),("Inquilino","")], ["*De verwarming doet het niet en het is heel koud.","Ik ben de verwarming.|Não faz sentido.","De huur is te laag.|Não é um problema de casa."], "Descrever o problema.", ["v-verwarming"]),

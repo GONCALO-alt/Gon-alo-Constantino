@@ -209,25 +209,26 @@
         },
         {
           "id": "s6-u15-l001-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbos no fim: dat het verboden moet worden.",
           "vocabRefs": [
             "v-betoog"
           ],
-          "tokens": [
-            "Ik",
-            "ben",
-            "van",
-            "mening",
-            "dat",
-            "het",
-            "moet",
-            "verboden",
-            "worden."
-          ],
-          "errorIndex": 6,
-          "correction": "verboden moet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben van mening dat het verboden moet worden.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben van mening dat het moet verboden worden.",
+              "correct": false,
+              "feedback": "Verbos no fim: dat het verboden moet worden."
+            }
+          ]
         },
         {
           "id": "s6-u15-l001-e09",
@@ -1092,24 +1093,26 @@
         },
         {
           "id": "s6-u15-l004-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbos no fim: dat we minder moeten vliegen.",
           "vocabRefs": [
             "v-parafraseren"
           ],
-          "tokens": [
-            "De",
-            "schrijver",
-            "stelt",
-            "dat",
-            "we",
-            "moeten",
-            "minder",
-            "vliegen."
-          ],
-          "errorIndex": 5,
-          "correction": "minder moeten"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De schrijver stelt dat we minder moeten vliegen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De schrijver stelt dat we moeten minder vliegen.",
+              "correct": false,
+              "feedback": "Verbos no fim: dat we minder moeten vliegen."
+            }
+          ]
         },
         {
           "id": "s6-u15-l004-e08",
@@ -1407,26 +1410,26 @@
         },
         {
           "id": "s6-u15-l005-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "«in de tijd» é redundante: Op dit moment (ou Nu) werken veel mensen thuis.",
           "vocabRefs": [
             "v-schrappen"
           ],
-          "tokens": [
-            "Op",
-            "dit",
-            "moment",
-            "in",
-            "de",
-            "tijd",
-            "werken",
-            "veel",
-            "mensen",
-            "thuis."
-          ],
-          "errorIndex": 3,
-          "correction": "(cortar) Op dit moment / Nu"
+          "prompt": "Qual é a frase mais natural?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Op dit moment werken veel mensen thuis.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Op dit moment in de tijd werken veel mensen thuis.",
+              "correct": false,
+              "feedback": "«in de tijd» é redundante: Op dit moment (ou Nu) werken veel mensen thuis."
+            }
+          ]
         },
         {
           "id": "s6-u15-l005-e08",

@@ -210,23 +210,26 @@
         },
         {
           "id": "s7-u04-l001-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Uiteindelijk hebben we…",
           "vocabRefs": [
             "v-resultaat-behalen"
           ],
-          "tokens": [
-            "Uiteindelijk",
-            "we",
-            "hebben",
-            "een",
-            "goed",
-            "resultaat",
-            "behaald."
-          ],
-          "errorIndex": 1,
-          "correction": "hebben we"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Uiteindelijk hebben we een goed resultaat behaald.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Uiteindelijk we hebben een goed resultaat behaald.",
+              "correct": false,
+              "feedback": "Inversão: Uiteindelijk hebben we…"
+            }
+          ]
         },
         {
           "id": "s7-u04-l001-e08",

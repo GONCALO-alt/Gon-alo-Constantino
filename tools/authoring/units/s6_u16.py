@@ -100,7 +100,7 @@ L(5, "Revisão da Secção 6", "Argumentação, registos, gramática avançada e
     FB("Het huis ___ in 1920 gebouwd.", ["werd","is"], "Passiva passada.", ["v-werd"], choices=["werd","wordt","heeft"], tr="A casa foi construída em 1920."),
     FB("Ze vroeg ___ ik mee wilde.", ["of"], "Pergunta indireta.", ["v-vroeg-vragen"], choices=["of","dat","wat"], tr="Ela perguntou se eu queria vir."),
     FB("We moeten nu een besluit ___.", ["nemen"], "Colocação.", ["v-besluit-nemen"], choices=["nemen","maken","doen"], tr="Temos agora de tomar uma decisão."),
-    FE(["Hij","zei","dat","hij","heeft","het","niet","kunnen","doen."], 4, "het niet heeft", "Grupo verbal no fim: dat hij het niet heeft kunnen doen.", ["v-werkwoordscluster"]),
+    MC("Qual é a ordem correta?", ["*Hij zei dat hij het niet heeft kunnen doen.","Hij zei dat hij heeft het niet kunnen doen.|Grupo verbal no fim: dat hij het niet heeft kunnen doen."], "Grupo verbal no fim: dat hij het niet heeft kunnen doen.", ["v-werkwoordscluster"]),
     TR("pt-nl","Fizeste muitos progressos.", ["Je hebt veel vooruitgang geboekt","Jij hebt veel vooruitgang geboekt"], "vooruitgang boeken.", ["v-vooruitgang-boeken"]),
     TR("nl-pt","Je mag trots zijn op jezelf.", ["Podes ter orgulho em ti","Podes estar orgulhoso de ti"], "trots op.", ["v-trots-zijn-op"]),
     LI("Ik beheers het Nederlands steeds beter.", ["Ik beheers het Nederlands steeds beter"], "Domino o neerlandês cada vez melhor.", "beheersen.", ["v-beheersen"]),

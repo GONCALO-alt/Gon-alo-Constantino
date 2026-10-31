@@ -1476,26 +1476,26 @@
         },
         {
           "id": "s5-u06-l005-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "omdat → verbo no fim: omdat het te duur is.",
           "vocabRefs": [
             "v-omdat"
           ],
-          "tokens": [
-            "Ik",
-            "ben",
-            "tegen",
-            "deze",
-            "maatregel,",
-            "omdat",
-            "het",
-            "is",
-            "te",
-            "duur."
-          ],
-          "errorIndex": 7,
-          "correction": "te duur is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben tegen deze maatregel, omdat het te duur is.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben tegen deze maatregel, omdat het is te duur.",
+              "correct": false,
+              "feedback": "omdat → verbo no fim: omdat het te duur is."
+            }
+          ]
         },
         {
           "id": "s5-u06-l005-e09",

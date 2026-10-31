@@ -1158,20 +1158,26 @@
         },
         {
           "id": "s2-u02-l004-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "A ordem é «te laat».",
           "vocabRefs": [
             "v-te-laat"
           ],
-          "tokens": [
-            "Ik",
-            "ben",
-            "laat",
-            "te."
-          ],
-          "errorIndex": 2,
-          "correction": "te laat"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben te laat.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben laat te.",
+              "correct": false,
+              "feedback": "A ordem é «te laat»."
+            }
+          ]
         },
         {
           "id": "s2-u02-l004-e09",

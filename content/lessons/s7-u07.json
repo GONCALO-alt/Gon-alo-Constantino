@@ -1370,24 +1370,26 @@
         },
         {
           "id": "s7-u07-l005-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de bovendien.",
           "vocabRefs": [
             "v-samenhang"
           ],
-          "tokens": [
-            "Het",
-            "beleid",
-            "is",
-            "slecht.",
-            "Bovendien",
-            "het",
-            "is",
-            "duur."
-          ],
-          "errorIndex": 5,
-          "correction": "is het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het beleid is slecht. Bovendien is het duur.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het beleid is slecht. Bovendien het is duur.",
+              "correct": false,
+              "feedback": "Inversão depois de bovendien."
+            }
+          ]
         },
         {
           "id": "s7-u07-l005-e06",
@@ -1416,28 +1418,26 @@
         },
         {
           "id": "s7-u07-l005-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Com omdat, o verbo vai para o fim: omdat ik het beter vind.",
           "vocabRefs": [
             "v-woordkeus"
           ],
-          "tokens": [
-            "Ik",
-            "pleit",
-            "daarom",
-            "voor",
-            "een",
-            "andere",
-            "oplossing,",
-            "omdat",
-            "ik",
-            "vind",
-            "het",
-            "beter."
-          ],
-          "errorIndex": 9,
-          "correction": "het beter vind"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik pleit daarom voor een andere oplossing, omdat ik het beter vind.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik pleit daarom voor een andere oplossing, omdat ik vind het beter.",
+              "correct": false,
+              "feedback": "Com omdat, o verbo vai para o fim: omdat ik het beter vind."
+            }
+          ]
         },
         {
           "id": "s7-u07-l005-e08",

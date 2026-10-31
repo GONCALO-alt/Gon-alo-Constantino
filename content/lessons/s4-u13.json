@@ -208,20 +208,26 @@
         },
         {
           "id": "s4-u13-l001-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "O infinitivo vai para o fim: Ik kan goed zwemmen.",
           "vocabRefs": [
             "v-zwemmen-kunnen"
           ],
-          "tokens": [
-            "Ik",
-            "kan",
-            "zwemmen",
-            "goed."
-          ],
-          "errorIndex": 2,
-          "correction": "goed zwemmen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik kan goed zwemmen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik kan zwemmen goed.",
+              "correct": false,
+              "feedback": "O infinitivo vai para o fim: Ik kan goed zwemmen."
+            }
+          ]
         },
         {
           "id": "s4-u13-l001-e08",
@@ -477,20 +483,26 @@
         },
         {
           "id": "s4-u13-l002-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Infinitivo no fim: Ik moet vandaag werken.",
           "vocabRefs": [
             "v-moeten"
           ],
-          "tokens": [
-            "Ik",
-            "moet",
-            "werk",
-            "vandaag."
-          ],
-          "errorIndex": 2,
-          "correction": "vandaag werken"
+          "prompt": "Qual é a frase correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik moet vandaag werken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik moet werk vandaag.",
+              "correct": false,
+              "feedback": "Infinitivo no fim: Ik moet vandaag werken."
+            }
+          ]
         },
         {
           "id": "s4-u13-l002-e08",

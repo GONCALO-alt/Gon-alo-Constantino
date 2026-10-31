@@ -181,46 +181,49 @@
         },
         {
           "id": "s6-u10-l001-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Todos os verbos no fim: dat hij het niet heeft kunnen vinden.",
           "vocabRefs": [
             "v-werkwoordscluster"
           ],
-          "tokens": [
-            "Ik",
-            "weet",
-            "dat",
-            "hij",
-            "heeft",
-            "het",
-            "niet",
-            "kunnen",
-            "vinden."
-          ],
-          "errorIndex": 4,
-          "correction": "het niet heeft"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik weet dat hij het niet heeft kunnen vinden.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik weet dat hij heeft het niet kunnen vinden.",
+              "correct": false,
+              "feedback": "Todos os verbos no fim: dat hij het niet heeft kunnen vinden."
+            }
+          ]
         },
         {
           "id": "s6-u10-l001-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Advérbio antes do grupo verbal: dat ze graag had willen komen.",
           "vocabRefs": [
             "v-werkwoordscluster"
           ],
-          "tokens": [
-            "Ze",
-            "zei",
-            "dat",
-            "ze",
-            "had",
-            "graag",
-            "willen",
-            "komen."
-          ],
-          "errorIndex": 4,
-          "correction": "graag had"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ze zei dat ze graag had willen komen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze zei dat ze had graag willen komen.",
+              "correct": false,
+              "feedback": "Advérbio antes do grupo verbal: dat ze graag had willen komen."
+            }
+          ]
         },
         {
           "id": "s6-u10-l001-e07",
@@ -442,42 +445,49 @@
         },
         {
           "id": "s6-u10-l002-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Desondanks bleef hij…",
           "vocabRefs": [
             "v-desondanks"
           ],
-          "tokens": [
-            "Desondanks",
-            "hij",
-            "bleef",
-            "optimistisch."
-          ],
-          "errorIndex": 1,
-          "correction": "bleef hij"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Desondanks bleef hij optimistisch.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Desondanks hij bleef optimistisch.",
+              "correct": false,
+              "feedback": "Inversão: Desondanks bleef hij…"
+            }
+          ]
         },
         {
           "id": "s6-u10-l002-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "V2: Na een lange vergadering besloot de directeur…",
           "vocabRefs": [
             "v-besluiten"
           ],
-          "tokens": [
-            "Na",
-            "een",
-            "lange",
-            "vergadering",
-            "de",
-            "directeur",
-            "besloot",
-            "te",
-            "stoppen."
-          ],
-          "errorIndex": 4,
-          "correction": "besloot de directeur"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Na een lange vergadering besloot de directeur te stoppen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Na een lange vergadering de directeur besloot te stoppen.",
+              "correct": false,
+              "feedback": "V2: Na een lange vergadering besloot de directeur…"
+            }
+          ]
         },
         {
           "id": "s6-u10-l002-e06",
@@ -1300,47 +1310,49 @@
         },
         {
           "id": "s6-u10-l005-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: omdat ik geen tijd had.",
           "vocabRefs": [
             "v-omdat"
           ],
-          "tokens": [
-            "Omdat",
-            "ik",
-            "had",
-            "geen",
-            "tijd,",
-            "ik",
-            "heb",
-            "niet",
-            "gebeld."
-          ],
-          "errorIndex": 2,
-          "correction": "geen tijd had"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Omdat ik geen tijd had, heb ik niet gebeld.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Omdat ik had geen tijd, ik heb niet gebeld.",
+              "correct": false,
+              "feedback": "Subordinada: omdat ik geen tijd had."
+            }
+          ]
         },
         {
           "id": "s6-u10-l005-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois da subordinada: heb ik niet gebeld.",
           "vocabRefs": [
             "v-woordvolgorde"
           ],
-          "tokens": [
-            "Omdat",
-            "ik",
-            "geen",
-            "tijd",
-            "had,",
-            "ik",
-            "heb",
-            "niet",
-            "gebeld."
-          ],
-          "errorIndex": 5,
-          "correction": "heb ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Omdat ik geen tijd had, heb ik niet gebeld.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Omdat ik geen tijd had, ik heb niet gebeld.",
+              "correct": false,
+              "feedback": "Depois da subordinada: heb ik niet gebeld."
+            }
+          ]
         },
         {
           "id": "s6-u10-l005-e06",

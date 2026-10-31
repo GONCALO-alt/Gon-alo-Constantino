@@ -575,21 +575,26 @@
         },
         {
           "id": "s2-u01-l002-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: om twaalf uur lunch ik.",
           "vocabRefs": [
             "v-lunchen"
           ],
-          "tokens": [
-            "Om",
-            "twaalf",
-            "uur",
-            "ik",
-            "lunch."
-          ],
-          "errorIndex": 3,
-          "correction": "lunch ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Om twaalf uur lunch ik.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Om twaalf uur ik lunch.",
+              "correct": false,
+              "feedback": "Inversão: om twaalf uur lunch ik."
+            }
+          ]
         },
         {
           "id": "s2-u01-l002-e09",
@@ -868,20 +873,26 @@
         },
         {
           "id": "s2-u01-l003-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: 's avonds kijk ik tv.",
           "vocabRefs": [
             "v-s-avonds"
           ],
-          "tokens": [
-            "'s Avonds",
-            "ik",
-            "kijk",
-            "tv."
-          ],
-          "errorIndex": 1,
-          "correction": "kijk ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "'s Avonds kijk ik tv.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "'s Avonds ik kijk tv.",
+              "correct": false,
+              "feedback": "Inversão: 's avonds kijk ik tv."
+            }
+          ]
         },
         {
           "id": "s2-u01-l003-e08",

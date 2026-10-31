@@ -81,7 +81,7 @@ L(4, "Onde encontro…?", "Pedir ajuda a um funcionário e perguntar se há um p
     CJ("vinden","ik","Waar ___ ik de eieren?", ["vind"], "vinden → ik vind.", ["v-vinden"]),
     FB("De groente is op de ___ achterin.", ["afdeling"], "afdeling = secção.", ["v-afdeling"], choices=["afdeling","kassa","bon"], tr="Os legumes estão na secção ao fundo."),
     LI("Heeft u ook verse vis?", ["Heeft u ook verse vis"], "Também tem peixe fresco?", "vers = fresco.", ["v-vis"]),
-    FE(["Waar","ik","vind","de","rijst?"], 1, "vind ik", "Interrogativa + verbo + sujeito.", ["v-vinden"]),
+    MC("Qual é a ordem correta?", ["*Waar vind ik de rijst?","Waar ik vind de rijst?|Interrogativa + verbo + sujeito."], "Interrogativa + verbo + sujeito.", ["v-vinden"]),
     AR("afdeling","a secção","de", "-ing → de.", ["v-afdeling"]),
     CO("dialogue","No supermercado", "Pedro: Pardon, waar vind ik de koffie?\nMedewerker: Bij de afdeling ontbijt, gang vier.\nPedro: En heeft u ook Portugese koffie?\nMedewerker: Nee, sorry, dat hebben we niet.",
        [("Onde está o café?", ["*No corredor 4, secção do pequeno-almoço","Junto à caixa","Não há café"]),("Há café português?", ["*Não","Sim","Só em promoção"])],

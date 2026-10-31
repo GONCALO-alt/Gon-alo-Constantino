@@ -229,22 +229,26 @@
         },
         {
           "id": "s6-u13-l001-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Pronome e tempo: dat hij moe was.",
           "vocabRefs": [
             "v-indirecte-rede"
           ],
-          "tokens": [
-            "Hij",
-            "zei",
-            "dat",
-            "ik",
-            "ben",
-            "moe."
-          ],
-          "errorIndex": 3,
-          "correction": "hij moe was"
+          "prompt": "Qual é a frase correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij zei dat hij moe was.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij zei dat ik ben moe.",
+              "correct": false,
+              "feedback": "Pronome e tempo: dat hij moe was."
+            }
+          ]
         },
         {
           "id": "s6-u13-l001-e08",
@@ -494,22 +498,26 @@
         },
         {
           "id": "s6-u13-l002-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim (e no passado): of ik morgen kwam.",
           "vocabRefs": [
             "v-vroeg-vragen"
           ],
-          "tokens": [
-            "Hij",
-            "vroeg",
-            "of",
-            "ik",
-            "kom",
-            "morgen."
-          ],
-          "errorIndex": 4,
-          "correction": "morgen kwam"
+          "prompt": "Qual é a frase correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij vroeg of ik morgen kwam.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij vroeg of ik kom morgen.",
+              "correct": false,
+              "feedback": "Verbo no fim (e no passado): of ik morgen kwam."
+            }
+          ]
         },
         {
           "id": "s6-u13-l002-e07",
@@ -1104,23 +1112,26 @@
         },
         {
           "id": "s6-u13-l004-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: dat hij het wist.",
           "vocabRefs": [
             "v-ontkennen"
           ],
-          "tokens": [
-            "De",
-            "minister",
-            "ontkende",
-            "dat",
-            "hij",
-            "wist",
-            "het."
-          ],
-          "errorIndex": 5,
-          "correction": "het wist"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De minister ontkende dat hij het wist.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De minister ontkende dat hij wist het.",
+              "correct": false,
+              "feedback": "Verbo no fim: dat hij het wist."
+            }
+          ]
         },
         {
           "id": "s6-u13-l004-e08",
@@ -1453,25 +1464,26 @@
         },
         {
           "id": "s6-u13-l005-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Promessa no passado: dat hij … zou sturen (no fim).",
           "vocabRefs": [
             "v-beloofd"
           ],
-          "tokens": [
-            "Hij",
-            "beloofde",
-            "dat",
-            "hij",
-            "stuurt",
-            "volgende",
-            "week",
-            "een",
-            "loodgieter."
-          ],
-          "errorIndex": 4,
-          "correction": "volgende week een loodgieter zou sturen"
+          "prompt": "Qual é a frase correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij beloofde dat hij volgende week een loodgieter zou sturen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij beloofde dat hij stuurt volgende week een loodgieter.",
+              "correct": false,
+              "feedback": "Promessa no passado: dat hij … zou sturen (no fim)."
+            }
+          ]
         },
         {
           "id": "s6-u13-l005-e09",

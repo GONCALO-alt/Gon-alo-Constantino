@@ -481,24 +481,26 @@
         },
         {
           "id": "s5-u14-l002-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois da oração com als: zou ik het doen.",
           "vocabRefs": [
             "v-als-ik-jou-was"
           ],
-          "tokens": [
-            "Als",
-            "ik",
-            "jou",
-            "was,",
-            "ik",
-            "zou",
-            "het",
-            "doen."
-          ],
-          "errorIndex": 4,
-          "correction": "zou ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als ik jou was, zou ik het doen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Als ik jou was, ik zou het doen.",
+              "correct": false,
+              "feedback": "Depois da oração com als: zou ik het doen."
+            }
+          ]
         },
         {
           "id": "s5-u14-l002-e08",
@@ -1080,21 +1082,26 @@
         },
         {
           "id": "s5-u14-l004-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Waarschijnlijk wordt het…",
           "vocabRefs": [
             "v-waarschijnlijk"
           ],
-          "tokens": [
-            "Waarschijnlijk",
-            "het",
-            "wordt",
-            "morgen",
-            "droog."
-          ],
-          "errorIndex": 1,
-          "correction": "wordt het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Waarschijnlijk wordt het morgen droog.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Waarschijnlijk het wordt morgen droog.",
+              "correct": false,
+              "feedback": "Inversão: Waarschijnlijk wordt het…"
+            }
+          ]
         },
         {
           "id": "s5-u14-l004-e07",
@@ -1425,24 +1432,26 @@
         },
         {
           "id": "s5-u14-l005-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Volgend jaar wil ik…",
           "vocabRefs": [
             "v-toekomst"
           ],
-          "tokens": [
-            "Volgend",
-            "jaar",
-            "ik",
-            "wil",
-            "mijn",
-            "eigen",
-            "bedrijf",
-            "beginnen."
-          ],
-          "errorIndex": 2,
-          "correction": "wil ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Volgend jaar wil ik mijn eigen bedrijf beginnen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Volgend jaar ik wil mijn eigen bedrijf beginnen.",
+              "correct": false,
+              "feedback": "Inversão: Volgend jaar wil ik…"
+            }
+          ]
         },
         {
           "id": "s5-u14-l005-e08",

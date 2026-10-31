@@ -423,44 +423,49 @@
         },
         {
           "id": "s7-u13-l002-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão.",
           "vocabRefs": [
             "v-moeten"
           ],
-          "tokens": [
-            "Gisteren",
-            "ik",
-            "moest",
-            "lang",
-            "wachten",
-            "bij",
-            "de",
-            "huisarts."
-          ],
-          "errorIndex": 1,
-          "correction": "moest ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Gisteren moest ik lang wachten bij de huisarts.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gisteren ik moest lang wachten bij de huisarts.",
+              "correct": false,
+              "feedback": "Inversão."
+            }
+          ]
         },
         {
           "id": "s7-u13-l002-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: of hij morgen komt.",
           "vocabRefs": [
             "v-of-conj"
           ],
-          "tokens": [
-            "Ik",
-            "weet",
-            "niet",
-            "of",
-            "hij",
-            "komt",
-            "morgen."
-          ],
-          "errorIndex": 5,
-          "correction": "morgen komt"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik weet niet of hij morgen komt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik weet niet of hij komt morgen.",
+              "correct": false,
+              "feedback": "Subordinada: of hij morgen komt."
+            }
+          ]
         },
         {
           "id": "s7-u13-l002-e08",

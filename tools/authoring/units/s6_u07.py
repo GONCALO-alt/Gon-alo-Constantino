@@ -99,7 +99,7 @@ L(5, "Registo profissional escrito", "Afspraken bevestigen, follow-up, managemen
     TR("pt-nl","Agradecia receber a sua resposta até sexta.", ["Graag ontvang ik uw reactie vóór vrijdag","Graag ontvang ik uw reactie voor vrijdag"], "Inversão.", ["v-graag-ontvang-ik"]),
     TR("nl-pt","I.v.m. de feestdagen is het kantoor gesloten.", ["Devido aos feriados, o escritório está fechado","Por causa dos feriados, o escritório está fechado"], "i.v.m.", ["v-i-v-m"]),
     TR("nl-pt","Ik koppel het terug naar het team.", ["Vou dar o retorno à equipa","Dou feedback à equipa"], "terugkoppelen.", ["v-terugkoppelen"]),
-    FE(["Graag","ik","ontvang","uw","reactie."], 1, "ontvang ik", "Inversão: Graag ontvang ik…", ["v-graag-ontvang-ik"]),
+    MC("Qual é a ordem correta?", ["*Graag ontvang ik uw reactie.","Graag ik ontvang uw reactie.|Inversão: Graag ontvang ik…"], "Inversão: Graag ontvang ik…", ["v-graag-ontvang-ik"]),
     CO("text","Follow-up e-mail", "Beste Mariska,\n\nN.a.v. ons overleg van vanochtend stuur ik je hierbij de aangepaste planning. I.v.m. de vakantie van Peter schuift de oplevering een week op, naar 14 juni. Kun je dit terugkoppelen naar de klant? Graag ontvang ik je reactie vóór donderdag.\n\nGroet,\nRui",
        [("Porque muda o prazo?", ["*Por causa das férias do Peter","Por causa do cliente","Por doença da Mariska"]),("Nova data de entrega?", ["*14 de junho","7 de junho","Quinta-feira"]),("O que pede o Rui à Mariska?", ["*Que informe o cliente e responda até quinta","Que trabalhe ao fim de semana","Que cancele o projeto"])],
        "oplevering = entrega (de projeto); opschuiven = adiar.", ["v-n-a-v","v-i-v-m","v-terugkoppelen"]),

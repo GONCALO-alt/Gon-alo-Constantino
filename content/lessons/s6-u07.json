@@ -1437,21 +1437,26 @@
         },
         {
           "id": "s6-u07-l005-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Graag ontvang ik…",
           "vocabRefs": [
             "v-graag-ontvang-ik"
           ],
-          "tokens": [
-            "Graag",
-            "ik",
-            "ontvang",
-            "uw",
-            "reactie."
-          ],
-          "errorIndex": 1,
-          "correction": "ontvang ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Graag ontvang ik uw reactie.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Graag ik ontvang uw reactie.",
+              "correct": false,
+              "feedback": "Inversão: Graag ontvang ik…"
+            }
+          ]
         },
         {
           "id": "s6-u07-l005-e07",

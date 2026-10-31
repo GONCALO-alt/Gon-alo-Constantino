@@ -501,23 +501,26 @@
         },
         {
           "id": "s7-u01-l002-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: wie ik tegenkwam.",
           "vocabRefs": [
             "v-je-raadt-nooit"
           ],
-          "tokens": [
-            "Je",
-            "raadt",
-            "nooit",
-            "wie",
-            "kwam",
-            "ik",
-            "tegen!"
-          ],
-          "errorIndex": 4,
-          "correction": "ik tegenkwam"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Je raadt nooit wie ik tegenkwam!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Je raadt nooit wie kwam ik tegen!",
+              "correct": false,
+              "feedback": "Verbo no fim: wie ik tegenkwam."
+            }
+          ]
         },
         {
           "id": "s7-u01-l002-e06",
@@ -1181,23 +1184,26 @@
         },
         {
           "id": "s7-u01-l004-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Achteraf gezien was het…",
           "vocabRefs": [
             "v-achteraf-gezien"
           ],
-          "tokens": [
-            "Achteraf",
-            "gezien",
-            "het",
-            "was",
-            "een",
-            "goede",
-            "beslissing."
-          ],
-          "errorIndex": 2,
-          "correction": "was het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Achteraf gezien was het een goede beslissing.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Achteraf gezien het was een goede beslissing.",
+              "correct": false,
+              "feedback": "Inversão: Achteraf gezien was het…"
+            }
+          ]
         },
         {
           "id": "s7-u01-l004-e07",

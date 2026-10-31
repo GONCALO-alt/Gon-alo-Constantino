@@ -476,20 +476,26 @@
         },
         {
           "id": "s4-u16-l002-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Só um pronome reflexivo: Ik verveel me.",
           "vocabRefs": [
             "v-zich-vervelen"
           ],
-          "tokens": [
-            "Ik",
-            "verveel",
-            "mij",
-            "je."
-          ],
-          "errorIndex": 3,
-          "correction": "Ik verveel me"
+          "prompt": "Qual é a frase correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik verveel me.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik verveel mij je.",
+              "correct": false,
+              "feedback": "Só um pronome reflexivo: Ik verveel me."
+            }
+          ]
         },
         {
           "id": "s4-u16-l002-e07",
@@ -1369,24 +1375,26 @@
         },
         {
           "id": "s4-u16-l005-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de omdat, verbos no fim: omdat ik hier wil blijven.",
           "vocabRefs": [
             "v-omdat"
           ],
-          "tokens": [
-            "Ik",
-            "leer",
-            "Nederlands",
-            "omdat",
-            "ik",
-            "wil",
-            "hier",
-            "blijven."
-          ],
-          "errorIndex": 5,
-          "correction": "hier wil blijven"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik leer Nederlands omdat ik hier wil blijven.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik leer Nederlands omdat ik wil hier blijven.",
+              "correct": false,
+              "feedback": "Depois de omdat, verbos no fim: omdat ik hier wil blijven."
+            }
+          ]
         },
         {
           "id": "s4-u16-l005-e06",

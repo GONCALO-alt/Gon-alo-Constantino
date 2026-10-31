@@ -788,23 +788,26 @@
         },
         {
           "id": "s4-u12-l003-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de of, o verbo vai para o fim: of de winkel open is.",
           "vocabRefs": [
             "v-of-conj"
           ],
-          "tokens": [
-            "Weet",
-            "u",
-            "of",
-            "de",
-            "winkel",
-            "is",
-            "open?"
-          ],
-          "errorIndex": 5,
-          "correction": "open is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Weet u of de winkel open is?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Weet u of de winkel is open?",
+              "correct": false,
+              "feedback": "Depois de of, o verbo vai para o fim: of de winkel open is."
+            }
+          ]
         },
         {
           "id": "s4-u12-l003-e05",
@@ -1419,22 +1422,26 @@
         },
         {
           "id": "s4-u12-l005-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de «Hierbij» vem o verbo: Hierbij stuur ik…",
           "vocabRefs": [
             "v-hierbij"
           ],
-          "tokens": [
-            "Hierbij",
-            "ik",
-            "stuur",
-            "u",
-            "de",
-            "factuur."
-          ],
-          "errorIndex": 1,
-          "correction": "stuur ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hierbij stuur ik u de factuur.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hierbij ik stuur u de factuur.",
+              "correct": false,
+              "feedback": "Depois de «Hierbij» vem o verbo: Hierbij stuur ik…"
+            }
+          ]
         },
         {
           "id": "s4-u12-l005-e07",

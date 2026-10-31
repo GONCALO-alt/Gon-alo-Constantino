@@ -1448,24 +1448,26 @@
         },
         {
           "id": "s5-u02-l005-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: dat er een nieuwe brug komt.",
           "vocabRefs": [
             "v-ik-las-dat"
           ],
-          "tokens": [
-            "Ik",
-            "las",
-            "dat",
-            "er",
-            "komt",
-            "een",
-            "nieuwe",
-            "brug."
-          ],
-          "errorIndex": 4,
-          "correction": "een nieuwe brug komt"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik las dat er een nieuwe brug komt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik las dat er komt een nieuwe brug.",
+              "correct": false,
+              "feedback": "Verbo no fim: dat er een nieuwe brug komt."
+            }
+          ]
         },
         {
           "id": "s5-u02-l005-e06",

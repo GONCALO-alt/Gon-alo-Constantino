@@ -213,24 +213,26 @@
         },
         {
           "id": "s6-u11-l001-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Na relativa o verbo vai para o fim: die daar staat.",
           "vocabRefs": [
             "v-betrekkelijk"
           ],
-          "tokens": [
-            "De",
-            "man",
-            "die",
-            "staat",
-            "daar,",
-            "is",
-            "mijn",
-            "buurman."
-          ],
-          "errorIndex": 3,
-          "correction": "daar staat"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De man die daar staat, is mijn buurman.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De man die staat daar, is mijn buurman.",
+              "correct": false,
+              "feedback": "Na relativa o verbo vai para o fim: die daar staat."
+            }
+          ]
         },
         {
           "id": "s6-u11-l001-e08",

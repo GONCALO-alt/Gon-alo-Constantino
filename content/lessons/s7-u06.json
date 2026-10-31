@@ -181,22 +181,26 @@
         },
         {
           "id": "s7-u06-l001-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Naar verluidt stapt de minister op.",
           "vocabRefs": [
             "v-naar-verluidt"
           ],
-          "tokens": [
-            "Naar",
-            "verluidt",
-            "de",
-            "minister",
-            "stapt",
-            "op."
-          ],
-          "errorIndex": 2,
-          "correction": "stapt de minister"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Naar verluidt stapt de minister op.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Naar verluidt de minister stapt op.",
+              "correct": false,
+              "feedback": "Inversão: Naar verluidt stapt de minister op."
+            }
+          ]
         },
         {
           "id": "s7-u06-l001-e07",

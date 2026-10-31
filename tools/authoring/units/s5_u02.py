@@ -101,7 +101,7 @@ L(5, "Comentar uma notícia", "Heb je gehoord dat…? Ik las dat… Wat vind jij
     WO("Ouviste que as rendas vão subir outra vez?", ["Heb","je","gehoord","dat","de","huren","weer","stijgen?"], "dat + verbo no fim.", ["v-heb-je-gehoord"]),
     TR("pt-nl","Li que vai haver uma ponte nova.", ["Ik las dat er een nieuwe brug komt","Ik heb gelezen dat er een nieuwe brug komt"], "dat + verbo no fim.", ["v-ik-las-dat"]),
     TR("nl-pt","Schijnbaar is het museum gesloten.", ["Pelos vistos o museu está fechado","Aparentemente o museu está fechado"], "schijnbaar.", ["v-schijnbaar"]),
-    FE(["Ik","las","dat","er","komt","een","nieuwe","brug."], 4, "een nieuwe brug komt", "Verbo no fim: dat er een nieuwe brug komt.", ["v-ik-las-dat"]),
+    MC("Qual é a ordem correta?", ["*Ik las dat er een nieuwe brug komt.","Ik las dat er komt een nieuwe brug.|Verbo no fim: dat er een nieuwe brug komt."], "Verbo no fim: dat er een nieuwe brug komt.", ["v-ik-las-dat"]),
     AR("ophef","a polémica","de", "De ophef.", ["v-ophef"]),
     LI("Er is veel ophef over het nieuwe plan.", ["Er is veel ophef over het nieuwe plan"], "Há muita polémica sobre o novo plano.", "ophef over.", ["v-ophef"]),
     DL([("Collega","Heb je gehoord dat de NS de prijzen verhoogt?","Ouviste que a NS vai aumentar os preços?"),("Pedro","")], ["*Ja, ik las het vanochtend. Belachelijk, vind je niet?","Ik ben de NS.|Não faz sentido.","Nee, ik heb gehoord.|Contraditório."], "Reagir e comentar.", ["v-heb-je-gehoord","v-ik-las-dat"]),

@@ -515,22 +515,26 @@
         },
         {
           "id": "s5-u03-l002-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Eerlijk gezegd vind ik het saai.",
           "vocabRefs": [
             "v-eerlijk-gezegd"
           ],
-          "tokens": [
-            "Eerlijk",
-            "gezegd",
-            "ik",
-            "vind",
-            "het",
-            "saai."
-          ],
-          "errorIndex": 2,
-          "correction": "vind ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Eerlijk gezegd vind ik het saai.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Eerlijk gezegd ik vind het saai.",
+              "correct": false,
+              "feedback": "Inversão: Eerlijk gezegd vind ik het saai."
+            }
+          ]
         },
         {
           "id": "s5-u03-l002-e08",
@@ -1491,21 +1495,26 @@
         },
         {
           "id": "s5-u03-l005-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de gemiddeld: Gemiddeld zijn Nederlanders…",
           "vocabRefs": [
             "v-gemiddeld"
           ],
-          "tokens": [
-            "Gemiddeld",
-            "Nederlanders",
-            "zijn",
-            "erg",
-            "lang."
-          ],
-          "errorIndex": 1,
-          "correction": "zijn Nederlanders"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Gemiddeld zijn Nederlanders erg lang.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gemiddeld Nederlanders zijn erg lang.",
+              "correct": false,
+              "feedback": "Inversão depois de gemiddeld: Gemiddeld zijn Nederlanders…"
+            }
+          ]
         },
         {
           "id": "s5-u03-l005-e09",

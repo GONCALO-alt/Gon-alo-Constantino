@@ -1428,25 +1428,26 @@
         },
         {
           "id": "s2-u15-l005-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: in de zomer gaan we…",
           "vocabRefs": [
             "v-zomer"
           ],
-          "tokens": [
-            "In",
-            "de",
-            "zomer",
-            "we",
-            "gaan",
-            "vaak",
-            "naar",
-            "het",
-            "strand."
-          ],
-          "errorIndex": 3,
-          "correction": "gaan we"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "In de zomer gaan we vaak naar het strand.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "In de zomer we gaan vaak naar het strand.",
+              "correct": false,
+              "feedback": "Inversão: in de zomer gaan we…"
+            }
+          ]
         },
         {
           "id": "s2-u15-l005-e07",

@@ -469,24 +469,26 @@
         },
         {
           "id": "s6-u02-l002-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "dat → verbo no fim.",
           "vocabRefs": [
             "v-blijken"
           ],
-          "tokens": [
-            "Uit",
-            "het",
-            "onderzoek",
-            "blijkt",
-            "dat",
-            "mensen",
-            "zijn",
-            "gelukkiger."
-          ],
-          "errorIndex": 6,
-          "correction": "gelukkiger zijn"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Uit het onderzoek blijkt dat mensen gelukkiger zijn.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Uit het onderzoek blijkt dat mensen zijn gelukkiger.",
+              "correct": false,
+              "feedback": "dat → verbo no fim."
+            }
+          ]
         },
         {
           "id": "s6-u02-l002-e07",
@@ -718,24 +720,26 @@
         },
         {
           "id": "s6-u02-l003-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Net als in Duitsland zijn de huren hoog.",
           "vocabRefs": [
             "v-net-als"
           ],
-          "tokens": [
-            "Net",
-            "als",
-            "in",
-            "Duitsland",
-            "de",
-            "huren",
-            "zijn",
-            "hoog."
-          ],
-          "errorIndex": 4,
-          "correction": "zijn de huren"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Net als in Duitsland zijn de huren hoog.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Net als in Duitsland de huren zijn hoog.",
+              "correct": false,
+              "feedback": "Inversão: Net als in Duitsland zijn de huren hoog."
+            }
+          ]
         },
         {
           "id": "s6-u02-l003-e06",

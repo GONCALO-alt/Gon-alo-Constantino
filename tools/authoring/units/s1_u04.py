@@ -108,7 +108,7 @@ L(5, "Ler e soletrar", "Revisão da unidade: letras, plurais, compostas e frases
     MC("Qual é o artigo de «supermarkt»?", ["*de","het|A última parte, «markt», usa «de»."], "de markt → de supermarkt.", ["v-supermarkt"]),
     MA([("ramen","janelas"),("bomen","árvores"),("straten","ruas"),("woorden","palavras")], "Plurais desta unidade.", ["v-raam","v-boom","v-straat","v-woord"]),
     TR("nl-pt","Kun je dat herhalen?", ["Podes repetir(?)","Podes repetir isso"], "Forma informal de «Kunt u dat herhalen?».", ["v-herhalen"]),
-    FE(["Ik","begrijp","niet","het."], 2, "het niet", "A ordem certa é «ik begrijp het niet»: «niet» depois de «het».", ["v-niet"]),
+    MC("Qual é a ordem correta?", ["*Ik begrijp het niet.","Ik begrijp niet het.|A ordem certa é «ik begrijp het niet»: «niet» depois de «het»."], "A ordem certa é «ik begrijp het niet»: «niet» depois de «het».", ["v-niet"]),
     LI("Langzaam, alstublieft.", ["Langzaam(,) alstublieft"], "Devagar, por favor.", "«aa» longo em «langzaam».", ["v-langzaam"]),
     TR("pt-nl","as canetas e as janelas", ["de pennen en de ramen"], "Plural sempre com «de».", ["v-pen","v-raam"]),
     CO("dialogue","Na biblioteca", "Bibliotecaris: Hoe heet u?\nPedro: Pedro Costa.\nBibliotecaris: Hoe spelt u «Costa»?\nPedro: Cee, oo, es, tee, aa.\nBibliotecaris: Dank u wel!",

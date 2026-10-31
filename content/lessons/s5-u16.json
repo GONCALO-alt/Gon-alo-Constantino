@@ -515,22 +515,26 @@
         },
         {
           "id": "s5-u16-l002-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "doordat → verbo no fim: doordat het vaak regent.",
           "vocabRefs": [
             "v-dat-komt-doordat"
           ],
-          "tokens": [
-            "Dat",
-            "komt",
-            "doordat",
-            "het",
-            "regent",
-            "vaak."
-          ],
-          "errorIndex": 4,
-          "correction": "vaak regent"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat komt doordat het vaak regent.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dat komt doordat het regent vaak.",
+              "correct": false,
+              "feedback": "doordat → verbo no fim: doordat het vaak regent."
+            }
+          ]
         },
         {
           "id": "s5-u16-l002-e09",
@@ -968,40 +972,49 @@
         },
         {
           "id": "s5-u16-l004-e02",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Gisteren heb ik…",
           "vocabRefs": [
             "v-woordvolgorde"
           ],
-          "tokens": [
-            "Gisteren",
-            "ik",
-            "heb",
-            "hard",
-            "gewerkt."
-          ],
-          "errorIndex": 1,
-          "correction": "heb ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Gisteren heb ik hard gewerkt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gisteren ik heb hard gewerkt.",
+              "correct": false,
+              "feedback": "Inversão: Gisteren heb ik…"
+            }
+          ]
         },
         {
           "id": "s5-u16-l004-e03",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: dat hij morgen komt.",
           "vocabRefs": [
             "v-woordvolgorde"
           ],
-          "tokens": [
-            "Ik",
-            "denk",
-            "dat",
-            "hij",
-            "komt",
-            "morgen."
-          ],
-          "errorIndex": 4,
-          "correction": "morgen komt"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik denk dat hij morgen komt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik denk dat hij komt morgen.",
+              "correct": false,
+              "feedback": "Subordinada: dat hij morgen komt."
+            }
+          ]
         },
         {
           "id": "s5-u16-l004-e04",
@@ -1354,24 +1367,26 @@
         },
         {
           "id": "s5-u16-l005-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "echter vem depois do verbo: Het is echter duur.",
           "vocabRefs": [
             "v-echter"
           ],
-          "tokens": [
-            "Het",
-            "plan",
-            "is",
-            "goed.",
-            "Het",
-            "echter",
-            "is",
-            "duur."
-          ],
-          "errorIndex": 5,
-          "correction": "is echter"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het plan is goed. Het is echter duur.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het plan is goed. Het echter is duur.",
+              "correct": false,
+              "feedback": "echter vem depois do verbo: Het is echter duur."
+            }
+          ]
         },
         {
           "id": "s5-u16-l005-e08",

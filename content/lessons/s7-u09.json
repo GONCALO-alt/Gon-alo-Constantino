@@ -178,65 +178,72 @@
         },
         {
           "id": "s7-u09-l001-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem tempo–modo–lugar: Ik ga morgen met de trein naar Utrecht.",
           "vocabRefs": [
             "v-zinsbouw"
           ],
-          "tokens": [
-            "Ik",
-            "ga",
-            "naar",
-            "Utrecht",
-            "morgen",
-            "met",
-            "de",
-            "trein."
-          ],
-          "errorIndex": 2,
-          "correction": "morgen met de trein naar Utrecht"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ga morgen met de trein naar Utrecht.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ga naar Utrecht morgen met de trein.",
+              "correct": false,
+              "feedback": "Ordem tempo–modo–lugar: Ik ga morgen met de trein naar Utrecht."
+            }
+          ]
         },
         {
           "id": "s7-u09-l001-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de want: ordem normal.",
           "vocabRefs": [
             "v-want"
           ],
-          "tokens": [
-            "Ik",
-            "blijf",
-            "thuis,",
-            "want",
-            "ik",
-            "ziek",
-            "ben."
-          ],
-          "errorIndex": 5,
-          "correction": "ben ziek"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik blijf thuis, want ik ben ziek.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik blijf thuis, want ik ziek ben.",
+              "correct": false,
+              "feedback": "Depois de want: ordem normal."
+            }
+          ]
         },
         {
           "id": "s7-u09-l001-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois da subordinada: kun je me helpen.",
           "vocabRefs": [
             "v-plaats-werkwoord"
           ],
-          "tokens": [
-            "Als",
-            "je",
-            "tijd",
-            "hebt,",
-            "je",
-            "kunt",
-            "me",
-            "helpen."
-          ],
-          "errorIndex": 4,
-          "correction": "kun je"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als je tijd hebt, kun je me helpen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Als je tijd hebt, je kunt me helpen.",
+              "correct": false,
+              "feedback": "Depois da subordinada: kun je me helpen."
+            }
+          ]
         },
         {
           "id": "s7-u09-l001-e08",
@@ -1272,23 +1279,26 @@
         },
         {
           "id": "s7-u09-l005-e02",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão.",
           "vocabRefs": [
             "v-woordvolgorde"
           ],
-          "tokens": [
-            "Vorig",
-            "jaar",
-            "ik",
-            "ben",
-            "naar",
-            "Nederland",
-            "verhuisd."
-          ],
-          "errorIndex": 2,
-          "correction": "ben ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Vorig jaar ben ik naar Nederland verhuisd.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Vorig jaar ik ben naar Nederland verhuisd.",
+              "correct": false,
+              "feedback": "Inversão."
+            }
+          ]
         },
         {
           "id": "s7-u09-l005-e03",
@@ -1312,29 +1322,26 @@
         },
         {
           "id": "s7-u09-l005-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Relativa: dat mooi is.",
           "vocabRefs": [
             "v-die-rel"
           ],
-          "tokens": [
-            "Ik",
-            "woon",
-            "in",
-            "een",
-            "klein",
-            "appartement",
-            "met",
-            "een",
-            "groot",
-            "balkon",
-            "dat",
-            "is",
-            "mooi."
-          ],
-          "errorIndex": 11,
-          "correction": "mooi is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik woon in een klein appartement met een groot balkon dat mooi is.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik woon in een klein appartement met een groot balkon dat is mooi.",
+              "correct": false,
+              "feedback": "Relativa: dat mooi is."
+            }
+          ]
         },
         {
           "id": "s7-u09-l005-e05",

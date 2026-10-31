@@ -527,23 +527,26 @@
         },
         {
           "id": "s7-u15-l002-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão depois de «Net als Nederland»: is Portugal…",
           "vocabRefs": [
             "v-net-als"
           ],
-          "tokens": [
-            "Net",
-            "als",
-            "Nederland",
-            "Portugal",
-            "is",
-            "een",
-            "zeevaardersland."
-          ],
-          "errorIndex": 3,
-          "correction": "is Portugal"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Net als Nederland is Portugal een zeevaardersland.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Net als Nederland Portugal is een zeevaardersland.",
+              "correct": false,
+              "feedback": "Inversão depois de «Net als Nederland»: is Portugal…"
+            }
+          ]
         },
         {
           "id": "s7-u15-l002-e08",

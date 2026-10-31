@@ -855,24 +855,24 @@
         },
         {
           "id": "s4-u05-l003-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de omdat, o verbo vai para o fim: omdat ik ervaring heb.",
           "vocabRefs": [],
-          "tokens": [
-            "Ik",
-            "ben",
-            "geïnteresseerd",
-            "in",
-            "deze",
-            "functie",
-            "omdat",
-            "ik",
-            "heb",
-            "ervaring."
-          ],
-          "errorIndex": 8,
-          "correction": "ervaring heb"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben geïnteresseerd in deze functie omdat ik ervaring heb.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben geïnteresseerd in deze functie omdat ik heb ervaring.",
+              "correct": false,
+              "feedback": "Depois de omdat, o verbo vai para o fim: omdat ik ervaring heb."
+            }
+          ]
         },
         {
           "id": "s4-u05-l003-e08",

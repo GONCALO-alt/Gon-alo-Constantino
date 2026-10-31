@@ -978,26 +978,26 @@
         },
         {
           "id": "s6-u04-l004-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Subordinada: dat de verkoop flink gedaald is.",
           "vocabRefs": [
             "v-grafiek"
           ],
-          "tokens": [
-            "De",
-            "grafiek",
-            "laat",
-            "zien",
-            "dat",
-            "de",
-            "verkoop",
-            "is",
-            "gedaald",
-            "flink."
-          ],
-          "errorIndex": 9,
-          "correction": "flink gedaald is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "De grafiek laat zien dat de verkoop flink is gedaald.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "De grafiek laat zien dat de verkoop is gedaald flink.",
+              "correct": false,
+              "feedback": "Subordinada: dat de verkoop flink gedaald is."
+            }
+          ]
         },
         {
           "id": "s6-u04-l004-e06",

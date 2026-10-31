@@ -59,7 +59,7 @@ L(3, "Recusar com tato", "Wat jammer, maar ik kan helaas niet. Misschien een and
     TR("pt-nl","No sábado já tenho outro compromisso.", ["Zaterdag heb ik al iets anders","Ik heb zaterdag al iets anders"], "al iets anders.", ["v-al-iets-anders"]),
     TR("nl-pt","Misschien een andere keer?", ["Talvez noutra altura","Talvez outra vez","Fica para a próxima"], "een andere keer.", ["v-een-andere-keer"]),
     MC("Qual é a recusa mais adequada nos Países Baixos?", ["*Bedankt! Zaterdag kan ik helaas niet, maar volgende week wel.","Misschien, we zien wel.|Vago — pode ser entendido como sim.","Nee.|Seco demais."], "Clara e simpática.", ["v-een-andere-keer"]),
-    FE(["Ik","kan","niet","helaas."], 2, "helaas niet", "A ordem é «helaas niet»: Ik kan helaas niet.", []),
+    MC("Qual é a ordem correta?", ["*Ik kan helaas niet.","Ik kan niet helaas.|A ordem é «helaas niet»: Ik kan helaas niet."], "A ordem é «helaas niet»: Ik kan helaas niet.", []),
     DL([("Joris","Kom je vanavond naar de borrel?","Vens ao copo hoje à noite?"),("Marta","")], ["*Wat jammer, ik heb al iets anders. Veel plezier!","Ja, nee, misschien.|Confuso.","Ik ga niet, doei.|Pouco simpático."], "Recusar com tato.", ["v-jammer","v-al-iets-anders"]),
     LI("Ik laat het je morgen nog weten.", ["Ik laat het je morgen nog weten","Ik laat het jou morgen nog weten"], "Amanhã digo-te qualquer coisa.", "laten weten.", ["v-afzeggen2"]),
     FB("Wat ___ dat je niet kunt!", ["jammer"], "Wat jammer.", ["v-jammer"], choices=["jammer","leuk","gezellig"], tr="Que pena que não possas!"),

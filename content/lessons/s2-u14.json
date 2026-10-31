@@ -217,21 +217,26 @@
         },
         {
           "id": "s2-u14-l001-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo em 2.º: ik fiets meestal.",
           "vocabRefs": [
             "v-meestal"
           ],
-          "tokens": [
-            "Ik",
-            "meestal",
-            "fiets",
-            "naar",
-            "school."
-          ],
-          "errorIndex": 1,
-          "correction": "fiets meestal"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik fiets meestal naar school.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik meestal fiets naar school.",
+              "correct": false,
+              "feedback": "Verbo em 2.º: ik fiets meestal."
+            }
+          ]
         },
         {
           "id": "s2-u14-l001-e08",

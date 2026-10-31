@@ -39,7 +39,7 @@ L(2, "Pedir no restaurante", "het voorgerecht, het hoofdgerecht, het nagerecht."
     TR("pt-nl","Para entrada quero a sopa.", ["Als voorgerecht neem ik de soep","Als voorgerecht wil ik graag de soep"], "als + inversão.", ["v-voorgerecht"]),
     TR("nl-pt","Wat wilt u bestellen?", ["O que deseja pedir","O que vai pedir"], "bestellen.", ["v-bestellen"]),
     CJ("bestellen","wij","Wij ___ twee pizza's.", ["bestellen"], "Plural.", ["v-bestellen"]),
-    FE(["Als","nagerecht","ik","neem","ijs."], 2, "neem ik", "Inversão: als nagerecht neem ik ijs.", ["v-nagerecht"]),
+    MC("Qual é a ordem correta?", ["*Als nagerecht neem ik ijs.","Als nagerecht ik neem ijs.|Inversão: als nagerecht neem ik ijs."], "Inversão: als nagerecht neem ik ijs.", ["v-nagerecht"]),
     LI("Heeft u al een keuze gemaakt?", ["Heeft u al een keuze gemaakt"], "Já escolheu?", "Pergunta do empregado.", ["v-bestellen"]),
     DL([("Ober","Wat wilt u drinken?","O que deseja beber?"),("Cliente","Een glas rode wijn, graag.","Um copo de vinho tinto, por favor."),("Ober","En als hoofdgerecht?","E como prato principal?"),("Cliente","")], ["*De kip met frietjes, alstublieft.","Een rode wijn.|Já pediu a bebida.","Als nagerecht.|Não responde."], "Pedido do prato.", ["v-hoofdgerecht"]),
     FB("Mag ik het ___? We willen bestellen.", ["menu"], "Pedir a ementa.", ["v-menu"], choices=["menu","nagerecht","ober"], tr="Pode trazer a ementa? Queremos pedir."),

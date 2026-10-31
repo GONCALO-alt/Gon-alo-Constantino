@@ -458,22 +458,26 @@
         },
         {
           "id": "s7-u03-l002-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Zoals gezegd is de tijd beperkt.",
           "vocabRefs": [
             "v-zoals-gezegd"
           ],
-          "tokens": [
-            "Zoals",
-            "gezegd",
-            "de",
-            "tijd",
-            "is",
-            "beperkt."
-          ],
-          "errorIndex": 2,
-          "correction": "is de tijd"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Zoals gezegd is de tijd beperkt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Zoals gezegd de tijd is beperkt.",
+              "correct": false,
+              "feedback": "Inversão: Zoals gezegd is de tijd beperkt."
+            }
+          ]
         },
         {
           "id": "s7-u03-l002-e06",
@@ -1142,24 +1146,26 @@
         },
         {
           "id": "s7-u03-l004-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbos juntos no fim: die in ons willen investeren.",
           "vocabRefs": [
             "v-investeren"
           ],
-          "tokens": [
-            "We",
-            "zoeken",
-            "partners",
-            "die",
-            "investeren",
-            "willen",
-            "in",
-            "ons."
-          ],
-          "errorIndex": 4,
-          "correction": "in ons willen investeren"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "We zoeken partners die in ons willen investeren.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "We zoeken partners die investeren willen in ons.",
+              "correct": false,
+              "feedback": "Verbos juntos no fim: die in ons willen investeren."
+            }
+          ]
         },
         {
           "id": "s7-u03-l004-e08",

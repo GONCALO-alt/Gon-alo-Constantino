@@ -1484,25 +1484,26 @@
         },
         {
           "id": "s6-u16-l005-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Grupo verbal no fim: dat hij het niet heeft kunnen doen.",
           "vocabRefs": [
             "v-werkwoordscluster"
           ],
-          "tokens": [
-            "Hij",
-            "zei",
-            "dat",
-            "hij",
-            "heeft",
-            "het",
-            "niet",
-            "kunnen",
-            "doen."
-          ],
-          "errorIndex": 4,
-          "correction": "het niet heeft"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij zei dat hij het niet heeft kunnen doen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hij zei dat hij heeft het niet kunnen doen.",
+              "correct": false,
+              "feedback": "Grupo verbal no fim: dat hij het niet heeft kunnen doen."
+            }
+          ]
         },
         {
           "id": "s6-u16-l005-e07",

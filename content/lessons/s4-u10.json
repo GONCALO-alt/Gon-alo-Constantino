@@ -177,24 +177,26 @@
         },
         {
           "id": "s4-u10-l001-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois da oração subordinada no início, vem o verbo: …, krijg ik een foutmelding.",
           "vocabRefs": [
             "v-gebeurt-telkens"
           ],
-          "tokens": [
-            "Telkens",
-            "als",
-            "ik",
-            "inlog,",
-            "ik",
-            "krijg",
-            "een",
-            "foutmelding."
-          ],
-          "errorIndex": 4,
-          "correction": "krijg ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Telkens als ik inlog, krijg ik een foutmelding.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Telkens als ik inlog, ik krijg een foutmelding.",
+              "correct": false,
+              "feedback": "Depois da oração subordinada no início, vem o verbo: …, krijg ik een foutmelding."
+            }
+          ]
         },
         {
           "id": "s4-u10-l001-e07",
@@ -1387,20 +1389,26 @@
         },
         {
           "id": "s4-u10-l005-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "lukken é impessoal: Het lukt me niet.",
           "vocabRefs": [
             "v-lukken"
           ],
-          "tokens": [
-            "Ik",
-            "lukt",
-            "het",
-            "niet."
-          ],
-          "errorIndex": 0,
-          "correction": "Het lukt me"
+          "prompt": "Qual é a frase correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het lukt me niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik lukt het niet.",
+              "correct": false,
+              "feedback": "lukken é impessoal: Het lukt me niet."
+            }
+          ]
         },
         {
           "id": "s4-u10-l005-e06",

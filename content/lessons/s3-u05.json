@@ -518,21 +518,26 @@
         },
         {
           "id": "s3-u05-l002-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: als nagerecht neem ik ijs.",
           "vocabRefs": [
             "v-nagerecht"
           ],
-          "tokens": [
-            "Als",
-            "nagerecht",
-            "ik",
-            "neem",
-            "ijs."
-          ],
-          "errorIndex": 2,
-          "correction": "neem ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als nagerecht neem ik ijs.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Als nagerecht ik neem ijs.",
+              "correct": false,
+              "feedback": "Inversão: als nagerecht neem ik ijs."
+            }
+          ]
         },
         {
           "id": "s3-u05-l002-e07",

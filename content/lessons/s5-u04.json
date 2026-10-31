@@ -571,22 +571,26 @@
         },
         {
           "id": "s5-u04-l002-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Op vijf december is het pakjesavond.",
           "vocabRefs": [
             "v-pakjesavond"
           ],
-          "tokens": [
-            "Op",
-            "vijf",
-            "december",
-            "het",
-            "is",
-            "pakjesavond."
-          ],
-          "errorIndex": 3,
-          "correction": "is het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Op vijf december is het pakjesavond.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Op vijf december het is pakjesavond.",
+              "correct": false,
+              "feedback": "Inversão: Op vijf december is het pakjesavond."
+            }
+          ]
         },
         {
           "id": "s5-u04-l002-e09",
@@ -1217,24 +1221,26 @@
         },
         {
           "id": "s5-u04-l004-e09",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Om twaalf uur kijken we naar het vuurwerk.",
           "vocabRefs": [
             "v-vuurwerk"
           ],
-          "tokens": [
-            "Om",
-            "twaalf",
-            "uur",
-            "we",
-            "kijken",
-            "naar",
-            "het",
-            "vuurwerk."
-          ],
-          "errorIndex": 3,
-          "correction": "kijken we"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Om twaalf uur kijken we naar het vuurwerk.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Om twaalf uur we kijken naar het vuurwerk.",
+              "correct": false,
+              "feedback": "Inversão: Om twaalf uur kijken we naar het vuurwerk."
+            }
+          ]
         },
         {
           "id": "s5-u04-l004-e10",

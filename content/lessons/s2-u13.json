@@ -774,19 +774,26 @@
         },
         {
           "id": "s2-u13-l003-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo em 2.º: ik fiets liever.",
           "vocabRefs": [
             "v-liever"
           ],
-          "tokens": [
-            "Ik",
-            "liever",
-            "fiets."
-          ],
-          "errorIndex": 1,
-          "correction": "fiets liever"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik fiets liever.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik liever fiets.",
+              "correct": false,
+              "feedback": "Verbo em 2.º: ik fiets liever."
+            }
+          ]
         },
         {
           "id": "s2-u13-l003-e07",
@@ -1053,20 +1060,26 @@
         },
         {
           "id": "s2-u13-l004-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "O infinitivo vai para o fim: we gaan morgen zwemmen.",
           "vocabRefs": [
             "v-gaan"
           ],
-          "tokens": [
-            "We",
-            "gaan",
-            "zwemmen",
-            "morgen."
-          ],
-          "errorIndex": 2,
-          "correction": "morgen zwemmen"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "We gaan morgen zwemmen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "We gaan zwemmen morgen.",
+              "correct": false,
+              "feedback": "O infinitivo vai para o fim: we gaan morgen zwemmen."
+            }
+          ]
         },
         {
           "id": "s2-u13-l004-e07",

@@ -172,23 +172,26 @@
         },
         {
           "id": "s4-u14-l001-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de dat, o verbo vai para o fim: dat hij een auto heeft.",
           "vocabRefs": [
             "v-dat-conj"
           ],
-          "tokens": [
-            "Ik",
-            "weet",
-            "dat",
-            "hij",
-            "heeft",
-            "een",
-            "auto."
-          ],
-          "errorIndex": 4,
-          "correction": "een auto heeft"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik weet dat hij een auto heeft.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik weet dat hij heeft een auto.",
+              "correct": false,
+              "feedback": "Depois de dat, o verbo vai para o fim: dat hij een auto heeft."
+            }
+          ]
         },
         {
           "id": "s4-u14-l001-e06",
@@ -448,41 +451,49 @@
         },
         {
           "id": "s4-u14-l002-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois da subordinada vem o verbo: Als het regent, blijf ik thuis.",
           "vocabRefs": [
             "v-als-conj"
           ],
-          "tokens": [
-            "Als",
-            "het",
-            "regent,",
-            "ik",
-            "blijf",
-            "thuis."
-          ],
-          "errorIndex": 3,
-          "correction": "blijf ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als het regent, blijf ik thuis.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Als het regent, ik blijf thuis.",
+              "correct": false,
+              "feedback": "Depois da subordinada vem o verbo: Als het regent, blijf ik thuis."
+            }
+          ]
         },
         {
           "id": "s4-u14-l002-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: zodra je er bent.",
           "vocabRefs": [
             "v-zodra"
           ],
-          "tokens": [
-            "Bel",
-            "me",
-            "zodra",
-            "je",
-            "bent",
-            "er."
-          ],
-          "errorIndex": 4,
-          "correction": "er bent"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Bel me zodra je er bent.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Bel me zodra je bent er.",
+              "correct": false,
+              "feedback": "Verbo no fim: zodra je er bent."
+            }
+          ]
         },
         {
           "id": "s4-u14-l002-e06",
@@ -1020,23 +1031,26 @@
         },
         {
           "id": "s4-u14-l004-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Pergunta indireta → verbo no fim: hoe laat de trein vertrekt.",
           "vocabRefs": [
             "v-weet-u"
           ],
-          "tokens": [
-            "Weet",
-            "u",
-            "hoe",
-            "laat",
-            "vertrekt",
-            "de",
-            "trein?"
-          ],
-          "errorIndex": 4,
-          "correction": "de trein vertrekt"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Weet u hoe laat de trein vertrekt?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Weet u hoe laat vertrekt de trein?",
+              "correct": false,
+              "feedback": "Pergunta indireta → verbo no fim: hoe laat de trein vertrekt."
+            }
+          ]
         },
         {
           "id": "s4-u14-l004-e05",
@@ -1318,23 +1332,26 @@
         },
         {
           "id": "s4-u14-l005-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo no fim: Hoewel ik moe ben, …",
           "vocabRefs": [
             "v-hoewel"
           ],
-          "tokens": [
-            "Hoewel",
-            "ik",
-            "ben",
-            "moe,",
-            "ga",
-            "ik",
-            "sporten."
-          ],
-          "errorIndex": 2,
-          "correction": "moe ben"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hoewel ik moe ben, ga ik sporten.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Hoewel ik ben moe, ga ik sporten.",
+              "correct": false,
+              "feedback": "Verbo no fim: Hoewel ik moe ben, …"
+            }
+          ]
         },
         {
           "id": "s4-u14-l005-e07",

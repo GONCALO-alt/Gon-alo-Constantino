@@ -1159,21 +1159,26 @@
         },
         {
           "id": "s2-u06-l004-e08",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Interrogativa + verbo + sujeito.",
           "vocabRefs": [
             "v-vinden"
           ],
-          "tokens": [
-            "Waar",
-            "ik",
-            "vind",
-            "de",
-            "rijst?"
-          ],
-          "errorIndex": 1,
-          "correction": "vind ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Waar vind ik de rijst?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Waar ik vind de rijst?",
+              "correct": false,
+              "feedback": "Interrogativa + verbo + sujeito."
+            }
+          ]
         },
         {
           "id": "s2-u06-l004-e09",

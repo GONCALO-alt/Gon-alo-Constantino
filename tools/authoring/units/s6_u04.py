@@ -72,7 +72,7 @@ L(4, "Apresentar resultados", "Zoals u ziet… De grafiek laat zien dat… Dit b
     TR("pt-nl","Como vê, os números subiram.", ["Zoals u ziet(,) zijn de cijfers gestegen","Zoals jullie zien(,) zijn de cijfers gestegen"], "zoals u ziet + inversão.", ["v-laten-zien"]),
     TR("pt-nl","O gráfico mostra que as vendas estão a descer.", ["De grafiek laat zien dat de verkoop daalt","De grafiek toont dat de verkoop daalt"], "laten zien dat.", ["v-grafiek"]),
     TR("nl-pt","Opvallend is dat jongeren meer kopen.", ["É notável que os jovens comprem mais","O que salta à vista é que os jovens compram mais"], "opvallend.", ["v-opvallend"]),
-    FE(["De","grafiek","laat","zien","dat","de","verkoop","is","gedaald","flink."], 9, "flink gedaald is", "Subordinada: dat de verkoop flink gedaald is.", ["v-grafiek"]),
+    MC("Qual é a ordem correta?", ["*De grafiek laat zien dat de verkoop flink is gedaald.","De grafiek laat zien dat de verkoop is gedaald flink.|Subordinada: dat de verkoop flink gedaald is."], "Subordinada: dat de verkoop flink gedaald is.", ["v-grafiek"]),
     AR("resultaat","o resultado","het", "Het resultaat.", ["v-resultaat"]),
     MC("Uma linha que sobe no gráfico indica…", ["*een stijging / toename","een daling|Ao contrário.","geen verandering|Não."], "Descrever tendências.", ["v-grafiek"]),
     LI("In het derde kwartaal zien we een sterke daling.", ["In het derde kwartaal zien we een sterke daling"], "No terceiro trimestre vemos uma forte descida.", "daling.", ["v-dalen"]),

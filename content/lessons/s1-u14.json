@@ -555,20 +555,26 @@
         },
         {
           "id": "s1-u14-l002-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Ordem: ik weet het niet.",
           "vocabRefs": [
             "v-weten"
           ],
-          "tokens": [
-            "Ik",
-            "niet",
-            "weet",
-            "het."
-          ],
-          "errorIndex": 1,
-          "correction": "weet het niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik weet het niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik niet weet het.",
+              "correct": false,
+              "feedback": "Ordem: ik weet het niet."
+            }
+          ]
         },
         {
           "id": "s1-u14-l002-e08",
@@ -890,20 +896,26 @@
         },
         {
           "id": "s1-u14-l003-e09",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Nome próprio: ik ken Amsterdam niet.",
           "vocabRefs": [
             "v-kennen"
           ],
-          "tokens": [
-            "Ik",
-            "ken",
-            "niet",
-            "Amsterdam."
-          ],
-          "errorIndex": 2,
-          "correction": "Amsterdam niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ken Amsterdam niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ken niet Amsterdam.",
+              "correct": false,
+              "feedback": "Nome próprio: ik ken Amsterdam niet."
+            }
+          ]
         },
         {
           "id": "s1-u14-l003-e10",

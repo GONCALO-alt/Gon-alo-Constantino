@@ -149,20 +149,26 @@
         },
         {
           "id": "s1-u12-l001-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "O verbo tem de estar em 2.º: ik drink altijd thee.",
           "vocabRefs": [
             "v-altijd"
           ],
-          "tokens": [
-            "Ik",
-            "altijd",
-            "drink",
-            "thee."
-          ],
-          "errorIndex": 1,
-          "correction": "drink altijd"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik drink altijd thee.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik altijd drink thee.",
+              "correct": false,
+              "feedback": "O verbo tem de estar em 2.º: ik drink altijd thee."
+            }
+          ]
         },
         {
           "id": "s1-u12-l001-e05",
@@ -426,20 +432,26 @@
         },
         {
           "id": "s1-u12-l002-e03",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de «vandaag» vem o verbo: vandaag werk ik.",
           "vocabRefs": [
             "v-vandaag"
           ],
-          "tokens": [
-            "Vandaag",
-            "ik",
-            "werk",
-            "thuis."
-          ],
-          "errorIndex": 1,
-          "correction": "werk ik"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Vandaag werk ik thuis.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Vandaag ik werk thuis.",
+              "correct": false,
+              "feedback": "Depois de «vandaag» vem o verbo: vandaag werk ik."
+            }
+          ]
         },
         {
           "id": "s1-u12-l002-e04",
@@ -1117,23 +1129,26 @@
         },
         {
           "id": "s1-u12-l004-e07",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de «want» não há inversão: want ik ben laat.",
           "vocabRefs": [
             "v-want"
           ],
-          "tokens": [
-            "Ik",
-            "ben",
-            "moe,",
-            "want",
-            "ben",
-            "ik",
-            "laat."
-          ],
-          "errorIndex": 4,
-          "correction": "ik ben"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ben moe, want ik ben laat.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ben moe, want ben ik laat.",
+              "correct": false,
+              "feedback": "Depois de «want» não há inversão: want ik ben laat."
+            }
+          ]
         },
         {
           "id": "s1-u12-l004-e08",

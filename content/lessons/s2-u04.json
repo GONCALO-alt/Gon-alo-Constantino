@@ -794,20 +794,26 @@
         },
         {
           "id": "s2-u04-l003-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Verbo em 2.º: ik eet graag kaas.",
           "vocabRefs": [
             "v-graag-verb"
           ],
-          "tokens": [
-            "Ik",
-            "graag",
-            "eet",
-            "kaas."
-          ],
-          "errorIndex": 1,
-          "correction": "eet graag"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik eet graag kaas.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik graag eet kaas.",
+              "correct": false,
+              "feedback": "Verbo em 2.º: ik eet graag kaas."
+            }
+          ]
         },
         {
           "id": "s2-u04-l003-e06",

@@ -158,43 +158,49 @@
         },
         {
           "id": "s4-u15-l001-e04",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de want, ordem normal: want ik ben ziek.",
           "vocabRefs": [
             "v-want"
           ],
-          "tokens": [
-            "Ik",
-            "blijf",
-            "thuis,",
-            "want",
-            "ben",
-            "ik",
-            "ziek."
-          ],
-          "errorIndex": 4,
-          "correction": "ik ben"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik blijf thuis, want ik ben ziek.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik blijf thuis, want ben ik ziek.",
+              "correct": false,
+              "feedback": "Depois de want, ordem normal: want ik ben ziek."
+            }
+          ]
         },
         {
           "id": "s4-u15-l001-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de maar, ordem normal: maar het is niet koud.",
           "vocabRefs": [
             "v-maar-conj"
           ],
-          "tokens": [
-            "Het",
-            "regent,",
-            "maar",
-            "is",
-            "het",
-            "niet",
-            "koud."
-          ],
-          "errorIndex": 3,
-          "correction": "het is"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het regent, maar het is niet koud.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het regent, maar is het niet koud.",
+              "correct": false,
+              "feedback": "Depois de maar, ordem normal: maar het is niet koud."
+            }
+          ]
         },
         {
           "id": "s4-u15-l001-e06",
@@ -792,24 +798,26 @@
         },
         {
           "id": "s4-u15-l003-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Depois de bovendien, inversão: Bovendien is het duur.",
           "vocabRefs": [
             "v-bovendien"
           ],
-          "tokens": [
-            "Het",
-            "huis",
-            "is",
-            "klein.",
-            "Bovendien",
-            "het",
-            "is",
-            "duur."
-          ],
-          "errorIndex": 5,
-          "correction": "is het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het huis is klein. Bovendien is het duur.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het huis is klein. Bovendien het is duur.",
+              "correct": false,
+              "feedback": "Depois de bovendien, inversão: Bovendien is het duur."
+            }
+          ]
         },
         {
           "id": "s4-u15-l003-e07",
@@ -1078,21 +1086,26 @@
         },
         {
           "id": "s4-u15-l004-e05",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "Inversão: Ten tweede is het goedkoop.",
           "vocabRefs": [
             "v-ten-tweede"
           ],
-          "tokens": [
-            "Ten",
-            "tweede",
-            "het",
-            "is",
-            "goedkoop."
-          ],
-          "errorIndex": 2,
-          "correction": "is het"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ten tweede is het goedkoop.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ten tweede het is goedkoop.",
+              "correct": false,
+              "feedback": "Inversão: Ten tweede is het goedkoop."
+            }
+          ]
         },
         {
           "id": "s4-u15-l004-e06",

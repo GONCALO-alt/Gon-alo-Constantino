@@ -779,18 +779,24 @@
         },
         {
           "id": "s4-u07-l003-e06",
-          "type": "findError",
-          "instruction": "Toque na palavra errada.",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
           "explanation": "A ordem é «helaas niet»: Ik kan helaas niet.",
           "vocabRefs": [],
-          "tokens": [
-            "Ik",
-            "kan",
-            "niet",
-            "helaas."
-          ],
-          "errorIndex": 2,
-          "correction": "helaas niet"
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik kan helaas niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik kan niet helaas.",
+              "correct": false,
+              "feedback": "A ordem é «helaas niet»: Ik kan helaas niet."
+            }
+          ]
         },
         {
           "id": "s4-u07-l003-e07",
