@@ -4,6 +4,7 @@
  * (por ex. Chrome) o áudio é processado pelos servidores do fabricante do navegador.
  * Não existe em todos os navegadores (por ex. Firefox): a aplicação verifica sempre.
  */
+import { prepareForMicrophone, restoreAudioAfterMicrophone } from './sounds.ts';
 
 interface RecognitionAlternative { transcript: string }
 interface RecognitionResultEvent { results: ArrayLike<ArrayLike<RecognitionAlternative>> }
@@ -59,6 +60,8 @@ export function listenOnce(lang = 'nl-NL', timeoutMs = 10_000): RecognitionHandl
   rec.interimResults = false;
   rec.continuous = false;
   let timer: ReturnType<typeof setTimeout> | undefined;
+  let restored = false;
+  const restore = () => { if (!restored) { restored = true; restoreAudioAfterMicrophone(); } };
   const result = new Promise<string[]>((resolve, reject) => {
     let got: string[] = [];
     rec.onresult = (e) => {
@@ -68,6 +71,7 @@ export function listenOnce(lang = 'nl-NL', timeoutMs = 10_000): RecognitionHandl
     };
     rec.onerror = (e) => {
       clearTimeout(timer);
+      restore();
       const kind: RecognitionErrorKind =
         e.error === 'not-allowed' || e.error === 'service-not-allowed' ? 'not-allowed'
         : e.error === 'no-speech' ? 'no-speech'
@@ -76,14 +80,17 @@ export function listenOnce(lang = 'nl-NL', timeoutMs = 10_000): RecognitionHandl
     };
     rec.onend = () => {
       clearTimeout(timer);
+      restore();
       if (got.length) resolve(got);
       else reject(new RecognitionError('no-speech'));
     };
   });
   try {
+    prepareForMicrophone();
     rec.start();
     timer = setTimeout(() => rec.stop(), timeoutMs);
   } catch {
+    restore();
     return { result: Promise.reject(new RecognitionError('other')), stop() {} };
   }
   return { result, stop: () => rec.stop() };

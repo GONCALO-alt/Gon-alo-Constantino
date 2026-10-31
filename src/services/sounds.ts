@@ -131,12 +131,40 @@ function getContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
   if (!Ctor) return null;
+  // Um contexto fechado não toca mais: cria-se outro.
+  if (ctx && (ctx.state as string) === 'closed') ctx = null;
   if (!ctx) {
     try { ctx = new Ctor(); } catch { return null; }
   }
   // Os navegadores suspendem o áudio até haver interação; os sons tocam sempre depois de um toque.
-  if (ctx.state === 'suspended') void ctx.resume().catch(() => {});
+  // No iPhone, o estado «interrupted» aparece depois de chamadas ou de usar o microfone.
+  if (ctx.state === 'suspended' || (ctx.state as string) === 'interrupted') void ctx.resume().catch(() => {});
   return ctx;
+}
+
+type AudioSessionType = 'auto' | 'playback' | 'play-and-record';
+function audioSession(): { type: AudioSessionType } | null {
+  if (typeof navigator === 'undefined') return null;
+  return (navigator as unknown as { audioSession?: { type: AudioSessionType } }).audioSession ?? null;
+}
+
+/** Antes de ouvir o microfone (o sistema passa para «gravar e tocar»). */
+export function prepareForMicrophone(): void {
+  const session = audioSession();
+  if (session) { try { session.type = 'play-and-record'; } catch { /* sem efeito */ } }
+}
+
+/**
+ * Depois de usar o microfone, os telemóveis mudam a saída de áudio (no iPhone o som pode
+ * ir para o auscultador, muito baixo, ou ficar parado). Fecha-se o contexto de áudio e
+ * repõe-se o modo de reprodução: o próximo som cria um contexto novo, com o altifalante.
+ */
+export function restoreAudioAfterMicrophone(): void {
+  const session = audioSession();
+  if (session) { try { session.type = 'playback'; } catch { /* sem efeito */ } }
+  const old = ctx;
+  ctx = null;
+  if (old) void old.close().catch(() => {});
 }
 
 /** Parciais (múltiplo da frequência, ganho relativo, decaimento relativo) de cada timbre. */

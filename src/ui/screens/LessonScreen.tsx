@@ -37,10 +37,14 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     return computeLessonStates(unit, app.unitStates.get(unit.id) ?? 'locked', app.completed, app.settings.freeNavigation).get(lessonId) ?? 'locked';
   }, [unit, app.unitStates, app.completed, app.settings.freeNavigation, lessonId]);
 
-  /** Exercícios da lição + leitura em voz alta (se o navegador tiver reconhecimento de voz). */
+  /**
+   * Exercícios da lição + leitura em voz alta (se o navegador tiver reconhecimento de voz).
+   * Sem internet não há microfone: o reconhecimento de voz do navegador precisa de rede.
+   */
   const runExercises = useMemo(() => {
     if (!lesson) return [];
-    if (!app.settings.speakingExercises || !canRecognizeSpeech()) return lesson.exercises;
+    const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
+    if (!app.settings.speakingExercises || offline || !canRecognizeSpeech()) return lesson.exercises;
     return withSpeaking(lesson.exercises, speakingExercisesFor(lesson));
   }, [lesson, app.settings.speakingExercises]);
 

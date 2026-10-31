@@ -34,6 +34,7 @@ npm run preview
 - Sons: pronúncia com a voz do sistema; depois de cada exercício a resposta certa é lida em neerlandês; nos pares, cada palavra neerlandesa é pronunciada ao tocar; efeitos sonoros (três variações de «certo», errado suave, sons para 3, 5 e 10 respostas certas seguidas, fanfarra de fim de lição e outra para lição sem erros, conquista; vibração curta no telemóvel; volume ajustável) gerados no navegador, sem ficheiros nem serviços externos.
 - Durante a lição, tocar numa palavra neerlandesa mostra a tradução (dicionário feito com o vocabulário do curso, reconhece formas como *werkt* → *werken*). Ao acertar aparece só «Certo!»; ao errar aparecem a resposta certa, o significado e a explicação.
 - Leitura em voz alta: em cada lição, uma palavra e uma frase para ler; o reconhecimento de voz do navegador diz que palavras percebeu (Chrome/Safari; sem chaves de API). Pode desligar-se nas Definições.
+- **Uso sem internet e instalação no ecrã inicial (PWA):** na versão publicada (https, ex.: Netlify), um service worker (`dist/sw.js`, gerado por `tools/build-sw.ts` no `npm run build`) guarda a app e todas as lições (~11 MB) no dispositivo. Nas atualizações só se descarregam os ficheiros que mudaram. Sem internet, os exercícios de microfone ficam desligados; tudo o resto funciona. O estado e o botão «Instalar» estão em Definições → Usar sem internet.
 - Definições: objetivo, áudio (voz, leitura da resposta, efeitos sonoros), navegação livre, acentos, movimento reduzido.
 - Privacidade: sem contas nem servidores; exportar, restaurar e apagar todos os dados.
 
@@ -77,7 +78,7 @@ revisão humana e, opcionalmente, áudio gravado ou publicação em lojas de apl
 
 ## Limitações conhecidas
 
-- Sem funcionamento offline garantido: o progresso é local, mas o conteúdo ainda não é guardado em cache.
+- O uso sem internet só existe na versão publicada em https; o ficheiro único `DutchPath.html` já funciona sem internet, mas não se instala como app. Dentro do link do Claude (moldura) não é possível instalar.
 - A pronúncia depende da voz neerlandesa instalada no dispositivo.
 - Os dados ficam num só navegador (use «Exportar os meus dados» para cópias de segurança).
 - Revisão de conteúdo feita pela linha de comandos e editando JSON (ainda sem editor na app).

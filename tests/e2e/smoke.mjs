@@ -4,6 +4,7 @@
  *  - verifica que não há deslocamento horizontal em ecrãs pequenos;
  *  - faz o primeiro exercício de uma lição;
  *  - confirma que o progresso sobrevive a recarregar a página;
+ *  - confirma que a app e uma lição abrem sem internet (service worker);
  *  - guarda capturas em tests/e2e/screenshots (ignoradas pelo git).
  */
 import { spawn } from 'node:child_process';
@@ -88,6 +89,20 @@ try {
       await page.screenshot({ path: join(shots, `${vp.name}-${route}.png`), fullPage: true });
     }
     check(errors.length === 0, `${vp.name}: sem erros de JavaScript${errors.length ? ': ' + errors.join(' | ') : ''}`);
+    await ctx.close();
+  }
+
+  // Sem internet: depois de guardar as lições, a app e uma lição abrem com a rede desligada.
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: 'pt-PT' });
+    const page = await ctx.newPage();
+    await page.goto(base + '#/definicoes');
+    await page.waitForSelector('text=Todas as lições estão guardadas', { timeout: 60000 });
+    await ctx.setOffline(true);
+    await page.goto(base + '#/licao/s1-u01-l001');
+    await page.reload();
+    await page.waitForSelector('text=Olá e adeus', { timeout: 10000 }).catch(() => {});
+    check(((await page.textContent('body')) ?? '').includes('Olá e adeus'), 'sem internet: a app e uma lição abrem');
     await ctx.close();
   }
   await browser.close();

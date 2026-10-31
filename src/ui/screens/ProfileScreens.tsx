@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import type { Achievement, DailyStat, ExerciseAttempt, ReviewSchedule, StudySession } from '../../domain/progress.ts';
 import {
   ACHIEVEMENTS, deleteAllData, exportAllData, getAchievements, getAllReviews, getDailyStats, getRecentAttempts, getSessions, importAllData, saveProfile,
@@ -9,6 +9,7 @@ import { isMastered } from '../../engine/srs.ts';
 import { hasDutchVoice, loadVoices, speak } from '../../services/speech.ts';
 import { configureSounds, playSound } from '../../services/sounds.ts';
 import { canRecognizeSpeech } from '../../services/speechRecognition.ts';
+import { canPromptInstall, getOfflineState, isIOS, isStandalone, promptInstall, subscribeOffline } from '../../services/offline.ts';
 import { APP_CONFIG } from '../../config/app.ts';
 import { useAppData } from '../AppState.tsx';
 import { Card, formatMinutes, Icon } from '../components/common.tsx';
@@ -238,6 +239,8 @@ export function SettingsScreen() {
         <Toggle label="Reduzir animações" checked={s.reducedMotion} onChange={(v) => app.updateSettings({ reducedMotion: v })} />
       </Card>
 
+      <OfflineCard />
+
       <Card>
         <h2>Áudio</h2>
         <Toggle label="Pronúncia e exercícios de áudio" checked={s.audioEnabled} onChange={(v) => app.updateSettings({ audioEnabled: v })} />
@@ -319,6 +322,52 @@ export function SettingsScreen() {
         <p className="small muted">O conteúdo atual é uma amostra inicial redigida com apoio de IA e ainda não revista por um falante nativo. Os níveis QECR são indicativos.</p>
       </Card>
     </div>
+  );
+}
+
+const UNSUPPORTED_TEXT = {
+  file: 'Está a usar o ficheiro DutchPath.html: já funciona sem internet, mas não se instala como aplicação. Para instalar, abra a versão publicada (por exemplo no Netlify).',
+  frame: 'Aberta dentro de outra página (como o link do Claude), a app não se pode guardar no dispositivo. Abra a versão publicada (por exemplo no Netlify) para a instalar.',
+  browser: 'Este navegador não permite guardar a app para usar sem internet. Experimente o Chrome ou o Safari.',
+  dev: 'Disponível apenas na versão publicada da aplicação.',
+} as const;
+
+/** Uso sem internet e instalação no ecrã inicial. */
+function OfflineCard() {
+  const offline = useSyncExternalStore(subscribeOffline, getOfflineState);
+  const installable = useSyncExternalStore(subscribeOffline, canPromptInstall);
+  const [installMsg, setInstallMsg] = useState('');
+  const standalone = isStandalone();
+  const pct = offline.kind === 'saving' && offline.total ? Math.round((offline.done / offline.total) * 100) : 0;
+  return (
+    <Card>
+      <h2>Usar sem internet</h2>
+      {offline.kind === 'ready' && <p className="small"><strong>✓ Todas as lições estão guardadas neste dispositivo.</strong> Pode estudar sem internet.</p>}
+      {offline.kind === 'saving' && (
+        <>
+          <p className="small" role="status">A guardar as lições para usar sem internet… {offline.total ? `${pct}%` : ''}</p>
+          <div className="progress" aria-hidden="true"><div className="progress-fill" style={{ width: `${pct}%` }} /></div>
+        </>
+      )}
+      {offline.kind === 'error' && <p className="small">Não foi possível guardar as lições. Volte a abrir a app com internet para tentar outra vez.</p>}
+      {offline.kind === 'unsupported' && <p className="small muted">{UNSUPPORTED_TEXT[offline.reason]}</p>}
+
+      {offline.kind !== 'unsupported' && (
+        standalone ? <p className="small">A app está instalada no ecrã inicial.</p>
+        : installable ? (
+          <button type="button" className="btn btn-primary" onClick={async () => {
+            const ok = await promptInstall();
+            setInstallMsg(ok ? 'A app foi adicionada ao ecrã inicial.' : '');
+          }}><Icon name="download" size={18} /> Instalar no ecrã inicial</button>
+        ) : isIOS() ? (
+          <p className="small">Para instalar: no Safari, toque em <strong>Partilhar</strong> (o quadrado com a seta) e depois em <strong>«Adicionar ao ecrã principal»</strong>.</p>
+        ) : (
+          <p className="small">Para instalar: no menu <strong>⋮</strong> do navegador, escolha <strong>«Instalar app»</strong> ou <strong>«Adicionar ao ecrã principal»</strong>.</p>
+        )
+      )}
+      {installMsg && <p className="small" role="status">{installMsg}</p>}
+      <p className="small muted">Sem internet, tudo funciona (lições, revisões, efeitos sonoros e progresso), exceto os exercícios de microfone, que ficam desligados. A voz neerlandesa funciona se estiver instalada no telemóvel.</p>
+    </Card>
   );
 }
 

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "npm run content:build && vite",
-    "build": "npm run content:build && tsc -b && vite build",
+    "build": "npm run content:build && tsc -b && vite build && node tools/build-sw.ts",
     "build:single": "npm run build && node tools/build-single.ts",
     "preview": "vite preview",
     "typecheck": "tsc -b",

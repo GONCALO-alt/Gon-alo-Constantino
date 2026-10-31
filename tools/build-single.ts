@@ -35,7 +35,9 @@ if (!cssMatch || !jsMatch) throw new Error('Não encontrei os ficheiros JS/CSS e
 const css = readFileSync(join(DIST, cssMatch[1]!), 'utf8');
 const js = readFileSync(join(DIST, jsMatch[1]!), 'utf8');
 
+// O ficheiro único não se instala como app (não há service worker em file://).
 html = html
+  .replace(/\s*<link rel="(manifest|apple-touch-icon)"[^>]*>/g, '')
   .replace(cssMatch[0], () => `<style>${css}</style>`)
   .replace(jsMatch[0], () => '')
   .replace('</body>', () =>
