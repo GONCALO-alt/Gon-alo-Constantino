@@ -31,7 +31,7 @@ npm run preview
 - Escrita livre com autoavaliação: uma resposta diferente do modelo não é marcada errada automaticamente.
 - **Revisão espaçada** (caixas de Leitner configuráveis), palavras difíceis, esquecidas e erros recentes.
 - XP, objetivo diário, sequência sem castigos, conquistas, estatísticas.
-- Sons: pronúncia com a voz do sistema; depois de cada exercício a resposta certa é lida em neerlandês; nos pares, cada palavra neerlandesa é pronunciada ao tocar; efeitos sonoros curtos (certo, quase, errado, lição concluída, conquista) gerados no navegador, sem ficheiros nem serviços externos.
+- Sons: pronúncia com a voz do sistema; depois de cada exercício a resposta certa é lida em neerlandês; nos pares, cada palavra neerlandesa é pronunciada ao tocar; efeitos sonoros (três variações de «certo», errado suave, sons para 3, 5 e 10 respostas certas seguidas, fanfarra de fim de lição e outra para lição sem erros, conquista; vibração curta no telemóvel; volume ajustável) gerados no navegador, sem ficheiros nem serviços externos.
 - Definições: objetivo, áudio (voz, leitura da resposta, efeitos sonoros), navegação livre, acentos, movimento reduzido.
 - Privacidade: sem contas nem servidores; exportar, restaurar e apagar todos os dados.
 

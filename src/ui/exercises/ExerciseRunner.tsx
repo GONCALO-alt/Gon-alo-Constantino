@@ -9,7 +9,7 @@ import { expectedAnswer, gradeExercise, needsSelfAssessment, type ExerciseRespon
 import { expandAnswerPattern } from '../../engine/answers.ts';
 import { advance, answer, currentExercise, isFinished, progressFraction, startSession, type SessionState } from '../../engine/session.ts';
 import { dutchAnswerText } from '../../engine/spoken.ts';
-import { playSound } from '../../services/sounds.ts';
+import { playCorrect, playSound, soundLength, vibrate } from '../../services/sounds.ts';
 import { speak, stopSpeaking } from '../../services/speech.ts';
 import { Icon, ProgressBar, RichText, SpeakButton } from '../components/common.tsx';
 import { ExerciseView } from './ExerciseView.tsx';
@@ -52,6 +52,9 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
   const opts = { lenientAccents };
 
   const speakTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  /** Respostas certas seguidas (sem «Não me lembro»), para os sons de sequência. */
+  const streak = useRef(0);
+  const [streakShown, setStreakShown] = useState(0);
   useEffect(() => () => clearTimeout(speakTimer.current), []);
 
   useEffect(() => {
@@ -67,11 +70,25 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
 
   const finalize = (r: ExerciseResult) => {
     setResult(r);
-    playSound(revealed && r.verdict !== 'incorrect' ? 'almost' : r.verdict);
+    let soundSecs = 0.45;
+    if (r.verdict === 'correct' && !revealed) {
+      streak.current += 1;
+      const n = streak.current;
+      playCorrect(n);
+      vibrate(12);
+      const special = n === 3 || n === 5 || n % 10 === 0;
+      setStreakShown(special ? n : 0);
+      if (special) soundSecs = soundLength(n % 10 === 0 ? 'streak10' : n === 5 ? 'streak5' : 'streak3');
+    } else {
+      streak.current = 0;
+      setStreakShown(0);
+      playSound(r.verdict === 'incorrect' ? 'incorrect' : 'almost');
+      if (r.verdict === 'incorrect') vibrate(40);
+    }
     const nl = audioEnabled && speakAnswers ? dutchAnswerText(ex) : null;
     // Depois do efeito sonoro, a voz lê a frase certa em neerlandês.
     clearTimeout(speakTimer.current);
-    if (nl) speakTimer.current = setTimeout(() => void speak(nl, speechRate), 450);
+    if (nl) speakTimer.current = setTimeout(() => void speak(nl, speechRate), Math.round(soundSecs * 1000) + 100);
     if (!firstAttempts.current.has(ex.id)) firstAttempts.current.set(ex.id, { exercise: ex, result: r });
     // Depois de ver a resposta, o exercício conta como não sabido e volta a aparecer mais tarde.
     setSession((s) => answer(s, revealed ? 'incorrect' : r.verdict));
@@ -172,6 +189,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
             <div className="feedback" role="status" aria-live="assertive">
               <p className="verdict">
                 <Icon name={result.verdict === 'incorrect' ? 'close' : 'check'} size={26} /> {verdictText}
+                {streakShown > 0 && <span className="streak-tag">{streakShown} seguidas!</span>}
                 {spokenAnswer && <SpeakButton text={spokenAnswer} rate={speechRate} label="Ouvir a resposta em neerlandês" />}
               </p>
               {result.verdict !== 'correct' && (

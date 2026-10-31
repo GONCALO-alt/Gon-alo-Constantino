@@ -27,6 +27,8 @@ export interface UserSettings {
   speechRate: number; // 0.5–1.2
   /** Efeitos sonoros curtos (certo, errado, lição concluída…). */
   soundEffects: boolean;
+  /** Volume dos efeitos sonoros (0–1). */
+  soundVolume: number;
   /** Ler em voz alta a resposta certa em neerlandês depois de cada exercício. */
   speakAnswers: boolean;
   /** Desbloqueia todas as unidades (para quem já tem conhecimentos). */
@@ -43,6 +45,7 @@ export const DEFAULT_SETTINGS: Omit<UserSettings, 'id'> = {
   audioEnabled: true,
   speechRate: 0.9,
   soundEffects: true,
+  soundVolume: 0.8,
   speakAnswers: true,
   freeNavigation: false,
   lenientAccents: true,

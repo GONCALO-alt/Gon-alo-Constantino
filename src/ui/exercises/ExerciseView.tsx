@@ -229,7 +229,7 @@ function TokenExercise({ exercise, locked, onResponse, prompt, tokens, speakProm
   const bank = useMemo(() => shuffle(tokens.map((t, i) => ({ t, i })), seededRandom(seedOf(exercise.id))), [exercise.id, tokens]);
   const [chosen, setChosen] = useState<number[]>([]);
   const update = (next: number[]) => {
-    playSound('tap');
+    playSound(next.length >= chosen.length ? 'tap' : 'untap');
     setChosen(next);
     onResponse(next.length ? { kind: 'text', value: joinTokens(next.map((i) => tokens[i]!)) } : null);
   };

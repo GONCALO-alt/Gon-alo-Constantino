@@ -241,7 +241,22 @@ export function SettingsScreen() {
         <h2>Áudio</h2>
         <Toggle label="Pronúncia e exercícios de áudio" checked={s.audioEnabled} onChange={(v) => app.updateSettings({ audioEnabled: v })} />
         <Toggle label="Ler a resposta certa em voz alta" hint="Depois de cada exercício, ouve a frase certa em neerlandês." checked={s.speakAnswers} disabled={!s.audioEnabled} onChange={(v) => app.updateSettings({ speakAnswers: v })} />
-        <Toggle label="Efeitos sonoros" hint="Sons curtos para resposta certa, quase certa, errada e lição concluída." checked={s.soundEffects} onChange={(v) => { app.updateSettings({ soundEffects: v }); if (v) { configureSounds({ enabled: true }); playSound('correct'); } }} />
+        <Toggle label="Efeitos sonoros" hint="Sons para resposta certa, errada, respostas seguidas e fim de lição. No telemóvel, também uma vibração curta." checked={s.soundEffects} onChange={(v) => { app.updateSettings({ soundEffects: v }); if (v) { configureSounds({ enabled: true, volume: s.soundVolume }); playSound('correct'); } }} />
+        {s.soundEffects && (
+          <>
+            <label className="field">
+              <span>Volume dos efeitos: {Math.round(s.soundVolume * 100)}%</span>
+              <input type="range" min={0.1} max={1} step={0.1} value={s.soundVolume}
+                onChange={(e) => { const v = Number(e.target.value); app.updateSettings({ soundVolume: v }); configureSounds({ enabled: true, volume: v }); }}
+                onPointerUp={() => playSound('correct')} />
+            </label>
+            <div className="row wrap" role="group" aria-label="Ouvir os efeitos sonoros">
+              {([['correct', 'Certo'], ['incorrect', 'Errado'], ['streak5', 'Sequência'], ['lessonComplete', 'Fim de lição'], ['lessonPerfect', 'Lição perfeita']] as const).map(([name, label]) => (
+                <button key={name} type="button" className="chip" onClick={() => playSound(name)}><Icon name="sound" size={16} /> {label}</button>
+              ))}
+            </div>
+          </>
+        )}
         <label className="field">
           <span>Velocidade da voz: {s.speechRate.toFixed(2)}×</span>
           <input type="range" min={0.5} max={1.2} step={0.05} value={s.speechRate} onChange={(e) => app.updateSettings({ speechRate: Number(e.target.value) })} />

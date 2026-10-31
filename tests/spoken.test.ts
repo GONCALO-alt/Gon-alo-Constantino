@@ -4,7 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Exercise } from '../src/domain/schemas.ts';
 import { correctedSentence, dutchAnswerText } from '../src/engine/spoken.ts';
-import { SOUNDS, configureSounds, playSound } from '../src/services/sounds.ts';
+import { SOUNDS, configureSounds, playCorrect, playSound, soundLength } from '../src/services/sounds.ts';
 import { realFiles } from './helpers.ts';
 
 const base = { id: 's1-u01-l001-e01', instruction: 'x', explanation: 'y', vocabRefs: [] };
@@ -55,9 +55,18 @@ describe('efeitos sonoros', () => {
       expect(notes.length, name).toBeGreaterThan(0);
       for (const n of notes) {
         expect(n.f).toBeGreaterThan(100);
-        expect(n.at + n.dur).toBeLessThan(1);
       }
+      // Sons de resposta curtos; sequências até ~1,3 s; fanfarras até ~2 s.
+      expect(soundLength(name as keyof typeof SOUNDS), name).toBeLessThan(name.startsWith('lesson') || name === 'achievement' ? 2.2 : name.startsWith('streak') ? 1.3 : 0.9);
     }
+  });
+  it('o som de erro é grave e curto, e o de certo é agudo', () => {
+    expect(soundLength('incorrect')).toBeLessThan(0.6);
+    expect(Math.max(...SOUNDS.incorrect.map((n) => n.f))).toBeLessThan(Math.min(...SOUNDS.correct.map((n) => n.f)));
+  });
+  it('sequências de respostas certas não lançam erros', () => {
+    configureSounds({ enabled: true });
+    for (let i = 1; i <= 12; i++) expect(() => playCorrect(i)).not.toThrow();
   });
   it('tocar sem Web Audio (ou desligado) não lança erros', () => {
     configureSounds({ enabled: false });

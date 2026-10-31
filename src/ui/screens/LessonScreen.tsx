@@ -74,7 +74,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
             }, app.countUnits);
             setOutcome({ correct, total: answers.length, xp, seconds: Math.round((endedAt - startedAt) / 1000), result });
             setPhase('done');
-            celebrate(result.newAchievements.length > 0);
+            celebrate(result.newAchievements.length > 0, correct === answers.length);
             await app.refresh();
           } catch (e) {
             setError(`Não foi possível guardar o progresso: ${(e as Error).message}`);

@@ -48,8 +48,8 @@ function Shell() {
     document.title = APP_CONFIG.name;
   }, []);
   useEffect(() => {
-    configureSounds({ enabled: data?.settings.soundEffects ?? true });
-  }, [data?.settings.soundEffects]);
+    configureSounds({ enabled: data?.settings.soundEffects ?? true, volume: data?.settings.soundVolume ?? 0.8 });
+  }, [data?.settings.soundEffects, data?.settings.soundVolume]);
   useEffect(() => {
     document.documentElement.dataset.motion = data?.settings.reducedMotion ? 'reduce' : 'auto';
   }, [data?.settings.reducedMotion]);

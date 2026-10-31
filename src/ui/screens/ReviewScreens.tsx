@@ -201,7 +201,7 @@ export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'gramma
           xp, startedAt, Date.now(), app.countUnits,
         );
         setDone({ correct, total: answers.length, xp, outcome });
-        celebrate(outcome.newAchievements.length > 0);
+        celebrate(outcome.newAchievements.length > 0, correct === answers.length);
         setSaving(false);
         await app.refresh();
       }} />
