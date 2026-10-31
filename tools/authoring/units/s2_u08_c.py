@@ -67,7 +67,7 @@ L(13, "Demasiado grande", "Hij is te groot.",
     TR("pt-nl","Tem um número abaixo?", ["Heeft u een maat kleiner?","Hebt u een maat kleiner?"], "een maat kleiner.", ["v-een-maat-kleiner"]),
     FB("Mag ik deze broek ___?", ["passen"], "Experimentar.", ["v-passen-kleding"], choices=["passen","dragen","ruilen"], tr="Posso experimentar estas calças?"),
     DL([("Verkoper","Past hij goed?","Serve bem?"),("Jij","","")], ["*Nee, hij is te klein. Heeft u een maat groter?","Ja, te klein.|Contraditório.","Hij is paars.|Não responde."], "Pedir outro tamanho.", ["v-te","v-maat"]),
-    LI("Welke maat heeft u?", ["Welke maat heeft u(?)","Welke maat hebt u(?)"], "Que tamanho usa?", "Ouvir.", ["v-maat"]),
+    LI("Welke maat heeft u nodig?", ["Welke maat heeft u nodig(?)","Welke maat hebt u nodig(?)"], "De que tamanho precisa?", "Ouvir.", ["v-maat"]),
     WO("É pequeno demais.", ["Het","is","te","klein."], "Ordem.", ["v-te"]),
   ], diff=2, mins=4)
 

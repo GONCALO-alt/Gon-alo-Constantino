@@ -53,7 +53,7 @@ L(13, "À mesa: copos e guardanapos", "Een beker en een servet.",
     TR("nl-pt","Het mes ligt naast het bord.", ["A faca está ao lado do prato(.)"], "naast.", ["v-mes","v-bord"]),
     FB("Ik drink koffie uit een ___.", ["beker"], "Caneca.", ["v-beker"], choices=["beker","bord","vork"], tr="Bebo café de uma caneca."),
     MC("Para comer sopa precisas de…", ["*een lepel","een mes|É para cortar.","een servet|É para limpar."], "Lógica.", ["v-lepel"]),
-    LI("De vork en het mes.", ["De vork en het mes(.)"], "O garfo e a faca.", "Ouvir.", ["v-vork","v-mes"]),
+    LI("De vork ligt naast het mes.", ["De vork ligt naast het mes(.)"], "O garfo está ao lado da faca.", "Ouvir.", ["v-vork","v-mes"]),
   ], diff=1, mins=4)
 
 L(14, "Este e aquele", "Deze, die, dit, dat.",

@@ -70,7 +70,7 @@ L(16, "«oe», «g» e «h»", "Goed of hoed?",
     LI("goed", ["goed"], "bom / bem", "g áspero.", ["v-goed"]),
     LI("hoed", ["hoed"], "chapéu", "h aspirado.", ["v-hoed"]),
     TR("nl-pt","Mijn hoed is blauw.", ["O meu chapéu é azul(.)"], "hoed.", ["v-hoed","v-blauw"]),
-    FB("Het boek is ___.", ["goed"], "Bom.", ["v-goed"], choices=["goed","hoed","geld"], tr="O livro é bom."),
+    FB("Dit boek is echt ___.", ["goed"], "Bom.", ["v-goed"], choices=["goed","hoed","geld"], tr="Este livro é mesmo bom."),
     LI("Ik heb graag geld.", ["Ik heb graag geld(.)"], "Gosto de ter dinheiro.", "Treino do g.", ["v-graag","v-geld"]),
   ], diff=2, mins=4)
 
@@ -96,14 +96,14 @@ L(18, "Prática: frases para treinar", "Hardop lezen.",
   ex=[("De vrouw drinkt koude wijn in de tuin.","A mulher bebe vinho frio no jardim.")],
   review=["v-vrouw","v-wijn","v-tuin","v-huis","v-zee","v-hond","v-kat","v-trein","v-gracht"],
   cefr=C, exs=[
-    LI("Het huis is klein.", ["Het huis is klein(.)"], "A casa é pequena.", "ui + ei.", ["v-huis","v-klein"]),
+    LI("Het huis is klein, maar de tuin is groot.", ["Het huis is klein(,) maar de tuin is groot(.)"], "A casa é pequena, mas o jardim é grande.", "ui + ei.", ["v-huis","v-klein"]),
     LI("De hond en de kat.", ["De hond en de kat(.)"], "O cão e o gato.", "d final = t.", ["v-hond","v-kat"]),
     LI("De trein is rood.", ["De trein is rood(.)"], "O comboio é vermelho.", "ei + oo.", ["v-trein","v-rood"]),
     LI("Een fiets bij de gracht.", ["Een fiets bij de gracht(.)"], "Uma bicicleta junto ao canal.", "g + ch.", ["v-fiets","v-gracht"]),
     TR("nl-pt","De zee is blauw en koud.", ["O mar é azul e frio(.)","O mar está azul e frio(.)"], "zee.", ["v-zee","v-blauw","v-koud"]),
     MC("Qual destes sons é igual em «klein» e «wijn»?", ["*ei / ij","ui|Não.","oe|Não."], "Mesmo som.", ["v-klein","v-wijn"]),
     MC("Em «gracht» quantos sons ásperos de garganta há?", ["*dois: g e ch","um|Ouve-se no g e no ch.","nenhum|Não."], "g e ch.", ["v-gracht"]),
-    WO("O cão é grande.", ["De","hond","is","groot."], "Ordem.", ["v-hond","v-groot"]),
+    WO("O cão e o gato são grandes.", ["De","hond","en","de","kat","zijn","groot."], "Ordem.", ["v-hond","v-groot"]),
   ], diff=2, mins=5)
 
 W()

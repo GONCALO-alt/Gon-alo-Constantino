@@ -19,7 +19,7 @@ L(10, "Normalmente e raramente", "Meestal en zelden.",
     TR("pt-nl","Normalmente trabalho em casa.", ["Meestal werk ik thuis(.)","Ik werk meestal thuis(.)"], "meestal.", ["v-meestal"]),
     FB("Ik sport drie ___ per week.", ["keer"], "vezes.", ["v-keer"], choices=["keer","keren","tijd"], tr="Faço desporto três vezes por semana."),
     LI("Meestal ben ik om zes uur thuis.", ["Meestal ben ik om zes uur thuis(.)"], "Normalmente estou em casa às seis.", "Ouvir.", ["v-meestal"]),
-    WO("Raramente vejo televisão.", ["Ik","kijk","zelden","tv."], "Ordem.", ["v-zelden"]),
+    WO("Ele raramente está doente.", ["Hij","is","zelden","ziek."], "Ordem.", ["v-zelden"]),
   ], diff=2, mins=4)
 
 L(11, "Onde fica? Treino", "Aan, bij, tussen, tegenover.",
@@ -98,7 +98,7 @@ L(15, "Prática: um dia com preposições", "Waar, wanneer en waarop?",
     TR("pt-nl","Depois do jantar ouço música.", ["Na het eten luister ik naar muziek(.)","Na het avondeten luister ik naar muziek(.)"], "na + luisteren naar.", ["v-na","v-luisteren"]),
     TR("pt-nl","Normalmente penso na minha família ao domingo.", ["Meestal denk ik op zondag aan mijn familie(.)","Op zondag denk ik meestal aan mijn familie(.)"], "denken aan.", ["v-meestal","v-denken-aan"]),
     LI("Tijdens de vakantie zorgt mijn broer voor de planten.", ["Tijdens de vakantie zorgt mijn broer voor de planten(.)"], "Durante as férias o meu irmão cuida das plantas.", "Ouvir.", ["v-tijdens","v-zorgen-voor"]),
-    FE(["Ik","kijk","op","de","televisie."], 2, "naar", "kijken naar.", ["v-kijken-naar"]),
+    FE(["We","kijken","op","een","film."], 2, "naar", "kijken naar.", ["v-kijken-naar"]),
     BS("Espero pela minha amiga junto ao café.", ["Ik","wacht","op","mijn","vriendin","bij","het","café."], ["Ik wacht op mijn vriendin bij het café."], "wachten op + bij.", ["v-wachten-op","v-bij"]),
     SW("Escreva 4 frases sobre a sua tarde (use na, tijdens, wachten op, kijken naar).", ["Na het werk wacht ik op de tram. Thuis kijk ik naar het nieuws. Tijdens het eten praten we over de dag. Daarna lees ik een boek."], ["Preposições de tempo","Verbos com preposição"], 20, "Escrever.", ["v-na","v-wachten-op"]),
   ], diff=2, mins=5)

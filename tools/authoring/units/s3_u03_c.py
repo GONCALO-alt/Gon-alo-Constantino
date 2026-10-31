@@ -80,7 +80,7 @@ L(14, "Pedir ajuda a um estranho", "Mag ik u iets vragen?",
   cefr=C, exs=[
     MA([("mag ik u iets vragen?","posso perguntar?"),("de weg vragen","pedir direções"),("hoe kom ik bij…?","como chego a…?"),("pardon","com licença")], "Abordar.", ["v-mag-ik-u-iets-vragen","v-de-weg-vragen","v-hoe-kom-ik","v-pardon"]),
     MC("Estás perdido. Começas com:", ["*Pardon, mag ik u iets vragen?","Hé, jij!|Brusco.","Ik ben kwijt.|Incompleto."], "Educado.", ["v-mag-ik-u-iets-vragen"]),
-    TR("pt-nl","Como chego à estação?", ["Hoe kom ik bij het station?"], "hoe kom ik bij.", ["v-hoe-kom-ik"]),
+    TR("pt-nl","Desculpe, como chego à igreja?", ["Pardon(,) hoe kom ik bij de kerk?","Sorry(,) hoe kom ik bij de kerk?"], "hoe kom ik bij.", ["v-hoe-kom-ik"]),
     TR("pt-nl","Também não sou daqui.", ["Ik ben hier ook niet bekend(.)","Ik woon hier ook niet(.)"], "bekend.", ["v-de-weg-vragen"]),
     DL([("Voorbijganger","Natuurlijk, zeg het maar.","Claro, diga."),("Jij","","")], ["*Hoe kom ik bij de bibliotheek?","Ik ben pardon.|Não.","Tot ziens!|Ainda não."], "Perguntar.", ["v-hoe-kom-ik"]),
     DL([("Voorbijganger","Rechtdoor en dan de tweede links.","Em frente e depois a segunda à esquerda."),("Jij","","")], ["*Dank u wel, heel vriendelijk!","Nee.|Rude.","Ik ben links.|Não."], "Agradecer.", ["v-dank-u-wel"]),

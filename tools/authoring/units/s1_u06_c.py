@@ -65,7 +65,7 @@ L(14, "Que línguas falas bem?", "Ik spreek goed Engels.",
   cefr=C, exs=[
     MA([("goed","bem"),("een beetje","um pouco"),("helaas niet","infelizmente não"),("taal","língua")], "Quão bem?", ["v-goed","v-een-beetje","v-helaas","v-taal"]),
     TR("pt-nl","Falo bem inglês.", ["Ik spreek goed Engels(.)"], "goed antes da língua.", ["v-spreken","v-engels"]),
-    TR("pt-nl","Falo um pouco de neerlandês.", ["Ik spreek een beetje Nederlands(.)"], "een beetje.", ["v-een-beetje","v-nederlands"]),
+    TR("pt-nl","Falo inglês e um pouco de neerlandês.", ["Ik spreek Engels en een beetje Nederlands(.)"], "een beetje.", ["v-een-beetje","v-nederlands"]),
     TR("pt-nl","Falas francês?", ["Spreek jij Frans?","Spreek je Frans?"], "Pergunta: spreek jij (sem -t).", ["v-frans"]),
     CJ("spreken","hij","Hij ___ Spaans.", ["spreekt"], "hij spreekt.", ["v-spreken"]),
     CJ("spreken","wij","Wij ___ Portugees.", ["spreken"], "wij spreken.", ["v-spreken"]),

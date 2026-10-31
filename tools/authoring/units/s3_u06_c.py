@@ -68,7 +68,7 @@ L(13, "Mudar uma marcação", "Kan ik mijn afspraak verzetten?",
     DL([("Assistente","Wanneer komt het u wel uit?","Quando lhe dá jeito?"),("Jij","","")], ["*Volgende week, op woensdagochtend.","Ik ben uit.|Não.","Afzeggen.|Não responde."], "Propor.", ["v-uitkomen"]),
     MC("Muitos consultórios pedem que canceles…", ["*pelo menos 24 horas antes, senão podem cobrar","nunca|Não.","depois da hora|Tarde demais."], "Regra comum (confirma sempre).", ["v-afzeggen"]),
     LI("Ik zeg mijn afspraak van morgen af.", ["Ik zeg mijn afspraak van morgen af(.)"], "Cancelo a minha marcação de amanhã.", "Ouvir.", ["v-afzeggen"]),
-    WO("Cancelo a marcação.", ["Ik","zeg","de","afspraak","af."], "Separável.", ["v-afzeggen"]),
+    WO("Ela cancela a aula.", ["Zij","zegt","de","les","af."], "Separável.", ["v-afzeggen"]),
   ], diff=2, mins=4)
 
 L(14, "Lembretes", "Een herinnering per sms.",

@@ -63,7 +63,7 @@ L(13, "Dias de chuva", "Mijn regenjas en mijn paraplu.",
   cefr=C, exs=[
     MA([("regenjas","impermeável"),("paraplu","guarda-chuva"),("nat","molhado"),("bui","aguaceiro")], "Chuva.", ["v-regenjas","v-paraplu","v-nat","v-buien"]),
     MC("Porque é que muitos neerlandeses preferem o impermeável ao guarda-chuva?", ["*Por causa do vento e da bicicleta","Porque o guarda-chuva é proibido|Não.","Porque nunca chove|Não."], "Vida real.", ["v-regenjas"]),
-    TR("pt-nl","Está a chover.", ["Het regent(.)"], "regenen.", ["v-regenen"]),
+    TR("pt-nl","Está a chover outra vez.", ["Het regent weer(.)","Het regent alweer(.)"], "regenen.", ["v-regenen"]),
     TR("pt-nl","Estou todo molhado.", ["Ik ben helemaal nat(.)"], "nat.", ["v-nat"]),
     FB("Neem je ___ mee, er komen buien!", ["regenjas"], "Impermeável.", ["v-regenjas"], choices=["regenjas","zonnebril","zonnebrand"], tr="Leva o impermeável, vêm aguaceiros!"),
     LI("Vanmiddag zijn er buien.", ["Vanmiddag zijn er buien(.)"], "Esta tarde há aguaceiros.", "Ouvir.", ["v-buien"]),

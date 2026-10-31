@@ -50,7 +50,7 @@ L(12, "Onde está a minha encomenda?", "Met de track-and-trace-code.",
     TR("pt-nl","A encomenda é entregue hoje.", ["Het pakket wordt vandaag bezorgd(.)"], "Passiva.", ["v-bezorgen"]),
     FB("Via de ___ kun je je pakket volgen.", ["track-and-trace-code"], "Código.", ["v-track-en-trace"], choices=["track-and-trace-code","postzegel","brievenbus"], tr="Com o código de seguimento podes seguir a encomenda."),
     MC("(Mensagem) «Bezorgd bij de buren (nr. 14)» significa…", ["*A encomenda foi entregue ao vizinho do nº 14","Foi devolvida|Não.","Perdeu-se|Não."], "Compreensão.", ["v-bezorgen"]),
-    LI("Uw pakket is onderweg.", ["Uw pakket is onderweg(.)"], "A sua encomenda está a caminho.", "Ouvir.", ["v-pakket"]),
+    LI("Uw pakket is onderweg en komt morgen.", ["Uw pakket is onderweg en komt morgen(.)"], "A sua encomenda está a caminho e chega amanhã.", "Ouvir.", ["v-pakket"]),
     DL([("Klantenservice","Heeft u de track-and-trace-code?","Tem o código de seguimento?"),("Jij","","")], ["*Ja, het is 3S ABC 123.","Ik ben pakket.|Não.","Online.|Não."], "Dar o código (fictício).", ["v-track-en-trace"]),
     AR("pakket", "encomenda", "het", "het pakket.", ["v-pakket"]),
   ], diff=2, mins=4)
@@ -83,7 +83,7 @@ L(14, "Encomenda estragada", "Het pakket is beschadigd.",
     FB("Ik neem contact op met de ___.", ["klantenservice"], "Apoio.", ["v-klantenservice"], choices=["klantenservice","postbode","glasbak"], tr="Contacto o apoio ao cliente."),
     MC("O que ajuda numa reclamação?", ["*fotografias e o número da encomenda","gritar ao telefone|Não ajuda.","deitar fora a caixa|Perdes provas."], "Estratégia.", ["v-klagen"]),
     LI("Kunt u mij een nieuwe sturen of het geld terugbetalen?", ["Kunt u mij een nieuwe sturen of het geld terugbetalen(?)"], "Pode enviar-me outro ou reembolsar?", "Ouvir.", ["v-terugbetalen"]),
-    DL([("Klantenservice","Wat kan ik voor u doen?","O que posso fazer por si?"),("Jij","","")], ["*Mijn bestelling is kapot aangekomen. Ik heb foto's.","Ik ben kapot.|Significa «estou exausto».","Klagen.|Não."], "Reclamar.", ["v-kapot"]),
+    DL([("Klantenservice","Fijn dat u belt. Wat is er aan de hand?","Obrigado por ligar. O que se passa?"),("Jij","","")], ["*Mijn bestelling is kapot aangekomen. Ik heb foto's.","Ik ben kapot.|Significa «estou exausto».","Klagen.|Não."], "Reclamar.", ["v-kapot"]),
     WO("A caneca está partida.", ["De","beker","is","kapot."], "Ordem.", ["v-kapot"]),
   ], diff=2, mins=4)
 

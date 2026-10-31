@@ -22,7 +22,7 @@ L(11, "Onde fica «vaak»?", "Ik drink vaak koffie.",
     TR("pt-nl","Ela trabalha todos os dias.", ["Ze werkt elke dag(.)","Zij werkt elke dag(.)","Elke dag werkt ze(.)"], "elke dag.", ["v-elke-dag"]),
     FB("Wij zijn ___ thuis op zaterdag. (nunca)", ["nooit"], "Nunca.", ["v-nooit"], choices=["nooit","vaak","altijd"], tr="Nunca estamos em casa ao sábado."),
     WO("Bebo sempre água.", ["Ik","drink","altijd","water."], "Verbo, depois advérbio.", ["v-altijd"]),
-    LI("Ik fiets elke dag naar mijn werk.", ["Ik fiets elke dag naar mijn werk(.)"], "Vou todos os dias de bicicleta para o trabalho.", "Ouvir.", ["v-elke-dag"]),
+    LI("Mijn zus fietst elke dag naar school.", ["Mijn zus fietst elke dag naar school(.)"], "A minha irmã vai todos os dias de bicicleta para a escola.", "Ouvir.", ["v-elke-dag"]),
   ], diff=2, mins=4)
 
 L(12, "Começar pela hora", "Om acht uur werk ik.",

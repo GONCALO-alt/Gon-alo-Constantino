@@ -30,7 +30,7 @@ L(11, "Furo na roda", "Een lekke band plakken.",
   review=["v-band","v-lek","v-rem","v-zadel"],
   cefr=C, exs=[
     MA([("fietsenmaker","mecânico de bicicletas"),("band","pneu"),("rem","travão"),("zadel","selim")], "Peças.", ["v-fietsenmaker","v-band","v-rem","v-zadel"]),
-    TR("pt-nl","Tenho um pneu furado.", ["Ik heb een lekke band(.)"], "lekke band.", ["v-lek","v-band"]),
+    TR("pt-nl","A minha bicicleta tem um pneu furado.", ["Mijn fiets heeft een lekke band(.)"], "lekke band.", ["v-lek","v-band"]),
     TR("pt-nl","Pode remendar o pneu?", ["Kunt u de band plakken?","Kunt u mijn band plakken?"], "band plakken.", ["v-band-plakken"]),
     FB("Mijn ___ doen het niet; ik kan niet stoppen!", ["remmen"], "Travões.", ["v-rem"], choices=["remmen","banden","zadels"], tr="Os meus travões não funcionam; não consigo parar!"),
     DL([("Fietsenmaker","Wat is er met de fiets?","O que tem a bicicleta?"),("Jij","","")], ["*De achterband is lek en het licht doet het niet.","De fiets is mooi.|Não explica.","Ik ben fietsenmaker.|Não."], "Explicar.", ["v-lek","v-fietslicht"]),

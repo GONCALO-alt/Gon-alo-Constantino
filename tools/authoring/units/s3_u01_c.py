@@ -15,7 +15,7 @@ L(10, "Planear a viagem", "De reisplanner.",
   cefr=C, exs=[
     MA([("reisplanner","planeador de viagens"),("overstappen","mudar (de comboio)"),("vertrekken","partir"),("perron","plataforma")], "Viajar.", ["v-reisplanner","v-overstappen","v-vertrekken","v-perron"]),
     MC("(Planeador) «Vertrek 10.14 – spoor 5 – 1x overstappen». Quantas mudanças?", ["*uma","nenhuma|«1x» = uma vez.","cinco|É a linha."], "Ler o resultado.", ["v-overstappen"]),
-    TR("pt-nl","Tenho de mudar em Utrecht.", ["Ik moet overstappen in Utrecht(.)","Ik moet in Utrecht overstappen(.)"], "overstappen.", ["v-overstappen"]),
+    TR("pt-nl","Tenho de mudar de comboio em Amersfoort.", ["Ik moet overstappen in Amersfoort(.)","Ik moet in Amersfoort overstappen(.)"], "overstappen.", ["v-overstappen"]),
     TR("pt-nl","O comboio parte às dez.", ["De trein vertrekt om tien uur(.)"], "vertrekken.", ["v-vertrekken"]),
     FB("Kijk even in de ___ hoe laat de trein gaat.", ["reisplanner"], "App.", ["v-reisplanner"], choices=["reisplanner","perron","richting"], tr="Vê no planeador a que horas vai o comboio."),
     LI("De trein richting Den Haag vertrekt van perron drie.", ["De trein richting Den Haag vertrekt van perron drie(.)","De trein richting Den Haag vertrekt van perron 3(.)"], "O comboio para Haia parte da plataforma três.", "Ouvir.", ["v-richting","v-perron"]),
@@ -68,7 +68,7 @@ L(13, "Esqueci-me do check-out", "Vergeten uit te checken.",
     TR("pt-nl","Tenho de carregar o cartão.", ["Ik moet mijn kaart opladen(.)","Ik moet mijn OV-chipkaart opladen(.)"], "opladen.", ["v-opladen"]),
     FB("Mijn ___ is te laag; ik kan niet inchecken.", ["saldo"], "Saldo.", ["v-saldo"], choices=["saldo","perron","richting"], tr="O meu saldo é baixo demais; não consigo fazer check-in."),
     DL([("Klantenservice","Waarmee kan ik u helpen?","Em que posso ajudar?"),("Jij","","")], ["*Ik ben gisteren vergeten uit te checken. Kan ik mijn geld terugkrijgen?","Ik ben saldo.|Não.","Perron vijf.|Não."], "Pedir reembolso.", ["v-vergeten-uitchecken"]),
-    LI("Vergeet niet uit te checken!", ["Vergeet niet uit te checken(!)"], "Não te esqueças de fazer check-out!", "Aviso.", ["v-uitchecken"]),
+    LI("Vergeet bij het uitstappen niet uit te checken!", ["Vergeet bij het uitstappen niet uit te checken(!)"], "Ao sair, não te esqueças de fazer check-out!", "Aviso.", ["v-uitchecken"]),
     WO("Faz check-in.", ["Check","in."], "Imperativo separável.", ["v-inchecken"]),
   ], diff=2, mins=4)
 

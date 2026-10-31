@@ -20,7 +20,7 @@ L(11, "Como se escreve?", "Hoe spel je dat?",
     FB("Hoe ___ je dat?", ["spel"], "spellen → spel.", ["v-spellen"], choices=["spel","spellen","schrijf je"], tr="Como se escreve isso?"),
     DL([("Collega","Ik heet Wouter.","Chamo-me Wouter."),("Jij","","")], ["*Sorry, hoe spel je dat?","Doei Wouter!|Despedida.","Ik begrijp het.|Não ajuda a escrever o nome."], "Pedir para soletrar.", ["v-hoe-spel-je-dat"]),
     MC("Em neerlandês, a letra «w» diz-se…", ["*«wee»","«dâblio»|Isso é inglês.","«vê duplo»|Isso é português."], "Nome da letra.", ["v-alfabet"]),
-    WO("Como se escreve isso?", ["Hoe","spel","je","dat?"], "Ordem.", ["v-hoe-spel-je-dat"]),
+    WO("Como se escreve o teu nome?", ["Hoe","spel","je","jouw","naam?"], "Ordem.", ["v-hoe-spel-je-dat"]),
   ], diff=1, mins=4)
 
 L(12, "A letra IJ", "De lange ij.",
@@ -49,11 +49,11 @@ L(13, "Outra vez, por favor", "Nog een keer, alstublieft.",
     MA([("nog een keer","outra vez"),("herhalen","repetir"),("langzaam","devagar"),("begrijpen","perceber")], "Pedidos.", ["v-nog-een-keer","v-herhalen","v-langzaam","v-begrijpen"]),
     MC("Não ouviste bem o número. Dizes:", ["*Nog een keer, alstublieft.","Tot zo!|Despedida.","Geen probleem.|Não pede nada."], "Pedir repetição.", ["v-nog-een-keer"]),
     TR("pt-nl","Outra vez, por favor.", ["Nog een keer(,) alstublieft(.)","Nog een keer(,) alsjeblieft(.)"], "nog een keer.", ["v-nog-een-keer"]),
-    TR("pt-nl","Devagar, por favor.", ["Langzaam(,) alstublieft(.)","Langzaam(,) alsjeblieft(.)"], "langzaam.", ["v-langzaam"]),
+    TR("pt-nl","Diga isso devagar, por favor.", ["Zeg het langzaam(,) alstublieft(.)","Zeg dat langzaam(,) alstublieft(.)","Zeg het langzaam(,) alsjeblieft(.)"], "langzaam.", ["v-langzaam","v-zeggen"]),
     FB("Ik begrijp het ___.", ["niet"], "Negação.", ["v-niet"], choices=["niet","nog","langzaam"], tr="Não percebo."),
     DL([("Docent","Herhaal het woord: gracht.","Repete a palavra: gracht."),("Jij","","")], ["*Sorry, nog een keer, alstublieft?","Doei!|Não.","Ik ben student.|Não responde."], "Pedir repetição.", ["v-nog-een-keer"]),
     LI("Kunt u dat nog een keer zeggen?", ["Kunt u dat nog een keer zeggen(?)"], "Pode dizer isso outra vez?", "Pedido educado.", ["v-nog-een-keer","v-zeggen"]),
-    WO("Não percebo.", ["Ik","begrijp","het","niet."], "niet no fim.", ["v-begrijpen","v-niet"]),
+    WO("Desculpe, não percebo.", ["Sorry,","ik","begrijp","het","niet."], "niet no fim.", ["v-begrijpen","v-niet"]),
   ], diff=1, mins=4)
 
 L(14, "Não sei", "Ik weet het niet.",
