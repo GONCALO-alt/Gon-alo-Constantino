@@ -2874,6 +2874,1418 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s2-u03-l010",
+      "unitId": "s2-u03",
+      "order": 10,
+      "title": "Que dia é hoje?",
+      "description": "Welke dag is het vandaag?",
+      "cefr": "A1-A2",
+      "objectives": [
+        "Perguntar e dizer o dia da semana e a data"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-welke-dag",
+          "nl": "welke dag is het?",
+          "pt": [
+            "que dia é hoje?"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-de-hoeveelste",
+          "nl": "de hoeveelste is het?",
+          "pt": [
+            "a quantos estamos?"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-dag",
+        "v-vandaag",
+        "v-woensdag",
+        "v-datum"
+      ],
+      "examples": [
+        {
+          "nl": "Welke dag is het vandaag? — Het is woensdag.",
+          "pt": "Que dia é hoje? — É quarta-feira."
+        },
+        {
+          "nl": "De hoeveelste is het? — Het is de twaalfde.",
+          "pt": "A quantos estamos? — Estamos a doze."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s2-u03-l010-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Datas.",
+          "vocabRefs": [
+            "v-welke-dag",
+            "v-de-hoeveelste",
+            "v-datum",
+            "v-vandaag"
+          ],
+          "pairs": [
+            {
+              "nl": "welke dag is het?",
+              "pt": "que dia é hoje?"
+            },
+            {
+              "nl": "de hoeveelste is het?",
+              "pt": "a quantos estamos?"
+            },
+            {
+              "nl": "datum",
+              "pt": "data"
+            },
+            {
+              "nl": "vandaag",
+              "pt": "hoje"
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l010-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Data.",
+          "vocabRefs": [
+            "v-de-hoeveelste"
+          ],
+          "prompt": "Resposta a «De hoeveelste is het?»:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Het is de vijfde.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het is vrijdag.",
+              "correct": false,
+              "feedback": "Isso responde a «welke dag»."
+            },
+            {
+              "id": "c",
+              "text": "Het is vijf uur.",
+              "correct": false,
+              "feedback": "Isso é a hora."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l010-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-welke-dag"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Que dia é hoje?",
+          "answers": [
+            "Welke dag is het vandaag?",
+            "Welke dag is het?"
+          ]
+        },
+        {
+          "id": "s2-u03-l010-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "vrijdag.",
+          "vocabRefs": [
+            "v-vrijdag"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Hoje é sexta-feira.",
+          "answers": [
+            "Het is vandaag vrijdag(.)",
+            "Vandaag is het vrijdag(.)",
+            "Het is vrijdag(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l010-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Sequência.",
+          "vocabRefs": [
+            "v-woensdag"
+          ],
+          "sentence": "Gisteren was het dinsdag, dus vandaag is het ___.",
+          "translation": "Ontem foi terça, por isso hoje é quarta.",
+          "answers": [
+            "woensdag"
+          ],
+          "choices": [
+            "woensdag",
+            "maandag",
+            "donderdag"
+          ]
+        },
+        {
+          "id": "s2-u03-l010-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-donderdag"
+          ],
+          "audioText": "Het is vandaag donderdag de tiende.",
+          "answers": [
+            "Het is vandaag donderdag de tiende(.)",
+            "Het is vandaag donderdag 10(.)"
+          ],
+          "translation": "Hoje é quinta-feira, dia dez."
+        },
+        {
+          "id": "s2-u03-l010-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder com a data.",
+          "vocabRefs": [
+            "v-de-hoeveelste"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "De hoeveelste is het vandaag?",
+              "pt": "A quantos estamos?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "De zesentwintigste.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Maandag.",
+              "correct": false,
+              "feedback": "Não diz a data."
+            },
+            {
+              "id": "c",
+              "text": "Om tien uur.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l010-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-welke-dag"
+          ],
+          "translation": "Que dia é hoje?",
+          "tokens": [
+            "Welke",
+            "dag",
+            "is",
+            "het",
+            "vandaag?"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s2-u03-l011",
+      "unitId": "s2-u03",
+      "order": 11,
+      "title": "Escrever e dizer datas",
+      "description": "Op 3 mei.",
+      "cefr": "A1-A2",
+      "objectives": [
+        "Escrever e ler datas à neerlandesa"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-mei",
+        "v-december",
+        "v-verjaardag",
+        "v-kerst"
+      ],
+      "examples": [
+        {
+          "nl": "Mijn verjaardag is op 3 mei.",
+          "pt": "O meu aniversário é a 3 de maio."
+        },
+        {
+          "nl": "Op 25 december is het Kerstmis.",
+          "pt": "A 25 de dezembro é Natal."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s2u03c-1",
+          "title": "Datas",
+          "body": "Escreve-se **3 mei** (sem «de», mês com minúscula) e diz-se *drie mei*. Para «no dia» usa-se **op**: *op 3 mei*. Por escrito: **3-5-2026** ou **03-05-2026** (dia-mês-ano, como em Portugal).",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s2-u03-l011-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Data.",
+          "vocabRefs": [
+            "v-mei"
+          ],
+          "prompt": "«A 3 de maio» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "op 3 mei",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "in 3 mei",
+              "correct": false,
+              "feedback": "Para dias usa-se op."
+            },
+            {
+              "id": "c",
+              "text": "op 3 van mei",
+              "correct": false,
+              "feedback": "Sem «van»."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Ortografia.",
+          "vocabRefs": [
+            "v-januari"
+          ],
+          "prompt": "Os meses escrevem-se…",
+          "options": [
+            {
+              "id": "a",
+              "text": "com minúscula: januari",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "com maiúscula: Januari",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "em abreviatura obrigatória",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l011-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "op + data.",
+          "vocabRefs": [
+            "v-verjaardag",
+            "v-juni"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O meu aniversário é a 12 de junho.",
+          "answers": [
+            "Mijn verjaardag is op 12 juni(.)",
+            "Mijn verjaardag is op twaalf juni(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "in + mês.",
+          "vocabRefs": [
+            "v-augustus",
+            "v-op-vakantie"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Em agosto estou de férias.",
+          "answers": [
+            "In augustus ben ik op vakantie(.)",
+            "In augustus heb ik vakantie(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "op + data.",
+          "vocabRefs": [
+            "v-januari"
+          ],
+          "sentence": "___ 1 januari is het Nieuwjaar.",
+          "translation": "A 1 de janeiro é Ano Novo.",
+          "answers": [
+            "Op"
+          ],
+          "choices": [
+            "Op",
+            "In",
+            "Om"
+          ]
+        },
+        {
+          "id": "s2-u03-l011-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "in + mês.",
+          "vocabRefs": [
+            "v-maart"
+          ],
+          "sentence": "___ maart is het nog koud.",
+          "translation": "Em março ainda está frio.",
+          "answers": [
+            "In"
+          ],
+          "choices": [
+            "In",
+            "Op",
+            "Om"
+          ]
+        },
+        {
+          "id": "s2-u03-l011-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-oktober",
+            "v-afspraak"
+          ],
+          "audioText": "De afspraak is op vijftien oktober.",
+          "answers": [
+            "De afspraak is op vijftien oktober(.)",
+            "De afspraak is op 15 oktober(.)"
+          ],
+          "translation": "A consulta é a 15 de outubro."
+        },
+        {
+          "id": "s2-u03-l011-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Formato.",
+          "vocabRefs": [
+            "v-november"
+          ],
+          "prompt": "«07-11» numa carta neerlandesa é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "7 de novembro",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "11 de julho",
+              "correct": false,
+              "feedback": "Dia vem primeiro."
+            },
+            {
+              "id": "c",
+              "text": "julho de 2011",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s2-u03-l012",
+      "unitId": "s2-u03",
+      "order": 12,
+      "title": "Festas neerlandesas",
+      "description": "Sinterklaas en Nieuwjaar.",
+      "cefr": "A1-A2",
+      "objectives": [
+        "Conhecer as principais festas do calendário neerlandês"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-sinterklaas",
+          "nl": "Sinterklaas",
+          "pt": [
+            "São Nicolau (festa de 5 de dezembro)"
+          ],
+          "pos": "noun"
+        },
+        {
+          "id": "v-nieuwjaar",
+          "nl": "Nieuwjaar",
+          "pt": [
+            "Ano Novo"
+          ],
+          "pos": "noun"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-koningsdag",
+        "v-kerst",
+        "v-feestdag",
+        "v-december",
+        "v-april"
+      ],
+      "examples": [
+        {
+          "nl": "Op 5 december vieren we Sinterklaas.",
+          "pt": "A 5 de dezembro celebramos o São Nicolau."
+        },
+        {
+          "nl": "Gelukkig Nieuwjaar!",
+          "pt": "Feliz Ano Novo!"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s2u03c-2",
+          "title": "O calendário",
+          "body": "**Sinterklaas** (5 de dezembro): troca de prendas, sobretudo para crianças. **Kerstmis** (25–26 de dezembro). **Koningsdag** (27 de abril): o dia do rei, tudo cor de laranja. **Nieuwjaar** (1 de janeiro).",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s2-u03-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Calendário.",
+          "vocabRefs": [
+            "v-sinterklaas",
+            "v-koningsdag",
+            "v-kerst",
+            "v-nieuwjaar"
+          ],
+          "pairs": [
+            {
+              "nl": "Sinterklaas",
+              "pt": "5 de dezembro"
+            },
+            {
+              "nl": "Koningsdag",
+              "pt": "27 de abril"
+            },
+            {
+              "nl": "Kerstmis",
+              "pt": "25 de dezembro"
+            },
+            {
+              "nl": "Nieuwjaar",
+              "pt": "1 de janeiro"
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Cultura.",
+          "vocabRefs": [
+            "v-koningsdag"
+          ],
+          "prompt": "No Koningsdag, as pessoas vestem-se de…",
+          "options": [
+            {
+              "id": "a",
+              "text": "cor de laranja",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "verde",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "vermelho",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l012-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Cultura.",
+          "vocabRefs": [
+            "v-sinterklaas"
+          ],
+          "prompt": "A festa de Sinterklaas é sobretudo para…",
+          "options": [
+            {
+              "id": "a",
+              "text": "as crianças, com prendas",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "os turistas",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "os estudantes no verão",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Votos.",
+          "vocabRefs": [
+            "v-nieuwjaar"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Feliz Ano Novo!",
+          "answers": [
+            "Gelukkig Nieuwjaar(!)",
+            "Gelukkig nieuwjaar(!)"
+          ]
+        },
+        {
+          "id": "s2-u03-l012-e05",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Koningsdag.",
+          "vocabRefs": [
+            "v-koningsdag"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Op 27 april is het Koningsdag.",
+          "answers": [
+            "A 27 de abril é o Dia do Rei(.)",
+            "No dia 27 de abril é o Koningsdag(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l012-e06",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Festa.",
+          "vocabRefs": [
+            "v-sinterklaas"
+          ],
+          "sentence": "Op 5 december vieren we ___.",
+          "translation": "A 5 de dezembro celebramos o São Nicolau.",
+          "answers": [
+            "Sinterklaas"
+          ],
+          "choices": [
+            "Sinterklaas",
+            "Koningsdag",
+            "Nieuwjaar"
+          ]
+        },
+        {
+          "id": "s2-u03-l012-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-kerst",
+            "v-vrij"
+          ],
+          "audioText": "Is Tweede Kerstdag ook een vrije dag?",
+          "answers": [
+            "Is Tweede Kerstdag ook een vrije dag(?)"
+          ],
+          "translation": "O segundo dia de Natal (26/12) também é feriado?"
+        },
+        {
+          "id": "s2-u03-l012-e08",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder.",
+          "vocabRefs": [
+            "v-kerst"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Wat doe je met Kerstmis?",
+              "pt": "O que fazes no Natal?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik ga naar mijn familie in Portugal.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Op 5 december.",
+              "correct": false,
+              "feedback": "Não responde."
+            },
+            {
+              "id": "c",
+              "text": "Gelukkig Nieuwjaar!",
+              "correct": false,
+              "feedback": "Data errada."
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s2-u03-l013",
+      "unitId": "s2-u03",
+      "order": 13,
+      "title": "Marcar na agenda",
+      "description": "Kun je op donderdag?",
+      "cefr": "A1-A2",
+      "objectives": [
+        "Propor um dia e responder se dá jeito"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-dat-past-goed",
+          "nl": "dat past goed",
+          "pt": [
+            "dá jeito, está bem"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-dan-kan-ik-niet",
+          "nl": "dan kan ik niet",
+          "pt": [
+            "nesse dia/hora não posso"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-kunnen",
+        "v-passen",
+        "v-afspraak",
+        "v-agenda",
+        "v-vrij"
+      ],
+      "examples": [
+        {
+          "nl": "Kun je op donderdag? — Dat past goed.",
+          "pt": "Podes na quinta? — Dá jeito."
+        },
+        {
+          "nl": "Vrijdag? Dan kan ik niet, sorry.",
+          "pt": "Sexta? Nesse dia não posso, desculpa."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s2-u03-l013-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Agenda.",
+          "vocabRefs": [
+            "v-dat-past-goed",
+            "v-dan-kan-ik-niet",
+            "v-agenda",
+            "v-vrij"
+          ],
+          "pairs": [
+            {
+              "nl": "dat past goed",
+              "pt": "dá jeito"
+            },
+            {
+              "nl": "dan kan ik niet",
+              "pt": "não posso nesse dia"
+            },
+            {
+              "nl": "agenda",
+              "pt": "agenda"
+            },
+            {
+              "nl": "vrij",
+              "pt": "livre"
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Aceitar.",
+          "vocabRefs": [
+            "v-dat-past-goed"
+          ],
+          "prompt": "Tens a sexta livre. A resposta a «Kun je vrijdag?»:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, dat past goed.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dan kan ik niet.",
+              "correct": false,
+              "feedback": "Estás livre."
+            },
+            {
+              "id": "c",
+              "text": "Ik ben vrijdag.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l013-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "kunnen.",
+          "vocabRefs": [
+            "v-kunnen",
+            "v-donderdag"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Podes na quinta?",
+          "answers": [
+            "Kun je op donderdag?",
+            "Kun je donderdag?",
+            "Kan je op donderdag?"
+          ]
+        },
+        {
+          "id": "s2-u03-l013-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "kan ik niet.",
+          "vocabRefs": [
+            "v-dan-kan-ik-niet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Na segunda não posso.",
+          "answers": [
+            "Maandag kan ik niet(.)",
+            "Op maandag kan ik niet(.)",
+            "Ik kan maandag niet(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Livre.",
+          "vocabRefs": [
+            "v-vrij"
+          ],
+          "sentence": "Woensdag ben ik ___. Dan kan ik wel.",
+          "translation": "Na quarta estou livre. Nesse dia posso.",
+          "answers": [
+            "vrij"
+          ],
+          "choices": [
+            "vrij",
+            "dicht",
+            "laat"
+          ]
+        },
+        {
+          "id": "s2-u03-l013-e06",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Propor outra hora.",
+          "vocabRefs": [
+            "v-dan-kan-ik-niet"
+          ],
+          "lines": [
+            {
+              "speaker": "Tandarts",
+              "nl": "Past dinsdag om tien uur?",
+              "pt": "Dá jeito terça às dez?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Dan kan ik niet. Kan het ook om twee uur?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dat past goed, maandag.",
+              "correct": false,
+              "feedback": "Contraditório."
+            },
+            {
+              "id": "c",
+              "text": "Agenda.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l013-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-agenda"
+          ],
+          "audioText": "Ik kijk even in mijn agenda.",
+          "answers": [
+            "Ik kijk even in mijn agenda(.)"
+          ],
+          "translation": "Vou só ver a minha agenda."
+        },
+        {
+          "id": "s2-u03-l013-e08",
+          "type": "conjugation",
+          "instruction": "Escreva a forma correta do verbo.",
+          "explanation": "Pergunta: kun jij / kan jij.",
+          "vocabRefs": [
+            "v-kunnen"
+          ],
+          "verb": "kunnen",
+          "pronoun": "jij",
+          "tense": "presente",
+          "sentence": "___ jij morgen?",
+          "answers": [
+            "Kun",
+            "Kan"
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s2-u03-l014",
+      "unitId": "s2-u03",
+      "order": 14,
+      "title": "Uma semana de folga",
+      "description": "Een vrije dag en vakantie.",
+      "cefr": "A1-A2",
+      "objectives": [
+        "Falar de dias livres e férias"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-werkdag",
+          "nl": "werkdag",
+          "pt": [
+            "dia útil, dia de trabalho"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "werkdagen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vrij",
+        "v-week",
+        "v-maand",
+        "v-volgende",
+        "v-vorige"
+      ],
+      "examples": [
+        {
+          "nl": "Maandag is mijn vrije dag.",
+          "pt": "A segunda é o meu dia de folga."
+        },
+        {
+          "nl": "In juli heb ik drie weken vakantie.",
+          "pt": "Em julho tenho três semanas de férias."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s2-u03-l014-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Tempo.",
+          "vocabRefs": [
+            "v-werkdag",
+            "v-vrij",
+            "v-volgende",
+            "v-vorige"
+          ],
+          "pairs": [
+            {
+              "nl": "werkdag",
+              "pt": "dia de trabalho"
+            },
+            {
+              "nl": "vrije dag",
+              "pt": "dia de folga"
+            },
+            {
+              "nl": "volgende week",
+              "pt": "a próxima semana"
+            },
+            {
+              "nl": "vorige maand",
+              "pt": "o mês passado"
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l014-e02",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "volgende week.",
+          "vocabRefs": [
+            "v-volgende"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Para a semana tenho férias.",
+          "answers": [
+            "Volgende week heb ik vakantie(.)",
+            "Ik heb volgende week vakantie(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l014-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "vorige maand + was.",
+          "vocabRefs": [
+            "v-vorige",
+            "v-maand"
+          ],
+          "direction": "pt-nl",
+          "prompt": "No mês passado estive em Portugal.",
+          "answers": [
+            "Vorige maand was ik in Portugal(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l014-e04",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "vrije dag.",
+          "vocabRefs": [
+            "v-vrij"
+          ],
+          "sentence": "Ik werk vier dagen per week; vrijdag is mijn ___ dag.",
+          "translation": "Trabalho quatro dias por semana; a sexta é o meu dia livre.",
+          "answers": [
+            "vrije"
+          ],
+          "choices": [
+            "vrije",
+            "werk",
+            "volgende"
+          ]
+        },
+        {
+          "id": "s2-u03-l014-e05",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Tempo.",
+          "vocabRefs": [
+            "v-volgende"
+          ],
+          "prompt": "«Volgende week» é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "a próxima semana",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "a semana passada",
+              "correct": false,
+              "feedback": "Isso é vorige week."
+            },
+            {
+              "id": "c",
+              "text": "esta semana",
+              "correct": false,
+              "feedback": "Isso é deze week."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l014-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-werkdag"
+          ],
+          "audioText": "Een werkdag duurt acht uur.",
+          "answers": [
+            "Een werkdag duurt acht uur(.)"
+          ],
+          "translation": "Um dia de trabalho dura oito horas."
+        },
+        {
+          "id": "s2-u03-l014-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Responder.",
+          "vocabRefs": [
+            "v-augustus"
+          ],
+          "lines": [
+            {
+              "speaker": "Collega",
+              "nl": "Wanneer heb je vakantie?",
+              "pt": "Quando tens férias?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "In augustus, twee weken.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Op werkdag.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Vorige week morgen.",
+              "correct": false,
+              "feedback": "Não faz sentido."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l014-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-volgende"
+          ],
+          "translation": "Para a semana trabalho.",
+          "tokens": [
+            "Volgende",
+            "week",
+            "werk",
+            "ik."
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 4,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s2-u03-l015",
+      "unitId": "s2-u03",
+      "order": 15,
+      "title": "Prática: o meu mês",
+      "description": "Mijn maand in de agenda.",
+      "cefr": "A1-A2",
+      "objectives": [
+        "Ler uma agenda e escrever planos com datas"
+      ],
+      "newVocabulary": [],
+      "reviewVocabulary": [
+        "v-afspraak",
+        "v-agenda",
+        "v-de-hoeveelste",
+        "v-dat-past-goed",
+        "v-sinterklaas",
+        "v-volgende"
+      ],
+      "examples": [
+        {
+          "nl": "(Fictício) 3 mei: tandarts · 12 mei: verjaardag Ana · 27 april: Koningsdag",
+          "pt": "Agenda."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s2-u03-l015-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Compreensão.",
+          "vocabRefs": [
+            "v-afspraak"
+          ],
+          "prompt": "(Fictício) Na agenda: «3 mei: tandarts». O que há a 3 de maio?",
+          "options": [
+            {
+              "id": "a",
+              "text": "uma consulta no dentista",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "um aniversário",
+              "correct": false,
+              "feedback": "Isso é a 12."
+            },
+            {
+              "id": "c",
+              "text": "um feriado",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Contexto.",
+          "vocabRefs": [
+            "v-gefeliciteerd"
+          ],
+          "prompt": "(Fictício) «12 mei: verjaardag Ana». O que dizes à Ana nesse dia?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Gefeliciteerd!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Gelukkig Nieuwjaar!",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Sorry dat ik te laat ben.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l015-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "op + data.",
+          "vocabRefs": [
+            "v-afspraak",
+            "v-mei"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A 3 de maio tenho consulta.",
+          "answers": [
+            "Op 3 mei heb ik een afspraak(.)",
+            "Ik heb op 3 mei een afspraak(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l015-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "volgende maand.",
+          "vocabRefs": [
+            "v-volgende",
+            "v-maand"
+          ],
+          "direction": "pt-nl",
+          "prompt": "No próximo mês vou a Portugal.",
+          "answers": [
+            "Volgende maand ga ik naar Portugal(.)",
+            "Ik ga volgende maand naar Portugal(.)"
+          ]
+        },
+        {
+          "id": "s2-u03-l015-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-vrij"
+          ],
+          "audioText": "Op vrijdag de achtste heb ik een vrije dag.",
+          "answers": [
+            "Op vrijdag de achtste heb ik een vrije dag(.)",
+            "Op vrijdag 8 heb ik een vrije dag(.)"
+          ],
+          "translation": "Na sexta, dia 8, tenho um dia de folga."
+        },
+        {
+          "id": "s2-u03-l015-e06",
+          "type": "buildSentence",
+          "instruction": "Construa a frase em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-afspraak"
+          ],
+          "prompt": "Na quinta às duas tenho uma consulta.",
+          "tokens": [
+            "Op",
+            "donderdag",
+            "om",
+            "twee",
+            "uur",
+            "heb",
+            "ik",
+            "een",
+            "afspraak."
+          ],
+          "answers": [
+            "Op donderdag om twee uur heb ik een afspraak."
+          ]
+        },
+        {
+          "id": "s2-u03-l015-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Aceitar.",
+          "vocabRefs": [
+            "v-dat-past-goed"
+          ],
+          "lines": [
+            {
+              "speaker": "Vriendin",
+              "nl": "Kun je op de twintigste?",
+              "pt": "Podes no dia 20?"
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Ja, dat past goed!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Het is de twintigste.",
+              "correct": false,
+              "feedback": "Não responde."
+            },
+            {
+              "id": "c",
+              "text": "Volgende maand vorige.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s2-u03-l015-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Escrever.",
+          "vocabRefs": [
+            "v-afspraak"
+          ],
+          "prompt": "Escreva 3 compromissos do seu próximo mês, com data (op …).",
+          "referenceAnswers": [
+            "Op 2 juni heb ik een afspraak bij de huisarts. Op 14 juni is de verjaardag van mijn moeder. Op 28 juni ga ik naar Portugal."
+          ],
+          "checklist": [
+            "3 datas",
+            "op + data"
+          ],
+          "minWords": 20
+        }
+      ],
+      "difficulty": 2,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }
