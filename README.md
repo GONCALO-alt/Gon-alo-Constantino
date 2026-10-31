@@ -4,7 +4,7 @@ Aplicação web para aprender **neerlandês** (padrão dos Países Baixos) a par
 Funciona no navegador, em telemóveis, tablets e computadores. O progresso fica guardado apenas no seu dispositivo.
 
 > O nome é configurável (`VITE_APP_NAME`). Os níveis QECR são indicativos — não é uma certificação.
-> O conteúdo atual (1000 lições, A1 → B2: 549 escritas + 451 de revisão geradas a partir delas) foi redigido com apoio de IA e ainda não foi revisto por um falante nativo.
+> O conteúdo atual (2000 lições, A1 → B2: 1549 escritas + 451 de revisão geradas a partir delas) foi redigido com apoio de IA e ainda não foi revisto por um falante nativo.
 
 ## Começar
 
@@ -25,7 +25,7 @@ npm run preview
 ## O que já existe
 
 - Curso com **7 secções e 109 unidades** (4.500 lições previstas), A1 → B2.
-- **1000 lições** publicadas: 549 escritas (≥ 5 por unidade) + 451 de revisão e prática geradas por `tools/authoring/review_gen.py`; 9939 exercícios, 2322 palavras.
+- **2000 lições** publicadas: 1549 escritas + 451 de revisão e prática geradas por `tools/authoring/review_gen.py`; 18 863 exercícios, 4907 palavras.
 - Versão de ficheiro único: `DutchPath.html` (ou `npm run build:single`).
 - **14 tipos de exercício** com correção tolerante (variantes, acentos, gralhas), feedback imediato e explicação; os erros repetem-se no fim da lição.
 - Escrita livre com autoavaliação: uma resposta diferente do modelo não é marcada errada automaticamente.
