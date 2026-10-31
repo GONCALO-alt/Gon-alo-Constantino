@@ -218,7 +218,7 @@ L(20, "O e-mail de agradecimento", "Bedankt voor het prettige gesprek.",
   review=["v-bevestigen","v-vervolg","v-in-afwachting-van"],
   cefr=C, exs=[
     MA([("bedankmail","e-mail de agradecimento"),("prettig","agradável"),("bevestigen","confirmar"),("nogmaals","mais uma vez")], "Agradecer.", ["v-bedankmail","v-prettig","v-bevestigen","v-nogmaals"]),
-    TR("pt-nl","Obrigado pela entrevista agradável.", ["Bedankt voor het prettige gesprek","Dank u wel voor het prettige gesprek","Hartelijk dank voor het prettige gesprek"], "het prettige gesprek (com artigo definido: -e).", ["v-prettig"]),
+    TR("pt-nl","Obrigado pelo seu tempo e pela entrevista agradável.", ["Bedankt voor uw tijd en het prettige gesprek","Dank u wel voor uw tijd en het prettige gesprek","Hartelijk dank voor uw tijd en het prettige gesprek"], "het prettige gesprek (com artigo definido: -e).", ["v-prettig"]),
     TR("pt-nl","Mais uma vez obrigado pelo seu tempo.", ["Nogmaals bedankt voor uw tijd","Nogmaals dank voor uw tijd"], "nogmaals.", ["v-nogmaals"]),
     CJ("bevestigen","het gesprek","Het gesprek heeft mijn interesse ___.", ["bevestigd"], "be- sem ge-: bevestigd.", ["v-bevestigen"], tense="passado-perfeito"),
     MC("Quando se envia o e-mail de agradecimento?", ["*No próprio dia ou no dia seguinte","Um mês depois|Tarde demais.","Antes da entrevista|Não faz sentido."], "Rápido e curto.", ["v-bedankmail"]),

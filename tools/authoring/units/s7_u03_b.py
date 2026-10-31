@@ -178,7 +178,7 @@ L(20, "Perguntas hostis", "Een vraag terugkaatsen.",
   cefr=C, exs=[
     MA([("een vraag terugkaatsen","devolver uma pergunta"),("dat is een terechte vraag","pergunta pertinente"),("kritische vraag","pergunta crítica"),("ontwijken","fugir a")], "Perguntas.", ["v-vraag-terugkaatsen","v-terechte-vraag","v-kritische-vraag","v-ontwijken"]),
     MC("Pergunta agressiva: «Dit plan is toch gewoon geldverspilling?» Boa resposta:", ["*Dat is een terechte vraag. Laat me uitleggen waarom het zich terugverdient.","Nee!|Seco.","Volgende vraag.|Foge."], "Calma.", ["v-terechte-vraag"]),
-    TR("pt-nl","É uma pergunta pertinente.", ["Dat is een terechte vraag"], "Expressão.", ["v-terechte-vraag"]),
+    TR("pt-nl","Obrigado, é uma pergunta muito pertinente.", ["Dank u, dat is een heel terechte vraag","Dank je, dat is een heel terechte vraag","Bedankt, dat is een heel terechte vraag","Dank u, dat is een zeer terechte vraag"], "Expressão.", ["v-terechte-vraag"]),
     TR("pt-nl","Ela devolveu a pergunta.", ["Ze kaatste de vraag terug","Zij kaatste de vraag terug"], "terugkaatsen.", ["v-vraag-terugkaatsen"]),
     FB("Hij kaatste de vraag ___ naar de journalist.", ["terug"], "Separável.", ["v-vraag-terugkaatsen"], choices=["terug","weg","op"], tr="Ele devolveu a pergunta ao jornalista."),
     FE(["Dat","is","een","terecht","vraag."], 3, "terechte", "de vraag → -e.", ["v-terechte-vraag"]),
@@ -329,7 +329,7 @@ L(29, "Prática: a minha apresentação B2", "Van opening tot applaus.",
     MA([("de rode draad","fio condutor"),("cijfers tot leven brengen","dar vida aos números"),("het publiek betrekken","envolver o público"),("applaus","aplauso")], "Revisão.", ["v-de-rode-draad","v-cijfers-tot-leven","v-publiek-betrekken","v-applaus"]),
     MC("Qual destas NÃO ajuda a manter a atenção?", ["*Ler todos os diapositivos em voz monótona","Fazer uma pergunta ao público|Ajuda.","Contar uma anedota|Ajuda."], "Revisão.", ["v-aandacht-vasthouden"]),
     TR("pt-nl","Seguiu-se um aplauso estrondoso.", ["Er volgde een daverend applaus","Daarna volgde een daverend applaus"], "applaus.", ["v-applaus"]),
-    FE(["Dat","is","een","terecht","vraag."], 3, "terechte", "Revisão: terechte vraag.", ["v-terechte-vraag"]),
+    FE(["Hij","maakte","een","terecht","opmerking."], 3, "terechte", "Revisão: de opmerking → terechte.", ["v-terechte-vraag"]),
     SW("Escreva o guião de uma apresentação de 3 minutos (cerca de 150 palavras) sobre um tema que domina. Inclua: abertura cativante (pergunta, anedota ou «stelt u zich eens voor»), fio condutor, um número tornado concreto, uma metáfora, uma interação com o público, uma frase «Als u één ding onthoudt…» e o agradecimento final.", ["Stelt u zich eens voor: u staat op het perron, de trein is weg, en de volgende gaat pas over een uur. Herkenbaar? Vandaag vertel ik u waarom de fiets de rode draad in mijn leven is geworden. Wie van u fietst dagelijks? Even door handopsteken… Mooi! In Nederland zijn er meer fietsen dan mensen; dat zijn er genoeg om elke inwoner er één te geven en dan nog een paar miljoen over te houden. Voor mij is de fiets als een tweede paar benen: hij brengt me overal, in elk weer. Het bespaart me geld, tijd en een sportschoolabonnement. Als u vandaag één ding onthoudt, dan is het dit: probeer één week lang alles met de fiets te doen. Hartelijk dank voor uw aandacht!"], ["Abertura","Fio condutor","Número concreto","Metáfora","Interação","Mensagem final"], 120, "Apresentação final.", ["v-applaus"]),
   ], diff=5, mins=8)
 

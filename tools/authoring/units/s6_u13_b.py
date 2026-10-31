@@ -22,7 +22,7 @@ L(10, "Mudar pronomes e tempos", "«Ik kom morgen» → Hij zei dat hij de volge
     FB("Ze vertelden dat ze ___ verhuizen.", ["gingen"], "Passado.", ["v-zei-dat"], choices=["gingen","gaan","zullen"], tr="Contaram que se iam mudar."),
     FE(["Hij","zei","dat","ik","moe","was."], 3, "hij", "Pronome: ik → hij.", ["v-zei-dat"]),
     LI("Ze zei dat ze de volgende dag zou terugbellen.", ["Ze zei dat ze de volgende dag zou terugbellen"], "Ela disse que ligaria de volta no dia seguinte.", "Indireto.", ["v-de-volgende-dag"]),
-    WO("Ele disse que estava cansado.", ["Hij","zei","dat","hij","moe","was"], "Ordem.", ["v-zei-dat"]),
+    WO("Ela disse que tinha fome.", ["Ze","zei","dat","ze","honger","had"], "Ordem.", ["v-zei-dat"]),
   ], diff=4, mins=6)
 
 L(11, "Relatar perguntas sim/não", "Ze vroeg of ik mee wilde.",

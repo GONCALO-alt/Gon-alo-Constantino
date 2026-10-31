@@ -272,7 +272,7 @@ L(24, "Prática: um diálogo natural", "Partikels in een echt gesprek.",
     MC("Em «Je blijft toch wel eten?», a Anna…", ["*espera que ele fique","tem a certeza que ele não fica|Não.","proíbe-o|Não."], "Revisão.", ["v-toch-part"]),
     MC("«Ik kook nou eenmaal altijd te veel» exprime…", ["*uma característica aceite com humor","uma queixa grave|Não.","uma promessa|Não."], "Revisão.", ["v-nou-eenmaal"]),
     FB("Neem ___ nog een koekje!", ["gerust"], "À vontade.", ["v-gerust"], choices=["gerust","pas","immers"], tr="Tira à vontade mais uma bolacha!"),
-    TR("pt-nl","Senta-te à vontade.", ["Ga maar zitten","Ga gerust zitten"], "Revisão.", ["v-maar-part"]),
+    TR("pt-nl","Entra e senta-te à vontade.", ["Kom binnen en ga maar zitten","Kom binnen en ga gerust zitten","Kom maar binnen en ga zitten"], "Revisão.", ["v-maar-part"]),
     LI("Ja hoor, ik blijf graag eten.", ["Ja hoor, ik blijf graag eten","Ja hoor ik blijf graag eten"], "Claro, fico com gosto para jantar.", "Revisão.", ["v-ja-hoor"]),
     SW("Escreva um pequeno diálogo (6–8 falas) entre um anfitrião e um convidado, usando pelo menos cinco partículas (even, maar, toch, gerust, hoor, eens, nou eenmaal).", ["Gastheer: Hoi! Kom maar binnen.\nGast: Dank je. Ik ben toch niet te vroeg?\nGastheer: Nee hoor, helemaal niet. Hang je jas maar even op.\nGast: Wat ruikt het lekker!\nGastheer: Ik ben nou eenmaal een echte kok. Pak gerust een drankje.\nGast: Mag ik eens even in de pan kijken?\nGastheer: Ga je gang!"], ["Pelo menos 5 partículas", "Uso natural", "Tom simpático"], 50, "Diálogo com partículas.", ["v-partikel","v-natuurlijk-gesprek"]),
   ], diff=4, mins=7)

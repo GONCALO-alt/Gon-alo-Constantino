@@ -125,7 +125,7 @@ L(15, "Conflito com o senhorio", "De huurcommissie inschakelen.",
     FE(["Ik","schakel","de","Huurcommissie","aan."], 4, "in", "inschakelen.", ["v-inschakelen"]),
     FB("Er is al jaren ___ onderhoud aan de ramen.", ["achterstallig"], "Em atraso.", ["v-achterstallig-onderhoud"], choices=["achterstallig","schriftelijk","redelijk"], tr="Há anos que há manutenção em atraso nas janelas."),
     MC("O que NÃO é aconselhável fazer?", ["*deixar simplesmente de pagar a renda","comunicar por escrito|É aconselhável.","pedir conselho grátis|É aconselhável."], "Cuidado legal.", ["v-huurder"]),
-    LI("Het Juridisch Loket geeft gratis advies.", ["Het Juridisch Loket geeft gratis advies"], "O Juridisch Loket dá aconselhamento grátis.", "Serviço.", ["v-juridisch-loket"]),
+    LI("Bij het Juridisch Loket kun je gratis advies vragen.", ["Bij het Juridisch Loket kun je gratis advies vragen"], "No Juridisch Loket podes pedir aconselhamento grátis.", "Serviço.", ["v-juridisch-loket"]),
     WO("Recorro à comissão.", ["Ik","schakel","de","commissie","in"], "Separável.", ["v-inschakelen"]),
     AR("huurder","o inquilino","de", "De huurder.", ["v-huurder"]),
   ], diff=4, mins=7)

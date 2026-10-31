@@ -238,7 +238,7 @@ L(22, "Relativa ou «dat» conjunção?", "Het feit dat… / Het boek dat…",
     MC("«Het nieuws dat de school sluit» — «dat» é…", ["*conjunção (apresenta o conteúdo da notícia)","relativo|A escola não é objeto de «nieuws».","pronome|Não."], "Caso difícil.", ["v-het-feit-dat"]),
     TR("pt-nl","O facto de ele não ter ligado preocupou-me.", ["Het feit dat hij niet belde, maakte me ongerust","Het feit dat hij niet heeft gebeld, maakte me ongerust"], "het feit dat.", ["v-het-feit-dat"]),
     FB("De film ___ we gisteren zagen, was saai.", ["die"], "de film → die.", ["v-die-rel"], choices=["die","dat","wat"], tr="O filme que vimos ontem era aborrecido."),
-    FE(["Het","huis","die","we","kochten,","is","oud."], 2, "dat", "het huis → dat.", ["v-dat-rel"]),
+    FE(["Het","boek","die","je","me","gaf,","is","prachtig."], 2, "dat", "het boek → dat.", ["v-dat-rel"]),
     LI("Het feit dat je het probeert, is al heel wat.", ["Het feit dat je het probeert, is al heel wat","Het feit dat je het probeert is al heel wat"], "O facto de tentares já é muito.", "Uso.", ["v-het-feit-dat"]),
     WO("O livro que li.", ["Het","boek","dat","ik","las"], "Ordem.", ["v-dat-rel"]),
   ], diff=5, mins=6)

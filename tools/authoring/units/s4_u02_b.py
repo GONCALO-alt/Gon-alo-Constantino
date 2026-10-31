@@ -21,7 +21,7 @@ L(10, "Quando eu era pequeno", "Toen ik klein was, speelde ik altijd buiten.",
     TR("pt-nl","Quando eu era pequeno, morava em Braga.", ["Toen ik klein was, woonde ik in Braga","Toen ik klein was woonde ik in Braga"], "toen + verbo no fim, depois inversão.", ["v-toen-ik-klein-was","v-woonde"]),
     TR("nl-pt","Ik had een gelukkige jeugd.", ["Tive uma infância feliz","Eu tive uma infância feliz"], "jeugd = infância/juventude.", ["v-jeugd"]),
     MC("Qual é a ordem correta?", ["*Toen ik klein was, had ik een hond.","Toen ik klein was, ik had een hond.|Depois da oração com toen: verbo + sujeito (had ik)."], "Depois da oração com toen: verbo + sujeito (had ik).", ["v-had"]),
-    LI("Elke zomer gingen we naar het strand.", ["Elke zomer gingen we naar het strand"], "Todos os verões íamos à praia.", "gaan → ging/gingen.", ["v-elke-zomer"]),
+    LI("Elke zomer gingen we met de hele familie naar het strand.", ["Elke zomer gingen we met de hele familie naar het strand"], "Todos os verões íamos à praia com a família toda.", "gaan → ging/gingen.", ["v-elke-zomer"]),
     SW("Descreva a sua infância em 4–5 frases: onde morava, com que brincava, o que fazia no verão.", ["Toen ik klein was, woonde ik in een dorp bij Viseu. Ik had niet veel speelgoed, maar ik speelde altijd buiten met mijn neven. We speelden verstoppertje in het bos. Elke zomer gingen we naar de zee in Figueira da Foz."], ["Use o imperfectum", "Use «toen ik klein was» ou «vroeger»", "Inversão correta"], 30, "Memórias de infância.", ["v-toen-ik-klein-was","v-jeugd"]),
   ], diff=3, mins=7)
 

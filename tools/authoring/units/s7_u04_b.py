@@ -278,7 +278,7 @@ L(26, "Falar com os media (2)", "Off the record.",
     FB("Die ___ stond de volgende dag op de voorpagina.", ["quote"], "Citação.", ["v-quote"], choices=["quote","pers","record"], tr="Essa citação estava no dia seguinte na primeira página."),
     MC("«Geen commentaar» pode soar…", ["*evasivo; às vezes melhor: «Daar kan ik op dit moment nog niets over zeggen.»","sempre simpático|Não.","obrigatório|Não."], "Alternativa.", ["v-geen-commentaar"]),
     FE(["Mag","ik","u","citeert?"], 3, "citeren?", "Infinitivo.", ["v-citeren"]),
-    LI("Daar kan ik op dit moment nog niets over zeggen.", ["Daar kan ik op dit moment nog niets over zeggen"], "Sobre isso ainda não posso dizer nada neste momento.", "Alternativa elegante.", ["v-geen-commentaar"]),
+    LI("Daar kan ik op dit moment helaas nog niets over zeggen.", ["Daar kan ik op dit moment helaas nog niets over zeggen"], "Infelizmente, sobre isso ainda não posso dizer nada neste momento.", "Alternativa elegante.", ["v-geen-commentaar"]),
   ], diff=5, mins=5)
 
 L(27, "Seleção em grupo", "Een groepsopdracht en een rollenspel.",
