@@ -24,16 +24,21 @@ Regras: IDs de vocabulário únicos em todo o curso (rever com `reviewVocabulary
 
 | Secção | Unidades | Lições publicadas | Previstas |
 |---|---|---|---|
-| 1 Primeiros passos | 15/15 | 244 | 600 |
-| 2 A vida quotidiana | 15/15 | 225 | 700 |
-| 3 Viver nos Países Baixos | 16/16 | 240 | 700 |
-| 4 Comunicação independente | 16/16 | 348 | 700 |
-| 5 Fluência prática | 16/16 | 384 | 700 |
-| 6 Neerlandês avançado | 16/16 | 400 | 600 |
-| 7 Domínio e utilização real | 15/15 | 435 | 500 |
+| 1 Primeiros passos | 15/15 | 413 | 600 |
+| 2 A vida quotidiana | 15/15 | 390 | 700 |
+| 3 Viver nos Países Baixos | 16/16 | 416 | 700 |
+| 4 Comunicação independente | 16/16 | 631 | 700 |
+| 5 Fluência prática | 16/16 | 704 | 704 |
+| 6 Neerlandês avançado | 16/16 | 736 | 736 |
+| 7 Domínio e utilização real | 15/15 | 808 | 808 |
 
-**Total:** 2276 lições publicadas (21 071 exercícios, 5131 palavras).
+**Total:** 4098 lições publicadas (39 275 exercícios, 5131 palavras).
 - 1825 lições escritas;
+- 1822 **lições de prática**, uma a seguir a cada lição escrita (`python3 tools/authoring/practice_gen.py`):
+  antes de aparecerem palavras novas, o aluno treina só as palavras e frases da lição que acabou de fazer
+  (e algumas da anterior). Não ensinam nada de novo: todas as palavras mostradas, incluindo as opções
+  erradas, já foram ensinadas. Ficam na posição «ordem + 0,5» (a lição 3 é seguida da prática 3,5), por isso
+  as lições escritas, os IDs e o progresso dos alunos não mudam. Voltar a correr o script substitui-as;
 - 451 lições de revisão e prática **geradas automaticamente** a partir do vocabulário e das frases
   das lições escritas (`python3 tools/authoring/review_gen.py`): 4 por unidade (5 na Secção 1) —
   «Revisão: vocabulário», «Revisão: frases», «Prática mista», «Desafio da unidade» (e «Revisão rápida»).

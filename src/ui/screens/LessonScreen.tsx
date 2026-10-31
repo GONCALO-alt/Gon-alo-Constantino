@@ -145,7 +145,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   return (
     <div className="page lesson-intro">
       <a className="back-link" href={href.course(unit.sectionId)}><Icon name="back" size={18} /> {unit.title}</a>
-      <p className="eyebrow">Lição {lesson.order} · {lesson.cefr} · ~{lesson.estimatedMinutes} min</p>
+      <p className="eyebrow">Lição {unit.lessonIds.indexOf(lesson.id) + 1 || lesson.order} · {lesson.cefr} · ~{lesson.estimatedMinutes} min</p>
       <h1>{lesson.title}</h1>
       <p className="lead">{lesson.description}</p>
       <section className="card">

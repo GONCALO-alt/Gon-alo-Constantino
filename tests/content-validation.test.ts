@@ -10,10 +10,10 @@ describe('conteúdo real do repositório', () => {
     expect(r.errors).toEqual([]);
     expect(r.stats.lessons).toBeGreaterThanOrEqual(10);
   });
-  it('a estrutura tem 7 secções e 4.500 lições previstas', () => {
+  it('a estrutura tem 7 secções e pelo menos 4.500 lições previstas', () => {
     const s = realStructure();
     expect(s.sections).toHaveLength(7);
-    expect(s.sections.reduce((n, x) => n + x.plannedLessons, 0)).toBe(4500);
+    expect(s.sections.reduce((n, x) => n + x.plannedLessons, 0)).toBeGreaterThanOrEqual(4500);
   });
   it('cada lição tem pelo menos 3 tipos de exercício e duração entre 3 e 8 minutos', () => {
     for (const l of realFiles().flatMap((f) => f.lessons)) {

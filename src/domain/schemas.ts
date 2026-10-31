@@ -277,7 +277,8 @@ export const ProvenanceSchema = z.object({
 export const LessonSchema = z.object({
   id: LessonId,
   unitId: UnitId,
-  order: z.number().int().positive(),
+  /** Posição na unidade. As lições de prática ficam a meio (ex.: 3.5, a seguir à lição 3). */
+  order: z.number().positive().multipleOf(0.5),
   title: nonEmpty,
   description: nonEmpty,
   cefr: Cefr,

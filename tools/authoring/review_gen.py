@@ -20,6 +20,10 @@ GEN_TAG = "tools/authoring/review_gen.py"
 def is_generated(l):
     return GEN_TAG in (l.get("provenance") or {}).get("generator", "")
 
+def is_practice(l):
+    """Lições de prática de tools/authoring/practice_gen.py (ficam como estão)."""
+    return "practice_gen.py" in (l.get("provenance") or {}).get("generator", "")
+
 def norm(s):
     return re.sub(r"\s+", " ", re.sub(r"[.,!?¿¡;:\"«»“”()…]", " ", s.lower())).strip()
 
@@ -261,11 +265,12 @@ def main():
         data = json.load(open(path, encoding="utf-8"))
         uid = data["unitId"]
         if only and uid not in only: continue
-        core = [l for l in data["lessons"] if not is_generated(l)]
+        core = [l for l in data["lessons"] if not is_generated(l) and not is_practice(l)]
+        practice = [l for l in data["lessons"] if is_practice(l)]
         if not core: continue
         g = Gen(uid, core)
         new = g.all(extra=uid.startswith("s1-"))
-        data["lessons"] = core + new
+        data["lessons"] = sorted(core + practice + new, key=lambda l: l["order"])
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2); f.write("\n")
         print(f"{uid}: +{len(new)} lições ({sum(len(l['exercises']) for l in new)} exercícios)", file=sys.stderr)

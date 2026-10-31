@@ -60,8 +60,12 @@ export function dutchAnswerText(ex: Exercise): string | null {
       return ex.expression;
     case 'speaking':
       return ex.text;
-    case 'multipleChoice':
-      return DUTCH_OPTION_PROMPTS.test(ex.prompt) ? correctOption(ex.options) : null;
+    case 'multipleChoice': {
+      if (DUTCH_OPTION_PROMPTS.test(ex.prompt) || /em neerlandês\?$/i.test(ex.prompt)) return correctOption(ex.options);
+      // «O que significa «de koffie»?»: lê a palavra neerlandesa do enunciado.
+      const quoted = /^O que significa:? «([^»]+)»\??$/.exec(ex.prompt.trim());
+      return quoted ? quoted[1]! : null;
+    }
     default:
       // listening (já ouvido), match, comprehension, shortWriting: nada a ler.
       return null;

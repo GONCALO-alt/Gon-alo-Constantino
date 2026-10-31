@@ -58,7 +58,7 @@ describe('navegação', () => {
     render(<App />);
     expect(await screen.findByRole('link', { name: /Olá e adeus — disponível/ })).toBeTruthy();
     expect(screen.getByRole('button', { name: /Unidade 2: Apresentações pessoais/ }).textContent).toMatch(/Bloqueada/);
-    expect(screen.getByLabelText(/Bom dia, boa tarde, boa noite — bloqueada/)).toBeTruthy();
+    expect(screen.getByLabelText(/^Bom dia, boa tarde, boa noite — bloqueada/)).toBeTruthy();
     // Unidades sem conteúdo aparecem como "em preparação" (se ainda houver alguma na secção 1)
     const withContent = new Set(realFiles().map((f) => f.unitId));
     const empty = realStructure().sections[0]!.units.find((u) => !withContent.has(u.id));
