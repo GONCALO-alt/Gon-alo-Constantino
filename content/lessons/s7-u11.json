@@ -2619,6 +2619,4488 @@
         "generator": "gerado automaticamente a partir das lições escritas da unidade (tools/authoring/review_gen.py)",
         "createdAt": "2026-10-30"
       }
+    },
+    {
+      "id": "s7-u11-l010",
+      "unitId": "s7-u11",
+      "order": 10,
+      "title": "Reduções: 'm e d'r",
+      "description": "Hem → 'm, haar → d'r.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer as formas reduzidas de hem e haar"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-m-hem",
+          "nl": "'m",
+          "pt": [
+            "o/ele (forma reduzida de hem)"
+          ],
+          "pos": "pronoun"
+        },
+        {
+          "id": "v-d-r",
+          "nl": "d'r",
+          "pt": [
+            "a/ela, dela (forma reduzida de haar); também = er"
+          ],
+          "pos": "pronoun"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-k-ik",
+        "v-spreektempo"
+      ],
+      "examples": [
+        {
+          "nl": "Heb je 'm gezien?",
+          "pt": "Viste-o?"
+        },
+        {
+          "nl": "Ik heb d'r gisteren nog gesproken.",
+          "pt": "Ainda falei com ela ontem."
+        },
+        {
+          "nl": "Is d'r nog koffie?",
+          "pt": "Ainda há café?"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-1",
+          "title": "Formas reduzidas na fala",
+          "body": "Na fala rápida, hem soa 'm e haar soa d'r (ou 'r). D'r também substitui er: «Is d'r nog koffie?». Na escrita formal usa-se sempre a forma completa; as reduções aparecem em mensagens informais, banda desenhada e legendas de diálogos.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l010-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "'m = hem.",
+          "vocabRefs": [
+            "v-m-hem"
+          ],
+          "prompt": "«Heb je 'm gezien?» — 'm =",
+          "options": [
+            {
+              "id": "a",
+              "text": "hem",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "mij",
+              "correct": false,
+              "feedback": "Isso é «me»."
+            },
+            {
+              "id": "c",
+              "text": "haar",
+              "correct": false,
+              "feedback": "Isso é «d'r»."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l010-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Possessivo.",
+          "vocabRefs": [
+            "v-d-r"
+          ],
+          "prompt": "«Ik heb d'r fiets geleend.» — d'r =",
+          "options": [
+            {
+              "id": "a",
+              "text": "haar (dela)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "er (lá)",
+              "correct": false,
+              "feedback": "Aqui é possessivo."
+            },
+            {
+              "id": "c",
+              "text": "daar",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l010-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "d'r = er.",
+          "vocabRefs": [
+            "v-d-r"
+          ],
+          "prompt": "«Is d'r nog brood?» — d'r =",
+          "options": [
+            {
+              "id": "a",
+              "text": "er",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "haar",
+              "correct": false,
+              "feedback": "Aqui não é «ela»."
+            },
+            {
+              "id": "c",
+              "text": "door",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l010-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "'m = hem.",
+          "vocabRefs": [
+            "v-m-hem"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Heb je 'm gezien?",
+          "answers": [
+            "Viste-o?",
+            "Tu viste-o?"
+          ]
+        },
+        {
+          "id": "s7-u11-l010-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Forma completa.",
+          "vocabRefs": [
+            "v-m-hem"
+          ],
+          "sentence": "Formeel: «Ik heb ___ gisteren gebeld.» (fala: Ik heb 'm gebeld)",
+          "translation": "Liguei-lhe ontem.",
+          "answers": [
+            "hem"
+          ],
+          "choices": [
+            "hem",
+            "'m",
+            "hij"
+          ]
+        },
+        {
+          "id": "s7-u11-l010-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Complemento: hem ('m).",
+          "vocabRefs": [
+            "v-m-hem"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "hij",
+            "gisteren",
+            "gezien."
+          ],
+          "errorIndex": 2,
+          "correction": "hem"
+        },
+        {
+          "id": "s7-u11-l010-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir a redução.",
+          "vocabRefs": [
+            "v-m-hem"
+          ],
+          "audioText": "Heb je 'm al gebeld?",
+          "answers": [
+            "Heb je 'm al gebeld",
+            "Heb je hem al gebeld",
+            "Heb je hem al gebeld?"
+          ],
+          "translation": "Já lhe ligaste?"
+        },
+        {
+          "id": "s7-u11-l010-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir a redução.",
+          "vocabRefs": [
+            "v-d-r"
+          ],
+          "audioText": "Ik heb d'r gisteren nog gezien.",
+          "answers": [
+            "Ik heb d'r gisteren nog gezien",
+            "Ik heb haar gisteren nog gezien"
+          ],
+          "translation": "Ainda a vi ontem."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l011",
+      "unitId": "s7-u11",
+      "order": 11,
+      "title": "Reduções: m'n e z'n",
+      "description": "Mijn → m'n, zijn → z'n.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer m'n e z'n na fala e em mensagens"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-m-n",
+          "nl": "m'n",
+          "pt": [
+            "meu/minha (forma reduzida de mijn)"
+          ],
+          "pos": "determiner"
+        },
+        {
+          "id": "v-z-n",
+          "nl": "z'n",
+          "pt": [
+            "seu/sua (dele) (forma reduzida de zijn)"
+          ],
+          "pos": "determiner"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-m-hem",
+        "v-d-r"
+      ],
+      "examples": [
+        {
+          "nl": "Ik ben m'n sleutels kwijt.",
+          "pt": "Perdi as minhas chaves."
+        },
+        {
+          "nl": "Hij heeft z'n jas vergeten.",
+          "pt": "Ele esqueceu-se do casaco."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-2",
+          "title": "m'n e z'n",
+          "body": "Mijn pronuncia-se muitas vezes «mun» e escreve-se m'n em textos informais; zijn (possessivo) fica z'n. Atenção: z'n só substitui o possessivo, nunca o verbo zijn («ser»).",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l011-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Formas completas.",
+          "vocabRefs": [
+            "v-m-n",
+            "v-z-n",
+            "v-m-hem",
+            "v-d-r"
+          ],
+          "pairs": [
+            {
+              "nl": "m'n",
+              "pt": "mijn"
+            },
+            {
+              "nl": "z'n",
+              "pt": "zijn (dele)"
+            },
+            {
+              "nl": "'m",
+              "pt": "hem"
+            },
+            {
+              "nl": "d'r",
+              "pt": "haar"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l011-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Só possessivo.",
+          "vocabRefs": [
+            "v-z-n"
+          ],
+          "prompt": "Em qual frase z'n está correto?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hij is z'n telefoon kwijt.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ze z'n moe.",
+              "correct": false,
+              "feedback": "Aqui zijn é verbo: «Ze zijn moe»."
+            },
+            {
+              "id": "c",
+              "text": "Wij z'n thuis.",
+              "correct": false,
+              "feedback": "Verbo: zijn."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l011-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "kwijt zijn.",
+          "vocabRefs": [
+            "v-m-n"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Ik ben m'n sleutels kwijt.",
+          "answers": [
+            "Perdi as minhas chaves",
+            "Perdi as chaves"
+          ]
+        },
+        {
+          "id": "s7-u11-l011-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "z'n.",
+          "vocabRefs": [
+            "v-z-n"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele esqueceu-se do casaco.",
+          "answers": [
+            "Hij heeft z'n jas vergeten",
+            "Hij heeft zijn jas vergeten",
+            "Hij is z'n jas vergeten",
+            "Hij is zijn jas vergeten"
+          ]
+        },
+        {
+          "id": "s7-u11-l011-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Possessivo de ela.",
+          "vocabRefs": [
+            "v-d-r"
+          ],
+          "sentence": "Formeel: «Zij belt ___ moeder.» (fala: d'r moeder)",
+          "translation": "Ela liga à mãe.",
+          "answers": [
+            "haar"
+          ],
+          "choices": [
+            "haar",
+            "zijn",
+            "z'n"
+          ]
+        },
+        {
+          "id": "s7-u11-l011-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Dela: d'r (haar).",
+          "vocabRefs": [
+            "v-z-n",
+            "v-d-r"
+          ],
+          "tokens": [
+            "Ze",
+            "is",
+            "z'n",
+            "tas",
+            "kwijt."
+          ],
+          "errorIndex": 2,
+          "correction": "d'r"
+        },
+        {
+          "id": "s7-u11-l011-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-m-n"
+          ],
+          "audioText": "Ik ben m'n telefoon kwijt.",
+          "answers": [
+            "Ik ben m'n telefoon kwijt",
+            "Ik ben mijn telefoon kwijt"
+          ],
+          "translation": "Perdi o telemóvel."
+        },
+        {
+          "id": "s7-u11-l011-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-z-n"
+          ],
+          "translation": "Ele perdeu a carteira.",
+          "tokens": [
+            "Hij",
+            "is",
+            "z'n",
+            "portemonnee",
+            "kwijt"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l012",
+      "unitId": "s7-u11",
+      "order": 12,
+      "title": "Reduções: 'ns e da's",
+      "description": "Eens → 'ns, dat is → da's.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer 'ns e da's"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ns-eens",
+          "nl": "'ns",
+          "pt": [
+            "(forma reduzida de eens; suaviza pedidos)"
+          ],
+          "pos": "adverb"
+        },
+        {
+          "id": "v-da-s",
+          "nl": "da's",
+          "pt": [
+            "é (forma reduzida de dat is)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-wa-s",
+        "v-effe"
+      ],
+      "examples": [
+        {
+          "nl": "Kijk 'ns!",
+          "pt": "Olha só!"
+        },
+        {
+          "nl": "Da's mooi!",
+          "pt": "Isso é bonito!"
+        },
+        {
+          "nl": "Mag ik 'ns kijken?",
+          "pt": "Posso dar uma olhadela?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l012-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Formas completas.",
+          "vocabRefs": [
+            "v-ns-eens",
+            "v-da-s",
+            "v-wa-s",
+            "v-effe"
+          ],
+          "pairs": [
+            {
+              "nl": "'ns",
+              "pt": "eens"
+            },
+            {
+              "nl": "da's",
+              "pt": "dat is"
+            },
+            {
+              "nl": "wa's",
+              "pt": "wat is"
+            },
+            {
+              "nl": "effe",
+              "pt": "even"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l012-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Tom.",
+          "vocabRefs": [
+            "v-ns-eens"
+          ],
+          "prompt": "«Kijk 'ns!» soa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "descontraído e amigável",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "muito formal",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "agressivo",
+              "correct": false,
+              "feedback": "Não; 'ns suaviza."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l012-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "da's = dat is.",
+          "vocabRefs": [
+            "v-da-s"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Da's mooi!",
+          "answers": [
+            "Isso é bonito!",
+            "Isso é bonito",
+            "Que bonito!",
+            "Que bonito"
+          ]
+        },
+        {
+          "id": "s7-u11-l012-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "eens.",
+          "vocabRefs": [
+            "v-ns-eens"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Olha só!",
+          "answers": [
+            "Kijk eens!",
+            "Kijk 'ns!",
+            "Kijk eens",
+            "Kijk 'ns"
+          ]
+        },
+        {
+          "id": "s7-u11-l012-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Forma completa.",
+          "vocabRefs": [
+            "v-ns-eens"
+          ],
+          "sentence": "Formeel: «Probeer het ___.» (fala: Probeer 't 'ns)",
+          "translation": "Experimenta.",
+          "answers": [
+            "eens"
+          ],
+          "choices": [
+            "eens",
+            "een",
+            "ens"
+          ]
+        },
+        {
+          "id": "s7-u11-l012-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-da-s"
+          ],
+          "prompt": "Qual destas é uma escrita formal adequada?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat is een goed idee.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Da's een goed idee.",
+              "correct": false,
+              "feedback": "Informal."
+            },
+            {
+              "id": "c",
+              "text": "Da 's een goed idee.",
+              "correct": false,
+              "feedback": "Informal."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l012-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-da-s"
+          ],
+          "audioText": "Da's nou jammer!",
+          "answers": [
+            "Da's nou jammer",
+            "Dat is nou jammer",
+            "Da's nou jammer!"
+          ],
+          "translation": "Que pena!"
+        },
+        {
+          "id": "s7-u11-l012-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-ns-eens"
+          ],
+          "audioText": "Kom 'ns hier.",
+          "answers": [
+            "Kom 'ns hier",
+            "Kom eens hier",
+            "Kom eens hier."
+          ],
+          "translation": "Anda cá."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l013",
+      "unitId": "s7-u11",
+      "order": 13,
+      "title": "Palavras fundidas",
+      "description": "Kweenie en weet je wel.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer expressões que na fala se fundem numa só palavra"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-kweenie",
+          "nl": "kweenie",
+          "pt": [
+            "sei lá (= ik weet het niet)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-weet-je-wel",
+          "nl": "weet je wel",
+          "pt": [
+            "sabes? (bordão)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zeg-maar",
+        "v-k-ik"
+      ],
+      "examples": [
+        {
+          "nl": "Waar is Tom? — Kweenie.",
+          "pt": "Onde está o Tom? — Sei lá."
+        },
+        {
+          "nl": "Het was gewoon raar, weet je wel?",
+          "pt": "Foi simplesmente estranho, sabes?"
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-3",
+          "title": "Fusões na fala rápida",
+          "body": "Em fala muito informal, «ik weet het niet» pode soar como uma só palavra: kweenie. Reconhece-a, mas não a uses em contextos formais. «Weet je wel» é um bordão como o português «sabes?».",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l013-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Fusão.",
+          "vocabRefs": [
+            "v-kweenie"
+          ],
+          "prompt": "«Kweenie» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ik weet het niet.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Ik ken hem niet.",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Kom hier.",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l013-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-kweenie"
+          ],
+          "prompt": "Numa entrevista de emprego, em vez de «kweenie» diz…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Dat weet ik niet precies.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Kweenie hoor.",
+              "correct": false,
+              "feedback": "Demasiado informal."
+            },
+            {
+              "id": "c",
+              "text": "Geen idee, man.",
+              "correct": false,
+              "feedback": "Informal."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l013-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Fusão.",
+          "vocabRefs": [
+            "v-kweenie"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Kweenie.",
+          "answers": [
+            "Sei lá",
+            "Não sei",
+            "Sei lá."
+          ]
+        },
+        {
+          "id": "s7-u11-l013-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Bordão.",
+          "vocabRefs": [
+            "v-weet-je-wel"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Het was gewoon raar, weet je wel?",
+          "answers": [
+            "Foi simplesmente estranho, sabes?",
+            "Foi mesmo estranho, sabes?"
+          ]
+        },
+        {
+          "id": "s7-u11-l013-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Enchimento.",
+          "vocabRefs": [
+            "v-zeg-maar"
+          ],
+          "sentence": "Het was, ___, gewoon een rare dag.",
+          "translation": "Foi, tipo, só um dia estranho.",
+          "answers": [
+            "zeg maar"
+          ],
+          "choices": [
+            "zeg maar",
+            "kweenie",
+            "da's"
+          ]
+        },
+        {
+          "id": "s7-u11-l013-e06",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Fala informal.",
+          "vocabRefs": [
+            "v-kweenie",
+            "v-weet-je-wel",
+            "v-zeg-maar",
+            "v-k-ik"
+          ],
+          "pairs": [
+            {
+              "nl": "kweenie",
+              "pt": "ik weet het niet"
+            },
+            {
+              "nl": "weet je wel",
+              "pt": "sabes?"
+            },
+            {
+              "nl": "zeg maar",
+              "pt": "tipo"
+            },
+            {
+              "nl": "'k",
+              "pt": "ik"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l013-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-kweenie"
+          ],
+          "audioText": "Kweenie, vraag het aan Sanne.",
+          "answers": [
+            "Kweenie, vraag het aan Sanne",
+            "Ik weet het niet, vraag het aan Sanne"
+          ],
+          "translation": "Sei lá, pergunta à Sanne."
+        },
+        {
+          "id": "s7-u11-l013-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-weet-je-wel"
+          ],
+          "audioText": "Het was echt gezellig, weet je wel.",
+          "answers": [
+            "Het was echt gezellig, weet je wel",
+            "Het was echt gezellig weet je wel"
+          ],
+          "translation": "Foi mesmo agradável, sabes."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l014",
+      "unitId": "s7-u11",
+      "order": 14,
+      "title": "Ouvir flamengo (1)",
+      "description": "Gij en ge.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer os pronomes gij/ge do neerlandês da Flandres"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-gij-ge",
+          "nl": "gij / ge",
+          "pt": [
+            "tu/você (Flandres e sul dos Países Baixos)"
+          ],
+          "pos": "pronoun"
+        },
+        {
+          "id": "v-vlaming",
+          "nl": "Vlaming",
+          "pt": [
+            "flamengo (pessoa)"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "Vlamingen"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-vlaams",
+        "v-vlaanderen",
+        "v-standaardtaal"
+      ],
+      "examples": [
+        {
+          "nl": "Waar gaat ge naartoe?",
+          "pt": "Para onde vais?"
+        },
+        {
+          "nl": "Hebt gij dat gezien?",
+          "pt": "Tu viste isso?"
+        },
+        {
+          "nl": "Mijn collega is een Vlaming.",
+          "pt": "O meu colega é flamengo."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-4",
+          "title": "Gij / ge",
+          "body": "Na Flandres (e em partes do sul dos Países Baixos) usa-se muito gij/ge em vez de jij/je na fala. O verbo leva -t: «ge hebt», «gij komt». Não precisas de o usar; basta reconhecê-lo.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l014-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "ge = je.",
+          "vocabRefs": [
+            "v-gij-ge"
+          ],
+          "prompt": "«Waar gaat ge naartoe?» — ge =",
+          "options": [
+            {
+              "id": "a",
+              "text": "je/jij",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "hij",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "we",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l014-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Geografia.",
+          "vocabRefs": [
+            "v-gij-ge",
+            "v-vlaanderen"
+          ],
+          "prompt": "Onde ouves mais «gij/ge»?",
+          "options": [
+            {
+              "id": "a",
+              "text": "na Flandres",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "em Groningen",
+              "correct": false,
+              "feedback": "Norte: não."
+            },
+            {
+              "id": "c",
+              "text": "em Amesterdão",
+              "correct": false,
+              "feedback": "Raro."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l014-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "gij.",
+          "vocabRefs": [
+            "v-gij-ge"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Hebt gij dat gezien?",
+          "answers": [
+            "Tu viste isso?",
+            "Viste isso?"
+          ]
+        },
+        {
+          "id": "s7-u11-l014-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Vlaming.",
+          "vocabRefs": [
+            "v-vlaming"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O meu colega é flamengo.",
+          "answers": [
+            "Mijn collega is een Vlaming",
+            "Mijn collega is Vlaming"
+          ]
+        },
+        {
+          "id": "s7-u11-l014-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Equivalente.",
+          "vocabRefs": [
+            "v-gij-ge"
+          ],
+          "sentence": "In standaardtaal: «Waar ga ___ naartoe?» (Vlaams: waar gaat ge naartoe)",
+          "translation": "Para onde vais?",
+          "answers": [
+            "je"
+          ],
+          "choices": [
+            "je",
+            "ge",
+            "gij"
+          ]
+        },
+        {
+          "id": "s7-u11-l014-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Pessoa: Vlaming; língua/adjetivo: Vlaams.",
+          "vocabRefs": [
+            "v-vlaming",
+            "v-vlaams"
+          ],
+          "tokens": [
+            "Mijn",
+            "buurman",
+            "is",
+            "een",
+            "Vlaams."
+          ],
+          "errorIndex": 4,
+          "correction": "Vlaming."
+        },
+        {
+          "id": "s7-u11-l014-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-gij-ge"
+          ],
+          "audioText": "Komt ge morgen ook?",
+          "answers": [
+            "Komt ge morgen ook",
+            "Komt ge morgen ook?"
+          ],
+          "translation": "Também vens amanhã?"
+        },
+        {
+          "id": "s7-u11-l014-e08",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Flandres.",
+          "vocabRefs": [
+            "v-vlaming",
+            "v-vlaams",
+            "v-gij-ge",
+            "v-standaardtaal"
+          ],
+          "pairs": [
+            {
+              "nl": "Vlaming",
+              "pt": "flamengo (pessoa)"
+            },
+            {
+              "nl": "Vlaams",
+              "pt": "flamengo (língua)"
+            },
+            {
+              "nl": "gij",
+              "pt": "tu (sul)"
+            },
+            {
+              "nl": "standaardtaal",
+              "pt": "língua padrão"
+            }
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l015",
+      "unitId": "s7-u11",
+      "order": 15,
+      "title": "Ouvir flamengo (2)",
+      "description": "Plezant, amai en allez.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer palavras típicas do neerlandês da Flandres"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-plezant",
+          "nl": "plezant",
+          "pt": [
+            "giro, agradável (Flandres)"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-amai",
+          "nl": "amai",
+          "pt": [
+            "uau! (Flandres)"
+          ],
+          "pos": "interjection"
+        },
+        {
+          "id": "v-allez",
+          "nl": "allez",
+          "pt": [
+            "vá lá / bom… (Flandres)"
+          ],
+          "pos": "interjection"
+        },
+        {
+          "id": "v-gsm",
+          "nl": "gsm",
+          "pt": [
+            "telemóvel (Flandres)"
+          ],
+          "pos": "noun",
+          "article": "de"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-goesting",
+        "v-gezellig"
+      ],
+      "examples": [
+        {
+          "nl": "Amai, wat een mooi huis!",
+          "pt": "Uau, que casa bonita!"
+        },
+        {
+          "nl": "Het feest was heel plezant.",
+          "pt": "A festa foi muito gira."
+        },
+        {
+          "nl": "Allez, we gaan!",
+          "pt": "Vá, vamos!"
+        },
+        {
+          "nl": "Mijn gsm is plat.",
+          "pt": "O meu telemóvel ficou sem bateria."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l015-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Flandres → Países Baixos.",
+          "vocabRefs": [
+            "v-plezant",
+            "v-amai",
+            "v-gsm",
+            "v-goesting"
+          ],
+          "pairs": [
+            {
+              "nl": "plezant",
+              "pt": "leuk"
+            },
+            {
+              "nl": "amai",
+              "pt": "wauw"
+            },
+            {
+              "nl": "gsm",
+              "pt": "mobiel"
+            },
+            {
+              "nl": "goesting hebben",
+              "pt": "zin hebben"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l015-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Variação.",
+          "vocabRefs": [
+            "v-gsm"
+          ],
+          "prompt": "Um neerlandês diria em vez de «gsm»…",
+          "options": [
+            {
+              "id": "a",
+              "text": "mobiel",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "gsm-toestel",
+              "correct": false,
+              "feedback": "Raro nos Países Baixos."
+            },
+            {
+              "id": "c",
+              "text": "handy",
+              "correct": false,
+              "feedback": "Isso é alemão."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l015-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "amai.",
+          "vocabRefs": [
+            "v-amai"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Amai, wat een mooi huis!",
+          "answers": [
+            "Uau, que casa bonita!",
+            "Uau, que casa bonita"
+          ]
+        },
+        {
+          "id": "s7-u11-l015-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "plezant.",
+          "vocabRefs": [
+            "v-plezant"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Het feest was heel plezant.",
+          "answers": [
+            "A festa foi muito gira",
+            "A festa foi muito agradável",
+            "A festa foi muito divertida"
+          ]
+        },
+        {
+          "id": "s7-u11-l015-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Equivalente.",
+          "vocabRefs": [
+            "v-plezant"
+          ],
+          "sentence": "In Nederland: «Het was heel ___.» (Vlaams: plezant)",
+          "translation": "Foi muito giro.",
+          "answers": [
+            "leuk"
+          ],
+          "choices": [
+            "leuk",
+            "plezant",
+            "amai"
+          ]
+        },
+        {
+          "id": "s7-u11-l015-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "de gsm.",
+          "vocabRefs": [
+            "v-gsm"
+          ],
+          "tokens": [
+            "Het",
+            "gsm",
+            "ligt",
+            "op",
+            "tafel."
+          ],
+          "errorIndex": 0,
+          "correction": "De"
+        },
+        {
+          "id": "s7-u11-l015-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-allez"
+          ],
+          "audioText": "Allez, we gaan naar huis.",
+          "answers": [
+            "Allez, we gaan naar huis",
+            "Allez we gaan naar huis"
+          ],
+          "translation": "Vá, vamos para casa."
+        },
+        {
+          "id": "s7-u11-l015-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-amai",
+            "v-plezant"
+          ],
+          "audioText": "Amai, dat was plezant!",
+          "answers": [
+            "Amai, dat was plezant",
+            "Amai dat was plezant",
+            "Amai, dat was plezant!"
+          ],
+          "translation": "Uau, foi giro!"
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l016",
+      "unitId": "s7-u11",
+      "order": 16,
+      "title": "Sotaques do sul",
+      "description": "Brabants en Limburgs.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer características dos sotaques do sul dos Países Baixos"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-brabants",
+          "nl": "Brabants",
+          "pt": [
+            "de Brabante (sotaque/dialeto)"
+          ],
+          "pos": "adjective"
+        },
+        {
+          "id": "v-limburgs",
+          "nl": "Limburgs",
+          "pt": [
+            "limburguês (variedade regional)"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zachte-g",
+        "v-houdoe",
+        "v-streektaal"
+      ],
+      "examples": [
+        {
+          "nl": "Hij praat met een zachte g; hij komt uit Brabant.",
+          "pt": "Ele fala com g suave; vem de Brabante."
+        },
+        {
+          "nl": "Limburgs heeft een zangerige melodie.",
+          "pt": "O limburguês tem uma melodia cantada."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-5",
+          "title": "O sul",
+          "body": "No sul (Brabante, Limburgo) ouve-se a «zachte g», mais suave que a g do norte. O limburguês é reconhecido oficialmente como língua regional e tem uma entoação cantada. Na rádio e televisão nacionais ouves sobretudo a língua padrão.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l016-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "O sul.",
+          "vocabRefs": [
+            "v-brabants",
+            "v-limburgs",
+            "v-zachte-g",
+            "v-houdoe"
+          ],
+          "pairs": [
+            {
+              "nl": "Brabants",
+              "pt": "de Brabante"
+            },
+            {
+              "nl": "Limburgs",
+              "pt": "limburguês"
+            },
+            {
+              "nl": "zachte g",
+              "pt": "g suave"
+            },
+            {
+              "nl": "houdoe",
+              "pt": "adeus (Brabante)"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l016-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Geografia.",
+          "vocabRefs": [
+            "v-zachte-g"
+          ],
+          "prompt": "A «zachte g» ouve-se sobretudo…",
+          "options": [
+            {
+              "id": "a",
+              "text": "no sul (Brabante, Limburgo)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "no norte",
+              "correct": false,
+              "feedback": "Lá é mais áspera."
+            },
+            {
+              "id": "c",
+              "text": "só na Frísia",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l016-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estatuto.",
+          "vocabRefs": [
+            "v-limburgs",
+            "v-streektaal"
+          ],
+          "prompt": "O Limburgs é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "uma língua regional reconhecida",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "a língua oficial do país",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "um dialeto de Amesterdão",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l016-e04",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "houdoe.",
+          "vocabRefs": [
+            "v-brabants",
+            "v-houdoe"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Hij komt uit Brabant en zegt altijd «houdoe».",
+          "answers": [
+            "Ele vem de Brabante e diz sempre «houdoe»",
+            "Ele é de Brabante e diz sempre houdoe"
+          ]
+        },
+        {
+          "id": "s7-u11-l016-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Fonética.",
+          "vocabRefs": [
+            "v-zachte-g"
+          ],
+          "sentence": "Hij spreekt met een zachte ___.",
+          "translation": "Ele fala com g suave.",
+          "answers": [
+            "g"
+          ],
+          "choices": [
+            "g",
+            "r",
+            "k"
+          ]
+        },
+        {
+          "id": "s7-u11-l016-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular: spreekt.",
+          "vocabRefs": [
+            "v-limburgs"
+          ],
+          "tokens": [
+            "Zij",
+            "spreek",
+            "Limburgs",
+            "met",
+            "haar",
+            "oma."
+          ],
+          "errorIndex": 1,
+          "correction": "spreekt"
+        },
+        {
+          "id": "s7-u11-l016-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-houdoe"
+          ],
+          "audioText": "Houdoe, tot morgen!",
+          "answers": [
+            "Houdoe, tot morgen",
+            "Houdoe tot morgen",
+            "Houdoe, tot morgen!"
+          ],
+          "translation": "Adeus, até amanhã!"
+        },
+        {
+          "id": "s7-u11-l016-e08",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zangerig.",
+          "vocabRefs": [
+            "v-limburgs"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O limburguês tem uma melodia cantada.",
+          "answers": [
+            "Limburgs heeft een zangerige melodie",
+            "Het Limburgs heeft een zangerige melodie"
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l017",
+      "unitId": "s7-u11",
+      "order": 17,
+      "title": "Sotaques do norte e da Randstad",
+      "description": "Harde g en Gooise r.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer pronúncias típicas do norte e dos media"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-harde-g",
+          "nl": "harde g",
+          "pt": [
+            "g áspera (norte)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-gooise-r",
+          "nl": "Gooise r",
+          "pt": [
+            "«r» à inglesa (Randstad, media)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-zachte-g",
+        "v-randstad",
+        "v-uitspraak"
+      ],
+      "examples": [
+        {
+          "nl": "In het noorden hoor je een harde g.",
+          "pt": "No norte ouves uma g áspera."
+        },
+        {
+          "nl": "Veel presentatoren spreken met een Gooise r.",
+          "pt": "Muitos apresentadores falam com um «r» à inglesa."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-6",
+          "title": "Harde g e Gooise r",
+          "body": "No norte e oeste a g é mais áspera e gutural (harde g). A «Gooise r» é um r final suave, parecido com o r inglês («maar» soa quase «maaɹ»); ouve-se muito na Randstad e nos media. Ambas são normais — não há uma pronúncia «certa».",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l017-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pronúncia.",
+          "vocabRefs": [
+            "v-harde-g",
+            "v-zachte-g",
+            "v-gooise-r",
+            "v-uitspraak"
+          ],
+          "pairs": [
+            {
+              "nl": "harde g",
+              "pt": "g áspera"
+            },
+            {
+              "nl": "zachte g",
+              "pt": "g suave"
+            },
+            {
+              "nl": "Gooise r",
+              "pt": "r à inglesa"
+            },
+            {
+              "nl": "uitspraak",
+              "pt": "pronúncia"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l017-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Uso.",
+          "vocabRefs": [
+            "v-gooise-r",
+            "v-randstad"
+          ],
+          "prompt": "Onde se ouve muito a Gooise r?",
+          "options": [
+            {
+              "id": "a",
+              "text": "na Randstad e na televisão",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "só em Limburgo",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "só na Flandres",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l017-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Variação.",
+          "vocabRefs": [
+            "v-harde-g",
+            "v-zachte-g"
+          ],
+          "prompt": "Qual pronúncia da g é a correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ambas; são variantes regionais.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Só a harde g.",
+              "correct": false,
+              "feedback": "Não há só uma correta."
+            },
+            {
+              "id": "c",
+              "text": "Só a zachte g.",
+              "correct": false,
+              "feedback": "Idem."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l017-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-harde-g"
+          ],
+          "direction": "pt-nl",
+          "prompt": "No norte ouves uma g áspera.",
+          "answers": [
+            "In het noorden hoor je een harde g"
+          ]
+        },
+        {
+          "id": "s7-u11-l017-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Fonética.",
+          "vocabRefs": [
+            "v-gooise-r"
+          ],
+          "sentence": "Veel presentatoren spreken met een Gooise ___.",
+          "translation": "Muitos apresentadores falam com o r à inglesa.",
+          "answers": [
+            "r"
+          ],
+          "choices": [
+            "r",
+            "g",
+            "l"
+          ]
+        },
+        {
+          "id": "s7-u11-l017-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Adjetivo atributivo com «een» antes de palavra de: harde.",
+          "vocabRefs": [
+            "v-harde-g"
+          ],
+          "tokens": [
+            "Zij",
+            "heeft",
+            "een",
+            "hard",
+            "g."
+          ],
+          "errorIndex": 3,
+          "correction": "harde"
+        },
+        {
+          "id": "s7-u11-l017-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir a pronúncia do r.",
+          "vocabRefs": [
+            "v-gooise-r"
+          ],
+          "audioText": "Maar waarom dan?",
+          "answers": [
+            "Maar waarom dan",
+            "Maar waarom dan?"
+          ],
+          "translation": "Mas porquê então?"
+        },
+        {
+          "id": "s7-u11-l017-e08",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "verraden.",
+          "vocabRefs": [
+            "v-uitspraak"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Je uitspraak verraadt waar je vandaan komt.",
+          "answers": [
+            "A tua pronúncia denuncia de onde vens",
+            "A pronúncia denuncia de onde és"
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l018",
+      "unitId": "s7-u11",
+      "order": 18,
+      "title": "Linguagem informal dos jovens",
+      "description": "Tof, gaaf, chill.",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer adjetivos informais de aprovação"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-tof",
+          "nl": "tof",
+          "pt": [
+            "fixe (informal)"
+          ],
+          "pos": "adjective"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-gaaf",
+        "v-chill",
+        "v-vet",
+        "v-straattaal"
+      ],
+      "examples": [
+        {
+          "nl": "Wat een toffe jas!",
+          "pt": "Que casaco tão fixe!"
+        },
+        {
+          "nl": "Het concert was echt gaaf.",
+          "pt": "O concerto foi mesmo fixe."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l018-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Aprovação.",
+          "vocabRefs": [
+            "v-tof",
+            "v-gaaf",
+            "v-chill",
+            "v-vet"
+          ],
+          "pairs": [
+            {
+              "nl": "tof",
+              "pt": "fixe"
+            },
+            {
+              "nl": "gaaf",
+              "pt": "espetacular"
+            },
+            {
+              "nl": "chill",
+              "pt": "descontraído"
+            },
+            {
+              "nl": "vet",
+              "pt": "brutal"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l018-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Declinação: tof → toffe.",
+          "vocabRefs": [
+            "v-tof"
+          ],
+          "prompt": "«Tof» antes de nome de-palavra:",
+          "options": [
+            {
+              "id": "a",
+              "text": "een toffe jas",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "een tof jas",
+              "correct": false,
+              "feedback": "Falta -e."
+            },
+            {
+              "id": "c",
+              "text": "een toffen jas",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l018-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "toffe.",
+          "vocabRefs": [
+            "v-tof"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Wat een toffe jas!",
+          "answers": [
+            "Que casaco tão fixe!",
+            "Que casaco fixe!",
+            "Que casaco tão fixe"
+          ]
+        },
+        {
+          "id": "s7-u11-l018-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "gaaf/tof/vet.",
+          "vocabRefs": [
+            "v-gaaf"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O concerto foi mesmo fixe.",
+          "answers": [
+            "Het concert was echt gaaf",
+            "Het concert was echt tof",
+            "Het concert was echt vet"
+          ]
+        },
+        {
+          "id": "s7-u11-l018-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-vet"
+          ],
+          "sentence": "Num relatório formal, em vez de «vet», escreve-se: «Het resultaat was ___.»",
+          "translation": "O resultado foi excelente.",
+          "answers": [
+            "uitstekend"
+          ],
+          "choices": [
+            "uitstekend",
+            "vet",
+            "gaaf"
+          ]
+        },
+        {
+          "id": "s7-u11-l018-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Antes de plural: toffe.",
+          "vocabRefs": [
+            "v-tof"
+          ],
+          "tokens": [
+            "Dat",
+            "zijn",
+            "tof",
+            "mensen."
+          ],
+          "errorIndex": 2,
+          "correction": "toffe"
+        },
+        {
+          "id": "s7-u11-l018-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-tof"
+          ],
+          "audioText": "Echt tof dat je er bent!",
+          "answers": [
+            "Echt tof dat je er bent",
+            "Echt tof dat je er bent!"
+          ],
+          "translation": "Que fixe estares cá!"
+        },
+        {
+          "id": "s7-u11-l018-e08",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-tof",
+            "v-chill"
+          ],
+          "prompt": "Estas palavras são adequadas…",
+          "options": [
+            {
+              "id": "a",
+              "text": "com amigos e em mensagens informais",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "num e-mail ao senhorio",
+              "correct": false,
+              "feedback": "Demasiado informal."
+            },
+            {
+              "id": "c",
+              "text": "num requerimento",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l019",
+      "unitId": "s7-u11",
+      "order": 19,
+      "title": "Ouvir avisos na estação",
+      "description": "Deze trein rijdt niet verder dan…",
+      "cefr": "B2",
+      "objectives": [
+        "Compreender avisos de comboio rápidos"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-spoor",
+          "nl": "spoor",
+          "pt": [
+            "linha (plataforma)"
+          ],
+          "pos": "noun",
+          "article": "het"
+        },
+        {
+          "id": "v-rijdt-niet-verder",
+          "nl": "rijdt niet verder dan…",
+          "pt": [
+            "não segue além de…"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-seinstoring",
+        "v-vertraging",
+        "v-omroepbericht"
+      ],
+      "examples": [
+        {
+          "nl": "De trein naar Den Haag vertrekt van spoor 5b.",
+          "pt": "O comboio para Haia parte da linha 5b."
+        },
+        {
+          "nl": "Door een seinstoring rijdt deze trein niet verder dan Utrecht.",
+          "pt": "Devido a uma avaria na sinalização, este comboio não segue além de Utrecht."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l019-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Estação.",
+          "vocabRefs": [
+            "v-spoor",
+            "v-seinstoring",
+            "v-vertraging",
+            "v-omroepbericht"
+          ],
+          "pairs": [
+            {
+              "nl": "spoor",
+              "pt": "linha"
+            },
+            {
+              "nl": "seinstoring",
+              "pt": "avaria na sinalização"
+            },
+            {
+              "nl": "vertraging",
+              "pt": "atraso"
+            },
+            {
+              "nl": "omroepbericht",
+              "pt": "aviso sonoro"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l019-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Compreensão.",
+          "vocabRefs": [
+            "v-rijdt-niet-verder"
+          ],
+          "prompt": "«Deze trein rijdt niet verder dan Utrecht.» Vais para Amesterdão (depois de Utrecht). O que fazes?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Saio em Utrecht e procuro outra ligação.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Fico sentado até Amesterdão.",
+              "correct": false,
+              "feedback": "O comboio para em Utrecht."
+            },
+            {
+              "id": "c",
+              "text": "Saio já.",
+              "correct": false,
+              "feedback": "Não é preciso."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l019-e03",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het spoor.",
+          "vocabRefs": [
+            "v-spoor"
+          ],
+          "noun": "spoor",
+          "pt": "linha",
+          "article": "het"
+        },
+        {
+          "id": "s7-u11-l019-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "van spoor.",
+          "vocabRefs": [
+            "v-spoor"
+          ],
+          "direction": "pt-nl",
+          "prompt": "O comboio parte da linha 5.",
+          "answers": [
+            "De trein vertrekt van spoor 5",
+            "De trein vertrekt van spoor vijf"
+          ]
+        },
+        {
+          "id": "s7-u11-l019-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Atraso.",
+          "vocabRefs": [
+            "v-vertraging"
+          ],
+          "sentence": "De trein naar Zwolle heeft tien minuten ___.",
+          "translation": "O comboio para Zwolle tem dez minutos de atraso.",
+          "answers": [
+            "vertraging"
+          ],
+          "choices": [
+            "vertraging",
+            "spoor",
+            "storing"
+          ]
+        },
+        {
+          "id": "s7-u11-l019-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "vertrekken van spoor.",
+          "vocabRefs": [
+            "v-spoor"
+          ],
+          "tokens": [
+            "De",
+            "trein",
+            "vertrekt",
+            "op",
+            "spoor",
+            "3."
+          ],
+          "errorIndex": 3,
+          "correction": "van"
+        },
+        {
+          "id": "s7-u11-l019-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Aviso.",
+          "vocabRefs": [
+            "v-spoor"
+          ],
+          "audioText": "De intercity naar Rotterdam vertrekt vandaag van spoor 7.",
+          "answers": [
+            "De intercity naar Rotterdam vertrekt vandaag van spoor 7",
+            "De intercity naar Rotterdam vertrekt vandaag van spoor zeven"
+          ],
+          "translation": "O intercidades para Roterdão parte hoje da linha 7."
+        },
+        {
+          "id": "s7-u11-l019-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Aviso.",
+          "vocabRefs": [
+            "v-rijdt-niet-verder"
+          ],
+          "audioText": "Deze trein rijdt niet verder dan Amersfoort.",
+          "answers": [
+            "Deze trein rijdt niet verder dan Amersfoort"
+          ],
+          "translation": "Este comboio não segue além de Amersfoort."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l020",
+      "unitId": "s7-u11",
+      "order": 20,
+      "title": "Ouvir a meteorologia",
+      "description": "Windkracht en windstoten.",
+      "cefr": "B2",
+      "objectives": [
+        "Compreender a previsão do tempo na rádio"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-windkracht",
+          "nl": "windkracht",
+          "pt": [
+            "força do vento (escala de Beaufort)"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-windstoten",
+          "nl": "windstoten",
+          "pt": [
+            "rajadas de vento"
+          ],
+          "pos": "noun",
+          "article": "de"
+        },
+        {
+          "id": "v-knmi",
+          "nl": "KNMI",
+          "pt": [
+            "Instituto Meteorológico neerlandês"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-code-oranje",
+        "v-opklaringen",
+        "v-buien"
+      ],
+      "examples": [
+        {
+          "nl": "Morgen windkracht 6 uit het zuidwesten.",
+          "pt": "Amanhã vento de força 6 de sudoeste."
+        },
+        {
+          "nl": "Er worden zware windstoten verwacht.",
+          "pt": "Esperam-se rajadas fortes."
+        },
+        {
+          "nl": "Het KNMI heeft code oranje afgegeven.",
+          "pt": "O KNMI emitiu um aviso laranja."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l020-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Tempo.",
+          "vocabRefs": [
+            "v-windkracht",
+            "v-windstoten",
+            "v-opklaringen",
+            "v-buien"
+          ],
+          "pairs": [
+            {
+              "nl": "windkracht",
+              "pt": "força do vento"
+            },
+            {
+              "nl": "windstoten",
+              "pt": "rajadas"
+            },
+            {
+              "nl": "opklaringen",
+              "pt": "abertas"
+            },
+            {
+              "nl": "bui",
+              "pt": "aguaceiro"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l020-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Avisos.",
+          "vocabRefs": [
+            "v-code-oranje",
+            "v-knmi"
+          ],
+          "prompt": "«Code oranje» do KNMI significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "aviso de tempo perigoso: cuidado",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "bom tempo",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "fim do alerta",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l020-e03",
+          "type": "translate",
+          "instruction": "Traduza para português.",
+          "explanation": "Passiva.",
+          "vocabRefs": [
+            "v-windstoten"
+          ],
+          "direction": "nl-pt",
+          "prompt": "Er worden zware windstoten verwacht.",
+          "answers": [
+            "Esperam-se rajadas fortes",
+            "São esperadas rajadas fortes"
+          ]
+        },
+        {
+          "id": "s7-u11-l020-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "windkracht.",
+          "vocabRefs": [
+            "v-windkracht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Amanhã vento de força 6.",
+          "answers": [
+            "Morgen windkracht 6",
+            "Morgen windkracht zes"
+          ]
+        },
+        {
+          "id": "s7-u11-l020-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Abertas.",
+          "vocabRefs": [
+            "v-opklaringen"
+          ],
+          "sentence": "Na een buiige ochtend volgen in de middag ___.",
+          "translation": "Depois de uma manhã de aguaceiros seguem-se abertas à tarde.",
+          "answers": [
+            "opklaringen"
+          ],
+          "choices": [
+            "opklaringen",
+            "windstoten",
+            "buien"
+          ]
+        },
+        {
+          "id": "s7-u11-l020-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular: verwacht.",
+          "vocabRefs": [
+            "v-knmi"
+          ],
+          "tokens": [
+            "Het",
+            "KNMI",
+            "verwachten",
+            "zware",
+            "regen."
+          ],
+          "errorIndex": 2,
+          "correction": "verwacht"
+        },
+        {
+          "id": "s7-u11-l020-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Previsão.",
+          "vocabRefs": [
+            "v-windkracht"
+          ],
+          "audioText": "Vanavond windkracht 7, aan zee windkracht 8.",
+          "answers": [
+            "Vanavond windkracht 7, aan zee windkracht 8",
+            "Vanavond windkracht zeven, aan zee windkracht acht"
+          ],
+          "translation": "Esta noite vento de força 7, junto ao mar força 8."
+        },
+        {
+          "id": "s7-u11-l020-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Previsão.",
+          "vocabRefs": [
+            "v-opklaringen"
+          ],
+          "audioText": "Morgen eerst buien, later opklaringen.",
+          "answers": [
+            "Morgen eerst buien, later opklaringen",
+            "Morgen eerst buien later opklaringen"
+          ],
+          "translation": "Amanhã primeiro aguaceiros, depois abertas."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l021",
+      "unitId": "s7-u11",
+      "order": 21,
+      "title": "Má ligação telefónica",
+      "description": "Je valt weg.",
+      "cefr": "B2",
+      "objectives": [
+        "Lidar com problemas de ligação ao telefone"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-je-valt-weg",
+          "nl": "je valt weg",
+          "pt": [
+            "estás a falhar (a chamada corta)"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-ik-versta-je-slecht",
+          "nl": "ik versta je slecht",
+          "pt": [
+            "ouço-te mal"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-verbinding",
+        "v-terugbellen"
+      ],
+      "examples": [
+        {
+          "nl": "Sorry, je valt weg. Kun je me terugbellen?",
+          "pt": "Desculpa, estás a falhar. Podes ligar-me de volta?"
+        },
+        {
+          "nl": "Ik versta je slecht; ik zit in de trein.",
+          "pt": "Ouço-te mal; estou no comboio."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l021-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Telefone.",
+          "vocabRefs": [
+            "v-je-valt-weg",
+            "v-ik-versta-je-slecht",
+            "v-verbinding",
+            "v-terugbellen"
+          ],
+          "pairs": [
+            {
+              "nl": "je valt weg",
+              "pt": "a chamada corta"
+            },
+            {
+              "nl": "ik versta je slecht",
+              "pt": "ouço-te mal"
+            },
+            {
+              "nl": "verbinding",
+              "pt": "ligação"
+            },
+            {
+              "nl": "terugbellen",
+              "pt": "ligar de volta"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l021-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-je-valt-weg"
+          ],
+          "prompt": "A chamada corta constantemente. Dizes:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Je valt steeds weg, zal ik je zo terugbellen?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Je bent weg.",
+              "correct": false,
+              "feedback": "Soa a «foste-te embora»."
+            },
+            {
+              "id": "c",
+              "text": "Je valt.",
+              "correct": false,
+              "feedback": "Incompleto."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l021-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verstaan.",
+          "vocabRefs": [
+            "v-ik-versta-je-slecht"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ouço-te mal.",
+          "answers": [
+            "Ik versta je slecht",
+            "Ik versta je niet goed"
+          ]
+        },
+        {
+          "id": "s7-u11-l021-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verbinding.",
+          "vocabRefs": [
+            "v-verbinding"
+          ],
+          "direction": "pt-nl",
+          "prompt": "A ligação é má.",
+          "answers": [
+            "De verbinding is slecht",
+            "Ik heb een slechte verbinding"
+          ]
+        },
+        {
+          "id": "s7-u11-l021-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Separável.",
+          "vocabRefs": [
+            "v-terugbellen"
+          ],
+          "sentence": "Ik zit in de tunnel; ik bel je zo ___.",
+          "translation": "Estou no túnel; já te ligo de volta.",
+          "answers": [
+            "terug"
+          ],
+          "choices": [
+            "terug",
+            "weg",
+            "op"
+          ]
+        },
+        {
+          "id": "s7-u11-l021-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Advérbio: slecht.",
+          "vocabRefs": [
+            "v-ik-versta-je-slecht"
+          ],
+          "tokens": [
+            "Ik",
+            "versta",
+            "je",
+            "slechte."
+          ],
+          "errorIndex": 3,
+          "correction": "slecht."
+        },
+        {
+          "id": "s7-u11-l021-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-je-valt-weg"
+          ],
+          "audioText": "Hallo? Je valt weg. Hoor je me nog?",
+          "answers": [
+            "Hallo? Je valt weg. Hoor je me nog",
+            "Hallo je valt weg hoor je me nog",
+            "Hallo? Je valt weg. Hoor je me nog?"
+          ],
+          "translation": "Estou? Estás a falhar. Ainda me ouves?"
+        },
+        {
+          "id": "s7-u11-l021-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-ik-versta-je-slecht"
+          ],
+          "translation": "Ouço-te mal.",
+          "tokens": [
+            "Ik",
+            "versta",
+            "je",
+            "slecht"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l022",
+      "unitId": "s7-u11",
+      "order": 22,
+      "title": "Pedir para repetir",
+      "description": "Ik verstond u niet.",
+      "cefr": "B2",
+      "objectives": [
+        "Pedir educadamente que repitam ou abrandem"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-ik-verstond-u-niet",
+          "nl": "ik verstond u niet",
+          "pt": [
+            "não percebi o que disse"
+          ],
+          "pos": "expression"
+        },
+        {
+          "id": "v-even-herhalen",
+          "nl": "kunt u dat even herhalen?",
+          "pt": [
+            "pode repetir, por favor?"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-iets-langzamer",
+        "v-verkeerd-verstaan",
+        "v-herhalen"
+      ],
+      "examples": [
+        {
+          "nl": "Sorry, ik verstond u niet. Kunt u dat even herhalen?",
+          "pt": "Desculpe, não percebi. Pode repetir?"
+        },
+        {
+          "nl": "Kunt u iets langzamer praten?",
+          "pt": "Pode falar um pouco mais devagar?"
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l022-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Pedidos.",
+          "vocabRefs": [
+            "v-ik-verstond-u-niet",
+            "v-even-herhalen",
+            "v-iets-langzamer",
+            "v-verkeerd-verstaan"
+          ],
+          "pairs": [
+            {
+              "nl": "ik verstond u niet",
+              "pt": "não percebi"
+            },
+            {
+              "nl": "kunt u dat even herhalen?",
+              "pt": "pode repetir?"
+            },
+            {
+              "nl": "iets langzamer",
+              "pt": "mais devagar"
+            },
+            {
+              "nl": "verkeerd verstaan",
+              "pt": "perceber mal"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l022-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "verstaan = ouvir/perceber as palavras.",
+          "vocabRefs": [
+            "v-ik-verstond-u-niet"
+          ],
+          "prompt": "«Verstaan» vs «begrijpen»: «Ik verstond u niet» significa…",
+          "options": [
+            {
+              "id": "a",
+              "text": "não ouvi bem as palavras",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "não entendi o conceito",
+              "correct": false,
+              "feedback": "Isso é «begrijpen»."
+            },
+            {
+              "id": "c",
+              "text": "não concordo",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l022-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "herhalen.",
+          "vocabRefs": [
+            "v-even-herhalen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Pode repetir, por favor?",
+          "answers": [
+            "Kunt u dat even herhalen?",
+            "Kunt u dat herhalen?",
+            "Kunt u dat even herhalen"
+          ]
+        },
+        {
+          "id": "s7-u11-l022-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verstaan.",
+          "vocabRefs": [
+            "v-ik-verstond-u-niet"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Desculpe, não percebi.",
+          "answers": [
+            "Sorry, ik verstond u niet",
+            "Sorry, ik heb u niet verstaan",
+            "Pardon, ik verstond u niet"
+          ]
+        },
+        {
+          "id": "s7-u11-l022-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Comparativo.",
+          "vocabRefs": [
+            "v-iets-langzamer"
+          ],
+          "sentence": "Kunt u iets ___ praten? Ik leer nog Nederlands.",
+          "translation": "Pode falar mais devagar? Ainda estou a aprender neerlandês.",
+          "answers": [
+            "langzamer"
+          ],
+          "choices": [
+            "langzamer",
+            "langzaam",
+            "langzaamst"
+          ]
+        },
+        {
+          "id": "s7-u11-l022-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Depois de kunnen: infinitivo.",
+          "vocabRefs": [
+            "v-even-herhalen"
+          ],
+          "tokens": [
+            "Kunt",
+            "u",
+            "dat",
+            "even",
+            "herhaal?"
+          ],
+          "errorIndex": 4,
+          "correction": "herhalen?"
+        },
+        {
+          "id": "s7-u11-l022-e07",
+          "type": "dialogue",
+          "instruction": "Complete o diálogo.",
+          "explanation": "Pedir só a parte que faltou.",
+          "vocabRefs": [
+            "v-ik-verstond-u-niet"
+          ],
+          "lines": [
+            {
+              "speaker": "Medewerker",
+              "nl": "U moet formulier B-twaalf invullen en dat vóór de vijftiende inleveren.",
+              "pt": "Tem de preencher o formulário B-12 e entregá-lo antes do dia 15."
+            },
+            {
+              "speaker": "Jij",
+              "nl": ""
+            }
+          ],
+          "blankLine": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Sorry, dat ging snel. Welk formulier zei u?",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Wat?",
+              "correct": false,
+              "feedback": "Brusco."
+            },
+            {
+              "id": "c",
+              "text": "Ok.",
+              "correct": false,
+              "feedback": "Não confirma."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l022-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-even-herhalen"
+          ],
+          "audioText": "Sorry, ik verstond u niet. Kunt u dat even herhalen?",
+          "answers": [
+            "Sorry, ik verstond u niet. Kunt u dat even herhalen",
+            "Sorry ik verstond u niet kunt u dat even herhalen",
+            "Sorry, ik verstond u niet. Kunt u dat even herhalen?"
+          ],
+          "translation": "Desculpe, não percebi. Pode repetir?"
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l023",
+      "unitId": "s7-u11",
+      "order": 23,
+      "title": "Confirmar que percebeste",
+      "description": "Klopt dat?",
+      "cefr": "B2",
+      "objectives": [
+        "Verificar a compreensão resumindo o que ouviste"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-klopt-dat",
+          "nl": "klopt dat?",
+          "pt": [
+            "é isso? / está certo?"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-als-ik-het-goed-begrijp",
+        "v-samenvatten",
+        "v-hoe-bedoel-je"
+      ],
+      "examples": [
+        {
+          "nl": "Dus de vergadering is verplaatst naar donderdag. Klopt dat?",
+          "pt": "Então a reunião passou para quinta. É isso?"
+        },
+        {
+          "nl": "Als ik het goed begrijp, moet ik zelf een afspraak maken.",
+          "pt": "Se percebi bem, tenho de marcar eu uma consulta."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l023-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Confirmar.",
+          "vocabRefs": [
+            "v-klopt-dat",
+            "v-als-ik-het-goed-begrijp",
+            "v-samenvatten",
+            "v-hoe-bedoel-je"
+          ],
+          "pairs": [
+            {
+              "nl": "klopt dat?",
+              "pt": "é isso?"
+            },
+            {
+              "nl": "als ik het goed begrijp",
+              "pt": "se percebi bem"
+            },
+            {
+              "nl": "samenvatten",
+              "pt": "resumir"
+            },
+            {
+              "nl": "hoe bedoel je?",
+              "pt": "como assim?"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l023-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estratégia.",
+          "vocabRefs": [
+            "v-klopt-dat"
+          ],
+          "prompt": "A melhor forma de confirmar uma instrução longa:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Resumir com as tuas palavras e perguntar «Klopt dat?»",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Dizer só «ja ja»",
+              "correct": false,
+              "feedback": "Não confirma nada."
+            },
+            {
+              "id": "c",
+              "text": "Pedir para repetir tudo três vezes",
+              "correct": false,
+              "feedback": "Pouco eficaz."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l023-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "klopt dat.",
+          "vocabRefs": [
+            "v-klopt-dat"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Então a reunião é na quinta. É isso?",
+          "answers": [
+            "Dus de vergadering is donderdag. Klopt dat?",
+            "Dus de vergadering is op donderdag. Klopt dat?"
+          ]
+        },
+        {
+          "id": "s7-u11-l023-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "Inversão.",
+          "vocabRefs": [
+            "v-als-ik-het-goed-begrijp"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Se percebi bem, tenho de pagar antes de sexta.",
+          "answers": [
+            "Als ik het goed begrijp, moet ik voor vrijdag betalen",
+            "Als ik het goed begrijp moet ik vóór vrijdag betalen",
+            "Als ik het goed begrijp, moet ik vóór vrijdag betalen"
+          ]
+        },
+        {
+          "id": "s7-u11-l023-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Resumir.",
+          "vocabRefs": [
+            "v-samenvatten"
+          ],
+          "sentence": "Mag ik het even ___? U wilt drie offertes, klopt dat?",
+          "translation": "Posso resumir? Quer três orçamentos, certo?",
+          "answers": [
+            "samenvatten"
+          ],
+          "choices": [
+            "samenvatten",
+            "herhalen",
+            "verstaan"
+          ]
+        },
+        {
+          "id": "s7-u11-l023-e06",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Inversão depois da subordinada.",
+          "vocabRefs": [
+            "v-als-ik-het-goed-begrijp"
+          ],
+          "prompt": "Qual é a ordem correta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Als ik het goed begrijp, moet ik morgen komen.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Als ik het goed begrijp, ik moet morgen komen.",
+              "correct": false,
+              "feedback": "Depois da oração subordinada: verbo antes do sujeito."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l023-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-klopt-dat"
+          ],
+          "audioText": "Dus u wilt het pakket morgen ophalen, klopt dat?",
+          "answers": [
+            "Dus u wilt het pakket morgen ophalen, klopt dat",
+            "Dus u wilt het pakket morgen ophalen klopt dat",
+            "Dus u wilt het pakket morgen ophalen, klopt dat?"
+          ],
+          "translation": "Então quer levantar a encomenda amanhã, é isso?"
+        },
+        {
+          "id": "s7-u11-l023-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Pergunta.",
+          "vocabRefs": [
+            "v-klopt-dat"
+          ],
+          "translation": "É isso?",
+          "tokens": [
+            "Klopt",
+            "dat"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l024",
+      "unitId": "s7-u11",
+      "order": 24,
+      "title": "Podcasts",
+      "description": "Abonneren op een podcast.",
+      "cefr": "B2",
+      "objectives": [
+        "Falar de podcasts e de os usar para aprender"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-podcast",
+          "nl": "podcast",
+          "pt": [
+            "podcast"
+          ],
+          "pos": "noun",
+          "article": "de",
+          "plural": "podcasts"
+        },
+        {
+          "id": "v-abonneren",
+          "nl": "zich abonneren op",
+          "pt": [
+            "subscrever"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-aflevering",
+        "v-afspelen",
+        "v-terugspoelen"
+      ],
+      "examples": [
+        {
+          "nl": "Ik luister elke ochtend een Nederlandse podcast.",
+          "pt": "Ouço todas as manhãs um podcast neerlandês."
+        },
+        {
+          "nl": "Abonneer je op de podcast, dan mis je geen aflevering.",
+          "pt": "Subscreve o podcast e não perdes nenhum episódio."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l024-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Podcasts.",
+          "vocabRefs": [
+            "v-podcast",
+            "v-abonneren",
+            "v-aflevering",
+            "v-terugspoelen"
+          ],
+          "pairs": [
+            {
+              "nl": "podcast",
+              "pt": "podcast"
+            },
+            {
+              "nl": "zich abonneren op",
+              "pt": "subscrever"
+            },
+            {
+              "nl": "aflevering",
+              "pt": "episódio"
+            },
+            {
+              "nl": "terugspoelen",
+              "pt": "andar para trás"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l024-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Estratégia.",
+          "vocabRefs": [
+            "v-terugspoelen",
+            "v-kernwoorden"
+          ],
+          "prompt": "Dica para ouvir um podcast difícil:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ouvir, andar para trás nas partes difíceis e anotar palavras-chave",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Desistir ao primeiro minuto",
+              "correct": false,
+              "feedback": "Não."
+            },
+            {
+              "id": "c",
+              "text": "Ouvir só em velocidade 2x",
+              "correct": false,
+              "feedback": "Mais difícil."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l024-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "luisteren.",
+          "vocabRefs": [
+            "v-podcast"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ouço todas as manhãs um podcast.",
+          "answers": [
+            "Ik luister elke ochtend een podcast",
+            "Elke ochtend luister ik een podcast",
+            "Ik luister elke ochtend naar een podcast"
+          ]
+        },
+        {
+          "id": "s7-u11-l024-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "zich abonneren op.",
+          "vocabRefs": [
+            "v-abonneren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Subscreve o podcast.",
+          "answers": [
+            "Abonneer je op de podcast"
+          ]
+        },
+        {
+          "id": "s7-u11-l024-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Episódio.",
+          "vocabRefs": [
+            "v-aflevering"
+          ],
+          "sentence": "In de nieuwste ___ praten ze over wonen.",
+          "translation": "No episódio mais recente falam de habitação.",
+          "answers": [
+            "aflevering"
+          ],
+          "choices": [
+            "aflevering",
+            "podcast",
+            "abonnement"
+          ]
+        },
+        {
+          "id": "s7-u11-l024-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "zich abonneren op.",
+          "vocabRefs": [
+            "v-abonneren"
+          ],
+          "tokens": [
+            "Ik",
+            "heb",
+            "me",
+            "geabonneerd",
+            "in",
+            "die",
+            "podcast."
+          ],
+          "errorIndex": 4,
+          "correction": "op"
+        },
+        {
+          "id": "s7-u11-l024-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Abertura típica.",
+          "vocabRefs": [
+            "v-podcast",
+            "v-aflevering"
+          ],
+          "audioText": "Welkom bij een nieuwe aflevering van onze podcast.",
+          "answers": [
+            "Welkom bij een nieuwe aflevering van onze podcast"
+          ],
+          "translation": "Bem-vindos a um novo episódio do nosso podcast."
+        },
+        {
+          "id": "s7-u11-l024-e08",
+          "type": "wordOrder",
+          "instruction": "Ordene as palavras.",
+          "explanation": "Ordem.",
+          "vocabRefs": [
+            "v-abonneren"
+          ],
+          "translation": "Subscrevi.",
+          "tokens": [
+            "Ik",
+            "heb",
+            "me",
+            "geabonneerd"
+          ],
+          "alternatives": []
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l025",
+      "unitId": "s7-u11",
+      "order": 25,
+      "title": "Soletrar ao telefone",
+      "description": "A van Anton.",
+      "cefr": "B2",
+      "objectives": [
+        "Soletrar nomes com o alfabeto telefónico neerlandês"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-a-van-anton",
+          "nl": "A van Anton",
+          "pt": [
+            "A de Anton (alfabeto telefónico)"
+          ],
+          "pos": "expression"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-spellen",
+        "v-kunt-u-dat-spellen",
+        "v-ik-zal-het-noteren"
+      ],
+      "examples": [
+        {
+          "nl": "Mijn naam is Sousa: S van Simon, O van Otto, U van Utrecht, S van Simon, A van Anton.",
+          "pt": "O meu nome é Sousa: S de Simon, O de Otto, U de Utrecht, S de Simon, A de Anton."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-7",
+          "title": "Alfabeto telefónico",
+          "body": "Nos Países Baixos soletra-se com nomes e cidades: A van Anton, B van Bernard, D van Dirk, E van Eduard, H van Hendrik, J van Johan, K van Karel, M van Maria, N van Nico, O van Otto, P van Pieter, R van Rudolf, S van Simon, T van Theodoor, U van Utrecht, W van Willem, Z van Zaandam. Atenção a letras que soam parecido em neerlandês: e/i, g/h, ei/ij.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l025-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Alfabeto NL.",
+          "vocabRefs": [
+            "v-a-van-anton"
+          ],
+          "prompt": "Como soletras a letra P?",
+          "options": [
+            {
+              "id": "a",
+              "text": "P van Pieter",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "P van Paris",
+              "correct": false,
+              "feedback": "Não é o padrão neerlandês."
+            },
+            {
+              "id": "c",
+              "text": "P van Papa",
+              "correct": false,
+              "feedback": "É o alfabeto internacional."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l025-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Alfabeto NL.",
+          "vocabRefs": [
+            "v-a-van-anton"
+          ],
+          "prompt": "Como soletras a letra W?",
+          "options": [
+            {
+              "id": "a",
+              "text": "W van Willem",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "W van Whisky",
+              "correct": false,
+              "feedback": "Internacional."
+            },
+            {
+              "id": "c",
+              "text": "W van Wouter",
+              "correct": false,
+              "feedback": "Não é o padrão."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l025-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Compreensão.",
+          "vocabRefs": [
+            "v-a-van-anton"
+          ],
+          "prompt": "Ouves «S van Simon, I van Izaak, L van Lodewijk, V van Victor, A van Anton». O nome é…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Silva",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Sylva",
+              "correct": false,
+              "feedback": "I, não Y."
+            },
+            {
+              "id": "c",
+              "text": "Silvia",
+              "correct": false,
+              "feedback": "Falta uma letra."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l025-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "spellen.",
+          "vocabRefs": [
+            "v-kunt-u-dat-spellen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Pode soletrar isso?",
+          "answers": [
+            "Kunt u dat spellen?",
+            "Kunt u dat spellen",
+            "Kunt u dat even spellen?"
+          ]
+        },
+        {
+          "id": "s7-u11-l025-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Alfabeto.",
+          "vocabRefs": [
+            "v-a-van-anton"
+          ],
+          "sentence": "Mijn naam begint met een D, D van ___.",
+          "translation": "O meu nome começa por D, D de Dirk.",
+          "answers": [
+            "Dirk"
+          ],
+          "choices": [
+            "Dirk",
+            "Daan",
+            "Dam"
+          ]
+        },
+        {
+          "id": "s7-u11-l025-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Depois de kunnen: infinitivo.",
+          "vocabRefs": [
+            "v-spellen"
+          ],
+          "tokens": [
+            "Kunt",
+            "u",
+            "dat",
+            "spelt?"
+          ],
+          "errorIndex": 3,
+          "correction": "spellen?"
+        },
+        {
+          "id": "s7-u11-l025-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Soletrar.",
+          "vocabRefs": [
+            "v-a-van-anton"
+          ],
+          "audioText": "R van Rudolf, O van Otto, S van Simon, A van Anton.",
+          "answers": [
+            "R van Rudolf, O van Otto, S van Simon, A van Anton",
+            "R van Rudolf O van Otto S van Simon A van Anton"
+          ],
+          "translation": "R de Rudolf, O de Otto, S de Simon, A de Anton (Rosa)."
+        },
+        {
+          "id": "s7-u11-l025-e08",
+          "type": "shortWriting",
+          "instruction": "Escreva a sua resposta.",
+          "explanation": "Soletrar.",
+          "vocabRefs": [
+            "v-a-van-anton"
+          ],
+          "prompt": "Soletre o seu apelido com o alfabeto telefónico neerlandês.",
+          "referenceAnswers": [
+            "Mijn achternaam is Costa: C van Cornelis, O van Otto, S van Simon, T van Theodoor, A van Anton."
+          ],
+          "checklist": [
+            "Letra + van + nome"
+          ],
+          "minWords": 20
+        }
+      ],
+      "difficulty": 3,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l026",
+      "unitId": "s7-u11",
+      "order": 26,
+      "title": "Números ditos depressa",
+      "description": "Dertien of dertig?",
+      "cefr": "B2",
+      "objectives": [
+        "Distinguir números que se confundem facilmente ao ouvir"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-verwarren",
+          "nl": "verwarren",
+          "pt": [
+            "confundir"
+          ],
+          "pos": "verb"
+        },
+        {
+          "id": "v-zeventien",
+          "nl": "zeventien",
+          "pt": [
+            "dezassete"
+          ],
+          "pos": "numeral"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-dertien",
+        "v-tachtig",
+        "v-ik-zal-het-noteren"
+      ],
+      "examples": [
+        {
+          "nl": "Ik verwar dertien en dertig nog vaak.",
+          "pt": "Ainda confundo treze e trinta muitas vezes."
+        },
+        {
+          "nl": "Het nummer is zesentachtig, dus eerst de zes.",
+          "pt": "O número é oitenta e seis, por isso primeiro o seis."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-8",
+          "title": "Ouvir números",
+          "body": "Repara na terminação: -tien (13–19) vs -tig (20, 30…). Nos números compostos, a unidade vem primeiro: 86 = zes-en-tachtig («seis e oitenta»). Ao telefone, confirma repetindo: «Dertien, één-drie?».",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l026-e01",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "-tien.",
+          "vocabRefs": [
+            "v-zeventien"
+          ],
+          "prompt": "«Zeventien» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "17",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "70",
+              "correct": false,
+              "feedback": "Isso é zeventig."
+            },
+            {
+              "id": "c",
+              "text": "7",
+              "correct": false,
+              "feedback": "Isso é zeven."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l026-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Unidade primeiro.",
+          "vocabRefs": [
+            "v-dertien"
+          ],
+          "prompt": "«Vierenvijftig» =",
+          "options": [
+            {
+              "id": "a",
+              "text": "54",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "45",
+              "correct": false,
+              "feedback": "A unidade vem primeiro."
+            },
+            {
+              "id": "c",
+              "text": "40",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l026-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Unidade primeiro.",
+          "vocabRefs": [
+            "v-tachtig"
+          ],
+          "prompt": "Ouves «tweeëntachtig». Escreves:",
+          "options": [
+            {
+              "id": "a",
+              "text": "82",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "28",
+              "correct": false,
+              "feedback": "Inverteste."
+            },
+            {
+              "id": "c",
+              "text": "80",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l026-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "verwarren.",
+          "vocabRefs": [
+            "v-verwarren"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ainda confundo treze e trinta.",
+          "answers": [
+            "Ik verwar dertien en dertig nog",
+            "Ik verwar nog vaak dertien en dertig",
+            "Ik verwar dertien nog met dertig"
+          ]
+        },
+        {
+          "id": "s7-u11-l026-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Presente.",
+          "vocabRefs": [
+            "v-verwarren"
+          ],
+          "sentence": "Ik ___ die twee getallen altijd.",
+          "translation": "Confundo sempre esses dois números.",
+          "answers": [
+            "verwar"
+          ],
+          "choices": [
+            "verwar",
+            "verwart",
+            "verwarren"
+          ]
+        },
+        {
+          "id": "s7-u11-l026-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "Singular: verwart.",
+          "vocabRefs": [
+            "v-verwarren"
+          ],
+          "tokens": [
+            "Zij",
+            "verwar",
+            "de",
+            "namen",
+            "van",
+            "de",
+            "tweeling."
+          ],
+          "errorIndex": 1,
+          "correction": "verwart"
+        },
+        {
+          "id": "s7-u11-l026-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Número.",
+          "vocabRefs": [
+            "v-zeventien"
+          ],
+          "audioText": "Mijn huisnummer is zevenenveertig.",
+          "answers": [
+            "Mijn huisnummer is zevenenveertig",
+            "Mijn huisnummer is 47"
+          ],
+          "translation": "O número da minha casa é 47."
+        },
+        {
+          "id": "s7-u11-l026-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Número de telefone (fictício).",
+          "vocabRefs": [
+            "v-zeventien",
+            "v-dertien"
+          ],
+          "audioText": "Bel me op nul zes, dertien, zeventien, achtentachtig.",
+          "answers": [
+            "Bel me op nul zes, dertien, zeventien, achtentachtig",
+            "Bel me op 06 13 17 88",
+            "Bel me op 06-13171788"
+          ],
+          "translation": "Liga-me para 06 13 17 88."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l027",
+      "unitId": "s7-u11",
+      "order": 27,
+      "title": "Debate na televisão",
+      "description": "Laat me uitpraten!",
+      "cefr": "B2",
+      "objectives": [
+        "Seguir um debate em que as pessoas se interrompem"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-in-de-rede-vallen",
+          "nl": "iemand in de rede vallen",
+          "pt": [
+            "interromper alguém"
+          ],
+          "pos": "verb"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-laat-me-uitpraten",
+        "v-door-elkaar-praten",
+        "v-het-woord-geven",
+        "v-aan-het-woord"
+      ],
+      "examples": [
+        {
+          "nl": "U valt me steeds in de rede!",
+          "pt": "Está sempre a interromper-me!"
+        },
+        {
+          "nl": "De presentator geeft het woord aan de minister.",
+          "pt": "O apresentador dá a palavra ao ministro."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l027-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Debate.",
+          "vocabRefs": [
+            "v-in-de-rede-vallen",
+            "v-laat-me-uitpraten",
+            "v-door-elkaar-praten",
+            "v-aan-het-woord"
+          ],
+          "pairs": [
+            {
+              "nl": "iemand in de rede vallen",
+              "pt": "interromper alguém"
+            },
+            {
+              "nl": "laat me even uitpraten",
+              "pt": "deixe-me acabar"
+            },
+            {
+              "nl": "door elkaar praten",
+              "pt": "falar ao mesmo tempo"
+            },
+            {
+              "nl": "aan het woord zijn",
+              "pt": "ter a palavra"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l027-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Sinónimo.",
+          "vocabRefs": [
+            "v-in-de-rede-vallen",
+            "v-onderbreken"
+          ],
+          "prompt": "«In de rede vallen» é sinónimo de…",
+          "options": [
+            {
+              "id": "a",
+              "text": "onderbreken",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "uitpraten",
+              "correct": false,
+              "feedback": "Contrário."
+            },
+            {
+              "id": "c",
+              "text": "instemmen",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l027-e03",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "in de rede vallen.",
+          "vocabRefs": [
+            "v-in-de-rede-vallen"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Está sempre a interromper-me!",
+          "answers": [
+            "U valt me steeds in de rede!",
+            "U valt me steeds in de rede",
+            "Je valt me steeds in de rede!"
+          ]
+        },
+        {
+          "id": "s7-u11-l027-e04",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "uitpraten.",
+          "vocabRefs": [
+            "v-laat-me-uitpraten"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Deixe-me acabar.",
+          "answers": [
+            "Laat me even uitpraten",
+            "Laat me uitpraten"
+          ]
+        },
+        {
+          "id": "s7-u11-l027-e05",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Expressão.",
+          "vocabRefs": [
+            "v-door-elkaar-praten"
+          ],
+          "sentence": "Iedereen praat door ___; ik versta er niets van.",
+          "translation": "Estão todos a falar ao mesmo tempo; não percebo nada.",
+          "answers": [
+            "elkaar"
+          ],
+          "choices": [
+            "elkaar",
+            "mekaar",
+            "zich"
+          ]
+        },
+        {
+          "id": "s7-u11-l027-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "in de rede vallen.",
+          "vocabRefs": [
+            "v-in-de-rede-vallen"
+          ],
+          "tokens": [
+            "Hij",
+            "valt",
+            "haar",
+            "steeds",
+            "op",
+            "de",
+            "rede."
+          ],
+          "errorIndex": 4,
+          "correction": "in"
+        },
+        {
+          "id": "s7-u11-l027-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ouvir.",
+          "vocabRefs": [
+            "v-in-de-rede-vallen"
+          ],
+          "audioText": "Mag ik even? U valt me in de rede.",
+          "answers": [
+            "Mag ik even? U valt me in de rede",
+            "Mag ik even u valt me in de rede",
+            "Mag ik even? U valt me in de rede."
+          ],
+          "translation": "Posso? Está a interromper-me."
+        },
+        {
+          "id": "s7-u11-l027-e08",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Moderador.",
+          "vocabRefs": [
+            "v-aan-het-woord"
+          ],
+          "audioText": "Nu is mevrouw De Vries aan het woord.",
+          "answers": [
+            "Nu is mevrouw De Vries aan het woord"
+          ],
+          "translation": "Agora tem a palavra a senhora De Vries."
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l028",
+      "unitId": "s7-u11",
+      "order": 28,
+      "title": "Ironia e sarcasmo",
+      "description": "Lekker weertje, hè?",
+      "cefr": "B2",
+      "objectives": [
+        "Reconhecer sarcasmo pela entoação e pelo contexto"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-sarcasme",
+          "nl": "sarcasme",
+          "pt": [
+            "sarcasmo"
+          ],
+          "pos": "noun",
+          "article": "het"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-sarcastisch",
+        "v-ironie",
+        "v-ja-hoor",
+        "v-droge-humor"
+      ],
+      "examples": [
+        {
+          "nl": "Het regent al de hele week. — Lekker weertje, hè!",
+          "pt": "Chove a semana toda. — Belo tempinho, hã!"
+        },
+        {
+          "nl": "Dat bedoelde hij sarcastisch.",
+          "pt": "Ele disse isso com sarcasmo."
+        }
+      ],
+      "grammar": [
+        {
+          "id": "g-s7u11b-9",
+          "title": "Reconhecer sarcasmo",
+          "body": "O sarcasmo neerlandês costuma ser seco: elogio exagerado numa situação má, muitas vezes com «lekker», «nou», «ja hoor» ou «hè». O contexto é a pista principal: se o elogio não faz sentido, provavelmente é ironia.",
+          "examples": []
+        }
+      ],
+      "exercises": [
+        {
+          "id": "s7-u11-l028-e01",
+          "type": "match",
+          "instruction": "Associe as palavras.",
+          "explanation": "Humor.",
+          "vocabRefs": [
+            "v-sarcasme",
+            "v-sarcastisch",
+            "v-ironie",
+            "v-droge-humor"
+          ],
+          "pairs": [
+            {
+              "nl": "sarcasme",
+              "pt": "sarcasmo"
+            },
+            {
+              "nl": "sarcastisch",
+              "pt": "sarcástico"
+            },
+            {
+              "nl": "ironie",
+              "pt": "ironia"
+            },
+            {
+              "nl": "droge humor",
+              "pt": "humor seco"
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l028-e02",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Contexto.",
+          "vocabRefs": [
+            "v-sarcasme"
+          ],
+          "prompt": "O comboio vai com uma hora de atraso. Um passageiro diz «Nou, lekker op tijd weer!». Ele está…",
+          "options": [
+            {
+              "id": "a",
+              "text": "a ser sarcástico",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "contente",
+              "correct": false,
+              "feedback": "O contexto diz o contrário."
+            },
+            {
+              "id": "c",
+              "text": "a elogiar a NS",
+              "correct": false,
+              "feedback": "Não."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l028-e03",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Contexto.",
+          "vocabRefs": [
+            "v-sarcastisch"
+          ],
+          "prompt": "Qual destas frases é provavelmente sarcástica?",
+          "options": [
+            {
+              "id": "a",
+              "text": "(Com o pneu furado na chuva) Wat een heerlijke dag!",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "(Ao sol na praia) Wat een heerlijke dag!",
+              "correct": false,
+              "feedback": "Sincero."
+            },
+            {
+              "id": "c",
+              "text": "(Num aniversário) Gefeliciteerd!",
+              "correct": false,
+              "feedback": "Sincero."
+            }
+          ]
+        },
+        {
+          "id": "s7-u11-l028-e04",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het sarcasme.",
+          "vocabRefs": [
+            "v-sarcasme"
+          ],
+          "noun": "sarcasme",
+          "pt": "sarcasmo",
+          "article": "het"
+        },
+        {
+          "id": "s7-u11-l028-e05",
+          "type": "translate",
+          "instruction": "Escreva em neerlandês.",
+          "explanation": "sarcastisch.",
+          "vocabRefs": [
+            "v-sarcastisch"
+          ],
+          "direction": "pt-nl",
+          "prompt": "Ele disse isso com sarcasmo.",
+          "answers": [
+            "Dat bedoelde hij sarcastisch",
+            "Hij zei dat sarcastisch"
+          ]
+        },
+        {
+          "id": "s7-u11-l028-e06",
+          "type": "findError",
+          "instruction": "Toque na palavra errada.",
+          "explanation": "het sarcasme.",
+          "vocabRefs": [
+            "v-sarcasme"
+          ],
+          "tokens": [
+            "De",
+            "sarcasme",
+            "was",
+            "duidelijk."
+          ],
+          "errorIndex": 0,
+          "correction": "Het"
+        },
+        {
+          "id": "s7-u11-l028-e07",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ironia.",
+          "vocabRefs": [
+            "v-ja-hoor"
+          ],
+          "audioText": "Ja hoor, alweer een vergadering. Gezellig!",
+          "answers": [
+            "Ja hoor, alweer een vergadering. Gezellig",
+            "Ja hoor alweer een vergadering gezellig",
+            "Ja hoor, alweer een vergadering. Gezellig!"
+          ],
+          "translation": "Pois claro, mais uma reunião. Que giro!"
+        },
+        {
+          "id": "s7-u11-l028-e08",
+          "type": "fillBlank",
+          "instruction": "Escolha a palavra que falta.",
+          "explanation": "Adjetivo/advérbio.",
+          "vocabRefs": [
+            "v-sarcastisch"
+          ],
+          "sentence": "Het was ___ bedoeld; hij vond het eigenlijk vreselijk.",
+          "translation": "Era sarcasmo; na verdade ele achou horrível.",
+          "answers": [
+            "sarcastisch"
+          ],
+          "choices": [
+            "sarcastisch",
+            "sarcasme",
+            "eerlijk"
+          ]
+        }
+      ],
+      "difficulty": 4,
+      "estimatedMinutes": 5,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
+    },
+    {
+      "id": "s7-u11-l029",
+      "unitId": "s7-u11",
+      "order": 29,
+      "title": "Prática: ouvir e anotar",
+      "description": "Een dictee.",
+      "cefr": "B2",
+      "objectives": [
+        "Ouvir frases rápidas e escrevê-las por completo"
+      ],
+      "newVocabulary": [
+        {
+          "id": "v-dictee",
+          "nl": "dictee",
+          "pt": [
+            "ditado"
+          ],
+          "pos": "noun",
+          "article": "het",
+          "plural": "dictees"
+        }
+      ],
+      "reviewVocabulary": [
+        "v-m-hem",
+        "v-m-n",
+        "v-ns-eens",
+        "v-kweenie",
+        "v-spoor",
+        "v-windkracht",
+        "v-je-valt-weg",
+        "v-klopt-dat"
+      ],
+      "examples": [
+        {
+          "nl": "Een dictee helpt je om beter te luisteren.",
+          "pt": "Um ditado ajuda-te a ouvir melhor."
+        }
+      ],
+      "grammar": [],
+      "exercises": [
+        {
+          "id": "s7-u11-l029-e01",
+          "type": "articleChoice",
+          "instruction": "Escolha o artigo certo.",
+          "explanation": "het dictee.",
+          "vocabRefs": [
+            "v-dictee"
+          ],
+          "noun": "dictee",
+          "pt": "ditado",
+          "article": "het"
+        },
+        {
+          "id": "s7-u11-l029-e02",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ditado.",
+          "vocabRefs": [
+            "v-m-hem",
+            "v-z-n"
+          ],
+          "audioText": "Heb je 'm al gezien? Hij is z'n fiets kwijt.",
+          "answers": [
+            "Heb je 'm al gezien? Hij is z'n fiets kwijt",
+            "Heb je hem al gezien? Hij is zijn fiets kwijt",
+            "Heb je 'm al gezien hij is z'n fiets kwijt"
+          ],
+          "translation": "Já o viste? Ele perdeu a bicicleta."
+        },
+        {
+          "id": "s7-u11-l029-e03",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ditado.",
+          "vocabRefs": [
+            "v-ns-eens",
+            "v-da-s",
+            "v-m-n"
+          ],
+          "audioText": "Kijk 'ns, da's m'n nieuwe jas.",
+          "answers": [
+            "Kijk 'ns, da's m'n nieuwe jas",
+            "Kijk eens, dat is mijn nieuwe jas",
+            "Kijk 'ns da's m'n nieuwe jas"
+          ],
+          "translation": "Olha, este é o meu casaco novo."
+        },
+        {
+          "id": "s7-u11-l029-e04",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ditado.",
+          "vocabRefs": [
+            "v-spoor"
+          ],
+          "audioText": "De sprinter naar Leiden vertrekt van spoor 4a.",
+          "answers": [
+            "De sprinter naar Leiden vertrekt van spoor 4a",
+            "De sprinter naar Leiden vertrekt van spoor vier a"
+          ],
+          "translation": "O comboio regional para Leiden parte da linha 4a."
+        },
+        {
+          "id": "s7-u11-l029-e05",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ditado.",
+          "vocabRefs": [
+            "v-windkracht"
+          ],
+          "audioText": "Morgen windkracht 5, in de middag opklaringen.",
+          "answers": [
+            "Morgen windkracht 5, in de middag opklaringen",
+            "Morgen windkracht vijf, in de middag opklaringen",
+            "Morgen windkracht 5 in de middag opklaringen"
+          ],
+          "translation": "Amanhã vento força 5, à tarde abertas."
+        },
+        {
+          "id": "s7-u11-l029-e06",
+          "type": "listening",
+          "instruction": "Ouça e escreva o que ouviu.",
+          "explanation": "Ditado.",
+          "vocabRefs": [
+            "v-klopt-dat"
+          ],
+          "audioText": "Dus we zien elkaar dinsdag om drie uur, klopt dat?",
+          "answers": [
+            "Dus we zien elkaar dinsdag om drie uur, klopt dat",
+            "Dus we zien elkaar dinsdag om drie uur klopt dat",
+            "Dus we zien elkaar dinsdag om drie uur, klopt dat?"
+          ],
+          "translation": "Então vemo-nos terça às três, é isso?"
+        },
+        {
+          "id": "s7-u11-l029-e07",
+          "type": "multipleChoice",
+          "instruction": "Escolha a resposta certa.",
+          "explanation": "Registo.",
+          "vocabRefs": [
+            "v-ns-eens",
+            "v-da-s",
+            "v-m-n"
+          ],
+          "prompt": "Na escrita formal, «Kijk 'ns, da's m'n jas» fica…",
+          "options": [
+            {
+              "id": "a",
+              "text": "Kijk eens, dat is mijn jas.",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "Kijk ens, das mijn jas.",
+              "correct": false,
+              "feedback": "Erros."
+            },
+            {
+              "id": "c",
+              "text": "Kijk 'ns, dat is m'n jas.",
+              "correct": false,
+              "feedback": "Ainda informal."
+            }
+          ]
+        }
+      ],
+      "difficulty": 5,
+      "estimatedMinutes": 7,
+      "status": "published",
+      "version": 1,
+      "provenance": {
+        "source": "ai",
+        "generator": "claude (redação assistida na sessão de desenvolvimento)",
+        "createdAt": "2026-10-29"
+      }
     }
   ]
 }
