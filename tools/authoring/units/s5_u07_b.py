@@ -27,10 +27,10 @@ L(10, "Serviços públicos online", "Inloggen met DigiD op MijnOverheid.",
 
 L(11, "Banco online", "Geld overmaken en een betaalverzoek sturen.",
   ["Fazer operações bancárias online e pedir dinheiro a amigos"],
-  vocab=[V("v-betaalverzoek","betaalverzoek","pedido de pagamento","noun","het"), V("v-rekeningnummer","rekeningnummer","número de conta","noun","het"),
+  vocab=[V("v-rekeningnummer","rekeningnummer","número de conta","noun","het"),
          V("v-bankieren","bankieren","fazer operações bancárias","verb")],
   ex=[("Ik stuur je een betaalverzoek voor het etentje.","Mando-te um pedido de pagamento pelo jantar."),("Wat is je rekeningnummer?","Qual é o teu número de conta?"),("Mijn saldo is bijna nul.","O meu saldo está quase a zero."),("Ik bankier altijd via de app.","Faço sempre as operações bancárias pela app.")],
-  review=["v-saldo","v-overmaken","v-iban","v-tikkie"],
+  review=["v-betaalverzoek","v-saldo","v-overmaken","v-iban","v-tikkie"],
   cefr=C, exs=[
     MA([("betaalverzoek","pedido de pagamento"),("rekeningnummer","número de conta"),("saldo","saldo"),("bankieren","fazer operações bancárias")], "Banco.", ["v-betaalverzoek","v-rekeningnummer","v-saldo","v-bankieren"]),
     AR("saldo","o saldo","het", "Het saldo.", ["v-saldo"]),

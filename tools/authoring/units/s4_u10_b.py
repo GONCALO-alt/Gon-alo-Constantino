@@ -47,9 +47,9 @@ L(11, "A caldeira avariou", "De cv-ketel doet het niet: geen warm water!",
 
 L(12, "A encomenda não chegou", "Mijn bestelling is niet aangekomen.",
   ["Resolver problemas com compras online"],
-  vocab=[V("v-bestelling","bestelling","encomenda","noun","de"), V("v-track-en-trace","track-and-trace-code","código de seguimento","noun","de")],
+  vocab=[V("v-bestelling","bestelling","encomenda","noun","de")],
   ex=[("Mijn bestelling is nog niet aangekomen.","A minha encomenda ainda não chegou."),("Volgens de track-and-trace-code is het pakket bezorgd.","Segundo o código de seguimento, a encomenda foi entregue."),("Het product was beschadigd.","O produto vinha danificado."),("Ik heb de klantenservice gemaild.","Mandei um e-mail ao apoio ao cliente.")],
-  review=["v-klantenservice","v-beschadigd","v-pakket","v-retourneren","v-geld-terug","v-bezorgen"],
+  review=["v-track-en-trace","v-klantenservice","v-beschadigd","v-pakket","v-retourneren","v-geld-terug","v-bezorgen"],
   cefr=C, exs=[
     MA([("bestelling","encomenda"),("track-and-trace-code","código de seguimento"),("beschadigd","danificado"),("klantenservice","apoio ao cliente")], "Compras online.", ["v-bestelling","v-track-en-trace","v-beschadigd","v-klantenservice"]),
     TR("pt-nl","A minha encomenda ainda não chegou.", ["Mijn bestelling is nog niet aangekomen","Mijn bestelling is nog niet binnen"], "aankomen (zijn).", ["v-bestelling"]),

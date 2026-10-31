@@ -86,9 +86,9 @@ L(13, "Mensagens de voz", "Ik stuur je even een spraakbericht.",
 
 L(14, "Códigos e mensagens de serviços", "Uw verificatiecode is 4821.",
   ["Compreender SMS e e-mails automáticos de serviços"],
-  vocab=[V("v-verificatiecode","verificatiecode","código de verificação","noun","de"), V("v-phishing","phishing","phishing (fraude online)","noun","de")],
+  vocab=[V("v-verificatiecode","verificatiecode","código de verificação","noun","de")],
   ex=[("Uw verificatiecode is 4821.","O seu código de verificação é 4821."),("De code is tien minuten geldig.","O código é válido por dez minutos."),("Deel deze code nooit met anderen.","Nunca partilhe este código com outras pessoas."),("Dit bericht is phishing.","Esta mensagem é phishing.")],
-  review=["v-nooit-delen","v-geldig","v-herinnering-sms"],
+  review=["v-phishing","v-nooit-delen","v-geldig","v-herinnering-sms"],
   cefr=C, exs=[
     MA([("verificatiecode","código de verificação"),("geldig","válido"),("deel deze code nooit","nunca partilhe o código"),("phishing","fraude online")], "Mensagens de serviços.", ["v-verificatiecode","v-geldig","v-nooit-delen","v-phishing"]),
     CO("text","Twee sms'jes", "Sms 1: «Uw verificatiecode voor MijnBank is 739104. Deze code is 5 minuten geldig. Deel deze code nooit, ook niet met medewerkers van de bank.»\nSms 2: «Uw pakket kon niet worden bezorgd. Betaal €1,99 verzendkosten via deze link: bit.ly/…»",
