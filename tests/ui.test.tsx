@@ -98,6 +98,10 @@ async function answerCorrectly(user: ReturnType<typeof userEvent.setup>, ex: Exe
     case 'wordOrder':
       for (const t of ex.tokens) await user.click(screen.getByRole('button', { name: `Acrescentar ${t}` }));
       break;
+    case 'speaking':
+      await user.click(screen.getByRole('button', { name: 'Falar' }));
+      await screen.findByText(/^Ouvi:/);
+      break;
     case 'articleChoice':
       await user.click(screen.getByRole('radio', { name: new RegExp(`^\\d?${ex.article}$`) }));
       break;
@@ -321,6 +325,52 @@ describe('feedback e palavras clicáveis', () => {
     await user.click(screen.getByRole('button', { name: 'Fechar tradução' }));
     expect(document.querySelector('.gloss-card')).toBeNull();
   }, 30_000);
+});
+
+describe('leitura em voz alta (microfone simulado)', () => {
+  /** Reconhecedor falso: «ouve» exatamente a frase que está no ecrã. */
+  class FakeRecognition {
+    lang = ''; maxAlternatives = 1; interimResults = false; continuous = false;
+    onresult: ((e: unknown) => void) | null = null; onerror: ((e: unknown) => void) | null = null; onend: (() => void) | null = null;
+    start() {
+      setTimeout(() => {
+        const t = document.querySelector('.speak-target [lang="nl"]')?.textContent ?? '';
+        this.onresult?.({ results: [[{ transcript: t }]] });
+        this.onend?.();
+      }, 0);
+    }
+    stop() {}
+    abort() {}
+  }
+  beforeEach(() => { (window as unknown as { webkitSpeechRecognition?: unknown }).webkitSpeechRecognition = FakeRecognition; });
+  afterEach(() => { delete (window as unknown as { webkitSpeechRecognition?: unknown }).webkitSpeechRecognition; });
+
+  it('a lição inclui exercícios de voz; ler bem a frase dá «Certo»', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    let spoke = 0;
+    const queue = [...lesson.exercises];
+    for (let i = 0; i < lesson.exercises.length + 2; i++) {
+      const heading = await screen.findByRole('heading', { level: 1 });
+      if (heading.textContent === 'Leia em voz alta.') {
+        await user.click(screen.getByRole('button', { name: 'Falar' }));
+        expect(await screen.findByText(/^Ouvi:/)).toBeTruthy();
+        await user.click(screen.getByRole('button', { name: 'Verificar' }));
+        expect((await screen.findByRole('status')).textContent).toMatch(/Certo|Muito bem|Exatamente|Correto/);
+        spoke++;
+      } else {
+        const ex = queue.shift()!;
+        if ((await answerCorrectly(user, ex)) === 'skipped') continue;
+        await screen.findByRole('status');
+      }
+      await user.click(screen.getByRole('button', { name: 'Continuar' }));
+    }
+    expect(spoke).toBe(2);
+    expect(await screen.findByText('Lição concluída!')).toBeTruthy();
+  }, 60_000);
 });
 
 describe('sair de uma lição', () => {

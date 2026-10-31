@@ -10,8 +10,10 @@ import { joinTokens } from '../../engine/answers.ts';
 import { seededRandom, shuffle } from '../../engine/session.ts';
 import { canSpeak, hasDutchVoice, speak } from '../../services/speech.ts';
 import { playSound } from '../../services/sounds.ts';
-import { RichText, SpeakButton } from '../components/common.tsx';
+import { Icon, RichText, SpeakButton } from '../components/common.tsx';
 import { GlossText } from '../components/Gloss.tsx';
+import { gradeSpeech, type SpeechWord } from '../../engine/speech.ts';
+import { canRecognizeSpeech, listenOnce, RecognitionError, RECOGNITION_ERROR_TEXT, type RecognitionHandle } from '../../services/speechRecognition.ts';
 
 export interface ExerciseProps<E extends Exercise = Exercise> {
   exercise: E;
@@ -71,6 +73,8 @@ export function ExerciseView(props: ExerciseProps) {
       return <FindErrorExercise {...props} exercise={ex} />;
     case 'comprehension':
       return <ComprehensionExercise {...props} exercise={ex} />;
+    case 'speaking':
+      return <SpeakingExercise {...props} exercise={ex} />;
     case 'listening':
       return <ListeningExercise {...props} exercise={ex} />;
     case 'shortWriting':
@@ -386,6 +390,72 @@ function ListeningExercise(props: ExerciseProps<ExerciseOf<'listening'>>) {
       {!played && <p className="muted small">Toque no altifalante para ouvir.</p>}
       <TextAnswer {...props} lang="nl" label="O que ouviu, em neerlandês" placeholder="Escreva em neerlandês…" />
       <button type="button" className="link-btn" onClick={props.onSkip}>Não posso ouvir agora</button>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Ler em voz alta (pronúncia)
+// ---------------------------------------------------------------------------
+function SpeakingExercise(props: ExerciseProps<ExerciseOf<'speaking'>>) {
+  const ex = props.exercise;
+  const [state, setState] = useState<'idle' | 'listening' | 'done'>('idle');
+  const [words, setWords] = useState<SpeechWord[] | null>(null);
+  const [heard, setHeard] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const handle = useRef<RecognitionHandle | null>(null);
+  useEffect(() => () => handle.current?.stop(), []);
+
+  if (!canRecognizeSpeech()) {
+    return (
+      <div className="exercise">
+        <p className="prompt-nl"><GlossText text={ex.text} /></p>
+        <p className="notice">{RECOGNITION_ERROR_TEXT.unsupported}</p>
+        <button type="button" className="btn btn-secondary" onClick={props.onSkip}>Saltar este exercício (sem penalização)</button>
+      </div>
+    );
+  }
+
+  const start = () => {
+    if (props.locked) return;
+    if (state === 'listening') { handle.current?.stop(); return; }
+    setError(null);
+    setState('listening');
+    const h = listenOnce('nl-NL');
+    handle.current = h;
+    h.result.then(
+      (alts) => {
+        const g = gradeSpeech(ex.text, alts);
+        setWords(g.words);
+        setHeard(g.best);
+        setState('done');
+        props.onResponse({ kind: 'speech', alternatives: alts });
+      },
+      (e: unknown) => {
+        setState('idle');
+        setError(RECOGNITION_ERROR_TEXT[e instanceof RecognitionError ? e.kind : 'other']);
+      },
+    );
+  };
+
+  return (
+    <div className="exercise speaking">
+      <p className="prompt-nl speak-target">
+        {props.audioEnabled && <SpeakButton text={ex.text} rate={props.speechRate} label="Ouvir o modelo" />}{' '}
+        {words ? (
+          <span lang="nl">{words.map((w, i) => <span key={i} className={w.heard ? 'heard' : 'missed'}>{w.word}{i < words.length - 1 ? ' ' : ''}</span>)}</span>
+        ) : <GlossText text={ex.text} />}
+      </p>
+      <p className="muted">{ex.translation}</p>
+      <button type="button" className={`mic-btn ${state === 'listening' ? 'on' : ''}`} disabled={props.locked}
+        aria-label={state === 'listening' ? 'Parar de gravar' : 'Falar'} onClick={start}>
+        <Icon name="mic" size={34} />
+      </button>
+      <p className="muted small" aria-live="polite">
+        {state === 'listening' ? 'A ouvir… leia a frase em voz alta.' : state === 'done' ? `Ouvi: «${heard}». Pode tentar outra vez ou carregar em «Verificar».` : 'Toque no microfone e leia a frase em voz alta.'}
+      </p>
+      {error && <p className="notice" role="alert">{error}</p>}
+      <button type="button" className="link-btn" onClick={props.onSkip}>Não posso falar agora</button>
     </div>
   );
 }

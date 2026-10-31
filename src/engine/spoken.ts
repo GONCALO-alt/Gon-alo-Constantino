@@ -58,6 +58,8 @@ export function dutchAnswerText(ex: Exercise): string | null {
       return correctOption(ex.options);
     case 'expression':
       return ex.expression;
+    case 'speaking':
+      return ex.text;
     case 'multipleChoice':
       return DUTCH_OPTION_PROMPTS.test(ex.prompt) ? correctOption(ex.options) : null;
     default:
@@ -83,6 +85,8 @@ export function answerMeaning(ex: Exercise): string | null {
       return ex.prompt;
     case 'articleChoice':
       return ex.pt;
+    case 'speaking':
+      return ex.translation;
     default:
       return null;
   }

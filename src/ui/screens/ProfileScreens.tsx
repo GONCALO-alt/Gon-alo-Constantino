@@ -8,6 +8,7 @@ import { currentStreak, lastNDays, localDate, longestStreak, orderedUnits } from
 import { isMastered } from '../../engine/srs.ts';
 import { hasDutchVoice, loadVoices, speak } from '../../services/speech.ts';
 import { configureSounds, playSound } from '../../services/sounds.ts';
+import { canRecognizeSpeech } from '../../services/speechRecognition.ts';
 import { APP_CONFIG } from '../../config/app.ts';
 import { useAppData } from '../AppState.tsx';
 import { Card, formatMinutes, Icon } from '../components/common.tsx';
@@ -240,6 +241,10 @@ export function SettingsScreen() {
       <Card>
         <h2>Áudio</h2>
         <Toggle label="Pronúncia e exercícios de áudio" checked={s.audioEnabled} onChange={(v) => app.updateSettings({ audioEnabled: v })} />
+        <Toggle label="Exercícios de pronúncia (microfone)" hint={canRecognizeSpeech()
+          ? 'Em cada lição, lê uma palavra e uma frase em voz alta e a app diz se percebeu. Usa o reconhecimento de voz do navegador (no Chrome, o áudio é processado pela Google).'
+          : 'Este navegador não tem reconhecimento de voz; experimente o Chrome ou o Safari.'}
+          checked={s.speakingExercises} onChange={(v) => app.updateSettings({ speakingExercises: v })} />
         <Toggle label="Ler a resposta certa em voz alta" hint="Depois de cada exercício, ouve a frase certa em neerlandês." checked={s.speakAnswers} disabled={!s.audioEnabled} onChange={(v) => app.updateSettings({ speakAnswers: v })} />
         <Toggle label="Efeitos sonoros" hint="Sons para resposta certa, errada, respostas seguidas e fim de lição. No telemóvel, também uma vibração curta." checked={s.soundEffects} onChange={(v) => { app.updateSettings({ soundEffects: v }); if (v) { configureSounds({ enabled: true, volume: s.soundVolume }); playSound('correct'); } }} />
         {s.soundEffects && (

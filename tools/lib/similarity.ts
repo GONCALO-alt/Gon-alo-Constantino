@@ -22,6 +22,7 @@ export function exerciseKey(ex: Exercise): string {
     case 'listening': return `listen:${ex.audioText}`;
     case 'expression': return `${ex.expression} ${ex.prompt}`;
     case 'shortWriting': return ex.prompt;
+    case 'speaking': return `speak:${ex.text}`;
   }
 }
 

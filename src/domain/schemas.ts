@@ -237,6 +237,13 @@ export const ExerciseSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     ...base,
+    /** Ler em voz alta: o reconhecimento de voz do navegador verifica se a frase foi percebida. */
+    type: z.literal('speaking'),
+    text: nonEmpty,
+    translation: nonEmpty,
+  }),
+  z.object({
+    ...base,
     type: z.literal('shortWriting'),
     prompt: nonEmpty,
     /** Respostas-modelo. Se o aluno escrever outra coisa, autoavalia com a ajuda das dicas. */
@@ -251,7 +258,7 @@ export type ExerciseOf<T extends ExerciseType> = Extract<Exercise, { type: T }>;
 
 export const EXERCISE_TYPES = [
   'translate', 'multipleChoice', 'fillBlank', 'buildSentence', 'match', 'wordOrder', 'findError',
-  'articleChoice', 'conjugation', 'dialogue', 'comprehension', 'listening', 'expression', 'shortWriting',
+  'articleChoice', 'conjugation', 'dialogue', 'comprehension', 'listening', 'expression', 'shortWriting', 'speaking',
 ] as const satisfies readonly ExerciseType[];
 
 // ---------------------------------------------------------------------------

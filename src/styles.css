@@ -323,3 +323,15 @@ input[type='range'] { width: 100%; accent-color: var(--brand); }
   background: var(--accent-soft); font-size: 0.95rem; font-weight: 400; line-height: 1.4; overflow-wrap: anywhere; animation: rise 0.15s ease; }
 .gloss-close { position: absolute; top: 4px; right: 6px; border: 0; background: none; font-size: 1.2rem; line-height: 1; cursor: pointer; color: inherit; padding: 4px; }
 .meaning { margin: 0 0 6px; }
+
+/* Ler em voz alta */
+.speaking { text-align: center; }
+.speak-target { font-size: 1.4rem; }
+.speak-target .heard { color: var(--ok); }
+.speak-target .missed { color: var(--err); text-decoration: underline wavy; text-underline-offset: 4px; }
+.mic-btn { display: inline-flex; align-items: center; justify-content: center; width: 84px; height: 84px; margin: 12px auto 4px;
+  border-radius: 50%; border: 0; cursor: pointer; background: var(--brand); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
+.mic-btn.on { background: var(--err); animation: pulse 1.2s ease-in-out infinite; }
+.mic-btn:disabled { opacity: .5; cursor: default; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+[data-motion="reduce"] .mic-btn.on { animation: none; }

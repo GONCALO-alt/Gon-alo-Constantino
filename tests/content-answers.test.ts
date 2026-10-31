@@ -19,6 +19,7 @@ function referenceResponse(ex: Exercise): ExerciseResponse {
     case 'comprehension': return { kind: 'options', ids: ex.questions.map((q) => q.options.find((o) => o.correct)!.id) };
     case 'wordOrder': return { kind: 'text', value: joinTokens(ex.tokens) };
     case 'shortWriting': return { kind: 'text', value: first(ex.referenceAnswers) };
+    case 'speaking': return { kind: 'speech', alternatives: [ex.text] };
     case 'fillBlank': return { kind: 'text', value: ex.choices ? ex.choices.find((c) => expandAnswerPattern(ex.answers[0]!).includes(c)) ?? first(ex.answers) : first(ex.answers) };
     default: return { kind: 'text', value: first(ex.answers) };
   }

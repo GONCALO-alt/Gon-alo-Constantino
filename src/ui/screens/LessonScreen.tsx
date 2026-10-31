@@ -4,6 +4,8 @@ import { contentRepo } from '../../data/contentRepo.ts';
 import { recordLessonCompletion, type CompletionOutcome } from '../../data/progressRepo.ts';
 import { computeLessonStates, encouragement, lessonXp, nextLesson, orderedUnits } from '../../engine/progression.ts';
 import { celebrate } from '../../services/sounds.ts';
+import { canRecognizeSpeech } from '../../services/speechRecognition.ts';
+import { speakingExercisesFor, withSpeaking } from '../../engine/speech.ts';
 import { useAppData } from '../AppState.tsx';
 import { Icon, RichText, SpeakButton } from '../components/common.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
@@ -35,6 +37,13 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     return computeLessonStates(unit, app.unitStates.get(unit.id) ?? 'locked', app.completed, app.settings.freeNavigation).get(lessonId) ?? 'locked';
   }, [unit, app.unitStates, app.completed, app.settings.freeNavigation, lessonId]);
 
+  /** Exercícios da lição + leitura em voz alta (se o navegador tiver reconhecimento de voz). */
+  const runExercises = useMemo(() => {
+    if (!lesson) return [];
+    if (!app.settings.speakingExercises || !canRecognizeSpeech()) return lesson.exercises;
+    return withSpeaking(lesson.exercises, speakingExercisesFor(lesson));
+  }, [lesson, app.settings.speakingExercises]);
+
   if (error) {
     return (
       <div className="page">
@@ -57,7 +66,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
 
   if (phase === 'running') {
     return (
-      <ExerciseRunner key={runKey} title={lesson.title} exercises={lesson.exercises}
+      <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises}
         speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
         onExit={() => navigate(href.course(unit.sectionId))}
         onFinish={async (answers: RunnerAnswer[]) => {
@@ -177,7 +186,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
       </section>
       <div className="sticky-cta">
         <button type="button" className="btn btn-primary btn-wide" onClick={() => { setStartedAt(Date.now()); setPhase('running'); }}>
-          {app.completed.has(lesson.id) ? 'Rever lição' : 'Começar'} · {lesson.exercises.length} exercícios
+          {app.completed.has(lesson.id) ? 'Rever lição' : 'Começar'} · {runExercises.length} exercícios
         </button>
       </div>
     </div>

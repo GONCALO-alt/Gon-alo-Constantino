@@ -4,6 +4,7 @@
  */
 import type { Exercise } from '../domain/schemas.ts';
 import { gradeText, joinTokens, normalize, wordCount, type GradeOptions, type Verdict } from './answers.ts';
+import { gradeSpeech } from './speech.ts';
 
 export type ExerciseResponse =
   | { kind: 'text'; value: string }
@@ -11,6 +12,8 @@ export type ExerciseResponse =
   | { kind: 'options'; ids: string[] }
   | { kind: 'index'; index: number }
   | { kind: 'match'; mistakes: number }
+  /** Leitura em voz alta: transcrições devolvidas pelo reconhecimento de voz. */
+  | { kind: 'speech'; alternatives: string[] }
   /** Escrita livre: o aluno autoavalia quando a resposta difere dos modelos. */
   | { kind: 'self'; text: string; ok: boolean };
 
@@ -111,6 +114,19 @@ export function gradeExercise(ex: Exercise, r: ExerciseResponse, opts: GradeOpti
         expected: ex.questions.map((q) => correctOptionText(q.options)).join(' · '),
         note: wrong.length ? `${ex.questions.length - wrong.length} de ${ex.questions.length} respostas certas.` : undefined,
         given: ids.join(','),
+      };
+    }
+    case 'speaking': {
+      const alts = r.kind === 'speech' ? r.alternatives : r.kind === 'text' ? [r.value] : [];
+      const g = gradeSpeech(ex.text, alts);
+      const missed = g.words.filter((w) => !w.heard).map((w) => w.word.replace(/[^\p{L}'-]+/gu, ''));
+      return {
+        verdict: g.verdict,
+        expected: ex.text,
+        note: g.best
+          ? `Ouvi: «${g.best}».${missed.length && g.verdict !== 'correct' ? ` Palavras a treinar: ${missed.join(', ')}.` : ''}`
+          : 'Não ouvi nada. Fale perto do microfone.',
+        given: g.best,
       };
     }
     case 'shortWriting': {
