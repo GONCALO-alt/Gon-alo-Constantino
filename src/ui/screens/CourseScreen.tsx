@@ -34,7 +34,6 @@ export function CourseScreen({ sectionId }: { sectionId?: string }) {
                     <span className="section-title">{s.title} <span className="badge">{s.cefr}</span></span>
                     <span className="muted small">{s.goal}</span>
                     <ProgressBar value={published ? done / published : 0} label={`Progresso: ${s.title}`} />
-                    <span className="muted small">{done}/{published} lições disponíveis concluídas · {s.units.length} unidades · {s.plannedLessons} lições previstas</span>
                   </span>
                 </a>
               </li>
