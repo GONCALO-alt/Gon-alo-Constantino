@@ -7,18 +7,19 @@ import { celebrate } from '../../services/sounds.ts';
 import { canRecognizeSpeech } from '../../services/speechRecognition.ts';
 import { speakingExercisesFor, withSpeaking } from '../../engine/speech.ts';
 import { useAppData } from '../AppState.tsx';
-import { Icon, RichText, SpeakButton } from '../components/common.tsx';
+import { Icon } from '../components/common.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
 import { href, navigate } from '../router.ts';
 
-type Phase = 'intro' | 'running' | 'saving' | 'done';
+/** Ao abrir a lição entra-se logo nos exercícios (sem ecrã de apresentação). */
+type Phase = 'running' | 'saving' | 'done';
 
 export function LessonScreen({ lessonId }: { lessonId: string }) {
   const app = useAppData();
   const [lesson, setLesson] = useState<PublishedLesson | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [phase, setPhase] = useState<Phase>('intro');
-  const [startedAt, setStartedAt] = useState(0);
+  const [phase, setPhase] = useState<Phase>('running');
+  const [startedAt, setStartedAt] = useState(() => Date.now());
   const [outcome, setOutcome] = useState<{ correct: number; total: number; xp: number; seconds: number; result: CompletionOutcome } | null>(null);
   const [runKey, setRunKey] = useState(0);
 
@@ -26,7 +27,8 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     let alive = true;
     setLesson(null);
     setError(null);
-    setPhase('intro');
+    setPhase('running');
+    setStartedAt(Date.now());
     contentRepo.loadLesson(lessonId).then((l) => alive && setLesson(l), (e: Error) => alive && setError(e.message));
     return () => { alive = false; };
   }, [lessonId]);
@@ -72,7 +74,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     return (
       <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises}
         speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
-        onExit={() => navigate(href.course(unit.sectionId))}
+        onExit={() => navigate(href.home())}
         onFinish={async (answers: RunnerAnswer[]) => {
           setPhase('saving');
           const endedAt = Date.now();
@@ -141,58 +143,5 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     );
   }
 
-  // Introdução
-  return (
-    <div className="page lesson-intro">
-      <a className="back-link" href={href.course(unit.sectionId)}><Icon name="back" size={18} /> {unit.title}</a>
-      <p className="eyebrow">Lição {unit.lessonIds.indexOf(lesson.id) + 1 || lesson.order} · {lesson.cefr} · ~{lesson.estimatedMinutes} min</p>
-      <h1>{lesson.title}</h1>
-      <p className="lead">{lesson.description}</p>
-      <section className="card">
-        <h2>Objetivos</h2>
-        <ul>{lesson.objectives.map((o, i) => <li key={i}>{o}</li>)}</ul>
-      </section>
-      {lesson.newVocabulary.length > 0 && (
-        <section className="card">
-          <h2>Palavras novas</h2>
-          <ul className="word-list">
-            {lesson.newVocabulary.map((v) => (
-              <li key={v.id}>
-                {app.settings.audioEnabled && <SpeakButton text={v.article ? `${v.article} ${v.nl}` : v.nl} rate={app.settings.speechRate} audio={v.audio} />}
-                <span lang="nl"><strong>{v.article ? `${v.article} ` : ''}{v.nl}</strong></span> — {v.pt.join(', ')}
-                {v.note && <span className="muted small block">{v.note}</span>}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-      {lesson.grammar.map((g) => (
-        <section key={g.id} className="card grammar">
-          <h2>{g.title}</h2>
-          <p><RichText text={g.body} /></p>
-          {g.examples.length > 0 && (
-            <ul className="examples">{g.examples.map((e, i) => <li key={i}><span lang="nl">{e.nl}</span> <span className="muted">— {e.pt}</span></li>)}</ul>
-          )}
-          {g.contrastWithPt && <p className="contrast"><strong>Comparação com o português:</strong> {g.contrastWithPt}</p>}
-        </section>
-      ))}
-      <section className="card">
-        <h2>Exemplos</h2>
-        <ul className="examples">
-          {lesson.examples.map((e, i) => (
-            <li key={i}>
-              {app.settings.audioEnabled && <SpeakButton text={e.nl} rate={app.settings.speechRate} />}
-              <span lang="nl">{e.nl}</span> <span className="muted">— {e.pt}</span>
-              {e.note && <span className="muted small block">{e.note}</span>}
-            </li>
-          ))}
-        </ul>
-      </section>
-      <div className="sticky-cta">
-        <button type="button" className="btn btn-primary btn-wide" onClick={() => { setStartedAt(Date.now()); setPhase('running'); }}>
-          {app.completed.has(lesson.id) ? 'Rever lição' : 'Começar'} · {runExercises.length} exercícios
-        </button>
-      </div>
-    </div>
-  );
+  return null;
 }

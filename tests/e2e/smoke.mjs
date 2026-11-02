@@ -61,9 +61,7 @@ try {
     await page.screenshot({ path: join(shots, `${vp.name}-mapa.png`), fullPage: true });
 
     await page.goto(`${base}#/licao/s1-u01-l001`);
-    await page.getByRole('button', { name: /Começar/ }).waitFor();
-    await page.screenshot({ path: join(shots, `${vp.name}-licao-intro.png`), fullPage: true });
-    await page.getByRole('button', { name: /Começar/ }).click();
+    // Sem ecrã de apresentação: o primeiro exercício aparece logo.
     await page.getByRole('radio', { name: /hoi/ }).click();
     await page.getByRole('button', { name: 'Verificar' }).click();
     await page.getByRole('status').waitFor();
@@ -106,8 +104,8 @@ try {
     await ctx.setOffline(true);
     await page.goto(base + '#/licao/s1-u01-l001');
     await page.reload();
-    await page.waitForSelector('text=Olá e adeus', { timeout: 10000 }).catch(() => {});
-    check(((await page.textContent('body')) ?? '').includes('Olá e adeus'), 'sem internet: a app e uma lição abrem');
+    await page.getByRole('button', { name: 'Verificar' }).waitFor({ timeout: 10000 }).catch(() => {});
+    check(await page.getByRole('button', { name: 'Verificar' }).count() > 0, 'sem internet: a app e uma lição abrem');
     await ctx.close();
   }
   await browser.close();

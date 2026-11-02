@@ -89,6 +89,7 @@ describe('navegação', () => {
     await go('#/licao/s1-u02-l001');
     render(<App />);
     expect(await screen.findByText(/ainda está bloqueada/)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Verificar' })).toBeNull();
   });
 });
 
@@ -180,8 +181,9 @@ describe('lição completa', () => {
     const lesson = lessonOf(realFiles(), 's1-u01-l001');
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    expect(await screen.findByRole('heading', { name: 'Olá e adeus' })).toBeTruthy();
-    await user.click(screen.getByRole('button', { name: /Começar/ }));
+    // Sem ecrã de apresentação: entra-se logo no primeiro exercício.
+    expect(await screen.findByRole('heading', { name: lesson.exercises[0]!.instruction })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'Objetivos' })).toBeNull();
 
     for (const ex of lesson.exercises) {
       await screen.findByRole('heading', { name: ex.instruction });
@@ -217,8 +219,7 @@ describe('lição completa', () => {
       await repo.saveSettings({ ...(await repo.getSettings()), freeNavigation: true });
       await go(`#/licao/${id}`);
       render(<App />);
-      await user.click(await screen.findByRole('button', { name: /Começar/ }));
-      for (const ex of lesson.exercises) {
+        for (const ex of lesson.exercises) {
         await screen.findByRole('heading', { name: ex.instruction });
         if ((await answerCorrectly(user, ex)) === 'skipped') continue;
         expect((await screen.findByRole('status')).textContent, `${ex.id} (${ex.type})`).not.toMatch(/Ainda não|Não é bem|incorreta/);
@@ -233,7 +234,7 @@ describe('lição completa', () => {
     const user = userEvent.setup();
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     await user.click(screen.getByRole('radio', { name: /doei/ }));
     await user.click(screen.getByRole('button', { name: 'Verificar' }));
     const fb = await screen.findByRole('status');
@@ -253,7 +254,7 @@ describe('«Não me lembro»', () => {
     const correct = first.options.find((o) => o.correct)!;
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     await user.click(screen.getByRole('button', { name: 'Não me lembro' }));
     // A resposta aparece antes de responder, e o botão desaparece.
     expect((await screen.findByText('Resposta certa:')).parentElement!.textContent).toContain(correct.text);
@@ -273,7 +274,7 @@ describe('botão «Verificar»', () => {
     const user = userEvent.setup();
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     const btn = screen.getByRole('button', { name: 'Verificar' });
     expect((btn as HTMLButtonElement).disabled).toBe(true);
     await user.click(screen.getByRole('radio', { name: /hoi/ }));
@@ -291,7 +292,7 @@ describe('botão «Verificar»', () => {
     if (ex.type !== 'translate') throw new Error('o teste espera uma tradução escrita');
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     for (const e of lesson.exercises.slice(0, idx)) {
       await screen.findByRole('heading', { name: e.instruction });
       await answerCorrectly(user, e);
@@ -317,7 +318,7 @@ describe('traduções com peças', () => {
     if (ex.type !== 'translate') throw new Error('o teste espera uma tradução');
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     for (const e of lesson.exercises.slice(0, idx)) {
       await screen.findByRole('heading', { name: e.instruction });
       await answerCorrectly(user, e);
@@ -341,7 +342,7 @@ describe('feedback e palavras clicáveis', () => {
     const [ex1, ex2] = lesson.exercises as [Exercise, Exercise];
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     await user.click(screen.getByRole('radio', { name: /hoi/ }));
     await user.click(screen.getByRole('button', { name: 'Verificar' }));
     const ok = await screen.findByRole('status');
@@ -363,7 +364,7 @@ describe('feedback e palavras clicáveis', () => {
     const lesson = lessonOf(realFiles(), 's1-u01-l001');
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     await user.click(screen.getByRole('radio', { name: /hoi/ }));
     await user.click(screen.getByRole('button', { name: 'Verificar' }));
     await user.click(await screen.findByRole('button', { name: 'Continuar' }));
@@ -400,7 +401,7 @@ describe('leitura em voz alta (microfone simulado)', () => {
     const lesson = lessonOf(realFiles(), 's1-u01-l001');
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     let spoke = 0;
     const queue = [...lesson.exercises];
     for (let i = 0; i < lesson.exercises.length + 2; i++) {
@@ -428,14 +429,14 @@ describe('sair de uma lição', () => {
     const user = userEvent.setup();
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    await screen.findByRole('button', { name: 'Verificar' });
     await user.click(screen.getByRole('button', { name: 'Sair' }));
     expect(screen.getByRole('alertdialog').textContent).toMatch(/não fica guardado/);
     await user.click(screen.getByRole('button', { name: 'Continuar' }));
     expect(screen.queryByRole('alertdialog')).toBeNull();
     await user.click(screen.getByRole('button', { name: 'Sair' }));
     await user.click(within(screen.getByRole('alertdialog')).getByRole('button', { name: 'Sair' }));
-    await waitFor(() => expect(window.location.hash).toBe('#/curso/s1'));
+    await waitFor(() => expect(window.location.hash).toBe('#/')); // sair volta ao caminho de lições
   });
 });
 
