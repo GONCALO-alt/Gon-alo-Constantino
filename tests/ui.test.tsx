@@ -16,6 +16,7 @@ import { fetcherFor, lessonOf, realFiles, realStructure } from './helpers.ts';
 const fetcher = fetcherFor();
 
 beforeEach(async () => {
+  try { localStorage.clear(); } catch { /* sem armazenamento */ }
   await repo.deleteAllData();
   contentRepo.clear();
   vi.stubGlobal('fetch', (url: string) => fetcher(url));
@@ -86,8 +87,9 @@ async function answerCorrectly(user: ReturnType<typeof userEvent.setup>, ex: Exe
       else await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
       break;
     case 'translate':
-      if (ex.wordBank) { await clickTokens(user, first(ex.answers)); break; }
-      await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
+      // Por omissão a tradução faz-se com peças; respostas longas ou com notas continuam com teclado.
+      if (screen.queryByRole('textbox')) await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
+      else await clickTokens(user, first(ex.answers));
       break;
     case 'conjugation':
       await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
@@ -144,8 +146,8 @@ function escape(s: string) {
 
 async function clickTokens(user: ReturnType<typeof userEvent.setup>, sentence: string) {
   const available = screen.getAllByRole('button', { name: /^Acrescentar / });
-  const norm = (s: string) => s.toLowerCase().replace(/[.,!?]/g, '');
-  for (const word of sentence.split(' ')) {
+  const norm = (s: string) => s.toLowerCase().replace(/[.,!?;:…«»"“”()¿¡]/g, '');
+  for (const word of sentence.split(' ').filter((w) => norm(w))) {
     const btn = available.find((b) => !b.hasAttribute('disabled') && norm(b.textContent ?? '') === norm(word) && !(b as HTMLButtonElement).dataset.used);
     if (!btn) throw new Error(`Peça não encontrada: ${word}`);
     (btn as HTMLButtonElement).dataset.used = '1';
@@ -277,10 +279,38 @@ describe('botão «Verificar»', () => {
       await user.click(await screen.findByRole('button', { name: 'Continuar' }));
     }
     await screen.findByRole('heading', { name: ex.instruction });
+    // A tradução começa com peças; o aluno pode escolher escrever.
+    await user.click(screen.getByRole('button', { name: 'Usar o teclado' }));
     await user.type(screen.getByRole('textbox'), expandAnswerPattern(ex.answers[0]!)[0]!);
     await new Promise((r) => setTimeout(r, 700));
     expect(screen.queryByRole('status')).toBeNull(); // certo, mas não avança sozinho
     await user.keyboard('{Enter}');
+    expect((await screen.findByRole('status')).textContent).toMatch(/Certo|Muito bem|Exatamente|Correto/);
+  }, 30_000);
+});
+
+describe('traduções com peças', () => {
+  it('a tradução mostra peças (resposta + palavras a mais) e aceita a resposta construída', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    const idx = lesson.exercises.findIndex((e) => e.type === 'translate' && !e.wordBank);
+    const ex = lesson.exercises[idx]!;
+    if (ex.type !== 'translate') throw new Error('o teste espera uma tradução');
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Começar/ }));
+    for (const e of lesson.exercises.slice(0, idx)) {
+      await screen.findByRole('heading', { name: e.instruction });
+      await answerCorrectly(user, e);
+      await user.click(await screen.findByRole('button', { name: 'Continuar' }));
+    }
+    await screen.findByRole('heading', { name: ex.instruction });
+    expect(screen.queryByRole('textbox')).toBeNull();
+    const answerWords = expandAnswerPattern(ex.answers[0]!)[0]!.split(' ').length;
+    expect(screen.getAllByRole('button', { name: /^Acrescentar / }).length).toBeGreaterThan(answerWords);
+    expect(screen.getByRole('button', { name: 'Verificar' })).toHaveProperty('disabled', true);
+    await clickTokens(user, expandAnswerPattern(ex.answers[0]!)[0]!);
+    await user.click(screen.getByRole('button', { name: 'Verificar' }));
     expect((await screen.findByRole('status')).textContent).toMatch(/Certo|Muito bem|Exatamente|Correto/);
   }, 30_000);
 });
@@ -301,6 +331,7 @@ describe('feedback e palavras clicáveis', () => {
     await user.click(screen.getByRole('button', { name: 'Continuar' }));
     // 2.º exercício: errar de propósito.
     await screen.findByRole('heading', { name: ex2.instruction });
+    await user.click(screen.getByRole('button', { name: 'Usar o teclado' }));
     await user.type(screen.getByRole('textbox'), 'xyz');
     await user.click(screen.getByRole('button', { name: 'Verificar' }));
     const bad = await screen.findByText('Resposta certa:');

@@ -11,6 +11,9 @@
   --err: #c0392b;
   --err-soft: #fbe7e4;
   --warn-soft: #fff6dc;
+  --go: #4bae32;
+  --go-strong: #3a8c25;
+  --go-text: #ffffff;
   --bg: #f6f7f9;
   --surface: #ffffff;
   --text: #1c2430;
@@ -33,6 +36,9 @@
     --err: #ef7d70;
     --err-soft: #3a1c19;
     --warn-soft: #3a3217;
+    --go: #5cc048;
+    --go-strong: #3f8a33;
+    --go-text: #0f141a;
     --bg: #0f141a;
     --surface: #18202a;
     --text: #e8edf3;
@@ -54,6 +60,9 @@
   --err: #ef7d70;
   --err-soft: #3a1c19;
   --warn-soft: #3a3217;
+  --go: #5cc048;
+  --go-strong: #3f8a33;
+  --go-text: #0f141a;
   --bg: #0f141a;
   --surface: #18202a;
   --text: #e8edf3;
@@ -335,3 +344,59 @@ input[type='range'] { width: 100%; accent-color: var(--brand); }
 .mic-btn:disabled { opacity: .5; cursor: default; }
 @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 [data-motion="reduce"] .mic-btn.on { animation: none; }
+
+/* ---------------------------------------------------------------------------
+   Ecrã de exercício: peças com relevo, linhas de resposta, botão verde grande,
+   barra de progresso verde e a mascote (Tulpje) com balão de incentivo.
+   --------------------------------------------------------------------------- */
+.runner { background: var(--surface); }
+.runner .instruction { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.01em; margin: 12px 0 14px; line-height: 1.25; }
+.runner .prompt-nl, .runner .prompt { font-size: 1.25rem; }
+.runner .gloss-word { text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
+.progress-go { height: 16px; background: var(--line); }
+.progress-go .progress-fill { background: var(--go); box-shadow: inset 0 4px 0 rgb(255 255 255 / 25%); }
+
+.btn-go, .btn-go-err { min-height: 52px; border-radius: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--go-text); }
+.btn-go { background: var(--go); box-shadow: 0 4px 0 var(--go-strong); }
+.btn-go-err { background: var(--err); box-shadow: 0 4px 0 color-mix(in srgb, var(--err) 70%, #000); }
+.btn-go:active:not(:disabled), .btn-go-err:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 var(--go-strong); }
+.btn-go:disabled { opacity: 1; background: var(--line); color: var(--muted); box-shadow: 0 4px 0 color-mix(in srgb, var(--line) 75%, #000); }
+.runner .check-row .btn-secondary { border-radius: 16px; box-shadow: 0 4px 0 var(--line); }
+
+/* Peças */
+.runner .token { min-height: 48px; padding: 9px 16px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface);
+  box-shadow: 0 4px 0 var(--line); font-size: 1.15rem; color: var(--text); transition: transform 0.06s ease; }
+.runner .token:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
+.runner .token.used { visibility: visible; color: transparent; background: var(--line); border-color: var(--line); box-shadow: none; }
+.runner .token.selected { border-color: var(--err); background: var(--err-soft); }
+/* Linhas onde a resposta é construída (como num caderno). */
+.runner .token-line { min-height: 186px; padding: 6px 0 0; row-gap: 10px; column-gap: 8px; border-bottom: none;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 60px, var(--line) 60px, var(--line) 62px); }
+.runner .token-line.findable { min-height: 0; background: none; }
+.token-hint { line-height: 48px; }
+.runner .token-bank { justify-content: flex-start; gap: 10px; padding-top: 18px; }
+.input-switch { justify-self: start; font-size: 0.9rem; }
+
+/* Opções com relevo */
+.runner .option { border-radius: 16px; box-shadow: 0 4px 0 var(--line); }
+.runner .option.selected { box-shadow: 0 4px 0 var(--brand); }
+
+/* Mascote */
+.mascot-tip { display: flex; justify-content: flex-end; align-items: flex-end; gap: 4px; margin-top: 24px; }
+.mascot-bubble { position: relative; display: flex; flex-direction: column; gap: 2px; max-width: 210px; margin: 0 0 64px;
+  padding: 12px 16px; border: 2px solid var(--line); border-radius: 18px; background: var(--surface); font-size: 1rem; line-height: 1.35;
+  animation: rise 0.25s ease; }
+.mascot-bubble strong { color: #e0532a; font-size: 1.05rem; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .mascot-bubble strong { color: #ff8a62; } }
+:root[data-theme='dark'] .mascot-bubble strong { color: #ff8a62; }
+/* Bico do balão, a apontar para a mascote. */
+.mascot-bubble::after { content: ''; position: absolute; right: 18px; bottom: -11px; width: 18px; height: 18px; background: var(--surface);
+  border-right: 2px solid var(--line); border-bottom: 2px solid var(--line); transform: rotate(45deg); border-bottom-right-radius: 4px; }
+.mascot { flex: none; overflow: visible; }
+.mascot-head { transform-origin: 40px 60px; animation: mascot-bob 3s ease-in-out infinite; }
+.mascot-cheer .mascot-arm { transform-origin: 18px 66px; animation: mascot-wave 0.9s ease-in-out 2; }
+@keyframes mascot-bob { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-3deg); } }
+@keyframes mascot-wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(18deg); } }
+/* Ecrãs baixos: a mascote não empurra o exercício. */
+@media (max-height: 640px) { .mascot-tip { display: none; } }

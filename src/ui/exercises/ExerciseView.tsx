@@ -3,7 +3,7 @@
  * comunica-a com `onResponse` (null = ainda incompleta). A correção é feita
  * fora (engine/grading.ts), o que permite testá-la sem interface.
  */
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { AnswerOption, Exercise, ExerciseOf } from '../../domain/schemas.ts';
 import type { ExerciseResponse } from '../../engine/grading.ts';
 import { joinTokens } from '../../engine/answers.ts';
@@ -13,6 +13,7 @@ import { playSound } from '../../services/sounds.ts';
 import { Icon, RichText, SpeakButton } from '../components/common.tsx';
 import { GlossText } from '../components/Gloss.tsx';
 import { gradeSpeech, type SpeechWord } from '../../engine/speech.ts';
+import { translationTiles, type WordPools } from '../../engine/wordBank.ts';
 import { canRecognizeSpeech, listenOnce, RecognitionError, RECOGNITION_ERROR_TEXT, type RecognitionHandle } from '../../services/speechRecognition.ts';
 
 export interface ExerciseProps<E extends Exercise = Exercise> {
@@ -28,6 +29,18 @@ export interface ExerciseProps<E extends Exercise = Exercise> {
   audioEnabled: boolean;
 }
 
+/** Palavras da lição atual, para as peças a mais nas traduções (fornecidas pelo ExerciseRunner). */
+export const WordPoolContext = createContext<WordPools>({ nl: [], pt: [] });
+
+/** Preferência por escrever as traduções em vez de usar peças (só neste navegador). */
+const KEYBOARD_KEY = 'dutchpath.translateKeyboard';
+function readKeyboardPref(): boolean {
+  try { return localStorage.getItem(KEYBOARD_KEY) === '1'; } catch { return false; }
+}
+function writeKeyboardPref(v: boolean): void {
+  try { localStorage.setItem(KEYBOARD_KEY, v ? '1' : '0'); } catch { /* sem armazenamento: só nesta sessão */ }
+}
+
 /** Semente estável por exercício: a ordem baralhada não muda a cada renderização. */
 function seedOf(id: string): number {
   let h = 0;
@@ -39,7 +52,7 @@ export function ExerciseView(props: ExerciseProps) {
   const ex = props.exercise;
   switch (ex.type) {
     case 'translate':
-      return ex.wordBank ? <TokenExercise {...props} prompt={ex.prompt} tokens={ex.wordBank} speakPrompt={ex.direction === 'nl-pt'} /> : <TranslateText {...props} exercise={ex} />;
+      return <TranslateExercise {...props} exercise={ex} />;
     case 'buildSentence':
       return <TokenExercise {...props} prompt={ex.prompt} tokens={ex.tokens} speakPrompt={false} />;
     case 'wordOrder':
@@ -132,6 +145,33 @@ function TextAnswer({ locked, onResponse, onSubmit, lang, label, multiline = fal
         </div>
       )}
     </div>
+  );
+}
+
+/** Tradução: com peças (como num jogo de palavras) ou, se o aluno preferir, com teclado. */
+function TranslateExercise(props: ExerciseProps<ExerciseOf<'translate'>>) {
+  const ex = props.exercise;
+  const pools = useContext(WordPoolContext);
+  const tiles = useMemo(() => translationTiles(ex, pools), [ex, pools]);
+  const [keyboard, setKeyboard] = useState(readKeyboardPref);
+  const fromNl = ex.direction === 'nl-pt';
+  const toggle = () => {
+    writeKeyboardPref(!keyboard);
+    setKeyboard(!keyboard);
+    props.onResponse(null);
+  };
+  const useTiles = !!tiles && (!keyboard || !!ex.wordBank);
+  return (
+    <>
+      {useTiles
+        ? <TokenExercise {...props} prompt={ex.prompt} tokens={tiles} speakPrompt={fromNl} glossPrompt={fromNl} lang={fromNl ? 'pt' : 'nl'} />
+        : <TranslateText {...props} exercise={ex} />}
+      {tiles && !ex.wordBank && !props.locked && (
+        <button type="button" className="link-btn input-switch" onClick={toggle}>
+          {useTiles ? 'Usar o teclado' : 'Usar peças'}
+        </button>
+      )}
+    </>
   );
 }
 
@@ -230,7 +270,13 @@ function DialogueExercise(props: ExerciseProps<ExerciseOf<'dialogue'>>) {
 // ---------------------------------------------------------------------------
 // Peças (banco de palavras / ordenação)
 // ---------------------------------------------------------------------------
-function TokenExercise({ exercise, locked, onResponse, prompt, tokens, speakPrompt, speechRate, audioEnabled }: ExerciseProps & { prompt: string; tokens: string[]; speakPrompt: boolean }) {
+function TokenExercise({ exercise, locked, onResponse, prompt, tokens, speakPrompt, speechRate, audioEnabled, glossPrompt = false, lang = 'nl' }: ExerciseProps & {
+  prompt: string; tokens: string[]; speakPrompt: boolean;
+  /** O enunciado está em neerlandês: palavras clicáveis com tradução. */
+  glossPrompt?: boolean;
+  /** Língua das peças. */
+  lang?: 'nl' | 'pt';
+}) {
   const bank = useMemo(() => shuffle(tokens.map((t, i) => ({ t, i })), seededRandom(seedOf(exercise.id))), [exercise.id, tokens]);
   const [chosen, setChosen] = useState<number[]>([]);
   const update = (next: number[]) => {
@@ -240,11 +286,11 @@ function TokenExercise({ exercise, locked, onResponse, prompt, tokens, speakProm
   };
   return (
     <div className="exercise">
-      <p className={speakPrompt ? 'prompt-nl' : 'prompt'}>{speakPrompt && audioEnabled && <SpeakButton text={prompt} rate={speechRate} />} {prompt}</p>
+      <p className={speakPrompt ? 'prompt-nl' : 'prompt'}>{speakPrompt && audioEnabled && <SpeakButton text={prompt} rate={speechRate} />} {glossPrompt ? <GlossText text={prompt} /> : prompt}</p>
       <div className="token-line" aria-label="A sua resposta" aria-live="polite">
-        {chosen.length === 0 && <span className="muted small">Toque nas palavras abaixo para construir a frase.</span>}
+        {chosen.length === 0 && <span className="token-hint muted small">Toque nas palavras abaixo para construir a frase.</span>}
         {chosen.map((i, pos) => (
-          <button key={`${i}-${pos}`} type="button" className="token chosen" disabled={locked} lang="nl"
+          <button key={`${i}-${pos}`} type="button" className="token chosen" disabled={locked} lang={lang}
             aria-label={`Remover ${tokens[i]}`} onClick={() => update(chosen.filter((_, p) => p !== pos))}>{tokens[i]}</button>
         ))}
       </div>
@@ -252,7 +298,7 @@ function TokenExercise({ exercise, locked, onResponse, prompt, tokens, speakProm
         {bank.map(({ t, i }) => {
           const used = chosen.includes(i);
           return (
-            <button key={i} type="button" className={`token ${used ? 'used' : ''}`} disabled={locked || used} lang="nl"
+            <button key={i} type="button" className={`token ${used ? 'used' : ''}`} disabled={locked || used} lang={lang}
               aria-label={used ? `${t} (usada)` : `Acrescentar ${t}`} onClick={() => update([...chosen, i])}>{t}</button>
           );
         })}

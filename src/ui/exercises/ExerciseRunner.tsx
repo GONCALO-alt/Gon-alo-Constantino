@@ -3,7 +3,7 @@
  * dá feedback imediato com explicação e repete os errados no fim (uma vez).
  * Usado tanto pelas lições como pelas sessões de revisão.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Exercise } from '../../domain/schemas.ts';
 import { expectedAnswer, gradeExercise, needsSelfAssessment, type ExerciseResponse, type ExerciseResult } from '../../engine/grading.ts';
 import { expandAnswerPattern } from '../../engine/answers.ts';
@@ -13,7 +13,9 @@ import { playCorrect, playSound, soundLength, vibrate } from '../../services/sou
 import { speak, stopSpeaking } from '../../services/speech.ts';
 import { Icon, ProgressBar, RichText, SpeakButton } from '../components/common.tsx';
 import { GlossaryProvider, GlossText } from '../components/Gloss.tsx';
-import { ExerciseView } from './ExerciseView.tsx';
+import { MascotTip, mascotLine } from '../components/Mascot.tsx';
+import { buildWordPools } from '../../engine/wordBank.ts';
+import { ExerciseView, WordPoolContext } from './ExerciseView.tsx';
 
 export interface RunnerAnswer {
   exercise: Exercise;
@@ -56,6 +58,9 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
   /** Respostas certas seguidas (sem «Não me lembro»), para os sons de sequência. */
   const streak = useRef(0);
   const [streakShown, setStreakShown] = useState(0);
+  const [streakNow, setStreakNow] = useState(0);
+  /** Palavras da lição para as peças a mais nas traduções. */
+  const pools = useMemo(() => buildWordPools(exercises), [exercises]);
   useEffect(() => () => clearTimeout(speakTimer.current), []);
 
   useEffect(() => {
@@ -79,10 +84,12 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
       vibrate(12);
       const special = n === 3 || n === 5 || n % 10 === 0;
       setStreakShown(special ? n : 0);
+      setStreakNow(n);
       if (special) soundSecs = soundLength(n % 10 === 0 ? 'streak10' : n === 5 ? 'streak5' : 'streak3');
     } else {
       streak.current = 0;
       setStreakShown(0);
+      setStreakNow(0);
       playSound(r.verdict === 'incorrect' ? 'incorrect' : 'almost');
       if (r.verdict === 'incorrect') vibrate(40);
     }
@@ -148,7 +155,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
         <button type="button" className="icon-btn" onClick={() => setConfirmExit(true)} aria-label="Sair">
           <Icon name="close" />
         </button>
-        <ProgressBar value={progressFraction(session)} label={`Progresso em ${title}`} />
+        <ProgressBar value={progressFraction(session)} label={`Progresso em ${title}`} tone="go" />
       </header>
       {confirmExit && (
         <div className="exit-confirm" role="alertdialog" aria-labelledby="exit-title">
@@ -163,9 +170,12 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
       <main className="runner-body" id="conteudo">
         {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
         <h1 className="instruction">{ex.instruction}</h1>
-        <ExerciseView key={`${ex.id}-${session.position}`} exercise={ex} locked={!!result || !!selfCheck}
-          onResponse={setResponse} onSubmit={check} onSkip={skip}
-          speechRate={speechRate} audioEnabled={audioEnabled} />
+        <WordPoolContext.Provider value={pools}>
+          <ExerciseView key={`${ex.id}-${session.position}`} exercise={ex} locked={!!result || !!selfCheck}
+            onResponse={setResponse} onSubmit={check} onSkip={skip}
+            speechRate={speechRate} audioEnabled={audioEnabled} />
+        </WordPoolContext.Provider>
+        {!result && !revealed && <MascotTip {...mascotLine(session.position, streakNow)} />}
       </main>
 
       <footer className={`runner-footer ${result ? `fb-${result.verdict}` : ''}`}>
@@ -219,18 +229,18 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
 
           {selfCheck === null && (
             result ? (
-              <button ref={continueRef} type="button" className="btn btn-primary btn-wide" onClick={next}>Continuar</button>
+              <button ref={continueRef} type="button" className={`btn btn-wide ${result.verdict === 'incorrect' ? 'btn-go-err' : 'btn-go'}`} onClick={next}>Continuar</button>
             ) : (
               <div className="check-row">
                 {!revealed && (
                   <button type="button" className="btn btn-secondary" onClick={reveal}>Não me lembro</button>
                 )}
-                <button type="button" className="btn btn-primary btn-wide" disabled={!response} onClick={check}>Verificar</button>
+                <button type="button" className="btn btn-go btn-wide" disabled={!response} onClick={check}>Verificar</button>
               </div>
             )
           )}
           {selfCheck !== null && result && (
-            <button ref={continueRef} type="button" className="btn btn-primary btn-wide" onClick={next}>Continuar</button>
+            <button ref={continueRef} type="button" className="btn btn-go btn-wide" onClick={next}>Continuar</button>
           )}
         </div>
       </footer>

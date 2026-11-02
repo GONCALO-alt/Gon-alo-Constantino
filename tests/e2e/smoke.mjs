@@ -71,7 +71,10 @@ try {
     await noHorizontalScroll(page, `${vp.name} / exercício`);
     await page.screenshot({ path: join(shots, `${vp.name}-feedback.png`) });
     await page.getByRole('button', { name: 'Continuar' }).click();
-    await page.getByRole('textbox').fill('Até mais ver');
+    // Tradução com peças (como num jogo de palavras).
+    for (const w of ['Adeus']) await page.getByRole('button', { name: `Acrescentar ${w}`, exact: true }).click();
+    check(await page.getByRole('button', { name: 'Verificar' }).isEnabled(), `${vp.name}: tradução com peças`);
+    await noHorizontalScroll(page, `${vp.name} / tradução com peças`);
     await page.screenshot({ path: join(shots, `${vp.name}-traducao.png`) });
 
     // Persistência: grava um dia de estudo diretamente pela app (perfil) e recarrega.
