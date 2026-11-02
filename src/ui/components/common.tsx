@@ -24,6 +24,9 @@ const PATHS: Record<string, ReactNode> = {
   arrow: <path d="M5 12h14m-5-5 5 5-5 5" />,
   back: <path d="M19 12H5m5-5-5 5 5 5" />,
   clock: <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-13.5V12l3 2" />,
+  dumbbell: <path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11" />,
+  trophy: <path d="M8 4h8v5a4 4 0 0 1-8 0V4Zm0 2H5a3 3 0 0 0 3 4m8-4h3a3 3 0 0 1-3 4m-4 3v4m-4 3h8m-6.5 0 .5-3h4l.5 3" />,
+  chest: <path d="M4 10.5 5.5 6h13l1.5 4.5M4 10.5h16V19H4v-8.5Zm0 0h16M10.5 10.5v3h3v-3" />,
 };
 
 export function Icon({ name, size = 22, label }: { name: keyof typeof PATHS | string; size?: number; label?: string }) {

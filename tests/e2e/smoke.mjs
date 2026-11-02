@@ -51,7 +51,7 @@ try {
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
     await page.goto(base);
-    await page.getByText('Começar a primeira lição').waitFor();
+    await page.getByRole('link', { name: /^Começar:/ }).waitFor();
     await noHorizontalScroll(page, `${vp.name} / início`);
     await page.screenshot({ path: join(shots, `${vp.name}-inicio.png`), fullPage: true });
 

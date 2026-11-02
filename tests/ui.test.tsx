@@ -44,11 +44,30 @@ describe('router', () => {
   });
 });
 
+describe('caminho de lições no ecrã inicial', () => {
+  it('tocar num círculo mostra a lição; bloqueada não abre', async () => {
+    const user = userEvent.setup();
+    await go('#/');
+    render(<App />);
+    const first = await screen.findByRole('button', { name: 'Lição: Olá e adeus — disponível' });
+    await user.click(first);
+    const pop = screen.getByRole('dialog', { name: 'Olá e adeus' });
+    expect(within(pop).getByRole('link', { name: 'Começar' }).getAttribute('href')).toBe('#/licao/s1-u01-l001');
+    const locked = screen.getAllByRole('button', { name: /— bloqueada$/ })[0]!;
+    await user.click(locked);
+    expect(screen.getByRole('dialog').textContent).toMatch(/Conclua as lições anteriores/);
+  });
+});
+
 describe('navegação', () => {
   it('ecrã inicial e mapa com as 7 secções', async () => {
     await go('#/');
     render(<App />);
-    expect(await screen.findByText(/Começar a primeira lição/)).toBeTruthy();
+    // Caminho da unidade: «Começar» na primeira lição; as seguintes estão bloqueadas.
+    const start = await screen.findByRole('link', { name: 'Começar: Olá e adeus' });
+    expect(start.getAttribute('href')).toBe('#/licao/s1-u01-l001');
+    expect(screen.getByText('Saudações e despedidas')).toBeTruthy();
+    expect(screen.getAllByRole('button', { name: /— bloqueada$/ }).length).toBeGreaterThan(3);
     await go('#/curso');
     const items = await screen.findAllByRole('link', { name: /Secção|Primeiros passos|A vida quotidiana|Viver nos|Comunicação|Fluência|avançado|Domínio/ });
     expect(items.length).toBeGreaterThanOrEqual(7);

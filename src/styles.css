@@ -400,3 +400,72 @@ input[type='range'] { width: 100%; accent-color: var(--brand); }
 @keyframes mascot-wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(18deg); } }
 /* Ecrãs baixos: a mascote não empurra o exercício. */
 @media (max-height: 640px) { .mascot-tip { display: none; } }
+
+/* ---------------------------------------------------------------------------
+   Ecrã inicial: estatísticas, faixa da unidade e caminho de lições em ziguezague.
+   --------------------------------------------------------------------------- */
+.home-stats { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 4px 0 14px; }
+.home-stat { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 1.1rem; color: var(--muted); text-decoration: none; }
+.home-stat .flag { border-radius: 5px; box-shadow: 0 0 0 1px var(--line); }
+a.home-stat { color: var(--text); }
+.stat-streak.on { color: #f08a24; }
+.stat-xp { color: #e2a400; }
+.stat-goal.on { color: var(--go); }
+
+.unit-banner { position: sticky; top: 64px; z-index: 5; display: flex; align-items: stretch; border-radius: 18px; color: #fff;
+  background: var(--banner); box-shadow: 0 5px 0 var(--banner-dark); margin-bottom: 28px; overflow: hidden; }
+.unit-banner-text { flex: 1; padding: 14px 18px; min-width: 0; }
+.unit-banner-eyebrow { margin: 0; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+.unit-banner-title { margin: 2px 0 0; font-size: 1.25rem; font-weight: 800; line-height: 1.25; }
+.unit-banner-guide { display: grid; place-items: center; padding: 0 18px; color: #fff; border-left: 2px solid rgb(0 0 0 / 15%); }
+.banner-s1 { --banner: #4bae32; --banner-dark: #3a8c25; }
+.banner-s2 { --banner: #1c9fd6; --banner-dark: #167fae; }
+.banner-s3 { --banner: #8e5bd8; --banner-dark: #7044b4; }
+.banner-s4 { --banner: #e8792d; --banner-dark: #c35f1b; }
+.banner-s5 { --banner: #12a39a; --banner-dark: #0c7f78; }
+.banner-s6 { --banner: #d9478c; --banner-dark: #b23370; }
+.banner-s7 { --banner: #d0503a; --banner-dark: #a83a28; }
+
+.trail { list-style: none; margin: 0; padding: 8px 0 12px; display: grid; gap: 22px; justify-items: center; }
+.trail-item { position: relative; display: grid; justify-items: center; transform: translateX(calc(var(--x) * 46px)); }
+.trail-node { width: 74px; height: 66px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; color: #fff;
+  background: var(--go); box-shadow: 0 7px 0 var(--go-strong); transition: transform 0.08s ease; }
+.trail-node .icon { stroke-width: 2.4; }
+.trail-node:active { transform: translateY(5px); box-shadow: 0 2px 0 var(--go-strong); }
+.trail-node.node-completed { background: #f0b400; box-shadow: 0 7px 0 #c48f00; }
+.trail-node.node-locked { background: var(--line); color: var(--muted); box-shadow: 0 7px 0 color-mix(in srgb, var(--line) 70%, #000); }
+.trail-node.kind-practice.node-available { background: #1c9fd6; box-shadow: 0 7px 0 #167fae; }
+.trail-node.current { outline: 6px solid color-mix(in srgb, var(--go) 30%, transparent); outline-offset: 5px; }
+/* «Começar» por cima da lição atual */
+.trail-start { position: relative; margin-bottom: 14px; padding: 9px 18px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface);
+  color: var(--go); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; animation: trail-bob 1.6s ease-in-out infinite; }
+.trail-start::after { content: ''; position: absolute; left: 50%; bottom: -9px; width: 14px; height: 14px; margin-left: -7px; background: var(--surface);
+  border-right: 2px solid var(--line); border-bottom: 2px solid var(--line); transform: rotate(45deg); }
+@keyframes trail-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+/* Cartão ao tocar num círculo */
+.trail-pop { position: relative; z-index: 3; width: min(280px, 80vw); margin-top: 16px; padding: 14px 16px; border-radius: 16px; color: #fff;
+  background: var(--go); box-shadow: 0 4px 0 var(--go-strong); animation: rise 0.15s ease; }
+.trail-pop.pop-locked { background: var(--surface); color: var(--text); border: 2px solid var(--line); box-shadow: none; }
+.trail-pop.pop-completed { background: #f0b400; box-shadow: 0 4px 0 #c48f00; }
+.trail-pop p { margin: 0 0 8px; }
+.trail-pop-kind { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.85; }
+.trail-pop-title { font-weight: 800; font-size: 1.1rem; }
+.trail-pop .btn-go { background: #fff; color: var(--go-strong); box-shadow: 0 4px 0 rgb(0 0 0 / 15%); }
+.trail-pop.pop-completed .btn-go { color: #a87a00; }
+.trail-mascot { position: absolute; top: -10px; pointer-events: none; }
+.trail-mascot.right { left: calc(100% + 40px); }
+.trail-mascot.left { right: calc(100% + 40px); }
+@media (max-width: 380px) { .trail-mascot { display: none; } }
+.trail-chest { display: grid; place-items: center; width: 74px; height: 66px; border-radius: 18px; color: var(--muted); background: var(--line);
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--line) 70%, #000); }
+.trail-chest.open { color: #fff; background: #f0b400; box-shadow: 0 6px 0 #c48f00; }
+.next-unit { display: flex; align-items: center; gap: 12px; margin: 26px 0 8px; padding: 14px 16px; border-radius: 16px; border: 2px dashed var(--line);
+  color: var(--text); text-decoration: none; }
+.next-unit-lock { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--line); color: var(--muted); flex: none; }
+.home-review { margin-top: 18px; }
+.home-review .link { display: inline-block; margin-top: 8px; }
+/* O ziguezague e a mascote não alargam a página. */
+.home { overflow-x: clip; }
+/* O cartão fica centrado no ecrã, mesmo quando o círculo está desviado. */
+.trail-pop { transform: translateX(calc(var(--x) * -46px)); }
+.trail-node.kind-lesson:not(.node-completed):not(.node-locked) .icon path { fill: currentColor; }
