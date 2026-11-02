@@ -8,6 +8,8 @@ import { canRecognizeSpeech } from '../../services/speechRecognition.ts';
 import { speakingExercisesFor, withSpeaking } from '../../engine/speech.ts';
 import { useAppData } from '../AppState.tsx';
 import { Icon } from '../components/common.tsx';
+import { Confetti, useCountUp } from '../components/Celebrate.tsx';
+import { Mascot } from '../components/Mascot.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
 import { href, navigate } from '../router.ts';
 
@@ -106,14 +108,14 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     const upcoming = nextLesson(app.index, app.completed, app.settings.freeNavigation);
     return (
       <div className="page summary">
-        <div className="summary-badge" aria-hidden="true"><Icon name="star" size={44} /></div>
+        <Confetti count={acc === 1 ? 48 : 28} />
+        <div className="summary-hero" aria-hidden="true">
+          <Mascot size={110} mood="cheer" />
+          <div className="summary-badge"><Icon name="star" size={44} /></div>
+        </div>
         <h1>Lição concluída!</h1>
         <p className="lead">{msg}</p>
-        <dl className="stat-grid">
-          <div><dt>Precisão</dt><dd>{Math.round(acc * 100)}%</dd></div>
-          <div><dt>XP ganho</dt><dd>+{outcome.xp}</dd></div>
-          <div><dt>Tempo</dt><dd>{Math.max(1, Math.round(outcome.seconds / 60))} min</dd></div>
-        </dl>
+        <SummaryStats acc={acc} xp={outcome.xp} minutes={Math.max(1, Math.round(outcome.seconds / 60))} />
         {outcome.result.isRepeat && <p className="muted small">Repetir lições dá menos XP, mas ajuda a consolidar.</p>}
         {lesson.newVocabulary.length > 0 && (
           <section className="card">
@@ -144,4 +146,17 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   }
 
   return null;
+}
+
+/** Números do resumo, a subir até ao valor final. */
+function SummaryStats({ acc, xp, minutes }: { acc: number; xp: number; minutes: number }) {
+  const pct = useCountUp(Math.round(acc * 100));
+  const xpShown = useCountUp(xp);
+  return (
+    <dl className="stat-grid">
+      <div><dt>Precisão</dt><dd>{pct}%</dd></div>
+      <div><dt>XP ganho</dt><dd>+{xpShown}</dd></div>
+      <div><dt>Tempo</dt><dd>{minutes} min</dd></div>
+    </dl>
+  );
 }

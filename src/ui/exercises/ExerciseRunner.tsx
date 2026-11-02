@@ -13,7 +13,8 @@ import { playCorrect, playSound, soundLength, vibrate } from '../../services/sou
 import { speak, stopSpeaking } from '../../services/speech.ts';
 import { Icon, ProgressBar, RichText, SpeakButton } from '../components/common.tsx';
 import { GlossaryProvider, GlossText } from '../components/Gloss.tsx';
-import { MascotTip, mascotLine } from '../components/Mascot.tsx';
+import { Mascot, MascotTip, mascotLine } from '../components/Mascot.tsx';
+import { Sparkles } from '../components/Celebrate.tsx';
 import { buildWordPools } from '../../engine/wordBank.ts';
 import { ExerciseView, WordPoolContext } from './ExerciseView.tsx';
 
@@ -168,14 +169,17 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
       )}
 
       <main className="runner-body" id="conteudo">
-        {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
-        <h1 className="instruction">{ex.instruction}</h1>
-        <WordPoolContext.Provider value={pools}>
-          <ExerciseView key={`${ex.id}-${session.position}`} exercise={ex} locked={!!result || !!selfCheck}
-            onResponse={setResponse} onSubmit={check} onSkip={skip}
-            speechRate={speechRate} audioEnabled={audioEnabled} />
-        </WordPoolContext.Provider>
-        {!result && !revealed && <MascotTip {...mascotLine(session.position, streakNow)} />}
+        {/* Cada exercício entra a deslizar; uma resposta errada dá um pequeno abanão. */}
+        <div key={`${ex.id}-${session.position}`} className={`ex-stage ${result?.verdict === 'incorrect' ? 'shake' : ''}`}>
+          {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
+          <h1 className="instruction">{ex.instruction}</h1>
+          <WordPoolContext.Provider value={pools}>
+            <ExerciseView exercise={ex} locked={!!result || !!selfCheck}
+              onResponse={setResponse} onSubmit={check} onSkip={skip}
+              speechRate={speechRate} audioEnabled={audioEnabled} />
+          </WordPoolContext.Provider>
+          {!result && !revealed && <MascotTip {...mascotLine(session.position, streakNow)} />}
+        </div>
       </main>
 
       <footer className={`runner-footer ${result ? `fb-${result.verdict}` : ''}`}>
@@ -205,8 +209,14 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
 
           {result && (
             <div className="feedback" role="status" aria-live="assertive">
+              <span className={`fb-mascot ${result.verdict === 'incorrect' ? 'calm' : 'cheer'}`} aria-hidden="true">
+                <Mascot size={52} mood={result.verdict === 'incorrect' ? 'calm' : 'cheer'} />
+              </span>
               <p className="verdict">
-                <Icon name={result.verdict === 'incorrect' ? 'close' : 'check'} size={26} /> {verdictText}
+                <span className="verdict-icon">
+                  <Icon name={result.verdict === 'incorrect' ? 'close' : 'check'} size={26} />
+                  {result.verdict === 'correct' && <Sparkles />}
+                </span> {verdictText}
                 {streakShown > 0 && <span className="streak-tag">{streakShown} seguidas!</span>}
                 {spokenAnswer && <SpeakButton text={spokenAnswer} rate={speechRate} label="Ouvir a resposta em neerlandês" />}
               </p>

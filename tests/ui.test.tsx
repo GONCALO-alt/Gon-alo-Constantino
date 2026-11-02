@@ -195,7 +195,7 @@ describe('lição completa', () => {
     }
 
     expect(await screen.findByText('Lição concluída!')).toBeTruthy();
-    expect(screen.getByText('100%')).toBeTruthy();
+    expect(await screen.findByText('100%', {}, { timeout: 3000 })).toBeTruthy(); // o número sobe até 100%
     await waitFor(async () => expect((await repo.getCompletedLessonIds()).has('s1-u01-l001')).toBe(true));
     expect((await repo.getProfile()).totalXp).toBeGreaterThan(0);
     expect((await repo.getAllReviews()).length).toBe(lesson.newVocabulary.length);

@@ -159,7 +159,7 @@ function UnitTrail({ unit, currentId, state }: { unit: IndexedUnit; currentId?: 
         const open = openId === id;
         const stateText = st === 'completed' ? 'concluída' : st === 'available' ? 'disponível' : 'bloqueada';
         return (
-          <li key={id} ref={isCurrent ? currentRef : undefined} className="trail-item" style={{ '--x': x } as CSSProperties}>
+          <li key={id} ref={isCurrent ? currentRef : undefined} className="trail-item" style={{ '--x': x, '--i': Math.min(i, 12) } as CSSProperties}>
             {isCurrent && (
               <a className="trail-start" href={href.lesson(id)} aria-label={`Começar: ${title}`}>Começar</a>
             )}
@@ -185,7 +185,7 @@ function UnitTrail({ unit, currentId, state }: { unit: IndexedUnit; currentId?: 
           </li>
         );
       })}
-      <li className="trail-item trail-end" style={{ '--x': 0 } as CSSProperties}>
+      <li className="trail-item trail-end" style={{ '--x': 0, '--i': Math.min(unit.lessonIds.length, 12) } as CSSProperties}>
         <span className={`trail-chest ${allDone ? 'open' : ''}`} role="img" aria-label={allDone ? 'Unidade concluída' : 'Fim da unidade'}>
           <Icon name="chest" size={38} />
         </span>
