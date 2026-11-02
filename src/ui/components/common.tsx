@@ -38,14 +38,18 @@ export function Icon({ name, size = 22, label }: { name: keyof typeof PATHS | st
   );
 }
 
-/** Logótipo original: um caminho sinuoso (canal/estrada) com um ponto de chegada. */
+/** Logótipo: a bandeira dos Países Baixos num quadrado arredondado (o mesmo desenho do ícone da app). */
 export function Logo({ compact = false }: { compact?: boolean }) {
   return (
     <span className="logo">
-      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
-        <rect width="32" height="32" rx="9" fill="var(--brand)" />
-        <path d="M8 25c0-6 16-4 16-10S11 11 11 7" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="11" cy="7" r="2.6" fill="var(--accent)" />
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+        <clipPath id="logo-clip"><rect width="30" height="30" rx="8" /></clipPath>
+        <g clipPath="url(#logo-clip)">
+          <rect width="30" height="10" fill="#ae1c28" />
+          <rect y="10" width="30" height="10" fill="#ffffff" />
+          <rect y="20" width="30" height="10" fill="#21468b" />
+        </g>
+        <rect x="0.5" y="0.5" width="29" height="29" rx="7.5" fill="none" stroke="rgb(0 0 0 / 12%)" />
       </svg>
       {!compact && <span className="logo-text">{APP_CONFIG.name}</span>}
     </span>
