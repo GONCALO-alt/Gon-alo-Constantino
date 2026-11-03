@@ -435,6 +435,8 @@ a.home-stat { color: var(--text); }
 .trail-node.node-completed { background: #f0b400; box-shadow: 0 7px 0 #c48f00; }
 .trail-node.node-locked { background: var(--line); color: var(--muted); box-shadow: 0 7px 0 color-mix(in srgb, var(--line) 70%, #000); }
 .trail-node.kind-practice.node-available { background: #1c9fd6; box-shadow: 0 7px 0 #167fae; }
+/* Histórias: círculo roxo com um livro (cinzento com o livro enquanto bloqueada). */
+.trail-node.kind-story.node-available { background: #8e5bd8; box-shadow: 0 7px 0 #7044b4; }
 .trail-node.current { outline: 6px solid color-mix(in srgb, var(--go) 30%, transparent); outline-offset: 5px; }
 /* «Começar» por cima da lição atual */
 .trail-start { position: relative; margin-bottom: 14px; padding: 9px 18px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface);

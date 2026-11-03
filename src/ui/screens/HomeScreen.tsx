@@ -19,16 +19,18 @@ function greeting(d = new Date()): string {
 }
 
 /** Tipo de lição, para o ícone do círculo. */
-type LessonKind = 'lesson' | 'practice' | 'review' | 'challenge';
-function kindOf(l: PublishedLesson | undefined): LessonKind {
+type LessonKind = 'lesson' | 'practice' | 'review' | 'challenge' | 'story';
+export function kindOf(l: PublishedLesson | undefined): LessonKind {
   if (!l) return 'lesson';
   if (l.title.startsWith('Prática:')) return 'practice';
   if (l.title.startsWith('Desafio')) return 'challenge';
   if (/^(Revisão|Prática mista)/.test(l.title)) return 'review';
+  // História: um texto para ler (com perguntas) ou «história/conto/relato» no título.
+  if (/hist[óo]ria|conto|relato/i.test(l.title) || l.exercises.some((e) => e.type === 'comprehension' && e.kind === 'text')) return 'story';
   return 'lesson';
 }
-const KIND_ICON: Record<LessonKind, string> = { lesson: 'star', practice: 'dumbbell', review: 'review', challenge: 'trophy' };
-const KIND_LABEL: Record<LessonKind, string> = { lesson: 'Lição', practice: 'Prática', review: 'Revisão', challenge: 'Desafio' };
+const KIND_ICON: Record<LessonKind, string> = { lesson: 'star', practice: 'dumbbell', review: 'review', challenge: 'trophy', story: 'book' };
+const KIND_LABEL: Record<LessonKind, string> = { lesson: 'Lição', practice: 'Prática', review: 'Revisão', challenge: 'Desafio', story: 'História' };
 
 /** Ziguezague do caminho (deslocamento horizontal de cada círculo, em passos). */
 const WAVE = [0, 1, 2, 1, 0, -1, -2, -1];
@@ -177,7 +179,7 @@ function UnitTrail({ unit, currentId, state }: { unit: IndexedUnit; currentId?: 
             <button type="button" className={`trail-node node-${st} kind-${kind} ${isCurrent ? 'current' : ''}`}
               aria-label={`${KIND_LABEL[kind]}: ${title} — ${stateText}`} aria-expanded={open}
               onClick={() => setOpenId(open ? null : id)}>
-              <Icon name={st === 'locked' ? 'lock' : st === 'completed' ? 'check' : KIND_ICON[kind]} size={st === 'locked' ? 26 : 32} />
+              <Icon name={st === 'completed' ? 'check' : st === 'locked' && kind !== 'story' ? 'lock' : KIND_ICON[kind]} size={st === 'locked' && kind !== 'story' ? 26 : 32} />
             </button>
             {open && (
               <div className={`trail-pop pop-${st}`} role="dialog" aria-label={title}>
@@ -186,7 +188,7 @@ function UnitTrail({ unit, currentId, state }: { unit: IndexedUnit; currentId?: 
                 {st === 'locked' ? (
                   <p className="small">Conclua as lições anteriores para desbloquear esta.</p>
                 ) : (
-                  <a className="btn btn-go btn-wide" href={href.lesson(id)}>{st === 'completed' ? 'Rever' : kind === 'practice' ? 'Praticar' : 'Começar'}</a>
+                  <a className="btn btn-go btn-wide" href={href.lesson(id)}>{st === 'completed' ? 'Rever' : kind === 'practice' ? 'Praticar' : kind === 'story' ? 'Ler a história' : 'Começar'}</a>
                 )}
               </div>
             )}
