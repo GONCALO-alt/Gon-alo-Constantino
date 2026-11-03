@@ -1712,7 +1712,7 @@ function armyCard(a) {
   const me = C[G.player], t = TRAITS[a.trait];
   const where = P[a.prov].n + ' (' + C[P[a.prov].owner].n + ')';
   const dest = a.path.length ? P[a.path[a.path.length - 1]] : null;
-  return `<div class="card"><div class="head"><span class="flag">🎖️</span><div style="min-width:0"><h2>General ${a.name}</h2><p><span class="tag me">${t.n}</span> ${t.d}${a.auto ? ' · <span class="tag ally">Automático</span>' : ''}</p></div></div>
+  return `<div class="card"><button class="xclose" data-a="armyClose" aria-label="Fechar">✕</button><div class="head"><span class="flag">🎖️</span><div style="min-width:0"><h2>General ${a.name}</h2><p><span class="tag me">${t.n}</span> ${t.d}${a.auto ? ' · <span class="tag ally">Automático</span>' : ''}</p></div></div>
   <div class="kv"><div><small>Soldados</small><b>${fmt(a.inf)}</b></div><div><small>Tanques</small><b>${fmt(a.tank)}</b></div><div><small>Força</small><b>${fmt(a.inf + a.tank * 2.5)}</b></div></div>
   <p class="note">${dest ? `A avançar para <b>${dest.n}</b> (${a.path.length} província${a.path.length > 1 ? 's' : ''}).` : `Parado em ${where}.`} ${armyMoveMode ? '<b>Toca na província de destino.</b>' : 'Carrega em Mover e depois toca no destino.'}${me.ships ? '' : ' Sem navios não atravessa o mar.'}</p>
   <div class="btns"><button class="btn red ${armyMoveMode ? 'pulse' : ''}" data-a="armyMove" data-v="${a.id}">${armyMoveMode ? 'A escolher destino…' : 'Mover'}<small>toca no mapa a seguir</small></button></div>
@@ -1742,7 +1742,7 @@ function renderPanelInner(el) {
   tags.push(`<span class="tag">${tr.i} ${tr.n}${tr.d > 1 ? ' +' + Math.round((tr.d - 1) * 100) + '% def.' : ''}</span>`);
   if (p.res) tags.push(`<span class="tag" title="${RES[p.res].d}">${RES[p.res].i} ${RES[p.res].n}</span>`);
   const blds = BUILD.filter((b) => p.b & b.k).map((b) => b.i).join(' ');
-  let html = `<div class="card"><div class="head"><span class="flag">${o.flag}</span><div style="min-width:0"><h2>${p.n} · ${o.n}</h2><p>${tags.join(' ')} ${al ? `<span class="tag" style="border-color:${al.color}">${al.name}</span>` : ''}</p></div></div>
+  let html = `<div class="card"><button class="xclose" data-a="unsel" aria-label="Fechar">✕</button><div class="head"><span class="flag">${o.flag}</span><div style="min-width:0"><h2>${p.n} · ${o.n}</h2><p>${tags.join(' ')} ${al ? `<span class="tag" style="border-color:${al.color}">${al.name}</span>` : ''}</p></div></div>
   <div class="kv"><div><small>Guarnição</small><b>${fmt(p.gar)}</b></div><div><small>Rendimento</small><b>+${value(p).toFixed(1)}</b></div><div><small>${mine ? 'Edifícios' : 'Relação'}</small><b>${mine ? blds || '—' : relLabel(o.rel)}</b></div></div>`;
   if (p.held) html += `<p class="note">Frente de batalha: ${Object.entries(p.held).sort((u, v) => v[1] - u[1]).map(([ci, n]) => `${C[ci].flag} ${Math.round((n / PH[p.j].length) * 100)}%`).join(' · ')}</p>`;
   if (p.dev > 0) html += `<p class="note warn">Devastada: rende metade durante mais ${p.dev} dias.</p>`;
@@ -1877,6 +1877,7 @@ function onAction(e) {
   else if (a === 'armyStop') A.armyStop(+v);
   else if (a === 'armyReinforce') A.armyReinforce(+v);
   else if (a === 'armyDisband') A.armyDisband(+v);
+  else if (a === 'unsel') { sel = -1; warConfirm = -1; spyMenu = -1; }
   else if (a === 'armyClose') { selArmy = -1; armyMoveMode = false; }
   else if (a === 'armyMove') { selArmy = +v; armyMoveMode = !armyMoveMode; }
   else if (a === 'missile') A.missile(+v);
