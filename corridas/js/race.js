@@ -35,7 +35,7 @@ class Race {
       const lat = this.mode === 'quali' ? T.off[0] : (k % 2 ? 1 : -1) * T.W * 0.22;
       const car = { id: e.driver.id, d: e.driver, p: e.params, isPlayer: !!e.isPlayer, s, lat, v: 0, lap: -1, cp: {}, lastCp: -1, lapStart: 0, laps: [], best: null,
         tyre: e.tyre || 'M', wear: 0, used: new Set([e.tyre || 'M']), pitLap: e.pitLap ?? -1, pitState: 0, pitT: 0, pits: 0, penalty: 0, finished: false, finishT: 0,
-        prof: speedProfile(T, e.params), dTarget: 0, dl: 0, react: 0.18 + Math.random() * 0.35, mistakeT: 0, gridK: k, mode: 1 };
+        prof: speedProfile(T, e.params), relv: e.rel ?? (e.isPlayer ? this.playerRel : 0.97) ?? 0.98, dTarget: 0, dl: 0, react: 0.18 + Math.random() * 0.35, mistakeT: 0, gridK: k, mode: 1 };
       if (!e.isPlayer) {
         const pt = trackPoint(T, s, lat);
         car.x = pt.x; car.y = pt.y; car.th = pt.th; car.dl = lat - offAt(T, s);
@@ -57,7 +57,13 @@ class Race {
     this.weather = this.weather || { start: 0, end: 0, at: 0.5 };
     this.rain = this.weather.start; this.wet = this.weather.start > 0.3 ? Math.min(1, this.weather.start + 0.15) : 0;
     for (const c of this.cars) { c.dmg = 0; c.susp = 0; c.out = false; c.yieldT = 0; }
-    this.yellows = []; this.sc = null; this.flag = null; this.events = [];
+    this.yellows = []; this.sc = null; this.vsc = null; this.flag = null; this.events = [];
+    if (this.mode === 'race') {
+      // avarias conforme a fiabilidade de cada carro; volta de formação; combustível
+      for (const c of this.cars) if (Math.random() < (1 - (c.relv ?? 0.98)) * 0.85) c.failAt = 0.08 + Math.random() * 0.85;
+      if (this.formation) { this.phase = 'formation'; this.gridOrder = this.cars.map((c) => c.id); }
+      if (this.fuel) { this.me.fuel0 = this.laps * 1.03 + 0.2; this.me.fuel = this.me.fuel0; }
+    }
     this.rep = { dt: 0.05, acc: 0, frames: [], ids: this.cars.map((c) => c.id) };
     this.teamOrderAsked = false;
     this.boxReq = null; this.radio = [];
@@ -90,8 +96,30 @@ class Race {
     if (kind === 'crash') {
       c.out = true; c.v = 0; c.dl = (c.dl > 0 ? 1 : -1) * (T.W / 2 + T.runoff * 0.6) - offAt(T, c.s) + c.dl * 0;
       this.say(`${c.d.last} bateu e desistiu. Bandeira amarela no setor.`, 'warn');
-      if (!this.sc && !T.kart && this.mode === 'race' && Math.random() < 0.7) this.deploySC();
+      this.neutralise();
     } else this.say(`${c.d.last} fez um pião à tua frente! Cuidado.`, 'warn');
+  }
+  // acidente: safety car, virtual safety car (F1, F2, F3) ou só bandeira amarela
+  neutralise() {
+    const T = this.T; if (this.sc || this.vsc || T.kart || this.mode !== 'race' || this.phase !== 'race') return;
+    if (['f1', 'f2', 'f3'].includes(this.cat) && Math.random() < 0.45) this.deployVSC(); else if (Math.random() < 0.7) this.deploySC();
+  }
+  deployVSC() {
+    this.vsc = { until: this.time + 18 + Math.random() * 12, over: 0, pen: false };
+    this.say('Virtual safety car! Abranda para o tempo delta e não ultrapasses.', 'warn');
+    if (this.onFlag) this.onFlag('vsc');
+  }
+  // volta de formação feita: todos voltam à grelha pela ordem original
+  formationEnd() {
+    const T = this.T, gap = T.kart ? 6.5 : 8;
+    this.gridOrder.forEach((id, k) => {
+      const c = this.cars.find((x) => x.id === id); if (!c) return;
+      c.s = T.len - 12 - k * gap; c.lap = -1; c.v = 0; c.laps = []; c.best = null; c.cp = {}; c.lastCp = -1; c.lapStart = 0; c.prevPos = null; c.dTarget = 0;
+      const lat = (k % 2 ? 1 : -1) * T.W * 0.22;
+      if (c.isPlayer) { const pt = trackPoint(T, c.s, lat); c.phys.place(pt.x, pt.y, pt.th); c.hint = pt.i; c.lat = lat; } else { c.dl = lat - offAt(T, c.s); this.placeAI(c); }
+    });
+    this.phase = 'grid'; this.phaseT = 0; this.holdT = undefined; this.lightsN = 0;
+    this.say('Volta de formação feita. Todos na grelha!', '');
   }
   deploySC() {
     const leader = this.standings().find((c) => !c.out);
@@ -130,14 +158,16 @@ class Race {
     this.time += dt;
     const T = this.T;
     if (this.phase === 'red') { this.phaseT += dt; if (this.phaseT > 4) this.restartFromRed(); this.record(dt); return; }
-    if (this.phase === 'grid') { this.phaseT += dt; if (this.phaseT > 1.2) { this.phase = 'lights'; this.phaseT = 0; } }
+    if (this.phase === 'formation') { this.phaseT += dt; if (this.me.lap >= 0 || this.phaseT > 150) this.formationEnd(); }
+    else if (this.phase === 'grid') { this.phaseT += dt; if (this.phaseT > 1.2) { this.phase = 'lights'; this.phaseT = 0; } }
     else if (this.phase === 'lights') {
       this.phaseT += dt;
       const n = Math.min(5, Math.floor(this.phaseT / 0.9) + 1);
       if (n !== this.lightsN) { this.lightsN = n; if (this.onLight) this.onLight(n); }
       if (this.phaseT > 4.5 + (this.holdT ??= 0.4 + Math.random() * 1.6)) { this.phase = 'race'; this.lightsN = 0; this.startT = this.time; if (this.onLight) this.onLight(0); }
     }
-    const racing = this.phase === 'race';
+    const racing = this.phase === 'race' || this.phase === 'formation';
+    if (this.vsc && this.time > this.vsc.until) { this.vsc = null; this.say('Fim do virtual safety car. Bandeira verde!', 'good'); if (this.onFlag) this.onFlag('green'); }
     // chuva e pista molhada
     if (this.mode === 'race') {
       const f = this.raceFrac(), w = this.weather, k = clamp((f - w.at) / 0.18, 0, 1);
@@ -195,10 +225,10 @@ class Race {
     for (const y of this.yellows) { let g = y.s - me.s; if (g < -T.len / 2) g += T.len; if (g > T.len / 2) g -= T.len; if (g > -60 && g < 220) flag = 'amarela'; }
     // azul: um carro com uma volta de avanço está mesmo atrás
     for (const o of this.cars) { if (o === me || o.out) continue; const d = this.progress(o) - this.progress(me); if (d > T.len - 70 && d < T.len + 5) flag = flag || 'azul'; }
-    if (this.sc) flag = 'sc';
-    if ((flag === 'amarela' || flag === 'sc') && me.prevPos != null && pos < me.prevPos && this.phase === 'race' && !me.pitState) {
+    if (this.sc) flag = 'sc'; else if (this.vsc) flag = 'vsc';
+    if ((flag === 'amarela' || flag === 'sc' || flag === 'vsc') && me.prevPos != null && pos < me.prevPos && this.phase === 'race' && !me.pitState) {
       const passed = this.standings()[pos + 1];
-      if (passed && !passed.out && !passed.pitState) { me.penalty += 5; this.say(`Ultrapassagem com ${flag === 'sc' ? 'safety car' : 'bandeira amarela'}! Penalização de 5 segundos.`, 'warn'); }
+      if (passed && !passed.out && !passed.pitState) { me.penalty += 5; this.say(`Ultrapassagem com ${flag === 'sc' ? 'safety car' : flag === 'vsc' ? 'virtual safety car' : 'bandeira amarela'}! Penalização de 5 segundos.`, 'warn'); }
     }
     if (flag === 'azul' && this.flag !== 'azul') this.say('Bandeira azul: deixa passar o carro que te vai dar uma volta.', '');
     me.prevPos = pos; this.flag = flag;
@@ -236,6 +266,13 @@ class Race {
     c.wear += (dt * c.v) / (COMPOUNDS[c.tyre].life * this.laps * T.len) * (this.C.pits ? 1 : 0.35);
     let pace = c.pace * Math.sqrt(this.tyreGrip(c) / COMPOUNDS.M.grip);
     pace *= 1 - 0.08 * c.dmg;
+    if (this.phase === 'formation') pace = Math.min(pace, 0.42);
+    if (this.vsc) pace *= 0.62;
+    if (c.failAt && this.mode === 'race' && this.phase === 'race' && this.raceFrac() > c.failAt) {
+      c.out = true; c.failed = true; c.v = 0; c.dl = (c.dl > 0 ? 1 : -1) * (T.W / 2 + T.runoff * 0.6) - offAt(T, c.s);
+      this.yellows.push({ s: c.s, until: this.time + 15 }); this.say(`${c.d.last} abandonou com um problema mecânico.`, 'warn');
+      if (Math.random() < 0.5) this.neutralise(); this.placeAI(c); return;
+    }
     if (c.mistakeT > 0) { c.mistakeT -= dt; pace *= c.spinning ? 0.05 : 0.9; if (c.mistakeT <= 0) c.spinning = false; }
     else if (this.mode === 'race' && this.phase === 'race' && c.lap >= 0) {
       const risk = dt * 0.004 * (1.02 - c.d.skill) * 10 * (1 + (this.wet || 0) * 3);
@@ -403,6 +440,16 @@ class Race {
     surf.grade = gradeAt(T, pr.i) * (Math.cos(car.th) * T.tx[pr.i] + Math.sin(car.th) * T.ty[pr.i]);
     car.tireGrip = this.tyreGrip(c);
     car.powerMode = c.mode === 2 ? 1.025 : c.mode === 0 ? 0.975 : 1;
+    if (this.mode === 'race' && this.phase === 'race') {
+      if (c.fuel0) {
+        if (!c.finished) c.fuel -= (car.speed * dt / T.len) * (c.mode === 2 ? 1.12 : c.mode === 0 ? 0.88 : 1);
+        car.powerMode *= 1 - 0.015 * Math.max(0, c.fuel) / c.fuel0; // carro mais leve no fim
+        if (c.fuel <= 0 && !c.finished) { car.powerMode *= 0.1; if (!c.noFuel) { c.noFuel = true; c.failT = 0; this.say('Ficámos sem combustível! Leva o carro até onde der.', 'warn'); } }
+      }
+      if (c.failAt && !c.failed && !c.finished && this.raceFrac() > c.failAt) { c.failed = true; c.failT = 0; this.say('Problema no motor! Estamos a perder potência... Encosta o carro.', 'warn'); }
+      if (c.failed || c.noFuel) { car.powerMode *= c.failed ? 0.08 : 1; c.failT += dt; if (c.failT > (c.failed ? 7 : 12) && !this.done) { this.dnf = true; this.failDnf = c.failed ? 'mec' : 'fuel'; this.done = true; } }
+      if (this.vsc && !c.pitState) { const lim = c.prof.v[pr.i] * 0.66 + 3; if (car.speed > lim) this.vsc.over += dt; if (this.vsc.over > 2.5 && !this.vsc.pen) { this.vsc.pen = true; c.penalty += 5; this.say('Demasiado rápido com o virtual safety car! Penalização de 5 segundos.', 'warn'); } }
+    }
     car.aeroMul = 1 - 0.45 * c.dmg; car.frontMul = 1 - 0.2 * c.dmg - 0.08 * c.susp; car.pull = c.susp * (c.pullDir || 1) * 0.07;
     if (this.sc && this.mode === 'race') { /* com safety car o jogador tem de abrandar */ }
     if (c.finished) inp = autopilot(car, T, c.prof, c.hint, 0.55);
