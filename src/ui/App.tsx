@@ -5,6 +5,7 @@ import { Icon, Logo } from './components/common.tsx';
 import { href, useRoute, type Route } from './router.ts';
 import { CourseScreen } from './screens/CourseScreen.tsx';
 import { GamesScreen } from './screens/GamesScreen.tsx';
+import { DictionaryScreen, SearchScreen } from './screens/WordsScreens.tsx';
 import { HomeScreen } from './screens/HomeScreen.tsx';
 import { LessonScreen } from './screens/LessonScreen.tsx';
 import { ProfileScreen, SettingsScreen, StatsScreen } from './screens/ProfileScreens.tsx';
@@ -25,6 +26,7 @@ const NAV = [
 function activeKey(r: Route): string {
   if (r.name === 'reviewSession') return 'review';
   if (r.name === 'settings') return 'profile';
+  if (r.name === 'search' || r.name === 'dictionary') return 'review';
   return r.name;
 }
 
@@ -39,6 +41,8 @@ function Screen({ route }: { route: Route }) {
     case 'stats': return <StatsScreen />;
     case 'settings': return <SettingsScreen />;
     case 'games': return <GamesScreen />;
+    case 'search': return <SearchScreen />;
+    case 'dictionary': return <DictionaryScreen />;
     case 'notFound':
       return <div className="page"><h1>Página não encontrada</h1><a href={href.home()}>Voltar ao início</a></div>;
   }
@@ -90,6 +94,8 @@ function Shell() {
             {NAV.map((n) => (
               <li key={n.key}><a href={n.to} className={`nav-link ${active === n.key ? 'active' : ''}`} aria-current={active === n.key ? 'page' : undefined}><Icon name={n.icon} /> <span>{n.label}</span></a></li>
             ))}
+            <li><a href={href.search()} className={`nav-link ${route.name === 'search' ? 'active' : ''}`} aria-current={route.name === 'search' ? 'page' : undefined}><Icon name="search" /> <span>Pesquisar</span></a></li>
+            <li><a href={href.dictionary()} className={`nav-link ${route.name === 'dictionary' ? 'active' : ''}`} aria-current={route.name === 'dictionary' ? 'page' : undefined}><Icon name="star" /> <span>O meu dicionário</span></a></li>
             <li><a href={href.settings()} className={`nav-link ${route.name === 'settings' ? 'active' : ''}`} aria-current={route.name === 'settings' ? 'page' : undefined}><Icon name="settings" /> <span>Definições</span></a></li>
           </ul>
         </nav>
@@ -97,7 +103,10 @@ function Shell() {
       <header className="topbar">
         <a href={href.home()} aria-label={`${APP_CONFIG.name} — início`}><Logo /></a>
         <span className="topbar-xp" aria-label={`${data.profile.totalXp} pontos de experiência`}><Icon name="star" size={18} /> {data.profile.totalXp}</span>
-        <a href={href.settings()} className="icon-btn" aria-label="Definições"><Icon name="settings" /></a>
+        <span className="topbar-actions">
+          <a href={href.search()} className="icon-btn" aria-label="Pesquisar palavras"><Icon name="search" /></a>
+          <a href={href.settings()} className="icon-btn" aria-label="Definições"><Icon name="settings" /></a>
+        </span>
       </header>
       <main id="conteudo" className="main" tabIndex={-1}><Screen route={route} /></main>
       <nav className="bottom-nav" aria-label="Navegação principal (móvel)">

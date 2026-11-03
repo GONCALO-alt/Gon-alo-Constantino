@@ -9,7 +9,7 @@
  */
 import { openDB, type DBSchema, type IDBPDatabase, type IDBPTransaction, type StoreNames } from 'idb';
 import type {
-  Achievement, DailyStat, ExerciseAttempt, LessonProgress, ReviewSchedule, StudySession, UserProfile, UserSettings,
+  Achievement, DailyStat, ExerciseAttempt, LessonProgress, ReviewSchedule, SavedWord, StudySession, UserProfile, UserSettings,
 } from '../domain/progress.ts';
 
 export interface DutchPathDB extends DBSchema {
@@ -22,10 +22,11 @@ export interface DutchPathDB extends DBSchema {
   achievements: { key: string; value: Achievement };
   sessions: { key: number; value: StudySession; indexes: { byStart: string } };
   meta: { key: string; value: { key: string; value: unknown } };
+  savedWords: { key: string; value: SavedWord };
 }
 
 export const DB_NAME = 'dutchpath';
-export const DB_VERSION = 2;
+export const DB_VERSION = 3;
 
 type UpgradeTx = IDBPTransaction<DutchPathDB, StoreNames<DutchPathDB>[], 'versionchange'>;
 type Migration = (db: IDBPDatabase<DutchPathDB>, tx: UpgradeTx) => void;
@@ -51,6 +52,10 @@ export const MIGRATIONS: Migration[] = [
   (db) => {
     const s = db.createObjectStore('sessions', { keyPath: 'id', autoIncrement: true });
     s.createIndex('byStart', 'startedAt');
+  },
+  // 2 → 3: dicionário pessoal (palavras guardadas)
+  (db) => {
+    db.createObjectStore('savedWords', { keyPath: 'vocabId' });
   },
 ];
 
@@ -82,4 +87,4 @@ export async function closeDB(): Promise<void> {
   }
 }
 
-export const ALL_STORES = ['profile', 'settings', 'lessonProgress', 'attempts', 'reviews', 'dailyStats', 'achievements', 'sessions', 'meta'] as const satisfies readonly StoreNames<DutchPathDB>[];
+export const ALL_STORES = ['profile', 'settings', 'lessonProgress', 'attempts', 'reviews', 'dailyStats', 'achievements', 'sessions', 'meta', 'savedWords'] as const satisfies readonly StoreNames<DutchPathDB>[];

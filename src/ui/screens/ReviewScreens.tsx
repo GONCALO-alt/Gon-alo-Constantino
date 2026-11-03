@@ -1,16 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Exercise } from '../../domain/schemas.ts';
-import type { ExerciseAttempt, ReviewSchedule } from '../../domain/progress.ts';
+import type { ReviewSchedule } from '../../domain/progress.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
-import { getAllReviews, getRecentAttempts, recordReviewSession, type CompletionOutcome } from '../../data/progressRepo.ts';
-import { encouragement, lastNDays, localDate, XP_RULES } from '../../engine/progression.ts';
+import { getAllAttempts, getAllReviews, recordReviewSession, type CompletionOutcome } from '../../data/progressRepo.ts';
+import { openMistakes, reviewItemOf, type OpenMistake } from '../../engine/mistakes.ts';
+import { encouragement, XP_RULES } from '../../engine/progression.ts';
 import { buildReviewExercise, seededRandom, shuffle, type ReviewVocab } from '../../engine/session.ts';
 import { isDue, isHard, isMastered, pickDue } from '../../engine/srs.ts';
 import { celebrate } from '../../services/sounds.ts';
 import { useAppData, type AppData } from '../AppState.tsx';
 import { Card, EmptyState, Icon } from '../components/common.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
-import { href, navigate } from '../router.ts';
+import { href, navigate, type ReviewMode } from '../router.ts';
 
 /** Carrega o vocabulário das secções com conteúdo publicado. */
 async function loadVocabMap(index: AppData['index']): Promise<Map<string, ReviewVocab>> {
@@ -23,27 +24,30 @@ async function loadVocabMap(index: AppData['index']): Promise<Map<string, Review
 
 function useReviewData() {
   const app = useAppData();
-  const [state, setState] = useState<{ reviews: ReviewSchedule[]; vocab: Map<string, ReviewVocab>; attempts: ExerciseAttempt[] } | null>(null);
+  const [state, setState] = useState<{ reviews: ReviewSchedule[]; vocab: Map<string, ReviewVocab>; mistakes: OpenMistake[] } | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    const since = lastNDays(localDate(), 7)[0]!;
-    Promise.all([getAllReviews(), loadVocabMap(app.index), getRecentAttempts(since)])
-      .then(([reviews, vocab, attempts]) => setState({ reviews, vocab, attempts }), (e: Error) => setError(e.message));
+    Promise.all([getAllReviews(), loadVocabMap(app.index), getAllAttempts()])
+      .then(([reviews, vocab, attempts]) => setState({ reviews, vocab, mistakes: openMistakes(attempts) }), (e: Error) => setError(e.message));
   }, [app.index, app.profile.totalXp]);
   return { app, state, error };
 }
 
 export function ReviewScreen() {
-  const { state, error } = useReviewData();
+  const { app, state, error } = useReviewData();
   if (error) return <div className="page"><p className="notice" role="alert">{error}</p></div>;
   if (!state) return <div className="page"><p className="loading" aria-busy="true">A carregar…</p></div>;
   const now = Date.now();
-  const { reviews, vocab, attempts } = state;
+  const { reviews, vocab, mistakes } = state;
   const due = reviews.filter((r) => isDue(r, now));
   const hard = reviews.filter(isHard);
   const forgotten = reviews.filter((r) => r.lapses > 0).sort((a, b) => b.lapses - a.lapses);
   const mastered = reviews.filter(isMastered).length;
-  const recentErrors = dedupeErrors(attempts.filter((a) => !a.correct)).slice(0, 12);
+  const unitOf = (lessonId: string | null) => {
+    if (!lessonId) return null;
+    for (const sec of app.index.sections) for (const u of sec.units) if (u.lessonIds.includes(lessonId)) return `Secção ${sec.order} · Unidade ${u.order}`;
+    return null;
+  };
   const word = (id: string) => {
     const v = vocab.get(id);
     return v ? <><strong lang="nl">{v.article ? `${v.article} ` : ''}{v.nl}</strong> — {v.pt[0]}</> : <span className="muted">{id}</span>;
@@ -70,6 +74,13 @@ export function ReviewScreen() {
           <a className="btn btn-secondary" href={href.reviewSession('grammar')}><Icon name="book" size={18} /> Praticar gramática</a>
         </div>
       )}
+      <div className="row wrap review-extra">
+        <a className={`btn btn-go ${mistakes.length ? '' : 'disabled'}`} aria-disabled={!mistakes.length} href={mistakes.length ? href.reviewSession('mistakes') : undefined}>
+          Treinar os meus erros ({mistakes.length})
+        </a>
+        <a className="btn btn-secondary" href={href.dictionary()}>★ O meu dicionário ({app.savedWords.size})</a>
+        <a className="btn btn-secondary" href={href.search()}><Icon name="search" size={18} /> Pesquisar</a>
+      </div>
       <div className="two-col">
         <Card>
           <h2>Palavras difíceis</h2>
@@ -81,26 +92,28 @@ export function ReviewScreen() {
         </Card>
       </div>
       <Card>
-        <h2>Erros recentes (7 dias)</h2>
-        {recentErrors.length ? (
+        <h2>Os meus erros</h2>
+        <p className="muted small">Exercícios em que a última resposta foi errada. Quando acertar, saem da lista.</p>
+        {mistakes.length ? (
           <ul className="error-list">
-            {recentErrors.map((a) => (
-              <li key={a.id}>
-                <span className="muted small">{a.lessonId ? `Lição ${a.lessonId}` : 'Revisão'} · {exerciseTypeLabel(a.exerciseType)}</span>
-                {a.answer && <span> — respondeu «<span lang="nl">{a.answer}</span>»</span>}
-              </li>
-            ))}
+            {mistakes.slice(0, 20).map((m) => {
+              const item = reviewItemOf(m.exerciseId);
+              const v = item ? vocab.get(item) : undefined;
+              return (
+                <li key={m.exerciseId}>
+                  <span className="muted small">{v ? 'Revisão' : unitOf(m.lessonId) ?? 'Lição'} · {exerciseTypeLabel(m.exerciseType)}</span>
+                  {v && <span> — {word(v.id)}</span>}
+                  {m.answer && <span> — respondeu «<span lang="nl">{m.answer}</span>»</span>}
+                </li>
+              );
+            })}
           </ul>
-        ) : <p className="muted small">Sem erros nos últimos 7 dias.</p>}
+        ) : <p className="muted small">Não há erros por treinar. Muito bem!</p>}
       </Card>
     </div>
   );
 }
 
-function dedupeErrors(xs: ExerciseAttempt[]): ExerciseAttempt[] {
-  const seen = new Set<string>();
-  return [...xs].reverse().filter((a) => (seen.has(a.exerciseId) ? false : (seen.add(a.exerciseId), true)));
-}
 
 export function exerciseTypeLabel(t: string): string {
   const labels: Record<string, string> = {
@@ -117,9 +130,10 @@ export function exerciseTypeLabel(t: string): string {
 // ---------------------------------------------------------------------------
 const GRAMMAR_TYPES = new Set(['conjugation', 'articleChoice', 'fillBlank', 'findError', 'wordOrder']);
 
-export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'grammar' }) {
+export function ReviewSessionScreen({ mode }: { mode: ReviewMode }) {
   const { app, state, error } = useReviewData();
-  const [exercises, setExercises] = useState<{ list: Exercise[]; itemOf: Map<string, string> } | null>(null);
+  /** Para cada exercício: o item da revisão espaçada e, no treino dos erros, o exercício original. */
+  const [exercises, setExercises] = useState<{ list: Exercise[]; itemOf: Map<string, string>; origin: Map<string, { exerciseId: string; lessonId: string | null }> } | null>(null);
   const [startedAt] = useState(() => Date.now());
   const [done, setDone] = useState<{ correct: number; total: number; xp: number; outcome: CompletionOutcome } | null>(null);
   const [saving, setSaving] = useState(false);
@@ -130,8 +144,28 @@ export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'gramma
     const rnd = seededRandom(now);
     const pool = [...state.vocab.values()];
     const itemOf = new Map<string, string>();
+    const origin = new Map<string, { exerciseId: string; lessonId: string | null }>();
     if (mode === 'grammar') {
-      void buildGrammarSet(app, rnd).then((list) => setExercises({ list, itemOf }));
+      void buildGrammarSet(app, rnd).then((list) => setExercises({ list, itemOf, origin }));
+      return;
+    }
+    if (mode === 'mistakes') {
+      void buildMistakeSet(state.mistakes, state.vocab, pool, state.reviews, rnd).then(({ list, items, origins }) => {
+        for (const [k, v] of items) itemOf.set(k, v);
+        for (const [k, v] of origins) origin.set(k, v);
+        setExercises({ list, itemOf, origin });
+      });
+      return;
+    }
+    if (mode === 'saved') {
+      const boxes = new Map(state.reviews.map((r) => [r.itemId, r.box]));
+      const words = shuffle([...app.savedWords].filter((id) => state.vocab.has(id)), rnd).slice(0, 15);
+      const list = words.map((id) => {
+        const ex = buildReviewExercise(state.vocab.get(id)!, pool, rnd, boxes.get(id) ?? 0);
+        itemOf.set(ex.id, id);
+        return ex;
+      });
+      setExercises({ list, itemOf, origin });
       return;
     }
     const known = state.reviews.filter((r) => state.vocab.has(r.itemId));
@@ -147,7 +181,7 @@ export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'gramma
       itemOf.set(ex.id, r.itemId);
       return ex;
     });
-    setExercises({ list, itemOf });
+    setExercises({ list, itemOf, origin });
   }, [state, exercises, mode, app]);
 
   const pctLabel = useMemo(() => (done ? Math.round((done.correct / Math.max(1, done.total)) * 100) : 0), [done]);
@@ -157,7 +191,9 @@ export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'gramma
   if (!exercises.list.length) {
     return (
       <div className="page">
-        <EmptyState title={mode === 'grammar' ? 'Ainda não há exercícios de gramática para praticar.' : 'Não há palavras para rever.'}>
+        <EmptyState title={mode === 'grammar' ? 'Ainda não há exercícios de gramática para praticar.'
+          : mode === 'mistakes' ? 'Não há erros por treinar. Muito bem!'
+          : mode === 'saved' ? 'Ainda não guardou palavras no seu dicionário.' : 'Não há palavras para rever.'}>
           <p className="muted">Conclua mais lições para ter material de revisão.</p>
           <a className="btn btn-primary" href={href.course()}>Ir para o curso</a>
         </EmptyState>
@@ -196,6 +232,7 @@ export function ReviewSessionScreen({ mode }: { mode: 'vocab' | 'hard' | 'gramma
         const outcome = await recordReviewSession(
           answers.map((a) => ({
             itemId: exercises.itemOf.get(a.exercise.id) ?? a.exercise.vocabRefs[0] ?? a.exercise.id,
+            ...exercises.origin.get(a.exercise.id),
             verdict: a.result.verdict, answer: a.result.given, exerciseType: a.exercise.type,
           })),
           xp, startedAt, Date.now(), app.countUnits,
@@ -214,4 +251,37 @@ async function buildGrammarSet(app: AppData, rnd: () => number): Promise<Exercis
   const bundles = await Promise.all(unitIds.map((u) => contentRepo.loadUnit(u).catch(() => null)));
   const pool = bundles.flatMap((b) => b?.lessons.filter((l) => app.completed.has(l.id)).flatMap((l) => l.exercises) ?? []).filter((e) => GRAMMAR_TYPES.has(e.type));
   return shuffle(pool, rnd).slice(0, 10);
+}
+
+/**
+ * Treino dos erros: os exercícios originais das lições (com o mesmo ID, para que, ao acertar,
+ * saiam da lista) e, para os erros da revisão, um exercício novo com a mesma palavra.
+ */
+async function buildMistakeSet(
+  mistakes: OpenMistake[], vocab: Map<string, ReviewVocab>, pool: ReviewVocab[], reviews: ReviewSchedule[], rnd: () => number,
+): Promise<{ list: Exercise[]; items: Map<string, string>; origins: Map<string, { exerciseId: string; lessonId: string | null }> }> {
+  const items = new Map<string, string>();
+  const origins = new Map<string, { exerciseId: string; lessonId: string | null }>();
+  const boxes = new Map(reviews.map((r) => [r.itemId, r.box]));
+  const list: Exercise[] = [];
+  for (const m of mistakes.slice(0, 30)) {
+    if (list.length >= 15) break;
+    const vocabId = reviewItemOf(m.exerciseId);
+    if (vocabId) {
+      const v = vocab.get(vocabId);
+      if (!v) continue;
+      const ex = buildReviewExercise(v, pool, rnd, boxes.get(vocabId) ?? 0);
+      items.set(ex.id, vocabId);
+      origins.set(ex.id, { exerciseId: m.exerciseId, lessonId: null });
+      list.push(ex);
+      continue;
+    }
+    if (!m.lessonId) continue;
+    const lesson = await contentRepo.loadLesson(m.lessonId).catch(() => null);
+    const ex = lesson?.exercises.find((e) => e.id === m.exerciseId);
+    if (!ex || list.some((x) => x.id === ex.id)) continue;
+    origins.set(ex.id, { exerciseId: ex.id, lessonId: m.lessonId });
+    list.push(ex);
+  }
+  return { list: shuffle(list, rnd), items, origins };
 }

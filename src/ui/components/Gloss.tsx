@@ -5,6 +5,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { buildGlossary, normalizeWord, type GlossEntry, type Glossary } from '../../engine/glossary.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
+import { useSavedWords } from '../AppState.tsx';
 
 const SECTIONS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
 let glossaryPromise: Promise<Glossary> | null = null;
@@ -39,6 +40,7 @@ const isWord = (t: string) => /\p{L}/u.test(t) && !/^_+$/.test(t);
 
 export function GlossText({ text, className, as: Tag = 'span' }: { text: string; className?: string; as?: 'span' | 'p' | 'div' }) {
   const glossary = useContext(GlossaryContext);
+  const saved = useSavedWords();
   const [open, setOpen] = useState<{ i: number; word: string; entries: GlossEntry[] } | null>(null);
   if (!glossary) return <Tag className={className} lang="nl">{text}</Tag>;
   const parts = text.split(/(\s+)/);
@@ -67,6 +69,11 @@ export function GlossText({ text, className, as: Tag = 'span' }: { text: string;
                 {k > 0 && ' · '}
                 {e.pt.slice(0, 3).join(', ')}
                 {normalizeWord(e.headword) !== open.word && <span className="muted"> ({e.headword})</span>}
+                {saved && e.id && (
+                  <button type="button" className={`save-star ${saved.saved.has(e.id) ? 'on' : ''}`}
+                    aria-pressed={saved.saved.has(e.id)} aria-label={saved.saved.has(e.id) ? `Tirar «${e.headword}» do meu dicionário` : `Guardar «${e.headword}» no meu dicionário`}
+                    onClick={(ev) => { ev.stopPropagation(); void saved.toggle(e.id!); }}>{saved.saved.has(e.id) ? '★' : '☆'}</button>
+                )}
               </span>
             ))
           ) : (

@@ -6,6 +6,7 @@
  */
 
 export interface GlossSource {
+  id?: string;
   nl: string;
   pt: string[];
   article?: 'de' | 'het';
@@ -14,6 +15,8 @@ export interface GlossSource {
 }
 
 export interface GlossEntry {
+  /** ID do vocabulário (para guardar no dicionário pessoal). */
+  id?: string;
   /** Forma do dicionário (com artigo, se for substantivo). */
   headword: string;
   pt: string[];
@@ -126,6 +129,7 @@ export function buildGlossary(items: readonly GlossSource[]): Glossary {
   const index = new Map<string, GlossEntry[]>();
   for (const it of items) {
     const entry: GlossEntry = {
+      id: it.id,
       headword: it.article ? `${it.article} ${it.nl}` : it.nl,
       pt: it.pt,
       note: it.note,

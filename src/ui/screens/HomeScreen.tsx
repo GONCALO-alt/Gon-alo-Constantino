@@ -106,7 +106,13 @@ export function HomeScreen() {
         ) : (
           <p className="muted">Nada para rever agora. {app.totalReviews} palavras no seu calendário de revisão.</p>
         )}
-        <a className="link small" href={href.course()}>Ver o curso todo</a>
+        {app.mistakes > 0 && (
+          <p><a className="btn btn-go" href={href.reviewSession('mistakes')}>Treinar os meus erros ({app.mistakes})</a></p>
+        )}
+        <p className="row wrap small">
+          <a className="link" href={href.dictionary()}>★ O meu dicionário ({app.savedWords.size})</a>
+          <a className="link" href={href.course()}>Ver o curso todo</a>
+        </p>
       </Card>
     </div>
   );

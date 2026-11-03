@@ -5,7 +5,7 @@
 import {
   DEFAULT_SETTINGS, LOCAL_USER_ID,
   type Achievement, type DailyStat, type ExerciseAttempt, type LessonProgress, type ReviewSchedule,
-  type StudySession, type UserProfile, type UserSettings,
+  type SavedWord, type StudySession, type UserProfile, type UserSettings,
 } from '../domain/progress.ts';
 import type { Verdict } from '../engine/answers.ts';
 import { ACHIEVEMENTS, localDate, newlyUnlocked, type AchievementDef } from '../engine/progression.ts';
@@ -60,6 +60,26 @@ export async function getDailyStats(): Promise<DailyStat[]> {
 
 export async function getRecentAttempts(sinceDate: string): Promise<ExerciseAttempt[]> {
   return (await getDB()).getAllFromIndex('attempts', 'byDate', IDBKeyRange.lowerBound(sinceDate));
+}
+
+export async function getAllAttempts(): Promise<ExerciseAttempt[]> {
+  return (await getDB()).getAll('attempts');
+}
+
+// ---------------------------------------------------------------------------
+// Dicionário pessoal
+// ---------------------------------------------------------------------------
+export async function getSavedWords(): Promise<SavedWord[]> {
+  const all = await (await getDB()).getAll('savedWords');
+  return all.sort((a, b) => b.savedAt.localeCompare(a.savedAt));
+}
+
+export async function saveWord(vocabId: string): Promise<void> {
+  await (await getDB()).put('savedWords', { vocabId, savedAt: new Date().toISOString() });
+}
+
+export async function unsaveWord(vocabId: string): Promise<void> {
+  await (await getDB()).delete('savedWords', vocabId);
 }
 
 export async function getSessions(limit = 50): Promise<StudySession[]> {
@@ -181,6 +201,9 @@ export async function recordLessonCompletion(c: LessonCompletion, countUnits: Un
 // ---------------------------------------------------------------------------
 export interface ReviewAnswer {
   itemId: string;
+  /** Exercício original de uma lição (treino dos erros): o registo usa o mesmo ID, e o erro sai da lista quando se acerta. */
+  exerciseId?: string;
+  lessonId?: string | null;
   verdict: Verdict;
   answer: string;
   exerciseType: ExerciseAttempt['exerciseType'];
@@ -195,7 +218,7 @@ export async function recordReviewSession(answers: ReviewAnswer[], xp: number, s
   // Um item pode aparecer mais de uma vez na sessão: só a primeira resposta conta para o calendário.
   const seen = new Set<string>();
   for (const a of answers) {
-    await tx.objectStore('attempts').add({ lessonId: null, exerciseId: `review:${a.itemId}`, exerciseType: a.exerciseType, correct: a.verdict !== 'incorrect', answer: a.answer.slice(0, 300), at: iso, date });
+    await tx.objectStore('attempts').add({ lessonId: a.lessonId ?? null, exerciseId: a.exerciseId ?? `review:${a.itemId}`, exerciseType: a.exerciseType, correct: a.verdict !== 'incorrect', answer: a.answer.slice(0, 300), at: iso, date });
     if (seen.has(a.itemId)) continue;
     seen.add(a.itemId);
     const s = await reviews.get(a.itemId);

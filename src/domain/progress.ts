@@ -82,6 +82,12 @@ export interface ExerciseAttempt {
   topic?: string; // unidade, para estatísticas por tema
 }
 
+/** Palavra guardada no dicionário pessoal. */
+export interface SavedWord {
+  vocabId: string;
+  savedAt: string; // ISO
+}
+
 export interface ReviewSchedule {
   /** ID do item revisto (normalmente vocabId). */
   itemId: string;

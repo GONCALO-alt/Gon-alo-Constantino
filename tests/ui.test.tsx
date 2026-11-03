@@ -59,6 +59,44 @@ describe('caminho de lições no ecrã inicial', () => {
   });
 });
 
+describe('pesquisa e dicionário pessoal', () => {
+  it('pesquisar «casa», guardar «huis» e encontrá-lo no dicionário', async () => {
+    const user = userEvent.setup();
+    await go('#/pesquisa');
+    render(<App />);
+    await user.type(await screen.findByRole('searchbox'), 'casa');
+    const star = await screen.findByRole('button', { name: 'Guardar «het huis» no meu dicionário' });
+    await user.click(star);
+    expect(await screen.findByRole('button', { name: 'Tirar «het huis» do meu dicionário' })).toBeTruthy();
+    await go('#/dicionario');
+    expect(await screen.findByText('het huis')).toBeTruthy();
+    expect(screen.getByText(/1 palavra guardada/)).toBeTruthy();
+  });
+});
+
+describe('os meus erros', () => {
+  it('um erro numa lição aparece na lista e sai depois de treinado', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    const wrong = lesson.exercises[1]!;
+    await repo.getProfile();
+    await repo.recordLessonCompletion({
+      lessonId: lesson.id, unitId: lesson.unitId, contentVersion: lesson.version, difficulty: lesson.difficulty,
+      answers: lesson.exercises.map((e) => ({ exerciseId: e.id, exerciseType: e.type, verdict: e.id === wrong.id ? 'incorrect' : 'correct', answer: 'x', vocabRefs: e.vocabRefs })),
+      newVocabIds: lesson.newVocabulary.map((v) => v.id), xp: 10, startedAt: Date.now() - 60_000, endedAt: Date.now(),
+    });
+    await go('#/revisao');
+    render(<App />);
+    await user.click(await screen.findByRole('link', { name: 'Treinar os meus erros (1)' }));
+    await screen.findByRole('heading', { name: wrong.instruction });
+    await answerCorrectly(user, wrong);
+    await user.click(await screen.findByRole('button', { name: 'Continuar' }));
+    expect(await screen.findByText('Revisão concluída')).toBeTruthy();
+    await go('#/revisao');
+    expect(await screen.findByText(/Não há erros por treinar/)).toBeTruthy();
+  }, 30_000);
+});
+
 describe('mini-jogos', () => {
   it('a lista mostra 4 jogos; a corrida tem 4 opções e pode-se sair', async () => {
     const user = userEvent.setup();
@@ -480,7 +518,7 @@ describe('revisão', () => {
     await go('#/revisao');
     render(<App />);
     expect(await screen.findByText('Para rever agora')).toBeTruthy();
-    expect(screen.getByText(/Erros recentes/)).toBeTruthy();
+    expect(screen.getByText(/Os meus erros/)).toBeTruthy();
     await user.click(screen.getByRole('link', { name: /Rever \d+ palavras/ }));
     expect(await screen.findByRole('button', { name: 'Não me lembro' })).toBeTruthy();
     expect(screen.getByRole('progressbar')).toBeTruthy();
