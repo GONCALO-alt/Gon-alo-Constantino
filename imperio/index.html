@@ -61,7 +61,7 @@ button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 #mapwrap { position: relative; flex: 1; min-height: 0; overflow: hidden; touch-action: none; }
 #map { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
 #toasts { position: absolute; top: 8px; left: 8px; right: 8px; display: flex; flex-direction: column; gap: 6px; pointer-events: none; z-index: 4; }
-.toast { background: #0d1330ee; border: 2px solid var(--line); border-left: 6px solid var(--cyan); border-radius: 10px; padding: 7px 10px; font-size: 13px; font-weight: 600; animation: tin .35s cubic-bezier(.2,1.6,.4,1) both; box-shadow: 0 6px 20px #0008; }
+.toast { background: #0d1330ee; border: 2px solid var(--line); border-left: 6px solid var(--cyan); border-radius: 10px; padding: 5px 9px; font-size: 12px; font-weight: 600; animation: tin .35s cubic-bezier(.2,1.6,.4,1) both; box-shadow: 0 6px 20px #0008; }
 .toast.war { border-left-color: var(--red); }
 .toast.good { border-left-color: var(--green); }
 .toast.gold { border-left-color: var(--gold); }
@@ -70,6 +70,13 @@ button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 @keyframes tout { to { transform: translateX(110%); opacity: 0 } }
 .mapbtns { position: absolute; right: 8px; bottom: 8px; display: flex; flex-direction: column; gap: 6px; z-index: 3; }
 .mapbtns button { width: 40px; height: 40px; border-radius: 12px; border: 2px solid var(--line); background: #151c3dee; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 3px 0 #0007; }
+.mapbtns button.on { background: #4a0f1e; border-color: var(--red); box-shadow: 0 0 14px #ff3d5a88; }
+#music.off { opacity: .5; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 7; }
+#flash.on { animation: flash 1.1s ease-out; }
+@keyframes flash { 0% { opacity: 0 } 6% { opacity: .95 } 100% { opacity: 0 } }
+.toast.news { background: #f4e7c2; color: #1d1600; border-color: #c9a64a; border-left-color: #1d1600; }
+.toast.news::before { content: "ÚLTIMA HORA"; display: block; font-family: var(--display); font-size: 10px; letter-spacing: 1px; color: #b3261e; }
 .mapbtns button:active { transform: translateY(2px); box-shadow: none; }
 
 /* ---------- Banner central ---------- */
@@ -196,12 +203,12 @@ button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
     <div class="hud-row">
       <div class="me"><span class="flag" id="hFlag"></span><div style="min-width:0"><div class="name" id="hName">Império</div><div class="sub" id="hSub">Dia 1</div></div></div>
       <div class="speed" id="speed">
-        <button data-s="0" aria-label="Pausa">II</button><button data-s="1" class="on">1x</button><button data-s="2">2x</button><button data-s="4">4x</button>
+        <button id="music" aria-label="Música">♪</button><button data-s="0" aria-label="Pausa">II</button><button data-s="1" class="on">1x</button><button data-s="2">2x</button><button data-s="4">4x</button>
       </div>
     </div>
     <div class="stats">
       <div class="stat"><i class="i-gold">$</i><div class="v"><b id="hMoney">0</b><small id="hInc">+0/dia</small></div></div>
-      <div class="stat"><i class="i-troop">⚔</i><div class="v"><b id="hTroops">0</b><small>tropas</small></div></div>
+      <div class="stat"><i class="i-troop">⚔</i><div class="v"><b id="hTroops">0</b><small id="hTanks">soldados</small></div></div>
       <div class="stat"><i class="i-world">◆</i><div class="v"><b id="hProv">0</b><small id="hShare">0% do mundo</small></div></div>
     </div>
     <div class="bar"><div id="hBar"></div></div>
@@ -209,8 +216,9 @@ button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
   <div id="mapwrap">
     <canvas id="map"></canvas>
     <div id="toasts"></div>
-    <div class="mapbtns"><button id="zin" aria-label="Aproximar">+</button><button id="zout" aria-label="Afastar">−</button><button id="zhome" aria-label="Centrar no meu país">◎</button></div>
+    <div class="mapbtns"><button id="zin" aria-label="Aproximar">+</button><button id="zout" aria-label="Afastar">−</button><button id="zheat" aria-label="Mapa de guerra">🔥</button><button id="zhome" aria-label="Centrar no meu país">◎</button></div>
     <div id="banner"></div>
+    <div id="flash"></div>
   </div>
   <section id="panel"></section>
   <nav id="tabs">
