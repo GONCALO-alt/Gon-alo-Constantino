@@ -56,7 +56,17 @@ const COMPOUNDS = {
   S: { n: 'Macios', c: '#e8463a', grip: 1.045, life: 0.48 },
   M: { n: 'Médios', c: '#f2c230', grip: 1.0, life: 0.7 },
   H: { n: 'Duros', c: '#f2f2f2', grip: 0.963, life: 0.98 },
+  I: { n: 'Intermédios', c: '#2fb24c', grip: 1, life: 0.85, wet: true },
+  W: { n: 'Chuva', c: '#2f7de1', grip: 1, life: 1.1, wet: true },
 };
+// aderência dos pneus conforme a pista está seca (0) ou encharcada (1)
+function wetFactor(t, w) {
+  if (t === 'I') return w < 0.15 ? 0.86 + (w / 0.15) * 0.06 : 0.92 - 0.25 * Math.max(0, w - 0.6);
+  if (t === 'W') return w < 0.35 ? 0.77 + 0.09 * (w / 0.35) : 0.86 + 0.03 * (w - 0.35);
+  return 1 - 0.5 * w;
+}
+const SPONSORS = [['Lusoil', '#e10600'], ['Nimbus Energy', '#1e5bc6'], ['Kappa Telecom', '#6a0dad'], ['Rio Verde Café', '#1a8a4a'], ['Atlas Seguros', '#0b1f4b'],
+  ['Zeta Bank', '#00a19b'], ['Pixel Games', '#ff8000'], ['Sol & Mar', '#f0b323'], ['Orion Watches', '#2b2b2b'], ['Vortex Drinks', '#d4145a']];
 
 // equipas inventadas por categoria: [nome, cor principal, cor secundária, competitividade]
 const TEAMS = {
@@ -78,10 +88,10 @@ const TEAMS = {
 const TRACKS = {
   kart: [['Kartódromo Vale Verde', 'PT'], ['Pista do Moinho', 'ES'], ['Kart Arena Lago Azul', 'IT'], ['Kartódromo da Ribeira', 'BR'], ['Circuito das Dunas', 'FR'], ['Kartbahn Tannenwald', 'DE'], ['Pista Sol Poente', 'MX']],
   f4: [['Circuito da Serra Azul', 'PT'], ['Autódromo Costa Dourada', 'ES'], ['Ring Eichenwald', 'DE'], ['Circuit des Falaises', 'FR'], ['Silver Bay Circuit', 'GB'], ['Circuito Lago Nero', 'IT'], ['Autódromo Vale do Sol', 'BR']],
-  f3: [['Circuito Lago Nero', 'IT'], ['Ring Eichenwald', 'DE'], ['Circuit des Falaises', 'FR'], ['Silver Bay Circuit', 'GB'], ['Circuito da Serra Azul', 'PT'], ['Desert Moon Circuit', 'AE'], ['Autódromo Costa Dourada', 'ES']],
-  f2: [['Desert Moon Circuit', 'AE'], ['Autódromo Vale do Sol', 'BR'], ['Circuito Lago Nero', 'IT'], ['Silver Bay Circuit', 'GB'], ['Sakura Hills Circuit', 'JP'], ['Circuito da Serra Azul', 'PT'], ['Ring Eichenwald', 'DE'], ['Maple Ridge Raceway', 'CA']],
-  f1: [['Desert Moon Circuit', 'AE'], ['Kangaroo Point Circuit', 'AU'], ['Sakura Hills Circuit', 'JP'], ['Circuito da Serra Azul', 'PT'], ['Autódromo Costa Dourada', 'ES'],
-    ['Maple Ridge Raceway', 'CA'], ['Silver Bay Circuit', 'GB'], ['Circuito Lago Nero', 'IT'], ['Red Canyon Speedway', 'US'], ['Autódromo Vale do Sol', 'BR']],
+  f3: [['Circuito Lago Nero', 'IT'], ['Autódromo do Algarve (inspirado)', 'PT'], ['Circuit des Falaises', 'FR'], ['Silver Bay Circuit', 'GB'], ['Circuito da Serra Azul', 'PT'], ['Desert Moon Circuit', 'AE'], ['Autódromo Costa Dourada', 'ES']],
+  f2: [['Desert Moon Circuit', 'AE'], ['Autódromo do Algarve (inspirado)', 'PT'], ['Autodromo di Monza (inspirado)', 'IT'], ['Silver Bay Circuit', 'GB'], ['Sakura Hills Circuit', 'JP'], ['Circuito da Serra Azul', 'PT'], ['Ring Eichenwald', 'DE'], ['Maple Ridge Raceway', 'CA']],
+  f1: [['Desert Moon Circuit', 'AE'], ['Autódromo do Algarve (inspirado)', 'PT'], ['Sakura Hills Circuit', 'JP'], ['Circuit de Spa (inspirado)', 'BE'], ['Autódromo Costa Dourada', 'ES'],
+    ['Maple Ridge Raceway', 'CA'], ['Autodromo di Monza (inspirado)', 'IT'], ['Silver Bay Circuit', 'GB'], ['Autódromo de Interlagos (inspirado)', 'BR'], ['Red Canyon Speedway', 'US']],
 };
 const trackSeed = (name, cat) => { let h = 2166136261; for (const ch of name + (cat === 'kart' ? 'k' : 'f')) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return h >>> 0; };
 
@@ -99,3 +109,16 @@ const HELMET_PATTERNS = [
   { k: 'bandeira', n: 'Bandeira do país', cost: 600 }, { k: 'raio', n: 'Raio', cost: 350 },
 ];
 const HELMET_COLORS = ['#e10600', '#ff8000', '#ffd400', '#1fbf4a', '#00a19b', '#1e5bc6', '#0b1f4b', '#6a0dad', '#d4145a', '#ffffff', '#c0c0c0', '#1b1b1b'];
+
+// traçados inspirados em circuitos reais (aproximados): pontos dos cantos [x, y, raio] em metros (y para baixo = sul)
+// e relevo [fração da volta, altura em metros]
+const LAYOUTS = {
+  'Autodromo di Monza (inspirado)': { nat: 'IT', pts: [[0, 300, 600], [0, -520, 14], [26, -548, 14], [40, -900, 330], [330, -1130, 18], [362, -1160, 18], [560, -1185, 60], [705, -1080, 55], [665, -520, 25], [630, -470, 35], [648, -400, 70], [540, 760, 170], [0, 790, 130]],
+    elev: [[0, 0], [0.3, 4], [0.55, 9], [0.8, 3], [1, 0]] },
+  'Autódromo do Algarve (inspirado)': { nat: 'PT', pts: [[0, 0, 900], [900, -20, 45], [960, -160, 40], [820, -300, 70], [560, -260, 60], [420, -420, 35], [560, -560, 90], [860, -620, 120], [1050, -760, 40], [900, -900, 60], [500, -820, 160], [180, -700, 30], [60, -500, 120], [-150, -380, 45], [-180, -150, 90]],
+    elev: [[0, 0], [0.12, -14], [0.25, -4], [0.38, 12], [0.5, 22], [0.62, 6], [0.72, 18], [0.85, 4], [1, 0]] },
+  'Circuit de Spa (inspirado)': { nat: 'BE', pts: [[-20, 200, 600], [0, -30, 18], [45, -25, 18], [60, 300, 60], [115, 390, 70], [900, 600, 25], [935, 645, 25], [965, 760, 50], [1010, 1110, 22], [920, 1090, 45], [760, 1400, 110], [500, 1430, 60], [380, 1570, 60], [160, 1100, 250], [-60, 470, 14], [-85, 430, 14]],
+    elev: [[0, 0], [0.06, -18], [0.1, 14], [0.25, 36], [0.4, 10], [0.55, -16], [0.75, -6], [0.92, 6], [1, 0]] },
+  'Autódromo de Interlagos (inspirado)': { nat: 'BR', pts: [[0, 0, 700], [-40, 320, 40], [40, 400, 40], [-20, 520, 160], [-60, 900, 120], [260, 980, 60], [360, 820, 45], [300, 640, 40], [460, 560, 30], [420, 420, 35], [240, 460, 50], [150, 300, 90], [180, -120, 130]],
+    elev: [[0, 8], [0.1, -6], [0.3, -16], [0.55, -4], [0.75, -12], [0.9, 2], [1, 8]] },
+};

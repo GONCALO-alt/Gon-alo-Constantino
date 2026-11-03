@@ -11,4 +11,15 @@ Abre `index.html` no browser.
 - **Pneus e boxes:** a partir da Fórmula 3 há macios, médios e duros, que gastam; na F2 e F1 a paragem é obrigatória.
 - **Carreira:** nome, nacionalidade, número, capacete personalizável, dinheiro para peças do kart e desenvolvimento do carro, propostas de equipas no fim de cada época.
 
-As pistas, equipas e pilotos são inventados. O 3D usa o Three.js (r128, licença MIT); há uma cópia em `js/vendor/` para quando não há internet.
+- **Realismo gráfico:** sombras, relevo nas pistas e colinas à volta, asfalto e corretores com textura, barreiras de blocos (karts) ou rails, muros de pneus e redes (fórmulas), edifícios, postes, árvores e público. Qualidade gráfica baixa, média ou alta.
+- **Meteorologia:** chuva que pode começar ou parar a meio, pista que molha e seca, pneus intermédios e de chuva, spray, reflexos e gotas no ecrã.
+- **Danos:** a asa da frente e a suspensão estragam-se nas batidas; trocam-se nas boxes.
+- **Retrovisores** a mostrar quem vem atrás (fórmulas, qualidade média ou alta).
+- **Bandeiras:** amarela (sem ultrapassar), azul (deixar passar), safety car e bandeira vermelha com recomeço da grelha.
+- **Treinos livres** antes da qualificação.
+- **Repetição** de cada corrida com câmaras de televisão, cockpit ou atrás do carro.
+- **Colega de equipa** e ordens de equipa pelo rádio; a relação com a equipa conta.
+- **Patrocinadores** com objetivos em cada corrida.
+- **Traçados inspirados** em Monza, Algarve (Portimão), Spa e Interlagos (aproximados), além das pistas inventadas.
+
+As equipas e os pilotos são inventados. O 3D usa o Three.js (r128, licença MIT); há uma cópia em `js/vendor/` para quando não há internet.

@@ -168,9 +168,18 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
 .flash.on { opacity: 1; transition: none; }
 .bigmsg { left: 50%; top: 40%; transform: translate(-50%, -50%); font-size: clamp(34px, 7vw, 64px); font-weight: 800; font-style: italic; letter-spacing: 2px; text-shadow: 0 4px 20px rgba(0,0,0,.7); animation: big 1.6s ease forwards; white-space: nowrap; }
 @keyframes big { 0% { opacity: 0; transform: translate(-50%, -50%) scale(1.6) } 15% { opacity: 1; transform: translate(-50%, -50%) scale(1) } 80% { opacity: 1 } 100% { opacity: 0 } }
+#rainFx { left: 0; top: 0; width: 100%; height: 100%; }
+.flagbox { left: 50%; transform: translateX(-50%); top: calc(118px + env(safe-area-inset-top, 0px)); padding: 4px 16px; border-radius: 6px; font-weight: 800; letter-spacing: 2px; font-size: 16px; animation: blink 0.6s steps(2) infinite; }
+.flagbox.amarela { background: var(--yellow); color: #1a1400; } .flagbox.azul { background: var(--blue); color: #fff; } .flagbox.sc { background: #ffb100; color: #1a1000; } .flagbox.red { background: var(--red); color: #fff; }
+@keyframes blink { 50% { opacity: .55 } }
+.replaybar { left: 50%; transform: translateX(-50%); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); background: rgba(10,12,18,.88); border-radius: 12px; padding: 6px 8px; display: flex; gap: 6px; align-items: center; font-family: var(--font); font-size: 13px; white-space: nowrap; z-index: 6; }
+.replaybar button { border: 1px solid var(--line); background: var(--panel-2); border-radius: 8px; padding: 7px 10px; font-weight: 700; font-size: 13px; color: var(--ink); }
+.replaybar .t { color: var(--dim); font-variant-numeric: tabular-nums; }
+#race.replaying .ctrl, #race.replaying .dash, #race.replaying .timing, #race.replaying .topbtns, #race.replaying .mini, #race.replaying .radio-msg, #race.replaying .lights { display: none !important; }
 /* em primeira pessoa o painel sobe para não tapar o volante */
 #race.cockpit .dash { bottom: auto; top: calc(84px + env(safe-area-inset-top, 0px)); transform: translateX(-50%) scale(.62); transform-origin: top center; }
 #race.cockpit .lights { top: 46%; }
+#race.cockpit .flagbox { top: 34%; }
 #race.cockpit .radio-msg { top: calc(160px + env(safe-area-inset-top, 0px)); }
 @media (max-height: 420px) {
   .steer button { width: 70px; height: 70px; } .pedal.gas { height: 110px; width: 80px; } .pedal.brake { height: 84px; width: 72px; }
@@ -185,7 +194,10 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
 <div id="race" hidden>
   <canvas id="cv"></canvas>
   <canvas id="cv3"></canvas>
+  <canvas id="rainFx" class="hud" hidden></canvas>
   <div class="flash" id="flash"></div>
+  <div class="hud flagbox" id="hFlag" hidden></div>
+  <div class="hud replaybar" id="replayBar" hidden style="pointer-events:auto"></div>
   <div class="hud tower" id="tower"></div>
   <div class="hud timing" id="timing"><div class="cur" id="tCur">0.000</div><div class="sub"><span id="tLast">Última —</span><span id="tBest">Melhor —</span><span class="delta" id="tDelta"></span></div></div>
   <div class="hud mini"><canvas id="mini" width="340" height="240"></canvas><div class="lapbox"><div><span>POS </span><b id="hPos">1</b><span id="hPosN">/20</span></div><div><span>VOLTA </span><b id="hLap">1</b><span id="hLapN">/5</span></div></div></div>
@@ -200,6 +212,7 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
       <div class="tyreinfo"><div id="hCmp"></div><div id="hWear"></div></div>
     </div>
     <div class="status" id="hStatus"></div>
+    <div class="dashrow" style="gap:10px;font-size:12px"><span id="hWx" class="muted"></span><span id="hDmg" class="tag" hidden></span></div>
   </div>
   <div class="ctrl steer" id="steerArrows"><button id="bLeft" aria-label="Virar à esquerda">◀</button><button id="bRight" aria-label="Virar à direita">▶</button></div>
   <div class="ctrl wheel" id="steerWheel" hidden>
@@ -220,6 +233,7 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
 <script src="js/physics.js"></script>
 <script src="js/race.js"></script>
 <script src="js/render.js"></script>
+<script src="js/cars3d.js"></script>
 <script src="js/render3d.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/ui.js"></script>

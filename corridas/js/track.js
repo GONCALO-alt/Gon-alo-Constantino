@@ -8,6 +8,8 @@ function buildTrack(name, cat) {
   const ds = kart ? 1 : 2;
   const W = C.W, runoff = C.runoff;
   let best = null;
+  const LAY = !kart && typeof LAYOUTS !== 'undefined' ? LAYOUTS[name] : null;
+  if (LAY) best = geometry(resample(filletPath(LAY.pts), ds));
   for (let attempt = 0; attempt < 60 && !best; attempt++) {
     const target = C.len[0] + rnd() * (C.len[1] - C.len[0]);
     const n = kart ? 9 + Math.floor(rnd() * 5) : 9 + Math.floor(rnd() * 6);
@@ -58,10 +60,48 @@ function buildTrack(name, cat) {
   bestRun = Math.min(bestRun, T.n);
   const startIdx = (bestEnd - Math.floor(bestRun * 0.35) + T.n) % T.n;
   rotateTrack(T, startIdx);
-  if (rnd() < 0.5) reverseTrack(T);
+  if (!LAY && rnd() < 0.5) reverseTrack(T);
+  // relevo: subidas e descidas (inclinação máxima ~7%)
+  T.h = new Float64Array(T.n);
+  if (LAY) {
+    const e = LAY.elev, i0 = startIdx;
+    for (let i = 0; i < T.n; i++) {
+      const f = (((i + i0) % T.n) / T.n);
+      let k = 0; while (k < e.length - 2 && e[k + 1][0] < f) k++;
+      const a = e[k], b = e[k + 1], t = clamp((f - a[0]) / (b[0] - a[0]), 0, 1), sm = t * t * (3 - 2 * t);
+      T.h[i] = a[1] + (b[1] - a[1]) * sm;
+    }
+  } else {
+    const amp = kart ? 1.6 + rnd() * 2 : 6 + rnd() * 16;
+    const ph = [rnd() * 6.28, rnd() * 6.28, rnd() * 6.28];
+    for (let i = 0; i < T.n; i++) { const u = (i / T.n) * Math.PI * 2; T.h[i] = amp * (0.6 * Math.sin(u + ph[0]) + 0.3 * Math.sin(2 * u + ph[1]) + 0.15 * Math.sin(3 * u + ph[2])); }
+  }
+  // limitar a inclinação
+  let maxG = 0; for (let i = 0; i < T.n; i++) maxG = Math.max(maxG, Math.abs(T.h[(i + 1) % T.n] - T.h[i]) / ds);
+  if (maxG > 0.07) for (let i = 0; i < T.n; i++) T.h[i] *= 0.07 / maxG;
+  T.real = !!LAY;
   T.straightLen = bestRun * ds;
   finishTrack(T, rnd);
   return T;
+}
+// caminho com cantos arredondados a partir de pontos [x, y, raio] (em metros)
+function filletPath(base) {
+  const n = base.length, path = [];
+  for (let i = 0; i < n; i++) {
+    const P0 = base[(i - 1 + n) % n], P1 = base[i], P2 = base[(i + 1) % n];
+    const lin = Math.hypot(P1[0] - P0[0], P1[1] - P0[1]), lout = Math.hypot(P2[0] - P1[0], P2[1] - P1[1]);
+    const din = [(P1[0] - P0[0]) / lin, (P1[1] - P0[1]) / lin], dout = [(P2[0] - P1[0]) / lout, (P2[1] - P1[1]) / lout];
+    const cr = din[0] * dout[1] - din[1] * dout[0], phi = Math.acos(clamp(din[0] * dout[0] + din[1] * dout[1], -1, 1));
+    if (phi < 0.02) { path.push([P1[0], P1[1]]); continue; }
+    let rr = P1[2], t = rr * Math.tan(phi / 2);
+    const maxT = 0.48 * Math.min(lin, lout);
+    if (t > maxT) { t = maxT; rr = t / Math.tan(phi / 2); }
+    const T1 = [P1[0] - din[0] * t, P1[1] - din[1] * t], sg = Math.sign(cr) || 1;
+    const O = [T1[0] - din[1] * rr * sg, T1[1] + din[0] * rr * sg], a1 = Math.atan2(T1[1] - O[1], T1[0] - O[0]);
+    const steps = Math.max(3, Math.ceil(phi * 18));
+    for (let k = 0; k <= steps; k++) { const a = a1 + sg * phi * (k / steps); path.push([O[0] + Math.cos(a) * rr, O[1] + Math.sin(a) * rr]); }
+  }
+  return path;
 }
 function resample(path, ds) {
   const cum = [0];
@@ -228,3 +268,6 @@ function speedProfile(T, car) {
   T.cache[key] = res;
   return res;
 }
+
+const heightAt = (T, s) => { const f = (((s % T.len) + T.len) % T.len) / T.ds, i = Math.floor(f) % T.n; return lerp(T.h[i], T.h[(i + 1) % T.n], f - Math.floor(f)); };
+const gradeAt = (T, i) => (T.h[(i + 1) % T.n] - T.h[(i - 1 + T.n) % T.n]) / (2 * T.ds);

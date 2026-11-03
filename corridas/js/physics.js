@@ -20,7 +20,7 @@ class Car {
   constructor(p) {
     this.p = p;
     this.x = 0; this.y = 0; this.th = 0; this.VX = 0; this.VY = 0; this.w = 0; this.delta = 0; this.axPrev = 0;
-    this.slide = 0; this.lockF = false; this.lockR = false; this.spin = false; this.tireGrip = 1; this.powerMode = 1;
+    this.slide = 0; this.lockF = false; this.lockR = false; this.spin = false; this.tireGrip = 1; this.powerMode = 1; this.aeroMul = 1; this.frontMul = 1; this.pull = 0;
     this.gear = 1; this.rpm = p.rpm[0];
   }
   get speed() { return Math.hypot(this.VX, this.VY); }
@@ -40,12 +40,12 @@ class Car {
     const v = Math.hypot(vx, vy);
     // direção com velocidade limitada do volante
     this.assist = A.steer;
-    const target = inp.steer * this.maxSteer(v, surf.mu);
+    const target = clamp(inp.steer + this.pull, -1, 1) * this.maxSteer(v, surf.mu);
     const rate = p.cat === 'kart' ? 3.2 : 2.6;
     this.delta += clamp(target - this.delta, -rate * dt, rate * dt);
     const d = this.delta, cd = Math.cos(d), sd = Math.sin(d);
     // cargas nos eixos
-    const down = p.cl * v * v;
+    const down = p.cl * this.aeroMul * v * v;
     const dN = (p.m * this.axPrev * p.h * 0.7) / p.L;
     const Nf = Math.max(60, p.m * g * (p.b / p.L) + down * 0.45 - dN);
     const Nr = Math.max(60, p.m * g * (p.a / p.L) + down * 0.55 + dN);
@@ -61,7 +61,7 @@ class Car {
     const ar = Math.atan2(vy - p.b * this.w, ux);
     const curve = (al) => Math.sin(1.55 * Math.atan(p.B * al));
     // carro afinado para ser estável: um pouco mais de aderência atrás do que à frente
-    const muF = muE * 0.97, muR = muE * 1.05;
+    const muF = muE * 0.97 * this.frontMul, muR = muE * 1.05;
     let Fyf = -muF * Nf * curve(af), Fyr = -muR * Nr * curve(ar);
     // círculo de aderência: travar a fundo ou acelerar demais tira aderência lateral
     this.lockF = this.lockR = this.spin = false;
@@ -79,7 +79,7 @@ class Car {
       } else if (A.abs) Fxr = -avail * 0.98;
       else { this.lockR = v > 3; Fxr = -Math.max(avail, capR * 0.78); Fyr *= 0.3; }
     }
-    const resist = p.cd * vx * Math.abs(vx) + surf.roll * p.m * g * Math.tanh(vx * 2) + 0.012 * p.m * g * Math.tanh(vx);
+    const resist = p.cd * vx * Math.abs(vx) + surf.roll * p.m * g * Math.tanh(vx * 2) + 0.012 * p.m * g * Math.tanh(vx) + (surf.grade || 0) * p.m * g;
     const Fx = Fxr + Fxf * cd - Fyf * sd - resist;
     const Fy = Fyr + Fyf * cd + Fxf * sd;
     const torque = p.a * (Fyf * cd + Fxf * sd) - p.b * Fyr;
