@@ -69,14 +69,30 @@ const AUDIO = (() => {
     g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + 0.35);
     s.connect(f).connect(g).connect(master); s.start();
   }
+  // voz do engenheiro: procura uma voz masculina em português; se não houver, engrossa a voz disponível
+  const MALE = /duarte|cristiano|daniel|ant[oó]nio|felipe|ricardo|jo[aã]o|paulo|rui|tiago|pedro|jmn|pmj|ptd|male|homem|masculin/i;
+  const FEMALE = /joana|catarina|luciana|helia|h[eé]lia|raquel|fernanda|francisca|maria|female|mulher|jfb|sfs|afs/i;
+  let picked = null;
+  function pickVoice() {
+    if (picked) return picked;
+    const vs = speechSynthesis.getVoices(); if (!vs.length) return null;
+    const pt = vs.filter((x) => /^pt/i.test(x.lang)), ptPT = pt.filter((x) => /pt(-|_)PT/i.test(x.lang));
+    const male = (l) => l.find((x) => MALE.test(x.name + ' ' + x.voiceURI));
+    let v = male(ptPT), m = true;
+    if (!v) v = male(pt);
+    if (!v) { m = false; v = ptPT.find((x) => !FEMALE.test(x.name)) || pt.find((x) => !FEMALE.test(x.name)) || ptPT[0] || pt[0] || null; }
+    picked = v ? { v, male: m } : { v: null, male: false };
+    return picked;
+  }
+  if (window.speechSynthesis) try { speechSynthesis.onvoiceschanged = () => { picked = null; pickVoice(); }; } catch (e) { /* */ }
   function radio(text) {
     blip(1250, 0.07, 'square', 0.04); blip(950, 0.06, 'square', 0.03, 0.08);
     if (!voice || !window.speechSynthesis) return;
     try {
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'pt-PT'; u.rate = 1.12; u.pitch = 0.9; u.volume = 0.9;
-      const v = speechSynthesis.getVoices().find((x) => /pt(-|_)PT/i.test(x.lang)) || speechSynthesis.getVoices().find((x) => /^pt/i.test(x.lang));
-      if (v) u.voice = v;
+      const u = new SpeechSynthesisUtterance(text), pv = pickVoice();
+      u.lang = 'pt-PT'; u.rate = 1.08; u.volume = 0.95;
+      if (pv && pv.v) { u.voice = pv.v; u.lang = pv.v.lang; }
+      u.pitch = pv && pv.male ? 0.85 : 0.35; // sem voz de homem, baixa bastante o tom
       speechSynthesis.cancel(); speechSynthesis.speak(u);
     } catch (e) { /* sem voz */ }
   }

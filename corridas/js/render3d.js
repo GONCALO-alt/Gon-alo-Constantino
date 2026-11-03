@@ -326,6 +326,46 @@ const R3D = (() => {
         m.rotation.x = -Math.PI / 2; m.rotation.z = -pt.th; m.position.set(pt.x, heightAt(T, s) + 0.055, pt.y); scene.add(m);
       }
     }
+    // publicidade ao longo das barreiras (nas retas)
+    {
+      const ads = canvasTex(1024, 64, (g, w, h) => {
+        const list = SPONSORS.slice(0, 8);
+        list.forEach(([n, c], k) => { const x = (k * w) / list.length, ww = w / list.length; g.fillStyle = k % 2 ? c : '#f4f4f2'; g.fillRect(x, 0, ww, h); g.fillStyle = k % 2 ? '#ffffff' : c; g.font = 'bold 34px "Saira Condensed","Arial Narrow",sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(n.toUpperCase(), x + ww / 2, h / 2 + 2); });
+      });
+      const am = mat(ads, null, { roughness: 0.6, side: THREE.DoubleSide });
+      const straight = (i) => Math.abs(T.k[i]) < (T.kart ? 0.02 : 0.006) && Math.floor((i * T.ds) / (T.kart ? 60 : 140)) % 3 !== 2;
+      for (const sd of [-1, 1]) for (const run of runsOf(T.n, (i) => straight(i) && !pitEx(sd, i))) {
+        if (run.length * T.ds < 20) continue;
+        scene.add(wall(T, run, sd * (half + T.runoff - (T.kart ? 0.3 : 0.08)), T.kart ? 0.6 : 0.85, am, T.kart ? 60 : 120, T.kart ? 0.7 : 0.03));
+      }
+    }
+    // marcas de pneus nas zonas de travagem e saídas de curva
+    {
+      const skid = canvasTex(64, 256, (g, w, h) => { g.clearRect(0, 0, w, h); const r = mulberry32(21); for (let k = 0; k < 7; k++) { const x = 8 + r() * (w - 16), a = 0.18 + r() * 0.3; g.strokeStyle = `rgba(12,12,14,${a})`; g.lineWidth = 2 + r() * 4; g.beginPath(); g.moveTo(x, r() * 40); g.bezierCurveTo(x + (r() - 0.5) * 12, h * 0.4, x + (r() - 0.5) * 16, h * 0.7, x + (r() - 0.5) * 10, h - r() * 40); g.stroke(); } }, true);
+      const sm = new THREE.MeshBasicMaterial({ map: skid, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 });
+      const prof = R.me.prof, look = Math.round((T.kart ? 25 : 70) / T.ds);
+      const brake = (i) => prof.v[i] - prof.v[(i + look) % T.n] > (T.kart ? 2 : 7);
+      for (const run of runsOf(T.n, brake)) { if (run.length < 4) continue; const w = T.kart ? 0.9 : 1.6;
+        scene.add(ribbon(T, run, (i) => T.off[i] - w, (i) => T.off[i] + w, 0.047, sm, T.kart ? 8 : 18, false)); }
+    }
+    // postos de comissários com bandeiras
+    if (!T.kart) {
+      const step = Math.round(450 / T.ds), cabin = new THREE.MeshStandardMaterial({ color: 0xff7a00, roughness: 0.6 }), roofM = new THREE.MeshStandardMaterial({ color: 0xeeeeee });
+      const suitM = new THREE.MeshStandardMaterial({ color: 0xff8c1a, roughness: 0.8 }), flagM = new THREE.MeshStandardMaterial({ color: 0xffd400, side: THREE.DoubleSide });
+      for (let i = step >> 1; i < T.n; i += step) {
+        const sd = T.k[i] > 0 ? -1 : 1; if (pitEx(sd, i)) continue;
+        const off = sd * (half + T.runoff + 2.2), th = Math.atan2(T.ty[i], T.tx[i]);
+        const g = new THREE.Group(); g.position.set(T.x[i] + T.nx[i] * off, T.h[i], T.y[i] + T.ny[i] * off); g.rotation.y = -th;
+        const c = new THREE.Mesh(new THREE.BoxGeometry(2, 2.2, 1.6), cabin); c.position.y = 1.1; g.add(c);
+        const rf = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.12, 2), roofM); rf.position.y = 2.26; g.add(rf);
+        const man = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.22, 1.2, 8), suitM); man.position.set(1.4, 0.95, -sd * 0.6); g.add(man);
+        const head = new THREE.Mesh(new THREE.SphereGeometry(0.15, 10, 8), new THREE.MeshStandardMaterial({ color: 0xe8b996 })); head.position.set(1.4, 1.7, -sd * 0.6); g.add(head);
+        const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.2, 6), roofM); pole.position.set(1.6, 1.8, -sd * 0.6); pole.rotation.z = -0.4; g.add(pole);
+        const fl = new THREE.Mesh(new THREE.PlaneGeometry(0.7, 0.5), flagM.clone()); fl.position.set(1.95, 2.25, -sd * 0.6); g.add(fl);
+        (B.marshals || (B.marshals = [])).push(fl);
+        g.traverse((o) => { if (o.isMesh) o.castShadow = true; }); scene.add(g);
+      }
+    }
     // placas de travagem
     {
       const prof = R.me.prof, boards = [];
@@ -554,6 +594,7 @@ const R3D = (() => {
       }
       p.needsUpdate = true;
     }
+    if (B.marshals) { const f = st.flag || (st.R && st.R.flag); const show = !!f; const col = f === 'azul' ? 0x1e5bc6 : 0xffd400; const wave = Math.sin(performance.now() / 120); for (const m of B.marshals) { m.visible = !!show; if (show) { m.material.color.setHex(col); m.rotation.y = wave * 0.5; } } }
     if (B.horizon) B.horizon.position.set(camera.position.x, B.horizon.position.y, camera.position.z);
     renderer.render(scene, camera);
   }

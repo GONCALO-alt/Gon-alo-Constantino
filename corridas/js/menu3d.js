@@ -40,9 +40,9 @@ const MENU3D = (() => {
     if (!rd) return;
     const t = (now - t0) / 1000, L = car ? car.L : 4;
     if (car) car.group.rotation.y = t * 0.35;
-    const dist = cat === 'kart' ? 4.2 : Math.max(6.5, L * 1.55), wide = cam.aspect < 1.2 ? 1.5 : 1;
+    const dist = cat === "kart" ? 4.6 : Math.max(7.5, L * 1.75), wide = cam.aspect < 1.2 ? 1.5 : 1;
     cam.position.set(Math.sin(0.6) * dist * wide, (cat === 'kart' ? 1.4 : 1.8) + Math.sin(t * 0.3) * 0.08, Math.cos(0.6) * dist * wide);
-    cam.lookAt(cam.aspect > 1.2 ? -L * 0.32 - 0.6 : 0, cat === 'kart' ? 0.35 : 0.45, 0); // carro um pouco à direita, deixa espaço para o menu
+    cam.lookAt(cam.aspect > 1.2 ? -L * 0.2 - 0.4 : 0, cat === 'kart' ? 0.35 : 0.45, 0); // carro um pouco à direita, deixa espaço para o menu
     rd.render(scene, cam);
     raf = requestAnimationFrame(frame);
   }

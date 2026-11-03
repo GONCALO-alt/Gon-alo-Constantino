@@ -34,12 +34,22 @@ const CARS3D = (() => {
   const treadTex = () => ctex('tread', 64, 32, (g, w, h) => { g.fillStyle = '#18191b'; g.fillRect(0, 0, w, h); g.fillStyle = '#202124'; for (let x = 0; x < w; x += 6) g.fillRect(x, 0, 2, h); });
   function makeWheel(r, w, color) {
     const side = new THREE.MeshStandardMaterial({ map: tyreTex(color), roughness: 0.8, metalness: 0.1 });
-    const tread = new THREE.MeshStandardMaterial({ map: treadTex(), roughness: 0.95 });
-    const geo = new THREE.CylinderGeometry(r, r, w, 28, 1);
-    const m = new THREE.Mesh(geo, [tread, side, side]);
+    const tt = treadTex(); tt.wrapS = tt.wrapT = THREE.RepeatWrapping; tt.repeat.set(8, 1);
+    const tread = new THREE.MeshStandardMaterial({ map: tt, roughness: 0.92 });
+    // pneu com ombros arredondados (perfil rodado à volta do eixo)
+    const t = Math.min(r * 0.2, w * 0.3), hw = w / 2, pts = [], seg = 7;
+    pts.push(new THREE.Vector2(r * 0.6, -hw));
+    for (let k = 0; k <= seg; k++) { const a = -Math.PI / 2 + (k / seg) * (Math.PI / 2); pts.push(new THREE.Vector2(r - t + Math.cos(a) * t, -hw + t + Math.sin(a) * t)); }
+    for (let k = 0; k <= seg; k++) { const a = (k / seg) * (Math.PI / 2); pts.push(new THREE.Vector2(r - t + Math.cos(a) * t, hw - t + Math.sin(a) * t)); }
+    pts.push(new THREE.Vector2(r * 0.6, hw));
+    const body = new THREE.Mesh(new THREE.LatheGeometry(pts, 56), tread); body.castShadow = true;
+    const m = new THREE.Group(); m.add(body);
+    for (const sd of [-1, 1]) { // flanco com a cor do composto e a jante
+      const disc = new THREE.Mesh(new THREE.CircleGeometry(r - t * 0.55, 56), side);
+      disc.rotation.x = sd * Math.PI / 2; disc.position.y = sd * (hw + 0.002); if (sd < 0) disc.rotation.z = Math.PI; m.add(disc);
+    }
     m.rotation.x = Math.PI / 2;
     const g = new THREE.Group(); g.add(m); g.userData.tyre = m; g.userData.side = side;
-    m.castShadow = true;
     return g;
   }
   function setCompound(car, color) { for (const w of car.wheels) w.userData.side.map = tyreTex(color); }
@@ -125,11 +135,21 @@ const CARS3D = (() => {
     box(rwg, 0.06, 0.55, 0.05, -L * 0.42, 0.62, 0, cf);
     box(g, L * 0.13, 0.15, W * 0.55, -L * 0.45, 0.14, 0, cf); // difusor
     const light = box(g, 0.02, 0.06, 0.18, -L * 0.5, 0.36, 0, new THREE.MeshBasicMaterial({ color: 0x400000 }));
-    // halo
-    if (cat === 'f2' || cat === 'f1' || cat === 'f3') {
-      const mk = (pts) => { const curve = new THREE.CatmullRomCurve3(pts.map((p) => new THREE.Vector3(...p))); const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 24, 0.032, 8), cf); m.castShadow = true; g.add(m); };
-      mk([[L * 0.16, 0.6, 0], [L * 0.135, 0.8, 0], [L * 0.1, 0.9, 0]]);
-      for (const sd of [-1, 1]) mk([[L * 0.1, 0.9, 0], [L * 0.05, 0.92, sd * W * 0.11], [-L * 0.03, 0.87, sd * W * 0.13], [-L * 0.05, 0.62, sd * W * 0.13]]);
+    // halo (todas as fórmulas): pilar central e arco à volta da cabeça
+    {
+      const hm = cf, tube = (pts, r) => { const curve = new THREE.CatmullRomCurve3(pts.map((p) => new THREE.Vector3(...p))); const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 40, r, 12), hm); m.scale.y = 1; m.castShadow = true; g.add(m); return m; };
+      const hz = W * 0.15, top = 0.98;
+      tube([[L * 0.175, 0.56, 0], [L * 0.16, 0.76, 0], [L * 0.13, 0.93, 0], [L * 0.105, top, 0]], 0.03);
+      tube([[-L * 0.07, 0.6, -hz * 0.95], [-L * 0.06, 0.9, -hz], [-L * 0.02, top, -hz], [L * 0.05, top + 0.01, -hz * 0.85], [L * 0.105, top, 0], [L * 0.05, top + 0.01, hz * 0.85], [-L * 0.02, top, hz], [-L * 0.06, 0.9, hz], [-L * 0.07, 0.6, hz * 0.95]], 0.036);
+      for (const sd of [-1, 1]) { const ft = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.05, 0.08), cf); ft.position.set(-L * 0.07, 0.6, sd * hz * 0.95); g.add(ft); }
+    }
+    // barbatana, câmara de TV no topo e placas da asa com a cor da equipa
+    { const fin = profileMesh([[-L * 0.12, 1.0], [-L * 0.42, 0.92], [-L * 0.42, 0.7], [-L * 0.2, 0.86]], 0.012, body2, null, 0.004); g.add(fin);
+      const tcam = box(g, 0.1, 0.05, 0.16, -L * 0.07, 1.06, 0, new THREE.MeshStandardMaterial({ color: num === 1 || num % 2 ? 0x111214 : 0xf2e600, roughness: 0.4 })); void tcam;
+      for (const sd of [-1, 1]) box(g, 0.05, 0.05, 0.03, -L * 0.07, 1.02, sd * 0.05, cf);
+      if (sponsor) { for (const sd of [-1, 1]) { const tp = textPlane(sponsor, L * 0.13, 0.12, null, '#ffffff'); tp.position.set(-L * 0.46, 0.72, sd * (W * 0.39 + 0.02)); tp.rotation.y = sd > 0 ? 0 : Math.PI; g.add(tp); }
+        const rw = textPlane(sponsor, W * 0.6, 0.12, null, '#ffffff'); rw.rotation.y = -Math.PI / 2; rw.rotation.x = 0; rw.position.set(-L * 0.47 - 0.035, 0.92, 0); g.add(rw); }
+      if (num != null) for (const sd of [-1, 1]) { const np = textPlane(String(num), 0.18, 0.14, null, '#ffffff'); np.position.set(-L * 0.44, 0.5, sd * (W * 0.39 + 0.02)); np.rotation.y = sd > 0 ? 0 : Math.PI; g.add(np); }
     }
     // retrovisores
     const mirrors = [];
