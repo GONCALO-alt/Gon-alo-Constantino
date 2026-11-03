@@ -36,32 +36,62 @@ const PALETTE = ['#ff4d6d', '#ffb703', '#06d6a0', '#4cc9f0', '#c77dff', '#f77f00
 
 // ---------- Mundo ----------
 const NC = M.countries.length, NP = M.provinces.length;
-const HX = []; // quadrados do mapa
-const hexKey = new Map();
-for (let i = 0; i < M.hexes.length; i += 3) {
-  const c = M.hexes[i], r = M.hexes[i + 1], p = M.hexes[i + 2];
-  const x = -180 + (c + 0.5) * M.S, y = M.Y0 + (r + 0.5) * M.S;
-  hexKey.set(c + ',' + r, HX.length);
-  HX.push({ c, r, p, x, y, nb: null });
+// Quadrados do mapa guardados em arrays compactos (são ~200 mil)
+const COLS = M.cols, ROWS = M.rows, S = M.S;
+const GRID = new Int32Array(COLS * ROWS).fill(-1); // linha*COLS+coluna -> quadrado
+let N = 0;
+for (const row of M.runs) for (let k = 0; k < row.length; k += 3) N += row[k + 1];
+const CC = new Int16Array(N), CR = new Int16Array(N), CP = new Int16Array(N);
+{
+  let i = 0;
+  M.runs.forEach((row, r) => {
+    for (let k = 0; k < row.length; k += 3) for (let c = row[k]; c < row[k] + row[k + 1]; c++) { CC[i] = c; CR[i] = r; CP[i] = row[k + 2]; GRID[r * COLS + c] = i; i++; }
+  });
 }
+const cellAt = (c, r) => (c < 0 || c >= COLS || r < 0 || r >= ROWS ? -1 : GRID[r * COLS + c]);
+const cxOf = (i) => -180 + (CC[i] + 0.5) * S, cyOf = (i) => M.Y0 + (CR[i] + 0.5) * S;
 // vizinhos: este, sul, oeste, norte (a aresta d fica entre os cantos d e d+1)
 const NB4 = [[1, 0], [0, 1], [-1, 0], [0, -1]];
-for (const h of HX) h.nb = NB4.map(([dc, dr]) => hexKey.get(h.c + dc + ',' + (h.r + dr)) ?? -1);
-const R = M.S / 2; // meio lado do quadrado
+const R = S / 2; // meio lado do quadrado
 const ND = 4, VX = [1, 1, -1, -1], VY = [-1, 1, 1, -1]; // cantos: cima-dir, baixo-dir, baixo-esq, cima-esq
 
 let C, P, alliances, G; // estado
-function provHexes() {
-  const lists = Array.from({ length: NP }, () => []);
-  HX.forEach((h, i) => lists[h.p].push(i));
-  return lists;
-}
-const PH = provHexes();
-// ponto de etiqueta: quadrado mais perto do centro
+const PH = Array.from({ length: NP }, () => []);
+for (let i = 0; i < N; i++) PH[CP[i]].push(i);
+// caixa de cada província (em quadrados) e ponto da etiqueta (quadrado mais perto do centro)
+const PBOX = PH.map((list) => { let c0 = 1e9, r0 = 1e9, c1 = -1, r1 = -1; for (const i of list) { c0 = Math.min(c0, CC[i]); c1 = Math.max(c1, CC[i]); r0 = Math.min(r0, CR[i]); r1 = Math.max(r1, CR[i]); } return [c0, r0, c1, r1]; });
 const LABEL = M.provinces.map((p, j) => {
   let best = PH[j][0], bd = 1e9;
-  for (const i of PH[j]) { const d = (HX[i].x - p.x) ** 2 + (HX[i].y - p.y) ** 2; if (d < bd) { bd = d; best = i; } }
-  return [HX[best].x, HX[best].y];
+  for (const i of PH[j]) { const d = (cxOf(i) - p.x) ** 2 + (cyOf(i) - p.y) ** 2; if (d < bd) { bd = d; best = i; } }
+  return [cxOf(best), cyOf(best)];
+});
+// orla de cada província: segmentos [x1,y1,x2,y2,província vizinha (-1 = mar)], juntando arestas seguidas
+const PSEG = PH.map((list) => {
+  const out = [];
+  const set = new Set(list);
+  // arestas horizontais (norte/sul) e verticais (este/oeste)
+  for (const d of [0, 1, 2, 3]) {
+    const keyed = new Map(); // linha da aresta -> lista de [posição, vizinho]
+    for (const i of list) {
+      const n = cellAt(CC[i] + NB4[d][0], CR[i] + NB4[d][1]);
+      if (n >= 0 && CP[n] === CP[i]) continue;
+      const nb = n < 0 ? -1 : CP[n];
+      const line = d === 0 || d === 2 ? CC[i] : CR[i], pos = d === 0 || d === 2 ? CR[i] : CC[i];
+      let a = keyed.get(line); if (!a) keyed.set(line, (a = [])); a.push([pos, nb]);
+    }
+    for (const [line, a] of keyed) {
+      a.sort((u, v) => u[0] - v[0]);
+      for (let k = 0; k < a.length;) {
+        let e = k; while (e + 1 < a.length && a[e + 1][0] === a[e][0] + 1 && a[e + 1][1] === a[k][1]) e++;
+        const p0 = a[k][0], p1 = a[e][0] + 1;
+        if (d === 0 || d === 2) { const x = -180 + (line + (d === 0 ? 1 : 0)) * S; out.push(x, M.Y0 + p0 * S, x, M.Y0 + p1 * S, a[k][1]); }
+        else { const y = M.Y0 + (line + (d === 1 ? 1 : 0)) * S; out.push(-180 + p0 * S, y, -180 + p1 * S, y, a[k][1]); }
+        k = e + 1;
+      }
+    }
+  }
+  void set;
+  return new Float32Array(out);
 });
 // cores: países vizinhos com cores diferentes
 const COLORS = (() => {
@@ -180,68 +210,61 @@ function focusCountry(ci, ms) {
   const nearCap = ps.filter((p) => Math.abs(LABEL[p.j][0] - cx) < 70 && Math.abs(LABEL[p.j][1] - cy) < 45);
   if (nearCap.length) ps = nearCap;
   let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
-  for (const p of ps) for (const i of PH[p.j]) { x0 = Math.min(x0, HX[i].x); x1 = Math.max(x1, HX[i].x); y0 = Math.min(y0, HX[i].y); y1 = Math.max(y1, HX[i].y); }
-  const pad = 14;
-  const s = clamp(Math.min(VW / (x1 - x0 + pad * 2), VH / (y1 - y0 + pad * 2)), 3, 16);
+  // só os quadrados perto da capital (ilhas longínquas, como os Açores, não contam)
+  for (const p of ps) for (const i of PH[p.j]) { const x = cxOf(i), y = cyOf(i); if (Math.abs(x - cx) > 70 || Math.abs(y - cy) > 45 || Math.hypot(x - LABEL[p.j][0], y - LABEL[p.j][1]) > 12) continue; x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+  if (x0 > x1) { x0 = x1 = cx; y0 = y1 = cy; }
+  const pad = 6;
+  const s = clamp(Math.min(VW / (x1 - x0 + pad * 2), VH / (y1 - y0 + pad * 2)), 3, 30);
   flyTo((x0 + x1) / 2, (y0 + y1) / 2, s, ms);
 }
 
-// ---------- Cache do mapa ----------
-const K = 10; // píxeis por grau na cache
-const CX0 = -184, CY0 = M.Y0 - 4;
+// ---------- Cache do mapa (3x3 píxeis por quadrado) ----------
+const PXC = 3, K = PXC / S; // K = píxeis por grau na cache
+const CX0 = -180, CY0 = M.Y0;
 const cache = document.createElement('canvas');
-cache.width = Math.ceil(368 * K); cache.height = Math.ceil((M.rows * M.S + 8) * K);
+cache.width = COLS * PXC; cache.height = ROWS * PXC;
 const cctx = cache.getContext('2d');
 let cacheDirty = true;
+const dirtyBoxes = [];
 function hexPath(c, x, y, r) {
   c.moveTo(x + VX[0] * r, y + VY[0] * r);
   for (let k = 1; k < ND; k++) c.lineTo(x + VX[k] * r, y + VY[k] * r);
   c.closePath();
 }
-function colorOfHex(h) { return C[P[h.p].owner].color; }
-// desenha uma lista de quadrados com uma transformação (escala s, origem ox, oy)
-function drawHexes(c, list, s, ox, oy) {
-  const r = R * s;
-  // agrupar por cor para menos mudanças de estilo
-  const groups = new Map();
-  for (const i of list) { const col = colorOfHex(HX[i]); let g = groups.get(col); if (!g) groups.set(col, (g = [])); g.push(i); }
-  for (const [col, ids] of groups) {
-    c.fillStyle = shade(col, -0.45); c.beginPath();
-    for (const i of ids) hexPath(c, (HX[i].x - ox) * s, (HX[i].y - oy) * s, r * 1.01);
-    c.fill();
-    c.fillStyle = col; c.beginPath();
-    for (const i of ids) hexPath(c, (HX[i].x - ox) * s - r * 0.06, (HX[i].y - oy) * s - r * 0.06, r * 0.84);
-    c.fill();
-    c.fillStyle = shade(col, 0.35); c.beginPath();
-    for (const i of ids) { const x = (HX[i].x - ox) * s - r * 0.55, y = (HX[i].y - oy) * s - r * 0.55; c.rect(x, y, r * 0.5, r * 0.5); }
-    c.globalAlpha = 0.5; c.fill(); c.globalAlpha = 1;
-  }
-  // fronteiras
-  c.lineCap = 'round';
-  const prov = new Path2D(), nat = new Path2D(), coast = new Path2D();
-  for (const i of list) {
-    const h = HX[i], x = (h.x - ox) * s, y = (h.y - oy) * s;
-    for (let d = 0; d < ND; d++) {
-      const n = h.nb[d];
-      const k1 = d, k2 = (d + 1) % ND;
-      const ax = x + VX[k1] * r, ay = y + VY[k1] * r, bx = x + VX[k2] * r, by = y + VY[k2] * r;
-      if (n < 0) { coast.moveTo(ax, ay); coast.lineTo(bx, by); continue; }
-      const hn = HX[n];
-      if (hn.p === h.p) continue;
-      if (n < i && list.length > 1000) continue; // cada aresta uma vez (cache)
-      if (P[hn.p].owner !== P[h.p].owner) { nat.moveTo(ax, ay); nat.lineTo(bx, by); } else { prov.moveTo(ax, ay); prov.lineTo(bx, by); }
+const colorOfCell = (i) => C[P[CP[i]].owner].color;
+const rgbOf = (hex, f) => { const m = shade(hex, f).match(/\d+/g).map(Number); return m; };
+let PAL = null; // por país: base, brilho, grelha, província
+function makePal() { PAL = C.map((c) => [rgbOf(c.color, 0), rgbOf(c.color, 0.4), rgbOf(c.color, -0.12), rgbOf(c.color, -0.42)]); }
+const BORDER = [10, 14, 36], COAST = [150, 220, 255];
+function paintCells(c0, r0, c1, r1) {
+  c0 = Math.max(0, c0); r0 = Math.max(0, r0); c1 = Math.min(COLS - 1, c1); r1 = Math.min(ROWS - 1, r1);
+  const w = (c1 - c0 + 1) * PXC, h = (r1 - r0 + 1) * PXC;
+  const img = cctx.createImageData(w, h), d = img.data;
+  const put = (x, y, col) => { const o = (y * w + x) * 4; d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = 255; };
+  for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
+    const i = GRID[r * COLS + c]; if (i < 0) continue;
+    const p = CP[i], ow = P[p].owner, pal = PAL[ow];
+    const side = (n) => (n < 0 ? COAST : P[CP[n]].owner !== ow ? BORDER : CP[n] !== p ? pal[3] : null);
+    const e = side(cellAt(c + 1, r)), sth = side(cellAt(c, r + 1)), wst = side(cellAt(c - 1, r)), nth = side(cellAt(c, r - 1));
+    const X = (c - c0) * PXC, Y = (r - r0) * PXC;
+    for (let py = 0; py < 3; py++) for (let px = 0; px < 3; px++) {
+      let col = px === 0 && py === 0 ? pal[1] : pal[0];
+      if (px === 2) col = e || pal[2];
+      if (py === 2) col = sth || (px === 2 ? e || pal[2] : pal[2]);
+      if (px === 0 && wst && wst !== pal[3]) col = wst;
+      if (py === 0 && nth && nth !== pal[3]) col = nth;
+      put(X + px, Y + py, col);
     }
   }
-  c.strokeStyle = 'rgba(10,14,40,.55)'; c.lineWidth = Math.max(0.7, r * 0.16); c.stroke(prov);
-  c.strokeStyle = '#0a0e24'; c.lineWidth = Math.max(1.2, r * 0.4); c.stroke(nat);
-  c.strokeStyle = 'rgba(160,230,255,.55)'; c.lineWidth = Math.max(0.8, r * 0.12); c.stroke(coast);
+  cctx.putImageData(img, c0 * PXC, r0 * PXC);
 }
-const ALL = HX.map((_, i) => i);
 function rebuildCache() {
-  cctx.clearRect(0, 0, cache.width, cache.height);
-  drawHexes(cctx, ALL, K, CX0, CY0);
+  if (!PAL) makePal();
+  if (cacheDirty) { cctx.clearRect(0, 0, cache.width, cache.height); paintCells(0, 0, COLS - 1, ROWS - 1); dirtyBoxes.length = 0; }
+  while (dirtyBoxes.length) { const b = dirtyBoxes.pop(); paintCells(b[0] - 1, b[1] - 1, b[2] + 1, b[3] + 1); }
   cacheDirty = false;
 }
+function markDirty(j) { const b = PBOX[j]; if (b[2] - b[0] > COLS / 2) cacheDirty = true; else dirtyBoxes.push(b); }
 
 // ---------- Efeitos ----------
 const FX = { moves: [], parts: [], texts: [], rings: [], flips: [], planes: [] };
@@ -259,8 +282,8 @@ function floatText(x, y, txt, col, size = 1) { FX.texts.push({ x, y, txt, col, t
 function flipProvince(j, fromX, fromY, oldCol) {
   const now = performance.now();
   for (const i of PH[j]) {
-    const d = Math.hypot(HX[i].x - fromX, HX[i].y - fromY);
-    FX.flips.push({ i, old: oldCol, t0: now + d * 45, dur: 380 });
+    const d = Math.hypot(cxOf(i) - fromX, cyOf(i) - fromY);
+    FX.flips.push({ i, old: oldCol, t0: now + d * 60, dur: 380 });
   }
 }
 
@@ -300,7 +323,7 @@ function render(now) {
     cam.s = camAnim.s0 * Math.pow(camAnim.s / camAnim.s0, e);
     clampCam(); if (k >= 1) camAnim = null;
   }
-  if (C && cacheDirty) rebuildCache();
+  if (C && (cacheDirty || dirtyBoxes.length)) rebuildCache();
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   // oceano
   const grd = ctx.createRadialGradient(VW / 2, VH * 0.4, 10, VW / 2, VH / 2, Math.max(VW, VH));
@@ -314,47 +337,41 @@ function render(now) {
   if (shakeT > 0) { shakeT -= dt; ox = rnd(-1, 1) * shakeT * 14; oy = rnd(-1, 1) * shakeT * 14; }
   ctx.save(); ctx.translate(ox, oy);
   // terra
-  if (cam.s <= K * 1.25) {
-    ctx.imageSmoothingEnabled = true;
-    ctx.drawImage(cache, sx(CX0), sy(CY0), cache.width / K * cam.s, cache.height / K * cam.s);
-  } else {
-    const x0 = wx(-20), x1 = wx(VW + 20), y0 = wy(-20), y1 = wy(VH + 20);
-    const vis = [];
-    for (let i = 0; i < HX.length; i++) { const h = HX[i]; if (h.x > x0 && h.x < x1 && h.y > y0 && h.y < y1) vis.push(i); }
-    ctx.save(); ctx.translate(sx(0), sy(0)); drawHexes(ctx, vis, cam.s, 0, 0); ctx.restore();
-  }
+  ctx.imageSmoothingEnabled = cam.s < K * 0.9;
+  ctx.drawImage(cache, sx(CX0), sy(CY0), COLS * S * cam.s, ROWS * S * cam.s);
+  ctx.imageSmoothingEnabled = true;
   const r = R * cam.s;
   // quadrados a mudar de dono
   FX.flips = FX.flips.filter((f) => now < f.t0 + f.dur);
   for (const f of FX.flips) {
-    const h = HX[f.i], x = sx(h.x), y = sy(h.y);
+    const x = sx(cxOf(f.i)), y = sy(cyOf(f.i));
     const k = (now - f.t0) / f.dur;
     if (k < 0) { ctx.fillStyle = f.old; ctx.beginPath(); hexPath(ctx, x, y, r * 0.95); ctx.fill(); continue; }
     const sc = Math.abs(Math.cos(k * Math.PI));
     ctx.fillStyle = '#0a0e24'; ctx.beginPath(); hexPath(ctx, x, y, r); ctx.fill();
     ctx.save(); ctx.translate(x, y); ctx.scale(1, Math.max(0.05, sc));
-    ctx.fillStyle = k < 0.5 ? f.old : colorOfHex(h); ctx.beginPath(); hexPath(ctx, 0, 0, r * 0.95); ctx.fill();
+    ctx.fillStyle = k < 0.5 ? f.old : colorOfCell(f.i); ctx.beginPath(); hexPath(ctx, 0, 0, r * 0.95); ctx.fill();
     if (k > 0.5) { ctx.fillStyle = `rgba(255,255,255,${(1 - k) * 1.4})`; ctx.fill(); }
     ctx.restore();
   }
   // linhas: fronteira do império, frentes de guerra, seleção
   const me = G.player, pulse = 0.5 + 0.5 * Math.sin(now / 220);
   const empire = new Path2D(), front = new Path2D(), selP = new Path2D(), allyP = new Path2D();
-  const vx0 = -r * 2, vx1 = VW + r * 2, vy0 = -r * 2, vy1 = VH + r * 2;
-  for (let i = 0; i < HX.length; i++) {
-    const h = HX[i], ow = P[h.p].owner;
-    const isMe = ow === me, isSel = h.p === sel;
-    if (!isMe && !isSel && !C[me].wars.has(ow) && !allied(me, ow)) continue;
-    const x = sx(h.x), y = sy(h.y);
-    if (x < vx0 || x > vx1 || y < vy0 || y > vy1) continue;
-    for (let d = 0; d < ND; d++) {
-      const n = h.nb[d];
-      const pn = n < 0 ? -1 : HX[n].p, on = n < 0 ? -1 : P[pn].owner;
-      const ax = x + VX[d] * r, ay = y + VY[d] * r, bx = x + VX[(d + 1) % ND] * r, by = y + VY[(d + 1) % ND] * r;
-      if (isSel && pn !== h.p) { selP.moveTo(ax, ay); selP.lineTo(bx, by); }
+  const wx0 = wx(-10), wx1 = wx(VW + 10), wy0 = wy(-10), wy1 = wy(VH + 10);
+  for (let j = 0; j < NP; j++) {
+    const ow = P[j].owner;
+    const isMe = ow === me, isSel = j === sel, isAlly = !isMe && allied(me, ow);
+    if (!isMe && !isSel && !isAlly) continue;
+    const b = PBOX[j];
+    if (-180 + (b[2] + 1) * S < wx0 || -180 + b[0] * S > wx1 || M.Y0 + (b[3] + 1) * S < wy0 || M.Y0 + b[1] * S > wy1) continue;
+    const sg = PSEG[j];
+    for (let k = 0; k < sg.length; k += 5) {
+      const nb = sg[k + 4], on = nb < 0 ? -1 : P[nb].owner;
+      const ax = sx(sg[k]), ay = sy(sg[k + 1]), bx = sx(sg[k + 2]), by = sy(sg[k + 3]);
+      if (isSel) { selP.moveTo(ax, ay); selP.lineTo(bx, by); }
       if (isMe && on !== me) {
         if (on >= 0 && C[me].wars.has(on)) { front.moveTo(ax, ay); front.lineTo(bx, by); } else { empire.moveTo(ax, ay); empire.lineTo(bx, by); }
-      } else if (!isMe && allied(me, ow) && on !== ow && on !== me) { allyP.moveTo(ax, ay); allyP.lineTo(bx, by); }
+      } else if (isAlly && on !== ow && on !== me) { allyP.moveTo(ax, ay); allyP.lineTo(bx, by); }
     }
   }
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -574,7 +591,7 @@ function capture(j, att, surv, from) {
   p.occ = p.orig === att ? 0 : 40;
   const key = pairKey(att, old);
   G.taken[key] = G.taken[key] || {}; G.taken[key][att] = (G.taken[key][att] || 0) + 1;
-  cacheDirty = true; countProv();
+  markDirty(j); countProv();
   const [x, y] = LABEL[j];
   flipProvince(j, from[0], from[1], oldCol);
   FX.rings.push({ x, y, t: 0, life: 0.9, max: 6, col: C[att].color });
@@ -1157,16 +1174,17 @@ cv.addEventListener('wheel', (e) => {
   cam.x = x0 - (mx - VW / 2) / cam.s; cam.y = y0 - (my - VH / 2) / cam.s; clampCam();
 }, { passive: false });
 function hexAtWorld(x, y) {
-  const c = Math.floor((x + 180) / M.S), r = Math.floor((y - M.Y0) / M.S);
-  const i = hexKey.get(c + ',' + r);
-  if (i !== undefined) return i;
-  // toque mesmo ao lado da costa: aceitar o quadrado vizinho
-  for (const [dc, dr] of [...NB4, [1, 1], [-1, 1], [1, -1], [-1, -1]]) { const j = hexKey.get(c + dc + ',' + (r + dr)); if (j !== undefined) return j; }
+  const c = Math.floor((x + 180) / S), r = Math.floor((y - M.Y0) / S);
+  // toque mesmo ao lado da costa: procurar à volta
+  for (let rad = 0; rad <= 3; rad++) for (let dr = -rad; dr <= rad; dr++) for (let dc = -rad; dc <= rad; dc++) {
+    if (Math.max(Math.abs(dc), Math.abs(dr)) !== rad) continue;
+    const i = cellAt(c + dc, r + dr); if (i >= 0) return i;
+  }
   return -1;
 }
 function tapAt(px, py) {
   const i = hexAtWorld(wx(px), wy(py));
-  let j = i < 0 ? -1 : HX[i].p;
+  let j = i < 0 ? -1 : CP[i];
   // com pouco zoom, um toque perto de uma mira vermelha escolhe esse alvo
   let bd = 24 * 24;
   for (const t of attackable) { const d = (sx(LABEL[t][0]) - px) ** 2 + (sy(LABEL[t][1]) - py) ** 2; if (d < bd) { bd = d; j = t; } }
@@ -1216,7 +1234,7 @@ const sfx = (() => {
 })();
 
 // ---------- Guardar ----------
-const SAVE = 'imperio-quadrados-v2';
+const SAVE = 'imperio-quadrados-v3';
 function save() {
   try {
     localStorage.setItem(SAVE, JSON.stringify({
@@ -1243,7 +1261,7 @@ const hasSave = () => { try { return !!localStorage.getItem(SAVE); } catch (e) {
 
 // ---------- Início / fim ----------
 function startGame() {
-  countProv(); computeAttackable(); cacheDirty = true;
+  countProv(); computeAttackable(); cacheDirty = true; makePal();
   $('#start').hidden = true; paused = false; sel = -1;
   $('#hFlag').textContent = C[G.player].flag; $('#hName').textContent = C[G.player].n;
   resize();

@@ -10,7 +10,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(join(process.env.NODE_PATH || '.', 'x.js'));
-const topo = require('world-atlas/countries-110m.json');
+const topo = require('world-atlas/countries-50m.json');
 const { feature } = require('topojson-client');
 const iso = require('i18n-iso-countries');
 iso.registerLocale(require('i18n-iso-countries/langs/pt.json'));
@@ -21,7 +21,7 @@ const projY = (lat) => -1.25 * Math.log(Math.tan(Math.PI / 4 + 0.4 * lat * RAD))
 const invY = (y) => (Math.atan(Math.exp((-y * RAD) / 1.25)) - Math.PI / 4) / 0.4 / RAD;
 
 const LAT_TOP = 76, LAT_BOT = -56;
-const S = 0.8; // lado do quadrado, em graus
+const S = 0.3; // lado do quadrado, em graus
 const W = S, H = S;
 const UNIT = (S * S) / 3.74; // área de um quadrado comparada com a de um hexágono antigo (R=1.2)
 const Y0 = projY(LAT_TOP), Y1 = projY(LAT_BOT);
@@ -30,7 +30,14 @@ const ROWS = Math.ceil((Y1 - Y0) / H) + 1;
 const center = (c, r) => [-180 + (c + 0.5) * S, Y0 + (r + 0.5) * S];
 
 // ---------- Países ----------
-const MERGE = { 'N. Cyprus': '196', Somaliland: '706', Greenland: '208', 'Puerto Rico': '840', 'New Caledonia': '250', 'Falkland Is.': '826' };
+const MERGE = { 'N. Cyprus': '196', Somaliland: '706' };
+// territórios dependentes passam para o país a que pertencem
+const DEP = {
+  GL: 'DK', FO: 'DK', PR: 'US', GU: 'US', VI: 'US', AS: 'US', MP: 'US', UM: 'US', NC: 'FR', PF: 'FR', WF: 'FR', PM: 'FR', BL: 'FR', MF: 'FR',
+  FK: 'GB', GG: 'GB', JE: 'GB', IM: 'GB', BM: 'GB', KY: 'GB', TC: 'GB', VG: 'GB', AI: 'GB', MS: 'GB', SH: 'GB', GI: 'GB', PN: 'GB', IO: 'GB', GS: 'GB',
+  AX: 'FI', HM: 'AU', NF: 'AU', CX: 'AU', CC: 'AU', AW: 'NL', CW: 'NL', SX: 'NL', BQ: 'NL', CK: 'NZ', NU: 'NZ', TK: 'NZ', HK: 'CN', MO: 'CN', SJ: 'NO', BV: 'NO',
+};
+const DROP_A2 = new Set(['AQ', 'TF']);
 const DROP = new Set(['010', '260']); // Antártida, Terras Austrais Francesas
 const NAME_PT = {
   XK: 'Kosovo', US: 'Estados Unidos', GB: 'Reino Unido', RU: 'Rússia', CD: 'RD Congo', CG: 'Congo', KR: 'Coreia do Sul', KP: 'Coreia do Norte',
@@ -48,6 +55,8 @@ for (const f of features) {
   let a2 = num ? iso.numericToAlpha2(num) : null;
   if (nm === 'Kosovo') a2 = 'XK';
   if (!a2) { console.warn('sem código:', nm, num); continue; }
+  if (DEP[a2]) a2 = DEP[a2];
+  if (DROP_A2.has(a2)) continue;
   let c = countries.find((x) => x.a2 === a2);
   if (!c) {
     c = { a2, n: NAME_PT[a2] || iso.getName(a2, 'pt', { select: 'alias' }) || iso.getName(a2, 'pt') || nm, polys: [] };
@@ -94,7 +103,7 @@ function countryAt(x, y) {
 // ---------- Grelha ----------
 const grid = new Map(); // "c,r" -> country
 const key = (c, r) => c + ',' + r;
-const SAMPLES = [[0, 0], [-0.3 * S, -0.3 * S], [0.3 * S, -0.3 * S], [-0.3 * S, 0.3 * S], [0.3 * S, 0.3 * S]];
+const SAMPLES = [[0, 0]];
 for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
   const [x, y] = center(c, r);
   const votes = new Map();
@@ -104,7 +113,6 @@ for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
   }
   if (!votes.size) continue;
   const tot = [...votes.values()].reduce((a, b) => a + b, 0);
-  if (tot < 2 && !votes.has(countryAt(x, y))) continue;
   grid.set(key(c, r), [...votes.entries()].sort((a, b) => b[1] - a[1])[0][0]);
 }
 function neighbors(c, r) {
@@ -156,7 +164,12 @@ for (const country of countries) {
     for (let k = 0; k < list.length; k++) for (const n of hexNb(hexes[list[k]])) if (hexes[n].ci === country.i && !comp.has(n)) { comp.set(n, comps.length); list.push(n); }
     comps.push(list);
   }
+  comps.sort((a, b) => b.length - a.length);
+  const small = [];
+  const firstProv = provinces.length;
   for (const list of comps) {
+    // ilhotas: juntam-se depois à província mais próxima do mesmo país
+    if (list !== comps[0] && list.length < Math.max(40, total * 0.04)) { small.push(list); continue; }
     let k = Math.max(1, Math.round((list.length / total) * nProv));
     if (list.length < 2 && comps.length > 1 && list.length / total < 0.05) k = 1;
     k = Math.min(k, list.length);
@@ -198,6 +211,15 @@ for (const country of countries) {
     const base = provinces.length;
     for (let j = 0; j < seeds.length; j++) provinces.push({ ci: country.i, hexes: [] });
     for (const i of list) { const pj = base + lab.get(i); hexes[i].p = pj; provinces[pj].hexes.push(i); }
+  }
+  for (const list of small) {
+    const h0 = hexes[list[0]];
+    let best = firstProv, bd = 1e9;
+    for (let pj = firstProv; pj < provinces.length; pj++) for (const i of provinces[pj].hexes) {
+      if (hexes[i].comp) continue;
+      const d = hexDist(h0, hexes[i]); if (d < bd) { bd = d; best = pj; }
+    }
+    for (const i of list) { hexes[i].p = best; hexes[i].comp = 1; provinces[best].hexes.push(i); }
   }
 }
 // ---------- Geometria e nomes das províncias ----------
@@ -297,7 +319,17 @@ const out = {
   S, unit: +UNIT.toFixed(4), Y0, cols: COLS, rows: ROWS,
   countries: countries.map((c) => ({ a2: c.a2, n: c.n, cap: c.cap })),
   provinces: provinces.map((p, i) => ({ c: p.ci, n: p.name, x: +p.x.toFixed(2), y: +p.y.toFixed(2), cap: p.cap ? 1 : 0, adj: [...adj[i]], sea: [...sea[i]] })),
-  hexes: hexes.flatMap((h) => [h.c, h.r, h.p]),
+  // por linha: sequências [coluna inicial, comprimento, província]
+  runs: (() => {
+    const rows = Array.from({ length: ROWS }, () => []);
+    const sorted = hexes.map((h, i) => i).sort((a, b) => hexes[a].r - hexes[b].r || hexes[a].c - hexes[b].c);
+    for (const i of sorted) {
+      const h = hexes[i], row = rows[h.r], last = row.length - 3;
+      if (last >= 0 && row[last] + row[last + 1] === h.c && row[last + 2] === h.p) row[last + 1]++;
+      else row.push(h.c, 1, h.p);
+    }
+    return rows;
+  })(),
 };
 const file = join(dirname(fileURLToPath(import.meta.url)), '..', 'data.js');
 writeFileSync(file, '// Gerado por tools/build-map.mjs — não editar à mão.\nwindow.MAPA=' + JSON.stringify(out) + ';\n');
