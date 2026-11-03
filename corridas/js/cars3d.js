@@ -140,7 +140,7 @@ const CARS3D = (() => {
       glass.position.set(L * 0.09 - 0.042, 0.74, sd * W * 0.32); glass.rotation.y = -Math.PI / 2; g.add(glass); mirrors.push(glass);
     }
     // volante com ecrã (visível na câmara de dentro)
-    const sw = new THREE.Group(); sw.position.set(L * 0.085, 0.64, 0); sw.rotation.z = -0.38; g.add(sw);
+    const sw = new THREE.Group(); sw.position.set(L * 0.062, 0.7, 0); sw.rotation.z = -0.5; sw.scale.setScalar(1.18); g.add(sw);
     const { dc, dt } = formulaWheel(sw);
     // número no nariz
     if (num != null) { const np = textPlane(String(num), 0.26, 0.17, null, '#ffffff'); np.rotation.x = -Math.PI / 2; np.rotation.z = Math.PI / 2; np.position.set(L * 0.3, 0.335, 0); g.add(np); }

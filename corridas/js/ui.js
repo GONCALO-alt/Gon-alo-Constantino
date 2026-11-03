@@ -12,7 +12,8 @@ const rndInt = (r, a, b) => a + Math.floor(r() * (b - a + 1));
 const DEFAULT_SETTINGS = { controls: 'arrows', sens: 1, abs: true, tc: true, line: true, steer: true, cam: 'cockpit', units: 'kmh', diff: 'medio', length: 0, vol: 0.8, voice: true, names: true, gfx: 'media' };
 let S = null;
 function load() { try { S = JSON.parse(localStorage.getItem(SAVE)); } catch (e) { S = null; } if (S) S.settings = { ...DEFAULT_SETTINGS, ...S.settings }; }
-function save() { try { localStorage.setItem(SAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento */ } }
+let REAL = null; // carreira guardada enquanto se joga uma corrida rápida
+function save() { if (S && S.quick) return; try { localStorage.setItem(SAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento */ } }
 load();
 let tmpSettings = S ? S.settings : { ...DEFAULT_SETTINGS };
 const ST = () => (S ? S.settings : tmpSettings);
@@ -99,7 +100,7 @@ const driverById = (id) => (id === 'me' ? meDriver() : aiDriver(S.drivers.find((
 
 // ---------- navegação ----------
 let screen = null;
-function show(fn, ...args) { screen = [fn, args]; document.body.classList.add('carbon'); $('#race').hidden = true; app.hidden = false; app.innerHTML = fn(...args); afterRender(); }
+function show(fn, ...args) { if (fn !== scrHome && fn !== scrQuick) MENU3D.stop(); screen = [fn, args]; document.body.classList.add('carbon'); $('#race').hidden = true; app.hidden = false; app.innerHTML = fn(...args); afterRender(); }
 function rerender() { if (screen) show(screen[0], ...screen[1]); }
 let afterHooks = [];
 function after(f) { afterHooks.push(f); }
@@ -112,13 +113,67 @@ app.addEventListener('change', (e) => { const el = e.target.closest('[data-c]');
 app.addEventListener('input', (e) => { const el = e.target.closest('[data-i]'); if (el) CHG[el.dataset.i]?.(el.value, el); });
 
 // ---------- ecrãs ----------
-function scrHome() {
-  return `<div class="screen"><div class="logo"><div class="mark"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
-  <h1>Grelha de <b>Partida</b></h1><p>Começa no karting, ganha campeonatos e sobe à Fórmula 4, Fórmula 3, Fórmula 2 e Fórmula 1.</p></div>
-  <div class="stack">${S ? `<button class="btn primary" data-a="hub">Continuar carreira</button><div class="muted" style="text-align:center">${esc(S.profile.first + ' ' + S.profile.last)} · ${catById(S.cat).n} · época ${S.season}</div>` : ''}
-  <button class="btn ${S ? '' : 'primary'}" data-a="newCareer">Nova carreira</button><button class="btn" data-a="settings">Definições</button></div>
-  <p class="muted" style="text-align:center;margin-top:auto">Joga com o telemóvel na horizontal. No computador: setas ou WASD, espaço para travar, R para o rádio.</p></div>`;
+function showroomCar(cat) {
+  const p = (REAL || S) ? (REAL || S).profile : { nat: 'PT', num: 7, helmet: { c1: '#e10600', c2: '#ffffff', c3: '#1b1b1b', pattern: 'faixa' } };
+  const base = REAL || S;
+  cat = cat || (base ? base.cat : 'kart');
+  let c1 = p.helmet.c1, c2 = p.helmet.c2;
+  if (cat !== 'kart') { const ti = base && base.cat === cat && base.team != null ? base.team : (cat === QS.cat ? QS.team : 0); const t = TEAMS[cat][ti]; c1 = t[1]; c2 = t[2]; }
+  return { cat, c1, c2, num: p.num, helmet: helmetOf(p), sponsor: base && base.sponsor ? base.sponsor.name : null };
 }
+function homeShell(inner, cat, wide) {
+  after(() => { const ok = MENU3D.start($('#showCv'), showroomCar(cat)); if (!ok) $('#showCv').hidden = true; });
+  return `<div class="home"><canvas id="showCv"></canvas><div class="homeL ${wide ? 'wide' : ''}">${inner}</div></div>`;
+}
+function scrHome() {
+  const base = REAL || S;
+  const C = base ? catById(base.cat) : null;
+  return homeShell(`<div class="hlogo"><div class="mark"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+  <h1>Grelha de <b>Partida</b></h1><p>Do karting à Fórmula 1</p></div>
+  <nav class="mmenu">
+  ${base ? `<button class="mbtn primary" data-a="hub"><i>01</i><span>Continuar carreira<small>${esc(base.profile.first + ' ' + base.profile.last)} · ${C.n} · época ${base.season}</small></span></button>` : ''}
+  <button class="mbtn ${base ? '' : 'primary'}" data-a="newCareer"><i>${base ? '02' : '01'}</i><span>Nova carreira<small>Começa no karting e sobe até à F1</small></span></button>
+  <button class="mbtn" data-a="quick"><i>${base ? '03' : '02'}</i><span>Corrida rápida<small>Escolhe carro, pista e tempo</small></span></button>
+  <button class="mbtn" data-a="settings"><i>${base ? '04' : '03'}</i><span>Definições<small>Comandos, câmara, gráficos e som</small></span></button>
+  </nav>
+  <p class="hhint">Joga com o telemóvel na horizontal · No computador: setas ou WASD, espaço trava, R rádio</p>`);
+}
+// ---------- corrida rápida ----------
+const QS = { cat: 'kart', track: 0, team: 0, wx: 'seco', len: 0, start: 'meio' };
+const QWX = { seco: ['☀️ Seco', { start: 0, end: 0, at: 0.5 }], chuva: ['🌧️ Chuva', { start: 0.75, end: 0.7, at: 0.5 }], vem: ['🌦️ Chuva a meio', { start: 0, end: 0.8, at: 0.45 }], seca: ['🌤️ A secar', { start: 0.7, end: 0, at: 0.4 }] };
+const QSTART = { pole: 'Pole position', meio: 'Meio da grelha', fim: 'Último', sorte: 'À sorte' };
+const quickTracks = (cat) => TRACKS[cat];
+function scrQuick() {
+  const C = catById(QS.cat), tr = quickTracks(QS.cat);
+  QS.track = Math.min(QS.track, tr.length - 1);
+  const segs = (k, list, cur) => `<div class="seg">${list.map(([v, l]) => `<button class="${String(cur) === String(v) ? 'on' : ''}" data-a="qs" data-v="${k}|${v}">${l}</button>`).join('')}</div>`;
+  return homeShell(`<div class="topbar"><button class="back" data-a="home">‹ Menu</button><h1>Corrida <em>rápida</em></h1></div>
+  <div class="qform"><div class="col">
+  <h2>Carro</h2>${segs('cat', CATS.map((c) => [c.id, c.short]), QS.cat)}
+  ${QS.cat !== 'kart' ? `<label class="field">Equipa<select data-c="qteam">${TEAMS[QS.cat].map((t, k) => `<option value="${k}" ${k === QS.team ? 'selected' : ''}>${t[0]} ${'★'.repeat(Math.max(1, Math.round((t[3] - 0.982) * 160)))}</option>`).join('')}</select></label>` : ''}
+  <label class="field">Pista<select data-c="qtrack">${tr.map((t, k) => `<option value="${k}" ${k === QS.track ? 'selected' : ''}>${flagOf(t[1])} ${t[0]}</option>`).join('')}</select></label>
+  </div><div class="col"><h2>Tempo</h2>${segs('wx', Object.entries(QWX).map(([k, v]) => [k, v[0]]), QS.wx)}
+  <h2>Voltas</h2>${segs('len', C.laps.map((n, k) => [k, n + ' voltas']), QS.len)}
+  <h2>Partida</h2>${segs('start', Object.entries(QSTART), QS.start)}
+  <h2>Rivais</h2>${segs('diff', [['facil', 'Fácil'], ['medio', 'Médio'], ['dificil', 'Difícil'], ['lenda', 'Lenda']], ST().diff)}
+  </div></div>
+  <button class="btn go" data-a="quickGo">Para a grelha!</button>`, QS.cat, true);
+}
+function quickSetup() {
+  if (!(S && S.quick)) REAL = S;
+  const base = REAL, tr = quickTracks(QS.cat)[QS.track];
+  const profile = base ? JSON.parse(JSON.stringify(base.profile)) : { first: 'Piloto', last: 'Convidado', nat: 'PT', num: 7, helmet: { c1: '#e10600', c2: '#ffffff', c3: '#1b1b1b', pattern: 'faixa' } };
+  S = { ver: 1, quick: true, profile, settings: { ...(base ? base.settings : tmpSettings), length: QS.len }, money: 0, kart: { motor: 3, chassis: 3, pneus: 3, travoes: 3 },
+    owned: [], history: [], stats: { races: 0, wins: 0, podiums: 0, poles: 0, titles: 0 }, season: 0, sponsor: base && base.sponsor ? base.sponsor : null };
+  newSeason(QS.cat, QS.cat === 'kart' ? null : QS.team);
+  S.calendar = [{ name: tr[0], nat: tr[1], res: null }];
+  const C = catById(QS.cat), wx = { ...QWX[QS.wx][1] };
+  const ids = S.drivers.slice().sort((a, b) => b.skill - a.skill).map((d) => d.id), n = ids.length + 1;
+  const at = { pole: 0, meio: Math.floor(n / 2), fim: n - 1, sorte: Math.floor(Math.random() * n) }[QS.start];
+  ids.splice(at, 0, 'me');
+  weekend = { round: 0, grid: ids.map((id) => ({ id, t: 0 })), tyre: wx.start > 0.3 ? (C.pits ? 'I' : 'W') : 'M', quali: null, weather: wx, goal: null };
+}
+function leaveQuick() { if (S && S.quick) { S = REAL; REAL = null; } }
 let draft = null;
 function scrNew(step = 1) {
   draft = draft || { first: '', last: '', nat: 'PT', num: 7, helmet: { c1: '#e10600', c2: '#ffffff', c3: '#1b1b1b', pattern: 'faixa' } };
@@ -284,15 +339,16 @@ function checkGoal(goal, res, mine, R) {
   if (goal.k === 'clean') return R.me.dmg < 0.1;
   return false;
 }
+const weekendStart = () => (lastRace && lastRace.startPos) || '-';
 function scrResults(res, info) {
-  return `<div class="screen"><div class="topbar"><h1>Resultado <em>· ${info.track}</em></h1><span class="money">+${eur(info.money)}</span></div>
+  return `<div class="screen"><div class="topbar"><h1>Resultado <em>· ${info.track}</em></h1>${info.quick ? '' : `<span class="money">+${eur(info.money)}</span>`}</div>
   <div class="grid2"><div class="card"><h2>Classificação da corrida</h2><div class="tbl"><table><tr><th>Pos</th><th>Piloto</th><th>Tempo</th><th>Melhor volta</th><th>Pts</th></tr>
   ${res.map((r) => `<tr class="${r.isPlayer ? 'me' : ''}"><td class="pos">${r.pos}</td><td><span class="teamdot" style="background:${r.d.c1}"></span>${flagOf(r.d.nat)} ${esc(r.d.first[0] + '. ' + r.d.last)}${r.penalty ? ` <span class="tag">+${r.penalty}s</span>` : ''}</td><td>${r.dnf ? 'Desistiu' : r.gapTxt}</td><td style="${info.fastest === r.id ? 'color:var(--purple);font-weight:700' : ''}">${fmtTime(r.best)}</td><td><b>${r.pts}</b></td></tr>`).join('')}</table></div></div>
   <div class="card"><h2>O teu dia</h2><h3>${info.pos <= 3 ? ['🥇 Vitória!', '🥈 Segundo lugar', '🥉 Terceiro lugar'][info.pos - 1] : 'P' + info.pos}</h3>
-  <div class="kv"><div><small>Pontos</small><b>+${info.pts}</b></div><div><small>Prémio</small><b>${eur(info.money)}</b></div><div><small>Campeonato</small><b>P${info.champ}</b></div></div>
+  ${info.quick ? `<div class="kv"><div><small>Pontos</small><b>${info.pts}</b></div><div><small>Partiste</small><b>P${weekendStart(info)}</b></div></div>` : `<div class="kv"><div><small>Pontos</small><b>+${info.pts}</b></div><div><small>Prémio</small><b>${eur(info.money)}</b></div><div><small>Campeonato</small><b>P${info.champ}</b></div></div>`}
   ${info.goal ? `<p class="muted">${esc(S.sponsor.name)}: ${info.goal.txt} — ${info.goalOk ? `<b style="color:var(--green)">cumprido! +${eur(info.goal.pay)}</b>` : 'não cumprido'}</p>` : ''}
   ${info.replay ? '<button class="btn" data-a="replay">🎬 Ver repetição</button>' : ''}
-  <button class="btn primary" data-a="hub">Voltar ao paddock</button></div></div></div>`;
+  ${info.quick ? '<button class="btn primary" data-a="quickAgain">Correr outra vez</button><button class="btn" data-a="quick">Mudar a corrida</button><button class="btn" data-a="home">Menu principal</button>' : '<button class="btn primary" data-a="hub">Voltar ao paddock</button>'}</div></div></div>`;
 }
 function scrSeasonEnd() {
   const ch = champTable(), pos = ch.meIdx + 1, C = catById(S.cat), nx = nextCat(S.cat);
@@ -329,7 +385,11 @@ function scrSeasonEnd() {
 // ---------- ações ----------
 const readDraft = () => { const f = $('#fFirst'); if (!f) return; draft.first = f.value.trim(); draft.last = $('#fLast').value.trim(); draft.nat = $('#fNat').value; draft.num = clamp(parseInt($('#fNum').value, 10) || 7, 1, 99); };
 const ACT = {
-  home: () => show(scrHome),
+  home: () => { leaveQuick(); show(scrHome); },
+  quick: () => { show(scrQuick); },
+  qs: (v) => { const [k, val] = v.split('|'); if (k === 'diff') { ST().diff = val; if (S) save(); } else if (k === 'cat') { QS.cat = val; QS.team = Math.min(QS.team, 9); QS.len = Math.min(QS.len, 2); } else QS[k] = k === 'len' ? +val : val; rerender(); },
+  quickGo: () => { quickSetup(); startSession('race'); },
+  quickAgain: () => { quickSetup(); startSession('race'); },
   newCareer: () => { draft = null; show(scrNew, 1); },
   newStep2: () => { readDraft(); if (!draft.first || !draft.last) { alertBox('Escreve o teu nome e apelido.'); return; } show(scrNew, 2); },
   newBack: () => show(scrNew, 1),
@@ -363,6 +423,8 @@ const ACT = {
   repeat: () => { const cat = S.cat, team = S.team; S.offers = null; S.closed = false; newSeason(cat, team); save(); show(scrHub); },
 };
 const CHG = {
+  qtrack: (v) => { QS.track = +v; },
+  qteam: (v) => { QS.team = +v; MENU3D.setCar(showroomCar(QS.cat)); },
   first: (v) => { S.profile.first = v.trim() || S.profile.first; save(); },
   last: (v) => { S.profile.last = v.trim() || S.profile.last; save(); },
   nat: (v) => { S.profile.nat = v; save(); },
@@ -411,6 +473,7 @@ function startSession(mode) {
   });
   const grid = mode === 'race' && weekend.grid ? weekend.grid.map((g) => g.id) : null;
   R = new Race({ T, cat: S.cat, mode, laps: mode === 'quali' ? 1 : laps, field, player: { driver: meDriver(), params: playerParams(), tyre: weekend.tyre }, grid, weather: mode === 'race' ? { ...wx } : { start: wx.start, end: wx.start, at: 1 } });
+  R.startPos = (grid ? grid.indexOf('me') : R.cars.length - 1) + 1;
   R.onFlag = (k) => { if (k === 'sc') bigMsg('SAFETY CAR'); else if (k === 'red') bigMsg('BANDEIRA VERMELHA'); else if (k === 'green') bigMsg('BANDEIRA VERDE'); };
   R.onMsg = (text, kind) => radioMsg(text, kind);
   R.onLight = (n) => { lights(n); };
@@ -421,6 +484,7 @@ function startSession(mode) {
   else radioMsg(`Verifica os comandos. ${laps} voltas. Boa sorte!`, '');
 }
 function enterRace() {
+  MENU3D.stop();
   app.hidden = true; $('#race').hidden = false; document.body.classList.remove('carbon');
   RENDER.init($('#cv'));
   if (window.THREE) { try { R3D.init($('#cv3'), S.settings.gfx); } catch (e) { window.__no3d = true; } } else window.__no3d = true;
@@ -436,7 +500,7 @@ function enterRace() {
   AUDIO.setVolume(S.settings.vol); AUDIO.setVoice(S.settings.voice); AUDIO.startEngine(S.cat);
   inp = { steer: 0, throttle: 0, brake: 0 }; ctl = { left: false, right: false, gas: false, brk: false, wheel: null };
   paused = false; running = true; last = performance.now();
-  try { if (document.documentElement.requestFullscreen && !document.fullscreenElement) document.documentElement.requestFullscreen().then(() => screen.orientation?.lock?.('landscape').catch(() => {})).catch(() => {}); } catch (e) { /* */ }
+  try { if (document.documentElement.requestFullscreen && !document.fullscreenElement) document.documentElement.requestFullscreen().then(() => window.screen.orientation?.lock?.('landscape').catch(() => {})).catch(() => {}); } catch (e) { /* */ }
   checkOrientation();
   void C;
   requestAnimationFrame(loop);
@@ -691,7 +755,7 @@ function replayLoop(now) {
   if (!RP) return;
   const dt = clamp((now - replayLoop.last) / 1000, 0, 0.05); replayLoop.last = now;
   const rep = R.rep, n = rep.frames.length;
-  if (!n) { RP = null; show(scrHub); return; }
+  if (!n) { RP = null; show(S.quick ? scrHome : scrHub); return; }
   if (RP.play) RP.k = clamp(RP.k + (dt * RP.speed) / rep.dt, 0, n - 1);
   const f = rep.frames[Math.floor(RP.k)], T = R.T, N = R.cars.length * 7;
   const cars = R.cars.map((c, k) => ({ id: c.id, x: f[k * 7], y: f[k * 7 + 1], th: f[k * 7 + 2], v: f[k * 7 + 3], s: f[k * 7 + 4], i: idxOf(T, f[k * 7 + 4]), steer: c.isPlayer ? f[k * 7 + 6] : clamp(Math.atan(T.rk[idxOf(T, f[k * 7 + 4])] * R.C.L), -0.3, 0.3), tyreColor: COMPOUNDS[c.tyre].c, wing: 0, slide: 0, prog: f[k * 7 + 5] }));
@@ -715,7 +779,7 @@ document.addEventListener('click', (e) => {
   else if (a === 'speed') RP.speed = { 0.5: 1, 1: 2, 2: 4, 4: 0.5 }[RP.speed];
   else if (a === 'cam') RP.cam = { tv: 'cockpit', cockpit: 'chase', chase: 'tv' }[RP.cam];
   else if (a === 'next' || a === 'prev') { const k = ids.indexOf(RP.focus); RP.focus = ids[(k + (a === 'next' ? 1 : ids.length - 1)) % ids.length]; }
-  else if (a === 'exit') { RP = null; $('#replayBar').hidden = true; $('#race').classList.remove('replaying'); show(scrHub); return; }
+  else if (a === 'exit') { RP = null; $('#replayBar').hidden = true; $('#race').classList.remove('replaying'); if (S.quick) { leaveQuick(); show(scrHome); } else show(scrHub); return; }
   replayBar();
 });
 function endSession() {
@@ -723,6 +787,12 @@ function endSession() {
   try { speechSynthesis.cancel(); } catch (e) { /* */ }
   if (R.mode === 'quali') { const t = R.me.laps[0]; weekend.grid = simQuali(t); show(scrWeekend); return; }
   let res = R.results();
+  if (S.quick) {
+    if (R.dnf) { const me = res.find((r) => r.isPlayer); res = res.filter((r) => !r.isPlayer).map((r, k) => ({ ...r, pos: k + 1, pts: POINTS[k] || 0 })); res.push({ ...me, pos: res.length + 1, pts: 0, dnf: true }); }
+    lastRace = R; const mine = res.find((r) => r.isPlayer);
+    show(scrResults, res, { track: R.T.name, money: 0, pts: mine.pts, pos: mine.pos, champ: 0, fastest: R.fastest && R.fastest.id, goal: null, goalOk: false, replay: is3Dok() && R.rep.frames.length > 20, quick: true });
+    return;
+  }
   if (R.dnf) { const me = res.find((r) => r.isPlayer); res = res.filter((r) => !r.isPlayer).map((r, k) => ({ ...r, pos: k + 1, pts: POINTS[k] || 0 })); res.push({ ...me, pos: res.length + 1, pts: 0, dnf: true }); }
   const C = catById(S.cat);
   for (const r of res) { S.points[r.id] = (S.points[r.id] || 0) + r.pts; if (r.pos === 1) S.wins[r.id] = (S.wins[r.id] || 0) + 1; }

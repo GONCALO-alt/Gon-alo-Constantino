@@ -4,6 +4,8 @@ Jogo de corridas realista, em horizontal, para telemóvel. A carreira começa no
 
 Abre `index.html` no browser.
 
+- **Menu principal** com montra 3D do teu carro a rodar, e **corrida rápida** (escolhes carro, equipa, pista, tempo, voltas, posição de partida e rivais) sem mexer na carreira.
+- **Volante com ecrã:** no kart, um ecrã tipo MyChron no centro do volante (velocidade, rotações, tempos de volta, diferença); nas fórmulas, um ecrã a cores com mudança, delta, pneus e bandeiras. Luvas nas mãos.
 - **Câmaras:** primeira pessoa (cockpit com volante, nariz, pneus e halo), atrás do carro, vista de cima e mapa fixo (botão 📷 ou tecla C).
 - **Física:** pneus que perdem aderência quando passam do limite, transferência de peso ao travar, carga aerodinâmica que aumenta com a velocidade, relva e gravilha que tiram aderência. Ajudas opcionais: ABS, controlo de tração, direção assistida e trajetória ideal.
 - **Comandos:** setas ◀ ▶ ou volante (arrastar em círculo), pedais de acelerar e travar, rádio com o engenheiro. No computador: setas/WASD, espaço trava, R rádio, B box, C câmara, Esc pausa.
