@@ -9,7 +9,7 @@ const eur = (n) => '€' + Math.round(n).toLocaleString('pt-PT');
 const rndInt = (r, a, b) => a + Math.floor(r() * (b - a + 1));
 
 // ---------- estado ----------
-const DEFAULT_SETTINGS = { controls: 'arrows', sens: 1, abs: true, tc: true, line: true, steer: true, cam: 'cockpit', units: 'kmh', diff: 'medio', length: 0, vol: 0.8, voice: true, names: true, gfx: 'media' };
+const DEFAULT_SETTINGS = { controls: 'arrows', sens: 1, abs: true, tc: true, line: true, steer: true, cam: 'cockpit', units: 'kmh', diff: 'medio', length: 0, vol: 0.8, voice: true, names: true, gfx: 'media', season: 'curta' };
 let S = null;
 function load() { try { S = JSON.parse(localStorage.getItem(SAVE)); } catch (e) { S = null; } if (S) S.settings = { ...DEFAULT_SETTINGS, ...S.settings }; }
 let REAL = null; // carreira guardada enquanto se joga uma corrida rápida
@@ -26,7 +26,7 @@ function flagImg(a2) {
   g.font = '56px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(flagOf(a2), 40, 33);
   return (flagImgCache[a2] = c);
 }
-function helmetOf(p) { return { ...p.helmet, flagImg: p.helmet.pattern === 'bandeira' ? flagImg(p.nat) : null }; }
+function helmetOf(p) { const h = p.helmet; return { ...h, hi: true, num: p.num, name: p.last, nat: p.nat, flagImg: h.pattern === 'bandeira' || h.showFlag ? flagImg(p.nat) : null, sponsorTxt: h.sponsor ? ((REAL || S) && (REAL || S).sponsor ? (REAL || S).sponsor.name : 'GRELHA') : null }; }
 function paintHelmet(canvas, h) {
   const g = canvas.getContext('2d'), w = canvas.width; g.clearRect(0, 0, w, w);
   RENDER.drawHelmet(g, w / 2, w / 2, w * 0.4, h);
@@ -57,12 +57,48 @@ function newSeason(cat, team) {
   S.drivers = makeDrivers(cat, Math.floor(Math.random() * 1e9));
   S.points = { me: 0 }; S.wins = { me: 0 };
   for (const d of S.drivers) { S.points[d.id] = 0; S.wins[d.id] = 0; }
-  const C = catById(cat), pool = TRACKS[cat].slice();
-  S.calendar = pool.slice(0, C.rounds).map((t) => ({ name: t[0], nat: t[1], res: null }));
+  S.year = 2025 + S.season;
+  S.calendar = seasonPick(cat, (S.settings && S.settings.season) || 'curta').map((t) => ({ name: t[0], nat: t[1], date: S.year + '-' + t[2], res: null }));
+  buildEvents();
   S.dev = 0;
 }
+// ---------- calendário e dias ----------
+const MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+const dOf = (iso) => { const [y, m, d] = iso.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+const isoOf = (dt) => dt.toISOString().slice(0, 10);
+const addDays = (iso, n) => { const d = dOf(iso); d.setUTCDate(d.getUTCDate() + n); return isoOf(d); };
+const daysBetween = (a, b) => Math.round((dOf(b) - dOf(a)) / 864e5);
+const fmtDay = (iso) => { const d = dOf(iso); return `${d.getUTCDate()} ${MESES[d.getUTCMonth()].slice(0, 3)}`; };
+const EVN = { launch: ['🚀', 'Apresentação da época'], oficina: ['🔧', 'Dia de oficina'], corrida: ['🏁', 'Fim de semana de corrida'] };
+function buildEvents() {
+  const ev = [];
+  S.calendar.forEach((c, k) => {
+    const prev = k ? S.calendar[k - 1].date : null, gap = prev ? daysBetween(prev, c.date) : 30;
+    ev.push({ t: 'oficina', r: k, date: addDays(c.date, -Math.min(4, Math.max(2, gap - 3))) });
+    ev.push({ t: 'corrida', r: k, date: c.date });
+  });
+  ev.unshift({ t: 'launch', r: -1, date: addDays(ev[0].date, -12) });
+  S.events = ev; S.offDone = []; S.launchDone = false; S.today = addDays(ev[0].date, -2); S.oficinaOpen = null;
+}
+function ensureEvents() { // carreiras antigas, sem datas
+  if (!S || S.events) return;
+  S.year = 2025 + (S.season || 1);
+  const ref = TRACKS[S.cat] || [];
+  let last = S.year + '-03-01';
+  S.calendar.forEach((c) => { const t = ref.find((x) => x[0] === c.name); c.date = t && t[2] ? S.year + '-' + t[2] : addDays(last, 21); if (c.date <= last) c.date = addDays(last, 14); last = c.date; });
+  const r = S.round; buildEvents(); S.launchDone = true; S.offDone = Array.from({ length: r }, (_, k) => k);
+  S.today = r ? S.calendar[r - 1].date : S.today; save();
+}
+function nextEvent() {
+  for (const e of S.events) {
+    if (e.t === 'launch' && !S.launchDone) return e;
+    if (e.t === 'oficina' && e.r >= S.round && !S.offDone.includes(e.r)) return e;
+    if (e.t === 'corrida' && e.r >= S.round) return e;
+  }
+  return null;
+}
 function newCareer(profile) {
-  S = { ver: 1, profile, settings: { ...tmpSettings }, money: 600, kart: { motor: 0, chassis: 0, pneus: 0, travoes: 0 },
+  S = { ver: 1, profile, settings: { ...tmpSettings }, money: 600, kart: { motor: 0, chassis: 0, pneus: 0, travoes: 0, carb: 0, eixo: 0 },
     owned: ['liso', 'faixa'], history: [], stats: { races: 0, wins: 0, podiums: 0, poles: 0, titles: 0 }, season: 0 };
   newSeason('kart', null);
   save();
@@ -73,7 +109,7 @@ const teamOf = (i) => (S.cat === 'kart' || i == null ? null : TEAMS[S.cat][i]);
 function playerParams() {
   if (S.cat === 'kart') {
     const k = S.kart;
-    return carParams('kart', { power: 0.95 + 0.028 * k.motor, grip: 0.978 + 0.009 * (k.chassis + k.pneus), brake: 0.9 + 0.025 * k.travoes });
+    return carParams('kart', { power: 0.95 + 0.028 * k.motor + 0.012 * (k.carb || 0), grip: 0.978 + 0.009 * (k.chassis + k.pneus) + 0.008 * (k.eixo || 0), brake: 0.9 + 0.025 * k.travoes });
   }
   const tf = teamOf(S.team)[3] * (1 + 0.004 * S.dev);
   return carParams(S.cat, { power: tf, grip: Math.pow(tf, 0.6), aero: tf });
@@ -91,7 +127,7 @@ function meDriver() {
 function aiDriver(d) {
   const t = teamOf(d.team);
   const sp = SPONSORS[(d.team != null ? d.team * 3 : d.num) % SPONSORS.length][0];
-  return { ...d, c1: t ? t[1] : d.kc1, c2: t ? t[2] : d.kc2, helmet: { ...d.helmet }, sponsor: sp };
+  return { ...d, c1: t ? t[1] : d.kc1, c2: t ? t[2] : d.kc2, helmet: { ...d.helmet, num: d.num, name: d.last }, sponsor: sp };
 }
 const trackCache = {};
 function getTrack(name, cat) { const k = name + '|' + cat; return trackCache[k] || (trackCache[k] = buildTrack(name, cat)); }
@@ -100,7 +136,7 @@ const driverById = (id) => (id === 'me' ? meDriver() : aiDriver(S.drivers.find((
 
 // ---------- navegação ----------
 let screen = null;
-function show(fn, ...args) { if (fn !== scrHome && fn !== scrQuick) MENU3D.stop(); screen = [fn, args]; document.body.classList.add('carbon'); $('#race').hidden = true; app.hidden = false; app.innerHTML = fn(...args); afterRender(); }
+function show(fn, ...args) { MENU3D.stop(); screen = [fn, args]; document.body.classList.add('carbon'); $('#race').hidden = true; app.hidden = false; app.innerHTML = fn(...args); afterRender(); }
 function rerender() { if (screen) show(screen[0], ...screen[1]); }
 let afterHooks = [];
 function after(f) { afterHooks.push(f); }
@@ -142,7 +178,7 @@ function scrHome() {
 const QS = { cat: 'kart', track: 0, team: 0, wx: 'seco', len: 0, start: 'meio' };
 const QWX = { seco: ['☀️ Seco', { start: 0, end: 0, at: 0.5 }], chuva: ['🌧️ Chuva', { start: 0.75, end: 0.7, at: 0.5 }], vem: ['🌦️ Chuva a meio', { start: 0, end: 0.8, at: 0.45 }], seca: ['🌤️ A secar', { start: 0.7, end: 0, at: 0.4 }] };
 const QSTART = { pole: 'Pole position', meio: 'Meio da grelha', fim: 'Último', sorte: 'À sorte' };
-const quickTracks = (cat) => TRACKS[cat];
+const quickTracks = (cat) => (cat === 'kart' ? TRACKS.kart : Object.keys(CIRCUITS).map((k) => [k, CIRCUITS[k].nat]).sort((a, b) => a[0].localeCompare(b[0], 'pt')));
 function scrQuick() {
   const C = catById(QS.cat), tr = quickTracks(QS.cat);
   QS.track = Math.min(QS.track, tr.length - 1);
@@ -166,7 +202,7 @@ function quickSetup() {
   S = { ver: 1, quick: true, profile, settings: { ...(base ? base.settings : tmpSettings), length: QS.len }, money: 0, kart: { motor: 3, chassis: 3, pneus: 3, travoes: 3 },
     owned: [], history: [], stats: { races: 0, wins: 0, podiums: 0, poles: 0, titles: 0 }, season: 0, sponsor: base && base.sponsor ? base.sponsor : null };
   newSeason(QS.cat, QS.cat === 'kart' ? null : QS.team);
-  S.calendar = [{ name: tr[0], nat: tr[1], res: null }];
+  S.calendar = [{ name: tr[0], nat: tr[1], date: '2026-06-01', res: null }]; S.events = [{ t: 'corrida', r: 0, date: '2026-06-01' }]; S.offDone = [0]; S.launchDone = true;
   const C = catById(QS.cat), wx = { ...QWX[QS.wx][1] };
   const ids = S.drivers.slice().sort((a, b) => b.skill - a.skill).map((d) => d.id), n = ids.length + 1;
   const at = { pole: 0, meio: Math.floor(n / 2), fim: n - 1, sorte: Math.floor(Math.random() * n) }[QS.start];
@@ -190,19 +226,26 @@ function scrNew(step = 1) {
   <div class="stack"><button class="btn go" data-a="startCareer">Começar no karting</button></div></div>`;
 }
 function helmetEditor(p, free) {
-  after(() => paintHelmet($('#helmCv'), { ...p.helmet, flagImg: p.helmet.pattern === 'bandeira' ? flagImg(p.nat) : null }));
-  const owned = free ? HELMET_PATTERNS.map((x) => x.k) : S.owned;
-  const sw = (k) => `<div class="swatches">${HELMET_COLORS.map((c) => `<button style="background:${c}" class="${p.helmet[k] === c ? 'on' : ''}" data-a="hcol" data-v="${k}|${c}" aria-label="cor"></button>`).join('')}</div>`;
-  return `<div class="card helmetbox"><canvas id="helmCv" width="320" height="320"></canvas><div class="muted">${flagOf(p.nat)} #${p.num}</div></div>
-  <div class="card"><h2>Cor principal</h2>${sw('c1')}<h2>Cor do desenho</h2>${sw('c2')}<h2>Terceira cor</h2>${sw('c3')}
-  <h2>Desenho</h2><div class="seg">${HELMET_PATTERNS.map((x) => { const has = owned.includes(x.k); return `<button class="${p.helmet.pattern === x.k ? 'on' : ''}" data-a="hpat" data-v="${x.k}">${x.n}${has || free ? '' : ` · ${eur(x.cost)}`}</button>`; }).join('')}</div>
-  ${free ? '<p class="muted">Na carreira, alguns desenhos custam dinheiro. Agora podes escolher qualquer um.</p>' : `<p class="muted">Tens <span class="money">${eur(S.money)}</span>. Os desenhos comprados ficam teus.</p>`}</div>`;
+  const h = p.helmet; h.visor = h.visor || 'escura'; h.finish = h.finish || 'brilho';
+  after(() => { const cv = $('#helm3d'); if (!(cv && MENU3D.start(cv, { helmet: helmetOf(p) }, 'helmet'))) { if (cv) cv.hidden = true; const c2 = $('#helmCv'); if (c2) { c2.hidden = false; paintHelmet(c2, helmetOf(p)); } } });
+  const owned = (k) => free || S.owned.includes(k);
+  const price = (k, cost) => (owned(k) || !cost ? '' : ` · ${eur(cost)}`);
+  const sw = (k) => `<div class="swatches">${HELMET_COLORS.map((c) => `<button style="background:${c}" class="${h[k] === c ? 'on' : ''}" data-a="hcol" data-v="${k}|${c}" aria-label="cor"></button>`).join('')}</div>`;
+  const tog = (k, l, def) => `<button class="${(h[k] ?? def) ? 'on' : ''}" data-a="htog" data-v="${k}|${def ? 1 : 0}">${l}</button>`;
+  return `<div class="card helmetbox"><canvas id="helm3d" class="helm3d"></canvas><canvas id="helmCv" width="320" height="320" hidden></canvas><div class="muted">${flagOf(p.nat)} #${p.num} · ${esc(p.last || '')}</div></div>
+  <div class="card"><h2>Cor principal</h2>${sw('c1')}<h2>Cor do desenho</h2>${sw('c2')}<h2>Cor dos detalhes</h2>${sw('c3')}
+  <h2>Desenho</h2><div class="seg">${HELMET_PATTERNS.map((x) => `<button class="${h.pattern === x.k ? 'on' : ''}" data-a="hpat" data-v="${x.k}">${x.n}${price(x.k, x.cost)}</button>`).join('')}</div>
+  <h2>Viseira</h2><div class="seg">${HELMET_VISORS.map((x) => `<button class="${h.visor === x.k ? 'on' : ''}" data-a="hopt" data-v="visor|${x.k}">${x.n}${price('v:' + x.k, x.cost)}</button>`).join('')}</div>
+  <h2>Acabamento</h2><div class="seg">${HELMET_FINISH.map((x) => `<button class="${h.finish === x.k ? 'on' : ''}" data-a="hopt" data-v="finish|${x.k}">${x.n}${price('f:' + x.k, x.cost)}</button>`).join('')}</div>
+  <h2>Detalhes</h2><div class="seg">${tog('showNum', 'Número nos lados', true)}${tog('showName', 'Nome atrás', true)}${tog('showFlag', 'Bandeira atrás', false)}${tog('sponsor', 'Patrocinador na viseira', false)}</div>
+  ${free ? '<p class="muted">Na carreira, alguns desenhos, viseiras e acabamentos custam dinheiro. Agora podes escolher qualquer um.</p>' : `<p class="muted">Tens <span class="money">${eur(S.money)}</span>. O que comprares fica teu.</p>`}</div>`;
 }
 function settingsControls(compact) {
   const s = ST();
   const seg = (k, opts) => `<div class="seg">${opts.map(([v, l]) => `<button class="${String(s[k]) === String(v) ? 'on' : ''}" data-a="set" data-v="${k}|${v}">${l}</button>`).join('')}</div>`;
   return `<label class="field">Direção</label>${seg('controls', [['arrows', 'Setas ◀ ▶'], ['wheel', 'Volante']])}
   <label class="field">Dificuldade dos rivais</label>${seg('diff', [['facil', 'Fácil'], ['medio', 'Médio'], ['dificil', 'Difícil'], ['lenda', 'Lenda']])}
+  <label class="field">Época</label>${seg('season', [['curta', 'Curta (algumas corridas)'], ['completa', 'Completa (calendário todo)']])}
   <label class="field">Ajudas</label><div class="seg">${[['abs', 'ABS'], ['tc', 'Controlo de tração'], ['steer', 'Direção assistida'], ['line', 'Trajetória ideal']].map(([k, l]) => `<button class="${s[k] ? 'on' : ''}" data-a="tog" data-v="${k}">${l}</button>`).join('')}</div>
   ${compact ? '' : `<label class="field">Duração das corridas</label>${seg('length', [[0, 'Curta'], [1, 'Média'], [2, 'Longa']])}
   <label class="field">Câmara</label>${seg('cam', [['cockpit', 'Primeira pessoa'], ['chase', 'Atrás do carro'], ['rot', 'Vista de cima'], ['fixed', 'Mapa fixo']])}
@@ -224,7 +267,7 @@ function scrSettings() {
   ${S ? '<div class="card"><h2>Carreira</h2><p class="muted">Apagar a carreira começa tudo de novo no karting. Não dá para desfazer.</p><button class="btn" data-a="wipe">Apagar carreira</button></div>' : ''}</div></div>`;
 }
 function navBar(active) {
-  const tabs = [['hub', 'Paddock'], ['garage', S.cat === 'kart' ? 'Garagem' : 'Equipa'], ['helmet', 'Capacete'], ['champ', 'Campeonato'], ['career', 'Carreira'], ['settings', 'Definições']];
+  const tabs = [['hub', 'Paddock'], ['calendar', 'Calendário'], ['garage', S.cat === 'kart' ? 'Garagem' : 'Equipa'], ['helmet', 'Capacete'], ['champ', 'Campeonato'], ['career', 'Carreira'], ['settings', 'Definições']];
   return `<div class="seg" style="flex-wrap:nowrap;overflow-x:auto">${tabs.map(([k, l]) => `<button class="${k === active ? 'on' : ''}" data-a="${k}">${l}</button>`).join('')}</div>`;
 }
 function champTable(limit) {
@@ -232,7 +275,18 @@ function champTable(limit) {
   const meIdx = rows.findIndex((r) => r[0] === 'me');
   return { rows: limit ? rows.slice(0, limit) : rows, meIdx };
 }
+function agendaCard() {
+  const e = nextEvent();
+  if (!e) return `<div class="card"><h2>Época terminada</h2><button class="btn primary" data-a="seasonEnd">Ver o final da época</button></div>`;
+  const [ic, nm] = EVN[e.t], left = daysBetween(S.today, e.date), rd = S.calendar[Math.max(0, e.r)];
+  const sub = e.t === 'corrida' ? `${flagOf(rd.nat)} ${rd.name} · ronda ${e.r + 1}/${S.calendar.length}` : e.t === 'oficina' ? `Prepara o ${S.cat === 'kart' ? 'kart' : 'carro'} para ${flagOf(rd.nat)} ${rd.name}` : `Começa a época ${S.year} da ${catById(S.cat).n}`;
+  const btn = e.t === 'corrida' ? '<button class="btn go" data-a="weekend">Ir para o fim de semana de corrida</button>' : e.t === 'oficina' ? '<button class="btn primary" data-a="oficina">Ir para a oficina</button>' : '<button class="btn primary" data-a="launch">Ver a apresentação</button>';
+  return `<div class="card agenda"><div class="today">📅 Hoje: <b>${fmtDay(S.today)} ${S.year}</b></div>
+  <div class="evbig"><span class="evic">${ic}</span><div class="grow"><small>Próximo · ${fmtDay(e.date)} ${left > 0 ? `· daqui a ${left} dia${left > 1 ? 's' : ''}` : '· hoje'}</small><h3>${nm}</h3><div class="muted">${sub}</div></div></div>
+  ${btn}<button class="btn small" data-a="calendar">Ver o calendário</button></div>`;
+}
 function scrHub() {
+  ensureEvents();
   const p = S.profile, C = catById(S.cat), t = teamOf(S.team), rd = S.calendar[S.round];
   const ch = champTable();
   after(() => { paintHelmet($('#helmCv'), helmetOf(p)); if (rd) drawTrackPreview($('#trkCv'), getTrack(rd.name, S.cat)); });
@@ -242,10 +296,42 @@ function scrHub() {
   <div class="kv"><div><small>Campeonato</small><b>P${ch.meIdx + 1}</b></div><div><small>Pontos</small><b>${S.points.me}</b></div><div><small>Vitórias</small><b>${S.wins.me}</b></div><div><small>Ronda</small><b>${Math.min(S.round + 1, S.calendar.length)}/${S.calendar.length}</b></div></div>
   ${S.sponsor ? `<div class="row"><span class="tag" style="border-color:${S.sponsor.c}">Patrocinador</span><b class="grow">${esc(S.sponsor.name)}</b></div>` : '<button class="btn" data-a="sponsors">Escolher um patrocinador</button>'}
   ${S.cat !== 'kart' ? `<div class="muted">Relação com a equipa: ${S.teamRel >= 10 ? 'muito boa' : S.teamRel >= 0 ? 'boa' : S.teamRel > -15 ? 'tensa' : 'má'}</div>` : ''}</div>
-  ${rd ? `<div class="card"><h2>Próxima corrida</h2><h3>${flagOf(rd.nat)} ${rd.name}</h3><canvas class="trackprev" id="trkCv" width="600" height="300"></canvas>
-  <div class="muted">${(getTrack(rd.name, S.cat).len / 1000).toFixed(2)} km · ${C.laps[S.settings.length]} voltas${C.pits ? ` · paragem nas boxes ${C.mandatory ? 'obrigatória' : 'opcional'}` : ''}</div>
-  <button class="btn primary" data-a="weekend">Ir para o fim de semana de corrida</button></div>` : `<div class="card"><h2>Época terminada</h2><button class="btn primary" data-a="seasonEnd">Ver o final da época</button></div>`}
+  ${agendaCard()}
+  ${rd ? `<div class="card"><h2>Próxima corrida · ${fmtDay(rd.date)}</h2><h3>${flagOf(rd.nat)} ${rd.name}</h3><canvas class="trackprev" id="trkCv" width="600" height="300"></canvas>
+  <div class="muted">${(getTrack(rd.name, S.cat).len / 1000).toFixed(3)} km · ${C.laps[S.settings.length]} voltas${C.pits ? ` · paragem nas boxes ${C.mandatory ? 'obrigatória' : 'opcional'}` : ''}${getTrack(rd.name, S.cat).real && S.cat !== 'kart' ? ' · circuito real' : ''}</div></div>` : ''}
   </div></div>`;
+}
+function scrCalendar() {
+  ensureEvents();
+  const byDay = {}; for (const e of S.events) (byDay[e.date] || (byDay[e.date] = [])).push(e);
+  const first = dOf(S.events[0].date), last = dOf(S.events[S.events.length - 1].date), months = [];
+  for (let y = first.getUTCFullYear(), m = first.getUTCMonth(); y < last.getUTCFullYear() || (y === last.getUTCFullYear() && m <= last.getUTCMonth()); m++ === 11 && (m = 0, y++)) months.push([y, m]);
+  const nx = nextEvent();
+  const cell = (iso) => {
+    const evs = byDay[iso] || [], d = dOf(iso).getUTCDate();
+    const cls = [iso === S.today ? 'today' : '', evs.length ? 'ev ev-' + evs[0].t : '', nx && nx.date === iso ? 'next' : '', iso < S.today ? 'past' : ''].join(' ');
+    let inner = `<i>${d}</i>`;
+    for (const e of evs) { if (e.t === 'corrida') { const c = S.calendar[e.r]; inner += `<span>${flagOf(c.nat)}</span>${c.res != null ? `<b>${c.res === 'DNF' ? 'DNF' : 'P' + c.res}</b>` : ''}`; } else inner += `<span>${EVN[e.t][0]}</span>`; }
+    return `<div class="${cls}">${inner}</div>`;
+  };
+  const monthHtml = ([y, m]) => {
+    const start = new Date(Date.UTC(y, m, 1)), pad = (start.getUTCDay() + 6) % 7, nd = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+    let h = `<div class="month"><h3>${MESES[m]} ${y}</h3><div class="mgrid">${['S', 'T', 'Q', 'Q', 'S', 'S', 'D'].map((x) => `<div class="wd">${x}</div>`).join('')}${'<div></div>'.repeat(pad)}`;
+    for (let d = 1; d <= nd; d++) h += cell(`${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`);
+    return h + '</div></div>';
+  };
+  return `<div class="screen"><div class="topbar"><h1>Calendário <em>· ${catById(S.cat).n} ${S.year}</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('calendar')}
+  <div class="legend muted">🏁 corrida · 🔧 dia de oficina · 🚀 apresentação · <span class="lg-today">hoje</span></div>
+  <div class="months">${months.map(monthHtml).join('')}</div>
+  <div class="card"><h2>Rondas</h2>${S.calendar.map((c, k) => `<div class="row ${k === S.round ? 'me' : ''}"><b style="min-width:26px">${k + 1}</b><span style="min-width:62px" class="muted">${fmtDay(c.date)}</span><span class="grow">${flagOf(c.nat)} ${esc(c.name)}</span><b>${c.res == null ? '' : c.res === 'DNF' ? 'DNF' : 'P' + c.res}</b></div>`).join('')}</div></div>`;
+}
+function scrLaunch() {
+  const C = catById(S.cat), t = teamOf(S.team), ch = champTable();
+  after(() => { if (!MENU3D.start($('#showCv'), showroomCar(S.cat))) $('#showCv').hidden = true; });
+  return `<div class="home"><canvas id="showCv"></canvas><div class="homeL"><div class="hlogo"><p>Apresentação · ${S.year}</p><h1>${t ? esc(t[0]) : 'Época de <b>karting</b>'}</h1></div>
+  <div class="card"><h2>${C.n}</h2><div class="kv"><div><small>Corridas</small><b>${S.calendar.length}</b></div><div><small>Primeira</small><b>${fmtDay(S.calendar[0].date)}</b></div><div><small>Rivais</small><b>${S.drivers.length}</b></div></div>
+  <p class="muted">Primeira corrida: ${flagOf(S.calendar[0].nat)} ${esc(S.calendar[0].name)}. ${S.cat === 'kart' ? 'Antes de cada corrida há um dia de oficina para melhorares o kart.' : 'Antes de cada corrida há um dia de oficina na fábrica para desenvolver o carro.'} ${ch.rows.length ? '' : ''}</p></div>
+  <button class="btn go" data-a="launchDone">Começar a época</button></div></div>`;
 }
 function drawTrackPreview(cv, T) {
   const g = cv.getContext('2d'), w = cv.width, h = cv.height, m = T.mini;
@@ -256,20 +342,29 @@ function drawTrackPreview(cv, T) {
   g.strokeStyle = '#000'; g.lineWidth = 12; g.stroke(); g.strokeStyle = '#e9edf2'; g.lineWidth = 6; g.stroke();
   g.fillStyle = '#e10600'; g.beginPath(); g.arc(T.x[0] * sc + ox, T.y[0] * sc + oy, 7, 0, Math.PI * 2); g.fill();
 }
+const oficinaOpen = () => S.oficinaOpen != null && S.oficinaOpen === S.round;
+function oficinaBanner() {
+  ensureEvents();
+  const e = nextEvent(), rd = S.calendar[S.round];
+  if (oficinaOpen()) return `<div class="card oficina on"><div class="row"><span class="evic">🔧</span><div class="grow"><h3>Dia de oficina · ${fmtDay(S.today)}</h3><div class="muted">Os mecânicos estão contigo. Melhora o ${S.cat === 'kart' ? 'kart' : 'carro'} antes de ${rd ? flagOf(rd.nat) + ' ' + esc(rd.name) : 'a próxima corrida'}.</div></div><button class="btn go small" data-a="oficinaDone">Terminar o dia</button></div></div>`;
+  return `<div class="card oficina"><div class="row"><span class="evic">🔒</span><div class="grow"><b>A oficina está fechada</b><div class="muted">${e && e.t === 'oficina' ? `Abre no dia de oficina: ${fmtDay(e.date)}.` : 'Só podes comprar peças e desenvolver o carro nos dias de oficina, antes de cada corrida.'}</div></div>${e && e.t === 'oficina' ? '<button class="btn small primary" data-a="oficina">Avançar</button>' : ''}</div></div>`;
+}
 function scrGarage() {
-  const C = catById(S.cat);
+  const C = catById(S.cat), open = oficinaOpen();
+  after(() => { const cv = $('#garCv'); if (cv && !MENU3D.start(cv, showroomCar(S.cat), 'garage')) cv.hidden = true; });
+  const show3d = '<div class="card garage3d"><canvas id="garCv"></canvas></div>';
   if (S.cat === 'kart') {
-    return `<div class="screen"><div class="topbar"><h1>Garagem <em>· kart</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}
-    <div class="grid2"><div class="card"><h2>Peças do kart</h2>${KART_PARTS.map((pt) => { const lv = S.kart[pt.k], cost = pt.cost[lv]; return `<div class="part"><div class="ico">${pt.i}</div><div><b>${pt.n}</b><div class="muted">${pt.d}</div><div class="lv">${[0, 1, 2, 3, 4].map((i) => `<span class="${i < lv ? 'on' : ''}"></span>`).join('')}</div></div>
-    <button class="btn small ${lv < 5 && S.money >= cost ? 'primary' : ''}" data-a="buyPart" data-v="${pt.k}" ${lv >= 5 || S.money < cost ? 'disabled' : ''}>${lv >= 5 ? 'Máx.' : eur(cost)}</button></div>`; }).join('')}</div>
-    <div class="card"><h2>Como funciona</h2><p class="muted">Ganhas dinheiro em cada corrida (mais quanto melhor for o resultado). As peças tornam o teu kart mais rápido do que o dos rivais. Acaba o campeonato nos 3 primeiros para receberes propostas da Fórmula 4.</p>
-    <div class="kv"><div><small>Potência</small><b>${Math.round((0.95 + 0.028 * S.kart.motor) * 100)}%</b></div><div><small>Aderência</small><b>${Math.round((0.978 + 0.009 * (S.kart.chassis + S.kart.pneus)) * 100)}%</b></div><div><small>Travagem</small><b>${Math.round((0.9 + 0.025 * S.kart.travoes) * 100)}%</b></div></div><p class="muted">100% = igual ao kart médio dos rivais.</p></div></div></div>`;
+    for (const pt of KART_PARTS) S.kart[pt.k] = S.kart[pt.k] || 0;
+    return `<div class="screen"><div class="topbar"><h1>Garagem <em>· kart</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}${oficinaBanner()}
+    <div class="grid2">${show3d}<div class="card"><h2>Peças do kart</h2>${KART_PARTS.map((pt) => { const lv = S.kart[pt.k], cost = pt.cost[lv], can = open && lv < 5 && S.money >= cost; return `<div class="part"><div class="ico">${pt.i}</div><div><b>${pt.n}</b><div class="muted">${pt.d}</div><div class="lv">${[0, 1, 2, 3, 4].map((i) => `<span class="${i < lv ? 'on' : ''}"></span>`).join('')}</div></div>
+    <button class="btn small ${can ? 'primary' : ''}" data-a="buyPart" data-v="${pt.k}" ${can ? '' : 'disabled'}>${lv >= 5 ? 'Máx.' : (open ? '' : '🔒 ') + eur(cost)}</button></div>`; }).join('')}</div>
+    <div class="card"><h2>O teu kart</h2><div class="kv"><div><small>Potência</small><b>${Math.round((0.95 + 0.028 * S.kart.motor + 0.012 * S.kart.carb) * 100)}%</b></div><div><small>Aderência</small><b>${Math.round((0.978 + 0.009 * (S.kart.chassis + S.kart.pneus) + 0.008 * S.kart.eixo) * 100)}%</b></div><div><small>Travagem</small><b>${Math.round((0.9 + 0.025 * S.kart.travoes) * 100)}%</b></div></div><p class="muted">100% = igual ao kart médio dos rivais. Ganhas dinheiro em cada corrida; acaba nos 3 primeiros do campeonato para receberes propostas da Fórmula 4.</p></div></div></div>`;
   }
   const t = teamOf(S.team), devCost = Math.round(C.salary * 3 * (1 + S.dev * 0.6));
-  return `<div class="screen"><div class="topbar"><h1>Equipa <em>· ${t[0]}</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}
-  <div class="grid2"><div class="card"><h2>O teu carro</h2><div class="row"><span class="teamdot" style="background:${t[1]};height:40px;width:8px"></span><div class="grow"><h3>${t[0]}</h3><div class="muted">${C.n} · competitividade ${'★'.repeat(Math.max(1, Math.round((t[3] - 0.982) * 160)))}</div></div></div>
+  return `<div class="screen"><div class="topbar"><h1>Equipa <em>· ${t[0]}</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}${oficinaBanner()}
+  <div class="grid2">${show3d}<div class="card"><h2>O teu carro</h2><div class="row"><span class="teamdot" style="background:${t[1]};height:40px;width:8px"></span><div class="grow"><h3>${t[0]}</h3><div class="muted">${C.n} · competitividade ${'★'.repeat(Math.max(1, Math.round((t[3] - 0.982) * 160)))}</div></div></div>
   <div class="kv"><div><small>Salário/corrida</small><b>${eur(C.salary * (0.6 + (t[3] - 0.98) * 15))}</b></div><div><small>Desenvolvimento</small><b>${S.dev}/5</b></div></div>
-  <button class="btn ${S.dev < 5 && S.money >= devCost ? 'primary' : ''}" data-a="dev" ${S.dev >= 5 || S.money < devCost ? 'disabled' : ''}>${S.dev >= 5 ? 'Desenvolvimento no máximo' : `Pagar desenvolvimento do carro · ${eur(devCost)}`}</button>
+  <button class="btn ${open && S.dev < 5 && S.money >= devCost ? 'primary' : ''}" data-a="dev" ${!open || S.dev >= 5 || S.money < devCost ? 'disabled' : ''}>${open ? '' : '🔒 '}${S.dev >= 5 ? 'Desenvolvimento no máximo' : `Pagar desenvolvimento do carro · ${eur(devCost)}`}</button>
   <p class="muted">Cada nível de desenvolvimento dá +0,4% de potência e aderência até ao fim da época.</p></div>
   <div class="card"><h2>Equipas da categoria</h2>${TEAMS[S.cat].map((x, i) => `<div class="row"><span class="teamdot" style="background:${x[1]}"></span><div class="grow">${x[0]}${i === S.team ? ' <span class="tag red">a tua</span>' : ''}</div><span class="muted">${'★'.repeat(Math.max(1, Math.round((x[3] - 0.982) * 160)))}</span></div>`).join('')}</div></div></div>`;
 }
@@ -302,7 +397,7 @@ function scrWeekend() {
   after(() => drawTrackPreview($('#trkCv'), getTrack(rd.name, S.cat)));
   const gridHtml = weekend.grid ? `<div class="card"><h2>Grelha de partida</h2><div class="tbl"><table><tr><th>Pos</th><th>Piloto</th><th>Tempo</th></tr>${weekend.grid.map((g, k) => { const d = driverById(g.id); return `<tr class="${g.id === 'me' ? 'me' : ''}"><td class="pos">${k + 1}</td><td><span class="teamdot" style="background:${d.c1}"></span>${flagOf(d.nat)} ${esc(d.first[0] + '. ' + d.last)}</td><td>${fmtTime(g.t)}</td></tr>`; }).join('')}</table></div></div>` : '';
   return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>${flagOf(rd.nat)} ${rd.name}</h1></div>
-  <div class="grid2"><div class="card"><h2>Ronda ${S.round + 1} de ${S.calendar.length}</h2><canvas class="trackprev" id="trkCv" width="600" height="300"></canvas>
+  <div class="grid2"><div class="card"><h2>Ronda ${S.round + 1} de ${S.calendar.length}${rd.date ? ' · ' + fmtDay(rd.date) : ''}</h2><canvas class="trackprev" id="trkCv" width="600" height="300"></canvas>
   <div class="muted">${(getTrack(rd.name, S.cat).len / 1000).toFixed(2)} km · ${C.laps[S.settings.length]} voltas</div>
   <div class="row"><b>Previsão:</b><span class="grow">${weekend.weather.txt}</span></div>
   ${weekend.goal ? `<div class="row"><span class="tag">${esc(S.sponsor.name)}</span><span class="grow muted">Objetivo: ${weekend.goal.txt} · prémio ${eur(weekend.goal.pay)}</span></div>` : ''}
@@ -398,6 +493,13 @@ const ACT = {
   set: (v) => { const [k, val] = v.split('|'); ST()[k] = isNaN(+val) || ['controls', 'diff', 'cam', 'units', 'gfx'].includes(k) ? val : +val; if (S) save(); readDraft(); rerender(); },
   tog: (k) => { ST()[k] = !ST()[k]; if (S) save(); readDraft(); rerender(); },
   hcol: (v) => { const [k, c] = v.split('|'); const p = S && screen[0] !== scrNew ? S.profile : draft; p.helmet[k] = c; if (S) save(); rerender(); },
+  hopt: (v) => {
+    const [k, val] = v.split('|'), list = k === 'visor' ? HELMET_VISORS : HELMET_FINISH, it = list.find((x) => x.k === val), id = (k === 'visor' ? 'v:' : 'f:') + val;
+    const career = S && screen[0] !== scrNew, p = career ? S.profile : draft;
+    if (career && it.cost && !S.owned.includes(id)) { if (S.money < it.cost) { alertBox(`Precisas de ${eur(it.cost)}.`); return; } S.money -= it.cost; S.owned.push(id); }
+    p.helmet[k] = val; if (career) save(); rerender();
+  },
+  htog: (v) => { const [k, def] = v.split('|'), p = S && screen[0] !== scrNew ? S.profile : draft; p.helmet[k] = !(p.helmet[k] ?? def === '1'); if (S && screen[0] !== scrNew) save(); rerender(); },
   hpat: (k) => {
     if (S && screen[0] !== scrNew) {
       const pat = HELMET_PATTERNS.find((x) => x.k === k);
@@ -406,10 +508,15 @@ const ACT = {
     } else draft.helmet.pattern = k;
     rerender();
   },
-  buyPart: (k) => { const pt = KART_PARTS.find((x) => x.k === k), lv = S.kart[k]; if (lv >= 5 || S.money < pt.cost[lv]) return; S.money -= pt.cost[lv]; S.kart[k]++; save(); rerender(); },
-  dev: () => { const C = catById(S.cat), cost = Math.round(C.salary * 3 * (1 + S.dev * 0.6)); if (S.dev >= 5 || S.money < cost) return; S.money -= cost; S.dev++; save(); rerender(); },
+  calendar: () => show(scrCalendar),
+  launch: () => show(scrLaunch),
+  launchDone: () => { S.launchDone = true; S.today = S.events[0].date; save(); show(scrHub); },
+  oficina: () => { const e = nextEvent(); if (!e || e.t !== 'oficina') { show(scrGarage); return; } S.today = e.date; S.oficinaOpen = e.r; save(); show(scrGarage); },
+  oficinaDone: () => { if (oficinaOpen()) S.offDone.push(S.round); S.oficinaOpen = null; save(); show(scrHub); },
+  buyPart: (k) => { if (!oficinaOpen()) return; const pt = KART_PARTS.find((x) => x.k === k), lv = S.kart[k]; if (lv >= 5 || S.money < pt.cost[lv]) return; S.money -= pt.cost[lv]; S.kart[k]++; save(); rerender(); },
+  dev: () => { if (!oficinaOpen()) return; const C = catById(S.cat), cost = Math.round(C.salary * 3 * (1 + S.dev * 0.6)); if (S.dev >= 5 || S.money < cost) return; S.money -= cost; S.dev++; save(); rerender(); },
   wipe: () => confirmBox('Apagar a carreira? Não dá para desfazer.', () => { try { localStorage.removeItem(SAVE); } catch (e) { /* */ } S = null; show(scrHome); }),
-  weekend: () => show(scrWeekend),
+  weekend: () => { const e = nextEvent(); if (e && e.t === 'oficina') { alertBox('Primeiro há o dia de oficina.'); return; } if (e && e.t === 'launch') { show(scrLaunch); return; } const rd = S.calendar[S.round]; if (rd && rd.date && S.today < addDays(rd.date, -2)) { S.today = addDays(rd.date, -2); save(); } show(scrWeekend); },
   tyre: (k) => { weekend.tyre = k; rerender(); },
   quali: () => startSession('quali'),
   qualiSim: () => { weekend.grid = simQuali(null); rerender(); },
@@ -801,7 +908,7 @@ function endSession() {
   const goal = weekend && weekend.goal, goalOk = checkGoal(goal, res, mine, R);
   S.money += prize + (goalOk ? goal.pay : 0); S.stats.races++; if (pos === 1) S.stats.wins++; if (pos <= 3) S.stats.podiums++;
   lastRace = R;
-  S.calendar[S.round].res = mine.dnf ? 'DNF' : pos; S.round++; weekend = null; save();
+  S.calendar[S.round].res = mine.dnf ? 'DNF' : pos; if (S.calendar[S.round].date) S.today = S.calendar[S.round].date; S.round++; weekend = null; save();
   const champ = champTable().meIdx + 1;
   show(scrResults, res, { track: R.T.name, money: prize + (goalOk ? goal.pay : 0), pts: mine.pts, pos, champ, fastest: R.fastest && R.fastest.id, goal, goalOk, replay: is3Dok() && R.rep.frames.length > 20 });
 }

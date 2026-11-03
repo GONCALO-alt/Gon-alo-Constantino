@@ -235,6 +235,37 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
 .qform .seg button { min-height: 36px; padding: 4px 8px; font-size: 13px; }
 .qform .field { margin: 0; }
 @media (max-aspect-ratio: 1/1) { .homeL { width: 100%; justify-content: flex-end; background: linear-gradient(0deg, rgba(5,7,10,.96) 0%, rgba(5,7,10,.85) 65%, rgba(5,7,10,0) 100%); } }
+
+/* carreira: agenda, calendário, oficina */
+.agenda .today { font-size: 13px; color: var(--dim); }
+.evbig { display: flex; gap: 12px; align-items: center; padding: 6px 0; }
+.evic { font-size: 30px; width: 46px; height: 46px; display: grid; place-items: center; background: var(--panel-2); border-radius: 12px; flex: none; }
+.evbig small { color: var(--dim); text-transform: uppercase; letter-spacing: 1px; font-size: 11px; }
+.evbig h3 { margin: 2px 0; }
+.legend { font-size: 12.5px; }
+.lg-today { outline: 2px solid var(--red); border-radius: 4px; padding: 0 4px; }
+.months { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.month { background: var(--panel); border-radius: 12px; padding: 10px; }
+.month h3 { margin: 0 0 6px; text-transform: capitalize; font-size: 15px; }
+.mgrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.mgrid > div { min-height: 30px; border-radius: 6px; font-size: 11px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05; }
+.mgrid .wd { min-height: 0; color: var(--dim); font-weight: 700; }
+.mgrid i { font-style: normal; color: var(--dim); }
+.mgrid .past i { opacity: .45; }
+.mgrid .ev { background: var(--panel-2); }
+.mgrid .ev-corrida { background: rgba(225,6,0,.22); }
+.mgrid .ev-corrida i { color: var(--ink); font-weight: 700; }
+.mgrid .ev-oficina { background: rgba(255,212,0,.16); }
+.mgrid .ev span { font-size: 13px; }
+.mgrid .ev b { font-size: 9.5px; color: var(--ink); }
+.mgrid .today { outline: 2px solid var(--red); }
+.mgrid .next { box-shadow: 0 0 0 2px #fff inset; }
+.row.me { background: rgba(225,6,0,.15); border-radius: 8px; }
+.oficina { border: 1px solid rgba(255,255,255,.08); }
+.oficina.on { border-color: #ffd400; background: linear-gradient(90deg, rgba(255,212,0,.12), transparent); }
+.garage3d { padding: 0; overflow: hidden; min-height: 210px; }
+.garage3d canvas { width: 100%; height: 100%; min-height: 210px; display: block; }
+.helmetbox .helm3d { width: 100%; height: 260px; display: block; border-radius: 10px; }
 </style>
 </head>
 <body class="carbon">
@@ -277,6 +308,7 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>window.THREE || document.write('<script src="js/vendor/three.min.js"><\/script>');</script>
 <script src="js/data.js"></script>
+<script src="js/circuits.js"></script>
 <script src="js/track.js"></script>
 <script src="js/physics.js"></script>
 <script src="js/race.js"></script>

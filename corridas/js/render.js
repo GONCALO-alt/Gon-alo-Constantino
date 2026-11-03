@@ -45,6 +45,12 @@ const RENDER = (() => {
     else if (p === 'xadrez') { const q = r / 2.5; for (let a = -3; a < 3; a++) for (let b = -3; b < 3; b++) if ((a + b) & 1) g.fillRect(a * q, b * q, q, q); }
     else if (p === 'raio') { g.beginPath(); g.moveTo(-r * 0.1, -r); g.lineTo(r * 0.25, -r * 0.1); g.lineTo(-r * 0.05, -r * 0.05); g.lineTo(r * 0.2, r); g.lineTo(-r * 0.3, 0.05 * r); g.lineTo(0, 0); g.closePath(); g.fill(); }
     else if (p === 'bandeira' && h.flagImg) g.drawImage(h.flagImg, -r, -r * 0.75, r * 2, r * 1.5);
+    else if (p === 'degrade') { const gr = g.createLinearGradient(0, -r, 0, r); gr.addColorStop(0, h.c1); gr.addColorStop(1, h.c2); g.fillStyle = gr; g.fillRect(-r, -r, r * 2, r * 2); }
+    else if (p === 'coroa') { g.lineWidth = r * 0.3; g.beginPath(); g.arc(0, 0, r * 0.45, 0, 7); g.stroke(); }
+    else if (p === 'diagonal') for (let k = -3; k <= 3; k++) { g.save(); g.rotate(0.6); g.fillRect(k * r * 0.5, -r * 1.5, r * 0.18, r * 3); g.restore(); }
+    else if (p === 'ondas') for (let k = 0; k < 3; k++) { g.lineWidth = r * 0.14; g.beginPath(); for (let x = -r; x <= r; x += r / 8) g.lineTo(x, (k - 1) * r * 0.45 + Math.sin(x / r * 6) * r * 0.12); g.stroke(); }
+    else if (p === 'circulos') { g.beginPath(); g.arc(0, 0, r * 0.55, 0, 7); g.fill(); g.fillStyle = h.c3 || '#111'; g.beginPath(); g.arc(0, 0, r * 0.3, 0, 7); g.fill(); }
+    else if (p === 'camuflado') { const rr = [0.3, -0.5, 0.6, -0.2, 0.1, 0.5, -0.6, -0.1]; for (let k = 0; k < 8; k++) { g.fillStyle = k % 2 ? h.c2 : (h.c3 || '#111'); g.beginPath(); g.ellipse(rr[k] * r, rr[(k + 3) % 8] * r, r * 0.3, r * 0.18, k, 0, 7); g.fill(); } }
     g.restore();
     // viseira
     if (top) { g.beginPath(); g.ellipse(0, -r * 0.38, r * 0.62, r * 0.26, 0, 0, Math.PI * 2); g.fillStyle = 'rgba(15,18,30,.88)'; g.fill(); g.fillStyle = 'rgba(255,255,255,.35)'; g.beginPath(); g.ellipse(-r * 0.2, -r * 0.44, r * 0.18, r * 0.07, -0.2, 0, Math.PI * 2); g.fill(); }

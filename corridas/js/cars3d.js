@@ -76,18 +76,64 @@ const CARS3D = (() => {
     const t = ctex('txt' + text + bg + fg, 256, Math.round((256 * h) / w), (g, cw, ch) => { if (bg) { g.fillStyle = bg; g.fillRect(0, 0, cw, ch); } else g.clearRect(0, 0, cw, ch); g.fillStyle = fg; g.font = `bold ${Math.round(ch * 0.62)}px ${font || 'sans-serif'}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, cw / 2, ch / 2 + 2); });
     return new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: t, transparent: !bg, roughness: 0.4 }));
   }
-  function helmetMesh(h, r) {
-    const t = ctex('helm' + h.c1 + h.c2 + h.c3 + h.pattern, 256, 128, (g, w, hh) => {
-      const c = document.createElement('canvas'); c.width = c.height = 128;
-      RENDER.drawHelmet(c.getContext('2d'), 64, 64, 60, { ...h, flagImg: h.flagImg }, false);
-      g.fillStyle = h.c1; g.fillRect(0, 0, w, hh);
-      g.drawImage(c, 0, 0, 128, 128, 0, 0, w / 2, hh); g.drawImage(c, 0, 0, 128, 128, w / 2, 0, w / 2, hh);
+  // textura do capacete à volta da esfera: x = volta (0 atrás, 0,25 direita, 0,5 frente, 0,75 esquerda), y = de cima para baixo
+  function helmTexture(h) {
+    const key = 'helm2' + JSON.stringify([h.c1, h.c2, h.c3, h.pattern, h.showNum, h.showName, h.showFlag, h.sponsorTxt, h.num, h.name, h.nat, !!h.flagImg, !!h.hi]);
+    return ctex(key, h.hi ? 1024 : 512, h.hi ? 512 : 256, (g, cw) => {
+      const sc = cw / 1024, w = 1024, H = 512; g.scale(sc, sc);
+      const c1 = h.c1, c2 = h.c2, c3 = h.c3 || '#1b1b1b', p = h.pattern, r = mulberry32(5);
+      if (p === 'degrade') { const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, c1); gr.addColorStop(0.75, c2); gr.addColorStop(1, c3); g.fillStyle = gr; } else g.fillStyle = c1;
+      g.fillRect(0, 0, w, H);
+      const both = (fn) => { fn(w * 0.25, 1); fn(w * 0.75, -1); }; // um desenho em cada lado
+      g.fillStyle = c2; g.strokeStyle = c2;
+      if (p === 'faixa') { for (const x of [0, w * 0.5, w]) g.fillRect(x - w * 0.035, 0, w * 0.07, H * 0.62); g.fillStyle = c3; for (const x of [0, w * 0.5, w]) { g.fillRect(x - w * 0.045, 0, w * 0.01, H * 0.62); g.fillRect(x + w * 0.035, 0, w * 0.01, H * 0.62); } }
+      else if (p === 'duplo') for (const x of [0, w * 0.5, w]) { g.fillRect(x - w * 0.07, 0, w * 0.035, H * 0.6); g.fillRect(x + w * 0.035, 0, w * 0.035, H * 0.6); }
+      else if (p === 'coroa') { g.fillRect(0, 0, w, H * 0.16); g.fillStyle = c3; g.fillRect(0, H * 0.16, w, H * 0.025); }
+      else if (p === 'diagonal') { g.save(); g.beginPath(); g.rect(0, H * 0.2, w, H * 0.6); g.clip(); for (let x = -H; x < w + H; x += 90) { g.fillStyle = (x / 90) % 2 ? c2 : c3; g.beginPath(); g.moveTo(x, H); g.lineTo(x + 34, H); g.lineTo(x + 34 + H * 0.6, 0); g.lineTo(x + H * 0.6, 0); g.fill(); } g.restore(); }
+      else if (p === 'estrelas') { const star = (x, y, rr) => { g.beginPath(); for (let k = 0; k < 10; k++) { const a = -Math.PI / 2 + (k * Math.PI) / 5, q = k & 1 ? rr * 0.45 : rr; g.lineTo(x + Math.cos(a) * q, y + Math.sin(a) * q); } g.closePath(); g.fill(); }; for (let k = 0; k < 26; k++) { g.fillStyle = k % 3 ? c2 : c3; star(r() * w, H * (0.08 + r() * 0.62), 14 + r() * 26); } }
+      else if (p === 'raio') both((x, sd) => { g.beginPath(); const pts = [[-60, 80], [30, 80], [-10, 170], [70, 170], [-50, 330], [-10, 210], [-70, 210]]; pts.forEach(([a, b], k) => (k ? g.lineTo : g.moveTo).call(g, x + a * sd, b)); g.closePath(); g.fill(); g.lineWidth = 6; g.strokeStyle = c3; g.stroke(); });
+      else if (p === 'ondas') for (let k = 0; k < 3; k++) { g.fillStyle = k === 1 ? c3 : c2; g.beginPath(); g.moveTo(0, H); for (let x = 0; x <= w; x += 8) g.lineTo(x, H * (0.42 + k * 0.1) + Math.sin((x / w) * Math.PI * 8 + k) * 18); g.lineTo(w, H); g.fill(); }
+      else if (p === 'xadrez') { const q = 40; for (let y = 0; y < H * 0.45; y += q) for (let x = 0; x < w; x += q) if (((x + y) / q) & 1) g.fillRect(x, y, q, q); g.fillStyle = c3; g.fillRect(0, H * 0.45, w, 10); }
+      else if (p === 'circulos') { both((x) => { for (const [rr, col] of [[110, c2], [80, c3], [52, c2], [26, c1]]) { g.fillStyle = col; g.beginPath(); g.arc(x, H * 0.45, rr, 0, 7); g.fill(); } }); g.fillStyle = c2; g.beginPath(); g.ellipse(w / 2, 0, w * 0.5, H * 0.1, 0, 0, 7); g.fill(); }
+      else if (p === 'chamas') { for (const [col, top] of [[c2, 0.25], [c3, 0.45]]) { g.fillStyle = col; g.beginPath(); g.moveTo(0, H); for (let x = 0; x <= w; x += 32) { const k = x / 32; g.quadraticCurveTo(x + 8, H * (top + 0.25), x + 16, H * (top + (k % 3) * 0.06)); g.quadraticCurveTo(x + 22, H * (top + 0.3), x + 32, H * (top + 0.32)); } g.lineTo(w, H); g.fill(); } }
+      else if (p === 'camuflado') for (let k = 0; k < 140; k++) { g.fillStyle = k % 2 ? c2 : c3; g.beginPath(); g.ellipse(r() * w, r() * H * 0.85, 20 + r() * 50, 10 + r() * 30, r() * 3, 0, 7); g.fill(); }
+      else if (p === 'bandeira' && h.flagImg) both((x) => g.drawImage(h.flagImg, x - 130, H * 0.2, 260, 195));
+      // anel de baixo e protetor do queixo
+      g.fillStyle = c3; g.fillRect(0, H * 0.86, w, H * 0.14);
+      g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(0, H * 0.86, w, 4);
+      // faixa por cima da viseira (patrocinador)
+      if (h.sponsorTxt) { g.fillStyle = '#111'; g.fillRect(w * 0.38, H * 0.3, w * 0.24, H * 0.07); g.fillStyle = '#fff'; g.font = 'bold 26px "Saira Condensed","Arial Narrow",sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(h.sponsorTxt).toUpperCase(), w * 0.5, H * 0.335); }
+      // número nos lados e nome atrás
+      g.textAlign = 'center'; g.textBaseline = 'middle';
+      if (h.showNum !== false && h.num != null) both((x, sd) => { const nx = x - sd * 75; g.font = 'italic 900 88px "Saira Condensed","Arial Narrow",sans-serif'; g.lineWidth = 10; g.strokeStyle = c3; g.strokeText(String(h.num), nx, H * 0.68); g.fillStyle = '#fff'; g.fillText(String(h.num), nx, H * 0.68); });
+      if (h.showName !== false && h.name) { g.font = 'bold 44px "Saira Condensed","Arial Narrow",sans-serif'; for (const x of [0, w]) { g.lineWidth = 6; g.strokeStyle = c3; g.strokeText(h.name.toUpperCase(), x, H * 0.55); g.fillStyle = '#fff'; g.fillText(h.name.toUpperCase(), x, H * 0.55); } }
+      if (h.showFlag && h.flagImg) for (const x of [0, w]) g.drawImage(h.flagImg, x - 40, H * 0.66, 80, 60);
     });
-    const g = new THREE.Group();
-    const s = new THREE.Mesh(new THREE.SphereGeometry(r, 20, 14), new THREE.MeshPhysicalMaterial({ map: t, clearcoat: 1, roughness: 0.3, metalness: 0.2, envMap }));
-    s.scale.set(1.1, 1, 0.95); s.castShadow = true; g.add(s);
-    const visor = new THREE.Mesh(new THREE.SphereGeometry(r * 1.01, 18, 8, -0.9, 1.8, 1.15, 0.5), new THREE.MeshPhysicalMaterial({ color: 0x0c0f16, metalness: 0.9, roughness: 0.1, envMap }));
-    visor.rotation.y = -Math.PI / 2; g.add(visor);
+  }
+  const VISOR = { escura: [0x10141c, 0.85, 0.12], clara: [0x9fb3c4, 0.2, 0.05], espelho: [0xeef2f6, 0.95, 0.12], dourada: [0xf0b429, 0.95, 0.12], azul: [0x3d7dff, 0.95, 0.12], arco: [0xffffff, 1, 0.06] };
+  const visorRainbow = () => ctex('visorArco', 128, 32, (g, w, h) => { const gr = g.createLinearGradient(0, 0, w, 0); ['#ff3b30', '#ff9500', '#ffd60a', '#34c759', '#0a84ff', '#5e5ce6', '#bf5af2'].forEach((c, k, a) => gr.addColorStop(k / (a.length - 1), c)); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  function helmetMesh(h, r) {
+    const fin = h.finish || 'brilho';
+    const shellMat = new THREE.MeshPhysicalMaterial({ map: helmTexture(h), clearcoat: fin === 'mate' ? 0 : 1, clearcoatRoughness: 0.08, roughness: fin === 'mate' ? 0.78 : fin === 'metal' ? 0.28 : 0.32, metalness: fin === 'metal' ? 0.65 : 0.15, envMap });
+    const g = new THREE.Group(), SC = [1.12, 1, 0.94];
+    const s = new THREE.Mesh(new THREE.SphereGeometry(r, 40, 28, 0, Math.PI * 2, 0, Math.PI * 0.84), shellMat);
+    s.scale.set(...SC); s.castShadow = true; g.add(s);
+    // abertura em baixo, com espuma escura
+    const pad = new THREE.Mesh(new THREE.CircleGeometry(r * 0.5, 24), new THREE.MeshStandardMaterial({ color: 0x0b0c0e, roughness: 1 })); pad.rotation.x = Math.PI / 2; pad.position.y = -r * 0.87; pad.scale.set(1.12, 0.94, 1); g.add(pad);
+    // queixeira por baixo da viseira, um pouco saliente
+    const chin = new THREE.Mesh(new THREE.SphereGeometry(r * 1.05, 32, 8, -0.85, 1.7, Math.PI * 0.55, Math.PI * 0.3), shellMat);
+    chin.rotation.y = Math.PI; chin.scale.set(...SC); chin.castShadow = true; g.add(chin);
+    const vs = VISOR[h.visor] || VISOR.escura;
+    const vmat = new THREE.MeshPhysicalMaterial({ color: vs[0], map: h.visor === 'arco' ? visorRainbow() : null, metalness: vs[1], roughness: vs[2], clearcoat: 1, envMap, envMapIntensity: 1.6, transparent: h.visor === 'clara', opacity: 0.75, side: THREE.DoubleSide });
+    const visor = new THREE.Mesh(new THREE.SphereGeometry(r * 1.03, 32, 10, -0.95, 1.9, 1.08, 0.5), vmat);
+    visor.rotation.y = Math.PI; visor.scale.set(...SC); g.add(visor);
+    // aro da viseira
+    const rimM = new THREE.MeshStandardMaterial({ color: 0x1b1d21, roughness: 0.5 });
+    for (const th of [1.08, 1.58]) { const ring = new THREE.Mesh(new THREE.SphereGeometry(r * 1.035, 32, 1, -0.97, 1.94, th - 0.012, 0.024), rimM); ring.rotation.y = Math.PI; ring.scale.set(...SC); g.add(ring); }
+    const dark = new THREE.MeshStandardMaterial({ color: 0x15171b, roughness: 0.6 });
+    for (const sd of [-1, 1]) { const piv = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.12, r * 0.12, r * 0.04, 16), dark); piv.rotation.x = Math.PI / 2; piv.position.set(r * 0.05, -r * 0.08, sd * r * 0.96); g.add(piv); }
+    const spoiler = new THREE.Mesh(new THREE.BoxGeometry(r * 0.35, r * 0.06, r * 0.9), shellMat); spoiler.position.set(-r * 1.0, r * 0.32, 0); spoiler.rotation.z = -0.35; g.add(spoiler);
+    const vent = new THREE.Mesh(new THREE.BoxGeometry(r * 0.3, r * 0.08, r * 0.3), dark); vent.position.set(r * 0.25, r * 0.96, 0); g.add(vent);
     return g;
   }
   // ---------- monolugar ----------
@@ -271,5 +317,5 @@ const CARS3D = (() => {
     return scr;
   }
   function make(cat, C, c1, c2, helmet, num, sponsor) { return cat === 'kart' ? kart(C, c1, c2, helmet, num, sponsor) : formula(cat, C, c1, c2, helmet, num, sponsor); }
-  return { make, setEnv, setCompound };
+  return { make, setEnv, setCompound, helmetMesh };
 })();

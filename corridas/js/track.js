@@ -8,8 +8,10 @@ function buildTrack(name, cat) {
   const ds = kart ? 1 : 2;
   const W = C.W, runoff = C.runoff;
   let best = null;
-  const LAY = !kart && typeof LAYOUTS !== 'undefined' ? LAYOUTS[name] : null;
-  if (LAY) best = geometry(resample(filletPath(LAY.pts), ds));
+  const CIRC = !kart && typeof CIRCUITS !== 'undefined' ? CIRCUITS[name] : null;
+  const LAY = CIRC ? { elev: CIRC.elev || [[0, 0], [0.5, 3], [1, 0]] } : !kart && typeof LAYOUTS !== 'undefined' ? LAYOUTS[name] : null;
+  if (CIRC) best = realGeometry(CIRC, ds);
+  else if (LAY) best = geometry(resample(filletPath(LAY.pts), ds));
   for (let attempt = 0; attempt < 60 && !best; attempt++) {
     const target = C.len[0] + rnd() * (C.len[1] - C.len[0]);
     const n = kart ? 9 + Math.floor(rnd() * 5) : 9 + Math.floor(rnd() * 6);
@@ -58,7 +60,13 @@ function buildTrack(name, cat) {
   let bestRun = 0, bestEnd = 0, run = 0;
   for (let i = 0; i < T.n * 2; i++) { if (straight(i % T.n)) { run++; if (run > bestRun) { bestRun = run; bestEnd = i; } } else run = 0; }
   bestRun = Math.min(bestRun, T.n);
-  const startIdx = (bestEnd - Math.floor(bestRun * 0.35) + T.n) % T.n;
+  let startIdx = (bestEnd - Math.floor(bestRun * 0.35) + T.n) % T.n;
+  if (CIRC) { // circuito real: a meta fica no primeiro ponto; reta da meta é a que o contém
+    startIdx = 0; let a = 0, b = 0; while (a < T.n / 2 && straight((T.n - a - 1) % T.n)) a++; while (b < T.n / 2 && straight(b)) b++;
+    bestRun = Math.max(a + b, Math.round(200 / ds));
+    // espaço entre partes da pista que passam perto: escapatórias mais curtas onde é preciso
+    const sep = minSeparation(T); T.runoff = clamp((sep - W) / 2 - 2, 3, runoff);
+  }
   rotateTrack(T, startIdx);
   if (!LAY && rnd() < 0.5) reverseTrack(T);
   // relevo: subidas e descidas (inclinação máxima ~7%)
@@ -79,10 +87,66 @@ function buildTrack(name, cat) {
   // limitar a inclinação
   let maxG = 0; for (let i = 0; i < T.n; i++) maxG = Math.max(maxG, Math.abs(T.h[(i + 1) % T.n] - T.h[i]) / ds);
   if (maxG > 0.07) for (let i = 0; i < T.n; i++) T.h[i] *= 0.07 / maxG;
+  if (CIRC) bridge(T);
   T.real = !!LAY;
   T.straightLen = bestRun * ds;
   finishTrack(T, rnd);
   return T;
+}
+// circuito real: pontos GPS -> curva suave (Catmull-Rom) -> pontos a cada ds metros
+function realGeometry(C, ds) {
+  let P = C.p.split(' ').map((q) => q.split(',').map(Number));
+  // tirar pontos muito juntos (ruído do GPS)
+  const Q = [P[0]]; for (const q of P.slice(1)) { const l = Q[Q.length - 1]; if (Math.hypot(q[0] - l[0], q[1] - l[1]) > 12) Q.push(q); }
+  if (Math.hypot(Q[0][0] - Q[Q.length - 1][0], Q[0][1] - Q[Q.length - 1][1]) < 12) Q.pop();
+  P = Q; const n = P.length, dense = [];
+  for (let i = 0; i < n; i++) { // Catmull-Rom centrípeta (não faz laços)
+    const p0 = P[(i - 1 + n) % n], p1 = P[i], p2 = P[(i + 1) % n], p3 = P[(i + 2) % n];
+    const tj = (a, b) => Math.sqrt(Math.hypot(b[0] - a[0], b[1] - a[1])) || 1e-3;
+    const t1 = tj(p0, p1), t2 = t1 + tj(p1, p2), t3 = t2 + tj(p2, p3);
+    const seg = Math.max(2, Math.ceil(Math.hypot(p2[0] - p1[0], p2[1] - p1[1]) / 1.5));
+    for (let k = 0; k < seg; k++) {
+      const t = t1 + ((t2 - t1) * k) / seg, L = (a, b, ta, tb) => [((tb - t) * a[0] + (t - ta) * b[0]) / (tb - ta), ((tb - t) * a[1] + (t - ta) * b[1]) / (tb - ta)];
+      const A1 = L(p0, p1, 0, t1), A2 = L(p1, p2, t1, t2), A3 = L(p2, p3, t2, t3), B1 = L(A1, A2, 0, t2), B2 = L(A2, A3, t1, t3);
+      dense.push(L(B1, B2, t1, t2));
+    }
+  }
+  let out = resample(dense, ds); const m = out.length;
+  for (let it = 0; it < 30; it++) { const c = out.map((q) => q.slice()); for (let i = 0; i < m; i++) { const a = c[(i - 1 + m) % m], b = c[(i + 1) % m]; out[i][0] = (a[0] + 2 * c[i][0] + b[0]) / 4; out[i][1] = (a[1] + 2 * c[i][1] + b[1]) / 4; } }
+  // manter o comprimento oficial
+  let len = 0; for (let i = 0; i < m; i++) { const q = out[(i + 1) % m]; len += Math.hypot(q[0] - out[i][0], q[1] - out[i][1]); }
+  const sc = (C.km * 1000) / len; out = resample(out.map(([x, y]) => [x * sc, y * sc]), ds);
+  return geometry(out);
+}
+// menor distância entre partes da pista que não são vizinhas (ignora cruzamentos em ponte)
+function minSeparation(T) {
+  const cell = 60, grid = new Map(), key = (a, b) => a * 100003 + b, gap = Math.round(250 / T.ds);
+  for (let i = 0; i < T.n; i += 2) { const k = key(Math.floor(T.x[i] / cell), Math.floor(T.y[i] / cell)); let a = grid.get(k); if (!a) grid.set(k, (a = [])); a.push(i); }
+  let best = 1e9;
+  for (let i = 0; i < T.n; i += 2) {
+    const cx = Math.floor(T.x[i] / cell), cy = Math.floor(T.y[i] / cell);
+    for (let ax = -1; ax <= 1; ax++) for (let ay = -1; ay <= 1; ay++) for (const j of grid.get(key(cx + ax, cy + ay)) || []) {
+      let d = Math.abs(i - j); d = Math.min(d, T.n - d); if (d < gap) continue;
+      const q = Math.hypot(T.x[i] - T.x[j], T.y[i] - T.y[j]);
+      const cross = Math.abs(T.tx[i] * T.ty[j] - T.ty[i] * T.tx[j]) > 0.5; // a cruzar (ponte), não paralelas
+      if (cross && q < T.W * 3) continue;
+      best = Math.min(best, q);
+    }
+  }
+  return best;
+}
+// pista que se cruza (Suzuka): a segunda passagem sobe por uma ponte
+function bridge(T) {
+  const gap = Math.round(250 / T.ds); let hit = null;
+  for (let i = 0; i < T.n && !hit; i += 2) for (let j = i + gap; j < T.n; j += 1) {
+    let d = j - i; d = Math.min(d, T.n - d); if (d < gap) continue;
+    if (Math.hypot(T.x[i] - T.x[j], T.y[i] - T.y[j]) < 3) { hit = [i, j]; break; }
+  }
+  if (!hit) return;
+  const [i, j] = hit, need = T.h[i] + 8 - T.h[j], ramp = Math.round(170 / T.ds);
+  if (need <= 0) return;
+  for (let d = -ramp; d <= ramp; d++) { const t = 1 - Math.abs(d) / ramp, sm = t * t * (3 - 2 * t); T.h[(j + d + T.n) % T.n] += need * sm; }
+  T.bridge = { lower: i, upper: j };
 }
 // caminho com cantos arredondados a partir de pontos [x, y, raio] (em metros)
 function filletPath(base) {

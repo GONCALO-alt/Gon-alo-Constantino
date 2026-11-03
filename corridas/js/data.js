@@ -85,14 +85,28 @@ const TEAMS = {
 };
 
 // pistas inventadas por categoria
+// calendários: karting com pistas inventadas; F4, F3, F2 e F1 com os circuitos reais do calendário de cada categoria [nome, país, data mês-dia]
 const TRACKS = {
-  kart: [['Kartódromo Vale Verde', 'PT'], ['Pista do Moinho', 'ES'], ['Kart Arena Lago Azul', 'IT'], ['Kartódromo da Ribeira', 'BR'], ['Circuito das Dunas', 'FR'], ['Kartbahn Tannenwald', 'DE'], ['Pista Sol Poente', 'MX']],
-  f4: [['Circuito da Serra Azul', 'PT'], ['Autódromo Costa Dourada', 'ES'], ['Ring Eichenwald', 'DE'], ['Circuit des Falaises', 'FR'], ['Silver Bay Circuit', 'GB'], ['Circuito Lago Nero', 'IT'], ['Autódromo Vale do Sol', 'BR']],
-  f3: [['Circuito Lago Nero', 'IT'], ['Autódromo do Algarve (inspirado)', 'PT'], ['Circuit des Falaises', 'FR'], ['Silver Bay Circuit', 'GB'], ['Circuito da Serra Azul', 'PT'], ['Desert Moon Circuit', 'AE'], ['Autódromo Costa Dourada', 'ES']],
-  f2: [['Desert Moon Circuit', 'AE'], ['Autódromo do Algarve (inspirado)', 'PT'], ['Autodromo di Monza (inspirado)', 'IT'], ['Silver Bay Circuit', 'GB'], ['Sakura Hills Circuit', 'JP'], ['Circuito da Serra Azul', 'PT'], ['Ring Eichenwald', 'DE'], ['Maple Ridge Raceway', 'CA']],
-  f1: [['Desert Moon Circuit', 'AE'], ['Autódromo do Algarve (inspirado)', 'PT'], ['Sakura Hills Circuit', 'JP'], ['Circuit de Spa (inspirado)', 'BE'], ['Autódromo Costa Dourada', 'ES'],
-    ['Maple Ridge Raceway', 'CA'], ['Autodromo di Monza (inspirado)', 'IT'], ['Silver Bay Circuit', 'GB'], ['Autódromo de Interlagos (inspirado)', 'BR'], ['Red Canyon Speedway', 'US']],
+  kart: [['Kartódromo Vale Verde', 'PT', '03-22'], ['Pista do Moinho', 'ES', '04-19'], ['Kart Arena Lago Azul', 'IT', '05-17'], ['Kartódromo da Ribeira', 'BR', '06-14'], ['Circuito das Dunas', 'FR', '07-12'], ['Kartbahn Tannenwald', 'DE', '09-06'], ['Pista Sol Poente', 'MX', '10-04']],
+  // F4 (campeonatos europeus de F4, Itália e Espanha)
+  f4: [['Paul Ricard', 'FR', '04-12'], ['Portimão (Algarve)', 'PT', '05-03'], ['Imola', 'IT', '05-24'], ['Spa-Francorchamps', 'BE', '06-21'], ['Mugello', 'IT', '07-12'], ['Red Bull Ring', 'AT', '08-30'], ['Barcelona-Catalunha', 'ES', '09-27'], ['Monza', 'IT', '10-18']],
+  // Fórmula 3 (corre nos fins de semana da F1)
+  f3: [['Albert Park (Melbourne)', 'AU', '03-08'], ['Bahrein (Sakhir)', 'BH', '04-12'], ['Mónaco', 'MC', '06-07'], ['Barcelona-Catalunha', 'ES', '06-14'], ['Red Bull Ring', 'AT', '06-28'], ['Silverstone', 'GB', '07-05'], ['Spa-Francorchamps', 'BE', '07-19'], ['Hungaroring', 'HU', '07-26'], ['Monza', 'IT', '09-06'], ['Madring (Madrid)', 'ES', '09-13']],
+  // Fórmula 2
+  f2: [['Albert Park (Melbourne)', 'AU', '03-08'], ['Bahrein (Sakhir)', 'BH', '04-12'], ['Jeddah', 'SA', '04-19'], ['Mónaco', 'MC', '06-07'], ['Barcelona-Catalunha', 'ES', '06-14'], ['Red Bull Ring', 'AT', '06-28'], ['Silverstone', 'GB', '07-05'], ['Spa-Francorchamps', 'BE', '07-19'], ['Hungaroring', 'HU', '07-26'], ['Monza', 'IT', '09-06'], ['Madring (Madrid)', 'ES', '09-13'], ['Baku', 'AZ', '09-26'], ['Lusail', 'QA', '11-29'], ['Yas Marina', 'AE', '12-06']],
+  // Fórmula 1
+  f1: [['Albert Park (Melbourne)', 'AU', '03-08'], ['Xangai', 'CN', '03-15'], ['Suzuka', 'JP', '03-29'], ['Bahrein (Sakhir)', 'BH', '04-12'], ['Jeddah', 'SA', '04-19'], ['Miami', 'US', '05-03'],
+    ['Gilles Villeneuve (Montreal)', 'CA', '05-24'], ['Mónaco', 'MC', '06-07'], ['Barcelona-Catalunha', 'ES', '06-14'], ['Red Bull Ring', 'AT', '06-28'], ['Silverstone', 'GB', '07-05'], ['Spa-Francorchamps', 'BE', '07-19'],
+    ['Hungaroring', 'HU', '07-26'], ['Zandvoort', 'NL', '08-23'], ['Monza', 'IT', '09-06'], ['Madring (Madrid)', 'ES', '09-13'], ['Baku', 'AZ', '09-26'], ['Marina Bay (Singapura)', 'SG', '10-11'],
+    ['Circuito das Américas (Austin)', 'US', '10-25'], ['Hermanos Rodríguez (México)', 'MX', '11-01'], ['Interlagos', 'BR', '11-08'], ['Las Vegas', 'US', '11-21'], ['Lusail', 'QA', '11-29'], ['Yas Marina', 'AE', '12-06']],
 };
+// época curta: escolhe corridas espalhadas pelo calendário, pela ordem das datas
+function seasonPick(cat, mode) {
+  const all = TRACKS[cat], n = mode === 'completa' ? all.length : Math.min(all.length, catById(cat).rounds);
+  if (n >= all.length) return all.slice();
+  const out = []; for (let k = 0; k < n; k++) out.push(all[Math.round((k * (all.length - 1)) / Math.max(1, n - 1))]);
+  return out;
+}
 const trackSeed = (name, cat) => { let h = 2166136261; for (const ch of name + (cat === 'kart' ? 'k' : 'f')) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return h >>> 0; };
 
 // peças do kart: nome, efeito, preços por nível
@@ -101,15 +115,20 @@ const KART_PARTS = [
   { k: 'chassis', n: 'Chassis', i: '🛠️', d: '+1,5% aderência nas curvas por nível', cost: [350, 800, 1400, 2300, 3600] },
   { k: 'pneus', n: 'Pneus', i: '🛞', d: '+1,5% aderência por nível', cost: [250, 600, 1100, 1800, 2800] },
   { k: 'travoes', n: 'Travões', i: '🛑', d: 'travagem mais forte e estável', cost: [200, 500, 900, 1500, 2400] },
+  { k: 'carb', n: 'Carburador', i: '⛽', d: '+1,2% potência e melhor resposta por nível', cost: [300, 700, 1200, 2000, 3100] },
+  { k: 'eixo', n: 'Eixo traseiro', i: '🔩', d: '+0,8% aderência à saída das curvas por nível', cost: [280, 650, 1150, 1900, 2900] },
 ];
 // desenhos do capacete
 const HELMET_PATTERNS = [
   { k: 'liso', n: 'Liso', cost: 0 }, { k: 'faixa', n: 'Faixa central', cost: 0 }, { k: 'duplo', n: 'Faixas duplas', cost: 150 },
-  { k: 'estrelas', n: 'Estrelas', cost: 300 }, { k: 'chamas', n: 'Chamas', cost: 450 }, { k: 'xadrez', n: 'Xadrez', cost: 400 },
-  { k: 'bandeira', n: 'Bandeira do país', cost: 600 }, { k: 'raio', n: 'Raio', cost: 350 },
+  { k: 'degrade', n: 'Degradê', cost: 200 }, { k: 'coroa', n: 'Coroa', cost: 220 }, { k: 'diagonal', n: 'Riscas diagonais', cost: 260 },
+  { k: 'estrelas', n: 'Estrelas', cost: 300 }, { k: 'raio', n: 'Raio', cost: 350 }, { k: 'ondas', n: 'Ondas', cost: 380 },
+  { k: 'xadrez', n: 'Xadrez', cost: 400 }, { k: 'circulos', n: 'Círculos', cost: 420 }, { k: 'chamas', n: 'Chamas', cost: 450 },
+  { k: 'camuflado', n: 'Camuflado', cost: 500 }, { k: 'bandeira', n: 'Bandeira do país', cost: 600 },
 ];
-const HELMET_COLORS = ['#e10600', '#ff8000', '#ffd400', '#1fbf4a', '#00a19b', '#1e5bc6', '#0b1f4b', '#6a0dad', '#d4145a', '#ffffff', '#c0c0c0', '#1b1b1b'];
-
+const HELMET_COLORS = ['#e10600', '#ff8000', '#ffd400', '#c8e600', '#1fbf4a', '#00a19b', '#33b5ff', '#1e5bc6', '#0b1f4b', '#6a0dad', '#d4145a', '#ff7eb6', '#c9a227', '#8a5a2b', '#ffffff', '#c0c0c0', '#5a5f66', '#1b1b1b'];
+const HELMET_VISORS = [{ k: 'escura', n: 'Escura', cost: 0 }, { k: 'clara', n: 'Clara', cost: 0 }, { k: 'espelho', n: 'Espelhada', cost: 250 }, { k: 'dourada', n: 'Dourada', cost: 350 }, { k: 'azul', n: 'Azul', cost: 300 }, { k: 'arco', n: 'Arco-íris', cost: 450 }];
+const HELMET_FINISH = [{ k: 'brilho', n: 'Brilhante', cost: 0 }, { k: 'mate', n: 'Mate', cost: 200 }, { k: 'metal', n: 'Metalizado', cost: 350 }];
 // traçados inspirados em circuitos reais (aproximados): pontos dos cantos [x, y, raio] em metros (y para baixo = sul)
 // e relevo [fração da volta, altura em metros]
 const LAYOUTS = {

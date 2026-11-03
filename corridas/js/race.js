@@ -463,6 +463,7 @@ class Race {
     for (const o of this.cars) {
       if (o.isPlayer || o.pitState) continue;
       if ((o.x - car.x) ** 2 + (o.y - car.y) ** 2 > (this.C.carLen * 1.5) ** 2) continue;
+      { let gs = Math.abs(o.s - me.s) % this.T.len; gs = Math.min(gs, this.T.len - gs); if (gs > 40) continue; } // ponte: outra passagem
       const oc = circ(o.x, o.y, o.th);
       for (const a of mc) for (const b of oc) {
         const dx = a[0] - b[0], dy = a[1] - b[1], dd = Math.hypot(dx, dy);
