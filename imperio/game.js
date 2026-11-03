@@ -151,7 +151,88 @@ const REG = new Int32Array(N).fill(-1), REGBOX = [];
     REGBOX.push([c0, r0, c1 - c0 + 1, r1 - r0 + 1]);
   }
 }
+// Dono de cada quadrado: a frente de guerra avança quadrado a quadrado dentro das províncias
+const CO = new Int16Array(N);
+// orla de cada província com o dono de cada lado: [x1,y1,x2,y2, dono deste lado, dono do outro lado (-1 mar), província do outro lado]
+let SEG = [];
+function buildSeg(j) {
+  const out = [], list = PH[j];
+  for (let d = 0; d < 4; d++) {
+    const keyed = new Map();
+    for (const i of list) {
+      const n = cellAt(CC[i] + NB4[d][0], CR[i] + NB4[d][1]);
+      const np = n < 0 ? -1 : CP[n], no = n < 0 ? -1 : CO[n];
+      if (np === j && no === CO[i]) continue;
+      const line = d === 0 || d === 2 ? CC[i] : CR[i], pos = d === 0 || d === 2 ? CR[i] : CC[i];
+      let a = keyed.get(line); if (!a) keyed.set(line, (a = [])); a.push([pos, CO[i], no, np]);
+    }
+    for (const [line, a] of keyed) {
+      a.sort((u, v) => u[0] - v[0]);
+      for (let k = 0; k < a.length;) {
+        let e = k;
+        while (e + 1 < a.length && a[e + 1][0] === a[e][0] + 1 && a[e + 1][1] === a[k][1] && a[e + 1][2] === a[k][2] && a[e + 1][3] === a[k][3]) e++;
+        const p0 = a[k][0], p1 = a[e][0] + 1;
+        if (d === 0 || d === 2) { const x = -180 + (line + (d === 0 ? 1 : 0)) * S; out.push(x, M.Y0 + p0 * S, x, M.Y0 + p1 * S, a[k][1], a[k][2], a[k][3]); }
+        else { const y = M.Y0 + (line + (d === 1 ? 1 : 0)) * S; out.push(-180 + p0 * S, y, -180 + p1 * S, y, a[k][1], a[k][2], a[k][3]); }
+        k = e + 1;
+      }
+    }
+  }
+  return new Float32Array(out);
+}
+function rebuildSegsAround(j) { SEG[j] = buildSeg(j); for (const q of P[j].adj) SEG[q] = buildSeg(q); }
+function rebuildAllSegs() { SEG = PH.map((_, j) => buildSeg(j)); }
+// contagem de quadrados por dono numa província (null = só um dono)
+function setHeld(j) {
+  const cnt = {}; let k = 0;
+  for (const i of PH[j]) { if (!(CO[i] in cnt)) { cnt[CO[i]] = 0; k++; } cnt[CO[i]]++; }
+  P[j].held = k > 1 ? cnt : null;
+}
+const cellsOf = (p, ci) => (p.held ? p.held[ci] || 0 : p.owner === ci ? PH[p.j].length : 0);
+// tirar uma "dentada" da província j: o vencedor fica com quadrados do perdedor junto à frente
+function bite(j, taker, loser, frac, from) {
+  const list = PH[j], mine = [];
+  for (const i of list) if (CO[i] === loser) mine.push(i);
+  if (!mine.length) return 0;
+  const touch = (i, who) => NB4.some(([dc, dr]) => { const n = cellAt(CC[i] + dc, CR[i] + dr); return who === -1 ? n < 0 : n >= 0 && CO[n] === who; });
+  let seeds = mine.filter((i) => touch(i, taker));
+  if (!seeds.length) {
+    // desembarque: começa na costa mais perto de onde vêm as tropas
+    const coast = mine.filter((i) => touch(i, -1)), pool = coast.length ? coast : mine.slice();
+    const dd = (i) => (cxOf(i) - from[0]) ** 2 + (cyOf(i) - from[1]) ** 2;
+    pool.sort((a, b) => dd(a) - dd(b)); seeds = pool.slice(0, 3);
+  }
+  const count = Math.max(4, Math.round(list.length * frac));
+  if (taker !== P[j].owner && mine.length - count < Math.max(3, list.length * 0.12)) return -1; // fica com a província toda
+  const set = new Set(mine), seen = new Set(seeds), order = seeds.slice();
+  for (let h = 0; h < order.length && order.length < count; h++) {
+    const i = order[h];
+    for (const [dc, dr] of NB4) { const n = cellAt(CC[i] + dc, CR[i] + dr); if (n >= 0 && set.has(n) && !seen.has(n)) { seen.add(n); order.push(n); } }
+  }
+  const take = order.slice(0, count), oldCol = C[loser].color, now = performance.now();
+  take.forEach((i, k) => { CO[i] = taker; FX.flips.push({ i, old: oldCol, t0: now + k * 7, dur: 300 }); });
+  setHeld(j); markDirty(j); rebuildSegsAround(j);
+  return take.length;
+}
+// fim de guerra: cada província ocupada fica com quem tem a maior parte
+function settle(a, b) {
+  for (const p of P) {
+    if (!p.held) continue;
+    const o = p.owner, other = o === a ? b : o === b ? a : -1;
+    if (other < 0 || !p.held[other]) continue;
+    if (p.held[other] * 2 >= PH[p.j].length && C[other].alive) capture(p.j, other, gmax(p) * 0.3, LABEL[p.j], true);
+    else { for (const i of PH[p.j]) if (CO[i] === other) CO[i] = o; setHeld(p.j); markDirty(p.j); rebuildSegsAround(p.j); }
+  }
+}
+function releaseCells(ci) {
+  for (const p of P) {
+    if (!p.held || !p.held[ci] || p.owner === ci) continue;
+    for (const i of PH[p.j]) if (CO[i] === ci) CO[i] = p.owner;
+    setHeld(p.j); markDirty(p.j); rebuildSegsAround(p.j);
+  }
+}
 const COAST = PSEG.map((sg) => { for (let k = 4; k < sg.length; k += 5) if (sg[k] < 0) return true; return false; });
+void 0;
 // cores: países vizinhos com cores diferentes
 const COLORS = (() => {
   const nb = Array.from({ length: NC }, () => new Set());
@@ -192,6 +273,8 @@ function newGame(playerIdx) {
     c.rel = c.ally >= 0 && c.ally === C[playerIdx].ally ? 50 : ri(-10, 15);
   }
   for (const p of P) p.gar = gmax(p);
+  for (let i = 0; i < N; i++) CO[i] = P[CP[i]].owner;
+  for (const p of P) p.held = null;
   const me = C[playerIdx];
   me.money = 60 + income(me) * 8;
   me.troops = Math.max(me.troops, 25);
@@ -216,7 +299,10 @@ const gmax = (p) => { const o = C[p.owner]; return (8 + 1.5 * p.hx) * (isCap(p) 
 const homeBonus = (p) => (p.orig === p.owner ? 1.3 : 1);
 function incomeBase(c) {
   let s = 0;
-  for (const p of P) if (p.owner === c.i) s += value(p) * (p.occ > 0 ? 0.5 : 1);
+  for (const p of P) {
+    if (!p.held) { if (p.owner === c.i) s += value(p) * (p.occ > 0 ? 0.5 : 1); continue; }
+    const n = p.held[c.i]; if (n) s += value(p) * (n / PH[p.j].length) * (p.owner === c.i ? (p.occ > 0 ? 0.5 : 1) : 0.5);
+  }
   return s * (1 + 0.2 * c.eco) * (c.boom > 0 ? 1.3 : 1) * (c.crisis > 0 ? 0.75 : 1);
 }
 function tradeIncome(c) {
@@ -262,6 +348,7 @@ function attackSource(att, t) {
   let best = null, bd = -1, sea = false;
   for (const q of P[t].adj) if (P[q].owner === att && P[q].gar > bd) { bd = P[q].gar; best = q; }
   if (best !== null) return { from: best, sea: false };
+  if (P[t].held && P[t].held[att]) return { from: t, sea: false };
   for (const q of P[t].sea) if (P[q].owner === att && P[q].gar > bd) { bd = P[q].gar; best = q; sea = true; }
   return best !== null ? { from: best, sea } : null;
 }
@@ -325,7 +412,7 @@ function hexPath(c, x, y, r) {
   for (let k = 1; k < ND; k++) c.lineTo(x + VX[k] * r, y + VY[k] * r);
   c.closePath();
 }
-const colorOfCell = (i) => C[P[CP[i]].owner].color;
+const colorOfCell = (i) => C[CO[i]].color;
 const rgbOf = (hex, f) => { const m = shade(hex, f).match(/\d+/g).map(Number); return m; };
 let PAL = null; // por país: base, brilho, grelha, província
 const FLAGPX = new Map();
@@ -366,10 +453,10 @@ function paintCells(c0, r0, c1, r1) {
   const put = (x, y, rgb, f) => { const o = (y * w + x) * 4; d[o] = rgb[0] * f; d[o + 1] = rgb[1] * f; d[o + 2] = rgb[2] * f; d[o + 3] = 255; };
   for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
     const i = GRID[r * COLS + c]; if (i < 0) continue;
-    const p = CP[i], ow = P[p].owner, fl = flagPixels(ow), pal = PAL[ow];
+    const p = CP[i], ow = CO[i], fl = flagPixels(ow), pal = PAL[ow];
     const rb = REGBOX[REG[i]];
     // 0 = igual, 1 = outra província, 2 = outro país, 3 = mar
-    const side = (n) => (n < 0 ? 3 : P[CP[n]].owner !== ow ? 2 : CP[n] !== p ? 1 : 0);
+    const side = (n) => (n < 0 ? 3 : CO[n] !== ow ? 2 : CP[n] !== p ? 1 : 0);
     const e = side(cellAt(c + 1, r)), sth = side(cellAt(c, r + 1)), wst = side(cellAt(c - 1, r)), nth = side(cellAt(c, r - 1));
     const X = (c - c0) * PXC, Y = (r - r0) * PXC;
     for (let py = 0; py < 3; py++) for (let px = 0; px < 3; px++) {
@@ -492,19 +579,19 @@ function render(now) {
   const empire = new Path2D(), front = new Path2D(), selP = new Path2D(), allyP = new Path2D();
   const wx0 = wx(-10), wx1 = wx(VW + 10), wy0 = wy(-10), wy1 = wy(VH + 10);
   for (let j = 0; j < NP; j++) {
-    const ow = P[j].owner;
-    const isMe = ow === me, isSel = j === sel, isAlly = !isMe && allied(me, ow);
-    if (!isMe && !isSel && !isAlly) continue;
+    const ow = P[j].owner, hd = P[j].held;
+    const hasMe = ow === me || (hd && hd[me]), isSel = j === sel, isAlly = ow !== me && allied(me, ow);
+    if (!hasMe && !isSel && !isAlly) continue;
     const b = PBOX[j];
     if (-180 + (b[2] + 1) * S < wx0 || -180 + b[0] * S > wx1 || M.Y0 + (b[3] + 1) * S < wy0 || M.Y0 + b[1] * S > wy1) continue;
-    const sg = PSEG[j];
-    for (let k = 0; k < sg.length; k += 5) {
-      const nb = sg[k + 4], on = nb < 0 ? -1 : P[nb].owner;
+    const sg = SEG[j];
+    for (let k = 0; k < sg.length; k += 7) {
+      const own = sg[k + 4], on = sg[k + 5], op = sg[k + 6];
       const ax = sx(sg[k]), ay = sy(sg[k + 1]), bx = sx(sg[k + 2]), by = sy(sg[k + 3]);
-      if (isSel) { selP.moveTo(ax, ay); selP.lineTo(bx, by); }
-      if (isMe && on !== me) {
+      if (isSel && op !== j) { selP.moveTo(ax, ay); selP.lineTo(bx, by); }
+      if (own === me && on !== me) {
         if (on >= 0 && C[me].wars.has(on)) { front.moveTo(ax, ay); front.lineTo(bx, by); } else { empire.moveTo(ax, ay); empire.lineTo(bx, by); }
-      } else if (isAlly && on !== ow && on !== me) { allyP.moveTo(ax, ay); allyP.lineTo(bx, by); }
+      } else if (isAlly && own === ow && on !== ow && on !== me) { allyP.moveTo(ax, ay); allyP.lineTo(bx, by); }
     }
   }
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -579,9 +666,8 @@ function drawHeat(now, pulse) {
   // todas as frentes de guerra do mundo
   const fr = new Path2D();
   for (let j = 0; j < NP; j++) {
-    const ow = P[j].owner; if (!C[ow].wars.size) continue;
-    const sg = PSEG[j];
-    for (let k = 0; k < sg.length; k += 5) { const nb = sg[k + 4]; if (nb < 0 || !C[ow].wars.has(P[nb].owner)) continue; fr.moveTo(sx(sg[k]), sy(sg[k + 1])); fr.lineTo(sx(sg[k + 2]), sy(sg[k + 3])); }
+    const sg = SEG[j];
+    for (let k = 0; k < sg.length; k += 7) { const own = sg[k + 4], on = sg[k + 5]; if (on < 0 || !C[own].wars.has(on)) continue; fr.moveTo(sx(sg[k]), sy(sg[k + 1])); fr.lineTo(sx(sg[k + 2]), sy(sg[k + 3])); }
   }
   ctx.strokeStyle = `rgba(255,61,90,${0.6 + 0.4 * pulse})`; ctx.lineWidth = 2.5; ctx.shadowColor = '#ff3d5a'; ctx.shadowBlur = 10; ctx.stroke(fr); ctx.shadowBlur = 0;
 }
@@ -749,17 +835,30 @@ function resolveBattle(m) {
   if (A > D) {
     const frac = 1 - 0.7 * (D / A);
     const infS = m.inf * frac, tkS = m.tank * frac;
-    d.troops = Math.max(0, d.troops - res * 0.8);
-    if (arm > 0) armiesBeaten(t.j);
+    d.troops = Math.max(0, d.troops - res * 0.6);
     if (visible) floatText(x, y + 2, '-' + fmt(m.n * (1 - frac)), '#ff8fa3', 0.8);
-    a.troops += infS * 0.4; a.tanks += tkS * 0.4;
-    capture(m.to, m.att, (infS + tkS) * 0.6, LABEL[m.from]);
+    const got = bite(m.to, m.att, def, clamp(0.2 + 0.35 * (A / D - 1), 0.18, 0.6), LABEL[m.from]);
+    if (got === -1) {
+      if (arm > 0) armiesBeaten(t.j);
+      a.troops += infS * 0.4; a.tanks += tkS * 0.4;
+      capture(m.to, m.att, (infS + tkS) * 0.6, LABEL[m.from]);
+    } else {
+      t.gar = Math.max(0.5, t.gar * 0.6);
+      if (arm > 0) armiesHurt(t.j, armyDefAt(t.j) * 0.4);
+      a.troops += infS * 0.85; a.tanks += tkS * 0.85;
+      const pct = Math.round((cellsOf(t, m.att) / PH[t.j].length) * 100);
+      if (visible) floatText(x, y - 2, 'AVANÇO ' + pct + '%', '#ffd75e', 0.9);
+      if (m.att === G.player) { toast(`⚔️ Avançaste em ${t.n} (${d.flag} ${d.n}): já tens ${pct}% da província.`, 'gold'); sfx.win(); }
+      else if (def === G.player) { toast(`⚠️ ${a.flag} ${a.n} avançou em ${t.n}: ocupa ${pct}%.`, 'war'); sfx.bad(); }
+      computeAttackable();
+    }
   } else {
     const dmg = (A / d.q) * 0.75, tot = Math.max(1, t.gar + res + arm);
     t.gar = Math.max(0.5, t.gar - dmg * (t.gar / tot));
     d.troops = Math.max(0, d.troops - dmg * (res / tot));
     if (arm > 0) armiesHurt(t.j, dmg * (arm / tot));
     a.troops += m.inf * 0.15; a.tanks += m.tank * 0.15;
+    if (t.held && t.held[m.att]) bite(m.to, def, m.att, 0.12, LABEL[m.to]);
     if (visible) { floatText(x, y, 'DERROTA', m.att === G.player ? '#ff3d5a' : '#9aa3d6', 0.9); floatText(x, y + 3, '-' + fmt(m.n * 0.85), '#ff8fa3', 0.7); }
     if (def === G.player) { toast(`🛡️ Repeliste o ataque de ${a.flag} ${a.n} em ${t.n}!`, 'good'); sfx.good(); }
     if (m.att === G.player) { toast(`💥 O ataque a ${t.n} (${d.n}) falhou. A guarnição ficou com ${fmt(t.gar)}.`, 'war'); }
@@ -767,10 +866,12 @@ function resolveBattle(m) {
   if (m.att === G.player || def === G.player) { shakeT = 0.35; uiDirty = true; }
 }
 function onScreen(x, y) { const X = sx(x), Y = sy(y); return X > -40 && X < VW + 40 && Y > -40 && Y < VH + 40; }
-function capture(j, att, surv, from) {
+function capture(j, att, surv, from, quiet) {
   const p = P[j], old = p.owner, wasCap = isCap(p);
   const oldCol = C[old].color;
   p.owner = att;
+  for (const i of PH[j]) CO[i] = att;
+  p.held = null; rebuildSegsAround(j);
   p.gar = Math.min(surv, gmax(p)); C[att].troops += surv - p.gar;
   p.occ = p.orig === att ? 0 : 40;
   p.b &= ~8; // a muralha cai com a conquista
@@ -781,7 +882,8 @@ function capture(j, att, surv, from) {
   const [x, y] = LABEL[j];
   flipProvince(j, from[0], from[1], oldCol);
   FX.rings.push({ x, y, t: 0, life: 0.9, max: 6, col: C[att].color });
-  if (att === G.player) {
+  if (quiet) { /* sem avisos */ }
+  else if (att === G.player) {
     G.aggr += 0.6;
     floatText(x, y - 2, 'CONQUISTADO!', '#ffd75e', 1.1);
     sfx.win(); toast(`🏴 Conquistaste ${p.n} (${C[old].flag} ${C[old].n})!`, 'gold');
@@ -809,6 +911,7 @@ function capitalFalls(ci, by) {
 }
 function eliminate(ci, by) {
   const c = C[ci]; c.alive = false;
+  releaseCells(ci);
   for (const e of [...c.wars]) endWar(ci, e, true);
   if (c.ally >= 0) { alliances[c.ally].members.delete(ci); c.ally = -1; }
   if (ci === G.player) { gameOver(by); return; }
@@ -863,12 +966,13 @@ function near(a, b) {
   return Math.hypot(ax - bx, ay - by) < 25;
 }
 function endWar(a, b, silent) {
+  settle(a, b);
   C[a].wars.delete(b); C[b].wars.delete(a);
   G.truce[pairKey(a, b)] = G.day + 30;
   if (a !== G.player && b !== G.player) G.aiWars = Math.max(0, G.aiWars - 1);
   if (!silent && (a === G.player || b === G.player)) {
     const o = C[a === G.player ? b : a];
-    banner(C[G.player].flag + ' 🕊 ' + o.flag, 'PAZ', `Fizeste as pazes com ${o.n}. As províncias conquistadas ficam contigo.`, 'good');
+    banner(C[G.player].flag + ' 🕊 ' + o.flag, 'PAZ', `Fizeste as pazes com ${o.n}. Cada província ocupada fica com quem tem a maior parte.`, 'good');
     sfx.good(); o.rel = Math.max(o.rel, -20);
   }
   computeAttackable(); uiDirty = true;
@@ -1159,7 +1263,16 @@ function armyBattle(a, j, sea) {
   if (A > D) {
     const frac = 1 - 0.65 * (D / A);
     a.inf *= frac; a.tank *= frac;
-    d.troops = Math.max(0, d.troops - res * 0.8);
+    d.troops = Math.max(0, d.troops - res * 0.6);
+    const got = bite(j, me.i, t.owner, clamp(0.25 + 0.35 * (A / D - 1), 0.2, 0.65), LABEL[a.prov]);
+    if (got !== -1) {
+      t.gar = Math.max(0.5, t.gar * 0.6);
+      const pct = Math.round((cellsOf(t, me.i) / PH[j].length) * 100);
+      floatText(x, y - 2, 'AVANÇO ' + pct + '%', '#ffd75e', 0.9);
+      toast(`🎖️ O General ${a.name} avançou em ${t.n}: ${pct}% da província.`, 'gold');
+      computeAttackable(); uiDirty = true;
+      return;
+    }
     const g = Math.min(a.inf * 0.25, 10 + a.inf * 0.1);
     a.inf -= g;
     floatText(x, y + 2, `GEN. ${a.name.toUpperCase()}!`, '#ffd75e', 0.9);
@@ -1576,7 +1689,8 @@ function updateHUD() {
   $('#hTroops').textContent = fmt(me.troops);
   $('#hTanks').textContent = me.tanks ? '+' + fmt(me.tanks) + ' tanques' : 'soldados';
   $('#hProv').textContent = me._np;
-  const share = (me._np / NP) * 100;
+  let mc = 0; for (let i = 0; i < N; i++) if (CO[i] === me.i) mc++;
+  const share = (mc / N) * 100;
   $('#hShare').textContent = share.toFixed(share < 10 ? 1 : 0) + '% do mundo';
   $('#hBar').style.width = Math.min(100, share * 2) + '%';
   $('#hSub').textContent = `Dia ${G.day} · ${me.wars.size ? me.wars.size + (me.wars.size > 1 ? ' guerras' : ' guerra') : 'em paz'}`;
@@ -1630,6 +1744,7 @@ function renderPanelInner(el) {
   const blds = BUILD.filter((b) => p.b & b.k).map((b) => b.i).join(' ');
   let html = `<div class="card"><div class="head"><span class="flag">${o.flag}</span><div style="min-width:0"><h2>${p.n} · ${o.n}</h2><p>${tags.join(' ')} ${al ? `<span class="tag" style="border-color:${al.color}">${al.name}</span>` : ''}</p></div></div>
   <div class="kv"><div><small>Guarnição</small><b>${fmt(p.gar)}</b></div><div><small>Rendimento</small><b>+${value(p).toFixed(1)}</b></div><div><small>${mine ? 'Edifícios' : 'Relação'}</small><b>${mine ? blds || '—' : relLabel(o.rel)}</b></div></div>`;
+  if (p.held) html += `<p class="note">Frente de batalha: ${Object.entries(p.held).sort((u, v) => v[1] - u[1]).map(([ci, n]) => `${C[ci].flag} ${Math.round((n / PH[p.j].length) * 100)}%`).join(' · ')}</p>`;
   if (p.dev > 0) html += `<p class="note warn">Devastada: rende metade durante mais ${p.dev} dias.</p>`;
   if (mine) {
     html += p.occ > 0 ? `<p class="note">Território ocupado: rende metade durante mais ${p.occ} dias e pode revoltar-se.</p>` : '';
@@ -1974,13 +2089,13 @@ $('#music').onclick = () => { const on = music.toggle(); $('#music').classList.t
 $('#zheat').onclick = () => { heatMode = !heatMode; $('#zheat').classList.toggle('on', heatMode); if (heatMode) toast('🔥 Mapa de guerra: zonas vermelhas são combates recentes; linhas vermelhas são frentes de guerra.', 'war'); };
 
 // ---------- Guardar ----------
-const SAVE = 'imperio-quadrados-v4';
+const SAVE = 'imperio-quadrados-v5';
 function save() {
   try {
     localStorage.setItem(SAVE, JSON.stringify({
       G: { ...G, pending: G.pending },
       C: C.map((c) => ({ money: c.money, troops: c.troops, tanks: c.tanks, ships: c.ships, planes: c.planes, missiles: c.missiles, boom: c.boom, crisis: c.crisis, eco: c.eco, mil: c.mil, def: c.def, alive: c.alive, wars: [...c.wars], ally: c.ally, rel: c.rel, cap: c.cap })),
-      P: P.map((p) => [p.owner, Math.round(p.gar * 10) / 10, p.occ, p.b, p.res, p.dev]),
+      P: P.map((p) => { const ex = []; if (p.held) for (const i of PH[p.j]) if (CO[i] !== p.owner) ex.push(i, CO[i]); return [p.owner, Math.round(p.gar * 10) / 10, p.occ, p.b, p.res, p.dev, ex]; }),
       AL: alliances.map((a) => ({ name: a.name, color: a.color, members: [...a.members] })),
     }));
   } catch (e) { /* sem armazenamento */ }
@@ -1993,6 +2108,8 @@ function load() {
     Object.assign(G, s.G);
     s.C.forEach((d, i) => Object.assign(C[i], d, { wars: new Set(d.wars) }));
     s.P.forEach((d, j) => { P[j].owner = d[0]; P[j].gar = d[1]; P[j].occ = d[2]; P[j].b = d[3] || 0; P[j].res = d[4] || ''; P[j].dev = d[5] || 0; });
+    for (let i = 0; i < N; i++) CO[i] = P[CP[i]].owner;
+    s.P.forEach((d, j) => { const ex = d[6] || []; for (let k = 0; k < ex.length; k += 2) CO[ex[k]] = ex[k + 1]; if (ex.length) setHeld(j); });
     alliances = s.AL.map((a, id) => ({ id, name: a.name, color: a.color, members: new Set(a.members) }));
     return true;
   } catch (e) { return false; }
@@ -2001,7 +2118,7 @@ const hasSave = () => { try { return !!localStorage.getItem(SAVE); } catch (e) {
 
 // ---------- Início / fim ----------
 function startGame() {
-  countProv(); computeAttackable(); cacheDirty = true; makePal(); selArmy = -1; spyMenu = -1;
+  rebuildAllSegs(); countProv(); computeAttackable(); cacheDirty = true; makePal(); selArmy = -1; spyMenu = -1;
   music.start();
   $('#start').hidden = true; paused = false; sel = -1;
   $('#hFlag').textContent = C[G.player].flag; $('#hName').textContent = C[G.player].n;
@@ -2103,5 +2220,5 @@ window.addEventListener('resize', resize);
 resize();
 showStart();
 requestAnimationFrame(loop);
-window.__imperio = { dbg(j) { const a = G.armies[0]; return { passable: passable(j), path: a && armyPath(a, j), owner: P[j].owner, me: G.player, atWar: atWar(G.player, P[j].owner), ships: C[G.player].ships }; }, tap: (x, y) => { const r = cv.getBoundingClientRect(); tapAt(x - r.left, y - r.top); }, scr(j) { const r = cv.getBoundingClientRect(); return [sx(LABEL[j][0]) + r.left, sy(LABEL[j][1]) + r.top]; }, get att() { return [...attackable]; }, get C() { return C; }, get P() { return P; }, get G() { return G; }, A, tick };
+window.__imperio = { CO, PH, bite, dbg(j) { const a = G.armies[0]; return { passable: passable(j), path: a && armyPath(a, j), owner: P[j].owner, me: G.player, atWar: atWar(G.player, P[j].owner), ships: C[G.player].ships }; }, tap: (x, y) => { const r = cv.getBoundingClientRect(); tapAt(x - r.left, y - r.top); }, scr(j) { const r = cv.getBoundingClientRect(); return [sx(LABEL[j][0]) + r.left, sy(LABEL[j][1]) + r.top]; }, get att() { return [...attackable]; }, get C() { return C; }, get P() { return P; }, get G() { return G; }, A, tick };
 })();

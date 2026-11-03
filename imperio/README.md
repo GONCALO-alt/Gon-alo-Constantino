@@ -6,7 +6,7 @@ Abre `index.html` no browser (não precisa de servidor nem de instalação).
 
 ## Como se joga
 
-- **Conquista aos poucos:** cada país está dividido em províncias. Declaras guerra e atacas uma província de cada vez, a partir das províncias que já tens na fronteira (ou por mar, com -20%).
+- **Conquista aos poucos:** cada país está dividido em províncias, e as províncias em quadradinhos. Cada batalha ganha conquista os quadradinhos junto à frente; a província só passa para ti quando ficares com quase todos. Se perderes uma batalha, o inimigo recupera alguns quadradinhos. Na paz, cada província ocupada fica com quem tem a maior parte.
 - **Alianças:** os países começam em blocos (Aliança Atlântica, Pacto Euroasiático, Liga Árabe, Mercosul…). Se atacares um país, os aliados dele juntam-se à guerra contra ti. Os teus aliados também te podem ajudar.
 - **Diplomacia:** propõe alianças, envia presentes para melhorar relações, propõe a paz. O inimigo também pode pedir a paz quando está a perder.
 - **Economia:** cada província dá rendimento. Usa o dinheiro para recrutar tropas e para melhorar Economia, Indústria Militar e Defesa.
