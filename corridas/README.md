@@ -1,0 +1,14 @@
+# Grelha de Partida
+
+Jogo de corridas realista, em horizontal, para telemóvel. A carreira começa no karting e sobe à Fórmula 4, Fórmula 3, Fórmula 2 e Fórmula 1.
+
+Abre `index.html` no browser.
+
+- **Câmaras:** primeira pessoa (cockpit com volante, nariz, pneus e halo), atrás do carro, vista de cima e mapa fixo (botão 📷 ou tecla C).
+- **Física:** pneus que perdem aderência quando passam do limite, transferência de peso ao travar, carga aerodinâmica que aumenta com a velocidade, relva e gravilha que tiram aderência. Ajudas opcionais: ABS, controlo de tração, direção assistida e trajetória ideal.
+- **Comandos:** setas ◀ ▶ ou volante (arrastar em círculo), pedais de acelerar e travar, rádio com o engenheiro. No computador: setas/WASD, espaço trava, R rádio, B box, C câmara, Esc pausa.
+- **Corridas:** partida com 5 luzes, qualificação de uma volta (ou simulada), rivais com estratégia, pontos iguais aos da F1 (25-18-15-12-10-8-6-4-2-1).
+- **Pneus e boxes:** a partir da Fórmula 3 há macios, médios e duros, que gastam; na F2 e F1 a paragem é obrigatória.
+- **Carreira:** nome, nacionalidade, número, capacete personalizável, dinheiro para peças do kart e desenvolvimento do carro, propostas de equipas no fim de cada época.
+
+As pistas, equipas e pilotos são inventados. O 3D usa o Three.js (r128, licença MIT); há uma cópia em `js/vendor/` para quando não há internet.

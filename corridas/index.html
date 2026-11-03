@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Grelha de Partida</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#0b0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=Saira+Condensed:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: ecrã de corrida em horizontal (pista a ocupar tudo, painel como numa transmissão);
+   menus da carreira em cartões sobre fundo de fibra de carbono. */
+:root {
+  --bg: #0b0d12;          /* fundo */
+  --panel: #151922;       /* cartões */
+  --panel-2: #1d2230;
+  --line: #2a3142;
+  --ink: #f2f4f8;
+  --dim: #97a0b3;
+  --red: #e10600;         /* cor da marca */
+  --yellow: #ffd60a;
+  --green: #30d158;
+  --purple: #b44cff;      /* volta mais rápida */
+  --blue: #3a8dff;
+  --font: "Titillium Web", "Segoe UI", system-ui, sans-serif;
+  --num: "Saira Condensed", "Arial Narrow", system-ui, sans-serif;
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); overflow: hidden; overscroll-behavior: none; -webkit-user-select: none; user-select: none; }
+button, input, select { font-family: inherit; color: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.carbon { background-color: #0d1016; background-image: linear-gradient(45deg, rgba(255,255,255,.025) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.025) 75%), linear-gradient(45deg, rgba(255,255,255,.025) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.025) 75%); background-size: 8px 8px; background-position: 0 0, 4px 4px; }
+
+/* ---------- ecrãs de menu ---------- */
+.screen { position: fixed; inset: 0; display: flex; flex-direction: column; overflow-y: auto; padding: calc(14px + env(safe-area-inset-top, 0px)) max(18px, env(safe-area-inset-right, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px)); gap: 14px; }
+.topbar { display: flex; align-items: center; gap: 12px; }
+.topbar h1 { margin: 0; font-family: var(--num); font-weight: 800; font-size: 24px; letter-spacing: 1px; text-transform: uppercase; flex: 1; min-width: 0; }
+.topbar h1 em { color: var(--red); font-style: normal; }
+.back { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 8px 14px; font-weight: 700; }
+.logo { text-align: center; padding-top: 6vh; }
+.logo .mark { display: inline-flex; gap: 6px; margin-bottom: 10px; }
+.logo .mark span { width: 18px; height: 18px; border-radius: 50%; background: #2a0000; box-shadow: inset 0 0 0 2px #400; }
+.logo .mark span.on { background: var(--red); box-shadow: 0 0 14px var(--red); animation: lamp 3.4s infinite; }
+.logo .mark span:nth-child(2) { animation-delay: .25s; } .logo .mark span:nth-child(3) { animation-delay: .5s; } .logo .mark span:nth-child(4) { animation-delay: .75s; } .logo .mark span:nth-child(5) { animation-delay: 1s; }
+@keyframes lamp { 0%, 70% { opacity: 1 } 75%, 100% { opacity: .15 } }
+.logo h1 { margin: 0; font-family: var(--num); font-weight: 800; font-size: clamp(42px, 9vw, 86px); line-height: .9; letter-spacing: 2px; text-transform: uppercase; font-style: italic; }
+.logo h1 b { color: var(--red); font-weight: 800; }
+.logo p { color: var(--dim); margin: 10px auto 0; max-width: 46ch; font-size: 15px; }
+.stack { display: grid; gap: 10px; width: min(420px, 100%); margin: 0 auto; }
+.btn { border: 0; border-radius: 8px; padding: 13px 18px; font-weight: 700; font-size: 15px; background: var(--panel-2); border: 1px solid var(--line); text-transform: uppercase; letter-spacing: .6px; }
+.btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+.btn.go { background: var(--green); border-color: var(--green); color: #002611; }
+.btn.small { padding: 8px 12px; font-size: 13px; }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn:active:not(:disabled) { transform: translateY(1px); filter: brightness(1.1); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; align-items: start; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
+.card h2 { margin: 0; font-family: var(--num); font-weight: 700; font-size: 15px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--dim); }
+.card h3 { margin: 0; font-size: 20px; line-height: 1.15; text-wrap: balance; }
+.row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.row .grow { flex: 1; min-width: 0; }
+.muted { color: var(--dim); font-size: 13px; }
+.kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 8px; }
+.kv div { background: var(--panel-2); border-radius: 8px; padding: 6px 10px; }
+.kv small { display: block; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+.kv b { font-family: var(--num); font-size: 20px; font-variant-numeric: tabular-nums; }
+label.field { display: grid; gap: 4px; font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+input[type=text], input[type=number], select { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--ink); width: 100%; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { flex: 1 1 auto; border: 1px solid var(--line); background: var(--panel-2); border-radius: 8px; padding: 9px 10px; font-weight: 700; font-size: 13px; }
+.seg button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.swatches { display: flex; flex-wrap: wrap; gap: 6px; }
+.swatches button { width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(255,255,255,.2); }
+.swatches button.on { border-color: #fff; box-shadow: 0 0 0 2px var(--red); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+th { text-align: left; color: var(--dim); font-size: 11px; text-transform: uppercase; letter-spacing: .8px; font-weight: 600; padding: 4px 6px; }
+td { padding: 6px; border-top: 1px solid var(--line); }
+tr.me td { background: rgba(255,214,10,.12); }
+td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px; }
+.tbl { overflow-x: auto; }
+.teamdot { display: inline-block; width: 4px; height: 16px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.part { display: grid; grid-template-columns: 38px 1fr auto; gap: 10px; align-items: center; }
+.part .ico { font-size: 24px; text-align: center; }
+.lv { display: flex; gap: 3px; margin-top: 3px; }
+.lv span { width: 16px; height: 5px; border-radius: 2px; background: var(--line); }
+.lv span.on { background: var(--yellow); }
+.helmetbox { display: grid; place-items: center; }
+.helmetbox canvas { width: 160px; height: 160px; }
+.tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; background: var(--panel-2); border: 1px solid var(--line); }
+.tag.red { background: var(--red); border-color: var(--red); }
+.money { font-family: var(--num); font-weight: 700; color: var(--yellow); }
+.cal { display: grid; gap: 6px; }
+.cal .r { display: grid; grid-template-columns: 26px 26px 1fr auto; gap: 8px; align-items: center; padding: 6px 8px; border-radius: 8px; background: var(--panel-2); }
+.cal .r.next { outline: 2px solid var(--red); }
+.cal .r.done { opacity: .6; }
+.trackprev { width: 100%; height: 150px; display: block; }
+
+/* ---------- corrida ---------- */
+#race { position: fixed; inset: 0; background: #2f5e2c; touch-action: none; }
+#cv, #cv3 { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hud { position: absolute; pointer-events: none; font-family: var(--num); }
+.tower { left: calc(10px + env(safe-area-inset-left, 0px)); top: calc(10px + env(safe-area-inset-top, 0px)); background: rgba(10,12,18,.82); border-radius: 6px; overflow: hidden; min-width: 150px; font-size: 14px; }
+.tower .hd { background: var(--red); color: #fff; font-weight: 800; padding: 3px 8px; letter-spacing: 1px; display: flex; justify-content: space-between; gap: 10px; }
+.tower .ln { display: grid; grid-template-columns: 20px 4px 38px 1fr; gap: 6px; align-items: center; padding: 2px 8px; font-weight: 700; }
+.tower .ln.me { background: rgba(255,214,10,.22); }
+.tower .ln .p { text-align: right; color: #fff; }
+.tower .ln .bar { height: 14px; border-radius: 1px; }
+.tower .ln .g { text-align: right; color: #d6dbe5; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tower .ln .g.pit { color: var(--yellow); }
+.mini { right: calc(10px + env(safe-area-inset-right, 0px)); top: calc(10px + env(safe-area-inset-top, 0px)); width: 170px; display: grid; gap: 6px; justify-items: end; }
+.mini canvas { width: 170px; height: 120px; background: rgba(10,12,18,.55); border-radius: 8px; }
+.lapbox { background: rgba(10,12,18,.82); border-radius: 6px; padding: 4px 10px; font-weight: 800; font-size: 18px; letter-spacing: .5px; display: flex; gap: 12px; }
+.lapbox span { color: var(--dim); font-weight: 600; font-size: 13px; }
+.timing { left: 50%; transform: translateX(-50%); top: calc(10px + env(safe-area-inset-top, 0px)); background: rgba(10,12,18,.78); border-radius: 6px; padding: 4px 12px; text-align: center; min-width: 170px; }
+.timing .cur { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.timing .sub { font-size: 12px; color: var(--dim); display: flex; gap: 10px; justify-content: center; font-variant-numeric: tabular-nums; }
+.delta { font-weight: 800; }
+.delta.up { color: var(--red); } .delta.down { color: var(--green); }
+.lights { left: 50%; top: 22%; transform: translateX(-50%); display: flex; gap: 10px; background: #08090c; padding: 10px 14px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+.lights i { width: 30px; height: 30px; border-radius: 50%; background: #2a0505; box-shadow: inset 0 0 0 3px #1a0303; }
+.lights i.on { background: radial-gradient(circle at 40% 35%, #ff8c8c, #ff1a1a 45%, #a00000); box-shadow: 0 0 22px #ff2020, inset 0 0 0 3px #600; }
+.radio-msg { left: 50%; transform: translateX(-50%); top: calc(76px + env(safe-area-inset-top, 0px)); background: rgba(10,12,18,.9); border-left: 4px solid var(--blue); border-radius: 6px; padding: 6px 12px; font-family: var(--font); font-size: 14px; max-width: min(520px, 70vw); animation: rin .25s ease; }
+.radio-msg b { color: var(--blue); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; display: block; }
+.radio-msg.warn { border-left-color: var(--yellow); } .radio-msg.warn b { color: var(--yellow); }
+.radio-msg.good { border-left-color: var(--green); } .radio-msg.good b { color: var(--green); }
+@keyframes rin { from { opacity: 0; transform: translate(-50%, -8px) } }
+.dash { left: 50%; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: rgba(10,12,18,.82); border-radius: 10px; padding: 6px 14px 8px; display: grid; gap: 4px; justify-items: center; min-width: 220px; }
+.leds { display: flex; gap: 3px; }
+.leds i { width: 10px; height: 6px; border-radius: 2px; background: #222; }
+.leds i.g { background: var(--green); box-shadow: 0 0 6px var(--green); } .leds i.r { background: var(--red); box-shadow: 0 0 6px var(--red); } .leds i.b { background: var(--blue); box-shadow: 0 0 6px var(--blue); }
+.dashrow { display: flex; align-items: center; gap: 14px; }
+.speed { font-size: 40px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; min-width: 78px; text-align: right; }
+.speed small { font-size: 12px; color: var(--dim); display: block; text-align: right; font-weight: 600; }
+.gear { font-size: 34px; font-weight: 800; color: var(--yellow); width: 30px; text-align: center; }
+.tyres { display: grid; grid-template-columns: 12px 12px; gap: 3px 8px; }
+.tyres i { width: 12px; height: 18px; border-radius: 3px; background: var(--green); }
+.tyreinfo { font-size: 12px; color: var(--dim); text-align: center; }
+.tyreinfo b { color: var(--ink); }
+.cmp { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 3px solid; vertical-align: -1px; margin-right: 4px; }
+.status { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--yellow); min-height: 14px; }
+/* comandos */
+.ctrl { position: absolute; touch-action: none; }
+.steer { left: calc(14px + env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 12px; }
+.steer button { width: 84px; height: 84px; border-radius: 18px; border: 2px solid rgba(255,255,255,.25); background: rgba(10,12,18,.55); font-size: 34px; color: #fff; }
+.steer button.on { background: rgba(255,255,255,.3); }
+.wheel { left: calc(10px + env(safe-area-inset-left, 0px)); bottom: calc(10px + env(safe-area-inset-bottom, 0px)); width: 150px; height: 150px; }
+.wheel svg { width: 100%; height: 100%; transition: transform .05s linear; filter: drop-shadow(0 4px 10px rgba(0,0,0,.5)); }
+.pedals { right: calc(14px + env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 12px; align-items: flex-end; }
+.pedal { width: 82px; border-radius: 14px; border: 2px solid rgba(255,255,255,.25); background: rgba(10,12,18,.55); color: #fff; font-family: var(--num); font-weight: 800; font-size: 14px; letter-spacing: 1px; display: grid; place-items: center; position: relative; overflow: hidden; }
+.pedal.brake { height: 100px; } .pedal.gas { height: 132px; width: 92px; }
+.pedal .fill { position: absolute; inset: auto 0 0 0; height: 0; }
+.pedal.brake .fill { background: rgba(225,6,0,.55); } .pedal.gas .fill { background: rgba(48,209,88,.55); }
+.pedal span { position: relative; }
+.topbtns { right: calc(190px + env(safe-area-inset-right, 0px)); z-index: 3; top: calc(10px + env(safe-area-inset-top, 0px)); display: flex; gap: 8px; }
+.topbtns button { width: 46px; height: 46px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(10,12,18,.7); font-size: 20px; }
+.sheet { position: absolute; right: calc(10px + env(safe-area-inset-right, 0px)); top: calc(64px + env(safe-area-inset-top, 0px)); width: min(340px, 60vw); max-height: calc(100% - 80px); overflow-y: auto; background: rgba(13,16,22,.97); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 8px; z-index: 5; animation: rin2 .2s ease; }
+@keyframes rin2 { from { opacity: 0; transform: translateY(-8px) } }
+.sheet h4 { margin: 0; font-family: var(--num); letter-spacing: 1px; text-transform: uppercase; font-size: 14px; color: var(--dim); display: flex; justify-content: space-between; align-items: center; }
+.sheet .x { border: 1px solid var(--line); background: var(--panel-2); border-radius: 8px; width: 34px; height: 34px; font-size: 16px; }
+.overlay { position: absolute; inset: 0; background: rgba(5,6,10,.78); display: grid; place-items: center; z-index: 8; padding: 20px; }
+.overlay .box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 10px; width: min(380px, 100%); text-align: center; }
+.overlay h3 { margin: 0; font-family: var(--num); font-size: 24px; letter-spacing: 1px; text-transform: uppercase; }
+.flash { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(225,6,0,.45)); opacity: 0; transition: opacity .3s; }
+.flash.on { opacity: 1; transition: none; }
+.bigmsg { left: 50%; top: 40%; transform: translate(-50%, -50%); font-size: clamp(34px, 7vw, 64px); font-weight: 800; font-style: italic; letter-spacing: 2px; text-shadow: 0 4px 20px rgba(0,0,0,.7); animation: big 1.6s ease forwards; white-space: nowrap; }
+@keyframes big { 0% { opacity: 0; transform: translate(-50%, -50%) scale(1.6) } 15% { opacity: 1; transform: translate(-50%, -50%) scale(1) } 80% { opacity: 1 } 100% { opacity: 0 } }
+/* em primeira pessoa o painel sobe para não tapar o volante */
+#race.cockpit .dash { bottom: auto; top: calc(84px + env(safe-area-inset-top, 0px)); transform: translateX(-50%) scale(.62); transform-origin: top center; }
+#race.cockpit .lights { top: 46%; }
+#race.cockpit .radio-msg { top: calc(160px + env(safe-area-inset-top, 0px)); }
+@media (max-height: 420px) {
+  .steer button { width: 70px; height: 70px; } .pedal.gas { height: 110px; width: 80px; } .pedal.brake { height: 84px; width: 72px; }
+  .wheel { width: 128px; height: 128px; } .mini canvas { width: 140px; height: 96px; } .mini { width: 140px; } .topbtns { right: calc(160px + env(safe-area-inset-right, 0px)); }
+  .tower { font-size: 12px; min-width: 132px; } .speed { font-size: 32px; } .gear { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+</style>
+</head>
+<body class="carbon">
+<div id="app"></div>
+<div id="race" hidden>
+  <canvas id="cv"></canvas>
+  <canvas id="cv3"></canvas>
+  <div class="flash" id="flash"></div>
+  <div class="hud tower" id="tower"></div>
+  <div class="hud timing" id="timing"><div class="cur" id="tCur">0.000</div><div class="sub"><span id="tLast">Última —</span><span id="tBest">Melhor —</span><span class="delta" id="tDelta"></span></div></div>
+  <div class="hud mini"><canvas id="mini" width="340" height="240"></canvas><div class="lapbox"><div><span>POS </span><b id="hPos">1</b><span id="hPosN">/20</span></div><div><span>VOLTA </span><b id="hLap">1</b><span id="hLapN">/5</span></div></div></div>
+  <div class="hud lights" id="lights" hidden><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hud radio-msg" id="radioMsg" hidden></div>
+  <div class="hud dash">
+    <div class="leds" id="leds"></div>
+    <div class="dashrow">
+      <div class="speed"><span id="hSpd">0</span><small id="hUnit">km/h</small></div>
+      <div class="gear" id="hGear">N</div>
+      <div><div class="tyres" id="hTyres"><i></i><i></i><i></i><i></i></div></div>
+      <div class="tyreinfo"><div id="hCmp"></div><div id="hWear"></div></div>
+    </div>
+    <div class="status" id="hStatus"></div>
+  </div>
+  <div class="ctrl steer" id="steerArrows"><button id="bLeft" aria-label="Virar à esquerda">◀</button><button id="bRight" aria-label="Virar à direita">▶</button></div>
+  <div class="ctrl wheel" id="steerWheel" hidden>
+    <svg viewBox="-60 -60 120 120" id="wheelSvg"><circle r="52" fill="none" stroke="#1c1f26" stroke-width="12"/><circle r="52" fill="none" stroke="#2c313b" stroke-width="3"/>
+      <rect x="-44" y="-9" width="88" height="18" rx="6" fill="#20242c"/><rect x="-16" y="-12" width="32" height="30" rx="8" fill="#14171d"/>
+      <rect x="-3" y="-60" width="6" height="12" fill="#e10600"/><circle cx="-26" cy="0" r="4" fill="#3a8dff"/><circle cx="26" cy="0" r="4" fill="#ffd60a"/>
+      <rect x="-10" y="-6" width="20" height="10" rx="2" fill="#0a0c10" stroke="#30d158" stroke-width="1"/></svg>
+  </div>
+  <div class="ctrl pedals"><div class="pedal brake" id="bBrake"><div class="fill" id="fBrake"></div><span>TRAVÃO</span></div><div class="pedal gas" id="bGas"><div class="fill" id="fGas"></div><span>ACELERAR</span></div></div>
+  <div class="hud topbtns" style="pointer-events:auto"><button id="bCam" aria-label="Mudar câmara">📷</button><button id="bRadio" aria-label="Rádio">📻</button><button id="bPause" aria-label="Pausa">⏸</button></div>
+  <div class="sheet" id="radioSheet" hidden></div>
+  <div class="overlay" id="raceOverlay" hidden></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE || document.write('<script src="js/vendor/three.min.js"><\/script>');</script>
+<script src="js/data.js"></script>
+<script src="js/track.js"></script>
+<script src="js/physics.js"></script>
+<script src="js/race.js"></script>
+<script src="js/render.js"></script>
+<script src="js/render3d.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>
