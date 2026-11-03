@@ -4,6 +4,7 @@ import { AppProvider, useApp } from './AppState.tsx';
 import { Icon, Logo } from './components/common.tsx';
 import { href, useRoute, type Route } from './router.ts';
 import { CourseScreen } from './screens/CourseScreen.tsx';
+import { GamesScreen } from './screens/GamesScreen.tsx';
 import { HomeScreen } from './screens/HomeScreen.tsx';
 import { LessonScreen } from './screens/LessonScreen.tsx';
 import { ProfileScreen, SettingsScreen, StatsScreen } from './screens/ProfileScreens.tsx';
@@ -14,7 +15,8 @@ const NAV = [
   { key: 'home', label: 'Início', icon: 'home', to: href.home() },
   { key: 'course', label: 'Curso', icon: 'map', to: href.course() },
   { key: 'review', label: 'Revisão', icon: 'review', to: href.review() },
-  { key: 'stats', label: 'Estatísticas', icon: 'chart', to: href.stats() },
+  { key: 'games', label: 'Jogos', icon: 'game', to: href.games() },
+  { key: 'stats', label: 'Progresso', icon: 'chart', to: href.stats() },
   { key: 'profile', label: 'Perfil', icon: 'user', to: href.profile() },
 ] as const;
 
@@ -34,6 +36,7 @@ function Screen({ route }: { route: Route }) {
     case 'profile': return <ProfileScreen />;
     case 'stats': return <StatsScreen />;
     case 'settings': return <SettingsScreen />;
+    case 'games': return <GamesScreen />;
     case 'notFound':
       return <div className="page"><h1>Página não encontrada</h1><a href={href.home()}>Voltar ao início</a></div>;
   }

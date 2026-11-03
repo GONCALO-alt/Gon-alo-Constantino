@@ -59,6 +59,32 @@ describe('caminho de lições no ecrã inicial', () => {
   });
 });
 
+describe('mini-jogos', () => {
+  it('a lista mostra 4 jogos; a corrida tem 4 opções e pode-se sair', async () => {
+    const user = userEvent.setup();
+    await go('#/jogos');
+    render(<App />);
+    const race = await screen.findByRole('button', { name: /Corrida de palavras/ });
+    expect(screen.getByRole('button', { name: /Memória/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /De of het/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Ouve e toca/ })).toBeTruthy();
+    await user.click(race);
+    expect(await screen.findByLabelText(/segundos/)).toBeTruthy();
+    expect(document.querySelectorAll('.game-option')).toHaveLength(4);
+    await user.click(screen.getByRole('button', { name: 'Sair do jogo' }));
+    expect(await screen.findByRole('heading', { name: 'Mini-jogos' })).toBeTruthy();
+  });
+
+  it('memória: virar duas cartas iguais encontra um par', async () => {
+    const user = userEvent.setup();
+    await go('#/jogos');
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /Memória/ }));
+    const cards = await screen.findAllByRole('button', { name: 'Carta virada para baixo' });
+    expect(cards).toHaveLength(12);
+  });
+});
+
 describe('navegação', () => {
   it('ecrã inicial e mapa com as 7 secções', async () => {
     await go('#/');

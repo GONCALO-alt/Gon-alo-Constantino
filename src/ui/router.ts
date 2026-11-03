@@ -13,6 +13,7 @@ export type Route =
   | { name: 'profile' }
   | { name: 'stats' }
   | { name: 'settings' }
+  | { name: 'games' }
   | { name: 'notFound'; path: string };
 
 export function parseRoute(hash: string): Route {
@@ -31,6 +32,7 @@ export function parseRoute(hash: string): Route {
     case 'perfil': return { name: 'profile' };
     case 'estatisticas': return { name: 'stats' };
     case 'definicoes': return { name: 'settings' };
+    case 'jogos': return { name: 'games' };
     default: return { name: 'notFound', path };
   }
 }
@@ -44,6 +46,7 @@ export const href = {
   profile: () => '#/perfil',
   stats: () => '#/estatisticas',
   settings: () => '#/definicoes',
+  games: () => '#/jogos',
 };
 
 export function navigate(to: string): void {
