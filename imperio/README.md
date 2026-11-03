@@ -1,6 +1,6 @@
 # Império Mundial
 
-Jogo de estratégia arcade, na vertical, para telemóvel. Escolhes qualquer país do mundo e fazes crescer o teu império.
+Jogo de estratégia arcade, na vertical, para telemóvel. Escolhes qualquer país do mundo e fazes crescer o teu império. Cada país aparece no mapa pintado com a sua bandeira; as terras conquistadas passam a ter a bandeira de quem as conquistou.
 
 Abre `index.html` no browser (não precisa de servidor nem de instalação).
 

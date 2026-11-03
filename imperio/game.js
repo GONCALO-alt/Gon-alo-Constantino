@@ -131,6 +131,26 @@ const PSEG = PH.map((list) => {
   void set;
   return new Float32Array(out);
 });
+// cada parte ligada de um país (continente, ilha, Alasca...) recebe a sua própria bandeira esticada
+const REG = new Int32Array(N).fill(-1), REGBOX = [];
+{
+  const q = new Int32Array(N);
+  for (let s0 = 0; s0 < N; s0++) {
+    if (REG[s0] >= 0) continue;
+    const id = REGBOX.length, cc = M.provinces[CP[s0]].c;
+    let h = 0, t = 0, c0 = CC[s0], c1 = CC[s0], r0 = CR[s0], r1 = CR[s0];
+    q[t++] = s0; REG[s0] = id;
+    while (h < t) {
+      const i = q[h++];
+      c0 = Math.min(c0, CC[i]); c1 = Math.max(c1, CC[i]); r0 = Math.min(r0, CR[i]); r1 = Math.max(r1, CR[i]);
+      for (const [dc, dr] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const n = cellAt(CC[i] + dc, CR[i] + dr);
+        if (n >= 0 && REG[n] < 0 && M.provinces[CP[n]].c === cc) { REG[n] = id; q[t++] = n; }
+      }
+    }
+    REGBOX.push([c0, r0, c1 - c0 + 1, r1 - r0 + 1]);
+  }
+}
 const COAST = PSEG.map((sg) => { for (let k = 4; k < sg.length; k += 5) if (sg[k] < 0) return true; return false; });
 // cores: países vizinhos com cores diferentes
 const COLORS = (() => {
@@ -308,27 +328,65 @@ function hexPath(c, x, y, r) {
 const colorOfCell = (i) => C[P[CP[i]].owner].color;
 const rgbOf = (hex, f) => { const m = shade(hex, f).match(/\d+/g).map(Number); return m; };
 let PAL = null; // por país: base, brilho, grelha, província
+const FLAGPX = new Map();
+function flagPixels(ci) {
+  if (FLAGPX.has(ci)) return FLAGPX.get(ci);
+  let out = null;
+  try {
+    const W = 120, H = 100, cv2 = document.createElement('canvas'); cv2.width = W; cv2.height = H;
+    const g = cv2.getContext('2d', { willReadFrequently: true });
+    g.font = '84px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", system-ui'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(flagOf(C[ci].a2), W / 2, H / 2 + 4);
+    const d = g.getImageData(0, 0, W, H).data;
+    let x0 = W, x1 = -1, y0 = H, y1 = -1, colorful = 0, solid = 0;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const o = (y * W + x) * 4; if (d[o + 3] < 200) continue;
+      solid++; x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y);
+      const mx = Math.max(d[o], d[o + 1], d[o + 2]), mn = Math.min(d[o], d[o + 1], d[o + 2]);
+      if (mx - mn > 60 || mx > 235) colorful++;
+    }
+    // aparar a sombra/arredondamento da borda do emoji
+    if (solid > 800 && colorful > solid * 0.3) {
+      const ix0 = x0 + 3, iy0 = y0 + 3, w = x1 - x0 - 5, h = y1 - y0 - 5;
+      const px = new Uint8ClampedArray(w * h * 3);
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const o = ((iy0 + y) * W + ix0 + x) * 4, k = (y * w + x) * 3; px[k] = d[o]; px[k + 1] = d[o + 1]; px[k + 2] = d[o + 2]; }
+      out = { px, w, h };
+    }
+  } catch (e) { out = null; }
+  FLAGPX.set(ci, out);
+  return out;
+}
 function makePal() { PAL = C.map((c) => [rgbOf(c.color, 0), rgbOf(c.color, 0.4), rgbOf(c.color, -0.12), rgbOf(c.color, -0.42)]); }
 const BORDER = [10, 14, 36], COASTC = [150, 220, 255], SAND = [246, 222, 160], SNOW = [235, 244, 255];
 function paintCells(c0, r0, c1, r1) {
   c0 = Math.max(0, c0); r0 = Math.max(0, r0); c1 = Math.min(COLS - 1, c1); r1 = Math.min(ROWS - 1, r1);
   const w = (c1 - c0 + 1) * PXC, h = (r1 - r0 + 1) * PXC;
   const img = cctx.createImageData(w, h), d = img.data;
-  const put = (x, y, col) => { const o = (y * w + x) * 4; d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = 255; };
+  const col = [0, 0, 0];
+  const put = (x, y, rgb, f) => { const o = (y * w + x) * 4; d[o] = rgb[0] * f; d[o + 1] = rgb[1] * f; d[o + 2] = rgb[2] * f; d[o + 3] = 255; };
   for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
     const i = GRID[r * COLS + c]; if (i < 0) continue;
-    const p = CP[i], ow = P[p].owner, pal = PAL[ow];
-    const side = (n) => (n < 0 ? COASTC : P[CP[n]].owner !== ow ? BORDER : CP[n] !== p ? pal[3] : null);
+    const p = CP[i], ow = P[p].owner, fl = flagPixels(ow), pal = PAL[ow];
+    const rb = REGBOX[REG[i]];
+    // 0 = igual, 1 = outra província, 2 = outro país, 3 = mar
+    const side = (n) => (n < 0 ? 3 : P[CP[n]].owner !== ow ? 2 : CP[n] !== p ? 1 : 0);
     const e = side(cellAt(c + 1, r)), sth = side(cellAt(c, r + 1)), wst = side(cellAt(c - 1, r)), nth = side(cellAt(c, r - 1));
     const X = (c - c0) * PXC, Y = (r - r0) * PXC;
     for (let py = 0; py < 3; py++) for (let px = 0; px < 3; px++) {
-      let col = px === 0 && py === 0 ? pal[1] : pal[0];
-      if (px === 1 && py === 1) { const tt = TC[i]; if (tt === 2) col = pal[3]; else if (tt === 1) col = pal[2]; else if (tt === 3) col = SAND; else if (tt === 4) col = SNOW; }
-      if (px === 2) col = e || pal[2];
-      if (py === 2) col = sth || (px === 2 ? e || pal[2] : pal[2]);
-      if (px === 0 && wst && wst !== pal[3]) col = wst;
-      if (py === 0 && nth && nth !== pal[3]) col = nth;
-      put(X + px, Y + py, col);
+      if (fl) {
+        const u = (c - rb[0] + (px + 0.5) / 3) / rb[2], v = (r - rb[1] + (py + 0.5) / 3) / rb[3];
+        const k = (Math.min(fl.h - 1, (v * fl.h) | 0) * fl.w + Math.min(fl.w - 1, (u * fl.w) | 0)) * 3;
+        col[0] = fl.px[k]; col[1] = fl.px[k + 1]; col[2] = fl.px[k + 2];
+      } else { col[0] = pal[0][0]; col[1] = pal[0][1]; col[2] = pal[0][2]; }
+      // linha da grelha (direita e em baixo), fronteiras e costa
+      let edge = 0;
+      if (px === 2) edge = e || -1;
+      if (py === 2 && (sth || edge === 0 || edge === -1)) edge = sth || -1;
+      if (px === 0 && wst >= 2) edge = wst;
+      if (py === 0 && nth >= 2) edge = nth;
+      if (edge === 3) put(X + px, Y + py, COASTC, 1);
+      else if (edge === 2) put(X + px, Y + py, BORDER, 1);
+      else put(X + px, Y + py, col, edge === 1 ? 0.5 : edge === -1 ? 0.78 : px === 0 && py === 0 ? 1.12 : 1);
     }
   }
   cctx.putImageData(img, c0 * PXC, r0 * PXC);
@@ -551,42 +609,21 @@ function pill(x, y, txt, bg, fg, border) {
 function drawLabels(now, pulse) {
   const me = G.player, s = cam.s;
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  // nomes dos países
-  if (s >= 2.2) {
-    const boxes = [];
-    for (const c of [...C].sort((a, b) => (b.i === me) - (a.i === me) || (b._np || 0) - (a._np || 0))) {
-      if (!c.alive) continue;
-      const np = c._np || 0;
-      if (s < 3.5 && np < 6) continue;
-      if (s < 6 && np < 2 && c.i !== me) continue;
-      const [lx, ly] = LABEL[c.cap];
-      const x = sx(lx), y = sy(ly) - (s >= 5 ? clamp(s * 0.9, 4, 12) * 2.6 + 10 : Math.max(10, R * s * 0.9));
-      if (x < -60 || x > VW + 60 || y < -20 || y > VH + 20) continue;
-      const fs = clamp(s * 1.3, 9, 15);
-      ctx.font = `${fs}px Bungee, Impact, sans-serif`;
-      const tw = ctx.measureText(c.n.toUpperCase()).width / 2 + 3, th = fs * 0.7;
-      if (boxes.some((b) => Math.abs(b[0] - x) < b[2] + tw && Math.abs(b[1] - y) < th * 2)) continue;
-      boxes.push([x, y, tw]);
-      ctx.lineWidth = 3.5; ctx.strokeStyle = 'rgba(10,14,36,.85)';
-      ctx.strokeText(c.n.toUpperCase(), x, y); ctx.fillStyle = c.i === me ? '#ffd75e' : '#f4f1ff'; ctx.fillText(c.n.toUpperCase(), x, y);
-    }
-  }
   // capitais
   for (const c of C) {
     if (!c.alive) continue;
-    if (s < 2.6 && c.i !== me && !C[me].wars.has(c.i)) continue;
+    if (c.i !== me && !C[me].wars.has(c.i) && c.cap !== sel) continue;
     const [lx, ly] = LABEL[c.cap];
     const x = sx(lx), y = sy(ly);
     if (x < -20 || x > VW + 20 || y < -20 || y > VH + 20) continue;
     const z = clamp(s * 0.9, 4, 12);
     const bob = Math.sin(now / 400 + c.i) * 1.5;
-    if (s >= 5) { const im = flagImg(c.a2); ctx.drawImage(im, x - z * 1.1, y - z * 1.1 - z * 1.4 + bob, z * 2.2, z * 2.2); }
-    star(x, y + (s >= 5 ? 0 : bob * 0.3), z * 0.55, c.i === me ? '#ffd75e' : '#ffffff');
+    star(x, y + bob * 0.3, z * 0.55, c.i === me ? '#ffd75e' : '#ffffff');
   }
   // guarnições
   if (s >= 6) {
     for (const p of P) {
-      const show = p.owner === me || C[me].wars.has(p.owner) || s >= 11 || p.j === sel;
+      const show = p.owner === me || C[me].wars.has(p.owner) || p.j === sel;
       if (!show) continue;
       const [lx, ly] = LABEL[p.j];
       const x = sx(lx), y = sy(ly) + (isCap(p) ? R * s * 0.55 : 0);
@@ -594,7 +631,7 @@ function drawLabels(now, pulse) {
       const enemy = C[me].wars.has(p.owner);
       pill(x, y, fmt(p.gar), p.owner === me ? '#3d2c00' : enemy ? '#4a0f1e' : '#151c3d', p.owner === me ? '#ffe7a3' : enemy ? '#ffc2cc' : '#dfe3ff', p.owner === me ? '#ffc93c' : enemy ? '#ff3d5a' : '#2f3c78');
       if (p.occ > 0 && p.owner === me) { ctx.font = '10px sans-serif'; ctx.fillText('⚑', x + 16, y - 9); }
-      if (s >= 8) {
+      if (s >= 8 && (p.owner === me || p.j === sel)) {
         const icons = [];
         if (p.res) icons.push(RES[p.res].i);
         for (const b of BUILD) if (p.b & b.k) icons.push(b.i);
