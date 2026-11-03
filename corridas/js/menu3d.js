@@ -3,6 +3,7 @@
 
 const MENU3D = (() => {
   let rd = null, scene, cam, car = null, raf = 0, cv = null, t0 = 0, cat = null, key = '', theme = 'studio';
+  const drag = { on: false, x: 0, yaw: -0.33, pitch: 0, last: -1e9 };
   function garageDecor(env) {
     // oficina: chão de cimento, parede com painel de ferramentas, bancada e pneus empilhados
     const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
@@ -69,7 +70,9 @@ const MENU3D = (() => {
   function frame(now) {
     if (!rd) return;
     const t = (now - t0) / 1000, L = car ? car.L : 4;
-    if (car) car.group.rotation.y = cat === 'helmet' ? -0.33 + Math.sin(t * 0.5) * 1.4 : t * 0.35;
+    if (cat === 'helmet' && car) { // roda sozinho; com o dedo, gira para onde quiseres
+      if (now - drag.last > 4000) drag.yaw += 0.006; car.group.rotation.y = drag.yaw; car.group.rotation.z = drag.pitch;
+    } else if (car) car.group.rotation.y = t * 0.35;
     if (cat === 'helmet') { cam.position.set(2.6, 1.25, 0.9); cam.lookAt(0, 0.88, 0); rd.render(scene, cam); raf = requestAnimationFrame(frame); return; }
     if (theme === 'garage') { const dd = cat === 'kart' ? 4.2 : L * 1.25; cam.position.set(dd * 0.75, cat === 'kart' ? 1.7 : 2.3, dd * 0.85); cam.lookAt(0, 0.3, -0.3); if (car) car.group.rotation.y = 0.5 + Math.sin(t * 0.25) * 0.5; rd.render(scene, cam); raf = requestAnimationFrame(frame); return; }
     const dist = cat === "kart" ? 4.6 : Math.max(7.5, L * 1.75), wide = cam.aspect < 1.2 ? 1.5 : 1;
@@ -89,6 +92,12 @@ const MENU3D = (() => {
         rd.toneMapping = THREE.ACESFilmicToneMapping; rd.toneMappingExposure = 1.1;
         rd.setPixelRatio(Math.min(1.75, devicePixelRatio || 1)); rd.shadowMap.enabled = true; rd.shadowMap.type = THREE.PCFSoftShadowMap;
         studio(); key = ''; car = null;
+        if (theme === 'helmet') {
+          canvas.style.touchAction = 'none'; canvas.style.cursor = 'grab';
+          canvas.addEventListener('pointerdown', (e) => { drag.on = true; drag.x = e.clientX; drag.y = e.clientY; drag.last = performance.now(); try { canvas.setPointerCapture(e.pointerId); } catch (er) { /* */ } });
+          canvas.addEventListener('pointermove', (e) => { if (!drag.on) return; drag.yaw += (e.clientX - drag.x) * 0.012; drag.pitch = clamp(drag.pitch + (e.clientY - drag.y) * 0.006, -0.6, 0.6); drag.x = e.clientX; drag.y = e.clientY; drag.last = performance.now(); });
+          const up = () => { drag.on = false; drag.last = performance.now(); }; canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up);
+        }
       }
       setCar(d); size();
       cancelAnimationFrame(raf); t0 = performance.now(); raf = requestAnimationFrame(frame);

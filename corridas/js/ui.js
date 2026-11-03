@@ -137,7 +137,7 @@ const driverById = (id) => (id === 'me' ? meDriver() : aiDriver(S.drivers.find((
 // ---------- navegação ----------
 let screen = null;
 function show(fn, ...args) { MENU3D.stop(); screen = [fn, args]; document.body.classList.add('carbon'); $('#race').hidden = true; app.hidden = false; app.innerHTML = fn(...args); afterRender(); }
-function rerender() { if (screen) show(screen[0], ...screen[1]); }
+function rerender() { if (!screen) return; const sc = app.querySelector('.screen'), top = sc ? sc.scrollTop : 0; show(screen[0], ...screen[1]); const n = app.querySelector('.screen'); if (n) n.scrollTop = top; }
 let afterHooks = [];
 function after(f) { afterHooks.push(f); }
 function afterRender() { const h = afterHooks; afterHooks = []; h.forEach((f) => f()); }
@@ -231,9 +231,11 @@ function helmetEditor(p, free) {
   const owned = (k) => free || S.owned.includes(k);
   const price = (k, cost) => (owned(k) || !cost ? '' : ` · ${eur(cost)}`);
   const sw = (k) => `<div class="swatches">${HELMET_COLORS.map((c) => `<button style="background:${c}" class="${h[k] === c ? 'on' : ''}" data-a="hcol" data-v="${k}|${c}" aria-label="cor"></button>`).join('')}</div>`;
+  const zone = (k, l) => `<div class="zone"><span>${l}</span><div class="swatches small"><button class="none ${h[k] ? '' : 'on'}" data-a="hcol" data-v="${k}|-" aria-label="igual">—</button>${HELMET_COLORS.map((c) => `<button style="background:${c}" class="${h[k] === c ? 'on' : ''}" data-a="hcol" data-v="${k}|${c}" aria-label="cor"></button>`).join('')}</div></div>`;
   const tog = (k, l, def) => `<button class="${(h[k] ?? def) ? 'on' : ''}" data-a="htog" data-v="${k}|${def ? 1 : 0}">${l}</button>`;
   return `<div class="card helmetbox"><canvas id="helm3d" class="helm3d"></canvas><canvas id="helmCv" width="320" height="320" hidden></canvas><div class="muted">${flagOf(p.nat)} #${p.num} · ${esc(p.last || '')}</div></div>
   <div class="card"><h2>Cor principal</h2>${sw('c1')}<h2>Cor do desenho</h2>${sw('c2')}<h2>Cor dos detalhes</h2>${sw('c3')}
+  <h2>Zonas do capacete</h2><p class="muted" style="margin:0">Pinta cada parte com outra cor (— = sem cor própria). Arrasta o capacete para o rodar.</p>${zone('cTop', 'Topo')}${zone('cChin', 'Queixeira')}${zone('cBack', 'Parte de trás')}${zone('cStrip', 'Faixa da viseira')}
   <h2>Desenho</h2><div class="seg">${HELMET_PATTERNS.map((x) => `<button class="${h.pattern === x.k ? 'on' : ''}" data-a="hpat" data-v="${x.k}">${x.n}${price(x.k, x.cost)}</button>`).join('')}</div>
   <h2>Viseira</h2><div class="seg">${HELMET_VISORS.map((x) => `<button class="${h.visor === x.k ? 'on' : ''}" data-a="hopt" data-v="visor|${x.k}">${x.n}${price('v:' + x.k, x.cost)}</button>`).join('')}</div>
   <h2>Acabamento</h2><div class="seg">${HELMET_FINISH.map((x) => `<button class="${h.finish === x.k ? 'on' : ''}" data-a="hopt" data-v="finish|${x.k}">${x.n}${price('f:' + x.k, x.cost)}</button>`).join('')}</div>
@@ -275,15 +277,17 @@ function champTable(limit) {
   const meIdx = rows.findIndex((r) => r[0] === 'me');
   return { rows: limit ? rows.slice(0, limit) : rows, meIdx };
 }
+const DAY_NOTES = ['Treino físico no ginásio.', 'Sessão no simulador a estudar a próxima pista.', 'Dia de descanso.', 'Reunião com a equipa a rever os dados.', 'Corrida de bicicleta para ganhar resistência.', 'Entrevista para uma revista de automobilismo.', 'Visita à fábrica para ver as peças novas.', 'Treino de reação com luzes.'];
 function agendaCard() {
   const e = nextEvent();
   if (!e) return `<div class="card"><h2>Época terminada</h2><button class="btn primary" data-a="seasonEnd">Ver o final da época</button></div>`;
-  const [ic, nm] = EVN[e.t], left = daysBetween(S.today, e.date), rd = S.calendar[Math.max(0, e.r)];
+  const [ic, nm] = EVN[e.t], left = Math.max(0, daysBetween(S.today, e.date)), rd = S.calendar[Math.max(0, e.r)];
   const sub = e.t === 'corrida' ? `${flagOf(rd.nat)} ${rd.name} · ronda ${e.r + 1}/${S.calendar.length}` : e.t === 'oficina' ? `Prepara o ${S.cat === 'kart' ? 'kart' : 'carro'} para ${flagOf(rd.nat)} ${rd.name}` : `Começa a época ${S.year} da ${catById(S.cat).n}`;
-  const btn = e.t === 'corrida' ? '<button class="btn go" data-a="weekend">Ir para o fim de semana de corrida</button>' : e.t === 'oficina' ? '<button class="btn primary" data-a="oficina">Ir para a oficina</button>' : '<button class="btn primary" data-a="launch">Ver a apresentação</button>';
-  return `<div class="card agenda"><div class="today">📅 Hoje: <b>${fmtDay(S.today)} ${S.year}</b></div>
+  const go = e.t === 'corrida' ? '<button class="btn go" data-a="weekend">É hoje! Ir para o fim de semana de corrida</button>' : e.t === 'oficina' ? '<button class="btn go" data-a="oficina">É hoje! Ir para a oficina</button>' : '<button class="btn go" data-a="launch">É hoje! Ver a apresentação</button>';
+  const wait = `<div class="dayrow"><button class="btn primary" data-a="nextDay">Avançar 1 dia ▶</button><button class="btn" data-a="skipDays">Saltar ${left} dia${left > 1 ? 's' : ''} ⏭</button></div>`;
+  return `<div class="card agenda"><div class="today">📅 Hoje: <b>${fmtDay(S.today)} ${S.year}</b>${S.dayNote ? ` · <span>${esc(S.dayNote)}</span>` : ''}</div>
   <div class="evbig"><span class="evic">${ic}</span><div class="grow"><small>Próximo · ${fmtDay(e.date)} ${left > 0 ? `· daqui a ${left} dia${left > 1 ? 's' : ''}` : '· hoje'}</small><h3>${nm}</h3><div class="muted">${sub}</div></div></div>
-  ${btn}<button class="btn small" data-a="calendar">Ver o calendário</button></div>`;
+  ${left > 0 ? wait : go}<button class="btn small" data-a="calendar">Ver o calendário</button></div>`;
 }
 function scrHub() {
   ensureEvents();
@@ -320,7 +324,7 @@ function scrCalendar() {
     for (let d = 1; d <= nd; d++) h += cell(`${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`);
     return h + '</div></div>';
   };
-  return `<div class="screen"><div class="topbar"><h1>Calendário <em>· ${catById(S.cat).n} ${S.year}</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('calendar')}
+  return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Calendário <em>· ${catById(S.cat).n} ${S.year}</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('calendar')}
   <div class="legend muted">🏁 corrida · 🔧 dia de oficina · 🚀 apresentação · <span class="lg-today">hoje</span></div>
   <div class="months">${months.map(monthHtml).join('')}</div>
   <div class="card"><h2>Rondas</h2>${S.calendar.map((c, k) => `<div class="row ${k === S.round ? 'me' : ''}"><b style="min-width:26px">${k + 1}</b><span style="min-width:62px" class="muted">${fmtDay(c.date)}</span><span class="grow">${flagOf(c.nat)} ${esc(c.name)}</span><b>${c.res == null ? '' : c.res === 'DNF' ? 'DNF' : 'P' + c.res}</b></div>`).join('')}</div></div>`;
@@ -328,7 +332,7 @@ function scrCalendar() {
 function scrLaunch() {
   const C = catById(S.cat), t = teamOf(S.team), ch = champTable();
   after(() => { if (!MENU3D.start($('#showCv'), showroomCar(S.cat))) $('#showCv').hidden = true; });
-  return `<div class="home"><canvas id="showCv"></canvas><div class="homeL"><div class="hlogo"><p>Apresentação · ${S.year}</p><h1>${t ? esc(t[0]) : 'Época de <b>karting</b>'}</h1></div>
+  return `<div class="home"><canvas id="showCv"></canvas><div class="homeL"><button class="back" data-a="hub" style="align-self:flex-start">‹ Paddock</button><div class="hlogo"><p>Apresentação · ${S.year}</p><h1>${t ? esc(t[0]) : 'Época de <b>karting</b>'}</h1></div>
   <div class="card"><h2>${C.n}</h2><div class="kv"><div><small>Corridas</small><b>${S.calendar.length}</b></div><div><small>Primeira</small><b>${fmtDay(S.calendar[0].date)}</b></div><div><small>Rivais</small><b>${S.drivers.length}</b></div></div>
   <p class="muted">Primeira corrida: ${flagOf(S.calendar[0].nat)} ${esc(S.calendar[0].name)}. ${S.cat === 'kart' ? 'Antes de cada corrida há um dia de oficina para melhorares o kart.' : 'Antes de cada corrida há um dia de oficina na fábrica para desenvolver o carro.'} ${ch.rows.length ? '' : ''}</p></div>
   <button class="btn go" data-a="launchDone">Começar a época</button></div></div>`;
@@ -355,13 +359,13 @@ function scrGarage() {
   const show3d = '<div class="card garage3d"><canvas id="garCv"></canvas></div>';
   if (S.cat === 'kart') {
     for (const pt of KART_PARTS) S.kart[pt.k] = S.kart[pt.k] || 0;
-    return `<div class="screen"><div class="topbar"><h1>Garagem <em>· kart</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}${oficinaBanner()}
+    return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Garagem <em>· kart</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}${oficinaBanner()}
     <div class="grid2">${show3d}<div class="card"><h2>Peças do kart</h2>${KART_PARTS.map((pt) => { const lv = S.kart[pt.k], cost = pt.cost[lv], can = open && lv < 5 && S.money >= cost; return `<div class="part"><div class="ico">${pt.i}</div><div><b>${pt.n}</b><div class="muted">${pt.d}</div><div class="lv">${[0, 1, 2, 3, 4].map((i) => `<span class="${i < lv ? 'on' : ''}"></span>`).join('')}</div></div>
     <button class="btn small ${can ? 'primary' : ''}" data-a="buyPart" data-v="${pt.k}" ${can ? '' : 'disabled'}>${lv >= 5 ? 'Máx.' : (open ? '' : '🔒 ') + eur(cost)}</button></div>`; }).join('')}</div>
     <div class="card"><h2>O teu kart</h2><div class="kv"><div><small>Potência</small><b>${Math.round((0.95 + 0.028 * S.kart.motor + 0.012 * S.kart.carb) * 100)}%</b></div><div><small>Aderência</small><b>${Math.round((0.978 + 0.009 * (S.kart.chassis + S.kart.pneus) + 0.008 * S.kart.eixo) * 100)}%</b></div><div><small>Travagem</small><b>${Math.round((0.9 + 0.025 * S.kart.travoes) * 100)}%</b></div></div><p class="muted">100% = igual ao kart médio dos rivais. Ganhas dinheiro em cada corrida; acaba nos 3 primeiros do campeonato para receberes propostas da Fórmula 4.</p></div></div></div>`;
   }
   const t = teamOf(S.team), devCost = Math.round(C.salary * 3 * (1 + S.dev * 0.6));
-  return `<div class="screen"><div class="topbar"><h1>Equipa <em>· ${t[0]}</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}${oficinaBanner()}
+  return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Equipa <em>· ${t[0]}</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}${oficinaBanner()}
   <div class="grid2">${show3d}<div class="card"><h2>O teu carro</h2><div class="row"><span class="teamdot" style="background:${t[1]};height:40px;width:8px"></span><div class="grow"><h3>${t[0]}</h3><div class="muted">${C.n} · competitividade ${'★'.repeat(Math.max(1, Math.round((t[3] - 0.982) * 160)))}</div></div></div>
   <div class="kv"><div><small>Salário/corrida</small><b>${eur(C.salary * (0.6 + (t[3] - 0.98) * 15))}</b></div><div><small>Desenvolvimento</small><b>${S.dev}/5</b></div></div>
   <button class="btn ${open && S.dev < 5 && S.money >= devCost ? 'primary' : ''}" data-a="dev" ${!open || S.dev >= 5 || S.money < devCost ? 'disabled' : ''}>${open ? '' : '🔒 '}${S.dev >= 5 ? 'Desenvolvimento no máximo' : `Pagar desenvolvimento do carro · ${eur(devCost)}`}</button>
@@ -369,11 +373,11 @@ function scrGarage() {
   <div class="card"><h2>Equipas da categoria</h2>${TEAMS[S.cat].map((x, i) => `<div class="row"><span class="teamdot" style="background:${x[1]}"></span><div class="grow">${x[0]}${i === S.team ? ' <span class="tag red">a tua</span>' : ''}</div><span class="muted">${'★'.repeat(Math.max(1, Math.round((x[3] - 0.982) * 160)))}</span></div>`).join('')}</div></div></div>`;
 }
 function scrHelmet() {
-  return `<div class="screen"><div class="topbar"><h1>Capacete</h1><span class="money">${eur(S.money)}</span></div>${navBar('helmet')}<div class="grid2">${helmetEditor(S.profile, false)}</div></div>`;
+  return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Capacete</h1><span class="money">${eur(S.money)}</span></div>${navBar('helmet')}<div class="grid2">${helmetEditor(S.profile, false)}</div></div>`;
 }
 function scrChamp() {
   const ch = champTable();
-  return `<div class="screen"><div class="topbar"><h1>Campeonato <em>· ${catById(S.cat).n}</em></h1></div>${navBar('champ')}
+  return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Campeonato <em>· ${catById(S.cat).n}</em></h1></div>${navBar('champ')}
   <div class="grid2"><div class="card"><h2>Classificação de pilotos</h2><div class="tbl"><table><tr><th>Pos</th><th>Piloto</th><th>Vit.</th><th>Pts</th></tr>
   ${ch.rows.map(([id, pts], k) => { const d = driverById(id); return `<tr class="${id === 'me' ? 'me' : ''}"><td class="pos">${k + 1}</td><td><span class="teamdot" style="background:${d.c1}"></span>${flagOf(d.nat)} ${esc(d.first[0] + '. ' + d.last)}</td><td>${S.wins[id] || 0}</td><td><b>${pts}</b></td></tr>`; }).join('')}</table></div></div>
   <div class="card"><h2>Calendário</h2><div class="cal">${S.calendar.map((r, k) => `<div class="r ${k === S.round ? 'next' : k < S.round ? 'done' : ''}"><b>${k + 1}</b><span>${flagOf(r.nat)}</span><span>${r.name}</span><span class="muted">${r.res ? 'P' + r.res : k === S.round ? 'próxima' : ''}</span></div>`).join('')}</div>
@@ -381,7 +385,7 @@ function scrChamp() {
 }
 function scrCareer() {
   const st = S.stats;
-  return `<div class="screen"><div class="topbar"><h1>Carreira</h1></div>${navBar('career')}
+  return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Carreira</h1></div>${navBar('career')}
   <div class="grid2"><div class="card"><h2>Estatísticas</h2><div class="kv"><div><small>Corridas</small><b>${st.races}</b></div><div><small>Vitórias</small><b>${st.wins}</b></div><div><small>Pódios</small><b>${st.podiums}</b></div><div><small>Poles</small><b>${st.poles}</b></div><div><small>Títulos</small><b>${st.titles}</b></div></div></div>
   <div class="card"><h2>Percurso</h2>${S.history.length ? S.history.map((h) => `<div class="row"><b>Época ${h.season}</b><span class="grow">${catById(h.cat).n}${h.team ? ' · ' + h.team : ''}</span><span>P${h.pos} · ${h.pts} pts</span></div>`).join('') : '<p class="muted">Ainda estás na primeira época.</p>'}
   <p class="muted">Caminho: Karting → Fórmula 4 → Fórmula 3 → Fórmula 2 → Fórmula 1.</p></div></div></div>`;
@@ -492,7 +496,7 @@ const ACT = {
   hub: () => show(scrHub), garage: () => show(scrGarage), helmet: () => show(scrHelmet), champ: () => show(scrChamp), career: () => show(scrCareer), settings: () => show(scrSettings),
   set: (v) => { const [k, val] = v.split('|'); ST()[k] = isNaN(+val) || ['controls', 'diff', 'cam', 'units', 'gfx'].includes(k) ? val : +val; if (S) save(); readDraft(); rerender(); },
   tog: (k) => { ST()[k] = !ST()[k]; if (S) save(); readDraft(); rerender(); },
-  hcol: (v) => { const [k, c] = v.split('|'); const p = S && screen[0] !== scrNew ? S.profile : draft; p.helmet[k] = c; if (S) save(); rerender(); },
+  hcol: (v) => { const [k, c] = v.split('|'); const p = S && screen[0] !== scrNew ? S.profile : draft; if (c === '-') delete p.helmet[k]; else p.helmet[k] = c; if (S) save(); rerender(); },
   hopt: (v) => {
     const [k, val] = v.split('|'), list = k === 'visor' ? HELMET_VISORS : HELMET_FINISH, it = list.find((x) => x.k === val), id = (k === 'visor' ? 'v:' : 'f:') + val;
     const career = S && screen[0] !== scrNew, p = career ? S.profile : draft;
@@ -509,6 +513,8 @@ const ACT = {
     rerender();
   },
   calendar: () => show(scrCalendar),
+  nextDay: () => { const e = nextEvent(); if (!e || S.today >= e.date) return; S.today = addDays(S.today, 1); S.dayNote = S.today === e.date ? null : DAY_NOTES[Math.floor(Math.random() * DAY_NOTES.length)]; save(); rerender(); },
+  skipDays: () => { const e = nextEvent(); if (!e) return; S.today = e.date; S.dayNote = null; save(); rerender(); },
   launch: () => show(scrLaunch),
   launchDone: () => { S.launchDone = true; S.today = S.events[0].date; save(); show(scrHub); },
   oficina: () => { const e = nextEvent(); if (!e || e.t !== 'oficina') { show(scrGarage); return; } S.today = e.date; S.oficinaOpen = e.r; save(); show(scrGarage); },

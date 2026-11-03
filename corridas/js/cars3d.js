@@ -78,7 +78,7 @@ const CARS3D = (() => {
   }
   // textura do capacete à volta da esfera: x = volta (0 atrás, 0,25 direita, 0,5 frente, 0,75 esquerda), y = de cima para baixo
   function helmTexture(h) {
-    const key = 'helm2' + JSON.stringify([h.c1, h.c2, h.c3, h.pattern, h.showNum, h.showName, h.showFlag, h.sponsorTxt, h.num, h.name, h.nat, !!h.flagImg, !!h.hi]);
+    const key = 'helm2' + JSON.stringify([h.c1, h.c2, h.c3, h.cTop, h.cChin, h.cBack, h.cStrip, h.pattern, h.showNum, h.showName, h.showFlag, h.sponsorTxt, h.num, h.name, h.nat, !!h.flagImg, !!h.hi]);
     return ctex(key, h.hi ? 1024 : 512, h.hi ? 512 : 256, (g, cw) => {
       const sc = cw / 1024, w = 1024, H = 512; g.scale(sc, sc);
       const c1 = h.c1, c2 = h.c2, c3 = h.c3 || '#1b1b1b', p = h.pattern, r = mulberry32(5);
@@ -98,11 +98,16 @@ const CARS3D = (() => {
       else if (p === 'chamas') { for (const [col, top] of [[c2, 0.25], [c3, 0.45]]) { g.fillStyle = col; g.beginPath(); g.moveTo(0, H); for (let x = 0; x <= w; x += 32) { const k = x / 32; g.quadraticCurveTo(x + 8, H * (top + 0.25), x + 16, H * (top + (k % 3) * 0.06)); g.quadraticCurveTo(x + 22, H * (top + 0.3), x + 32, H * (top + 0.32)); } g.lineTo(w, H); g.fill(); } }
       else if (p === 'camuflado') for (let k = 0; k < 140; k++) { g.fillStyle = k % 2 ? c2 : c3; g.beginPath(); g.ellipse(r() * w, r() * H * 0.85, 20 + r() * 50, 10 + r() * 30, r() * 3, 0, 7); g.fill(); }
       else if (p === 'bandeira' && h.flagImg) both((x) => g.drawImage(h.flagImg, x - 130, H * 0.2, 260, 195));
+      // zonas pintadas à parte
+      if (h.cTop) { g.fillStyle = h.cTop; g.fillRect(0, 0, w, H * 0.15); g.fillStyle = c3; g.fillRect(0, H * 0.15, w, 6); }
+      if (h.cChin) { g.fillStyle = h.cChin; g.beginPath(); g.ellipse(w * 0.5, H * 0.8, w * 0.14, H * 0.2, 0, 0, 7); g.fill(); g.strokeStyle = c3; g.lineWidth = 6; g.stroke(); }
+      if (h.cBack) { g.fillStyle = h.cBack; for (const x of [0, w]) { g.beginPath(); g.ellipse(x, H * 0.6, w * 0.12, H * 0.26, 0, 0, 7); g.fill(); } }
+      if (h.cStrip && !h.sponsorTxt) { g.fillStyle = h.cStrip; g.fillRect(w * 0.34, H * 0.27, w * 0.32, H * 0.075); }
       // anel de baixo e protetor do queixo
       g.fillStyle = c3; g.fillRect(0, H * 0.86, w, H * 0.14);
       g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(0, H * 0.86, w, 4);
       // faixa por cima da viseira (patrocinador)
-      if (h.sponsorTxt) { g.fillStyle = '#111'; g.fillRect(w * 0.38, H * 0.3, w * 0.24, H * 0.07); g.fillStyle = '#fff'; g.font = 'bold 26px "Saira Condensed","Arial Narrow",sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(h.sponsorTxt).toUpperCase(), w * 0.5, H * 0.335); }
+      if (h.sponsorTxt) { g.fillStyle = h.cStrip || '#111'; g.fillRect(w * 0.34, H * 0.27, w * 0.32, H * 0.075); g.fillStyle = '#fff'; g.font = 'bold 26px "Saira Condensed","Arial Narrow",sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(h.sponsorTxt).toUpperCase(), w * 0.5, H * 0.31); }
       // número nos lados e nome atrás
       g.textAlign = 'center'; g.textBaseline = 'middle';
       if (h.showNum !== false && h.num != null) both((x, sd) => { const nx = x - sd * 75; g.font = 'italic 900 88px "Saira Condensed","Arial Narrow",sans-serif'; g.lineWidth = 10; g.strokeStyle = c3; g.strokeText(String(h.num), nx, H * 0.68); g.fillStyle = '#fff'; g.fillText(String(h.num), nx, H * 0.68); });
@@ -115,24 +120,37 @@ const CARS3D = (() => {
   function helmetMesh(h, r) {
     const fin = h.finish || 'brilho';
     const shellMat = new THREE.MeshPhysicalMaterial({ map: helmTexture(h), clearcoat: fin === 'mate' ? 0 : 1, clearcoatRoughness: 0.08, roughness: fin === 'mate' ? 0.78 : fin === 'metal' ? 0.28 : 0.32, metalness: fin === 'metal' ? 0.65 : 0.15, envMap });
-    const g = new THREE.Group(), SC = [1.12, 1, 0.94];
-    const s = new THREE.Mesh(new THREE.SphereGeometry(r, 40, 28, 0, Math.PI * 2, 0, Math.PI * 0.84), shellMat);
-    s.scale.set(...SC); s.castShadow = true; g.add(s);
+    const g = new THREE.Group();
+    // forma de capacete: esfera alongada, queixeira saliente à frente e em baixo, base plana
+    const sm = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+    const shape = (geo, R) => {
+      const p = geo.attributes.position;
+      for (let i = 0; i < p.count; i++) {
+        let x = p.getX(i) / R, y = p.getY(i) / R, z = p.getZ(i) / R; const k = R / r;
+        const chin = sm(0.1, 0.9, x / k) * sm(0.0, 0.7, -y / k);
+        x += 0.2 * chin * k; y -= 0.06 * chin * k; z *= 1 - 0.18 * chin;
+        const back = sm(0.2, 0.9, -x / k) * sm(0.2, 0.8, -y / k); x -= 0.06 * back * k;
+        y = Math.max(y, -0.84 * k);
+        p.setXYZ(i, x * R * 1.08, y * R, z * R * 0.93);
+      }
+      geo.computeVertexNormals(); return geo;
+    };
+    const s = new THREE.Mesh(shape(new THREE.SphereGeometry(r, 48, 32, 0, Math.PI * 2, 0, Math.PI * 0.86), r), shellMat);
+    s.castShadow = true; g.add(s);
     // abertura em baixo, com espuma escura
-    const pad = new THREE.Mesh(new THREE.CircleGeometry(r * 0.5, 24), new THREE.MeshStandardMaterial({ color: 0x0b0c0e, roughness: 1 })); pad.rotation.x = Math.PI / 2; pad.position.y = -r * 0.87; pad.scale.set(1.12, 0.94, 1); g.add(pad);
-    // queixeira por baixo da viseira, um pouco saliente
-    const chin = new THREE.Mesh(new THREE.SphereGeometry(r * 1.05, 32, 8, -0.85, 1.7, Math.PI * 0.55, Math.PI * 0.3), shellMat);
-    chin.rotation.y = Math.PI; chin.scale.set(...SC); chin.castShadow = true; g.add(chin);
+    const pad = new THREE.Mesh(new THREE.CircleGeometry(r * 0.52, 24), new THREE.MeshStandardMaterial({ color: 0x0b0c0e, roughness: 1, side: THREE.DoubleSide })); pad.rotation.x = Math.PI / 2; pad.position.set(r * 0.08, -r * 0.83, 0); pad.scale.set(1.2, 0.95, 1); g.add(pad);
     const vs = VISOR[h.visor] || VISOR.escura;
     const vmat = new THREE.MeshPhysicalMaterial({ color: vs[0], map: h.visor === 'arco' ? visorRainbow() : null, metalness: vs[1], roughness: vs[2], clearcoat: 1, envMap, envMapIntensity: 1.6, transparent: h.visor === 'clara', opacity: 0.75, side: THREE.DoubleSide });
-    const visor = new THREE.Mesh(new THREE.SphereGeometry(r * 1.03, 32, 10, -0.95, 1.9, 1.08, 0.5), vmat);
-    visor.rotation.y = Math.PI; visor.scale.set(...SC); g.add(visor);
+    const vg = new THREE.SphereGeometry(r * 1.025, 36, 10, -0.92, 1.84, 1.1, 0.46); vg.rotateY(Math.PI);
+    const visor = new THREE.Mesh(shape(vg, r * 1.025), vmat); g.add(visor);
     // aro da viseira
     const rimM = new THREE.MeshStandardMaterial({ color: 0x1b1d21, roughness: 0.5 });
-    for (const th of [1.08, 1.58]) { const ring = new THREE.Mesh(new THREE.SphereGeometry(r * 1.035, 32, 1, -0.97, 1.94, th - 0.012, 0.024), rimM); ring.rotation.y = Math.PI; ring.scale.set(...SC); g.add(ring); }
+    for (const th of [1.1, 1.56]) { const rg = new THREE.SphereGeometry(r * 1.03, 36, 1, -0.94, 1.88, th - 0.014, 0.028); rg.rotateY(Math.PI); g.add(new THREE.Mesh(shape(rg, r * 1.03), rimM)); }
+    // pala por cima da viseira
+    { const pg = new THREE.SphereGeometry(r * 1.045, 36, 2, -0.8, 1.6, 1.04, 0.07); pg.rotateY(Math.PI); g.add(new THREE.Mesh(shape(pg, r * 1.045), shellMat)); }
     const dark = new THREE.MeshStandardMaterial({ color: 0x15171b, roughness: 0.6 });
-    for (const sd of [-1, 1]) { const piv = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.12, r * 0.12, r * 0.04, 16), dark); piv.rotation.x = Math.PI / 2; piv.position.set(r * 0.05, -r * 0.08, sd * r * 0.96); g.add(piv); }
-    const spoiler = new THREE.Mesh(new THREE.BoxGeometry(r * 0.35, r * 0.06, r * 0.9), shellMat); spoiler.position.set(-r * 1.0, r * 0.32, 0); spoiler.rotation.z = -0.35; g.add(spoiler);
+    for (const sd of [-1, 1]) { const piv = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.12, r * 0.12, r * 0.04, 16), dark); piv.rotation.x = Math.PI / 2; piv.position.set(r * 0.06, -r * 0.08, sd * r * 0.92); g.add(piv); }
+    const spoiler = new THREE.Mesh(new THREE.BoxGeometry(r * 0.35, r * 0.06, r * 0.9), shellMat); spoiler.position.set(-r * 1.02, r * 0.3, 0); spoiler.rotation.z = -0.4; g.add(spoiler);
     const vent = new THREE.Mesh(new THREE.BoxGeometry(r * 0.3, r * 0.08, r * 0.3), dark); vent.position.set(r * 0.25, r * 0.96, 0); g.add(vent);
     return g;
   }
