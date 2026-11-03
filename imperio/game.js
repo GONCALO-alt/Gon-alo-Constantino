@@ -1,4 +1,4 @@
-/* Império Hexagonal — jogo de estratégia arcade. Tudo corre no browser, sem servidor. */
+/* Império Mundial — jogo de estratégia arcade. Tudo corre no browser, sem servidor. */
 'use strict';
 (() => {
 const M = window.MAPA;
@@ -36,20 +36,19 @@ const PALETTE = ['#ff4d6d', '#ffb703', '#06d6a0', '#4cc9f0', '#c77dff', '#f77f00
 
 // ---------- Mundo ----------
 const NC = M.countries.length, NP = M.provinces.length;
-const HX = []; // hexágonos
+const HX = []; // quadrados do mapa
 const hexKey = new Map();
 for (let i = 0; i < M.hexes.length; i += 3) {
   const c = M.hexes[i], r = M.hexes[i + 1], p = M.hexes[i + 2];
-  const x = -180 + c * M.W + (r & 1 ? M.W / 2 : 0), y = M.Y0 + r * M.H;
+  const x = -180 + (c + 0.5) * M.S, y = M.Y0 + (r + 0.5) * M.S;
   hexKey.set(c + ',' + r, HX.length);
   HX.push({ c, r, p, x, y, nb: null });
 }
-const NB_EVEN = [[1, 0], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1]];
-const NB_ODD = [[1, 0], [1, 1], [0, 1], [-1, 0], [0, -1], [1, -1]];
-for (const h of HX) h.nb = (h.r & 1 ? NB_ODD : NB_EVEN).map(([dc, dr]) => hexKey.get(h.c + dc + ',' + (h.r + dr)) ?? -1);
-const R = M.R;
-const VX = [], VY = [];
-for (let k = 0; k < 6; k++) { const a = ((-30 + 60 * k) * Math.PI) / 180; VX.push(Math.cos(a)); VY.push(Math.sin(a)); }
+// vizinhos: este, sul, oeste, norte (a aresta d fica entre os cantos d e d+1)
+const NB4 = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+for (const h of HX) h.nb = NB4.map(([dc, dr]) => hexKey.get(h.c + dc + ',' + (h.r + dr)) ?? -1);
+const R = M.S / 2; // meio lado do quadrado
+const ND = 4, VX = [1, 1, -1, -1], VY = [-1, 1, 1, -1]; // cantos: cima-dir, baixo-dir, baixo-esq, cima-esq
 
 let C, P, alliances, G; // estado
 function provHexes() {
@@ -58,7 +57,7 @@ function provHexes() {
   return lists;
 }
 const PH = provHexes();
-// ponto de etiqueta: hexágono mais perto do centro
+// ponto de etiqueta: quadrado mais perto do centro
 const LABEL = M.provinces.map((p, j) => {
   let best = PH[j][0], bd = 1e9;
   for (const i of PH[j]) { const d = (HX[i].x - p.x) ** 2 + (HX[i].y - p.y) ** 2; if (d < bd) { bd = d; best = i; } }
@@ -90,7 +89,7 @@ function newGame(playerIdx) {
     const m = MIL[c.a2] || 1;
     return { i, a2: c.a2, n: c.n, flag: flagOf(c.a2), cap: c.cap, color: COLORS[i], w: WEALTH[c.a2] || 1, m, q: 1 + 0.06 * m, eco: 0, mil: 0, def: 0, money: 0, troops: 0, alive: true, wars: new Set(), ally: -1, rel: 0 };
   });
-  P = M.provinces.map((p, j) => ({ j, n: p.n, owner: p.c, orig: p.c, hx: PH[j].length, adj: p.adj, sea: p.sea, gar: 0, occ: 0 }));
+  P = M.provinces.map((p, j) => ({ j, n: p.n, owner: p.c, orig: p.c, hx: PH[j].length * M.unit, adj: p.adj, sea: p.sea, gar: 0, occ: 0 }));
   alliances = ALLIANCES.map(([name, color, list], id) => {
     const members = new Set();
     list.split(' ').forEach((a2) => { const c = C.find((x) => x.a2 === a2); if (c) { members.add(c.i); c.ally = id; } });
@@ -164,7 +163,7 @@ const minScale = () => Math.max(VW / 370, VH / 170, 0.8);
 function clampCam() {
   cam.s = clamp(cam.s, minScale(), 60);
   const hw = VW / 2 / cam.s, hh = VH / 2 / cam.s;
-  const x0 = -182, x1 = 182, y0 = M.Y0 - 4, y1 = M.Y0 + M.rows * M.H + 2;
+  const x0 = -182, x1 = 182, y0 = M.Y0 - 4, y1 = M.Y0 + M.rows * M.S + 2;
   cam.x = x1 - x0 < hw * 2 ? 0 : clamp(cam.x, x0 + hw, x1 - hw);
   cam.y = y1 - y0 < hh * 2 ? (y0 + y1) / 2 : clamp(cam.y, y0 + hh, y1 - hh);
 }
@@ -188,19 +187,19 @@ function focusCountry(ci, ms) {
 }
 
 // ---------- Cache do mapa ----------
-const K = 8; // píxeis por grau na cache
+const K = 10; // píxeis por grau na cache
 const CX0 = -184, CY0 = M.Y0 - 4;
 const cache = document.createElement('canvas');
-cache.width = Math.ceil(368 * K); cache.height = Math.ceil((M.rows * M.H + 8) * K);
+cache.width = Math.ceil(368 * K); cache.height = Math.ceil((M.rows * M.S + 8) * K);
 const cctx = cache.getContext('2d');
 let cacheDirty = true;
 function hexPath(c, x, y, r) {
   c.moveTo(x + VX[0] * r, y + VY[0] * r);
-  for (let k = 1; k < 6; k++) c.lineTo(x + VX[k] * r, y + VY[k] * r);
+  for (let k = 1; k < ND; k++) c.lineTo(x + VX[k] * r, y + VY[k] * r);
   c.closePath();
 }
 function colorOfHex(h) { return C[P[h.p].owner].color; }
-// desenha uma lista de hexágonos com uma transformação (escala s, origem ox, oy)
+// desenha uma lista de quadrados com uma transformação (escala s, origem ox, oy)
 function drawHexes(c, list, s, ox, oy) {
   const r = R * s;
   // agrupar por cor para menos mudanças de estilo
@@ -208,23 +207,23 @@ function drawHexes(c, list, s, ox, oy) {
   for (const i of list) { const col = colorOfHex(HX[i]); let g = groups.get(col); if (!g) groups.set(col, (g = [])); g.push(i); }
   for (const [col, ids] of groups) {
     c.fillStyle = shade(col, -0.45); c.beginPath();
-    for (const i of ids) hexPath(c, (HX[i].x - ox) * s, (HX[i].y - oy) * s, r * 1.02);
+    for (const i of ids) hexPath(c, (HX[i].x - ox) * s, (HX[i].y - oy) * s, r * 1.01);
     c.fill();
     c.fillStyle = col; c.beginPath();
-    for (const i of ids) hexPath(c, (HX[i].x - ox) * s, (HX[i].y - oy) * s - r * 0.04, r * 0.9);
+    for (const i of ids) hexPath(c, (HX[i].x - ox) * s - r * 0.06, (HX[i].y - oy) * s - r * 0.06, r * 0.84);
     c.fill();
-    c.fillStyle = shade(col, 0.28); c.beginPath();
-    for (const i of ids) hexPath(c, (HX[i].x - ox) * s, (HX[i].y - oy) * s - r * 0.12, r * 0.55);
-    c.globalAlpha = 0.45; c.fill(); c.globalAlpha = 1;
+    c.fillStyle = shade(col, 0.35); c.beginPath();
+    for (const i of ids) { const x = (HX[i].x - ox) * s - r * 0.55, y = (HX[i].y - oy) * s - r * 0.55; c.rect(x, y, r * 0.5, r * 0.5); }
+    c.globalAlpha = 0.5; c.fill(); c.globalAlpha = 1;
   }
   // fronteiras
   c.lineCap = 'round';
   const prov = new Path2D(), nat = new Path2D(), coast = new Path2D();
   for (const i of list) {
     const h = HX[i], x = (h.x - ox) * s, y = (h.y - oy) * s;
-    for (let d = 0; d < 6; d++) {
+    for (let d = 0; d < ND; d++) {
       const n = h.nb[d];
-      const k1 = d, k2 = (d + 1) % 6;
+      const k1 = d, k2 = (d + 1) % ND;
       const ax = x + VX[k1] * r, ay = y + VY[k1] * r, bx = x + VX[k2] * r, by = y + VY[k2] * r;
       if (n < 0) { coast.moveTo(ax, ay); coast.lineTo(bx, by); continue; }
       const hn = HX[n];
@@ -233,8 +232,8 @@ function drawHexes(c, list, s, ox, oy) {
       if (P[hn.p].owner !== P[h.p].owner) { nat.moveTo(ax, ay); nat.lineTo(bx, by); } else { prov.moveTo(ax, ay); prov.lineTo(bx, by); }
     }
   }
-  c.strokeStyle = 'rgba(10,14,40,.45)'; c.lineWidth = Math.max(0.6, r * 0.09); c.stroke(prov);
-  c.strokeStyle = '#0a0e24'; c.lineWidth = Math.max(1.2, r * 0.26); c.stroke(nat);
+  c.strokeStyle = 'rgba(10,14,40,.55)'; c.lineWidth = Math.max(0.7, r * 0.16); c.stroke(prov);
+  c.strokeStyle = '#0a0e24'; c.lineWidth = Math.max(1.2, r * 0.4); c.stroke(nat);
   c.strokeStyle = 'rgba(160,230,255,.55)'; c.lineWidth = Math.max(0.8, r * 0.12); c.stroke(coast);
 }
 const ALL = HX.map((_, i) => i);
@@ -325,7 +324,7 @@ function render(now) {
     ctx.save(); ctx.translate(sx(0), sy(0)); drawHexes(ctx, vis, cam.s, 0, 0); ctx.restore();
   }
   const r = R * cam.s;
-  // hexágonos a mudar de dono
+  // quadrados a mudar de dono
   FX.flips = FX.flips.filter((f) => now < f.t0 + f.dur);
   for (const f of FX.flips) {
     const h = HX[f.i], x = sx(h.x), y = sy(h.y);
@@ -348,10 +347,10 @@ function render(now) {
     if (!isMe && !isSel && !C[me].wars.has(ow) && !allied(me, ow)) continue;
     const x = sx(h.x), y = sy(h.y);
     if (x < vx0 || x > vx1 || y < vy0 || y > vy1) continue;
-    for (let d = 0; d < 6; d++) {
+    for (let d = 0; d < ND; d++) {
       const n = h.nb[d];
       const pn = n < 0 ? -1 : HX[n].p, on = n < 0 ? -1 : P[pn].owner;
-      const ax = x + VX[d] * r, ay = y + VY[d] * r, bx = x + VX[(d + 1) % 6] * r, by = y + VY[(d + 1) % 6] * r;
+      const ax = x + VX[d] * r, ay = y + VY[d] * r, bx = x + VX[(d + 1) % ND] * r, by = y + VY[(d + 1) % ND] * r;
       if (isSel && pn !== h.p) { selP.moveTo(ax, ay); selP.lineTo(bx, by); }
       if (isMe && on !== me) {
         if (on >= 0 && C[me].wars.has(on)) { front.moveTo(ax, ay); front.lineTo(bx, by); } else { empire.moveTo(ax, ay); empire.lineTo(bx, by); }
@@ -987,7 +986,7 @@ function renderPanelInner(el) {
   else if (allied(me.i, o.i)) tags.push('<span class="tag ally">Aliado</span>');
   if (isCap(p)) tags.push('<span class="tag">★ Capital</span>');
   let html = `<div class="card"><div class="head"><span class="flag">${o.flag}</span><div style="min-width:0"><h2>${p.n} · ${o.n}</h2><p>${tags.join(' ')} ${al ? `<span class="tag" style="border-color:${al.color}">${al.name}</span>` : ''}</p></div></div>
-  <div class="kv"><div><small>Guarnição</small><b>${fmt(p.gar)}</b></div><div><small>Rendimento</small><b>+${value(p).toFixed(1)}</b></div><div><small>${mine ? 'Tamanho' : 'Relação'}</small><b>${mine ? p.hx + ' hex' : relLabel(o.rel)}</b></div></div>`;
+  <div class="kv"><div><small>Guarnição</small><b>${fmt(p.gar)}</b></div><div><small>Rendimento</small><b>+${value(p).toFixed(1)}</b></div><div><small>${mine ? 'Tamanho' : 'Relação'}</small><b>${mine ? PH[p.j].length + ' quadr.' : relLabel(o.rel)}</b></div></div>`;
   if (mine) {
     html += p.occ > 0 ? `<p class="note">Território ocupado: rende metade durante mais ${p.occ} dias.</p>` : '';
     html += `<div class="btns"><button class="btn gold" data-a="reinforce" data-v="${p.j}">Reforçar<small>enviar 50% das tropas livres</small></button></div>`;
@@ -1158,17 +1157,12 @@ cv.addEventListener('wheel', (e) => {
   cam.x = x0 - (mx - VW / 2) / cam.s; cam.y = y0 - (my - VH / 2) / cam.s; clampCam();
 }, { passive: false });
 function hexAtWorld(x, y) {
-  const r0 = Math.round((y - M.Y0) / M.H);
-  let best = -1, bd = R * R * 1.1;
-  for (let r = r0 - 1; r <= r0 + 1; r++) {
-    const c0 = Math.round((x + 180 - (r & 1 ? M.W / 2 : 0)) / M.W);
-    for (let c = c0 - 1; c <= c0 + 1; c++) {
-      const i = hexKey.get(c + ',' + r); if (i === undefined) continue;
-      const d = (HX[i].x - x) ** 2 + (HX[i].y - y) ** 2;
-      if (d < bd) { bd = d; best = i; }
-    }
-  }
-  return best;
+  const c = Math.floor((x + 180) / M.S), r = Math.floor((y - M.Y0) / M.S);
+  const i = hexKey.get(c + ',' + r);
+  if (i !== undefined) return i;
+  // toque mesmo ao lado da costa: aceitar o quadrado vizinho
+  for (const [dc, dr] of [...NB4, [1, 1], [-1, 1], [1, -1], [-1, -1]]) { const j = hexKey.get(c + dc + ',' + (r + dr)); if (j !== undefined) return j; }
+  return -1;
 }
 function tapAt(px, py) {
   const i = hexAtWorld(wx(px), wy(py));
@@ -1222,7 +1216,7 @@ const sfx = (() => {
 })();
 
 // ---------- Guardar ----------
-const SAVE = 'imperio-hex-v1';
+const SAVE = 'imperio-quadrados-v2';
 function save() {
   try {
     localStorage.setItem(SAVE, JSON.stringify({
@@ -1284,7 +1278,7 @@ function difficulty(c) {
 function showStart() {
   $('#start').hidden = false; paused = true; sheetTab = null; $('#sheet').hidden = true;
   const s = $('#startIn');
-  s.innerHTML = `<div class="logo"><h1>IMPÉRIO<span>HEXAGONAL</span></h1><p>Escolhe um país, faz alianças e conquista o mundo província a província.</p></div>
+  s.innerHTML = `<div class="logo"><h1>IMPÉRIO<span>MUNDIAL</span></h1><p>Escolhe um país, faz alianças e conquista o mundo província a província.</p></div>
   <div class="menu">${hasSave() ? '<button class="btn gold" id="bCont">Continuar</button>' : ''}<button class="btn ${hasSave() ? 'red' : 'gold'}" id="bNew">Novo jogo</button></div>
   <div class="help"><b>Como se joga:</b> toca num país vizinho e declara guerra. Ataca as províncias com mira vermelha, uma de cada vez. Os aliados do inimigo juntam-se à guerra contra ti — escolhe bem os alvos e faz as tuas próprias alianças. Usa o dinheiro para melhorar a economia, o exército e as defesas.</div>`;
   $('#bNew').onclick = () => { sfx.click(); showPicker(); };
@@ -1317,14 +1311,14 @@ function drawBg(now) {
   const w = bg.clientWidth, h = bg.clientHeight;
   if (bg.width !== w * DPR) { bg.width = w * DPR; bg.height = h * DPR; }
   bctx.setTransform(DPR, 0, 0, DPR, 0, 0); bctx.clearRect(0, 0, w, h);
-  const r = 22, hw = Math.sqrt(3) * r;
-  for (let row = -1; row < h / (r * 1.5) + 1; row++) for (let col = -1; col < w / hw + 1; col++) {
-    const x = col * hw + (row & 1 ? hw / 2 : 0), y = row * r * 1.5;
+  const r = 14, hw = r * 2;
+  for (let row = -1; row < h / hw + 1; row++) for (let col = -1; col < w / hw + 1; col++) {
+    const x = col * hw + r, y = row * hw + r;
     const v = Math.sin(col * 0.5 + now / 900) * Math.cos(row * 0.45 - now / 1300);
     if (v < 0.35) continue;
     bctx.globalAlpha = (v - 0.35) * 0.5;
     bctx.fillStyle = PALETTE[(col * 3 + row * 5 + 100) % PALETTE.length];
-    bctx.beginPath(); hexPath(bctx, x, y, r * 0.86); bctx.fill();
+    bctx.beginPath(); hexPath(bctx, x, y, r * 0.84); bctx.fill();
   }
   bctx.globalAlpha = 1;
 }

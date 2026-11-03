@@ -1,4 +1,4 @@
-# Império Hexagonal
+# Império Mundial
 
 Jogo de estratégia arcade, na vertical, para telemóvel. Escolhes qualquer país do mundo e fazes crescer o teu império.
 
@@ -18,5 +18,5 @@ Abre `index.html` no browser (não precisa de servidor nem de instalação).
 
 - `index.html` — página e estilos
 - `game.js` — regras, IA, desenho do mapa e animações
-- `data.js` — mapa em hexágonos (gerado)
+- `data.js` — mapa em quadradinhos (gerado)
 - `tools/build-map.mjs` — gera o `data.js` a partir do Natural Earth (`world-atlas`)

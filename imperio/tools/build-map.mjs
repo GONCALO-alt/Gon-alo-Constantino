@@ -1,5 +1,5 @@
 /**
- * Gera imperio/data.js: o mapa do mundo em hexágonos, dividido em países e províncias.
+ * Gera imperio/data.js: o mapa do mundo em quadrados, dividido em países e províncias.
  *
  * Precisa de: npm i world-atlas@2 i18n-iso-countries topojson-client (numa pasta à parte)
  * Uso: NODE_PATH=<pasta>/node_modules node imperio/tools/build-map.mjs
@@ -21,13 +21,13 @@ const projY = (lat) => -1.25 * Math.log(Math.tan(Math.PI / 4 + 0.4 * lat * RAD))
 const invY = (y) => (Math.atan(Math.exp((-y * RAD) / 1.25)) - Math.PI / 4) / 0.4 / RAD;
 
 const LAT_TOP = 76, LAT_BOT = -56;
-const R = 1.2; // raio do hexágono
-const W = Math.sqrt(3) * R; // largura
-const H = 1.5 * R; // distância entre linhas
+const S = 0.8; // lado do quadrado, em graus
+const W = S, H = S;
+const UNIT = (S * S) / 3.74; // área de um quadrado comparada com a de um hexágono antigo (R=1.2)
 const Y0 = projY(LAT_TOP), Y1 = projY(LAT_BOT);
-const COLS = Math.ceil(360 / W) + 1;
+const COLS = Math.round(360 / W);
 const ROWS = Math.ceil((Y1 - Y0) / H) + 1;
-const center = (c, r) => [-180 + c * W + (r & 1 ? W / 2 : 0), Y0 + r * H];
+const center = (c, r) => [-180 + (c + 0.5) * S, Y0 + (r + 0.5) * S];
 
 // ---------- Países ----------
 const MERGE = { 'N. Cyprus': '196', Somaliland: '706', Greenland: '208', 'Puerto Rico': '840', 'New Caledonia': '250', 'Falkland Is.': '826' };
@@ -94,10 +94,9 @@ function countryAt(x, y) {
 // ---------- Grelha ----------
 const grid = new Map(); // "c,r" -> country
 const key = (c, r) => c + ',' + r;
-const SAMPLES = [[0, 0], ...Array.from({ length: 6 }, (_, k) => [Math.cos((k * Math.PI) / 3) * R * 0.6, Math.sin((k * Math.PI) / 3) * R * 0.6])];
+const SAMPLES = [[0, 0], [-0.3 * S, -0.3 * S], [0.3 * S, -0.3 * S], [-0.3 * S, 0.3 * S], [0.3 * S, 0.3 * S]];
 for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
   const [x, y] = center(c, r);
-  if (x > 180 + W / 2) continue;
   const votes = new Map();
   for (const [dx, dy] of SAMPLES) {
     const k = countryAt(x + dx, y + dy);
@@ -109,19 +108,11 @@ for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
   grid.set(key(c, r), [...votes.entries()].sort((a, b) => b[1] - a[1])[0][0]);
 }
 function neighbors(c, r) {
-  const odd = r & 1;
-  const d = odd ? [[1, 0], [-1, 0], [0, -1], [1, -1], [0, 1], [1, 1]] : [[1, 0], [-1, 0], [-1, -1], [0, -1], [-1, 1], [0, 1]];
+  const d = [[1, 0], [0, 1], [-1, 0], [0, -1]];
   return d.map(([dc, dr]) => [(c + dc + COLS) % COLS, r + dr]);
 }
 function nearestCell(x, y) {
-  const r = Math.round((y - Y0) / H);
-  let best = null, bd = 1e9;
-  for (let rr = r - 2; rr <= r + 2; rr++) for (let cc = 0; cc < COLS; cc++) {
-    const [cx, cy] = center(cc, rr);
-    const d = (cx - x) ** 2 + (cy - y) ** 2;
-    if (d < bd) { bd = d; best = [cc, rr]; }
-  }
-  return best;
+  return [((Math.floor((x + 180) / S) % COLS) + COLS) % COLS, Math.floor((y - Y0) / S)];
 }
 // Países pequenos sem hexágono: recebem o hexágono mais próximo do seu centro.
 const count = () => { const m = new Map(); for (const v of grid.values()) m.set(v, (m.get(v) || 0) + 1); return m; };
@@ -150,15 +141,13 @@ const hexNb = (h) => neighbors(h.c, h.r).map((n) => hexAt.get(key(...n))).filter
 const DIRS = ['Norte', 'Sul', 'Leste', 'Oeste', 'Centro', 'Nordeste', 'Noroeste', 'Sudeste', 'Sudoeste'];
 const provinces = [];
 function hexDist(a, b) {
-  const ax = a.c - (a.r - (a.r & 1)) / 2, az = a.r, bx = b.c - (b.r - (b.r & 1)) / 2, bz = b.r;
-  let dx = ax - bx; if (Math.abs(dx) > COLS / 2) dx -= Math.sign(dx) * COLS;
-  const dz = az - bz;
-  return (Math.abs(dx) + Math.abs(dz) + Math.abs(dx + dz)) / 2;
+  let dx = Math.abs(a.c - b.c); if (dx > COLS / 2) dx = COLS - dx;
+  return Math.max(dx, Math.abs(a.r - b.r));
 }
 for (const country of countries) {
   const mine = hexes.map((h, i) => i).filter((i) => hexes[i].ci === country.i);
   const total = mine.length;
-  const nProv = Math.max(1, Math.round(Math.sqrt(total) * 0.85));
+  const nProv = Math.max(total >= 10 ? 2 : 1, Math.round(Math.sqrt(total * UNIT) * 1.1));
   // componentes ligadas
   const comp = new Map(); const comps = [];
   for (const i of mine) {
@@ -266,13 +255,15 @@ for (const c of countries) {
 const adj = provinces.map(() => new Set());
 for (const h of hexes) for (const n of hexNb(h)) { const q = hexes[n].p; if (q !== h.p) { adj[h.p].add(q); adj[q].add(h.p); } }
 const sea = provinces.map(() => new Set());
+// só os quadrados da orla contam para as distâncias por mar
+provinces.forEach((p) => (p.edge = p.hexes.filter((i) => hexNb(hexes[i]).length < 4 || hexNb(hexes[i]).some((n) => hexes[n].p !== hexes[i].p))));
 function provDist(a, b) {
   let best = 1e9;
-  for (const i of provinces[a].hexes) for (const j of provinces[b].hexes) best = Math.min(best, hexDist(hexes[i], hexes[j]));
+  for (const i of provinces[a].edge) for (const j of provinces[b].edge) best = Math.min(best, hexDist(hexes[i], hexes[j]));
   return best;
 }
 // rotas marítimas curtas
-const SEA_RANGE = 4;
+const SEA_RANGE = Math.round(8 / S);
 for (let a = 0; a < provinces.length; a++) for (let b = a + 1; b < provinces.length; b++) {
   if (adj[a].has(b)) continue;
   let dx = Math.abs(provinces[a].x - provinces[b].x); dx = Math.min(dx, 360 - dx);
@@ -303,13 +294,13 @@ for (;;) {
 
 // ---------- Saída ----------
 const out = {
-  R, W, H, Y0, cols: COLS, rows: ROWS,
+  S, unit: +UNIT.toFixed(4), Y0, cols: COLS, rows: ROWS,
   countries: countries.map((c) => ({ a2: c.a2, n: c.n, cap: c.cap })),
   provinces: provinces.map((p, i) => ({ c: p.ci, n: p.name, x: +p.x.toFixed(2), y: +p.y.toFixed(2), cap: p.cap ? 1 : 0, adj: [...adj[i]], sea: [...sea[i]] })),
   hexes: hexes.flatMap((h) => [h.c, h.r, h.p]),
 };
 const file = join(dirname(fileURLToPath(import.meta.url)), '..', 'data.js');
 writeFileSync(file, '// Gerado por tools/build-map.mjs — não editar à mão.\nwindow.MAPA=' + JSON.stringify(out) + ';\n');
-console.log(`países ${countries.length}, províncias ${provinces.length}, hexágonos ${hexes.length}, grelha ${COLS}x${ROWS}`);
+console.log(`países ${countries.length}, províncias ${provinces.length}, quadrados ${hexes.length}, grelha ${COLS}x${ROWS}`);
 const big = countries.map((c) => [c.n, provsOf(c.i).length]).sort((a, b) => b[1] - a[1]).slice(0, 12);
 console.log(big.map((x) => x.join(':')).join('  '));
