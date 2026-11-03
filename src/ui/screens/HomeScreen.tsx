@@ -9,6 +9,8 @@ import { computeLessonStates, currentStreak, localDate, nextLesson, orderedUnits
 import { useAppData } from '../AppState.tsx';
 import { Card, Icon } from '../components/common.tsx';
 import { Mascot } from '../components/Mascot.tsx';
+import { SeasonDeco, SeasonFx, useSeason } from '../components/Season.tsx';
+import { SEASON_INFO } from '../../engine/season.ts';
 import { href } from '../router.ts';
 
 function greeting(d = new Date()): string {
@@ -43,11 +45,19 @@ export function HomeScreen() {
   const unit = units.find((u) => u.id === next?.unitId) ?? units[units.length - 1];
   const section = index.sections.find((s) => s.units.some((u) => u.id === unit?.id)) ?? index.sections[0]!;
   const nextUnit = unit ? units[units.indexOf(unit) + 1] : undefined;
+  const season = useSeason();
 
   return (
     <div className="page home">
       <h1 className="visually-hidden">{greeting()}{profile.displayName ? `, ${profile.displayName}` : ''}!</h1>
 
+      {season && <SeasonFx season={season} />}
+      {season && (
+        <p className="season-chip">
+          <span aria-hidden="true">{SEASON_INFO[season].decorations[0]}</span>
+          <strong lang="nl">{SEASON_INFO[season].nl}</strong> <span className="muted">{SEASON_INFO[season].pt}</span>
+        </p>
+      )}
       <div className="home-stats" role="list" aria-label="O seu dia">
         <a role="listitem" className="home-stat" href={href.course()} aria-label={`Neerlandês, nível ${section.cefr}`}>
           <DutchFlag /> <span>{section.cefr}</span>
@@ -127,6 +137,7 @@ function UnitBanner({ unit, sectionOrder, sectionId }: { unit: IndexedUnit; sect
 
 function UnitTrail({ unit, currentId, state }: { unit: IndexedUnit; currentId?: string; state: UnitState }) {
   const { completed, settings } = useAppData();
+  const season = useSeason();
   const [lessons, setLessons] = useState<Map<string, PublishedLesson>>(new Map());
   const [openId, setOpenId] = useState<string | null>(null);
   const currentRef = useRef<HTMLLIElement>(null);
@@ -181,6 +192,9 @@ function UnitTrail({ unit, currentId, state }: { unit: IndexedUnit; currentId?: 
             )}
             {i === mascotPos && (
               <span className={`trail-mascot ${x > 0 ? 'left' : 'right'}`} aria-hidden="true"><Mascot size={84} mood={allDone ? 'cheer' : 'happy'} /></span>
+            )}
+            {season && i !== mascotPos && i % 3 === 1 && (
+              <span className={`trail-deco ${x > 0 ? 'left' : 'right'}`} aria-hidden="true"><SeasonDeco season={season} index={i} /></span>
             )}
           </li>
         );

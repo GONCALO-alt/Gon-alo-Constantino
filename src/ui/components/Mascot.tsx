@@ -1,3 +1,5 @@
+import { useSeason } from './Season.tsx';
+
 /**
  * Tulpje: a mascote da DutchPath (uma tulipa). Desenho próprio, em SVG, sem ficheiros.
  * Só encoraja: nunca critica nem castiga.
@@ -5,8 +7,9 @@
 export type MascotMood = 'happy' | 'cheer' | 'calm';
 
 export function Mascot({ mood = 'happy', size = 96 }: { mood?: MascotMood; size?: number }) {
+  const season = useSeason();
   return (
-    <svg className={`mascot mascot-${mood}`} width={size} height={size * 1.25} viewBox="0 0 80 100" aria-hidden="true" focusable="false">
+    <svg className={`mascot mascot-${mood}`} width={size} height={size * 1.425} viewBox="0 -14 80 114" aria-hidden="true" focusable="false">
       {/* braço a acenar */}
       <g className="mascot-arm">
         <path d="M18 66 C10 60 8 52 10 46" stroke="#e8e2d6" strokeWidth="7" strokeLinecap="round" fill="none" />
@@ -45,6 +48,37 @@ export function Mascot({ mood = 'happy', size = 96 }: { mood?: MascotMood; size?
         {mood === 'calm'
           ? <path d="M36 52 Q40 55 44 52" stroke="#1c2430" strokeWidth="2" strokeLinecap="round" fill="none" />
           : <path d="M35 51 Q40 58 45 51 Z" fill="#5a2a22" />}
+        {/* acessório da época festiva */}
+        {season === 'christmas' && (
+          <g className="mascot-hat">
+            <path d="M20 16 C26 2 46 -2 60 8 L54 20 Z" fill="#d6312f" />
+            <rect x="16" y="14" width="44" height="8" rx="4" fill="#ffffff" />
+            <circle cx="62" cy="8" r="5" fill="#ffffff" />
+          </g>
+        )}
+        {season === 'halloween' && (
+          <g className="mascot-hat">
+            <ellipse cx="40" cy="15" rx="30" ry="5" fill="#3b2457" />
+            <path d="M27 14 L40 -12 L44 -4 L53 14 Z" fill="#4a2d6b" />
+            <rect x="28" y="9" width="24" height="5" fill="#f2994a" />
+          </g>
+        )}
+        {season === 'carnival' && (
+          <g className="mascot-mask">
+            <path d="M18 36 C24 30 36 32 40 38 C44 32 56 30 62 36 C62 46 52 49 46 45 L40 41 L34 45 C28 49 18 46 18 36 Z" fill="#8e5bd8" opacity="0.92" />
+            <circle cx="31" cy="40" r="4.5" fill="#fff" /><circle cx="49" cy="40" r="4.5" fill="#fff" />
+            <circle cx="32" cy="41" r="2.6" fill="#1c2430" /><circle cx="48" cy="41" r="2.6" fill="#1c2430" />
+            <path d="M62 36 C68 28 72 22 70 14" stroke="#f0b400" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          </g>
+        )}
+        {season === 'easter' && (
+          <g className="mascot-ears">
+            <ellipse cx="28" cy="2" rx="6" ry="15" fill="#ffffff" stroke="#e8dfe8" />
+            <ellipse cx="28" cy="3" rx="3" ry="10" fill="#f7b8cc" />
+            <ellipse cx="52" cy="2" rx="6" ry="15" fill="#ffffff" stroke="#e8dfe8" />
+            <ellipse cx="52" cy="3" rx="3" ry="10" fill="#f7b8cc" />
+          </g>
+        )}
       </g>
     </svg>
   );

@@ -10,6 +10,8 @@ import { LessonScreen } from './screens/LessonScreen.tsx';
 import { ProfileScreen, SettingsScreen, StatsScreen } from './screens/ProfileScreens.tsx';
 import { ReviewScreen, ReviewSessionScreen } from './screens/ReviewScreens.tsx';
 import { configureSounds } from '../services/sounds.ts';
+import { seasonFor } from '../engine/season.ts';
+import { SeasonContext } from './components/Season.tsx';
 
 const NAV = [
   { key: 'home', label: 'Início', icon: 'home', to: href.home() },
@@ -56,6 +58,12 @@ function Shell() {
   useEffect(() => {
     document.documentElement.dataset.motion = data?.settings.reducedMotion ? 'reduce' : 'auto';
   }, [data?.settings.reducedMotion]);
+  // Época festiva (calculada no arranque; muda no dia seguinte quando a app volta a abrir).
+  const season = data && data.settings.seasonalThemes !== false ? seasonFor() : null;
+  useEffect(() => {
+    if (season) document.documentElement.dataset.season = season;
+    else delete document.documentElement.dataset.season;
+  }, [season]);
 
   if (error && !data) {
     return (
@@ -68,10 +76,11 @@ function Shell() {
   }
   if (!data) return <div className="page center"><Logo /><p className="loading" aria-busy="true">A carregar…</p></div>;
 
-  if (immersive) return <div className="app immersive"><Screen route={route} /></div>;
+  if (immersive) return <SeasonContext.Provider value={season}><div className="app immersive"><Screen route={route} /></div></SeasonContext.Provider>;
 
   const active = activeKey(route);
   return (
+    <SeasonContext.Provider value={season}>
     <div className="app">
       <a className="skip-link" href="#conteudo">Saltar para o conteúdo</a>
       <aside className="sidebar">
@@ -99,6 +108,7 @@ function Shell() {
         ))}
       </nav>
     </div>
+    </SeasonContext.Provider>
   );
 }
 

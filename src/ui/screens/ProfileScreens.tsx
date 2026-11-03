@@ -237,6 +237,7 @@ export function SettingsScreen() {
         <Toggle label="Navegação livre" hint="Desbloqueia todas as unidades (útil se já tem conhecimentos)." checked={s.freeNavigation} onChange={(v) => app.updateSettings({ freeNavigation: v })} />
         <Toggle label="Tolerância a acentos" hint="Aceita respostas sem acentos, com um aviso." checked={s.lenientAccents} onChange={(v) => app.updateSettings({ lenientAccents: v })} />
         <Toggle label="Reduzir animações" checked={s.reducedMotion} onChange={(v) => app.updateSettings({ reducedMotion: v })} />
+        <Toggle label="Decoração das épocas festivas" hint="Halloween (outubro), Natal (novembro a 6 de janeiro), Carnaval e Páscoa: cores, enfeites e a mascote mascarada." checked={s.seasonalThemes} onChange={(v) => app.updateSettings({ seasonalThemes: v })} />
       </Card>
 
       <OfflineCard />

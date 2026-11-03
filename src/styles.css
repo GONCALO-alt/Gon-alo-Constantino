@@ -628,3 +628,39 @@ a.home-stat { color: var(--text); }
 .game-over h2 { margin: 8px 0 0; font-size: 1.6rem; }
 .game-score { font-size: 1.2rem; margin: 4px 0; }
 .game-score strong { font-size: 3rem; display: block; line-height: 1.1; color: var(--go); animation: pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
+
+/* ---------------------------------------------------------------------------
+   Épocas festivas (html[data-season]): cores, enfeites no caminho e efeitos.
+   --------------------------------------------------------------------------- */
+.season-chip { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; padding: 8px 14px; border-radius: 999px; background: var(--season-soft, var(--accent-soft));
+  font-size: 0.95rem; animation: rise 0.3s ease both; }
+.season-chip > span:first-child { font-size: 1.2rem; }
+[data-season='christmas'] { --season-soft: #fde4e4; }
+[data-season='halloween'] { --season-soft: #fde7cf; }
+[data-season='carnival'] { --season-soft: #f4e3ff; }
+[data-season='easter'] { --season-soft: #fff6c9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light'])[data-season] { --season-soft: var(--brand-soft); } }
+:root[data-theme='dark'][data-season] { --season-soft: var(--brand-soft); }
+
+[data-season='christmas'] .unit-banner { --banner: #c8312f; --banner-dark: #962220;
+  background-image: radial-gradient(circle at 12% 30%, rgb(255 255 255 / 25%) 0 2px, transparent 3px), radial-gradient(circle at 70% 70%, rgb(255 255 255 / 25%) 0 2px, transparent 3px), radial-gradient(circle at 40% 80%, rgb(255 255 255 / 20%) 0 1.5px, transparent 2.5px); }
+[data-season='halloween'] .unit-banner { --banner: #e8792d; --banner-dark: #5b2f86; }
+[data-season='carnival'] .unit-banner { --banner: #b03fd0; --banner-dark: #7d2496; background-image: linear-gradient(110deg, #b03fd0, #e8478c 55%, #f0a020); }
+[data-season='easter'] .unit-banner { --banner: #8f6fd8; --banner-dark: #6f50b8; background-image: linear-gradient(110deg, #8f6fd8, #e58fb8); }
+[data-season='halloween'] .trail-node.current { background: #e8792d; box-shadow: 0 7px 0 #b55a1c; }
+
+.trail-deco { position: absolute; top: 6px; pointer-events: none; animation: node-in 0.5s both; animation-delay: calc(var(--i) * 45ms + 0.2s); }
+.trail-deco.right { left: calc(100% + 36px); }
+.trail-deco.left { right: calc(100% + 36px); }
+.season-emoji { font-size: 2rem; display: inline-block; animation: deco-float 3.2s ease-in-out infinite; }
+.trail-deco .egg { animation: deco-float 3.2s ease-in-out infinite; filter: drop-shadow(0 3px 0 rgb(0 0 0 / 12%)); }
+@keyframes deco-float { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-5px) rotate(4deg); } }
+
+.season-fx { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 4; }
+.season-fx span { position: absolute; top: -12px; left: var(--fx); width: var(--fs); height: var(--fs); border-radius: 50%; opacity: 0;
+  animation: fx-fall var(--ft) linear var(--fd) infinite; }
+.fx-christmas span { background: #fff; box-shadow: 0 0 0 1px rgb(140 180 215 / 55%), 0 0 4px rgb(0 0 0 / 10%); }
+.fx-carnival span { border-radius: 2px; }
+.fx-carnival span:nth-child(3n) { background: #e8478c; } .fx-carnival span:nth-child(3n+1) { background: #f0b400; } .fx-carnival span:nth-child(3n+2) { background: #1c9fd6; }
+@keyframes fx-fall { 0% { transform: translate(0, 0) rotate(0); opacity: 0; } 10% { opacity: 0.9; } 100% { transform: translate(30px, 105vh) rotate(360deg); opacity: 0.2; } }
+.mascot-hat, .mascot-mask, .mascot-ears { animation: none; }

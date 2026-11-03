@@ -39,6 +39,8 @@ export interface UserSettings {
   lenientAccents: boolean;
   notificationsEnabled: boolean;
   reducedMotion: boolean;
+  /** Decoração das épocas festivas (Natal, Halloween, Carnaval, Páscoa). */
+  seasonalThemes: boolean;
 }
 
 export const DEFAULT_SETTINGS: Omit<UserSettings, 'id'> = {
@@ -54,6 +56,7 @@ export const DEFAULT_SETTINGS: Omit<UserSettings, 'id'> = {
   lenientAccents: true,
   notificationsEnabled: false,
   reducedMotion: false,
+  seasonalThemes: true,
 };
 
 export interface LessonProgress {
