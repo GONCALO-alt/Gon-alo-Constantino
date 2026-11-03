@@ -64,6 +64,7 @@ function ensureWorld() {
 function newSeason(cat, team) {
   S.cat = cat; S.team = team ?? null; S.round = 0; S.season = (S.season || 0) + 1;
   S.drivers = CAREER.driversIn(S.world, cat).filter((d) => cat === 'kart' || d.team != null).map(raceDriver);
+  if (cat !== 'kart' && S.team != null) { const mates = S.drivers.filter((d) => d.team === S.team).sort((a, b) => b.rating - a.rating); for (const d of mates.slice(1)) { S.drivers = S.drivers.filter((x) => x.id !== d.id); const wd = S.world.drivers[d.id]; if (wd) { wd.team = null; wd.cat = null; wd.free = 1; } } } // só um colega de equipa
   S.points = { me: 0 }; S.wins = { me: 0 };
   for (const d of S.drivers) { S.points[d.id] = 0; S.wins[d.id] = 0; }
   S.year = S.world.year; S.car = {}; S.closed = false; S.offers = null; S.devLeft = 0;
@@ -869,7 +870,7 @@ function state3D() {
     latG: car.latG * Math.sign(car.w || 0), longG: car.longG, surf: me.surf, rpm: car.rpm, rpmRange: car.p.rpm, speed: car.speed, gear: car.gear,
     pos: R.standings().indexOf(me) + 1, flag: R.flag,
     lapCur: me.lap >= 0 && R.phase === 'race' ? R.time - me.lapStart : 0, lapLast: me.laps[me.laps.length - 1], lapBest: me.best, delta: hudDelta,
-    lapN: Math.max(1, Math.min(R.laps, me.lap + 1)), lapsN: R.mode === 'practice' ? '∞' : R.laps, wear: me.wear, cmpColor: R.C.pits ? COMPOUNDS[me.tyre].c : null, status: $('#hStatus').textContent,
+    lapN: Math.max(1, Math.min(R.laps, me.lap + 1)), lapsN: R.mode === 'practice' ? '∞' : R.laps, wear: me.wear, cmpColor: R.C.pits ? COMPOUNDS[me.tyre].c : null, status: $('#hStatus').textContent, fuel: me.fuel0 ? me.fuel - Math.max(0, R.laps - Math.max(0, me.lap)) : null, mode: me.mode,
     cars: R.cars.map((c) => c.isPlayer
       ? { id: c.id, x: car.x, y: car.y, th: car.th, v: car.speed, s: c.s, i: idxOf(T, c.s), steer: car.delta, tyreColor: COMPOUNDS[c.tyre].c, wing: c.dmg, slide: car.slide }
       : { id: c.id, x: c.x, y: c.y, th: c.th, v: c.v, s: c.s, i: idxOf(T, c.s), steer: clamp(Math.atan(T.rk[idxOf(T, c.s)] * R.C.L), -0.3, 0.3), tyreColor: COMPOUNDS[c.tyre].c, wing: c.dmg, slide: c.spinning ? 1 : 0 }),

@@ -486,24 +486,28 @@ const R3D = (() => {
       g.textAlign = 'center'; g.fillText(st.flag ? st.flag.toUpperCase() : '', W / 2, H - 38);
       g.fillStyle = '#e8e8e8'; g.font = 'bold 15px sans-serif'; g.fillText('TELEMETRIA', W / 2, H - 9);
     } else {
-      // ecrã a cores do volante de fórmula
-      g.fillStyle = '#04050a'; g.fillRect(0, 0, W, H);
+      // ecrã a cores do volante de fórmula: quadrados de informação e a mudança em grande
       const n = 15, lit = Math.round(k * n);
-      for (let i = 0; i < n; i++) { g.fillStyle = i < lit ? (i < 5 ? '#30d158' : i < 10 ? '#ff2d2d' : '#3a8dff') : '#1a1c22'; g.fillRect(16 + i * ((W - 32) / n), 8, (W - 32) / n - 6, 16); }
-      g.fillStyle = st.flag === 'amarela' ? '#ffd60a' : st.flag === 'azul' ? '#3a8dff' : st.flag === 'sc' ? '#ffaa00' : '#04050a';
-      if (st.flag) { g.fillRect(0, 30, 10, H - 30); g.fillRect(W - 10, 30, 10, H - 30); }
-      g.textBaseline = 'alphabetic'; g.textAlign = 'center';
-      g.fillStyle = '#ffd60a'; g.font = 'bold 120px "Saira Condensed", sans-serif'; g.fillText(st.speed < 0.5 ? 'N' : String(st.gear), W / 2, 150);
-      g.fillStyle = '#ffffff'; g.font = 'bold 48px "Saira Condensed", sans-serif'; g.textAlign = 'left'; g.fillText(String(kmh), 22, 80);
-      g.fillStyle = '#97a0b3'; g.font = 'bold 18px sans-serif'; g.fillText('KM/H', 24, 102);
-      g.textAlign = 'right';
-      if (st.delta != null) { g.fillStyle = st.delta > 0 ? '#ff453a' : '#30d158'; g.font = 'bold 46px "Saira Condensed", sans-serif'; g.fillText((st.delta > 0 ? '+' : '') + st.delta.toFixed(2), W - 22, 80); g.fillStyle = '#97a0b3'; g.font = 'bold 18px sans-serif'; g.fillText('DELTA', W - 24, 102); }
-      else { g.fillStyle = '#ffffff'; g.font = 'bold 40px "Saira Condensed", sans-serif'; g.fillText(ft(st.lapCur), W - 22, 80); }
-      g.font = 'bold 26px "Saira Condensed", sans-serif'; g.fillStyle = '#ffffff';
-      g.textAlign = 'left'; g.fillText(`P${st.pos}`, 22, 145); g.fillText(`V${st.lapN}/${st.lapsN}`, 22, 175);
-      g.textAlign = 'right'; g.fillText(ft(st.lapLast), W - 22, 145);
-      if (st.cmpColor) { g.fillStyle = st.cmpColor; g.beginPath(); g.arc(W - 70, 168, 9, 0, 7); g.fill(); g.fillStyle = '#ffffff'; g.fillText(Math.round((1 - (st.wear || 0)) * 100) + '%', W - 22, 176); }
-      if (st.status) { g.fillStyle = '#ffd60a'; g.font = 'bold 20px sans-serif'; g.textAlign = 'center'; g.fillText(st.status, W / 2, H - 10); }
+      if (d.leds) d.leds.forEach((m, i) => m.material.color.setHex(i < lit ? (k > 0.97 && Math.floor(now / 80) % 2 ? 0x1a1c22 : i < 5 ? 0x30d158 : i < 10 ? 0xff2d2d : 0x3a8dff) : 0x1a1c22));
+      g.fillStyle = '#05070b'; g.fillRect(0, 0, W, H);
+      const tile = (x, y, w, h, col, label, val, valCol = '#fff') => { g.fillStyle = col; g.fillRect(x, y, w, 26); g.fillStyle = '#10131a'; g.fillRect(x, y + 26, w, h - 26); g.strokeStyle = col; g.lineWidth = 3; g.strokeRect(x + 1.5, y + 1.5, w - 3, h - 3);
+        g.fillStyle = '#05070b'; g.font = 'bold 20px sans-serif'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(label, x + 8, y + 14); g.fillStyle = valCol; g.font = 'bold 38px "Saira Condensed", sans-serif'; g.textAlign = 'center'; g.fillText(val, x + w / 2, y + 26 + (h - 26) / 2 + 2); };
+      const fuel = st.fuel == null ? '—' : (st.fuel >= 0 ? '+' : '') + st.fuel.toFixed(1);
+      tile(10, 10, 150, 104, '#2f9bff', 'FUEL', fuel, st.fuel != null && st.fuel < 0 ? '#ff453a' : '#fff');
+      tile(10, 124, 150, 104, '#30d158', 'PUSH', ['POUPAR', 'NORMAL', 'ATAQUE'][st.mode ?? 1]);
+      tile(10, 238, 150, 104, st.cmpColor || '#97a0b3', 'PNEUS', Math.round((1 - (st.wear || 0)) * 100) + '%');
+      const dl = st.delta;
+      tile(W - 160, 10, 150, 104, '#97a0b3', 'DELTA', dl == null ? ft(st.lapCur) : (dl > 0 ? '+' : '') + dl.toFixed(2), dl == null ? '#fff' : dl > 0 ? '#ff453a' : '#30d158');
+      tile(W - 160, 124, 150, 104, '#97a0b3', 'KM/H', String(kmh));
+      tile(W - 160, 238, 150, 104, '#97a0b3', `P${st.pos}`, `V${st.lapN}/${st.lapsN}`);
+      // mudança
+      g.strokeStyle = '#e8eaee'; g.lineWidth = 5; g.strokeRect(184, 40, W - 368, 230);
+      g.fillStyle = '#ffffff'; g.font = 'bold 190px "Saira Condensed", sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(st.speed < 0.5 ? 'N' : String(st.gear), W / 2, 160);
+      g.fillStyle = '#97a0b3'; g.font = 'bold 22px sans-serif'; g.fillText(ft(st.lapLast), W / 2, 300);
+      // bandeira ou aviso em baixo
+      const fc = st.flag === 'amarela' ? '#ffd60a' : st.flag === 'azul' ? '#3a8dff' : st.flag === 'sc' || st.flag === 'vsc' ? '#ffaa00' : null;
+      if (fc || st.status) { g.fillStyle = fc || '#ffd60a'; g.fillRect(184, 322, W - 368, 40); g.fillStyle = '#05070b'; g.font = 'bold 22px sans-serif'; g.fillText(st.status || st.flag.toUpperCase(), W / 2, 343); }
+      else { g.fillStyle = '#1c2a1f'; g.fillRect(184, 330, W - 368, 22); g.fillStyle = '#30d158'; g.fillRect(184, 330, (W - 368) * k, 22); }
     }
     d.t.needsUpdate = true;
   }
