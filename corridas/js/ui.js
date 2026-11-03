@@ -492,6 +492,8 @@ function state3D() {
     T, R, weather: R.weather, focus: 'me', phase: R.phase, lightsN: R.lightsN, rain: R.rain, wet: R.wet, sc: R.sc,
     latG: car.latG * Math.sign(car.w || 0), longG: car.longG, surf: me.surf, rpm: car.rpm, rpmRange: car.p.rpm, speed: car.speed, gear: car.gear,
     pos: R.standings().indexOf(me) + 1, flag: R.flag,
+    lapCur: me.lap >= 0 && R.phase === 'race' ? R.time - me.lapStart : 0, lapLast: me.laps[me.laps.length - 1], lapBest: me.best, delta: hudDelta,
+    lapN: Math.max(1, Math.min(R.laps, me.lap + 1)), lapsN: R.mode === 'practice' ? '∞' : R.laps, wear: me.wear, cmpColor: R.C.pits ? COMPOUNDS[me.tyre].c : null, status: $('#hStatus').textContent,
     cars: R.cars.map((c) => c.isPlayer
       ? { id: c.id, x: car.x, y: car.y, th: car.th, v: car.speed, s: c.s, i: idxOf(T, c.s), steer: car.delta, tyreColor: COMPOUNDS[c.tyre].c, wing: c.dmg, slide: car.slide }
       : { id: c.id, x: c.x, y: c.y, th: c.th, v: c.v, s: c.s, i: idxOf(T, c.s), steer: clamp(Math.atan(T.rk[idxOf(T, c.s)] * R.C.L), -0.3, 0.3), tyreColor: COMPOUNDS[c.tyre].c, wing: c.dmg, slide: c.spinning ? 1 : 0 }),
@@ -516,7 +518,7 @@ function lights(n) {
   else { [...el.children].forEach((c) => c.classList.remove('on')); AUDIO.light(false); bigMsg('LUZES APAGADAS!'); setTimeout(() => (el.hidden = true), 700); }
 }
 function bigMsg(t) { const d = document.createElement('div'); d.className = 'hud bigmsg'; d.textContent = t; $('#race').appendChild(d); setTimeout(() => d.remove(), 1700); }
-let radioTimer = null;
+let radioTimer = null, hudDelta = null;
 const ENGINEER = ['Rui', 'Marta', 'Tom', 'Sofia', 'Luca'][Math.floor(Math.random() * 5)];
 function radioMsg(text, kind) {
   const el = $('#radioMsg');
@@ -564,9 +566,10 @@ function updateHUD() {
   $('#tBest').textContent = 'Melhor ' + fmtTime(me.best);
   // diferença para a melhor volta (pela fração da volta)
   const dEl = $('#tDelta');
+  hudDelta = null;
   if (me.best && me.lap >= 1 && me.bestCp) {
     const cp = me.lastCp, tNow = me.cp[me.lap * NCP + cp], ref = me.bestCp[cp];
-    if (tNow !== undefined && ref !== undefined) { const d = tNow - me.lapStart - ref; dEl.textContent = (d > 0 ? '+' : '') + d.toFixed(2); dEl.className = 'delta ' + (d > 0 ? 'up' : 'down'); }
+    if (tNow !== undefined && ref !== undefined) { const d = tNow - me.lapStart - ref; hudDelta = d; dEl.textContent = (d > 0 ? '+' : '') + d.toFixed(2); dEl.className = 'delta ' + (d > 0 ? 'up' : 'down'); }
   } else dEl.textContent = '';
   // torre de tempos
   if (R.mode === 'race') {

@@ -140,16 +140,13 @@ const CARS3D = (() => {
       glass.position.set(L * 0.09 - 0.042, 0.74, sd * W * 0.32); glass.rotation.y = -Math.PI / 2; g.add(glass); mirrors.push(glass);
     }
     // volante com ecrã (visível na câmara de dentro)
-    const sw = new THREE.Group(); sw.position.set(L * 0.09, 0.6, 0); sw.rotation.z = 0.35; g.add(sw);
-    box(sw, 0.04, 0.13, 0.3, 0, 0, 0, new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 0.6 }));
-    for (const sd of [-1, 1]) box(sw, 0.05, 0.16, 0.06, 0, 0, sd * 0.16, new THREE.MeshStandardMaterial({ color: 0x232528, roughness: 0.95 }));
-    const dc = document.createElement('canvas'); dc.width = 128; dc.height = 64; const dt = new THREE.CanvasTexture(dc);
-    const disp = new THREE.Mesh(new THREE.PlaneGeometry(0.15, 0.075), new THREE.MeshBasicMaterial({ map: dt })); disp.position.set(-0.022, 0.005, 0); disp.rotation.y = -Math.PI / 2; sw.add(disp);
+    const sw = new THREE.Group(); sw.position.set(L * 0.085, 0.64, 0); sw.rotation.z = -0.38; g.add(sw);
+    const { dc, dt } = formulaWheel(sw);
     // número no nariz
     if (num != null) { const np = textPlane(String(num), 0.26, 0.17, null, '#ffffff'); np.rotation.x = -Math.PI / 2; np.rotation.z = Math.PI / 2; np.position.set(L * 0.3, 0.335, 0); g.add(np); }
     // piloto
     const helm = helmetMesh(helmet, 0.135); helm.position.set(L * 0.03, 0.73, 0); g.add(helm);
-    return { group: g, wheels, front, mirrors, sw, disp: { c: dc, t: dt, last: 0 }, helm, rwing: rwg, fwingParts: g.children.filter((o) => o.position && o.position.x > L * 0.43 && o.position.y < 0.3), light, eye: [L * 0.02, 0.86], L, W };
+    return { group: g, wheels, front, mirrors, sw, disp: { c: dc, t: dt, last: 0 }, helm, rwing: rwg, fwingParts: g.children.filter((o) => o.position && o.position.x > L * 0.43 && o.position.y < 0.3), light, eye: [-L * 0.005, 0.88], L, W };
   }
   // ---------- kart ----------
   function kart(C, c1, c2, helmet, num, sponsor) {
@@ -182,18 +179,76 @@ const CARS3D = (() => {
     box(g, 0.25, 0.24, 0.18, -L * 0.2, 0.25, W * 0.3, new THREE.MeshStandardMaterial({ color: 0x5d6168, metalness: 0.7, roughness: 0.4 }));
     rod(g, V(-L * 0.2, 0.3, W * 0.38), V(-L * 0.42, 0.28, W * 0.38), 0.035, chrome);
     // volante
-    const sw = new THREE.Group(); sw.position.set(L * 0.16, 0.5, 0); sw.rotation.z = 0.55; g.add(sw);
-    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.017, 8, 30), black); rim.rotation.y = Math.PI / 2; sw.add(rim);
-    box(sw, 0.02, 0.03, 0.28, 0, 0, 0, chrome);
-    rod(g, V(L * 0.16, 0.5, 0), V(L * 0.32, 0.18, 0), 0.015, chrome);
-    const dc = document.createElement('canvas'); dc.width = 128; dc.height = 64; const dt = new THREE.CanvasTexture(dc);
-    const disp = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.05), new THREE.MeshBasicMaterial({ map: dt })); disp.position.set(-0.02, 0.04, 0); disp.rotation.y = -Math.PI / 2; sw.add(disp);
+    const sw = new THREE.Group(); sw.position.set(L * 0.17, 0.52, 0); sw.rotation.z = -0.62; g.add(sw);
+    const { dc, dt } = kartWheel(sw);
+    rod(g, V(L * 0.17, 0.5, 0), V(L * 0.33, 0.16, 0), 0.016, chrome);
     // piloto: tronco, braços e capacete
     const suit = new THREE.MeshStandardMaterial({ color: new THREE.Color(c1), roughness: 0.85 });
-    const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.5, 12), suit); torso.position.set(-L * 0.08, 0.6, 0); torso.rotation.z = 0.25; torso.castShadow = true; g.add(torso);
-    for (const sd of [-1, 1]) rod(g, V(-L * 0.06, 0.78, sd * 0.18), V(L * 0.15, 0.52, sd * 0.13), 0.045, suit);
+    const torso = new THREE.Group(); g.add(torso);
+    const chest = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.2, 0.46, 14), suit); chest.position.set(-L * 0.08, 0.6, 0); chest.rotation.z = 0.25; chest.scale.z = 1.25; chest.castShadow = true; torso.add(chest);
+    for (const sd of [-1, 1]) { const sh = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 10), suit); sh.position.set(-L * 0.05, 0.8, sd * 0.19); torso.add(sh); }
+    const stripe = new THREE.Mesh(new THREE.CylinderGeometry(0.175, 0.205, 0.08, 14), new THREE.MeshStandardMaterial({ color: new THREE.Color(c2), roughness: 0.85 })); stripe.position.set(-L * 0.075, 0.62, 0); stripe.rotation.z = 0.25; stripe.scale.z = 1.27; torso.add(stripe);
+    const neck = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.035, 8, 16), new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.8 })); neck.rotation.x = Math.PI / 2; neck.position.set(-L * 0.04, 0.86, 0); torso.add(neck);
+    for (const sd of [-1, 1]) rod(torso, V(-L * 0.05, 0.8, sd * 0.2), V(L * 0.15, 0.55, sd * 0.15), 0.048, suit);
+    if (num != null) { const bp = textPlane(String(num), 0.3, 0.13, '#ffd400', '#111111'); bp.position.set(-L * 0.53, 0.2, 0); bp.rotation.y = -Math.PI / 2; g.add(bp); }
     const helm = helmetMesh(helmet, 0.15); helm.position.set(-L * 0.03, 0.97, 0); g.add(helm);
-    return { group: g, wheels, front, mirrors: [], sw, disp: { c: dc, t: dt, last: 0 }, helm, torso, eye: [-L * 0.12, 0.92], L, W };
+    return { group: g, wheels, front, mirrors: [], sw, disp: { c: dc, t: dt, last: 0 }, helm, torso, eye: [-L * 0.06, 0.9], L, W };
+  }
+  // ---------- volantes (vista de frente: x direita, y cima, z virado para o piloto) ----------
+  const leather = (c) => new THREE.MeshStandardMaterial({ color: new THREE.Color(c), roughness: 0.75, metalness: 0.05 });
+  function face(sw) { const f = new THREE.Group(); f.rotation.y = -Math.PI / 2; sw.add(f); return f; }
+  function screen(f, w, h, x, y, z) {
+    const dc = document.createElement('canvas'); dc.width = 512; dc.height = Math.round((512 * h) / w);
+    const dt = new THREE.CanvasTexture(dc); if ('encoding' in dt) dt.encoding = THREE.sRGBEncoding; dt.anisotropy = 4;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: dt, toneMapped: false })); m.position.set(x, y, z); f.add(m);
+    return { dc, dt };
+  }
+  function glove(f, x, y, ang) {
+    const white = new THREE.MeshStandardMaterial({ color: 0xeceef2, roughness: 0.85 }), grey = new THREE.MeshStandardMaterial({ color: 0x9aa0aa, roughness: 0.8 });
+    const g = new THREE.Group(); g.position.set(x, y, 0.012); g.rotation.z = ang; f.add(g);
+    const palm = new THREE.Mesh(new THREE.SphereGeometry(0.05, 14, 10), white); palm.scale.set(0.9, 1.25, 0.75); palm.position.set(0, 0, 0.02); g.add(palm);
+    for (let k = 0; k < 4; k++) { const fg = new THREE.Mesh(new THREE.TorusGeometry(0.027, 0.012, 6, 10, Math.PI * 1.2), white); fg.position.set(0, 0.035 - k * 0.022, 0); fg.rotation.set(0, Math.PI / 2, 0); g.add(fg); }
+    const cuff = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.07, 12), grey); cuff.rotation.x = Math.PI / 2 - 0.5; cuff.position.set(0, -0.04, 0.07); g.add(cuff);
+    const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 0.45, 12), white); arm.rotation.x = Math.PI / 2 - 0.55; arm.position.set(0, -0.14, 0.27); g.add(arm);
+    return g;
+  }
+  function kartWheel(sw) {
+    const f = face(sw), R = 0.17;
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(R, 0.021, 12, 56), leather('#202124')); f.add(rim);
+    // punhos de cor (como nos volantes de competição)
+    for (const [a0, arc, c] of [[Math.PI * 0.58, 0.5, '#d4501e'], [Math.PI * 0.26, 0.5, '#d4501e'], [Math.PI * 1.22, Math.PI * 0.56, '#b8402a']]) {
+      const seg = new THREE.Mesh(new THREE.TorusGeometry(R, 0.0225, 12, 24, arc), leather(c)); seg.rotation.z = a0; f.add(seg);
+    }
+    // placa de três braços em metal escuro, com furos
+    const metal = new THREE.MeshStandardMaterial({ color: 0x2a2d33, metalness: 0.75, roughness: 0.38, envMap });
+    const plate = new THREE.Shape(); plate.moveTo(-0.07, 0.05); plate.lineTo(0.07, 0.05); plate.lineTo(0.08, -0.03); plate.lineTo(0.025, -0.09); plate.lineTo(-0.025, -0.09); plate.lineTo(-0.08, -0.03); plate.closePath();
+    for (const [hx, hy] of [[-0.035, -0.035], [0.035, -0.035], [0, -0.065]]) { const hole = new THREE.Path(); hole.absarc(hx, hy, 0.011, 0, Math.PI * 2, true); plate.holes.push(hole); }
+    const pm = new THREE.Mesh(new THREE.ExtrudeGeometry(plate, { depth: 0.006, bevelEnabled: false }), metal); f.add(pm);
+    for (const sd of [-1, 1]) { const sp = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.028, 0.006), metal); sp.position.set(sd * 0.115, -0.005, 0.003); sp.rotation.z = -sd * 0.12; f.add(sp); }
+    const sb = new THREE.Mesh(new THREE.BoxGeometry(0.028, 0.09, 0.006), metal); sb.position.set(0, -0.12, 0.003); f.add(sb);
+    for (const [bx, by] of [[-0.05, 0.03], [0.05, 0.03], [0, -0.05]]) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.012, 10), new THREE.MeshStandardMaterial({ color: 0xd8dce2, metalness: 0.9, roughness: 0.2, envMap })); b.rotation.x = Math.PI / 2; b.position.set(bx, by, 0.01); f.add(b); }
+    // aparelho de telemetria no centro
+    const body = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.1, 0.03), new THREE.MeshStandardMaterial({ color: 0x15161a, roughness: 0.5 })); body.position.set(0, 0.03, 0.02); f.add(body);
+    const scr = screen(f, 0.126, 0.074, 0, 0.034, 0.0355);
+    glove(f, -R * 0.97, 0.03, -0.25); glove(f, R * 0.97, 0.03, 0.25);
+    return scr;
+  }
+  function formulaWheel(sw) {
+    const f = face(sw);
+    const carb = carbon(), rub = new THREE.MeshStandardMaterial({ color: 0x1b1c1f, roughness: 0.95 });
+    const sh = new THREE.Shape(); const w = 0.15, h = 0.075, r = 0.03;
+    sh.moveTo(-w + r, -h); sh.lineTo(w - r, -h); sh.quadraticCurveTo(w, -h, w, -h + r); sh.lineTo(w, h - r); sh.quadraticCurveTo(w, h, w - r, h); sh.lineTo(-w + r, h); sh.quadraticCurveTo(-w, h, -w, h - r); sh.lineTo(-w, -h + r); sh.quadraticCurveTo(-w, -h, -w + r, -h);
+    const body = new THREE.Mesh(new THREE.ExtrudeGeometry(sh, { depth: 0.03, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.006, bevelSegments: 2 }), carb); f.add(body);
+    for (const sd of [-1, 1]) {
+      const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.032, 0.17, 14), rub); grip.position.set(sd * 0.155, -0.005, 0.02); grip.rotation.z = sd * 0.12; f.add(grip);
+      const pad = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.11, 0.006), new THREE.MeshStandardMaterial({ color: 0x3a3d44, metalness: 0.6, roughness: 0.3 })); pad.position.set(sd * 0.09, 0.0, -0.02); f.add(pad); // patilhas
+    }
+    const scr = screen(f, 0.13, 0.068, 0, 0.012, 0.0375);
+    const cols = [0xe10600, 0xffd400, 0x1e5bc6, 0x30d158, 0xffffff, 0xff8000];
+    for (let k = 0; k < 6; k++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.01, 12), new THREE.MeshStandardMaterial({ color: cols[k], roughness: 0.4 })); b.rotation.x = Math.PI / 2; b.position.set((k < 3 ? -1 : 1) * 0.1, 0.045 - (k % 3) * 0.025, 0.038); f.add(b); }
+    for (const sd of [-1, 0, 1]) { const kn = new THREE.Mesh(new THREE.CylinderGeometry(0.013, 0.013, 0.014, 16), new THREE.MeshStandardMaterial({ color: 0x8d939c, metalness: 0.8, roughness: 0.3, envMap })); kn.rotation.x = Math.PI / 2; kn.position.set(sd * 0.04, -0.055, 0.04); f.add(kn); }
+    glove(f, -0.155, 0.0, -0.1); glove(f, 0.155, 0.0, 0.1);
+    return scr;
   }
   function make(cat, C, c1, c2, helmet, num, sponsor) { return cat === 'kart' ? kart(C, c1, c2, helmet, num, sponsor) : formula(cat, C, c1, c2, helmet, num, sponsor); }
   return { make, setEnv, setCompound };

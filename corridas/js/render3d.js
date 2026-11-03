@@ -41,10 +41,11 @@ const R3D = (() => {
     });
     tex.kerb = canvasTex(64, 256, (g, w, h) => { noise(g, w, h, [200, 30, 30], 20, 2); g.fillStyle = '#efefec'; g.fillRect(0, h / 2, w, h / 2); g.fillStyle = 'rgba(0,0,0,.12)'; for (let y = 0; y < h; y += 16) g.fillRect(0, y, w, 2); });
     tex.grass = canvasTex(512, 512, (g, w, h) => {
-      noise(g, w, h, [74, 122, 56], 22, 5);
+      noise(g, w, h, [70, 118, 52], 18, 5);
+      g.fillStyle = 'rgba(150,190,90,.10)'; g.fillRect(0, 0, w / 2, h); // faixas do corte da relva
       const r = mulberry32(6);
-      for (let k = 0; k < 400; k++) { g.fillStyle = r() < 0.5 ? 'rgba(40,80,30,.25)' : 'rgba(130,170,80,.18)'; g.beginPath(); g.arc(r() * w, r() * h, 2 + r() * 10, 0, 7); g.fill(); }
-      g.fillStyle = 'rgba(255,255,255,.035)'; g.fillRect(0, 0, w / 2, h);
+      for (let k = 0; k < 500; k++) { g.fillStyle = r() < 0.5 ? 'rgba(38,78,28,.22)' : 'rgba(135,172,82,.16)'; g.beginPath(); g.ellipse(r() * w, r() * h, 2 + r() * 12, 1 + r() * 6, r() * 3, 0, 7); g.fill(); }
+      for (let k = 0; k < 2500; k++) { g.fillStyle = r() < 0.5 ? 'rgba(30,60,20,.35)' : 'rgba(170,200,110,.3)'; g.fillRect(r() * w, r() * h, 1, 2 + r() * 3); }
     });
     tex.gravel = canvasTex(256, 256, (g, w, h) => { noise(g, w, h, [196, 178, 140], 70, 9, 0.2); });
     tex.apron = canvasTex(256, 256, (g, w, h) => noise(g, w, h, [128, 132, 136], 18, 4, 0.05));
@@ -57,12 +58,33 @@ const R3D = (() => {
     tex.panel = canvasTex(256, 256, (g, w, h) => { g.fillStyle = '#6f9e5e'; g.fillRect(0, 0, w, h); for (let x = 0; x < w; x += 32) { g.fillStyle = 'rgba(0,0,0,.12)'; g.fillRect(x, 0, 3, h); g.fillStyle = 'rgba(255,255,255,.06)'; g.fillRect(x + 4, 0, 6, h); } });
     tex.window = canvasTex(128, 128, (g, w, h) => { g.fillStyle = '#d9dcdf'; g.fillRect(0, 0, w, h); const gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, '#5d6670'); gr.addColorStop(0.5, '#8a96a3'); gr.addColorStop(1, '#4b535c'); g.fillStyle = gr; g.fillRect(8, 8, w / 2 - 12, h - 16); g.fillRect(w / 2 + 4, 8, w / 2 - 12, h - 16); });
     tex.smoke = canvasTex(64, 64, (g, w) => { const gr = g.createRadialGradient(w / 2, w / 2, 1, w / 2, w / 2, w / 2); gr.addColorStop(0, 'rgba(235,235,235,.85)'); gr.addColorStop(1, 'rgba(235,235,235,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, w); }, false);
-    tex.tree = [0, 1, 2].map((k) => canvasTex(128, 192, (g, w, h) => {
+    tex.tree = [0, 1, 2].map((k) => canvasTex(256, 384, (g, w, h) => {
       g.clearRect(0, 0, w, h); const r = mulberry32(31 + k);
-      g.fillStyle = '#5b4028'; g.fillRect(w / 2 - 4, h * 0.6, 8, h * 0.4);
-      const cols = k === 2 ? ['#2c5a2a', '#3c7232', '#4f8a3c', '#23481f'] : ['#2f6a2c', '#447f36', '#5f9a45', '#284e22'];
-      for (let i = 0; i < 160; i++) { const a = r() * 6.28, rr = Math.sqrt(r()) * (k === 1 ? 46 : 54); const x = w / 2 + Math.cos(a) * rr * (k === 1 ? 0.7 : 1), y = (k === 1 ? h * 0.38 : h * 0.4) + Math.sin(a) * rr * (k === 1 ? 1.3 : 0.9); g.fillStyle = cols[Math.floor(r() * 4)]; g.beginPath(); g.arc(x, y, 5 + r() * 9, 0, 7); g.fill(); }
+      const tr = g.createLinearGradient(w / 2 - 8, 0, w / 2 + 8, 0); tr.addColorStop(0, '#3e2b1a'); tr.addColorStop(0.5, '#6b4c30'); tr.addColorStop(1, '#2e2014');
+      g.fillStyle = tr;
+      if (k === 1) { // pinheiro: tronco fino e copa em cone
+        g.fillRect(w / 2 - 6, h * 0.55, 12, h * 0.45);
+        for (let i = 0; i < 9; i++) { const y = h * (0.08 + i * 0.075), ww = w * (0.1 + i * 0.045); for (let j = 0; j < 40; j++) { const x = w / 2 + (r() - 0.5) * 2 * ww, yy = y + r() * h * 0.09; const l = 1 - Math.abs(x - w / 2) / ww; g.fillStyle = `rgb(${26 + l * 20 + r() * 12},${58 + l * 34 + r() * 16},${30 + r() * 10})`; g.beginPath(); g.ellipse(x, yy, 6 + r() * 6, 3 + r() * 3, (r() - 0.5) * 0.6, 0, 7); g.fill(); } }
+        return;
+      }
+      g.beginPath(); g.moveTo(w / 2 - 9, h); g.lineTo(w / 2 - 5, h * 0.5); g.lineTo(w / 2 + 5, h * 0.5); g.lineTo(w / 2 + 9, h); g.fill();
+      g.strokeStyle = '#4a3420'; g.lineWidth = 4; for (const a of [-0.7, 0.6, -0.3, 0.9]) { g.beginPath(); g.moveTo(w / 2, h * 0.62); g.lineTo(w / 2 + Math.sin(a) * 60, h * 0.62 - Math.cos(a) * 70); g.stroke(); }
+      const base = k === 2 ? [40, 84, 34] : [52, 102, 40], cy = h * 0.36, R0 = 104;
+      for (let i = 0; i < 700; i++) {
+        const a = r() * 6.28, rr = Math.sqrt(r()) * R0, x = w / 2 + Math.cos(a) * rr, y = cy + Math.sin(a) * rr * 0.85;
+        const lit = clamp(0.55 + (cy - y) / (R0 * 1.4) + (w / 2 - x) / (R0 * 3) + (r() - 0.5) * 0.35, 0.15, 1.15); // luz de cima à esquerda
+        g.fillStyle = `rgb(${base[0] * lit | 0},${base[1] * lit | 0},${base[2] * lit | 0})`;
+        g.beginPath(); g.ellipse(x, y, 4 + r() * 7, 3 + r() * 4, r() * 3, 0, 7); g.fill();
+      }
     }, false));
+    // montanhas ao longe (anel à volta do horizonte)
+    tex.hills = canvasTex(2048, 256, (g, w, h) => {
+      g.clearRect(0, 0, w, h); const r = mulberry32(77);
+      const layer = (col, base, amp, f) => { g.fillStyle = col; g.beginPath(); g.moveTo(0, h); const ph = [r() * 6, r() * 6, r() * 6]; for (let x = 0; x <= w; x += 4) { const t = x / w * Math.PI * 2; const y = base - amp * (0.5 * Math.sin(t * f + ph[0]) + 0.3 * Math.sin(t * f * 2.3 + ph[1]) + 0.2 * Math.sin(t * f * 5.1 + ph[2]) + 0.6); g.lineTo(x, y); } g.lineTo(w, h); g.fill(); };
+      layer('#a9bccc', h * 0.62, h * 0.5, 3); layer('#8ea7a0', h * 0.78, h * 0.32, 5); layer('#5f7f55', h * 0.9, h * 0.14, 11);
+      for (let x = 0; x < w; x += 3) { g.fillStyle = `rgba(40,70,35,${0.5 + r() * 0.4})`; const hh = 6 + r() * 10; g.beginPath(); g.arc(x, h * 0.93 - hh * 0.3, hh * 0.5, 0, 7); g.fill(); }
+      g.fillStyle = '#3f5f36'; g.fillRect(0, h * 0.93, w, h * 0.07);
+    }, false);
   }
   function skyTexture(rain) {
     return canvasTex(512, 256, (g, w, h) => {
@@ -71,7 +93,10 @@ const R3D = (() => {
       else { gr.addColorStop(0, '#2c6cc2'); gr.addColorStop(0.55, '#86bdef'); gr.addColorStop(1, '#dcecf7'); }
       g.fillStyle = gr; g.fillRect(0, 0, w, h);
       const r = mulberry32(rain ? 3 : 9);
-      for (let k = 0; k < (rain ? 90 : 30); k++) { const x = r() * w, y = r() * h * 0.6, s = 20 + r() * 60; const cg = g.createRadialGradient(x, y, 1, x, y, s); const a = rain ? 0.35 : 0.5; cg.addColorStop(0, `rgba(${rain ? 120 : 255},${rain ? 125 : 255},${rain ? 130 : 255},${a})`); cg.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = cg; g.fillRect(x - s, y - s, s * 2, s * 2); }
+      for (let k = 0; k < (rain ? 60 : 22); k++) { // nuvens em cachos
+        const cx = r() * w, cy = h * (0.1 + r() * 0.45), n = 6 + Math.floor(r() * 8), sc = 0.6 + (cy / h) * 0.8;
+        for (let j = 0; j < n; j++) { const x = cx + (r() - 0.5) * 70 * sc, y = cy + (r() - 0.6) * 14 * sc, s = (10 + r() * 22) * sc; const cg = g.createRadialGradient(x, y - s * 0.3, 1, x, y, s); const top = rain ? '150,155,162' : '255,255,255', bot = rain ? '95,100,108' : '214,226,240'; cg.addColorStop(0, `rgba(${top},${rain ? 0.5 : 0.85})`); cg.addColorStop(0.6, `rgba(${bot},${rain ? 0.35 : 0.45})`); cg.addColorStop(1, `rgba(${bot},0)`); g.fillStyle = cg; g.fillRect(x - s, y - s, s * 2, s * 2); }
+      }
     }, false);
   }
   function init(canvas, gfx) {
@@ -182,6 +207,13 @@ const R3D = (() => {
       sun.shadow.bias = -0.0006; sun.shadow.normalBias = 0.03;
     }
     scene.add(sun); scene.add(sun.target); B.sun = sun;
+    {
+      const rad = T.kart ? 1000 : 2400, hh = rad * 0.11;
+      const hg = new THREE.CylinderGeometry(rad, rad, hh, 64, 1, true);
+      const hm = new THREE.MeshBasicMaterial({ map: tex.hills, transparent: true, alphaTest: 0.05, side: THREE.BackSide, fog: false, depthWrite: false, color: rain ? 0x8a9096 : 0xffffff });
+      tex.hills.wrapS = THREE.RepeatWrapping; tex.hills.repeat.set(2, 1);
+      B.horizon = new THREE.Mesh(hg, hm); B.horizon.renderOrder = -1; B.horizon.position.y = hh * 0.32; scene.add(B.horizon);
+    }
     const half = T.W / 2, H = terrainFn(T); B.H = H;
     const [bx0, bz0, bx1, bz1] = T.bbox, pad = T.kart ? 350 : 900;
     {
@@ -389,16 +421,50 @@ const R3D = (() => {
       scene.add(m.group); B.cars.set(c.id, m);
     }
   }
-  function updateDisplay(m, st) {
-    const d = m.disp, now = performance.now(); if (now - d.last < 120) return; d.last = now;
-    const g = d.c.getContext('2d');
-    g.fillStyle = '#05070a'; g.fillRect(0, 0, 128, 64);
-    const k = clamp((st.rpm - st.rpmRange[0]) / (st.rpmRange[1] - st.rpmRange[0]), 0, 1), n = Math.round(k * 12);
-    for (let i = 0; i < 12; i++) { g.fillStyle = i < n ? (i < 4 ? '#30d158' : i < 8 ? '#ff3b30' : '#3a8dff') : '#1b1e24'; g.fillRect(6 + i * 10, 4, 8, 6); }
-    g.fillStyle = '#ffd60a'; g.font = 'bold 34px sans-serif'; g.textAlign = 'center'; g.fillText(st.speed < 0.5 ? 'N' : String(st.gear), 64, 48);
-    g.fillStyle = '#fff'; g.font = 'bold 15px sans-serif'; g.textAlign = 'left'; g.fillText(String(Math.round(st.speed * 3.6)), 5, 59);
-    g.textAlign = 'right'; g.fillText('P' + st.pos, 123, 59);
-    if (st.flag) { g.fillStyle = st.flag === 'amarela' ? '#ffd60a' : st.flag === 'azul' ? '#3a8dff' : '#ff3b30'; g.fillRect(0, 14, 6, 50); g.fillRect(122, 14, 6, 50); }
+  const ft = (t) => (t == null || !isFinite(t) ? '--.--' : t >= 60 ? Math.floor(t / 60) + ':' + (t % 60).toFixed(2).padStart(5, '0') : t.toFixed(2));
+  function updateDisplay(m, st, kart) {
+    const d = m.disp, now = performance.now(); if (now - d.last < 90) return; d.last = now;
+    const g = d.c.getContext('2d'), W = d.c.width, H = d.c.height;
+    const k = clamp((st.rpm - st.rpmRange[0]) / (st.rpmRange[1] - st.rpmRange[0]), 0, 1);
+    const kmh = Math.round(st.speed * 3.6);
+    if (kart) {
+      // aparelho de dados do kart: ecrã de cristal líquido
+      const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, '#c6d1c0'); gr.addColorStop(1, '#aab7a5');
+      g.fillStyle = '#0d0e10'; g.fillRect(0, 0, W, H);
+      g.fillStyle = gr; g.fillRect(14, 30, W - 28, H - 60);
+      for (let i = 0; i < 6; i++) { const on = k > (i + 1) / 7; g.fillStyle = on ? (i < 4 ? '#3bd65f' : '#ff3b30') : '#2a2d33'; g.beginPath(); g.arc(W / 2 - 125 + i * 50, 16, 7, 0, 7); g.fill(); }
+      g.fillStyle = '#1c2219'; g.textBaseline = 'alphabetic';
+      g.font = 'bold 74px "Saira Condensed", sans-serif'; g.textAlign = 'left'; g.fillText(String(kmh), 30, 112);
+      g.font = 'bold 22px sans-serif'; g.fillText('km/h', 30 + g.measureText(String(kmh)).width * 3.3 + 8, 110);
+      g.font = 'bold 66px "Saira Condensed", sans-serif'; g.textAlign = 'right'; g.fillText(ft(st.lapCur), W - 30, 112);
+      g.fillStyle = 'rgba(28,34,25,.35)'; g.fillRect(28, 124, W - 56, 3);
+      g.fillStyle = '#1c2219'; g.font = 'bold 40px "Saira Condensed", sans-serif'; g.textAlign = 'left'; g.fillText((st.lapLast ? 'ÚLT ' : 'RPM ') + (st.lapLast ? ft(st.lapLast) : Math.round(st.rpm)), 30, 172);
+      g.textAlign = 'right';
+      if (st.delta != null) { g.fillStyle = st.delta > 0 ? '#8a1c12' : '#14632a'; g.fillText((st.delta > 0 ? '+' : '') + st.delta.toFixed(2), W - 30, 172); }
+      else { g.fillText('MELHOR ' + ft(st.lapBest), W - 30, 172); }
+      g.fillStyle = '#1c2219'; g.font = 'bold 26px sans-serif'; g.textAlign = 'left'; g.fillText(`P${st.pos}`, 30, H - 38); g.textAlign = 'right'; g.fillText(`V ${st.lapN}/${st.lapsN}`, W - 30, H - 38);
+      g.textAlign = 'center'; g.fillText(st.flag ? st.flag.toUpperCase() : '', W / 2, H - 38);
+      g.fillStyle = '#e8e8e8'; g.font = 'bold 15px sans-serif'; g.fillText('TELEMETRIA', W / 2, H - 9);
+    } else {
+      // ecrã a cores do volante de fórmula
+      g.fillStyle = '#04050a'; g.fillRect(0, 0, W, H);
+      const n = 15, lit = Math.round(k * n);
+      for (let i = 0; i < n; i++) { g.fillStyle = i < lit ? (i < 5 ? '#30d158' : i < 10 ? '#ff2d2d' : '#3a8dff') : '#1a1c22'; g.fillRect(16 + i * ((W - 32) / n), 8, (W - 32) / n - 6, 16); }
+      g.fillStyle = st.flag === 'amarela' ? '#ffd60a' : st.flag === 'azul' ? '#3a8dff' : st.flag === 'sc' ? '#ffaa00' : '#04050a';
+      if (st.flag) { g.fillRect(0, 30, 10, H - 30); g.fillRect(W - 10, 30, 10, H - 30); }
+      g.textBaseline = 'alphabetic'; g.textAlign = 'center';
+      g.fillStyle = '#ffd60a'; g.font = 'bold 120px "Saira Condensed", sans-serif'; g.fillText(st.speed < 0.5 ? 'N' : String(st.gear), W / 2, 150);
+      g.fillStyle = '#ffffff'; g.font = 'bold 48px "Saira Condensed", sans-serif'; g.textAlign = 'left'; g.fillText(String(kmh), 22, 80);
+      g.fillStyle = '#97a0b3'; g.font = 'bold 18px sans-serif'; g.fillText('KM/H', 24, 102);
+      g.textAlign = 'right';
+      if (st.delta != null) { g.fillStyle = st.delta > 0 ? '#ff453a' : '#30d158'; g.font = 'bold 46px "Saira Condensed", sans-serif'; g.fillText((st.delta > 0 ? '+' : '') + st.delta.toFixed(2), W - 22, 80); g.fillStyle = '#97a0b3'; g.font = 'bold 18px sans-serif'; g.fillText('DELTA', W - 24, 102); }
+      else { g.fillStyle = '#ffffff'; g.font = 'bold 40px "Saira Condensed", sans-serif'; g.fillText(ft(st.lapCur), W - 22, 80); }
+      g.font = 'bold 26px "Saira Condensed", sans-serif'; g.fillStyle = '#ffffff';
+      g.textAlign = 'left'; g.fillText(`P${st.pos}`, 22, 145); g.fillText(`V${st.lapN}/${st.lapsN}`, 22, 175);
+      g.textAlign = 'right'; g.fillText(ft(st.lapLast), W - 22, 145);
+      if (st.cmpColor) { g.fillStyle = st.cmpColor; g.beginPath(); g.arc(W - 70, 168, 9, 0, 7); g.fill(); g.fillStyle = '#ffffff'; g.fillText(Math.round((1 - (st.wear || 0)) * 100) + '%', W - 22, 176); }
+      if (st.status) { g.fillStyle = '#ffd60a'; g.font = 'bold 20px sans-serif'; g.textAlign = 'center'; g.fillText(st.status, W / 2, H - 10); }
+    }
     d.t.needsUpdate = true;
   }
   // st: { T, R, cars:[{id,x,y,th,v,s,i,steer,tyreColor,wing,slide}], focus, phase, lightsN, rain, wet, sc, weather, ... }
@@ -452,7 +518,7 @@ const R3D = (() => {
         camera.rotation.set((T.kart ? -0.27 : -0.08) - cs.pitch + grade, -c.th - Math.PI / 2, cs.roll);
         const fov = (T.kart ? 74 : 70) + clamp((c.v || 0) / 90, 0, 1) * 10;
         if (Math.abs(camera.fov - fov) > 0.05) { camera.fov = lerp(camera.fov, fov, Math.min(1, dt * 3)); camera.updateProjectionMatrix(); }
-        updateDisplay(focusM, st);
+        updateDisplay(focusM, st, T.kart);
       } else if (view.cam === 'tv') {
         let best = 0, bd = 1e18;
         B.tv.forEach((t, k) => { const d = (t.x - c.x) ** 2 + (t.z - c.y) ** 2; if (d < bd) { bd = d; best = k; } });
@@ -488,6 +554,7 @@ const R3D = (() => {
       }
       p.needsUpdate = true;
     }
+    if (B.horizon) B.horizon.position.set(camera.position.x, B.horizon.position.y, camera.position.z);
     renderer.render(scene, camera);
   }
   return { init, resize, frame, get built() { return B; } };

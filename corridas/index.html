@@ -179,6 +179,8 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
 /* em primeira pessoa o painel sobe para não tapar o volante */
 #race.cockpit .dash { bottom: auto; top: calc(84px + env(safe-area-inset-top, 0px)); transform: translateX(-50%) scale(.62); transform-origin: top center; }
 #race.cockpit .lights { top: 46%; }
+#race.cockpit .dash, #race.cockpit .timing { display: none; }
+#race.cockpit::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 42%, transparent 55%, rgba(0,0,0,.38) 100%); }
 #race.cockpit .flagbox { top: 34%; }
 #race.cockpit .radio-msg { top: calc(160px + env(safe-area-inset-top, 0px)); }
 @media (max-height: 420px) {
