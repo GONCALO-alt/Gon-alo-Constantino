@@ -121,7 +121,7 @@ const teamOf = (i) => (S.cat === 'kart' || i == null ? null : TEAMS[S.cat][i]);
 function playerParams() {
   if (S.cat === 'kart') {
     const k = S.kart;
-    return carParams('kart', { power: 0.95 + 0.028 * k.motor + 0.012 * (k.carb || 0), grip: 0.978 + 0.009 * (k.chassis + k.pneus) + 0.008 * (k.eixo || 0), brake: 0.9 + 0.025 * k.travoes });
+    return carParams('kart', { power: 0.97 + 0.022 * k.motor + 0.01 * (k.carb || 0), grip: 0.99 + 0.006 * (k.chassis + k.pneus) + 0.005 * (k.eixo || 0), brake: 0.95 + 0.02 * k.travoes });
   }
   const tf = teamOf(S.team)[3] * (1 + 0.004 * (S.dev || 0)), e = S.world ? CAREER.partEffects(S) : { power: 1, grip: 1, aero: 1, brake: 1 };
   return carParams(S.cat, { power: tf * e.power, grip: Math.pow(tf, 0.6) * e.grip, aero: tf * e.aero, brake: e.brake });
@@ -133,7 +133,7 @@ function aiParams(d) {
 }
 // desempenho do carro numa escala comparável entre equipas (para simulações)
 function carPerf(id) {
-  if (S.cat === 'kart') { if (id !== 'me') return 1; const k = S.kart, raw = Math.pow(0.95 + 0.028 * k.motor + 0.012 * (k.carb || 0), 0.4) * Math.pow(0.978 + 0.009 * (k.chassis + k.pneus) + 0.008 * (k.eixo || 0), 0.45) * Math.pow(0.9 + 0.025 * k.travoes, 0.15); return 1 + (raw - 1) * 0.3; } // no tempo por volta, 5% de potência valem bem menos de 5%
+  if (S.cat === 'kart') { if (id !== 'me') return 1; const k = S.kart, raw = Math.pow(0.97 + 0.022 * k.motor + 0.01 * (k.carb || 0), 0.4) * Math.pow(0.99 + 0.006 * (k.chassis + k.pneus) + 0.005 * (k.eixo || 0), 0.45) * Math.pow(0.95 + 0.02 * k.travoes, 0.15); return 1 + (raw - 1) * 0.3; } // no tempo por volta, 5% de potência valem bem menos de 5%
   const d = id === 'me' ? { team: S.team } : S.drivers.find((x) => x.id === id), tf = TEAMS[S.cat][d.team][3];
   const e = d.team === S.team ? CAREER.partEffects(S) : { power: 1, grip: 1, aero: 1 };
   return tf * Math.pow(e.power, 0.4) * Math.pow(e.grip, 0.35) * Math.pow(e.aero, 0.25);
@@ -398,7 +398,7 @@ function scrGarage() {
     return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Garagem <em>· kart</em></h1><span class="money">${eur(S.money)}</span></div>${navBar('garage')}${oficinaBanner()}
     <div class="grid2">${show3d}<div class="card"><h2>Peças do kart</h2>${KART_PARTS.map((pt) => { const lv = S.kart[pt.k], cost = pt.cost[lv], can = open && lv < 5 && S.money >= cost; return `<div class="part"><div class="ico">${pt.i}</div><div><b>${pt.n}</b><div class="muted">${pt.d}</div><div class="lv">${[0, 1, 2, 3, 4].map((i) => `<span class="${i < lv ? 'on' : ''}"></span>`).join('')}</div></div>
     <button class="btn small ${can ? 'primary' : ''}" data-a="buyPart" data-v="${pt.k}" ${can ? '' : 'disabled'}>${lv >= 5 ? 'Máx.' : (open ? '' : '🔒 ') + eur(cost)}</button></div>`; }).join('')}</div>
-    <div class="card"><h2>O teu kart</h2><div class="kv"><div><small>Potência</small><b>${Math.round((0.95 + 0.028 * S.kart.motor + 0.012 * S.kart.carb) * 100)}%</b></div><div><small>Aderência</small><b>${Math.round((0.978 + 0.009 * (S.kart.chassis + S.kart.pneus) + 0.008 * S.kart.eixo) * 100)}%</b></div><div><small>Travagem</small><b>${Math.round((0.9 + 0.025 * S.kart.travoes) * 100)}%</b></div></div><p class="muted">100% = igual ao kart médio dos rivais. Ganhas dinheiro em cada corrida; acaba nos 3 primeiros do campeonato para receberes propostas da Fórmula 4.</p></div></div></div>`;
+    <div class="card"><h2>O teu kart</h2><div class="kv"><div><small>Potência</small><b>${Math.round((0.97 + 0.022 * S.kart.motor + 0.01 * S.kart.carb) * 100)}%</b></div><div><small>Aderência</small><b>${Math.round((0.99 + 0.006 * (S.kart.chassis + S.kart.pneus) + 0.005 * S.kart.eixo) * 100)}%</b></div><div><small>Travagem</small><b>${Math.round((0.95 + 0.02 * S.kart.travoes) * 100)}%</b></div></div><p class="muted">100% = igual ao kart médio dos rivais. Ganhas dinheiro em cada corrida; acaba nos 3 primeiros do campeonato para receberes propostas da Fórmula 4.</p></div></div></div>`;
   }
   const W = S.world, tm = W.teams[S.cat][S.team], P = CAREER.partsOf(S.cat), eff = CAREER.partEffects(S), rel = CAREER.playerReliability(S), rank = CAREER.teamRank(W, S.cat, S.team);
   const mate = S.drivers.find((d) => d.team === S.team), pct = (v) => (v >= 1 ? '+' : '') + ((v - 1) * 100).toFixed(1) + '%';
@@ -752,7 +752,8 @@ function simQuali(myTime) {
   const rd = S.calendar[S.round], T = getTrack(rd.name, S.cat), diff = DIFF[S.settings.diff];
   const wet = weekend && weekend.weather && weekend.weather.start > 0.3 ? 1 : 0;
   const list = S.drivers.map((d) => ({ id: d.id, t: speedProfile(T, aiParams(d)).lap / (d.skill * diff * (1 + wet * ((d.wet || 50) - 50) * 0.00008)) * (1 + (Math.random() - 0.5) * 0.006 * (1.3 - (d.cons ?? 0.6))) }));
-  const mine = myTime ?? speedProfile(T, playerParams()).lap / (CAREER.skillOf(CAREER.playerRating(S)) * 0.952 / 0.955 * 0.955 * (1 + (Math.random() - 0.5) * 0.008));
+  const refLap = S.cat === 'kart' ? speedProfile(T, carParams('kart', { power: 1, grip: 1, brake: 1 })).lap / carPerf('me') : speedProfile(T, playerParams()).lap;
+  const mine = myTime ?? refLap / (CAREER.skillOf(CAREER.playerRating(S)) * 0.952 / 0.955 * 0.955 * (1 + (Math.random() - 0.5) * 0.008));
   list.push({ id: 'me', t: mine });
   list.sort((a, b) => a.t - b.t);
   if (list[0].id === 'me' && !S.quick) { S.stats.poles++; bc().poles++; }

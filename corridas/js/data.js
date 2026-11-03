@@ -111,12 +111,12 @@ const trackSeed = (name, cat) => { let h = 2166136261; for (const ch of name + (
 
 // peças do kart: nome, efeito, preços por nível
 const KART_PARTS = [
-  { k: 'motor', n: 'Motor', i: '⚙️', d: '+3% potência por nível', cost: [400, 900, 1600, 2600, 4000] },
-  { k: 'chassis', n: 'Chassis', i: '🛠️', d: '+1,5% aderência nas curvas por nível', cost: [350, 800, 1400, 2300, 3600] },
-  { k: 'pneus', n: 'Pneus', i: '🛞', d: '+1,5% aderência por nível', cost: [250, 600, 1100, 1800, 2800] },
+  { k: 'motor', n: 'Motor', i: '⚙️', d: '+2,2% potência por nível', cost: [400, 900, 1600, 2600, 4000] },
+  { k: 'chassis', n: 'Chassis', i: '🛠️', d: '+0,6% aderência nas curvas por nível', cost: [350, 800, 1400, 2300, 3600] },
+  { k: 'pneus', n: 'Pneus', i: '🛞', d: '+0,6% aderência por nível', cost: [250, 600, 1100, 1800, 2800] },
   { k: 'travoes', n: 'Travões', i: '🛑', d: 'travagem mais forte e estável', cost: [200, 500, 900, 1500, 2400] },
-  { k: 'carb', n: 'Carburador', i: '⛽', d: '+1,2% potência e melhor resposta por nível', cost: [300, 700, 1200, 2000, 3100] },
-  { k: 'eixo', n: 'Eixo traseiro', i: '🔩', d: '+0,8% aderência à saída das curvas por nível', cost: [280, 650, 1150, 1900, 2900] },
+  { k: 'carb', n: 'Carburador', i: '⛽', d: '+1% potência e melhor resposta por nível', cost: [300, 700, 1200, 2000, 3100] },
+  { k: 'eixo', n: 'Eixo traseiro', i: '🔩', d: '+0,5% aderência à saída das curvas por nível', cost: [280, 650, 1150, 1900, 2900] },
 ];
 // desenhos do capacete
 const HELMET_PATTERNS = [
