@@ -512,7 +512,15 @@ function render(now) {
   ctx.shadowColor = '#ffc93c'; ctx.shadowBlur = 8 + pulse * 8;
   ctx.strokeStyle = '#ffd75e'; ctx.lineWidth = Math.max(2, r * 0.26); ctx.stroke(empire);
   ctx.shadowColor = '#ff3d5a'; ctx.strokeStyle = `rgba(255,61,90,${0.6 + 0.4 * pulse})`; ctx.lineWidth = Math.max(2.5, r * 0.32); ctx.stroke(front);
-  ctx.shadowColor = '#fff'; ctx.shadowBlur = 12; ctx.strokeStyle = '#fff'; ctx.lineWidth = Math.max(2, r * 0.22 + pulse * 1.5); ctx.setLineDash([r * 0.6, r * 0.4]); ctx.lineDashOffset = -now / 40; ctx.stroke(selP); ctx.setLineDash([]);
+  if (sel >= 0) {
+    // brilho por cima dos quadrados da província escolhida
+    ctx.fillStyle = `rgba(255,255,255,${0.18 + 0.2 * pulse})`; ctx.beginPath();
+    const h = S / 2 * cam.s;
+    for (const i of PH[sel]) { const x = sx(cxOf(i)), y = sy(cyOf(i)); if (x > -h && x < VW + h && y > -h && y < VH + h) ctx.rect(x - h, y - h, h * 2, h * 2); }
+    ctx.fill();
+  }
+  ctx.shadowBlur = 0; ctx.strokeStyle = '#0a0e24'; ctx.lineWidth = 6; ctx.stroke(selP);
+  ctx.shadowColor = '#fff'; ctx.shadowBlur = 10; ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.setLineDash([7, 5]); ctx.lineDashOffset = -now / 40; ctx.stroke(selP); ctx.setLineDash([]);
   ctx.shadowBlur = 0;
   if (heatMode) drawHeat(now, pulse);
   drawTrade(now);
@@ -647,7 +655,7 @@ function drawLabels(now, pulse) {
     const z = clamp(cam.s * 1.1, 6, 16) * (0.85 + pulse * 0.25);
     ctx.strokeStyle = '#ff3d5a'; ctx.lineWidth = 2; ctx.globalAlpha = 0.85;
     ctx.beginPath(); ctx.arc(x, y, z, 0, Math.PI * 2);
-    for (let k = 0; k < 4; k++) { const a = (k * Math.PI) / 2 + now / 900; ctx.moveTo(x + Math.cos(a) * z * 0.6, y + Math.sin(a) * z * 0.6); ctx.lineTo(x + Math.cos(a) * z * 1.35, y + Math.sin(a) * z * 1.35); }
+    for (let k = 0; k < 4; k++) { const a = (k * Math.PI) / 2; ctx.moveTo(x + Math.cos(a) * z * 1.05, y + Math.sin(a) * z * 1.05); ctx.lineTo(x + Math.cos(a) * z * 1.45, y + Math.sin(a) * z * 1.45); }
     ctx.stroke(); ctx.globalAlpha = 1;
   }
 }
@@ -688,7 +696,7 @@ function drawMoves(now) {
     ctx.fillStyle = shade(col, -0.5); ctx.beginPath(); ctx.arc(X, Y + 2, z, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = col; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X, Y, z, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.fillStyle = '#0a0e24'; ctx.font = `${Math.round(z * 1.05)}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(m.sea ? '⚓' : '⚔', X, Y + 1);
+    if (m.sea) ctx.fillText('⚓', X, Y + 1); else drawTank(X - 1, Y, z / 9);
     pill(X, Y - z - 9, fmt(m.n), '#0a0e24', '#fff', col);
     if (Math.random() < 0.3) FX.parts.push({ x: ux, y: uy, vx: rnd(-0.2, 0.2), vy: rnd(-0.3, 0), life: 0.6, t: 0, col: m.sea ? '#bfe9ff' : '#8a7f6a', r: 0.35, smoke: true });
     if (k >= 1) done.push(m);
@@ -1050,7 +1058,7 @@ function airStrike(att, j) {
 // ---------- Exércitos com generais ----------
 const GEN_NAMES = ['Lobo', 'Águia', 'Trovão', 'Ferro', 'Falcão', 'Tempestade', 'Leão', 'Raio', 'Tigre', 'Coruja', 'Urso', 'Cometa', 'Martelo', 'Vulcão', 'Escorpião', 'Sombra'];
 const TRAITS = { atk: { n: 'Ofensivo', d: '+20% ataque' }, spd: { n: 'Rápido', d: '+50% velocidade' }, def: { n: 'Defensivo', d: '+30% defesa' } };
-let selArmy = -1;
+let selArmy = -1, armyMoveMode = false;
 const armyById = (id) => G.armies.find((a) => a.id === id);
 const maxArmies = () => 2 + Math.floor(C[G.player].mil / 2);
 const armyStr = (a, j, sea) => a.inf + a.tank * tankMult(j, sea);
@@ -1398,7 +1406,7 @@ const A = {
     const used = new Set(G.armies.map((a) => a.name));
     const name = GEN_NAMES.find((n) => !used.has(n)) || 'Novo';
     const a = { id: G.nextArmy++, name, trait: pick(Object.keys(TRAITS)), prov: j, path: [], prog: 0, inf, tank, auto: false };
-    G.armies.push(a); selArmy = a.id; sel = -1;
+    G.armies.push(a); selArmy = a.id; sel = -1; armyMoveMode = true;
     banner('🎖️', 'GENERAL ' + name.toUpperCase(), `${TRAITS[a.trait].n}: ${TRAITS[a.trait].d}. Toca numa província para o mandares avançar.`, 'gold');
     sfx.fanfare(); uiDirty = true;
   },
@@ -1578,7 +1586,7 @@ function relLabel(r) { return r >= 50 ? 'Amigável' : r >= 15 ? 'Cordial' : r > 
 let lastPanelKey = null;
 function renderPanel() {
   const el = $('#panel');
-  const key = sel + ':' + warConfirm + ':' + selArmy + ':' + spyMenu;
+  const key = sel + ':' + warConfirm + ':' + selArmy + ':' + spyMenu + ':' + armyMoveMode;
   const anim = key !== lastPanelKey; lastPanelKey = key;
   const st = el.scrollTop;
   renderPanelInner(el);
@@ -1592,7 +1600,8 @@ function armyCard(a) {
   const dest = a.path.length ? P[a.path[a.path.length - 1]] : null;
   return `<div class="card"><div class="head"><span class="flag">🎖️</span><div style="min-width:0"><h2>General ${a.name}</h2><p><span class="tag me">${t.n}</span> ${t.d}${a.auto ? ' · <span class="tag ally">Automático</span>' : ''}</p></div></div>
   <div class="kv"><div><small>Soldados</small><b>${fmt(a.inf)}</b></div><div><small>Tanques</small><b>${fmt(a.tank)}</b></div><div><small>Força</small><b>${fmt(a.inf + a.tank * 2.5)}</b></div></div>
-  <p class="note">${dest ? `A avançar para <b>${dest.n}</b> (${a.path.length} província${a.path.length > 1 ? 's' : ''}).` : `Parado em ${where}.`} Toca numa província no mapa para lhe dares uma ordem.${me.ships ? '' : ' Sem navios não atravessa o mar.'}</p>
+  <p class="note">${dest ? `A avançar para <b>${dest.n}</b> (${a.path.length} província${a.path.length > 1 ? 's' : ''}).` : `Parado em ${where}.`} ${armyMoveMode ? '<b>Toca na província de destino.</b>' : 'Carrega em Mover e depois toca no destino.'}${me.ships ? '' : ' Sem navios não atravessa o mar.'}</p>
+  <div class="btns"><button class="btn red ${armyMoveMode ? 'pulse' : ''}" data-a="armyMove" data-v="${a.id}">${armyMoveMode ? 'A escolher destino…' : 'Mover'}<small>toca no mapa a seguir</small></button></div>
   <div class="btns"><button class="btn ${a.auto ? 'green' : 'blue'}" data-a="armyAuto" data-v="${a.id}">${a.auto ? 'Automático: sim' : 'Automático: não'}<small>combate sozinho</small></button>
   <button class="btn gold" data-a="armyReinforce" data-v="${a.id}">Reforçar<small>50% da reserva</small></button></div>
   <div class="btns">${a.path.length ? `<button class="btn" data-a="armyStop" data-v="${a.id}">Parar</button>` : ''}<button class="btn" data-a="armyDisband" data-v="${a.id}">Dissolver</button><button class="btn" data-a="armyClose">Fechar</button></div></div>`;
@@ -1753,7 +1762,8 @@ function onAction(e) {
   else if (a === 'armyStop') A.armyStop(+v);
   else if (a === 'armyReinforce') A.armyReinforce(+v);
   else if (a === 'armyDisband') A.armyDisband(+v);
-  else if (a === 'armyClose') selArmy = -1;
+  else if (a === 'armyClose') { selArmy = -1; armyMoveMode = false; }
+  else if (a === 'armyMove') { selArmy = +v; armyMoveMode = !armyMoveMode; }
   else if (a === 'missile') A.missile(+v);
   else if (a === 'trade') A.trade(+v);
   else if (a === 'tribute') A.tribute(+v);
@@ -1820,7 +1830,7 @@ function endPtr(e) {
   if (!ptrs.has(e.pointerId)) return;
   ptrs.delete(e.pointerId);
   if (ptrs.size === 0) {
-    if (moved < 8 && drag && C) { const r = cv.getBoundingClientRect(); tapAt(e.clientX - r.left, e.clientY - r.top); }
+    if (moved < 14 && drag && C) { const r = cv.getBoundingClientRect(); tapAt(e.clientX - r.left, e.clientY - r.top); }
     drag = null; pinch = null;
   } else if (ptrs.size === 1) { const [v] = [...ptrs.values()]; drag = { x: v[0], y: v[1], cx: cam.x, cy: cam.y }; pinch = null; }
 }
@@ -1844,22 +1854,23 @@ function hexAtWorld(x, y) {
 }
 function tapAt(px, py) {
   // tocar num exército seleciona-o
-  for (const a of G.armies) { const [X, Y] = armyScreenPos(a); if (Math.abs(X - px) < 18 && Math.abs(Y - py) < 16) { selArmy = a.id; sel = -1; sfx.select(); renderPanel(); return; } }
+  if (!armyMoveMode) for (const a of G.armies) { const [X, Y] = armyScreenPos(a); if (Math.abs(X - px) < 18 && Math.abs(Y - py) < 16) { selArmy = a.id; sel = -1; sfx.select(); renderPanel(); return; } }
   const i = hexAtWorld(wx(px), wy(py));
-  const ar = armyById(selArmy);
+  const ar = armyMoveMode ? armyById(selArmy) : null;
+  if (!ar) { selArmy = -1; armyMoveMode = false; }
   if (ar) {
-    if (i < 0) { selArmy = -1; renderPanel(); return; }
+    if (i < 0) { armyMoveMode = false; renderPanel(); return; }
     const dest = CP[i];
     if (!passable(dest)) { toast('Só podes avançar por território teu, aliado ou de um inimigo em guerra.', 'war'); return; }
     const path = armyPath(ar, dest);
     if (!path) { toast(C[G.player].ships ? 'Não há caminho até lá.' : 'Não há caminho por terra. Compra navios para atravessar o mar.', 'war'); return; }
-    ar.path = path; ar.prog = 0; sfx.march();
+    ar.path = path; ar.prog = 0; sfx.march(); armyMoveMode = false;
     toast(path.length ? `🎖️ O General ${ar.name} avança para ${P[dest].n}.` : `O General ${ar.name} fica em ${P[dest].n}.`, 'good');
     renderPanel(); return;
   }
   let j = i < 0 ? -1 : CP[i];
   // com pouco zoom, um toque perto de uma mira vermelha escolhe esse alvo
-  let bd = 24 * 24;
+  let bd = i < 0 ? 24 * 24 : 0;
   for (const t of attackable) { const d = (sx(LABEL[t][0]) - px) ** 2 + (sy(LABEL[t][1]) - py) ** 2; if (d < bd) { bd = d; j = t; } }
   if (j !== sel) { warConfirm = -1; spyMenu = -1; }
   sel = j;
