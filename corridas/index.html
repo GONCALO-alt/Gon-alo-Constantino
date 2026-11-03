@@ -272,6 +272,18 @@ td.pos { font-family: var(--num); font-weight: 800; font-size: 16px; width: 32px
 .swatches button.none { background: transparent; color: var(--dim); font-weight: 700; }
 .helmetbox { position: sticky; top: 0; z-index: 2; }
 .helmetbox .helm3d { width: 100%; height: 260px; display: block; border-radius: 10px; }
+
+/* tabela do campeonato */
+table.champ { min-width: 100%; }
+table.champ td.nm { white-space: nowrap; }
+table.champ tr.top1 td.pos { color: #ffd60a; } table.champ tr.top2 td.pos { color: #d0d4da; } table.champ tr.top3 td.pos { color: #d08a4a; }
+table.res th { text-align: center; font-size: 15px; line-height: 1; } table.res th small { font-size: 9px; color: var(--dim); }
+td.rc { text-align: center; font-family: var(--num); font-weight: 700; min-width: 30px; padding: 4px 2px; border-radius: 4px; }
+.rc.p1, .lgd.p1 { background: #ffd60a; color: #111; } .rc.p2, .lgd.p2 { background: #d0d4da; color: #111; } .rc.p3, .lgd.p3 { background: #d08a4a; color: #111; }
+.rc.pts, .lgd.pts { background: rgba(48,209,88,.35); } .rc.np, .lgd.np { background: rgba(255,255,255,.08); color: var(--dim); } .rc.dnf, .lgd.dnf { background: rgba(225,6,0,.4); }
+.rc.pole { text-decoration: underline; text-decoration-thickness: 2px; } .rc.fl::after { content: '⏱'; font-size: 9px; vertical-align: super; }
+td.fut { background: rgba(255,255,255,.02); }
+.lgd { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px; }
 </style>
 </head>
 <body class="carbon">

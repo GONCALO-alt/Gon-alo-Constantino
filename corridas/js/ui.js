@@ -301,6 +301,7 @@ function scrHub() {
   ${S.sponsor ? `<div class="row"><span class="tag" style="border-color:${S.sponsor.c}">Patrocinador</span><b class="grow">${esc(S.sponsor.name)}</b></div>` : '<button class="btn" data-a="sponsors">Escolher um patrocinador</button>'}
   ${S.cat !== 'kart' ? `<div class="muted">Relação com a equipa: ${S.teamRel >= 10 ? 'muito boa' : S.teamRel >= 0 ? 'boa' : S.teamRel > -15 ? 'tensa' : 'má'}</div>` : ''}</div>
   ${agendaCard()}
+  <div class="card"><h2>Campeonato</h2>${(() => { const r = champTable().rows, mi = r.findIndex((x) => x[0] === 'me'), show5 = r.slice(0, 5).map((x, k) => [x, k]); if (mi >= 5) show5.push([r[mi], mi]); return show5.map(([[id, pts], k]) => { const d = driverById(id); return `<div class="row ${id === 'me' ? 'me' : ''}"><b style="min-width:24px">${k + 1}</b><span class="teamdot" style="background:${d.c1}"></span><span class="grow">${flagOf(d.nat)} ${esc(d.first[0] + '. ' + d.last)}</span><b>${pts}</b></div>`; }).join(''); })()}<button class="btn small" data-a="champ">Ver a tabela completa</button></div>
   ${rd ? `<div class="card"><h2>Próxima corrida · ${fmtDay(rd.date)}</h2><h3>${flagOf(rd.nat)} ${rd.name}</h3><canvas class="trackprev" id="trkCv" width="600" height="300"></canvas>
   <div class="muted">${(getTrack(rd.name, S.cat).len / 1000).toFixed(3)} km · ${C.laps[S.settings.length]} voltas${C.pits ? ` · paragem nas boxes ${C.mandatory ? 'obrigatória' : 'opcional'}` : ''}${getTrack(rd.name, S.cat).real && S.cat !== 'kart' ? ' · circuito real' : ''}</div></div>` : ''}
   </div></div>`;
@@ -375,13 +376,33 @@ function scrGarage() {
 function scrHelmet() {
   return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Capacete</h1><span class="money">${eur(S.money)}</span></div>${navBar('helmet')}<div class="grid2">${helmetEditor(S.profile, false)}</div></div>`;
 }
+let champTab = 'pilotos';
+function teamTable() {
+  const tm = TEAMS[S.cat].map((t, i) => ({ i, t, pts: 0, wins: 0 }));
+  for (const [id, pts] of champTable().rows) { const d = driverById(id); if (d.team != null && tm[d.team]) { tm[d.team].pts += pts; tm[d.team].wins += S.wins[id] || 0; } }
+  return tm.sort((a, b) => b.pts - a.pts || b.wins - a.wins);
+}
 function scrChamp() {
-  const ch = champTable();
-  return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Campeonato <em>· ${catById(S.cat).n}</em></h1></div>${navBar('champ')}
-  <div class="grid2"><div class="card"><h2>Classificação de pilotos</h2><div class="tbl"><table><tr><th>Pos</th><th>Piloto</th><th>Vit.</th><th>Pts</th></tr>
-  ${ch.rows.map(([id, pts], k) => { const d = driverById(id); return `<tr class="${id === 'me' ? 'me' : ''}"><td class="pos">${k + 1}</td><td><span class="teamdot" style="background:${d.c1}"></span>${flagOf(d.nat)} ${esc(d.first[0] + '. ' + d.last)}</td><td>${S.wins[id] || 0}</td><td><b>${pts}</b></td></tr>`; }).join('')}</table></div></div>
-  <div class="card"><h2>Calendário</h2><div class="cal">${S.calendar.map((r, k) => `<div class="r ${k === S.round ? 'next' : k < S.round ? 'done' : ''}"><b>${k + 1}</b><span>${flagOf(r.nat)}</span><span>${r.name}</span><span class="muted">${r.res ? 'P' + r.res : k === S.round ? 'próxima' : ''}</span></div>`).join('')}</div>
-  <p class="muted">Pontos por corrida: ${POINTS.join(', ')} (do 1.º ao 10.º).</p></div></div></div>`;
+  const ch = champTable(), C = catById(S.cat), done = S.calendar.slice(0, S.round), lead = ch.rows[0] ? ch.rows[0][1] : 0;
+  const stat = (id) => { let pod = 0, best = 99, poles = 0, fls = 0; for (const r of done) { const p = r.full ? r.full[id] : id === 'me' ? (r.res === 'DNF' ? 'D' : r.res) : null; if (typeof p === 'number') { if (p <= 3) pod++; best = Math.min(best, p); } if (r.pole === id) poles++; if (r.fl === id) fls++; } return { pod, best: best < 99 ? best : '–', poles, fls }; };
+  const name = (d) => `<span class="teamdot" style="background:${d.c1}"></span>${flagOf(d.nat)} ${esc(d.first[0] + '. ' + d.last)}`;
+  const tabs = `<div class="seg">${[['pilotos', 'Pilotos'], ...(S.cat !== 'kart' ? [['equipas', 'Equipas']] : []), ['resultados', 'Resultados por corrida']].map(([k, l]) => `<button class="${champTab === k ? 'on' : ''}" data-a="champTab" data-v="${k}">${l}</button>`).join('')}</div>`;
+  let body = '';
+  if (champTab === 'equipas' && S.cat !== 'kart') {
+    const tt = teamTable(), tl = tt[0].pts;
+    body = `<div class="card"><h2>Campeonato de equipas</h2><div class="tbl"><table class="champ"><tr><th>Pos</th><th>Equipa</th><th>Pilotos</th><th>Vit.</th><th>Dif.</th><th>Pts</th></tr>
+    ${tt.map((x, k) => { const ds = ch.rows.filter(([id]) => driverById(id).team === x.i).map(([id]) => driverById(id).last); return `<tr class="${x.i === S.team ? 'me' : ''}"><td class="pos">${k + 1}</td><td><span class="teamdot" style="background:${x.t[1]}"></span>${esc(x.t[0])}</td><td class="muted">${ds.map(esc).join(', ')}</td><td>${x.wins}</td><td class="muted">${k ? '−' + (tl - x.pts) : '–'}</td><td><b>${x.pts}</b></td></tr>`; }).join('')}</table></div></div>`;
+  } else if (champTab === 'resultados') {
+    const cell = (p, r, id) => { const cls = p === 'D' ? 'dnf' : p === 1 ? 'p1' : p === 2 ? 'p2' : p === 3 ? 'p3' : p <= 10 ? 'pts' : 'np'; return p == null ? '<td></td>' : `<td class="rc ${cls}${r.pole === id ? ' pole' : ''}${r.fl === id ? ' fl' : ''}">${p === 'D' ? 'DNF' : p}</td>`; };
+    body = `<div class="card"><h2>Resultados por corrida</h2><div class="tbl"><table class="champ res"><tr><th>Pos</th><th>Piloto</th>${S.calendar.map((r, k) => `<th title="${esc(r.name)}">${flagOf(r.nat)}<br><small>${k + 1}</small></th>`).join('')}<th>Pts</th></tr>
+    ${ch.rows.map(([id, pts], k) => `<tr class="${id === 'me' ? 'me' : ''}"><td class="pos">${k + 1}</td><td class="nm">${name(driverById(id))}</td>${S.calendar.map((r, j) => (j < S.round ? cell(r.full ? r.full[id] : id === 'me' ? (r.res === 'DNF' ? 'D' : r.res) : null, r, id) : '<td class="fut"></td>')).join('')}<td><b>${pts}</b></td></tr>`).join('')}</table></div>
+    <p class="muted"><span class="lgd p1">1.º</span> <span class="lgd p2">2.º</span> <span class="lgd p3">3.º</span> <span class="lgd pts">pontos</span> <span class="lgd np">sem pontos</span> <span class="lgd dnf">desistiu</span> · <u>sublinhado</u> = pole · ⏱ = volta mais rápida</p></div>`;
+  } else {
+    body = `<div class="card"><h2>Classificação de pilotos · ronda ${Math.min(S.round, S.calendar.length)}/${S.calendar.length}</h2><div class="tbl"><table class="champ"><tr><th>Pos</th><th>Piloto</th>${S.cat !== 'kart' ? '<th>Equipa</th>' : ''}<th>Vit.</th><th>Pód.</th><th>Poles</th><th>Melhor</th><th>Dif.</th><th>Pts</th></tr>
+    ${ch.rows.map(([id, pts], k) => { const d = driverById(id), st = stat(id), t = teamOf(d.team); return `<tr class="${id === 'me' ? 'me' : ''} ${k < 3 ? 'top' + (k + 1) : ''}"><td class="pos">${k + 1}</td><td class="nm">${name(d)}</td>${S.cat !== 'kart' ? `<td class="muted">${t ? esc(t[0]) : ''}</td>` : ''}<td>${S.wins[id] || 0}</td><td>${st.pod}</td><td>${st.poles}</td><td>${st.best === '–' ? '–' : 'P' + st.best}</td><td class="muted">${k ? '−' + (lead - pts) : '–'}</td><td><b>${pts}</b></td></tr>`; }).join('')}</table></div>
+    <p class="muted">Pontos: ${POINTS.join(', ')} (do 1.º ao 10.º). Ainda há ${Math.max(0, S.calendar.length - S.round)} corrida${S.calendar.length - S.round === 1 ? '' : 's'} = ${Math.max(0, S.calendar.length - S.round) * POINTS[0]} pontos em jogo.</p></div>`;
+  }
+  return `<div class="screen"><div class="topbar"><button class="back" data-a="hub">‹ Paddock</button><h1>Campeonato <em>· ${C.n} ${S.year || ''}</em></h1></div>${navBar('champ')}${tabs}${body}</div>`;
 }
 function scrCareer() {
   const st = S.stats;
@@ -513,6 +534,7 @@ const ACT = {
     rerender();
   },
   calendar: () => show(scrCalendar),
+  champTab: (k) => { champTab = k; rerender(); },
   nextDay: () => { const e = nextEvent(); if (!e || S.today >= e.date) return; S.today = addDays(S.today, 1); S.dayNote = S.today === e.date ? null : DAY_NOTES[Math.floor(Math.random() * DAY_NOTES.length)]; save(); rerender(); },
   skipDays: () => { const e = nextEvent(); if (!e) return; S.today = e.date; S.dayNote = null; save(); rerender(); },
   launch: () => show(scrLaunch),
@@ -914,6 +936,7 @@ function endSession() {
   const goal = weekend && weekend.goal, goalOk = checkGoal(goal, res, mine, R);
   S.money += prize + (goalOk ? goal.pay : 0); S.stats.races++; if (pos === 1) S.stats.wins++; if (pos <= 3) S.stats.podiums++;
   lastRace = R;
+  S.calendar[S.round].full = Object.fromEntries(res.map((r) => [r.id, r.dnf ? 'D' : r.pos])); S.calendar[S.round].fl = R.fastest && R.fastest.id; S.calendar[S.round].pole = weekend && weekend.grid ? weekend.grid[0].id : null;
   S.calendar[S.round].res = mine.dnf ? 'DNF' : pos; if (S.calendar[S.round].date) S.today = S.calendar[S.round].date; S.round++; weekend = null; save();
   const champ = champTable().meIdx + 1;
   show(scrResults, res, { track: R.T.name, money: prize + (goalOk ? goal.pay : 0), pts: mine.pts, pos, champ, fastest: R.fastest && R.fastest.id, goal, goalOk, replay: is3Dok() && R.rep.frames.length > 20 });
