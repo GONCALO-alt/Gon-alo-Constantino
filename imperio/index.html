@@ -198,6 +198,25 @@ button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .help { font-size: 13px; color: var(--dim); line-height: 1.5; background: #0d1330cc; border: 2px solid var(--line); border-radius: 14px; padding: 10px 12px; }
 .help b { color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition: none !important; } }
+
+/* caixa de entrada das notificações */
+.inboxbtn { position: relative; width: 40px; height: 36px; border-radius: 10px; border: 2px solid var(--line); background: var(--panel); font-size: 18px; cursor: pointer; flex: none; margin-left: auto; margin-right: 6px; }
+.inboxbtn span { position: absolute; top: -7px; right: -7px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 10px; background: var(--red); color: #fff; font-size: 11px; font-weight: 800; display: grid; place-items: center; border: 2px solid #0d1330; }
+.inboxbtn.ping { animation: ping .6s ease; } .inboxbtn.ping.war { border-color: var(--red); } .inboxbtn.ping.good { border-color: var(--green); } .inboxbtn.ping.gold { border-color: var(--gold); }
+@keyframes ping { 0% { transform: scale(1); } 35% { transform: scale(1.18); } 100% { transform: scale(1); } }
+#inbox { position: absolute; inset: 8px; z-index: 7; display: flex; }
+#inbox[hidden] { display: none; }
+.ibox { flex: 1; display: flex; flex-direction: column; background: #0d1330f4; border: 2px solid var(--line); border-radius: 16px; box-shadow: 0 10px 40px #000a; overflow: hidden; }
+.ihead { position: relative; padding: 12px 50px 6px 14px; } .ihead h3 { margin: 0; font-family: var(--display); font-size: 18px; } .ihead .xclose { top: 6px; right: 6px; }
+.ifil { display: flex; gap: 6px; padding: 0 12px 8px; overflow-x: auto; }
+.ifil button { flex: none; border: 2px solid var(--line); background: var(--panel); border-radius: 10px; padding: 5px 10px; font-weight: 700; font-size: 12px; cursor: pointer; }
+.ifil button.on { background: var(--gold); color: #2a1a00; border-color: var(--gold); }
+.ilist { flex: 1; overflow-y: auto; padding: 0 12px; display: flex; flex-direction: column; gap: 6px; }
+.imsg { border-left: 5px solid var(--cyan); background: var(--panel); border-radius: 10px; padding: 6px 10px; font-size: 13px; display: grid; gap: 2px; }
+.imsg small { opacity: .6; font-size: 11px; } .imsg.new { box-shadow: inset 0 0 0 1px #ffffff33; } .imsg.new span { font-weight: 700; }
+.imsg.war { border-left-color: var(--red); } .imsg.good { border-left-color: var(--green); } .imsg.gold { border-left-color: var(--gold); } .imsg.news { border-left-color: #f4e7c2; }
+.iempty { opacity: .6; text-align: center; padding: 20px; }
+.ifoot { display: flex; gap: 8px; padding: 10px 12px 12px; }
 </style>
 </head>
 <body>
@@ -205,6 +224,7 @@ button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
   <header id="hud">
     <div class="hud-row">
       <div class="me"><span class="flag" id="hFlag"></span><div style="min-width:0"><div class="name" id="hName">Império</div><div class="sub" id="hSub">Dia 1</div></div></div>
+      <button id="inboxBtn" class="inboxbtn" aria-label="Caixa de entrada">📥<span id="inboxN" hidden></span></button>
       <div class="speed" id="speed">
         <button id="music" aria-label="Música">♪</button><button data-s="0" aria-label="Pausa">II</button><button data-s="1" class="on">1x</button><button data-s="2">2x</button><button data-s="4">4x</button>
       </div>
@@ -221,6 +241,7 @@ button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
     <div id="toasts"></div>
     <div class="mapbtns"><button id="zin" aria-label="Aproximar">+</button><button id="zout" aria-label="Afastar">−</button><button id="zheat" aria-label="Mapa de guerra">🔥</button><button id="zhome" aria-label="Centrar no meu país">◎</button></div>
     <div id="banner"></div>
+    <div id="inbox" hidden></div>
     <div id="flash"></div>
   </div>
   <section id="panel"></section>

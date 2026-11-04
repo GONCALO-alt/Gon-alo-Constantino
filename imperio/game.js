@@ -132,7 +132,7 @@ const PSEG = PH.map((list) => {
   return new Float32Array(out);
 });
 // cada parte ligada de um país (continente, ilha, Alasca...) recebe a sua própria bandeira esticada
-const REG = new Int32Array(N).fill(-1), REGBOX = [];
+const REG = new Int32Array(N).fill(-1), REGBOX = [], REGC = [], REGN = [];
 {
   const q = new Int32Array(N);
   for (let s0 = 0; s0 < N; s0++) {
@@ -149,8 +149,12 @@ const REG = new Int32Array(N).fill(-1), REGBOX = [];
       }
     }
     REGBOX.push([c0, r0, c1 - c0 + 1, r1 - r0 + 1]);
+    REGC.push(cc); REGN.push(t);
   }
 }
+// zona principal (a maior) de cada país: a terra conquistada continua a bandeira a partir dela
+const HOMEBOX = [];
+for (let id = 0; id < REGBOX.length; id++) { const c = REGC[id]; if (!HOMEBOX[c] || REGN[id] > HOMEBOX[c][4]) HOMEBOX[c] = [...REGBOX[id], REGN[id]]; }
 // Dono de cada quadrado: a frente de guerra avança quadrado a quadrado dentro das províncias
 const CO = new Int16Array(N);
 // orla de cada província com o dono de cada lado: [x1,y1,x2,y2, dono deste lado, dono do outro lado (-1 mar), província do outro lado]
@@ -454,14 +458,16 @@ function paintCells(c0, r0, c1, r1) {
   for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
     const i = GRID[r * COLS + c]; if (i < 0) continue;
     const p = CP[i], ow = CO[i], fl = flagPixels(ow), pal = PAL[ow];
-    const rb = REGBOX[REG[i]];
+    // na terra original do dono, a bandeira estica sobre essa zona; na terra conquistada, continua a bandeira do dono (as riscas da ponta prolongam-se)
+    const own = M.provinces[p].c === ow, rb = own ? REGBOX[REG[i]] : HOMEBOX[ow] || REGBOX[REG[i]];
     // 0 = igual, 1 = outra província, 2 = outro país, 3 = mar
     const side = (n) => (n < 0 ? 3 : CO[n] !== ow ? 2 : CP[n] !== p ? 1 : 0);
     const e = side(cellAt(c + 1, r)), sth = side(cellAt(c, r + 1)), wst = side(cellAt(c - 1, r)), nth = side(cellAt(c, r - 1));
     const X = (c - c0) * PXC, Y = (r - r0) * PXC;
     for (let py = 0; py < 3; py++) for (let px = 0; px < 3; px++) {
       if (fl) {
-        const u = (c - rb[0] + (px + 0.5) / 3) / rb[2], v = (r - rb[1] + (py + 0.5) / 3) / rb[3];
+        let u = (c - rb[0] + (px + 0.5) / 3) / rb[2], v = (r - rb[1] + (py + 0.5) / 3) / rb[3];
+        if (!own) { u = Math.min(0.96, Math.max(0.04, u)); v = Math.min(0.94, Math.max(0.06, v)); }
         const k = (Math.min(fl.h - 1, (v * fl.h) | 0) * fl.w + Math.min(fl.w - 1, (u * fl.w) | 0)) * 3;
         col[0] = fl.px[k]; col[1] = fl.px[k + 1]; col[2] = fl.px[k + 2];
       } else { col[0] = pal[0][0]; col[1] = pal[0][1]; col[2] = pal[0][2]; }
@@ -1658,13 +1664,39 @@ function askDefendAlly(victim, aggressor) {
 
 // ---------- Interface ----------
 let uiDirty = true, panelHold = false;
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+// notificações: vão para a caixa de entrada em vez de taparem o mapa
 function toast(msg, kind = '') {
-  const box = $('#toasts');
-  const el = document.createElement('div'); el.className = 'toast ' + kind; el.textContent = msg;
-  box.appendChild(el);
-  while (box.children.length > 2) box.firstChild.remove();
-  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 400); }, 3800);
+  if (!G) return;
+  const box = G.inbox || (G.inbox = []);
+  box.unshift({ d: G.day, msg, kind, read: false });
+  if (box.length > 150) box.length = 150;
+  inboxBadge(kind);
+  if ($('#inbox') && !$('#inbox').hidden) renderInbox();
 }
+function inboxBadge(kind) {
+  const n = (G && G.inbox ? G.inbox.filter((x) => !x.read).length : 0), b = $('#inboxN'), btn = $('#inboxBtn');
+  if (!b) return;
+  b.textContent = n > 99 ? '99+' : n ? String(n) : ''; b.hidden = !n;
+  if (kind !== undefined) { btn.classList.remove('ping', 'war', 'good', 'gold'); void btn.offsetWidth; btn.classList.add('ping'); if (kind) btn.classList.add(kind); }
+}
+let inboxF = 'tudo';
+const INBOX_F = { tudo: () => true, guerra: (x) => x.kind === 'war', boas: (x) => x.kind === 'good' || x.kind === 'gold', mundo: (x) => x.kind === 'news' || !x.kind };
+function renderInbox() {
+  const el = $('#inbox'), list = (G.inbox || []).filter(INBOX_F[inboxF]);
+  el.innerHTML = `<div class="ibox"><div class="ihead"><h3>📥 Caixa de entrada</h3><button class="xclose" data-ib="close" aria-label="Fechar">✕</button></div>
+  <div class="ifil">${[['tudo', 'Tudo'], ['guerra', '⚔️ Guerra'], ['boas', '⭐ Boas notícias'], ['mundo', '📰 Mundo']].map(([k, l]) => `<button class="${inboxF === k ? 'on' : ''}" data-ib="f" data-v="${k}">${l}</button>`).join('')}</div>
+  <div class="ilist">${list.length ? list.map((x) => `<div class="imsg ${x.kind} ${x.read ? '' : 'new'}"><small>Dia ${x.d}</small><span>${esc(x.msg)}</span></div>`).join('') : '<p class="iempty">Sem notificações.</p>'}</div>
+  <div class="ifoot"><button class="btn" data-ib="clear">Apagar tudo</button><button class="btn gold" data-ib="close">Fechar</button></div></div>`;
+}
+function openInbox() { const el = $('#inbox'); el.hidden = false; renderInbox(); for (const x of G.inbox || []) x.read = true; inboxBadge(); }
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-ib]'); if (!b) return;
+  const a = b.dataset.ib;
+  if (a === 'close') $('#inbox').hidden = true;
+  else if (a === 'f') { inboxF = b.dataset.v; renderInbox(); }
+  else if (a === 'clear') { G.inbox = []; renderInbox(); inboxBadge(); }
+});
 function banner(flags, big, small, kind) {
   const b = $('#banner');
   b.innerHTML = `<div class="ban ${kind}"><div class="flags">${flags}</div><div class="big">${big}</div><div class="small">${small}</div></div>`;
@@ -1899,6 +1931,7 @@ for (const el of [$('#panel'), $('#sheet')]) {
   el.addEventListener('pointercancel', () => (panelHold = false));
 }
 $('#tabs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) openTab(b.dataset.t); });
+$('#inboxBtn').addEventListener('click', () => { sfx.click(); if ($('#inbox').hidden) openInbox(); else $('#inbox').hidden = true; });
 $('#speed').addEventListener('click', (e) => {
   const b = e.target.closest('button'); if (!b || b.dataset.s === undefined) return;
   speed = +b.dataset.s; document.querySelectorAll('#speed button').forEach((x) => x.classList.toggle('on', x === b)); sfx.click();
@@ -2119,6 +2152,7 @@ const hasSave = () => { try { return !!localStorage.getItem(SAVE); } catch (e) {
 
 // ---------- Início / fim ----------
 function startGame() {
+  setTimeout(() => inboxBadge(), 0);
   rebuildAllSegs(); countProv(); computeAttackable(); cacheDirty = true; makePal(); selArmy = -1; spyMenu = -1;
   music.start();
   $('#start').hidden = true; paused = false; sel = -1;
@@ -2221,5 +2255,5 @@ window.addEventListener('resize', resize);
 resize();
 showStart();
 requestAnimationFrame(loop);
-window.__imperio = { CO, PH, bite, dbg(j) { const a = G.armies[0]; return { passable: passable(j), path: a && armyPath(a, j), owner: P[j].owner, me: G.player, atWar: atWar(G.player, P[j].owner), ships: C[G.player].ships }; }, tap: (x, y) => { const r = cv.getBoundingClientRect(); tapAt(x - r.left, y - r.top); }, scr(j) { const r = cv.getBoundingClientRect(); return [sx(LABEL[j][0]) + r.left, sy(LABEL[j][1]) + r.top]; }, get att() { return [...attackable]; }, get C() { return C; }, get P() { return P; }, get G() { return G; }, A, tick };
+window.__imperio = { CO, PH, bite, capture, toast, openInbox, markAll: () => { cacheDirty = true; }, dbg(j) { const a = G.armies[0]; return { passable: passable(j), path: a && armyPath(a, j), owner: P[j].owner, me: G.player, atWar: atWar(G.player, P[j].owner), ships: C[G.player].ships }; }, tap: (x, y) => { const r = cv.getBoundingClientRect(); tapAt(x - r.left, y - r.top); }, scr(j) { const r = cv.getBoundingClientRect(); return [sx(LABEL[j][0]) + r.left, sy(LABEL[j][1]) + r.top]; }, get att() { return [...attackable]; }, get C() { return C; }, get P() { return P; }, get G() { return G; }, A, tick };
 })();
