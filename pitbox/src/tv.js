@@ -37,18 +37,19 @@ function tvCarModel(c1,c2,gt){
   [[1.75,.8],[1.75,-.8],[-1.75,.8],[-1.75,-.8]].forEach(([x,z])=>{const w=new THREE.Mesh(new THREE.CylinderGeometry(.36,.36,.36,12).rotateX(Math.PI/2),dk);w.position.set(gt?x*.8:x,.36,z*(gt?1.05:1));g.add(w);});
   return mergeGroup(g);
 }
-function setupTV(team,posBefore,circuit,cat,lapNow){
+function setupTV(team,posBefore,circuit,cat,lapNow,wx='dry'){
   if(TV.scene)TV.scene.traverse(o=>{if(o.geometry)o.geometry.dispose();});
   if(!TV.rt){TV.rt=new THREE.WebGLRenderTarget(512,288);TV.rt.texture.encoding=THREE.sRGBEncoding;
     TV.cam=new THREE.PerspectiveCamera(40,16/9,1.2,4500);
     TV.grass=canvasTex(128,128,(c,w,h)=>{noiseFill(c,w,h,'#4a7f37',0,0,0);for(let i=0;i<3000;i++){c.fillStyle=`hsl(${rand(85,110)},${rand(30,50)}%,${rand(22,36)}%)`;c.fillRect(Math.random()*w,Math.random()*h,2,2);}},[400,400]);}
   W.tvScreenMat.map=TV.rt.texture;W.tvScreenMat.color.setHex(0xffffff);W.tvScreenMat.needsUpdate=true;
   const trk=trackSamples(circuit.n);TV.trk=trk;
-  const s=new THREE.Scene();s.background=new THREE.Color(0x8fbbe6);s.fog=new THREE.Fog(0xb7d0e8,400,2200);
-  s.add(new THREE.HemisphereLight(0xe3eeff,0x50603c,1.0));const sun=new THREE.DirectionalLight(0xfff2dd,1.4);sun.position.set(400,600,250);s.add(sun);
+  const TW={dry:[0x8fbbe6,0xb7d0e8,400,2200,1,1.4],hot:[0xa9c4dc,0xe6dcc8,300,1800,1.05,1.6],cold:[0x9aa5b0,0xc4ccd4,300,1700,.95,1],wet:[0x9aa5b0,0xb9c2ca,250,1400,.95,.8],rain:[0x5f6873,0x8d97a1,120,900,.85,.5],night:[0x060b18,0x0b1220,250,1600,.55,.25]}[wx]||[0x8fbbe6,0xb7d0e8,400,2200,1,1.4];
+  const s=new THREE.Scene();s.background=new THREE.Color(TW[0]);s.fog=new THREE.Fog(TW[1],TW[2],TW[3]);
+  s.add(new THREE.HemisphereLight(0xe3eeff,0x50603c,TW[4]));const sun=new THREE.DirectionalLight(0xfff2dd,TW[5]);sun.position.set(400,600,250);s.add(sun);
   const grass=new THREE.Mesh(new THREE.PlaneGeometry(9000,9000),new THREE.MeshLambertMaterial({map:TV.grass}));grass.rotation.x=-Math.PI/2;grass.position.y=-.6;s.add(grass);
   const L=c=>new THREE.MeshLambertMaterial({color:c,side:THREE.DoubleSide});
-  const asph=L(0x45474c),gravel=L(0xc8b48c),run=L(0x6c7075),wht=L(0xf2f2f2),red=L(0xd8261f);
+  const asph=L(WEATHER[wx]&&WEATHER[wx].wet?0x2f3236:0x45474c),gravel=L(0xc8b48c),run=L(0x6c7075),wht=L(0xf2f2f2),red=L(0xd8261f);
   const K=i=>trk.kap[i]>.0065;
   s.add(tvRibbon(trk,-28,-8,-.3,gravel,K));s.add(tvRibbon(trk,8,28,-.3,gravel,K));
   s.add(tvRibbon(trk,-10,10,-.15,run));

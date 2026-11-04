@@ -5,7 +5,9 @@ const SAVE_KEY='pitbox.v1';
 function defaultProfile(){return{
   v:1,level:1,xp:0,credits:0,
   settings:{difficulty:'easy',sound:true,voice:true,quickCat:'F4',orient:'portrait',voiceName:''},
-  cosm:{suit:'team',gloves:'basic',helmet:'std',gun:'std',bought:[]},
+  cosm:{suit:'team',gloves:'basic',boots:'std',helmet:'std',gun:'std',bought:[]},
+  gear:{cond:100,overTorque:false,spare:100},
+  skills:{speed:35,precision:35,coordination:35,consistency:35},
   career:{teamId:'f4_bairro',season:1,round:0,racesInTeam:0,scores:[],teamPoints:0,offers:[],history:[],catsReached:['F4'],bestFinish:null},
   stats:{stops:[],total:0,errors:0,sumTime:0,best:{},bestScore:0,maxGain:0,clean:0,bestClean:0,subPar:0,perfect:0,errTypes:{},podiums:0,wins:0}
 };}

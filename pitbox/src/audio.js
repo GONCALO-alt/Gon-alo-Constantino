@@ -88,6 +88,15 @@ const Snd={
     G.g.gain.setTargetAtTime(0,t,.015);if(G.n){G.n.g.gain.setTargetAtTime(0,t,.015);G.n.s.stop(t+.2);}
     G.o.stop(t+.2);G.lfo.stop(t+.2);if(final)this.clank(700,.3);
   },
+  /* chuva: ruído contínuo, mais baixo dentro da garagem */
+  rain(on,level=1){
+    if(!this.ok())return;this.rainVol=on?level:0;
+    if(on&&!this.rainN){this.rainN=this.noise({type:'highpass',f:1400,q:.4,vol:.0001,loop:true});this.rainL=this.noise({buf:this.brown,type:'lowpass',f:420,vol:.0001,loop:true});}
+    if(!on&&this.rainN){const t=this.t(),a=this.rainN,b=this.rainL;a.g.gain.setTargetAtTime(0,t,.4);b.g.gain.setTargetAtTime(0,t,.4);a.s.stop(t+2);b.s.stop(t+2);this.rainN=this.rainL=null;}
+    this.rainLevel(1);
+  },
+  rainLevel(k){if(!this.rainN)return;const t=this.t();this.rainN.g.gain.setTargetAtTime(.1*this.rainVol*k,t,.3);this.rainL.g.gain.setTargetAtTime(.07*this.rainVol*k,t,.3);},
+  thunder(){this.noise({buf:this.brown,type:'lowpass',f:160,vol:.55,dur:3.4,a:.2});this.tone({f:48,slide:28,type:'sine',dur:2.6,vol:.22});},
   gunWrong(){this.tone({f:300,slide:140,type:'sawtooth',dur:.35,vol:.15});},
   distantGun(delay=0){if(!this.ok())return;for(let i=0;i<5;i++)this.tone({f:rand(260,320),type:'sawtooth',dur:.08,vol:.035,delay:delay+i*.07});},
   pass(vol=.05){if(!this.ok())return;const f=rand(260,340);this.tone({f,slide:f*.55,type:'sawtooth',dur:1.4,vol,a:.6});},

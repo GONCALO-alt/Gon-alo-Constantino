@@ -19,7 +19,12 @@ function finishRace(){
   // estatísticas
   const S=P.stats;S.total++;S.errors+=r.errors.length;S.sumTime+=time;
   r.errors.forEach(e=>{const k=e.code==='slow'?'Demasiado lento':e.msg.replace(/!.*$/,'');S.errTypes[k]=(S.errTypes[k]||0)+1;});
-  S.stops.push({t:+time.toFixed(2),par,cat:r.cat.id,d:r.diff,e:r.errors.length,s:score});if(S.stops.length>100)S.stops.shift();
+  S.stops.push({t:+time.toFixed(2),par,cat:r.cat.id,d:r.diff,e:r.errors.length,s:score,w:r.wx,c:r.circuit.n,date:Date.now()});if(S.stops.length>100)S.stops.shift();
+  const sk=measureSkills(r,time);S.stops[S.stops.length-1].a=sk;
+  const skd=growSkills(sk,{easy:.7,medium:1,hard:1.2,pro:1.4}[r.diff]||1);
+  const gearLoss=gearAfterStop(),gearChk=r.gear.checked;
+  const catStops=S.stops.filter(x=>x.cat===r.cat.id),catAvg=avg(catStops.map(x=>x.t));
+  const verdict=teamVerdict(grade,r);
   const bk=r.cat.id+'_'+r.diff;const prev=S.best[bk];const rec=!prev||time<prev.t;
   if(rec)S.best[bk]={t:+time.toFixed(2),date:Date.now()};
   if(score>S.bestScore)S.bestScore=score;if(delta>S.maxGain)S.maxGain=delta;
@@ -55,12 +60,26 @@ function finishRace(){
     <div style="font-family:var(--f-display);font-weight:800;font-size:20px;text-transform:uppercase;margin-top:4px">${gradeTxt}</div>
     ${rec?'<div class="record">★ NOVO RECORDE PESSOAL</div>':''}
   </div>
+  <div class="card"><div class="eyebrow">Relatório da paragem</div>
+    <div class="tiles" style="margin-top:8px">
+      <div class="tile"><div class="eyebrow">Melhor pessoal</div><div class="v">${S.best[bk]?f2(S.best[bk].t):'—'}</div><div class="s">${r.cat.id} · ${D.name}</div></div>
+      <div class="tile"><div class="eyebrow">Média ${r.cat.id}</div><div class="v">${f2(catAvg)}</div><div class="s">${catStops.length} paragens</div></div></div>
+    <div class="verdict"><span class="stars">${'★'.repeat(verdict.stars)}<span class="off">${'★'.repeat(5-verdict.stars)}</span></span><p>“${esc(verdict.text)}”<small> · Chefe de equipa</small></p></div></div>
+  ${skillsHTML(sk,skd)}
+  ${timeLossHTML(r)}
   <div class="card"><div class="eyebrow" style="text-align:center">Corrida</div>
     <div class="pos-change"><span>P${r.posBefore}</span><span class="arrow ${delta>0?'up':delta<0?'down':''}">${delta>0?'▲ '+delta:delta<0?'▼ '+(-delta):'='}</span><span>P${posAfter}</span></div>
     <div style="text-align:center;color:var(--muted);font-size:14px">Resultado final: <b style="color:var(--fg)">P${fin}</b>${pts?` · ${pts} pontos`:''}${seasonEnd!==false?`<br>Fim da época! A equipa somou ${seasonEnd} pontos.`:''}</div></div>
   ${react!==null?`<div class="card"><div class="eyebrow">Pistoleiro</div><ul class="list"><li><span>Tempo de reação ao encaixe da roda</span><b>${f2(react)} s</b></li></ul></div>`:''}
   <div class="card"><div class="eyebrow">Erros (${r.errors.length})</div>${r.errors.length?`<ul class="list errs">${errList}</ul>`:'<p class="empty" style="color:var(--go)">Paragem limpa, sem erros.</p>'}
     ${evs.length?`<div class="eyebrow" style="margin-top:12px">Imprevistos</div><ul class="list">${evs.map(e=>`<li><span>${esc(e)}</span></li>`).join('')}</ul>`:''}</div>
+  <div class="card"><div class="eyebrow">Equipamento e condições</div><ul class="list">
+    <li><span>Pistola</span><b>${P.gear.cond}% (−${gearLoss})</b></li>
+    <li><span>Verificações</span><b>${['pressure','test','hose'].filter(k=>gearChk[k]).length}/3</b></li>
+    ${r.usedSpare?'<li><span>Pistola de reserva usada</span><b>sim</b></li>':''}
+    <li><span>Condições</span><b>${WEATHER[r.wx].icon} ${WEATHER[r.wx].name} · ${r.temp}°C</b></li>
+    <li><span>Pneus montados</span><b>${COMPOUND[r.picked||r.newCompound].name}</b></li></ul>
+    ${P.gear.cond<50?'<p class="muted" style="margin:8px 0 0">A pistola precisa de manutenção: faz-a na garagem antes da próxima corrida (Ferramentas) ou no Mecânico › Oficina.</p>':''}</div>
   <div class="rewards"><div class="tile"><div class="eyebrow">Pontuação</div><div class="v">${score}</div></div><div class="tile"><div class="eyebrow">XP</div><div class="v">+${xp}</div></div><div class="tile"><div class="eyebrow">Créditos</div><div class="v">+${cr}</div></div></div>
   ${lvUp?`<div class="card unlock"><div class="eyebrow" style="color:var(--go)">Subiste para o nível ${P.level}</div>${unlocks.length?`<ul class="list">${unlocks.map(u=>`<li><span>🔓 ${esc(u)}</span></li>`).join('')}</ul>`:''}</div>`:''}
   <div class="row2"><button class="btn primary" id="rCont">${r.mode==='career'?'Carreira':'Continuar'}</button><button class="btn" id="rAgain">Repetir</button></div>`;
@@ -87,7 +106,8 @@ function makeOffer(){
 function cleanupRace(){
   if(!R)return;Snd.gunStop();Snd.ambience(false);if(R.eng){R.eng.stop();}
   scene.remove(R.car);scene.remove(R.crew);scene.remove(R.gcrew);W.fp.visible=false;W.debris=null;
-  if(W.carry)W.carry.visible=false;if(W.placed)W.placed.visible=false;W.fetchTyre.visible=true;TV.focusUs=false;R=null;
+  if(W.carry)W.carry.visible=false;if(W.placed)W.placed.visible=false;W.fetch.forEach(f=>f.g.visible=true);TV.focusUs=false;R=null;
+  closeSheet();$('#gbar').hidden=true;$('#choice').hidden=true;$('#posMeter').hidden=true;applyWeather('dry');
   try{speechSynthesis.cancel();}catch(e){}
 }
 function quitRace(){

@@ -15,18 +15,21 @@ const CATS={
 };
 const CAT_PATH=['F4','F3','F2','F1'];
 const DIFF={
-  easy:{name:'Fácil',par:1.35,arrive:9,window:16.5,pen:1,prob:.45,maxEv:1,pool:['jam','stuck'],explicitSwitch:true,fitW:.3,fitSpd:2.2,tq:[.6,.95],tqRate:.9,slow:2.8,mult:.8,col:'#22d36b',
+  easy:{name:'Fácil',par:1.35,arrive:9,window:16.5,pen:1,prob:.45,maxEv:1,pool:['misalign'],explicitSwitch:true,aids:3,fitW:.3,fitSpd:2.2,tq:[.6,.95],tqRate:.9,slow:2.8,mult:.8,col:'#22d36b',
         note:'Mais tempo, poucos imprevistos e indicações em todos os passos. Ideal para aprender.'},
-  medium:{name:'Médio',par:1,arrive:7,window:13,pen:1.3,prob:.75,maxEv:2,pool:['jam','stuck','wrongdir','misalign','crewdelay','blanket'],explicitSwitch:false,fitW:.2,fitSpd:3,tq:[.73,.92],tqRate:1.1,slow:2,mult:1,col:'#ffc61a',
+  medium:{name:'Médio',par:1,arrive:7,window:13,pen:1.3,prob:.75,maxEv:2,pool:['wrongdir','misalign','crewdelay','blanket'],explicitSwitch:false,aids:2,fitW:.2,fitSpd:3,tq:[.73,.92],tqRate:1.1,slow:2,mult:1,col:'#ffc61a',
         note:'Tempo exigente e mais imprevistos. Ninguém te lembra de mudar o sentido da pistola.'},
-  hard:{name:'Difícil',par:.82,arrive:5.5,window:10.5,pen:1.7,prob:1,maxEv:3,pool:['jam','stuck','wrongdir','misalign','crewdelay','blanket','overshoot','debris'],explicitSwitch:false,fitW:.13,fitSpd:3.8,tq:[.8,.9],tqRate:1.3,slow:1.4,mult:1.3,col:'#ff3030',
-        note:'Pouco tempo, vários imprevistos por paragem, carro fora da marca e erros a custar o dobro.'}
+  hard:{name:'Difícil',par:.82,arrive:5.5,window:10.5,pen:1.7,prob:1,maxEv:3,pool:['wrongdir','misalign','crewdelay','blanket','overshoot','debris','radio'],explicitSwitch:false,aids:1,fitW:.13,fitSpd:3.8,tq:[.8,.9],tqRate:1.3,slow:1.4,mult:1.3,col:'#ff3030',
+        note:'Pouco tempo, vários imprevistos por paragem, carro fora da marca e erros a custar o dobro.'},
+  pro:{name:'Profissional',par:.75,arrive:5,window:9.5,pen:2,prob:1,maxEv:3,pool:['wrongdir','misalign','crewdelay','blanket','overshoot','debris','radio'],explicitSwitch:false,aids:0,fitW:.12,fitSpd:4.2,tq:[.82,.89],tqRate:1.4,slow:1.2,mult:1.6,col:'#b06cff',
+        note:'Sem ajudas: sem textos de passo, sem zonas verdes nem destaques. Só tu, a pistola e o rádio.'}
 };
 const EVENTS={
   jam:'Pistola encravada',stuck:'Porca presa',wrongdir:'Pistola no sentido errado',misalign:'Roda desalinhada',
-  crewdelay:'Problema na traseira direita',blanket:'Manta térmica presa',overshoot:'Carro passou da marca',debris:'Detritos no cubo'
+  crewdelay:'Problema na traseira direita',blanket:'Manta térmica presa',overshoot:'Carro passou da marca',debris:'Detritos no cubo',
+  pressure:'Pressão de ar fora do alvo',leak:'Fuga de ar na mangueira',radio:'Falha de comunicação no rádio',strategy:'Mudança de pneus à última hora'
 };
-const COMPOUND={soft:{name:'Macios',c:0xe10600},medium:{name:'Médios',c:0xffd400},hard:{name:'Duros',c:0xf4f4f4}};
+const COMPOUND={soft:{name:'Macios',c:0xe10600},medium:{name:'Médios',c:0xffd400},hard:{name:'Duros',c:0xf4f4f4},inter:{name:'Intermédios',c:0x2bb24c},wet:{name:'Chuva',c:0x1f7ae0}};
 const TEAMS=[
   // Fórmula 4
   {id:'f4_bairro',cat:'F4',tier:1,name:'Garagem do Bairro Racing',c1:0x2d6a4f,c2:0xf1faee},
@@ -93,10 +96,11 @@ const COSM={
     {id:'champ',name:'Capacete campeão',lvl:9,c:0xd4a017,mirror:true}
   ],
   gun:[
-    {id:'std',name:'Pistola padrão',lvl:1,c:0x2b2e33,bonus:1,desc:'Fiável.'},
-    {id:'blue',name:'Pistola anodizada',lvl:3,c:0x1f4fd1,bonus:1,desc:'Só estética.'},
-    {id:'titan',name:'Pistola titânio',lvl:6,c:0x9aa3ad,bonus:.95,desc:'5% mais rápida.'},
-    {id:'pro',name:'Pistola F1 Pro',lvl:11,c:0xd0d4da,bonus:.9,desc:'10% mais rápida.'}
+    {id:'std',name:'Pistola padrão',lvl:1,c:0x2b2e33,bonus:1,dur:1,desc:'Fiável.'},
+    {id:'blue',name:'Pistola anodizada',lvl:3,c:0x1f4fd1,bonus:1,dur:.85,desc:'Desgasta-se 15% menos.'},
+    {id:'titan',name:'Pistola titânio',lvl:6,c:0x9aa3ad,bonus:.95,dur:.75,desc:'5% mais rápida, mais resistente.'},
+    {id:'pro',name:'Pistola F1 Pro',lvl:11,c:0xd0d4da,bonus:.9,dur:.6,desc:'10% mais rápida, muito resistente.'}
   ]
 };
-const COSM_TABS=[['suit','Fatos'],['gloves','Luvas'],['helmet','Capacete'],['gun','Pistola']];
+COSM.boots=[{id:'std',name:'Botas pretas',lvl:1,c:0x16171a},{id:'white',name:'Botas brancas',lvl:2,c:0xe9e9e9},{id:'team',name:'Botas da equipa',lvl:4,c:null},{id:'carbon',name:'Botas carbono',lvl:7,c:0x30333a},{id:'gold',name:'Botas douradas',lvl:11,c:0xc99a1d}];
+const COSM_TABS=[['suit','Fatos'],['gloves','Luvas'],['boots','Botas'],['helmet','Capacete'],['gun','Pistola']];

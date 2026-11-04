@@ -102,12 +102,13 @@ function initThree(){
   MAT.disc=M(0x2b2725,{roughness:.55,metalness:.3,emissive:0xff3a00,emissiveIntensity:.09});
   MAT.concrete=M(0xc4c7ca,{roughness:.95,metalness:0});MAT.white=M(0xf2f2f2,{roughness:.55});MAT.yellow=M(0xffc61a,{roughness:.55});
   MAT.steel=M(0x8d939a,{metalness:.85,roughness:.35});MAT.rubber=M(0x121314,{roughness:.9});
-  scene.add(new THREE.HemisphereLight(0xdbe8ff,0x3f3a32,.45));
-  const sun=new THREE.DirectionalLight(0xfff1dc,2.3);sun.position.set(10,20,12);sun.castShadow=true;
+  W.hemi=new THREE.HemisphereLight(0xdbe8ff,0x3f3a32,.45);scene.add(W.hemi);
+  const sun=new THREE.DirectionalLight(0xfff1dc,2.3);W.sun=sun;sun.position.set(10,20,12);sun.castShadow=true;
   sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-12,right:12,top:12,bottom:-12,near:2,far:70});sun.shadow.bias=-.0004;sun.shadow.normalBias=.02;
   scene.add(sun);scene.add(sun.target);
   buildWorld();
-  mergeGroup(scene,new Set([W.playerSpot,W.fetchTyre]));
+  mergeGroup(scene,new Set([W.playerSpot,...W.fetch.map(f=>f.g)]));
+  buildWeatherFx();
   window.addEventListener('resize',applyOrient);applyOrient();
 }
 function resize(){const a=$('#app');const w=a.clientWidth,h=a.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=w/h<.62?66:w/h>1.2?44:58;camera.updateProjectionMatrix();}
@@ -143,7 +144,7 @@ function buildWorld(){
   for(let i=0;i<40;i++){const x=Math.random()*512,y=Math.random()*512,r=rand(20,80);const g=ac.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba(20,20,22,.18)');g.addColorStop(1,'rgba(20,20,22,0)');ac.fillStyle=g;ac.fillRect(x-r,y-r,2*r,2*r);}
   const asT=new THREE.CanvasTexture(asC);asT.encoding=THREE.sRGBEncoding;asT.wrapS=asT.wrapT=THREE.RepeatWrapping;asT.repeat.set(36,36);asT.anisotropy=8;
   const bmT=new THREE.CanvasTexture(asC);bmT.wrapS=bmT.wrapT=THREE.RepeatWrapping;bmT.repeat.set(36,36);
-  const ground=mesh(new THREE.PlaneGeometry(240,240),new THREE.MeshStandardMaterial({map:asT,bumpMap:bmT,bumpScale:.012,roughness:.9,metalness:0,envMapIntensity:.4}),0,0,0);ground.rotation.x=-Math.PI/2;ground.castShadow=false;scene.add(ground);
+  const ground=mesh(new THREE.PlaneGeometry(240,240),(W.groundMat=new THREE.MeshStandardMaterial({map:asT,bumpMap:bmT,bumpScale:.012,roughness:.9,metalness:0,envMapIntensity:.4})),0,0,0);ground.rotation.x=-Math.PI/2;ground.castShadow=false;scene.add(ground);
   // marcas de borracha e óleo na zona da box
   const stain=new THREE.MeshBasicMaterial({map:canvasTex(256,256,(c,w,h)=>{const g=c.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);g.addColorStop(0,'rgba(10,10,10,.55)');g.addColorStop(1,'rgba(10,10,10,0)');c.fillStyle=g;c.fillRect(0,0,w,h);}),transparent:true,depthWrite:false});
   [[1.75,-.8,1.6],[1.75,.8,1.6],[-1.75,-.8,1.8],[-1.75,.8,1.8],[0,0,3.2],[-6,.3,2],[8,-.2,2.4]].forEach(([x,z,s])=>{const p=new THREE.Mesh(new THREE.PlaneGeometry(s,s*.7),stain);p.rotation.x=-Math.PI/2;p.position.set(x,.003,z);scene.add(p);});
@@ -252,7 +253,7 @@ function buildGarage(){
   const tyreStack=(x,z,n,blanket)=>{for(let i=0;i<n;i++){const top=i===n-1&&blanket;const t=new THREE.Group();t.position.set(x,.18+i*.37,z);
       t.add(mesh(new THREE.CylinderGeometry(.37,.37,.35,28),top?W.blanketMat:MAT.tyre));
       if(!top)t.add(mesh(new THREE.CylinderGeometry(.24,.24,.36,20),MAT.rim));g.add(t);}};
-  tyreStack(-3.2,-17.4,3,true);tyreStack(-2.3,-17.4,3,true);tyreStack(-3.2,-16.4,2,false);tyreStack(3.1,-10,4,true);tyreStack(3.1,-9.1,3,true);tyreStack(-3.2,-9.5,4,true);
+  tyreStack(-3.2,-17.4,3,true);tyreStack(-2.3,-17.4,3,true);tyreStack(-3.2,-16.4,2,false);tyreStack(3.1,-10,4,true);tyreStack(3.1,-9.1,3,true);tyreStack(-3.25,-11.4,4,true);
   // carrinhos de ferramentas com gavetas
   const drawerTex=canvasTex(128,128,(c,w,h)=>{c.fillStyle='#c81d25';c.fillRect(0,0,w,h);c.fillStyle='rgba(0,0,0,.35)';for(let y=10;y<h;y+=24)c.fillRect(6,y,w-12,3);c.fillStyle='#d9dde2';for(let y=18;y<h;y+=24)c.fillRect(w/2-20,y,40,4);});
   const chest=M(0xffffff,{map:drawerTex,roughness:.35,metalness:.4});
@@ -283,13 +284,19 @@ function buildGarage(){
   const stoolM=M(0x1b1d22,{roughness:.5,metalness:.4});
   W.SEATS=[[-.66,-14.05],[.72,-14.0],[-1.55,-13.35],[1.62,-13.3],[-2.6,-14.6],[3.15,-12.6]];
   [[.12,-12.35],...W.SEATS,[2.3,-14.55]].forEach(([x,z])=>{g.add(mesh(new THREE.CylinderGeometry(.2,.2,.06,18),stoolM,x,.5,z));g.add(mesh(new THREE.CylinderGeometry(.03,.03,.48,8),MAT.steel,x,.25,z));g.add(mesh(new THREE.CylinderGeometry(.2,.22,.03,16),MAT.steel,x,.015,z));});
-  // carro de pneus prontos (com mantas) junto à saída da garagem
-  const tro=new THREE.Group();tro.position.set(-1.75,0,-9.0);g.add(tro);
-  tro.add(mesh(rbox(.95,.06,.95,.02),MAT.steel,0,.14,0));
-  [[-.4,-.4],[.4,-.4],[-.4,.4],[.4,.4]].forEach(([x,z])=>{tro.add(mesh(new THREE.CylinderGeometry(.02,.02,1.5,6),MAT.steel,x,.85,z));tro.add(mesh(new THREE.CylinderGeometry(.05,.05,.04,10).rotateX(Math.PI/2),MAT.rubber,x,.05,z));});
-  for(let i=0;i<2;i++){const t=new THREE.Group();t.position.y=.36+i*.37;t.add(mesh(new THREE.CylinderGeometry(.36,.36,.33,32),MAT.tyre));t.add(mesh(new THREE.CylinderGeometry(.23,.23,.34,24),MAT.rim));tro.add(t);}
-  W.fetchTyre=new THREE.Group();W.fetchTyre.position.set(-1.75,1.1,-9.0);W.fetchTyre.add(mesh(new THREE.CylinderGeometry(.37,.37,.35,28),W.blanketMat));
-  W.fetchStripe=put(W.fetchTyre,mesh(new THREE.TorusGeometry(.3,.014,6,32),M(0xffd400,{roughness:.5}),0,.18,0,false));W.fetchStripe.rotation.x=Math.PI/2;g.add(W.fetchTyre);
+  // dois carrinhos de pneus prontos (dois compostos, com mantas) junto à saída da garagem
+  W.fetch=[];
+  [[-1.75,-9.0],[-2.9,-9.0]].forEach(([tx,tz])=>{
+    const tro=new THREE.Group();tro.position.set(tx,0,tz);g.add(tro);
+    tro.add(mesh(rbox(.95,.06,.95,.02),MAT.steel,0,.14,0));
+    [[-.4,-.4],[.4,-.4],[-.4,.4],[.4,.4]].forEach(([x,z])=>{tro.add(mesh(new THREE.CylinderGeometry(.02,.02,1.5,6),MAT.steel,x,.85,z));tro.add(mesh(new THREE.CylinderGeometry(.05,.05,.04,10).rotateX(Math.PI/2),MAT.rubber,x,.05,z));});
+    for(let i=0;i<2;i++){const t=new THREE.Group();t.position.y=.36+i*.37;t.add(mesh(new THREE.CylinderGeometry(.36,.36,.33,32),MAT.tyre));t.add(mesh(new THREE.CylinderGeometry(.23,.23,.34,24),MAT.rim));tro.add(t);}
+    const ft=new THREE.Group();ft.position.set(tx,1.1,tz);ft.add(mesh(new THREE.CylinderGeometry(.37,.37,.35,28),W.blanketMat));
+    const st=put(ft,mesh(new THREE.TorusGeometry(.3,.02,6,32),M(0xffd400,{roughness:.5}),0,.18,0,false));st.rotation.x=Math.PI/2;
+    const tag=new THREE.Mesh(new THREE.PlaneGeometry(.5,.16),new THREE.MeshBasicMaterial({transparent:true}));tag.position.set(0,.05,.38);ft.add(tag);
+    g.add(ft);W.fetch.push({g:ft,stripe:st,tag});
+  });
+  W.fetchTyre=W.fetch[0].g;W.fetchStripe=W.fetch[0].stripe;
   W.playerSpot=new THREE.Group();W.playerSpot.position.set(-2.2,0,-12.3);W.playerSpot.rotation.y=.9;g.add(W.playerSpot);
 }
 function buildGantry(){
@@ -469,7 +476,7 @@ const SKIN=[0xf0c8a4,0xdcaa7c,0xc08a5e,0x8b5a3a,0x5d3a25,0xe8bc96];
 function makeMechanic(o){
   const g=new THREE.Group();
   const suit=M(o.suit,{roughness:.88}),acc=M(o.acc,{roughness:.8}),glove=M(o.glove,{roughness:.65});
-  const shoe=M(0x16171a,{roughness:.55}),dark=M(0x141518,{roughness:.6});
+  const shoe=M(o.boots??0x16171a,{roughness:.5}),dark=M(0x141518,{roughness:.6});
   const cap=(r,l,m,x,y,z,rz=0,rx=0)=>{const c=mesh(new THREE.CapsuleGeometry(r,l,6,14),m,x,y,z);c.rotation.set(rx,0,rz);g.add(c);return c;};
   let ty;
   if(o.seated){

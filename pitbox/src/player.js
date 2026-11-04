@@ -2,8 +2,8 @@
 /* Pit Box · Aparência do jogador (cosméticos) */
 /* aparência do jogador (cosméticos) */
 function playerColors(team){
-  const su=cosmItem('suit',P.cosm.suit),gl=cosmItem('gloves',P.cosm.gloves),he=cosmItem('helmet',P.cosm.helmet),gu=cosmItem('gun',P.cosm.gun);
-  return{suit:su.base??team.c1,acc:su.acc??team.c2,glove:gl.c,helmet:he.c??team.c2,mirror:!!he.mirror,gun:gu.c};
+  const su=cosmItem('suit',P.cosm.suit),gl=cosmItem('gloves',P.cosm.gloves),bo=cosmItem('boots',P.cosm.boots),he=cosmItem('helmet',P.cosm.helmet),gu=cosmItem('gun',P.cosm.gun);
+  return{suit:su.base??team.c1,acc:su.acc??team.c2,glove:gl.c,helmet:he.c??team.c2,mirror:!!he.mirror,gun:gu.c,boots:bo.c??team.c1};
 }
 function applyPlayerLook(team){
   const pc=playerColors(team);const u=W.fp.userData;

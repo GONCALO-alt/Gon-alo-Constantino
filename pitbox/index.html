@@ -30,7 +30,7 @@
         <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#141519"/><circle cx="32" cy="32" r="29" fill="none" stroke="#2c3038" stroke-width="1.5"/><circle cx="32" cy="32" r="22.5" fill="none" stroke="#e10600" stroke-width="3.5"/><circle cx="32" cy="32" r="17" fill="#464c56"/><g stroke="#22262c" stroke-width="3"><path d="M32 16v32M16 32h32M20.7 20.7l22.6 22.6M43.3 20.7L20.7 43.3"/></g><circle cx="32" cy="32" r="5.5" fill="#e10600"/></svg>
         <h1>PIT<br><span>BOX</span></h1>
       </div>
-      <p class="tag">Tu és o mecânico. Ouve o rádio, corre para a box e troca a roda mais depressa do que todos.</p>
+      <p class="tag"><b>Professional Pit Stop Simulator</b><br>Tu és o mecânico. Ouve o rádio, corre para a box e troca a roda mais depressa do que todos.</p>
     </div>
     <div class="menu-bottom">
       <div class="profile-bar">
@@ -75,11 +75,15 @@
     <div id="toast"></div>
     <div id="swipeZone" hidden><div class="swipe-arrow" id="swipeArrow">↓</div></div>
     <div class="hud-bottom">
+      <div class="gbar" id="gbar" hidden><button data-sheet="tools" aria-pressed="false">🔧 Ferramentas</button><button data-sheet="car" aria-pressed="false">🏎️ Carro</button><button data-sheet="team" aria-pressed="false">👥 Equipa</button><button data-sheet="op" aria-pressed="false">📋 Operação</button></div>
+      <div class="sheet" id="sheet" hidden></div>
       <dl class="card next-op" id="nextOp"></dl>
       <div class="prompt" id="prompt"></div>
       <div id="controls" style="display:flex;flex-direction:column;gap:10px">
         <div class="meter" id="timing" hidden><div class="zone" id="tZone"></div><div class="marker" id="tMarker"></div><div class="cap">TOCA PARA ENCAIXAR</div></div>
         <div class="meter" id="torque" hidden><div class="fill" id="qFill"></div><div class="zone" id="qZone"></div><div class="cap">BINÁRIO</div></div>
+        <div class="choice" id="choice" hidden></div>
+        <div class="meter" id="posMeter" hidden><div class="zone" id="pZone"></div><div class="marker" id="pMarker"></div><div class="cap">ARRASTA ATÉ À MARCA</div></div>
         <div class="meter" id="runMeter" hidden><div class="fill" id="rFill"></div><div class="cap">DISTÂNCIA ATÉ À BOX</div></div>
         <div class="ctrl-row">
           <button id="dirSwitch" data-dir="L" hidden aria-label="Sentido da pistola"><span class="l">DESAPERTAR</span><span class="t">APERTAR</span></button>
@@ -104,6 +108,9 @@
 <script src="src/radio.js" data-inline></script>
 <script src="src/world.js" data-inline></script>
 <script src="src/player.js" data-inline></script>
+<script src="src/weather.js" data-inline></script>
+<script src="src/gear.js" data-inline></script>
+<script src="src/skills.js" data-inline></script>
 <script src="src/tv.js" data-inline></script>
 <script src="src/camera.js" data-inline></script>
 <script src="src/ui.js" data-inline></script>

@@ -11,20 +11,35 @@ function loadVoices(){const vs=allVoices();if(!vs.length)return;
   engVoice=vs.find(v=>v.name===P.settings.voiceName)||vs.slice().sort((a,b)=>voiceScore(b)-voiceScore(a))[0]||null;
   engMale=!!engVoice&&MALE_RX.test(engVoice.name)&&!FEMALE_RX.test(engVoice.name);}
 try{loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}catch(e){}
-function speak(text,urgent){
+/* vozes por função: cada uma usa uma voz diferente do telemóvel quando existe, e um tom próprio */
+const ROLES={engineer:{label:'ENGENHEIRO',pitch:0,rate:1.02,slot:0},chief:{label:'CHEFE DE EQUIPA',pitch:-.12,rate:.96,slot:1},
+  strategist:{label:'ESTRATEGA',pitch:.06,rate:1.08,slot:2},mech:{label:'MECÂNICO',pitch:.05,rate:1.25,slot:3},driver:{label:'PILOTO',pitch:.14,rate:1.16,slot:2}};
+const ROLE_ALIAS={'ENGENHEIRO':'engineer','ESTRATEGA':'strategist','CHEFE DE MECÂNICOS':'chief','CHEFE DE EQUIPA':'chief','PILOTO':'driver','MECÂNICO':'mech'};
+function roleVoice(role){
+  const vs=allVoices().filter(v=>/^pt/i.test(v.lang)).sort((a,b)=>voiceScore(b)-voiceScore(a));
+  if(role==='engineer'||!vs.length)return engVoice;
+  const others=vs.filter(v=>!engVoice||v.name!==engVoice.name);
+  return others.length?others[(ROLES[role].slot-1+others.length)%others.length]:engVoice;
+}
+function speak(text,urgent,role='engineer'){
   if(!P.settings.voice||!('speechSynthesis' in window))return;
   try{speechSynthesis.cancel();if(!engVoice)loadVoices();
-    const u=new SpeechSynthesisUtterance(text.replace(/[!]+/g,'!'));
-    u.lang=engVoice?engVoice.lang:'pt-PT';if(engVoice)u.voice=engVoice;
-    const base=engMale?.82:.5;u.pitch=urgent?base+.1:base;u.rate=urgent?1.18:1.02;u.volume=1;speechSynthesis.speak(u);}catch(e){}
+    const R0=ROLES[role]||ROLES.engineer,v=roleVoice(role),male=v&&MALE_RX.test(v.name)&&!FEMALE_RX.test(v.name);
+    const u=new SpeechSynthesisUtterance(text.replace(/[!]+/g,'!').replace(/…|\.\.\./g,', '));
+    u.lang=v?v.lang:'pt-PT';if(v)u.voice=v;
+    const base=(male?.82:.5)+R0.pitch;u.pitch=clamp(urgent?base+.1:base,.1,2);u.rate=urgent?R0.rate+.15:R0.rate;u.volume=1;speechSynthesis.speak(u);}catch(e){}
 }
 let radioTimer=0;
-function radio(text,who='ENGENHEIRO',urgent=false){
-  const el=$('#radio');$('#radioWho').textContent=who;$('#radioText').textContent=text;
-  el.classList.remove('quiet');el.classList.add('live');
-  Snd.beep();Snd.stat(.18,.1);
+/* garble: falha de comunicação, parte da mensagem perde-se em estática */
+function radio(text,who='engineer',urgent=false,garble=false){
+  const role=ROLES[who]?who:(ROLE_ALIAS[who]||'engineer');
+  let shown=text;
+  if(garble){const w=text.split(' ');shown=w.map((x,i)=>i%3===1||i>w.length*.5&&i%2?'…kssh…':x).join(' ');Snd.stat(1.4,.16);}
+  const el=$('#radio');$('#radioWho').textContent=ROLES[role].label;$('#radioText').textContent=shown;
+  el.classList.remove('quiet');el.classList.add('live');el.dataset.role=role;
+  Snd.beep();Snd.stat(.18,.1);if(role==='driver')Snd.pass(.05);
   clearTimeout(radioTimer);radioTimer=setTimeout(()=>{el.classList.remove('live');el.classList.add('quiet');Snd.stat(.12,.08);Snd.tone({f:1150,dur:.06,vol:.07});},Math.max(2200,text.length*70));
-  speak(text,urgent);
+  speak(garble?shown.replace(/…kssh…/g,' '):text,urgent,role);
 }
 function voiceModal(){
   loadVoices();
@@ -39,6 +54,7 @@ function voiceModal(){
   $('#vTest').onclick=()=>{Snd.init();const was=P.settings.voice;P.settings.voice=true;speak('Rádio check. Pneus médios, box esta volta. Copiado?',false);P.settings.voice=was;};
   $('#vOk').onclick=closeModal;
 }
+const DRIVER_LINES=['Os traseiros estão a acabar, quanto tempo falta?','Tenho tráfego à frente, vou atacar na reta.','O carro sai de frente na curva lenta.','Confirma o plano, box quando?','Boa volta, os pneus ainda aguentam.'];
 const CHATTER=[
   'Rádio check. Ritmo bom, voltas consistentes.','Degradação traseira a aumentar. O plano mantém-se.',
   'Diferença para o carro da frente: um vírgula quatro. Estamos a aproximar.','Bandeiras amarelas no setor dois. Atenção.',

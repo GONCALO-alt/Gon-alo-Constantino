@@ -34,6 +34,9 @@ function boot(){
   const sz=$('#swipeZone');sz.addEventListener('pointerdown',swDown);sz.addEventListener('pointerup',swUp);
   $('#timing').addEventListener('pointerdown',e=>{e.preventDefault();fitTry();});
   $('#btnQuit').onclick=quitRace;
+  document.querySelectorAll('#gbar button').forEach(b=>b.onclick=()=>{Snd.init();Snd.click();sheetOpen===b.dataset.sheet?closeSheet():openSheet(b.dataset.sheet);});
+  const pm=$('#posMeter');pm.addEventListener('pointerdown',e=>{e.preventDefault();try{pm.setPointerCapture(e.pointerId);}catch(_){}posPointer(e);});
+  pm.addEventListener('pointermove',e=>{if(e.buttons||e.pointerType==='touch')posPointer(e);});
   document.addEventListener('keydown',e=>{ // atalhos para teclado (computador)
     if(!R)return;if(e.repeat)return;
     if(e.code==='Space'){e.preventDefault();if(R.step&&R.step.id==='fit')fitTry();else if(!$('#actionBtn').hidden)$('#actionBtn').click();else trigDown({preventDefault(){},currentTarget:tr,pointerId:0});}

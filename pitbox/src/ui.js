@@ -77,17 +77,30 @@ function renderQuick(){
   previewCar(teamById(P.career.teamId).cat===sel?teamById(P.career.teamId):tiersOf(sel)[tiersOf(sel).length-1],sel);
 }
 let lockerTab='suit';
+/* oficina: manutenção do equipamento fora das corridas */
+function renderWorkshop(){
+  const g=P.gear,gun=cosmItem('gun',P.cosm.gun);
+  return`<div class="card"><div class="eyebrow">Pistola principal</div><h3 style="font-size:22px;margin-top:4px">${esc(gun.name)}</h3>
+    <div class="bar cond" style="margin-top:8px"><i style="width:${g.cond}%;background:${g.cond>60?'var(--go)':g.cond>35?'var(--pit)':'var(--alert)'}"></i></div>
+    <p class="muted" style="margin:6px 0 10px">Estado ${g.cond}% · ${esc(gun.desc)} Uma pistola gasta encrava mais vezes.</p>
+    <div class="row2"><button class="btn small" id="wMaint" ${g.cond>=100||P.credits<60?'disabled':''}>Revisão completa · 60 cr</button><button class="btn small" id="wSpare" ${g.spare>=100||P.credits<40?'disabled':''}>Reserva ${g.spare}% · 40 cr</button></div></div>
+  <p class="muted" style="margin:0">Na garagem, antes de cada corrida, podes afinar a pistola de graça (Ferramentas › Manutenção), mas isso gasta tempo de preparação. Pistolas melhores desbloqueiam-se no separador Pistola.</p>`;
+}
 function renderLocker(){
-  const items=COSM[lockerTab];
+  const items=COSM[lockerTab]||[];
   $('#s-locker').innerHTML=`
   <div class="ph" style="background:none"><button class="back" data-go="s-menu" aria-label="Voltar">←</button><h2>Mecânico</h2><span class="credits">${P.credits} cr</span></div>
   <div class="locker-spacer"></div>
   <div style="display:flex;flex-direction:column;gap:10px;overflow-y:auto;padding-bottom:16px;min-height:0">
-  <div class="tabs">${COSM_TABS.map(([k,n])=>`<button data-tab="${k}" aria-pressed="${k===lockerTab}">${n}</button>`).join('')}</div>
+  <div class="tabs">${COSM_TABS.concat([['workshop','🛠️ Oficina']]).map(([k,n])=>`<button data-tab="${k}" aria-pressed="${k===lockerTab}">${n}</button>`).join('')}</div>
+  ${lockerTab==='workshop'?renderWorkshop():''}
   <div class="items">${items.map(it=>{const own=cosmOwned(lockerTab,it),on=P.cosm[lockerTab]===it.id;const team=teamById(P.career.teamId);
     const col=lockerTab==='suit'?(it.base??team.c1):(it.c??team.c2);const acc=lockerTab==='suit'?(it.acc??team.c2):null;const price=it.lvl*120;
     return`<button class="item ${on?'on':''} ${own?'':'locked'}" data-it="${it.id}"><div class="sw" style="background:${acc!=null?`linear-gradient(90deg,${hex(col)} 70%,${hex(acc)} 70%)`:hex(col)}"></div><b>${esc(it.name)}</b><small>${on?'Equipado':own?(it.desc||'Tocar para equipar'):`🔒 Nível ${it.lvl} · ou ${price} cr`}</small></button>`;}).join('')}</div>
   <p style="font-size:13px;color:var(--muted);margin:0">Tudo se desbloqueia ao subir de nível. Se quiseres algo mais cedo, podes usar os créditos ganhos nas corridas.</p></div>`;
+  if(lockerTab==='workshop'){const m=$('#wMaint'),sp=$('#wSpare');
+    if(m)m.onclick=()=>{if(P.credits<60)return;P.credits-=60;P.gear.cond=100;save();Snd.good();renderLocker();};
+    if(sp)sp.onclick=()=>{if(P.credits<40)return;P.credits-=40;P.gear.spare=100;save();Snd.good();renderLocker();};}
   $('#s-locker').querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{lockerTab=b.dataset.tab;Snd.click();renderLocker();});
   $('#s-locker').querySelectorAll('[data-it]').forEach(b=>b.onclick=()=>{
     const it=COSM[lockerTab].find(x=>x.id===b.dataset.it);
@@ -111,6 +124,8 @@ function renderStats(){
     <div class="tile"><div class="eyebrow">Pit stops</div><div class="v">${S.total}</div><div class="s">${S.subPar} abaixo do objetivo</div></div>
     <div class="tile"><div class="eyebrow">Erros</div><div class="v">${S.errors}</div><div class="s">${S.total?f1(S.errors/S.total)+' por paragem':'—'}</div></div>
   </div>
+  <div class="card"><div class="eyebrow">Atributos profissionais</div><div class="skills">${SKILLS.map(k=>`<div><span>${SKILL_NAME[k]}</span><div class="bar"><i style="width:${P.skills[k]}%"></i></div><b class="num">${Math.round(P.skills[k])}</b></div>`).join('')}</div>
+    <p class="muted" style="margin:8px 0 0">Melhoram com cada paragem; nas dificuldades mais altas evoluem mais depressa.</p></div>
   <div class="card"><div class="eyebrow">Evolução · tempo face ao objetivo</div>${S.stops.length>1?'<canvas id="chart"></canvas><div style="font-size:12px;color:var(--muted)">Abaixo da linha = mais rápido do que o objetivo. Últimas '+Math.min(30,S.stops.length)+' paragens.</div>':'<p class="empty">Faz pelo menos duas paragens para veres a evolução.</p>'}</div>
   <div class="card"><div class="eyebrow">Recordes por categoria (s)</div><div class="tbl-wrap"><table><thead><tr><th>Cat.</th><th>Fácil</th><th>Médio</th><th>Difícil</th></tr></thead><tbody>${rows}</tbody></table></div></div>
   <div class="card"><div class="eyebrow">Recordes pessoais</div><ul class="list">
