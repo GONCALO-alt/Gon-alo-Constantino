@@ -2,7 +2,7 @@
 
 Jogo mobile (vertical, 3D, primeira pessoa) de mecânico de pit stop. Um único ficheiro HTML com Three.js, sons sintetizados (Web Audio) e voz do rádio (síntese de voz do browser). O progresso fica guardado no `localStorage`.
 
-Abrir `index.html` num browser (ou servir a pasta) e jogar na vertical. No computador: Espaço = gatilho/ação, D = sentido da pistola, setas = deslizar.
+Abrir `index.html` num browser (ou servir a pasta). No menu, o botão 📱 escolhe o ecrã: Vertical, Horizontal (roda o jogo se o telemóvel estiver de pé) ou Automático. No computador: Espaço = gatilho/ação, D = sentido da pistola, setas = deslizar.
 
 ## O que já existe
 - Menu, modo carreira (épocas de 8 rondas, propostas de equipas, subida F4 → F3 → F2 → F1, ramo GT3), corrida rápida.

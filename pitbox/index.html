@@ -235,6 +235,30 @@ td{font-family:var(--f-data);font-variant-numeric:tabular-nums}
 #modal p{margin:0;color:#c8cdd6;line-height:1.45}
 .m-row{display:flex;gap:8px}.m-row .btn{flex:1}
 #loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;letter-spacing:.2em;color:var(--muted);background:var(--asphalt)}
+
+/* ---- modo horizontal ---- */
+body.land #app{width:100%;min-width:0}
+body.rot #app{position:fixed;left:50%;top:50%;margin:0;min-width:0;transform:translate(-50%,-50%) rotate(90deg)}
+body.land #s-menu{flex-direction:row;align-items:flex-end;gap:24px;padding-block:16px;background:linear-gradient(90deg,rgba(7,8,10,.8) 0%,rgba(7,8,10,0) 40%,rgba(7,8,10,0) 50%,rgba(7,8,10,.9) 75%)}
+body.land #s-menu > div:first-child{align-self:flex-start;flex:1;min-width:0}
+body.land .menu-bottom{width:min(360px,48%);gap:8px}
+body.land .menu-bottom .btn{min-height:46px}
+body.land .brand h1{font-size:52px}
+body.land .panel-screen > *,body.land #s-result > *{width:100%;max-width:600px;margin-inline:auto}
+body.land #s-locker{padding-left:max(48%,16px);background:linear-gradient(90deg,rgba(9,10,13,0) 30%,rgba(9,10,13,.94) 46%)}
+body.land #s-locker .locker-spacer{display:none}
+body.land .items{grid-template-columns:repeat(2,1fr)}
+body.land #hud{padding-block:8px}
+body.land .hud-top{width:min(320px,38%)}
+body.land #radioText{font-size:13px}
+body.land .timer{font-size:40px}
+body.land .hud-bottom{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:10px;width:min(340px,40%);gap:8px}
+body.land .next-op{font-size:13px}
+body.land #trigger{width:108px;height:108px}
+body.land #actionBtn{min-width:200px;min-height:62px;font-size:22px}
+body.land .prompt{font-size:17px}
+body.land #swipeZone{top:20%;bottom:20%;right:0;left:0}
+body.land .alert{top:28%;font-size:40px}
 @media (prefers-reduced-motion:reduce){.brand svg,.alert,.swipe-arrow{animation:none!important}}
 </style>
 </head>
@@ -261,7 +285,7 @@ td{font-family:var(--f-data);font-variant-numeric:tabular-nums}
       <button class="btn primary" data-go="career">Modo carreira</button>
       <button class="btn ghost" data-go="quick">Corrida rápida</button>
       <div class="row2"><button class="btn ghost small" data-go="locker">Mecânico</button><button class="btn ghost small" data-go="stats">Estatísticas</button></div>
-      <div class="toggles"><button class="chip" id="tSound" aria-pressed="true">🔊 Som</button><button class="chip" id="tVoice" aria-pressed="true">📻 Voz do rádio</button></div>
+      <div class="toggles"><button class="chip" id="tSound" aria-pressed="true">🔊 Som</button><button class="chip" id="tVoice" aria-pressed="true">📻 Voz do rádio</button><button class="chip" id="tOrient">📱 Vertical</button></div>
     </div>
   </section>
 
@@ -438,7 +462,7 @@ const COSM_TABS=[['suit','Fatos'],['gloves','Luvas'],['helmet','Capacete'],['gun
 const SAVE_KEY='pitbox.v1';
 function defaultProfile(){return{
   v:1,level:1,xp:0,credits:0,
-  settings:{difficulty:'easy',sound:true,voice:true,quickCat:'F4'},
+  settings:{difficulty:'easy',sound:true,voice:true,quickCat:'F4',orient:'portrait'},
   cosm:{suit:'team',gloves:'basic',helmet:'std',gun:'std',bought:[]},
   career:{teamId:'f4_bairro',season:1,round:0,racesInTeam:0,scores:[],teamPoints:0,offers:[],history:[],catsReached:['F4'],bestFinish:null},
   stats:{stops:[],total:0,errors:0,sumTime:0,best:{},bestScore:0,maxGain:0,clean:0,bestClean:0,subPar:0,perfect:0,errTypes:{},podiums:0,wins:0}
@@ -681,9 +705,31 @@ function initThree(){
   scene.add(sun);scene.add(sun.target);
   buildWorld();
   mergeGroup(scene,new Set([W.playerSpot]));
-  window.addEventListener('resize',resize);resize();
+  window.addEventListener('resize',applyOrient);applyOrient();
 }
-function resize(){const a=$('#app');const w=a.clientWidth,h=a.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=w/h<.62?66:58;camera.updateProjectionMatrix();}
+function resize(){const a=$('#app');const w=a.clientWidth,h=a.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=w/h<.62?66:w/h>1.2?44:58;camera.updateProjectionMatrix();}
+/* orientação: vertical, horizontal (roda o jogo se o telemóvel estiver de pé) ou automática */
+const ORIENT={portrait:'📱 Vertical',landscape:'📱 Horizontal',auto:'📱 Automático'};
+let rotated=false;
+function applyOrient(){
+  const vw=window.innerWidth,vh=window.innerHeight,devLand=vw>vh,o=P.settings.orient||'portrait';
+  const land=o==='auto'?devLand:o==='landscape';
+  rotated=land&&!devLand&&o==='landscape';
+  document.body.classList.toggle('land',land);document.body.classList.toggle('rot',rotated);
+  const a=$('#app');if(rotated){a.style.width=vh+'px';a.style.height=vw+'px';}else{a.style.width='';a.style.height='';}
+  if(renderer)resize();
+  const t=$('#tOrient');if(t)t.textContent=ORIENT[o];
+  if(screen==='s-stats'&&P.stats.stops.length>1)drawChart();
+}
+function cycleOrient(){
+  const order=['portrait','landscape','auto'];P.settings.orient=order[(order.indexOf(P.settings.orient||'portrait')+1)%3];save();Snd.init();Snd.click();
+  if(P.settings.orient==='landscape'&&matchMedia('(pointer:coarse)').matches){
+    try{const el=document.documentElement;const go=el.requestFullscreen?el.requestFullscreen():null;
+      if(go&&go.then)go.then(()=>window.screen.orientation&&window.screen.orientation.lock&&window.screen.orientation.lock('landscape')).catch(()=>{});}catch(e){}
+  }else if(P.settings.orient==='portrait'){try{window.screen.orientation&&window.screen.orientation.unlock&&window.screen.orientation.unlock();}catch(e){}}
+  applyOrient();setTimeout(applyOrient,400);
+  toast({portrait:'Ecrã na vertical',landscape:'Ecrã na horizontal',auto:'Segue a posição do telemóvel'}[P.settings.orient],'good',1200);
+}
 
 /* ---- pista, box e garagem ---- */
 const W={};
@@ -1551,7 +1597,8 @@ function trigUp(){
 let sw=null;
 function swDown(e){sw={x:e.clientX,y:e.clientY};try{e.currentTarget.setPointerCapture(e.pointerId);}catch(_){}}
 function swUp(e){
-  if(!sw||!R||!R.step)return;const dx=e.clientX-sw.x,dy=e.clientY-sw.y;sw=null;
+  if(!sw||!R||!R.step)return;let dx=e.clientX-sw.x,dy=e.clientY-sw.y;sw=null;
+  if(rotated&&!e.kb){const t=dx;dx=dy;dy=-t;}
   if(Math.hypot(dx,dy)<35||now()<R.lock)return;
   const dir=Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up');
   if(dir!==R.swipeDir){toast('Para o outro lado!','warn',800);Snd.click();return;}
@@ -1778,6 +1825,7 @@ function boot(){
   document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;Snd.init();Snd.click();const g=b.dataset.go;show(g.startsWith('s-')?g:'s-'+g);});
   document.addEventListener('pointerdown',()=>Snd.init(),{once:true});
   $('#tSound').onclick=()=>{P.settings.sound=!P.settings.sound;Snd.init();Snd.setOn(P.settings.sound);save();renderMenu();};
+  $('#tOrient').onclick=cycleOrient;
   $('#tVoice').onclick=()=>{P.settings.voice=!P.settings.voice;save();renderMenu();if(P.settings.voice){Snd.init();radio('Rádio check. Ouves-me bem?');}};
   const tr=$('#trigger');tr.addEventListener('pointerdown',trigDown);tr.addEventListener('pointerup',trigUp);tr.addEventListener('pointercancel',trigUp);tr.addEventListener('lostpointercapture',trigUp);
   tr.addEventListener('contextmenu',e=>e.preventDefault());
@@ -1790,7 +1838,7 @@ function boot(){
     if(e.code==='Space'){e.preventDefault();if(R.step&&R.step.id==='fit')fitTry();else if(!$('#actionBtn').hidden)$('#actionBtn').click();else trigDown({preventDefault(){},currentTarget:tr,pointerId:0});}
     if(e.code==='KeyD')toggleDir();
     const map={ArrowDown:'down',ArrowUp:'up',ArrowLeft:'left',ArrowRight:'right'};
-    if(map[e.code]&&R.step&&!$('#swipeZone').hidden){e.preventDefault();const d=map[e.code];const fake={x:0,y:0};sw=fake;const v={down:[0,80],up:[0,-80],left:[-80,0],right:[80,0]}[d];swUp({clientX:v[0],clientY:v[1]});}
+    if(map[e.code]&&R.step&&!$('#swipeZone').hidden){e.preventDefault();const d=map[e.code];const fake={x:0,y:0};sw=fake;const v={down:[0,80],up:[0,-80],left:[-80,0],right:[80,0]}[d];swUp({clientX:v[0],clientY:v[1],kb:true});}
   });
   document.addEventListener('keyup',e=>{if(e.code==='Space'&&R)trigUp();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&R)trigUp();});
