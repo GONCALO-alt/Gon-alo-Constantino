@@ -764,33 +764,65 @@ function curve(m, k) {
   const u = 1 - k;
   return [u * u * x0 + 2 * u * k * cx + k * k * x1, u * u * y0 + 2 * u * k * cy + k * k * y1, cx, cy];
 }
+// bonequinho: capacete, corpo da cor do país, pernas a andar e espingarda ao ombro
+function drawSoldier(X, Y, z, col, ph) {
+  const leg = Math.sin(ph) * z * 0.45;
+  ctx.strokeStyle = '#1a1d2b'; ctx.lineWidth = Math.max(1.2, z * 0.28); ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(X, Y + z * 0.3); ctx.lineTo(X - leg, Y + z * 1.25); ctx.moveTo(X, Y + z * 0.3); ctx.lineTo(X + leg, Y + z * 1.25); ctx.stroke();
+  ctx.fillStyle = col; ctx.fillRect(X - z * 0.38, Y - z * 0.55, z * 0.76, z * 0.95);
+  ctx.strokeStyle = '#3b2a17'; ctx.lineWidth = Math.max(1, z * 0.18); ctx.beginPath(); ctx.moveTo(X + z * 0.25, Y - z * 0.4); ctx.lineTo(X + z * 0.7, Y - z * 1.15); ctx.stroke(); // espingarda
+  ctx.fillStyle = '#f1c9a0'; ctx.beginPath(); ctx.arc(X, Y - z * 0.85, z * 0.3, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = shade(col, -0.45); ctx.beginPath(); ctx.arc(X, Y - z * 0.95, z * 0.36, Math.PI, 0); ctx.fill(); // capacete
+  ctx.lineCap = 'butt';
+}
+function drawShip(X, Y, z, col, ang) {
+  ctx.save(); ctx.translate(X, Y); ctx.rotate(ang);
+  ctx.fillStyle = 'rgba(220,240,255,.55)'; ctx.beginPath(); ctx.moveTo(-z * 2.6, -z * 0.5); ctx.lineTo(-z * 1.2, 0); ctx.lineTo(-z * 2.6, z * 0.5); ctx.fill(); // espuma
+  ctx.fillStyle = '#4a5066'; ctx.beginPath(); ctx.moveTo(-z * 1.3, -z * 0.45); ctx.lineTo(z * 1.0, -z * 0.45); ctx.lineTo(z * 1.5, 0); ctx.lineTo(z * 1.0, z * 0.45); ctx.lineTo(-z * 1.3, z * 0.45); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = col; ctx.fillRect(-z * 0.7, -z * 0.28, z * 1.2, z * 0.56);
+  ctx.fillStyle = '#d6dae6'; ctx.fillRect(-z * 0.3, -z * 0.18, z * 0.45, z * 0.36);
+  ctx.restore();
+}
+function drawJet(X, Y, z, col, ang) {
+  ctx.save(); ctx.translate(X, Y); ctx.rotate(ang);
+  ctx.fillStyle = '#c9ced9'; ctx.beginPath(); ctx.moveTo(z * 1.6, 0); ctx.lineTo(-z * 1.2, -z * 0.28); ctx.lineTo(-z * 1.2, z * 0.28); ctx.closePath(); ctx.fill(); // fuselagem
+  ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(z * 0.3, 0); ctx.lineTo(-z * 0.5, -z * 1.3); ctx.lineTo(-z * 0.8, -z * 1.3); ctx.lineTo(-z * 0.4, 0); ctx.lineTo(-z * 0.8, z * 1.3); ctx.lineTo(-z * 0.5, z * 1.3); ctx.closePath(); ctx.fill(); // asas
+  ctx.beginPath(); ctx.moveTo(-z * 0.9, 0); ctx.lineTo(-z * 1.4, -z * 0.55); ctx.lineTo(-z * 1.5, z * 0.55); ctx.closePath(); ctx.fill(); // cauda
+  ctx.restore();
+}
 function drawMoves(now) {
   const done = [];
   for (const m of FX.moves) {
-    if (m.paused === undefined) m.paused = 0;
-    const k = clamp((now - m.t0 - m.paused) / m.dur, 0, 1);
+    if (!(m.t0 <= GT)) m.t0 = GT; // marchas antigas (antes do relógio do jogo)
+    const k = clamp((GT - m.t0) / m.dur, 0, 1);
     const col = C[m.att].color;
     const [x0, y0] = LABEL[m.from], [x1, y1] = LABEL[m.to];
     const [, , cx, cy] = curve(m, 0);
-    ctx.strokeStyle = col; ctx.lineWidth = Math.max(2, cam.s * 0.45); ctx.globalAlpha = 0.85;
-    ctx.setLineDash([8, 6]); ctx.lineDashOffset = -now / 25;
+    ctx.strokeStyle = col; ctx.lineWidth = Math.max(2, cam.s * 0.35); ctx.globalAlpha = 0.55;
+    ctx.setLineDash([8, 6]); ctx.lineDashOffset = -now / 40;
     ctx.beginPath(); ctx.moveTo(sx(x0), sy(y0)); ctx.quadraticCurveTo(sx(cx), sy(cy), sx(x1), sy(y1)); ctx.stroke();
     ctx.setLineDash([]); ctx.globalAlpha = 1;
-    // ponta da seta
     const [ex, ey] = curve(m, 0.97);
-    const a = Math.atan2(sy(y1) - sy(ey), sx(x1) - sx(ex));
-    const hs = Math.max(7, cam.s * 1.2);
+    const a = Math.atan2(sy(y1) - sy(ey), sx(x1) - sx(ex)), hs = Math.max(7, cam.s * 1.2);
     ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(sx(x1), sy(y1)); ctx.lineTo(sx(x1) - Math.cos(a - 0.5) * hs, sy(y1) - Math.sin(a - 0.5) * hs); ctx.lineTo(sx(x1) - Math.cos(a + 0.5) * hs, sy(y1) - Math.sin(a + 0.5) * hs); ctx.fill();
-    // unidade
-    const [ux, uy] = curve(m, k);
-    const z = clamp(cam.s * 1.2, 7, 15);
-    const X = sx(ux), Y = sy(uy) + Math.sin(now / 80) * 1.2;
-    ctx.fillStyle = shade(col, -0.5); ctx.beginPath(); ctx.arc(X, Y + 2, z, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = col; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X, Y, z, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = '#0a0e24'; ctx.font = `${Math.round(z * 1.05)}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    if (m.sea) ctx.fillText('⚓', X, Y + 1); else drawTank(X - 1, Y, z / 9);
-    pill(X, Y - z - 9, fmt(m.n), '#0a0e24', '#fff', col);
-    if (Math.random() < 0.3) FX.parts.push({ x: ux, y: uy, vx: rnd(-0.2, 0.2), vy: rnd(-0.3, 0), life: 0.6, t: 0, col: m.sea ? '#bfe9ff' : '#8a7f6a', r: 0.35, smoke: true });
+    // pelotão a marchar (ou navios no mar); tanques no fim da coluna
+    const z = clamp(cam.s * 0.9, 7, 13), count = m.sea ? clamp(Math.round(Math.log2(m.n + 1) / 2), 1, 3) : clamp(Math.round(Math.log2(m.n + 1)), 3, 9);
+    const tanks = m.sea ? 0 : clamp(Math.round(Math.log2((m.tank || 0) + 1) / 1.5), 0, 3);
+    const step = m.sea ? 0.03 : 0.018, ph = now / 110 + m.seed;
+    let lead = null;
+    for (let q = count + tanks - 1; q >= 0; q--) {
+      const kk = clamp(k - q * step, 0, 1);
+      const [ux, uy] = curve(m, kk), [vx, vy] = curve(m, Math.min(1, kk + 0.01));
+      const dir = Math.atan2(sy(vy) - sy(uy), sx(vx) - sx(ux)), side = ((q % 3) - 1) * z * 1.1;
+      const X = sx(ux) - Math.sin(dir) * side, Y = sy(uy) + Math.cos(dir) * side;
+      if (m.sea) drawShip(X, Y, z * 1.1, col, dir);
+      else if (q >= count) { ctx.save(); ctx.translate(X, Y); ctx.fillStyle = shade(col, -0.35); ctx.fillRect(-z * 0.9, -z * 0.5, z * 1.8, z * 0.7); drawTank(0, -z * 0.15, z / 7); ctx.restore(); }
+      else drawSoldier(X, Y, z, col, ph + q * 1.3);
+      if (q === 0) lead = [X, Y];
+      if (q === count + tanks - 1 && Math.random() < 0.05) FX.parts.push({ x: ux, y: uy, vx: rnd(-0.1, 0.1), vy: rnd(-0.15, 0), life: 0.5, t: 0, col: m.sea ? '#bfe9ff' : '#8a7f6a', r: 0.12, smoke: true });
+    }
+    const daysLeft = Math.max(0, Math.ceil((m.dur - (GT - m.t0)) / 1000));
+    if (lead) pill(lead[0], lead[1] - z * 2.2, `${fmt(m.n)} · ${daysLeft}d`, '#0a0e24', '#fff', col);
     if (k >= 1) done.push(m);
   }
   for (const m of done) { FX.moves.splice(FX.moves.indexOf(m), 1); resolveBattle(m); }
@@ -801,9 +833,10 @@ function drawPlanes(now) {
     const k = clamp((now - pl.t0 - (pl.paused || 0)) / pl.dur, 0, 1);
     const x = pl.x0 + (pl.x1 - pl.x0) * k, y = pl.y0 + (pl.y1 - pl.y0) * k - Math.sin(k * Math.PI) * (pl.arc || 8);
     const a = Math.atan2(pl.y1 - pl.y0, pl.x1 - pl.x0);
-    if (Math.random() < 0.6) FX.parts.push({ x, y, vx: 0, vy: 0, life: 0.7, t: 0, col: '#dfe9ff', r: 0.3, smoke: true });
+    if (Math.random() < (pl.jet ? 0.25 : 0.6)) FX.parts.push({ x, y, vx: 0, vy: 0, life: pl.jet ? 0.4 : 0.7, t: 0, col: '#dfe9ff', r: pl.jet ? 0.12 : 0.3, smoke: true });
     if (pl.icon === '🚀') for (let q = 0; q < 3; q++) FX.parts.push({ x, y, vx: rnd(-0.3, 0.3), vy: rnd(-0.3, 0.3), life: 0.5, t: 0, col: pick(['#ffd75e', '#ff8a3c', '#fff']), r: 0.4, smoke: false });
     const ang = pl.icon === '🚀' ? Math.atan2(pl.y1 - pl.y0 - Math.cos(k * Math.PI) * Math.PI * (pl.arc || 8), pl.x1 - pl.x0) : a;
+    if (pl.jet) { drawJet(sx(x), sy(y), clamp(cam.s * 0.9, 5, 12), pl.col, a); if (k >= 1) done.push(pl); continue; }
     ctx.save(); ctx.translate(sx(x), sy(y)); ctx.rotate(pl.icon === '🕵️' ? 0 : ang + Math.PI / 4);
     ctx.font = `${clamp(cam.s * 2, 14, 26)}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText(pl.icon || '✈️', 0, 0); ctx.restore();
@@ -813,6 +846,7 @@ function drawPlanes(now) {
 }
 
 // ---------- Batalhas ----------
+const MARCH_DAYS = (dist, sea) => clamp(4 + dist * 0.4, 5, 14) * (sea ? 1.5 : 1); // dias de marcha
 function launchAttack(att, to, n, units) {
   const src = attackSource(att, to);
   if (!src) return false;
@@ -822,34 +856,37 @@ function launchAttack(att, to, n, units) {
   if (str < 1) return false;
   c.troops -= inf; c.tanks -= tank;
   const [x0, y0] = LABEL[src.from], [x1, y1] = LABEL[to];
-  const dist = Math.hypot(x1 - x0, y1 - y0);
-  FX.moves.push({ att, from: src.from, to, inf, tank, n: str, sea: src.sea, sf: src.sea ? seaF(att, src.from) : 1, t0: performance.now(), dur: clamp(700 + dist * 90, 900, 2600) * (src.sea ? 1.3 : 1) });
-  if (att === G.player) sfx.march();
+  const dist = Math.hypot(x1 - x0, y1 - y0), days = MARCH_DAYS(dist, src.sea);
+  const air = Math.min(3, Math.floor((c.planes || 0) / 2)); // aviões de escolta: dão mais força ao ataque
+  FX.moves.push({ att, from: src.from, to, inf, tank, n: str, sea: src.sea, sf: src.sea ? seaF(att, src.from) : 1, t0: GT, dur: days * 1000, air, seed: Math.random() * 100 });
+  if (air && (att === G.player || onScreen(x1, y1))) for (let k = 0; k < air; k++) FX.planes.push({ x0: x0 - 2 + k * 1.5, y0: y0 + k, x1, y1, jet: true, col: c.color, arc: 6, t0: performance.now() + k * 300, dur: 2200, onHit: () => {} });
+  if (att === G.player) { sfx.march(); toast(`🪖 ${fmt(str)} tropas a caminho de ${P[to].n}: chegam em ${Math.round(days)} dias${src.sea ? ' (por mar)' : ''}.`, ''); }
   return true;
 }
+const marching = (att, to) => FX.moves.some((m) => m.att === att && m.to === to);
 function resolveBattle(m) {
   const t = P[m.to], def = t.owner, a = C[m.att];
   const [x, y] = LABEL[m.to];
   if (def === m.att || !atWar(m.att, def) || !a.alive) { a.troops += m.inf; a.tanks += m.tank; return; }
   const d = C[def];
   const res = defReserve(t), arm = armyDefAt(t.j);
-  const A = m.n * atkMult(a) * m.sf * rnd(0.85, 1.2);
+  const A = m.n * atkMult(a) * m.sf * (1 + 0.05 * (m.air || 0)) * rnd(0.85, 1.2);
   const D = defPower(t) * rnd(0.85, 1.2);
   G.heat[m.to] += 1;
   const visible = m.att === G.player || def === G.player || onScreen(x, y);
   if (visible) boom(x, y, def === G.player || m.att === G.player ? 1.2 : 0.7);
   if (A > D) {
-    const frac = 1 - 0.7 * (D / A);
+    const frac = 1 - 0.85 * (D / A); // baixas maiores
     const infS = m.inf * frac, tkS = m.tank * frac;
     d.troops = Math.max(0, d.troops - res * 0.6);
     if (visible) floatText(x, y + 2, '-' + fmt(m.n * (1 - frac)), '#ff8fa3', 0.8);
-    const got = bite(m.to, m.att, def, clamp(0.2 + 0.35 * (A / D - 1), 0.18, 0.6), LABEL[m.from]);
+    const got = bite(m.to, m.att, def, clamp(0.08 + 0.15 * (A / D - 1), 0.08, 0.28), LABEL[m.from]); // cada vitória só ocupa um pedaço
     if (got === -1) {
       if (arm > 0) armiesBeaten(t.j);
       a.troops += infS * 0.4; a.tanks += tkS * 0.4;
       capture(m.to, m.att, (infS + tkS) * 0.6, LABEL[m.from]);
     } else {
-      t.gar = Math.max(0.5, t.gar * 0.6);
+      t.gar = Math.max(0.5, t.gar * 0.78); // a guarnição recua mas resiste
       if (arm > 0) armiesHurt(t.j, armyDefAt(t.j) * 0.4);
       a.troops += infS * 0.85; a.tanks += tkS * 0.85;
       const pct = Math.round((cellsOf(t, m.att) / PH[t.j].length) * 100);
@@ -869,6 +906,7 @@ function resolveBattle(m) {
     if (def === G.player) { toast(`🛡️ Repeliste o ataque de ${a.flag} ${a.n} em ${t.n}!`, 'good'); sfx.good(); }
     if (m.att === G.player) { toast(`💥 O ataque a ${t.n} (${d.n}) falhou. A guarnição ficou com ${fmt(t.gar)}.`, 'war'); }
   }
+  if (m.att === G.player) { (G.regroup || (G.regroup = {}))[m.to] = G.day + 2; } // as tropas precisam de reagrupar
   if (m.att === G.player || def === G.player) { shakeT = 0.35; uiDirty = true; }
 }
 function onScreen(x, y) { const X = sx(x), Y = sy(y); return X > -40 && X < VW + 40 && Y > -40 && Y < VH + 40; }
@@ -1007,7 +1045,7 @@ function allianceChance(ci) {
 }
 
 // ---------- Simulação diária ----------
-let speed = 1, acc = 0, paused = false;
+let speed = 1, acc = 0, paused = false, GT = 0; // GT: tempo do jogo em ms (1000 = 1 dia)
 function countProv() { for (const c of C) c._np = 0; for (const p of P) C[p.owner]._np++; }
 function tick() {
   G.day++;
@@ -1270,9 +1308,9 @@ function armyBattle(a, j, sea) {
     const frac = 1 - 0.65 * (D / A);
     a.inf *= frac; a.tank *= frac;
     d.troops = Math.max(0, d.troops - res * 0.6);
-    const got = bite(j, me.i, t.owner, clamp(0.25 + 0.35 * (A / D - 1), 0.2, 0.65), LABEL[a.prov]);
+    const got = bite(j, me.i, t.owner, clamp(0.1 + 0.16 * (A / D - 1), 0.1, 0.32), LABEL[a.prov]);
     if (got !== -1) {
-      t.gar = Math.max(0.5, t.gar * 0.6);
+      t.gar = Math.max(0.5, t.gar * 0.78); // a guarnição recua mas resiste
       const pct = Math.round((cellsOf(t, me.i) / PH[j].length) * 100);
       floatText(x, y - 2, 'AVANÇO ' + pct + '%', '#ffd75e', 0.9);
       toast(`🎖️ O General ${a.name} avançou em ${t.n}: ${pct}% da província.`, 'gold');
@@ -1493,6 +1531,8 @@ const A = {
     const me = C[G.player];
     const inf = Math.floor(me.troops * frac), tank = Math.floor(me.tanks * frac);
     if (inf + tank < 1) { toast('Não tens tropas suficientes. Recruta mais no Exército.', 'war'); return; }
+    if (marching(G.player, j)) return;
+    if (G.regroup && G.regroup[j] > G.day) return;
     launchAttack(G.player, j, 0, { inf, tank }); uiDirty = true;
   },
   buy(kind, n) {
@@ -1785,10 +1825,11 @@ function renderPanelInner(el) {
   } else if (atWar(me.i, o.i)) {
     const src = attackSource(me.i, p.j);
     if (src) {
-      const sf = src.sea ? seaF(me.i, src.from) : 1;
+      const sf = src.sea ? seaF(me.i, src.from) : 1, onWay = marching(me.i, p.j), rg = G.regroup && G.regroup[p.j] > G.day ? G.regroup[p.j] - G.day : 0, busy = onWay || rg > 0;
+      if (onWay) html += '<p class="note">🪖 As tuas tropas já vão a caminho desta província.</p>'; else if (rg) html += `<p class="note">⏳ As tropas estão a reagrupar: podes voltar a atacar daqui a ${rg} dia${rg > 1 ? 's' : ''}.</p>`;
       const opts = [[0.25, '25%'], [0.5, '50%'], [1, 'Tudo']].map(([f, l]) => {
         const n = Math.floor(me.troops * f) + Math.floor(me.tanks * f) * tankMult(p.j, src.sea), ch = winChance(n, me.i, p.j, src.sea, sf);
-        return `<button class="btn red ${ch > 0.6 ? 'pulse' : ''}" data-a="attack" data-v="${p.j}" data-f="${f}" ${n < 1 ? 'disabled' : ''}>${l} · ${fmt(n)}<small>vitória ${Math.round(ch * 100)}%</small></button>`;
+        return `<button class="btn red ${ch > 0.6 && !busy ? 'pulse' : ''}" data-a="attack" data-v="${p.j}" data-f="${f}" ${n < 1 || busy ? 'disabled' : ''}>${l} · ${fmt(n)}<small>vitória ${Math.round(ch * 100)}%</small></button>`;
       }).join('');
       html += `${src.sea ? `<p class="note">Desembarque por mar: ${sf >= 0.95 ? 'o porto evita a penalização' : me.ships ? 'os navios reduzem a penalização (-15%)' : 'sem navios as tropas lutam com -45%'}.</p>` : ''}<div class="btns">${opts}</div>`;
     } else html += `<p class="note warn">Não tens fronteira com esta província. Manda um general, bombardeia-a ou usa um míssil.</p>`;
@@ -2241,7 +2282,7 @@ function loop(now) {
   const running = C && !paused && speed > 0 && $('#start').hidden;
   if (!running) { for (const m of FX.moves) m.paused = (m.paused || 0) + dt; for (const p of FX.planes) p.paused = (p.paused || 0) + dt; }
   if (running) {
-    acc += dt * speed;
+    acc += dt * speed; GT += dt * speed;
     while (acc >= 1000) { acc -= 1000; tick(); }
   }
   if (C) {
@@ -2255,5 +2296,5 @@ window.addEventListener('resize', resize);
 resize();
 showStart();
 requestAnimationFrame(loop);
-window.__imperio = { CO, PH, bite, capture, toast, openInbox, markAll: () => { cacheDirty = true; }, dbg(j) { const a = G.armies[0]; return { passable: passable(j), path: a && armyPath(a, j), owner: P[j].owner, me: G.player, atWar: atWar(G.player, P[j].owner), ships: C[G.player].ships }; }, tap: (x, y) => { const r = cv.getBoundingClientRect(); tapAt(x - r.left, y - r.top); }, scr(j) { const r = cv.getBoundingClientRect(); return [sx(LABEL[j][0]) + r.left, sy(LABEL[j][1]) + r.top]; }, get att() { return [...attackable]; }, get C() { return C; }, get P() { return P; }, get G() { return G; }, A, tick };
+window.__imperio = { cam, LABEL, flyTo, CO, PH, bite, capture, toast, openInbox, markAll: () => { cacheDirty = true; }, dbg(j) { const a = G.armies[0]; return { passable: passable(j), path: a && armyPath(a, j), owner: P[j].owner, me: G.player, atWar: atWar(G.player, P[j].owner), ships: C[G.player].ships }; }, tap: (x, y) => { const r = cv.getBoundingClientRect(); tapAt(x - r.left, y - r.top); }, scr(j) { const r = cv.getBoundingClientRect(); return [sx(LABEL[j][0]) + r.left, sy(LABEL[j][1]) + r.top]; }, get att() { return [...attackable]; }, get C() { return C; }, get P() { return P; }, get G() { return G; }, A, tick };
 })();
