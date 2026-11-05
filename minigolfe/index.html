@@ -85,6 +85,24 @@ h2 { font-family: var(--f-titulo); font-size: 26px; margin: 0; text-wrap: balanc
 .lmundo { display: grid; grid-template-columns: 1fr 2fr auto; gap: 8px; align-items: center; text-align: left; font-size: 13px; }
 .carregar { color: #fff; font-family: var(--f-titulo); font-size: 22px; text-align: center; display: grid; gap: 10px; justify-items: center; }
 .bola { width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: inset -4px -4px 0 #d8d8d8; animation: salta .6s ease-in-out infinite alternate; }
+#aviso { position: fixed; left: 50%; top: calc(70px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 6; background: var(--ouro); color: #3a2600; font-family: var(--f-titulo); font-size: 15px; padding: 9px 16px; border-radius: 14px; box-shadow: 0 4px 0 var(--ouroEsc); pointer-events: none; max-width: calc(100% - 32px); text-align: center; }
+#aviso.entra { animation: aviso .4s cubic-bezier(.2,1.6,.4,1); }
+@keyframes aviso { from { transform: translate(-50%, -20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+#bAjuda { pointer-events: auto; flex: none; height: 44px; padding: 0 10px; border-radius: 14px; border: 2px solid rgba(36,48,42,.18); background: #fff3c4; font-size: 15px; font-weight: 900; color: var(--tinta); cursor: pointer; box-shadow: 0 3px 0 rgba(0,0,0,.18); }
+#bAjuda:disabled { opacity: .45; }
+.menuGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.menuGrid .btn { font-size: 15px; padding: 11px 8px; }
+.conq { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center; text-align: left; background: #fff; border: 2px solid #e2d8c2; border-radius: 14px; padding: 8px 10px; }
+.conq b { font-size: 14px; } .conq small { display: block; color: var(--dim); font-size: 12px; }
+.conq .ic { font-size: 26px; filter: grayscale(1); opacity: .4; } .conq.feita .ic { filter: none; opacity: 1; } .conq.feita { border-color: var(--ouro); }
+.lista { display: grid; gap: 8px; max-height: 52vh; overflow-y: auto; }
+.chave { display: grid; gap: 6px; text-align: left; } .chave h3 { margin: 6px 0 0; font-size: 14px; color: var(--dim); text-transform: uppercase; letter-spacing: 1px; }
+.jogo { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; background: #fff; border: 2px solid #e2d8c2; border-radius: 12px; padding: 6px 10px; font-size: 13px; }
+.jogo .v { font-weight: 900; color: var(--relvaEsc); } .jogo.eu { border-color: var(--relva); } .jogo span:last-child { text-align: right; }
+.trofeu { font-size: 64px; line-height: 1; }
+.secretos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; }
+.secretos button { border: 0; border-radius: 12px; padding: 8px 4px; font-family: var(--f-titulo); font-size: 12px; cursor: pointer; background: #3b2a6b; color: #fff; box-shadow: 0 3px 0 #22184a; }
+.secretos button:disabled { background: #d8cfba; color: #8f8670; box-shadow: none; cursor: default; }
 @keyframes salta { from { transform: translateY(0); } to { transform: translateY(-18px); } }
 @media (prefers-reduced-motion: reduce) { .bola { animation: none; } }
 </style>
@@ -94,8 +112,10 @@ h2 { font-family: var(--f-titulo); font-size: 26px; margin: 0; text-wrap: balanc
   <div class="pill" id="hNivelBox"><small id="hMundo">Clube Verde</small><b id="hNivel">Nível 1</b></div>
   <div class="pill"><small id="hTacL">Tacadas</small><b id="hTac">0/5</b></div>
   <div class="pill" id="hPtsBox"><small>Pontos</small><b id="hPts">0</b></div>
+  <button id="bAjuda" aria-label="Ajuda: mostra uma boa tacada">💡3</button>
   <button id="bPausa" aria-label="Pausa">II</button>
 </div>
+<div id="aviso" hidden></div>
 <div id="dica" hidden></div>
 
 <!-- menu principal -->
@@ -103,11 +123,15 @@ h2 { font-family: var(--f-titulo); font-size: 26px; margin: 0; text-wrap: balanc
   <div class="cartao">
     <h1>Tacada <span>Mágica</span></h1>
     <canvas id="menuChar" width="240" height="240" style="width:120px;height:120px;justify-self:center" aria-hidden="true"></canvas>
-    <div class="numeros"><div><small>Pontos</small><b id="mPts">0</b></div><div><small>Nível</small><b id="mNiv">1</b></div><div><small>Mundo</small><b id="mMundo" style="font-size:14px">Clube</b></div></div>
+    <div class="numeros"><div><small>Pontos</small><b id="mPts">0</b></div><div><small>Estrelas</small><b id="mEst">0</b></div><div><small>Nível</small><b id="mNiv">1</b></div></div>
     <button class="btn go" id="bJogar">Jogar · Nível 1</button>
-    <div class="linha"><button class="btn" id="bNiveis">Níveis</button><button class="btn" id="bBots">Contra bots</button></div>
-    <div class="linha"><button class="btn ouro" id="bTacos">Tacos</button><button class="btn" id="bTabela">Tabela</button></div>
-    <button class="btn" id="bSom" style="font-size:14px;padding:9px">Som: ligado</button>
+    <button class="btn ouro" id="bDiario">☀️ Desafio do dia</button>
+    <div class="menuGrid">
+      <button class="btn" id="bNiveis">Níveis</button><button class="btn" id="bBots">Contra bots</button>
+      <button class="btn" id="bTorneio">🏆 Torneio</button><button class="btn" id="bTacos">🛍️ Loja</button>
+      <button class="btn" id="bConq">🏅 Conquistas</button><button class="btn" id="bTabela">Tabela</button>
+      <button class="btn" id="bSom" style="font-size:13px;padding:9px">Som: ligado</button><button class="btn" id="bMusica" style="font-size:13px;padding:9px">Música: ligada</button>
+    </div>
   </div>
 </div>
 
@@ -128,6 +152,7 @@ h2 { font-family: var(--f-titulo); font-size: 26px; margin: 0; text-wrap: balanc
     <div class="mundos" id="nMundos"></div>
     <div id="nGrelhaBox" hidden>
       <div class="pag"><button id="nAnt" aria-label="Anteriores">‹</button><span id="nPag">1–50</span><button id="nSeg" aria-label="Seguintes">›</button></div>
+      <div class="secretos" id="nSecretos"></div>
       <div class="niveis" id="nGrelha" style="margin-top:8px"></div>
     </div>
     <div class="linha"><button class="btn" id="nVoltar">Voltar</button></div>
@@ -150,10 +175,31 @@ h2 { font-family: var(--f-titulo); font-size: 26px; margin: 0; text-wrap: balanc
 <!-- tacos -->
 <div class="ecra" id="sTacos" hidden>
   <div class="cartao">
-    <h2>Tacos</h2>
+    <h2>Loja</h2>
+    <div class="seg" id="tTabs"><button data-v="tacos" class="on">Tacos</button><button data-v="bolas">Bolas</button><button data-v="acess">Acessórios</button></div>
     <p id="tInfo">Por cada 500 pontos ganhas um taco novo.</p>
     <div class="grelha" id="gTacos"></div>
     <button class="btn go" id="tVoltar">Pronto</button>
+  </div>
+</div>
+
+<!-- conquistas -->
+<div class="ecra" id="sConq" hidden>
+  <div class="cartao">
+    <h2>Conquistas</h2>
+    <p id="cqInfo">Cada conquista dá 25 pontos e desbloqueia acessórios para o teu boneco.</p>
+    <div class="lista" id="cqLista"></div>
+    <button class="btn go" id="cqVoltar">Voltar</button>
+  </div>
+</div>
+
+<!-- torneio -->
+<div class="ecra" id="sTorneio" hidden>
+  <div class="cartao">
+    <h2>Torneio</h2>
+    <div id="toTopo"></div>
+    <div class="chave" id="toChave"></div>
+    <div class="linha"><button class="btn" id="toVoltar">Voltar</button><button class="btn go" id="toIr">Jogar</button></div>
   </div>
 </div>
 
@@ -176,6 +222,7 @@ h2 { font-family: var(--f-titulo); font-size: 26px; margin: 0; text-wrap: balanc
     <div class="estrelas" id="fEst"></div>
     <div class="numeros"><div><small>Tacadas</small><b id="fTac">2</b></div><div><small>Par</small><b id="fPar">3</b></div><div><small>Pontos</small><b id="fPts">+5</b></div></div>
     <p id="fMsg"></p>
+    <button class="btn" id="fRepl">🎬 Ver repetição</button>
     <div class="linha"><button class="btn" id="fMenu">Menu</button><button class="btn" id="fRep">Repetir</button></div>
     <button class="btn go" id="fProx">Próximo nível</button>
   </div>
@@ -257,10 +304,26 @@ const TACOS = [
   ['galactico', 'Galáctico', '#3a1a7a', '#120838', '#c49bff', 'estrelas'], ['diamante', 'Diamante', '#e8f6ff', '#9fd8ff', '#ffffff', 'brilho'], ['anjo', 'Asa de Anjo', '#fff9e0', '#ffd23f', '#fff3a6', 'asa'], ['dragao', 'Dragão', '#1f5c2e', '#c0392b', '#ff7a1a', 'escamas'],
 ].map(([id, n, haste, cabeca, brilho, padrao]) => ({ id, n, haste, cabeca, brilho, padrao }));
 
+// bolas: desbloqueiam com estrelas
+const BOLAS = [
+  ['branca', 'Branca', 0, '#ffffff'], ['futebol', 'Futebol', 10, '#ffffff', 'futebol'], ['basquete', 'Basquete', 25, '#f08a24', 'basquete'], ['melancia', 'Melancia', 45, '#3fa34d', 'melancia'],
+  ['oito', 'Bola 8', 70, '#16181d', 'oito'], ['gelo', 'Gelo', 100, '#bfe9ff', null, '#e6f8ff'], ['fogo', 'Fogo', 140, '#ff7a1a', null, 'fogo'], ['neon', 'Néon', 190, '#4fe3ff', null, '#4fe3ff', true],
+  ['ouro', 'Ouro', 250, '#ffd23f', null, null, true], ['planeta', 'Planeta', 320, '#4fb3ff', 'planeta'], ['arcoiris', 'Arco-íris', 400, '#ff4d4d', null, 'arco'], ['estrela', 'Estrela', 500, '#fff3a6', 'estrela', 'estrelas', true],
+].map(([id, n, est, cor, padrao, rasto, brilho]) => ({ id, n, est, cor, padrao, rasto, brilho }));
+// acessórios do boneco: desbloqueiam com conquistas
+const ACESS = [['nenhum', 'Nenhum', 0], ['oculos', 'Óculos de sol', 1], ['festa', 'Chapéu de festa', 3], ['laco', 'Laço', 5], ['capa', 'Capa de herói', 8], ['coroa', 'Coroa', 11], ['aureola', 'Auréola', 14]].map(([id, n, conq]) => ({ id, n, conq }));
 // ---------- gravação ----------
 const SAVE = 'tacada-magica-v1';
-let S = { boneco: null, tacos: ['classico'], taco: 'classico', pts: 0, acertos: 0, tacadas: 0, primeira: 0, prog: 1, best: {}, bv: 0, bj: 0, som: true };
+let S = { boneco: null, tacos: ['classico'], taco: 'classico', pts: 0, acertos: 0, tacadas: 0, primeira: 0, prog: 1, best: {}, bv: 0, bj: 0, som: true, musica: true, est: {}, diario: { data: '', feito: false }, diarios: 0, conq: [], bola: 'branca', acess: 'nenhum', ajuda: { data: '', usadas: 0 }, tacas: 0, chefes: [], secretos: {}, torneio: null };
 try { const s = JSON.parse(localStorage.getItem(SAVE)); if (s) S = { ...S, ...s }; } catch (e) { /* sem armazenamento */ }
+if (!Object.keys(S.est).length && Object.keys(S.best).length) S.est = Object.fromEntries(Object.keys(S.best).map((k) => [k, 2]));
+const hoje = () => { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
+const hashTxt = (txt) => { let h = 2166136261; for (const ch of txt) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return h >>> 0; };
+const estrelas = () => Object.values(S.est).reduce((a, b) => a + b, 0) + Object.values(S.secretos).reduce((a, b) => a + b, 0);
+const estMundo = (m) => Object.entries(S.est).filter(([k]) => +k >= m.de && +k <= m.ate).reduce((a, [, v]) => a + v, 0);
+const bolaDe = (i) => BOLAS.find((b) => b.id === i) || BOLAS[0];
+const acessDe = (i) => ACESS.find((b) => b.id === i) || ACESS[0];
+const ajudasHoje = () => (S.ajuda.data === hoje() ? 3 - S.ajuda.usadas : 3);
 const guardar = () => { try { localStorage.setItem(SAVE, JSON.stringify(S)); } catch (e) { /* */ } };
 const bonecoDe = (id) => BONECOS.find((b) => b.id === id) || BONECOS[0];
 const tacoDe = (id) => TACOS.find((t) => t.id === id) || TACOS[0];
@@ -278,29 +341,78 @@ const SOM = {
   agua: () => ruido(0.5, 0.25, 900), lava: () => { ruido(0.6, 0.25, 600); tom(90, 0.4, 'sawtooth', 0.05); },
   vazio: () => { const o = ac && S.som ? ac.createOscillator() : null; if (!o) return; const gg = ac.createGain(); o.frequency.setValueAtTime(700, ac.currentTime); o.frequency.exponentialRampToValueAtTime(120, ac.currentTime + 0.6); gg.gain.value = 0.06; gg.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.6); o.connect(gg).connect(ac.destination); o.start(); o.stop(ac.currentTime + 0.6); },
   clique: () => tom(660, 0.04, 'square', 0.04), bumper: () => tom(520, 0.08, 'square', 0.07),
+  tubo: () => { tom(220, 0.15, 'square', 0.05); tom(330, 0.15, 'square', 0.05, 0.12); }, portal: () => { tom(880, 0.2, 'sine', 0.06); tom(1320, 0.25, 'sine', 0.05, 0.08); }, salto: () => tom(400, 0.18, 'triangle', 0.08),
+  conquista: () => [784, 988, 1175, 1568].forEach((f, k) => tom(f, 0.2, 'triangle', 0.07, k * 0.09)),
+  fogo: () => { ruido(0.3, 0.12, 2500); tom(300 + Math.random() * 500, 0.3, 'sine', 0.05); },
 };
 
+// ---------- música (gerada ao vivo, diferente em cada mundo) ----------
+const MUS = {
+  clube: { bpm: 92, raiz: 60, esc: [0, 2, 4, 7, 9, 12], prog: [0, 5, 7, 5], tipo: 'sine', dens: 0.55, perc: 0 },
+  praia: { bpm: 112, raiz: 62, esc: [0, 2, 4, 7, 9, 12], prog: [0, 7, 5, 7], tipo: 'triangle', dens: 0.6, perc: 1 },
+  gelo: { bpm: 70, raiz: 72, esc: [0, 4, 7, 11, 14], prog: [0, 5, 9, 7], tipo: 'sine', dens: 0.35, perc: 0, sino: true },
+  inferno: { bpm: 126, raiz: 50, esc: [0, 1, 3, 5, 7, 8], prog: [0, 0, 1, -2], tipo: 'sawtooth', dens: 0.45, perc: 2 },
+  espaco: { bpm: 96, raiz: 57, esc: [0, 3, 5, 7, 10, 12], prog: [0, 3, 5, 3], tipo: 'square', dens: 0.5, perc: 0 },
+  ceu: { bpm: 80, raiz: 67, esc: [0, 2, 4, 7, 9, 12, 14], prog: [0, 5, 9, 7], tipo: 'triangle', dens: 0.7, perc: 0, sino: true },
+};
+let musMundo = 'clube', musT = 0, musPasso = 0, musGain = null;
+const midi = (m) => 440 * Math.pow(2, (m - 69) / 12);
+function notaMus(f, t0, d, tipo, v) { const o = ac.createOscillator(), gg = ac.createGain(); o.type = tipo; o.frequency.value = f; gg.gain.setValueAtTime(0.0001, t0); gg.gain.linearRampToValueAtTime(v, t0 + 0.02); gg.gain.exponentialRampToValueAtTime(0.0001, t0 + d); o.connect(gg).connect(musGain); o.start(t0); o.stop(t0 + d + 0.05); }
+function batida(t0, tipo) {
+  if (tipo === 'bombo') { const o = ac.createOscillator(), gg = ac.createGain(); o.frequency.setValueAtTime(140, t0); o.frequency.exponentialRampToValueAtTime(45, t0 + 0.15); gg.gain.setValueAtTime(0.6, t0); gg.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.2); o.connect(gg).connect(musGain); o.start(t0); o.stop(t0 + 0.25); return; }
+  const n = ac.createBufferSource(), b = ac.createBuffer(1, Math.ceil(ac.sampleRate * 0.05), ac.sampleRate), x = b.getChannelData(0); for (let i = 0; i < x.length; i++) x[i] = (Math.random() * 2 - 1) * (1 - i / x.length);
+  n.buffer = b; const f = ac.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 6000; const gg = ac.createGain(); gg.gain.value = 0.3; n.connect(f).connect(gg).connect(musGain); n.start(t0);
+}
+function musica() {
+  if (!ac) return;
+  if (!musGain) { musGain = ac.createGain(); musGain.gain.value = 0; musGain.connect(ac.destination); }
+  const ligada = S.som && S.musica && !document.hidden;
+  musGain.gain.value = ligada ? 0.055 : 0;
+  if (!ligada) { musT = 0; return; }
+  const m = MUS[musMundo] || MUS.clube, p8 = 60 / m.bpm / 2;
+  if (musT < ac.currentTime) musT = ac.currentTime + 0.05;
+  while (musT < ac.currentTime + 0.3) {
+    const k = musPasso, prog = m.prog[Math.floor(k / 8) % 4], h = Math.abs(Math.sin(k * 12.9898 + m.bpm * 0.7) * 43758.5453) % 1;
+    if (k % 8 === 0 || k % 8 === 4) notaMus(midi(m.raiz - 12 + prog), musT, p8 * 3.5, 'triangle', 0.5);
+    if (h < m.dens) notaMus(midi(m.raiz + prog + m.esc[Math.floor(h / m.dens * m.esc.length)]), musT, p8 * (m.sino ? 6 : 1.8), m.tipo, m.sino ? 0.34 : m.tipo === 'sawtooth' || m.tipo === 'square' ? 0.12 : 0.28);
+    if (m.perc === 1) { if (k % 4 === 0) batida(musT, 'bombo'); if (k % 2 === 1) batida(musT, 'prato'); }
+    if (m.perc === 2) { if (k % 2 === 0) batida(musT, 'bombo'); if (k % 4 === 2) batida(musT, 'prato'); }
+    musT += p8; musPasso++;
+  }
+}
 // ---------- níveis ----------
 const COLS = 9, ROWS = 15, BR = 0.17, VMAX = 12.5, DT = 1 / 100;
-const T = { PAREDE: 0, CHAO: 1, AREIA: 2, GELO: 3, PERIGO: 4, VAZIO: 5 };
+const T = { PAREDE: 0, CHAO: 1, AREIA: 2, GELO: 3, PERIGO: 4, VAZIO: 5, PONTE: 6 };
 const id = (c, r) => r * COLS + c;
-const passa = (v) => v === T.CHAO || v === T.AREIA || v === T.GELO;
+const passa = (v) => v === T.CHAO || v === T.AREIA || v === T.GELO || v === T.PONTE;
 function tileAt(L, c, r) { if (c < 0 || r < 0 || c >= COLS || r >= ROWS) return L.mundo === 'ceu' ? T.VAZIO : T.PAREDE; return L.g[id(c, r)]; }
 const forcaDe = (p) => VMAX * Math.pow(p, 1.15);
+// chefes no último nível de cada mundo: o buraco anda de um lado para o outro
+const CHEFES = { 300: ['toupeira', 'Toupeira Gigante'], 550: ['polvo', 'Polvo Gigante'], 800: ['yeti', 'Yeti das Neves'], 1250: ['dragao', 'Dragão do Inferno'], 1600: ['alien', 'Rei Alien'], 2000: ['guardiao', 'Guardião do Céu'] };
+const buracoEm = (L, t) => (L.holeMov ? { x: L.holeMov.x0 + L.holeMov.amp * Math.sin(TAU * t / L.holeMov.per), y: L.hole.y } : L.hole);
+const ponteAberta = (P, t) => Math.sin(TAU * t / P.per + P.ph) < -0.3;
 
-function gerar(n, tentativa) {
-  const M = mundoDe(n), rnd = mulberry32(((n * 2654435761) ^ (tentativa * 0x9E3779B9)) >>> 0);
+function gerar(n, tentativa, opts = {}) {
+  const M = mundoDe(n), rnd = mulberry32(((n * 2654435761) ^ (tentativa * 0x9E3779B9) ^ (opts.semente || 0)) >>> 0);
   const ri = (a, b) => a + Math.floor(rnd() * (b - a + 1));
   let d = n <= 4 ? 0 : clamp(Math.pow((n - 1) / (NMAX - 1), 0.85) + (rnd() - 0.5) * 0.06, 0, 1);
   const dNom = d;
   if (tentativa >= 6) d *= 0.85;
   const ceu = M.id === 'ceu';
-  const L = { n, mundo: M.id, d, dNom, g: new Uint8Array(COLS * ROWS).fill(ceu ? T.VAZIO : T.PAREDE), rampa: {}, bumpers: [], barras: [], blocos: [], buracosNegros: [], vento: null };
+  const L = { n, mundo: M.id, d, dNom, g: new Uint8Array(COLS * ROWS).fill(ceu ? T.VAZIO : T.PAREDE), rampa: {}, bumpers: [], barras: [], blocos: [], buracosNegros: [], vento: null, tubos: [], portais: [], pontes: [], ponteDe: {}, trampolins: [], chefe: null, holeMov: null };
+  const chefe = !opts.secreto && CHEFES[n];
   const chao = M.id === 'gelo' ? T.GELO : T.CHAO;
   const pon = (c, r, v) => { if (c >= 1 && c <= COLS - 2 && r >= 1 && r <= ROWS - 2) L.g[id(c, r)] = v; };
   let tee, hole;
   const caminho = [];
-  if (n <= 4) {
+  if (chefe) {
+    // arena do chefe: uma sala larga em cima, com um caminho em zigue-zague até lá
+    tee = { c: 4, r: 13 }; hole = { c: 4, r: 2 };
+    for (let r = 1; r <= 4; r++) for (let c = 1; c <= 7; c++) pon(c, r, chao);
+    const pts = [tee, { c: 2, r: 10 }, { c: 6, r: 7 }, { c: 4, r: 5 }, hole];
+    for (let k = 0; k < pts.length - 1; k++) { const a = pts[k], b = pts[k + 1]; let c = a.c, r = a.r; caminho.push({ c, r }); while (r !== b.r) { r += Math.sign(b.r - r); caminho.push({ c, r }); } while (c !== b.c) { c += Math.sign(b.c - c); caminho.push({ c, r }); } }
+    for (const p of caminho) { pon(p.c, p.r, chao); pon(p.c + 1, p.r, chao); pon(p.c, p.r - 1, chao); pon(p.c + 1, p.r - 1, chao); }
+  } else if (n <= 4) {
     // primeiros níveis: retas e uma curva, bem largas
     tee = { c: 4, r: 12 }; hole = { c: n === 3 ? 2 : n === 4 ? 6 : 4, r: n <= 2 ? 3 : 2 };
     for (let r = 2; r <= 12; r++) for (let c = 2; c <= 6; c++) pon(c, r, chao);
@@ -366,6 +478,43 @@ function gerar(n, tentativa) {
   }
   if (M.id === 'espaco') { const nn = 1 + Math.floor(d * 2.5 * rnd() + d); const fora = livres().filter((p) => !nucleo.has(id(p.c, p.r))); for (let k = 0; k < nn && fora.length; k++) { const p = fora.splice(Math.floor(rnd() * fora.length), 1)[0]; L.buracosNegros.push({ x: p.c + 0.5, y: p.r + 0.5, R: 1.4, f: 2.2 + 3 * d }); } }
   if (ceu) { const a = rnd() * TAU, f = 0.5 + 2.3 * d; L.vento = { x: Math.cos(a) * f, y: Math.sin(a) * f }; }
+  // tubos, portais, pontes que abrem e fecham, trampolins
+  const fora = () => livres().filter((p) => !nucleo.has(id(p.c, p.r)));
+  const noCaminho = (f) => caminho[clamp(Math.round(f * (caminho.length - 1)), 0, caminho.length - 1)];
+  const pertoDe = (q, lista) => lista.map((p) => [p, Math.abs(p.c - q.c) + Math.abs(p.r - q.r)]).filter(([, dd]) => dd <= 2).sort((a, b) => a[1] - b[1]).map(([p]) => p)[0];
+  const mais = opts.secreto ? 0.45 : 0;
+  if (caminho.length > 6 && (n >= 120 && ['clube', 'praia', 'gelo'].includes(M.id) && rnd() < 0.35 + mais)) {
+    const fl = fora(), a = pertoDe(noCaminho(0.2 + rnd() * 0.15), fl), b = a && pertoDe(noCaminho(0.75 + rnd() * 0.15), fl.filter((q) => q !== a));
+    if (a && b) { const dx = L.hole.x - (b.c + 0.5), dy = L.hole.y - (b.r + 0.5), dd = Math.hypot(dx, dy) || 1; L.tubos.push({ a: { x: a.c + 0.5, y: a.r + 0.5 }, b: { x: b.c + 0.5, y: b.r + 0.5 }, dir: { x: dx / dd, y: dy / dd } }); }
+  }
+  if (caminho.length > 6 && ((n >= 900 || opts.secreto) && rnd() < 0.45 + mais)) {
+    const fl = fora(), a = pertoDe(noCaminho(0.25), fl), b = a && pertoDe(noCaminho(0.72), fl.filter((q) => Math.abs(q.c - a.c) + Math.abs(q.r - a.r) > 3));
+    if (a && b) L.portais.push({ a: { x: a.c + 0.5, y: a.r + 0.5 }, b: { x: b.c + 0.5, y: b.r + 0.5 } });
+  }
+  if (caminho.length > 8 && M.id !== 'espaco' && (n >= 60 && rnd() < 0.4 + mais)) {
+    const k = clamp(Math.round((0.35 + rnd() * 0.3) * (caminho.length - 1)), 2, caminho.length - 3), q = caminho[k];
+    if (!perto(q.c, q.r, tee, 1) && !perto(q.c, q.r, hole, 1)) {
+      const nx = caminho[k + 1].c - caminho[k - 1].c, ny = caminho[k + 1].r - caminho[k - 1].r, horiz = Math.abs(nx) >= Math.abs(ny);
+      const P = { cel: [], per: 3.6 - 1.4 * d, ph: rnd() * TAU }, marca = (c, r) => { if (passa(L.g[id(c, r)]) && !perto(c, r, tee, 1) && !perto(c, r, hole, 1)) { L.g[id(c, r)] = T.PONTE; P.cel.push([c, r]); L.ponteDe[id(c, r)] = P; return true; } return false; };
+      marca(q.c, q.r);
+      for (const sd of [-1, 1]) for (let j = 1; j <= 3; j++) { const c = horiz ? q.c : q.c + sd * j, r = horiz ? q.r + sd * j : q.r; if (!marca(c, r)) break; }
+      if (P.cel.length) L.pontes.push(P);
+    }
+  }
+  if (caminho.length > 6 && (n >= 200 && rnd() < 0.35 + mais)) { const q = noCaminho(0.3 + rnd() * 0.3); if (!perto(q.c, q.r, tee, 1) && !perto(q.c, q.r, hole, 1) && passa(L.g[id(q.c, q.r)])) L.trampolins.push({ x: q.c + 0.5, y: q.r + 0.5, R: 0.32 }); }
+  if (opts.secreto) for (let k = 0; k < 3; k++) { const fl = livres(); if (!fl.length) break; const q = fl[Math.floor(rnd() * fl.length)]; L.bumpers.push({ x: q.c + 0.5, y: q.r + 0.5, R: 0.24, pop: 0 }); }
+  // o chefe e as suas armadilhas
+  if (chefe) {
+    L.chefe = { tipo: chefe[0], nome: chefe[1] };
+    L.holeMov = { x0: 4.5, amp: 2.3, per: 7 - 3 * d };
+    const t0 = chefe[0];
+    if (t0 === 'toupeira') for (const x of [2.5, 6.5]) L.blocos.push({ x, y: 3.5, ax: 1, ay: 0, amp: 1.2, s: 0.28, per: 3.2, ph: x });
+    if (t0 === 'polvo') for (const x of [2.5, 4.5, 6.5]) L.barras.push({ x, y: 3.6, len: 0.8, a0: x, w: (x === 4.5 ? -1 : 1) * 1.6 });
+    if (t0 === 'yeti') { for (const x of [2, 4.5, 7]) L.bumpers.push({ x, y: 3.7, R: 0.3, pop: 0 }); L.blocos.push({ x: 5.5, y: 7.5, ax: 0, ay: 1, amp: 0.8, s: 0.3, per: 2.6, ph: 1 }); }
+    if (t0 === 'dragao') for (const x of [3, 6]) L.barras.push({ x, y: 3.5, len: 0.95, a0: x, w: 2.8 * (x === 3 ? 1 : -1) });
+    if (t0 === 'alien') { for (const x of [1.8, 7.2]) L.buracosNegros.push({ x, y: 3.6, R: 1.3, f: 2.4 }); }
+    if (t0 === 'guardiao') { L.vento = { x: 2.2, y: 0 }; L.ventoVira = true; for (const x of [3, 6]) L.barras.push({ x, y: 3.6, len: 0.8, a0: x, w: 2.2 }); }
+  }
   L.holeR = lerp(0.31, 0.205, d); L.vcap = lerp(5.6, 3.0, d);
   distancias(L);
   return L;
@@ -384,10 +533,10 @@ function distancias(L) {
   }
   L.dist = D;
 }
-function avaliar(L, x, y) {
+function avaliar(L, x, y, t) {
   const c = Math.floor(x), r = Math.floor(y); if (c < 0 || r < 0 || c >= COLS || r >= ROWS) return 99;
   const dd = L.dist[id(c, r)]; if (dd > 1e8) return 99;
-  const e = Math.hypot(x - L.hole.x, y - L.hole.y);
+  const hb = L.holeMov ? { x: L.holeMov.x0, y: L.hole.y } : L.hole, e = Math.hypot(x - hb.x, y - hb.y);
   return dd <= 1.5 ? e : dd + e * 0.15;
 }
 
@@ -397,34 +546,50 @@ let SIM = false;
 function blocoPos(o, t) { const s = Math.sin(TAU * t / o.per + o.ph), cc = Math.cos(TAU * t / o.per + o.ph); return [o.x + o.ax * o.amp * s, o.y + o.ay * o.amp * s, o.ax * o.amp * cc * TAU / o.per, o.ay * o.amp * cc * TAU / o.per]; }
 function passo(b, L, t) {
   const c = Math.floor(b.x), r = Math.floor(b.y), tile = tileAt(L, c, r);
-  if (tile === T.PERIGO || tile === T.VAZIO) return 'perigo';
+  if (b.tp > 0) b.tp -= DT;
+  const voa = b.ar > 0;
+  if (voa) b.ar -= DT;
+  else {
+    if (tile === T.PERIGO || tile === T.VAZIO) return 'perigo';
+    if (tile === T.PONTE && ponteAberta(L.ponteDe[id(c, r)], t)) return 'perigo';
+  }
   let sp = Math.hypot(b.vx, b.vy);
   if (sp > 0.02) {
-    const rp = L.rampa[id(c, r)]; if (rp) { b.vx += rp[0] * DT; b.vy += rp[1] * DT; }
-    if (L.vento) { const k = 1 + 0.35 * Math.sin(t * 1.3); b.vx += L.vento.x * k * DT; b.vy += L.vento.y * k * DT; }
+    const rp = !voa && L.rampa[id(c, r)]; if (rp) { b.vx += rp[0] * DT; b.vy += rp[1] * DT; }
+    if (L.vento) { const k = (1 + 0.35 * Math.sin(t * 1.3)) * (L.ventoVira ? Math.sign(Math.sin(t * 0.5)) || 1 : 1); b.vx += L.vento.x * k * DT; b.vy += L.vento.y * k * DT; }
   }
+  // trampolim: a bola salta por cima de tudo durante um bocadinho
+  if (!voa) for (const o of L.trampolins) if (Math.hypot(b.x - o.x, b.y - o.y) < o.R && sp > 1.2) { b.ar = b.arT = 0.25 + sp * 0.04; b.vx *= 1.05; b.vy *= 1.05; if (!SIM) b.salto = 1; break; }
+  // tubos (só ida) e portais (ida e volta)
+  if (!(b.tp > 0) && !voa) {
+    for (const o of L.tubos) if (Math.hypot(b.x - o.a.x, b.y - o.a.y) < 0.26) { const v = Math.max(sp, 3.2); b.x = o.b.x + o.dir.x * 0.34; b.y = o.b.y + o.dir.y * 0.34; b.vx = o.dir.x * v; b.vy = o.dir.y * v; b.tp = 0.5; if (!SIM) b.tubo = 1; return null; }
+    for (const o of L.portais) for (const [de, para] of [[o.a, o.b], [o.b, o.a]]) if (Math.hypot(b.x - de.x, b.y - de.y) < 0.24) { const s0 = Math.max(sp, 0.6), ux = b.vx / (sp || 1), uy = b.vy / (sp || 1); b.x = para.x + ux * 0.36; b.y = para.y + uy * 0.36; b.vx = ux * s0; b.vy = uy * s0; b.tp = 0.6; if (!SIM) b.portal = 1; return null; }
+  }
+  if (voa) { const ns2 = Math.max(1, Math.ceil(sp * DT / (BR * 0.45))); for (let i = 0; i < ns2; i++) { b.x += b.vx * DT / ns2; b.y += b.vy * DT / ns2; colidir(b, L, t, true); } return null; }
   for (const h of L.buracosNegros) { const dx = h.x - b.x, dy = h.y - b.y, dd = Math.hypot(dx, dy); if (dd < 0.24) return 'perigo'; if (dd < h.R && sp > 0.02) { const a = h.f / (dd * dd + 0.25); b.vx += dx / dd * a * DT; b.vy += dy / dd * a * DT; } }
-  const hx = L.hole.x - b.x, hy = L.hole.y - b.y, hd = Math.hypot(hx, hy) || 1e-6;
+  const HB = buracoEm(L, t), hx = HB.x - b.x, hy = HB.y - b.y, hd = Math.hypot(hx, hy) || 1e-6;
   sp = Math.hypot(b.vx, b.vy);
   if (hd < L.holeR) { if (sp < L.vcap) return 'buraco'; b.vx = b.vx * 0.985 + hx / hd * 2.5 * DT; b.vy = b.vy * 0.985 + hy / hd * 2.5 * DT; }
   else if (hd < L.holeR * 1.9 && sp < L.vcap * 1.25 && sp > 0.02) { b.vx += hx / hd * 4.5 * DT; b.vy += hy / hd * 4.5 * DT; }
   const [k0, k1] = ATRITO[tile] || ATRITO[T.CHAO];
   sp = Math.hypot(b.vx, b.vy);
   const ns = Math.max(0, sp - (k0 + k1 * sp) * DT);
-  if (ns < 0.04) { b.vx = b.vy = 0; return 'parou'; }
+  if (ns < 0.04 && tile !== T.PONTE) { b.vx = b.vy = 0; return 'parou'; }
+  if (ns < 0.04) { b.vx = b.vy = 0; return ponteAberta(L.ponteDe[id(c, r)], t) ? 'perigo' : 'parou'; }
   b.vx *= ns / sp; b.vy *= ns / sp;
   const ns2 = Math.max(1, Math.ceil(ns * DT / (BR * 0.45)));
   for (let i = 0; i < ns2; i++) { b.x += b.vx * DT / ns2; b.y += b.vy * DT / ns2; colidir(b, L, t); }
   return null;
 }
 function reflete(b, nx, ny, vbx, vby, e) { const rv = (b.vx - vbx) * nx + (b.vy - vby) * ny; if (rv < 0) { b.vx -= (1 + e) * rv * nx; b.vy -= (1 + e) * rv * ny; if (!SIM) b.bate = Math.max(b.bate || 0, -rv); } }
-function colidir(b, L, t) {
+function colidir(b, L, t, soParedes) {
   const c0 = Math.floor(b.x - BR), c1 = Math.floor(b.x + BR), r0 = Math.floor(b.y - BR), r1 = Math.floor(b.y + BR);
   for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
     if (tileAt(L, c, r) !== T.PAREDE) continue;
     const px = clamp(b.x, c, c + 1), py = clamp(b.y, r, r + 1), dx = b.x - px, dy = b.y - py, d2 = dx * dx + dy * dy;
     if (d2 < BR * BR) { const d = Math.sqrt(d2) || 1e-6; let nx = dx / d, ny = dy / d; if (d2 === 0) { const s = Math.hypot(b.vx, b.vy) || 1; nx = -b.vx / s; ny = -b.vy / s; } b.x = px + nx * BR; b.y = py + ny * BR; reflete(b, nx, ny, 0, 0, 0.72); }
   }
+  if (soParedes) return;
   for (const o of L.bumpers) { const dx = b.x - o.x, dy = b.y - o.y, d = Math.hypot(dx, dy); if (d < BR + o.R && d > 1e-6) { const nx = dx / d, ny = dy / d; b.x = o.x + nx * (BR + o.R); b.y = o.y + ny * (BR + o.R); reflete(b, nx, ny, 0, 0, 1.15); const s = Math.hypot(b.vx, b.vy); if (s < 2.5) { b.vx = nx * 2.5; b.vy = ny * 2.5; } if (!SIM) { o.pop = 1; b.bump = 1; } } }
   for (const o of L.barras) {
     const a = o.a0 + o.w * t, ex = Math.cos(a) * o.len, ey = Math.sin(a) * o.len;
@@ -442,14 +607,14 @@ function colidir(b, L, t) {
 }
 // simula uma tacada sem desenhar (bots e verificação dos níveis)
 function simular(L, x, y, ang, p, t0) {
-  SIM = true; const v = forcaDe(p), b = { x, y, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v }; let t = t0, res = 'parou';
+  SIM = true; const v = forcaDe(p), b = { x, y, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v, ar: 0, tp: 0 }; let t = t0, res = 'parou';
   for (let i = 0; i < 900; i++) { const e = passo(b, L, t); t += DT; if (e) { res = e; break; } }
   SIM = false;
   return { e: res, x: b.x, y: b.y, t };
 }
-function planear(L, x, y, t0) {
+function planear(L, x, y, t0, perigoNota = 60) {
   let best = { s: 1e9, ang: -Math.PI / 2, p: 0.5 };
-  const nota = (r) => (r.e === 'buraco' ? -10 + r.t * 0.001 : r.e === 'perigo' ? 60 : avaliar(L, r.x, r.y));
+  const nota = (r) => (r.e === 'buraco' ? -10 + r.t * 0.001 : r.e === 'perigo' ? perigoNota : avaliar(L, r.x, r.y, r.t));
   for (let a = 0; a < 48; a++) for (const p of [0.12, 0.22, 0.34, 0.48, 0.64, 0.82, 1]) { const ang = a / 48 * TAU, r = simular(L, x, y, ang, p, t0), s = nota(r); if (s < best.s) best = { s, ang, p, e: r.e }; }
   const b0 = { ...best };
   for (let da = -3; da <= 3; da++) for (let dp = -2; dp <= 2; dp++) { const ang = b0.ang + da * TAU / 48 / 6, p = clamp(b0.p + dp * 0.035, 0.05, 1), r = simular(L, x, y, ang, p, t0), s = nota(r); if (s < best.s) best = { s, ang, p, e: r.e }; }
@@ -467,20 +632,24 @@ function verificar(L) {
   return 0;
 }
 const CACHE = new Map();
-function nivel(n) {
-  if (CACHE.has(n)) return CACHE.get(n);
+function construir(n, opts = {}) {
   let L = null, tac = 0;
-  for (let k = 0; k < 10 && !tac; k++) { L = gerar(n, k); if (L.dist[id(Math.floor(L.tee.x), Math.floor(L.tee.y))] > 1e8) continue; tac = verificar(L); }
+  for (let k = 0; k < 10 && !tac; k++) { L = gerar(n, k, opts); if (L.dist[id(Math.floor(L.tee.x), Math.floor(L.tee.y))] > 1e8) continue; tac = verificar(L); }
   // nenhuma deu: tira obstáculos um a um, do mais traiçoeiro para o menos (o vento é o último)
   for (const tira of [() => L.blocos.pop(), () => L.blocos.pop(), () => L.barras.pop(), () => L.barras.pop(), () => L.buracosNegros.pop(), () => L.barras.pop(), () => (L.vento = L.vento && { x: L.vento.x * 0.6, y: L.vento.y * 0.6 }), () => (L.vento = null)]) { if (tac) break; tira(); tac = verificar(L); }
   if (!tac) tac = 4;
   const percurso = L.dist[id(Math.floor(L.tee.x), Math.floor(L.tee.y))];
   L.par = clamp(Math.max(tac, Math.round(1 + percurso / 7)), 1, 6);
   L.limite = L.par + (L.dNom < 0.15 ? 4 : L.dNom < 0.4 ? 3 : L.dNom < 0.78 ? 2 : 1);
-  if (CACHE.size > 30) CACHE.delete(CACHE.keys().next().value);
-  CACHE.set(n, L);
   return L;
 }
+function nivel(n) { if (CACHE.has(n)) return CACHE.get(n); const L = construir(n); if (CACHE.size > 30) CACHE.delete(CACHE.keys().next().value); CACHE.set(n, L); return L; }
+function nivelEsp(chave, n, opts) { if (CACHE.has(chave)) return CACHE.get(chave); const L = construir(n, opts); L.chave = chave; if (L.chefe && opts.secreto) L.chefe = null; CACHE.set(chave, L); return L; }
+// desafio do dia: igual para toda a gente, muda à meia-noite
+const diarioNivel = () => { const h = hashTxt('tacada' + hoje()); return { chave: 'd' + hoje(), n: 150 + (h % 1300), opts: { semente: h, diario: true } }; };
+// níveis secretos: 3 por mundo, abrem com as estrelas desse mundo
+const SECRETO_EST = [15, 45, 90];
+const secretoNivel = (mi, k) => { const m = MUNDOS[mi]; return { chave: `s${mi}_${k}`, n: Math.round(m.de + (m.ate - m.de) * (0.3 + 0.3 * k)), opts: { secreto: true, semente: 777 + mi * 10 + k } }; };
 
 // ---------- ecrã e camadas ----------
 let W = 0, H = 0, DPR = 1, E = 30, OX = 0, OY = 0, fixo = null;
@@ -513,7 +682,8 @@ function camadaFixa(L) {
       if (L.mundo === 'clube' || L.mundo === 'praia') { k.strokeStyle = 'rgba(0,0,0,.12)'; k.lineWidth = 1; k.beginPath(); k.moveTo(x, y + e * 0.4); k.lineTo(x + e, y + e * 0.4); k.stroke(); }
       if (L.mundo === 'espaco') { k.fillStyle = 'rgba(0,0,0,.25)'; for (const [a, b2] of [[0.2, 0.2], [0.8, 0.2], [0.2, 0.6], [0.8, 0.6]]) { k.beginPath(); k.arc(x + a * e, y + b2 * e, e * 0.05, 0, TAU); k.fill(); } }
       if (L.mundo === 'gelo') { k.fillStyle = 'rgba(160,200,240,.5)'; k.fillRect(x, y + e * 0.7, e + 0.5, e * 0.08); }
-    } else if (v === T.PERIGO) {
+    } else if (v === T.PERIGO || v === T.PONTE) {
+      if (!st.perigo) continue;
       const gr = k.createLinearGradient(x, y, x, y + e); gr.addColorStop(0, st.perigo[0]); gr.addColorStop(1, st.perigo[1]);
       k.fillStyle = gr; k.fillRect(x, y, e + 0.5, e + 0.5);
     } else {
@@ -558,9 +728,15 @@ function desenharBoneco(k, b, x, y, s, pose, t) {
   if (pose === 'tacada') { bL = 1.5; bR = 1.2; }
   if (pose === 'danca') { salto = Math.abs(Math.sin(t * 7)) * 0.32; bL = -2.4 + Math.sin(t * 14) * 0.7; bR = 2.4 - Math.sin(t * 14) * 0.7; roda = Math.sin(t * 3.5) * 0.28; boca = 'aberta'; }
   if (pose === 'triste') { bL = -0.1; bR = 0.1; boca = 'triste'; olhosF = 0.6; }
+  let espelho = 1, desliza = 0;
+  // à primeira: saltos altos a rodar sobre si
+  if (pose === 'danca2') { salto = Math.abs(Math.sin(t * 6)) * 0.48; bL = -2.9; bR = 2.9; espelho = Math.cos(t * 9); if (Math.abs(espelho) < 0.08) espelho = espelho < 0 ? -0.08 : 0.08; boca = 'aberta'; }
+  // fim de mundo ou chefe: passo de dança a deslizar, braços a socar o ar
+  if (pose === 'danca3') { salto = Math.abs(Math.sin(t * 5)) * 0.12; desliza = Math.sin(t * 2.5) * 0.35; roda = -Math.sin(t * 2.5) * 0.18; bL = Math.sin(t * 8) > 0 ? -2.8 : -0.6; bR = Math.sin(t * 8) > 0 ? 0.6 : 2.8; boca = 'aberta'; }
+  k.translate(desliza * s, 0);
   // sombra no chão
   k.fillStyle = 'rgba(0,0,0,.25)'; k.beginPath(); k.ellipse(0, 0, s * 0.22 * (1 - salto * 0.8), s * 0.06, 0, 0, TAU); k.fill();
-  k.translate(0, -salto * s); k.rotate(roda);
+  k.translate(0, -salto * s); k.rotate(roda); k.scale(espelho, 1);
   const fantasma = b.id === 'fantasma';
   // atrás: juba, cauda, asas, rabo de cavalo
   if (b.id === 'leao') { k.fillStyle = '#c0661a'; for (let a = 0; a < 10; a++) { k.beginPath(); k.arc(Math.cos(a / 10 * TAU) * s * 0.25, -s * 0.76 + Math.sin(a / 10 * TAU) * s * 0.25, s * 0.1, 0, TAU); k.fill(); } k.beginPath(); k.arc(0, -s * 0.76, s * 0.3, 0, TAU); k.fill(); }
@@ -568,6 +744,7 @@ function desenharBoneco(k, b, x, y, s, pose, t) {
   if (b.id === 'abelha') { k.fillStyle = 'rgba(200,230,255,.75)'; k.beginPath(); k.ellipse(-s * 0.2, -s * 0.48, s * 0.16, s * 0.09, -0.6, 0, TAU); k.ellipse(s * 0.2, -s * 0.48, s * 0.16, s * 0.09, 0.6, 0, TAU); k.fill(); }
   if (b.id === 'bia') { k.fillStyle = '#7a4a22'; k.beginPath(); k.arc(s * 0.27, -s * 0.72, s * 0.1, 0, TAU); k.fill(); }
   if (b.id === 'princesa') { k.fillStyle = '#ffd23f'; k.fillRect(-s * 0.27, -s * 0.8, s * 0.54, s * 0.46); }
+  if (b.ac === 'capa') { const o = Math.sin(t * 4) * s * 0.05; k.fillStyle = '#c0392b'; k.beginPath(); k.moveTo(-s * 0.17, -s * 0.5); k.lineTo(s * 0.17, -s * 0.5); k.lineTo(s * 0.32 + o, -s * 0.03); k.lineTo(-s * 0.32 + o, -s * 0.03); k.fill(); k.fillStyle = '#ffd23f'; k.fillRect(-s * 0.17, -s * 0.52, s * 0.34, s * 0.04); }
   // pernas
   if (!fantasma) {
     const pe = pose === 'danca' ? Math.sin(t * 14) * s * 0.05 : 0;
@@ -619,6 +796,13 @@ function desenharBoneco(k, b, x, y, s, pose, t) {
   if (b.id === 'mago') { k.fillStyle = '#6b3fb5'; k.beginPath(); k.moveTo(-hr * 1.1, hy - hr * 0.55); k.lineTo(hr * 0.2, hy - hr * 2.3); k.lineTo(hr * 1.1, hy - hr * 0.55); k.fill(); k.fillStyle = '#ffd23f'; k.beginPath(); k.arc(-hr * 0.1, hy - hr * 1.2, hr * 0.12, 0, TAU); k.fill(); k.fillStyle = '#f4f4f4'; k.beginPath(); k.moveTo(-hr * 0.6, hy + hr * 0.45); k.lineTo(hr * 0.6, hy + hr * 0.45); k.lineTo(0, hy + hr * 1.4); k.fill(); }
   if (b.id === 'cavaleiro') { k.fillStyle = '#c3cad4'; k.beginPath(); k.arc(0, hy, hr * 1.05, 0, TAU); k.fill(); k.fillStyle = '#16181d'; k.fillRect(-hr * 0.7, hy - hr * 0.15, hr * 1.4, hr * 0.18); k.fillStyle = '#e5484d'; k.beginPath(); k.ellipse(0, hy - hr * 1.2, hr * 0.2, hr * 0.45, 0, 0, TAU); k.fill(); }
   if (b.id === 'abelha') { k.strokeStyle = '#2a2a2e'; k.lineWidth = 1.5; for (const sd of [-1, 1]) { k.beginPath(); k.moveTo(sd * hr * 0.3, hy - hr * 0.9); k.lineTo(sd * hr * 0.6, hy - hr * 1.5); k.stroke(); k.fillStyle = '#2a2a2e'; k.beginPath(); k.arc(sd * hr * 0.6, hy - hr * 1.5, hr * 0.12, 0, TAU); k.fill(); } }
+  // acessórios
+  const ac = b.ac;
+  if (ac === 'oculos') { k.fillStyle = '#111'; for (const sd of [-1, 1]) { k.beginPath(); k.ellipse(sd * hr * 0.36, hy - hr * 0.05, hr * 0.25, hr * 0.18, 0, 0, TAU); k.fill(); } k.fillRect(-hr * 0.15, hy - hr * 0.1, hr * 0.3, hr * 0.06); k.fillStyle = 'rgba(255,255,255,.55)'; k.fillRect(-hr * 0.52, hy - hr * 0.14, hr * 0.12, hr * 0.05); k.fillRect(hr * 0.2, hy - hr * 0.14, hr * 0.12, hr * 0.05); }
+  if (ac === 'festa') { k.fillStyle = '#ff7eb6'; k.beginPath(); k.moveTo(-hr * 0.42, hy - hr * 0.8); k.lineTo(hr * 0.42, hy - hr * 0.8); k.lineTo(hr * 0.12, hy - hr * 1.95); k.fill(); k.strokeStyle = '#ffd23f'; k.lineWidth = Math.max(1.5, s * 0.025); k.beginPath(); k.moveTo(-hr * 0.3, hy - hr * 1.05); k.lineTo(hr * 0.33, hy - hr * 1.05); k.moveTo(-hr * 0.16, hy - hr * 1.4); k.lineTo(hr * 0.24, hy - hr * 1.4); k.stroke(); k.fillStyle = '#fff'; k.beginPath(); k.arc(hr * 0.12, hy - hr * 1.98, hr * 0.14, 0, TAU); k.fill(); }
+  if (ac === 'laco') { k.fillStyle = '#e5484d'; k.beginPath(); k.moveTo(0, -s * 0.5); k.lineTo(-s * 0.1, -s * 0.55); k.lineTo(-s * 0.1, -s * 0.45); k.closePath(); k.moveTo(0, -s * 0.5); k.lineTo(s * 0.1, -s * 0.55); k.lineTo(s * 0.1, -s * 0.45); k.closePath(); k.fill(); k.fillStyle = '#9e1c22'; k.beginPath(); k.arc(0, -s * 0.5, s * 0.025, 0, TAU); k.fill(); }
+  if (ac === 'coroa') { k.fillStyle = '#ffd23f'; k.beginPath(); k.moveTo(-hr * 0.6, hy - hr * 0.85); for (let q = 0; q <= 4; q++) k.lineTo(-hr * 0.6 + q * hr * 0.3, hy - hr * (q % 2 ? 1.15 : 1.55)); k.lineTo(hr * 0.6, hy - hr * 0.85); k.fill(); k.fillStyle = '#e5484d'; k.beginPath(); k.arc(0, hy - hr * 1.05, hr * 0.1, 0, TAU); k.fill(); }
+  if (ac === 'aureola') { k.shadowColor = '#ffe680'; k.shadowBlur = s * 0.15; k.strokeStyle = '#ffd23f'; k.lineWidth = Math.max(2, s * 0.04); k.beginPath(); k.ellipse(0, hy - hr * 1.45 + Math.sin(t * 3) * s * 0.02, hr * 0.6, hr * 0.17, 0, 0, TAU); k.stroke(); k.shadowBlur = 0; }
   k.restore();
 }
 // taco: haste da mão até à cabeça, com o desenho da skin
@@ -640,15 +824,49 @@ function desenharTaco(k, tc, x0, y0, x1, y1, s, t) {
   k.shadowBlur = 0;
 }
 
+// ---------- conquistas ----------
+const CONQ = [
+  ['primeiro', 'Primeiro buraco', 'Acerta o teu primeiro buraco', () => S.acertos >= 1],
+  ['primeira1', 'À primeira!', 'Acerta um buraco à primeira', () => S.primeira >= 1],
+  ['primeira10', 'Mira de ouro', '10 buracos à primeira', () => S.primeira >= 10],
+  ['acertos100', 'Cem buracos', 'Acerta 100 buracos', () => S.acertos >= 100],
+  ['acertos500', 'Profissional', 'Acerta 500 buracos', () => S.acertos >= 500],
+  ['clube', 'Sócio do clube', 'Acaba o Clube Verde', () => S.prog > 300],
+  ['praia', 'Rei da praia', 'Acaba a Praia Tropical', () => S.prog > 550],
+  ['gelo', 'Patinador', 'Acaba a Montanha Gelada', () => S.prog > 800],
+  ['inferno', 'Sobrevivente', 'Acaba o Inferno', () => S.prog > 1250],
+  ['espaco', 'Astronauta', 'Acaba o Espaço', () => S.prog > 1600],
+  ['ceu', 'Lenda do céu', 'Acaba os 2000 níveis', () => !!S.best[2000]],
+  ['chefe1', 'Caçador de chefes', 'Vence um chefe de mundo', () => S.chefes.length >= 1],
+  ['chefe6', 'Exterminador de chefes', 'Vence os 6 chefes', () => S.chefes.length >= 6],
+  ['bots1', 'Primeira vitória', 'Ganha uma partida contra bots', () => S.bv >= 1],
+  ['bots5', 'Campeão do bairro', 'Ganha 5 partidas contra bots', () => S.bv >= 5],
+  ['torneio', 'Taça na mão', 'Ganha um torneio', () => S.tacas >= 1],
+  ['diario3', 'Todos os dias', 'Faz 3 desafios do dia', () => S.diarios >= 3],
+  ['estrelas100', 'Cem estrelas', 'Junta 100 estrelas', () => estrelas() >= 100],
+  ['secreto', 'Explorador', 'Acaba um nível secreto', () => Object.keys(S.secretos).length >= 1],
+].map(([id, n, d, f]) => ({ id, n, d, f }));
+function verConquistas() {
+  for (const c of CONQ) if (!S.conq.includes(c.id) && c.f()) { S.conq.push(c.id); S.pts += 25; guardar(); avisar(`🏅 Conquista: ${c.n} · +25 pontos`); SOM.conquista(); }
+}
+function avisar(txt) { const a = $('#aviso'); a.textContent = txt; a.hidden = false; a.classList.remove('sai'); void a.offsetWidth; a.classList.add('entra'); clearTimeout(avisar.t); avisar.t = setTimeout(() => { a.hidden = true; }, 2800); }
+// personalidades dos bots
+const PERS = [
+  { id: 'forte', n: 'Forte', bias: 1.06, ra: 1.1, rp: 1.3, haz: 60, f: { acerta: ['Força bruta!', 'Ninguém me para!'], perigo: ['Bati com força a mais...'], mau: ['Ups, passou longe.'], elogio: ['Nada mal...'] } },
+  { id: 'preciso', n: 'Preciso', bias: 1, ra: 0.45, rp: 0.8, haz: 60, f: { acerta: ['Calculado.', 'Exatamente como planeei.'], perigo: ['As contas estavam certas!'], mau: ['Erro de um grau.'], elogio: ['Boa precisão.'] } },
+  { id: 'arriscado', n: 'Arriscado', bias: 1.03, ra: 1.3, rp: 1.15, haz: 18, f: { acerta: ['Viste ISTO?!', 'Quem não arrisca não ganha!'], perigo: ['Valeu a pena tentar!'], mau: ['Para a próxima entra.'], elogio: ['Tens sorte, hein?'] } },
+  { id: 'calmo', n: 'Calmo', bias: 0.97, ra: 0.8, rp: 0.9, haz: 80, f: { acerta: ['Com calma chega-se lá.', 'Tranquilo.'], perigo: ['Acontece...'], mau: ['Sem pressa.'], elogio: ['Muito bem jogado!'] } },
+];
+const fala = (p, tipo, x, y) => { if (!p.pers || !J) return; const l = p.pers.f[tipo]; J.falas.push({ txt: l[Math.floor(Math.random() * l.length)], x, y, t: 0 }); };
 // ---------- estado do jogo ----------
 let J = null, estado = 'menu', ultimo = performance.now(), acc = 0;
 const FX = { parts: [], textos: [] };
 const NOMES_BOTS = ['Tiago', 'Sara', 'Duarte', 'Inês', 'Miguel', 'Leonor', 'Tomás', 'Carolina', 'Gonçalo', 'Matilde'];
 const CORES_BOLA = ['#ffffff', '#ff6b6b', '#4fb3ff', '#ffd23f'];
 function jogadores(nBots, dif) {
-  const lista = [{ eu: true, nome: 'Tu', boneco: bonecoDe(S.boneco), cor: CORES_BOLA[0] }];
+  const lista = [{ eu: true, nome: 'Tu', boneco: { ...bonecoDe(S.boneco), ac: S.acess }, cor: CORES_BOLA[0] }];
   const outros = BONECOS.filter((b) => b.id !== S.boneco).sort(() => Math.random() - 0.5), nomes = NOMES_BOTS.slice().sort(() => Math.random() - 0.5);
-  for (let k = 0; k < nBots; k++) lista.push({ eu: false, nome: 'Bot ' + nomes[k], boneco: outros[k], cor: CORES_BOLA[k + 1], dif });
+  for (let k = 0; k < nBots; k++) { const fixo = Array.isArray(dif) ? dif[k] : null; lista.push({ eu: false, nome: fixo ? fixo.nome : 'Bot ' + nomes[k], boneco: { ...(fixo ? bonecoDe(fixo.boneco) : outros[k]), ac: fixo ? fixo.ac : ACESS[Math.floor(Math.random() * ACESS.length)].id }, cor: CORES_BOLA[k + 1], dif: fixo ? fixo.dif : dif, pers: fixo ? PERS.find((q) => q.id === fixo.pers) : PERS[Math.floor(Math.random() * PERS.length)] }); }
   return lista.map((p) => ({ ...p, total: 0, acertos: 0, porBuraco: [] }));
 }
 function carregar(texto, fn) { $('#cTxt').textContent = texto; $('#sCarregar').hidden = false; setTimeout(() => { try { fn(); } finally { $('#sCarregar').hidden = true; } }, 40); }
@@ -657,12 +875,22 @@ function jogarNivel(n) {
   esconderEcras();
   carregar(`A preparar o nível ${n}…`, () => { iniciarBuraco(nivel(n), { modo: 'solo', jog: jogadores(0) }); });
 }
+function jogarEspecial(esp, tipo) { esconderEcras(); carregar(tipo === 'diario' ? 'A preparar o desafio do dia…' : 'A abrir o nível secreto…', () => iniciarBuraco(nivelEsp(esp.chave, esp.n, esp.opts), { modo: 'solo', jog: jogadores(0), tipo })); }
 function iniciarBuraco(L, opts) {
-  J = { L, modo: opts.modo, jog: opts.jog, vez: 0, t: 0, fase: 'mirar', partida: opts.partida || null, mira: null, faseT: 0, danca: null };
-  for (const p of J.jog) Object.assign(p, { bola: { x: L.tee.x, y: L.tee.y, vx: 0, vy: 0 }, de: { x: L.tee.x, y: L.tee.y }, tac: 0, feito: false, falhou: false, visivel: true });
+  J = { L, modo: opts.modo, tipo: opts.tipo || 'normal', jog: opts.jog, vez: 0, t: 0, fase: 'mirar', partida: opts.partida || null, mira: null, faseT: 0, danca: null, falas: [], rec: [], repFinal: null, rasto: [], ajudaPts: null, vitoriaChefe: false };
+  J.hora = (L.mundo === 'clube' || L.mundo === 'praia') && !L.chefe ? ['dia', 'tarde', 'noite'][Math.floor((L.n - 1) / 6) % 3] : 'dia';
+  J.luzes = luzesDe(L);
+  musMundo = L.mundo;
+  for (const p of J.jog) Object.assign(p, { bola: { x: L.tee.x, y: L.tee.y, vx: 0, vy: 0, ar: 0, tp: 0 }, de: { x: L.tee.x, y: L.tee.y }, tac: 0, feito: false, falhou: false, visivel: true });
   fixo = camadaFixa(L); estado = 'jogo';
   $('#hud').hidden = false; atualizarHud();
-  if (J.modo === 'solo' && L.n <= 2 && !S.acertos) dica('Arrasta para trás a partir da bola: a seta mostra a direção e, quanto mais puxares, mais força.');
+  if (L.chefe) dica(`CHEFE: ${L.chefe.nome}! O buraco anda de um lado para o outro.`);
+  else if (J.tipo === 'diario') dica('Desafio do dia: acerta e ganha um bónus. À primeira vale muito mais!');
+  else if (J.tipo === 'secreto') dica('Nível secreto! Cheio de surpresas.');
+  else if (L.pontes.length && J.modo === 'solo' && !S.vistoPonte) { dica('As pontes abrem e fecham: passa quando estiverem fechadas!'); S.vistoPonte = 1; }
+  else if (L.trampolins.length && J.modo === 'solo' && !S.vistoTramp) { dica('O trampolim faz a bola saltar por cima de tudo!'); S.vistoTramp = 1; }
+  else if ((L.tubos.length || L.portais.length) && J.modo === 'solo' && !S.vistoTubo) { dica('Tubos e portais levam a bola para outro sítio do campo.'); S.vistoTubo = 1; }
+  else if (J.modo === 'solo' && L.n <= 2 && !S.acertos) dica('Arrasta para trás a partir da bola: a seta mostra a direção e, quanto mais puxares, mais força.');
   else if (L.vento && J.modo === 'solo') dica('Cuidado com o vento!');
   else if (L.buracosNegros.length && J.modo === 'solo') dica('Os buracos negros puxam a bola!');
   else dica('');
@@ -672,17 +900,18 @@ function dica(txt) { const d = $('#dica'); d.textContent = txt; d.hidden = !txt;
 function atualizarHud() {
   if (!J) return; const p = J.jog[J.vez], M = mundoDe(J.L.n);
   $('#hMundo').textContent = J.modo === 'bots' ? `Buraco ${J.partida.i + 1}/${J.partida.niveis.length} · ${M.n}` : M.n;
-  $('#hNivel').textContent = J.modo === 'bots' ? `Vez: ${p.nome}` : `Nível ${J.L.n}`;
+  $('#hNivel').textContent = J.modo === 'bots' ? `Vez: ${p.nome}` : J.tipo === 'diario' ? 'Desafio do dia' : J.tipo === 'secreto' ? 'Nível secreto' : J.L.chefe ? `Nível ${J.L.n} · Chefe` : `Nível ${J.L.n}`;
+  $('#bAjuda').hidden = J.modo !== 'solo'; $('#bAjuda').textContent = '💡' + ajudasHoje(); $('#bAjuda').disabled = ajudasHoje() <= 0;
   $('#hTacL').textContent = `Tacadas · par ${J.L.par}`; $('#hTac').textContent = `${p.tac}/${J.L.limite}`;
   $('#hPts').textContent = S.pts;
 }
 function comecarVez() {
   const p = J.jog[J.vez]; J.fase = p.eu ? 'mirar' : 'botPensa'; J.faseT = 0; J.mira = null; atualizarHud();
-  if (!p.eu) { const pl = planear(J.L, p.bola.x, p.bola.y, J.t + 1.1 + 0.18), ru = [[0.12, 0.22], [0.05, 0.1], [0.018, 0.04]][p.dif]; const gs = () => (Math.random() + Math.random() + Math.random() - 1.5) / 0.5; J.botPlano = { ang: pl.ang + gs() * ru[0], p: clamp(pl.p * (1 + gs() * ru[1]), 0.05, 1) }; }
+  if (!p.eu) { const ps = p.pers || PERS[3], pl = planear(J.L, p.bola.x, p.bola.y, J.t + 1.1 + 0.18, ps.haz), ru = [[0.12, 0.22], [0.05, 0.1], [0.018, 0.04]][p.dif]; const gs = () => (Math.random() + Math.random() + Math.random() - 1.5) / 0.5; J.botPlano = { ang: pl.ang + gs() * ru[0] * ps.ra, p: clamp(pl.p * ps.bias * (1 + gs() * ru[1] * ps.rp), 0.05, 1) }; J.antes = avaliar(J.L, p.bola.x, p.bola.y, J.t); }
 }
 function tacar(ang, pw) {
   const p = J.jog[J.vez]; p.de = { x: p.bola.x, y: p.bola.y }; p.tac++;
-  J.fase = 'swing'; J.faseT = 0; J.tiro = { ang, pw };
+  J.fase = 'swing'; J.faseT = 0; J.tiro = { ang, pw }; J.rec = []; J.rasto = []; J.ajudaPts = null; J.rastoSkin = p.eu ? bolaDe(S.bola) : null;
   if (p.eu) S.tacadas++;
   atualizarHud();
 }
@@ -699,26 +928,40 @@ function aposTacada() {
 }
 function acertou(p) {
   p.feito = true; p.visivel = false; J.fase = 'danca'; J.faseT = 0;
-  J.danca = { p, t: 0 };
+  const HB = buracoEm(J.L, J.t), fimMundo = J.L.chefe || (J.modo === 'solo' && J.tipo === 'normal' && MUNDOS.some((m) => m.ate === J.L.n));
+  J.danca = { p, t: 0, pose: fimMundo ? 'danca3' : p.tac === 1 ? 'danca2' : 'danca', x: HB.x, y: HB.y };
+  if (p.eu) J.repFinal = J.rec.slice();
+  if (J.L.chefe && p.eu) J.vitoriaChefe = true;
+  if (!p.eu) fala(p, 'acerta', HB.x, HB.y - 1);
+  else if (J.modo === 'bots') { const o = J.jog.find((q) => !q.eu); if (o) fala(o, 'elogio', o.bola.x, o.bola.y); }
   SOM.buraco();
-  for (let k = 0; k < 40; k++) { const a = Math.random() * TAU, v = 2 + Math.random() * 4; FX.parts.push({ x: J.L.hole.x, y: J.L.hole.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 3, v: 1.4, cor: ['#ffb400', '#e5484d', '#2f80ed', '#2fbf71', '#ff7eb6'][k % 5], conf: true }); }
+  for (let k = 0; k < 40; k++) { const a = Math.random() * TAU, v = 2 + Math.random() * 4; FX.parts.push({ x: HB.x, y: HB.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 3, v: 1.4, cor: ['#ffb400', '#e5484d', '#2f80ed', '#2fbf71', '#ff7eb6'][k % 5], conf: true }); }
   if (p.eu) {
     S.pts += 5; S.acertos++; if (p.tac === 1) S.primeira++; guardar();
-    FX.textos.push({ x: J.L.hole.x, y: J.L.hole.y - 1.4, txt: p.tac === 1 ? 'À PRIMEIRA! +5' : 'ACERTOU! +5', cor: '#ffb400', t: 0 });
-  } else FX.textos.push({ x: J.L.hole.x, y: J.L.hole.y - 1.4, txt: p.nome.replace('Bot ', '') + ' acertou', cor: '#fff', t: 0 });
+    FX.textos.push({ x: HB.x, y: HB.y - 1.4, txt: J.L.chefe ? 'CHEFE VENCIDO! +5' : p.tac === 1 ? 'À PRIMEIRA! +5' : 'ACERTOU! +5', cor: '#ffb400', t: 0 });
+    verConquistas();
+  } else FX.textos.push({ x: HB.x, y: HB.y - 1.4, txt: p.nome.replace('Bot ', '') + ' acertou', cor: '#fff', t: 0 });
   atualizarHud();
 }
 function fimDanca() {
   const p = J.danca.p; J.danca = null;
   if (J.modo === 'solo') {
     const n = J.L.n, est = p.tac <= J.L.par ? 3 : p.tac <= J.L.par + 1 ? 2 : 1;
-    S.best[n] = Math.min(S.best[n] || 99, p.tac); if (n >= S.prog) S.prog = Math.min(NMAX, n + 1); guardar();
+    let extra = 0, msgExtra = '';
+    if (J.tipo === 'normal') { S.best[n] = Math.min(S.best[n] || 99, p.tac); S.est[n] = Math.max(S.est[n] || 0, est); if (n >= S.prog) S.prog = Math.min(NMAX, n + 1); }
+    else if (J.tipo === 'secreto') S.secretos[J.L.chave] = Math.max(S.secretos[J.L.chave] || 0, est);
+    else if (J.tipo === 'diario') { if (S.diario.data !== hoje() || !S.diario.feito) { S.diario = { data: hoje(), feito: true }; S.diarios++; extra = p.tac === 1 ? 25 : 10; msgExtra = `Bónus do desafio do dia: +${extra} pontos${p.tac === 1 ? ' (à primeira!)' : ''}.`; } else msgExtra = 'Já fizeste o desafio de hoje. Volta amanhã para um novo!'; }
+    if (J.L.chefe && !S.chefes.includes(J.L.mundo)) { S.chefes.push(J.L.mundo); msgExtra = `Venceste o ${J.L.chefe.nome}!`; }
+    S.pts += extra; guardar(); verConquistas();
     estado = 'parado';
     $('#fTitulo').textContent = p.tac === 1 ? 'Buraco à primeira!' : ['Acertaste!', 'Muito bem!', 'Perfeito!'][est - 1];
     $('#fEst').innerHTML = [1, 2, 3].map((k) => `<span class="${k <= est ? '' : 'off'}">★</span>`).join('');
-    $('#fTac').textContent = p.tac; $('#fPar').textContent = J.L.par; $('#fPts').textContent = '+5';
+    $('#fTac').textContent = p.tac; $('#fPar').textContent = J.L.par; $('#fPts').textContent = '+' + (5 + extra);
+    $('#fRepl').hidden = !(J.repFinal && J.repFinal.length > 5);
     const prox = mundoDe(n + 1); $('#fMsg').textContent = n === NMAX ? 'Acabaste os 2000 níveis! És uma lenda do mini golfe.' : prox.id !== mundoDe(n).id ? `Desbloqueaste um mundo novo: ${prox.n}!` : tacosLivres() > 0 ? `Tens ${tacosLivres()} taco${tacosLivres() > 1 ? 's' : ''} novo${tacosLivres() > 1 ? 's' : ''} para escolher!` : `Faltam ${500 - (S.pts % 500)} pontos para o próximo taco.`;
-    $('#fProx').hidden = n >= NMAX; $('#sFim').hidden = false; $('#fProx').focus();
+    if (msgExtra) $('#fMsg').textContent = msgExtra + ' ' + $('#fMsg').textContent;
+    if (J.tipo !== 'normal') $('#fMsg').textContent = msgExtra || 'Muito bem!';
+    $('#fProx').hidden = n >= NMAX || J.tipo !== 'normal'; $('#fRep').hidden = J.tipo === 'diario'; $('#sFim').hidden = false; ($('#fProx').hidden ? $('#fMenu') : $('#fProx')).focus();
     return;
   }
   proximaVez();
@@ -730,33 +973,44 @@ function fimBuraco() {
   const ult = P.i >= P.niveis.length;
   $('#ptTitulo').textContent = ult ? 'Resultado final' : `Buraco ${P.i} de ${P.niveis.length}`;
   const ord = J.jog.slice().sort((a, b) => a.total - b.total);
-  $('#ptTab').innerHTML = `<tr><th>Jogador</th>${P.niveis.slice(0, P.i).map((_, k) => `<th>${k + 1}</th>`).join('')}<th>Total</th><th>Pontos</th></tr>` + ord.map((p) => `<tr class="${p.eu ? 'eu' : ''}"><td>${p.nome}</td>${p.porBuraco.map((s) => `<td>${s}</td>`).join('')}<td><b>${p.total}</b></td><td>${p.acertos * 5}</td></tr>`).join('');
-  if (ult) { const eu = J.jog[0], ganhou = ord[0] === eu || ord[0].total === eu.total; S.bj++; if (ganhou) S.bv++; guardar(); $('#ptMsg').textContent = ganhou ? `Ganhaste a partida! Fizeste ${eu.acertos * 5} pontos.` : `Ganhou ${ord[0].nome}. Fizeste ${eu.acertos * 5} pontos.`; $('#ptIr').textContent = 'Menu'; }
+  $('#ptTab').innerHTML = `<tr><th>Jogador</th>${P.niveis.slice(0, P.i).map((_, k) => `<th>${k + 1}</th>`).join('')}<th>Total</th><th>Pontos</th></tr>` + ord.map((p) => `<tr class="${p.eu ? 'eu' : ''}"><td>${p.nome}${p.pers ? `<br><small style="color:var(--dim)">${p.pers.n}</small>` : ''}</td>${p.porBuraco.map((s) => `<td>${s}</td>`).join('')}<td><b>${p.total}</b></td><td>${p.acertos * 5}</td></tr>`).join('');
+  if (ult) { const eu = J.jog[0], ganhou = ord[0] === eu || ord[0].total === eu.total; S.bj++; if (ganhou) S.bv++; guardar(); $('#ptMsg').textContent = ganhou ? `Ganhaste a partida! Fizeste ${eu.acertos * 5} pontos.` : `Ganhou ${ord[0].nome}. Fizeste ${eu.acertos * 5} pontos.`; $('#ptIr').textContent = P.torneio ? 'Ver o torneio' : 'Menu'; if (P.torneio) torneioResultado(ganhou); verConquistas(); }
   else { $('#ptMsg').textContent = 'Menos tacadas é melhor. Quem passa o limite conta com o limite + 1.'; $('#ptIr').textContent = 'Próximo buraco'; }
   $('#sPartida').hidden = false;
 }
-$('#ptIr').onclick = () => { SOM.clique(); $('#sPartida').hidden = true; const P = J.partida; if (P.i >= P.niveis.length) { menu(); return; } const jog = J.jog; carregar(`A preparar o buraco ${P.i + 1}…`, () => iniciarBuraco(nivel(P.niveis[P.i]), { modo: 'bots', jog, partida: P })); };
+$('#ptIr').onclick = () => { SOM.clique(); $('#sPartida').hidden = true; const P = J.partida; if (P.i >= P.niveis.length) { if (P.torneio) telaTorneio(); else menu(); return; } const jog = J.jog; carregar(`A preparar o buraco ${P.i + 1}…`, () => iniciarBuraco(nivel(P.niveis[P.i]), { modo: 'bots', jog, partida: P })); };
 
 // ---------- atualizar ----------
 function atualizar(dt) {
   J.t += dt; J.faseT += dt;
   const p = J.jog[J.vez];
+  // bola parada numa ponte que abriu: cai
+  if ((J.fase === 'mirar' || J.fase === 'botPensa') && p.visivel) { const c = Math.floor(p.bola.x), r = Math.floor(p.bola.y); if (tileAt(J.L, c, r) === T.PONTE && ponteAberta(J.L.ponteDe[id(c, r)], J.t)) { const tac0 = p.tac; caiu(p, p.bola); p.de = { ...p.de }; if (p.tac === tac0) p.tac++; return; } }
+  for (const f of J.falas) f.t += dt; J.falas = J.falas.filter((f) => f.t < 2.2);
+  if (J.danca && J.danca.pose === 'danca3' && Math.random() < dt * 3) { const x = 1.5 + Math.random() * 6, y = 1 + Math.random() * 4, cor = ['#ffd23f', '#ff4d4d', '#4fb3ff', '#2fbf71', '#ff7eb6'][Math.floor(Math.random() * 5)]; for (let k = 0; k < 26; k++) { const a = k / 26 * TAU, v = 2.5 + Math.random(); FX.parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, v: 1, cor }); } SOM.fogo(); }
   if (J.fase === 'botPensa' && J.faseT > 1.1) { tacar(J.botPlano.ang, J.botPlano.p); }
   else if (J.fase === 'swing' && J.faseT > 0.18) { const v = forcaDe(J.tiro.pw); p.bola.vx = Math.cos(J.tiro.ang) * v; p.bola.vy = Math.sin(J.tiro.ang) * v; J.fase = 'rolar'; J.faseT = 0; SOM.tacada(J.tiro.pw); }
   else if (J.fase === 'rolar') {
     const b = p.bola, e = passo(b, J.L, J.t);
     if (b.bate > 1.2) SOM.parede(b.bate); b.bate = 0; if (b.bump) { SOM.bumper(); b.bump = 0; }
+    if (b.tubo) { SOM.tubo(); b.tubo = 0; J.rasto = []; } if (b.portal) { SOM.portal(); b.portal = 0; J.rasto = []; } if (b.salto) { SOM.salto(); b.salto = 0; }
+    if (p.eu) { if (J.rec.length < 4000) J.rec.push([b.x, b.y, J.t, b.ar > 0 && b.arT ? Math.sin(Math.PI * (1 - b.ar / b.arT)) : 0]); if (J.rastoSkin && J.rastoSkin.rasto) { J.rasto.push([b.x, b.y]); if (J.rasto.length > 22) J.rasto.shift(); } }
     if (e === 'buraco') acertou(p);
-    else if (e === 'perigo') {
-      const M = J.L.mundo; (M === 'inferno' ? SOM.lava : M === 'ceu' || M === 'espaco' ? SOM.vazio : SOM.agua)();
-      for (let k = 0; k < 18; k++) { const a = Math.random() * TAU, v = 1 + Math.random() * 2.5; FX.parts.push({ x: b.x, y: b.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 1.5, v: 0.8, cor: M === 'inferno' ? '#ff8a1f' : M === 'espaco' ? '#b48cff' : M === 'ceu' ? '#ffffff' : '#bfe9ff' }); }
-      FX.textos.push({ x: b.x, y: b.y - 0.6, txt: M === 'inferno' ? 'Queimou! +1' : M === 'ceu' ? 'Caiu! +1' : M === 'espaco' ? 'Engolida! +1' : 'Splash! +1', cor: '#fff', t: 0 });
-      p.tac++; if (p.eu) S.tacadas++; b.vx = b.vy = 0; J.fase = 'volta'; J.faseT = 0; p.visivel = false; atualizarHud();
-    } else if (e === 'parou') { J.fase = 'espera'; J.faseT = 0; }
+    else if (e === 'perigo') caiu(p, b);
+    else if (e === 'parou') { J.fase = 'espera'; J.faseT = 0; J.rasto = []; if (!p.eu && J.antes != null && avaliar(J.L, b.x, b.y, J.t) > J.antes - 1 && Math.random() < 0.5) fala(p, 'mau', b.x, b.y); }
   } else if (J.fase === 'volta' && J.faseT > 0.8) { p.bola.x = p.de.x; p.bola.y = p.de.y; p.visivel = true; aposTacada(); }
   else if (J.fase === 'espera' && J.faseT > 0.35) aposTacada();
-  else if (J.fase === 'danca' && J.faseT > 2.4) fimDanca();
+  else if (J.fase === 'danca' && J.faseT > (J.danca && J.danca.pose === 'danca3' ? 3.6 : 2.4)) fimDanca();
   for (const o of J.L.bumpers) o.pop = Math.max(0, o.pop - dt * 4);
+}
+function caiu(p, b) {
+  {
+      const M = J.L.mundo; (M === 'inferno' ? SOM.lava : M === 'ceu' || M === 'espaco' ? SOM.vazio : SOM.agua)();
+      if (!p.eu) fala(p, 'perigo', b.x, b.y);
+      for (let k = 0; k < 18; k++) { const a = Math.random() * TAU, v = 1 + Math.random() * 2.5; FX.parts.push({ x: b.x, y: b.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 1.5, v: 0.8, cor: M === 'inferno' ? '#ff8a1f' : M === 'espaco' ? '#b48cff' : M === 'ceu' ? '#ffffff' : '#bfe9ff' }); }
+      FX.textos.push({ x: b.x, y: b.y - 0.6, txt: M === 'inferno' ? 'Queimou! +1' : M === 'ceu' ? 'Caiu! +1' : M === 'espaco' ? 'Engolida! +1' : 'Splash! +1', cor: '#fff', t: 0 });
+      p.tac++; if (p.eu) S.tacadas++; b.vx = b.vy = 0; b.ar = 0; J.fase = 'volta'; J.faseT = 0; p.visivel = false; J.rasto = []; atualizarHud();
+  }
 }
 function atualizarFx(dt) {
   for (const f of FX.parts) { f.x += f.vx * dt; f.y += f.vy * dt; f.vy += (f.conf ? 5 : 3) * dt; f.v -= dt; }
@@ -769,11 +1023,15 @@ function atualizarFx(dt) {
 let estrelasFundo = null;
 function fundo(now) {
   const st = J ? ESTILO[J.L.mundo] : ESTILO.clube, m = J ? J.L.mundo : 'clube';
-  const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, st.bg[0]); gr.addColorStop(1, st.bg[1]); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  const gr = g.createLinearGradient(0, 0, 0, H); const hora = J ? J.hora : 'dia', bg = hora === 'noite' ? ['#08102b', '#1e2c63'] : hora === 'tarde' ? ['#ff8a4c', '#ffd59a'] : st.bg; gr.addColorStop(0, bg[0]); gr.addColorStop(1, bg[1]); g.fillStyle = gr; g.fillRect(0, 0, W, H);
   const t = now / 1000;
   if (m === 'espaco' || m === 'inferno') {
     if (!estrelasFundo) estrelasFundo = Array.from({ length: 90 }, () => [Math.random(), Math.random(), Math.random()]);
     for (const [a, b, c] of estrelasFundo) { if (m === 'espaco') { g.fillStyle = `rgba(255,255,255,${0.3 + 0.7 * Math.abs(Math.sin(t * (0.5 + c) + c * 9))})`; g.fillRect(a * W, b * H, 1.6, 1.6); } else { const y = (b * H - t * (20 + c * 30)) % H; g.fillStyle = `rgba(255,${120 + c * 100 | 0},40,${0.4 + c * 0.5})`; g.fillRect(a * W + Math.sin(t + c * 6) * 6, y < 0 ? y + H : y, 2, 2); } }
+  } else if (hora === 'noite') {
+    if (!estrelasFundo) estrelasFundo = Array.from({ length: 90 }, () => [Math.random(), Math.random(), Math.random()]);
+    for (const [a, b, c] of estrelasFundo) { g.fillStyle = `rgba(255,255,255,${0.3 + 0.6 * Math.abs(Math.sin(t * (0.4 + c) + c * 9))})`; g.fillRect(a * W, b * H, 1.5, 1.5); }
+    g.fillStyle = '#fff6d8'; g.beginPath(); g.arc(W * 0.82, 60, 22, 0, TAU); g.fill(); g.fillStyle = '#08102b'; g.beginPath(); g.arc(W * 0.82 + 9, 54, 19, 0, TAU); g.fill();
   } else if (m === 'ceu' || m === 'clube' || m === 'praia') {
     g.fillStyle = 'rgba(255,255,255,.75)';
     for (let k = 0; k < 6; k++) { const x = ((k * 173 + t * (8 + k * 3)) % (W + 160)) - 80, y = 40 + ((k * 97) % Math.max(60, H - 80)); g.beginPath(); g.arc(x, y, 18, 0, TAU); g.arc(x + 20, y - 8, 22, 0, TAU); g.arc(x + 44, y, 16, 0, TAU); g.fill(); }
@@ -792,23 +1050,32 @@ function desenhar(now) {
   }
   // vento: riscas a passar
   if (L.vento) { const a = Math.atan2(L.vento.y, L.vento.x), f = Math.hypot(L.vento.x, L.vento.y); g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 2; for (let k = 0; k < 10; k++) { const ph = (t * (0.4 + f * 0.25) + k * 0.1) % 1, cx = OX + ((k * 137) % (E * COLS)), cy = OY + ((k * 211) % (E * ROWS)); const x = cx + Math.cos(a) * (ph - 0.5) * E * 4, y = cy + Math.sin(a) * (ph - 0.5) * E * 4; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * E * 0.7, y + Math.sin(a) * E * 0.7); g.stroke(); } }
+  // pontes: tábuas que recolhem e voltam
+  for (const P of L.pontes) { const v = Math.sin(TAU * J.t / P.per + P.ph), f = clamp((v + 0.3) / 0.45, 0, 1); for (const [c, r] of P.cel) ponteDesenho(L.mundo, sx(c), sy(r), f, t); }
+  for (const o of L.tubos) { tuboDesenho(sx(o.a.x), sy(o.a.y), false, t); tuboDesenho(sx(o.b.x), sy(o.b.y), true, t, o.dir); g.strokeStyle = 'rgba(255,255,255,.22)'; g.setLineDash([3, 6]); g.lineWidth = 2; g.beginPath(); g.moveTo(sx(o.a.x), sy(o.a.y)); g.lineTo(sx(o.b.x), sy(o.b.y)); g.stroke(); g.setLineDash([]); }
+  for (const o of L.portais) { portalDesenho(sx(o.a.x), sy(o.a.y), '#3aa0ff', t); portalDesenho(sx(o.b.x), sy(o.b.y), '#ff8a1f', t + 1); }
+  for (const o of L.trampolins) { const x = sx(o.x), y = sy(o.y), r = o.R * E, pul = 1 + 0.06 * Math.sin(t * 6); g.fillStyle = '#2b2b33'; g.beginPath(); g.arc(x, y, r * 1.05, 0, TAU); g.fill(); g.fillStyle = '#e5484d'; g.beginPath(); g.arc(x, y, r * 0.92 * pul, 0, TAU); g.fill(); g.strokeStyle = '#fff'; g.lineWidth = 2; g.beginPath(); g.arc(x, y, r * 0.58 * pul, 0, TAU); g.stroke(); g.beginPath(); g.arc(x, y, r * 0.25, 0, TAU); g.stroke(); }
+  if (L.chefe) chefeDesenho(L.chefe, sx(4.5), sy(0.55), E, t, J.vitoriaChefe);
   // buraco e bandeira
-  const hx = sx(L.hole.x), hy = sy(L.hole.y), hr = L.holeR * E;
+  const HB = buracoEm(L, J.t), hx = sx(HB.x), hy = sy(HB.y), hr = L.holeR * E;
   g.fillStyle = 'rgba(0,0,0,.18)'; g.beginPath(); g.ellipse(hx, hy + 1.5, hr * 1.25, hr * 1.05, 0, 0, TAU); g.fill();
   g.fillStyle = '#11140f'; g.beginPath(); g.arc(hx, hy, hr, 0, TAU); g.fill();
   g.fillStyle = 'rgba(255,255,255,.15)'; g.beginPath(); g.arc(hx, hy, hr, Math.PI * 0.1, Math.PI * 0.9); g.fill();
   for (const bn of L.buracosNegros) { const x = sx(bn.x), y = sy(bn.y); for (let q = 0; q < 4; q++) { g.strokeStyle = `rgba(180,120,255,${0.15 + q * 0.12})`; g.lineWidth = 2; g.beginPath(); g.arc(x, y, E * (0.75 - q * 0.15), t * (1 + q) + q, t * (1 + q) + q + 4.2); g.stroke(); } g.fillStyle = '#05010f'; g.beginPath(); g.arc(x, y, E * 0.24, 0, TAU); g.fill(); }
   // bolas (sombra primeiro)
   const bolaR = BR * E;
-  for (const p of J.jog) { if (!p.visivel) continue; const x = sx(p.bola.x), y = sy(p.bola.y); g.fillStyle = 'rgba(0,0,0,.3)'; g.beginPath(); g.ellipse(x + 1.5, y + 2, bolaR, bolaR * 0.8, 0, 0, TAU); g.fill(); }
+  for (const p of J.jog) { if (!p.visivel) continue; const x = sx(p.bola.x), y = sy(p.bola.y), a = p.bola.ar > 0 ? 0.7 : 1; g.fillStyle = `rgba(0,0,0,${0.3 * a})`; g.beginPath(); g.ellipse(x + 1.5, y + 2, bolaR * a, bolaR * 0.8 * a, 0, 0, TAU); g.fill(); }
+  // rasto da bola (bolas especiais)
+  if (J.rasto && J.rasto.length > 1) { const sk = J.rastoSkin; for (let k = 1; k < J.rasto.length; k++) { const [x0, y0] = J.rasto[k - 1], [x1, y1] = J.rasto[k], f = k / J.rasto.length; g.globalAlpha = f * 0.7; g.strokeStyle = sk.rasto === 'arco' ? `hsl(${(k * 25 + t * 200) % 360},90%,60%)` : sk.rasto === 'fogo' ? (k % 2 ? '#ff7a1a' : '#ffd23f') : sk.rasto === 'estrelas' ? '#fff3a6' : sk.rasto; g.lineWidth = bolaR * 1.6 * f; g.lineCap = 'round'; g.beginPath(); g.moveTo(sx(x0), sy(y0)); g.lineTo(sx(x1), sy(y1)); g.stroke(); } g.globalAlpha = 1; }
   // obstáculos
   for (const o of L.bumpers) obstaculoBumper(L.mundo, sx(o.x), sy(o.y), o.R * E * (1 + o.pop * 0.25), t);
   for (const o of L.barras) obstaculoBarra(L.mundo, o, t);
   for (const o of L.blocos) { const [x, y, vx] = blocoPos(o, J.t); obstaculoBloco(L.mundo, sx(x), sy(y), o.s * E, vx, t); }
-  for (const p of J.jog) { if (!p.visivel) continue; const x = sx(p.bola.x), y = sy(p.bola.y); g.fillStyle = p.cor; g.beginPath(); g.arc(x, y, bolaR, 0, TAU); g.fill(); g.fillStyle = 'rgba(0,0,0,.12)'; g.beginPath(); g.arc(x + bolaR * 0.25, y + bolaR * 0.25, bolaR * 0.75, 0, TAU); g.fill(); g.fillStyle = p.cor; g.beginPath(); g.arc(x - bolaR * 0.1, y - bolaR * 0.1, bolaR * 0.78, 0, TAU); g.fill(); g.fillStyle = 'rgba(255,255,255,.85)'; g.beginPath(); g.arc(x - bolaR * 0.35, y - bolaR * 0.4, bolaR * 0.25, 0, TAU); g.fill(); if (J.modo === 'bots') { g.strokeStyle = 'rgba(0,0,0,.35)'; g.lineWidth = 1; g.beginPath(); g.arc(x, y, bolaR, 0, TAU); g.stroke(); } }
+  for (const p of J.jog) { if (!p.visivel) continue; const b = p.bola, h = estado === 'replay' ? b.alt || 0 : b.ar > 0 && b.arT ? Math.sin(Math.PI * (1 - b.ar / b.arT)) : 0; desenharBola(g, p.eu ? bolaDe(S.bola) : { cor: p.cor }, sx(b.x), sy(b.y) - h * E * 0.55, bolaR * (1 + h * 0.45), t, J.modo === 'bots' ? p.cor : null); }
   // bandeira (por cima das bolas)
   g.strokeStyle = '#e8e8e8'; g.lineWidth = Math.max(2, E * 0.06); g.beginPath(); g.moveTo(hx, hy); g.lineTo(hx, hy - E * 1.15); g.stroke();
   g.fillStyle = st.bandeira; g.beginPath(); g.moveTo(hx, hy - E * 1.15); g.quadraticCurveTo(hx + E * 0.3, hy - E * (1.05 + 0.05 * Math.sin(t * 5)), hx + E * 0.55, hy - E * (0.98 + 0.06 * Math.sin(t * 5 + 1))); g.lineTo(hx, hy - E * 0.78); g.fill();
+  if (J.luzes.length) postes(t);
   // mira, boneco e taco
   const p = J.jog[J.vez], tc = tacoDe(p.eu ? S.taco : TACOS[(TACOS.length + J.vez * 3) % TACOS.length].id), s = E * 1.05;
   let ang = null, pw = 0;
@@ -833,7 +1100,11 @@ function desenhar(now) {
     const bx = sx(p.de.x), by = sy(p.de.y);
     desenharBoneco(g, p.boneco, bx - E * 0.5, by + E * 0.25, s, J.fase === 'volta' ? 'triste' : 'parado', t);
   }
-  if (J.danca) { const d = J.danca.p; desenharBoneco(g, d.boneco, hx + E * 0.75, hy + E * 0.55, s * 1.5, 'danca', J.faseT); if (d.eu) { const tc2 = tacoDe(S.taco), tt = J.faseT; desenharTaco(g, tc2, hx + E * 0.95, hy - E * 0.2, hx + E * (1.25 + 0.2 * Math.sin(tt * 10)), hy - E * 1.0, s, t); } }
+  if (J.ajudaPts) { g.strokeStyle = '#ffd23f'; g.lineWidth = 3; g.setLineDash([2, 6]); g.lineDashOffset = -t * 30; g.beginPath(); J.ajudaPts.forEach(([x, y], k) => (k ? g.lineTo(sx(x), sy(y)) : g.moveTo(sx(x), sy(y)))); g.stroke(); g.setLineDash([]); const [ex, ey] = J.ajudaPts[J.ajudaPts.length - 1]; g.fillStyle = 'rgba(255,210,63,.5)'; g.beginPath(); g.arc(sx(ex), sy(ey), bolaR * 1.6, 0, TAU); g.fill(); }
+  if (J.danca) { const d = J.danca.p; desenharBoneco(g, d.boneco, hx + E * 0.75, hy + E * 0.55, s * 1.5, J.danca.pose, J.faseT); if (d.eu) { const tc2 = tacoDe(S.taco), tt = J.faseT; desenharTaco(g, tc2, hx + E * 0.95, hy - E * 0.2, hx + E * (1.25 + 0.2 * Math.sin(tt * 10)), hy - E * 1.0, s, t); } }
+  if (J.hora !== 'dia') noiteDesenho(t);
+  // balões de fala dos bots
+  for (const f of J.falas) { const x = clamp(sx(f.x), 70, W - 70), y = sy(f.y) - E * 0.9 - f.t * 4, a = clamp(2.2 - f.t, 0, 1); g.globalAlpha = a; g.font = `700 ${Math.round(clamp(E * 0.36, 11, 15))}px Verdana, sans-serif`; const w = g.measureText(f.txt).width + 16, h = clamp(E * 0.36, 11, 15) + 12; g.fillStyle = '#fff'; g.strokeStyle = 'rgba(0,0,0,.25)'; g.lineWidth = 1.5; g.beginPath(); g.roundRect ? g.roundRect(x - w / 2, y - h, w, h, 8) : g.rect(x - w / 2, y - h, w, h); g.fill(); g.stroke(); g.beginPath(); g.moveTo(x - 6, y); g.lineTo(x, y + 7); g.lineTo(x + 6, y); g.fill(); g.fillStyle = '#24302a'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(f.txt, x, y - h / 2); g.globalAlpha = 1; }
   // partículas e textos
   for (const f of FX.parts) { g.globalAlpha = clamp(f.v * 1.5, 0, 1); g.fillStyle = f.cor; if (f.conf) { g.save(); g.translate(sx(f.x), sy(f.y)); g.rotate(f.v * 9); g.fillRect(-3, -1.5, 6, 3); g.restore(); } else { g.beginPath(); g.arc(sx(f.x), sy(f.y), 3, 0, TAU); g.fill(); } }
   g.globalAlpha = 1;
@@ -876,6 +1147,110 @@ function obstaculoBloco(m, x, y, r, vx, t) {
   g.restore();
 }
 
+function desenharBola(k, sk, x, y, r, t, anel) {
+  if (sk.brilho) { k.shadowColor = sk.cor; k.shadowBlur = r * 2.2; }
+  k.fillStyle = sk.cor; k.beginPath(); k.arc(x, y, r, 0, TAU); k.fill(); k.shadowBlur = 0;
+  k.save(); k.beginPath(); k.arc(x, y, r, 0, TAU); k.clip();
+  if (sk.padrao === 'futebol') { k.fillStyle = '#16181d'; for (const [a, b] of [[0, 0], [-0.7, -0.55], [0.7, -0.55], [-0.75, 0.6], [0.75, 0.6]]) { k.beginPath(); for (let q = 0; q < 5; q++) { const an = q / 5 * TAU - Math.PI / 2; k.lineTo(x + a * r + Math.cos(an) * r * 0.32, y + b * r + Math.sin(an) * r * 0.32); } k.fill(); } }
+  if (sk.padrao === 'basquete') { k.strokeStyle = '#3b1d08'; k.lineWidth = Math.max(1, r * 0.14); k.beginPath(); k.moveTo(x - r, y); k.lineTo(x + r, y); k.moveTo(x, y - r); k.lineTo(x, y + r); k.stroke(); k.beginPath(); k.arc(x - r * 1.1, y, r * 0.8, -0.9, 0.9); k.stroke(); k.beginPath(); k.arc(x + r * 1.1, y, r * 0.8, Math.PI - 0.9, Math.PI + 0.9); k.stroke(); }
+  if (sk.padrao === 'melancia') { k.strokeStyle = '#1f6b2a'; k.lineWidth = Math.max(1, r * 0.25); for (const o of [-0.5, 0, 0.5]) { k.beginPath(); k.moveTo(x + o * r, y - r); k.quadraticCurveTo(x + o * r + r * 0.3, y, x + o * r, y + r); k.stroke(); } }
+  if (sk.padrao === 'oito') { k.fillStyle = '#fff'; k.beginPath(); k.arc(x, y, r * 0.5, 0, TAU); k.fill(); k.fillStyle = '#16181d'; k.font = `900 ${Math.max(6, r * 0.8)}px Verdana,sans-serif`; k.textAlign = 'center'; k.textBaseline = 'middle'; k.fillText('8', x, y + 0.5); }
+  if (sk.padrao === 'planeta') { k.fillStyle = '#2fbf71'; k.beginPath(); k.ellipse(x - r * 0.3, y - r * 0.1, r * 0.4, r * 0.3, 0.5, 0, TAU); k.ellipse(x + r * 0.45, y + r * 0.4, r * 0.3, r * 0.2, 0, 0, TAU); k.fill(); }
+  if (sk.padrao === 'estrela') { k.fillStyle = '#ffb400'; k.beginPath(); for (let q = 0; q < 10; q++) { const an = q / 10 * TAU - Math.PI / 2 + t, rr = q % 2 ? r * 0.35 : r * 0.8; k.lineTo(x + Math.cos(an) * rr, y + Math.sin(an) * rr); } k.fill(); }
+  k.fillStyle = 'rgba(0,0,0,.14)'; k.beginPath(); k.arc(x + r * 0.35, y + r * 0.35, r * 0.85, 0, TAU); k.fill();
+  k.restore();
+  k.fillStyle = 'rgba(255,255,255,.85)'; k.beginPath(); k.arc(x - r * 0.35, y - r * 0.4, r * 0.25, 0, TAU); k.fill();
+  if (anel) { k.strokeStyle = anel; k.lineWidth = Math.max(2, r * 0.3); k.beginPath(); k.arc(x, y, r + 1.5, 0, TAU); k.stroke(); }
+}
+function ponteDesenho(m, x, y, f, t) {
+  if (f <= 0) return;
+  const cor = { clube: '#a0612c', praia: '#c9a25a', gelo: '#9fc7e6', inferno: '#3a3a44', ceu: '#ffd23f' }[m] || '#a0612c';
+  const w = E * f;
+  g.fillStyle = 'rgba(0,0,0,.25)'; g.fillRect(x + (E - w) / 2, y + 3, w, E);
+  for (let q = 0; q < 4; q++) { g.fillStyle = q % 2 ? cor : shade(cor, -0.12); g.fillRect(x + (E - w) / 2, y + q * E / 4 + 1, w, E / 4 - 2); }
+  if (m === 'inferno') { g.strokeStyle = `rgba(255,140,40,${0.4 + 0.3 * Math.sin(t * 6)})`; g.lineWidth = 1; g.strokeRect(x + (E - w) / 2 + 1, y + 1, w - 2, E - 2); }
+}
+function shade(hex, f) { const n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => clamp(Math.round(v * (1 + f)), 0, 255)); return `rgb(${c[0]},${c[1]},${c[2]})`; }
+function tuboDesenho(x, y, saida, t, dir) {
+  const r = E * 0.32;
+  g.fillStyle = '#1f7a3a'; g.beginPath(); g.arc(x, y, r * 1.12, 0, TAU); g.fill();
+  g.fillStyle = '#2fbf61'; g.beginPath(); g.arc(x, y - 1.5, r * 1.02, 0, TAU); g.fill();
+  g.fillStyle = '#0b1a10'; g.beginPath(); g.arc(x, y - 1.5, r * 0.68, 0, TAU); g.fill();
+  if (saida && dir) { g.fillStyle = '#ffffff'; g.save(); g.translate(x, y - 1.5); g.rotate(Math.atan2(dir.y, dir.x)); g.beginPath(); g.moveTo(r * 0.45, 0); g.lineTo(-r * 0.2, -r * 0.28); g.lineTo(-r * 0.2, r * 0.28); g.fill(); g.restore(); }
+}
+function portalDesenho(x, y, cor, t) {
+  for (let q = 0; q < 3; q++) { g.strokeStyle = cor; g.globalAlpha = 0.35 + q * 0.25; g.lineWidth = 2.5; g.beginPath(); g.ellipse(x, y, E * (0.34 - q * 0.08), E * (0.34 - q * 0.08), 0, t * (2 + q) + q, t * (2 + q) + q + 4.6); g.stroke(); }
+  g.globalAlpha = 1; g.fillStyle = cor; g.globalAlpha = 0.35; g.beginPath(); g.arc(x, y, E * 0.16, 0, TAU); g.fill(); g.globalAlpha = 1;
+}
+// chefes de mundo (por cima da arena)
+function chefeDesenho(ch, x, y, e, t, vencido) {
+  const s = e * 1.15, bob = Math.sin(t * 2) * e * 0.08;
+  g.save(); g.translate(x, y + bob);
+  if (vencido) g.rotate(Math.sin(t * 10) * 0.15);
+  const olhos = (dx, dy, r, cor = '#fff') => { for (const sd of [-1, 1]) { g.fillStyle = cor; g.beginPath(); g.arc(sd * dx, dy, r, 0, TAU); g.fill(); g.fillStyle = '#111'; g.beginPath(); g.arc(sd * dx + Math.sin(t) * r * 0.3, dy, r * 0.5, 0, TAU); g.fill(); } };
+  const tipo = ch.tipo;
+  if (tipo === 'toupeira') { g.fillStyle = '#6b4423'; g.beginPath(); g.ellipse(0, 0, s, s * 0.8, 0, 0, TAU); g.fill(); g.fillStyle = '#f2b6a0'; g.beginPath(); g.arc(0, s * 0.2, s * 0.25, 0, TAU); g.fill(); olhos(s * 0.4, -s * 0.2, s * 0.15); g.fillStyle = '#fff'; g.fillRect(-s * 0.12, s * 0.42, s * 0.1, s * 0.18); g.fillRect(s * 0.02, s * 0.42, s * 0.1, s * 0.18); }
+  if (tipo === 'polvo') { g.fillStyle = '#9b4dca'; for (let q = 0; q < 6; q++) { g.beginPath(); g.ellipse(-s * 0.85 + q * s * 0.34, s * 0.55 + Math.sin(t * 3 + q) * s * 0.1, s * 0.13, s * 0.45, Math.sin(t * 2 + q) * 0.4, 0, TAU); g.fill(); } g.beginPath(); g.ellipse(0, -s * 0.1, s * 0.8, s * 0.7, 0, 0, TAU); g.fill(); olhos(s * 0.32, -s * 0.15, s * 0.2); }
+  if (tipo === 'yeti') { g.fillStyle = '#eef4fb'; g.beginPath(); g.arc(0, 0, s * 0.85, 0, TAU); g.fill(); g.fillStyle = '#9fc7e6'; g.beginPath(); g.ellipse(0, s * 0.1, s * 0.5, s * 0.42, 0, 0, TAU); g.fill(); g.fillStyle = '#c9b48f'; for (const sd of [-1, 1]) { g.beginPath(); g.moveTo(sd * s * 0.55, -s * 0.5); g.lineTo(sd * s * 0.95, -s * 1.0); g.lineTo(sd * s * 0.75, -s * 0.4); g.fill(); } olhos(s * 0.22, -s * 0.02, s * 0.12); g.fillStyle = '#fff'; g.fillRect(-s * 0.2, s * 0.28, s * 0.4, s * 0.08); }
+  if (tipo === 'dragao') { g.fillStyle = '#7a1a12'; for (const sd of [-1, 1]) { g.beginPath(); g.moveTo(sd * s * 0.4, -s * 0.1); g.lineTo(sd * s * 1.6, -s * 0.9 + Math.sin(t * 4) * s * 0.2); g.lineTo(sd * s * 1.3, s * 0.2); g.fill(); } g.fillStyle = '#c0392b'; g.beginPath(); g.ellipse(0, 0, s * 0.7, s * 0.65, 0, 0, TAU); g.fill(); g.fillStyle = '#ffd23f'; for (const sd of [-1, 1]) { g.beginPath(); g.moveTo(sd * s * 0.3, -s * 0.5); g.lineTo(sd * s * 0.5, -s * 1.05); g.lineTo(sd * s * 0.55, -s * 0.45); g.fill(); } olhos(s * 0.25, -s * 0.12, s * 0.13, '#ffd23f'); if (Math.sin(t * 1.5) > 0.6) { for (let q = 0; q < 5; q++) { g.fillStyle = q % 2 ? '#ff8a1f' : '#ffd23f'; g.beginPath(); g.arc((Math.random() - 0.5) * s * 0.4, s * 0.6 + q * s * 0.2, s * (0.25 - q * 0.03), 0, TAU); g.fill(); } } }
+  if (tipo === 'alien') { g.fillStyle = '#9aa3b8'; g.beginPath(); g.ellipse(0, s * 0.35, s * 1.4, s * 0.35, 0, 0, TAU); g.fill(); g.fillStyle = 'rgba(160,230,255,.6)'; g.beginPath(); g.arc(0, 0, s * 0.7, Math.PI, 0); g.fill(); g.fillStyle = '#5bd66b'; g.beginPath(); g.arc(0, -s * 0.05, s * 0.42, 0, TAU); g.fill(); g.fillStyle = '#111'; for (const sd of [-1, 1]) { g.beginPath(); g.ellipse(sd * s * 0.17, -s * 0.08, s * 0.12, s * 0.18, sd * 0.4, 0, TAU); g.fill(); } for (let q = 0; q < 5; q++) { g.fillStyle = Math.sin(t * 6 + q) > 0 ? '#ffd23f' : '#ff4d4d'; g.beginPath(); g.arc(-s + q * s * 0.5, s * 0.38, s * 0.07, 0, TAU); g.fill(); } }
+  if (tipo === 'guardiao') { g.fillStyle = 'rgba(255,255,255,.95)'; for (const sd of [-1, 1]) { g.beginPath(); g.ellipse(sd * s * 0.9, 0, s * 0.75, s * 0.3, sd * (-0.4 + Math.sin(t * 3) * 0.2), 0, TAU); g.fill(); } g.fillStyle = '#fff8e0'; g.beginPath(); g.arc(0, 0, s * 0.55, 0, TAU); g.fill(); g.strokeStyle = '#ffd23f'; g.lineWidth = s * 0.1; g.beginPath(); g.ellipse(0, -s * 0.75, s * 0.4, s * 0.12, 0, 0, TAU); g.stroke(); olhos(s * 0.2, -s * 0.05, s * 0.09); }
+  if (vencido) { g.fillStyle = '#ffd23f'; for (let q = 0; q < 3; q++) { const an = t * 4 + q * 2.1; g.beginPath(); g.arc(Math.cos(an) * s * 0.6, -s * 0.9 + Math.sin(an) * s * 0.15, s * 0.1, 0, TAU); g.fill(); } }
+  g.restore();
+}
+function luzesDe(L) {
+  if (L.mundo !== 'clube' && L.mundo !== 'praia') return [];
+  const out = [], rnd = mulberry32(L.n * 13 + 5);
+  for (let r = 1; r < ROWS - 1; r++) for (let c = 0; c < COLS; c++) if (L.g[id(c, r)] === T.PAREDE && [[1, 0], [-1, 0], [0, 1], [0, -1]].some(([dc, dr]) => passa(tileAt(L, c + dc, r + dr))) && rnd() < 0.14 && !out.some((o) => Math.abs(o.x - c - 0.5) + Math.abs(o.y - r - 0.5) < 4)) out.push({ x: c + 0.5, y: r + 0.5 });
+  return out.slice(0, 6);
+}
+function postes(t) { for (const l of J.luzes) { const x = sx(l.x), y = sy(l.y); g.strokeStyle = '#3a3f48'; g.lineWidth = Math.max(2, E * 0.07); g.beginPath(); g.moveTo(x, y); g.lineTo(x, y - E * 0.85); g.stroke(); g.fillStyle = J.hora === 'dia' ? '#d9dce6' : '#fff2b3'; g.beginPath(); g.arc(x, y - E * 0.88, E * 0.12, 0, TAU); g.fill(); } }
+let noiteCv = null;
+function noiteDesenho(t) {
+  if (!noiteCv || noiteCv.width !== cv.width || noiteCv.height !== cv.height) { noiteCv = document.createElement('canvas'); noiteCv.width = cv.width; noiteCv.height = cv.height; }
+  const k = noiteCv.getContext('2d'); k.setTransform(DPR, 0, 0, DPR, 0, 0); k.globalCompositeOperation = 'source-over'; k.clearRect(0, 0, W, H);
+  k.fillStyle = J.hora === 'noite' ? 'rgba(6,12,40,0.6)' : 'rgba(150,50,10,0.16)'; k.fillRect(0, 0, W, H);
+  if (J.hora === 'noite') {
+    k.globalCompositeOperation = 'destination-out';
+    const furo = (x, y, r) => { const gr = k.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, 'rgba(0,0,0,1)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); k.fillStyle = gr; k.beginPath(); k.arc(x, y, r, 0, TAU); k.fill(); };
+    for (const l of J.luzes) furo(sx(l.x), sy(l.y) - E * 0.6, E * 2.8);
+    const HB = buracoEm(J.L, J.t); furo(sx(HB.x), sy(HB.y) - E * 0.4, E * 1.4);
+    for (const p of J.jog) if (p.visivel) furo(sx(p.bola.x), sy(p.bola.y), E * 1.5);
+  }
+  g.drawImage(noiteCv, 0, 0, W, H);
+  g.globalCompositeOperation = 'lighter';
+  for (const l of J.luzes) { const x = sx(l.x), y = sy(l.y) - E * 0.88, r = E * (J.hora === 'noite' ? 1.3 : 0.6), gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, 'rgba(255,220,140,0.5)'); gr.addColorStop(1, 'rgba(255,220,140,0)'); g.fillStyle = gr; g.beginPath(); g.arc(x, y, r, 0, TAU); g.fill(); }
+  if (J.hora === 'noite') for (let q = 0; q < 10; q++) { const x = OX + ((q * 97 + t * 15 * (1 + q % 3)) % (E * COLS)), y = OY + (((q * 151 + Math.sin(t + q) * 30) % (E * ROWS)) + E * ROWS) % (E * ROWS); g.fillStyle = `rgba(220,255,120,${0.35 + 0.35 * Math.sin(t * 3 + q)})`; g.beginPath(); g.arc(x, y, 2, 0, TAU); g.fill(); }
+  g.globalCompositeOperation = 'source-over';
+}
+// ---------- repetição em câmara lenta ----------
+function verRepeticao() {
+  if (!J || !J.repFinal) return;
+  $('#sFim').hidden = true; estado = 'replay'; dica('🎬 Repetição em câmara lenta');
+  J.rp = { k: 0, espera: 0, tAntes: J.t }; J.faseRep = J.fase; J.fase = 'replay';
+  const p = J.jog[0]; p.visivel = true; J.rasto = []; J.rastoSkin = bolaDe(S.bola).rasto ? bolaDe(S.bola) : { rasto: 'rgba(255,255,255,.8)' };
+}
+function repetir(dt) {
+  const fr = J.repFinal, p = J.jog[0];
+  J.rp.k += dt * 100 * 0.35;
+  const i = Math.min(fr.length - 1, Math.floor(J.rp.k)), f = fr[i];
+  p.bola.x = f[0]; p.bola.y = f[1]; p.bola.alt = f[3]; J.t = f[2];
+  J.rasto.push([f[0], f[1]]); if (J.rasto.length > 26) J.rasto.shift();
+  if (i >= fr.length - 1) { J.rp.espera += dt; if (J.rp.espera > 1) { estado = 'parado'; J.t = J.rp.tAntes; p.visivel = false; p.bola.alt = 0; J.fase = J.faseRep; J.rasto = []; dica(''); $('#sFim').hidden = false; } }
+}
+// ---------- ajuda: mostra o caminho de uma boa tacada ----------
+function simularCaminho(L, x, y, ang, p, t0) {
+  SIM = true; const v = forcaDe(p), b = { x, y, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v, ar: 0, tp: 0 }, pts = [[x, y]]; let t = t0;
+  for (let i = 0; i < 900; i++) { const e = passo(b, L, t); t += DT; if (i % 3 === 0) pts.push([b.x, b.y]); if (e) break; }
+  SIM = false; pts.push([b.x, b.y]); return pts;
+}
+function pedirAjuda() {
+  if (!J || J.modo !== 'solo' || J.fase !== 'mirar' || ajudasHoje() <= 0) return;
+  const b = J.jog[0].bola, pl = planear(J.L, b.x, b.y, J.t + 0.3);
+  J.ajudaPts = simularCaminho(J.L, b.x, b.y, pl.ang, pl.p, J.t + 0.3); J.ajudaTiro = pl;
+  S.ajuda = { data: hoje(), usadas: (S.ajuda.data === hoje() ? S.ajuda.usadas : 0) + 1 }; guardar(); atualizarHud(); SOM.portal();
+  dica(`💡 Força ${Math.round(pl.p * 100)}% nesta direção. Tens mais ${ajudasHoje()} ajuda${ajudasHoje() === 1 ? '' : 's'} hoje.`);
+}
 // ---------- mira com o dedo ----------
 let arrasto = null;
 cv.addEventListener('pointerdown', (e) => { somOn(); if (estado !== 'jogo' || !J || J.fase !== 'mirar' || !J.jog[J.vez].eu) return; arrasto = { x: e.clientX, y: e.clientY }; try { cv.setPointerCapture(e.pointerId); } catch (er) { /* */ } });
@@ -889,6 +1264,8 @@ function loop(now) {
   const dt = Math.min(0.05, (now - ultimo) / 1000); ultimo = now;
   if (estado === 'jogo' && J) { acc += dt; while (acc >= DT) { acc -= DT; atualizar(DT); if (estado !== 'jogo') break; } } else acc = 0;
   atualizarFx(dt);
+  if (estado === 'replay') repetir(dt);
+  musica();
   desenhar(now);
   if (!$('#sMenu').hidden) desenharMenuBoneco(now);
   requestAnimationFrame(loop);
@@ -900,12 +1277,15 @@ function menu() {
   esconderEcras(); estado = 'menu'; J = null; $('#hud').hidden = true; dica('');
   if (!S.boneco) { escolherBoneco(); return; }
   const M = mundoDe(S.prog);
-  $('#mPts').textContent = S.pts; $('#mNiv').textContent = S.prog; $('#mMundo').textContent = M.n.split(' ')[0];
-  $('#bJogar').textContent = `Jogar · Nível ${S.prog}`; $('#bSom').textContent = `Som: ${S.som ? 'ligado' : 'desligado'}`;
-  $('#bTacos').textContent = tacosLivres() > 0 ? `Tacos (${tacosLivres()} novo${tacosLivres() > 1 ? 's' : ''})` : 'Tacos';
+  musMundo = 'clube'; void M;
+  $('#mPts').textContent = S.pts; $('#mNiv').textContent = S.prog; $('#mEst').textContent = estrelas();
+  $('#bJogar').textContent = `Jogar · Nível ${S.prog}${CHEFES[S.prog] ? ' (chefe!)' : ''}`; $('#bSom').textContent = `Som: ${S.som ? 'ligado' : 'desligado'}`; $('#bMusica').textContent = `Música: ${S.musica ? 'ligada' : 'desligada'}`;
+  const feitoHoje = S.diario.data === hoje() && S.diario.feito; $('#bDiario').textContent = feitoHoje ? '☀️ Desafio do dia ✓ (volta amanhã)' : '☀️ Desafio do dia · bónus';
+  $('#bTacos').textContent = tacosLivres() > 0 ? `🛍️ Loja (${tacosLivres()} novo${tacosLivres() > 1 ? 's' : ''})` : '🛍️ Loja';
+  $('#bConq').textContent = `🏅 Conquistas ${S.conq.length}/${CONQ.length}`; $('#bTorneio').textContent = S.tacas ? `🏆 Torneio (${S.tacas})` : '🏆 Torneio';
   $('#sMenu').hidden = false;
 }
-function desenharMenuBoneco(now) { const c = $('#menuChar'), k = c.getContext('2d'); k.setTransform(1, 0, 0, 1, 0, 0); k.clearRect(0, 0, 240, 240); desenharBoneco(k, bonecoDe(S.boneco), 120, 220, 170, Math.floor(now / 2600) % 2 ? 'danca' : 'parado', now / 1000); desenharTaco(k, tacoDe(S.taco), 150, 140, 200, 215, 170, now / 1000); }
+function desenharMenuBoneco(now) { const c = $('#menuChar'), k = c.getContext('2d'); k.setTransform(1, 0, 0, 1, 0, 0); k.clearRect(0, 0, 240, 240); desenharBoneco(k, { ...bonecoDe(S.boneco), ac: S.acess }, 120, 220, 170, ['parado', 'danca', 'parado', 'danca2'][Math.floor(now / 2600) % 4], now / 1000); desenharTaco(k, tacoDe(S.taco), 150, 140, 200, 215, 170, now / 1000); }
 let escolhido = null;
 function escolherBoneco() {
   $('#sEscolha').hidden = false;
@@ -916,6 +1296,57 @@ $('#gChars').addEventListener('click', (e) => { const b = e.target.closest('.opc
 $('#bEscolher').onclick = () => { if (!escolhido) return; S.boneco = escolhido; guardar(); SOM.clique(); menu(); };
 $('#bJogar').onclick = () => { somOn(); SOM.clique(); jogarNivel(S.prog); };
 $('#bSom').onclick = () => { S.som = !S.som; guardar(); if (S.som) somOn(); menu(); };
+$('#bMusica').onclick = () => { S.musica = !S.musica; guardar(); somOn(); menu(); };
+$('#bDiario').onclick = () => { somOn(); SOM.clique(); jogarEspecial(diarioNivel(), 'diario'); };
+$('#bAjuda').onclick = () => pedirAjuda();
+$('#fRepl').onclick = () => { SOM.clique(); verRepeticao(); };
+// conquistas
+function telaConq() {
+  esconderEcras(); $('#sConq').hidden = false;
+  $('#cqInfo').textContent = `${S.conq.length} de ${CONQ.length} conquistas. Cada uma dá 25 pontos e desbloqueia acessórios para o teu boneco.`;
+  $('#cqLista').innerHTML = CONQ.map((c) => { const f = S.conq.includes(c.id); return `<div class="conq ${f ? 'feita' : ''}"><span class="ic">🏅</span><div><b>${c.n}</b><small>${c.d}</small></div><span>${f ? '✓' : ''}</span></div>`; }).join('');
+}
+$('#bConq').onclick = () => { SOM.clique(); telaConq(); }; $('#cqVoltar').onclick = () => { SOM.clique(); menu(); };
+// torneio: 8 jogadores, eliminatórias de 3 buracos
+const RONDAS = ['Quartos de final', 'Meias-finais', 'Final'];
+const paresDe = (l) => { const o = []; for (let k = 0; k < l.length; k += 2) o.push({ a: l[k], b: l[k + 1], v: null }); return o; };
+function novoTorneio() {
+  const outros = BONECOS.filter((b) => b.id !== S.boneco).sort(() => Math.random() - 0.5), nomes = NOMES_BOTS.slice().sort(() => Math.random() - 0.5);
+  const jog = [{ nome: 'Tu', eu: true }];
+  for (let k = 0; k < 7; k++) jog.push({ nome: 'Bot ' + nomes[k], boneco: outros[k].id, pers: PERS[k % PERS.length].id, ac: ACESS[Math.floor(Math.random() * ACESS.length)].id, forca: 0.3 + Math.random() * 0.7 });
+  S.torneio = { jog, rondas: [paresDe([0, 1, 2, 3, 4, 5, 6, 7].sort(() => Math.random() - 0.5))], ronda: 0, fim: false, campeao: null }; guardar();
+}
+function telaTorneio() {
+  esconderEcras(); $('#sTorneio').hidden = false;
+  if (!S.torneio) novoTorneio();
+  const T0 = S.torneio, nome = (i) => T0.jog[i].nome + (T0.jog[i].pers ? ` <small style="color:var(--dim)">${PERS.find((q) => q.id === T0.jog[i].pers).n}</small>` : '');
+  $('#toTopo').innerHTML = T0.fim ? (T0.campeao === 0 ? `<div class="trofeu">🏆</div><h3>És o campeão do torneio!</h3><p>Já ganhaste ${S.tacas} taça${S.tacas === 1 ? '' : 's'}.</p>` : `<p>Ficaste pelo caminho. O campeão foi <b>${T0.jog[T0.campeao].nome}</b>.</p>`) : `<p>8 jogadores, eliminatórias de 3 buracos. Ronda atual: <b>${RONDAS[T0.ronda]}</b>.</p>`;
+  $('#toChave').innerHTML = T0.rondas.map((r, k) => `<h3>${RONDAS[k]}</h3>` + r.map((m) => `<div class="jogo ${m.a === 0 || m.b === 0 ? 'eu' : ''}"><span class="${m.v === m.a ? 'v' : ''}">${nome(m.a)}</span><span>vs</span><span class="${m.v === m.b ? 'v' : ''}">${nome(m.b)}</span></div>`).join('')).join('');
+  const meu = !T0.fim && T0.rondas[T0.ronda].find((m) => (m.a === 0 || m.b === 0) && m.v === null);
+  $('#toIr').textContent = meu ? `Jogar contra ${T0.jog[meu.a === 0 ? meu.b : meu.a].nome}` : 'Novo torneio';
+}
+function torneioResultado(ganhou) {
+  const T0 = S.torneio; if (!T0 || T0.fim) return;
+  const forca = (i) => (i === 0 ? 0.6 : T0.jog[i].forca) + Math.random() * 0.6;
+  const decide = (r) => { for (const m of r) if (m.v === null) m.v = forca(m.a) > forca(m.b) ? m.a : m.b; return r.map((m) => m.v); };
+  const r = T0.rondas[T0.ronda];
+  for (const m of r) if (m.a === 0 || m.b === 0) m.v = ganhou ? 0 : (m.a === 0 ? m.b : m.a);
+  let vivos = decide(r);
+  if (ganhou && vivos.length > 1) { T0.rondas.push(paresDe(vivos)); T0.ronda++; }
+  else { while (vivos.length > 1) { const nr = paresDe(vivos); T0.rondas.push(nr); vivos = decide(nr); } T0.fim = true; T0.campeao = vivos[0]; if (vivos[0] === 0) S.tacas++; }
+  guardar(); verConquistas();
+}
+function jogarTorneio() {
+  const T0 = S.torneio, meu = !T0.fim && T0.rondas[T0.ronda].find((m) => (m.a === 0 || m.b === 0) && m.v === null);
+  if (!meu) { novoTorneio(); telaTorneio(); return; }
+  const o = T0.jog[meu.a === 0 ? meu.b : meu.a], m = MUNDOS.filter((x) => S.prog >= x.de).pop(), topo = clamp(Math.max(m.de + 60, S.prog), m.de, m.ate);
+  const lista = []; while (lista.length < 3) { const n = m.de + Math.floor(Math.random() * (topo - m.de + 1)); if (!lista.includes(n)) lista.push(n); }
+  const P = { niveis: lista, i: 0, torneio: true }, jog = jogadores(1, [{ nome: o.nome, boneco: o.boneco, pers: o.pers, ac: o.ac, dif: [1, 2, 2][T0.ronda] }]);
+  esconderEcras(); carregar(`${RONDAS[T0.ronda]}: buraco 1…`, () => iniciarBuraco(nivel(lista[0]), { modo: 'bots', jog, partida: P }));
+}
+$('#bTorneio').onclick = () => { SOM.clique(); somOn(); telaTorneio(); };
+$('#toVoltar').onclick = () => { SOM.clique(); menu(); };
+$('#toIr').onclick = () => { SOM.clique(); jogarTorneio(); };
 // níveis
 let mundoSel = null, pagina = 0;
 function niveis() {
@@ -925,11 +1356,14 @@ function niveis() {
   const m = MUNDOS.find((x) => x.id === mundoSel), de = m.de + pagina * 50, ate = Math.min(m.ate, de + 49);
   $('#nTitulo').textContent = m.n; $('#nMundos').hidden = true; $('#nGrelhaBox').hidden = false; $('#nPag').textContent = `${de}–${ate}`;
   $('#nAnt').disabled = pagina === 0; $('#nSeg').disabled = ate >= m.ate;
-  let h = ''; for (let n = de; n <= ate; n++) { const b = S.best[n], bloq = n > S.prog; h += `<button class="niv ${b ? 'feito' : ''} ${n === S.prog ? 'atual' : ''}" data-n="${n}" ${bloq ? 'disabled' : ''}>${n}${b ? `<small>${'★'.repeat(b <= (CACHE.get(n) || {}).par ? 3 : 2)}</small>` : ''}</button>`; }
+  const mi = MUNDOS.indexOf(m), em = estMundo(m);
+  $('#nSecretos').innerHTML = SECRETO_EST.map((need, k) => { const sk = secretoNivel(mi, k), feito = S.secretos[sk.chave]; return `<button data-s="${k}" ${em < need ? 'disabled' : ''}>${em < need ? `🔒 ${need}★` : feito ? `✓ Secreto ${k + 1}` : `★ Secreto ${k + 1}`}</button>`; }).join('');
+  let h = ''; for (let n = de; n <= ate; n++) { const b = S.best[n], bloq = n > S.prog; h += `<button class="niv ${b ? 'feito' : ''} ${n === S.prog ? 'atual' : ''}" data-n="${n}" ${bloq ? 'disabled' : ''}>${n}${b ? `<small>${'★'.repeat(S.est[n] || 1)}</small>` : ''}</button>`; }
   $('#nGrelha').innerHTML = h;
 }
 $('#bNiveis').onclick = () => { SOM.clique(); mundoSel = null; niveis(); };
 $('#nMundos').addEventListener('click', (e) => { const b = e.target.closest('.mundo'); if (!b || b.disabled) return; SOM.clique(); mundoSel = b.dataset.m; const m = MUNDOS.find((x) => x.id === mundoSel); pagina = clamp(Math.floor((clamp(S.prog, m.de, m.ate) - m.de) / 50), 0, 99); niveis(); });
+$('#nSecretos').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b || b.disabled) return; SOM.clique(); const mi = MUNDOS.findIndex((x) => x.id === mundoSel); jogarEspecial(secretoNivel(mi, +b.dataset.s), 'secreto'); });
 $('#nGrelha').addEventListener('click', (e) => { const b = e.target.closest('.niv'); if (!b || b.disabled) return; SOM.clique(); jogarNivel(+b.dataset.n); });
 $('#nAnt').onclick = () => { pagina = Math.max(0, pagina - 1); niveis(); }; $('#nSeg').onclick = () => { pagina++; niveis(); };
 $('#nVoltar').onclick = () => { SOM.clique(); if (mundoSel) { mundoSel = null; niveis(); } else menu(); };
@@ -951,35 +1385,58 @@ $('#bBotsIr').onclick = () => {
   esconderEcras(); carregar('A preparar o buraco 1…', () => iniciarBuraco(nivel(lista[0]), { modo: 'bots', jog, partida: P }));
 };
 // tacos
+let abaLoja = 'tacos';
 function telaTacos() {
   esconderEcras(); $('#sTacos').hidden = false;
-  const livres = tacosLivres();
-  $('#tInfo').textContent = livres > 0 ? `Tens ${livres} taco${livres > 1 ? 's' : ''} para desbloquear. Toca num com cadeado.` : `Por cada 500 pontos ganhas um taco novo. Faltam ${500 - (S.pts % 500)} pontos.`;
-  $('#gTacos').innerHTML = TACOS.map((tc) => { const tem = S.tacos.includes(tc.id); return `<button class="opc ${S.taco === tc.id ? 'sel' : ''} ${tem ? '' : 'bloq'}" data-id="${tc.id}" id="tc-${tc.id}"><canvas width="128" height="128"></canvas><b>${tc.n}</b><small>${S.taco === tc.id ? 'A usar' : tem ? 'Usar' : '🔒 500 pts'}</small></button>`; }).join('');
-  document.querySelectorAll('#gTacos .opc').forEach((el) => { const k = el.querySelector('canvas').getContext('2d'); desenharTaco(k, tacoDe(el.dataset.id), 40, 22, 86, 104, 110, 0); });
+  $('#tTabs').querySelectorAll('button').forEach((x) => x.classList.toggle('on', x.dataset.v === abaLoja));
+  const est = estrelas(), nc = S.conq.length;
+  if (abaLoja === 'tacos') {
+    const livres = tacosLivres();
+    $('#tInfo').textContent = livres > 0 ? `Tens ${livres} taco${livres > 1 ? 's' : ''} para desbloquear. Toca num com cadeado.` : `Por cada 500 pontos ganhas um taco novo. Faltam ${500 - (S.pts % 500)} pontos.`;
+    $('#gTacos').innerHTML = TACOS.map((tc) => { const tem = S.tacos.includes(tc.id); return `<button class="opc ${S.taco === tc.id ? 'sel' : ''} ${tem ? '' : 'bloq'}" data-id="${tc.id}" id="tc-${tc.id}"><canvas width="128" height="128"></canvas><b>${tc.n}</b><small>${S.taco === tc.id ? 'A usar' : tem ? 'Usar' : '🔒 500 pts'}</small></button>`; }).join('');
+    document.querySelectorAll('#gTacos .opc').forEach((el) => { const k = el.querySelector('canvas').getContext('2d'); desenharTaco(k, tacoDe(el.dataset.id), 40, 22, 86, 104, 110, 0); });
+  } else if (abaLoja === 'bolas') {
+    $('#tInfo').textContent = `As bolas desbloqueiam com estrelas. Tens ${est} estrela${est === 1 ? '' : 's'}.`;
+    $('#gTacos').innerHTML = BOLAS.map((bo) => { const tem = est >= bo.est; return `<button class="opc ${S.bola === bo.id ? 'sel' : ''} ${tem ? '' : 'bloq'}" data-id="${bo.id}" id="tc-${bo.id}"><canvas width="128" height="128"></canvas><b>${bo.n}</b><small>${S.bola === bo.id ? 'A usar' : tem ? 'Usar' : `🔒 ${bo.est}★`}</small></button>`; }).join('');
+    document.querySelectorAll('#gTacos .opc').forEach((el) => { const k = el.querySelector('canvas').getContext('2d'); desenharBola(k, bolaDe(el.dataset.id), 64, 64, 34, 0); });
+  } else {
+    $('#tInfo').textContent = `Os acessórios desbloqueiam com conquistas. Tens ${nc}.`;
+    $('#gTacos').innerHTML = ACESS.map((x) => { const tem = nc >= x.conq; return `<button class="opc ${S.acess === x.id ? 'sel' : ''} ${tem ? '' : 'bloq'}" data-id="${x.id}" id="tc-${x.id}"><canvas width="128" height="128"></canvas><b>${x.n}</b><small>${S.acess === x.id ? 'A usar' : tem ? 'Usar' : `🔒 ${x.conq} conquista${x.conq === 1 ? '' : 's'}`}</small></button>`; }).join('');
+    document.querySelectorAll('#gTacos .opc').forEach((el) => { const k = el.querySelector('canvas').getContext('2d'); desenharBoneco(k, { ...bonecoDe(S.boneco), ac: el.dataset.id }, 64, 122, 92, 'parado', 0); });
+  }
 }
-$('#gTacos').addEventListener('click', (e) => { const b = e.target.closest('.opc'); if (!b) return; const tc = tacoDe(b.dataset.id); if (S.tacos.includes(tc.id)) { S.taco = tc.id; SOM.clique(); } else if (tacosLivres() > 0) { S.tacos.push(tc.id); S.taco = tc.id; SOM.buraco(); } else { b.animate && b.animate([{ transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'none' }], { duration: 200 }); return; } guardar(); telaTacos(); $('#tc-' + tc.id).focus(); });
+$('#tTabs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; SOM.clique(); abaLoja = b.dataset.v; telaTacos(); });
+const abana = (b) => b.animate && b.animate([{ transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'none' }], { duration: 200 });
+$('#gTacos').addEventListener('click', (e) => {
+  const b = e.target.closest('.opc'); if (!b) return; const i = b.dataset.id;
+  if (abaLoja === 'tacos') { if (S.tacos.includes(i)) { S.taco = i; SOM.clique(); } else if (tacosLivres() > 0) { S.tacos.push(i); S.taco = i; SOM.buraco(); } else { abana(b); return; } }
+  else if (abaLoja === 'bolas') { if (estrelas() >= bolaDe(i).est) { S.bola = i; SOM.clique(); } else { abana(b); return; } }
+  else { if (S.conq.length >= acessDe(i).conq) { S.acess = i; SOM.clique(); } else { abana(b); return; } }
+  guardar(); telaTacos(); $('#tc-' + i).focus();
+});
 $('#bTacos').onclick = () => { SOM.clique(); telaTacos(); }; $('#tVoltar').onclick = () => { SOM.clique(); menu(); };
 // tabela
 function telaTabela() {
   esconderEcras(); $('#sTabela').hidden = false;
   $('#tbPts').textContent = S.pts + ' pontos';
   const feitos = Object.keys(S.best).length;
-  $('#tbNums').innerHTML = [['Acertos', S.acertos], ['Tacadas', S.tacadas], ['À primeira', S.primeira], ['Níveis feitos', feitos], ['Partidas', S.bj], ['Vitórias', S.bv], ['Tacos', S.tacos.length + '/' + TACOS.length], ['Próximo taco', (500 - (S.pts % 500)) + ' pts'], ['Média', S.acertos ? (S.tacadas / S.acertos).toFixed(1) : '–']].map(([a, b]) => `<div><small>${a}</small><b>${b}</b></div>`).join('');
+  $('#tbNums').innerHTML = [['Acertos', S.acertos], ['Tacadas', S.tacadas], ['À primeira', S.primeira], ['Níveis feitos', feitos], ['Partidas', S.bj], ['Vitórias', S.bv], ['Tacos', S.tacos.length + '/' + TACOS.length], ['Próximo taco', (500 - (S.pts % 500)) + ' pts'], ['Média', S.acertos ? (S.tacadas / S.acertos).toFixed(1) : '–'], ['Estrelas', estrelas()], ['Chefes', S.chefes.length + '/6'], ['Taças', S.tacas], ['Desafios do dia', S.diarios], ['Secretos', Object.keys(S.secretos).length + '/18'], ['Conquistas', S.conq.length + '/' + CONQ.length]].map(([a, b]) => `<div><small>${a}</small><b>${b}</b></div>`).join('');
   $('#tbMundos').innerHTML = MUNDOS.map((m) => { const f = Object.keys(S.best).filter((k) => +k >= m.de && +k <= m.ate).length, tot = m.ate - m.de + 1; return `<div class="lmundo"><b>${m.n}</b><div class="barra"><i style="width:${f / tot * 100}%;background:${m.cor}"></i></div><span>${f}/${tot}</span></div>`; }).join('');
 }
 $('#bTabela').onclick = () => { SOM.clique(); telaTabela(); }; $('#tbVoltar').onclick = () => { SOM.clique(); menu(); };
 // fim, falha e pausa
-$('#fMenu').onclick = () => { SOM.clique(); menu(); }; $('#fRep').onclick = () => { SOM.clique(); jogarNivel(J.L.n); }; $('#fProx').onclick = () => { SOM.clique(); jogarNivel(J.L.n + 1); };
-$('#faMenu').onclick = () => { SOM.clique(); menu(); }; $('#faRep').onclick = () => { SOM.clique(); jogarNivel(J.L.n); };
+const repetirNivel = () => (J.tipo !== 'normal' && J.L.chave ? jogarEspecial(J.tipo === 'diario' ? diarioNivel() : secretoNivel(+J.L.chave[1], +J.L.chave[3]), J.tipo) : jogarNivel(J.L.n));
+$('#fMenu').onclick = () => { SOM.clique(); menu(); }; $('#fRep').onclick = () => { SOM.clique(); repetirNivel(); }; $('#fProx').onclick = () => { SOM.clique(); jogarNivel(J.L.n + 1); };
+$('#faMenu').onclick = () => { SOM.clique(); menu(); }; $('#faRep').onclick = () => { SOM.clique(); repetirNivel(); };
 $('#bPausa').onclick = () => { if (estado !== 'jogo') return; SOM.clique(); estado = 'pausa'; $('#sPausa').hidden = false; };
 $('#pCont').onclick = () => { SOM.clique(); $('#sPausa').hidden = true; estado = 'jogo'; ultimo = performance.now(); };
-$('#pRep').onclick = () => { SOM.clique(); $('#sPausa').hidden = true; if (J.modo === 'solo') jogarNivel(J.L.n); else { estado = 'jogo'; } };
+$('#pRep').onclick = () => { SOM.clique(); $('#sPausa').hidden = true; if (J.modo === 'solo') repetirNivel(); else { estado = 'jogo'; } };
 $('#pMenu').onclick = () => { SOM.clique(); menu(); };
 addEventListener('keydown', (e) => { if (e.key === 'Escape' && estado === 'jogo') $('#bPausa').click(); });
 
 medir(); menu(); requestAnimationFrame(loop);
-window.__golfe = { get J() { return J; }, get S() { return S; }, nivel, tacar: (a, p) => tacar(a, p), planear, jogarNivel, gerar, verificar };
+if (S.boneco) setTimeout(() => { const antes = S.conq.length; verConquistas(); if (S.conq.length > antes && !$('#sMenu').hidden) menu(); }, 700);
+window.__golfe = { get J() { return J; }, get S() { return S; }, get estado() { return estado; }, nivel, tacar: (a, p) => tacar(a, p), planear, jogarNivel, gerar, verificar, jogarEspecial, diarioNivel, secretoNivel, telaTorneio, jogarTorneio, torneioResultado, pedirAjuda, verRepeticao, telaTacos, telaConq, menu, niveis, guardar, estrelas, verConquistas, MUNDOS };
 })();
 </script>
 
