@@ -292,9 +292,10 @@ function gerar(n, tentativa) {
   const M = mundoDe(n), rnd = mulberry32(((n * 2654435761) ^ (tentativa * 0x9E3779B9)) >>> 0);
   const ri = (a, b) => a + Math.floor(rnd() * (b - a + 1));
   let d = n <= 4 ? 0 : clamp(Math.pow((n - 1) / (NMAX - 1), 0.85) + (rnd() - 0.5) * 0.06, 0, 1);
-  if (tentativa >= 3) d *= 0.75;
+  const dNom = d;
+  if (tentativa >= 6) d *= 0.85;
   const ceu = M.id === 'ceu';
-  const L = { n, mundo: M.id, d, g: new Uint8Array(COLS * ROWS).fill(ceu ? T.VAZIO : T.PAREDE), rampa: {}, bumpers: [], barras: [], blocos: [], buracosNegros: [], vento: null };
+  const L = { n, mundo: M.id, d, dNom, g: new Uint8Array(COLS * ROWS).fill(ceu ? T.VAZIO : T.PAREDE), rampa: {}, bumpers: [], barras: [], blocos: [], buracosNegros: [], vento: null };
   const chao = M.id === 'gelo' ? T.GELO : T.CHAO;
   const pon = (c, r, v) => { if (c >= 1 && c <= COLS - 2 && r >= 1 && r <= ROWS - 2) L.g[id(c, r)] = v; };
   let tee, hole;
@@ -469,11 +470,13 @@ const CACHE = new Map();
 function nivel(n) {
   if (CACHE.has(n)) return CACHE.get(n);
   let L = null, tac = 0;
-  for (let k = 0; k < 6 && !tac; k++) { L = gerar(n, k); if (L.dist[id(Math.floor(L.tee.x), Math.floor(L.tee.y))] > 1e8) continue; tac = verificar(L); }
-  if (!tac) { L.barras = []; L.blocos = []; L.buracosNegros = []; L.vento = null; tac = verificar(L) || 4; }
+  for (let k = 0; k < 10 && !tac; k++) { L = gerar(n, k); if (L.dist[id(Math.floor(L.tee.x), Math.floor(L.tee.y))] > 1e8) continue; tac = verificar(L); }
+  // nenhuma deu: tira obstáculos um a um, do mais traiçoeiro para o menos (o vento é o último)
+  for (const tira of [() => L.blocos.pop(), () => L.blocos.pop(), () => L.barras.pop(), () => L.barras.pop(), () => L.buracosNegros.pop(), () => L.barras.pop(), () => (L.vento = L.vento && { x: L.vento.x * 0.6, y: L.vento.y * 0.6 }), () => (L.vento = null)]) { if (tac) break; tira(); tac = verificar(L); }
+  if (!tac) tac = 4;
   const percurso = L.dist[id(Math.floor(L.tee.x), Math.floor(L.tee.y))];
   L.par = clamp(Math.max(tac, Math.round(1 + percurso / 7)), 1, 6);
-  L.limite = L.par + (L.d < 0.15 ? 4 : L.d < 0.4 ? 3 : L.d < 0.78 ? 2 : 1);
+  L.limite = L.par + (L.dNom < 0.15 ? 4 : L.dNom < 0.4 ? 3 : L.dNom < 0.78 ? 2 : 1);
   if (CACHE.size > 30) CACHE.delete(CACHE.keys().next().value);
   CACHE.set(n, L);
   return L;
@@ -869,7 +872,7 @@ function obstaculoBloco(m, x, y, r, vx, t) {
   else if (m === 'gelo') { g.fillStyle = '#23232a'; g.beginPath(); g.ellipse(0, 0, r * 0.8, r, 0, 0, TAU); g.fill(); g.fillStyle = '#fff'; g.beginPath(); g.ellipse(0, r * 0.15, r * 0.5, r * 0.7, 0, 0, TAU); g.fill(); g.fillStyle = '#ff9f1a'; g.beginPath(); g.moveTo(vira * r * 0.3, -r * 0.4); g.lineTo(vira * r * 0.75, -r * 0.3); g.lineTo(vira * r * 0.3, -r * 0.2); g.fill(); }
   else if (m === 'inferno') { g.fillStyle = '#e8dcc8'; g.beginPath(); g.arc(0, -r * 0.1, r, 0, TAU); g.fill(); g.fillRect(-r * 0.55, r * 0.5, r * 1.1, r * 0.5); g.fillStyle = '#240a07'; for (const sd of [-1, 1]) { g.beginPath(); g.arc(sd * r * 0.4, -r * 0.15, r * 0.25, 0, TAU); g.fill(); } }
   else if (m === 'espaco') { g.rotate(t); g.fillStyle = '#8a7f6a'; g.beginPath(); for (let q = 0; q < 8; q++) { const a = q / 8 * TAU, rr = r * (0.8 + 0.25 * Math.sin(q * 3)); g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } g.fill(); g.fillStyle = 'rgba(0,0,0,.25)'; g.beginPath(); g.arc(r * 0.2, -r * 0.2, r * 0.22, 0, TAU); g.fill(); }
-  else { g.fillStyle = '#ffffff'; g.beginPath(); g.ellipse(0, 0, r * 0.75, r * 0.45, 0, 0, TAU); g.fill(); const asa = Math.sin(t * 12) * r * 0.6; g.beginPath(); g.moveTo(-r * 0.2, 0); g.lineTo(-r * 0.3, -r * 0.4 - asa); g.lineTo(r * 0.3, -r * 0.1); g.fill(); g.fillStyle = '#ffb400'; g.beginPath(); g.moveTo(vira * r * 0.7, -r * 0.05); g.lineTo(vira * r * 1.05, 0); g.lineTo(vira * r * 0.7, r * 0.1); g.fill(); }
+  else { g.fillStyle = '#5b6b8c'; g.strokeStyle = '#2f3a52'; g.lineWidth = 1.5; g.beginPath(); g.ellipse(0, 0, r * 0.75, r * 0.45, 0, 0, TAU); g.fill(); g.stroke(); const asa = Math.sin(t * 12) * r * 0.6; g.fillStyle = '#7d8db0'; g.beginPath(); g.moveTo(-r * 0.2, 0); g.lineTo(-r * 0.3, -r * 0.4 - asa); g.lineTo(r * 0.3, -r * 0.1); g.fill(); g.stroke(); g.fillStyle = '#ffb400'; g.beginPath(); g.moveTo(vira * r * 0.7, -r * 0.05); g.lineTo(vira * r * 1.05, 0); g.lineTo(vira * r * 0.7, r * 0.1); g.fill(); }
   g.restore();
 }
 
