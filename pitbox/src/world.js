@@ -412,8 +412,8 @@ function makeCar(kind,c1,c2,compound){
     // número e patrocinador nas portas
     const numMat=decalMat((c,w,h)=>{c.fillStyle='#fff';c.beginPath();c.arc(w/2,h/2,h/2-4,0,7);c.fill();c.fillStyle='#111';c.font='900 150px Arial';c.textAlign='center';c.textBaseline='middle';c.fillText(num,w/2,h/2+8);},256,256);
     const spMat=textDecal('PIT BOX',ink2,{bg:hex(c2)});
-    [-1,1].forEach(s=>{const n=new THREE.Mesh(new THREE.PlaneGeometry(.55,.55),numMat);n.position.set(.05,.58,s*.976);if(s<0)n.rotation.y=Math.PI;body.add(n);
-      const sp=new THREE.Mesh(new THREE.PlaneGeometry(.9,.22),spMat);sp.position.set(-1.6,.6,s*.976);if(s<0)sp.rotation.y=Math.PI;body.add(sp);});
+    [-1,1].forEach(s=>{const n=new THREE.Mesh(new THREE.PlaneGeometry(.55,.55),numMat);n.position.set(.42,.58,s*.976);if(s<0)n.rotation.y=Math.PI;body.add(n);
+      const sp=new THREE.Mesh(new THREE.PlaneGeometry(.72,.18),spMat);sp.position.set(-.48,.66,s*.976);if(s<0)sp.rotation.y=Math.PI;body.add(sp);});
     add(new THREE.SphereGeometry(.14,16,12),PM(c2),-.45,1.02,-.3);
     wx=1.4;wz=.83;wr=.34;ww=.3;
   }else{
@@ -479,53 +479,86 @@ function makeCar(kind,c1,c2,compound){
 
 /* ---- mecânicos ---- */
 const SKIN=[0xf0c8a4,0xdcaa7c,0xc08a5e,0x8b5a3a,0x5d3a25,0xe8bc96];
-/* mecânico: de pé, de joelhos ou sentado; com capacete (box) ou boné e auscultadores (garagem) */
+/* mecânico com proporções humanas: esqueleto por pontos (ancas, joelhos, tornozelos, ombros, cotovelos, pulsos)
+   para cada postura; membros afunilados com articulações, luvas com dedos, fato com riscas e joelheiras,
+   capacete com viseira e proteção do queixo (ou boné e auscultadores na garagem) */
+const POSES={
+  stand:{pel:[0,.97],chest:[.01,1.36],head:[.02,1.62],
+    legs:[[[0,.95,.1],[.03,.52,.11],[0,.09,.11],[.16,.05,.11]],[[0,.95,-.1],[.03,.52,-.11],[0,.09,-.11],[.16,.05,-.11]]],
+    arms:[[[0,1.39,.21],[.05,1.11,.25],[.16,.93,.21]],[[0,1.39,-.21],[.05,1.11,-.25],[.16,.93,-.21]]]},
+  kneel:{pel:[0,.6],chest:[.16,.95],head:[.27,1.17],
+    legs:[[[0,.58,.11],[.03,.08,.13],[-.38,.09,.13],[-.44,.05,.13]],[[0,.58,-.11],[.42,.5,-.12],[.42,.09,-.12],[.58,.05,-.12]]],
+    arms:[[[.13,1.02,.21],[.36,.86,.24],[.57,.8,.15]],[[.13,1.02,-.21],[.36,.86,-.24],[.57,.8,-.15]]]},
+  seated:{pel:[0,.58],chest:[-.02,.98],head:[-.01,1.23],
+    legs:[[[0,.56,.1],[.42,.54,.12],[.44,.09,.12],[.6,.05,.12]],[[0,.56,-.1],[.42,.54,-.12],[.44,.09,-.12],[.6,.05,-.12]]],
+    arms:[[[-.02,1.02,.21],[.1,.75,.25],[.36,.6,.17]],[[-.02,1.02,-.21],[.1,.75,-.25],[.36,.6,-.17]]]}
+};
+function limb(g,a,b,r1,r2,m,joint=true){
+  const d=new THREE.Vector3().subVectors(b,a),L=d.length();
+  const c=mesh(new THREE.CylinderGeometry(r2,r1,L,12),m);c.position.copy(a).addScaledVector(d,.5);c.quaternion.setFromUnitVectors(V3(0,1,0),d.normalize());g.add(c);
+  if(joint)g.add(mesh(new THREE.SphereGeometry(r2*1.02,12,10),m,b.x,b.y,b.z));
+  return c;
+}
 function makeMechanic(o){
-  const g=new THREE.Group();
-  const suit=M(o.suit,{roughness:.88}),acc=M(o.acc,{roughness:.8}),glove=M(o.glove,{roughness:.65});
-  const shoe=M(o.boots??0x16171a,{roughness:.5}),dark=M(0x141518,{roughness:.6});
-  const cap=(r,l,m,x,y,z,rz=0,rx=0)=>{const c=mesh(new THREE.CapsuleGeometry(r,l,6,14),m,x,y,z);c.rotation.set(rx,0,rz);g.add(c);return c;};
-  let ty;
-  if(o.seated){
-    [-.11,.11].forEach(z=>{cap(.09,.3,suit,.17,.56,z,Math.PI/2);cap(.078,.3,suit,.38,.3,z);put(g,mesh(rbox(.28,.09,.12,.03),shoe,.45,.045,z));put(g,mesh(new THREE.SphereGeometry(.07,12,10),acc,.37,.56,z));});
-    ty=.92;
-  }else if(o.kneel){
-    cap(.085,.3,suit,.17,.36,-.12,-1.35);cap(.075,.32,suit,.36,.2,-.12,.1);g.add(mesh(rbox(.26,.09,.11,.03),shoe,.42,.045,-.12));
-    cap(.085,.3,suit,0,.35,.12,.15);cap(.075,.32,suit,-.2,.09,.12,Math.PI/2);put(g,mesh(rbox(.11,.09,.24,.03),shoe,-.42,.06,.12)).rotation.y=Math.PI/2;
-    g.add(mesh(new THREE.SphereGeometry(.07,12,10),acc,.02,.1,.12));ty=.8;
-  }else{
-    [-.11,.11].forEach(z=>{cap(.088,.32,suit,0,.72,z);cap(.078,.32,suit,0,.32,z);g.add(mesh(new THREE.SphereGeometry(.07,12,10),acc,.06,.52,z));g.add(mesh(rbox(.28,.09,.12,.03),shoe,.05,.045,z));});
-    ty=1.12;
-  }
-  const torso=cap(.19,.32,suit,0,ty,0);torso.scale.set(.82,1,1.18);
-  const panel=cap(.192,.2,acc,0,ty+.02,0);panel.scale.set(.83,1,.9);panel.position.x=-.005;
-  put(g,mesh(new THREE.CylinderGeometry(.2,.2,.07,18),M(0x111214),0,ty-.16,0)).scale.set(.84,1,1.2);
-  g.add(mesh(new THREE.CylinderGeometry(.09,.11,.08,14),acc,0,ty+.29,0));
-  const arms=[];
-  [-.28,.28].forEach(z=>{const sh=new THREE.Group();sh.position.set(0,ty+.18,z);
-    sh.add(mesh(new THREE.CapsuleGeometry(.065,.2,5,10),suit,0,-.15,0));
-    const el=new THREE.Group();el.position.y=-.3;sh.add(el);
-    el.add(mesh(new THREE.CapsuleGeometry(.058,.2,5,10),suit,0,-.13,0));
-    el.add(mesh(rbox(.1,.12,.08,.035),o.bare?M(o.skin||SKIN[0],{roughness:.7}):glove,0,-.3,0));
-    el.rotation.z=o.seated?1.25:o.kneel?.9:.35;sh.rotation.z=o.seated?.35:o.kneel?.7:.15;g.add(sh);arms.push(sh);});
-  const hy=ty+.47;
+  const g=new THREE.Group(),P=POSES[o.seated?'seated':o.kneel?'kneel':'stand'];
+  const suit=M(o.suit,{roughness:.86}),acc=M(o.acc,{roughness:.8}),glove=M(o.glove,{roughness:.6}),dark=M(0x141518,{roughness:.6});
+  const boot=M(o.boots??0x16171a,{roughness:.45,metalness:.1}),skinM=M(o.skin||SKIN[0],{roughness:.7}),sole=M(0x0b0b0c,{roughness:.9});
+  const v=a=>V3(a[0],a[1],a[2]);
+  /* pernas: coxa, joelho com joelheira, perna, bota */
+  P.legs.forEach(([h,k,an,toe])=>{const H=v(h),K=v(k),A=v(an),T=v(toe);
+    limb(g,H,K,.088,.07,suit);limb(g,K,A,.066,.05,suit);
+    const kp=mesh(new THREE.SphereGeometry(.072,12,10),acc,K.x+.025,K.y,K.z);kp.scale.set(.7,1,1);g.add(kp);
+    const bd=new THREE.Vector3().subVectors(T,A);bd.y=0;const ang=Math.atan2(-bd.z,bd.x);
+    const bt=mesh(rbox(.27,.1,.11,.04),boot,(A.x+T.x)/2+.01,.055,(A.z+T.z)/2);bt.rotation.y=ang;g.add(bt);
+    const sl=mesh(new THREE.BoxGeometry(.28,.02,.112),sole,(A.x+T.x)/2+.01,.01,(A.z+T.z)/2,false);sl.rotation.y=ang;g.add(sl);
+    limb(g,A,V3(A.x,.11,A.z),.055,.055,boot,false);});
+  /* tronco: bacia, cintura com cinto, peito mais largo nos ombros */
+  const pel=V3(P.pel[0],P.pel[1],0),ch=V3(P.chest[0],P.chest[1],0),td=new THREE.Vector3().subVectors(ch,pel),tL=td.length();
+  const prof=[[0,-.06],[.15,-.04],[.155,.06],[.15,.16],[.17,tL*.62],[.195,tL*.85],[.17,tL+.04],[.08,tL+.1],[0,tL+.11]].map(([a,b])=>new THREE.Vector2(a,b));
+  const torso=new THREE.Group();torso.position.copy(pel);torso.quaternion.setFromUnitVectors(V3(0,1,0),td.clone().normalize());g.add(torso);
+  const tm=mesh(new THREE.LatheGeometry(prof,20),suit);tm.scale.set(.74,1,1.12);torso.add(tm);
+  const bl=mesh(new THREE.CylinderGeometry(.158,.158,.06,20),dark,0,.1,0);bl.scale.set(.75,1,1.13);torso.add(bl);
+  torso.add(mesh(rbox(.03,.05,.06,.01),M(0xb8bec6,{metalness:.9,roughness:.3}),.12,.1,0));
+  [-1,1].forEach(s=>{const st=mesh(new THREE.BoxGeometry(.04,tL*.62,.018),acc,0,tL*.5,s*.205);torso.add(st);});
+  const panel=mesh(rbox(.02,tL*.42,.24,.01),acc,.137,tL*.62,0);torso.add(panel);
+  torso.add(mesh(rbox(.015,.06,.1,.01),M(0xf2f2f2,{roughness:.5}),.15,tL*.82,-.07));
+  torso.add(mesh(new THREE.CylinderGeometry(.075,.09,.06,16),acc,0,tL+.06,0));
+  /* braços: ombro, cotovelo, pulso e luva com dedos */
+  P.arms.forEach(([sh,el,wr],i)=>{const S=v(sh),E=v(el),Wr=v(wr);
+    g.add(mesh(new THREE.SphereGeometry(.074,12,10),suit,S.x,S.y,S.z));
+    limb(g,S,E,.064,.052,suit);limb(g,E,Wr,.05,.042,suit,false);
+    const cuff=limb(g,Wr.clone().lerp(E,.12),Wr,.046,.046,acc,false);
+    const hd=new THREE.Vector3().subVectors(Wr,E).normalize(),hand=new THREE.Group();hand.position.copy(Wr).addScaledVector(hd,.05);
+    hand.quaternion.setFromUnitVectors(V3(0,-1,0),hd);g.add(hand);
+    hand.add(mesh(rbox(.085,.09,.04,.015),glove,0,-.01,0));
+    for(let f=0;f<4;f++){const fg=mesh(new THREE.CapsuleGeometry(.011,.045,3,6),glove,-.03+f*.02,-.08,.01);fg.rotation.x=.35;hand.add(fg);}
+    const th=mesh(new THREE.CapsuleGeometry(.012,.035,3,6),glove,(i?-1:1)*.045,-.035,.015);th.rotation.z=(i?1:-1)*.9;hand.add(th);
+    if(o.gun&&i===0){const gn=new THREE.Group();gn.position.set(0,-.07,.05);hand.add(gn);
+      gn.add(mesh(new THREE.CylinderGeometry(.045,.05,.24,14),M(0x2b2e33,{metalness:.7,roughness:.3}),0,-.08,.04));
+      gn.add(mesh(new THREE.CylinderGeometry(.03,.03,.07,6),MAT.nut,0,-.23,.04));}
+  });
+  /* cabeça */
+  const H=V3(P.head[0],P.head[1],0);
+  g.add(mesh(new THREE.CylinderGeometry(.052,.06,.1,12),o.bare?skinM:dark,H.x-.02,H.y-.15,0));
   if(o.bare){
-    const skin=M(o.skin||SKIN[0],{roughness:.7});
-    g.add(mesh(new THREE.CylinderGeometry(.06,.07,.12,12),skin,0,ty+.33,0));
-    g.add(mesh(new THREE.SphereGeometry(.135,22,16),skin,.01,hy-.02,0));
-    g.add(mesh(new THREE.SphereGeometry(.142,22,10,0,Math.PI*2,0,Math.PI*.42),M(o.suit,{roughness:.8}),0,hy,0));
-    put(g,mesh(rbox(.16,.016,.2,.006),M(o.acc,{roughness:.8}),.14,hy+.03,0)).rotation.z=-.15;
-    put(g,mesh(new THREE.TorusGeometry(.152,.013,6,22,Math.PI),dark,0,hy+.01,0)).rotation.y=Math.PI/2;
-    [-.15,.15].forEach(z=>put(g,mesh(new THREE.CylinderGeometry(.055,.055,.04,16),dark,0,hy-.04,z)).rotation.x=Math.PI/2);
-    put(g,mesh(new THREE.CylinderGeometry(.006,.006,.13,5),dark,.06,hy-.08,.14)).rotation.z=1.2;
+    put(g,mesh(new THREE.SphereGeometry(.118,22,16),skinM,H.x,H.y,0)).scale.set(1,1.1,.95);
+    const nose=mesh(new THREE.ConeGeometry(.022,.05,8),skinM,H.x+.118,H.y-.01,0);nose.rotation.z=-Math.PI/2;g.add(nose);
+    [-1,1].forEach(s=>g.add(mesh(new THREE.SphereGeometry(.028,8,6),skinM,H.x-.005,H.y,s*.112)));
+    const cap=mesh(new THREE.SphereGeometry(.127,22,10,0,Math.PI*2,0,Math.PI*.42),suit,H.x,H.y+.02,0);g.add(cap);
+    const brim=mesh(rbox(.15,.014,.2,.006),acc,H.x+.14,H.y+.05,0);brim.rotation.z=-.12;g.add(brim);
+    const band=mesh(new THREE.TorusGeometry(.14,.012,6,22,Math.PI),dark,H.x,H.y+.02,0);band.rotation.y=Math.PI/2;g.add(band);
+    [-.14,.14].forEach(z=>{const cp=mesh(new THREE.CylinderGeometry(.05,.05,.04,16),dark,H.x,H.y-.03,z);cp.rotation.x=Math.PI/2;g.add(cp);});
+    const mic=mesh(new THREE.CylinderGeometry(.006,.006,.13,5),dark,H.x+.06,H.y-.08,.13);mic.rotation.z=1.2;g.add(mic);
   }else{
     const hel=PM(o.helmet,{roughness:.22,metalness:.15});
     const visor=M(o.mirror?0xa9c4e4:0x0a0c10,{roughness:.04,metalness:o.mirror?1:.7});
-    g.add(mesh(new THREE.SphereGeometry(.16,24,18),hel,0,hy,0));
-    const vg=new THREE.SphereGeometry(.164,24,10,Math.PI*.62,Math.PI*.76,Math.PI*.33,Math.PI*.28);g.add(mesh(vg,visor,0,hy,0,false));
-    put(g,mesh(new THREE.TorusGeometry(.13,.02,8,20,Math.PI),hel,.02,ty+.36,0)).rotation.set(Math.PI/2,0,-Math.PI/2);
+    const hm=mesh(new THREE.SphereGeometry(.15,26,18),hel,H.x-.01,H.y+.01,0);hm.scale.set(1.04,1,.95);g.add(hm);
+    g.add(mesh(new THREE.SphereGeometry(.153,26,10,Math.PI*.6,Math.PI*.8,Math.PI*.36,Math.PI*.26),visor,H.x-.01,H.y+.01,0,false));
+    const chin=mesh(new THREE.TorusGeometry(.12,.03,8,20,Math.PI*.9),hel,H.x+.02,H.y-.075,0);chin.rotation.set(Math.PI/2,0,-Math.PI/2+.15);g.add(chin);
+    const strip=mesh(new THREE.TorusGeometry(.148,.012,6,30,Math.PI),acc,H.x-.01,H.y+.01,0);strip.rotation.y=Math.PI/2;g.add(strip);
+    [-.15,.15].forEach(z=>{const ep=mesh(new THREE.CylinderGeometry(.035,.035,.03,14),dark,H.x-.02,H.y-.01,z*.98);ep.rotation.x=Math.PI/2;g.add(ep);});
   }
-  mergeGroup(g);g.userData={arms,skin:o.skin};
+  mergeGroup(g);g.userData={arms:[],skin:o.skin};
   return g;
 }
 /* mãos e pistola pneumática em primeira pessoa */

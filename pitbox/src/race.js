@@ -24,7 +24,7 @@ function startRace(cfg){
   const crew=new THREE.Group();crew.visible=false;scene.add(crew);
   const addM=(o,x,z,tx,tz)=>{const m=makeMechanic(Object.assign({},crewLook,o));m.position.set(x,0,z);faceTo(m,tx,tz);crew.add(m);return m;};
   [['FR',ax,1],['RR',-ax,1],['RL',-ax,-1]].forEach(([k,x,sg])=>{if(mine.includes(k))return;const wz=sg*az;
-    addM({kneel:true},x,sg*(az+.95),x,wz);
+    addM({kneel:true,gun:true},x,sg*(az+.95),x,wz);
     if(gunner){addM({kneel:true},x+.8,sg*(az+.6),x,wz);addM({kneel:true},x-.8,sg*(az+.6),x,wz);}});
   let offM=null,onM=null;
   if(gunner){offM=addM({kneel:true},ax+1.05,-(az+.32),ax,-az);onM=addM({kneel:true},ax-1.05,-(az+.32),ax,-az);}
@@ -34,8 +34,9 @@ function startRace(cfg){
     const rg=new THREE.Group();const jr=makeJack(V(tailX-.15,.15,0),V(tailX-1.5,.95,0),team.c2);rg.add(jr);crew.add(rg);
     addM({},noseX+1.75,.25,noseX,0);const rjm=addM({},tailX-1.8,-.25,tailX,0);crew.remove(rjm);rg.add(rjm);rg.position.z=2.4;
     jacks={f:jf,r:jr,rg};}
-  else{addM({},-1.75,-1.95,-1.2,-.9);addM({},-.6,1.95,-.6,.9);
-    crew.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V3(-1.25,.5,-.95),V3(-1.45,.25,-1.6),V3(-2.3,.03,-2.5),V3(-4.2,.03,-3.6)]),24,.025,6),M(0x222222,{roughness:.7})));}
+  else{/* GT3: macacos pneumáticos com a lança atrás do carro (longe das rodas da esquerda) e reabastecimento à direita */
+    addM({},-3.35,.45,-2.4,0);addM({},-.6,1.95,-.6,.9);
+    crew.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V3(-2.42,.45,0),V3(-2.9,.62,.25),V3(-3.2,.82,.42),V3(-3.6,.3,.9),V3(-4.4,.03,2.2),V3(-5.5,.03,3.4)]),28,.025,6),M(0x222222,{roughness:.7})));}
   addM({helmet:0xffffff},5.4,2.3,0,0);
   crew.traverse(o=>{if(o.isMesh)o.castShadow=true;});
   // equipa sentada na garagem a ver a corrida
