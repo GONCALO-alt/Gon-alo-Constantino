@@ -104,7 +104,7 @@ function makeOffer(){
   return null;
 }
 function cleanupRace(){
-  if(!R)return;Snd.gunStop();Snd.ambience(false);if(R.eng){R.eng.stop();}
+  if(!R)return;cleanupFx(R);Snd.gunStop();Snd.ambience(false);if(R.eng){R.eng.stop();}
   scene.remove(R.car);scene.remove(R.crew);scene.remove(R.gcrew);W.fp.visible=false;W.debris=null;
   if(W.carry)W.carry.visible=false;if(W.placed)W.placed.visible=false;W.fetch.forEach(f=>f.g.visible=true);TV.focusUs=false;R=null;
   closeSheet();$('#gbar').hidden=true;$('#choice').hidden=true;$('#posMeter').hidden=true;applyWeather('dry');

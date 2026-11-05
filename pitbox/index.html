@@ -41,7 +41,7 @@
       <button class="btn primary" data-go="career">Modo carreira</button>
       <button class="btn ghost" data-go="quick">Corrida rápida</button>
       <div class="row2"><button class="btn ghost small" data-go="locker">Mecânico</button><button class="btn ghost small" data-go="stats">Estatísticas</button></div>
-      <div class="toggles"><button class="chip" id="tSound" aria-pressed="true">🔊 Som</button><button class="chip" id="tVoice" aria-pressed="true">📻 Rádio</button><button class="chip" id="tOrient">📱 Vertical</button></div>
+      <div class="toggles"><button class="chip" id="tSound" aria-pressed="true">🔊 Som</button><button class="chip" id="tVoice" aria-pressed="true">📻 Rádio</button><button class="chip" id="tOrient">📱 Ecrã: automático</button></div>
     </div>
   </section>
 
@@ -54,7 +54,7 @@
   <section class="screen" id="hud" hidden>
     <div class="hud-top">
       <div class="hud-row">
-        <button class="icon-btn" id="btnQuit" aria-label="Abandonar corrida">✕</button>
+        <button class="icon-btn" id="btnQuit" aria-label="Abandonar corrida">✕</button><button class="icon-btn" id="btnRot" aria-label="Rodar o ecrã">⟳</button>
         <div class="race-info"><span id="hCirc"></span><span id="hLap"></span><span class="pos" id="hPos"></span></div>
       </div>
       <div class="timer-row">
@@ -71,6 +71,7 @@
       </div>
       <div class="radio quiet" id="radio"><div class="radio-h"><i class="dot"></i> RÁDIO · <span id="radioWho">ENGENHEIRO</span></div><div id="radioText">…</div></div>
     </div>
+    <div class="pitgfx" id="pitGfx" hidden><i></i><div><small id="pgTeam"></small><b><span id="pgT">0,00</span><em> s</em></b><span id="pgSub"></span></div><span class="pg-tag">PARAGEM</span></div>
     <div class="alert" id="alert" hidden>PIT STOP! PIT STOP!<small>CARRO A ENTRAR!</small></div>
     <div id="toast"></div>
     <div id="swipeZone" hidden><div class="swipe-arrow" id="swipeArrow">↓</div></div>
@@ -111,6 +112,7 @@
 <script src="src/weather.js" data-inline></script>
 <script src="src/gear.js" data-inline></script>
 <script src="src/skills.js" data-inline></script>
+<script src="src/pitfx.js" data-inline></script>
 <script src="src/tv.js" data-inline></script>
 <script src="src/camera.js" data-inline></script>
 <script src="src/ui.js" data-inline></script>

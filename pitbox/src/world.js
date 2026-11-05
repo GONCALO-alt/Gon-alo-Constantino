@@ -113,10 +113,10 @@ function initThree(){
 }
 function resize(){const a=$('#app');const w=a.clientWidth,h=a.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=w/h<.62?66:w/h>1.2?44:58;camera.updateProjectionMatrix();}
 /* orientação: vertical, horizontal (roda o jogo se o telemóvel estiver de pé) ou automática */
-const ORIENT={portrait:'📱 Vertical',landscape:'📱 Horizontal',auto:'📱 Automático'};
+const ORIENT={portrait:'📱 Ecrã: vertical',landscape:'📱 Ecrã: horizontal',auto:'📱 Ecrã: automático'};
 let rotated=false;
 function applyOrient(){
-  const vw=window.innerWidth,vh=window.innerHeight,devLand=vw>vh,o=P.settings.orient||'portrait';
+  const vw=window.innerWidth,vh=window.innerHeight,devLand=vw>vh,o=P.settings.orient||'auto';
   const land=o==='auto'?devLand:o==='landscape';
   rotated=land&&!devLand&&o==='landscape';
   document.body.classList.toggle('land',land);document.body.classList.toggle('rot',rotated);
@@ -125,8 +125,15 @@ function applyOrient(){
   const t=$('#tOrient');if(t)t.textContent=ORIENT[o];
   if(screen==='s-stats'&&P.stats.stops.length>1)drawChart();
 }
+/* botão ⟳ durante a corrida: alterna já entre horizontal e vertical */
+function rotateQuick(){
+  const land=document.body.classList.contains('land');P.settings.orient=land?'portrait':'landscape';P.settings.orientSet=true;save();Snd.init();Snd.click();
+  if(!land&&matchMedia('(pointer:coarse)').matches){try{const el=document.documentElement,go=el.requestFullscreen?el.requestFullscreen():null;
+    if(go&&go.then)go.then(()=>window.screen.orientation&&window.screen.orientation.lock&&window.screen.orientation.lock('landscape')).catch(()=>{});}catch(e){}}
+  applyOrient();setTimeout(applyOrient,400);toast(land?'Ecrã na vertical':'Ecrã na horizontal: roda o telemóvel','good',1400);
+}
 function cycleOrient(){
-  const order=['portrait','landscape','auto'];P.settings.orient=order[(order.indexOf(P.settings.orient||'portrait')+1)%3];save();Snd.init();Snd.click();
+  const order=['auto','landscape','portrait'];P.settings.orient=order[(order.indexOf(P.settings.orient||'auto')+1)%3];P.settings.orientSet=true;save();Snd.init();Snd.click();
   if(P.settings.orient==='landscape'&&matchMedia('(pointer:coarse)').matches){
     try{const el=document.documentElement;const go=el.requestFullscreen?el.requestFullscreen():null;
       if(go&&go.then)go.then(()=>window.screen.orientation&&window.screen.orientation.lock&&window.screen.orientation.lock('landscape')).catch(()=>{});}catch(e){}

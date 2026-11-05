@@ -4,7 +4,7 @@
 let last=now();
 function loop(){
   requestAnimationFrame(loop);
-  const t=now();const dt=Math.min(.05,t-last);last=t;
+  const t=now();const dt=Math.min(.2,t-last);last=t;
   updTweens(dt);
   if(R)updateRace(t,dt);
   else if(Cam.mode==='menu'){const a=.9+Math.sin(t*.12)*1.4;camTo(V(Math.cos(a)*7.6,2.1+Math.sin(t*.3)*.3,Math.sin(a)*7.6-.5),V(0,.45,0),2);}
@@ -26,7 +26,7 @@ function boot(){
   document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;Snd.init();Snd.click();const g=b.dataset.go;show(g.startsWith('s-')?g:'s-'+g);});
   document.addEventListener('pointerdown',()=>Snd.init(),{once:true});
   $('#tSound').onclick=()=>{P.settings.sound=!P.settings.sound;Snd.init();Snd.setOn(P.settings.sound);save();renderMenu();};
-  $('#tOrient').onclick=cycleOrient;
+  $('#tOrient').onclick=cycleOrient;$('#btnRot').onclick=rotateQuick;
   $('#tVoice').onclick=()=>{Snd.init();Snd.click();voiceModal();};
   const tr=$('#trigger');tr.addEventListener('pointerdown',trigDown);tr.addEventListener('pointerup',trigUp);tr.addEventListener('pointercancel',trigUp);tr.addEventListener('lostpointercapture',trigUp);
   tr.addEventListener('contextmenu',e=>e.preventDefault());

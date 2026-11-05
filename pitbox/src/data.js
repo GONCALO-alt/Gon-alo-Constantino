@@ -4,13 +4,13 @@
 const CATS={
   F4:{id:'F4',name:'Fórmula 4',wheels:2,gun:1.25,par:15,car:'f4',laps:18,unlockLvl:1,payout:.6,order:0,
       crew:'Equipa pequena: trocas as duas rodas do lado esquerdo com uma pistola mais lenta.'},
-  F3:{id:'F3',name:'Fórmula 3',wheels:1,gun:1.0,par:7.6,car:'f3',laps:22,unlockLvl:2,payout:.8,order:1,
+  F3:{id:'F3',name:'Fórmula 3',wheels:1,gun:.62,par:4.2,car:'f3',laps:22,unlockLvl:2,payout:.8,order:1,
       crew:'És o pistoleiro: desapertas e apertas a porca. Dois colegas tiram e põem a roda.',role:'gun'},
   GT3:{id:'GT3',name:'GT3',wheels:2,gun:.9,par:15,car:'gt3',laps:40,unlockLvl:3,payout:1,order:2,refuel:10,
       crew:'Trocas as duas rodas do lado esquerdo enquanto o carro reabastece.'},
-  F2:{id:'F2',name:'Fórmula 2',wheels:1,gun:.82,par:6.6,car:'f2',laps:30,unlockLvl:4,payout:1.2,order:3,
+  F2:{id:'F2',name:'Fórmula 2',wheels:1,gun:.52,par:3.6,car:'f2',laps:30,unlockLvl:4,payout:1.2,order:3,
       crew:'Pistoleiro numa paragem obrigatória. Pistola rápida, pouca margem para erros.',role:'gun'},
-  F1:{id:'F1',name:'Fórmula 1',wheels:1,gun:.6,par:5.6,car:'f1',laps:57,unlockLvl:6,payout:1.8,order:4,
+  F1:{id:'F1',name:'Fórmula 1',wheels:1,gun:.4,par:3.0,car:'f1',laps:57,unlockLvl:6,payout:1.8,order:4,
       crew:'Pistoleiro numa equipa de 20 mecânicos. Só desapertas e apertas, cada décima conta.',role:'gun'}
 };
 const CAT_PATH=['F4','F3','F2','F1'];
@@ -21,7 +21,7 @@ const DIFF={
         note:'Tempo exigente e mais imprevistos. Ninguém te lembra de mudar o sentido da pistola.'},
   hard:{name:'Difícil',par:.82,arrive:5.5,window:10.5,pen:1.7,prob:1,maxEv:3,pool:['wrongdir','misalign','crewdelay','blanket','overshoot','debris','radio'],explicitSwitch:false,aids:1,fitW:.13,fitSpd:3.8,tq:[.8,.9],tqRate:1.3,slow:1.4,mult:1.3,col:'#ff3030',
         note:'Pouco tempo, vários imprevistos por paragem, carro fora da marca e erros a custar o dobro.'},
-  pro:{name:'Profissional',par:.75,arrive:5,window:9.5,pen:2,prob:1,maxEv:3,pool:['wrongdir','misalign','crewdelay','blanket','overshoot','debris','radio'],explicitSwitch:false,aids:0,fitW:.12,fitSpd:4.2,tq:[.82,.89],tqRate:1.4,slow:1.2,mult:1.6,col:'#b06cff',
+  pro:{name:'Profissional',par:.8,arrive:5,window:9.5,pen:2,prob:1,maxEv:3,pool:['wrongdir','misalign','crewdelay','blanket','overshoot','debris','radio'],explicitSwitch:false,aids:0,fitW:.12,fitSpd:4.2,tq:[.82,.89],tqRate:1.4,slow:1.2,mult:1.6,col:'#b06cff',
         note:'Sem ajudas: sem textos de passo, sem zonas verdes nem destaques. Só tu, a pistola e o rádio.'}
 };
 const EVENTS={

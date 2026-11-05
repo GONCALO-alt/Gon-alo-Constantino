@@ -75,18 +75,21 @@ const Snd={
   /* pistola pneumática */
   gunStart(tight=false){
     if(!this.ok()||this.gun)return;const c=this.ctx,t=this.t();
-    const g=c.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.22,t+.02);
-    const o=c.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(tight?240:200,t);o.frequency.linearRampToValueAtTime(tight?300:380,t+.6);
-    const am=c.createGain();const lfo=c.createOscillator();lfo.type='square';lfo.frequency.value=42;const lg=c.createGain();lg.gain.value=.5;lfo.connect(lg);lg.connect(am.gain);
-    const hp=c.createBiquadFilter();hp.type='bandpass';hp.frequency.value=900;hp.Q.value=.7;
-    o.connect(hp);hp.connect(am);am.connect(g);g.connect(this.master);o.start();lfo.start();
-    const n=this.noise({type:'highpass',f:2500,vol:.12,loop:true});
-    this.gun={o,lfo,g,n};
+    /* pistola pneumática de F1: matraca aguda e metálica com sopro de ar */
+    const g=c.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.26,t+.012);
+    const o=c.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(tight?520:430,t);o.frequency.linearRampToValueAtTime(tight?600:680,t+.35);
+    const o2=c.createOscillator();o2.type='square';o2.frequency.setValueAtTime(tight?1040:860,t);o2.frequency.linearRampToValueAtTime(tight?1200:1360,t+.35);
+    const g2=c.createGain();g2.gain.value=.35;o2.connect(g2);
+    const am=c.createGain();am.gain.value=.5;const lfo=c.createOscillator();lfo.type='square';lfo.frequency.value=tight?62:74;const lg=c.createGain();lg.gain.value=.5;lfo.connect(lg);lg.connect(am.gain);
+    const bp=c.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1500;bp.Q.value=.8;
+    o.connect(bp);g2.connect(bp);bp.connect(am);am.connect(g);g.connect(this.master);o.start();o2.start();lfo.start();
+    const n=this.noise({type:'highpass',f:3200,vol:.13,loop:true});
+    this.gun={o,o2,lfo,g,n};
   },
   gunStop(final=false){
     if(!this.gun)return;const t=this.t(),G=this.gun;this.gun=null;
     G.g.gain.setTargetAtTime(0,t,.015);if(G.n){G.n.g.gain.setTargetAtTime(0,t,.015);G.n.s.stop(t+.2);}
-    G.o.stop(t+.2);G.lfo.stop(t+.2);if(final)this.clank(700,.3);
+    G.o.stop(t+.2);if(G.o2)G.o2.stop(t+.2);G.lfo.stop(t+.2);if(final)this.clank(700,.3);
   },
   /* chuva: ruído contínuo, mais baixo dentro da garagem */
   rain(on,level=1){
@@ -98,7 +101,7 @@ const Snd={
   rainLevel(k){if(!this.rainN)return;const t=this.t();this.rainN.g.gain.setTargetAtTime(.1*this.rainVol*k,t,.3);this.rainL.g.gain.setTargetAtTime(.07*this.rainVol*k,t,.3);},
   thunder(){this.noise({buf:this.brown,type:'lowpass',f:160,vol:.55,dur:3.4,a:.2});this.tone({f:48,slide:28,type:'sine',dur:2.6,vol:.22});},
   gunWrong(){this.tone({f:300,slide:140,type:'sawtooth',dur:.35,vol:.15});},
-  distantGun(delay=0){if(!this.ok())return;for(let i=0;i<5;i++)this.tone({f:rand(260,320),type:'sawtooth',dur:.08,vol:.035,delay:delay+i*.07});},
+  distantGun(delay=0){if(!this.ok())return;for(let i=0;i<6;i++)this.tone({f:rand(520,700),type:'square',dur:.06,vol:.03,delay:delay+i*.055});this.noise({dur:.3,type:'highpass',f:3000,vol:.04,delay});},
   pass(vol=.05){if(!this.ok())return;const f=rand(260,340);this.tone({f,slide:f*.55,type:'sawtooth',dur:1.4,vol,a:.6});},
   ambience(on){
     if(!this.ok())return;

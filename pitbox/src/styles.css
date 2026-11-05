@@ -264,6 +264,19 @@ td{font-family:var(--f-data);font-variant-numeric:tabular-nums}
 .choice .btn{min-height:64px;font-size:18px}
 .cdot{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid #fff}
 #posMeter .zone{background:rgba(255,198,26,.3);border-color:var(--pit)}
+/* grafismo de transmissão com o tempo da paragem */
+.pitgfx{position:absolute;left:max(16px,env(safe-area-inset-left,0px));top:34%;display:flex;align-items:stretch;background:rgba(8,9,12,.92);border-radius:4px;overflow:hidden;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.5);--tc:#e10600}
+.pitgfx > i{width:8px;background:var(--tc)}
+.pitgfx > div{display:flex;flex-direction:column;padding:8px 14px;gap:0}
+.pitgfx small{font-family:var(--f-display);font-weight:800;letter-spacing:.12em;font-size:12px;color:#c9ced8}
+.pitgfx b{font-family:var(--f-data);font-size:46px;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+.pitgfx b em{font-style:normal;font-size:20px;color:#c9ced8}
+.pitgfx #pgSub{font-size:12px;color:#c9ced8}
+.pitgfx .pg-tag{writing-mode:vertical-rl;transform:rotate(180deg);background:#e10600;color:#fff;font-family:var(--f-display);font-weight:900;letter-spacing:.14em;font-size:12px;padding:6px 4px;text-align:center}
+.pitgfx.in{animation:pgIn .45s cubic-bezier(.2,.9,.2,1)}
+@keyframes pgIn{from{transform:translateX(-120%)}}
+body.land .pitgfx{top:auto;bottom:16px;left:calc(50% - 150px)}
+@media (prefers-reduced-motion:reduce){.pitgfx.in{animation:none}}
 #loading{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;letter-spacing:.2em;color:var(--muted);background:var(--asphalt)}
 
 /* ---- modo horizontal ---- */

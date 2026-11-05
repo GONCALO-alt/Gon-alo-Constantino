@@ -36,12 +36,16 @@ Também pode ser alojado em qualquer serviço de páginas estáticas (GitHub Pag
 
 No computador: Espaço = gatilho/ação, D = sentido da pistola, setas = deslizar.
 
+**Horizontal:** o ecrã segue a posição do telemóvel (modo automático). Se a app onde abres o jogo não rodar, toca no botão ⟳ durante a corrida (ou em *Ecrã* no menu) e o jogo roda sozinho.
+
 ## O que o jogo tem
 - **Garagem**: equipa sentada a ver a corrida numa TV com transmissão 3D no traçado real (13 circuitos), rádio,
   e painel com **Ferramentas** (pressão do ar, teste da pistola, mangueira, manutenção), **Carro** (posição, diferenças,
   desgaste e temperatura dos pneus), **Equipa** (funções e número de mecânicos por categoria) e **Operação**.
 - **Chamada e preparação**: "Carro a entrar na próxima volta", "BOX, BOX! PIT STOP!", ir buscar o composto certo
   (há dois carrinhos), levá-lo para a box, pegar na pistola e posicionar-se na marca.
+- **Tempos realistas**: objetivo de 3,0 s na F1 (Médio), 3,6 s na F2 e 4,2 s na F3; os colegas trocam as outras rodas em cerca de 2 s.
+- **Realismo**: o carro chega a 80 km/h, trava forte com o nariz a mergulhar e os discos em brasa, os macacos levantam o carro, carros de outras equipas passam no pit lane (a luz verde espera que passem) e no fim aparece o tempo ao estilo da transmissão.
 - **Pit stop por categoria**: F1/F2/F3 como pistoleiro (colegas tiram e põem a roda, conta o teu tempo de reação);
   F4 e GT3 com duas rodas e trabalho completo (GT3 com reabastecimento).
 - **Meteorologia**: seco, calor, frio, pista molhada, chuva (gotas, trovoada, asfalto molhado) e noite (holofotes).

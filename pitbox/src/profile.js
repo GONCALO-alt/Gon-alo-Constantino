@@ -4,7 +4,7 @@
 const SAVE_KEY='pitbox.v1';
 function defaultProfile(){return{
   v:1,level:1,xp:0,credits:0,
-  settings:{difficulty:'easy',sound:true,voice:true,quickCat:'F4',orient:'portrait',voiceName:''},
+  settings:{difficulty:'easy',sound:true,voice:true,quickCat:'F4',orient:'auto',orientSet:false,voiceName:''},
   cosm:{suit:'team',gloves:'basic',boots:'std',helmet:'std',gun:'std',bought:[]},
   gear:{cond:100,overTorque:false,spare:100},
   skills:{speed:35,precision:35,coordination:35,consistency:35},
@@ -14,6 +14,8 @@ function defaultProfile(){return{
 function merge(def,src){if(!src||typeof src!=='object')return def;for(const k in def){if(k in src){if(def[k]&&typeof def[k]==='object'&&!Array.isArray(def[k]))def[k]=merge(def[k],src[k]);else def[k]=src[k];}}return def;}
 let P=defaultProfile();
 try{P=merge(defaultProfile(),JSON.parse(localStorage.getItem(SAVE_KEY)||'null'));}catch(e){}
+/* quem nunca escolheu a orientação passa a seguir a posição do telemóvel */
+if(!P.settings.orientSet)P.settings.orient='auto';
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(P));}catch(e){}}
 const xpNeed=l=>250+l*150;
 const catUnlocked=c=>P.level>=CATS[c].unlockLvl||P.career.catsReached.includes(c);

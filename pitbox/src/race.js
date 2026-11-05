@@ -6,15 +6,6 @@ function later(fn,ms){const r=R;setTimeout(()=>{if(R&&R===r)fn();},ms);}
 function rollEvents(D){const evs=new Set();if(Math.random()<D.prob){let n=1;if(D.maxEv>1&&Math.random()<.55)n++;if(D.maxEv>2&&Math.random()<.45)n++;while(evs.size<n)evs.add(pick(D.pool));}return evs;}
 
 function faceTo(m,x,z){m.rotation.y=Math.atan2(-(z-m.position.z),x-m.position.x);}
-/* macaco dianteiro/traseiro: berço debaixo do carro e pega comprida */
-function makeJack(from,to,col){
-  const g=new THREE.Group(),cm=M(col,{roughness:.4,metalness:.3}),dir=to.x>from.x?1:-1;
-  g.add(rod(from,to,.035,MAT.steel));g.add(mesh(rbox(.16,.07,.55,.02),cm,from.x,from.y,from.z));
-  [-.18,.18].forEach(z=>g.add(mesh(new THREE.CylinderGeometry(.05,.05,.04,12).rotateX(Math.PI/2),MAT.rubber,from.x+dir*.28,.05,from.z+z)));
-  g.add(rod(V3(from.x+dir*.28,.05,-.2),V3(from.x+dir*.28,.05,.2),.02,MAT.steel));
-  g.add(mesh(rbox(.1,.05,.4,.015),MAT.rubber,to.x,to.y,to.z));
-  return g;
-}
 function startRace(cfg){
   closeModal();
   const D=DIFF[cfg.diff],cat=cfg.cat,team=cfg.team,gunner=cat.role==='gun';
@@ -38,8 +29,11 @@ function startRace(cfg){
   let offM=null,onM=null;
   if(gunner){offM=addM({kneel:true},ax+1.05,-(az+.32),ax,-az);onM=addM({kneel:true},ax-1.05,-(az+.32),ax,-az);}
   const noseX=gt?2.42:2.84*S,tailX=gt?-2.42:-2.3*S;
-  if(!gt){crew.add(makeJack(V(noseX+.12,.13,0),V(noseX+1.45,.95,0),team.c2));crew.add(makeJack(V(tailX-.15,.15,0),V(tailX-1.5,.95,0),team.c2));
-    addM({},noseX+1.75,.25,noseX,0);addM({},tailX-1.8,-.25,tailX,0);}
+  let jacks=null;
+  if(!gt){const jf=makeJack(V(noseX+.12,.13,0),V(noseX+1.45,.95,0),team.c2);crew.add(jf);
+    const rg=new THREE.Group();const jr=makeJack(V(tailX-.15,.15,0),V(tailX-1.5,.95,0),team.c2);rg.add(jr);crew.add(rg);
+    addM({},noseX+1.75,.25,noseX,0);const rjm=addM({},tailX-1.8,-.25,tailX,0);crew.remove(rjm);rg.add(rjm);rg.position.z=2.4;
+    jacks={f:jf,r:jr,rg};}
   else{addM({},-1.75,-1.95,-1.2,-.9);addM({},-.6,1.95,-.6,.9);
     crew.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V3(-1.25,.5,-.95),V3(-1.45,.25,-1.6),V3(-2.3,.03,-2.5),V3(-4.2,.03,-3.6)]),24,.025,6),M(0x222222,{roughness:.7})));}
   addM({helmet:0xffffff},5.4,2.3,0,0);
@@ -65,7 +59,7 @@ function startRace(cfg){
   const posBefore=clamp(Math.round(2+(5-team.tier)*2.6+rand(-2,2.5)),1,16);
   const lap=Math.max(2,Math.round(cat.laps*.4));
   setupTV(team,posBefore,cfg.circuit,cat,lap-1,wx);
-  R={...cfg,D,car,crew,gcrew,seated,offM,onM,mine,gunner,newCompound,altCompound,trolley,wx,temp:randi(W0.temp[0],W0.temp[1]),wxm:wxMods(wx),acc:[],reactAll:[],crewLook,t0:now(),phase:'garage',warnAt:rand(13,18),events:rollEvents(D),
+  R={...cfg,jacks,D,car,crew,gcrew,seated,offM,onM,mine,gunner,newCompound,altCompound,trolley,wx,temp:randi(W0.temp[0],W0.temp[1]),wxm:wxMods(wx),acc:[],reactAll:[],crewLook,t0:now(),phase:'garage',warnAt:rand(13,18),events:rollEvents(D),
     errors:[],pen:0,perfect:0,posBefore,lap,called:false,run:0,runT:0,fetch:null,reacts:[],runners:[],
     prepped:false,gunDir:'L',inBox:false,carState:'away',tStop:0,tRelease:0,step:null,si:-1,steps:[],holding:false,lock:0,
     par:+(cat.par*D.par).toFixed(1),ai:{},flags:{},stepsLog:[],nextChat:4.5,chatIdx:randi(0,CHATTER.length-1),stopX:0,eng:null};
@@ -77,10 +71,10 @@ function startRace(cfg){
   R.carInfo={compound:oldCompound,lap0:lap,stint:randi(8,Math.max(9,Math.round(lap*.7))),wear:{FL:rand(52,64),FR:rand(55,68),RL:rand(48,60),RR:rand(50,63)},rate:W0.wet?1.1:1.6,
     temp:{FL:0,FR:0,RL:0,RR:0},lastLap:lapT*rand(1.005,1.02),fuel:rand(30,45)};
   ['FL','FR','RL','RR'].forEach(k=>R.carInfo.temp[k]=Math.round((W0.wet?62:wx==='hot'?108:wx==='cold'?82:96)+rand(-4,5)));
-  R.preWarnAt=R.warnAt-6;gearInit();
+  R.preWarnAt=R.warnAt-6;gearInit();R.rival=setupRival(cat,team);
   R.stopX=R.events.has('overshoot')?.55:0;
   const base=R.par*.5;
-  ['FR','RR','RL'].forEach(k=>{if(!mine.includes(k))R.ai[k]={start:rand(.3,.5),done:base*rand(.85,1.1),st:'pending'};});
+  ['FR','RR','RL'].forEach(k=>{if(!mine.includes(k))R.ai[k]=gunner?{start:rand(.18,.3),done:cat.par*rand(.66,.8),st:'pending'}:{start:rand(.3,.5),done:base*rand(.85,1.1),st:'pending'};});
   if(R.events.has('crewdelay'))R.ai.RR.done+=rand(2,3.5)*(cfg.diff==='hard'?1.2:1);
   if(cat.refuel)R.ai.FUEL={start:.6,done:cat.refuel*D.par*.9,st:'pending'};
   // HUD
@@ -222,16 +216,16 @@ function carStopped(){
   if(!R.inBox)err('late','Atrasado para a box!',.6);
   else if(!R.prepped)err('noprep','Ferramenta não estava pronta!',.5);
   else if(!R.positioned){err('pos','Não estavas na posição!',.35);later(()=>finishPositioning(.2),350);}
-  later(()=>{R.carState='jacked';Snd.hiss(.35,.2);Snd.clank(300,.15);
-    tween(.25,k=>{R.car.position.y=.09*ease(k);});tryBeginWork();},300);
+  const jd=R.gunner?170:300;jackUp(jd/1000);
+  later(()=>{R.carState='jacked';Snd.hiss(.35,.2);Snd.clank(300,.15);tryBeginWork();},jd);
 }
 function tryBeginWork(){
   if(!R||R.working||!R.prepped||!R.inBox||!R.positioned||R.carState!=='jacked')return;
   R.working=true;gearResolve();$('#posMeter').hidden=true;
   const pose=wheelPose(R.car,R.mine[0],0);
   if(R.events.has('overshoot')){pose[0].x-=R.stopX;pose[1].x-=R.stopX;}
-  camTo(pose[0],pose[1],7);
-  R.steps=buildSteps();R.si=-1;R.lock=now()+.3;later(nextStep,250);
+  camTo(pose[0],pose[1],R.gunner?13:7);
+  R.steps=buildSteps();R.si=-1;R.lock=now()+(R.gunner?.08:.3);later(nextStep,R.gunner?90:250);
 }
 function buildSteps(){
   const st=[],E=R.events,ex=R.D.explicitSwitch;
@@ -294,7 +288,7 @@ function nextStep(){
       const nut=wk.wheel.userData.nut;nut.visible=true;nut.position.z=nut.userData.z0;
       if(R.D.aids>=3&&R.gunDir!=='T')$('#dirSwitch').classList.add('pulse');break;}
     case 'confirm':showAction('✋ PRONTO','ready',()=>{Snd.good();tween(.25,k=>{W.fp.userData.lhG.position.y=.03+k*.25;},()=>tween(.3,k=>{W.fp.userData.lhG.position.y=.28-k*.25;}));done(.2);});break;
-    case 'signal':showAction('🟢 BOTÃO · SINAL VERDE','ready',()=>{Snd.good();Snd.tone({f:1500,dur:.08,vol:.12});done(.15);});break;
+    case 'signal':showAction('🟢 BOTÃO · SINAL VERDE','ready',()=>{Snd.good();Snd.tone({f:1500,dur:.08,vol:.12});done(.04);});break;
   }
 }
 /* troca feita pelos colegas (modo pistoleiro): um tira a roda velha, outro põe a nova */
@@ -309,17 +303,17 @@ function startSwap(){
   const wk=R.cw,old=wk.wheel,E=R.events,ud=old.userData,first=wk===R.car.userData.wheels[R.mine[0]];
   old.add(aiArms(-1,R.team.c1));R.swapSeat=0;Snd.thud(.4);
   if(R.offM){const o=R.offM.position.clone();tween(.6,k=>{R.offM.position.x=o.x+Math.sin(k*Math.PI)*.25;R.offM.position.z=o.z-Math.sin(k*Math.PI)*.2;});}
-  tween(.3,k=>{old.position.z=.5*ease(k);},()=>{
-    tween(.24,k=>{old.position.x=-1.4*ease(k);old.position.y=-.08*k;},()=>{wk.slot.remove(old);});
+  tween(.2,k=>{old.position.z=.5*ease(k);},()=>{
+    tween(.18,k=>{old.position.x=-1.4*ease(k);old.position.y=-.08*k;},()=>{wk.slot.remove(old);});
     if(W.placed)W.placed.visible=false;
     const nw=makeWheel(ud.r,ud.w,R.picked||R.newCompound,first&&E.has('blanket'));nw.userData.nut.visible=false;nw.position.set(1.4,-.05,.5);
     const arms=aiArms(1,R.team.c1);nw.add(arms);wk.slot.add(nw);wk.wheel=nw;nw.traverse(o=>{if(o.isMesh)o.castShadow=true;});
     if(R.onM){const o=R.onM.position.clone();tween(.7,k=>{R.onM.position.x=o.x+Math.sin(k*Math.PI)*.25;R.onM.position.z=o.z-Math.sin(k*Math.PI)*.2;});}
-    let wait=60;
+    let wait=0;
     if(first&&E.has('debris')){toast('Detritos no cubo — o colega limpa','warn',1000);wait+=450;}
     later(()=>{
-      tween(.26,k=>{nw.position.x=1.4*(1-ease(k));nw.position.y=-.05*(1-k);},()=>{
-        const seat=()=>tween(.14,k=>{nw.position.z=.5*(1-k);},()=>{
+      tween(.2,k=>{nw.position.x=1.4*(1-ease(k));nw.position.y=-.05*(1-k);},()=>{
+        const seat=()=>tween(.1,k=>{nw.position.z=.5*(1-k);},()=>{
           Snd.clank(260,.35);Snd.thud(.3);Cam.shake=.03;R.swapSeat=now();nw.remove(arms);
           setPrompt('AGORA! APERTA!');done(0);});
         const bl=nw.userData.blanket;
@@ -347,7 +341,7 @@ function completeLoosen(){
   R.holding=false;Snd.gunStop(true);setRing(1);$('#trigger').classList.remove('held');
   const nut=R.cw.wheel.userData.nut;const z0=nut.position.z;
   tween(.18,k=>{nut.position.z=z0+.1*k;},()=>{nut.visible=false;});
-  done(.15);
+  done(R.gunner?.04:.15);
 }
 function doRemove(){
   const wk=R.cw,old=wk.wheel;Snd.thud(.5);
@@ -388,7 +382,7 @@ function evalTorque(){
   finishTighten();
 }
 function tqBand(){const b=skillBonus().tq;return[R.D.tq[0]-b,Math.min(.97,R.D.tq[1]+b)];}
-function finishTighten(){R.holding=false;Snd.gunStop(true);$('#trigger').classList.remove('held');done(.15);}
+function finishTighten(){R.holding=false;Snd.gunStop(true);$('#trigger').classList.remove('held');done(R.gunner?.04:.15);}
 
 /* entrada: gatilho */
 function trigDown(e){
@@ -456,7 +450,7 @@ function release(){
   R.phase='release';R.tRelease=now();
   const t=raceTime();$('#timer').textContent=f2(t);$('#timer').className='timer done';$('#timer').style.color='';
   W.lightR.color.setHex(0x301010);W.lightG.color.setHex(0x22ff55);
-  Snd.hiss(.4,.25);tween(.2,k=>{R.car.position.y=.09*(1-k);});
+  Snd.hiss(.4,.25);jackDown(.18);showPitGraphic(R,t);
   camTo(POSE.release[0],POSE.release[1],2.2);W.fp.visible=false;
   const good=t<=R.par;
   radio(good?'Vai, vai, vai! Excelente paragem!':'Vai, vai! Vamos lá recuperar.','ENGENHEIRO',true);
@@ -494,12 +488,11 @@ function updateRace(t,dt){
   if(r.phase==='prep'&&!r.called&&t>r.carStopAt-4.4)callPit();
   // carro
   const tArr=r.carStopAt?r.carStopAt-t:999;
-  if(r.carStopAt&&r.carState==='away'&&tArr<3.4){r.carState='approach';r.car.visible=true;r.eng=Snd.engine();}
+  if(r.carStopAt&&r.carState==='away'&&tArr<APPROACH_T){r.carState='approach';r.car.visible=true;r.eng=Snd.engine();}
+  if((r.carState==='stopped'||r.carState==='jacked')&&r.phase!=='release')updateStopped(r,t,dt);
+  updateRival(r,t,dt);
   if(r.carState==='approach'){
-    const k=clamp(1-tArr/3.4,0,1);const L=60;r.car.position.x=r.stopX-L*Math.pow(1-k,2);
-    const spd=2*L*(1-k)/3.4;if(r.eng)r.eng.set(95+spd*2.4,.28,spd>3?.9:0);
-    r.car.userData.body.position.y=Math.sin(t*30)*.004;
-    if(k>=1){r.car.position.x=r.stopX;if(r.eng)r.eng.set(70,.16,0,.2);carStopped();}
+    if(updateApproach(r,t,dt,tArr)){r.car.position.set(r.stopX,0,0);r.car.rotation.y=0;if(r.eng)r.eng.set(68,.16,0,.2);carStopped();}
     if(r.inBox&&!r.working&&r.positioned)camTo(POSE.stand[0],V(r.car.position.x,.6,0),3.5);
   }
   // pit
@@ -508,13 +501,13 @@ function updateRace(t,dt){
     $('#timer').style.color=rt>r.par?'var(--alert)':'';
     const st=now()-r.tStop;
     Object.entries(r.ai).forEach(([k,a])=>{
-      if(a.st==='pending'&&st>a.start){a.st='work';setWheelState(k,'work');if(k!=='FUEL')Snd.distantGun(0);}
+      if(a.st==='pending'&&st>a.start){a.st='work';setWheelState(k,'work');if(k!=='FUEL'){Snd.distantGun(0);aiSwap(k,a);}}
       if(a.st==='work'&&st>a.done){a.st='done';setWheelState(k,'done');if(k!=='FUEL'){Snd.distantGun(0);Snd.clank(600,.06);}}
     });
     const left=Object.values(r.ai).filter(a=>a.st!=='done').length;
     $('#opsTxt').textContent=left?`Equipa: ${left} ${left===1?'tarefa':'tarefas'} em curso`:'Equipa: tudo pronto';
-    if(r.playerDone&&!left&&r.phase!=='release')release();
-    if(r.step&&r.step.id!=='swap'&&!r.slow&&now()-r.stepStart>r.D.slow*(r.step.id==='loosen'||r.step.id==='tighten'?1.4:1)){
+    if(r.playerDone&&!left&&r.phase!=='release'){if(laneClear(r))release();else if(!r.flags.hold){r.flags.hold=1;setPrompt('Carro a passar no pit lane: espera pela luz verde!',true);radio('Espera, espera! Carro a passar!','chief',true);}}
+    if(r.step&&r.step.id!=='swap'&&!r.slow&&now()-r.stepStart>r.D.slow*(r.gunner?.55:1)*(r.step.id==='loosen'||r.step.id==='tighten'?1.4:1)){
       r.slow=true;R.errors.push({code:'slow',msg:'Demasiado lento: '+STEP_TXT[r.step.id].split(/[!:]/)[0],pen:0});$('#hErr').textContent=r.errors.length;
       if(R.D.aids>=1)setPrompt('DEPRESSA! '+STEP_TXT[r.step.id],true);Snd.tone({f:400,type:'square',dur:.1,vol:.08});
       if(Math.random()<.5)radio(pick(['Vamos, vamos!','Mais rápido!','O que se passa aí?']),'chief',true);
@@ -523,7 +516,7 @@ function updateRace(t,dt){
   // gatilho premido
   if(r.holding&&r.step){
     const sock=W.fp.userData.sock;sock.rotation.z+=dt*60*(r.gunDir==='L'?-1:1);Cam.shake=Math.max(Cam.shake,.008);
-    W.fp.position.z=W.fp.userData.base.z+.02;
+    const bz=W.fp.userData.base;W.fp.position.set(bz.x-.012+(Math.random()-.5)*.004,bz.y+.01+(Math.random()-.5)*.004,bz.z-.05);
     const nut=r.cw.wheel.userData.nut;
     if(r.step.id==='loosen'&&!r.jammed){
       r.prog+=dt/r.need;nut.rotation.z-=dt*40;setRing(r.prog);
@@ -535,7 +528,7 @@ function updateRace(t,dt){
       r.tq+=dt*r.tqRate;nut.rotation.z+=dt*40;$('#qFill').style.width=Math.min(100,r.tq*100)+'%';setRing(r.tq);
       if(r.tq>=1){err('over','Binário excessivo!',.6);finishTighten();}
     }
-  }else if(W.fp){W.fp.position.z=lerp(W.fp.position.z,W.fp.userData.base.z,.3);}
+  }else if(W.fp){W.fp.position.lerp(W.fp.userData.base,.25);}
   if(r.step&&r.step.id==='fit'){const m=fitMarker();$('#tMarker').style.left=(m*100)+'%';
     if(!r.fitting&&now()>=r.lock&&r.cw.wheel)r.cw.wheel.position.x=(m-r.fitC)*.9;}
   if(r.prepped&&!r.positioned&&r.posOff!=null){
@@ -543,8 +536,5 @@ function updateRace(t,dt){
     if(Math.abs(r.posOff)<r.posZone&&Math.abs(r.posTgt-r.posOff)<.03){r.posHold+=dt;if(r.posHold>.35)finishPositioning(clamp(1-Math.abs(r.posOff)/r.posZone*.5,0,1));}else r.posHold=0;
     if(!r.positioned){const sp=POSE.stand[0].clone();sp.x+=r.posOff*1.3;if(r.carState==='approach')camTo(sp,V(r.car.position.x,.6,0),3.5);else camTo(sp,POSE.stand[1],5);}}
   // saída
-  if(r.phase==='release'){
-    const lt=t-r.leaveT-.25;if(lt>0){r.car.position.x=r.stopX+.5*14*lt*lt;if(r.eng)r.eng.set(120+Math.min(260,lt*160),.35);}
-    if(lt>2.6&&r.eng){r.eng.stop();r.eng=null;}
-  }
+  if(r.phase==='release')updateRelease(r,t,dt);
 }
