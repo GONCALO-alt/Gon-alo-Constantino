@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0d0a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Sinuca em pixel art contra caricaturas de famosos: torneios, sobrevivência, desafios, loja e muito mais.">
+<title>Sinuca das Estrelas</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" aria-label="Mesa de sinuca"></canvas>
+  <div id="hud" hidden>
+    <div id="topbar">
+      <button id="bPause" aria-label="Pausa">☰</button>
+      <span id="modeTitle"></span>
+      <span class="chip coins"><i class="ic ic-coin"></i><b class="coinVal">0</b></span>
+    </div>
+    <div id="oppTag" class="tag"></div>
+    <div id="bubble" class="bubble" hidden></div>
+    <div id="panel" class="panel" hidden></div>
+    <div id="comment" class="comment" hidden></div>
+    <div id="hint" class="hint" hidden></div>
+    <div id="turnTag" class="turnTag"></div>
+    <div id="meTag" class="tag"></div>
+    <div id="aimBtns"><button id="aimL" aria-label="Rodar mira para a esquerda">◀</button><span>MIRA FINA</span><button id="aimR" aria-label="Rodar mira para a direita">▶</button></div>
+  </div>
+</div>
+<div id="ui" hidden></div>
+<div id="toasts" aria-live="polite"></div>
+<noscript>Este jogo precisa de JavaScript.</noscript>
+<script src="js/util.js"></script>
+<script src="js/data.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/physics.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/scenes.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/modes.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
