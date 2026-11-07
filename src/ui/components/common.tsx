@@ -40,18 +40,19 @@ export function Icon({ name, size = 22, label }: { name: keyof typeof PATHS | st
   );
 }
 
-/** Logótipo: a bandeira dos Países Baixos num quadrado arredondado (o mesmo desenho do ícone da app). */
+/** Logótipo: a bandeira dos Países Baixos ondulada sobre fundo escuro (o mesmo desenho do ícone da app). */
+const FLAG_RED = 'M14 22.4 L18 24.8 L22 26.7 L26 27.7 L30 27.9 L34 27.4 L38 26.7 L42 26.1 L46 25.8 L50 25.6 L54 25.2 L58 24.3 L62 22.9 L66 21.2 L70 19.6 L74 18.7 L78 19.0 L82 20.3 L86 22.4 L86 39.4 L82 37.3 L78 36.0 L74 35.7 L70 36.6 L66 38.2 L62 39.9 L58 41.3 L54 42.2 L50 42.6 L46 42.8 L42 43.1 L38 43.7 L34 44.4 L30 44.9 L26 44.7 L22 43.7 L18 41.8 L14 39.4 Z';
+const FLAG_WHITE = 'M14 39.0 L18 41.4 L22 43.3 L26 44.3 L30 44.5 L34 44.0 L38 43.3 L42 42.7 L46 42.4 L50 42.2 L54 41.8 L58 40.9 L62 39.5 L66 37.8 L70 36.2 L74 35.3 L78 35.6 L82 36.9 L86 39.0 L86 56.4 L82 54.3 L78 53.0 L74 52.7 L70 53.6 L66 55.2 L62 56.9 L58 58.3 L54 59.2 L50 59.6 L46 59.8 L42 60.1 L38 60.7 L34 61.4 L30 61.9 L26 61.7 L22 60.7 L18 58.8 L14 56.4 Z';
+const FLAG_BLUE = 'M14 56.0 L18 58.4 L22 60.3 L26 61.3 L30 61.5 L34 61.0 L38 60.3 L42 59.7 L46 59.4 L50 59.2 L54 58.8 L58 57.9 L62 56.5 L66 54.8 L70 53.2 L74 52.3 L78 52.6 L82 53.9 L86 56.0 L86 73.4 L82 71.3 L78 70.0 L74 69.7 L70 70.6 L66 72.2 L62 73.9 L58 75.3 L54 76.2 L50 76.6 L46 76.8 L42 77.1 L38 77.7 L34 78.4 L30 78.9 L26 78.7 L22 77.7 L18 75.8 L14 73.4 Z';
+
 export function Logo({ compact = false }: { compact?: boolean }) {
   return (
     <span className="logo">
-      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-        <clipPath id="logo-clip"><rect width="30" height="30" rx="8" /></clipPath>
-        <g clipPath="url(#logo-clip)">
-          <rect width="30" height="10" fill="#ae1c28" />
-          <rect y="10" width="30" height="10" fill="#ffffff" />
-          <rect y="20" width="30" height="10" fill="#21468b" />
-        </g>
-        <rect x="0.5" y="0.5" width="29" height="29" rx="7.5" fill="none" stroke="rgb(0 0 0 / 12%)" />
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="100" height="100" rx="22" fill="#1c2836" />
+        <path d={FLAG_RED} fill="#ae1c28" />
+        <path d={FLAG_WHITE} fill="#ffffff" />
+        <path d={FLAG_BLUE} fill="#21468b" />
       </svg>
       {!compact && <span className="logo-text">{APP_CONFIG.name}</span>}
     </span>
