@@ -24,6 +24,8 @@ export function loadGlossary(): Promise<Glossary> {
 }
 
 const GlossaryContext = createContext<Glossary | null>(null);
+/** Dicionário do curso (null enquanto carrega). */
+export const useGlossary = () => useContext(GlossaryContext);
 
 export function GlossaryProvider({ children }: { children: ReactNode }) {
   const [glossary, setGlossary] = useState<Glossary | null>(null);

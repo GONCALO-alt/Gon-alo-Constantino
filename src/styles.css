@@ -686,3 +686,74 @@ a.home-stat { color: var(--text); }
 .save-star.big { font-size: 1.7rem; padding: 4px 6px; }
 .review-extra { margin: 12px 0 4px; }
 .dictionary .btn-go { margin: 6px 0 4px; }
+
+/* ---------------------------------------------------------------------------
+   Painel «Traduções» (ensinar primeiro): sempre disponível nos exercícios.
+   --------------------------------------------------------------------------- */
+.help-btn { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 12px; border-radius: 14px; cursor: pointer;
+  border: 2px solid var(--line); background: var(--surface); color: var(--brand); font-weight: 800; box-shadow: 0 3px 0 var(--line); transition: transform 0.08s ease; }
+.help-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--line); }
+@media (max-width: 380px) { .help-btn span { display: none; } }
+.sheet-backdrop { position: fixed; inset: 0; z-index: 60; background: rgb(10 16 24 / 55%); display: flex; align-items: flex-end; justify-content: center; animation: fade-in 0.15s ease; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.sheet { width: 100%; max-width: 680px; max-height: 86vh; display: flex; flex-direction: column; background: var(--bg); border-radius: 22px 22px 0 0;
+  box-shadow: 0 -8px 30px rgb(0 0 0 / 25%); animation: sheet-up 0.25s cubic-bezier(0.2, 0.9, 0.3, 1); padding-bottom: env(safe-area-inset-bottom); }
+@keyframes sheet-up { from { transform: translateY(40px); opacity: 0.4; } to { transform: none; opacity: 1; } }
+@media (min-width: 700px) { .sheet-backdrop { align-items: center; } .sheet { border-radius: 22px; } }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 6px; }
+.sheet-head h2 { margin: 0; }
+.sheet-body { overflow-y: auto; padding: 4px 16px 20px; overscroll-behavior: contain; }
+.help-section { margin: 10px 0 16px; }
+.help-section h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 8px; }
+.help-sentence { padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 2px solid var(--line); margin-bottom: 8px; }
+.help-sentence p { margin: 2px 0; }
+.help-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.help-word { padding: 10px 12px; border-radius: 16px; background: var(--surface); border: 2px solid var(--line); animation: rise 0.2s ease both; }
+.help-word-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.help-word-head strong { font-size: 1.1rem; }
+.help-pron { color: var(--muted); font-size: 0.9rem; font-style: italic; }
+.help-meaning { margin: 4px 0 0; font-weight: 700; color: var(--brand); }
+.help-example { margin: 6px 0 0; padding: 6px 8px; border-radius: 10px; background: var(--bg); }
+.help-grammar { padding: 10px 12px; border-radius: 16px; background: var(--surface); border: 2px solid var(--line); margin-bottom: 8px; }
+.help-grammar summary { cursor: pointer; font-weight: 800; }
+.spoiler-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; padding: 6px 12px; border-radius: 12px; cursor: pointer;
+  border: 2px dashed var(--line); background: var(--bg); color: var(--muted); font-weight: 700; }
+.spoiler-btn:hover { border-color: var(--brand); color: var(--brand); }
+.help-hint { display: flex; gap: 6px; align-items: flex-start; padding: 8px 12px; border-radius: 12px; background: var(--surface); color: var(--muted); margin: 4px 0 8px; }
+
+/* ---------------------------------------------------------------------------
+   Fase «Aprender» (antes dos exercícios)
+   --------------------------------------------------------------------------- */
+.learn-skip { flex: none; font-weight: 700; text-decoration: none; padding: 8px 6px; }
+.learn-card { padding: 18px; border-radius: 22px; background: var(--surface); border: 2px solid var(--line); box-shadow: 0 5px 0 var(--line); margin-top: 8px; }
+.learn-card h1 { margin: 0; font-size: 2rem; overflow-wrap: anywhere; }
+.learn-word { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.learn-word .speak { width: 48px; height: 48px; border-radius: 14px; }
+.learn-facts { display: grid; gap: 10px; margin: 16px 0 6px; }
+.learn-facts dt { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.learn-facts dd { margin: 2px 0 0; font-size: 1.05rem; }
+.learn-meaning { font-size: 1.35rem !important; font-weight: 800; color: var(--brand); }
+.learn-box { margin-top: 12px; padding: 12px 14px; border-radius: 16px; background: var(--bg); }
+.learn-box p { margin: 2px 0; }
+.learn-box-title { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.learn-example { border-left: 4px solid var(--accent); }
+.learn-literal { display: inline-block; margin: 2px 12px 2px 0; }
+.learn-body { font-size: 1.08rem; line-height: 1.6; }
+.learn-examples li { padding: 8px 10px; border-radius: 12px; background: var(--bg); }
+.learn-ready { text-align: center; display: grid; justify-items: center; gap: 6px; }
+.learn-ready .mascot { animation: mascot-dance 1.2s ease-in-out 2; }
+.learn-recap { list-style: none; padding: 0; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.learn-recap li { padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 2px solid var(--line); }
+
+/* «As minhas palavras» (revisão) */
+.word-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+.word-tab { padding: 10px 6px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface); color: var(--text); font-weight: 800; cursor: pointer; box-shadow: 0 3px 0 var(--line); }
+.word-tab-n { display: inline-block; min-width: 1.6em; padding: 0 6px; border-radius: 99px; background: var(--bg); font-size: 0.85rem; }
+.word-tab.on.tab-hard { border-color: var(--err); color: var(--err); }
+.word-tab.on.tab-learning { border-color: var(--brand); color: var(--brand); }
+.word-tab.on.tab-mastered { border-color: var(--ok); color: var(--ok); }
+.word-status-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.word-status-list li { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 14px; background: var(--bg); animation: rise 0.2s ease both; }
+.ws-word { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.ws-counts { flex: none; font-weight: 800; font-size: 0.9rem; }
+.ws-ok { color: var(--ok); } .ws-bad { color: var(--err); margin-left: 6px; }

@@ -6,10 +6,10 @@ import { getAllAttempts, getAllReviews, recordReviewSession, type CompletionOutc
 import { openMistakes, reviewItemOf, type OpenMistake } from '../../engine/mistakes.ts';
 import { encouragement, XP_RULES } from '../../engine/progression.ts';
 import { buildReviewExercise, seededRandom, shuffle, type ReviewVocab } from '../../engine/session.ts';
-import { isDue, isHard, isMastered, pickDue } from '../../engine/srs.ts';
+import { isDue, isHard, isMastered, pickDue, wordStatus, type WordStatus } from '../../engine/srs.ts';
 import { celebrate } from '../../services/sounds.ts';
 import { useAppData, type AppData } from '../AppState.tsx';
-import { Card, EmptyState, Icon } from '../components/common.tsx';
+import { Card, EmptyState, Icon, SpeakButton } from '../components/common.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
 import { href, navigate, type ReviewMode } from '../router.ts';
 
@@ -41,7 +41,7 @@ export function ReviewScreen() {
   const { reviews, vocab, mistakes } = state;
   const due = reviews.filter((r) => isDue(r, now));
   const hard = reviews.filter(isHard);
-  const forgotten = reviews.filter((r) => r.lapses > 0).sort((a, b) => b.lapses - a.lapses);
+  const forgotten = reviews.filter((r) => r.lapses > 0);
   const mastered = reviews.filter(isMastered).length;
   const unitOf = (lessonId: string | null) => {
     if (!lessonId) return null;
@@ -81,16 +81,7 @@ export function ReviewScreen() {
         <a className="btn btn-secondary" href={href.dictionary()}>★ O meu dicionário ({app.savedWords.size})</a>
         <a className="btn btn-secondary" href={href.search()}><Icon name="search" size={18} /> Pesquisar</a>
       </div>
-      <div className="two-col">
-        <Card>
-          <h2>Palavras difíceis</h2>
-          {hard.length ? <ul className="word-list">{hard.slice(0, 15).map((r) => <li key={r.itemId}>{word(r.itemId)}</li>)}</ul> : <p className="muted small">Nenhuma por agora.</p>}
-        </Card>
-        <Card>
-          <h2>Palavras esquecidas</h2>
-          {forgotten.length ? <ul className="word-list">{forgotten.slice(0, 15).map((r) => <li key={r.itemId}>{word(r.itemId)} <span className="muted small">({r.lapses}×)</span></li>)}</ul> : <p className="muted small">Nenhuma — boa memória!</p>}
-        </Card>
-      </div>
+      <MyWords reviews={reviews} vocab={vocab} />
       <Card>
         <h2>Os meus erros</h2>
         <p className="muted small">Exercícios em que a última resposta foi errada. Quando acertar, saem da lista.</p>
@@ -114,6 +105,58 @@ export function ReviewScreen() {
   );
 }
 
+
+const STATUS_TABS: { id: WordStatus; label: string; empty: string }[] = [
+  { id: 'hard', label: 'Difíceis', empty: 'Nenhuma palavra difícil por agora.' },
+  { id: 'learning', label: 'A aprender', empty: 'Nenhuma palavra em aprendizagem.' },
+  { id: 'mastered', label: 'Já sei', empty: 'Ainda nenhuma palavra bem consolidada. Continue a rever!' },
+];
+
+/** «As minhas palavras»: cada palavra com o estado (difícil / a aprender / já sei) e os acertos e erros. */
+function MyWords({ reviews, vocab }: { reviews: ReviewSchedule[]; vocab: Map<string, ReviewVocab> }) {
+  const { settings } = useAppData();
+  const known = reviews.filter((r) => vocab.has(r.itemId));
+  const groups = new Map<WordStatus, ReviewSchedule[]>(STATUS_TABS.map((t) => [t.id, []]));
+  for (const r of known) groups.get(wordStatus(r))!.push(r);
+  groups.get('hard')!.sort((a, b) => b.incorrect + b.lapses - (a.incorrect + a.lapses));
+  groups.get('learning')!.sort((a, b) => a.dueAt - b.dueAt);
+  groups.get('mastered')!.sort((a, b) => b.correct - a.correct);
+  const [tab, setTab] = useState<WordStatus>(() => (groups.get('hard')!.length ? 'hard' : 'learning'));
+  const [limit, setLimit] = useState(30);
+  const list = groups.get(tab)!;
+  return (
+    <Card>
+      <h2>As minhas palavras</h2>
+      <p className="muted small">Cada resposta conta: as palavras com mais erros voltam mais vezes, também dentro das lições.</p>
+      <div className="word-tabs" role="tablist" aria-label="Estado das palavras">
+        {STATUS_TABS.map((t) => (
+          <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} className={`word-tab tab-${t.id} ${tab === t.id ? 'on' : ''}`}
+            onClick={() => { setTab(t.id); setLimit(30); }}>
+            {t.label} <span className="word-tab-n">{groups.get(t.id)!.length}</span>
+          </button>
+        ))}
+      </div>
+      {list.length === 0 ? <p className="muted small">{STATUS_TABS.find((t) => t.id === tab)!.empty}</p> : (
+        <ul className="word-status-list" role="tabpanel">
+          {list.slice(0, limit).map((r) => {
+            const v = vocab.get(r.itemId)!;
+            const head = `${v.article ? `${v.article} ` : ''}${v.nl}`;
+            return (
+              <li key={r.itemId}>
+                {settings.audioEnabled && <SpeakButton text={head} rate={settings.speechRate} />}
+                <span className="ws-word"><strong lang="nl">{head}</strong> <span className="muted">— {v.pt[0]}</span></span>
+                <span className="ws-counts" aria-label={`${r.correct} certas, ${r.incorrect} erradas`}>
+                  <span className="ws-ok">✓ {r.correct}</span> <span className="ws-bad">✗ {r.incorrect}</span>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {list.length > limit && <button type="button" className="link-btn" onClick={() => setLimit((l) => l + 50)}>Mostrar mais ({list.length - limit})</button>}
+    </Card>
+  );
+}
 
 export function exerciseTypeLabel(t: string): string {
   const labels: Record<string, string> = {

@@ -10,6 +10,8 @@ import { contentRepo } from '../src/data/contentRepo.ts';
 import * as repo from '../src/data/progressRepo.ts';
 import { expandAnswerPattern } from '../src/engine/answers.ts';
 import { App } from '../src/ui/App.tsx';
+import { AppProvider } from '../src/ui/AppState.tsx';
+import { ExerciseRunner } from '../src/ui/exercises/ExerciseRunner.tsx';
 import { parseRoute } from '../src/ui/router.ts';
 import { fetcherFor, lessonOf, realFiles, realStructure } from './helpers.ts';
 
@@ -18,6 +20,8 @@ const fetcher = fetcherFor();
 beforeEach(async () => {
   try { localStorage.clear(); } catch { /* sem armazenamento */ }
   await repo.deleteAllData();
+  // A maior parte dos testes vai direto aos exercícios; a fase «Aprender» tem o seu próprio teste.
+  await repo.saveSettings({ ...(await repo.getSettings()), teachFirst: false });
   contentRepo.clear();
   vi.stubGlobal('fetch', (url: string) => fetcher(url));
   vi.stubGlobal('scrollTo', () => {});
@@ -57,6 +61,107 @@ describe('caminho de lições no ecrã inicial', () => {
     await user.click(locked);
     expect(screen.getByRole('dialog').textContent).toMatch(/Conclua as lições anteriores/);
   });
+});
+
+describe('ensinar primeiro', () => {
+  it('antes dos exercícios, apresenta cada palavra nova (significado, pronúncia, exemplo) e depois a prática', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    await repo.saveSettings({ ...(await repo.getSettings()), teachFirst: true });
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    const v = lesson.newVocabulary[0]!;
+    expect(await screen.findByRole('heading', { name: v.article ? `${v.article} ${v.nl}` : v.nl })).toBeTruthy();
+    expect(screen.getByText(v.pt.join(', '))).toBeTruthy();
+    expect(screen.getByText('Pronúncia (aproximada)')).toBeTruthy();
+    for (let i = 1; i < lesson.newVocabulary.length + lesson.grammar.length; i++) await user.click(screen.getByRole('button', { name: 'Seguinte' }));
+    await user.click(screen.getByRole('button', { name: 'Seguinte' }));
+    expect(await screen.findByRole('heading', { name: 'Agora vamos praticar!' })).toBeTruthy();
+    await user.click(screen.getByRole('button', { name: 'Começar os exercícios' }));
+    expect(await screen.findByRole('heading', { name: lesson.exercises[0]!.instruction })).toBeTruthy();
+  }, 30_000);
+
+  it('o botão «Traduções» está em todos os exercícios e explica as palavras sem sair', async () => {
+    const user = userEvent.setup();
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    for (const ex of lesson.exercises.slice(0, 6)) {
+      await screen.findByRole('heading', { name: ex.instruction });
+      await user.click(screen.getByRole('button', { name: 'Traduções e explicações' }));
+      const sheet = await screen.findByRole('dialog', { name: 'Traduções e explicações' });
+      // Há sempre alguma coisa explicada: uma frase, uma palavra ou as palavras do exercício.
+      await waitFor(() => expect(sheet.querySelectorAll('.help-word, .help-sentence').length, ex.id).toBeGreaterThan(0));
+      await user.click(within(sheet).getByRole('button', { name: 'Fechar traduções' }));
+      if ((await answerCorrectly(user, ex)) !== 'skipped') await user.click(await screen.findByRole('button', { name: 'Continuar' }));
+    }
+  }, 60_000);
+});
+
+describe('tradução sempre acessível em TODOS os tipos de exercício', () => {
+  const all = realFiles().flatMap((f) => f.lessons).flatMap((l) => l.exercises);
+  const types = [...new Set(all.map((e) => e.type))];
+  it.each(types)('%s: o painel «Traduções» explica o exercício sem sair dele', async (type) => {
+    const user = userEvent.setup();
+    const ex = all.find((e) => e.type === type)!;
+    render(
+      <AppProvider>
+        <ExerciseRunner exercises={[ex]} title="Teste" speechRate={1} audioEnabled lenientAccents onFinish={() => {}} onExit={() => {}} />
+      </AppProvider>,
+    );
+    await screen.findByRole('heading', { name: ex.instruction });
+    await user.click(screen.getByRole('button', { name: 'Traduções e explicações' }));
+    const sheet = await screen.findByRole('dialog', { name: 'Traduções e explicações' });
+    await waitFor(() => expect(sheet.querySelectorAll('.help-word, .help-sentence').length, ex.id).toBeGreaterThan(0));
+    // O exercício continua no ecrã por baixo do painel (não se sai do exercício).
+    expect(screen.getByRole('heading', { name: ex.instruction })).toBeTruthy();
+  }, 20_000);
+
+  it('«Hoe gaat het?»: expressão com significado, palavra a palavra e pronúncia', async () => {
+    const user = userEvent.setup();
+    const ex: Exercise = { id: 's1-u02-l002-e99', type: 'translate', direction: 'nl-pt', instruction: 'Traduza para português.', explanation: 'x', vocabRefs: [], prompt: 'Hoe gaat het?', answers: ['Como estás?'] };
+    render(
+      <AppProvider>
+        <ExerciseRunner exercises={[ex]} title="Teste" speechRate={1} audioEnabled lenientAccents onFinish={() => {}} onExit={() => {}} />
+      </AppProvider>,
+    );
+    await user.click(await screen.findByRole('button', { name: 'Traduções e explicações' }));
+    const sheet = await screen.findByRole('dialog', { name: 'Traduções e explicações' });
+    await waitFor(() => expect(within(sheet).getByText('Expressões')).toBeTruthy());
+    expect(sheet.textContent).toMatch(/Palavra a palavra: hoe = /);
+    expect(sheet.textContent).toMatch(/gaat/);
+    expect(sheet.querySelectorAll('.help-pron').length).toBeGreaterThan(0);
+    // A tradução da frase é a resposta: está tapada até o aluno pedir.
+    expect(within(sheet).getByRole('button', { name: /Mostrar a tradução da frase/ })).toBeTruthy();
+  }, 20_000);
+});
+
+describe('palavras difíceis voltam nas lições', () => {
+  it('uma palavra errada antes aparece como «Palavra para rever» na lição seguinte e a revisão mostra o estado', async () => {
+    const user = userEvent.setup();
+    const l1 = lessonOf(realFiles(), 's1-u01-l001');
+    const l2 = lessonOf(realFiles(), 's1-u01-l002');
+    await repo.getProfile();
+    await repo.recordLessonCompletion({
+      lessonId: l1.id, unitId: l1.unitId, contentVersion: l1.version, difficulty: l1.difficulty,
+      answers: l1.exercises.map((e) => ({ exerciseId: e.id, exerciseType: e.type, verdict: e.vocabRefs.includes('v-doei') ? 'incorrect' : 'correct', answer: 'x', vocabRefs: e.vocabRefs })),
+      newVocabIds: l1.newVocabulary.map((v) => v.id), xp: 10, startedAt: Date.now() - 60_000, endedAt: Date.now(),
+    });
+    await repo.saveSettings({ ...(await repo.getSettings()), freeNavigation: true });
+    await go('#/licao/' + l2.id);
+    render(<App />);
+    for (const ex of l2.exercises.slice(0, 2)) {
+      await screen.findByRole('heading', { name: ex.instruction });
+      if ((await answerCorrectly(user, ex)) !== 'skipped') await user.click(await screen.findByRole('button', { name: 'Continuar' }));
+    }
+    expect(await screen.findByText(/Palavra para rever/)).toBeTruthy();
+    cleanup();
+    await go('#/revisao');
+    render(<App />);
+    const tab = await screen.findByRole('tab', { name: /Difíceis/ });
+    expect(tab.textContent).toMatch(/[1-9]/);
+    expect(screen.getByText('doei')).toBeTruthy();
+  }, 30_000);
 });
 
 describe('pesquisa e dicionário pessoal', () => {

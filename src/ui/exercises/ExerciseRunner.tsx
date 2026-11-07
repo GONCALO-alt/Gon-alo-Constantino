@@ -17,6 +17,7 @@ import { Mascot, MascotTip, mascotLine } from '../components/Mascot.tsx';
 import { Sparkles } from '../components/Celebrate.tsx';
 import { buildWordPools } from '../../engine/wordBank.ts';
 import { ExerciseView, WordPoolContext } from './ExerciseView.tsx';
+import { HelpSheet, type TeachInfo } from '../components/HelpSheet.tsx';
 
 export interface RunnerAnswer {
   exercise: Exercise;
@@ -33,6 +34,8 @@ export interface RunnerProps {
   onFinish: (firstAttempts: RunnerAnswer[], skipped: string[]) => void;
   onExit: () => void;
   title: string;
+  /** Exemplos e gramática da lição (para o painel «Traduções»). */
+  teach?: TeachInfo;
 }
 
 const VERDICT_TEXT = {
@@ -41,7 +44,7 @@ const VERDICT_TEXT = {
   incorrect: ['Ainda não.', 'Não é bem assim.', 'Resposta incorreta.'],
 } as const;
 
-export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswers = false, lenientAccents, onFinish, onExit, title }: RunnerProps) {
+export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswers = false, lenientAccents, onFinish, onExit, title, teach }: RunnerProps) {
   const [session, setSession] = useState<SessionState>(() => startSession(exercises));
   const [response, setResponse] = useState<ExerciseResponse | null>(null);
   const [result, setResult] = useState<ExerciseResult | null>(null);
@@ -49,6 +52,9 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
   const [confirmExit, setConfirmExit] = useState(false);
   /** «Não me lembro»: a resposta foi mostrada antes de o aluno responder. */
   const [revealed, setRevealed] = useState(false);
+  /** Painel «Traduções» aberto; `helped` = o aluno abriu nele parte da resposta. */
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [helped, setHelped] = useState(false);
   const firstAttempts = useRef(new Map<string, RunnerAnswer>());
   const skipped = useRef<string[]>([]);
   const continueRef = useRef<HTMLButtonElement>(null);
@@ -100,7 +106,8 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
     if (nl) speakTimer.current = setTimeout(() => void speak(nl, speechRate), Math.round(soundSecs * 1000) + 100);
     if (!firstAttempts.current.has(ex.id)) firstAttempts.current.set(ex.id, { exercise: ex, result: r });
     // Depois de ver a resposta, o exercício conta como não sabido e volta a aparecer mais tarde.
-    setSession((s) => answer(s, revealed ? 'incorrect' : r.verdict));
+    // Quem viu parte da resposta na ajuda volta a fazer o exercício no fim (sem contar como erro).
+    setSession((s) => answer(s, revealed ? 'incorrect' : r.verdict, 4, helped));
   };
 
   const reveal = () => {
@@ -131,6 +138,8 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
     setResponse(null);
     setSelfCheck(null);
     setRevealed(false);
+    setHelped(false);
+    setHelpOpen(false);
     setSession((s) => advance(s));
   };
 
@@ -157,7 +166,14 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
           <Icon name="close" />
         </button>
         <ProgressBar value={progressFraction(session)} label={`Progresso em ${title}`} tone="go" />
+        <button type="button" className="help-btn" onClick={() => setHelpOpen(true)} aria-haspopup="dialog" aria-label="Traduções e explicações">
+          <Icon name="book" size={20} /> <span>Traduções</span>
+        </button>
       </header>
+      {helpOpen && (
+        <HelpSheet exercise={ex} teach={teach} speechRate={speechRate} audioEnabled={audioEnabled}
+          onClose={() => setHelpOpen(false)} onHelped={() => setHelped(true)} />
+      )}
       {confirmExit && (
         <div className="exit-confirm" role="alertdialog" aria-labelledby="exit-title">
           <p id="exit-title"><strong>Sair agora?</strong> O progresso desta sessão não fica guardado.</p>
@@ -172,6 +188,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
         {/* Cada exercício entra a deslizar; uma resposta errada dá um pequeno abanão. */}
         <div key={`${ex.id}-${session.position}`} className={`ex-stage ${result?.verdict === 'incorrect' ? 'shake' : ''}`}>
           {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
+          {!isRetry && ex.id.startsWith('review-') && <p className="retry-tag">Palavra para rever: de uma lição anterior</p>}
           <h1 className="instruction">{ex.instruction}</h1>
           <WordPoolContext.Provider value={pools}>
             <ExerciseView exercise={ex} locked={!!result || !!selfCheck}
@@ -232,6 +249,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
               )}
               {result.note && <p className="note">{result.note}</p>}
               {revealed && <p className="note">Viu a resposta antes de responder: este exercício volta a aparecer no fim.</p>}
+              {helped && !revealed && <p className="note">Usou a ajuda para ver parte da resposta: este exercício volta no fim, para consolidar.</p>}
               {showDetails && result.optionFeedback && <p className="note">{result.optionFeedback}</p>}
               {showDetails && <p className="explanation"><RichText text={ex.explanation} /></p>}
             </div>

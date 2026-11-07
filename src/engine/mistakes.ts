@@ -32,5 +32,6 @@ export function openMistakes(attempts: readonly ExerciseAttempt[]): OpenMistake[
 
 /** ID de vocabulário de um erro da revisão (review:v-…), ou null. */
 export function reviewItemOf(exerciseId: string): string | null {
-  return exerciseId.startsWith('review:') ? exerciseId.slice(7) : null;
+  // «review:v-…» (sessões de revisão) ou «review-v-…» (palavras difíceis repetidas numa lição).
+  return /^review[:-]v-/.test(exerciseId) ? exerciseId.slice(7) : null;
 }

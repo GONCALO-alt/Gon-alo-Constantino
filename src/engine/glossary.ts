@@ -86,10 +86,35 @@ function basesFromSuffixed(stem: string): string[] {
 }
 
 /** Candidatos de forma do dicionário para uma palavra tal como aparece no texto. */
+/** Formas irregulares frequentes → infinitivo (o resto reconhece-se pelas regras). */
+const IRREGULAR: Record<string, string> = {
+  ben: 'zijn', bent: 'zijn', is: 'zijn', was: 'zijn', waren: 'zijn', geweest: 'zijn',
+  heb: 'hebben', hebt: 'hebben', heeft: 'hebben', had: 'hebben', hadden: 'hebben', gehad: 'hebben',
+  ga: 'gaan', gaat: 'gaan', ging: 'gaan', gingen: 'gaan', gegaan: 'gaan',
+  sta: 'staan', staat: 'staan', stond: 'staan', gestaan: 'staan',
+  doe: 'doen', doet: 'doen', deed: 'doen', deden: 'doen', gedaan: 'doen',
+  zie: 'zien', ziet: 'zien', zag: 'zien', zagen: 'zien', gezien: 'zien',
+  sla: 'slaan', slaat: 'slaan',
+  kan: 'kunnen', kun: 'kunnen', kunt: 'kunnen', kon: 'kunnen', konden: 'kunnen',
+  wil: 'willen', wilt: 'willen', wilde: 'willen', wou: 'willen',
+  mag: 'mogen', mocht: 'mogen', moet: 'moeten', moest: 'moeten',
+  zal: 'zullen', zult: 'zullen', zou: 'zullen', zouden: 'zullen',
+  kom: 'komen', komt: 'komen', kwam: 'komen', kwamen: 'komen', gekomen: 'komen',
+  weet: 'weten', wist: 'weten', geweten: 'weten',
+  zeg: 'zeggen', zegt: 'zeggen', zei: 'zeggen', gezegd: 'zeggen',
+  eet: 'eten', at: 'eten', gegeten: 'eten', drink: 'drinken', dronk: 'drinken', gedronken: 'drinken',
+  neem: 'nemen', neemt: 'nemen', nam: 'nemen', genomen: 'nemen',
+  geef: 'geven', geeft: 'geven', gaf: 'geven', gegeven: 'geven',
+  lees: 'lezen', leest: 'lezen', las: 'lezen', gelezen: 'lezen',
+  schrijf: 'schrijven', schrijft: 'schrijven', schreef: 'schrijven', geschreven: 'schrijven',
+  vind: 'vinden', vindt: 'vinden', vond: 'vinden', gevonden: 'vinden',
+};
+
 export function lemmaCandidates(word: string): string[] {
   const w = normalizeWord(word);
   if (!w) return [];
   const c: string[] = [w];
+  if (IRREGULAR[w]) c.push(IRREGULAR[w]);
   if (w.endsWith("'s")) c.push(w.slice(0, -2));
   // Diminutivos: huisje → huis, boompje → boom, kopje → kop.
   for (const suf of ['etje', 'tje', 'pje', 'je']) {
@@ -112,7 +137,16 @@ export function lemmaCandidates(word: string): string[] {
 
 export interface Glossary {
   lookup(word: string): GlossEntry[];
+  /** Expressões de várias palavras do curso que aparecem no texto (ex.: «hoe gaat het», «tot ziens»). */
+  expressions(text: string): GlossEntry[];
+  /** Entrada de um item de vocabulário pelo ID. */
+  byId(id: string): GlossEntry | undefined;
   size: number;
+}
+
+/** Palavras de um texto, normalizadas (para procurar expressões). */
+export function wordsOf(text: string): string[] {
+  return text.split(/\s+/).map(normalizeWord).filter(Boolean);
 }
 
 /** Chave de índice para uma entrada do vocabulário (só palavras simples ou «zich + verbo»). */
@@ -141,8 +175,36 @@ export function buildGlossary(items: readonly GlossSource[]): Glossary {
       index.set(k, list);
     }
   }
+  // Expressões: vocabulário com mais de uma palavra (sem notas nem alternativas).
+  const phrases: { words: string[]; entry: GlossEntry }[] = [];
+  const seenPhrase = new Set<string>();
+  for (const it of items) {
+    const clean = it.nl.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+    if (/[…/|]/.test(clean)) continue;
+    const words = wordsOf(clean);
+    if (words.length < 2 || words.length > 6) continue;
+    const key = `${words.join(' ')}|${it.pt[0]}`;
+    if (seenPhrase.has(key)) continue;
+    seenPhrase.add(key);
+    phrases.push({ words, entry: { id: it.id, headword: it.article ? `${it.article} ${it.nl}` : it.nl, pt: it.pt, note: it.note } });
+  }
+  const ids = new Map<string, GlossEntry>();
+  for (const it of items) if (it.id && !ids.has(it.id)) ids.set(it.id, { id: it.id, headword: it.article ? `${it.article} ${it.nl}` : it.nl, pt: it.pt, note: it.note });
   return {
     size: index.size,
+    byId: (id: string) => ids.get(id),
+    expressions(text: string): GlossEntry[] {
+      const t = wordsOf(text);
+      const found: GlossEntry[] = [];
+      for (const p of phrases) {
+        for (let i = 0; i + p.words.length <= t.length; i++) {
+          if (p.words.every((w, k) => t[i + k] === w)) { found.push(p.entry); break; }
+        }
+      }
+      // As expressões mais compridas primeiro; sem repetir o mesmo texto.
+      const seen = new Set<string>();
+      return found.sort((a, b) => b.headword.length - a.headword.length).filter((e) => (seen.has(e.headword) ? false : (seen.add(e.headword), true)));
+    },
     lookup(word: string): GlossEntry[] {
       for (const cand of lemmaCandidates(word)) {
         const hit = index.get(cand);

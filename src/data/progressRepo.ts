@@ -166,13 +166,21 @@ export async function recordLessonCompletion(c: LessonCompletion, countUnits: Un
 
   // Revisão espaçada: o vocabulário novo entra no calendário; erros antecipam a revisão.
   const reviews = tx.objectStore('reviews');
+  const isNew = new Set<string>();
   for (const id of c.newVocabIds) {
-    if (!(await reviews.get(id))) await reviews.put(newSchedule(id, now, c.difficulty));
+    if (!(await reviews.get(id))) { await reviews.put(newSchedule(id, now, c.difficulty)); isNew.add(id); }
   }
   const wrongRefs = new Set(c.answers.filter((a) => a.verdict === 'incorrect').flatMap((a) => a.vocabRefs));
   for (const id of wrongRefs) {
     const s = await reviews.get(id);
     if (s) await reviews.put(applyReview(s, 'incorrect', now));
+  }
+  // Palavras já conhecidas, acertadas sem erro nesta lição (ex.: palavras difíceis que voltaram): contam como revisão certa.
+  const rightRefs = new Set(c.answers.filter((a) => a.verdict === 'correct').flatMap((a) => a.vocabRefs));
+  for (const id of rightRefs) {
+    if (wrongRefs.has(id) || isNew.has(id)) continue;
+    const s = await reviews.get(id);
+    if (s) await reviews.put(applyReview(s, 'correct', now));
   }
 
   const ds = tx.objectStore('dailyStats');

@@ -22,14 +22,19 @@ export function currentExercise(s: SessionState): Exercise | undefined {
 }
 
 /** Regista a resposta ao exercício atual e devolve o novo estado (sem avançar). */
-export function answer(s: SessionState, verdict: Verdict, maxRetries = 4): SessionState {
+/**
+ * Regista a resposta ao exercício atual. Um exercício errado volta no fim (uma vez).
+ * `forceRetry`: volta no fim mesmo estando certo (ex.: o aluno pediu para ver a resposta na ajuda),
+ * sem contar como erro.
+ */
+export function answer(s: SessionState, verdict: Verdict, maxRetries = 4, forceRetry = false): SessionState {
   const ex = currentExercise(s);
   if (!ex) return s;
   const firstVerdicts = new Map(s.firstVerdicts);
   if (!firstVerdicts.has(ex.id)) firstVerdicts.set(ex.id, verdict);
   let queue = s.queue;
   const retried = new Set(s.retried);
-  if (verdict === 'incorrect' && !retried.has(ex.id) && retried.size < maxRetries) {
+  if ((verdict === 'incorrect' || forceRetry) && !retried.has(ex.id) && retried.size < maxRetries) {
     retried.add(ex.id);
     queue = [...queue, ex];
   }

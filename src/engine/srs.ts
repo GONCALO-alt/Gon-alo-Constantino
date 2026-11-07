@@ -108,3 +108,23 @@ export function isMastered(s: ReviewSchedule): boolean {
 function clamp(n: number, lo: number, hi: number): number {
   return Math.min(hi, Math.max(lo, n));
 }
+
+/** Estado de uma palavra para o aluno: já sei perfeitamente, difícil, ou ainda a aprender. */
+export type WordStatus = 'mastered' | 'hard' | 'learning';
+export function wordStatus(s: ReviewSchedule): WordStatus {
+  if (isMastered(s)) return 'mastered';
+  // Difícil: mais erros do que acertos, já esquecida alguma vez, ou difícil pelo historial.
+  if (isHard(s) || s.lapses > 0 || s.incorrect > s.correct) return 'hard';
+  return 'learning';
+}
+
+/**
+ * Palavras a voltar a treinar numa lição: primeiro as difíceis (mais erros primeiro),
+ * depois as que já estão prontas para revisão. Exclui as palavras novas da própria lição.
+ */
+export function pickWordsToReview(schedules: readonly ReviewSchedule[], now: number, exclude: ReadonlySet<string>, n = 2): ReviewSchedule[] {
+  const pool = schedules.filter((s) => !exclude.has(s.itemId) && !isMastered(s));
+  const hard = pool.filter((s) => wordStatus(s) === 'hard').sort((a, b) => b.incorrect + b.lapses - (a.incorrect + a.lapses) || a.dueAt - b.dueAt);
+  const due = pool.filter((s) => wordStatus(s) !== 'hard' && isDue(s, now)).sort((a, b) => a.dueAt - b.dueAt);
+  return [...hard, ...due].slice(0, n);
+}

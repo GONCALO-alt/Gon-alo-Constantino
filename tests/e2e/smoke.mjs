@@ -61,7 +61,8 @@ try {
     await page.screenshot({ path: join(shots, `${vp.name}-mapa.png`), fullPage: true });
 
     await page.goto(`${base}#/licao/s1-u01-l001`);
-    // Sem ecrã de apresentação: o primeiro exercício aparece logo.
+    // Fase «Aprender»: apresenta as palavras novas; aqui salta-se para os exercícios.
+    await page.getByRole('button', { name: 'Saltar' }).click();
     await page.getByRole('radio', { name: /hoi/ }).click();
     await page.getByRole('button', { name: 'Verificar' }).click();
     await page.getByRole('status').waitFor();
@@ -104,8 +105,9 @@ try {
     await ctx.setOffline(true);
     await page.goto(base + '#/licao/s1-u01-l001');
     await page.reload();
-    await page.getByRole('button', { name: 'Verificar' }).waitFor({ timeout: 10000 }).catch(() => {});
-    check(await page.getByRole('button', { name: 'Verificar' }).count() > 0, 'sem internet: a app e uma lição abrem');
+    // A lição abre na fase «Aprender» (botão «Seguinte»).
+    await page.getByRole('button', { name: 'Seguinte' }).waitFor({ timeout: 10000 }).catch(() => {});
+    check(await page.getByRole('button', { name: 'Seguinte' }).count() > 0, 'sem internet: a app e uma lição abrem');
     await ctx.close();
   }
   await browser.close();

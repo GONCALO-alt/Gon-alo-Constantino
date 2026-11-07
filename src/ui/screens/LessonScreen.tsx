@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { PublishedLesson } from '../../domain/schemas.ts';
+import type { Exercise, PublishedLesson } from '../../domain/schemas.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
-import { recordLessonCompletion, type CompletionOutcome } from '../../data/progressRepo.ts';
+import { getAllReviews, recordLessonCompletion, type CompletionOutcome } from '../../data/progressRepo.ts';
+import { buildReviewExercise, seededRandom, type ReviewVocab } from '../../engine/session.ts';
+import { pickWordsToReview } from '../../engine/srs.ts';
 import { computeLessonStates, encouragement, lessonXp, nextLesson, orderedUnits } from '../../engine/progression.ts';
 import { celebrate } from '../../services/sounds.ts';
 import { canRecognizeSpeech } from '../../services/speechRecognition.ts';
@@ -11,29 +13,44 @@ import { Icon } from '../components/common.tsx';
 import { Confetti, useCountUp } from '../components/Celebrate.tsx';
 import { Mascot } from '../components/Mascot.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
+import { hasLearnContent, LearnPhase } from './LearnPhase.tsx';
 import { href, navigate } from '../router.ts';
 
-/** Ao abrir a lição entra-se logo nos exercícios (sem ecrã de apresentação). */
-type Phase = 'running' | 'saving' | 'done';
+/**
+ * Fases: «learn» (apresentação das palavras novas e da gramática) → «running» (exercícios) → «done».
+ * Sem nada para apresentar (práticas, revisões) ou com a apresentação desligada, começa nos exercícios.
+ */
+type Phase = 'learn' | 'running' | 'saving' | 'done';
 
 export function LessonScreen({ lessonId }: { lessonId: string }) {
   const app = useAppData();
   const [lesson, setLesson] = useState<PublishedLesson | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [phase, setPhase] = useState<Phase>('running');
+  const [phase, setPhase] = useState<Phase>('learn');
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [outcome, setOutcome] = useState<{ correct: number; total: number; xp: number; seconds: number; result: CompletionOutcome } | null>(null);
   const [runKey, setRunKey] = useState(0);
+  /** Palavras difíceis (ou prontas para revisão) de lições anteriores que voltam nesta lição. null = a preparar. */
+  const [reviewExtra, setReviewExtra] = useState<Exercise[] | null>(null);
 
   useEffect(() => {
     let alive = true;
     setLesson(null);
     setError(null);
-    setPhase('running');
+    setPhase('learn');
     setStartedAt(Date.now());
     contentRepo.loadLesson(lessonId).then((l) => alive && setLesson(l), (e: Error) => alive && setError(e.message));
     return () => { alive = false; };
   }, [lessonId]);
+
+  useEffect(() => {
+    if (!lesson) return;
+    let alive = true;
+    setReviewExtra(null);
+    void reviewWordsFor(lesson, app.index).then((x) => { if (alive) setReviewExtra(x); }, () => { if (alive) setReviewExtra([]); });
+    return () => { alive = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson?.id]);
 
   const unit = useMemo(() => orderedUnits(app.index).find((u) => u.lessonIds.includes(lessonId)), [app.index, lessonId]);
   const lessonState = useMemo(() => {
@@ -48,9 +65,11 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const runExercises = useMemo(() => {
     if (!lesson) return [];
     const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
-    if (!app.settings.speakingExercises || offline || !canRecognizeSpeech()) return lesson.exercises;
-    return withSpeaking(lesson.exercises, speakingExercisesFor(lesson));
-  }, [lesson, app.settings.speakingExercises]);
+    const base = !app.settings.speakingExercises || offline || !canRecognizeSpeech() ? lesson.exercises : withSpeaking(lesson.exercises, speakingExercisesFor(lesson));
+    // As palavras difíceis de lições anteriores entram depois dos dois primeiros exercícios.
+    const extra = reviewExtra ?? [];
+    return [...base.slice(0, 2), ...extra, ...base.slice(2)];
+  }, [lesson, app.settings.speakingExercises, reviewExtra]);
 
   if (error) {
     return (
@@ -72,9 +91,23 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     );
   }
 
-  if (phase === 'running') {
+  if (phase === 'learn') {
+    if (app.settings.teachFirst !== false && hasLearnContent(lesson)) {
+      return (
+        <LearnPhase lesson={lesson} speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled}
+          onExit={() => navigate(href.home())}
+          onDone={() => { setStartedAt(Date.now()); setPhase('running'); }} />
+      );
+    }
+  }
+
+  if ((phase === 'running' || phase === 'learn') && reviewExtra === null) {
+    return <div className="page"><p className="loading" aria-busy="true">A preparar a lição…</p></div>;
+  }
+
+  if (phase === 'running' || phase === 'learn') {
     return (
-      <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises}
+      <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises} teach={{ examples: lesson.examples, grammar: lesson.grammar }}
         speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
         onExit={() => navigate(href.home())}
         onFinish={async (answers: RunnerAnswer[]) => {
@@ -159,4 +192,18 @@ function SummaryStats({ acc, xp, minutes }: { acc: number; xp: number; minutes: 
       <div><dt>Tempo</dt><dd>{minutes} min</dd></div>
     </dl>
   );
+}
+
+/** Até 2 palavras difíceis (ou prontas para revisão) de lições anteriores, em exercícios curtos. */
+async function reviewWordsFor(lesson: PublishedLesson, index: Parameters<typeof orderedUnits>[0]): Promise<Exercise[]> {
+  const schedules = await getAllReviews();
+  if (!schedules.length) return [];
+  const chosen = pickWordsToReview(schedules, Date.now(), new Set(lesson.newVocabulary.map((v) => v.id)));
+  if (!chosen.length) return [];
+  const sections = index.sections.filter((s) => s.units.some((u) => u.lessonIds.length)).map((s) => s.id);
+  const bundles = await Promise.all(sections.map((s) => contentRepo.loadVocab(s).catch(() => null)));
+  const pool: ReviewVocab[] = bundles.flatMap((b) => b?.items ?? []);
+  const byId = new Map(pool.map((v) => [v.id, v]));
+  const rnd = seededRandom(lesson.id.length * 7919 + Date.now() % 1000);
+  return chosen.filter((c) => byId.has(c.itemId)).map((c) => buildReviewExercise(byId.get(c.itemId)!, pool, rnd, c.box));
 }
