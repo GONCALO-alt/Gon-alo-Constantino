@@ -244,21 +244,6 @@ export const ExerciseSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     ...base,
-    /**
-     * Passo de ensino (não é avaliado): apresenta uma palavra nova antes do primeiro exercício que a usa,
-     * ou uma nota de gramática. Criado pela aplicação durante a lição; não vem dos ficheiros de conteúdo.
-     */
-    type: z.literal('teach'),
-    kind: z.enum(['word', 'grammar']),
-    word: z.object({
-      id: z.string(), nl: nonEmpty, pt: z.array(nonEmpty).min(1),
-      article: z.enum(['de', 'het']).optional(), plural: z.string().optional(), note: z.string().optional(),
-    }).optional(),
-    example: z.object({ nl: nonEmpty, pt: nonEmpty }).optional(),
-    grammar: GrammarNoteSchema.optional(),
-  }),
-  z.object({
-    ...base,
     type: z.literal('shortWriting'),
     prompt: nonEmpty,
     /** Respostas-modelo. Se o aluno escrever outra coisa, autoavalia com a ajuda das dicas. */
@@ -273,7 +258,7 @@ export type ExerciseOf<T extends ExerciseType> = Extract<Exercise, { type: T }>;
 
 export const EXERCISE_TYPES = [
   'translate', 'multipleChoice', 'fillBlank', 'buildSentence', 'match', 'wordOrder', 'findError',
-  'articleChoice', 'conjugation', 'dialogue', 'comprehension', 'listening', 'expression', 'shortWriting', 'speaking', 'teach',
+  'articleChoice', 'conjugation', 'dialogue', 'comprehension', 'listening', 'expression', 'shortWriting', 'speaking',
 ] as const satisfies readonly ExerciseType[];
 
 // ---------------------------------------------------------------------------

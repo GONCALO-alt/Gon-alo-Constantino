@@ -722,23 +722,8 @@ a.home-stat { color: var(--text); }
 .help-hint { display: flex; gap: 6px; align-items: flex-start; padding: 8px 12px; border-radius: 12px; background: var(--surface); color: var(--muted); margin: 4px 0 8px; }
 
 /* ---------------------------------------------------------------------------
-   Ensinar primeiro: cartões «Palavra nova» / «Como funciona» e palavras novas a roxo
+   Palavras novas a roxo
    --------------------------------------------------------------------------- */
-.learn-card { padding: 18px; border-radius: 22px; background: var(--surface); border: 2px solid var(--line); box-shadow: 0 5px 0 var(--line); margin-top: 8px; }
-.learn-card h1 { margin: 0; font-size: 2rem; overflow-wrap: anywhere; }
-.learn-word { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.learn-word .speak { width: 48px; height: 48px; border-radius: 14px; }
-.learn-facts { display: grid; gap: 10px; margin: 16px 0 6px; }
-.learn-facts dt { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.learn-facts dd { margin: 2px 0 0; font-size: 1.05rem; }
-.learn-meaning { font-size: 1.35rem !important; font-weight: 800; color: var(--brand); }
-.learn-box { margin-top: 12px; padding: 12px 14px; border-radius: 16px; background: var(--bg); }
-.learn-box p { margin: 2px 0; }
-.learn-box-title { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.learn-example { border-left: 4px solid var(--accent); }
-.learn-literal { display: inline-block; margin: 2px 12px 2px 0; }
-.learn-body { font-size: 1.08rem; line-height: 1.6; }
-.learn-examples li { padding: 8px 10px; border-radius: 12px; background: var(--bg); }
 
 /* «As minhas palavras» (revisão) */
 .word-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
@@ -761,7 +746,3 @@ a.home-stat { color: var(--text); }
 .gloss-word.new-word { text-decoration-color: var(--new); }
 .runner .token.new { color: var(--new); border-color: color-mix(in srgb, var(--new) 45%, var(--line)); box-shadow: 0 4px 0 color-mix(in srgb, var(--new) 35%, var(--line)); }
 .runner .token.used.new { color: transparent; }
-.teach-card { border-color: color-mix(in srgb, var(--new) 40%, var(--line)); box-shadow: 0 5px 0 color-mix(in srgb, var(--new) 30%, var(--line)); }
-.runner .teach-instruction { color: var(--new); }
-.teach-word { font-size: 2rem; line-height: 1.2; overflow-wrap: anywhere; animation: pop 0.4s cubic-bezier(0.3, 1.5, 0.5, 1); }
-.teach-title { font-size: 1.5rem; margin: 0 0 6px; }

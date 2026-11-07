@@ -189,13 +189,13 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
         <div key={`${ex.id}-${session.position}`} className={`ex-stage ${result?.verdict === 'incorrect' ? 'shake' : ''}`}>
           {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
           {!isRetry && ex.id.startsWith('review-') && <p className="retry-tag">Palavra para rever: de uma lição anterior</p>}
-          <h1 className={`instruction ${ex.type === 'teach' ? 'teach-instruction' : ''}`}>{ex.type === 'teach' && ex.kind === 'word' ? '✨ ' : ''}{ex.instruction}</h1>
+          <h1 className="instruction">{ex.instruction}</h1>
           <WordPoolContext.Provider value={pools}>
             <ExerciseView exercise={ex} locked={!!result || !!selfCheck}
               onResponse={setResponse} onSubmit={check} onSkip={skip}
               speechRate={speechRate} audioEnabled={audioEnabled} />
           </WordPoolContext.Provider>
-          {!result && !revealed && ex.type !== 'teach' && <MascotTip {...mascotLine(session.position, streakNow)} />}
+          {!result && !revealed && <MascotTip {...mascotLine(session.position, streakNow)} />}
         </div>
       </main>
 
@@ -255,11 +255,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
             </div>
           )}
 
-          {ex.type === 'teach' ? (
-            <button type="button" className="btn btn-go btn-wide" autoFocus onClick={() => { playSound('tap'); next(); }}>
-              {ex.kind === 'word' ? 'Percebi, continuar' : 'Continuar'}
-            </button>
-          ) : selfCheck === null && (
+          {selfCheck === null && (
             result ? (
               <button ref={continueRef} type="button" className={`btn btn-wide ${result.verdict === 'incorrect' ? 'btn-go-err' : 'btn-go'}`} onClick={next}>Continuar</button>
             ) : (

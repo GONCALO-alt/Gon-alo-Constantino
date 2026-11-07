@@ -11,10 +11,8 @@ import { seededRandom, shuffle } from '../../engine/session.ts';
 import { canSpeak, hasDutchVoice, speak } from '../../services/speech.ts';
 import { playSound } from '../../services/sounds.ts';
 import { Icon, RichText, SpeakButton } from '../components/common.tsx';
-import { GlossText, useGlossary } from '../components/Gloss.tsx';
+import { GlossText } from '../components/Gloss.tsx';
 import { NewMark, useIsNewWord } from '../components/NewWords.tsx';
-import { approxPronunciation } from '../../engine/teach.ts';
-import { wordsOf } from '../../engine/glossary.ts';
 import { gradeSpeech, type SpeechWord } from '../../engine/speech.ts';
 import { translationTiles, type WordPools } from '../../engine/wordBank.ts';
 import { canRecognizeSpeech, listenOnce, RecognitionError, RECOGNITION_ERROR_TEXT, type RecognitionHandle } from '../../services/speechRecognition.ts';
@@ -95,8 +93,6 @@ export function ExerciseView(props: ExerciseProps) {
       return <ListeningExercise {...props} exercise={ex} />;
     case 'shortWriting':
       return <WritingExercise {...props} exercise={ex} />;
-    case 'teach':
-      return <TeachCard {...props} exercise={ex} />;
   }
 }
 
@@ -526,64 +522,6 @@ function WritingExercise(props: ExerciseProps<ExerciseOf<'shortWriting'>>) {
       </details>
       <TextAnswer {...props} lang="nl" multiline label="A sua resposta em neerlandês" placeholder="Escreva em neerlandês…" />
       <p className="muted small">Mínimo de {ex.minWords} palavras. Carregue em «Verificar» ou Enter (Shift+Enter muda de linha).</p>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Passo de ensino: «Palavra nova» (antes do primeiro exercício que a usa) ou «Como funciona».
-// ---------------------------------------------------------------------------
-function TeachCard({ exercise: ex, speechRate, audioEnabled }: ExerciseProps<ExerciseOf<'teach'>>) {
-  const g = useGlossary();
-  const w = ex.word;
-  const head = w ? `${w.article ? `${w.article} ` : ''}${w.nl}` : '';
-  // A palavra nova é lida em voz alta quando aparece.
-  useEffect(() => { if (w && audioEnabled) void speak(head, speechRate); }, [ex.id]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (ex.kind === 'grammar' && ex.grammar) {
-    const gr = ex.grammar;
-    return (
-      <div className="learn-card teach-card">
-        <h2 className="teach-title">{gr.title}</h2>
-        <p className="learn-body"><RichText text={gr.body} /></p>
-        {gr.examples.length > 0 && (
-          <ul className="examples learn-examples">
-            {gr.examples.map((x, k) => (
-              <li key={k}>{audioEnabled && <SpeakButton text={x.nl} rate={speechRate} />}<span lang="nl"><strong>{x.nl}</strong></span> <span className="muted">— {x.pt}</span></li>
-            ))}
-          </ul>
-        )}
-        {gr.contrastWithPt && <p className="contrast"><strong>Comparação com o português:</strong> {gr.contrastWithPt}</p>}
-      </div>
-    );
-  }
-  if (!w) return null;
-  const parts = wordsOf(w.nl.replace(/\s*\(.*?\)\s*/g, ' '));
-  return (
-    <div className="learn-card teach-card">
-      <div className="learn-word">
-        {audioEnabled && <SpeakButton text={head} rate={speechRate} />}
-        <span className="teach-word new-word" lang="nl">{head}</span>
-      </div>
-      <dl className="learn-facts">
-        <div><dt>Significado</dt><dd className="learn-meaning">{w.pt.join(', ')}</dd></div>
-        <div><dt>Pronúncia (aproximada)</dt><dd>[{approxPronunciation(w.nl.replace(/\s*\(.*?\)\s*/g, ' '))}]</dd></div>
-        {w.plural && <div><dt>Plural</dt><dd lang="nl">{w.plural}</dd></div>}
-      </dl>
-      {parts.length > 1 && g && (
-        <div className="learn-box">
-          <p className="learn-box-title">Palavra a palavra</p>
-          <p>{parts.map((p, k) => <span key={k} className="learn-literal"><strong lang="nl">{p}</strong> = {g.lookup(p)[0]?.pt[0] ?? '…'}</span>)}</p>
-          <p className="muted small">Uma expressão nem sempre se traduz à letra: aprenda-a como um bloco.</p>
-        </div>
-      )}
-      {w.note && <div className="learn-box"><p className="learn-box-title">Nota</p><p>{w.note}</p></div>}
-      {ex.example && (
-        <div className="learn-box learn-example">
-          <p className="learn-box-title">Exemplo</p>
-          <p lang="nl"><strong>{audioEnabled && <SpeakButton text={ex.example.nl} rate={speechRate} />}<NewMark text={ex.example.nl} /></strong></p>
-          <p className="muted">{ex.example.pt}</p>
-        </div>
-      )}
     </div>
   );
 }

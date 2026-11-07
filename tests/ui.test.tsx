@@ -20,8 +20,6 @@ const fetcher = fetcherFor();
 beforeEach(async () => {
   try { localStorage.clear(); } catch { /* sem armazenamento */ }
   await repo.deleteAllData();
-  // A maior parte dos testes vai direto aos exercícios; a fase «Aprender» tem o seu próprio teste.
-  await repo.saveSettings({ ...(await repo.getSettings()), teachFirst: false });
   contentRepo.clear();
   vi.stubGlobal('fetch', (url: string) => fetcher(url));
   vi.stubGlobal('scrollTo', () => {});
@@ -64,24 +62,12 @@ describe('caminho de lições no ecrã inicial', () => {
 });
 
 describe('ensinar primeiro', () => {
-  it('antes do primeiro exercício com uma palavra nova aparece o cartão «Palavra nova»; as palavras novas ficam a roxo', async () => {
-    const user = userEvent.setup();
+  it('a lição começa logo no primeiro exercício; as palavras novas ficam a roxo', async () => {
     const lesson = lessonOf(realFiles(), 's1-u01-l001');
-    await repo.saveSettings({ ...(await repo.getSettings()), teachFirst: true });
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    // O primeiro ecrã é um cartão de ensino: palavra, significado e pronúncia; não há nada para responder.
-    expect(await screen.findByRole('heading', { name: /Palavra nova/ })).toBeTruthy();
-    expect(screen.getByText('Pronúncia (aproximada)')).toBeTruthy();
-    expect(screen.queryByRole('button', { name: 'Verificar' })).toBeNull();
-    const taught: string[] = [];
-    while (screen.queryByRole('button', { name: 'Percebi, continuar' })) {
-      taught.push(document.querySelector('.teach-word')!.textContent!);
-      await user.click(screen.getByRole('button', { name: 'Percebi, continuar' }));
-    }
-    expect(taught.length).toBeGreaterThan(0);
-    // Depois vem o exercício, com as palavras novas a roxo.
     expect(await screen.findByRole('heading', { name: lesson.exercises[0]!.instruction })).toBeTruthy();
+    expect(screen.queryByText(/Palavra nova/)).toBeNull();
     await waitFor(() => expect(document.querySelectorAll('.new-word').length).toBeGreaterThan(0));
   }, 30_000);
 

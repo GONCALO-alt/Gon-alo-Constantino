@@ -23,7 +23,6 @@ export function exerciseKey(ex: Exercise): string {
     case 'expression': return `${ex.expression} ${ex.prompt}`;
     case 'shortWriting': return ex.prompt;
     case 'speaking': return `speak:${ex.text}`;
-    case 'teach': return `teach:${ex.word?.nl ?? ex.grammar?.title ?? ''}`;
   }
 }
 

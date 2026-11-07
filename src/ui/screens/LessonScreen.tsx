@@ -13,14 +13,11 @@ import { Icon } from '../components/common.tsx';
 import { Confetti, useCountUp } from '../components/Celebrate.tsx';
 import { Mascot } from '../components/Mascot.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
-import { makeWordTest, withTeachSteps } from '../../engine/teach.ts';
+import { makeWordTest } from '../../engine/teach.ts';
 import { NewWordsContext } from '../components/NewWords.tsx';
 import { href, navigate } from '../router.ts';
 
-/**
- * Fases: «running» (exercícios, com os cartões «Palavra nova» antes do primeiro exercício que usa
- * cada palavra nova) → «saving» → «done».
- */
+/** Fases: «running» (exercícios) → «saving» → «done». */
 type Phase = 'running' | 'saving' | 'done';
 
 export function LessonScreen({ lessonId }: { lessonId: string }) {
@@ -76,10 +73,8 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     const base = !app.settings.speakingExercises || offline || !canRecognizeSpeech() ? lesson.exercises : withSpeaking(lesson.exercises, speakingExercisesFor(lesson));
     // As palavras difíceis de lições anteriores entram depois dos dois primeiros exercícios.
     const extra = reviewExtra ?? [];
-    const withReview = [...base.slice(0, 2), ...extra, ...base.slice(2)];
-    // Ensinar primeiro: cada palavra nova é apresentada antes do primeiro exercício que a usa.
-    return app.settings.teachFirst !== false ? withTeachSteps(withReview, lesson, known) : withReview;
-  }, [lesson, app.settings.speakingExercises, app.settings.teachFirst, reviewExtra, known]);
+    return [...base.slice(0, 2), ...extra, ...base.slice(2)];
+  }, [lesson, app.settings.speakingExercises, reviewExtra]);
   /** As palavras novas desta lição (ainda não aprendidas) aparecem a roxo. */
   const isNewWord = useMemo(() => (lesson ? makeWordTest(lesson.newVocabulary.filter((v) => !known.has(v.id))) : () => false), [lesson, known]);
 
