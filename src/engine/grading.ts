@@ -129,6 +129,9 @@ export function gradeExercise(ex: Exercise, r: ExerciseResponse, opts: GradeOpti
         given: g.best,
       };
     }
+    case 'teach':
+      // Passo de ensino: não se avalia (o aluno só lê e continua).
+      return { verdict: 'correct', expected: ex.word ? `${ex.word.article ? `${ex.word.article} ` : ''}${ex.word.nl}` : ex.grammar?.title ?? '', given: '' };
     case 'shortWriting': {
       const value = r.kind === 'self' || r.kind === 'text' ? (r.kind === 'self' ? r.text : r.value) : '';
       const g = gradeText(value, ex.referenceAnswers, opts);

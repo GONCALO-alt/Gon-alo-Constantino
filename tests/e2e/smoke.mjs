@@ -61,8 +61,11 @@ try {
     await page.screenshot({ path: join(shots, `${vp.name}-mapa.png`), fullPage: true });
 
     await page.goto(`${base}#/licao/s1-u01-l001`);
-    // Fase «Aprender»: apresenta as palavras novas; aqui salta-se para os exercícios.
-    await page.getByRole('button', { name: 'Saltar' }).click();
+    // Cartões «Palavra nova» antes do primeiro exercício que usa cada palavra.
+    const teach = page.getByRole('button', { name: /^(Percebi, continuar|Continuar)$/ });
+    await teach.first().waitFor();
+    check(await page.locator('.teach-word').count() === 1, `${vp.name}: cartão «Palavra nova» antes do exercício`);
+    while (await teach.count()) { await teach.first().click(); await page.waitForTimeout(150); }
     await page.getByRole('radio', { name: /hoi/ }).click();
     await page.getByRole('button', { name: 'Verificar' }).click();
     await page.getByRole('status').waitFor();
@@ -105,9 +108,9 @@ try {
     await ctx.setOffline(true);
     await page.goto(base + '#/licao/s1-u01-l001');
     await page.reload();
-    // A lição abre na fase «Aprender» (botão «Seguinte»).
-    await page.getByRole('button', { name: 'Seguinte' }).waitFor({ timeout: 10000 }).catch(() => {});
-    check(await page.getByRole('button', { name: 'Seguinte' }).count() > 0, 'sem internet: a app e uma lição abrem');
+    // A lição abre no primeiro cartão «Palavra nova».
+    await page.getByRole('button', { name: 'Percebi, continuar' }).waitFor({ timeout: 10000 }).catch(() => {});
+    check(await page.getByRole('button', { name: 'Percebi, continuar' }).count() > 0, 'sem internet: a app e uma lição abrem');
     await ctx.close();
   }
   await browser.close();

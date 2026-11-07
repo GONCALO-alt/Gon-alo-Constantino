@@ -41,7 +41,7 @@ export interface UserSettings {
   reducedMotion: boolean;
   /** Decoração das épocas festivas (Natal, Halloween, Carnaval, Páscoa). */
   seasonalThemes: boolean;
-  /** Apresentar as palavras novas e a gramática antes dos exercícios de cada lição. */
+  /** Cartão «Palavra nova» antes do primeiro exercício que usa cada palavra nova (e a gramática da lição). */
   teachFirst: boolean;
 }
 

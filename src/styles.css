@@ -722,9 +722,8 @@ a.home-stat { color: var(--text); }
 .help-hint { display: flex; gap: 6px; align-items: flex-start; padding: 8px 12px; border-radius: 12px; background: var(--surface); color: var(--muted); margin: 4px 0 8px; }
 
 /* ---------------------------------------------------------------------------
-   Fase «Aprender» (antes dos exercícios)
+   Ensinar primeiro: cartões «Palavra nova» / «Como funciona» e palavras novas a roxo
    --------------------------------------------------------------------------- */
-.learn-skip { flex: none; font-weight: 700; text-decoration: none; padding: 8px 6px; }
 .learn-card { padding: 18px; border-radius: 22px; background: var(--surface); border: 2px solid var(--line); box-shadow: 0 5px 0 var(--line); margin-top: 8px; }
 .learn-card h1 { margin: 0; font-size: 2rem; overflow-wrap: anywhere; }
 .learn-word { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -740,10 +739,6 @@ a.home-stat { color: var(--text); }
 .learn-literal { display: inline-block; margin: 2px 12px 2px 0; }
 .learn-body { font-size: 1.08rem; line-height: 1.6; }
 .learn-examples li { padding: 8px 10px; border-radius: 12px; background: var(--bg); }
-.learn-ready { text-align: center; display: grid; justify-items: center; gap: 6px; }
-.learn-ready .mascot { animation: mascot-dance 1.2s ease-in-out 2; }
-.learn-recap { list-style: none; padding: 0; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-.learn-recap li { padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 2px solid var(--line); }
 
 /* «As minhas palavras» (revisão) */
 .word-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
@@ -757,3 +752,16 @@ a.home-stat { color: var(--text); }
 .ws-word { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .ws-counts { flex: none; font-weight: 800; font-size: 0.9rem; }
 .ws-ok { color: var(--ok); } .ws-bad { color: var(--err); margin-left: 6px; }
+
+:root { --new: #8e5bd8; --new-soft: #f1e8ff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) { --new: #b98cff; --new-soft: #2a2140; } }
+:root[data-theme='dark'] { --new: #b98cff; --new-soft: #2a2140; }
+/* Palavra nova (ainda não aprendida): roxa em todos os exercícios. */
+.new-word { color: var(--new); font-weight: 800; }
+.gloss-word.new-word { text-decoration-color: var(--new); }
+.runner .token.new { color: var(--new); border-color: color-mix(in srgb, var(--new) 45%, var(--line)); box-shadow: 0 4px 0 color-mix(in srgb, var(--new) 35%, var(--line)); }
+.runner .token.used.new { color: transparent; }
+.teach-card { border-color: color-mix(in srgb, var(--new) 40%, var(--line)); box-shadow: 0 5px 0 color-mix(in srgb, var(--new) 30%, var(--line)); }
+.runner .teach-instruction { color: var(--new); }
+.teach-word { font-size: 2rem; line-height: 1.2; overflow-wrap: anywhere; animation: pop 0.4s cubic-bezier(0.3, 1.5, 0.5, 1); }
+.teach-title { font-size: 1.5rem; margin: 0 0 6px; }

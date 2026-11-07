@@ -13,31 +13,34 @@ import { Icon } from '../components/common.tsx';
 import { Confetti, useCountUp } from '../components/Celebrate.tsx';
 import { Mascot } from '../components/Mascot.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
-import { hasLearnContent, LearnPhase } from './LearnPhase.tsx';
+import { makeWordTest, withTeachSteps } from '../../engine/teach.ts';
+import { NewWordsContext } from '../components/NewWords.tsx';
 import { href, navigate } from '../router.ts';
 
 /**
- * Fases: «learn» (apresentação das palavras novas e da gramática) → «running» (exercícios) → «done».
- * Sem nada para apresentar (práticas, revisões) ou com a apresentação desligada, começa nos exercícios.
+ * Fases: «running» (exercícios, com os cartões «Palavra nova» antes do primeiro exercício que usa
+ * cada palavra nova) → «saving» → «done».
  */
-type Phase = 'learn' | 'running' | 'saving' | 'done';
+type Phase = 'running' | 'saving' | 'done';
 
 export function LessonScreen({ lessonId }: { lessonId: string }) {
   const app = useAppData();
   const [lesson, setLesson] = useState<PublishedLesson | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [phase, setPhase] = useState<Phase>('learn');
+  const [phase, setPhase] = useState<Phase>('running');
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [outcome, setOutcome] = useState<{ correct: number; total: number; xp: number; seconds: number; result: CompletionOutcome } | null>(null);
   const [runKey, setRunKey] = useState(0);
   /** Palavras difíceis (ou prontas para revisão) de lições anteriores que voltam nesta lição. null = a preparar. */
   const [reviewExtra, setReviewExtra] = useState<Exercise[] | null>(null);
+  /** Palavras que o aluno já aprendeu (não voltam a ser apresentadas como novas). */
+  const [known, setKnown] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     let alive = true;
     setLesson(null);
     setError(null);
-    setPhase('learn');
+    setPhase('running');
     setStartedAt(Date.now());
     contentRepo.loadLesson(lessonId).then((l) => alive && setLesson(l), (e: Error) => alive && setError(e.message));
     return () => { alive = false; };
@@ -47,7 +50,12 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     if (!lesson) return;
     let alive = true;
     setReviewExtra(null);
-    void reviewWordsFor(lesson, app.index).then((x) => { if (alive) setReviewExtra(x); }, () => { if (alive) setReviewExtra([]); });
+    // As palavras conhecidas e as difíceis carregam juntas, antes de a lição começar.
+    void Promise.all([getAllReviews().catch(() => []), reviewWordsFor(lesson, app.index).catch(() => [])]).then(([rs, extra]) => {
+      if (!alive) return;
+      setKnown(new Set(rs.map((r) => r.itemId)));
+      setReviewExtra(extra);
+    });
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson?.id]);
@@ -68,8 +76,12 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     const base = !app.settings.speakingExercises || offline || !canRecognizeSpeech() ? lesson.exercises : withSpeaking(lesson.exercises, speakingExercisesFor(lesson));
     // As palavras difíceis de lições anteriores entram depois dos dois primeiros exercícios.
     const extra = reviewExtra ?? [];
-    return [...base.slice(0, 2), ...extra, ...base.slice(2)];
-  }, [lesson, app.settings.speakingExercises, reviewExtra]);
+    const withReview = [...base.slice(0, 2), ...extra, ...base.slice(2)];
+    // Ensinar primeiro: cada palavra nova é apresentada antes do primeiro exercício que a usa.
+    return app.settings.teachFirst !== false ? withTeachSteps(withReview, lesson, known) : withReview;
+  }, [lesson, app.settings.speakingExercises, app.settings.teachFirst, reviewExtra, known]);
+  /** As palavras novas desta lição (ainda não aprendidas) aparecem a roxo. */
+  const isNewWord = useMemo(() => (lesson ? makeWordTest(lesson.newVocabulary.filter((v) => !known.has(v.id))) : () => false), [lesson, known]);
 
   if (error) {
     return (
@@ -91,22 +103,13 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     );
   }
 
-  if (phase === 'learn') {
-    if (app.settings.teachFirst !== false && hasLearnContent(lesson)) {
-      return (
-        <LearnPhase lesson={lesson} speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled}
-          onExit={() => navigate(href.home())}
-          onDone={() => { setStartedAt(Date.now()); setPhase('running'); }} />
-      );
-    }
-  }
-
-  if ((phase === 'running' || phase === 'learn') && reviewExtra === null) {
+  if (phase === 'running' && reviewExtra === null) {
     return <div className="page"><p className="loading" aria-busy="true">A preparar a lição…</p></div>;
   }
 
-  if (phase === 'running' || phase === 'learn') {
+  if (phase === 'running') {
     return (
+      <NewWordsContext.Provider value={isNewWord}>
       <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises} teach={{ examples: lesson.examples, grammar: lesson.grammar }}
         speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
         onExit={() => navigate(href.home())}
@@ -130,6 +133,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
             setError(`Não foi possível guardar o progresso: ${(e as Error).message}`);
           }
         }} />
+      </NewWordsContext.Provider>
     );
   }
 

@@ -4,7 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Exercise } from '../src/domain/schemas.ts';
 import { buildGlossary } from '../src/engine/glossary.ts';
-import { approxPronunciation, exerciseHelp } from '../src/engine/teach.ts';
+import { approxPronunciation, exerciseHelp, makeWordTest, withTeachSteps } from '../src/engine/teach.ts';
 import { realFiles } from './helpers.ts';
 
 const vocab = realFiles().flatMap((f) => f.lessons).flatMap((l) => l.newVocabulary);
@@ -63,5 +63,46 @@ describe('o que mostrar em cada exercício', () => {
     const empty = exs.filter((e) => { const h = exerciseHelp(e, isDutch); return h.words.length === 0 && h.sentences.length === 0 && h.vocabIds.length === 0; });
     // Só podem faltar perguntas inteiramente em português (ex.: escolha múltipla sobre cultura).
     expect(empty.length / exs.length).toBeLessThan(0.002);
+  });
+});
+
+describe('cartões «Palavra nova» dentro da lição', () => {
+  const lessons = realFiles().flatMap((f) => f.lessons).filter((l) => l.newVocabulary.length > 0);
+
+  it('em todas as lições, cada palavra nova é apresentada ANTES do primeiro exercício que a usa', () => {
+    let cards = 0;
+    for (const l of lessons) {
+      const steps = withTeachSteps(l.exercises, l, new Set());
+      const seen = new Set<string>();
+      for (const ex of steps) {
+        if (ex.type === 'teach') { if (ex.word) { seen.add(ex.word.id); cards++; } continue; }
+        for (const ref of ex.vocabRefs) {
+          if (l.newVocabulary.some((v) => v.id === ref)) expect(seen.has(ref), `${ex.id}: ${ref}`).toBe(true);
+        }
+      }
+    }
+    expect(cards).toBeGreaterThan(5000);
+  });
+
+  it('palavras já aprendidas não voltam a ser apresentadas', () => {
+    const l = lessons[0]!;
+    const steps = withTeachSteps(l.exercises, l, new Set(l.newVocabulary.map((v) => v.id)));
+    expect(steps.filter((e) => e.type === 'teach')).toHaveLength(0);
+  });
+
+  it('a gramática entra depois dos dois primeiros exercícios', () => {
+    const l = lessons.find((x) => x.grammar.length > 0)!;
+    const steps = withTeachSteps(l.exercises, l, new Set()).filter((e) => !(e.type === 'teach' && e.kind === 'word'));
+    expect(steps[2]!.type).toBe('teach');
+  });
+
+  it('formas flexionadas de uma palavra nova também são «novas» (para ficarem a roxo)', () => {
+    const isNew = makeWordTest([{ id: 'v-wonen', nl: 'wonen', pt: ['morar'] }, { id: 'v-kat', nl: 'kat', pt: ['gato'], plural: 'katten' }]);
+    expect(isNew('woont')).toBe(true);
+    expect(isNew('Katten')).toBe(true);
+    expect(isNew('huis')).toBe(false);
+    const heten = makeWordTest([{ id: 'v-heten', nl: 'heten', pt: ['chamar-se'] }]);
+    expect(heten('heet')).toBe(true);
+    expect(heten('het')).toBe(false);
   });
 });

@@ -64,21 +64,25 @@ describe('caminho de lições no ecrã inicial', () => {
 });
 
 describe('ensinar primeiro', () => {
-  it('antes dos exercícios, apresenta cada palavra nova (significado, pronúncia, exemplo) e depois a prática', async () => {
+  it('antes do primeiro exercício com uma palavra nova aparece o cartão «Palavra nova»; as palavras novas ficam a roxo', async () => {
     const user = userEvent.setup();
     const lesson = lessonOf(realFiles(), 's1-u01-l001');
     await repo.saveSettings({ ...(await repo.getSettings()), teachFirst: true });
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    const v = lesson.newVocabulary[0]!;
-    expect(await screen.findByRole('heading', { name: v.article ? `${v.article} ${v.nl}` : v.nl })).toBeTruthy();
-    expect(screen.getByText(v.pt.join(', '))).toBeTruthy();
+    // O primeiro ecrã é um cartão de ensino: palavra, significado e pronúncia; não há nada para responder.
+    expect(await screen.findByRole('heading', { name: /Palavra nova/ })).toBeTruthy();
     expect(screen.getByText('Pronúncia (aproximada)')).toBeTruthy();
-    for (let i = 1; i < lesson.newVocabulary.length + lesson.grammar.length; i++) await user.click(screen.getByRole('button', { name: 'Seguinte' }));
-    await user.click(screen.getByRole('button', { name: 'Seguinte' }));
-    expect(await screen.findByRole('heading', { name: 'Agora vamos praticar!' })).toBeTruthy();
-    await user.click(screen.getByRole('button', { name: 'Começar os exercícios' }));
+    expect(screen.queryByRole('button', { name: 'Verificar' })).toBeNull();
+    const taught: string[] = [];
+    while (screen.queryByRole('button', { name: 'Percebi, continuar' })) {
+      taught.push(document.querySelector('.teach-word')!.textContent!);
+      await user.click(screen.getByRole('button', { name: 'Percebi, continuar' }));
+    }
+    expect(taught.length).toBeGreaterThan(0);
+    // Depois vem o exercício, com as palavras novas a roxo.
     expect(await screen.findByRole('heading', { name: lesson.exercises[0]!.instruction })).toBeTruthy();
+    await waitFor(() => expect(document.querySelectorAll('.new-word').length).toBeGreaterThan(0));
   }, 30_000);
 
   it('o botão «Traduções» está em todos os exercícios e explica as palavras sem sair', async () => {

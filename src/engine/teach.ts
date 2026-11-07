@@ -7,9 +7,9 @@
  *  - «spoilers»: o que é a própria resposta. Isso fica tapado e só se mostra se o aluno pedir
  *    (e então o exercício volta no fim, para consolidar — como no «Não me lembro»).
  */
-import type { Exercise } from '../domain/schemas.ts';
+import type { Exercise, GrammarNote } from '../domain/schemas.ts';
 import { expandAnswerPattern } from './answers.ts';
-import { normalizeWord } from './glossary.ts';
+import { lemmaCandidates, normalizeWord, wordsOf } from './glossary.ts';
 
 export interface HelpSentence {
   nl: string;
@@ -140,6 +140,11 @@ export function exerciseHelp(ex: Exercise, isDutch: (text: string) => boolean): 
       sentence({ nl: ex.text, pt: ex.translation });
       addWords(ex.text);
       break;
+    case 'teach':
+      if (ex.word) addWords(ex.word.nl);
+      if (ex.example) sentence({ nl: ex.example.nl, pt: ex.example.pt });
+      for (const e of ex.grammar?.examples ?? []) sentence({ nl: e.nl, pt: e.pt });
+      break;
     case 'shortWriting':
       sentence({ nl: first(ex.referenceAnswers[0]!), hide: 'nl' });
       for (const q of [...ex.prompt.matchAll(QUOTED)].map((m) => m[1]!)) if (isDutch(q)) addWords(q);
@@ -204,4 +209,112 @@ function approxWord(word: string): string {
 /** Ex.: «goed» → «rrut»; «dank je wel» → «dank ie vel»; «huis» → «hãuis». */
 export function approxPronunciation(text: string): string {
   return text.split(/\s+/).map(approxWord).filter(Boolean).join(' ');
+}
+
+// ---------------------------------------------------------------------------
+// Palavras novas: um cartão «Palavra nova» antes do primeiro exercício que a usa.
+// ---------------------------------------------------------------------------
+export interface NewWordSource {
+  id: string;
+  nl: string;
+  pt: string[];
+  article?: 'de' | 'het';
+  plural?: string;
+  note?: string;
+}
+
+const cleanNl = (nl: string) => nl.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+
+/** Diz se uma palavra (em qualquer forma: woont, katten…) é uma das palavras dadas. */
+export function makeWordTest(words: readonly NewWordSource[]): (word: string) => boolean {
+  const forms = new Set<string>();
+  for (const v of words) {
+    for (const w of wordsOf(cleanNl(v.nl))) forms.add(w);
+    if (v.plural) forms.add(normalizeWord(v.plural));
+  }
+  return (word: string) => {
+    const w = normalizeWord(word);
+    // Palavras curtas (het, ik, is…) só pela forma exata: «het» não é uma forma de «heten».
+    return !!w && (forms.has(w) || (w.length > 3 && lemmaCandidates(w).some((c) => forms.has(c))));
+  };
+}
+
+/** Texto neerlandês visível num exercício (para saber que palavras usa). */
+function dutchTextOf(ex: Exercise): string {
+  switch (ex.type) {
+    case 'translate': return ex.direction === 'nl-pt' ? ex.prompt : [...ex.answers, ...(ex.wordBank ?? [])].join(' ');
+    case 'fillBlank': return [ex.sentence, ...ex.answers, ...(ex.choices ?? [])].join(' ');
+    case 'buildSentence': return [...ex.tokens, ...ex.answers].join(' ');
+    case 'wordOrder': return ex.tokens.join(' ');
+    case 'match': return ex.pairs.map((p) => p.nl).join(' ');
+    case 'findError': return [...ex.tokens, ex.correction].join(' ');
+    case 'articleChoice': return ex.noun;
+    case 'conjugation': return [ex.verb, ex.sentence ?? '', ...ex.answers].join(' ');
+    case 'dialogue': return [...ex.lines.map((l) => l.nl), ...ex.options.map((o) => o.text)].join(' ');
+    case 'comprehension': return ex.text;
+    case 'listening': return ex.audioText;
+    case 'expression': return ex.expression;
+    case 'speaking': return ex.text;
+    case 'multipleChoice': return [ex.prompt, ...ex.options.map((o) => o.text)].join(' ');
+    case 'shortWriting': return ex.referenceAnswers.join(' ');
+    case 'teach': return '';
+  }
+}
+
+function usesWord(ex: Exercise, v: NewWordSource): boolean {
+  if (ex.vocabRefs.includes(v.id)) return true;
+  const target = wordsOf(cleanNl(v.nl));
+  if (!target.length) return false;
+  const text = wordsOf(dutchTextOf(ex));
+  if (target.length > 1) return text.join(' ').includes(target.join(' '));
+  const test = makeWordTest([v]);
+  return text.some(test);
+}
+
+/** Exemplo da lição que usa a palavra (também em formas conjugadas). */
+export function lessonExampleFor(v: NewWordSource, examples: readonly { nl: string; pt: string }[]): { nl: string; pt: string } | undefined {
+  const target = wordsOf(cleanNl(v.nl));
+  if (!target.length) return undefined;
+  if (target.length > 1) return examples.find((e) => wordsOf(e.nl).join(' ').includes(target.join(' ')));
+  const test = makeWordTest([v]);
+  return examples.find((e) => wordsOf(e.nl).some(test));
+}
+
+/**
+ * Junta os passos de ensino aos exercícios:
+ *  - antes do primeiro exercício que usa uma palavra que o aluno ainda não aprendeu, um cartão «Palavra nova»;
+ *  - a gramática da lição a seguir aos dois primeiros exercícios (só quando há palavras novas).
+ * Palavras que o aluno já conhece (`known`) não voltam a ser apresentadas.
+ */
+export function withTeachSteps(
+  exercises: readonly Exercise[],
+  lesson: { id: string; newVocabulary: readonly NewWordSource[]; examples: readonly { nl: string; pt: string }[]; grammar: readonly GrammarNote[] },
+  known: ReadonlySet<string>,
+): Exercise[] {
+  const fresh = lesson.newVocabulary.filter((v) => !known.has(v.id));
+  if (!fresh.length) return [...exercises];
+  const examples = [...lesson.examples, ...lesson.grammar.flatMap((g) => g.examples)];
+  const introduced = new Set<string>();
+  const out: Exercise[] = [];
+  const grammarAt = Math.min(2, exercises.length);
+  exercises.forEach((ex, i) => {
+    if (i === grammarAt) {
+      for (const g of lesson.grammar) {
+        out.push({ id: `${lesson.id}-t-${g.id}`, type: 'teach', kind: 'grammar', instruction: 'Como funciona', explanation: g.title, vocabRefs: [], grammar: g });
+      }
+    }
+    if (ex.type !== 'teach') {
+      for (const v of fresh) {
+        if (introduced.has(v.id) || !usesWord(ex, v)) continue;
+        introduced.add(v.id);
+        out.push({
+          id: `${lesson.id}-t-${v.id}`, type: 'teach', kind: 'word', instruction: 'Palavra nova', explanation: v.pt.join(', '),
+          vocabRefs: [v.id], word: { id: v.id, nl: v.nl, pt: [...v.pt], article: v.article, plural: v.plural, note: v.note },
+          example: lessonExampleFor(v, examples),
+        });
+      }
+    }
+    out.push(ex);
+  });
+  return out;
 }

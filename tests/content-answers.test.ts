@@ -21,6 +21,7 @@ function referenceResponse(ex: Exercise): ExerciseResponse {
     case 'shortWriting': return { kind: 'text', value: first(ex.referenceAnswers) };
     case 'speaking': return { kind: 'speech', alternatives: [ex.text] };
     case 'fillBlank': return { kind: 'text', value: ex.choices ? ex.choices.find((c) => expandAnswerPattern(ex.answers[0]!).includes(c)) ?? first(ex.answers) : first(ex.answers) };
+    case 'teach': return { kind: 'text', value: '' };
     default: return { kind: 'text', value: first(ex.answers) };
   }
 }

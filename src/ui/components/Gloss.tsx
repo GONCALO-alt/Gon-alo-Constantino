@@ -6,6 +6,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { buildGlossary, normalizeWord, type GlossEntry, type Glossary } from '../../engine/glossary.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
 import { useSavedWords } from '../AppState.tsx';
+import { useIsNewWord } from './NewWords.tsx';
 
 const SECTIONS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
 let glossaryPromise: Promise<Glossary> | null = null;
@@ -43,6 +44,7 @@ const isWord = (t: string) => /\p{L}/u.test(t) && !/^_+$/.test(t);
 export function GlossText({ text, className, as: Tag = 'span' }: { text: string; className?: string; as?: 'span' | 'p' | 'div' }) {
   const glossary = useContext(GlossaryContext);
   const saved = useSavedWords();
+  const isNew = useIsNewWord();
   const [open, setOpen] = useState<{ i: number; word: string; entries: GlossEntry[] } | null>(null);
   if (!glossary) return <Tag className={className} lang="nl">{text}</Tag>;
   const parts = text.split(/(\s+)/);
@@ -53,7 +55,7 @@ export function GlossText({ text, className, as: Tag = 'span' }: { text: string;
           if (!p || /^\s+$/.test(p) || !isWord(p)) return <span key={i}>{p}</span>;
           const word = normalizeWord(p);
           return (
-            <button key={i} type="button" className={`gloss-word ${open?.i === i ? 'active' : ''}`}
+            <button key={i} type="button" className={`gloss-word ${open?.i === i ? 'active' : ''} ${isNew(p) ? 'new-word' : ''}`}
               aria-label={`Tradução de «${word}»`} aria-expanded={open?.i === i}
               onClick={(e) => {
                 e.stopPropagation();
