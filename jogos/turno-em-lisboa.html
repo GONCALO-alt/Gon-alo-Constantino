@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body>
+<title>Turno em Lisboa</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one phone column like a driver app — status strip, live city map, bottom sheet; modals slide over */
+:root{
+  --bg:#0e1319; --surface:#171e27; --surface2:#212b37; --line:#2d3947;
+  --fg:#edf1f5; --muted:#8a98a9; --accent:#f2b33d; --accent-ink:#1d1606;
+  --online:#3fbfa4; --danger:#ee6b5c; --surge:#f0794a;
+  --road:#2a3440; --road-major:#3a4655; --block:#1a222c; --park:#183126; --river:#122c3f;
+  --display:'Barlow Condensed','Arial Narrow',sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);overflow:hidden;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#app{height:100%;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:10px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px}
+.lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.num{font-family:var(--display);font-variant-numeric:tabular-nums}
+
+/* HUD */
+#hud{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.earn{display:flex;flex-direction:column;gap:2px;min-width:0}
+.earn .big{font-family:var(--display);font-weight:700;font-size:40px;line-height:.95;font-variant-numeric:tabular-nums}
+.stats{display:flex;gap:14px;align-items:flex-end}
+.stat{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.stat .v{font-family:var(--display);font-weight:600;font-size:22px;line-height:1;font-variant-numeric:tabular-nums}
+.fuelbar{width:46px;height:6px;border-radius:3px;background:var(--surface2);overflow:hidden;margin-top:3px}
+.fuelbar i{display:block;height:100%;background:var(--online);width:50%;transition:width .3s}
+.fuelbar.low i{background:var(--danger)}
+
+/* Map */
+#mapWrap{position:relative;flex:1;min-height:0;border-radius:18px;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
+#map{position:absolute;inset:0;width:100%;height:100%;touch-action:manipulation}
+.chip{position:absolute;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(6px);
+  border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600}
+#quest{left:10px;top:10px;max-width:calc(100% - 90px)}
+#quest b{color:var(--accent)}
+#speedBtn{right:10px;top:10px;font-family:var(--display);font-size:16px;padding:4px 12px}
+#weather{left:10px;bottom:10px;color:var(--muted)}
+#toast{position:absolute;left:50%;top:52px;transform:translateX(-50%);display:flex;flex-direction:column;gap:6px;align-items:center;width:max-content;max-width:calc(100% - 24px);pointer-events:none}
+.t{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;animation:tin .25s ease-out;text-align:center}
+.t.good{border-color:var(--online)} .t.bad{border-color:var(--danger)}
+@keyframes tin{from{opacity:0;transform:translateY(-6px)}}
+
+/* Sheet */
+#sheet{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.s-title{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
+.s-sub{color:var(--muted);font-size:14px;line-height:1.4}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.dot.on{background:var(--online);box-shadow:0 0 0 0 var(--online);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px transparent}}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{flex:1;min-width:0;padding:13px 12px;border-radius:12px;background:var(--surface2);font-weight:600;font-size:15px;white-space:nowrap}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.go{background:var(--online);color:#06231c}
+.btn.ghost{background:transparent;border:1px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:default}
+.prog{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);width:0}
+
+/* Overlays */
+.ov{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center;background:rgb(5 8 12 / .55);
+  padding:12px max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+#offerOv{background:transparent;pointer-events:none}
+.card{pointer-events:auto;width:100%;max-width:496px;max-height:100%;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:14px;animation:up .28s cubic-bezier(.2,.8,.3,1)}
+@keyframes up{from{transform:translateY(30px);opacity:0}}
+.card h2{margin:0;font-family:var(--display);font-weight:700;font-size:30px;line-height:1;text-wrap:balance}
+.card p{margin:0;line-height:1.5;color:var(--fg)}
+.card .muted{color:var(--muted)}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;padding:13px 14px;border-radius:12px;background:var(--surface2);font-weight:600;line-height:1.3}
+.opt:hover{background:var(--line)}
+
+/* Offer */
+.offer{border-color:var(--accent);box-shadow:0 10px 40px rgb(0 0 0 / .5)}
+.o-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pill{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--surface2);letter-spacing:.02em}
+.pill.surge{background:var(--surge);color:#2a0e03}
+.o-earn{font-family:var(--display);font-weight:700;font-size:54px;line-height:.9;font-variant-numeric:tabular-nums}
+.o-earn small{font-size:18px;color:var(--muted);font-weight:600;margin-left:8px}
+.o-route{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;position:relative}
+.o-route li{padding-left:22px;position:relative;font-size:14px;line-height:1.35;color:var(--muted)}
+.o-route li b{color:var(--fg);display:block;font-size:15px}
+.o-route li::before{content:"";position:absolute;left:3px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--fg)}
+.o-route li:last-child::before{border-radius:2px;background:var(--accent)}
+.o-route li:first-child::after{content:"";position:absolute;left:7px;top:17px;bottom:-12px;width:1px;background:var(--line)}
+.timer{height:4px;border-radius:2px;background:var(--surface2);overflow:hidden}
+.timer i{display:block;height:100%;background:var(--accent);width:100%}
+
+/* Tables */
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl td{padding:7px 0;border-bottom:1px solid var(--line)}
+.tbl td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.tbl tr.neg td:last-child{color:var(--danger)}
+.tbl tr.tot td{border-bottom:0;font-size:17px;font-weight:700;padding-top:12px}
+.stars{font-size:30px;letter-spacing:4px;color:var(--accent)}
+.stars .off{color:var(--surface2)}
+
+/* Start */
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ch{text-align:left;padding:12px;border-radius:14px;background:var(--surface2);border:2px solid transparent;display:flex;flex-direction:column;gap:4px;min-width:0}
+.ch b{font-size:15px}.ch span{font-size:12px;color:var(--muted);line-height:1.35}
+.ch[aria-pressed="true"]{border-color:var(--accent)}
+.choice.three{grid-template-columns:repeat(3,1fr)}
+.qte{font-family:var(--display);font-size:46px;font-weight:700;padding:26px;border-radius:18px;background:var(--danger);color:#2b0703;letter-spacing:.06em}
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div id="app">
+  <header id="hud">
+    <div class="earn"><span class="lbl">Ganhos hoje</span><span id="hEarn" class="big">0,00 €</span></div>
+    <div class="stats">
+      <div class="stat"><span class="v" id="hClock">08:00</span><span class="lbl" id="hDay">Seg</span></div>
+      <div class="stat"><span class="v" id="hRate">4,92</span><span class="lbl">Avaliação</span></div>
+      <div class="stat"><span class="v" id="hFuel">30%</span><span class="fuelbar" id="hFuelBar"><i></i></span></div>
+    </div>
+  </header>
+  <div id="mapWrap">
+    <canvas id="map" aria-label="Mapa de Lisboa. Toca para te deslocares."></canvas>
+    <div id="quest" class="chip"></div>
+    <button id="speedBtn" class="chip" aria-label="Velocidade do tempo">×1</button>
+    <div id="weather" class="chip"></div>
+    <div id="toast"></div>
+  </div>
+  <section id="sheet"></section>
+</div>
+<div id="offerOv" class="ov" hidden></div>
+<div id="modalOv" class="ov" hidden></div>
+
+<script>
+"use strict";
+// ---------- utilities ----------
+const $=id=>document.getElementById(id);
+const rand=(a,b)=>a+Math.random()*(b-a);
+const ri=(a,b)=>Math.floor(rand(a,b+1));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const chance=p=>Math.random()<p;
+function wpick(arr){let s=0;for(const x of arr)s+=x[1];let r=Math.random()*s;for(const x of arr){r-=x[1];if(r<=0)return x[0];}return arr[arr.length-1][0];}
+const fmtE=new Intl.NumberFormat('pt-PT',{style:'currency',currency:'EUR'});
+const eur=v=>fmtE.format(v);
+const n1=v=>v.toLocaleString('pt-PT',{minimumFractionDigits:1,maximumFractionDigits:1});
+const n2=v=>v.toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2});
+const DAYS=['Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado','Domingo'];
+const DAYS_S=['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function hash(n){n=(n^61)^(n>>>16);n=n+(n<<3);n=n^(n>>>4);n=Math.imul(n,0x27d4eb2d);n=n^(n>>>15);return (n>>>0)/4294967296;}
+
+// ---------- city ----------
+const COLS=10, ROWS=13, BK=0.5; // blocks of 500 m
+const W=COLS+1, NN=W*(ROWS+1);
+const nid=(x,y)=>y*W+x, nx=n=>n%W, ny=n=>Math.floor(n/W);
+// demand per band: madrugada, manhã, dia, fim de tarde, noite
+const ZONES=[
+ {id:'lum',n:'Lumiar',r:[0,0,6,3],d:[.2,1.0,.6,.6,.4],a:'res',p:['Telheiras','Paço do Lumiar','Alameda das Linhas de Torres']},
+ {id:'aer',n:'Aeroporto',r:[6,0,10,3],d:[.7,1.6,1.3,1.5,1.2],a:'air',p:['Terminal 1 · Chegadas','Terminal 2','Terminal 1 · Partidas']},
+ {id:'ben',n:'Benfica',r:[0,3,3,6],d:[.2,1.1,.6,.7,.5],a:'res',p:['Centro Colombo','Estádio da Luz','Estrada de Benfica']},
+ {id:'alv',n:'Alvalade',r:[3,3,7,6],d:[.3,1.0,.7,.8,.6],a:'res',p:['Av. da Igreja','Campo Grande','Estádio José Alvalade']},
+ {id:'oli',n:'Olivais',r:[7,3,10,6],d:[.2,.9,.5,.6,.4],a:'res',p:['Olivais Sul','Encarnação','Moscavide']},
+ {id:'mon',n:'Monsanto',r:[0,6,2,10],d:[0,0,0,0,0],a:'park',p:[]},
+ {id:'cdo',n:'Campo de Ourique',r:[2,6,4,10],d:[.3,.8,.7,.8,.8],a:'res',p:['Mercado de Campo de Ourique','Basílica da Estrela','Amoreiras']},
+ {id:'avn',n:'Avenidas Novas',r:[4,6,7,10],d:[.4,1.0,1.1,1.6,.8],a:'work',p:['Saldanha','Marquês de Pombal','Campo Pequeno','Av. da República']},
+ {id:'pdn',n:'Parque das Nações',r:[7,6,10,10],d:[.3,.8,.9,1.2,1.0],a:'work',p:['Gare do Oriente','Oceanário','Torre Vasco da Gama']},
+ {id:'bel',n:'Belém',r:[0,10,3,13],d:[.2,.4,1.2,1.0,.6],a:'tour',p:['Mosteiro dos Jerónimos','Torre de Belém','CCB']},
+ {id:'alc',n:'Alcântara',r:[3,10,5,13],d:[.9,.4,.6,.7,1.2],a:'night',night:1,p:['LX Factory','Docas de Santo Amaro','Santos']},
+ {id:'bai',n:'Baixa / Chiado',r:[5,10,7,13],d:[1.4,.7,1.3,1.3,1.6],a:'mix',night:1,p:['Rossio','Praça do Comércio','Cais do Sodré','Largo do Camões','Bairro Alto']},
+ {id:'alf',n:'Alfama',r:[7,10,10,13],d:[.6,.4,1.1,1.0,1.1],a:'tour',p:['Sé de Lisboa','Miradouro de Santa Luzia','Castelo de São Jorge','Santa Apolónia']},
+];
+const ATTR={res:[1.6,.5,.8,1.5,.9],work:[.2,1.9,1.0,.6,.5],air:[.9,.9,.8,.8,.7],tour:[.2,.6,1.4,1.0,.8],night:[.9,.2,.6,.9,1.7],mix:[.8,1.1,1.1,1.0,1.3],park:[0,0,0,0,0]};
+function zoneAt(x,y){for(const z of ZONES){const r=z.r;if(x>=r[0]&&x<r[2]&&y>=r[1]&&y<r[3])return z;}return ZONES[0];}
+const NODEZONE=[];for(let n=0;n<NN;n++)NODEZONE[n]=zoneAt(clamp(nx(n)-.01,0,COLS-.01),clamp(ny(n)-.01,0,ROWS-.01));
+const ROADS=[]; // named major roads for events
+function edgeInfo(u,v){
+  const x1=nx(u),y1=ny(u),x2=nx(v),y2=ny(v);
+  if(y1===y2){if(y1===3)return[60,'Segunda Circular'];if(y1===13)return[45,'Av. 24 de Julho'];if(y1===10)return[40,'Av. Infante Santo'];}
+  else{const lo=Math.min(y1,y2),hi=Math.max(y1,y2);
+    if(x1===5&&lo>=6)return[40,'Av. da Liberdade'];if(x1===8)return[50,'Av. Gago Coutinho'];if(x1===4&&hi<=6)return[45,'Av. do Brasil'];}
+  if(x1<=2&&x2<=2&&Math.min(y1,y2)>=6&&Math.max(y1,y2)<=10)return[50,'Estrada de Monsanto'];
+  return[28,null];
+}
+const NB=[];for(let n=0;n<NN;n++){const x=nx(n),y=ny(n),a=[];if(x>0)a.push(n-1);if(x<COLS)a.push(n+1);if(y>0)a.push(n-W);if(y<ROWS)a.push(n+W);NB[n]=a;}
+const FUEL=[nid(1,3),nid(6,6),nid(9,9),nid(4,12),nid(8,1)];
+const CHARGE=[nid(3,4),nid(7,9),nid(6,12)];
+
+// ---------- people ----------
+const PT_NAMES=['Ana','João','Mariana','Tiago','Inês','Rui','Beatriz','Diogo','Sofia','Pedro','Carla','Miguel','Leonor','Francisco','Rita','Hugo','Marta','Nuno','Catarina','André','Joana','Bruno','Teresa','Fernando','Dona Graça','Sr. Armando'];
+const TOURIST_NAMES=['Emma','Lukas','Chloé','James','Yuki','Matteo','Sven','Olivia','Pierre','Hannah','Carlos','Mia'];
+const CLUBS=['Benfica','Sporting','Porto','nenhum'];
+
+// ---------- cars ----------
+const CARS={
+  hib:{n:'Híbrido a gasolina',cap:43,unit:'L',cons:.05,price:1.74,start:.3,station:'posto',desc:'5 L/100 km · 1,74 €/L · abastece em 5 min'},
+  ele:{n:'Elétrico',cap:58,unit:'kWh',cons:.16,price:.42,start:.55,station:'carregador',desc:'16 kWh/100 km · 0,42 €/kWh · carregar demora'}
+};
+const COMMISSION=.25, WEAR_KM=.05, FIXED_DAY=8, SHIFT_LIMIT=600;
+
+// ---------- persistent save ----------
+const SAVE_KEY='turno-lisboa-v1';
+function loadSave(){try{const s=JSON.parse(localStorage.getItem(SAVE_KEY));if(s&&s.day)return s;}catch(e){}return null;}
+function writeSave(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(G));}catch(e){}}
+function seedRatings(){const a=[];for(let i=0;i<60;i++)a.push(chance(.9)?5:chance(.85)?4:3);return a;}
+let G=loadSave()||{day:1,car:'hib',totals:{net:0,trips:0,min:0,km:0,days:0},ratings:seedRatings(),best:0};
+if(!Array.isArray(G.ratings)||!G.ratings.length)G.ratings=seedRatings();
+
+// ---------- state ----------
+let S=null;
+function newShift(startHour){
+  const car=CARS[G.car];
+  const morning=startHour<12;
+  S={
+    t:startHour*60, startT:startHour*60, weekday:(G.day-1)%7, speed:1, paused:true, running:true,
+    state:'offline', online:false, pos:{x:5,y:9}, ang:0, angT:0, route:null, hold:0,
+    fuel:car.cap*car.start, offer:null, job:null, busy:null, refuel:null, mustEnd:false,
+    rain:chance(.25), surge:{}, surgeT:-999, lastOfferT:0, warned8:false,
+    quest:{target:morning?12:10,reward:morning?25:20,done:false},
+    d:{trips:0,gross:0,comm:0,tips:0,fees:0,bonus:0,cleaning:0,fuel:0,fines:0,damage:0,km:0,kmPaid:0,online:0,accepted:0,declined:0,cancels:0,stars:[]},
+  };
+  if(startHour>=20)S.pos={x:6,y:11};
+  for(const z of ZONES)z.sn=rand(.8,1.3);
+  updateSurge(true);
+}
+const hour=()=>(S.t/60)%24;
+const curWeekday=()=>(S.weekday+Math.floor(S.t/1440))%7;
+const bandIdx=h=>h<6?0:h<10?1:h<17?2:h<20?3:4;
+function traffic(){
+  const h=hour(), wk=curWeekday()>=5; let f=.8;
+  if(!wk&&((h>=7.5&&h<10)||(h>=17&&h<20)))f=.48; else if(h<6)f=1.25; else if(h>=22)f=1.1; else if(wk&&h<11)f=1.05;
+  return S.rain?f*.82:f;
+}
+function demand(z){
+  const b=bandIdx(hour()),wd=curWeekday();let d=z.d[b];
+  if(z.night&&((b===4&&(wd===4||wd===5))||(b===0&&(wd===5||wd===6))))d*=1.8;
+  if(wd>=5&&b===1&&z.a!=='air')d*=.6;
+  if(S.rain)d*=1.35;
+  return d;
+}
+function updateSurge(force){
+  if(!force&&S.t-S.surgeT<20)return; S.surgeT=S.t;
+  for(const z of ZONES){z.sn=clamp(z.sn+rand(-.18,.18),.75,1.4);
+    const v=1+Math.max(0,demand(z)*z.sn-1.2)*.9; S.surge[z.id]=clamp(Math.round(v*10)/10,1,2.5);}
+}
+const rating=()=>{const r=G.ratings.slice(-100);return r.reduce((a,b)=>a+b,0)/r.length;};
+
+// ---------- routing ----------
+function route(a,b){
+  const dist=new Float64Array(NN).fill(Infinity),prev=new Int32Array(NN).fill(-1),done=new Uint8Array(NN);dist[a]=0;const tf=traffic();
+  for(;;){let u=-1,best=Infinity;for(let i=0;i<NN;i++)if(!done[i]&&dist[i]<best){best=dist[i];u=i;}
+    if(u<0||u===b)break;done[u]=1;
+    for(const v of NB[u]){const c=BK/(edgeInfo(u,v)[0]*tf)*60;if(dist[u]+c<dist[v]){dist[v]=dist[u]+c;prev[v]=u;}}}
+  const path=[];for(let v=b;v!==-1;v=prev[v])path.unshift(v);
+  return{path,km:(path.length-1)*BK,min:dist[b]};
+}
+function nearestNode(x,y){return nid(clamp(Math.round(x),0,COLS),clamp(Math.round(y),0,ROWS));}
+function carNode(){ // node the car is at, or heading to
+  const r=S.route;if(r&&r.i<r.path.length){const n=r.path[r.i];if(Math.abs(nx(n)-S.pos.x)+Math.abs(ny(n)-S.pos.y)<1.001)return n;}
+  return nearestNode(S.pos.x,S.pos.y);
+}
+function driveTo(target,onArrive){
+  const start=carNode();
+  const r=route(start,target);
+  S.route={path:r.path,i:0,doneKm:0,km:r.km,onArrive};
+  if(r.path.length<=1&&Math.abs(nx(target)-S.pos.x)+Math.abs(ny(target)-S.pos.y)<.001){S.route=null;onArrive&&onArrive();}
+  return r;
+}
+function moveCar(dt){
+  const r=S.route;if(!r)return;let km=0;const boost=(S.state==='trip'&&S.job&&S.job.boost)||1;const tf=traffic();
+  while(dt>1e-9&&r.i<r.path.length){
+    const n=r.path[r.i],tx=nx(n),ty=ny(n),dx=tx-S.pos.x,dy=ty-S.pos.y,dist=Math.abs(dx)+Math.abs(dy);
+    if(dist<1e-6){S.pos.x=tx;S.pos.y=ty;r.i++;continue;}
+    const from=r.i>0?r.path[r.i-1]:nearestNode(S.pos.x-Math.sign(dx)*.5,S.pos.y-Math.sign(dy)*.5);
+    const sp=(NB[from].includes(n)?edgeInfo(from,n)[0]:28)*tf*boost;const bpm=sp/60/BK;
+    S.angT=Math.atan2(dy,dx);
+    const can=bpm*dt;
+    if(can>=dist){S.pos.x=tx;S.pos.y=ty;dt-=dist/bpm;km+=dist*BK;r.i++;}
+    else{if(Math.abs(dx)>1e-6)S.pos.x+=Math.sign(dx)*can;else S.pos.y+=Math.sign(dy)*can;km+=can*BK;dt=0;}
+  }
+  consume(km);r.doneKm+=km;
+  if(S.route!==r)return;
+  if(r.i>=r.path.length){const cb=r.onArrive;S.route=null;cb&&cb();}
+}
+function consume(km){
+  if(km<=0)return;const car=CARS[G.car];const used=km*car.cons;
+  S.fuel=Math.max(0,S.fuel-used);S.d.fuel+=used*car.price;S.d.km+=km;
+  if(S.state==='trip')S.d.kmPaid+=km;
+  if(S.fuel<=0&&S.state!=='busy')outOfFuel();
+}
+
+// ---------- flow ----------
+const earnings=()=>S.d.gross-S.d.comm+S.d.tips+S.d.fees+S.d.bonus+S.d.cleaning;
+function setState(st){S.state=st;renderSheet();}
+function goOnline(){if(S.fuel<CARS[G.car].cap*.04){toast('Tens pouca autonomia. Abastece primeiro.','bad');return;}S.online=true;setState(S.route?'reposition':'idle');toast('Estás online','good');}
+function goOffline(){S.online=false;S.offer=null;$('offerOv').hidden=true;setState(S.route?'reposition':'offline');}
+function backToIdle(){
+  if(S.mustEnd||S.d.online>=SHIFT_LIMIT){endShift(true);return;}
+  S.job=null;S.route=null;setState(S.online?'idle':'offline');
+}
+function reposition(node){
+  const z=NODEZONE[node];
+  S.repoTarget=z.n;setState('reposition');
+  driveTo(node,()=>{if(S.state==='offer'){S.offer.prev='idle';return;}if(S.state==='reposition')setState(S.online?'idle':'offline');});
+}
+
+// offers
+function maybeOffer(dt){
+  if(!S.online||!(S.state==='idle'||S.state==='reposition'))return;
+  if(S.t-S.lastOfferT<1.5)return;
+  const here=carNode();let sum=0,cnt=0;
+  for(let n=0;n<NN;n++){const d=Math.abs(nx(n)-nx(here))+Math.abs(ny(n)-ny(here));if(d<=4){sum+=demand(NODEZONE[n]);cnt++;}}
+  const lambda=.1*(sum/cnt);
+  if(chance(1-Math.exp(-lambda*dt)))makeOffer(here);
+}
+function makeOffer(here){
+  const cands=[];
+  for(let n=0;n<NN;n++){const d=Math.abs(nx(n)-nx(here))+Math.abs(ny(n)-ny(here));if(d<1||d>7)continue;const w=demand(NODEZONE[n])/(1+d*.4);if(w>0)cands.push([n,w]);}
+  if(!cands.length)return;
+  const p=wpick(cands),zp=NODEZONE[p],b=bandIdx(hour());
+  const dests=[];
+  for(let m=0;m<NN;m++){const d=Math.abs(nx(m)-nx(p))+Math.abs(ny(m)-ny(p));if(d<2)continue;const z=NODEZONE[m];
+    let w=ATTR[z.a][b]*(d<=4?1:d<=10?1.15:d<=16?.55:.2);if(z.a==='air'&&zp.a==='air')w=0;if(w>0)dests.push([m,w]);}
+  const m=wpick(dests),zd=NODEZONE[m];
+  const toP=route(here,p),trip=route(p,m);
+  const surge=S.surge[zp.id]||1;
+  let fare=Math.max(3.5,(1.2+.62*trip.km+.13*trip.min)*surge);
+  if(zd.a==='air'||zp.a==='air')fare+=1;
+  fare=Math.round(fare*100)/100;
+  S.offer={pickup:p,dest:m,toP,trip,surge,fare,earn:fare*(1-COMMISSION),pax:genPax(zp,zd,b),pPlace:pick(zp.p),dPlace:pick(zd.p),zp,zd,time:15,prev:S.state};
+  S.lastOfferT=S.t;S.state='offer';renderOffer();
+}
+function genPax(zp,zd,b){
+  const tourist=chance(zp.a==='tour'||zp.a==='air'?.45:.1);
+  const r=Math.round((chance(.85)?rand(4.72,5):rand(4.3,4.75))*100)/100;
+  return{name:tourist?pick(TOURIST_NAMES):pick(PT_NAMES),rating:r,tourist,chatty:chance(.45),
+    music:pick(['radio','own','none']),club:pick(CLUBS),
+    drunk:(b===0||b===4)&&(zp.night||zp.a==='mix')&&chance(.38),
+    hurry:zd.a==='air'?chance(.6):b===1?chance(.25):chance(.08),
+    cash:chance(.12),grumpy:r<4.6};
+}
+function acceptOffer(){
+  const o=S.offer;if(!o)return;$('offerOv').hidden=true;S.d.accepted++;
+  S.job={...o,sat:o.pax.grumpy?-.3:0,extraFare:0,boost:1,events:planEvents(o),log:[]};S.offer=null;
+  setState('toPickup');driveTo(o.pickup,arrivePickup);
+}
+function declineOffer(auto){
+  const o=S.offer;if(!o)return;$('offerOv').hidden=true;S.d.declined++;S.offer=null;
+  S.state=o.prev==='reposition'&&S.route?'reposition':'idle';renderSheet();
+  if(auto)toast('Pedido expirado');
+}
+function arrivePickup(){
+  const j=S.job;j.arrivedAt=S.t;j.noShow=chance(.08);j.paxAt=S.t+rand(.3,4.2);setState('waiting');
+  toast('Chegaste a '+j.pPlace);
+}
+function startTrip(){
+  const j=S.job;j.waited=S.t-j.arrivedAt;if(j.waited>3.5)j.sat-=.3;j.startT=S.t;
+  setState('trip');driveTo(j.dest,finishTrip);
+}
+function cancelPickup(){
+  S.d.cancels++;S.job=null;S.route=null;toast('Viagem cancelada. Conta para a tua taxa de cancelamento.','bad');setState(S.online?'idle':'offline');
+}
+function noShowCancel(){
+  const fee=2.5;S.d.fees+=fee;S.job=null;toast('Passageiro não apareceu. Recebes '+eur(fee)+' de taxa de cancelamento.','good');setState(S.online?'idle':'offline');
+}
+function finishTrip(){
+  const j=S.job;const fare=j.fare+j.extraFare;
+  S.d.trips++;S.d.gross+=fare;S.d.comm+=fare*COMMISSION;
+  let sat=j.sat+.25+rand(-.55,.55)*1.1;
+  const rated=chance(.72);let stars=null;
+  if(rated){stars=sat>=-.6?5:sat>=-1.5?4:sat>=-2.4?3:sat>=-3.2?2:1;G.ratings.push(stars);if(G.ratings.length>100)G.ratings.shift();S.d.stars.push(stars);}
+  let tip=0;if(chance(clamp(.08+.13*sat+(j.pax.tourist?.1:0),0,.65)))tip=pick([1,1,2,2,3,5])*(j.pax.tourist?2:1);
+  S.d.tips+=tip;
+  let bonusMsg='';
+  if(!S.quest.done&&S.d.trips>=S.quest.target){S.quest.done=true;S.d.bonus+=S.quest.reward;bonusMsg=`<p><b>Desafio concluído!</b> +${eur(S.quest.reward)} de bónus.</p>`;}
+  setState('done');
+  const r=rating();
+  const warn=r<4.7?`<p style="color:var(--danger)">A tua avaliação está em ${n2(r)}. Abaixo de 4,60 a plataforma pode desativar a conta.</p>`:'';
+  modal(`<div class="kicker">Viagem concluída · ${esc(j.zd.n)}</div>
+    <h2>${eur(fare*(1-COMMISSION)+tip)}</h2>
+    <table class="tbl">
+      <tr><td>Passageiro pagou${j.pax.cash?' (dinheiro)':''}</td><td>${eur(fare)}</td></tr>
+      ${j.surge>1?`<tr><td>Inclui preço dinâmico</td><td>×${n1(j.surge)}</td></tr>`:''}
+      ${j.extraFare?`<tr><td>Paragem extra</td><td>${eur(j.extraFare)}</td></tr>`:''}
+      <tr class="neg"><td>Comissão da plataforma (25%)</td><td>−${eur(fare*COMMISSION)}</td></tr>
+      <tr><td>Gorjeta</td><td>${tip?'+'+eur(tip):'—'}</td></tr>
+      <tr><td>Distância · duração</td><td>${n1(j.trip.km)} km · ${Math.round(S.t-j.startT)} min</td></tr>
+    </table>
+    ${j.pax.cash?'<p class="muted">Recebeste o valor em dinheiro. A comissão é descontada do saldo da app.</p>':''}
+    <div><div class="lbl">Avaliação de ${esc(j.pax.name)}</div>${rated?starsHtml(stars):'<p class="muted">Não deixou avaliação.</p>'}</div>
+    ${bonusMsg}${warn}
+    <button class="btn primary" data-act="afterTrip">Continuar</button>`);
+  if(r<4.6&&G.ratings.length>=60)S.suspend=true;
+}
+function starsHtml(n){let s='';for(let i=1;i<=5;i++)s+=i<=n?'★':'<span class="off">★</span>';return `<div class="stars">${s}</div>`;}
+function afterTrip(){
+  closeModal();
+  if(S.suspend){endShift(true,'suspensa');return;}
+  const j=S.job;
+  if(j&&j.vomit){j.vomit=false;S.d.cleaning+=40;busy('A limpar o carro',30);toast('Taxa de limpeza: +40 €. Perdes 30 min.','bad');return;}
+  if(j&&chance(.05)){phoneLeft(j);return;}
+  backToIdle();
+}
+function busy(label,min,after){S.job=null;S.route=null;S.busy={label,until:S.t+min,total:min,after};setState('busy');}
+function phoneLeft(j){
+  showChoice({kicker:'Depois da viagem',title:'Telemóvel esquecido',text:`${esc(j.pax.name)} deixou o telemóvel no banco de trás. A app propõe uma devolução.`,
+    opts:[
+      ['Combinar a devolução (taxa de 15 €)',()=>{S.d.fees+=15;busy('A devolver o telemóvel',16);consume(3);return 'Encontraste-te com '+esc(j.pax.name)+' 16 min depois. Ficou muito agradecido.';}],
+      ['Entregar mais tarde na esquadra da PSP',()=>{backToIdle();return 'Guardaste o telemóvel no porta-luvas para entregar no fim do turno.';}],
+    ],done:()=>{}});
+}
+function outOfFuel(){
+  S.d.damage+=45;S.fuel=CARS[G.car].cap*.1;
+  if(S.job){S.d.cancels++;}
+  S.online=false;$('offerOv').hidden=true;S.offer=null;
+  busy('À espera do reboque',60);toast('Ficaste sem '+(G.car==='ele'?'bateria':'combustível')+'. Assistência: −45 €','bad');
+}
+function goRefuel(){
+  const list=G.car==='ele'?CHARGE:FUEL;const here=carNode();let best=null,bk=1e9;
+  for(const n of list){const r=route(here,n);if(r.min<bk){bk=r.min;best=n;}}
+  S.online=false;S.offer=null;$('offerOv').hidden=true;
+  setState('toStation');driveTo(best,()=>{S.refuel={start:S.fuel};setState('fueling');});
+}
+function stopFuel(){S.refuel=null;toast((G.car==='ele'?'Bateria':'Depósito')+' a '+Math.round(S.fuel/CARS[G.car].cap*100)+'%','good');setState('offline');}
+
+// ---------- trip events ----------
+const EVENTS=[
+ {id:'chat',w:3,cond:j=>!j.pax.tourist,make:j=>({title:'Conversa',text:`${j.pax.name} pergunta: «Então, muito trabalho hoje?»`,opts:[
+   ['Conversar à vontade',()=>j.pax.chatty?(j.sat+=.6,'Falaram do trânsito e do preço das casas em Lisboa. Boa disposição.'):(j.sat-=.7,`${j.pax.name} respondeu com monossílabos e pegou no telemóvel.`)],
+   ['Responder com simpatia, sem prolongar',()=>(j.sat+=.2,'Resposta simpática. Seguem em silêncio confortável.')],
+   ['Fazer um sorriso e não dizer nada',()=>j.pax.chatty?(j.sat-=.8,`${j.pax.name} achou-te antipático.`):(j.sat+=.3,`${j.pax.name} parece aliviado por poder descansar.`)],
+ ]})},
+ {id:'bola',w:2,cond:j=>!j.pax.tourist,make:j=>({title:'Futebol',text:'«Viu o jogo ontem? Que arbitragem…»',opts:[
+   ['«Sou do Benfica!»',()=>club(j,'Benfica')],['«Sou do Sporting!»',()=>club(j,'Sporting')],['«Sou do Porto!»',()=>club(j,'Porto')],
+   ['«Prefiro não falar de futebol»',()=>j.pax.club==='nenhum'?(j.sat+=.3,'«Ainda bem, eu também não ligo nada.»'):(j.sat-=.1,'«Pronto, pronto…»')],
+ ]})},
+ {id:'musica',w:2,cond:()=>true,make:j=>({title:'Música',text:`${j.pax.name}: «${j.pax.tourist?'Can we have some music?':'Pode pôr música?'}»`,opts:[
+   ['Rádio, com o volume baixo',()=>j.pax.music==='radio'?(j.sat+=.5,'Estava a dar a música preferida dele. Sorte!'):(j.sat+=.1,'Ficou bem assim.')],
+   ['Ligar o telemóvel do passageiro por Bluetooth',()=>j.pax.music==='own'?(j.sat+=.6,'Pôs a playlist dele e foi a cantar.'):(j.sat+=0,'Ligou, mas não encontrou nada para ouvir.')],
+   ['Dizer que o rádio está avariado',()=>(j.sat-=.5,'«A sério? Num carro destes?»')],
+ ]})},
+ {id:'calor',w:1.5,cond:()=>{const b=bandIdx(hour());return b===2||b===3;},make:j=>({title:'Está calor',text:`${j.pax.name} abana-se com a mão. Está abafado dentro do carro.`,opts:[
+   ['Perguntar que temperatura prefere',()=>(j.sat+=.6,S.d.fuel+=.2,'«Que simpático! 21 graus está ótimo.»')],
+   ['Ligar o ar condicionado no máximo',()=>(j.sat+=.2,S.d.fuel+=.3,'Resolveu, mas ficou um pouco frio.')],
+   ['Abrir as janelas',()=>(j.sat-=.2,'Entrou barulho e fumo do trânsito.')],
+ ]})},
+ {id:'transito',w:2,cond:j=>j.trip.km>=2.5,make:j=>{const road=pick(['Segunda Circular','Av. da Liberdade','Av. Gago Coutinho','Rotunda do Marquês']);return{title:'Acidente à frente',text:`Há um acidente na ${road}. O GPS prevê mais 9 minutos.`,opts:[
+   ['Esperar no trânsito',()=>{S.hold+=9;j.sat-=j.pax.hurry?.8:.1;return j.pax.hurry?`${j.pax.name} olha para o relógio sem parar.`:'Ficaram parados, mas o passageiro compreendeu.';}],
+   ['Desviar por ruas secundárias',()=>{if(chance(.55)){S.hold+=3;j.sat+=.2;return 'Boa escolha: poupaste quase 6 minutos.';}S.hold+=13;j.sat-=.3;return 'As ruas secundárias também estavam paradas. Perdeste mais tempo.';}],
+ ]};}},
+ {id:'pressa',w:3,cond:j=>j.pax.hurry,make:j=>({title:'Passageiro com pressa',text:`${j.pax.name}: «${j.zd.a==='air'?'Vou perder o voo!':'Estou atrasado para uma reunião!'} Consegue ir mais depressa?»`,opts:[
+   ['Acelerar acima do limite',()=>{j.boost=1.35;if(chance(.25)){S.d.fines+=120;toast('Radar: multa de 120 €','bad');j.sat+=.2;return 'Chegaram mais cedo… mas o radar da Av. da Índia apanhou-te. Multa de 120 €.';}j.sat+=.6;return 'Chegaram mais cedo. O passageiro agradeceu muito.';}],
+   ['Respeitar o limite e escolher o caminho mais rápido',()=>(j.sat+=.1,'«Pronto, faça o que puder.»')],
+   ['Explicar que não pode fazer nada',()=>(j.sat-=.4,'Ficou visivelmente irritado.')],
+ ]})},
+ {id:'paragem',w:1.2,cond:()=>true,make:j=>({title:'Paragem rápida',text:`«Importa-se de parar 2 minutos no multibanco?»`,opts:[
+   ['«Claro, eu espero»',()=>{S.hold+=4;j.extraFare+=.52;j.sat+=.4;return 'Parou, levantou dinheiro e voltou. O tempo extra entra na tarifa.';}],
+   ['«Lamento, não posso parar aqui»',()=>(j.sat-=.4,'«Está bem…» Não gostou.')],
+ ]})},
+ {id:'enjoo',w:5,cond:j=>j.pax.drunk,make:j=>({title:'Fim de noite',text:`${j.pax.name} vem bem-disposto da noite… e diz que está um bocadinho enjoado.`,opts:[
+   ['Abrir as janelas e conduzir com suavidade',()=>chance(.15)?vomit(j):(j.sat+=.4,'O ar fresco ajudou. Chegou inteiro.')],
+   ['Parar um minuto para apanhar ar',()=>{S.hold+=2;return chance(.05)?vomit(j):(j.sat+=.5,'Um minuto de ar e ficou melhor. «És o maior!»');}],
+   ['Seguir normalmente',()=>chance(.45)?vomit(j):(j.sat+=0,'Por pouco. Chegou pálido, mas sem acidentes.')],
+ ]})},
+ {id:'turista',w:4,cond:j=>j.pax.tourist,make:j=>({title:'Turista',text:`${j.pax.name} está em Lisboa pela primeira vez e pergunta, em inglês, onde comer bem.`,opts:[
+   ['Recomendar pastéis de nata em Belém',()=>(j.sat+=.6,j.pax.tip=1,'«Amazing, thank you!» Tirou nota no telemóvel.')],
+   ['Sugerir uma bifana e uma ginjinha no Rossio',()=>(j.sat+=.7,'Riu-se muito com a ideia da ginjinha.')],
+   ['Responder só «I don\'t know»',()=>(j.sat-=.4,'Ficou desiludido.')],
+ ]})},
+ {id:'trotinete',w:2,qte:true,cond:()=>true},
+ {id:'stop',w:.8,cond:()=>true,make:j=>({title:'Operação STOP',text:'A PSP manda-te encostar e pede os documentos.',opts:[
+   ['Mostrar carta, documentos do carro e certificado TVDE',()=>{S.hold+=4;j.sat-=j.pax.hurry?.5:.1;return 'Tudo em ordem. Perdeste 4 minutos.';}],
+   ['Mostrar os documentos e pedir desculpa ao passageiro',()=>{S.hold+=4;j.sat+=j.pax.hurry?-.2:.1;return '«Não faz mal, não é culpa sua.»';}],
+ ]})},
+];
+function club(j,c){if(j.pax.club===c){j.sat+=.7;return `«Grande ${c}!» Ficaram amigos para a vida.`;}if(j.pax.club==='nenhum'){return '«Eu não ligo muito a futebol, sabe?»';}j.sat-=.3;return `«${c}? Ai, ai…» Mas riu-se.`;}
+function vomit(j){j.vomit=true;j.sat+=0;return 'Aconteceu o pior. Reportas na app: recebes 40 € de taxa de limpeza, mas vais perder 30 min a limpar o carro.';}
+function planEvents(o){
+  const n=o.trip.min<8?(chance(.45)?1:0):o.trip.min<18?1:chance(.6)?2:1;
+  const ctx={pax:o.pax,trip:o.trip,zd:o.zd};const pool=EVENTS.filter(e=>e.cond(ctx));const out=[];
+  for(let i=0;i<n&&pool.length;i++){const e=wpick(pool.map(e=>[e,e.w]));pool.splice(pool.indexOf(e),1);out.push({at:rand(.18,.82),e});}
+  return out.sort((a,b)=>a.at-b.at);
+}
+function checkEvents(){
+  const j=S.job,r=S.route;if(!j||!r||!j.events.length||r.km<=0)return;
+  if(r.doneKm/r.km>=j.events[0].at){const ev=j.events.shift();fireEvent(ev.e,j);}
+}
+function fireEvent(e,j){
+  if(e.qte){qte(j);return;}
+  const d=e.make(j);showChoice({kicker:'Em viagem com '+esc(j.pax.name),title:d.title,text:esc(d.text),opts:d.opts});
+}
+function showChoice({kicker,title,text,opts,done}){
+  S.paused=true;
+  modal(`<div class="kicker">${kicker}</div><h2>${title}</h2><p>${text}</p><div class="opts">${opts.map((o,i)=>`<button class="opt" data-opt="${i}">${esc(o[0])}</button>`).join('')}</div>`);
+  modalHandler=i=>{const res=opts[i][1]();modal(`<div class="kicker">${kicker}</div><h2>${title}</h2><p>${res}</p><button class="btn primary" data-act="close">Continuar</button>`);};
+}
+function qte(j){
+  S.paused=true;let ok=false;
+  modal(`<div class="kicker">Em viagem com ${esc(j.pax.name)}</div><h2>Trotinete!</h2><p>Uma trotinete atravessa a passadeira sem olhar.</p><div class="timer"><i id="qteBar"></i></div><button class="qte" data-act="brake">TRAVAR</button>`);
+  const t0=performance.now(),lim=1500;
+  const tick=()=>{const b=$('qteBar');if(!b||ok)return;const f=1-(performance.now()-t0)/lim;b.style.width=Math.max(0,f*100)+'%';
+    if(f<=0){ok=true;j.sat-=1.2;S.d.damage+=80;S.hold+=10;
+      modal(`<div class="kicker">Em viagem</div><h2>Toque ligeiro</h2><p>Bateste na roda da trotinete. Ninguém se magoou, mas vais pagar 80 € de franquia e perdeste 10 minutos a tratar da declaração amigável.</p><button class="btn primary" data-act="close">Continuar</button>`);return;}
+    requestAnimationFrame(tick);};
+  requestAnimationFrame(tick);
+  brakeHandler=()=>{if(ok)return;ok=true;j.sat+=.3;modal(`<div class="kicker">Em viagem</div><h2>A tempo</h2><p>Travagem firme, a centímetros. ${esc(j.pax.name)}: «Bons reflexos!»</p><button class="btn primary" data-act="close">Continuar</button>`);};
+}
+let modalHandler=null,brakeHandler=null;
+
+// ---------- shift end ----------
+function endShift(forced,reason){
+  S.running=true;S.paused=true;S.online=false;$('offerOv').hidden=true;
+  const d=S.d,car=CARS[G.car];
+  const wear=d.km*WEAR_KM+FIXED_DAY;
+  const gross=earnings();const net=gross-d.fuel-wear-d.fines-d.damage;
+  const hrs=Math.max(d.online,1)/60;
+  const stars=d.stars.length?d.stars.reduce((a,b)=>a+b,0)/d.stars.length:null;
+  const acc=d.accepted+d.declined?Math.round(d.accepted/(d.accepted+d.declined)*100):100;
+  G.totals.net+=net;G.totals.trips+=d.trips;G.totals.min+=d.online;G.totals.km+=d.km;G.totals.days++;G.best=Math.max(G.best||0,net);
+  const dayName=DAYS[S.weekday];G.day++;writeSave();
+  const head=reason==='suspensa'?`<div class="kicker" style="color:var(--danger)">Conta suspensa</div><h2>A plataforma desativou a tua conta</h2><p>A avaliação desceu abaixo de 4,60. Recomeças do zero com um histórico novo.</p>`
+    :`<div class="kicker">Fim do turno · ${dayName}</div><h2>${forced&&d.online>=SHIFT_LIMIT?'Limite legal de 10 horas atingido':'Turno terminado'}</h2>`;
+  if(reason==='suspensa'){G.ratings=seedRatings();writeSave();}
+  modal(`${head}
+    <table class="tbl">
+      <tr><td>Viagens · aceitação</td><td>${d.trips} · ${acc}%</td></tr>
+      <tr><td>Tempo online</td><td>${Math.floor(d.online/60)} h ${String(Math.round(d.online%60)).padStart(2,'0')} min</td></tr>
+      <tr><td>Quilómetros (com passageiro)</td><td>${n1(d.km)} km (${d.km?Math.round(d.kmPaid/d.km*100):0}%)</td></tr>
+      <tr><td>Pago pelos passageiros</td><td>${eur(d.gross)}</td></tr>
+      <tr class="neg"><td>Comissão da plataforma</td><td>−${eur(d.comm)}</td></tr>
+      <tr><td>Gorjetas</td><td>+${eur(d.tips)}</td></tr>
+      ${d.bonus?`<tr><td>Bónus do desafio</td><td>+${eur(d.bonus)}</td></tr>`:''}
+      ${d.fees?`<tr><td>Taxas (cancelamento, devoluções)</td><td>+${eur(d.fees)}</td></tr>`:''}
+      ${d.cleaning?`<tr><td>Taxas de limpeza</td><td>+${eur(d.cleaning)}</td></tr>`:''}
+      <tr class="neg"><td>${G.car==='ele'?'Energia':'Combustível'}</td><td>−${eur(d.fuel)}</td></tr>
+      <tr class="neg"><td>Seguro, manutenção e desgaste</td><td>−${eur(wear)}</td></tr>
+      ${d.fines?`<tr class="neg"><td>Multas</td><td>−${eur(d.fines)}</td></tr>`:''}
+      ${d.damage?`<tr class="neg"><td>Danos e assistência</td><td>−${eur(d.damage)}</td></tr>`:''}
+      <tr class="tot"><td>Líquido do dia</td><td style="color:${net>=0?'var(--online)':'var(--danger)'}">${eur(net)}</td></tr>
+      <tr><td>Por hora (líquido)</td><td>${eur(net/hrs)}/h</td></tr>
+      <tr><td>Avaliação de hoje</td><td>${stars?n2(stars)+' ★':'—'}</td></tr>
+    </table>
+    <p class="muted">Total acumulado em ${G.totals.days} ${G.totals.days===1?'dia':'dias'}: ${eur(G.totals.net)} líquidos em ${G.totals.trips} viagens.</p>
+    <button class="btn primary" data-act="newDay">Próximo dia</button>`);
+}
+
+// ---------- start screen ----------
+let startSel={car:G.car,h:8};
+function startScreen(){
+  const wd=DAYS[(G.day-1)%7];
+  const carBtn=k=>`<button class="ch" data-car="${k}" aria-pressed="${startSel.car===k}"><b>${CARS[k].n}</b><span>${CARS[k].desc}</span></button>`;
+  const hBtn=(h,l,s)=>`<button class="ch" data-h="${h}" aria-pressed="${startSel.h===h}"><b>${l}</b><span>${s}</span></button>`;
+  modal(`<div class="kicker">Dia ${G.day} · ${wd}</div>
+    <h2>Turno em Lisboa</h2>
+    <p class="muted">És motorista TVDE. Aceita pedidos, leva passageiros, gere o combustível e mantém a avaliação acima de 4,60. A plataforma fica com 25% de cada viagem. Por lei, podes conduzir no máximo 10 horas por dia.</p>
+    <div class="lbl">Carro</div><div class="choice">${carBtn('hib')}${carBtn('ele')}</div>
+    <div class="lbl">Começar às</div><div class="choice three">${hBtn(7,'07:00','Hora de ponta e aeroporto')}${hBtn(14,'14:00','Turistas e fim de tarde')}${hBtn(21,'21:00','Vida noturna')}</div>
+    ${G.totals.days?`<p class="muted">Até agora: ${eur(G.totals.net)} líquidos em ${G.totals.days} ${G.totals.days===1?'dia':'dias'} · avaliação ${n2(rating())}</p>`:''}
+    <p class="muted" style="font-size:13px">Dica: toca no mapa para te deslocares para zonas com preço dinâmico (a laranja).</p>
+    <button class="btn primary" data-act="begin">Começar turno</button>`);
+}
+
+// ---------- UI ----------
+function modal(html){const ov=$('modalOv');ov.innerHTML=`<div class="card" role="dialog" aria-modal="true">${html}</div>`;ov.hidden=false;S&&(S.paused=true);const b=ov.querySelector('button');b&&b.focus({preventScroll:true});}
+function closeModal(){$('modalOv').hidden=true;$('modalOv').innerHTML='';S.paused=false;modalHandler=null;brakeHandler=null;}
+$('modalOv').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.opt!=null&&modalHandler){const h=modalHandler;modalHandler=null;h(+b.dataset.opt);return;}
+  if(b.dataset.car){startSel.car=b.dataset.car;startScreen();return;}
+  if(b.dataset.h){startSel.h=+b.dataset.h;startScreen();return;}
+  const a=b.dataset.act;
+  if(a==='close'){closeModal();renderSheet();}
+  else if(a==='brake'){brakeHandler&&brakeHandler();}
+  else if(a==='afterTrip')afterTrip();
+  else if(a==='begin'){G.car=startSel.car;writeSave();newShift(startSel.h);closeModal();renderAll();toast(S.rain?'Está a chover: mais pedidos, mais trânsito.':'Bom turno! Fica online para receber pedidos.');}
+  else if(a==='newDay'){startScreen();}
+});
+let toastTimer;
+function toast(msg,kind){const el=document.createElement('div');el.className='t '+(kind||'');el.textContent=msg;const box=$('toast');box.appendChild(el);while(box.children.length>3)box.firstChild.remove();setTimeout(()=>el.remove(),3200);}
+
+function renderOffer(){
+  const o=S.offer,ov=$('offerOv');const totKm=o.toP.km+o.trip.km;
+  ov.innerHTML=`<div class="card offer" role="dialog" aria-label="Novo pedido">
+    <div class="o-top"><span class="pill">Viagem · ${o.pax.cash?'Dinheiro':'Cartão'}</span>${o.surge>1?`<span class="pill surge">×${n1(o.surge)} dinâmico</span>`:''}</div>
+    <div class="o-earn">${eur(o.earn)}<small>${n2(o.earn/Math.max(totKm,.5))} €/km</small></div>
+    <div class="s-sub">★ ${n2(o.pax.rating)} · ${esc(o.pax.name)}${o.pax.tourist?' · turista':''}</div>
+    <ol class="o-route">
+      <li><b>${Math.max(1,Math.round(o.toP.min))} min (${n1(o.toP.km)} km)</b>${esc(o.pPlace)}, ${esc(o.zp.n)}</li>
+      <li><b>${Math.max(1,Math.round(o.trip.min))} min (${n1(o.trip.km)} km)</b>${esc(o.dPlace)}, ${esc(o.zd.n)}</li>
+    </ol>
+    <div class="timer"><i id="offerBar"></i></div>
+    <div class="row"><button class="btn ghost" data-act="decline">Recusar</button><button class="btn primary" data-act="accept">Aceitar</button></div>
+  </div>`;
+  ov.hidden=false;
+}
+$('offerOv').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.act==='accept')acceptOffer();else if(b.dataset.act==='decline')declineOffer(false);});
+
+function renderSheet(){
+  if(!S)return;const st=S.state,j=S.job,fuelLbl=G.car==='ele'?'Carregar':'Abastecer';let h='';
+  const endBtn=`<button class="btn ghost" data-act="end">Terminar turno</button>`;
+  if(st==='offline')h=`<div class="s-title"><span class="dot"></span>Estás offline</div><div class="s-sub">Toca no mapa para te deslocares, ou fica online para receber pedidos.</div>
+    <div class="row"><button class="btn go" data-act="online">Ficar online</button><button class="btn" data-act="fuel">${fuelLbl}</button></div><div class="row">${endBtn}</div>`;
+  else if(st==='idle'||st==='offer')h=`<div class="s-title"><span class="dot on"></span>À procura de viagens…</div><div class="s-sub" id="dyn"></div>
+    <div class="row"><button class="btn" data-act="offline">Ficar offline</button><button class="btn" data-act="fuel">${fuelLbl}</button></div>`;
+  else if(st==='reposition')h=`<div class="s-title"><span class="dot ${S.online?'on':''}"></span>A caminho de ${esc(S.repoTarget||'')}</div><div class="s-sub" id="dyn"></div>
+    <div class="row"><button class="btn" data-act="stop">Parar aqui</button>${S.online?'<button class="btn" data-act="offline">Ficar offline</button>':'<button class="btn go" data-act="online">Ficar online</button>'}</div>`;
+  else if(st==='toPickup')h=`<div class="s-title">A caminho de ${esc(j.pax.name)}</div><div class="s-sub" id="dyn"></div><div class="row"><button class="btn ghost" data-act="cancel">Cancelar viagem</button></div>`;
+  else if(st==='waiting')h=`<div class="s-title">À espera de ${esc(j.pax.name)}</div><div class="s-sub" id="dyn"></div>
+    <div class="row"><button class="btn ghost" data-act="noshow" id="bNoShow" disabled>Não apareceu</button><button class="btn go" data-act="start" id="bStart" disabled>Iniciar viagem</button></div>`;
+  else if(st==='trip')h=`<div class="s-title">Em viagem com ${esc(j.pax.name)}</div><div class="s-sub" id="dyn"></div><div class="prog"><i id="prog"></i></div>`;
+  else if(st==='toStation')h=`<div class="s-title">A caminho do ${CARS[G.car].station}</div><div class="s-sub" id="dyn"></div><div class="row"><button class="btn" data-act="stop">Cancelar</button></div>`;
+  else if(st==='fueling')h=`<div class="s-title">${G.car==='ele'?'A carregar':'A abastecer'}</div><div class="s-sub" id="dyn"></div><div class="prog"><i id="prog"></i></div><div class="row"><button class="btn" data-act="stopfuel">Terminar</button></div>`;
+  else if(st==='busy')h=`<div class="s-title">${esc(S.busy.label)}</div><div class="s-sub" id="dyn"></div><div class="prog"><i id="prog"></i></div>`;
+  else if(st==='done')h=`<div class="s-title">Viagem concluída</div>`;
+  $('sheet').innerHTML=h;sheetDyn();
+}
+$('sheet').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b||b.disabled)return;const a=b.dataset.act;
+  if(a==='online')goOnline();else if(a==='offline')goOffline();else if(a==='fuel')goRefuel();
+  else if(a==='end'){endShift(false);}
+  else if(a==='stop'){S.route=null;setState(S.online?'idle':'offline');}
+  else if(a==='cancel')cancelPickup();else if(a==='start')startTrip();else if(a==='noshow')noShowCancel();
+  else if(a==='stopfuel')stopFuel();
+});
+const mmss=m=>{const s=Math.max(0,Math.round(m*60));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+function etaMin(){const r=S.route;if(!r)return 0;return Math.max(0,(r.km-r.doneKm)/(28*traffic())*60*.85)+S.hold;}
+function sheetDyn(){
+  const el=$('dyn');const st=S.state,j=S.job;
+  if(el){
+    if(st==='idle'||st==='offer'||st==='reposition'){const z=zoneAt(clamp(S.pos.x,0,9.99),clamp(S.pos.y,0,12.99));const s=S.surge[z.id]||1;
+      el.textContent=(st==='reposition'?`${Math.ceil(etaMin())} min · `:'')+`Estás em ${z.n}`+(s>1?` · dinâmico ×${n1(s)}`:'')+(S.online&&st!=='reposition'?' · procura '+(demand(z)>1.1?'alta':demand(z)>.6?'média':'baixa'):'');}
+    else if(st==='toPickup')el.textContent=`${j.pPlace} · ${Math.ceil(etaMin())} min`+(j.pax.cash?' · paga em dinheiro':'');
+    else if(st==='waiting'){const w=S.t-j.arrivedAt;const here=!j.noShow&&S.t>=j.paxAt;
+      el.textContent=here?`${j.pax.name} entrou no carro. Confirma o nome antes de arrancar.`:`Tempo de espera ${mmss(w)}`+(w>=5?' · já podes cancelar com taxa':' · taxa de cancelamento após 5:00');
+      const bs=$('bStart'),bn=$('bNoShow');if(bs)bs.disabled=!here;if(bn)bn.disabled=here||w<5;}
+    else if(st==='trip'){el.textContent=`Para ${j.dPlace}, ${j.zd.n} · ${Math.ceil(etaMin())} min`+(S.hold>0?' · parado':'');const p=$('prog');if(p&&S.route)p.style.width=(S.route.doneKm/Math.max(S.route.km,.01)*100)+'%';}
+    else if(st==='toStation')el.textContent=`${Math.ceil(etaMin())} min · fica offline enquanto ${G.car==='ele'?'carregas':'abasteces'}`;
+    else if(st==='fueling'){const c=CARS[G.car];const pct=S.fuel/c.cap*100;el.textContent=`${Math.round(pct)}% · ${n1(S.fuel)} de ${c.cap} ${c.unit}`;const p=$('prog');if(p)p.style.width=pct+'%';}
+    else if(st==='busy'){const b=S.busy;el.textContent=`Faltam ${Math.ceil(b.until-S.t)} min`;const p=$('prog');if(p)p.style.width=((1-(b.until-S.t)/b.total)*100)+'%';}
+  }
+}
+function renderHUD(){
+  if(!S)return;
+  $('hEarn').textContent=eur(earnings());
+  const h=Math.floor(hour()),m=Math.floor(S.t%60);
+  $('hClock').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+  $('hDay').textContent=DAYS_S[curWeekday()]+' · '+Math.floor(S.d.online/60)+'h'+String(Math.floor(S.d.online%60)).padStart(2,'0');
+  $('hRate').textContent=n2(rating());
+  const c=CARS[G.car],pct=S.fuel/c.cap;$('hFuel').textContent=Math.round(pct*100)+'%';
+  $('hFuelBar').firstChild.style.width=pct*100+'%';$('hFuelBar').classList.toggle('low',pct<.12);
+  $('quest').innerHTML=S.quest.done?`Desafio concluído · <b>+${eur(S.quest.reward)}</b>`:`Desafio: ${S.d.trips}/${S.quest.target} viagens · <b>+${eur(S.quest.reward)}</b>`;
+  $('weather').textContent=(S.rain?'Chuva':'Céu limpo')+' · trânsito '+(traffic()<.6?'intenso':traffic()<.9?'normal':'fluido');
+}
+function renderAll(){renderHUD();renderSheet();}
+
+const SPEEDS=[1,3,6];
+$('speedBtn').addEventListener('click',()=>{if(!S)return;S.speed=SPEEDS[(SPEEDS.indexOf(S.speed)+1)%SPEEDS.length];$('speedBtn').textContent='×'+S.speed;});
+
+// ---------- step ----------
+function step(dt){
+  S.t+=dt;
+  const working=S.online||['toPickup','waiting','trip','offer'].includes(S.state);
+  if(working)S.d.online+=dt;
+  if(!S.warned8&&S.d.online>=480){S.warned8=true;toast('Estás online há 8 h. O limite legal é 10 h por dia.','bad');}
+  if(S.d.online>=SHIFT_LIMIT&&!S.mustEnd){S.mustEnd=true;
+    if(['idle','reposition','offline','offer'].includes(S.state)){$('offerOv').hidden=true;endShift(true);return;}
+    toast('Atingiste as 10 h. O turno termina depois desta viagem.','bad');S.online=false;}
+  updateSurge(false);
+  if(S.state==='busy'){if(S.t>=S.busy.until){S.busy=null;backToIdle();}return;}
+  if(S.state==='fueling'){const c=CARS[G.car];const rate=G.car==='ele'?(S.fuel/c.cap<.8?.85:.3):8;S.fuel=Math.min(c.cap,S.fuel+rate*dt);if(S.fuel>=c.cap-.01)stopFuel();return;}
+  if(S.hold>0){S.hold=Math.max(0,S.hold-dt);}else moveCar(dt);
+  if(S.state==='trip')checkEvents();
+  maybeOffer(dt);
+}
+
+// ---------- drawing ----------
+const cv=$('map'),ctx=cv.getContext('2d');let cw=0,ch=0,dpr=1,sc=30,ox=0,oy=0;const C={};
+function readColors(){const cs=getComputedStyle(document.documentElement);for(const k of ['bg','surface','surface2','line','fg','muted','accent','online','danger','surge','road','road-major','block','park','river'])C[k]=cs.getPropertyValue('--'+k).trim();}
+function resize(){const r=cv.getBoundingClientRect();dpr=window.devicePixelRatio||1;cw=r.width;ch=r.height;cv.width=cw*dpr;cv.height=ch*dpr;
+  sc=Math.min(cw/(COLS+.8),ch/(ROWS+2.1));ox=(cw-COLS*sc)/2;oy=Math.max(sc*.9,(ch-(ROWS+1.4)*sc)/2+sc*.2);}
+new ResizeObserver(resize).observe($('mapWrap'));
+const P=(x,y)=>[ox+x*sc,oy+y*sc];
+cv.addEventListener('click',e=>{
+  if(!S||S.paused)return;const r=cv.getBoundingClientRect();const x=(e.clientX-r.left-ox)/sc,y=(e.clientY-r.top-oy)/sc;
+  if(x<-.5||x>COLS+.5||y<-.5||y>ROWS+.5)return;
+  if(!['offline','idle','reposition'].includes(S.state)){toast('Termina primeiro a viagem atual');return;}
+  const n=nearestNode(x,y);reposition(n);toast('A caminho de '+NODEZONE[n].n);
+});
+let rainDrops=[];for(let i=0;i<90;i++)rainDrops.push([Math.random(),Math.random(),rand(.6,1.2)]);
+function draw(now){
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle=C.bg;ctx.fillRect(0,0,cw,ch);
+  const rw=sc*.16;
+  // river
+  const [,ry]=P(0,ROWS);ctx.fillStyle=C.river;ctx.fillRect(0,ry+rw,cw,ch-ry);
+  ctx.fillStyle=C.muted;ctx.globalAlpha=.6;ctx.font=`italic 500 ${Math.max(11,sc*.42)}px Figtree,system-ui,sans-serif`;ctx.textAlign='center';ctx.fillText('Rio Tejo',ox+COLS*sc*.72,ry+sc*.95);ctx.globalAlpha=1;
+  // bridge
+  ctx.strokeStyle=C.danger;ctx.globalAlpha=.55;ctx.lineWidth=rw*1.1;ctx.beginPath();const [bx,by]=P(3.5,ROWS);ctx.moveTo(bx,by);ctx.lineTo(bx-sc*.4,ch+10);ctx.stroke();ctx.globalAlpha=1;
+  // blocks
+  for(let by2=0;by2<ROWS;by2++)for(let bx2=0;bx2<COLS;bx2++){
+    const z=zoneAt(bx2+.5,by2+.5);const [x,y]=P(bx2,by2);const pad=rw/2+1;
+    ctx.fillStyle=z.a==='park'?C.park:C.block;ctx.fillRect(x+pad,y+pad,sc-pad*2,sc-pad*2);
+    const seed=by2*31+bx2*7;
+    if(z.a==='park'){ctx.fillStyle=C.online;ctx.globalAlpha=.18;for(let k=0;k<4;k++){ctx.beginPath();ctx.arc(x+pad+hash(seed+k)*(sc-pad*2),y+pad+hash(seed+k+9)*(sc-pad*2),sc*.09,0,7);ctx.fill();}ctx.globalAlpha=1;}
+    else if(z.a==='air'&&by2===1){ctx.fillStyle=C.line;ctx.fillRect(x+pad,y+sc*.42,sc-pad*2,sc*.16);}
+    else{ctx.fillStyle=C.surface2;const k=2+Math.floor(hash(seed)*3);for(let q=0;q<k;q++){const w=(sc-pad*2)*(.25+hash(seed+q*3)*.3),hh=(sc-pad*2)*(.25+hash(seed+q*5)*.3);ctx.fillRect(x+pad+hash(seed+q*7)*((sc-pad*2)-w),y+pad+hash(seed+q*11)*((sc-pad*2)-hh),w,hh);}}
+  }
+  // surge overlay
+  for(const z of ZONES){const s=S?S.surge[z.id]||1:1;if(s<=1.05)continue;const [x0,y0]=P(z.r[0],z.r[1]),[x1,y1]=P(z.r[2],z.r[3]);ctx.fillStyle=C.surge;ctx.globalAlpha=clamp((s-1)*.32,.08,.4);ctx.fillRect(x0,y0,x1-x0,y1-y0);ctx.globalAlpha=1;}
+  // roads
+  ctx.lineCap='round';
+  for(let n=0;n<NN;n++)for(const v of NB[n]){if(v<n)continue;const sp=edgeInfo(n,v)[0];ctx.strokeStyle=sp>=40?C['road-major']:C.road;ctx.lineWidth=sp>=40?rw*1.35:rw;const [a1,a2]=P(nx(n),ny(n)),[b1,b2]=P(nx(v),ny(v));ctx.beginPath();ctx.moveTo(a1,a2);ctx.lineTo(b1,b2);ctx.stroke();}
+  // zone labels
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  for(const z of ZONES){const cx=(z.r[0]+z.r[2])/2,cy=(z.r[1]+z.r[3])/2;const [x,y]=P(cx,cy);const s=S?S.surge[z.id]||1:1;
+    ctx.font=`600 ${Math.max(10,sc*.36)}px "Barlow Condensed","Arial Narrow",sans-serif`;ctx.fillStyle=C.fg;ctx.globalAlpha=.78;
+    const lbl=z.n.toUpperCase();ctx.fillText(lbl,x,y-(s>1.05?sc*.22:0));ctx.globalAlpha=1;
+    if(s>1.05){ctx.font=`700 ${Math.max(12,sc*.48)}px "Barlow Condensed","Arial Narrow",sans-serif`;ctx.fillStyle=C.surge;ctx.fillText('×'+n1(s),x,y+sc*.28);}}
+  // stations
+  const stations=G.car==='ele'?CHARGE:FUEL;
+  for(const n of stations){const [x,y]=P(nx(n),ny(n));ctx.fillStyle=C.online;ctx.beginPath();ctx.roundRect?ctx.roundRect(x-sc*.2,y-sc*.2,sc*.4,sc*.4,4):ctx.rect(x-sc*.2,y-sc*.2,sc*.4,sc*.4);ctx.fill();
+    ctx.fillStyle='#06231c';ctx.font=`700 ${Math.max(9,sc*.3)}px "Barlow Condensed",sans-serif`;ctx.fillText(G.car==='ele'?'⚡':'P',x,y+1);}
+  if(!S)return;
+  // route
+  const r=S.route;
+  if(r&&r.i<r.path.length){ctx.strokeStyle=S.state==='trip'?C.accent:S.state==='reposition'||S.state==='toStation'?C.muted:C.fg;ctx.lineWidth=rw*.7;ctx.lineJoin='round';ctx.setLineDash(S.state==='reposition'?[4,5]:[]);
+    ctx.beginPath();let [sx,sy]=P(S.pos.x,S.pos.y);ctx.moveTo(sx,sy);for(let i=r.i;i<r.path.length;i++){const [x,y]=P(nx(r.path[i]),ny(r.path[i]));ctx.lineTo(x,y);}ctx.stroke();ctx.setLineDash([]);}
+  const pulse=(Math.sin(now/260)+1)/2;
+  const j=S.job;
+  if(j&&(S.state==='toPickup'||S.state==='waiting')){const [x,y]=P(nx(j.pickup),ny(j.pickup));ctx.strokeStyle=C.fg;ctx.lineWidth=2;ctx.globalAlpha=1-pulse;ctx.beginPath();ctx.arc(x,y,sc*(.25+pulse*.35),0,7);ctx.stroke();ctx.globalAlpha=1;ctx.fillStyle=C.fg;ctx.beginPath();ctx.arc(x,y,sc*.17,0,7);ctx.fill();}
+  if(j&&S.state!=='done'){const [x,y]=P(nx(j.dest),ny(j.dest));ctx.fillStyle=C.accent;ctx.fillRect(x-sc*.16,y-sc*.16,sc*.32,sc*.32);}
+  if(S.offer){const o=S.offer;const [x,y]=P(nx(o.pickup),ny(o.pickup)),[x2,y2]=P(nx(o.dest),ny(o.dest));ctx.strokeStyle=C.accent;ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=C.fg;ctx.beginPath();ctx.arc(x,y,sc*.17+pulse*2,0,7);ctx.fill();ctx.fillStyle=C.accent;ctx.fillRect(x2-sc*.15,y2-sc*.15,sc*.3,sc*.3);}
+  // car
+  let da=S.angT-S.ang;while(da>Math.PI)da-=2*Math.PI;while(da<-Math.PI)da+=2*Math.PI;S.ang+=da*.2;
+  const [cx,cy]=P(S.pos.x,S.pos.y);ctx.save();ctx.translate(cx,cy);ctx.rotate(S.ang);
+  if(S.online||S.job){ctx.fillStyle=C.online;ctx.globalAlpha=.22;ctx.beginPath();ctx.arc(0,0,sc*.55,0,7);ctx.fill();ctx.globalAlpha=1;}
+  const L=sc*.56,Wd=sc*.32;ctx.fillStyle=C.fg;ctx.beginPath();ctx.roundRect?ctx.roundRect(-L/2,-Wd/2,L,Wd,Wd*.35):ctx.rect(-L/2,-Wd/2,L,Wd);ctx.fill();
+  ctx.fillStyle=C.bg;ctx.fillRect(L*.08,-Wd*.36,L*.2,Wd*.72);ctx.fillStyle=C.accent;ctx.fillRect(L/2-2,-Wd*.4,2,Wd*.25);ctx.fillRect(L/2-2,Wd*.15,2,Wd*.25);
+  ctx.restore();
+  // rain
+  if(S.rain){ctx.strokeStyle=C.muted;ctx.globalAlpha=.25;ctx.lineWidth=1;ctx.beginPath();const tt=now/1000;for(const d of rainDrops){const x=((d[0]+tt*.05*d[2])%1)*cw,y=((d[1]+tt*.6*d[2])%1)*ch;ctx.moveTo(x,y);ctx.lineTo(x-3,y+9);}ctx.stroke();ctx.globalAlpha=1;}
+}
+
+// ---------- loop ----------
+let last=performance.now(),hudAcc=0;
+function frame(now){
+  const real=Math.min(.1,(now-last)/1000);last=now;
+  if(S&&!S.paused){
+    if(S.state==='offer'){S.offer.time-=real;const b=$('offerBar');if(b)b.style.width=Math.max(0,S.offer.time/15*100)+'%';step(real*.5);if(S.offer&&S.offer.time<=0)declineOffer(true);}
+    else step(real*S.speed);
+    hudAcc+=real;if(hudAcc>.12){hudAcc=0;renderHUD();sheetDyn();}
+  }
+  draw(now);requestAnimationFrame(frame);
+}
+readColors();resize();
+newShift(8);startScreen();renderAll();
+requestAnimationFrame(frame);
+</script>
+
+</body>
+</html>
