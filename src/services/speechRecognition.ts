@@ -4,9 +4,10 @@
  * (por ex. Chrome) o áudio é processado pelos servidores do fabricante do navegador.
  * Não existe em todos os navegadores (por ex. Firefox): a aplicação verifica sempre.
  */
+import type { Heard } from '../engine/speech.ts';
 import { prepareForMicrophone, restoreAudioAfterMicrophone } from './sounds.ts';
 
-interface RecognitionAlternative { transcript: string }
+interface RecognitionAlternative { transcript: string; confidence?: number }
 interface RecognitionResultEvent { results: ArrayLike<ArrayLike<RecognitionAlternative>> }
 interface RecognitionErrorEvent { error: string }
 export interface SpeechRecognitionLike {
@@ -45,7 +46,7 @@ export class RecognitionError extends Error {
 
 export interface RecognitionHandle {
   /** Resolve com as transcrições (a mais provável primeiro). */
-  result: Promise<string[]>;
+  result: Promise<Heard[]>;
   /** Pára de ouvir e devolve o que já tiver sido reconhecido. */
   stop(): void;
 }
@@ -62,12 +63,13 @@ export function listenOnce(lang = 'nl-NL', timeoutMs = 10_000): RecognitionHandl
   let timer: ReturnType<typeof setTimeout> | undefined;
   let restored = false;
   const restore = () => { if (!restored) { restored = true; restoreAudioAfterMicrophone(); } };
-  const result = new Promise<string[]>((resolve, reject) => {
-    let got: string[] = [];
+  const result = new Promise<Heard[]>((resolve, reject) => {
+    let got: Heard[] = [];
     rec.onresult = (e) => {
       const first = e.results[0];
       if (!first) return;
-      got = Array.from({ length: first.length }, (_, i) => first[i]?.transcript ?? '').filter(Boolean);
+      got = Array.from({ length: first.length }, (_, i) => ({ transcript: first[i]?.transcript ?? '', confidence: first[i]?.confidence }))
+        .filter((a) => a.transcript);
     };
     rec.onerror = (e) => {
       clearTimeout(timer);

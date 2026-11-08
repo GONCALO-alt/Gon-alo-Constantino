@@ -4,7 +4,7 @@
  */
 import type { Exercise } from '../domain/schemas.ts';
 import { gradeText, joinTokens, normalize, wordCount, type GradeOptions, type Verdict } from './answers.ts';
-import { gradeSpeech } from './speech.ts';
+import { gradeSpeech, type Heard } from './speech.ts';
 
 export type ExerciseResponse =
   | { kind: 'text'; value: string }
@@ -13,7 +13,7 @@ export type ExerciseResponse =
   | { kind: 'index'; index: number }
   | { kind: 'match'; mistakes: number }
   /** Leitura em voz alta: transcrições devolvidas pelo reconhecimento de voz. */
-  | { kind: 'speech'; alternatives: string[] }
+  | { kind: 'speech'; alternatives: (string | Heard)[] }
   /** Escrita livre: o aluno autoavalia quando a resposta difere dos modelos. */
   | { kind: 'self'; text: string; ok: boolean };
 

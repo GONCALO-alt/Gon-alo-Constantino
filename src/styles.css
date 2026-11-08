@@ -339,15 +339,39 @@ input[type='range'] { width: 100%; accent-color: var(--brand); }
 
 /* Ler em voz alta */
 .speaking { text-align: center; }
-.speak-target { font-size: 1.4rem; }
+.speak-target { font-size: 1.5rem; justify-content: center; }
 .speak-target .heard { color: var(--ok); }
 .speak-target .missed { color: var(--err); text-decoration: underline wavy; text-underline-offset: 4px; }
-.mic-btn { display: inline-flex; align-items: center; justify-content: center; width: 84px; height: 84px; margin: 12px auto 4px;
-  border-radius: 50%; border: 0; cursor: pointer; background: var(--brand); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
-.mic-btn.on { background: var(--err); animation: pulse 1.2s ease-in-out infinite; }
-.mic-btn:disabled { opacity: .5; cursor: default; }
-@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-[data-motion="reduce"] .mic-btn.on { animation: none; }
+.speak-card { background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 14px 12px 10px; }
+.speak-models { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.chip-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; border: 2px solid var(--line);
+  background: var(--bg); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; }
+.chip-btn:active { transform: translateY(1px); }
+.talk-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 64px; margin: 16px 0 8px;
+  border: 0; border-radius: 18px; cursor: pointer; font: inherit; font-size: 1.15rem; font-weight: 800; color: #fff;
+  background: var(--brand); box-shadow: 0 5px 0 var(--brand-strong); transition: transform .08s, box-shadow .08s, background .2s; }
+.talk-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--brand-strong); }
+.talk-btn.on { background: var(--err); box-shadow: 0 5px 0 #8e2a20; }
+.talk-btn:disabled { opacity: .5; cursor: default; }
+.talk-bars { display: inline-flex; align-items: center; gap: 4px; height: 26px; }
+.talk-bars i { display: block; width: 5px; height: 100%; border-radius: 3px; background: #fff; animation: bars 0.9s ease-in-out infinite; }
+.talk-bars i:nth-child(2) { animation-delay: -.7s; } .talk-bars i:nth-child(3) { animation-delay: -.5s; }
+.talk-bars i:nth-child(4) { animation-delay: -.3s; } .talk-bars i:nth-child(5) { animation-delay: -.1s; }
+@keyframes bars { 0%,100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }
+[data-motion="reduce"] .talk-bars i { animation: none; transform: scaleY(.6); }
+.speak-result { display: flex; align-items: center; gap: 14px; text-align: left; padding: 12px; border-radius: var(--radius); margin-top: 4px;
+  background: var(--err-soft); animation: speak-in .25s ease-out; }
+@keyframes speak-in { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+.speak-result.correct { background: var(--ok-soft); } .speak-result.almost { background: var(--warn-soft); }
+[data-motion="reduce"] .speak-result { animation: none; }
+.speak-score { --c: var(--err); flex: none; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
+  background: conic-gradient(var(--c) calc(var(--p) * 1%), var(--line) 0); }
+.speak-result.correct .speak-score { --c: var(--ok); } .speak-result.almost .speak-score { --c: var(--accent); }
+.speak-score strong { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--surface); font-size: .95rem; }
+.speak-result-text p { margin: 0; } .speak-verdict { font-weight: 700; }
+.speak-missed { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.speak-missed li { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 4px; border-radius: 999px;
+  border: 2px solid var(--err); background: var(--surface); }
 
 /* ---------------------------------------------------------------------------
    Ecrã de exercício: peças com relevo, linhas de resposta, botão verde grande,

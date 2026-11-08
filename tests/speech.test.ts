@@ -13,10 +13,28 @@ describe('correção da leitura em voz alta', () => {
     expect(g.verdict).toBe('correct');
     expect(g.words.every((w) => w.heard)).toBe(true);
   });
-  it('escolhe a melhor das alternativas do reconhecedor', () => {
+  it('só conta a transcrição mais provável (as alternativas não salvam uma má pronúncia)', () => {
     const g = gradeSpeech('Goedemorgen!', ['goede morgan', 'goedemorgen']);
-    expect(g.verdict).toBe('correct');
-    expect(g.best).toBe('goedemorgen');
+    expect(g.verdict).toBe('incorrect');
+    expect(g.best).toBe('goede morgan');
+  });
+  it('aceita uma palavra composta escrita separada', () => {
+    expect(gradeSpeech('Goedemorgen!', ['goede morgen']).verdict).toBe('correct');
+  });
+  it('é exigente: uma letra trocada já não conta como certa', () => {
+    const g = gradeSpeech('Ik woon in Lissabon', ['ik woon in lisabon']);
+    expect(g.verdict).toBe('almost');
+    expect(g.words.find((w) => w.word === 'Lissabon')?.heard).toBe(false);
+  });
+  it('usa a confiança do reconhecedor: palavras todas mas pouco nítido → quase', () => {
+    const low = gradeSpeech('Dank je wel', [{ transcript: 'dank je wel', confidence: 0.4 }]);
+    expect(low.verdict).toBe('almost');
+    expect(low.score).toBeLessThan(60);
+    const high = gradeSpeech('Dank je wel', [{ transcript: 'dank je wel', confidence: 0.93 }]);
+    expect(high.verdict).toBe('correct');
+    expect(high.score).toBe(100);
+    // Navegadores que não dão confiança (0) não penalizam.
+    expect(gradeSpeech('Dank je wel', [{ transcript: 'dank je wel', confidence: 0 }]).verdict).toBe('correct');
   });
   it('uma palavra falhada numa frase longa → quase, e marca a palavra', () => {
     const g = gradeSpeech('Mijn zus woont in Amsterdam', ['mijn zus wordt in Amsterdam']);

@@ -59,7 +59,7 @@ describe('efeitos sonoros depois de usar o microfone', () => {
     configureSounds({ enabled: true });
     playSound('tap');
     const before = FakeAudioContext.created;
-    await expect(listenOnce('nl-NL').result).resolves.toEqual(['de kat']);
+    await expect(listenOnce('nl-NL').result).resolves.toEqual([{ transcript: 'de kat', confidence: undefined }]);
     playSound('correct');
     expect(FakeAudioContext.created).toBe(before + 1);
   });

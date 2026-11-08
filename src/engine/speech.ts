@@ -1,60 +1,73 @@
 /**
  * Correção da pronúncia (exercício «Leia em voz alta»).
  * O reconhecimento de voz do navegador devolve uma ou mais transcrições do que o aluno disse.
- * Aqui compara-se palavra a palavra com a frase pedida: se o reconhecedor percebeu as palavras,
- * a pronúncia é compreensível. Não é uma avaliação fonética fina — é «percebe-se ou não».
+ * Aqui compara-se palavra a palavra (exatamente) com a frase pedida, usando só a transcrição mais
+ * provável e a confiança do reconhecedor: se ele percebeu todas as palavras com nitidez, a pronúncia
+ * é compreensível. Não é uma avaliação fonética fina (o navegador não dá essa informação).
  */
-import { levenshtein, normalize, stripAccents, type Verdict } from './answers.ts';
+import { normalize, stripAccents, type Verdict } from './answers.ts';
 
 export interface SpeechWord {
   word: string;
   heard: boolean;
 }
 
+/** Uma transcrição do reconhecedor de voz, com a confiança (0–1) quando o navegador a dá. */
+export interface Heard {
+  transcript: string;
+  confidence?: number;
+}
+
 export interface SpeechGrade {
   verdict: Verdict;
-  /** Transcrição que mais se aproxima da frase pedida. */
+  /** O que o reconhecedor achou mais provável (a primeira transcrição). */
   best: string;
   /** Palavras da frase pedida, marcadas como percebidas ou não. */
   words: SpeechWord[];
-  /** Proporção de palavras percebidas (0–1). */
+  /** Proporção de palavras percebidas exatamente (0–1). */
   ratio: number;
+  /** Confiança do reconhecedor (0–1), ou null se o navegador não a der. */
+  confidence: number | null;
+  /** Pontuação mostrada ao aluno (0–100): palavras certas × nitidez. */
+  score: number;
 }
+
+/** Confiança mínima para «Certo» (abaixo disso, mesmo com as palavras todas: «Quase, repita mais devagar»). */
+export const MIN_CONFIDENCE = 0.7;
 
 const tokens = (s: string) => stripAccents(normalize(s)).split(' ').filter(Boolean);
 
-/** Duas palavras «batem» se forem iguais ou quase (uma letra de diferença em palavras longas). */
-function sameWord(a: string, b: string): boolean {
-  if (a === b) return true;
-  if (Math.min(a.length, b.length) >= 5) return levenshtein(a, b, 1) <= 1;
-  return false;
-}
-
+/**
+ * Compara palavra a palavra, de forma EXATA (sem aceitar letras trocadas), pela ordem.
+ * Única tolerância: o reconhecedor pode escrever uma palavra composta separada («goede morgen» = «goedemorgen»).
+ */
 function matchWords(target: string[], heard: string[]): boolean[] {
-  const pool = [...heard];
+  let j = 0;
   return target.map((w) => {
-    const i = pool.findIndex((h) => sameWord(w, h));
-    if (i < 0) return false;
-    pool.splice(i, 1);
-    return true;
+    for (let k = j; k < heard.length; k++) {
+      if (heard[k] === w) { j = k + 1; return true; }
+      if (k + 1 < heard.length && heard[k]! + heard[k + 1]! === w) { j = k + 2; return true; }
+    }
+    return false;
   });
 }
 
-export function gradeSpeech(target: string, alternatives: readonly string[]): SpeechGrade {
+export function gradeSpeech(target: string, alternatives: readonly (string | Heard)[]): SpeechGrade {
   const tWords = tokens(target);
   const display = target.split(/\s+/).filter((w) => /\p{L}/u.test(w));
-  let best = { alt: alternatives[0] ?? '', marks: tWords.map(() => false), ratio: 0 };
-  for (const alt of alternatives) {
-    const marks = matchWords(tWords, tokens(alt));
-    const ratio = tWords.length ? marks.filter(Boolean).length / tWords.length : 0;
-    if (ratio > best.ratio) best = { alt, marks, ratio };
-  }
-  const verdict: Verdict = best.ratio === 1 ? 'correct' : best.ratio >= 0.6 ? 'almost' : 'incorrect';
+  // Só conta o que o reconhecedor achou MAIS provável (as alternativas seguintes não salvam uma má pronúncia).
+  const top = alternatives[0];
+  const transcript = typeof top === 'string' ? top : top?.transcript ?? '';
+  const rawConf = typeof top === 'string' ? undefined : top?.confidence;
+  const confidence = typeof rawConf === 'number' && rawConf > 0 ? Math.min(1, rawConf) : null;
+  const marks = matchWords(tWords, tokens(transcript));
+  const ratio = tWords.length ? marks.filter(Boolean).length / tWords.length : 0;
+  const clear = confidence === null || confidence >= MIN_CONFIDENCE;
+  const verdict: Verdict = ratio === 1 && clear ? 'correct' : ratio >= 0.75 ? 'almost' : 'incorrect';
+  const score = Math.round(100 * ratio * (confidence === null ? 1 : Math.min(1, confidence / 0.9)));
   return {
-    verdict,
-    best: best.alt,
-    ratio: best.ratio,
-    words: display.map((w, i) => ({ word: w, heard: best.marks[i] ?? false })),
+    verdict, best: transcript, ratio, confidence, score,
+    words: display.map((w, i) => ({ word: w, heard: marks[i] ?? false })),
   };
 }
 

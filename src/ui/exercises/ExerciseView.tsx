@@ -13,7 +13,8 @@ import { playSound } from '../../services/sounds.ts';
 import { Icon, RichText, SpeakButton } from '../components/common.tsx';
 import { GlossText } from '../components/Gloss.tsx';
 import { NewMark, useIsNewWord } from '../components/NewWords.tsx';
-import { gradeSpeech, type SpeechWord } from '../../engine/speech.ts';
+import { gradeSpeech, type SpeechGrade } from '../../engine/speech.ts';
+import { approxPronunciation } from '../../engine/teach.ts';
 import { translationTiles, type WordPools } from '../../engine/wordBank.ts';
 import { canRecognizeSpeech, listenOnce, RecognitionError, RECOGNITION_ERROR_TEXT, type RecognitionHandle } from '../../services/speechRecognition.ts';
 
@@ -448,8 +449,8 @@ function ListeningExercise(props: ExerciseProps<ExerciseOf<'listening'>>) {
 function SpeakingExercise(props: ExerciseProps<ExerciseOf<'speaking'>>) {
   const ex = props.exercise;
   const [state, setState] = useState<'idle' | 'listening' | 'done'>('idle');
-  const [words, setWords] = useState<SpeechWord[] | null>(null);
-  const [heard, setHeard] = useState('');
+  const [grade, setGrade] = useState<SpeechGrade | null>(null);
+  const [tries, setTries] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const handle = useRef<RecognitionHandle | null>(null);
   useEffect(() => () => handle.current?.stop(), []);
@@ -474,35 +475,75 @@ function SpeakingExercise(props: ExerciseProps<ExerciseOf<'speaking'>>) {
     h.result.then(
       (alts) => {
         const g = gradeSpeech(ex.text, alts);
-        setWords(g.words);
-        setHeard(g.best);
+        setGrade(g);
+        setTries((t) => t + 1);
         setState('done');
         props.onResponse({ kind: 'speech', alternatives: alts });
       },
       (e: unknown) => {
-        setState('idle');
+        setState(grade ? 'done' : 'idle');
         setError(RECOGNITION_ERROR_TEXT[e instanceof RecognitionError ? e.kind : 'other']);
       },
     );
   };
 
+  const missed = grade ? grade.words.filter((w) => !w.heard).map((w) => w.word.replace(/[^\p{L}'-]+/gu, '')).filter(Boolean) : [];
+  const label = !grade ? '' : grade.verdict === 'correct' ? 'Muito bem! Percebe-se tudo.'
+    : grade.ratio === 1 ? 'Todas as palavras, mas pouco nítido. Repita mais devagar e mais alto.'
+    : grade.verdict === 'almost' ? 'Quase! Treine as palavras a vermelho.' : 'Ainda não. Ouça o modelo e tente outra vez.';
+  const listening = state === 'listening';
+
   return (
     <div className="exercise speaking">
-      <p className="prompt-nl speak-target">
-        {props.audioEnabled && <SpeakButton text={ex.text} rate={props.speechRate} label="Ouvir o modelo" />}{' '}
-        {words ? (
-          <span lang="nl">{words.map((w, i) => <span key={i} className={w.heard ? 'heard' : 'missed'}>{w.word}{i < words.length - 1 ? ' ' : ''}</span>)}</span>
-        ) : <GlossText text={ex.text} />}
-      </p>
-      <p className="muted">{ex.translation}</p>
-      <button type="button" className={`mic-btn ${state === 'listening' ? 'on' : ''}`} disabled={props.locked}
-        aria-label={state === 'listening' ? 'Parar de gravar' : 'Falar'} onClick={start}>
-        <Icon name="mic" size={34} />
+      <div className="speak-card">
+        <p className="prompt-nl speak-target">
+          {grade ? (
+            <span lang="nl">{grade.words.map((w, i) => <span key={i} className={w.heard ? 'heard' : 'missed'}>{w.word}{i < grade.words.length - 1 ? ' ' : ''}</span>)}</span>
+          ) : <GlossText text={ex.text} />}
+        </p>
+        <p className="muted">{ex.translation}</p>
+        {props.audioEnabled && canSpeak() && (
+          <div className="speak-models">
+            <button type="button" className="chip-btn" onClick={() => void speak(ex.text, props.speechRate)}><Icon name="sound" size={18} /> Ouvir</button>
+            <button type="button" className="chip-btn" onClick={() => void speak(ex.text, Math.max(0.5, props.speechRate * 0.6))}>🐢 Ouvir devagar</button>
+          </div>
+        )}
+      </div>
+
+      <button type="button" className={`talk-btn ${listening ? 'on' : ''}`} disabled={props.locked}
+        aria-label={listening ? 'Parar de gravar' : 'Falar'} onClick={start}>
+        {listening ? (
+          <><span className="talk-bars" aria-hidden="true"><i /><i /><i /><i /><i /></span> A ouvir… toque para parar</>
+        ) : (
+          <><Icon name="mic" size={26} /> {tries ? 'Tentar outra vez' : 'Toque para falar'}</>
+        )}
       </button>
-      <p className="muted small" aria-live="polite">
-        {state === 'listening' ? 'A ouvir… leia a frase em voz alta.' : state === 'done' ? `Ouvi: «${heard}». Pode tentar outra vez ou carregar em «Verificar».` : 'Toque no microfone e leia a frase em voz alta.'}
-      </p>
+
+      {!grade && !listening && <p className="muted small">Toque no botão, fale perto do microfone e leia a frase inteira, com calma.</p>}
+
+      {grade && (
+        <div className={`speak-result ${grade.verdict}`} aria-live="polite">
+          <div className="speak-score" style={{ ['--p' as string]: `${grade.score}` }}><strong>{grade.score}%</strong></div>
+          <div className="speak-result-text">
+            <p className="speak-verdict">{label}</p>
+            <p className="small">Ouvi: «{grade.best}»{grade.confidence !== null ? ` · nitidez ${Math.round(grade.confidence * 100)}%` : ''}</p>
+          </div>
+        </div>
+      )}
+
+      {missed.length > 0 && (
+        <ul className="speak-missed">
+          {missed.map((w, i) => (
+            <li key={i}>
+              {props.audioEnabled && <SpeakButton text={w} rate={Math.max(0.5, props.speechRate * 0.7)} label={`Ouvir «${w}»`} />}
+              <strong lang="nl">{w}</strong> <span className="help-pron">[{approxPronunciation(w)}]</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
       {error && <p className="notice" role="alert">{error}</p>}
+      {grade && grade.verdict !== 'correct' && <p className="muted small">Pode tentar as vezes que quiser antes de carregar em «Verificar».</p>}
       <button type="button" className="link-btn" onClick={props.onSkip}>Não posso falar agora</button>
     </div>
   );
