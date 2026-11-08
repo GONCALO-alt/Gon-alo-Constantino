@@ -139,7 +139,7 @@ describe('nunca uma palavra sem a ter visto antes', () => {
     const word = (await screen.findAllByRole('button', { name: /^Tradução de/ }, { timeout: 5000 }))[0]!;
     await user.click(word);
     expect(document.querySelector('.gloss-card')!.textContent).toContain(v.pt[0]!.replace(/\s*\(.*$/, '').split(' / ')[0]!.trim().slice(0, 4));
-    await user.click(screen.getByRole('button', { name: 'Fechar tradução' }));
+    await user.click(word); // tocar outra vez fecha o balão
     if (!screen.queryByRole('textbox')) await user.click(screen.getByRole('button', { name: 'Usar o teclado' }));
     await user.type(screen.getByRole('textbox'), v.pt[0]!.replace(/\s*\([^)]*\)/g, '').split(' / ')[0]!.trim());
     await user.click(screen.getByRole('button', { name: 'Verificar' }));
@@ -593,7 +593,10 @@ describe('feedback e palavras clicáveis', () => {
     await user.click(word);
     const card = document.querySelector('.gloss-card')!;
     expect(card.textContent).toMatch(/até/);
-    await user.click(screen.getByRole('button', { name: 'Fechar tradução' }));
+    // Só a tradução: sem a palavra repetida, sem estrela, sem botão de fechar.
+    expect(card.textContent).not.toMatch(/tot|→|☆|×/);
+    // Tocar noutro sítio fecha o balão.
+    await user.click(document.body);
     expect(document.querySelector('.gloss-card')).toBeNull();
   }, 30_000);
 });

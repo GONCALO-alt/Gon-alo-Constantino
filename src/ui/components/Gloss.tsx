@@ -3,9 +3,8 @@
  * por baixo da frase (sem janelas a tapar o exercício).
  */
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { buildGlossary, normalizeWord, wordsOf, type GlossEntry, type Glossary } from '../../engine/glossary.ts';
+import { buildGlossary, normalizeWord, wordsOf, type Glossary } from '../../engine/glossary.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
-import { useSavedWords } from '../AppState.tsx';
 import { useIsNewWord } from './NewWords.tsx';
 
 let glossaryPromise: Promise<Glossary> | null = null;
@@ -42,52 +41,52 @@ const isWord = (t: string) => /\p{L}/u.test(t) && !/^_+$/.test(t);
 
 export function GlossText({ text, className, as: Tag = 'span' }: { text: string; className?: string; as?: 'span' | 'p' | 'div' }) {
   const glossary = useContext(GlossaryContext);
-  const saved = useSavedWords();
   const isNew = useIsNewWord();
-  const [open, setOpen] = useState<{ i: number; word: string; entries: GlossEntry[] } | null>(null);
+  const [open, setOpen] = useState<{ i: number; meanings: string[] } | null>(null);
+  // Fecha o balão ao tocar noutro sítio.
+  useEffect(() => {
+    if (!open) return;
+    const close = () => setOpen(null);
+    document.addEventListener('click', close);
+    return () => document.removeEventListener('click', close);
+  }, [open]);
   if (!glossary) return <Tag className={className} lang="nl">{text}</Tag>;
   const parts = text.split(/(\s+)/);
+  const meaningsOf = (p: string): string[] => {
+    const word = normalizeWord(p);
+    // Numa expressão de várias palavras (ex.: «tot straks»), o significado da expressão inteira.
+    const exprs = glossary.expressions(text).filter((x) => wordsOf(x.headword).includes(word));
+    const entries = [...exprs, ...glossary.lookup(p)];
+    const out: string[] = [];
+    for (const e of entries) for (const m of e.pt) {
+      const clean = m.replace(/\s*\([^)]*\)/g, '').trim();
+      if (clean && !out.includes(clean)) out.push(clean);
+    }
+    return out.slice(0, 3);
+  };
   return (
-    <>
-      <Tag className={className} lang="nl">
-        {parts.map((p, i) => {
-          if (!p || /^\s+$/.test(p) || !isWord(p)) return <span key={i}>{p}</span>;
-          const word = normalizeWord(p);
-          return (
-            <button key={i} type="button" className={`gloss-word ${open?.i === i ? 'active' : ''} ${isNew(p) ? 'new-word' : ''}`}
-              aria-label={`Tradução de «${word}»`} aria-expanded={open?.i === i}
+    <Tag className={className} lang="nl">
+      {parts.map((p, i) => {
+        if (!p || /^\s+$/.test(p) || !isWord(p)) return <span key={i}>{p}</span>;
+        const word = normalizeWord(p);
+        const isOpen = open?.i === i;
+        return (
+          <span key={i} className="gloss-wrap">
+            <button type="button" className={`gloss-word ${isOpen ? 'active' : ''} ${isNew(p) ? 'new-word' : ''}`}
+              aria-label={`Tradução de «${word}»`} aria-expanded={isOpen}
               onClick={(e) => {
                 e.stopPropagation();
-                // Numa expressão de várias palavras (ex.: «tot straks»), mostra primeiro o significado da expressão inteira.
-                const exprs = glossary.expressions(text).filter((x) => wordsOf(x.headword).includes(word));
-                const single = glossary.lookup(p).filter((x) => !exprs.some((e) => e.headword === x.headword));
-                setOpen(open?.i === i ? null : { i, word, entries: [...exprs, ...single] });
+                setOpen(isOpen ? null : { i, meanings: meaningsOf(p) });
               }}>{p}</button>
-          );
-        })}
-      </Tag>
-      {open && (
-        <span className="gloss-card" role="status">
-          <strong lang="nl">{open.word}</strong>{' → '}
-          {open.entries.length ? (
-            open.entries.map((e, k) => (
-              <span key={k} className="gloss-entry">
-                {k > 0 && ' · '}
-                {e.pt.slice(0, 3).join(', ')}
-                {normalizeWord(e.headword) !== open.word && <span className="muted"> ({e.headword})</span>}
-                {saved && e.id && (
-                  <button type="button" className={`save-star ${saved.saved.has(e.id) ? 'on' : ''}`}
-                    aria-pressed={saved.saved.has(e.id)} aria-label={saved.saved.has(e.id) ? `Tirar «${e.headword}» do meu dicionário` : `Guardar «${e.headword}» no meu dicionário`}
-                    onClick={(ev) => { ev.stopPropagation(); void saved.toggle(e.id!); }}>{saved.saved.has(e.id) ? '★' : '☆'}</button>
-                )}
+            {/* Só a tradução, num balão por baixo da palavra. */}
+            {isOpen && (
+              <span className="gloss-card" role="tooltip" lang="pt">
+                {open.meanings.length ? open.meanings.map((m, k) => <span key={k} className="gloss-meaning">{m}</span>) : <span className="muted">—</span>}
               </span>
-            ))
-          ) : (
-            <span className="muted">sem tradução no dicionário do curso</span>
-          )}
-          <button type="button" className="gloss-close" aria-label="Fechar tradução" onClick={() => setOpen(null)}>×</button>
-        </span>
-      )}
-    </>
+            )}
+          </span>
+        );
+      })}
+    </Tag>
   );
 }

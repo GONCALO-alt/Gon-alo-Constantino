@@ -42,9 +42,8 @@ async function answerIntros(page) {
   await page.waitForTimeout(300);
   while (await page.locator('[data-exercise-id^="intro-"]').count()) {
     await page.getByRole('button', { name: /^Tradução de/ }).first().click();
-    const card = await page.locator('.gloss-card').first().textContent();
-    const meaning = card.split('→')[1].split(/[,(·×]/)[0].trim();
-    await page.getByRole('button', { name: 'Fechar tradução' }).click();
+    const meaning = (await page.locator('.gloss-card .gloss-meaning').first().textContent()).trim();
+    await page.getByRole('button', { name: /^Tradução de/ }).first().click(); // fecha o balão
     if (await page.getByRole('button', { name: 'Usar o teclado' }).count()) await page.getByRole('button', { name: 'Usar o teclado' }).click();
     await page.getByRole('textbox').fill(meaning);
     await page.getByRole('button', { name: 'Verificar' }).click();
