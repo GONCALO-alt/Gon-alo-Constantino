@@ -126,6 +126,46 @@ describe('tradução sempre acessível em TODOS os tipos de exercício', () => {
   }, 20_000);
 });
 
+describe('nunca uma palavra sem a ter visto antes', () => {
+  it('lições marcadas como feitas (cópia) e palavra para rever nunca acertada: o exercício mostra «Palavra nova» com o significado', async () => {
+    const user = userEvent.setup();
+    const files = realFiles();
+    const order = [...files.find((f) => f.unitId === 's1-u01')!.lessons].sort((a, b) => a.order - b.order);
+    await repo.getProfile();
+    // Como na cópia de progresso: 6 lições concluídas sem o aluno as ter feito (as palavras nunca foram acertadas).
+    for (const l of order.slice(0, 6)) {
+      await repo.recordLessonCompletion({
+        lessonId: l.id, unitId: l.unitId, contentVersion: l.version, difficulty: l.difficulty,
+        answers: l.exercises.map((e) => ({ exerciseId: e.id, exerciseType: e.type, verdict: 'correct', answer: '', vocabRefs: e.vocabRefs })),
+        newVocabIds: l.newVocabulary.map((v) => v.id), xp: 10, startedAt: Date.now() - 2e7, endedAt: Date.now() - 1e7,
+      });
+    }
+    const next = order[6]!;
+    await go('#/licao/' + next.id);
+    render(<App />);
+    for (const ex of next.exercises.slice(0, 2)) {
+      await screen.findByRole('heading', { name: ex.instruction });
+      if ((await answerCorrectly(user, ex)) !== 'skipped') await user.click(await screen.findByRole('button', { name: 'Continuar' }));
+    }
+    // 3.º exercício: palavra para rever, que o aluno nunca acertou → mostra o significado antes de perguntar.
+    expect(await screen.findByText(/Palavra para rever/)).toBeTruthy();
+    const banner = await screen.findByRole('note', { name: /Palavra nova|Palavras novas/ });
+    expect(banner.textContent).toMatch(/—/);
+    // As opções erradas são palavras da 1.ª unidade (conhecidas), nunca de secções avançadas.
+    const s1u01 = new Set(order.flatMap((l) => l.newVocabulary).flatMap((v) => v.pt.map((p) => p.replace(/\s*\([^)]*\)/g, '').split(' / ')[0]!.trim())));
+    const options = screen.queryAllByRole('radio').map((r) => r.textContent!.replace(/^\d/, '').trim());
+    for (const o of options) expect(s1u01.has(o), o).toBe(true);
+  }, 30_000);
+
+  it('numa lição nova, o primeiro exercício com cada palavra nova mostra o significado', async () => {
+    const lesson = lessonOf(realFiles(), 's1-u01-l001');
+    await go('#/licao/s1-u01-l001');
+    render(<App />);
+    await screen.findByRole('heading', { name: lesson.exercises[0]!.instruction });
+    expect(await screen.findByRole('note', { name: /Palavra nova|Palavras novas/ })).toBeTruthy();
+  }, 30_000);
+});
+
 describe('palavras difíceis voltam nas lições', () => {
   it('uma palavra errada antes aparece como «Palavra para rever» na lição seguinte e a revisão mostra o estado', async () => {
     const user = userEvent.setup();

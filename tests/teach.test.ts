@@ -4,7 +4,8 @@
 import { describe, expect, it } from 'vitest';
 import type { Exercise } from '../src/domain/schemas.ts';
 import { buildGlossary } from '../src/engine/glossary.ts';
-import { approxPronunciation, exerciseHelp, makeWordTest } from '../src/engine/teach.ts';
+import { approxPronunciation, exerciseHelp, makeWordTest, wordsToIntroduce } from '../src/engine/teach.ts';
+import { buildReviewExercise, cleanPt, knownPool, seededRandom } from '../src/engine/session.ts';
 import { realFiles } from './helpers.ts';
 
 const vocab = realFiles().flatMap((f) => f.lessons).flatMap((l) => l.newVocabulary);
@@ -75,5 +76,41 @@ describe('palavras novas a roxo', () => {
     const heten = makeWordTest([{ id: 'v-heten', nl: 'heten', pt: ['chamar-se'] }]);
     expect(heten('heet')).toBe(true);
     expect(heten('het')).toBe(false);
+  });
+});
+
+describe('primeira vez que uma palavra aparece', () => {
+  const base2 = { instruction: 'x', explanation: 'y' };
+  const dag = { id: 'v-dag', nl: 'dag', pt: ['olá', 'adeus'] };
+  const huis = { id: 'v-huis', nl: 'huis', pt: ['casa'], article: 'het' as const };
+  it('o primeiro exercício que usa a palavra mostra-a; os seguintes já não', () => {
+    const ex1: Exercise = { ...base2, id: 'a', vocabRefs: ['v-dag'], type: 'multipleChoice', prompt: 'O que significa «dag»?', options: [{ id: 'a', text: 'olá', correct: true }, { id: 'b', text: 'casa', correct: false }] };
+    const ex2: Exercise = { ...base2, id: 'b', vocabRefs: [], type: 'translate', direction: 'nl-pt', prompt: 'Dag, mijn huis!', answers: ['x'] };
+    const introduced = new Set<string>();
+    const first = wordsToIntroduce(ex1, [dag, huis], introduced);
+    expect(first.map((w) => w.id)).toEqual(['v-dag']);
+    first.forEach((w) => introduced.add(w.id));
+    // «huis» aparece pela 1.ª vez no 2.º exercício (pelo texto, mesmo sem vocabRefs); «dag» já não.
+    expect(wordsToIntroduce(ex2, [dag, huis], introduced).map((w) => w.id)).toEqual(['v-huis']);
+  });
+});
+
+describe('opções erradas só com palavras conhecidas', () => {
+  const all = realFiles().sort((a, b) => a.unitId.localeCompare(b.unitId, 'en', { numeric: true }))
+    .flatMap((f) => [...f.lessons].sort((a, b) => a.order - b.order)).flatMap((l) => l.newVocabulary.map((v) => ({ ...v, lessonId: l.id })));
+  it('com poucas palavras conhecidas, completa com as primeiras do curso (nunca de secções avançadas)', () => {
+    const pool = knownPool(all, new Set(['v-dag']));
+    expect(pool.length).toBe(12);
+    const firstIds = new Set(all.slice(0, 40).map((v) => v.id));
+    expect(pool.every((v) => firstIds.has(v.id) || v.id === 'v-dag')).toBe(true);
+  });
+  it('as opções não levam notas («vá lá / bom… (Flandres)» → «vá lá»)', () => {
+    expect(cleanPt('vá lá / bom... (Flandres)')).toBe('vá lá');
+    const pool = knownPool(all, new Set(all.slice(0, 30).map((v) => v.id)));
+    const rnd = seededRandom(1);
+    for (let i = 0; i < 50; i++) {
+      const ex = buildReviewExercise(pool[i % pool.length]!, pool, rnd, 0);
+      if (ex.type === 'multipleChoice') for (const o of ex.options) expect(o.text).not.toMatch(/[()]/);
+    }
   });
 });

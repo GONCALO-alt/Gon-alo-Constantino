@@ -93,6 +93,25 @@ const nlAnswers = (v: VocabularyItem) => (v.article ? [`(${v.article} )${v.nl}`]
  * Cria um exercício de revisão para um item. Alterna entre formatos para
  * treinar reconhecimento (escolha múltipla) e produção (escrever).
  */
+/** Tradução para mostrar numa opção: sem notas entre parênteses nem alternativas («vá lá / bom… (Flandres)» → «vá lá»). */
+export function cleanPt(pt: string): string {
+  return pt.replace(/\s*\([^)]*\)/g, '').split(' / ')[0]!.trim() || pt;
+}
+
+/**
+ * Palavras que podem servir de opções erradas: só as que o aluno já conhece (mais as da lição atual).
+ * Com poucas palavras conhecidas, completa com as primeiras palavras do curso (as mais simples).
+ */
+export function knownPool(all: readonly ReviewVocab[], known: ReadonlySet<string>, min = 12): ReviewVocab[] {
+  const out = all.filter((v) => known.has(v.id));
+  const ids = new Set(out.map((v) => v.id));
+  for (const v of all) {
+    if (out.length >= min) break;
+    if (!ids.has(v.id)) { out.push(v); ids.add(v.id); }
+  }
+  return out;
+}
+
 export function buildReviewExercise(item: ReviewVocab, pool: readonly ReviewVocab[], rnd: () => number, box = 0): Exercise {
   const id = `review-${item.id}`;
   // Distratores não podem partilhar nenhuma tradução com o item (seriam também certos).
@@ -109,7 +128,7 @@ export function buildReviewExercise(item: ReviewVocab, pool: readonly ReviewVoca
   }
   // Itens novos (caixa baixa): reconhecimento. Itens mais consolidados: produção.
   if (box <= 1 && fallbackDistractors.length >= 2 && roll < 0.65) {
-    const opts = shuffle([{ text: item.pt[0]!, correct: true }, ...fallbackDistractors.map((d) => ({ text: d.pt[0]!, correct: false }))], rnd);
+    const opts = shuffle([{ text: cleanPt(item.pt[0]!), correct: true }, ...fallbackDistractors.map((d) => ({ text: cleanPt(d.pt[0]!), correct: false }))], rnd);
     return {
       ...base, type: 'multipleChoice', instruction: 'Escolha a tradução certa.', prompt: `O que significa «${withArticle(item)}»?`,
       options: opts.map((o, i) => ({ id: 'abcdef'[i]!, ...o })),

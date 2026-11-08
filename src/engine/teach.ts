@@ -233,3 +233,40 @@ export function makeWordTest(words: readonly NewWordSource[]): (word: string) =>
     return !!w && (forms.has(w) || (w.length > 3 && lemmaCandidates(w).some((c) => forms.has(c))));
   };
 }
+
+/** Texto neerlandês visível num exercício (para saber que palavras usa). */
+export function exerciseDutchText(ex: Exercise): string {
+  switch (ex.type) {
+    case 'translate': return ex.direction === 'nl-pt' ? ex.prompt : [...ex.answers, ...(ex.wordBank ?? [])].join(' ');
+    case 'fillBlank': return [ex.sentence, ...ex.answers, ...(ex.choices ?? [])].join(' ');
+    case 'buildSentence': return [...ex.tokens, ...ex.answers].join(' ');
+    case 'wordOrder': return ex.tokens.join(' ');
+    case 'match': return ex.pairs.map((p) => p.nl).join(' ');
+    case 'findError': return [...ex.tokens, ex.correction].join(' ');
+    case 'articleChoice': return ex.noun;
+    case 'conjugation': return [ex.verb, ex.sentence ?? '', ...ex.answers].join(' ');
+    case 'dialogue': return [...ex.lines.map((l) => l.nl), ...ex.options.map((o) => o.text)].join(' ');
+    case 'comprehension': return ex.text;
+    case 'listening': return ex.audioText;
+    case 'expression': return ex.expression;
+    case 'speaking': return ex.text;
+    case 'multipleChoice': return [ex.prompt, ...ex.options.map((o) => o.text)].join(' ');
+    case 'shortWriting': return ex.referenceAnswers.join(' ');
+  }
+}
+
+/**
+ * Palavras que o aluno vê pela PRIMEIRA vez neste exercício (nunca as acertou e ainda não
+ * apareceram nesta sessão). O exercício mostra-as com o significado: é aí que se aprendem.
+ */
+export function wordsToIntroduce(ex: Exercise, unseen: readonly NewWordSource[], introduced: ReadonlySet<string>): NewWordSource[] {
+  const text = wordsOf(exerciseDutchText(ex));
+  return unseen.filter((v) => {
+    if (introduced.has(v.id)) return false;
+    if (ex.vocabRefs.includes(v.id)) return true;
+    const target = wordsOf(cleanNl(v.nl));
+    if (!target.length) return false;
+    if (target.length > 1) return text.join(' ').includes(target.join(' '));
+    return text.some(makeWordTest([v]));
+  });
+}

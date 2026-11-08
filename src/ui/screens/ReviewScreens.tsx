@@ -5,7 +5,7 @@ import { contentRepo } from '../../data/contentRepo.ts';
 import { getAllAttempts, getAllReviews, recordReviewSession, type CompletionOutcome } from '../../data/progressRepo.ts';
 import { openMistakes, reviewItemOf, type OpenMistake } from '../../engine/mistakes.ts';
 import { encouragement, XP_RULES } from '../../engine/progression.ts';
-import { buildReviewExercise, seededRandom, shuffle, type ReviewVocab } from '../../engine/session.ts';
+import { buildReviewExercise, knownPool, seededRandom, shuffle, type ReviewVocab } from '../../engine/session.ts';
 import { isDue, isHard, isMastered, pickDue, wordStatus, type WordStatus } from '../../engine/srs.ts';
 import { celebrate } from '../../services/sounds.ts';
 import { useAppData, type AppData } from '../AppState.tsx';
@@ -185,7 +185,8 @@ export function ReviewSessionScreen({ mode }: { mode: ReviewMode }) {
     if (!state || exercises) return;
     const now = Date.now();
     const rnd = seededRandom(now);
-    const pool = [...state.vocab.values()];
+    // Opções erradas: só palavras que o aluno já conhece.
+    const pool = knownPool([...state.vocab.values()], new Set(state.reviews.map((r) => r.itemId)));
     const itemOf = new Map<string, string>();
     const origin = new Map<string, { exerciseId: string; lessonId: string | null }>();
     if (mode === 'grammar') {
@@ -266,6 +267,7 @@ export function ReviewSessionScreen({ mode }: { mode: ReviewMode }) {
 
   return (
     <ExerciseRunner title="Revisão" exercises={exercises.list}
+      unseenWords={state.reviews.filter((r) => r.correct === 0).map((r) => state.vocab.get(r.itemId)).filter((v): v is ReviewVocab => !!v)}
       speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
       onExit={() => navigate(href.review())}
       onFinish={async (answers: RunnerAnswer[]) => {

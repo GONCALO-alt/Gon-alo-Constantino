@@ -18,6 +18,8 @@ import { Sparkles } from '../components/Celebrate.tsx';
 import { buildWordPools } from '../../engine/wordBank.ts';
 import { ExerciseView, WordPoolContext } from './ExerciseView.tsx';
 import { HelpSheet, type TeachInfo } from '../components/HelpSheet.tsx';
+import { NewWordBanner } from '../components/NewWordBanner.tsx';
+import { wordsToIntroduce, type NewWordSource } from '../../engine/teach.ts';
 
 export interface RunnerAnswer {
   exercise: Exercise;
@@ -36,6 +38,8 @@ export interface RunnerProps {
   title: string;
   /** Exemplos e gramática da lição (para o painel «Traduções»). */
   teach?: TeachInfo;
+  /** Palavras que o aluno ainda nunca acertou: na primeira vez que aparecem, o exercício mostra o significado. */
+  unseenWords?: readonly NewWordSource[];
 }
 
 const VERDICT_TEXT = {
@@ -44,7 +48,7 @@ const VERDICT_TEXT = {
   incorrect: ['Ainda não.', 'Não é bem assim.', 'Resposta incorreta.'],
 } as const;
 
-export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswers = false, lenientAccents, onFinish, onExit, title, teach }: RunnerProps) {
+export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswers = false, lenientAccents, onFinish, onExit, title, teach, unseenWords = [] }: RunnerProps) {
   const [session, setSession] = useState<SessionState>(() => startSession(exercises));
   const [response, setResponse] = useState<ExerciseResponse | null>(null);
   const [result, setResult] = useState<ExerciseResult | null>(null);
@@ -59,6 +63,15 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
   const skipped = useRef<string[]>([]);
   const continueRef = useRef<HTMLButtonElement>(null);
   const ex = currentExercise(session);
+  /** Palavras apresentadas em cada posição da sessão (calculado uma vez por posição). */
+  const introduced = useRef(new Set<string>());
+  const introByPos = useRef(new Map<number, NewWordSource[]>());
+  if (ex && !introByPos.current.has(session.position)) {
+    const words = wordsToIntroduce(ex, unseenWords, introduced.current);
+    for (const w of words) introduced.current.add(w.id);
+    introByPos.current.set(session.position, words);
+  }
+  const introWords = introByPos.current.get(session.position) ?? [];
   const opts = { lenientAccents };
 
   const speakTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -190,6 +203,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
           {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
           {!isRetry && ex.id.startsWith('review-') && <p className="retry-tag">Palavra para rever: de uma lição anterior</p>}
           <h1 className="instruction">{ex.instruction}</h1>
+          <NewWordBanner words={introWords} speechRate={speechRate} audioEnabled={audioEnabled} />
           <WordPoolContext.Provider value={pools}>
             <ExerciseView exercise={ex} locked={!!result || !!selfCheck}
               onResponse={setResponse} onSubmit={check} onSkip={skip}

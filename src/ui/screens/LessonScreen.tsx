@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Exercise, PublishedLesson } from '../../domain/schemas.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
 import { getAllReviews, recordLessonCompletion, type CompletionOutcome } from '../../data/progressRepo.ts';
-import { buildReviewExercise, seededRandom, type ReviewVocab } from '../../engine/session.ts';
+import { buildReviewExercise, knownPool, seededRandom, type ReviewVocab } from '../../engine/session.ts';
 import { pickWordsToReview } from '../../engine/srs.ts';
 import { computeLessonStates, encouragement, lessonXp, nextLesson, orderedUnits } from '../../engine/progression.ts';
 import { celebrate } from '../../services/sounds.ts';
@@ -13,7 +13,7 @@ import { Icon } from '../components/common.tsx';
 import { Confetti, useCountUp } from '../components/Celebrate.tsx';
 import { Mascot } from '../components/Mascot.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
-import { makeWordTest } from '../../engine/teach.ts';
+import { makeWordTest, type NewWordSource } from '../../engine/teach.ts';
 import { NewWordsContext } from '../components/NewWords.tsx';
 import { href, navigate } from '../router.ts';
 
@@ -30,8 +30,8 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const [runKey, setRunKey] = useState(0);
   /** Palavras difíceis (ou prontas para revisão) de lições anteriores que voltam nesta lição. null = a preparar. */
   const [reviewExtra, setReviewExtra] = useState<Exercise[] | null>(null);
-  /** Palavras que o aluno já aprendeu (não voltam a ser apresentadas como novas). */
-  const [known, setKnown] = useState<Set<string>>(new Set());
+  /** Palavras que o aluno ainda nunca acertou (novas desta lição e de revisão): mostram o significado na primeira vez. */
+  const [unseen, setUnseen] = useState<NewWordSource[]>([]);
 
   useEffect(() => {
     let alive = true;
@@ -48,10 +48,22 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     let alive = true;
     setReviewExtra(null);
     // As palavras conhecidas e as difíceis carregam juntas, antes de a lição começar.
-    void Promise.all([getAllReviews().catch(() => []), reviewWordsFor(lesson, app.index).catch(() => [])]).then(([rs, extra]) => {
+    const unitId = lesson.id.slice(0, lesson.id.lastIndexOf('-'));
+    void Promise.all([
+      getAllReviews().catch(() => []),
+      reviewWordsFor(lesson, app.index).catch(() => ({ exercises: [], words: [], byId: new Map<string, ReviewVocab>() })),
+      contentRepo.loadUnit(unitId).catch(() => null),
+    ]).then(([rs, extra, unitBundle]) => {
       if (!alive) return;
-      setKnown(new Set(rs.map((r) => r.itemId)));
-      setReviewExtra(extra);
+      // «Conhecida» = já foi acertada pelo menos uma vez (só ter a lição marcada como feita não chega).
+      const mastered = new Set(rs.filter((r) => r.correct > 0).map((r) => r.itemId));
+      // Candidatas a «palavra nova»: as desta lição, as das lições anteriores da unidade,
+      // as palavras de revisão e qualquer palavra ligada aos exercícios desta lição.
+      const earlier = (unitBundle?.lessons ?? []).filter((l) => l.order < lesson.order).flatMap((l) => l.newVocabulary);
+      const refs = lesson.exercises.flatMap((e) => e.vocabRefs).map((id) => extra.byId.get(id)).filter((v): v is ReviewVocab => !!v);
+      const candidates: NewWordSource[] = [...lesson.newVocabulary, ...extra.words, ...earlier, ...refs];
+      setUnseen(candidates.filter((v, i) => !mastered.has(v.id) && candidates.findIndex((x) => x.id === v.id) === i));
+      setReviewExtra(extra.exercises);
     });
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,7 +88,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     return [...base.slice(0, 2), ...extra, ...base.slice(2)];
   }, [lesson, app.settings.speakingExercises, reviewExtra]);
   /** As palavras novas desta lição (ainda não aprendidas) aparecem a roxo. */
-  const isNewWord = useMemo(() => (lesson ? makeWordTest(lesson.newVocabulary.filter((v) => !known.has(v.id))) : () => false), [lesson, known]);
+  const isNewWord = useMemo(() => makeWordTest(unseen), [unseen]);
 
   if (error) {
     return (
@@ -105,7 +117,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   if (phase === 'running') {
     return (
       <NewWordsContext.Provider value={isNewWord}>
-      <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises} teach={{ examples: lesson.examples, grammar: lesson.grammar }}
+      <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises} teach={{ examples: lesson.examples, grammar: lesson.grammar }} unseenWords={unseen}
         speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
         onExit={() => navigate(href.home())}
         onFinish={async (answers: RunnerAnswer[]) => {
@@ -194,15 +206,23 @@ function SummaryStats({ acc, xp, minutes }: { acc: number; xp: number; minutes: 
 }
 
 /** Até 2 palavras difíceis (ou prontas para revisão) de lições anteriores, em exercícios curtos. */
-async function reviewWordsFor(lesson: PublishedLesson, index: Parameters<typeof orderedUnits>[0]): Promise<Exercise[]> {
-  const schedules = await getAllReviews();
-  if (!schedules.length) return [];
-  const chosen = pickWordsToReview(schedules, Date.now(), new Set(lesson.newVocabulary.map((v) => v.id)));
-  if (!chosen.length) return [];
+async function reviewWordsFor(lesson: PublishedLesson, index: Parameters<typeof orderedUnits>[0]): Promise<{ exercises: Exercise[]; words: ReviewVocab[]; byId: Map<string, ReviewVocab> }> {
   const sections = index.sections.filter((s) => s.units.some((u) => u.lessonIds.length)).map((s) => s.id);
   const bundles = await Promise.all(sections.map((s) => contentRepo.loadVocab(s).catch(() => null)));
-  const pool: ReviewVocab[] = bundles.flatMap((b) => b?.items ?? []);
-  const byId = new Map(pool.map((v) => [v.id, v]));
+  const all: ReviewVocab[] = bundles.flatMap((b) => b?.items ?? []);
+  const byId = new Map(all.map((v) => [v.id, v]));
+  const none = { exercises: [], words: [], byId };
+  const schedules = await getAllReviews();
+  if (!schedules.length) return none;
+  const chosen = pickWordsToReview(schedules, Date.now(), new Set(lesson.newVocabulary.map((v) => v.id)));
+  if (!chosen.length) return none;
+  // Opções erradas: só palavras que o aluno já conhece (nunca palavras de secções mais à frente).
+  const pool = knownPool(all, new Set([...schedules.map((x) => x.itemId), ...lesson.newVocabulary.map((v) => v.id)]));
   const rnd = seededRandom(lesson.id.length * 7919 + Date.now() % 1000);
-  return chosen.filter((c) => byId.has(c.itemId)).map((c) => buildReviewExercise(byId.get(c.itemId)!, pool, rnd, c.box));
+  const picked = chosen.filter((c) => byId.has(c.itemId));
+  return {
+    exercises: picked.map((c) => buildReviewExercise(byId.get(c.itemId)!, pool, rnd, c.box)),
+    words: picked.map((c) => byId.get(c.itemId)!),
+    byId,
+  };
 }
