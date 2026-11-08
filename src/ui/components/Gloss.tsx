@@ -3,7 +3,7 @@
  * por baixo da frase (sem janelas a tapar o exercício).
  */
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { buildGlossary, normalizeWord, type GlossEntry, type Glossary } from '../../engine/glossary.ts';
+import { buildGlossary, normalizeWord, wordsOf, type GlossEntry, type Glossary } from '../../engine/glossary.ts';
 import { contentRepo } from '../../data/contentRepo.ts';
 import { useSavedWords } from '../AppState.tsx';
 import { useIsNewWord } from './NewWords.tsx';
@@ -58,7 +58,10 @@ export function GlossText({ text, className, as: Tag = 'span' }: { text: string;
               aria-label={`Tradução de «${word}»`} aria-expanded={open?.i === i}
               onClick={(e) => {
                 e.stopPropagation();
-                setOpen(open?.i === i ? null : { i, word, entries: glossary.lookup(p) });
+                // Numa expressão de várias palavras (ex.: «tot straks»), mostra primeiro o significado da expressão inteira.
+                const exprs = glossary.expressions(text).filter((x) => wordsOf(x.headword).includes(word));
+                const single = glossary.lookup(p).filter((x) => !exprs.some((e) => e.headword === x.headword));
+                setOpen(open?.i === i ? null : { i, word, entries: [...exprs, ...single] });
               }}>{p}</button>
           );
         })}

@@ -95,7 +95,7 @@ const nlAnswers = (v: VocabularyItem) => (v.article ? [`(${v.article} )${v.nl}`]
  */
 /** Tradução para mostrar numa opção: sem notas entre parênteses nem alternativas («vá lá / bom… (Flandres)» → «vá lá»). */
 export function cleanPt(pt: string): string {
-  return pt.replace(/\s*\([^)]*\)/g, '').split(' / ')[0]!.trim() || pt;
+  return pt.replace(/\s*\([^)]*\)/g, '').replace(/\s*\(.*$/, '').split(' / ')[0]!.trim() || pt;
 }
 
 /**
@@ -143,22 +143,23 @@ export function buildReviewExercise(item: ReviewVocab, pool: readonly ReviewVoca
 }
 
 /**
- * Exercício de apresentação («Palavra nova»), antes do primeiro exercício que usa a palavra:
- * o enunciado mostra o significado e pede para escolher a palavra (a nova + 2 já conhecidas).
- * É um exercício normal (conta como resposta), mas com o significado à vista.
+ * Exercício de apresentação, antes do primeiro exercício que usa a palavra: traduzir a palavra
+ * para português. A palavra aparece sublinhada a pontilhado — tocando nela vê-se o significado —
+ * por isso o aluno nunca tem de adivinhar uma palavra que ainda não viu.
  */
-export function buildIntroExercise(item: Pick<ReviewVocab, 'id' | 'nl' | 'pt' | 'article' | 'note'>, pool: readonly Pick<ReviewVocab, 'id' | 'nl' | 'pt' | 'article'>[], rnd: () => number): Exercise {
-  const head = (v: { nl: string; article?: string }) => (v.article ? `${v.article} ${v.nl}` : v.nl);
-  const meanings = [...new Set(item.pt.slice(0, 3).map(cleanPt))];
-  const others = shuffle(pool.filter((p) => p.id !== item.id && !p.pt.some((t) => item.pt.includes(t)) && head(p) !== head(item) && !/[|/…]/.test(p.nl)), rnd).slice(0, 2);
-  const options = shuffle([{ text: head(item), correct: true }, ...others.map((o) => ({ text: head(o), correct: false }))], rnd);
+export function buildIntroExercise(item: Pick<ReviewVocab, 'id' | 'nl' | 'pt' | 'article' | 'note'>): Exercise {
+  const head = item.article ? `${item.article} ${item.nl}` : item.nl;
+  // Traduções sem notas (algumas traduções têm notas partidas entre elementos: «cortar (cabelo», «com tesoura)»).
+  const answers = [...new Set(item.pt.map(cleanPt).filter((a) => a && !/[()]/.test(a)))];
+  if (!answers.length) answers.push(cleanPt(item.pt[0]!).replace(/[()]/g, ''));
   return {
     id: `intro-${item.id}`,
-    type: 'multipleChoice',
-    instruction: 'Palavra nova',
-    prompt: `«${head(item)}» = ${meanings.join(', ')}${/[.!?…]$/.test(meanings[meanings.length - 1]!) ? '' : '.'} Como se diz «${meanings[0]}» em neerlandês?`,
-    options: options.map((o, i) => ({ id: 'abcdef'[i]!, ...o })),
-    explanation: `${head(item)} = ${meanings.join(', ')}${item.note ? `. ${item.note}` : ''}`,
+    type: 'translate',
+    direction: 'nl-pt',
+    instruction: 'Traduza para português.',
+    prompt: head.charAt(0).toUpperCase() + head.slice(1),
+    answers,
+    explanation: `${head} = ${answers.join(', ')}${item.note ? `. ${item.note}` : ''}`,
     vocabRefs: [item.id],
   };
 }

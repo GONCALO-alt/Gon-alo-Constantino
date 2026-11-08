@@ -186,7 +186,7 @@ export function ExerciseRunner({ exercises, speechRate, audioEnabled, speakAnswe
 
       <main className="runner-body" id="conteudo">
         {/* Cada exercício entra a deslizar; uma resposta errada dá um pequeno abanão. */}
-        <div key={`${ex.id}-${session.position}`} className={`ex-stage ${result?.verdict === 'incorrect' ? 'shake' : ''}`}>
+        <div key={`${ex.id}-${session.position}`} data-exercise-id={ex.id} className={`ex-stage ${result?.verdict === 'incorrect' ? 'shake' : ''}`}>
           {isRetry && <p className="retry-tag">Vamos rever este outra vez</p>}
           {!isRetry && ex.id.startsWith('review-') && <p className="retry-tag">Palavra para rever: de uma lição anterior</p>}
           <h1 className="instruction">{ex.instruction}</h1>

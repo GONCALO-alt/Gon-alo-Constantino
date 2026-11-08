@@ -115,35 +115,24 @@ describe('opções erradas só com palavras conhecidas', () => {
   });
 });
 
-describe('exercício «Palavra nova» antes do primeiro uso', () => {
+describe('exercício de apresentação antes do primeiro uso', () => {
   const lessons = realFiles().flatMap((f) => f.lessons).filter((l) => l.newVocabulary.length > 0);
-  const pool = lessons.slice(0, 5).flatMap((l) => l.newVocabulary);
-  it('em todas as lições, cada palavra nova é apresentada (com o significado à vista) antes de ser usada', () => {
+  it('em todas as lições, cada palavra nova tem antes um «traduza esta palavra» (com tradução ao tocar)', () => {
     let intros = 0;
     for (const l of lessons) {
-      const steps = withIntroExercises(l.exercises, l.newVocabulary, pool, seededRandom(1));
+      const steps = withIntroExercises(l.exercises, l.newVocabulary);
       const seen = new Set<string>();
       for (const ex of steps) {
         if (ex.id.startsWith('intro-')) {
           intros++;
           seen.add(ex.vocabRefs[0]!);
-          expect(ex.type === 'multipleChoice' && ex.prompt.includes('=') && ex.options.filter((o) => o.correct).length === 1, ex.id).toBe(true);
+          expect(ex.type === 'translate' && ex.direction === 'nl-pt' && ex.answers.length > 0, ex.id).toBe(true);
+          if (ex.type === 'translate') for (const a of ex.answers) expect(a, ex.id).not.toMatch(/[()]/);
           continue;
         }
         for (const ref of ex.vocabRefs) if (l.newVocabulary.some((v) => v.id === ref)) expect(seen.has(ref), `${ex.id}: ${ref}`).toBe(true);
       }
     }
     expect(intros).toBeGreaterThan(4000);
-  });
-  it('as opções erradas não têm o mesmo significado que a palavra nova', () => {
-    const l = lessons[0]!;
-    for (const ex of withIntroExercises(l.exercises, l.newVocabulary, pool, seededRandom(3))) {
-      if (!ex.id.startsWith('intro-') || ex.type !== 'multipleChoice') continue;
-      const v = l.newVocabulary.find((x) => x.id === ex.vocabRefs[0])!;
-      for (const o of ex.options.filter((x) => !x.correct)) {
-        const other = pool.find((p) => (p.article ? `${p.article} ${p.nl}` : p.nl) === o.text)!;
-        expect(other.pt.some((t) => v.pt.includes(t)), `${v.nl} / ${o.text}`).toBe(false);
-      }
-    }
   });
 });

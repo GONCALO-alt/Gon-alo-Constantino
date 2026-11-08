@@ -8,7 +8,7 @@
  *    (e então o exercício volta no fim, para consolidar — como no «Não me lembro»).
  */
 import type { Exercise } from '../domain/schemas.ts';
-import { buildIntroExercise, type ReviewVocab } from './session.ts';
+import { buildIntroExercise } from './session.ts';
 import { expandAnswerPattern } from './answers.ts';
 import { lemmaCandidates, normalizeWord, wordsOf } from './glossary.ts';
 
@@ -274,18 +274,16 @@ export function wordsToIntroduce(ex: Exercise, unseen: readonly NewWordSource[],
 
 /**
  * Antes do primeiro exercício que usa uma palavra que o aluno nunca acertou, entra um exercício
- * «Palavra nova» com o significado à vista. Assim nenhuma pergunta usa uma palavra que nunca se viu.
+ * «traduza esta palavra», com a palavra sublinhada a pontilhado (tocar = ver o significado).
+ * Assim nenhuma pergunta usa uma palavra que o aluno nunca pôde ver traduzida.
  */
-export function withIntroExercises(
-  exercises: readonly Exercise[], unseen: readonly NewWordSource[],
-  pool: readonly Pick<ReviewVocab, 'id' | 'nl' | 'pt' | 'article'>[], rnd: () => number,
-): Exercise[] {
+export function withIntroExercises(exercises: readonly Exercise[], unseen: readonly NewWordSource[]): Exercise[] {
   const introduced = new Set<string>();
   const out: Exercise[] = [];
   for (const ex of exercises) {
     for (const w of wordsToIntroduce(ex, unseen, introduced)) {
       introduced.add(w.id);
-      if (!ex.id.startsWith('intro-')) out.push(buildIntroExercise(w, pool, rnd));
+      if (!ex.id.startsWith('intro-')) out.push(buildIntroExercise(w));
     }
     out.push(ex);
   }

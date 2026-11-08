@@ -129,33 +129,41 @@ describe('tradução sempre acessível em TODOS os tipos de exercício', () => {
 });
 
 describe('nunca uma palavra sem a ter visto antes', () => {
-  /** Responde a um exercício «Palavra nova»: a resposta é a palavra que o enunciado apresenta. */
+  /** Exercício de apresentação em curso? (traduzir uma palavra nova, com tradução ao tocar) */
+  const introNow = () => document.querySelector('[data-exercise-id^="intro-"]');
+  /** Responde a um exercício de apresentação: toca na palavra (vê o significado) e escreve-o. */
   async function answerIntro(user: ReturnType<typeof userEvent.setup>) {
-    const prompt = document.querySelector('.prompt')!.textContent!;
-    const word = /«([^»]+)»/.exec(prompt)![1]!;
-    expect(prompt).toMatch(/=/); // o significado está à vista
-    await user.click(screen.getByRole('radio', { name: new RegExp(`${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) }));
+    const id = introNow()!.getAttribute('data-exercise-id')!.slice('intro-'.length);
+    const v = realFiles().flatMap((f) => f.lessons).flatMap((l) => l.newVocabulary).find((x) => x.id === id)!;
+    // A palavra está sublinhada: tocar mostra o significado.
+    const word = (await screen.findAllByRole('button', { name: /^Tradução de/ }, { timeout: 5000 }))[0]!;
+    await user.click(word);
+    expect(document.querySelector('.gloss-card')!.textContent).toContain(v.pt[0]!.replace(/\s*\(.*$/, '').split(' / ')[0]!.trim().slice(0, 4));
+    await user.click(screen.getByRole('button', { name: 'Fechar tradução' }));
+    if (!screen.queryByRole('textbox')) await user.click(screen.getByRole('button', { name: 'Usar o teclado' }));
+    await user.type(screen.getByRole('textbox'), v.pt[0]!.replace(/\s*\([^)]*\)/g, '').split(' / ')[0]!.trim());
     await user.click(screen.getByRole('button', { name: 'Verificar' }));
-    expect((await screen.findByRole('status')).textContent).toMatch(/Certo|Muito bem|Exatamente|Correto/);
+    expect((await screen.findByRole('status', {}, { timeout: 3000 })).textContent).toMatch(/Certo|Muito bem|Exatamente|Correto|Quase/);
     await user.click(screen.getByRole('button', { name: 'Continuar' }));
   }
 
-  it('antes do primeiro exercício com uma palavra nova há um exercício «Palavra nova» com o significado', async () => {
+  it('antes do primeiro exercício com uma palavra nova há um «traduza esta palavra» com tradução ao tocar', async () => {
     const user = userEvent.setup();
     const lesson = lessonOf(realFiles(), 's1-u01-l001');
     await repo.saveSettings({ ...(await repo.getSettings()), introNewWords: true });
     await go('#/licao/s1-u01-l001');
     render(<App />);
-    expect(await screen.findByRole('heading', { name: 'Palavra nova' })).toBeTruthy();
+    await screen.findByRole('button', { name: 'Verificar' });
+    expect(introNow()).toBeTruthy();
     let intros = 0;
-    while (screen.queryByRole('heading', { name: 'Palavra nova' })) { await answerIntro(user); intros++; await waitFor(() => screen.getByRole('heading')); }
+    while (introNow()) { await answerIntro(user); intros++; await waitFor(() => screen.getAllByRole('heading')); }
     expect(intros).toBeGreaterThan(0);
     // Depois vem o exercício da lição, com as palavras novas a roxo.
     expect(await screen.findByRole('heading', { name: lesson.exercises[0]!.instruction })).toBeTruthy();
     expect(screen.queryByRole('note')).toBeNull(); // sem avisos por cima do exercício
   }, 30_000);
 
-  it('lições marcadas como feitas (cópia) e palavra para rever nunca acertada: primeiro o exercício «Palavra nova»', async () => {
+  it('lições marcadas como feitas (cópia): as palavras nunca acertadas têm primeiro o «traduza esta palavra»', async () => {
     const user = userEvent.setup();
     const files = realFiles();
     const order = [...files.find((f) => f.unitId === 's1-u01')!.lessons].sort((a, b) => a.order - b.order);
@@ -172,13 +180,10 @@ describe('nunca uma palavra sem a ter visto antes', () => {
     await go('#/licao/' + next.id);
     render(<App />);
     // Cada exercício da lição só aparece depois de as suas palavras terem sido apresentadas.
-    const seen = new Set<string>();
-    for (let step = 0; step < 12; step++) {
-      const h = (await screen.findAllByRole('heading'))[0]!.textContent!;
-      if (h === 'Palavra nova') { seen.add(/«([^»]+)»/.exec(document.querySelector('.prompt')!.textContent!)![1]!); await answerIntro(user); continue; }
-      break;
-    }
-    expect(seen.size).toBeGreaterThan(0);
+    await screen.findByRole('button', { name: 'Verificar' });
+    let seen = 0;
+    while (introNow() && seen < 12) { await answerIntro(user); seen++; await waitFor(() => screen.getAllByRole('heading')); }
+    expect(seen).toBeGreaterThan(0);
   }, 30_000);
 });
 

@@ -37,16 +37,19 @@ async function waitForServer() {
   throw new Error('O servidor de pré-visualização não arrancou.');
 }
 
-/** Responde aos exercícios «Palavra nova» (a resposta é a palavra apresentada no enunciado). */
+/** Responde aos exercícios de apresentação (traduzir uma palavra nova): toca na palavra, lê o significado e escreve-o. */
 async function answerIntros(page) {
-  await page.waitForTimeout(200);
-  while ((await page.locator('h1').first().textContent()) === 'Palavra nova') {
-    const word = /«([^»]+)»/.exec(await page.locator('.prompt').first().textContent())[1];
-    const esc = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    await page.getByRole('radio', { name: new RegExp(esc + '$') }).click();
+  await page.waitForTimeout(300);
+  while (await page.locator('[data-exercise-id^="intro-"]').count()) {
+    await page.getByRole('button', { name: /^Tradução de/ }).first().click();
+    const card = await page.locator('.gloss-card').first().textContent();
+    const meaning = card.split('→')[1].split(/[,(·×]/)[0].trim();
+    await page.getByRole('button', { name: 'Fechar tradução' }).click();
+    if (await page.getByRole('button', { name: 'Usar o teclado' }).count()) await page.getByRole('button', { name: 'Usar o teclado' }).click();
+    await page.getByRole('textbox').fill(meaning);
     await page.getByRole('button', { name: 'Verificar' }).click();
     await page.getByRole('button', { name: 'Continuar' }).click();
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(250);
   }
 }
 
@@ -74,9 +77,9 @@ try {
     await page.screenshot({ path: join(shots, `${vp.name}-mapa.png`), fullPage: true });
 
     await page.goto(`${base}#/licao/s1-u01-l001`);
-    // Antes do primeiro exercício com palavras novas: exercícios «Palavra nova» com o significado à vista.
+    // Antes do primeiro exercício com palavras novas: «traduza esta palavra» (tocar na palavra mostra o significado).
     await page.getByRole('button', { name: 'Verificar' }).waitFor();
-    check((await page.locator('h1').first().textContent()) === 'Palavra nova', `${vp.name}: exercício «Palavra nova» antes de usar a palavra`);
+    check(await page.locator('[data-exercise-id^="intro-"]').count() === 1, `${vp.name}: «traduza esta palavra» antes de a usar`);
     await answerIntros(page);
     await page.getByRole('radio', { name: /hoi/ }).click();
     await page.getByRole('button', { name: 'Verificar' }).click();
@@ -86,7 +89,8 @@ try {
     await page.screenshot({ path: join(shots, `${vp.name}-feedback.png`) });
     await page.getByRole('button', { name: 'Continuar' }).click();
     await answerIntros(page);
-    // Tradução com peças (como num jogo de palavras).
+    // Tradução com peças (como num jogo de palavras); o teste usou o teclado nos exercícios de apresentação.
+    if (await page.getByRole('button', { name: 'Usar peças' }).count()) await page.getByRole('button', { name: 'Usar peças' }).click();
     for (const w of ['Adeus']) await page.getByRole('button', { name: `Acrescentar ${w}`, exact: true }).click();
     check(await page.getByRole('button', { name: 'Verificar' }).isEnabled(), `${vp.name}: tradução com peças`);
     await noHorizontalScroll(page, `${vp.name} / tradução com peças`);
