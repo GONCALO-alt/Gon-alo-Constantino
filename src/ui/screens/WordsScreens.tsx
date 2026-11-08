@@ -8,15 +8,13 @@ import { useApp, useAppData } from '../AppState.tsx';
 import { EmptyState, Icon, SpeakButton } from '../components/common.tsx';
 import { href } from '../router.ts';
 
-const SECTIONS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
 
 /** Vocabulário de todo o curso, pela ordem do curso. */
 export function useAllVocab(): SearchItem[] | null {
   const [items, setItems] = useState<SearchItem[] | null>(null);
   useEffect(() => {
     let alive = true;
-    Promise.all(SECTIONS.map((s) => contentRepo.loadVocab(s).catch(() => null)))
-      .then((bundles) => { if (alive) setItems(bundles.flatMap((b) => b?.items ?? [])); });
+    contentRepo.loadAllVocab().then((items) => { if (alive) setItems(items); }, () => { if (alive) setItems([]); });
     return () => { alive = false; };
   }, []);
   return items;

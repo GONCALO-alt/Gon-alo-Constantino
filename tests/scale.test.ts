@@ -38,7 +38,8 @@ describe.each([500, 1000, 5000])('catálogo com %i lições', (n) => {
     results[`index_${n}_kb`] = Math.round(indexBytes / 1024);
     results[`max_unit_${n}_kb`] = Math.round(maxUnit / 1024);
     expect(c.units.size).toBe(structure.sections.reduce((k, s) => k + s.units.length, 0));
-    expect(indexBytes).toBeLessThan(250 * 1024); // o índice nunca inclui exercícios
+    // O índice nunca inclui exercícios: só a estrutura (1005 unidades curtas) e os IDs das lições.
+    expect(indexBytes).toBeLessThan(450 * 1024);
     expect(maxUnit).toBeLessThan(400 * 1024);
   });
 

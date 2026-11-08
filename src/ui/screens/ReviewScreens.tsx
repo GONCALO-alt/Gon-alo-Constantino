@@ -14,11 +14,9 @@ import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.t
 import { href, navigate, type ReviewMode } from '../router.ts';
 
 /** Carrega o vocabulário das secções com conteúdo publicado. */
-async function loadVocabMap(index: AppData['index']): Promise<Map<string, ReviewVocab>> {
-  const ids = index.sections.filter((s) => s.units.some((u) => u.lessonIds.length)).map((s) => s.id);
-  const bundles = await Promise.all(ids.map((id) => contentRepo.loadVocab(id)));
+async function loadVocabMap(_index: AppData['index']): Promise<Map<string, ReviewVocab>> {
   const map = new Map<string, ReviewVocab>();
-  for (const b of bundles) for (const it of b?.items ?? []) map.set(it.id, it);
+  for (const it of await contentRepo.loadAllVocab()) map.set(it.id, it);
   return map;
 }
 

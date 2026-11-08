@@ -87,8 +87,8 @@ describe('compilação', () => {
     files.push({ unitId: EMPTY, lessons: [{ ...syntheticLesson(EMPTY, 1, 1), status: 'draft' }] });
     const c = compileContent(realStructure(), files, '2026-10-29');
     CourseIndexSchema.parse(c.index);
-    const u3 = c.index.sections.flatMap((s) => s.units).find((u) => u.id === EMPTY)!;
-    expect(u3.lessonIds).toEqual([]);
+    // A lição em rascunho não entra em nenhuma unidade do aluno.
+    expect(c.index.sections.flatMap((s) => s.units).flatMap((u) => u.lessonIds).some((id) => id.startsWith(EMPTY + '-'))).toBe(false);
     expect(c.units.has(EMPTY)).toBe(false);
     const bundle = UnitBundleSchema.parse(c.units.get('s1-u01'));
     expect('status' in bundle.lessons[0]!).toBe(false);

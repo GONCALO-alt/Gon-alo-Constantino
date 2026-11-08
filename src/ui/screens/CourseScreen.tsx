@@ -20,7 +20,7 @@ export function CourseScreen({ sectionId }: { sectionId?: string }) {
     return (
       <div className="page">
         <h1>Mapa do curso</h1>
-        <p className="muted">Sete secções, do nível A1 ao B2. Os níveis são indicativos e não constituem uma certificação.</p>
+        <p className="muted">Oito secções e 1005 unidades, do nível inicial ao B2. Os níveis são indicativos e não constituem uma certificação.</p>
         <ol className="section-list">
           {index.sections.map((s) => {
             const published = s.units.reduce((n, u) => n + u.lessonIds.length, 0);
@@ -105,7 +105,7 @@ function UnitLessons({ unit, state, currentId }: { unit: IndexedUnit; state: Uni
   const [lessons, setLessons] = useState<PublishedLesson[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    contentRepo.loadUnit(unit.id).then((b) => setLessons(b.lessons), (e: Error) => setError(e.message));
+    contentRepo.loadLessons(unit.lessonIds).then(setLessons, (e: Error) => setError(e.message));
   }, [unit.id]);
   const states = useMemo(() => computeLessonStates(unit, state, completed, settings.freeNavigation), [unit, state, completed, settings.freeNavigation]);
   if (error) return <p className="notice" role="alert">{error}</p>;

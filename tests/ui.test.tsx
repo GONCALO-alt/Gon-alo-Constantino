@@ -259,24 +259,24 @@ describe('mini-jogos', () => {
 });
 
 describe('navegação', () => {
-  it('ecrã inicial e mapa com as 7 secções', async () => {
+  it('ecrã inicial e mapa com as 8 secções', async () => {
     await go('#/');
     render(<App />);
     // Caminho da unidade: «Começar» na primeira lição; as seguintes estão bloqueadas.
     const start = await screen.findByRole('link', { name: 'Começar: Olá e adeus' });
     expect(start.getAttribute('href')).toBe('#/licao/s1-u01-l001');
-    expect(screen.getByText('Saudações e despedidas')).toBeTruthy();
+    expect(screen.getAllByText(/Saudações e despedidas/).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('button', { name: /— bloqueada$/ }).length).toBeGreaterThan(3);
     await go('#/curso');
-    const items = await screen.findAllByRole('link', { name: /Secção|Primeiros passos|A vida quotidiana|Viver nos|Comunicação|Fluência|avançado|Domínio/ });
-    expect(items.length).toBeGreaterThanOrEqual(7);
+    const items = await screen.findAllByRole('link', { name: /Primeiros passos|essencial|A vida quotidiana|Viver nos|Comunicação|Fluência|avançado|Domínio/ });
+    expect(items.length).toBeGreaterThanOrEqual(8);
   });
 
   it('secção 1: primeira unidade aberta, segunda bloqueada', async () => {
     await go('#/curso/s1');
     render(<App />);
     expect(await screen.findByRole('link', { name: /Olá e adeus — disponível/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Unidade 2: Apresentações pessoais/ }).textContent).toMatch(/Bloqueada/);
+    expect(screen.getByRole('button', { name: /Unidade 2: Saudações e despedidas \(2\/3\)/ }).textContent).toMatch(/Bloqueada/);
     expect(screen.getByLabelText(/^Bom dia, boa tarde, boa noite — bloqueada/)).toBeTruthy();
     // Unidades sem conteúdo aparecem como "em preparação" (se ainda houver alguma na secção 1)
     const withContent = new Set(realFiles().map((f) => f.unitId));

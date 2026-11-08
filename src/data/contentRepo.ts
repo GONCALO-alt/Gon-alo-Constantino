@@ -98,6 +98,19 @@ export class ContentRepository {
     return p;
   }
 
+  /** Várias lições pelos IDs (uma unidade do aluno pode juntar lições de ficheiros diferentes). */
+  loadLessons(ids: readonly string[]): Promise<PublishedLesson[]> {
+    return Promise.all(ids.map((id) => this.loadLesson(id)));
+  }
+
+  /** Vocabulário de todo o curso, pela ordem do curso (secções de autoria). */
+  async loadAllVocab(): Promise<VocabBundle['items']> {
+    const index = await this.loadIndex();
+    const ids = index.vocabSections.length ? index.vocabSections : index.sections.map((s) => s.id);
+    const bundles = await Promise.all(ids.map((id) => this.loadVocab(id).catch(() => null)));
+    return bundles.flatMap((b) => b?.items ?? []);
+  }
+
   clear(): void {
     this.index = null;
     this.units.clear();

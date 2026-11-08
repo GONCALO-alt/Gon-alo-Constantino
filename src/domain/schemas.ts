@@ -18,13 +18,14 @@ import { z } from 'zod';
 // Lição:   s1-u01-l001  (nunca reutilizar um ID, mesmo que a lição seja apagada)
 // Vocabulário: v-<palavra> (ex.: v-huis, v-goedemorgen); único em todo o curso
 // Exercício: <lessonId>-e01
-export const SectionId = z.string().regex(/^s[1-7]$/, 'ID de secção inválido (esperado s1…s7)');
-export const UnitId = z.string().regex(/^s[1-7]-u\d{2}$/, 'ID de unidade inválido (esperado s1-u01)');
+export const SectionId = z.string().regex(/^s[1-8]$/, 'ID de secção inválido (esperado s1…s8)');
+/** Unidade: s1-u01 (unidades temáticas de autoria) ou s5-u123 (unidades curtas apresentadas ao aluno). */
+export const UnitId = z.string().regex(/^s[1-8]-u\d{2,3}$/, 'ID de unidade inválido (esperado s1-u01)');
 export const LessonId = z.string().regex(/^s[1-7]-u\d{2}-l\d{3}$/, 'ID de lição inválido (esperado s1-u01-l001)');
 export const VocabId = z.string().regex(/^v-[a-z0-9-]+$/, 'ID de vocabulário inválido (esperado v-palavra)');
 export const ExerciseId = z.string().regex(/^s[1-7]-u\d{2}-l\d{3}-e\d{2}$/, 'ID de exercício inválido');
 
-export const Cefr = z.enum(['A1', 'A1-A2', 'A2', 'A2-B1', 'B1', 'B1-B2', 'B2']);
+export const Cefr = z.enum(['Inicial', 'A1', 'A1-A2', 'A2', 'A2-B1', 'B1', 'B1-B2', 'B2']);
 export type Cefr = z.infer<typeof Cefr>;
 
 export const PublicationStatus = z.enum(['draft', 'approved', 'published', 'rejected']);
@@ -52,7 +53,7 @@ export type CourseUnit = z.infer<typeof CourseUnitSchema>;
 
 export const CourseSectionSchema = z.object({
   id: SectionId,
-  order: z.number().int().min(1).max(7),
+  order: z.number().int().min(1).max(8),
   title: nonEmpty,
   goal: nonEmpty,
   cefr: Cefr,
@@ -326,6 +327,8 @@ export const CourseIndexSchema = z.object({
   structureVersion: z.number().int(),
   contentHash: z.string(),
   builtAt: z.string(),
+  /** Secções de autoria com ficheiro de vocabulário (vocab/<id>.json). */
+  vocabSections: z.array(SectionId).default([]),
   sections: z.array(
     CourseSectionSchema.omit({ units: true }).extend({
       units: z.array(

@@ -24,7 +24,7 @@ npm run preview
 
 ## O que já existe
 
-- Curso com **7 secções e 109 unidades** (4.500 lições previstas), A1 → B2.
+- Curso apresentado em **8 secções e 1005 unidades curtas** (10, 30, 30, 60, 255, 260, 180, 180; Inicial, A1, A1, A2, B1, B1, B2, B2), organizadas por `tools/lib/layout.ts` na compilação. As lições continuam escritas em 7 secções e 109 unidades temáticas (`content/course.json`); os IDs das lições e o progresso não mudam.
 - **4098 lições** publicadas: 1825 escritas; a seguir a cada uma, uma **lição de prática** sem palavras novas (1822, `tools/authoring/practice_gen.py`); no fim de cada unidade, lições de revisão (451, `tools/authoring/review_gen.py`); 39 275 exercícios, 5131 palavras.
 - Versão de ficheiro único: `DutchPath.html` (ou `npm run build:single`).
 - **14 tipos de exercício** com correção tolerante (variantes, acentos, gralhas), feedback imediato e explicação; os erros repetem-se no fim da lição.

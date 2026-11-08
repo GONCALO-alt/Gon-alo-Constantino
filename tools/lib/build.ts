@@ -8,6 +8,7 @@
  */
 import { createHash } from 'node:crypto';
 import type { CourseIndex, CourseStructure, UnitBundle, UnitLessonsFile, VocabBundle } from '../../src/domain/schemas.ts';
+import { layoutCourse } from './layout.ts';
 
 export interface CompiledContent {
   index: CourseIndex;
@@ -43,8 +44,11 @@ export function compileContent(structure: CourseStructure, files: readonly UnitL
   });
 
   const contentHash = hashOf({ sections: sections.map((s) => s.units.map((u) => u.lessonIds)), units: [...units.values()].map((u) => u.contentHash) });
+  // As lições são escritas em 7 secções temáticas; o aluno vê-as em 8 secções e 1005 unidades curtas.
+  const titles = new Map([...units.values()].flatMap((u) => u.lessons.map((l) => [l.id, l.title] as const)));
+  const themed: CourseIndex = { courseId: 'pt-nl', structureVersion: structure.structureVersion, contentHash, builtAt, vocabSections: [], sections };
   return {
-    index: { courseId: 'pt-nl', structureVersion: structure.structureVersion, contentHash, builtAt, sections },
+    index: layoutCourse(themed, titles),
     units,
     vocab,
   };

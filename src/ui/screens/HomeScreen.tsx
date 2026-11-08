@@ -151,7 +151,7 @@ function UnitTrail({ unit, currentId, state }: { unit: IndexedUnit; currentId?: 
   const currentRef = useRef<HTMLLIElement>(null);
   useEffect(() => {
     let alive = true;
-    contentRepo.loadUnit(unit.id).then((b) => { if (alive) setLessons(new Map(b.lessons.map((l) => [l.id, l]))); }, () => {});
+    contentRepo.loadLessons(unit.lessonIds).then((ls) => { if (alive) setLessons(new Map(ls.map((l) => [l.id, l]))); }, () => {});
     return () => { alive = false; };
   }, [unit.id]);
   // Mostra a lição atual (a meio do ecrã) quando o caminho é comprido.

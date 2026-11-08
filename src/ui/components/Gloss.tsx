@@ -8,14 +8,13 @@ import { contentRepo } from '../../data/contentRepo.ts';
 import { useSavedWords } from '../AppState.tsx';
 import { useIsNewWord } from './NewWords.tsx';
 
-const SECTIONS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
 let glossaryPromise: Promise<Glossary> | null = null;
 
 /** Carrega (uma vez) o vocabulário de todas as secções e constrói o dicionário. */
 export function loadGlossary(): Promise<Glossary> {
   if (!glossaryPromise) {
-    glossaryPromise = Promise.all(SECTIONS.map((s) => contentRepo.loadVocab(s).catch(() => null)))
-      .then((bundles) => buildGlossary(bundles.flatMap((b) => b?.items ?? [])))
+    glossaryPromise = contentRepo.loadAllVocab()
+      .then((items) => buildGlossary(items))
       .catch(() => {
         glossaryPromise = null;
         return buildGlossary([]);

@@ -25,7 +25,6 @@ const GAMES: { id: GameId; emoji: string; title: string; nl: string; desc: strin
   { id: 'listen', emoji: '👂', title: 'Ouve e toca', nl: 'Luister en tik', desc: 'Ouça a palavra e toque na que ouviu. 10 rondas.', best: 'high' },
 ];
 
-const SECTIONS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
 const BEST_KEY = 'dutchpath.games.best';
 
 function readBest(): Partial<Record<GameId, number>> {
@@ -48,8 +47,7 @@ function useVocab(): VocabSource[] | null {
   const [items, setItems] = useState<VocabSource[] | null>(null);
   useEffect(() => {
     let alive = true;
-    Promise.all(SECTIONS.map((s) => contentRepo.loadVocab(s).catch(() => null)))
-      .then((bundles) => { if (alive) setItems(bundles.flatMap((b) => b?.items ?? [])); });
+    contentRepo.loadAllVocab().then((items) => { if (alive) setItems(items); }, () => { if (alive) setItems([]); });
     return () => { alive = false; };
   }, []);
   return items;

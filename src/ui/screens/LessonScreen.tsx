@@ -207,9 +207,8 @@ function SummaryStats({ acc, xp, minutes }: { acc: number; xp: number; minutes: 
 
 /** Até 2 palavras difíceis (ou prontas para revisão) de lições anteriores, em exercícios curtos. */
 async function reviewWordsFor(lesson: PublishedLesson, index: Parameters<typeof orderedUnits>[0]): Promise<{ exercises: Exercise[]; words: ReviewVocab[]; byId: Map<string, ReviewVocab> }> {
-  const sections = index.sections.filter((s) => s.units.some((u) => u.lessonIds.length)).map((s) => s.id);
-  const bundles = await Promise.all(sections.map((s) => contentRepo.loadVocab(s).catch(() => null)));
-  const all: ReviewVocab[] = bundles.flatMap((b) => b?.items ?? []);
+  void index;
+  const all: ReviewVocab[] = await contentRepo.loadAllVocab();
   const byId = new Map(all.map((v) => [v.id, v]));
   const none = { exercises: [], words: [], byId };
   const schedules = await getAllReviews();
