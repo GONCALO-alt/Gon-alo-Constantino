@@ -4,6 +4,7 @@ import { esc, eur, hhmm, kmStr, dur, weekday, stars, clamp, isWeekend } from '..
 import { avatar, PERSONALITIES } from '../game/passengers.js';
 import { ACHIEVEMENTS, LEVEL_TITLES, levelTitle, reputationTier, xpForLevel, objectiveProgress, hourOf } from '../game/economy.js';
 import { WEATHERS } from '../world/sky.js';
+import { RIDO_ICON } from './icon.js';
 
 const PHASE = { toPickup: 'A caminho da recolha', waiting: 'À espera do passageiro', boarded: 'Passageiro a bordo', onTrip: 'Em viagem', arrived: 'Chegaste ao destino' };
 const FIN_ICON = { trip: '🚗', tip: '🎁', bonus: '🎉', fuel: '⛽', maint: '🔧', wash: '🧽', fine: '🚨', fixed: '📄', other: '💶' };
@@ -132,7 +133,7 @@ export class Phone {
   _home() {
     const st = this.st; const un = this.unread();
     const apps = [
-      ['driver', '🚗', '#000', APP_NAME.split(' ')[0], un],
+      ['driver', `<img src="${RIDO_ICON}" alt="" style="width:100%;height:100%;border-radius:15px;display:block">`, 'transparent', APP_NAME.split(' ')[0], un],
       ['map', '🗺️', '#1e7a46', 'Mapa'], ['wallet', '💳', '#1f5fbf', 'Carteira'], ['garage', '🔧', '#d97a1e', 'Garagem'],
       ['goals', '🏆', '#7b3fbf', 'Objetivos'], ['chat', '💬', '#22a35a', 'Mensagens', st.ride ? st.chat.filter((c) => c.from === 'pax').length : 0], ['settings', '⚙️', '#5b6270', 'Definições'],
     ];
@@ -154,7 +155,7 @@ export class Phone {
     else if (this.tab === 'caixa') body = this._caixa();
     else body = this._conta();
     const tabs = [['inicio', '🏠', 'Início'], ['ganhos', '💶', 'Ganhos'], ['historico', '🧾', 'Viagens'], ['caixa', '🔔', 'Caixa', un], ['conta', '👤', 'Conta']];
-    return `${this._appbar(`<span style="font-weight:850">RIDO</span> <span style="font-weight:400;opacity:.6">Driver</span>`, 'home', `<span class="chip" style="margin:0">${st.online ? '🟢 Online' : '⚪ Offline'}</span>`)}
+    return `${this._appbar(`<img src="${RIDO_ICON}" alt="" style="width:26px;height:26px;border-radius:7px;vertical-align:-7px;margin-right:6px"><span style="font-weight:850">RIDO</span> <span style="font-weight:400;opacity:.6">Driver</span>`, 'home', `<span class="chip" style="margin:0">${st.online ? '🟢 Online' : '⚪ Offline'}</span>`)}
       <div class="pbody"><div class="sec">${body}</div></div>
       <div class="tabs">${tabs.map((t) => `<button class="${this.tab === t[0] ? 'on' : ''}" data-a="tab" data-v="${t[0]}"><span class="ti">${t[1]}</span>${t[2]}${t[3] ? `<span class="badge">${t[3]}</span>` : ''}</button>`).join('')}</div>`;
   }
