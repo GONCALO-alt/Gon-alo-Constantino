@@ -141,3 +141,24 @@ export function buildReviewExercise(item: ReviewVocab, pool: readonly ReviewVoca
   const synonyms = pool.filter((p) => p.pt.includes(item.pt[0]!)).flatMap(nlAnswers);
   return { ...base, type: 'translate', direction: 'pt-nl', instruction: 'Escreva em neerlandês.', prompt: item.pt[0]!, answers: [...new Set([...nlAnswers(item), ...synonyms])] };
 }
+
+/**
+ * Exercício de apresentação («Palavra nova»), antes do primeiro exercício que usa a palavra:
+ * o enunciado mostra o significado e pede para escolher a palavra (a nova + 2 já conhecidas).
+ * É um exercício normal (conta como resposta), mas com o significado à vista.
+ */
+export function buildIntroExercise(item: Pick<ReviewVocab, 'id' | 'nl' | 'pt' | 'article' | 'note'>, pool: readonly Pick<ReviewVocab, 'id' | 'nl' | 'pt' | 'article'>[], rnd: () => number): Exercise {
+  const head = (v: { nl: string; article?: string }) => (v.article ? `${v.article} ${v.nl}` : v.nl);
+  const meanings = [...new Set(item.pt.slice(0, 3).map(cleanPt))];
+  const others = shuffle(pool.filter((p) => p.id !== item.id && !p.pt.some((t) => item.pt.includes(t)) && head(p) !== head(item) && !/[|/…]/.test(p.nl)), rnd).slice(0, 2);
+  const options = shuffle([{ text: head(item), correct: true }, ...others.map((o) => ({ text: head(o), correct: false }))], rnd);
+  return {
+    id: `intro-${item.id}`,
+    type: 'multipleChoice',
+    instruction: 'Palavra nova',
+    prompt: `«${head(item)}» = ${meanings.join(', ')}${/[.!?…]$/.test(meanings[meanings.length - 1]!) ? '' : '.'} Como se diz «${meanings[0]}» em neerlandês?`,
+    options: options.map((o, i) => ({ id: 'abcdef'[i]!, ...o })),
+    explanation: `${head(item)} = ${meanings.join(', ')}${item.note ? `. ${item.note}` : ''}`,
+    vocabRefs: [item.id],
+  };
+}

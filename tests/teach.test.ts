@@ -4,7 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Exercise } from '../src/domain/schemas.ts';
 import { buildGlossary } from '../src/engine/glossary.ts';
-import { approxPronunciation, exerciseHelp, makeWordTest, wordsToIntroduce } from '../src/engine/teach.ts';
+import { approxPronunciation, exerciseHelp, makeWordTest, withIntroExercises, wordsToIntroduce } from '../src/engine/teach.ts';
 import { buildReviewExercise, cleanPt, knownPool, seededRandom } from '../src/engine/session.ts';
 import { realFiles } from './helpers.ts';
 
@@ -111,6 +111,39 @@ describe('opções erradas só com palavras conhecidas', () => {
     for (let i = 0; i < 50; i++) {
       const ex = buildReviewExercise(pool[i % pool.length]!, pool, rnd, 0);
       if (ex.type === 'multipleChoice') for (const o of ex.options) expect(o.text).not.toMatch(/[()]/);
+    }
+  });
+});
+
+describe('exercício «Palavra nova» antes do primeiro uso', () => {
+  const lessons = realFiles().flatMap((f) => f.lessons).filter((l) => l.newVocabulary.length > 0);
+  const pool = lessons.slice(0, 5).flatMap((l) => l.newVocabulary);
+  it('em todas as lições, cada palavra nova é apresentada (com o significado à vista) antes de ser usada', () => {
+    let intros = 0;
+    for (const l of lessons) {
+      const steps = withIntroExercises(l.exercises, l.newVocabulary, pool, seededRandom(1));
+      const seen = new Set<string>();
+      for (const ex of steps) {
+        if (ex.id.startsWith('intro-')) {
+          intros++;
+          seen.add(ex.vocabRefs[0]!);
+          expect(ex.type === 'multipleChoice' && ex.prompt.includes('=') && ex.options.filter((o) => o.correct).length === 1, ex.id).toBe(true);
+          continue;
+        }
+        for (const ref of ex.vocabRefs) if (l.newVocabulary.some((v) => v.id === ref)) expect(seen.has(ref), `${ex.id}: ${ref}`).toBe(true);
+      }
+    }
+    expect(intros).toBeGreaterThan(4000);
+  });
+  it('as opções erradas não têm o mesmo significado que a palavra nova', () => {
+    const l = lessons[0]!;
+    for (const ex of withIntroExercises(l.exercises, l.newVocabulary, pool, seededRandom(3))) {
+      if (!ex.id.startsWith('intro-') || ex.type !== 'multipleChoice') continue;
+      const v = l.newVocabulary.find((x) => x.id === ex.vocabRefs[0])!;
+      for (const o of ex.options.filter((x) => !x.correct)) {
+        const other = pool.find((p) => (p.article ? `${p.article} ${p.nl}` : p.nl) === o.text)!;
+        expect(other.pt.some((t) => v.pt.includes(t)), `${v.nl} / ${o.text}`).toBe(false);
+      }
     }
   });
 });

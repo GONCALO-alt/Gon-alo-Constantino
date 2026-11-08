@@ -37,6 +37,19 @@ async function waitForServer() {
   throw new Error('O servidor de pré-visualização não arrancou.');
 }
 
+/** Responde aos exercícios «Palavra nova» (a resposta é a palavra apresentada no enunciado). */
+async function answerIntros(page) {
+  await page.waitForTimeout(200);
+  while ((await page.locator('h1').first().textContent()) === 'Palavra nova') {
+    const word = /«([^»]+)»/.exec(await page.locator('.prompt').first().textContent())[1];
+    const esc = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    await page.getByRole('radio', { name: new RegExp(esc + '$') }).click();
+    await page.getByRole('button', { name: 'Verificar' }).click();
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await page.waitForTimeout(200);
+  }
+}
+
 async function noHorizontalScroll(page, label) {
   const { sw, cw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
   check(sw <= cw, `${label}: sem deslocamento horizontal (${sw} ≤ ${cw})`);
@@ -61,7 +74,10 @@ try {
     await page.screenshot({ path: join(shots, `${vp.name}-mapa.png`), fullPage: true });
 
     await page.goto(`${base}#/licao/s1-u01-l001`);
-    // A lição abre logo no primeiro exercício.
+    // Antes do primeiro exercício com palavras novas: exercícios «Palavra nova» com o significado à vista.
+    await page.getByRole('button', { name: 'Verificar' }).waitFor();
+    check((await page.locator('h1').first().textContent()) === 'Palavra nova', `${vp.name}: exercício «Palavra nova» antes de usar a palavra`);
+    await answerIntros(page);
     await page.getByRole('radio', { name: /hoi/ }).click();
     await page.getByRole('button', { name: 'Verificar' }).click();
     await page.getByRole('status').waitFor();
@@ -69,6 +85,7 @@ try {
     await noHorizontalScroll(page, `${vp.name} / exercício`);
     await page.screenshot({ path: join(shots, `${vp.name}-feedback.png`) });
     await page.getByRole('button', { name: 'Continuar' }).click();
+    await answerIntros(page);
     // Tradução com peças (como num jogo de palavras).
     for (const w of ['Adeus']) await page.getByRole('button', { name: `Acrescentar ${w}`, exact: true }).click();
     check(await page.getByRole('button', { name: 'Verificar' }).isEnabled(), `${vp.name}: tradução com peças`);

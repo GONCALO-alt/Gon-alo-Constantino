@@ -41,6 +41,8 @@ export interface UserSettings {
   reducedMotion: boolean;
   /** Decoração das épocas festivas (Natal, Halloween, Carnaval, Páscoa). */
   seasonalThemes: boolean;
+  /** Exercício «Palavra nova» (com o significado à vista) antes do primeiro exercício com uma palavra nunca acertada. */
+  introNewWords: boolean;
 }
 
 export const DEFAULT_SETTINGS: Omit<UserSettings, 'id'> = {
@@ -57,6 +59,7 @@ export const DEFAULT_SETTINGS: Omit<UserSettings, 'id'> = {
   notificationsEnabled: false,
   reducedMotion: false,
   seasonalThemes: true,
+  introNewWords: true,
 };
 
 export interface LessonProgress {

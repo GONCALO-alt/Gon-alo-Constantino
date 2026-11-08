@@ -748,10 +748,3 @@ a.home-stat { color: var(--text); }
 .runner .token.new { color: var(--new); border-color: color-mix(in srgb, var(--new) 45%, var(--line)); box-shadow: 0 4px 0 color-mix(in srgb, var(--new) 35%, var(--line)); }
 .runner .token.used.new { color: transparent; }
 
-/* «✨ Palavra nova» dentro do exercício (primeira vez que a palavra aparece) */
-.new-banner { margin: 0 0 14px; padding: 10px 14px; border-radius: 16px; background: var(--new-soft); border: 2px solid color-mix(in srgb, var(--new) 45%, transparent);
-  animation: rise 0.25s ease both; }
-.new-banner-label { margin: 0 0 4px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--new); }
-.new-banner ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.new-banner li { font-size: 1.05rem; }
-.new-banner strong { font-size: 1.15rem; }

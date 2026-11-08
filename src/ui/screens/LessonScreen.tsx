@@ -13,7 +13,7 @@ import { Icon } from '../components/common.tsx';
 import { Confetti, useCountUp } from '../components/Celebrate.tsx';
 import { Mascot } from '../components/Mascot.tsx';
 import { ExerciseRunner, type RunnerAnswer } from '../exercises/ExerciseRunner.tsx';
-import { makeWordTest, type NewWordSource } from '../../engine/teach.ts';
+import { makeWordTest, withIntroExercises, type NewWordSource } from '../../engine/teach.ts';
 import { NewWordsContext } from '../components/NewWords.tsx';
 import { href, navigate } from '../router.ts';
 
@@ -32,6 +32,8 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const [reviewExtra, setReviewExtra] = useState<Exercise[] | null>(null);
   /** Palavras que o aluno ainda nunca acertou (novas desta lição e de revisão): mostram o significado na primeira vez. */
   const [unseen, setUnseen] = useState<NewWordSource[]>([]);
+  /** Palavras que servem de opções no exercício «Palavra nova» (conhecidas, ou as primeiras do curso). */
+  const [introPool, setIntroPool] = useState<ReviewVocab[]>([]);
 
   useEffect(() => {
     let alive = true;
@@ -63,6 +65,8 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
       const refs = lesson.exercises.flatMap((e) => e.vocabRefs).map((id) => extra.byId.get(id)).filter((v): v is ReviewVocab => !!v);
       const candidates: NewWordSource[] = [...lesson.newVocabulary, ...extra.words, ...earlier, ...refs];
       setUnseen(candidates.filter((v, i) => !mastered.has(v.id) && candidates.findIndex((x) => x.id === v.id) === i));
+      // Opções erradas do exercício «Palavra nova»: palavras que o aluno já acertou (ou as primeiras do curso).
+      setIntroPool(knownPool([...extra.byId.values()], mastered));
       setReviewExtra(extra.exercises);
     });
     return () => { alive = false; };
@@ -85,8 +89,11 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     const base = !app.settings.speakingExercises || offline || !canRecognizeSpeech() ? lesson.exercises : withSpeaking(lesson.exercises, speakingExercisesFor(lesson));
     // As palavras difíceis de lições anteriores entram depois dos dois primeiros exercícios.
     const extra = reviewExtra ?? [];
-    return [...base.slice(0, 2), ...extra, ...base.slice(2)];
-  }, [lesson, app.settings.speakingExercises, reviewExtra]);
+    const withReview = [...base.slice(0, 2), ...extra, ...base.slice(2)];
+    // Antes do 1.º exercício com uma palavra que o aluno nunca acertou: exercício «Palavra nova» com o significado à vista.
+    if (app.settings.introNewWords === false) return withReview;
+    return withIntroExercises(withReview, unseen, introPool, seededRandom(lesson.id.length * 31 + unseen.length));
+  }, [lesson, app.settings.speakingExercises, app.settings.introNewWords, reviewExtra, unseen, introPool]);
   /** As palavras novas desta lição (ainda não aprendidas) aparecem a roxo. */
   const isNewWord = useMemo(() => makeWordTest(unseen), [unseen]);
 
@@ -117,7 +124,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   if (phase === 'running') {
     return (
       <NewWordsContext.Provider value={isNewWord}>
-      <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises} teach={{ examples: lesson.examples, grammar: lesson.grammar }} unseenWords={unseen}
+      <ExerciseRunner key={runKey} title={lesson.title} exercises={runExercises} teach={{ examples: lesson.examples, grammar: lesson.grammar }}
         speechRate={app.settings.speechRate} audioEnabled={app.settings.audioEnabled} speakAnswers={app.settings.speakAnswers} lenientAccents={app.settings.lenientAccents}
         onExit={() => navigate(href.home())}
         onFinish={async (answers: RunnerAnswer[]) => {

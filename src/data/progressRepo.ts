@@ -178,9 +178,12 @@ export async function recordLessonCompletion(c: LessonCompletion, countUnits: Un
   // Palavras já conhecidas, acertadas sem erro nesta lição (ex.: palavras difíceis que voltaram): contam como revisão certa.
   const rightRefs = new Set(c.answers.filter((a) => a.verdict === 'correct').flatMap((a) => a.vocabRefs));
   for (const id of rightRefs) {
-    if (wrongRefs.has(id) || isNew.has(id)) continue;
+    if (wrongRefs.has(id)) continue;
     const s = await reviews.get(id);
-    if (s) await reviews.put(applyReview(s, 'correct', now));
+    if (!s) continue;
+    // Palavra nova acertada na própria lição: fica registada como «já acertada» (sem mudar o calendário).
+    if (isNew.has(id)) await reviews.put({ ...s, correct: s.correct + 1 });
+    else await reviews.put(applyReview(s, 'correct', now));
   }
 
   const ds = tx.objectStore('dailyStats');
