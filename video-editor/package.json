@@ -1,0 +1,77 @@
+{
+  "name": "corte-studio",
+  "productName": "Corte Studio",
+  "version": "1.0.0",
+  "description": "Editor de vídeo profissional multipista com exportação real até 4K a 60 FPS (FFmpeg).",
+  "main": "dist-electron/main.js",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc --noEmit -p tsconfig.json && vite build && node scripts/build-electron.mjs",
+    "start": "electron .",
+    "test": "vitest run",
+    "dist": "npm run build && electron-builder",
+    "test:e2e": "node tests/e2e/app.e2e.cjs && node tests/e2e/editing.e2e.cjs"
+  },
+  "build": {
+    "appId": "studio.corte.editor",
+    "productName": "Corte Studio",
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**",
+      "node_modules/ffprobe-static/**"
+    ],
+    "fileAssociations": [
+      {
+        "ext": "corte",
+        "name": "Projeto Corte Studio"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "dependencies": {
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/bebas-neue": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
+    "@fontsource/oswald": "^5.3.0",
+    "@fontsource/pacifico": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
+    "@fontsource/roboto-mono": "^5.3.0",
+    "@huggingface/transformers": "^4.3.2",
+    "immer": "^10.1.1",
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  },
+  "optionalDependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "ffprobe-static": "^3.1.0"
+  }
+}
