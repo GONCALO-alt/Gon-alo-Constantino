@@ -70,6 +70,17 @@ export function makeSidewalkTexture() {
   noise(x, 256, 256, 18);
   return canvasTex(c);
 }
+export function makeCobbleTexture() {
+  const [c, x] = makeCanvas(256, 256);
+  x.fillStyle = '#5c5850'; x.fillRect(0, 0, 256, 256);
+  for (let r = 0; r < 16; r++) for (let k = 0; k < 16; k++) {
+    const g = 105 + Math.random() * 45; x.fillStyle = `rgb(${g},${g - 4},${g - 12})`;
+    const ox = (r % 2) * 8;
+    x.beginPath(); x.ellipse(k * 16 + ox + 8, r * 16 + 8, 7, 6.5, Math.random(), 0, Math.PI * 2); x.fill();
+  }
+  noise(x, 256, 256, 20);
+  return canvasTex(c);
+}
 export function makeGrassTexture() {
   const [c, x] = makeCanvas(256, 256);
   x.fillStyle = '#4c6b34'; x.fillRect(0, 0, 256, 256);

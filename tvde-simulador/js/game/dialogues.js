@@ -46,7 +46,7 @@ export const SCENES = [
     ] },
   { id: 'g_picky', kind: 'greet', pers: ['exigente'], text: (c) => `${c.saud}. Pode baixar a temperatura? E desligar o rádio, por favor.`,
     choices: [
-      { t: 'Claro, já está.', mood: 10, reply: 'Obrigado. Assim está muito melhor.' },
+      { t: 'Claro, já está.', mood: 10, eff: { radio: 'off' }, reply: 'Obrigado. Assim está muito melhor.' },
       { t: 'Baixo a temperatura; o rádio já estava desligado.', mood: 4, reply: 'Ah, está bem.' },
       { t: 'Prefiro manter assim, está agradável.', mood: -12, reply: 'A sério? Fantástico...' },
     ] },
@@ -112,7 +112,7 @@ export const SCENES = [
     ] },
   { id: 'm_exec_call', kind: 'mid', pers: ['executivo'], text: '(Ao telefone) Sim... não, a reunião é às três... (para si) Desculpe, pode baixar o rádio?',
     choices: [
-      { t: '(Desligar o rádio e manter silêncio)', mood: 11, reply: '(acena em agradecimento)' },
+      { t: '(Desligar o rádio e manter silêncio)', mood: 11, eff: { radio: 'off' }, reply: '(acena em agradecimento)' },
       { t: 'Claro, com certeza.', mood: 7 },
       { t: 'O rádio não está assim tão alto...', mood: -9, reply: '(suspira)' },
     ] },
@@ -166,7 +166,7 @@ export const SCENES = [
     ] },
   { id: 'm_music', kind: 'mid', pers: ['festivo', 'conversador', 'turista'], text: 'Posso pôr uma música? Tenho aqui a minha playlist!',
     choices: [
-      { t: 'Claro! Ligue ao Bluetooth.', mood: 12, reply: '🎵 (Começa a tocar música animada)' },
+      { t: 'Claro! Ligue ao Bluetooth.', mood: 12, eff: { radio: 'pop' }, reply: '🎵 (Começa a tocar música animada)' },
       { t: 'Pode, mas baixinho.', mood: 5, reply: 'Combinado!' },
       { t: 'Prefiro viajar sem música.', mood: -8, reply: 'Oh... ok.' },
     ] },

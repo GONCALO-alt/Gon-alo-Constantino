@@ -28,6 +28,7 @@ Também pode ser publicado tal como está em qualquer alojamento estático (Netl
 | Ação principal (iniciar/terminar viagem, ficar online) | botão verde | Espaço |
 | Responder ao passageiro | tocar na resposta | 1–4 |
 | Ficar online/offline | app RIDO Driver | O |
+| Mudar de estação de rádio | botão 📻 | R |
 | Pausa | ❚❚ | Esc |
 
 ## O que existe
@@ -55,6 +56,16 @@ Também pode ser publicado tal como está em qualquer alojamento estático (Netl
   Velocidade do tempo ×1, ×2, ×4. Pausas para descansar (o cansaço afeta as avaliações).
 - **Progressão**: níveis, reputação por escalões, objetivos diários, desafio semanal, 20 conquistas e
   4 veículos para desbloquear (RIDO X, Comfort, Green e Black).
+- **Rádio** com 4 estações: música gerada em tempo real (pop, jazz, guitarra portuguesa) e um noticiário falado
+  com trânsito, eventos, meteorologia e preços dos combustíveis. Alguns passageiros gostam, outros não.
+- **Eventos na cidade** (futebol no Estádio do Mar, concertos, festa na Vila Velha, cruzeiros, congressos) com picos
+  de procura e preço dinâmico na zona.
+- **Trânsito vivo**: horas de ponta, autocarros com paragens, obras diárias que cortam ruas, buzinas quando há filas.
+- **Novos bairros**: Vila Velha com calçada e castelo do outro lado do rio, Ponte Atlântica e praia com bares e palmeiras.
+- **Clientes habituais** que se lembram de ti e têm histórias em vários capítulos; **viagens partilhadas** com dois passageiros.
+- **Combustível com preço diário** diferente em cada posto; **despesas pessoais** (comida, renda, contas) e **mealheiro**
+  com objetivos de poupança.
+- **Sons da cidade**: gaivotas e ondas, sinos, sirenes, música dos bares, multidão no estádio, obras.
 - **Gravação automática** no navegador: ao voltar continuas exatamente onde ficaste (incluindo a viagem em curso).
 
 ## Estrutura do código

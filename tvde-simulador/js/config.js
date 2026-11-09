@@ -35,12 +35,13 @@ export const VEHICLES = {
 
 // Mapa de bairros (8x8 quarteirões). Linha = norte→sul, coluna = oeste→este.
 // R residencial · C centro · D negócios · H hotel · r restaurante · N noite
+// V Vila Velha · E estádio · B praia
 // S estação · M centro comercial · X hospital · A aeroporto · G posto · P parque · U universidade
 export const DMAP = [
   'RRPRGRUR',
   'RrCCCHRR',
   'RCDDCrXR',
-  'SCDDHCCR',
+  'SCDDHCER',
   'RNNCDCrR',
   'RNrCMCRR',
   'RRRCCGAA',
@@ -51,7 +52,7 @@ export const DISTRICTS = {
   R: { name: 'Residencial', map: '#262c34' }, C: { name: 'Centro', map: '#2e343e' }, D: { name: 'Negócios', map: '#333a47' },
   H: { name: 'Hotel', map: '#363044' }, r: { name: 'Restauração', map: '#3a322c' }, N: { name: 'Vida noturna', map: '#3b2940' },
   S: { name: 'Estação', map: '#2c3848' }, M: { name: 'Centro comercial', map: '#38382a' }, X: { name: 'Hospital', map: '#3d2b2e' },
-  A: { name: 'Aeroporto', map: '#2a383e' }, G: { name: 'Posto', map: '#303d2b' }, P: { name: 'Parque', map: '#1d3624' }, U: { name: 'Universidade', map: '#2b3044' },
+  A: { name: 'Aeroporto', map: '#2a383e' }, V: { name: 'Vila Velha', map: '#3e3424' }, E: { name: 'Estádio', map: '#24402e' }, B: { name: 'Praia', map: '#4a4430' }, G: { name: 'Posto', map: '#303d2b' }, P: { name: 'Parque', map: '#1d3624' }, U: { name: 'Universidade', map: '#2b3044' },
 };
 
 export const STREETS_NS = ['Rua do Farol', 'Avenida Atlântica', 'Rua das Gaivotas', 'Avenida da República', 'Avenida Central',

@@ -19,15 +19,15 @@ export class PaxActor {
     if (this.state === 'seated') this._unseat(target);
     this.target = target.clone(); this.cb = cb; this.speed = speed; this.state = 'walk'; this.h.setMode('walk');
   }
-  seat() {
+  seat(anchor = 'seatAnchor') {
     if (!this.h) return;
     const r = this.h.root; this.scene.remove(r);
-    this.car.seatAnchor.add(r);
+    this.anchor = this.car[anchor]; this.anchor.add(r);
     r.position.set(0, -0.92 * (this.h.look.height || 1) * 0.93 + 0.05, 0); r.rotation.set(0, 0, 0); r.scale.setScalar(0.93);
     this.h.setMode('sit'); this.state = 'seated';
   }
   _unseat(at) {
-    const r = this.h.root; this.car.seatAnchor.remove(r);
+    const r = this.h.root; (this.anchor || this.car.seatAnchor).remove(r);
     const door = this.car.toWorld(1.3, 0, 0.9);
     r.position.copy(door); r.position.y = 0.16; r.rotation.set(0, 0, 0); r.scale.setScalar(1);
     this.scene.add(r); void at;

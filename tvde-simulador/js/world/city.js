@@ -18,7 +18,7 @@ const POI_NAMES = {
   '2,2': 'Torre Atlântica', '3,2': 'Edifício Horizonte', '2,3': 'Centro Empresarial', '3,3': 'Praça Financeira', '4,4': 'Torre Azul',
   '2,1': 'Mercado Municipal', '3,1': 'Teatro Nacional', '4,1': 'Câmara Municipal', '4,2': 'Biblioteca Municipal',
   '1,2': 'Museu do Mar', '1,3': 'Praça do Comércio', '5,3': 'Clínica do Mar', '6,3': 'Ginásio Vita', '3,4': 'Cinema Avenida',
-  '5,4': 'Igreja de São Pedro', '3,5': 'Escola Secundária', '5,5': 'Mercado Biológico', '3,6': 'Pastelaria Central', '4,6': 'Feira Popular',
+  '5,4': 'Igreja de São Pedro', '6,3': 'Estádio do Mar', '3,5': 'Escola Secundária', '5,5': 'Mercado Biológico', '3,6': 'Pastelaria Central', '4,6': 'Feira Popular',
 };
 const PAL = {
   R: ['#e8d5a3', '#f2c6b4', '#d9e4dd', '#f5f0e1', '#c9d6e3', '#e3bf6a', '#efe9dd', '#d8b4a0', '#b7c9b5', '#9fb8cf', '#f0dcc0'],
@@ -48,11 +48,13 @@ export class City {
       glass: new THREE.MeshStandardMaterial({ color: 0x6f8fa8, roughness: 0.08, metalness: 0.9 }),
       water: new THREE.MeshStandardMaterial({ color: 0x1d4a66, roughness: 0.06, metalness: 0.3 }),
       sand: new THREE.MeshStandardMaterial({ color: 0xd8c79e, roughness: 1 }),
+      cobble: new THREE.MeshStandardMaterial({ map: M.makeCobbleTexture(), roughness: 0.8 }),
+      stone: new THREE.MeshStandardMaterial({ color: 0xb8ad97, roughness: 0.95 }),
     };
     this.mats.road.map.repeat.set(1, 1);
     const lt = this.mats.grass.map.clone(); lt.repeat.set(10, 10); lt.needsUpdate = true;
     this.mats.lawn = new THREE.MeshStandardMaterial({ map: lt, roughness: 1 });
-    this.wetMats = [this.mats.road, this.mats.asphalt, this.mats.side];
+    this.wetMats = [this.mats.road, this.mats.asphalt, this.mats.side, this.mats.cobble];
     for (const m of this.wetMats) { m.userData.baseRough = m.roughness; m.userData.baseColor = m.color.clone(); }
 
     this._blocks();
@@ -61,6 +63,8 @@ export class City {
     this._sidewalks();
     for (const b of this.blocks) this._fillBlock(b);
     this._airport();
+    this._oldTownExtras();
+    this._beach();
     this._buildingMeshes();
     this._lamps();
     this._trafficLights();
@@ -77,6 +81,8 @@ export class City {
       const key = bi + ',' + bj;
       this.blocks.push({ bi, bj, type, cx, cz, key, poi: POI_NAMES[key] || null, idx: this.blocks.length });
     }
+    const o = this.net.old;
+    this.blocks.push({ bi: -2, bj: 4, type: 'V', cx: (o.F1.x + o.F2.x) / 2, cz: o.F1.z + S / 2, key: 'old', poi: 'Sé de Porto Azul', idx: this.blocks.length });
     // lado principal: o que está virado para o centro da cidade
     for (const b of this.blocks) {
       const sides = [['N', 0, -1], ['S', 0, 1], ['W', -1, 0], ['E', 1, 0]];
@@ -94,8 +100,16 @@ export class City {
     this.mats.grass.map.repeat.set(600, 600);
     this.root.add(g);
     const half = this.net.half;
-    const sand = new THREE.Mesh(new THREE.PlaneGeometry(5000, 60), this.mats.sand);
-    sand.rotation.x = -Math.PI / 2; sand.position.set(0, -0.03, half + 70); this.root.add(sand);
+    const sand = new THREE.Mesh(new THREE.PlaneGeometry(5000, 94), this.mats.sand);
+    sand.rotation.x = -Math.PI / 2; sand.position.set(0, -0.03, half + 53); sand.receiveShadow = true; this.root.add(sand);
+    const prom = new THREE.Mesh(new THREE.BoxGeometry(2 * half + 40, 0.16, 4.5), this.mats.side);
+    prom.position.set(-20, 0.08, half + RW / 2 + 2.25); prom.receiveShadow = true; this.root.add(prom);
+    // rio entre a cidade e a Vila Velha
+    const o = this.net.old; const rx0 = o.F1.x + RW / 2 + 3, rx1 = o.W.x - RW / 2 - 3;
+    this.river = { x0: rx0, x1: rx1 };
+    const river = new THREE.Mesh(new THREE.PlaneGeometry(rx1 - rx0, 3000), this.mats.water);
+    river.rotation.x = -Math.PI / 2; river.position.set((rx0 + rx1) / 2, -0.035, 300); this.root.add(river);
+    for (const x of [rx0, rx1]) { const w = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.2, 3000), this.mats.stone); w.position.set(x, -0.4, 300); w.receiveShadow = true; this.root.add(w); }
     const sea = new THREE.Mesh(new THREE.PlaneGeometry(6000, 2400), this.mats.water);
     sea.rotation.x = -Math.PI / 2; sea.position.set(0, -0.02, half + 100 + 1200); this.root.add(sea);
     this.sea = sea;
@@ -125,8 +139,18 @@ export class City {
       idx.push(b, b + 1, b + 2, b, b + 2, b + 3);
     };
     const n = this.net; const h = RW / 2;
+    const oldPos = [], oldUv = [], oldIdx = [];
     for (const e of n.edges) {
-      if (e.id > e.rev) continue;
+      if (e.id > e.rev || !e.old) continue;
+      const A = n.nodes[e.a], B = n.nodes[e.b];
+      const s = [A.x + e.d.x * h, A.z + e.d.z * h], t = [B.x - e.d.x * h, B.z - e.d.z * h];
+      const b0 = oldPos.length / 3, L = e.len / 6;
+      for (const p of [[s[0] - e.r.x * h, s[1] - e.r.z * h], [s[0] + e.r.x * h, s[1] + e.r.z * h], [t[0] + e.r.x * h, t[1] + e.r.z * h], [t[0] - e.r.x * h, t[1] - e.r.z * h]]) oldPos.push(p[0], 0.01, p[1]);
+      oldUv.push(0, 0, 2, 0, 2, L, 0, L); oldIdx.push(b0, b0 + 1, b0 + 2, b0, b0 + 2, b0 + 3);
+    }
+    this.root.add(this._meshFrom(oldPos, oldUv, oldIdx, this.mats.cobble));
+    for (const e of n.edges) {
+      if (e.id > e.rev || e.old) continue;
       const A = n.nodes[e.a], B = n.nodes[e.b];
       const s = [A.x + e.d.x * h, A.z + e.d.z * h], t = [B.x - e.d.x * h, B.z - e.d.z * h];
       const L = e.len / 24;
@@ -188,7 +212,7 @@ export class City {
     this.bld.push({ x, z, w, d, h, color, type, seed: this.rng() * 100, shop, y });
   }
   _perimeter(b, o) {
-    const r = this.rng; const h = HB;
+    const r = this.rng; const h = o.hb || HB;
     const dep = { N: rr(o.dep[0], o.dep[1], r), S: rr(o.dep[0], o.dep[1], r), W: rr(o.dep[0], o.dep[1], r), E: rr(o.dep[0], o.dep[1], r) };
     const row = (side, a0, a1) => {
       let a = a0;
@@ -323,6 +347,8 @@ export class City {
     else if (t === 'M') this._mall(b);
     else if (t === 'G') this._gas(b);
     else if (t === 'U') this._university(b);
+    else if (t === 'V') this._oldBlock(b);
+    else if (t === 'E') this._stadium(b);
   }
 
   _park(b) {
@@ -464,6 +490,99 @@ export class City {
     else this.flyer.visible = false;
   }
 
+  _oldBlock(b) {
+    const PALV = ['#f2d9a0', '#e8b4a6', '#9fbedf', '#f4efe4', '#d9c7a1', '#c4dbc8', '#e9cf7a', '#5d86b5'];
+    const dep = this._perimeter(b, { dep: [9, 12], ht: [9, 16], front: [5, 8], pal: PALV, type: 2, shop: 1, roof: 0.85, hb: 33.4 });
+    this._courtyard(b, dep);
+    // Sé: igreja com duas torres sineiras
+    const f = this._face(b, 'E', 18);
+    this.addB(b.cx + 14, b.cz, 18, 26, 17, '#ece4d2', 3, 0);
+    for (const dz of [-10, 10]) { this.addB(b.cx + 23, b.cz + dz, 6, 6, 30, '#e6dcc7', 3, 0); this.roofs.push({ x: b.cx + 23, z: b.cz + dz, w: 6, d: 6, h: 4, y: 30 }); }
+    this.addSign(['SÉ DE PORTO AZUL'], { bg: '#efe6d3', fg: '#5a3d1e' }, b.cx + 26.2, 12, b.cz, 12, 1.4, Math.PI / 2);
+    void f;
+    this.addSign(['VILA VELHA'], { bg: '#1f4a7a', fg: '#ffffff', border: '#ffffff' }, b.cx + 34, 3.5, b.cz - 22, 5, 1.2, Math.PI / 2, true);
+  }
+  _oldTownExtras() {
+    const o = this.net.old; const r = this.rng;
+    const PALV = ['#f2d9a0', '#e8b4a6', '#9fbedf', '#f4efe4', '#d9c7a1', '#e9cf7a', '#5d86b5'];
+    // casas do lado de fora do quarteirão (ruas estreitas)
+    const rowX = (x0, x1, z, dirZ) => { for (let x = x0; x < x1 - 4; ) { const f = rr(5, 8, r), d = rr(9, 12, r), h = rr(9, 15, r); this.addB(x + f / 2, z + dirZ * d / 2, f - 0.2, d, h, pick(PALV, r), 2, r() < 0.5 ? 1 : 0); if (r() < 0.8) this.roofs.push({ x: x + f / 2, z: z + dirZ * d / 2, w: f - 0.2, d, h: 2.2, y: h }); x += f; } };
+    rowX(o.F2.x - 6, o.F1.x + 6, o.F1.z - RW / 2 - 1.6, -1);
+    rowX(o.F2.x - 6, o.F1.x + 6, o.F3.z + RW / 2 + 1.6, 1);
+    // castelo no monte
+    const cx = o.F2.x - 82, cz = o.F2.z + S / 2;
+    const hill = new THREE.Mesh(new THREE.CylinderGeometry(42, 64, 16, 24), this.mats.lawn); hill.position.set(cx, 8 - 0.06, cz); hill.receiveShadow = true; this.root.add(hill);
+    const top = 16;
+    for (const [dx, dz, w, d] of [[0, -22, 46, 3], [0, 22, 46, 3], [-22, 0, 3, 46], [22, 0, 3, 46]]) this.addB(cx + dx, cz + dz, w, d, 8, '#b8ad97', 3, 0, top);
+    for (const [dx, dz] of [[-22, -22], [22, -22], [-22, 22], [22, 22]]) this.addB(cx + dx, cz + dz, 7, 7, 13, '#ada18a', 3, 0, top);
+    this.addB(cx, cz, 12, 12, 20, '#b3a790', 3, 0, top);
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 6), this.mats.metal); pole.position.set(cx, top + 23, cz); this.root.add(pole);
+    const flag = new THREE.Mesh(new THREE.PlaneGeometry(3, 2), new THREE.MeshStandardMaterial({ color: 0x1f4a9a, side: THREE.DoubleSide })); flag.position.set(cx + 1.5, top + 25, cz); this.root.add(flag); this.flag = flag;
+    this.addSign(['🏰 CASTELO DE PORTO AZUL'], { bg: '#3a2b1a', fg: '#f3e2c0' }, o.F2.x - RW / 2 - 4, 3, cz + 10, 7, 1.3, Math.PI / 2, true);
+    // ponte: tabuleiro, guardas, pilares e cabos
+    const W = o.W, F1 = o.F1; const bx0 = F1.x + RW / 2, bx1 = W.x - RW / 2, bl = bx1 - bx0, bc = (bx0 + bx1) / 2;
+    const deck = new THREE.Mesh(new THREE.BoxGeometry(bl, 1.4, RW + 3), this.mats.stone); deck.position.set(bc, -0.69, W.z); deck.castShadow = true; this.root.add(deck);
+    for (const s of [-1, 1]) {
+      const rail = new THREE.Mesh(new THREE.BoxGeometry(bl, 1.0, 0.25), this.mats.metal); rail.position.set(bc, 0.5, W.z + s * (RW / 2 + 0.9)); this.root.add(rail);
+    }
+    const cableM = new THREE.LineBasicMaterial({ color: 0xc9cdd2 });
+    for (const tx of [bx0 + bl * 0.28, bx0 + bl * 0.72]) {
+      for (const s of [-1, 1]) { const t = new THREE.Mesh(new THREE.BoxGeometry(1.8, 34, 1.8), new THREE.MeshStandardMaterial({ color: 0xb33a2e, roughness: 0.6 })); t.position.set(tx, 16, W.z + s * (RW / 2 + 1.6)); t.castShadow = true; this.root.add(t); }
+      const beam = new THREE.Mesh(new THREE.BoxGeometry(1.8, 1.8, RW + 5), new THREE.MeshStandardMaterial({ color: 0xb33a2e })); beam.position.set(tx, 31, W.z); this.root.add(beam);
+      for (const s of [-1, 1]) {
+        const pts = [];
+        for (let k = -12; k <= 12; k++) { const x = tx + k * 3.2; pts.push(new THREE.Vector3(x, 1, W.z + s * (RW / 2 + 1.6)), new THREE.Vector3(tx, 32, W.z + s * (RW / 2 + 1.6))); }
+        this.root.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), cableM));
+      }
+    }
+    this.addSign(['PONTE ATLÂNTICA'], { bg: '#0d3b66', fg: '#ffffff' }, bx1 + 2, 4, W.z - RW / 2 - 2, 6, 1.2, Math.PI / 2, true);
+  }
+  _stadium(b) {
+    const conc = new THREE.MeshStandardMaterial({ color: 0xd4d2cc, roughness: 0.9, side: THREE.DoubleSide });
+    const bowl = new THREE.Mesh(new THREE.CylinderGeometry(31, 22, 17, 40, 1, true), conc); bowl.scale.z = 0.85; bowl.position.set(b.cx, 8.6, b.cz); bowl.castShadow = true; bowl.receiveShadow = true; this.root.add(bowl);
+    const seats = new THREE.Mesh(new THREE.CylinderGeometry(29.5, 21, 15, 40, 1, true), new THREE.MeshStandardMaterial({ color: 0x1e5aa8, roughness: 0.8, side: THREE.BackSide })); seats.scale.z = 0.85; seats.position.set(b.cx, 8.2, b.cz); this.root.add(seats);
+    const [c, x] = M.makeCanvas(256, 160);
+    x.fillStyle = '#2f7d3a'; x.fillRect(0, 0, 256, 160); for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? '#2a7234' : '#33873f'; x.fillRect(i * 32, 0, 32, 160); }
+    x.strokeStyle = '#fff'; x.lineWidth = 2; x.strokeRect(8, 8, 240, 144); x.beginPath(); x.moveTo(128, 8); x.lineTo(128, 152); x.stroke(); x.beginPath(); x.arc(128, 80, 20, 0, 7); x.stroke();
+    const field = new THREE.Mesh(new THREE.PlaneGeometry(36, 24), new THREE.MeshStandardMaterial({ map: M.canvasTex(c, false) })); field.rotation.x = -Math.PI / 2; field.position.set(b.cx, 0.2, b.cz); this.root.add(field);
+    const glow = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xf4f7ff, emissiveIntensity: 0.2 }); this.nightMats.push(glow);
+    for (const [dx, dz] of [[-27, -24], [27, -24], [-27, 24], [27, 24]]) {
+      const p = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.6, 30, 8), this.mats.metal); p.position.set(b.cx + dx, 15, b.cz + dz); this.root.add(p);
+      const l = new THREE.Mesh(new THREE.BoxGeometry(4, 2.5, 0.5), glow); l.position.set(b.cx + dx * 0.97, 30, b.cz + dz * 0.97); l.lookAt(b.cx, 0, b.cz); this.root.add(l);
+    }
+    const f = this._face(b, b.main, HB + 0.5);
+    this.addSign(['ESTÁDIO DO MAR'], { bg: '#0b2f63', fg: '#ffffff' }, f.x, 6, f.z, 16, 2, f.rot);
+    this._totem(b, ['🏟️ ESTÁDIO DO MAR'], { bg: '#0b2f63', fg: '#ffffff' });
+  }
+  _beach() {
+    const half = this.net.half; const r = this.rng;
+    // palmeiras ao longo do passeio marítimo
+    const fr = []; for (let k = 0; k < 7; k++) { const g = new THREE.BoxGeometry(0.5, 0.06, 3.2); g.translate(0, 0, 1.5); g.rotateX(0.35); g.rotateY((k / 7) * Math.PI * 2); fr.push(g); }
+    const crownG = mergeGeometries(fr); crownG.translate(0, 7.2, 0);
+    const trunkG = new THREE.CylinderGeometry(0.16, 0.26, 7.4, 7); trunkG.translate(0, 3.7, 0);
+    const pts = []; for (let x = -half - 4; x < half + 20; x += 17) pts.push(x);
+    const trunks = new THREE.InstancedMesh(trunkG, new THREE.MeshStandardMaterial({ color: 0x7a6248, roughness: 1 }), pts.length);
+    const crowns = new THREE.InstancedMesh(crownG, new THREE.MeshStandardMaterial({ color: 0x3f7a35, roughness: 0.9, side: THREE.DoubleSide }), pts.length);
+    const m = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
+    pts.forEach((x, i) => { q.setFromAxisAngle(up, r() * 6); m.compose(new THREE.Vector3(x, 0.16, half + RW / 2 + 3.6), q, new THREE.Vector3(1, rr(0.85, 1.15, r), 1)); trunks.setMatrixAt(i, m); crowns.setMatrixAt(i, m); });
+    trunks.castShadow = crowns.castShadow = true; this.root.add(trunks, crowns);
+    // chapéus de sol
+    const N = 70; const poleG = new THREE.CylinderGeometry(0.04, 0.04, 2.4, 5); poleG.translate(0, 1.2, 0);
+    const topG = new THREE.ConeGeometry(1.4, 0.6, 10); topG.translate(0, 2.5, 0);
+    const poles = new THREE.InstancedMesh(poleG, this.mats.white, N), tops = new THREE.InstancedMesh(topG, new THREE.MeshStandardMaterial({ roughness: 0.8 }), N);
+    const cols = [0xd9483b, 0x2f6fb5, 0xf2c53d, 0xffffff, 0x2a9d6f, 0xe07a2f]; const col = new THREE.Color();
+    for (let i = 0; i < N; i++) { m.makeTranslation(rr(-half, half + 10, r), -0.03, rr(half + 30, half + 88, r)); poles.setMatrixAt(i, m); tops.setMatrixAt(i, m); tops.setColorAt(i, col.setHex(pick(cols, r))); }
+    tops.castShadow = true; this.root.add(poles, tops);
+    // bares de praia e torre de nadador-salvador
+    for (const [x, name] of [[-210, 'BAR ONDA'], [-40, 'BAR SAL'], [130, 'SURF CLUB']]) {
+      this.addB(x, half + 26, 10, 7, 3.6, '#e9dcc0', 2, 1);
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(12, 0.3, 9), new THREE.MeshStandardMaterial({ color: 0x8a5a35 })); roof.position.set(x, 3.9, half + 26); this.root.add(roof);
+      this.addSign([name], { bg: null, fg: '#ffd56a', neon: true }, x, 4.6, half + 21.4, 6, 1.2, Math.PI);
+    }
+    const tw = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2, 2.4), new THREE.MeshStandardMaterial({ color: 0xd9483b })); tw.position.set(60, 3.6, half + 60); this.root.add(tw);
+    for (const [dx, dz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) { const l = new THREE.Mesh(new THREE.BoxGeometry(0.15, 2.6, 0.15), this.mats.white); l.position.set(60 + dx, 1.3, half + 60 + dz); this.root.add(l); }
+  }
+
   _buildingMeshes() {
     const geo = new THREE.BoxGeometry(1, 1, 1); geo.translate(0, 0.5, 0);
     const n = this.bld.length;
@@ -593,14 +712,21 @@ export class City {
   }
 
   // ---------- locais de recolha/destino ----------
+  _nodeNear(x, z) {
+    for (const n of this.net.nodes) if (n.exists && Math.abs(n.x - x) < 1 && Math.abs(n.z - z) < 1) return n.id;
+    return -1;
+  }
   _sideEdge(b, side) {
-    const n = this.net; const { bi, bj } = b; const id = (i, j) => j * CFG.GRID + i;
-    if (side === 'N') return n.edgeBetween(id(bi, bj), id(bi + 1, bj));
-    if (side === 'S') return n.edgeBetween(id(bi + 1, bj + 1), id(bi, bj + 1));
-    if (side === 'W') return n.edgeBetween(id(bi, bj + 1), id(bi, bj));
-    return n.edgeBetween(id(bi + 1, bj), id(bi + 1, bj + 1));
+    const n = this.net, k = S / 2;
+    const nw = this._nodeNear(b.cx - k, b.cz - k), ne = this._nodeNear(b.cx + k, b.cz - k), sw = this._nodeNear(b.cx - k, b.cz + k), se = this._nodeNear(b.cx + k, b.cz + k);
+    const eb = (a, c) => (a < 0 || c < 0 ? -1 : n.edgeBetween(a, c));
+    if (side === 'N') return eb(nw, ne);
+    if (side === 'S') return eb(se, sw);
+    if (side === 'W') return eb(sw, nw);
+    return eb(ne, se);
   }
   streetOf(e) {
+    if (e.name) return e.name;
     const a = this.net.nodes[e.a];
     return e.axis === 'EW' ? STREETS_EW[a.j] : STREETS_NS[a.i];
   }
@@ -616,6 +742,15 @@ export class City {
     this.locations.push(loc);
     return loc;
   }
+  _addLocEdge(eid, name, kind, district, sFrac) {
+    if (eid < 0) return null;
+    const e = this.net.edges[eid]; const s = e.len * sFrac;
+    const pos = this.net.edgePoint(e, s, CFG.CURB, new THREE.Vector3());
+    const walk = this.net.edgePoint(e, s, RW / 2 + 1.8, new THREE.Vector3());
+    const street = this.streetOf(e);
+    const loc = { id: this.locations.length, name, street, address: street, kind, district, edge: eid, s, pos, walk, block: -1 };
+    this.locations.push(loc); return loc;
+  }
   _locations() {
     const sides = ['N', 'E', 'S', 'W'];
     for (const b of this.blocks) {
@@ -628,8 +763,42 @@ export class City {
     const a1 = this.block(6, 6), a2 = this.block(6, 7);
     this.airportDep = this._addLoc(a1, 'N', 'Aeroporto — Partidas', 'poi', 'A', 0.5);
     this.airportArr = this._addLoc(a2, 'W', 'Aeroporto — Chegadas', 'poi', 'A', 0.5);
+    // Vila Velha, castelo, praia
+    const ob = this.blocks.find((b) => b.type === 'V');
+    const ol = this._addLoc(ob, 'S', 'Largo do Pelourinho', 'poi', 'V', 0.5); if (ol) ol.name = 'Largo do Pelourinho';
+    this._addLoc(ob, 'N', 'Tasca da Vila Velha', 'poi', 'V', 0.45);
+    const o = this.net.old;
+    this._addLocEdge(this.net.edgeBetween(o.F2.id, o.F3.id), 'Castelo de Porto Azul', 'poi', 'V', 0.5);
+    const beachNames = ['Praia Azul — Bar Onda', 'Praia dos Pescadores', 'Clube de Surf do Mar', 'Passeio Marítimo', 'Bar Sal — Praia'];
+    for (let i = 0; i < 5; i++) {
+      const eid = this.net.edgeBetween(this.net.nodeAt(i, 8).id, this.net.nodeAt(i + 1, 8).id);
+      this._addLocEdge(eid, beachNames[i], 'poi', 'B', 0.5);
+    }
+    this.stadium = this.locations.find((l) => l.district === 'E');
     this.gasStations = this.locations.filter((l) => l.district === 'G' && l.kind === 'poi');
     this.home = this.locations.find((l) => l.district === 'R' && this.blocks[l.block].bi === 1 && this.blocks[l.block].bj === 6) || this.locations[0];
+  }
+
+  // obras: barreira, cones e aviso no início de cada rua cortada
+  setWorks(ids) {
+    if (this.worksGroup) { this.root.remove(this.worksGroup); this.worksGroup.traverse((o) => { if (o.isMesh) o.geometry.dispose(); }); }
+    const g = new THREE.Group(); this.worksGroup = g; this.root.add(g);
+    if (!this._worksMat) {
+      const [c, x] = M.makeCanvas(128, 32); for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? '#ffffff' : '#d42a20'; x.beginPath(); x.moveTo(i * 16, 32); x.lineTo(i * 16 + 16, 0); x.lineTo(i * 16 + 32, 0); x.lineTo(i * 16 + 16, 32); x.fill(); }
+      this._worksMat = new THREE.MeshStandardMaterial({ map: M.canvasTex(c, false), emissive: 0x331100, roughness: 0.6 });
+      this._coneMat = new THREE.MeshStandardMaterial({ color: 0xff6a1a, emissive: 0x401a00, roughness: 0.6 });
+    }
+    const v = new THREE.Vector3();
+    for (const id of ids) {
+      const e = this.net.edges[id]; const rot = Math.atan2(-e.d.x, -e.d.z);
+      this.net.edgePoint(e, 2.5, CFG.LANE, v);
+      const bar = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.9, 0.3), this._worksMat); bar.position.set(v.x, 0.75, v.z); bar.rotation.y = rot; bar.castShadow = true; g.add(bar);
+      for (const sx of [-2.6, 2.6]) { const l = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.2, 0.12), this.mats.dark); l.position.set(v.x + e.r.x * sx, 0.6, v.z + e.r.z * sx); g.add(l); }
+      for (let k = 0; k < 6; k++) { this.net.edgePoint(e, 6 + k * 4, CFG.LANE + (k % 2 ? 1.4 : -1.4), v); const cn = new THREE.Mesh(new THREE.ConeGeometry(0.22, 0.7, 10), this._coneMat); cn.position.set(v.x, 0.36, v.z); g.add(cn); }
+      this.net.edgePoint(e, 2.0, CFG.LANE + 3.6, v);
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 1.4), new THREE.MeshStandardMaterial({ map: M.makeSignTexture(['⚠ OBRAS', 'RUA CORTADA'], { bg: '#ffd21f', fg: '#111', w: 256, h: 150, border: '#d42a20' }), side: THREE.DoubleSide }));
+      sign.position.set(v.x, 2.1, v.z); sign.rotation.y = rot; g.add(sign);
+    }
   }
 
   setNight(night, wet) {

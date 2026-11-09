@@ -5,6 +5,8 @@ import { clamp, etaMin, isWeekend, pick, rr, toKm, weighted, eur } from '../util
 import { hourOf, pickupDemand, destDemand, surge, fareFor, requestRate } from './economy.js';
 import { makePassenger, PERSONALITIES, avatar } from './passengers.js';
 import { SCENES, FAREWELLS } from './dialogues.js';
+import { eventPickup, eventDest, eventSurge } from './events.js';
+import { STORIES, REGULAR_GREETS, POOL_SCENES } from './regulars.js';
 
 const dist2 = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 
@@ -75,30 +77,68 @@ export class Rides {
 
   spawnRequest() {
     const g = this.g, st = g.state, city = this.w.city, ap = this.w.ap;
-    const h = hourOf(st.time), wk = isWeekend(st.day);
+    const h = hourOf(st.time), wk = isWeekend(st.day), rain = this.w.env.state.rain;
+    const evs = st.today.events || [];
     const carPos = ap.pos;
     const locs = city.locations;
-    const pickup = weighted(locs, (l) => { const d = dist2(l.pos, carPos); return d < 30 ? 0 : pickupDemand(l.district, h, wk) * Math.exp(-d / 230); });
-    const dest = weighted(locs, (l) => {
-      if (l === pickup) return 0;
-      const d = dist2(l.pos, pickup.pos);
-      const pref = d < 130 ? 0.03 : d < 260 ? 0.5 : d < 650 ? 1 : 0.75;
-      return destDemand(l.district, h, pickup.district) * pref;
-    });
+    const weatherK = (l) => (l.district === 'B' && rain > 0.4 ? 0.15 : 1);
+    const veh = g.vehicle;
+    // cliente habitual?
+    let reg = null;
+    const regs = (st.regulars || []).filter((x) => x.lastDay !== st.day || x.todayRides < 2);
+    if (regs.length && Math.random() < 0.16) reg = pick(regs);
+    let pickup, dest;
+    if (reg) {
+      const morning = h < 13;
+      pickup = locs[morning ? reg.home : reg.work]; dest = locs[morning ? reg.work : reg.home];
+      if (reg.story != null && !reg.storyDone && STORIES[reg.story].parts.length - 1 === reg.part) dest = this._finalDest(reg) || dest;
+    } else {
+      pickup = weighted(locs, (l) => { const d = dist2(l.pos, carPos); return d < 30 ? 0 : pickupDemand(l.district, h, wk) * Math.exp(-d / 230) * eventPickup(l, st.time, evs) * weatherK(l); });
+      dest = weighted(locs, (l) => {
+        if (l === pickup) return 0;
+        const d = dist2(l.pos, pickup.pos);
+        const pref = d < 130 ? 0.03 : d < 260 ? 0.5 : d < 650 ? 1 : 0.75;
+        return destDemand(l.district, h, pickup.district) * pref * eventDest(l, st.time, evs) * weatherK(l);
+      });
+    }
     const pickDist = ap.routeLength(pickup.edge, pickup.s);
     const tripDist = this.routeLen(pickup.edge, pickup.s, dest.edge, dest.s);
     const estMin = etaMin(tripDist) + 1;
-    const sur = surge(st.time, wk, this.w.env.state.rain);
-    const veh = g.vehicle;
+    const sur = Math.round(Math.min(2.2, surge(st.time, wk, rain) + eventSurge(pickup, st.time, evs)) * 10) / 10;
     const airport = pickup.district === 'A' || dest.district === 'A';
-    const fare = fareFor(tripDist, estMin, veh, sur, airport);
-    const seed = Math.floor(Math.random() * 1e9);
-    const pax = makePassenger(seed, { hour: h, district: pickup.district, destDistrict: dest.district, premium: veh.cat === 'RIDO Black' });
-    this.req = { seed, pax, pickup: pickup.id, dest: dest.id, pickDist, tripDist, estMin, pickMin: etaMin(pickDist), fare, net: fare * (1 - CFG.COMMISSION), surge: sur, cat: veh.cat, timer: CFG.REQUEST_TIMEOUT, airport };
-    const mean = 7 / requestRate(st.time, wk, this.w.env.state.rain) / (veh.cat === 'RIDO Black' ? 0.75 : 1) / (g.ratingAvg() < 4.5 ? 0.75 : 1);
+    // viagem partilhada (RIDO Pool)
+    let pool = null;
+    if (!reg && veh.cat !== 'RIDO Black' && h >= 7 && h < 23 && Math.random() < 0.17) pool = this._makePool(pickup, dest, h, veh, sur);
+    const fare = Math.round(fareFor(tripDist, estMin, veh, sur, airport) * (pool ? 0.8 : 1) * 100) / 100;
+    const seed = reg ? reg.seed : Math.floor(Math.random() * 1e9);
+    let pax;
+    if (reg) pax = { ...reg.pax, late: 0, cancels: false, note: null };
+    else pax = makePassenger(seed, { hour: h, district: pickup.district, destDistrict: dest.district, premium: veh.cat === 'RIDO Black' });
+    const total = fare + (pool ? pool.fare : 0);
+    this.req = { seed, pax, pickup: pickup.id, dest: dest.id, pickDist, tripDist, estMin: estMin + (pool ? pool.extraMin : 0), pickMin: etaMin(pickDist), fare, net: total * (1 - CFG.COMMISSION),
+      surge: sur, cat: pool ? 'RIDO Pool' : veh.cat, timer: CFG.REQUEST_TIMEOUT, airport, regular: reg ? reg.id : null, pool };
+    const mean = 7 / requestRate(st.time, wk, rain) / (veh.cat === 'RIDO Black' ? 0.75 : 1) / (g.ratingAvg() < 4.5 ? 0.75 : 1);
     this.nextIn = clamp(-Math.log(1 - Math.random()) * mean, 1.2, 28);
     this.w.sound.request();
+    try { navigator.vibrate && navigator.vibrate([180, 90, 180]); } catch { /* sem vibração */ }
     g.emit('request', this.req);
+  }
+  _finalDest(reg) {
+    const want = { casamento: 'Sé de Porto Azul', restaurante: 'Tasca da Vila Velha', manuel: 'Universidade de Porto Azul', tiago: 'Parque da Cidade', ines: 'Hospital de Santa Luzia' }[STORIES[reg.story].id];
+    return this.w.city.locations.find((l) => l.name === want);
+  }
+  _makePool(pickup, dest, h, veh, sur) {
+    const locs = this.w.city.locations;
+    const mid = { x: (pickup.pos.x + dest.pos.x) / 2, z: (pickup.pos.z + dest.pos.z) / 2 };
+    const p2 = weighted(locs, (l) => (l === pickup || l === dest ? 0 : Math.exp(-dist2(l.pos, mid) / 90) * (dist2(l.pos, pickup.pos) > 60 ? 1 : 0)));
+    const d2 = weighted(locs, (l) => (l === p2 || l === dest || l === pickup ? 0 : Math.exp(-dist2(l.pos, dest.pos) / 120) * (dist2(l.pos, p2.pos) > 120 ? 1 : 0)));
+    if (!p2 || !d2) return null;
+    const dist = this.routeLen(p2.edge, p2.s, d2.edge, d2.s);
+    const seed = Math.floor(Math.random() * 1e9);
+    const pax = makePassenger(seed, { hour: h, district: p2.district, destDistrict: d2.district });
+    if (pax.pers === 'rude' || pax.pers === 'festivo') pax.pers = 'simpatico';
+    const fare = Math.round(fareFor(dist, etaMin(dist) + 1, veh, sur, false) * 0.8 * 100) / 100;
+    return { seed, pax, pickup: p2.id, dest: d2.id, fare, dist, extraMin: Math.round(etaMin(dist) * 0.6), leg: 'wait', mood: PERSONALITIES[pax.pers].mood };
   }
   reject(timeout = false) {
     if (!this.req) return;
@@ -119,6 +159,7 @@ export class Rides {
       mood: P.mood + g.vehicle.moodBonus, tipExtra: 0, fareAdd: 0, played: [], sched: [], log: [],
       cancelAt: r.pax.cancels ? rr(0.15, 0.75) : 0, startT: 0, drivenStart: 0,
     };
+    if (r.regular != null) { const reg = this.reg(r.regular); if (reg) ride.mood = Math.max(ride.mood, reg.lastMood > 60 ? 75 : 55); }
     delete ride.timer;
     this.ride = ride;
     this._goPickup();
@@ -127,6 +168,7 @@ export class Rides {
     else if (Math.random() < 0.35) this.g.later(5, () => this.g.message(ride, pick(['Olá! Estou à espera na entrada.', 'Ok, obrigado! Até já.', 'Estou de casaco azul 😊', 'Já estou cá em baixo.'])));
     g.emit('changed'); g.save();
   }
+  reg(id) { return (this.g.state.regulars || []).find((x) => x.id === id); }
   _goPickup() {
     const l = this.loc(this.ride.pickup);
     this.w.ap.speedFactor = 1;
@@ -209,9 +251,8 @@ export class Rides {
     const r = this.ride; if (!r || r.phase !== 'boarded') return;
     const st = this.g.state, ap = this.w.ap;
     r.phase = 'onTrip'; r.startT = st.time; r.drivenStart = ap.distDriven;
-    const d = this.loc(r.dest);
     ap.speedFactor = 1;
-    ap.routeTo(d.edge, d.s, true, () => this.onArriveDest());
+    this._routeLeg();
     // agenda de conversas
     const P = PERSONALITIES[r.pax.pers];
     const n = P.chat === 0 ? (Math.random() < 0.5 ? 1 : 0) : P.chat + (Math.random() < 0.3 ? 1 : 0) - (Math.random() < 0.3 ? 1 : 0);
@@ -221,6 +262,14 @@ export class Rides {
     if (P.chat > 0 || r.pax.pers === 'calado' || Math.random() < 0.6) r.sched.push({ kind: 'greet', at: 0 });
     at.forEach((a) => r.sched.push({ kind: 'mid', at: a }));
     if (Math.random() < 0.22) { r.sched.push({ kind: 'event', at: rr(0.3, 0.7) }); r.sched.sort((a, b) => (a.kind === 'greet' ? -1 : b.kind === 'greet' ? 1 : a.at - b.at)); }
+    const reg = r.regular != null ? this.reg(r.regular) : null;
+    if (reg) {
+      if (!r.sched.length || r.sched[0].kind !== 'greet') r.sched.unshift({ kind: 'greet', at: 0 });
+      if (reg.story != null && !reg.storyDone) { const i = r.sched.findIndex((x) => x.kind === 'mid'); if (i >= 0) r.sched[i].kind = 'story'; else r.sched.splice(1, 0, { kind: 'story', at: 0.25 }); }
+    }
+    // rádio ligado: uns gostam, outros não
+    const radio = this.w.radio && this.w.radio.station !== 'off';
+    if (radio) { const pp = r.pax.pers; if (['festivo', 'conversador', 'turista'].includes(pp)) r.mood += 3; if (['calado', 'executivo', 'exigente'].includes(pp)) { r.mood -= 3; r.log.push('📻 Não gostou do rádio ligado'); } }
     if (st.fatigue > 75) { r.mood -= 6; this.g.notify('Estás cansado', 'O cansaço afeta a tua condução e as avaliações. Considera fazer uma pausa.', '😴'); }
     if (st.clean < 40) r.mood -= 6;
     if (st.condition < 35) r.mood -= 4;
@@ -229,6 +278,55 @@ export class Rides {
     if (r.wasLate) r.mood += 2;
     this.w.sound.click();
     this.g.emit('changed'); this.g.save();
+  }
+  _legTarget() {
+    const r = this.ride, p = r.pool;
+    if (p && p.leg === 'wait') return { l: this.loc(p.pickup), cb: () => this._arrivePick2(), leg: 'pick2' };
+    if (p && p.leg === 'aboard') return { l: this.loc(p.dest), cb: () => this._arriveDrop2(), leg: 'drop2' };
+    return { l: this.loc(r.dest), cb: () => this.onArriveDest(), leg: 'main' };
+  }
+  _routeLeg(blocked = null) {
+    const t = this._legTarget(); this.ride.leg = t.leg;
+    if (!this.w.ap.routeTo(t.l.edge, t.l.s, true, t.cb, blocked)) this.w.ap.routeTo(t.l.edge, t.l.s, true, t.cb);
+  }
+  _arrivePick2() {
+    const r = this.ride; if (!r || !r.pool) return; const p = r.pool; const l = this.loc(p.pickup);
+    const pos = l.walk.clone(); pos.y = 0.16;
+    this.w.pax2.spawn(p.pax.look, pos, l.pos);
+    this.w.sound.ping();
+    const door = this.w.car.toWorld(1.35, 0, 0.85); door.y = 0.16;
+    this.w.pax2.walkTo(door, () => {
+      if (this.ride !== r) return;
+      this.w.sound.door(); this.w.pax2.seat('seatAnchor2'); p.leg = 'aboard';
+      this.g.notify('Viagem partilhada', `${p.pax.first} entrou no carro. Primeiro deixas ${p.pax.first} em ${this.loc(p.dest).name}.`, '👥');
+      r.sched.unshift({ kind: 'pool', at: 0.12 });
+      this.g.later(0.8, () => { if (this.ride === r) this._routeLeg(); });
+      this.g.emit('changed');
+    });
+  }
+  _arriveDrop2(now = false) {
+    const r = this.ride; if (!r || !r.pool) return; const p = r.pool; const g = this.g, st = g.state;
+    p.leg = 'done';
+    const fare = p.fare, commission = Math.round(fare * CFG.COMMISSION * 100) / 100, net = Math.round((fare - commission) * 100) / 100;
+    st.today.gross += fare; st.today.commission += commission; st.stats.commission += commission;
+    g.addMoney(net, 'trip', `Viagem partilhada — ${p.pax.name}`); this.w.sound.cash();
+    st.stats.trips++; st.today.trips++; st.stats.pool = (st.stats.pool || 0) + 1;
+    const mood = clamp(p.mood, 0, 110); const rating = clamp(Math.round(2.9 + mood / 100 * 2.35 + rr(-0.35, 0.35)), 1, 5);
+    const tip = Math.random() < clamp((PERSONALITIES[p.pax.pers].tip) * (mood - 40) / 45, 0, 0.9) ? Math.round(rr(0.5, 2) * 2) / 2 : 0;
+    const entry = { id: st.stats.trips, day: st.day, t: Math.floor(st.time), seed: p.seed, name: p.pax.name, pers: p.pax.pers, paxRating: p.pax.rating, from: this.loc(p.pickup).name, to: this.loc(p.dest).name,
+      km: Math.round(toKm(p.dist) * 10) / 10, min: Math.round(etaMin(p.dist)), fare, commission, net, tip: 0, rating: 0, surge: r.surge, look: p.pax.look, cat: 'RIDO Pool', log: ['👥 Viagem partilhada com ' + r.pax.name], early: false };
+    st.history.unshift(entry);
+    this.w.pax2.exitTo(this.loc(p.dest).walk, null);
+    g.later(5, () => {
+      entry.rating = rating; entry.tip = tip; st.stats.ratings.push(rating); if (st.stats.ratings.length > 100) st.stats.ratings.shift(); st.today.ratings.push(rating);
+      if (rating === 5) { st.stats.five++; st.today.five++; }
+      if (tip) { g.addMoney(tip, 'tip', `Gorjeta — ${p.pax.name}`); st.today.tips += tip; st.stats.tips += tip; }
+      g.notify(`${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} ${p.pax.name}`, tip ? `Deixou ${eur(tip)} de gorjeta.` : 'Avaliação da viagem partilhada.', '👥');
+      g.emit('changed');
+    });
+    g.addXp(8);
+    if (!now) g.later(1.6, () => { if (this.ride === r) this._routeLeg(); });
+    g.emit('changed');
   }
   onArriveDest() {
     const r = this.ride; if (!r || r.phase !== 'onTrip') return;
@@ -242,6 +340,8 @@ export class Rides {
     const r = this.ride; if (!r || (r.phase !== 'arrived' && r.phase !== 'onTrip')) return;
     const g = this.g, st = g.state, ap = this.w.ap, veh = g.vehicle;
     this.g.hud.closeDialog(); this.dialogOpen = false;
+    if (r.pool && r.pool.leg === 'aboard') this._arriveDrop2(true);
+    if (r.pool && r.pool.leg === 'wait') r.pool.leg = 'done';
     const drivenW = Math.max(50, ap.distDriven - r.drivenStart);
     const minutes = Math.max(1, st.time - r.startT);
     let fare = Math.max(CFG.FARE.min, r.fare + r.fareAdd);
@@ -262,6 +362,7 @@ export class Rides {
     const tipP = clamp((P.tip + veh.tipBonus) * clamp((mood - 40) / 45, 0, 1.4), 0, 0.95);
     if (!r.early && Math.random() < tipP) tip = Math.round(rr(0.5, 3) * (r.pax.pers === 'generoso' ? 2 : 1) * (0.7 + veh.fareMult * 0.3) * 2) / 2;
     if (mood > 50 && r.tipExtra > 0) tip += r.tipExtra;
+    this._regularAfter(r, mood, rating);
     // pagamento
     st.today.gross += fare; st.today.commission += commission; st.stats.commission += commission;
     g.addMoney(net, 'trip', `Viagem — ${r.pax.name}`);
@@ -314,6 +415,24 @@ export class Rides {
     if (st.endAfterRide) { st.endAfterRide = false; g.later(3, () => g.endDay()); }
     g.checkProgress(); g.emit('changed'); g.save();
   }
+  _regularAfter(r, mood, rating) {
+    const st = this.g.state; st.regulars ||= [];
+    if (r.regular != null) {
+      const reg = this.reg(r.regular); if (!reg) return;
+      reg.rides++; reg.lastMood = mood; reg.todayRides = reg.lastDay === st.day ? reg.todayRides + 1 : 1; reg.lastDay = st.day;
+      if (r.storyPlayed && reg.story != null) {
+        reg.part++;
+        if (reg.part >= STORIES[reg.story].parts.length) { reg.storyDone = true; st.flags.storyDone = (st.flags.storyDone || 0) + 1; this.g.later(7, () => this.g.hud.celebrate('📖 História concluída', `«${STORIES[reg.story].title}» com ${reg.pax.first}`)); this.g.addXp(40); }
+      }
+      return;
+    }
+    const ok = rating >= 5 || mood > 85;
+    if (!ok || r.early || r.pool || ['rude', 'turista', 'festivo'].includes(r.pax.pers) || st.regulars.length >= 6 || Math.random() > 0.4) return;
+    const used = new Set(st.regulars.map((x) => x.story));
+    const free = STORIES.map((_, i) => i).filter((i) => !used.has(i));
+    st.regulars.push({ id: Math.floor(Math.random() * 1e9), seed: r.seed, pax: { ...r.pax }, home: r.pickup, work: r.dest, story: free.length ? pick(free) : null, part: 0, rides: 1, lastMood: mood, lastDay: st.day, todayRides: 1, since: st.day });
+    this.g.later(8, () => this.g.notify('⭐ Novo cliente habitual', `${r.pax.name} adicionou-te aos motoristas favoritos. Vais voltar a encontrar ${r.pax.gender === 'f' ? 'esta passageira' : 'este passageiro'}!`, '💛'));
+  }
   _lostItem(name) {
     const item = pick(['telemóvel', 'guarda-chuva', 'carteira', 'casaco', 'óculos de sol', 'saco de compras']);
     if (this.ride) return;
@@ -341,6 +460,31 @@ export class Rides {
   }
   _playKind(kind) {
     const r = this.ride;
+    const reg = r.regular != null ? this.reg(r.regular) : null;
+    if (kind === 'greet' && reg) {
+      const good = reg.lastMood > 55; const first = r.pax.first; const drv = this.g.state.name;
+      const txt = pick(good ? REGULAR_GREETS.good : REGULAR_GREETS.bad).replace('{driver}', drv);
+      this.playScene({ id: 'reg_greet', text: txt, choices: [
+        { t: `Olá, ${first}! Que bom voltar a vê-lo${r.pax.gender === 'f' ? 'a' : ''}!`, mood: 8, reply: good ? 'Igualmente! Já é a nossa ' + (reg.rides + 1) + '.ª viagem!' : 'Hm, vamos ver como corre hoje.' },
+        { t: 'Olá. Para o sítio do costume?', mood: 4, reply: 'Isso mesmo.' }] }, this.ctx());
+      return;
+    }
+    if (kind === 'story') {
+      if (!reg || reg.story == null || reg.storyDone) return;
+      const part = STORIES[reg.story].parts[reg.part]; if (!part) return;
+      r.storyPlayed = true;
+      this.playScene({ id: 'story', text: part.text, choices: part.choices }, this.ctx());
+      return;
+    }
+    if (kind === 'pool') {
+      if (!r.pool || r.pool.leg !== 'aboard') return;
+      const sc = pick(POOL_SCENES); const A = r.pax.first, B = r.pool.pax.first;
+      const t = sc.text.replaceAll('{a}', A).replaceAll('{b}', B);
+      this.dialogOpen = true; this.w.pax2.say(3);
+      this.g.hud.dialog({ name: `${A} e ${B}`, img: avatar(r.pool.pax), text: t, sys: false, choices: sc.choices.map((c) => c.t), timeout: 14,
+        onChoose: (i) => { this.dialogOpen = false; if (this.ride !== r) return; const ch = sc.choices[i < 0 ? sc.choices.length - 1 : i]; r.mood += ch.moodA; r.pool.mood += ch.moodB; r.log.push('👥 ' + ch.t); this.g.emit('changed'); } });
+      return;
+    }
     if (kind === 'mid' && !r.destChanged && Math.random() < 0.12) {
       // preparar um destino alternativo para a cena de mudança de destino
       const cur = this.loc(r.dest);
@@ -364,6 +508,7 @@ export class Rides {
   playScene(sc, c) {
     const r = this.ride; const t = typeof sc.text === 'function' ? sc.text(c) : sc.text;
     this.dialogOpen = true;
+    if (sc.id === 'e_ambulance') this.w.sound.siren();
     if (!sc.sys) { this.w.pax.say(3.5); this.w.sound.speak(t, r.pax.gender); }
     else this.w.sound.ping();
     const choices = sc.choices.map((ch) => (typeof ch.t === 'function' ? ch.t(c) : ch.t));
@@ -402,6 +547,8 @@ export class Rides {
     if (e.condition) st.condition = clamp(st.condition + e.condition, 0, 100);
     if (e.rep) r.mood += e.rep * 2;
     if (e.horn) this.w.sound.horn();
+    if (e.radio && this.w.radio) this.w.radio.set(e.radio === 'off' ? 'off' : 'pop');
+    if (e.story) { const reg = this.reg(r.regular); if (reg) reg.note = e.story; }
     switch (e.action) {
       case 'faster': ap.speedFactor = 1.28; r.faster = true; r.log.push('⚡ Acelerou a pedido do passageiro'); break;
       case 'slow': ap.speedFactor = 0.65; r.slow = true; break;
@@ -413,11 +560,11 @@ export class Rides {
     }
   }
   _detour() {
-    const r = this.ride, ap = this.w.ap; const d = this.loc(r.dest);
+    const r = this.ride, ap = this.w.ap; const d = this._legTarget().l;
     const ids = ap.routeIds || []; const i = ids.indexOf(ap.edge);
     const blocked = new Set();
     if (i >= 0 && ids[i + 1] !== undefined && ids[i + 1] !== d.edge) blocked.add(ids[i + 1]);
-    if (!ap.routeTo(d.edge, d.s, true, () => this.onArriveDest(), blocked)) ap.routeTo(d.edge, d.s, true, () => this.onArriveDest());
+    this._routeLeg(blocked);
     r.log.push('↪️ Rota alternativa');
     this.g.notify('Rota recalculada', 'A navegação encontrou um caminho alternativo.', '🧭');
   }
@@ -435,14 +582,14 @@ export class Rides {
     const r = this.ride, ap = this.w.ap, st = this.g.state;
     r.holdUntil = 0; ap.hold = false;
     if (r.police) { r.police = false; if (st.condition < 45) { this.g.addMoney(-80, 'fine', 'Multa — veículo em mau estado'); this.g.notify('👮 Multa', 'O veículo apresenta defeitos: multa de 80 €. Faz a revisão!', '🚨'); } else this.g.notify('👮 Tudo em ordem', 'Documentos verificados. Boa viagem!', '✅'); }
-    if (r.resume || !ap.path) { const d = this.loc(r.dest); ap.routeTo(d.edge, d.s, true, () => this.onArriveDest()); }
+    if (r.resume || !ap.path) this._routeLeg();
   }
   _changeDest() {
     const r = this.ride, ap = this.w.ap;
     if (!r._newDest) return;
     r.dest = r._newDest; r._newDest = null; r.destChanged = true;
     const d = this.loc(r.dest);
-    ap.routeTo(d.edge, d.s, true, () => this.onArriveDest());
+    if (!r.leg || r.leg === 'main') this._routeLeg();
     const driven = ap.distDriven - r.drivenStart;
     const est = driven + ap.remaining;
     r.tripDist = est;

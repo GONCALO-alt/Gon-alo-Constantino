@@ -26,7 +26,60 @@ export class Sound {
     // ambiente da cidade
     this.amb = noise(); this.ambF = c.createBiquadFilter(); this.ambF.type = 'lowpass'; this.ambF.frequency.value = 180;
     this.ambG = c.createGain(); this.ambG.gain.value = 0.05; this.amb.connect(this.ambF); this.ambF.connect(this.ambG); this.ambG.connect(this.master);
+    // sons da cidade, abafados pelo carro
+    this.cityIn = c.createGain(); this.cityF = c.createBiquadFilter(); this.cityF.type = 'lowpass'; this.cityF.frequency.value = 1600;
+    this.cityIn.connect(this.cityF); this.cityF.connect(this.master);
+    const layer = (type, freq, q) => { const n = noise(); const f = c.createBiquadFilter(); f.type = type; f.frequency.value = freq; if (q) f.Q.value = q; const g = c.createGain(); g.gain.value = 0; n.connect(f); f.connect(g); g.connect(this.cityIn); return g; };
+    this.wavesG = layer('lowpass', 420); this.crowdG = layer('bandpass', 900, 0.8); this.worksG = layer('bandpass', 2200, 3);
+    this.worksLfo = c.createOscillator(); this.worksLfo.type = 'square'; this.worksLfo.frequency.value = 14; const wl = c.createGain(); wl.gain.value = 0.5; this.worksLfo.connect(wl); wl.connect(this.worksG.gain); this.worksLfo.start();
+    this.levels = { waves: 0, crowd: 0, works: 0, club: 0 }; this._clubNext = 0;
+    this.noise = noise;
     this._loadVoices();
+  }
+  setInside(open) { if (this.cityF) this.cityF.frequency.setTargetAtTime(open ? 6000 : 1600, this.ctx.currentTime, 0.3); }
+  // níveis contínuos (0..1) dos ambientes
+  ambience(lv) {
+    if (!this.ctx) return; const t = this.ctx.currentTime;
+    this.levels = lv;
+    this.wavesG.gain.setTargetAtTime(lv.waves * 0.16 * (0.75 + 0.25 * Math.sin(t * 0.7)), t, 0.6);
+    this.crowdG.gain.setTargetAtTime(lv.crowd * 0.18, t, 0.8);
+    this.worksG.gain.setTargetAtTime(lv.works * 0.06, t, 0.4);
+    // batida abafada dos bares
+    if (lv.club > 0.05 && t > this._clubNext - 0.3) {
+      for (let k = 0; k < 4; k++) { const tt = Math.max(t, this._clubNext) + k * 0.5; this._kick(tt, lv.club * 0.35, this.cityIn); }
+      this._clubNext = Math.max(t, this._clubNext) + 2;
+    }
+  }
+  _kick(t, vol, dest) {
+    const c = this.ctx, o = c.createOscillator(), g = c.createGain();
+    o.frequency.setValueAtTime(130, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.12);
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+    o.connect(g); g.connect(dest); o.start(t); o.stop(t + 0.3);
+  }
+  _oneShot(freqs, dur, type, vol, dest, glide) {
+    if (!this.ctx || !this.enabled) return; const c = this.ctx, t = c.currentTime;
+    const o = c.createOscillator(), g = c.createGain(); o.type = type;
+    o.frequency.setValueAtTime(freqs[0], t); if (glide) o.frequency.exponentialRampToValueAtTime(freqs[1], t + dur);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + 0.03); g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+    o.connect(g); g.connect(dest || this.cityIn); o.start(t); o.stop(t + dur + 0.05);
+  }
+  seagull() { if (!this.ctx) return; const b = 1200 + Math.random() * 500; [0, 0.28, 0.5].forEach((d) => setTimeout(() => this._oneShot([b, b * 0.62], 0.25, 'sawtooth', 0.03, null, true), d * 1000)); }
+  birds() { if (!this.ctx) return; const b = 2600 + Math.random() * 1500; for (let k = 0; k < 4; k++) setTimeout(() => this._oneShot([b, b * 1.25], 0.08, 'sine', 0.025, null, true), k * 110); }
+  bells(n) {
+    if (!this.ctx || !this.enabled) return;
+    for (let k = 0; k < Math.min(n, 6); k++) setTimeout(() => { for (const [f, v] of [[392, 0.06], [784, 0.025], [1176, 0.012]]) this._oneShot([f], 3.2, 'sine', v); }, k * 1500);
+  }
+  siren() {
+    if (!this.ctx || !this.enabled) return; const c = this.ctx, t = c.currentTime, D = 9;
+    const o = c.createOscillator(), f = c.createBiquadFilter(), g = c.createGain(); o.type = 'square'; f.type = 'lowpass'; f.frequency.value = 1800;
+    for (let k = 0; k < D / 0.45; k++) o.frequency.setValueAtTime(k % 2 ? 960 : 740, t + k * 0.45);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.06, t + D * 0.45); g.gain.exponentialRampToValueAtTime(0.0001, t + D);
+    o.connect(f); f.connect(g); g.connect(this.cityIn); o.start(t); o.stop(t + D);
+  }
+  horn3d(dist, bus = false) {
+    const k = Math.max(0, 1 - dist / 90); if (k <= 0) return;
+    const f = bus ? [250, 315] : [400 + Math.random() * 60, 505];
+    for (const fr of f) this._oneShot([fr], 0.35 + Math.random() * 0.3, 'square', 0.05 * k);
   }
   _loadVoices() {
     if (!('speechSynthesis' in window)) return;
@@ -75,5 +128,6 @@ export class Sound {
     }
     u.pitch = gender === 'f' ? 1.15 : 0.9; u.rate = rate; u.volume = 0.9;
     speechSynthesis.cancel(); speechSynthesis.speak(u);
+    if (this.radio) this.radio.duck(Math.min(8, 1 + clean.length * 0.07));
   }
 }

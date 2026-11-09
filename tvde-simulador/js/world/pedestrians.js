@@ -21,7 +21,7 @@ export class Pedestrians {
     const c = new THREE.Color();
     for (let i = 0; i < count; i++) {
       const b = pick(blocks);
-      const hw = (CFG.SPACING - CFG.ROADW) / 2 - 2.7;
+      const hw = (CFG.SPACING - CFG.ROADW) / 2 - (b.type === 'V' ? 1.2 : 2.7);
       const p = { b, hw, t: Math.random() * hw * 8, dir: Math.random() < 0.5 ? 1 : -1, sp: rr(1.0, 1.6), ph: Math.random() * 6, sc: rr(0.9, 1.08), stop: 0 };
       this.peds.push(p);
       const shirt = pick(SHIRTS), pant = pick(PANTS), skin = pick(SKINS);

@@ -24,6 +24,25 @@ export class RoadNetwork {
     this.time = 0;
     this._curveCache = new Map();
     this.half = ((G - 1) / 2) * S;
+    this.closed = new Set();
+    // Vila Velha: ponte a oeste e um quarteirão de ruas antigas do outro lado do rio
+    const W = this.nodeAt(0, 4), BR = 240;
+    const F1 = this.addNode(W.x - BR, W.z, -1, 4), F2 = this.addNode(F1.x - S, W.z, -2, 4);
+    const F3 = this.addNode(F1.x - S, W.z + S, -2, 5), F4 = this.addNode(F1.x, W.z + S, -1, 5);
+    this._link(W, F1); this._link(F1, F2); this._link(F2, F3); this._link(F3, F4); this._link(F4, F1);
+    const be = this.edgeBetween(W.id, F1.id), be2 = this.edgeBetween(F1.id, W.id);
+    for (const id of [be, be2]) { this.edges[id].bridge = true; this.edges[id].name = 'Ponte Atlântica'; }
+    const names = { [F1.id + ':' + F2.id]: 'Rua da Sé', [F2.id + ':' + F3.id]: 'Calçada do Castelo', [F3.id + ':' + F4.id]: 'Rua dos Pescadores', [F4.id + ':' + F1.id]: 'Travessa do Rio' };
+    for (const e of this.edges) {
+      const k1 = e.a + ':' + e.b, k2 = e.b + ':' + e.a;
+      if (names[k1] || names[k2]) { e.name = names[k1] || names[k2]; e.old = true; }
+    }
+    this.old = { F1, F2, F3, F4, W };
+    this.bounds = { minX: F2.x - 140, maxX: this.half + 90, minZ: -this.half - 90, maxZ: this.half + 110 };
+  }
+  addNode(x, z, i, j) {
+    const n = { id: this.nodes.length, i, j, x, z, exists: true, out: [], inc: [], lightOffset: (Math.abs(i) * 7 + j * 11) % LIGHT_CYCLE };
+    this.nodes.push(n); return n;
   }
   _link(a, b) { const e1 = this._add(a, b), e2 = this._add(b, a); e1.rev = e2.id; e2.rev = e1.id; }
   _add(a, b) {
@@ -60,7 +79,7 @@ export class RoadNetwork {
   turnCost(e1, e2) { const t = this.turnType(e1, e2); return t === 'S' ? 0 : t === 'R' ? 4 : t === 'L' ? 10 : 80; }
   successors(eid, blocked) {
     const e = this.edges[eid];
-    const outs = this.nodes[e.b].out.filter((x) => x !== e.rev && !(blocked && blocked.has(x)));
+    const outs = this.nodes[e.b].out.filter((x) => x !== e.rev && !(blocked && blocked.has(x)) && !this.closed.has(x));
     return outs.length ? outs : [e.rev];
   }
   // Dijkstra sobre vias dirigidas (evita inversões de marcha)

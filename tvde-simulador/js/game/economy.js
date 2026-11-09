@@ -31,6 +31,9 @@ export function pickupDemand(d, h, weekend) {
     case 'M': return h >= 10 && h < 23 ? 2 : 0.2;
     case 'X': return h >= 8 && h < 20 ? 1.6 : 0.6;
     case 'U': return (h >= 8 && h < 11) || (h >= 16 && h < 20) ? 2.2 : 0.4;
+    case 'V': return (h >= 10 && h < 19) ? 2 : (h >= 19 && h < 24) ? 2.4 : 0.4;
+    case 'B': return h >= 11 && h < 20 ? 2.6 : h >= 20 && h < 24 ? 1.2 : 0.2;
+    case 'E': return 0.3;
     default: return 0.4;
   }
 }
@@ -51,6 +54,9 @@ export function destDemand(d, h, from) {
     case 'M': return h >= 10 && h < 21 ? 1.8 : 0.1;
     case 'X': return 0.9;
     case 'U': return morning ? 2 : 0.4;
+    case 'V': return h >= 10 && h < 23 ? 2 : 0.4;
+    case 'B': return h >= 9 && h < 18 ? 2.8 : 0.4;
+    case 'E': return 0.2;
     default: return 0.3;
   }
 }
@@ -129,6 +135,10 @@ export const ACHIEVEMENTS = [
   { id: 'rain10', name: 'Rei da chuva', desc: 'Faz 10 viagens com chuva.', icon: '☔', test: (s) => s.stats.rainTrips >= 10 },
   { id: 'lvl5', name: 'Profissional', desc: 'Chega ao nível 5.', icon: '🎖️', test: (s) => s.level >= 5 },
   { id: 'lvl10', name: 'Lenda', desc: 'Chega ao nível 10.', icon: '👑', test: (s) => s.level >= 10 },
+  { id: 'fav', name: 'Motorista de confiança', desc: 'Ganha o primeiro cliente habitual.', icon: '💛', test: (s) => (s.regulars || []).length >= 1 },
+  { id: 'story', name: 'Contador de histórias', desc: 'Acompanha a história completa de um cliente habitual.', icon: '📖', test: (s) => (s.flags.storyDone || 0) >= 1 },
+  { id: 'pool10', name: 'Boleia partilhada', desc: 'Leva 10 passageiros em viagens partilhadas.', icon: '👥', test: (s) => (s.stats.pool || 0) >= 10 },
+  { id: 'goal', name: 'Sonho realizado', desc: 'Cumpre um objetivo de poupança.', icon: '🐷', test: (s) => (s.savings?.done || []).length >= 1 },
   { id: 'week', name: 'Semana completa', desc: 'Trabalha 7 dias.', icon: '📅', test: (s) => s.days.length >= 7 },
 ];
 

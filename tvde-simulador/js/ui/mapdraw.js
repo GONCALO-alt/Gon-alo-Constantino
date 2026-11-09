@@ -2,19 +2,22 @@
 import { CFG, DISTRICTS } from '../config.js';
 import { pickupDemand } from '../game/economy.js';
 
-const ICONS = { A: '✈️', S: '🚆', X: '🏥', M: '🛍️', G: '⛽', H: '🏨', r: '🍽️', N: '🍸', U: '🎓', P: '🌳' };
+const ICONS = { V: '⛪', E: '🏟️', A: '✈️', S: '🚆', X: '🏥', M: '🛍️', G: '⛽', H: '🏨', r: '🍽️', N: '🍸', U: '🎓', P: '🌳' };
 
 export class MapRenderer {
   constructor(city) {
     this.city = city; const net = city.net;
-    this.E = net.half + 90; const E = this.E;
-    const SZ = 1400; this.SZ = SZ; this.k = SZ / (2 * E);
+    const bd = net.bounds; this.E = Math.max(-bd.minX, bd.maxX, -bd.minZ, bd.maxZ); const E = this.E;
+    const SZ = 2048; this.SZ = SZ; this.k = SZ / (2 * E);
     const c = document.createElement('canvas'); c.width = c.height = SZ; this.static = c;
     const x = c.getContext('2d'); const k = this.k;
     const P = (v) => (v + E) * k;
     x.fillStyle = '#161a20'; x.fillRect(0, 0, SZ, SZ);
     x.fillStyle = '#123049'; x.fillRect(0, P(net.half + 100), SZ, SZ);
-    x.fillStyle = '#3a3626'; x.fillRect(0, P(net.half + 40), SZ, (60) * k);
+    x.fillStyle = '#3a3626'; x.fillRect(0, P(net.half + 6), SZ, 94 * k);
+    if (city.river) { x.fillStyle = '#123049'; x.fillRect(P(city.river.x0), 0, (city.river.x1 - city.river.x0) * k, SZ); }
+    // castelo
+    const o = net.old; x.fillStyle = '#2f3d2a'; x.beginPath(); x.arc(P(o.F2.x - 82), P(o.F2.z + CFG.SPACING / 2), 50 * k, 0, Math.PI * 2); x.fill();
     const FOOT = CFG.SPACING - CFG.ROADW;
     for (const b of city.blocks) {
       x.fillStyle = DISTRICTS[b.type].map;
@@ -47,12 +50,18 @@ export class MapRenderer {
       const cx = b.type === 'A' ? (net.half - CFG.SPACING) : b.cx, cz = b.type === 'A' ? (net.half - CFG.SPACING) : b.cz;
       x.font = `${b.type === 'A' ? 44 : 26}px sans-serif`; x.fillText(ICONS[b.type], P(cx), P(cz));
     }
+    x.font = '30px sans-serif';
+    x.fillText('🏰', P(o.F2.x - 82), P(o.F2.z + CFG.SPACING / 2));
+    for (const l of city.locations) if (l.district === 'B') { x.font = '22px sans-serif'; x.fillText('🏖️', P(l.pos.x), P(l.pos.z + 26)); }
+    x.font = '600 15px Arial'; x.fillStyle = 'rgba(160,200,240,0.7)';
+    x.save(); x.translate(P((city.river.x0 + city.river.x1) / 2), P(-200)); x.rotate(-Math.PI / 2); x.fillText('RIO AZUL', 0, 0); x.restore();
+    x.fillText('OCEANO ATLÂNTICO', P(0), P(net.half + 160));
     // nomes das ruas
     x.font = '600 13px Arial'; x.fillStyle = 'rgba(220,228,240,0.55)';
     net.edges.forEach((e) => {
       if (e.id > e.rev) return;
       const A = net.nodes[e.a];
-      if ((A.i + A.j) % 3 !== 0) return;
+      if ((Math.abs(A.i) + A.j) % 3 !== 0 && !e.name) return;
       const B = net.nodes[e.b];
       x.save(); x.translate(P((A.x + B.x) / 2), P((A.z + B.z) / 2));
       if (e.axis === 'NS') x.rotate(-Math.PI / 2);

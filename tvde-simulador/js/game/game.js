@@ -4,11 +4,22 @@ import { Emitter, clamp, eur, hhmm, isWeekend, pick, rr, toKm, weekday, dur } fr
 import { ACHIEVEMENTS, levelFromXp, makeObjectives, objectiveProgress, hourOf } from './economy.js';
 import { Rides } from './rides.js';
 import { WEATHERS } from '../world/sky.js';
+import { makeEvents } from './events.js';
+import { mulberry32 } from '../util.js';
+
+export const SAVINGS_GOALS = [
+  { id: 'ferias', name: 'Férias no Algarve', icon: '🏖️', target: 400 },
+  { id: 'portatil', name: 'Computador novo', icon: '💻', target: 900 },
+  { id: 'mota', name: 'Mota para os fins de semana', icon: '🏍️', target: 2500 },
+  { id: 'casa', name: 'Entrada para uma casa', icon: '🏠', target: 8000 },
+];
+const BASE_PRICE = { gasolina: 1.78, gasoleo: 1.62, kwh: 0.32 };
+export function energyKey(v) { return v.unit === 'kWh' ? 'kwh' : v.energy === 'Gasóleo' ? 'gasoleo' : 'gasolina'; }
 
 function newToday(level, day) {
   return {
     trips: 0, gross: 0, net: 0, tips: 0, bonus: 0, commission: 0,
-    exp: { fuel: 0, maint: 0, wash: 0, fines: 0, fixed: 0, other: 0 },
+    exp: { fuel: 0, maint: 0, wash: 0, fines: 0, fixed: 0, other: 0 }, personal: 0,
     five: 0, ratings: [], airport: 0, night: 0, onlineMin: 0, workMin: 0, km: 0, fuelUsed: 0, fuelCost: 0,
     streak: 0, bestStreak: 0, start: null, end: null, objectives: makeObjectives(level, day * 7 + level), objDone: 0,
   };
@@ -25,7 +36,8 @@ export function newState(name) {
     days: [], history: [], finance: [], notes: [], chat: [],
     achievements: {}, flags: {},
     weather: { type: 'limpo', next: CFG.DAY_START + 150 },
-    settings: { quality: 'auto', speed: 1, sound: true, voice: true, idle: 'zona', minimap: true },
+    settings: { quality: 'auto', speed: 1, sound: true, voice: true, idle: 'zona', minimap: true, radio: 'off' },
+    regulars: [], savings: { goal: 'ferias', amount: 0, done: [] },
     ride: null, fatigue: 0, sinceBreak: 0, streak: 0, weekly: { week: 0, trips: 0, claimed: false, base: 0 },
     offAfterRide: false, endAfterRide: false,
   };
@@ -68,7 +80,10 @@ export class Game extends Emitter {
     this._lastDist = ap.distDriven;
     this.w.car.build(this.vehicle);
     this.w.env.state = { ...WEATHERS[st.weather.type] };
+    st.regulars ||= []; st.savings ||= { goal: 'ferias', amount: 0, done: [] };
+    this._applyDay();
     const r = st.ride;
+    if (r && r.pool && r.pool.leg !== 'done') r.pool.leg = 'done';
     if (r) {
       // retomar a viagem em curso
       if (r.phase === 'request') st.ride = null;
@@ -102,6 +117,8 @@ export class Game extends Emitter {
     if (type === 'trip') { T.net += amt; st.stats.earned += amt; }
     else if (type === 'tip') { st.stats.earned += amt; }
     else if (type === 'bonus') { T.bonus += amt; st.stats.bonus += amt; st.stats.earned += amt; }
+    else if (type === 'personal') { T.personal = (T.personal || 0) - amt; }
+    else if (type === 'saving') { /* transferência interna */ }
     else if (amt < 0) {
       const k = { fuel: 'fuel', maint: 'maint', wash: 'wash', fine: 'fines', fixed: 'fixed' }[type] || 'other';
       T.exp[k] += -amt; st.stats.expenses += -amt;
@@ -170,8 +187,62 @@ export class Game extends Emitter {
     this.w.env.state = { ...WEATHERS[st.weather.type] };
     const h = this.w.city.home; this.w.ap.place(h.edge, h.s, CFG.CURB);
     this._lastDist = this.w.ap.distDriven;
+    this._makeDay();
+    this._applyDay();
     this.paused = false;
     this.save(); this.emit('dayStart'); this.emit('changed');
+    const T = st.today, vk = energyKey(this.vehicle), ch = T.prices[vk] - (st.lastPrices ? st.lastPrices[vk] : BASE_PRICE[vk]);
+    this.later(3, () => this.notify('Combustível hoje', `${vk === 'kwh' ? 'Eletricidade' : vk === 'gasoleo' ? 'Gasóleo' : 'Gasolina'}: ${T.prices[vk].toFixed(3).replace('.', ',')} €/${vk === 'kwh' ? 'kWh' : 'L'} (${ch >= 0 ? '+' : '−'}${Math.abs(ch * 100).toFixed(1).replace('.', ',')} cênt.)`, '⛽'));
+    T.events.forEach((e, i) => this.later(5 + i * 2, () => this.notify('Hoje em Porto Azul', `${e.icon} ${e.title} — ${String(Math.floor(e.start / 60) % 24).padStart(2, '0')}:00`, e.icon)));
+    if (T.works.length) this.later(9, () => this.notify('Obras', 'Ruas cortadas hoje: ' + T.works.map((id) => this.w.city.streetOf(this.w.net.edges[id])).join(', ') + '.', '🚧'));
+    if (st.day % 7 === 6) this.later(11, () => this.notify('Renda amanhã', 'No fim do dia de amanhã paga-se a renda da casa (140 €) e as contas (35 €).', '🏠'));
+  }
+  // eventos, obras e preços do dia
+  _makeDay() {
+    const st = this.state, T = st.today, r = mulberry32(st.day * 7919 + 3);
+    T.events = makeEvents(st.day, isWeekend(st.day));
+    const net = this.w.net, locEdges = new Set(this.w.city.locations.map((l) => l.edge));
+    const cand = net.edges.filter((e) => !e.bridge && !e.old && !locEdges.has(e.id) && net.nodes[e.a].i >= 0 && net.nodes[e.b].i >= 0);
+    T.works = [];
+    const nW = r() < 0.25 ? 1 : r() < 0.7 ? 2 : 3;
+    while (T.works.length < nW) { const e = cand[Math.floor(r() * cand.length)]; if (!T.works.includes(e.id) && !T.works.includes(e.rev)) T.works.push(e.id); }
+    st.lastPrices = T.prices || st.lastPrices;
+    const f = 1 + (r() - 0.5) * 0.12;
+    T.prices = { gasolina: +(BASE_PRICE.gasolina * f).toFixed(3), gasoleo: +(BASE_PRICE.gasoleo * (f + (r() - 0.5) * 0.03)).toFixed(3), kwh: +(BASE_PRICE.kwh * (1 + (r() - 0.5) * 0.15)).toFixed(3) };
+    T.stationOff = {}; for (const g of this.w.city.gasStations) T.stationOff[g.id] = +((r() - 0.5) * 0.09).toFixed(3);
+  }
+  _applyDay() {
+    const T = this.state.today;
+    if (!T.events) this._makeDay();
+    this.w.net.closed = new Set(T.works || []);
+    this.w.city.setWorks(T.works || []);
+  }
+  fuelPrice(stationId = null) {
+    const T = this.state.today; const k = energyKey(this.vehicle);
+    const base = (T.prices || BASE_PRICE)[k] ?? BASE_PRICE[k];
+    const off = stationId != null && T.stationOff ? (T.stationOff[stationId] || 0) * (k === 'kwh' ? 0.2 : 1) : 0;
+    return Math.round((base + off) * 1000) / 1000;
+  }
+  // mealheiro
+  deposit(v) {
+    const st = this.state, sv = st.savings;
+    if (v > st.balance) { this.notify('Saldo insuficiente', 'Não tens dinheiro suficiente na conta.', '💳'); return; }
+    this.addMoney(-v, 'saving', 'Transferência para o mealheiro'); sv.amount = Math.round((sv.amount + v) * 100) / 100;
+    this.emit('changed'); this.save();
+  }
+  withdraw() {
+    const sv = this.state.savings; if (sv.amount <= 0) return;
+    const v = sv.amount; sv.amount = 0; this.addMoney(v, 'saving', 'Levantamento do mealheiro'); this.save();
+  }
+  setGoal(id) { this.state.savings.goal = id; this.emit('changed'); this.save(); }
+  completeGoal() {
+    const st = this.state, sv = st.savings, g = SAVINGS_GOALS.find((x) => x.id === sv.goal);
+    if (!g || sv.amount < g.target) return;
+    sv.amount = Math.round((sv.amount - g.target) * 100) / 100; sv.done.push(g.id);
+    this.hud.celebrate(`${g.icon} Objetivo de poupança!`, g.name); this.w.sound.cash(); this.addXp(60);
+    this.notify('Sonho concretizado', `${g.name} — conseguiste poupar ${eur(g.target)}!`, g.icon);
+    const next = SAVINGS_GOALS.find((x) => !sv.done.includes(x.id)); sv.goal = next ? next.id : null;
+    this.checkProgress(); this.save(); this.emit('changed');
   }
   endDay(force = false) {
     const st = this.state;
@@ -185,9 +256,15 @@ export class Game extends Emitter {
     if (T.ratings.length >= 5 && avg >= 4.85) this.addMoney(10, 'bonus', 'Bónus de qualidade (avaliação ≥ 4,85)');
     const expenses = Object.values(T.exp).reduce((a, b) => a + b, 0);
     const income = T.net + T.tips + T.bonus;
+    // despesas pessoais (não são do trabalho)
+    const personal = [['Alimentação do dia', 9]];
+    if (st.day % 7 === 0) personal.push(['Renda da casa', 140], ['Água, luz e internet', 35]);
+    if (st.day % 7 === 3) personal.push(['Telemóvel e seguro de saúde', 18]);
+    for (const [d, v] of personal) this.addMoney(-v, 'personal', d);
+    const personalTotal = personal.reduce((a, b) => a + b[1], 0);
     const summary = {
       day: st.day, weekday: weekday(st.day), trips: T.trips, gross: T.gross, commission: T.commission, net: T.net, tips: T.tips, bonus: T.bonus,
-      exp: { ...T.exp }, expenses, income, profit: income - expenses, rating: avg, minutes: T.start != null ? st.time - T.start : 0, onlineMin: T.onlineMin,
+      exp: { ...T.exp }, expenses, income, profit: income - expenses, personal, personalTotal, rating: avg, minutes: T.start != null ? st.time - T.start : 0, onlineMin: T.onlineMin,
       km: T.km, fuelUsed: T.fuelUsed, fuelCost: T.fuelCost, objectives: T.objectives.map((o) => ({ text: o.text, done: o.done, reward: o.reward })), endedAt: st.time,
     };
     st.days.push(summary); if (st.days.length > 60) st.days.shift();
@@ -217,16 +294,17 @@ export class Game extends Emitter {
   fuelPct() { return this.state.fuel[this.state.vehicle] ?? 100; }
 
   // ---------- serviços ----------
-  goService() {
+  goService(stationId = null) {
     const st = this.state;
     if (st.ride) { this.notify('Agora não', 'Termina a viagem atual primeiro.', '⚠️'); return; }
     const ap = this.w.ap;
-    const gs = this.w.city.gasStations.map((l) => ({ l, d: ap.routeLength(l.edge, l.s) })).sort((a, b) => a.d - b.d)[0];
+    const all = this.w.city.gasStations.map((l) => ({ l, d: ap.routeLength(l.edge, l.s) })).sort((a, b) => a.d - b.d);
+    const gs = stationId != null ? all.find((x) => x.l.id === stationId) : all[0];
     if (!gs) return;
-    if (gs.d < 15) { this.openService(); return; }
+    if (gs.d < 15) { this.atStation = gs.l; this.openService(); return; }
     this.serviceTrip = gs.l; this.rides.req = null;
     ap.speedFactor = 1;
-    ap.routeTo(gs.l.edge, gs.l.s, true, () => { this.serviceTrip = null; this.openService(); });
+    ap.routeTo(gs.l.edge, gs.l.s, true, () => { this.serviceTrip = null; this.atStation = gs.l; this.openService(); });
     this.notify('A caminho do posto', `${gs.l.name} — ${(toKm(gs.d)).toFixed(1).replace('.', ',')} km`, '⛽');
     this.emit('changed');
   }
@@ -235,7 +313,7 @@ export class Game extends Emitter {
     const st = this.state, veh = this.vehicle;
     const missing = (100 - this.fuelPct()) / 100 * veh.tank;
     return {
-      fuel: { units: missing, cost: Math.round(missing * veh.unitPrice * 100) / 100, min: veh.unit === 'kWh' ? Math.round(10 + missing * 0.6) : 6 },
+      fuel: { units: missing, price: this.fuelPrice(this.atStation?.id), cost: Math.round(missing * this.fuelPrice(this.atStation?.id) * 100) / 100, min: veh.unit === 'kWh' ? Math.round(10 + missing * 0.6) : 6 },
       wash: { cost: 8, min: 20 },
       maint: { cost: Math.round((100 - st.condition) * 1.4 + 15), min: 60 },
     };
@@ -320,7 +398,7 @@ export class Game extends Emitter {
     const ap = this.w.ap; const dd = ap.distDriven - this._lastDist; this._lastDist = ap.distDriven;
     if (dd > 0) {
       const km = toKm(dd), veh = this.vehicle;
-      const used = km * veh.per100 / 100; T.fuelUsed += used; T.fuelCost += used * veh.unitPrice; st.stats.fuelL += used;
+      const used = km * veh.per100 / 100; T.fuelUsed += used; T.fuelCost += used * this.fuelPrice(); st.stats.fuelL += used;
       st.fuel[st.vehicle] = clamp(this.fuelPct() - used / veh.tank * 100, 0, 100);
       st.condition = clamp(st.condition - km * 0.06, 0, 100);
       st.odo += km;

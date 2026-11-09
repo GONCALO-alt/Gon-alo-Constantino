@@ -5,6 +5,10 @@ import { avatar, PERSONALITIES } from '../game/passengers.js';
 import { ACHIEVEMENTS, LEVEL_TITLES, levelTitle, reputationTier, xpForLevel, objectiveProgress, hourOf } from '../game/economy.js';
 import { WEATHERS } from '../world/sky.js';
 import { RIDO_ICON } from './icon.js';
+import { STATIONS } from '../radio.js';
+import { SAVINGS_GOALS, energyKey } from '../game/game.js';
+import { STORIES } from '../game/regulars.js';
+import { eventStatus } from '../game/events.js';
 
 const PHASE = { toPickup: 'A caminho da recolha', waiting: 'À espera do passageiro', boarded: 'Passageiro a bordo', onTrip: 'Em viagem', arrived: 'Chegaste ao destino' };
 const FIN_ICON = { trip: '🚗', tip: '🎁', bonus: '🎉', fuel: '⛽', maint: '🔧', wash: '🧽', fine: '🚨', fixed: '📄', other: '💶' };
@@ -13,7 +17,7 @@ export class Phone {
   constructor(game, map) {
     this.g = game; this.map = map;
     this.el = document.getElementById('phone');
-    this.el.innerHTML = '<div class="screen"></div>';
+    this.el.innerHTML = '<div class="screen"></div><button class="pclose" data-a="close" aria-label="Fechar telemóvel">✕</button>';
     this.scr = this.el.querySelector('.screen');
     this.open = false; this.screen = 'home'; this.tab = 'inicio'; this.mapZoom = 0.9; this.heat = true; this.expanded = -1;
     this._dirty = true; this._rt = 0;
@@ -51,6 +55,12 @@ export class Phone {
       case 'endday': g.hud.decide({ title: 'Terminar sessão?', icon: '🏁', text: st.ride ? 'A sessão termina quando concluíres a viagem atual.' : 'Vais terminar o dia de trabalho e ver o resumo.', options: [{ label: 'Terminar o dia', danger: true, fn: () => { this.hide(); g.endDay(); } }, { label: 'Continuar a trabalhar', fn: () => {} }] }); break;
       case 'service': this.hide(); g.goService(); break;
       case 'buy': g.buyVehicle(v); break;
+      case 'station': g.w.radio.set(v); break;
+      case 'gas': this.hide(); g.goService(+v); break;
+      case 'dep': g.deposit(+v); break;
+      case 'wd': g.withdraw(); break;
+      case 'goal': g.setGoal(v); break;
+      case 'goaldone': g.completeGoal(); break;
       case 'zoom': this.mapZoom = clamp(this.mapZoom * (v === 'in' ? 1.4 : 0.7), 0.25, 4); break;
       case 'heat': this.heat = !this.heat; break;
       case 'exp': this.expanded = this.expanded === +v ? -1 : +v; break;
@@ -86,6 +96,7 @@ export class Phone {
       case 'goals': inner = this._goals(); break;
       case 'chat': inner = this._chat(); break;
       case 'settings': inner = this._settings(); break;
+      case 'radio': inner = this._radio(); break;
       default: inner = this._home();
     }
     this.scr.innerHTML = `<div class="sbar"><span id="pclock">${hhmm(st.time)}</span><div class="island"></div><span>${w.icon} 5G ▮▮▮ ${Math.round(70 + 30 * Math.sin(st.time / 200))}%</span></div>${inner}<div class="homebar"><i data-a="${this.screen === 'home' ? 'close' : 'home'}"></i></div>`;
@@ -135,7 +146,7 @@ export class Phone {
     const apps = [
       ['driver', `<img src="${RIDO_ICON}" alt="" style="width:100%;height:100%;border-radius:15px;display:block">`, 'transparent', APP_NAME.split(' ')[0], un],
       ['map', '🗺️', '#1e7a46', 'Mapa'], ['wallet', '💳', '#1f5fbf', 'Carteira'], ['garage', '🔧', '#d97a1e', 'Garagem'],
-      ['goals', '🏆', '#7b3fbf', 'Objetivos'], ['chat', '💬', '#22a35a', 'Mensagens', st.ride ? st.chat.filter((c) => c.from === 'pax').length : 0], ['settings', '⚙️', '#5b6270', 'Definições'],
+      ['goals', '🏆', '#7b3fbf', 'Objetivos'], ['radio', '📻', '#b3392e', 'Rádio'], ['chat', '💬', '#22a35a', 'Mensagens', st.ride ? st.chat.filter((c) => c.from === 'pax').length : 0], ['settings', '⚙️', '#5b6270', 'Definições'],
     ];
     const T = st.today;
     return `<div class="pbody"><div class="home">
@@ -171,6 +182,8 @@ export class Phone {
       h += `<div class="trip"><div class="ph">${PHASE[r.phase] || ''}${r.phase === 'waiting' ? ` · ${Math.floor(r.waitMin)} min` : ''}</div>
         <div class="pax"><img src="${avatar(r.pax)}"><div><b>${esc(r.pax.name)}</b><span>★ ${r.pax.rating.toFixed(2)} · ${r.pax.trips} viagens · ${r.cat}</span></div></div>
         ${r.pax.note ? `<div class="note">📝 ${esc(r.pax.note.text)}</div>` : ''}
+        ${r.regular != null ? '<span class="badge2">⭐ Cliente habitual</span>' : ''}
+        ${r.pool && r.pool.leg !== 'done' ? `<div class="note" style="background:rgba(201,182,255,0.1);color:#d9ccff">👥 ${esc(r.pool.pax.name)}: ${r.pool.leg === 'wait' ? 'recolha em ' + esc(this.g.rides.loc(r.pool.pickup).name) : 'a bordo, sai em ' + esc(this.g.rides.loc(r.pool.dest).name)}</div>` : ''}
         <div class="route"><div class="pt">${esc(P.name)}<small>Recolha</small></div><div class="pt d">${esc(D.name)}<small>Destino${r.destChanged ? ' (alterado)' : ''}</small></div></div>
         <div class="kv"><span>Estimativa</span><b id="tripEta">${this._etaText()}</b></div>
         <div class="kv"><span>Valor estimado (líquido)</span><b>${eur((r.fare + r.fareAdd) * (1 - CFG.COMMISSION))}</b></div>
@@ -192,11 +205,13 @@ export class Phone {
     return `<div class="req"><div class="sheet">
       <div class="top"><div><span class="cat">${q.cat}</span>${q.surge > 1.05 ? `<span class="surge">⚡ ×${q.surge.toFixed(1)}</span>` : ''}</div>
         <div class="ring"><svg width="46" height="46"><circle cx="23" cy="23" r="20" stroke="#2a313c" stroke-width="4" fill="none"/><circle id="reqRing" cx="23" cy="23" r="20" stroke="#22c55e" stroke-width="4" fill="none" stroke-dasharray="126" stroke-dashoffset="0" stroke-linecap="round"/></svg><b id="reqN">${Math.ceil(q.timer)}</b></div></div>
+      ${q.regular != null ? `<span class="badge2">⭐ Cliente habitual · ${((this.st.regulars || []).find((x) => x.id === q.regular)?.rides || 0) + 1}.ª viagem</span>` : ''}${q.pool ? `<span class="badge2 pool">👥 Viagem partilhada · 2 passageiros</span>` : ''}
       <div class="price">${eur(q.net)}</div><div class="muted">Valor estimado a receber · tarifa ${eur(q.fare)} (comissão ${Math.round(CFG.COMMISSION * 100)}%)${q.airport ? ' · inclui taxa aeroporto' : ''}</div>
       <div class="pax" style="margin-top:12px"><img src="${avatar(q.pax)}"><div><b>${esc(q.pax.name)}</b><span>★ ${q.pax.rating.toFixed(2)} · ${q.pax.trips} viagens</span></div></div>
       <div class="route"><div class="pt">${esc(P.name)}<small>${Math.max(1, Math.round(q.pickMin))} min · ${kmStr(q.pickDist)} até à recolha</small></div>
         <div class="pt d">${esc(D.name)}<small>Viagem: ${Math.round(q.estMin)} min · ${kmStr(q.tripDist)}</small></div></div>
       ${q.pax.note ? `<div class="note">📝 «${esc(q.pax.note.text)}»</div>` : ''}
+      ${q.pool ? `<div class="note" style="background:rgba(201,182,255,0.1);color:#d9ccff">👥 2.º passageiro: <b>${esc(q.pool.pax.name)}</b> ★ ${q.pool.pax.rating.toFixed(2)} — de ${esc(this.g.rides.loc(q.pool.pickup).name)} para ${esc(this.g.rides.loc(q.pool.dest).name)}</div>` : ''}
       <div class="btnrow"><button class="btn" data-a="reject" style="flex:1">Recusar</button><button class="btn primary" data-a="accept" style="flex:2">Aceitar</button></div>
     </div></div>`;
   }
@@ -251,22 +266,47 @@ export class Phone {
       <div class="card"><h4>Cansaço</h4><div class="progress"><i style="width:${st.fatigue}%;background:${st.fatigue > 70 ? 'var(--bad)' : st.fatigue > 45 ? 'var(--warn)' : 'var(--acc)'}"></i></div>
       <div class="muted" style="margin:6px 0 10px">${st.fatigue > 70 ? 'Muito cansado — as avaliações vão sofrer.' : st.fatigue > 45 ? 'Algum cansaço acumulado.' : 'Descansado.'} Sem pausa há ${dur(st.sinceBreak)}.</div>
       <div class="btnrow"><button class="btn small" data-a="break" data-v="15">☕ 15 min</button><button class="btn small" data-a="break" data-v="30">🥪 30 min</button><button class="btn small" data-a="break" data-v="60">🍽️ 1 h</button></div></div>
+      <div class="card"><h4>Clientes habituais · ${(st.regulars || []).length}</h4>${(st.regulars || []).map((x) => {
+        const sto = x.story != null ? STORIES[x.story] : null;
+        return `<div class="it" style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)"><img src="${avatar(x.pax)}" style="width:40px;height:40px;border-radius:50%"><div style="flex:1;min-width:0"><b>${esc(x.pax.name)}</b><div class="muted">${x.rides} viagens · desde o dia ${x.since}${x.note ? ' · ' + esc(x.note) : ''}</div>${sto ? `<div class="muted">📖 «${esc(sto.title)}» ${x.storyDone ? '✅ concluída' : `capítulo ${x.part + 1}/${sto.parts.length}`}</div>` : ''}</div></div>`;
+      }).join('') || '<p class="muted">Dá viagens de 5 ★ e alguns passageiros vão querer voltar a viajar contigo.</p>'}</div>
       <button class="btn" data-a="service">⛽ Ir ao posto (combustível, lavagem, revisão)</button>
       <button class="btn danger" data-a="endday">🏁 Terminar sessão (fim do dia)</button>`;
   }
   _mapApp() {
     return `${this._appbar('Mapa')}<div class="pbody" style="display:flex;flex-direction:column"><div class="sec" style="flex:1;display:flex;flex-direction:column"><div class="mapbox" style="flex:1;height:auto;min-height:300px"><canvas id="fullmap"></canvas>
       <div style="position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:6px"><button class="btn small" data-a="zoom" data-v="in" style="width:40px;margin:0">＋</button><button class="btn small" data-a="zoom" data-v="out" style="width:40px;margin:0">－</button><button class="btn small" data-a="heat" style="width:40px;margin:0">🔥</button></div>
-      <div class="legend">🟢 recolha · ⚪ destino · 🔵 tu · 🔥 procura · ⛽ posto</div></div></div></div>`;
+      <div class="legend">🟢 recolha · ⚪ destino · 🔵 tu · 🔥 procura · 🟠 evento · 🚧 obras</div></div>
+      <div class="card"><h4>Hoje em Porto Azul</h4>${(this.st.today.events || []).map((e) => `<div class="kv"><span>${e.icon} ${esc(e.title)}<br><small>${String(Math.floor(e.start / 60) % 24).padStart(2, '0')}:00–${String(Math.floor(e.end / 60) % 24).padStart(2, '0')}:00</small></span><b>${eventStatus(e, this.st.time)}</b></div>`).join('') || '<p class="muted">Sem eventos hoje.</p>'}
+      ${(this.st.today.works || []).map((id) => `<div class="kv"><span>🚧 Obras: ${esc(this.g.w.city.streetOf(this.g.w.net.edges[id]))}</span><b>cortada</b></div>`).join('')}
+      <p class="muted" style="margin:8px 0 0">Depois de um evento acabar há muita procura e preços dinâmicos perto do local.</p></div></div></div>`;
   }
   _wallet() {
     const st = this.st, T = st.today; const e = T.exp;
     return `${this._appbar('Carteira')}<div class="pbody"><div class="sec">
       <div class="card"><h4>Saldo da conta</h4><div class="big ${st.balance < 0 ? 'neg' : ''}">${eur(st.balance)}</div><div class="muted">Pagamentos transferidos após cada viagem</div></div>
+      ${this._savings()}
+      <div class="card"><h4>Despesas pessoais</h4><div class="kv"><span>🍽️ Alimentação</span><b>9,00 € / dia</b></div><div class="kv"><span>🏠 Renda da casa</span><b>140,00 € (domingo)</b></div><div class="kv"><span>💡 Água, luz e internet</span><b>35,00 € (domingo)</b></div><div class="kv"><span>📱 Telemóvel e seguro de saúde</span><b>18,00 € (quarta)</b></div><p class="muted" style="margin:6px 0 0">São pagas automaticamente no fim de cada dia.</p></div>
       <div class="card"><h4>Despesas de hoje</h4><div class="kv"><span>⛽ Combustível/energia</span><b>${eur(e.fuel)}</b></div><div class="kv"><span>🔧 Manutenção</span><b>${eur(e.maint)}</b></div><div class="kv"><span>🧽 Lavagem</span><b>${eur(e.wash)}</b></div><div class="kv"><span>🚨 Multas</span><b>${eur(e.fines)}</b></div><div class="kv"><span>📄 Custos fixos</span><b>${eur(e.fixed)}</b></div><div class="kv"><span>💶 Outros</span><b>${eur(e.other)}</b></div>
       <div class="kv"><span>Consumo estimado hoje</span><b>${T.fuelUsed.toFixed(1)} ${this.g.vehicle.unit} ≈ ${eur(T.fuelCost)}</b></div></div>
       <div class="card"><h4>Movimentos</h4><div class="list">${st.finance.slice(0, 60).map((f) => `<div class="it"><div class="ic">${FIN_ICON[f.type] || '💶'}</div><div class="mid"><b>${esc(f.desc)}</b><span>Dia ${f.day} · ${hhmm(f.t)}</span></div><div class="r ${f.amt >= 0 ? 'pos' : 'neg'}">${eur(f.amt, true)}</div></div>`).join('') || '<p class="muted">Sem movimentos.</p>'}</div></div>
     </div></div>`;
+  }
+  _savings() {
+    const sv = this.st.savings || { goal: null, amount: 0, done: [] }; const g = SAVINGS_GOALS.find((x) => x.id === sv.goal);
+    const pct = g ? Math.min(100, sv.amount / g.target * 100) : 100;
+    return `<div class="card"><h4>🐷 Mealheiro · ${eur(sv.amount)}</h4>
+      ${g ? `<div style="display:flex;justify-content:space-between"><span>${g.icon} ${esc(g.name)}</span><b>${eur(g.target)}</b></div><div class="progress"><i style="width:${pct}%"></i></div><div class="muted" style="margin:4px 0 10px">Faltam ${eur(Math.max(0, g.target - sv.amount))}</div>` : '<p class="muted">Cumpriste todos os objetivos de poupança! 🎉</p>'}
+      ${g && sv.amount >= g.target ? '<button class="btn primary small" data-a="goaldone">🎉 Concretizar objetivo</button>' : ''}
+      <div class="btnrow" style="margin-bottom:8px"><button class="btn small" data-a="dep" data-v="10">+10 €</button><button class="btn small" data-a="dep" data-v="50">+50 €</button><button class="btn small" data-a="dep" data-v="100">+100 €</button><button class="btn small" data-a="wd">Levantar</button></div>
+      <div class="seg" style="flex-wrap:wrap">${SAVINGS_GOALS.filter((x) => !sv.done.includes(x.id)).map((x) => `<button class="${sv.goal === x.id ? 'on' : ''}" data-a="goal" data-v="${x.id}">${x.icon} ${eur(x.target)}</button>`).join('')}</div>
+      ${sv.done.length ? `<p class="muted" style="margin:8px 0 0">Concretizados: ${sv.done.map((id) => SAVINGS_GOALS.find((x) => x.id === id)?.icon).join(' ')}</p>` : ''}</div>`;
+  }
+  _radio() {
+    const cur = this.g.w.radio.station;
+    return `${this._appbar('Rádio')}<div class="pbody"><div class="sec">
+      ${STATIONS.map((x) => `<button class="station ${cur === x.id ? 'on' : ''}" data-a="station" data-v="${x.id}"><span class="si">${x.icon}</span><div><b>${esc(x.name)}${x.freq ? ' · ' + x.freq + ' FM' : ''}</b><span>${esc(x.desc || 'Silêncio no carro')}</span></div></button>`).join('')}
+      <p class="muted">Alguns passageiros gostam de música, outros preferem silêncio. Também podes mudar de estação com o botão 📻 ou a tecla R.</p></div></div>`;
   }
   _garage() {
     const st = this.st, g = this.g, v = g.vehicle;
@@ -278,6 +318,8 @@ export class Phone {
         <div class="kv" style="margin-top:8px"><span>🧽 Limpeza</span><b>${Math.round(st.clean)}%</b></div>${bar(st.clean, st.clean < 45 ? 'var(--warn)' : 'var(--acc2)')}
         <div class="kv" style="margin-top:8px"><span>Quilometragem</span><b>${Math.round(st.odo)} km</b></div><div class="kv"><span>Consumo</span><b>${v.per100} ${v.unit}/100 km</b></div><div class="kv"><span>Custos diários</span><b>${eur(v.daily)}</b></div>
         <button class="btn blue" data-a="service" style="margin-top:10px">⛽ Ir ao posto mais próximo</button></div>
+      <div class="card"><h4>Preços de hoje · ${v.unit === 'kWh' ? 'eletricidade' : energyKey(v) === 'gasoleo' ? 'gasóleo' : 'gasolina'}</h4>${g.w.city.gasStations.map((l) => `<div class="kv"><span>${esc(l.name)}<br><small>${(g.w.ap.routeLength(l.edge, l.s) * 11 / 1000).toFixed(1).replace('.', ',')} km</small></span><span style="display:flex;gap:8px;align-items:center"><b>${g.fuelPrice(l.id).toFixed(3).replace('.', ',')} €/${v.unit}</b><button class="btn small" data-a="gas" data-v="${l.id}" style="width:auto;margin:0">Ir</button></span></div>`).join('')}
+      <p class="muted" style="margin:6px 0 0">Os preços mudam todos os dias. O depósito tem ${v.tank} ${v.unit}: encher no posto mais barato pode poupar alguns euros.</p></div>
       <h4 style="margin:14px 2px 8px;color:var(--mut);font-size:13px">VEÍCULOS</h4>
       ${Object.values(VEHICLES).map((x) => {
         const own = st.owned.includes(x.id), cur = st.vehicle === x.id, locked = st.level < x.level;

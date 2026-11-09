@@ -177,6 +177,7 @@ export class PlayerCar {
     }
     // âncora do lugar traseiro direito
     this.seatAnchor = new THREE.Group(); this.seatAnchor.position.set(0.44, Y(0.47), 1.1); I.add(this.seatAnchor);
+    this.seatAnchor2 = new THREE.Group(); this.seatAnchor2.position.set(-0.44, Y(0.47), 1.1); I.add(this.seatAnchor2);
     this.head.position.copy(this.eye);
     this.lift = lift;
   }

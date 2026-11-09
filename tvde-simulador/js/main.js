@@ -22,6 +22,9 @@ import { Phone } from './ui/phone.js';
 import { MapRenderer } from './ui/mapdraw.js';
 import { avatar } from './game/passengers.js';
 import { makeObjectives } from './game/economy.js';
+import { Radio, STATIONS } from './radio.js';
+import { pickupDemand } from './game/economy.js';
+import { eventStatus } from './game/events.js';
 
 const $ = (id) => document.getElementById(id);
 const setLoad = (t) => { const e = $('loadTxt'); if (e) e.textContent = t; };
@@ -54,17 +57,20 @@ async function boot() {
   setLoad('A acender o céu...'); await nextFrame();
   const env = new Environment(renderer, scene, Q);
   setLoad('A pôr o trânsito a circular...'); await nextFrame();
-  const traffic = new Traffic(scene, net, Q === 'high' ? 60 : Q === 'med' ? 42 : 26);
+  const traffic = new Traffic(scene, net, Q === 'high' ? 80 : Q === 'med' ? 56 : 32, Q === 'low' ? 3 : 6);
   const peds = new Pedestrians(scene, city, Q === 'high' ? 90 : Q === 'med' ? 55 : 30);
   const car = new PlayerCar(scene, camera, Q);
   car.build(VEHICLES.compacto);
   const ap = new Autopilot(net); ap.traffic = traffic;
-  const pax = new PaxActor(scene, car);
+  const pax = new PaxActor(scene, car), pax2 = new PaxActor(scene, car);
   const sound = new Sound();
+  const radio = new Radio(sound);
   const hud = new HUD();
-  const world = { scene, net, city, env, traffic, peds, car, ap, pax, sound, jolt: (k) => { car.sway.z += 0.07 * k; shake = 0.25; } };
+  const world = { scene, net, city, env, traffic, peds, car, ap, pax, pax2, sound, radio, jolt: (k) => { car.sway.z += 0.07 * k; shake = 0.25; } };
   const game = new Game(world, hud);
   hud.getTime = () => (game.state ? game.state.time : 0);
+  radio.game = game;
+  traffic.onHorn = (pos, bus) => { if (mode === 'play') sound.horn3d(pos.distanceTo(ap.pos), bus); };
   game.mapPins = () => {
     const st = game.state; const pins = [];
     const r = st?.ride;
@@ -74,6 +80,12 @@ async function boot() {
       pins.push({ x: D.pos.x, z: D.pos.z, color: '#ffffff', label: '' });
     }
     if (game.serviceTrip) pins.push({ x: game.serviceTrip.pos.x, z: game.serviceTrip.pos.z, color: '#ffb020', label: '⛽' });
+    if (r && r.pool && r.pool.leg !== 'done') { const L = city.locations[r.pool.leg === 'wait' ? r.pool.pickup : r.pool.dest]; pins.push({ x: L.pos.x, z: L.pos.z, color: r.pool.leg === 'wait' ? '#22c55e' : '#c9b6ff', label: r.pool.pax.first }); }
+    for (const e of st?.today?.events || []) {
+      const st2 = eventStatus(e, st.time); if (st2 === 'terminou') continue;
+      const L = city.locations.find((l) => l.district === e.venue && l.kind === 'poi'); if (L) pins.push({ x: L.pos.x, z: L.pos.z, color: st2.startsWith('a terminar') ? '#ff5a5a' : '#ff9f1a', label: e.icon });
+    }
+    for (const id of st?.today?.works || []) { const e = net.edges[id]; const v = net.edgePoint(e, e.len / 2, 0, new THREE.Vector3()); pins.push({ x: v.x, z: v.z, color: '#d42a20', label: '🚧' }); }
     return pins;
   };
   const map = new MapRenderer(city);
@@ -90,7 +102,7 @@ async function boot() {
 
   // ---------- entrada ----------
   let mode = 'menu', shake = 0, drag = null, lastTap = 0, intro = 0;
-  canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, id: e.pointerId }; sound.init(); const now = performance.now(); if (now - lastTap < 300) car.recenter(); lastTap = now; });
+  canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, id: e.pointerId }; sound.init(); if (phone.open && innerWidth < 700) { phone.hide(); drag = null; return; } const now = performance.now(); if (now - lastTap < 300) car.recenter(); lastTap = now; });
   addEventListener('pointermove', (e) => { if (!drag || e.pointerId !== drag.id) return; const k = 0.0055 * (66 / camera.fov); car.look((e.clientX - drag.x) * k, (e.clientY - drag.y) * k); drag.x = e.clientX; drag.y = e.clientY; });
   addEventListener('pointerup', () => { drag = null; });
   addEventListener('pointercancel', () => { drag = null; });
@@ -105,6 +117,7 @@ async function boot() {
     else if (k >= '1' && k <= '4') hud.choose(+k - 1);
     else if (k === 'o') { game.state.online ? game.goOffline() : game.goOnline(); }
     else if (k === 'c') car.recenter();
+    else if (k === 'r') cycleRadio();
     else if (k === 'arrowleft') car.look(-0.25, 0); else if (k === 'arrowright') car.look(0.25, 0);
   });
   addEventListener('resize', () => {
@@ -113,6 +126,9 @@ async function boot() {
   });
   document.addEventListener('visibilitychange', () => { if (document.hidden && game.state) game.save(); });
   addEventListener('beforeunload', () => { if (game.state && mode === 'play') game.save(); });
+  function cycleRadio() { sound.init(); const st = radio.next(); hud.toast(st.icon, st.id === 'off' ? 'Rádio desligado' : `${st.name} · ${st.freq} FM`, st.desc || ''); }
+  $('radioBtn').addEventListener('click', (e) => { e.stopPropagation(); cycleRadio(); });
+  game.cycleRadio = cycleRadio;
   $('phoneBtn').addEventListener('click', (e) => { e.stopPropagation(); sound.init(); phone.toggle(); });
   $('btnPause').addEventListener('click', (e) => { e.stopPropagation(); togglePause(); });
 
@@ -161,6 +177,7 @@ async function boot() {
     $('menu').classList.add('hidden');
     hud.el.hud.classList.remove('hidden');
     sound.setEnabled(game.state.settings.sound); sound.voice = game.state.settings.voice;
+    radio._ensure(); radio.set(game.state.settings.radio || 'off');
     game.begin();
     mode = 'play';
     if (!game.state.dayActive) showDayStart(fresh);
@@ -197,7 +214,9 @@ async function boot() {
       <div class="row"><span>Avaliação média</span><b>${s.rating ? '★ ' + s.rating.toFixed(2) : '—'}</b></div>
       <div class="row"><span>Distância · consumo</span><b>${s.km.toFixed(1).replace('.', ',')} km · ${eur(s.fuelCost)}</b></div>
       <div class="row"><span>Objetivos</span><b>${s.objectives.filter((o) => o.done).length}/${s.objectives.length}</b></div>
-      <div class="row total"><span>Lucro final</span><b class="${s.profit >= 0 ? 'pos' : 'neg'}">${eur(s.profit)}</b></div>
+      <div class="row total"><span>Lucro do trabalho</span><b class="${s.profit >= 0 ? 'pos' : 'neg'}">${eur(s.profit)}</b></div>
+      ${(s.personal || []).map(([d, v]) => `<div class="row"><span>🏠 ${esc(d)}</span><b class="neg">${eur(-v)}</b></div>`).join('')}
+      <div class="row total"><span>Saldo do dia</span><b class="${s.profit - (s.personalTotal || 0) >= 0 ? 'pos' : 'neg'}">${eur(s.profit - (s.personalTotal || 0))}</b></div>
       <p class="muted" style="margin-top:8px">Saldo atual: <b>${eur(game.state.balance)}</b></p>`, [
       { label: '🌅 Começar novo dia (06:00)', cls: 'primary', fn: () => showDayStart(false) },
       { label: '💾 Guardar e sair', fn: () => location.reload() },
@@ -205,7 +224,7 @@ async function boot() {
   });
   game.on('service', () => {
     const q = game.serviceQuote(); const v = game.vehicle;
-    hud.modal(`<div class="icon">⛽</div><h2>${esc(city.gasStations[0] ? 'Posto de abastecimento' : 'Serviços')}</h2><p>Saldo: <b>${eur(game.state.balance)}</b> · ${v.unit === 'kWh' ? 'Bateria' : 'Depósito'} ${Math.round(game.fuelPct())}% · Estado ${Math.round(game.state.condition)}% · Limpeza ${Math.round(game.state.clean)}%</p>`, [
+    hud.modal(`<div class="icon">⛽</div><h2>${esc(game.atStation ? game.atStation.name : 'Posto de abastecimento')}</h2><p>Preço hoje: <b>${q.fuel.price.toFixed(3).replace('.', ',')} €/${v.unit}</b><br>Saldo: <b>${eur(game.state.balance)}</b> · ${v.unit === 'kWh' ? 'Bateria' : 'Depósito'} ${Math.round(game.fuelPct())}% · Estado ${Math.round(game.state.condition)}% · Limpeza ${Math.round(game.state.clean)}%</p>`, [
       { label: `${v.unit === 'kWh' ? '🔌 Carregar' : '⛽ Abastecer'} — ${q.fuel.units.toFixed(1)} ${v.unit} · ${eur(q.fuel.cost)} <span class="meta">${q.fuel.min} min</span>`, cls: 'primary', fn: () => game.doService('fuel') },
       { label: `🧽 Lavagem completa — ${eur(q.wash.cost)} <span class="meta">${q.wash.min} min</span>`, fn: () => game.doService('wash') },
       { label: `🔧 Revisão — ${eur(q.maint.cost)} <span class="meta">${q.maint.min} min</span>`, fn: () => game.doService('maint') },
@@ -264,6 +283,27 @@ async function boot() {
     mini.classList.toggle('hidden', !st.settings.minimap || phone.open && innerWidth < 700);
   }
 
+  // ---------- sons da cidade ----------
+  let ambT = 0, lastHour = -1, sirenT = 120;
+  const nearest = (types, maxD) => { let best = Infinity; for (const b of city.blocks) if (types.includes(b.type)) { const d = Math.hypot(b.cx - ap.pos.x, b.cz - ap.pos.z); if (d < best) best = d; } return best <= maxD ? best : Infinity; };
+  function updateAmbience(st, o) {
+    if (!sound.ctx) return;
+    const h = (st.time / 60) % 24, day = o.night < 0.5;
+    const beachD = net.half - ap.pos.z, waves = Math.max(0, 1 - Math.abs(beachD) / 80) * (ap.pos.z > -net.half ? 1 : 0);
+    const riverD = Math.min(Math.abs(ap.pos.x - city.river.x0), Math.abs(ap.pos.x - city.river.x1));
+    const club = nearest(['N'], 120) < Infinity && (h >= 21 || h < 3) ? 1 - nearest(['N'], 120) / 120 : 0;
+    let crowd = 0; for (const e of st.today.events || []) { const s2 = eventStatus(e, st.time); if (s2 === 'a decorrer' || s2.startsWith('a terminar')) { const L = city.locations.find((l) => l.district === e.venue && l.kind === 'poi'); if (L) crowd = Math.max(crowd, 1 - Math.hypot(L.pos.x - ap.pos.x, L.pos.z - ap.pos.z) / 220); } }
+    let works = 0; for (const id of st.today.works || []) { const v = net.edgePoint(net.edges[id], 10, 3, new THREE.Vector3()); works = Math.max(works, 1 - v.distanceTo(ap.pos) / 90); }
+    sound.ambience({ waves: Math.max(waves, Math.max(0, 1 - riverD / 60) * 0.5), crowd: Math.max(0, crowd), works: day && h > 7 && h < 19 ? Math.max(0, works) : 0, club: Math.max(0, club) });
+    if (day && waves > 0.3 && Math.random() < 0.08) sound.seagull();
+    if (day && nearest(['P', 'V', 'R'], 70) < Infinity && Math.random() < 0.06) sound.birds();
+    const hr = Math.floor(st.time / 60);
+    if (hr !== lastHour) { if (lastHour >= 0 && nearest(['V'], 320) < Infinity && h >= 8 && h <= 22) sound.bells(hr % 12 || 12); lastHour = hr; }
+    sirenT -= 0.5 * st.settings.speed; if (sirenT <= 0) { sirenT = 160 + Math.random() * 260; if (nearest(['X'], 400) < Infinity || Math.random() < 0.5) sound.siren(); }
+    // ondulação da bandeira do castelo
+    if (city.flag) city.flag.rotation.y = Math.sin(performance.now() * 0.003) * 0.3;
+  }
+
   // ---------- ciclo principal ----------
   let last = performance.now(), menuT = 8.5 * 60, indicatorT = 0;
   const camW = new THREE.Vector3();
@@ -291,7 +331,7 @@ async function boot() {
     for (let i = 0; i < steps; i++) {
       const s = sim / steps;
       net.time += s;
-      traffic.buildOcc(ap); ap.update(s); traffic.update(s); pax.update(s);
+      traffic.buildOcc(ap); ap.update(s); traffic.update(s); pax.update(s); pax2.update(s);
     }
     peds.update(sim);
     car.root.position.copy(ap.pos); car.root.rotation.y = ap.heading; car.root.updateMatrixWorld(true);
@@ -308,6 +348,10 @@ async function boot() {
     traffic.night = o.night;
     car.update(dt, { speed: ap.v, yawRate: ap.yawRate, accel: ap.accel, night: o.night, rain: env.state.rain, fog: env.state.fog });
     sound.update(ap.v, env.state.rain * 0.6, game.vehicle.energy === 'Elétrico');
+    radio.update(dt);
+    traffic.focus.copy(ap.pos);
+    { const hh = (st.time / 60) % 24; traffic.setDensity(hh < 6 ? 0.3 : hh < 7 ? 0.55 : hh < 9.5 ? 1 : hh < 16.5 ? 0.7 : hh < 20 ? 1 : hh < 23 ? 0.6 : 0.4); }
+    ambT -= dt; if (ambT <= 0) { ambT = 0.5; updateAmbience(st, o); }
     // piscas
     const nt = ap.path ? ap.nextTurn() : null;
     const ind = nt && (nt.type === 'L' || nt.type === 'R') && nt.dist < 30 ? nt.type : null;
@@ -322,7 +366,7 @@ async function boot() {
       map.draw(sx, W, H, { cx: ap.pos.x, cz: ap.pos.z, zoom: 1.5, rot: -ap.heading, path: ap.path, pathFrom: ap.d, car: { x: ap.pos.x, z: ap.pos.z, h: ap.heading }, pins: game.mapPins() });
       sx.fillStyle = 'rgba(8,10,14,0.85)'; sx.fillRect(0, 0, W, 52);
       sx.fillStyle = '#fff'; sx.font = 'bold 26px Arial'; sx.textAlign = 'left';
-      const hn = hud.el.nav.classList.contains('hidden') ? `${hhmm(st.time)}   ${WEATHERS[st.weather.type].label}` : hud.el.nav.textContent.replace(/(\d)([A-Za-zÀ-ú])/, '$1  $2');
+      const hn = hud.el.nav.classList.contains('hidden') ? `${hhmm(st.time)}  ${radio.station !== 'off' ? '📻 ' + radio.info().name : WEATHERS[st.weather.type].label}` : hud.el.nav.textContent.replace(/(\d)([A-Za-zÀ-ú])/, '$1  $2');
       sx.fillText(hn.slice(0, 34), 16, 35);
       car.screenT.needsUpdate = true;
     }
