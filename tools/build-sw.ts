@@ -19,6 +19,8 @@ function walk(dir: string): string[] {
 const files = walk(DIST)
   .map((f) => relative(DIST, f).split('\\').join('/'))
   .filter((f) => !SKIP.has(f))
+  // A app Forma (public/forma) é independente: não entra na cache do DutchPath.
+  .filter((f) => !f.startsWith('forma/'))
   .sort();
 // A página principal guarda-se como «./» e não como «index.html»: o Netlify redireciona
 // /index.html para /, e o Safari e o Chrome recusam abrir uma página guardada que veio de um redirecionamento.

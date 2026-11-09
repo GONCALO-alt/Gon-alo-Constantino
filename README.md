@@ -22,6 +22,16 @@ npm run build
 npm run preview
 ```
 
+## Forma (app de rosto, treino e comida)
+
+Uma segunda app, independente do DutchPath, em `public/forma/index.html` (publicada em `/forma/`).
+
+- **Escanear o rosto** com a câmara ou uma foto: 68 pontos do rosto (face-api, incluído em `public/forma/faceapi/`, licença MIT) para estimar simetria, proporções, maxilar, textura da pele e formato do rosto. Mostra o ponto de partida e o potencial com hábitos. A foto fica só no dispositivo.
+- **Perguntas** antes do plano: corpo que queres, o que queres melhorar no rosto, experiência, dias e tempo de treino, onde treinas, desportos de que gostas, dores e problemas (joelhos, costas, ombros, sono, stress, acne, digestão), tipo de alimentação, intolerâncias, comidas de que gostas e que odeias, refeições por dia e tempo para cozinhar.
+- **Plano semanal de treino** adaptado ao material e às dores, com cardio e desportos preferidos nos outros dias.
+- **Plano semanal de comida** com calorias e proteína calculadas (Mifflin-St Jeor), porções ajustadas. Cada refeição pode ser trocada, tirada da semana («Não gosto disto»), ou o dia/semana inteiro refeito. Lista de compras automática.
+- **Extras**: dia de hoje com checklist e copos de água, rotina da pele, cortes de cabelo e barba pelo formato do rosto, registo de peso com gráfico, dicas para o que te afeta, tema claro/escuro.
+
 ## O que já existe
 
 - Curso apresentado em **8 secções e 1005 unidades curtas** (10, 30, 30, 60, 255, 260, 180, 180; Inicial, A1, A1, A2, B1, B1, B2, B2), organizadas por `tools/lib/layout.ts` na compilação. As lições continuam escritas em 7 secções e 109 unidades temáticas (`content/course.json`); os IDs das lições e o progresso não mudam.
