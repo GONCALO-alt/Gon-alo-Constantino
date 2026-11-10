@@ -219,7 +219,7 @@ function registerIpc() {
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1600, height: 960, minWidth: 1100, minHeight: 680,
+    width: 480, height: 940, minWidth: 380, minHeight: 700,
     backgroundColor: '#0b0c10', title: 'Corte Studio', show: false, autoHideMenuBar: true,
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: false, backgroundThrottling: false },
   });

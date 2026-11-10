@@ -23,7 +23,7 @@ async function launch() {
   const win = await app.firstWindow();
   win.on('console', (m) => { if (m.type() === 'error') console.log('  [console]', m.text()); });
   win.on('pageerror', (e) => console.log('  [pageerror]', e.message));
-  await win.setViewportSize({ width: 1600, height: 960 });
+  await win.setViewportSize({ width: 480, height: 940 });
   return { app, win };
 }
 
@@ -41,13 +41,16 @@ const shot = (win, name) => win.screenshot({ path: path.join(SHOTS, name + '.png
   await win.waitForSelector('text=Novo projeto');
   await shot(win, '01_home');
 
-  step('Novo projeto 16:9');
+  step('Novo projeto 9:16');
   await win.click('.new-card >> text=Novo projeto');
-  await win.waitForSelector('.timeline');
+  await win.waitForTimeout(1500);
+  await shot(win, '01b_after_new');
+  await win.waitForSelector('.m-toolbar');
 
   step('Importar ficheiros (diálogo simulado)');
   await app.evaluate(({ dialog }, files) => { dialog.showOpenDialog = async () => ({ canceled: false, filePaths: files }); }, [...media, mkv]);
-  await win.click('.panel-head >> text=Importar');
+  await win.click('.m-tool:has-text("Média")');
+  await win.click('.sheet-head >> text=Importar');
   await win.waitForFunction(() => document.querySelectorAll('.media-card').length >= 5, null, { timeout: 30000 });
   await win.waitForTimeout(2500);
   await shot(win, '02_library');
@@ -61,20 +64,23 @@ const shot = (win, name) => win.screenshot({ path: path.join(SHOTS, name + '.png
   await win.waitForFunction(() => document.querySelectorAll('.clip').length >= 4);
 
   step('Texto com predefinição "Título animado"');
-  await win.click('.rail-btn:has-text("Texto")');
+  await win.keyboard.press('Escape');
+  await win.click('.m-tool:has-text("Texto")');
   await win.click('.text-preset:has-text("Título animado")');
   await win.waitForFunction(() => document.querySelectorAll('.clip.text').length >= 1);
 
-  step('Selecionar 2.º clip e aplicar transição dissolver + filtro');
+  step('Transição dissolver entre clips + filtro + efeito');
+  await win.click('.sheet-head button[title="Fechar"]');
   const clips = win.locator('.lane .clip.video');
-  await clips.nth(1).click({ position: { x: 30, y: 20 } });
-  await win.click('.rail-btn:has-text("Transições")');
-  await win.click('.tile:has-text("Dissolver")');
-  await win.click('.rail-btn:has-text("Filtros")');
+  await win.locator('.trans').first().click({ force: true });
+  await win.click('.sheet .tile:has-text("Dissolver")');
+  await win.click('.sheet-head button[title="Fechar"]');
   await clips.nth(0).click({ position: { x: 30, y: 20 } });
+  await win.click('.m-tool:has-text("Filtros")');
   await win.click('.tile:has-text("Cinema")');
-  await win.click('.rail-btn:has-text("Efeitos")');
+  await win.click('.m-tool:has-text("Efeitos")');
   await win.click('.tile:has-text("Vinheta")');
+  await win.click('.sheet-head button[title="Fechar"]');
 
   step('Dividir no cursor (tecla S) e desfazer/refazer');
   await win.evaluate(() => document.querySelector('.ruler').dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, clientX: document.querySelector('.ruler').getBoundingClientRect().left + 160, clientY: 10 })));
@@ -95,9 +101,9 @@ const shot = (win, name) => win.screenshot({ path: path.join(SHOTS, name + '.png
 
   step('Keyframes de escala no texto');
   await win.locator('.lane .clip.text').first().click();
-  await win.waitForSelector('.inspector .tab:has-text("Básico")');
-  await win.click('.inspector .tab:has-text("Básico")');
-  await win.locator('.inspector .kf').first().click();
+  await win.click('.m-tool:has-text("Transformar")');
+  await win.locator('.sheet .kf:has(svg.lucide-diamond)').first().click();
+  await win.click('.sheet-head button[title="Fechar"]');
   await win.waitForTimeout(200);
   await shot(win, '03_editor');
 
@@ -121,7 +127,7 @@ const shot = (win, name) => win.screenshot({ path: path.join(SHOTS, name + '.png
   await shot(win, '04_playing');
 
   step('Esperar autosave');
-  await win.waitForSelector('text=Guardado', { timeout: 10000 });
+  await win.waitForFunction(() => window.__corte.editor.getState().saveState.status === 'saved', null, { timeout: 10000 });
   const projDir = path.join(await app.evaluate(({ app }) => app.getPath('documents')), 'Corte Studio', 'Projetos');
   const files = fs.readdirSync(projDir);
   console.log('   ficheiros de projeto:', files.join(', '));
@@ -143,13 +149,13 @@ const shot = (win, name) => win.screenshot({ path: path.join(SHOTS, name + '.png
   await shot(win, '07_export_done');
   const probe = execFileSync(require(path.join(ROOT, 'node_modules/ffprobe-static')).path, ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height,avg_frame_rate,codec_name', '-of', 'csv=p=0', outFile]).toString().trim();
   console.log('   ffprobe:', probe);
-  if (!probe.includes('3840,2160') || !probe.includes('60/1')) throw new Error('exportação não é 4K60');
+  if (!probe.includes('2160,3840') || !probe.includes('60/1')) throw new Error('exportação não é 4K60 vertical');
   await win.click('.modal-foot >> text=Fechar');
 
   step('Encerramento inesperado → recuperação');
   await win.locator('.lane .clip').first().click();
   await win.keyboard.press('Delete');
-  await win.waitForSelector('text=Guardado', { timeout: 10000 });
+  await win.waitForFunction(() => window.__corte.editor.getState().saveState.status === 'saved', null, { timeout: 10000 });
   const pid = await app.evaluate(() => process.pid);
   process.kill(pid, 'SIGKILL');
   await new Promise((r) => setTimeout(r, 1000));
@@ -157,7 +163,7 @@ const shot = (win, name) => win.screenshot({ path: path.join(SHOTS, name + '.png
   await win.waitForSelector('text=Recuperar projeto', { timeout: 15000 });
   await shot(win, '08_recovery');
   await win.click('.modal-foot >> text=Recuperar');
-  await win.waitForSelector('.timeline');
+  await win.waitForSelector('.m-toolbar');
   console.log('   clips após recuperação:', await win.locator('.lane .clip').count());
   await app.close();
   console.log('✔ Teste E2E concluído com sucesso');

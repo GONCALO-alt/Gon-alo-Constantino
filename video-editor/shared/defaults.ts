@@ -129,8 +129,8 @@ export function exportSize(projW: number, projH: number, short: number) {
 }
 
 export const ASPECTS = [
-  { id: '16:9', w: 1920, h: 1080, label: '16:9 YouTube' },
   { id: '9:16', w: 1080, h: 1920, label: '9:16 TikTok / Reels' },
+  { id: '16:9', w: 1920, h: 1080, label: '16:9 YouTube' },
   { id: '1:1', w: 1080, h: 1080, label: '1:1 Instagram' },
   { id: '4:5', w: 1080, h: 1350, label: '4:5 Retrato' },
   { id: '21:9', w: 2560, h: 1080, label: '21:9 Cinema' },

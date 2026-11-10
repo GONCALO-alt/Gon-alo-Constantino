@@ -4,6 +4,19 @@ Aplicação desktop de edição de vídeo multipista (Electron + React + TypeScr
 do CapCut Desktop mas com identidade própria, com **exportação real via FFmpeg até 4K UHD (3840×2160) a 60 FPS**
 em H.264 ou H.265/HEVC com áudio AAC.
 
+## Layout vertical (estilo CapCut)
+
+A janela abre em formato vertical (480×940, redimensionável) e os projetos novos são **9:16** por defeito:
+
+- **Topo:** fechar, nome do projeto, desfazer/refazer, menu `⋯` (guardar, histórico, definições) e **Exportar**.
+- **Centro:** pré-visualização e, por baixo, a timeline; o botão branco **+** acrescenta vídeos/fotos/música ao fim da pista principal.
+- **Barra inferior:** Média, Áudio, Texto, Legendas, Efeitos, Filtros, Transições e Formato. Ao tocar num clip, a barra
+  muda para as ferramentas desse clip (Dividir, Velocidade, Volume, Animação, Ajustar, Filtros, Efeitos, Transformar,
+  Congelar, Extrair áudio, Duplicar, Apagar); **Voltar** regressa às ferramentas gerais.
+- Cada ferramenta abre um **painel que sobe de baixo**, fechado com ✕.
+- Os textos escalam com o lado menor do vídeo, por isso ficam com o mesmo tamanho relativo na vertical e na horizontal.
+- Em 9:16, "4K UHD" exporta **2160×3840** e "1080p" exporta 1080×1920.
+
 ## Arranque rápido
 
 Requisitos: Node.js 20.11+ (o FFmpeg/FFprobe vêm embutidos via `ffmpeg-static`/`ffprobe-static`).

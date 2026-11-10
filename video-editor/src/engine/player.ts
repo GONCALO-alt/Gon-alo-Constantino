@@ -274,7 +274,7 @@ export class Player {
         if (!img.complete || !img.naturalWidth) continue;
         src = img; key = `i:${m.id}`; ver = 'static';
       } else if (c.type === 'text') {
-        const tx = this.text(c, H);
+        const tx = this.text(c, Math.min(W, H)); // texto escala com o lado menor (vertical ou horizontal)
         src = tx.r.canvas; key = `t:${c.id}`; ver = String(tx.ver);
         dims = { width: tx.r.width, height: tx.r.height };
       }

@@ -56,12 +56,12 @@ export function Home() {
         </div>
 
         <div className="hero">
-          <div className="new-card" onClick={() => newProject(1920, 1080)}>
+          <div className="new-card" onClick={() => newProject(1080, 1920)}>
             <div className="row" style={{ gap: 12 }}>
               <div className="logo" style={{ width: 44, height: 44, borderRadius: 12 }}><Plus size={24} /></div>
               <div>
                 <div style={{ fontSize: 18, fontWeight: 700 }}>Novo projeto</div>
-                <div className="muted">Edição multipista com exportação até 4K a 60 FPS</div>
+                <div className="muted">Vertical 9:16 · exportação até 4K a 60 FPS</div>
               </div>
             </div>
             <div className="aspects" onClick={(e) => e.stopPropagation()}>

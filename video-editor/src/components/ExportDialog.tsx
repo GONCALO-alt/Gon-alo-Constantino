@@ -67,7 +67,7 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
     try {
       const texts = project.clips.filter((c) => c.type === 'text' && !project.tracks.find((t) => t.id === c.trackId)?.hidden);
       for (const c of texts) {
-        const png = await renderTextPng(c.text ?? '', c.style!, size.height);
+        const png = await renderTextPng(c.text ?? '', c.style!, Math.min(size.width, size.height));
         const path = await api.writeTemp(`text_${c.id}_${size.height}_${Date.now()}.png`, png.data);
         textImages[c.id] = { path, width: png.width, height: png.height };
       }

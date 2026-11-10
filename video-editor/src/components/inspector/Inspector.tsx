@@ -118,7 +118,7 @@ function KeyframeNav({ clip }: { clip: Clip }) {
   );
 }
 
-function BasicInspector({ clip }: { clip: Clip }) {
+export function BasicInspector({ clip }: { clip: Clip }) {
   return (
     <>
       <Section title="Transformar" right={<button className="btn sm ghost" onClick={() => upd(clip.id, (c) => { c.transform = { ...c.transform, x: 0, y: 0, scale: 1, rotation: 0, opacity: 1 }; for (const k of ['x', 'y', 'scale', 'rotation', 'opacity'] as const) delete c.keyframes[k]; })}><RotateCcw size={12} /> Repor</button>}>
@@ -167,7 +167,7 @@ function BasicInspector({ clip }: { clip: Clip }) {
   );
 }
 
-function ColorInspector({ clip }: { clip: Clip }) {
+export function ColorInspector({ clip }: { clip: Clip }) {
   const set = (k: keyof ColorAdjust, v: number) => upd(clip.id, (c) => { c.color[k] = v; }, `color-${k}-${clip.id}`);
   const rows: [keyof ColorAdjust, string][] = [['brightness', 'Brilho'], ['contrast', 'Contraste'], ['saturation', 'Saturação'], ['temperature', 'Temperatura'], ['tint', 'Tonalidade']];
   return (
@@ -190,7 +190,7 @@ function ColorInspector({ clip }: { clip: Clip }) {
   );
 }
 
-function SpeedInspector({ clip, project }: { clip: Clip; project: Project }) {
+export function SpeedInspector({ clip, project }: { clip: Clip; project: Project }) {
   const m = getMedia(project, clip.mediaId);
   const setSpeed = (sp: number) => upd(clip.id, (c) => {
     const span = c.duration * c.speed; // duração da fonte mantém-se
@@ -217,7 +217,7 @@ function SpeedInspector({ clip, project }: { clip: Clip; project: Project }) {
   );
 }
 
-function AudioInspector({ clip }: { clip: Clip }) {
+export function AudioInspector({ clip }: { clip: Clip }) {
   return (
     <>
       <Section title="Áudio">
@@ -240,7 +240,7 @@ function AudioInspector({ clip }: { clip: Clip }) {
   );
 }
 
-function AnimInspector({ clip }: { clip: Clip }) {
+export function AnimInspector({ clip }: { clip: Clip }) {
   const row = (which: 'animIn' | 'animOut', title: string) => (
     <Section title={title}>
       <select className="input" value={clip[which].type} onChange={(e) => upd(clip.id, (c) => { c[which].type = e.target.value as any; })}>
@@ -275,7 +275,7 @@ function AnimInspector({ clip }: { clip: Clip }) {
   );
 }
 
-function FxInspector({ clip }: { clip: Clip }) {
+export function FxInspector({ clip }: { clip: Clip }) {
   return (
     <Section title="Efeitos aplicados">
       {clip.effects.length === 0 && <div className="hint">Sem efeitos. Adicione-os no separador <b>Efeitos</b> (à esquerda).</div>}
@@ -292,7 +292,7 @@ function FxInspector({ clip }: { clip: Clip }) {
   );
 }
 
-function TextInspector({ clip }: { clip: Clip }) {
+export function TextInspector({ clip }: { clip: Clip }) {
   const s = clip.style!;
   const set = <K extends keyof TextStyle>(k: K, v: TextStyle[K], key = true) => upd(clip.id, (c) => { (c.style as any)[k] = v; }, key ? `ts-${k}-${clip.id}` : undefined);
   return (
@@ -342,7 +342,7 @@ function TextInspector({ clip }: { clip: Clip }) {
   );
 }
 
-function TransitionInspector({ clip, project }: { clip: Clip; project: Project }) {
+export function TransitionInspector({ clip, project }: { clip: Clip; project: Project }) {
   const prev = prevAdjacent(project, clip);
   const tr = clip.transitionIn;
   if (!prev || !tr) return <div className="panel-body"><div className="hint">Esta transição já não é válida (os clips não estão encostados).</div></div>;
@@ -387,7 +387,7 @@ function MultiInspector({ ids }: { ids: string[] }) {
   );
 }
 
-function ProjectInspector({ project }: { project: Project }) {
+export function ProjectInspector({ project }: { project: Project }) {
   const set = (fn: (p: Project) => void) => useEditor.getState().commit((d) => fn(d as Project));
   const aspect = ASPECTS.find((a) => Math.abs(a.w / a.h - project.settings.width / project.settings.height) < 0.01)?.id ?? 'custom';
   const settings = useEditor((s) => s.settings);

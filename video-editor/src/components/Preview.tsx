@@ -135,21 +135,21 @@ function Transport({ stageRef, playerRef }: { stageRef: React.RefObject<HTMLDivE
     <div className="transport">
       <div className="timecode"><b>{fmtTime(time, fps)}</b> / {fmtTime(dur, fps)}</div>
       <div className="row" style={{ gap: 4 }}>
-        <button className="icon-btn" title="Início (Home)" onClick={() => pb.seek(0)}><SkipBack size={16} /></button>
+        <button className="icon-btn hide-mobile" title="Início (Home)" onClick={() => pb.seek(0)}><SkipBack size={16} /></button>
         <button className="icon-btn" title="Recuar 1 fotograma (←)" onClick={() => { pb.setPlaying(false); pb.seek(time - 1 / fps); }}><StepBack size={16} /></button>
         <button className="play-btn" title="Reproduzir/Pausar (Espaço)" onClick={() => pb.toggle()}>
           {playing ? <Pause size={18} fill="#000" /> : <Play size={18} fill="#000" style={{ marginLeft: 2 }} />}
         </button>
         <button className="icon-btn" title="Avançar 1 fotograma (→)" onClick={() => { pb.setPlaying(false); pb.seek(time + 1 / fps); }}><StepForward size={16} /></button>
-        <button className="icon-btn" title="Fim (End)" onClick={() => pb.seek(dur)}><SkipForward size={16} /></button>
+        <button className="icon-btn hide-mobile" title="Fim (End)" onClick={() => pb.seek(dur)}><SkipForward size={16} /></button>
       </div>
       <div className="row" style={{ justifyContent: 'flex-end', gap: 4 }}>
-        <div className="meter" title="Nível de áudio"><div style={{ height: `${Math.min(100, level * 100)}%` }} /></div>
-        <select className="input" style={{ width: 74, height: 28 }} value={rate} title="Velocidade de reprodução" onChange={(e) => pb.setRate(parseFloat(e.target.value))}>
+        <div className="meter hide-mobile" title="Nível de áudio"><div style={{ height: `${Math.min(100, level * 100)}%` }} /></div>
+        <select className="input hide-mobile" style={{ width: 74, height: 28 }} value={rate} title="Velocidade de reprodução" onChange={(e) => pb.setRate(parseFloat(e.target.value))}>
           {[0.25, 0.5, 0.75, 1, 1.25, 1.5, 2].map((r) => <option key={r} value={r}>{r}×</option>)}
         </select>
-        <button className={`icon-btn ${loop ? 'active' : ''}`} title="Repetir" onClick={() => usePlayback.setState({ loop: !loop })}><Repeat size={16} /></button>
-        <button className="icon-btn" title="Capturar fotograma (PNG)" onClick={async () => {
+        <button className={`icon-btn hide-mobile ${loop ? 'active' : ''}`} title="Repetir" onClick={() => usePlayback.setState({ loop: !loop })}><Repeat size={16} /></button>
+        <button className="icon-btn hide-mobile" title="Capturar fotograma (PNG)" onClick={async () => {
           const b = await playerRef.current?.snapshot();
           if (!b) return;
           const a = document.createElement('a');
