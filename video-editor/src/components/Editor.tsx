@@ -8,7 +8,7 @@ import type { Clip } from '@shared/types';
 import { useEditor, mainTrackEnd } from '../store/editor';
 import { usePlayback } from '../store/playback';
 import { projectDuration } from '@shared/timeline';
-import { api } from '../api';
+import { api, isWeb } from '../api';
 import * as A from '../actions';
 import { Preview } from './Preview';
 import { Timeline, ContextMenu, MenuItem } from './timeline/Timeline';
@@ -206,9 +206,9 @@ function TopBar({ onExport, onHistory, onSettings }: { onExport: () => void; onH
       <button className="icon-btn" title="Mais opções" onClick={(e) => setMenu({
         x: e.clientX - 200, y: e.clientY + 10, items: [
           { label: 'Guardar', icon: <Save size={14} />, kbd: 'Ctrl S', run: () => A.saveNow() },
-          { label: 'Guardar como…', run: () => A.saveAs() },
+          ...(isWeb ? [] : [{ label: 'Guardar como…', run: () => A.saveAs() }]),
           { label: 'Histórico de versões', icon: <History size={14} />, run: onHistory },
-          { label: 'Exportar projeto com média', icon: <Package size={14} />, run: () => A.exportPackage() },
+          ...(isWeb ? [] : [{ label: 'Exportar projeto com média', icon: <Package size={14} />, run: () => A.exportPackage() }]),
           { label: 'Definições', icon: <Settings size={14} />, run: onSettings },
         ],
       })}><MoreHorizontal size={19} /></button>

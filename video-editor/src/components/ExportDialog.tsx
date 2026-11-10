@@ -6,7 +6,7 @@ import { toSrt } from '@shared/srt';
 import { projectDuration, fmtTime } from '@shared/timeline';
 import { useEditor } from '../store/editor';
 import { usePlayback } from '../store/playback';
-import { api } from '../api';
+import { api, isWeb, mediaUrl } from '../api';
 import { renderTextPng } from '../engine/text';
 import { captionTracks, trackSegments } from '../captions/captions';
 import { Modal, Seg, Slider, Toggle, fmtBytes } from './ui';
@@ -58,7 +58,7 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
   const estSize = rateControl === 'bitrate' ? ((bitrate * 1e6 + (includeAudio ? audioKbps * 1000 : 0)) * dur) / 8 : 0;
 
   const start = async () => {
-    const out = await api.saveExportDialog(`${project.name} ${size.height >= 2160 ? '4K' : `${size.height}p`}${fps}`);
+    const out = await api.saveExportDialog(`${project.name} ${Math.min(size.width, size.height) >= 2160 ? '4K' : `${Math.min(size.width, size.height)}p`}${fps}`);
     if (!out) return;
     localStorage.setItem('exportPrefs', JSON.stringify({ res, fps, codec, useHw, rateControl, crf, bitrate, preset, audioKbps, hwDecode }));
     // Renderiza cada texto diretamente à resolução final (nítido em 4K)
@@ -104,8 +104,9 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
         onClose={running ? undefined : onClose}
         footer={running ? <button className="btn danger" onClick={() => jobId && api.cancelExport(jobId)}><XCircle size={15} /> Cancelar</button>
           : <>
-            {p.stage === 'done' && p.result && <button className="btn" onClick={() => api.reveal(p.result!.path)}><FolderOpen size={15} /> Mostrar na pasta</button>}
-            {p.stage === 'done' && p.result && <button className="btn" onClick={() => api.openPath(p.result!.path)}><Play size={15} /> Reproduzir</button>}
+            {p.stage === 'done' && p.result && isWeb && <button className="btn" onClick={() => api.reveal(p.result!.path)}><FolderOpen size={15} /> Guardar MP4</button>}
+            {p.stage === 'done' && p.result && !isWeb && <button className="btn" onClick={() => api.reveal(p.result!.path)}><FolderOpen size={15} /> Mostrar na pasta</button>}
+            {p.stage === 'done' && p.result && !isWeb && <button className="btn" onClick={() => api.openPath(p.result!.path)}><Play size={15} /> Reproduzir</button>}
             <button className="btn primary" onClick={onClose}>Fechar</button>
           </>}>
         {running && (
@@ -126,8 +127,9 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
         )}
         {p.stage === 'done' && p.result && (
           <div>
-            <div className="row" style={{ marginBottom: 14 }}><CheckCircle2 size={28} color="var(--green)" /><div><b>Vídeo exportado com sucesso</b><div className="small muted">{p.result.path}</div></div></div>
-            <div className="hint" style={{ marginBottom: 6 }}>Verificação do ficheiro produzido (lida com ffprobe):</div>
+            <div className="row" style={{ marginBottom: 14 }}><CheckCircle2 size={28} color="var(--green)" /><div><b>Vídeo exportado com sucesso</b><div className="small muted">{isWeb ? 'Toque em «Guardar MP4» para o guardar no seu dispositivo.' : p.result.path}</div></div></div>
+            {isWeb && <video src={mediaUrl(p.result.path)} controls playsInline style={{ width: '100%', maxHeight: 320, background: '#000', borderRadius: 8, marginBottom: 10 }} />}
+            <div className="hint" style={{ marginBottom: 6 }}>{isWeb ? 'Informação lida do ficheiro produzido pelo FFmpeg:' : 'Verificação do ficheiro produzido (lida com ffprobe):'}</div>
             <div className="stats">
               <div className="stat"><span>Resolução</span><b>{p.result.width}×{p.result.height}</b></div>
               <div className="stat"><span>FPS</span><b>{p.result.fps}</b></div>
@@ -182,11 +184,11 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
           ]} />
           {!hevcAvailable && hw && <span className="small muted">H.265 indisponível neste FFmpeg</span>}
         </div>
-        <div className="field grow">
+        {!isWeb && <div className="field grow">
           <label><span><Cpu size={12} /> Aceleração por hardware</span></label>
           {hwEncoder ? <Toggle label={hwEncoder.label} value={useHw} onChange={setUseHw} /> : <span className="small muted">{hw ? 'Nenhum codificador de GPU disponível — será usado o software (máxima qualidade).' : 'A detetar…'}</span>}
           <Toggle label="Descodificação por hardware" value={hwDecode} onChange={setHwDecode} />
-        </div>
+        </div>}
       </div>
       <div className="field">
         <label>Qualidade</label>
@@ -210,7 +212,8 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
         </div>
       </div>
       {hasCaptions && <Toggle label="Exportar também as legendas em ficheiro .srt (as legendas já ficam incorporadas no vídeo)" value={exportSrt} onChange={setExportSrt} />}
-      {res4kWarning && <div className="hint" style={{ color: 'var(--accent2)' }}><Zap size={12} /> 4K a 60 FPS em software é exigente: o render pode demorar várias vezes a duração do vídeo. Ative a aceleração por hardware se estiver disponível.</div>}
+      {isWeb && <div className="hint" style={{ color: 'var(--accent2)', marginBottom: 6 }}><Zap size={12} /> No navegador o FFmpeg corre num só núcleo do processador: 1080p demora alguns segundos por segundo de vídeo; 4K a 60 FPS pode demorar vários minutos. Para exportações longas em 4K use a app desktop.</div>}
+      {!isWeb && res4kWarning && <div className="hint" style={{ color: 'var(--accent2)' }}><Zap size={12} /> 4K a 60 FPS em software é exigente: o render pode demorar várias vezes a duração do vídeo. Ative a aceleração por hardware se estiver disponível.</div>}
       {hw && <div className="small muted" style={{ marginTop: 8 }}>{hw.ffmpegVersion}</div>}
     </Modal>
   );

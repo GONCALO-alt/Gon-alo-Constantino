@@ -11,7 +11,8 @@
     "start": "electron .",
     "test": "vitest run",
     "dist": "npm run build && electron-builder",
-    "test:e2e": "node tests/e2e/app.e2e.cjs && node tests/e2e/editing.e2e.cjs"
+    "test:e2e": "node tests/e2e/app.e2e.cjs && node tests/e2e/editing.e2e.cjs",
+    "build:web": "node scripts/build-web.mjs"
   },
   "build": {
     "appId": "studio.corte.editor",
@@ -111,6 +112,7 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@ffmpeg/core": "^0.12.6",
     "@types/node": "^22.20.5",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

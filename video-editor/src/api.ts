@@ -49,10 +49,14 @@ export interface Api {
   pathForFile(f: File): string;
 }
 
-declare global { interface Window { api: Api } }
-export const api: Api = window.api;
+import { createWebApi, webUrl } from './web/webApi';
 
-/** URL do protocolo media:// (com suporte a streaming e Range) para um ficheiro local. */
-export const mediaUrl = (path: string) => `media://f/${encodeURIComponent(path)}`;
+declare global { interface Window { api: Api } }
+/** Na app desktop a API vem do Electron; no navegador (cloud) usa a versão web. */
+export const isWeb = !window.api;
+export const api: Api = window.api ?? createWebApi();
+
+/** URL de um ficheiro: protocolo media:// no desktop, blob: no navegador. */
+export const mediaUrl = (path: string) => (path.startsWith('web:') ? webUrl(path) : `media://f/${encodeURIComponent(path)}`);
 
 export type { CaptionSegment };

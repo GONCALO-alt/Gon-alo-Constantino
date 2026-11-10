@@ -3,7 +3,7 @@ import { Copy, Film, FolderOpen, Pencil, Plus, Scissors, Trash2, LifeBuoy } from
 import type { ProjectSummary, Project } from '@shared/types';
 import { ASPECTS, createProject } from '@shared/defaults';
 import { fmtDuration } from '@shared/timeline';
-import { api, mediaUrl } from '../api';
+import { api, isWeb, mediaUrl } from '../api';
 import { useEditor } from '../store/editor';
 import { Modal } from './ui';
 
@@ -50,9 +50,9 @@ export function Home() {
             <div className="logo" style={{ width: 34, height: 34, borderRadius: 9 }}><Scissors size={18} /></div>
             Corte Studio
           </div>
-          <button className="btn" onClick={async () => { const f = await api.openProjectDialog(); if (f) openFile(f); }}>
+          {!isWeb && <button className="btn" onClick={async () => { const f = await api.openProjectDialog(); if (f) openFile(f); }}>
             <FolderOpen size={15} /> Abrir projeto…
-          </button>
+          </button>}
         </div>
 
         <div className="hero">
@@ -104,7 +104,7 @@ export function Home() {
               <div className="proj-actions" onClick={(e) => e.stopPropagation()}>
                 <button className="icon-btn sm" title="Renomear" onClick={() => setRenaming(p)}><Pencil size={13} /></button>
                 <button className="icon-btn sm" title="Duplicar" onClick={async () => { await api.duplicateProject(p.path); refresh(); }}><Copy size={13} /></button>
-                <button className="icon-btn sm" title="Mostrar na pasta" onClick={() => api.reveal(p.path)}><FolderOpen size={13} /></button>
+                {!isWeb && <button className="icon-btn sm" title="Mostrar na pasta" onClick={() => api.reveal(p.path)}><FolderOpen size={13} /></button>}
                 <button className="icon-btn sm" title="Apagar" onClick={async () => {
                   if ((await api.confirm(`Apagar o projeto "${p.name}"?`, 'Os ficheiros de média originais não são apagados.', ['Apagar', 'Cancelar'])) === 0) {
                     await api.removeProject(p.path); refresh();

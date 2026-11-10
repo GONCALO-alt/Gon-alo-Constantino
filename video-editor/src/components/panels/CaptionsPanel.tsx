@@ -6,7 +6,7 @@ import { parseSrt, toSrt } from '@shared/srt';
 import { clipEnd, fmtTime, projectDuration } from '@shared/timeline';
 import { useEditor, addText } from '../../store/editor';
 import { usePlayback } from '../../store/playback';
-import { api } from '../../api';
+import { api, isWeb } from '../../api';
 import { captionTracks, insertCaptions, LANG_NAMES, LANGUAGES, splitSegments, trackSegments, wavToFloat32 } from '../../captions/captions';
 import { FontPicker } from '../FontPicker';
 import { Slider, Toggle } from '../ui';
@@ -81,6 +81,8 @@ export function CaptionsPanel() {
       <div className="panel-head">Legendas</div>
       <div className="panel-body">
         <div className="section-title"><span><Wand2 size={13} /> Legendas automáticas</span></div>
+        {isWeb && <div className="hint" style={{ marginBottom: 10 }}>As legendas automáticas (Whisper) precisam de descarregar o modelo da Internet e só estão disponíveis na app desktop. Aqui pode importar um ficheiro SRT ou escrever as frases.</div>}
+        {!isWeb && <>
         <div className="field">
           <label>Idioma</label>
           <select className="input" value={language} onChange={(e) => setLanguage(e.target.value)}>
@@ -107,6 +109,7 @@ export function CaptionsPanel() {
           </div>
         )}
         <div className="hint" style={{ marginTop: 8 }}>O reconhecimento corre localmente (Whisper). Na primeira utilização o modelo é descarregado da Internet.</div>
+        </>}
 
         <div className="sep" />
         <div className="row">

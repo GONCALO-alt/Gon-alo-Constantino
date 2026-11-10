@@ -17,6 +17,19 @@ A janela abre em formato vertical (480×940, redimensionável) e os projetos nov
 - Os textos escalam com o lado menor do vídeo, por isso ficam com o mesmo tamanho relativo na vertical e na horizontal.
 - Em 9:16, "4K UHD" exporta **2160×3840** e "1080p" exporta 1080×1920.
 
+## Versão web (cloud)
+
+O mesmo editor corre no navegador: `npm run build:web` gera `dist-web/`, publicada como artefacto em
+https://claude.ai/artifact/KNVo2t6TrpwQGiRjY5dkGJ (privada até ser partilhada no menu Partilhar).
+
+- A média e os projetos ficam no armazenamento deste navegador (IndexedDB), com autosave, histórico e recuperação.
+- A exportação usa o mesmo motor (filtergraph) com o **ffmpeg.wasm** publicado junto da página, em partes de 14 MB.
+  Corre num só núcleo do processador: num teste, 18 s de vídeo vertical 720p demoraram 60 s e 5 s de 4K60 cerca de 4,5 min.
+- O vídeo exportado aparece num leitor e é guardado com «Guardar MP4» (capacidade de downloads da cloud).
+- Formatos que o navegador não lê (ex. MKV com MPEG-4, HEVC) são convertidos para um proxy com o ffmpeg.wasm.
+- Indisponível na versão web: legendas automáticas Whisper (precisam de descarregar o modelo), codificadores de GPU,
+  pastas do sistema. As legendas SRT exportam como `.srt.txt` (a cloud só permite certas extensões).
+
 ## Arranque rápido
 
 Requisitos: Node.js 20.11+ (o FFmpeg/FFprobe vêm embutidos via `ffmpeg-static`/`ffprobe-static`).

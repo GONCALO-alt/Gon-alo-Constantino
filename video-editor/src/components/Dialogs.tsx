@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { fmtDuration } from '@shared/timeline';
 import { useEditor } from '../store/editor';
-import { api } from '../api';
+import { api, isWeb } from '../api';
 import { Modal, Toggle } from './ui';
 import * as A from '../actions';
 
@@ -58,8 +58,9 @@ export function SettingsDialog({ onClose }: { onClose: () => void }) {
       <div className="sep" />
       <div className="section-title"><span>Projeto</span></div>
       <div className="row" style={{ flexWrap: 'wrap' }}>
-        <button className="btn sm" onClick={() => A.saveAs()}>Guardar como…</button>
-        <button className="btn sm" onClick={() => A.exportPackage()}>Exportar projeto com média…</button>
+        {!isWeb && <button className="btn sm" onClick={() => A.saveAs()}>Guardar como…</button>}
+        {!isWeb && <button className="btn sm" onClick={() => A.exportPackage()}>Exportar projeto com média…</button>}
+        {isWeb && <span className="hint">Os projetos e a média ficam guardados neste navegador.</span>}
       </div>
       <div className="sep" />
       <div className="section-title"><span>Sistema</span></div>
