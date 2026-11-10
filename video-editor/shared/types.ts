@@ -81,17 +81,25 @@ export interface EffectInstance {
   intensity: number; // 0..100
 }
 
-export type EffectType = 'blur' | 'sharpen' | 'vignette' | 'grain' | 'glitch' | 'bw' | 'sepia' | 'invert';
+export type EffectType =
+  | 'blur' | 'sharpen' | 'vignette' | 'grain' | 'glitch' | 'bw' | 'sepia' | 'invert'
+  | 'chromatic' | 'pixelate' | 'posterize' | 'scanlines' | 'mirror' | 'glow' | 'flash' | 'strobe' | 'duotone' | 'cinemaBars';
 
 export type TransitionType =
-  | 'fade' | 'dissolve' | 'zoomIn' | 'zoomOut' | 'slideLeft' | 'slideRight' | 'slideUp' | 'slideDown' | 'blur' | 'glitch';
+  | 'fade' | 'dissolve' | 'zoomIn' | 'zoomOut' | 'slideLeft' | 'slideRight' | 'slideUp' | 'slideDown' | 'blur' | 'glitch'
+  | 'whiteFlash' | 'wipeLeft' | 'wipeRight' | 'wipeUp' | 'wipeDown' | 'pushLeft' | 'pushRight' | 'spin' | 'shake' | 'zoomBlur';
 
 export interface TransitionRef { type: TransitionType; duration: number }
 
-export type AnimType = 'none' | 'fade' | 'slideUp' | 'slideDown' | 'slideLeft' | 'slideRight' | 'zoomIn' | 'zoomOut' | 'pop' | 'blur' | 'spin';
+export type AnimType =
+  | 'none' | 'fade' | 'slideUp' | 'slideDown' | 'slideLeft' | 'slideRight' | 'zoomIn' | 'zoomOut' | 'pop' | 'blur' | 'spin'
+  | 'rotateIn' | 'swing' | 'bounce' | 'flipX' | 'flipY' | 'stretch' | 'squeeze' | 'wipeRight' | 'wipeLeft' | 'wipeUp' | 'wipeDown'
+  | 'shake' | 'flash' | 'zoomBlur' | 'riseUp' | 'elastic' | 'glitchIn';
 export interface ClipAnim { type: AnimType; duration: number }
 
-export type MotionType = 'none' | 'shake' | 'kenBurnsIn' | 'kenBurnsOut' | 'pulse' | 'float' | 'sway';
+export type MotionType =
+  | 'none' | 'shake' | 'kenBurnsIn' | 'kenBurnsOut' | 'pulse' | 'float' | 'sway'
+  | 'heartbeat' | 'wiggle' | 'spinLoop' | 'breathe' | 'jelly' | 'flicker' | 'bounceLoop' | 'rock' | 'glitchLoop' | 'zoomPulse';
 
 export interface TextStyle {
   font: string;

@@ -83,9 +83,10 @@ limitador. No fim, o ficheiro é verificado com `ffprobe` e a resolução/FPS/co
 | Timeline | Pistas de vídeo/imagem, áudio e texto ilimitadas; sobreposições (camadas); arrastar entre pistas; aparar; dividir; zoom (Ctrl+roda, slider, ajustar); snap a cortes/cursor/marcadores; bloquear, ocultar, silenciar e reordenar pistas; desfazer/refazer (200 passos); copiar/colar/duplicar; ripple delete; marcadores; tiras de miniaturas e formas de onda |
 | Vídeo | Crop (com proporções rápidas), escala, posição, rotação, espelhar H/V, velocidade 0,1×–10× (câmara lenta/rápida com áudio sem alteração de tom), congelar fotograma (resolução total), opacidade, volume, brilho/contraste/saturação/temperatura/tonalidade, keyframes com easing para posição/escala/rotação/opacidade/volume, manipulação direta no preview (mover/escalar/rodar) |
 | Áudio | Aparar, volume até 200 % com keyframes, fade in/out, silenciar/remover áudio do vídeo, separar áudio para pista própria (ligado ao vídeo), música, sincronização automática por correlação das formas de onda |
-| Texto | Fontes embutidas e do sistema, tamanho, cor, negrito/itálico/sublinhado, alinhamento, espaçamento, contorno, sombra, caixa de fundo, 10 animações de entrada/saída, 10 predefinições de títulos animados, legendas |
-| Efeitos | Desfocar, nitidez, vinheta, grão, glitch, P&B, sépia, inverter (intensidade individual); 12 filtros cinematográficos com intensidade; 6 efeitos de movimento (tremer, Ken Burns, pulsar, flutuar, balançar) |
-| Transições | Fade (preto), dissolver, zoom in/out, deslizar ×4, desfoque, glitch — duração ajustável, aplicar a todos os cortes |
+| Texto | 61 tipos de letra incluídos (Google Fonts, offline) em 5 categorias + 6 do sistema, com seletor visual; tamanho, cor, negrito/itálico/sublinhado, alinhamento, espaçamento, contorno, sombra, caixa de fundo; 28 estilos de texto prontos; legendas |
+| Animações | 27 animações de entrada/saída (fade, zoom, pop, elástico, quicar, deslizar, emergir, rodar, rodopio, baloiçar, virar H/V, esticar, apertar, revelar ×4, desfoque, zoom desfocado, tremer, flash, glitch) e 16 animações em loop (batimento, pulsar, gelatina, respirar, abanar, girar, cintilar, glitch, Ken Burns…), com separadores Entrada/Saída/Loop e pré-visualização ao escolher |
+| Efeitos | 18 efeitos por categoria (Básico, Luz, Retro, Arte, Distorção): desfocar, nitidez, vinheta, barras de cinema, espelho, brilho suave, flash, estroboscópio, grão, VHS, sépia, P&B, posterizar, duotone, inverter, pixelizar, aberração cromática, glitch — intensidade individual; 12 filtros cinematográficos |
+| Transições | 20 transições: misturar, fundir a preto, flash branco, aproximar, afastar, zoom desfocado, rodar, tremer, deslizar ×4, empurrar ×2, cortina ×4, desfoque, glitch — duração ajustável, aplicar a todos os cortes |
 | Pré-visualização | WebGL2 em tempo real com todos os efeitos/transições, play/pausa, fotograma a fotograma, velocidade 0,25×–2×, repetir, ecrã inteiro, captura de fotograma PNG, medidor de nível de áudio |
 | Legendas | Geração automática com Whisper local (tiny/base/small), deteção de idioma, divisão em frases curtas sincronizadas, edição de cada frase, estilo global, importação/exportação SRT, incorporadas no vídeo exportado |
 | Exportação | 720p, 1080p, 1440p, 4K UHD (proporção do projeto respeitada, ex. 2160×3840 em 9:16); 24/25/30/50/60 FPS; H.264 e H.265/HEVC; bitrate ou CRF; preset de velocidade; AAC 128–320 kbps; codificadores de GPU (NVENC, Quick Sync, AMF, VideoToolbox, VA-API) detetados e testados em tempo real; descodificação por hardware; barra de progresso, ETA, fps de render, cancelar (apaga o ficheiro parcial); verificação final com ffprobe |
@@ -105,6 +106,13 @@ limitador. No fim, o ficheiro é verificado com `ffprobe` e a resolução/FPS/co
   após `SIGKILL`; arrastar/aparar, velocidade, separar áudio, congelar fotograma, SRT, histórico, exportação HEVC,
   e coerência de cor preview ↔ exportação.
 
+## Nota sobre o CapCut
+
+As animações, efeitos e transições têm implementação própria (não copiam código, presets nem ficheiros do CapCut),
+e os tipos de letra são alternativas gratuitas (Google Fonts) parecidas com as mais usadas — as fontes do CapCut
+são licenciadas e não podem ser redistribuídas. Os testes comparam o preview com a exportação para cada efeito
+(diferença média ≤ 6/255).
+
 ## Limitações conhecidas / próximos passos
 
 - **Legendas automáticas**: implementadas com Whisper (transformers.js + ONNX), mas não puderam ser testadas
@@ -116,7 +124,7 @@ limitador. No fim, o ficheiro é verificado com `ffprobe` e a resolução/FPS/co
   em 4 núcleos). Com NVENC/Quick Sync é muito mais rápido.
 - Desfoque e glitch *animados* (transições) são uma mistura com a versão de intensidade máxima — igual no preview
   e na exportação, mas não um desfoque de raio variável verdadeiro.
-- Ainda não existem: animação "máquina de escrever" no texto, reprodução invertida, chroma key, efeitos de
+- Ainda não existem: animação "máquina de escrever" letra a letra (o estilo "Máquina de escrever" usa revelação contínua), reprodução invertida, chroma key, efeitos de
   áudio (equalizador/redução de ruído), biblioteca de música incluída, curvas de cor avançadas.
 - O preview depende dos codecs do Chromium; ficheiros não suportados usam proxies automaticamente.
 - O instalador (`npm run dist`) está configurado mas não foi gerado neste ambiente.

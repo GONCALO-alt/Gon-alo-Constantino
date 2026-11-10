@@ -10,7 +10,8 @@ import { useEditor, setKeyframe, setTransition } from '../../store/editor';
 import { usePlayback } from '../../store/playback';
 import { Section, Slider, KfButton, Seg, Toggle, fmtBytes } from '../ui';
 import { setAnimProp, currentValue } from '../Preview';
-import { FONTS } from '../../engine/text';
+import { FontPicker } from '../FontPicker';
+import { TransitionGrid } from '../panels/LooksPanels';
 import * as A from '../../actions';
 
 type Tab = 'basic' | 'color' | 'speed' | 'audio' | 'anim' | 'fx' | 'text';
@@ -240,37 +241,69 @@ export function AudioInspector({ clip }: { clip: Clip }) {
   );
 }
 
+const ANIM_ICON: Record<string, string> = {
+  none: '⊘', fade: '◐', zoomIn: '⤢', zoomOut: '⤡', pop: '✦', elastic: '〰', bounce: '⤓', slideUp: '↑', slideDown: '↓', slideLeft: '←', slideRight: '→',
+  riseUp: '⇡', rotateIn: '↻', spin: '⟳', swing: '⌒', flipX: '⇋', flipY: '⇅', stretch: '↔', squeeze: '⇿', wipeRight: '▶', wipeLeft: '◀', wipeDown: '▼',
+  wipeUp: '▲', blur: '◌', zoomBlur: '◎', shake: '≋', flash: '☀', glitchIn: '▚',
+};
+const MOTION_ICON: Record<string, string> = {
+  none: '⊘', shake: '≋', heartbeat: '♥', pulse: '◉', zoomPulse: '⊕', breathe: '◯', jelly: '◍', wiggle: '∿', rock: '⌒', sway: '⤺', float: '☁',
+  bounceLoop: '⤒', spinLoop: '⟳', flicker: '✧', glitchLoop: '▚', kenBurnsIn: '⤢', kenBurnsOut: '⤡',
+};
+
+/** Pré-visualiza um troço do clip (como o CapCut faz ao escolher uma animação). */
+function previewRange(start: number, dur: number) {
+  const pb = usePlayback.getState();
+  pb.setPlaying(false);
+  pb.seek(start);
+  setTimeout(() => usePlayback.getState().setPlaying(true), 30);
+  setTimeout(() => usePlayback.getState().setPlaying(false), 30 + dur * 1000 + 150);
+}
+
 export function AnimInspector({ clip }: { clip: Clip }) {
-  const row = (which: 'animIn' | 'animOut', title: string) => (
-    <Section title={title}>
-      <select className="input" value={clip[which].type} onChange={(e) => upd(clip.id, (c) => { c[which].type = e.target.value as any; })}>
-        {ANIMS.map((a) => <option key={a.type} value={a.type}>{a.name}</option>)}
-      </select>
-      {clip[which].type !== 'none' && (
-        <div style={{ marginTop: 10 }}>
-          <Slider label="Duração" value={clip[which].duration} min={0.1} max={Math.max(0.2, Math.min(5, clip.duration))} step={0.05} unit="s"
-            onChange={(v) => upd(clip.id, (c) => { c[which].duration = v; }, `${which}-${clip.id}`)} />
-        </div>
-      )}
-    </Section>
-  );
+  const [tab, setTab] = useState<'in' | 'out' | 'loop'>('in');
+  const which = tab === 'in' ? 'animIn' : 'animOut';
+  const pick = (type: string) => {
+    if (tab === 'loop') {
+      upd(clip.id, (c) => { c.motion.type = type as any; });
+      if (type !== 'none') previewRange(clip.start, Math.min(clip.duration, 3));
+      return;
+    }
+    upd(clip.id, (c) => {
+      c[which].type = type as any;
+      c[which].duration = Math.min(c[which].duration || 0.5, Math.max(0.1, c.duration / 2));
+    });
+    if (type === 'none') return;
+    const d = Math.min(clip[which].duration || 0.5, clip.duration / 2);
+    previewRange(tab === 'in' ? clip.start : clip.start + clip.duration - d - 0.05, d + 0.1);
+  };
+  const current = tab === 'loop' ? clip.motion.type : clip[which].type;
   return (
     <>
-      {row('animIn', 'Animação de entrada')}
-      {row('animOut', 'Animação de saída')}
-      <Section title="Efeito de movimento">
-        <select className="input" value={clip.motion.type} onChange={(e) => upd(clip.id, (c) => { c.motion.type = e.target.value as any; })}>
-          {MOTIONS.map((a) => <option key={a.type} value={a.type}>{a.name}</option>)}
-        </select>
-        {clip.motion.type !== 'none' && (
-          <div style={{ marginTop: 10 }}>
+      <div className="section" style={{ paddingBottom: 6 }}>
+        <Seg value={tab} onChange={setTab} options={[{ v: 'in', label: 'Entrada' }, { v: 'out', label: 'Saída' }, { v: 'loop', label: 'Loop' }]} />
+      </div>
+      <div className="section">
+        <div className="tile-grid">
+          {(tab === 'loop' ? MOTIONS : ANIMS).map((a) => (
+            <div key={a.type} className={`tile anim-tile ${current === a.type ? 'on' : ''}`} onClick={() => pick(a.type)}>
+              <div className="sw">{(tab === 'loop' ? MOTION_ICON : ANIM_ICON)[a.type] ?? '•'}</div>
+              {a.name}
+            </div>
+          ))}
+        </div>
+        {tab !== 'loop' && clip[which].type !== 'none' && (
+          <div style={{ marginTop: 12 }}>
+            <Slider label="Duração" value={clip[which].duration} min={0.1} max={Math.max(0.2, Math.min(5, clip.duration))} step={0.05} unit="s"
+              onChange={(v) => upd(clip.id, (c) => { c[which].duration = v; }, `${which}-${clip.id}`)} />
+          </div>
+        )}
+        {tab === 'loop' && clip.motion.type !== 'none' && (
+          <div style={{ marginTop: 12 }}>
             <Slider label="Intensidade" value={clip.motion.intensity} min={0} max={100} unit="%" onChange={(v) => upd(clip.id, (c) => { c.motion.intensity = v; }, `mo-${clip.id}`)} />
           </div>
         )}
-      </Section>
-      <Section title="Keyframes">
-        <div className="hint">Use o botão ◆ ao lado de Escala, Posição, Rotação, Opacidade (Básico) ou Volume para criar animações personalizadas. Mova o cursor e altere os valores: os keyframes intermédios são interpolados com suavização.</div>
-      </Section>
+      </div>
     </>
   );
 }
@@ -303,9 +336,7 @@ export function TextInspector({ clip }: { clip: Clip }) {
       </Section>
       <Section title="Tipo de letra">
         <div className="field">
-          <select className="input" value={s.font} onChange={(e) => set('font', e.target.value, false)} style={{ fontFamily: s.font }}>
-            {FONTS.map((f) => <option key={f} value={f} style={{ fontFamily: f }}>{f}</option>)}
-          </select>
+          <FontPicker value={s.font} onChange={(f) => set('font', f, false)} />
         </div>
         <Slider label="Tamanho" value={s.size} min={8} max={400} onChange={(v) => set('size', v)} />
         <div className="row" style={{ marginBottom: 10 }}>
@@ -351,11 +382,7 @@ export function TransitionInspector({ clip, project }: { clip: Clip; project: Pr
     <>
       <div className="panel-head">Transição</div>
       <Section title="Tipo">
-        <div className="tile-grid">
-          {TRANSITIONS.map((t) => (
-            <div key={t.type} className={`tile ${tr.type === t.type ? 'on' : ''}`} onClick={() => useEditor.getState().commit((d) => { setTransition(d, clip.id, { ...tr, type: t.type }); })}>{t.name}</div>
-          ))}
-        </div>
+        <TransitionGrid current={tr.type} onPick={(type) => useEditor.getState().commit((d) => { setTransition(d, clip.id, { ...tr, type }); })} />
       </Section>
       <Section title="Duração">
         <Slider value={tr.duration} min={0.1} max={Math.max(0.2, Math.min(3, max))} step={0.05} unit="s"

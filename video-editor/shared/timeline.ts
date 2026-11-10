@@ -44,7 +44,7 @@ export function maxTransition(a: Clip, b: Clip): number {
 export function transitionTail(p: Project, c: Clip): number {
   if (c.type === 'audio') return 0;
   const n = nextAdjacent(p, c);
-  if (!n || !n.transitionIn || n.transitionIn.type === 'fade') return 0;
+  if (!n || !n.transitionIn || n.transitionIn.type === 'fade' || n.transitionIn.type === 'whiteFlash') return 0;
   return Math.min(n.transitionIn.duration, maxTransition(c, n));
 }
 
@@ -59,7 +59,7 @@ export function effectiveTransitionIn(p: Project, c: Clip): number {
 /** Duração do "fade para preto" no fim do clip, se o seguinte usa a transição fade. */
 export function fadeOutTail(p: Project, c: Clip): number {
   const n = nextAdjacent(p, c);
-  if (!n || !n.transitionIn || n.transitionIn.type !== 'fade') return 0;
+  if (!n || !n.transitionIn || (n.transitionIn.type !== 'fade' && n.transitionIn.type !== 'whiteFlash')) return 0;
   return Math.min(n.transitionIn.duration, maxTransition(c, n));
 }
 

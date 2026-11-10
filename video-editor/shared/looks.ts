@@ -105,16 +105,26 @@ export const filterMono = (id: string, intensity: number) => {
 };
 
 // ---- Efeitos ----
-export interface EffectDef { type: EffectType; name: string; description: string }
+export interface EffectDef { type: EffectType; name: string; description: string; category: string }
 export const EFFECTS: EffectDef[] = [
-  { type: 'blur', name: 'Desfocar', description: 'Desfoque gaussiano' },
-  { type: 'sharpen', name: 'Nitidez', description: 'Realça detalhes' },
-  { type: 'vignette', name: 'Vinheta', description: 'Escurece os cantos' },
-  { type: 'grain', name: 'Grão de filme', description: 'Ruído analógico' },
-  { type: 'glitch', name: 'Glitch', description: 'Separação RGB intermitente' },
-  { type: 'bw', name: 'Preto e branco', description: 'Remove a cor' },
-  { type: 'sepia', name: 'Sépia', description: 'Tom antigo' },
-  { type: 'invert', name: 'Inverter', description: 'Negativo' },
+  { type: 'blur', name: 'Desfocar', description: 'Desfoque gaussiano', category: 'Básico' },
+  { type: 'sharpen', name: 'Nitidez', description: 'Realça detalhes', category: 'Básico' },
+  { type: 'vignette', name: 'Vinheta', description: 'Escurece os cantos', category: 'Básico' },
+  { type: 'cinemaBars', name: 'Barras de cinema', description: 'Faixas pretas em cima e em baixo', category: 'Básico' },
+  { type: 'mirror', name: 'Espelho', description: 'Reflete a metade esquerda', category: 'Básico' },
+  { type: 'glow', name: 'Brilho suave', description: 'Halo luminoso (glow)', category: 'Luz' },
+  { type: 'flash', name: 'Flash', description: 'Clarões brancos ritmados', category: 'Luz' },
+  { type: 'strobe', name: 'Estroboscópio', description: 'Piscar rápido', category: 'Luz' },
+  { type: 'grain', name: 'Grão de filme', description: 'Ruído analógico', category: 'Retro' },
+  { type: 'scanlines', name: 'VHS', description: 'Linhas de varrimento e cor deslocada', category: 'Retro' },
+  { type: 'sepia', name: 'Sépia', description: 'Tom antigo', category: 'Retro' },
+  { type: 'bw', name: 'Preto e branco', description: 'Remove a cor', category: 'Retro' },
+  { type: 'posterize', name: 'Posterizar', description: 'Reduz o número de cores', category: 'Arte' },
+  { type: 'duotone', name: 'Duotone', description: 'Azul profundo e rosa', category: 'Arte' },
+  { type: 'invert', name: 'Inverter', description: 'Negativo', category: 'Arte' },
+  { type: 'pixelate', name: 'Pixelizar', description: 'Mosaico de píxeis', category: 'Distorção' },
+  { type: 'chromatic', name: 'Aberração cromática', description: 'Separação RGB fixa', category: 'Distorção' },
+  { type: 'glitch', name: 'Glitch', description: 'Separação RGB intermitente', category: 'Distorção' },
 ];
 
 /** Sigma (px) do desfoque para uma intensidade 0..100 numa altura de referência. */
@@ -125,41 +135,92 @@ export const glitchShift = (intensity: number, refHeight: number) => (intensity 
 export const vignetteAngle = (intensity: number) => (intensity / 100) * (Math.PI / 2) * 0.85;
 export const grainStrength = (intensity: number) => (intensity / 100) * 40; // escala 0..100 do filtro noise
 export const sharpenAmount = (intensity: number) => (intensity / 100) * 2.0;
+/** Número de blocos (horizontal, vertical) do pixelizar — independente da resolução, igual no preview e na exportação. */
+export const pixelGrid = (intensity: number, layerW: number, layerH: number, refHeight: number) => {
+  const block = ((2 + (intensity / 100) * 38) / 1080) * refHeight;
+  return [Math.max(1, Math.round(layerW / block)), Math.max(1, Math.round(layerH / block))];
+};
+/** Número de níveis por canal do posterizar. */
+export const posterLevels = (intensity: number) => Math.max(2, Math.round(16 - (intensity / 100) * 13));
+export const chromaShift = (intensity: number, refHeight: number) => Math.max(1, Math.round((intensity / 100) * 14 * (refHeight / 1080)));
+/** Período (px) e opacidade das linhas do VHS. */
+export const scanPeriod = (refHeight: number) => Math.max(2, Math.round(4 * (refHeight / 1080)));
+export const scanStrength = (intensity: number) => (intensity / 100) * 0.45;
+export const glowSigma = (refHeight: number) => 14 * (refHeight / 1080);
+export const barsFraction = (intensity: number) => (intensity / 100) * 0.14;
+export const DUOTONE = { dark: [27, 20, 100], light: [255, 92, 138] };
 
 // ---- Catálogos para a interface ----
-export const TRANSITIONS: { type: TransitionType; name: string }[] = [
-  { type: 'fade', name: 'Fade (preto)' },
-  { type: 'dissolve', name: 'Dissolver' },
-  { type: 'zoomIn', name: 'Zoom in' },
-  { type: 'zoomOut', name: 'Zoom out' },
-  { type: 'slideLeft', name: 'Deslizar ←' },
-  { type: 'slideRight', name: 'Deslizar →' },
-  { type: 'slideUp', name: 'Deslizar ↑' },
-  { type: 'slideDown', name: 'Deslizar ↓' },
-  { type: 'blur', name: 'Desfoque' },
-  { type: 'glitch', name: 'Glitch' },
+export const TRANSITIONS: { type: TransitionType; name: string; category: string }[] = [
+  { type: 'dissolve', name: 'Misturar', category: 'Básico' },
+  { type: 'fade', name: 'Fundir a preto', category: 'Básico' },
+  { type: 'whiteFlash', name: 'Flash branco', category: 'Básico' },
+  { type: 'zoomIn', name: 'Aproximar', category: 'Câmara' },
+  { type: 'zoomOut', name: 'Afastar', category: 'Câmara' },
+  { type: 'zoomBlur', name: 'Zoom desfocado', category: 'Câmara' },
+  { type: 'spin', name: 'Rodar', category: 'Câmara' },
+  { type: 'shake', name: 'Tremer', category: 'Câmara' },
+  { type: 'slideLeft', name: 'Deslizar ←', category: 'Deslizar' },
+  { type: 'slideRight', name: 'Deslizar →', category: 'Deslizar' },
+  { type: 'slideUp', name: 'Deslizar ↑', category: 'Deslizar' },
+  { type: 'slideDown', name: 'Deslizar ↓', category: 'Deslizar' },
+  { type: 'pushLeft', name: 'Empurrar ←', category: 'Deslizar' },
+  { type: 'pushRight', name: 'Empurrar →', category: 'Deslizar' },
+  { type: 'wipeRight', name: 'Cortina →', category: 'Cortina' },
+  { type: 'wipeLeft', name: 'Cortina ←', category: 'Cortina' },
+  { type: 'wipeDown', name: 'Cortina ↓', category: 'Cortina' },
+  { type: 'wipeUp', name: 'Cortina ↑', category: 'Cortina' },
+  { type: 'blur', name: 'Desfoque', category: 'Efeitos' },
+  { type: 'glitch', name: 'Glitch', category: 'Efeitos' },
 ];
 
 export const ANIMS: { type: AnimType; name: string }[] = [
   { type: 'none', name: 'Nenhuma' },
   { type: 'fade', name: 'Fade' },
+  { type: 'zoomIn', name: 'Zoom in' },
+  { type: 'zoomOut', name: 'Zoom out' },
+  { type: 'pop', name: 'Pop' },
+  { type: 'elastic', name: 'Elástico' },
+  { type: 'bounce', name: 'Quicar' },
   { type: 'slideUp', name: 'Subir' },
   { type: 'slideDown', name: 'Descer' },
   { type: 'slideLeft', name: 'Da direita' },
   { type: 'slideRight', name: 'Da esquerda' },
-  { type: 'zoomIn', name: 'Zoom in' },
-  { type: 'zoomOut', name: 'Zoom out' },
-  { type: 'pop', name: 'Pop' },
-  { type: 'blur', name: 'Desfoque' },
+  { type: 'riseUp', name: 'Emergir' },
+  { type: 'rotateIn', name: 'Rodar' },
   { type: 'spin', name: 'Rodopio' },
+  { type: 'swing', name: 'Baloiçar' },
+  { type: 'flipX', name: 'Virar H' },
+  { type: 'flipY', name: 'Virar V' },
+  { type: 'stretch', name: 'Esticar' },
+  { type: 'squeeze', name: 'Apertar' },
+  { type: 'wipeRight', name: 'Revelar →' },
+  { type: 'wipeLeft', name: 'Revelar ←' },
+  { type: 'wipeDown', name: 'Revelar ↓' },
+  { type: 'wipeUp', name: 'Revelar ↑' },
+  { type: 'blur', name: 'Desfoque' },
+  { type: 'zoomBlur', name: 'Zoom desfocado' },
+  { type: 'shake', name: 'Tremer' },
+  { type: 'flash', name: 'Flash' },
+  { type: 'glitchIn', name: 'Glitch' },
 ];
 
 export const MOTIONS: { type: MotionType; name: string }[] = [
   { type: 'none', name: 'Nenhum' },
   { type: 'shake', name: 'Tremer' },
+  { type: 'heartbeat', name: 'Batimento' },
+  { type: 'pulse', name: 'Pulsar' },
+  { type: 'zoomPulse', name: 'Zoom ritmado' },
+  { type: 'breathe', name: 'Respirar' },
+  { type: 'jelly', name: 'Gelatina' },
+  { type: 'wiggle', name: 'Abanar' },
+  { type: 'rock', name: 'Embalar' },
+  { type: 'sway', name: 'Balançar' },
+  { type: 'float', name: 'Flutuar' },
+  { type: 'bounceLoop', name: 'Saltitar' },
+  { type: 'spinLoop', name: 'Girar' },
+  { type: 'flicker', name: 'Cintilar' },
+  { type: 'glitchLoop', name: 'Glitch' },
   { type: 'kenBurnsIn', name: 'Ken Burns (aproximar)' },
   { type: 'kenBurnsOut', name: 'Ken Burns (afastar)' },
-  { type: 'pulse', name: 'Pulsar' },
-  { type: 'float', name: 'Flutuar' },
-  { type: 'sway', name: 'Balançar' },
 ];

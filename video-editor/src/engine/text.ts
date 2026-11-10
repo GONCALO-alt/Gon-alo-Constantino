@@ -88,7 +88,4 @@ export async function renderTextPng(text: string, s: TextStyle, refHeight: numbe
   return { data: await blob.arrayBuffer(), width: r.width, height: r.height };
 }
 
-export const FONTS = [
-  'Inter', 'Montserrat', 'Poppins', 'Bebas Neue', 'Anton', 'Oswald', 'Playfair Display', 'Pacifico', 'Roboto Mono',
-  'Arial', 'Georgia', 'Impact', 'Times New Roman', 'Courier New', 'Verdana', 'Trebuchet MS',
-];
+export { FONTS } from './fonts';

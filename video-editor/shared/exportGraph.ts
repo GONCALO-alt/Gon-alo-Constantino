@@ -3,11 +3,13 @@
 // testá-la diretamente com o FFmpeg real (ver tests/export.test.ts).
 import type { Clip, ExportOptions, MediaAsset, Project } from './types';
 import { clipAnimation, keyframeExpr } from './animation';
-import { Expr, div, isConst, rangeOf, sub, toFFmpeg } from './expr';
+import { Expr, div, isConst, mul, rangeOf, sub, toFFmpeg } from './expr';
+import type { Wipe } from './animation';
 import { baseSize, even } from './geometry';
 import {
   blurSigma, eqParams, filterChannel, filterMono, filterSaturation, getFilter, glitchShift,
   grainStrength, isNeutralColor, sharpenAmount, tempTintGains, vignetteAngle,
+  pixelGrid, posterLevels, chromaShift, scanPeriod, scanStrength, glowSigma, barsFraction, DUOTONE,
 } from './looks';
 import { getMedia, getTrack, projectDuration, transitionTail } from './timeline';
 
@@ -127,6 +129,39 @@ export function buildExportCommand(project: Project, opt: ExportOptions, ctx: Bu
         cur = `[${out}]`;
       };
 
+      /** Mistura estática (blend) entre uma versão processada (em cima) e a camada atual. */
+      const mixStatic = (processed: string[], mode: string, opacity: number) => {
+        const src = flush();
+        const a1 = `${L}_ma${seg}`, b1 = `${L}_mb${seg}`, out = `${L}_mo${seg}`;
+        seg++;
+        stmts.push(`[${src}]format=gbrap,split[${a1}][${b1}]`);
+        stmts.push(`[${b1}]${processed.join(',')},format=gbrap[${b1}p]`);
+        stmts.push(`[${b1}p][${a1}]blend=all_mode=${mode}:all_opacity=${n6(opacity)},format=rgba[${out}]`);
+        cur = `[${out}]`;
+      };
+      /** Máscara de revelação (cortina) aplicada ao canal alfa. */
+      const applyWipes = (wipes: Wipe[], w: number, h: number) => {
+        if (!wipes.length) return;
+        const src = flush();
+        const A0 = `${L}_wa${seg}`, B0 = `${L}_wb${seg}`;
+        seg++;
+        stmts.push(`[${src}]format=rgba,split[${A0}][${B0}]`);
+        let alpha = `${L}_al${seg++}`;
+        stmts.push(`[${B0}]alphaextract[${alpha}]`);
+        for (const wp of wipes) {
+          const P = toFFmpeg(wp.p, 't');
+          const xy = [`x=${q(`-W+W*(${P})`)}:y=0`, `x=${q(`W-W*(${P})`)}:y=0`, `x=0:y=${q(`-H+H*(${P})`)}`, `x=0:y=${q(`H-H*(${P})`)}`][wp.dir];
+          const mb = `${L}_k${seg}`, mw = `${L}_n${seg}`, m = `${L}_wm${seg}`, na = `${L}_al${seg}x`;
+          seg++;
+          stmts.push(`color=c=black:s=${w}x${h}:r=${FPS}:d=${n6(visDur)}[${mb}];color=c=white:s=${w}x${h}:r=${FPS}:d=${n6(visDur)}[${mw}];[${mb}][${mw}]overlay=${xy}:eval=frame,format=gray[${m}]`);
+          stmts.push(`[${alpha}][${m}]blend=all_mode=multiply[${na}]`);
+          alpha = na;
+        }
+        const out = `${L}_wo${seg++}`;
+        stmts.push(`[${A0}][${alpha}]alphamerge[${out}]`);
+        cur = `[${out}]`;
+      };
+
       f.push(c.type === 'video' && c.speed !== 1 ? `setpts=(PTS-STARTPTS)/${n6(c.speed)}` : 'setpts=PTS-STARTPTS');
       f.push(`fps=${FPS}`);
       f.push(`tpad=stop_mode=clone:stop_duration=${n6(visDur + 1)}`);
@@ -141,16 +176,16 @@ export function buildExportCommand(project: Project, opt: ExportOptions, ctx: Bu
       // Escala
       const textDims = ctx.textImages[c.id];
       const bs = baseSize(c, media, W, H, textDims);
-      const scaleAnimated = !isConst(a.scale);
+      const sxE = mul(a.scale, a.sx), syE = mul(a.scale, a.sy);
       const rotAnimated = !isConst(a.rotation);
-      const perspectivePath = scaleAnimated || rotAnimated;
-      const sRange = rangeOf(a.scale, 0, visDur);
-      let smax = perspectivePath ? sRange.max : (a.scale as number);
+      const perspectivePath = !isConst(sxE) || !isConst(syE) || rotAnimated;
+      let smaxX = perspectivePath ? rangeOf(sxE, 0, visDur).max : (sxE as number);
+      let smaxY = perspectivePath ? rangeOf(syE, 0, visDur).max : (syE as number);
       // Limita a resolução intermédia para manter a exportação viável
       const diagCanvas = Math.hypot(W, H);
-      const maxDim = Math.max(bs.w, bs.h) * smax;
-      if (maxDim > diagCanvas * 2) smax = (diagCanvas * 2) / Math.max(bs.w, bs.h);
-      const lw = even(bs.w * smax), lh = even(bs.h * smax);
+      const maxDim = Math.max(bs.w * smaxX, bs.h * smaxY);
+      if (maxDim > diagCanvas * 2) { const f2 = (diagCanvas * 2) / maxDim; smaxX *= f2; smaxY *= f2; }
+      const lw = even(bs.w * smaxX), lh = even(bs.h * smaxY);
       f.push(`scale=${lw}:${lh}:flags=lanczos`, 'setsar=1');
       if (c.transform.flipH) f.push('hflip');
       if (c.transform.flipV) f.push('vflip');
@@ -173,8 +208,8 @@ export function buildExportCommand(project: Project, opt: ExportOptions, ctx: Bu
         if (Math.abs(fs - 1) > 1e-3) f.push(`eq=saturation=${n6(fs)}`);
       }
       // Efeitos (ordem canónica, igual à do shader da pré-visualização)
-      const ORDER = ['sharpen', 'bw', 'sepia', 'invert', 'vignette', 'grain'];
-      for (const ef of [...c.effects].sort((x, y) => ORDER.indexOf(x.type) - ORDER.indexOf(y.type))) {
+      const ORDER = ['mirror', 'pixelate', 'sharpen', 'bw', 'sepia', 'invert', 'posterize', 'duotone', 'chromatic', 'glow', 'vignette', 'scanlines', 'grain', 'cinemaBars'];
+      for (const ef of [...c.effects].filter((e) => ORDER.includes(e.type)).sort((x, y) => ORDER.indexOf(x.type) - ORDER.indexOf(y.type))) {
         const k = ef.intensity / 100;
         if (k <= 0) continue;
         switch (ef.type) {
@@ -190,6 +225,48 @@ export function buildExportCommand(project: Project, opt: ExportOptions, ctx: Bu
           case 'invert': {
             const ex = q(`val+(255-2*val)*${n6(k)}`);
             f.push(`format=rgba`, `lutrgb=r=${ex}:g=${ex}:b=${ex}`);
+            break;
+          }
+          case 'mirror': {
+            const src = flush();
+            const m1 = `${L}_r1${seg}`, m2 = `${L}_r2${seg}`, out = `${L}_ro${seg}`;
+            seg++;
+            stmts.push(`[${src}]split[${m1}][${m2}];[${m2}]crop=iw/2:ih:0:0,hflip[${m2}f];[${m1}]crop=iw/2:ih:0:0[${m1}c];[${m1}c][${m2}f]hstack[${out}]`);
+            cur = `[${out}]`;
+            break;
+          }
+          case 'pixelate': {
+            const [nx, ny] = pixelGrid(ef.intensity, lw, lh, H);
+            f.push('format=rgba', `scale=${nx}:${ny}:flags=area`, `scale=${lw}:${lh}:flags=neighbor`);
+            break;
+          }
+          case 'posterize': {
+            const Lv = posterLevels(ef.intensity);
+            const ex = q(`floor(val*${Lv}/256)*255/${Lv - 1}`);
+            f.push('format=rgba', `lutrgb=r=${ex}:g=${ex}:b=${ex}`);
+            break;
+          }
+          case 'duotone': {
+            const [d, l] = [DUOTONE.dark, DUOTONE.light];
+            const ch = (i: number) => q(`${d[i]}+(${l[i] - d[i]})*val/255`);
+            mixStatic(['hue=s=0', 'format=rgba', `lutrgb=r=${ch(0)}:g=${ch(1)}:b=${ch(2)}`], 'normal', k);
+            break;
+          }
+          case 'chromatic': {
+            const px = chromaShift(ef.intensity, H);
+            f.push('format=rgba', `rgbashift=rh=${-px}:bh=${px}:edge=smear`);
+            break;
+          }
+          case 'glow': mixStatic([`gblur=sigma=${n6(glowSigma(H))}`], 'screen', 0.85 * k); break;
+          case 'scanlines': {
+            const P = scanPeriod(H), px = chromaShift(25, H);
+            f.push('format=rgba', `rgbashift=rh=${-px}:bh=${px}:edge=smear`, 'format=yuva444p',
+              `drawgrid=x=-40:y=0:w=iw+200:h=${P}:t=${Math.max(1, Math.round(P / 2))}:c=black@${n6(scanStrength(ef.intensity))}`);
+            break;
+          }
+          case 'cinemaBars': {
+            const b = barsFraction(ef.intensity);
+            f.push('format=yuva444p', `drawbox=x=0:y=0:w=iw:h=ih*${n6(b)}:color=black:t=fill`, `drawbox=x=0:y=ih-ih*${n6(b)}:w=iw:h=ih*${n6(b)}:color=black:t=fill`);
             break;
           }
         }
@@ -223,18 +300,29 @@ export function buildExportCommand(project: Project, opt: ExportOptions, ctx: Bu
         const op = a.opacity as number, b = 1 - (a.black as number);
         if (op < 1 || b < 1) f.push(`colorchannelmixer=rr=${n6(b)}:gg=${n6(b)}:bb=${n6(b)}:aa=${n6(op)}`);
       }
+      // Mistura para branco (flash)
+      if (!isConst(a.white)) {
+        const r = rangeOf(a.white, 0, visDur, 600);
+        if (r.max > 0.002) crossfade(['format=rgba', 'lutrgb=r=255:g=255:b=255'], a.white, lw, lh);
+      } else if ((a.white as number) > 0) {
+        const ex = q(`val+(255-val)*${n6(a.white as number)}`);
+        f.push('format=rgba', `lutrgb=r=${ex}:g=${ex}:b=${ex}`);
+      }
+      // Revelação / cortina
+      applyWipes(a.wipes, lw, lh);
       // Geometria: rotação / escala animada
       if (perspectivePath) {
         const box = even(Math.ceil(Math.hypot(lw, lh)) + 4);
         f.push('format=yuva444p', `pad=${box}:${box}:(ow-iw)/2:(oh-ih)/2:color=black@0`);
         const Tv = `in/${FPS}`;
-        const kE = `max(${toFFmpeg(a.scale, Tv)}/${n6(smax)},0.002)`;
+        const kX = `max(${toFFmpeg(sxE, Tv)}/${n6(smaxX)},0.002)`;
+        const kY = `max(${toFFmpeg(syE, Tv)}/${n6(smaxY)},0.002)`;
         const th = `(${toFFmpeg(a.rotation, Tv)})*PI/180`;
         const c0 = box / 2;
         const corners = [[-c0, -c0], [c0, -c0], [-c0, c0], [c0, c0]];
         const parts = corners.map(([dx, dy], i) => {
-          const X = `${c0}+${kE}*((${dx})*cos(${th})-(${dy})*sin(${th}))`;
-          const Y = `${c0}+${kE}*((${dx})*sin(${th})+(${dy})*cos(${th}))`;
+          const X = `${c0}+(${dx})*${kX}*cos(${th})-(${dy})*${kY}*sin(${th})`;
+          const Y = `${c0}+(${dx})*${kX}*sin(${th})+(${dy})*${kY}*cos(${th})`;
           return `x${i}=${q(X)}:y${i}=${q(Y)}`;
         });
         f.push(`perspective=sense=destination:eval=frame:interpolation=linear:${parts.join(':')}`);

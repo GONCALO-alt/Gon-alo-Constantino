@@ -4,12 +4,12 @@ import type { Clip, MediaAsset, Project } from '@shared/types';
 import { AnimExprs, clipAnimation, volumeExpr } from '@shared/animation';
 import { evalExpr, Expr, rangeOf } from '@shared/expr';
 import { baseSize } from '@shared/geometry';
-import { blurSigma, eqParams, filterMono, filterSaturation, getFilter, glitchShift, grainStrength, sharpenAmount, tempTintGains, vignetteAngle } from '@shared/looks';
+import { pixelGrid, posterLevels, chromaShift, glowSigma, scanStrength, scanPeriod, barsFraction, blurSigma, eqParams, filterMono, filterSaturation, getFilter, glitchShift, grainStrength, sharpenAmount, tempTintGains, vignetteAngle } from '@shared/looks';
 import { clipEnd, getMedia, projectDuration, sourceTimeAt, transitionTail } from '@shared/timeline';
 import { mediaUrl } from '../api';
 import { usePlayback } from '../store/playback';
 import { Compositor } from './compositor';
-import { renderText, RenderedText } from './text';
+import { fontString, renderText, RenderedText } from './text';
 
 interface Entry {
   el: HTMLVideoElement | HTMLAudioElement;
@@ -143,7 +143,10 @@ export class Player {
   }
 
   private text(c: Clip, H: number) {
-    const key = JSON.stringify([c.text, c.style, Math.round(H)]);
+    const spec = fontString(c.style!, 40);
+    const ready = document.fonts.check(spec, c.text || 'A');
+    if (!ready) document.fonts.load(spec, c.text || 'A').then(() => { this.texts.delete(c.id); this.dirty = true; }).catch(() => undefined);
+    const key = JSON.stringify([c.text, c.style, Math.round(H), ready]);
     const cur = this.texts.get(c.id);
     if (cur && cur.key === key) return cur;
     const r = renderText(c.text ?? '', c.style!, H, cur?.r.canvas);
@@ -236,7 +239,7 @@ export class Player {
     const box: LayerBox = {
       cx: W / 2 + evalExpr(a.x, T) * W,
       cy: H / 2 + evalExpr(a.y, T) * H,
-      w: bs.w * s, h: bs.h * s,
+      w: bs.w * s * evalExpr(a.sx, T), h: bs.h * s * evalExpr(a.sy, T),
       rot: (evalExpr(a.rotation, T) * Math.PI) / 180,
     };
     return { box, T, a, prep, m };
@@ -300,6 +303,13 @@ export class Player {
         blurS: blurSigma(a.blurStatic, H), blurA: blurSigma(prep.blurMax, H), blurW,
         glitchPx: glitchShift(prep.glitchMax, H), glitchW: glW,
         opacity, black: evalExpr(a.black, T), time: t,
+        white: evalExpr(a.white, T), mirror: fx('mirror') > 0, pixel: fx('pixelate') > 0 ? pixelGrid(Math.min(100, fx('pixelate')), Math.abs(box.w), Math.abs(box.h), H) as [number, number] : [0, 0],
+        poster: fx('posterize') > 0 ? posterLevels(Math.min(100, fx('posterize'))) : 0, duo: Math.min(1, fx('duotone') / 100),
+        chroma: Math.max(fx('chromatic') > 0 ? chromaShift(Math.min(100, fx('chromatic')), H) : 0, fx('scanlines') > 0 ? chromaShift(25, H) : 0),
+        glow: 0.85 * Math.min(1, fx('glow') / 100), glowSigma: glowSigma(H),
+        scan: fx('scanlines') > 0 ? scanStrength(Math.min(100, fx('scanlines'))) : 0, scanP: scanPeriod(H),
+        bars: barsFraction(Math.min(100, fx('cinemaBars'))),
+        wipes: a.wipes.map((w) => ({ p: evalExpr(w.p, T), dir: w.dir })),
       });
     }
   }

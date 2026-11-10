@@ -1,7 +1,7 @@
 // Compositor WebGL2 da pré-visualização. Cada camada é um quad transformado com um
 // shader que replica a cadeia de filtros da exportação FFmpeg (eq, temperatura,
 // LUT do filtro, efeitos, desfoque/glitch animados, opacidade e fade para preto).
-import { filterLut } from '@shared/looks';
+import { filterLut, DUOTONE } from '@shared/looks';
 
 const VS = `#version 300 es
 in vec2 a_pos;
@@ -34,6 +34,10 @@ uniform float u_sharpen, u_bw, u_sepia, u_invert, u_vignette, u_grain;
 uniform float u_blurS, u_blurA, u_blurW;
 uniform float u_glitchPx, u_glitchW;
 uniform float u_opacity, u_black, u_time;
+uniform vec2 u_pixel;
+uniform float u_white, u_mirror, u_poster, u_duo, u_chroma, u_glow, u_glowSigma, u_scan, u_scanP, u_bars;
+uniform vec2 u_wipe0, u_wipe1; // (fração revelada, direção) — direção < 0 = sem máscara
+uniform vec3 u_duoDark, u_duoLight;
 
 vec2 mapUV(vec2 uv) {
   uv = mix(uv, 1.0 - uv, u_flip);
@@ -54,9 +58,33 @@ vec4 blurAt(vec2 uv, float sigma) {
 }
 float hash(vec2 p) { return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
 
+float wipeMask(vec2 w, vec2 uv) {
+  if (w.y < 0.0) return 1.0;
+  if (w.y < 0.5) return step(uv.x, w.x);
+  if (w.y < 1.5) return step(1.0 - w.x, uv.x);
+  if (w.y < 2.5) return step(uv.y, w.x);
+  return step(1.0 - w.x, uv.y);
+}
+
 void main() {
   vec2 uv = v_uv;
-  vec4 col = blurAt(uv, u_blurS);
+  float reveal = wipeMask(u_wipe0, v_uv) * wipeMask(u_wipe1, v_uv);
+  if (u_mirror > 0.5 && uv.x > 0.5) uv.x = 1.0 - uv.x;
+  vec4 col;
+  if (u_pixel.x > 0.0) {
+    // mesma grelha de blocos que a exportação e cor média do bloco (scale flags=area)
+    vec2 n = u_pixel;
+    vec2 c0 = floor(uv * n) / n;
+    col = vec4(0.0);
+    for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) col += tap(c0 + (vec2(float(i), float(j)) + 0.5) / 4.0 / n);
+    col /= 16.0;
+    uv = c0 + 0.5 / n;
+  } else col = blurAt(uv, u_blurS);
+  if (u_chroma > 0.0) {
+    vec2 sh = vec2(u_chroma / u_layerPx.x, 0.0);
+    col.r = blurAt(uv + sh, u_blurS).r;
+    col.b = blurAt(uv - sh, u_blurS).b;
+  }
   if (u_blurW > 0.001) col = mix(col, blurAt(uv, sqrt(u_blurS * u_blurS + u_blurA * u_blurA)), u_blurW);
   if (u_glitchW > 0.001) {
     vec2 sh = vec2(u_glitchPx / u_layerPx.x, 0.0);
@@ -91,15 +119,21 @@ void main() {
     c = clamp(mix(c, s, u_sepia), 0.0, 1.0);
   }
   if (u_invert > 0.0) c = c + (1.0 - 2.0 * c) * u_invert;
+  if (u_poster > 1.0) c = floor(c * 255.0 * u_poster / 256.0) / (u_poster - 1.0);
+  if (u_duo > 0.0) { float l = dot(c, vec3(0.299, 0.587, 0.114)); c = mix(c, mix(u_duoDark, u_duoLight, l), u_duo); }
+  if (u_glow > 0.0) { vec3 g = blurAt(uv, u_glowSigma).rgb; c = mix(c, 1.0 - (1.0 - c) * (1.0 - g), u_glow); }
   if (u_vignette > 0.0) {
     vec2 d = (uv - 0.5) * u_layerPx;
     float dn = length(d) / length(u_layerPx * 0.5);
     float k = cos(u_vignette * dn); k = k * k; k = k * k;
     c *= k;
   }
+  if (u_scan > 0.0 && mod(v_uv.y * u_layerPx.y, u_scanP) < max(1.0, floor(u_scanP / 2.0 + 0.5))) c *= (1.0 - u_scan);
   if (u_grain > 0.0) c = clamp(c + (hash(uv * u_layerPx + u_time * 61.0) - 0.5) * 2.0 * u_grain / 255.0, 0.0, 1.0);
+  if (u_bars > 0.0 && (v_uv.y < u_bars || v_uv.y > 1.0 - u_bars)) c = vec3(0.0);
+  c = mix(c, vec3(1.0), u_white);
   c *= (1.0 - u_black);
-  float a = col.a * u_opacity;
+  float a = col.a * u_opacity * reveal;
   outColor = vec4(c * a, a);
 }`;
 
@@ -116,6 +150,8 @@ export interface LayerParams {
   blurS: number; blurA: number; blurW: number;
   glitchPx: number; glitchW: number;
   opacity: number; black: number; time: number;
+  white: number; mirror: boolean; pixel: [number, number]; poster: number; duo: number; chroma: number; glow: number; glowSigma: number;
+  scan: number; scanP: number; bars: number; wipes: { p: number; dir: number }[];
 }
 
 export class Compositor {
@@ -253,6 +289,22 @@ export class Compositor {
     gl.uniform1f(L.u_opacity, p.opacity);
     gl.uniform1f(L.u_black, p.black);
     gl.uniform1f(L.u_time, p.time);
+    gl.uniform1f(L.u_white, p.white);
+    gl.uniform1f(L.u_mirror, p.mirror ? 1 : 0);
+    gl.uniform2f(L.u_pixel, p.pixel[0], p.pixel[1]);
+    gl.uniform1f(L.u_poster, p.poster);
+    gl.uniform1f(L.u_duo, p.duo);
+    gl.uniform3f(L.u_duoDark, ...(DUOTONE.dark.map((v) => v / 255) as [number, number, number]));
+    gl.uniform3f(L.u_duoLight, ...(DUOTONE.light.map((v) => v / 255) as [number, number, number]));
+    gl.uniform1f(L.u_chroma, p.chroma);
+    gl.uniform1f(L.u_glow, p.glow);
+    gl.uniform1f(L.u_glowSigma, p.glowSigma);
+    gl.uniform1f(L.u_scan, p.scan);
+    gl.uniform1f(L.u_scanP, p.scanP);
+    gl.uniform1f(L.u_bars, p.bars);
+    const w0 = p.wipes[0], w1 = p.wipes[1];
+    gl.uniform2f(L.u_wipe0, w0?.p ?? 0, w0 ? w0.dir : -1);
+    gl.uniform2f(L.u_wipe1, w1?.p ?? 0, w1 ? w1.dir : -1);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   }
 }

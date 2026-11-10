@@ -8,7 +8,7 @@ import { useEditor, addText } from '../../store/editor';
 import { usePlayback } from '../../store/playback';
 import { api } from '../../api';
 import { captionTracks, insertCaptions, LANG_NAMES, LANGUAGES, splitSegments, trackSegments, wavToFloat32 } from '../../captions/captions';
-import { FONTS } from '../../engine/text';
+import { FontPicker } from '../FontPicker';
 import { Slider, Toggle } from '../ui';
 
 export function CaptionsPanel() {
@@ -126,10 +126,9 @@ export function CaptionsPanel() {
               </div>
             )}
             <div className="section-title"><span>Estilo (aplicado a todas)</span></div>
+            <FontPicker value={style.font} onChange={(f) => applyStyle({ font: f })} />
             <div className="row" style={{ marginBottom: 10 }}>
-              <select className="input grow" value={style.font} onChange={(e) => applyStyle({ font: e.target.value })}>
-                {FONTS.map((f) => <option key={f} value={f}>{f}</option>)}
-              </select>
+
               <input type="color" value={style.color} title="Cor do texto" onChange={(e) => applyStyle({ color: e.target.value })} />
               <input type="color" value={style.strokeColor} title="Cor do contorno" onChange={(e) => applyStyle({ strokeColor: e.target.value })} />
             </div>

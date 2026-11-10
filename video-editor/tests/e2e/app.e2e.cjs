@@ -73,7 +73,7 @@ const shot = (win, name) => win.screenshot({ path: path.join(SHOTS, name + '.png
   await win.click('.sheet-head button[title="Fechar"]');
   const clips = win.locator('.lane .clip.video');
   await win.locator('.trans').first().click({ force: true });
-  await win.click('.sheet .tile:has-text("Dissolver")');
+  await win.click('.sheet .tile:has-text("Misturar")');
   await win.click('.sheet-head button[title="Fechar"]');
   await clips.nth(0).click({ position: { x: 30, y: 20 } });
   await win.click('.m-tool:has-text("Filtros")');

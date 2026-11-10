@@ -183,3 +183,68 @@ describe('exportação', () => {
     expect(res.fps).toBe(24);
   });
 });
+
+describe('animações, efeitos e transições (catálogo completo)', () => {
+  it('exporta todos os efeitos, animações, movimentos e transições sem erros', async () => {
+    const { EFFECTS, TRANSITIONS, ANIMS, MOTIONS } = await import('../shared/looks');
+    const p = createProject('Catálogo', 1280, 720, 30);
+    p.media.push(vid, vid2, img);
+    const tv = p.tracks[0].id;
+    const text = createTrack('text', 'T');
+    p.tracks.unshift(text);
+    let t = 0;
+    // uma sequência com todas as transições
+    TRANSITIONS.forEach((tr, i) => {
+      const c = clipFromMedia(i % 2 ? vid2 : img, tv, t); c.duration = 1;
+      if (i > 0) c.transitionIn = { type: tr.type, duration: 0.4 };
+      if (i === 0) c.transitionIn = null;
+      p.clips.push(c); t += 1;
+    });
+    // transição do 1.º tipo também (o 1.º clip não tem anterior)
+    const extra = clipFromMedia(vid, tv, t); extra.duration = 1; extra.transitionIn = { type: TRANSITIONS[0].type, duration: 0.4 }; p.clips.push(extra);
+    // textos com todas as animações de entrada/saída e movimentos
+    const anims = ANIMS.filter((a) => a.type !== 'none');
+    anims.forEach((an, i) => {
+      const c = createTextClip(text.id, i * 0.6, an.name); c.duration = 0.6;
+      c.animIn = { type: an.type, duration: 0.25 }; c.animOut = { type: anims[(i + 3) % anims.length].type, duration: 0.2 };
+      const mo = MOTIONS[i % MOTIONS.length]; c.motion = { type: mo.type, intensity: 70 };
+      p.clips.push(c);
+    });
+    // camadas com todos os efeitos
+    const fxTrack = createTrack('video', 'FX');
+    p.tracks.splice(1, 0, fxTrack);
+    EFFECTS.forEach((ef, i) => {
+      const c = clipFromMedia(vid2, fxTrack.id, i * 0.8); c.duration = 0.8; c.transform.scale = 0.5;
+      c.effects.push({ id: 'x' + i, type: ef.type, intensity: 80 });
+      p.clips.push(c);
+    });
+    const textImages: Record<string, any> = {};
+    for (const c of p.clips) if (c.type === 'text') textImages[c.id] = { path: textPng, width: 300, height: 50 };
+    const out = path.join(OUT, 'catalog.mp4');
+    const res = await exportProject(p, baseOpts({ outputPath: out, width: 1280, height: 720 }), textImages);
+    expect(res.width).toBe(1280);
+    expect(res.duration).toBeGreaterThan(t);
+  });
+
+  it('cortina revela metade a meio da animação e o espelho é simétrico', async () => {
+    const p = createProject('Px2', 1280, 720, 30);
+    p.media.push(red, vid);
+    p.settings.background = '#0000ff';
+    const c = clipFromMedia(red, p.tracks[0].id, 0); c.duration = 3; c.transform.scale = 2; // cobre o canvas
+    c.animIn = { type: 'wipeRight', duration: 2 };
+    p.clips.push(c);
+    const top = createTrack('video', 'M'); p.tracks.unshift(top);
+    const m = clipFromMedia(vid, top.id, 0); m.duration = 3; m.transform.scale = 0.5; m.transform.y = 0.25;
+    m.effects.push({ id: 'mi', type: 'mirror', intensity: 100 });
+    p.clips.push(m);
+    const out = path.join(OUT, 'wipe.mp4');
+    await exportProject(p, baseOpts({ outputPath: out, width: 1280, height: 720, crf: 10 }));
+    // easeOut(0.5)=0.875 → revelado até ~87% da largura em t=1 s
+    const left = await pixel(out, 1, 200, 100), right = await pixel(out, 1, 1240, 100);
+    expect(left[0]).toBeGreaterThan(200); expect(left[2]).toBeLessThan(60);
+    expect(right[2]).toBeGreaterThan(200); expect(right[0]).toBeLessThan(60);
+    // espelho: píxeis simétricos em relação ao centro da camada (x=640)
+    const a = await pixel(out, 1.5, 640 - 120, 540), b = await pixel(out, 1.5, 640 + 118, 540);
+    for (let i = 0; i < 3; i++) expect(Math.abs(a[i] - b[i])).toBeLessThan(30);
+  });
+});
