@@ -112,7 +112,9 @@ def paste(canvas, spr, cx, cy, scale=1.0, alpha=1.0, anchor="c"):
         x, y = int(cx), int(cy - spr.height / 2)
     else:
         x, y = int(cx - spr.width), int(cy - spr.height / 2)
-    canvas.alpha_composite(spr, (max(x, -spr.width + 1), max(y, -spr.height + 1))) if (x >= 0 and y >= 0) else _paste_clip(canvas, spr, x, y)
+    if x >= canvas.width or y >= canvas.height or x + spr.width <= 0 or y + spr.height <= 0:
+        return
+    canvas.alpha_composite(spr, (x, y)) if (x >= 0 and y >= 0) else _paste_clip(canvas, spr, x, y)
 
 
 def _paste_clip(canvas, spr, x, y):
@@ -214,19 +216,19 @@ def post(img, t_imp, zoom=1.0, shake=0.0, gi=0):
 
 
 # ------------------------------------------------------------------ elementos
-def caption_sprites(cap, color=WHITE, big=200, glowc=None):
+def caption_sprites(cap, color=WHITE, big=200, glowc=None, maxw=1650):
     lines = cap.split("|")
     out = []
     for i, ln in enumerate(lines):
         sz = big if i == 0 else int(big * 0.55)
         if len(lines) == 2 and i == 1 and len(ln) > 18:
             sz = int(big * 0.42)
-        sz = fit_size(ln, F_ANTON, 1650, sz)
+        sz = fit_size(ln, F_ANTON, maxw, sz)
         out.append(text_sprite(ln, F_ANTON, sz, color, glowc, 22))
     return out
 
 
-def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, accent=RED):
+def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, accent=RED, cx=W / 2, maxw=1650):
     if not cap:
         return
     imp = cap.startswith("!")
@@ -236,7 +238,7 @@ def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, ac
     if parts[0] in ("FACT", "OPINION", "MERCEDES:"):
         label, c = parts[0], "|".join(parts[1:])
     col = color
-    sprs = caption_sprites(c, col, big if not imp else int(big * 1.1), ((255, 20, 0) if imp else (0, 0, 0)))
+    sprs = caption_sprites(c, col, big if not imp else int(big * 1.1), ((255, 20, 0) if imp else (0, 0, 0)), maxw)
     e = ease_out(lt / 0.35)
     scale = (1.35 - 0.35 * e) if imp else (1.12 - 0.12 * e)
     scale *= 1 + 0.02 * lt  # deriva lenta (câmara lenta)
@@ -247,12 +249,12 @@ def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, ac
         lc = (40, 200, 120) if label == "FACT" else ((255, 190, 0) if label == "OPINION" else WHITE)
         ls = text_sprite(label, F_BARLOW, 54, lc, None, 0, 0, 6)
         bx = Image.new("RGBA", (ls.width + 30, ls.height - 6), (0, 0, 0, 170))
-        paste(canvas, bx, W / 2, y - 40, 1, alpha)
-        paste(canvas, ls, W / 2, y - 40, 1, alpha)
+        paste(canvas, bx, cx, y - 40, 1, alpha)
+        paste(canvas, ls, cx, y - 40, 1, alpha)
         y += 20
     for s in sprs:
         h = s.height * 0.78
-        paste(canvas, s, W / 2, y + h / 2, scale, alpha)
+        paste(canvas, s, cx, y + h / 2, scale, alpha)
         y += h
 
 
@@ -303,6 +305,224 @@ def season_strip(canvas, rnd, alpha=1.0):
             d.ellipse([x - 6, y - 6, x + 6, y + 6], outline=(120, 120, 120, int(200 * alpha)), width=2)
 
 
+# ------------------------------------------------------------------ efeitos novos
+def draw_lights(cv, t, lo):
+    """Semáforo de partida: 5 colunas acendem uma a uma; apagam em 'lo'."""
+    d = ImageDraw.Draw(cv)
+    n_on = int(min(5, max(0, (t - 0.15) / 0.38 + 1))) if t >= 0.15 else 0
+    x0 = W / 2 - 2 * 190
+    for k in range(5):
+        cx = x0 + k * 190
+        d.rounded_rectangle([cx - 70, 330, cx + 70, 760], 26, fill=(22, 22, 26, 255), outline=(60, 60, 66, 255), width=4)
+        for j in range(3):
+            cy = 410 + j * 135
+            on = (k < n_on) and j >= 1
+            col = (255, 20, 10, 255) if on else (48, 14, 14, 255)
+            d.ellipse([cx - 52, cy - 52, cx + 52, cy + 52], fill=col)
+    if n_on:
+        glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        gd = ImageDraw.Draw(glow)
+        for k in range(n_on):
+            cx = x0 + k * 190
+            for j in (1, 2):
+                cy = 410 + j * 135
+                gd.ellipse([cx - 80, cy - 80, cx + 80, cy + 80], fill=(255, 30, 0, 120))
+        glow = glow.filter(ImageFilter.GaussianBlur(30))
+        cv.alpha_composite(glow)
+
+
+@lru_cache(maxsize=32)
+def car_sprite(col, scale=1.0):
+    """Monolugar de 2026 visto de cima, a apontar para a direita."""
+    w, h = int(520 * scale), int(200 * scale)
+    im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    S = lambda pts: [(x * scale, y * scale) for x, y in pts]
+    dark = (18, 18, 22, 255)
+    c = tuple(col) + (255,)
+    for (x, y) in ((110, 30), (110, 146), (390, 38), (390, 140)):   # rodas
+        d.rounded_rectangle([x * scale, y * scale, (x + 70) * scale, (y + 24) * scale], int(6 * scale), fill=dark)
+    d.rectangle(S([(20, 40), (60, 160)]), fill=c)                     # asa traseira
+    d.polygon(S([(55, 75), (300, 62), (470, 92), (500, 100), (470, 108), (300, 138), (55, 125)]), fill=c)  # corpo
+    d.polygon(S([(120, 55), (300, 70), (300, 130), (120, 145)]), fill=c)   # pontões
+    d.ellipse(S([(255, 85), (320, 115)]), fill=dark)                  # cockpit
+    d.rectangle(S([(455, 40), (485, 160)]), fill=c)                   # asa dianteira
+    d.line(S([(70, 100), (450, 100)]), fill=(255, 255, 255, 140), width=max(1, int(4 * scale)))
+    return im
+
+
+def draw_car(cv, x, y, scale, col, blur=False):
+    spr = car_sprite(tuple(col), scale)
+    if blur:
+        for k in range(1, 6):
+            ghost = spr.copy()
+            ghost.putalpha(spr.split()[3].point(lambda v, k=k: int(v * 0.16)))
+            paste(cv, ghost, x - k * 60 * scale, y, 1, 1)
+    paste(cv, spr, x, y, 1, 1)
+
+
+_bokeh = None
+
+
+def bokeh(t):
+    """Luzes desfocadas de uma corrida noturna (Singapura)."""
+    global _bokeh
+    if _bokeh is None:
+        rng = np.random.default_rng(21)
+        im = Image.new("RGB", (W * 2, H), (0, 0, 0))
+        d = ImageDraw.Draw(im)
+        for _ in range(90):
+            x = rng.uniform(0, W * 2); y = rng.uniform(0, H); r = rng.uniform(12, 60)
+            col = [(255, 190, 90), (255, 120, 60), (120, 180, 255), (255, 255, 230)][rng.integers(0, 4)]
+            v = rng.uniform(0.25, 0.7)
+            d.ellipse([x - r, y - r, x + r, y + r], fill=tuple(int(c * v) for c in col))
+        _bokeh = np.asarray(im.filter(ImageFilter.GaussianBlur(9)), np.float32) * 0.55
+    off = int((t * 40) % W)
+    return _bokeh[:, off:off + W]
+
+
+_rain = None
+
+
+def draw_rain(hud, t):
+    global _rain
+    if _rain is None:
+        rng = np.random.default_rng(8)
+        _rain = [(rng.uniform(0, W + 300), rng.uniform(0, H), rng.uniform(900, 1500), rng.uniform(30, 70)) for _ in range(260)]
+    d = ImageDraw.Draw(hud)
+    for x0, y0, sp, L in _rain:
+        y = (y0 + t * sp) % (H + 100) - 50
+        x = (x0 - (y - y0) * 0.18) % (W + 300) - 150
+        d.line([(x, y), (x - L * 0.18, y - L)], fill=(170, 200, 255, 90), width=2)
+
+
+def wins_tower(hud, upto, alpha=1.0):
+    """Torre lateral ao estilo TV: vitórias em GP até à ronda indicada."""
+    if upto <= 0:
+        return
+    cnt = {}
+    for w in guiao.WINNERS[:upto]:
+        cnt[w] = cnt.get(w, 0) + 1
+    rows = sorted(cnt.items(), key=lambda kv: (-kv[1], guiao.WINNERS.index(kv[0])))[:6]
+    d = ImageDraw.Draw(hud)
+    x, y = 60, 150
+    a = int(225 * alpha)
+    d.rectangle([x, y, x + 340, y + 52], fill=(225, 6, 0, a))
+    paste(hud, text_sprite("2026 GP WINS", F_BARLOW, 38, WHITE, None, 0, 0, 4), x + 14, y + 26, 1, alpha, "l")
+    for k, (nm, v) in enumerate(rows):
+        yy = y + 58 + k * 56
+        d.rectangle([x, yy, x + 340, yy + 52], fill=(12, 12, 16, int(215 * alpha)))
+        d.rectangle([x, yy, x + 8, yy + 52], fill=tuple(guiao.C[guiao.P[nm]]) + (a,))
+        paste(hud, text_sprite(str(k + 1), F_BARLOW, 34, (160, 160, 160)), x + 30, yy + 26, 1, alpha)
+        paste(hud, text_sprite(nm.upper(), F_BARLOW, 36, WHITE, None, 0, 0, 2), x + 56, yy + 26, 1, alpha, "l")
+        paste(hud, text_sprite(str(v), F_ANTON, 38, WHITE), x + 326, yy + 26, 1, alpha, "r")
+
+
+def helmet(col, size=260):
+    im = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    s = size
+    d.ellipse([s * 0.08, s * 0.1, s * 0.92, s * 0.94], fill=tuple(col) + (255,))
+    d.rectangle([s * 0.08, s * 0.62, s * 0.92, s * 0.94], fill=tuple(col) + (255,))
+    d.rounded_rectangle([s * 0.30, s * 0.36, s * 0.96, s * 0.58], int(s * 0.08), fill=(15, 15, 20, 255))
+    d.rectangle([s * 0.08, s * 0.70, s * 0.92, s * 0.76], fill=(255, 255, 255, 200))
+    return im
+
+
+def draw_special(cv, cap, lt, data, dur):
+    parts = cap.split("|")
+    kind = parts[0]
+    d = ImageDraw.Draw(cv)
+    e = ease_out(lt / 0.5)
+    if kind == "@duel":
+        a, b, title = parts[1], parts[2], parts[3]
+        ca, cb = guiao.C[guiao.P[a]], guiao.C[guiao.P[b]]
+        off = int((1 - e) * 900)
+        pa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(pa).polygon([(0, 140), (1040, 140), (880, 940), (0, 940)], fill=tuple(int(c * 0.55) for c in ca) + (235,))
+        pb = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(pb).polygon([(1040 + 12, 140), (W, 140), (W, 940), (880 + 12, 940)], fill=tuple(int(c * 0.55) for c in cb) + (235,))
+        cv.alpha_composite(pa, (-off if off < W else -W + 1, 0))
+        cv.alpha_composite(pb, (min(off, W - 1), 0))
+        hb = helmet(cb).transpose(Image.FLIP_LEFT_RIGHT)
+        paste(cv, helmet(ca), 470 - off, 470, 1 + 0.02 * lt, e)
+        paste(cv, hb, 1450 + off, 470, 1 + 0.02 * lt, e)
+        paste(cv, text_sprite(a.upper(), F_ANTON, 110, WHITE, (0, 0, 0), 14), 470 - off, 740, 1, e)
+        paste(cv, text_sprite(b.upper(), F_ANTON, 110, WHITE, (0, 0, 0), 14), 1450 + off, 740, 1, e)
+        paste(cv, text_sprite(TEAMNAME[guiao.P[a]], F_BARLOW6, 40, WHITE, None, 0, 0, 5), 470 - off, 820, 1, e)
+        paste(cv, text_sprite(TEAMNAME[guiao.P[b]], F_BARLOW6, 40, WHITE, None, 0, 0, 5), 1450 + off, 820, 1, e)
+        vs = text_sprite("VS", F_ANTON, 200, WHITE, RED, 26)
+        paste(cv, vs, 960, 520, 1.6 - 0.6 * ease_out((lt - 0.3) / 0.4), ease_out((lt - 0.3) / 0.3))
+        paste(cv, text_sprite(title, F_BARLOW, 56, WHITE, None, 0, 0, 10), 960, 200, 1, ease_out((lt - 0.5) / 0.4))
+    elif kind in ("@radio", "@rc"):
+        who, quote = (parts[1], parts[2]) if kind == "@radio" else ("RACE CONTROL", parts[1])
+        col = guiao.C[guiao.P[who.split()[-1].title()]] if (kind == "@radio" and who.split()[-1].title() in guiao.P) else ((39, 244, 210) if "WOLFF" in who else (255, 210, 0))
+        bw, bh = 1300, 420
+        x0, y0 = (W - bw) / 2, 300 + (1 - e) * 60
+        box = Image.new("RGBA", (bw, bh), (8, 8, 12, 235))
+        bd = ImageDraw.Draw(box)
+        bd.rectangle([0, 0, 18, bh], fill=tuple(col) + (255,))
+        bd.rectangle([0, 0, bw, 6], fill=tuple(col) + (255,))
+        cv.alpha_composite(box, (int(x0), int(y0)))
+        lab = "TEAM RADIO" if kind == "@radio" else "MESSAGE"
+        paste(cv, text_sprite(lab, F_BARLOW, 40, tuple(col), None, 0, 0, 8), x0 + 60, y0 + 50, 1, e, "l")
+        paste(cv, text_sprite(who, F_ANTON, 64, WHITE), x0 + 60, y0 + 115, 1, e, "l")
+        q = "“" + quote + "”" if kind == "@radio" else quote
+        paste(cv, text_sprite(q, F_ANTON, fit_size(q, F_ANTON, bw - 120, 104), WHITE, (0, 0, 0), 10), x0 + 60, y0 + 245, 1, ease_out((lt - 0.25) / 0.4), "l")
+        # forma de onda animada
+        n = 60
+        for k in range(n):
+            amp = (0.25 + 0.75 * abs(math.sin(lt * 9 + k * 0.7) * math.sin(lt * 3.3 + k * 0.23))) if lt < dur else 0.08
+            hgt = 8 + 46 * amp
+            xx = x0 + 60 + k * ((bw - 120) / n)
+            d.rectangle([xx, y0 + 360 - hgt / 2, xx + 9, y0 + 360 + hgt / 2], fill=tuple(col) + (230,))
+    elif kind == "@climb":
+        nm, p0, p1 = parts[1], int(parts[2]), int(parts[3])
+        col = guiao.C[guiao.P[nm]]
+        gx0, gx1, gy0, gy1 = 420, 1560, 200, 880
+        for p in (1, 5, 10, 15, 20):
+            y = gy0 + (gy1 - gy0) * (p - 1) / 21
+            d.line([(gx0, y), (gx1, y)], fill=(60, 60, 70, 255), width=2)
+            paste(cv, text_sprite("P%d" % p, F_BARLOW, 34, (150, 150, 150)), gx0 - 60, y, 1, 1)
+        prog = ease_io(lt / max(dur * 0.85, 0.5))
+        pts = []
+        for k in range(61):
+            u = k / 60 * prog
+            pos = p0 + (p1 - p0) * (1 - (1 - u) ** 1.6)
+            pts.append((gx0 + (gx1 - gx0) * u, gy0 + (gy1 - gy0) * (pos - 1) / 21))
+        if len(pts) > 1:
+            d.line(pts, fill=tuple(col) + (255,), width=10)
+        x, y = pts[-1]
+        d.ellipse([x - 16, y - 16, x + 16, y + 16], fill=(255, 255, 255, 255))
+        cur = p0 + (p1 - p0) * (1 - (1 - prog) ** 1.6)
+        paste(cv, text_sprite("P%d" % round(cur), F_ANTON, 90, WHITE, tuple(col), 16), min(x + 40, gx1 - 40), y, 1, 1, "l" if x < gx1 - 200 else "r")
+        paste(cv, text_sprite(nm.upper() + "  ·  P%d TO P%d" % (p0, p1), F_ANTON, 80, WHITE, (0, 0, 0), 12), 960, 120, 1, e)
+        paste(cv, text_sprite("START", F_BARLOW, 32, (150, 150, 150)), gx0, gy1 + 40, 1, 1)
+        paste(cv, text_sprite("FINISH", F_BARLOW, 32, (150, 150, 150)), gx1, gy1 + 40, 1, 1)
+    elif kind == "@leadchart":
+        pts = sorted(guiao.LEAD_PTS.items())
+        gx0, gx1, gy0, gy1 = 260, 1660, 220, 820
+        mx = 130
+        for v in (0, 50, 100):
+            y = gy1 - (gy1 - gy0) * v / mx
+            d.line([(gx0, y), (gx1, y)], fill=(60, 60, 70, 255), width=2)
+            paste(cv, text_sprite("+%d" % v, F_BARLOW, 32, (150, 150, 150)), gx0 - 60, y, 1, 1)
+        for r in range(1, 19):
+            x = gx0 + (gx1 - gx0) * (r - 1) / 17
+            paste(cv, text_sprite("R%d" % r, F_BARLOW6, 26, (130, 130, 130)), x, gy1 + 34, 1, 1)
+        prog = ease_io(lt / max(dur * 0.8, 0.5))
+        xy = [(gx0 + (gx1 - gx0) * (r - 1) / 17, gy1 - (gy1 - gy0) * v / mx) for r, v in pts]
+        n = max(1, int(prog * len(xy) + 0.999))
+        col = guiao.C["MER"]
+        if n > 1:
+            d.line(xy[:n], fill=tuple(col) + (255,), width=8)
+        for (x, y), (r, v) in list(zip(xy, pts))[:n]:
+            d.ellipse([x - 12, y - 12, x + 12, y + 12], fill=(255, 255, 255, 255))
+            paste(cv, text_sprite("+%d" % v, F_ANTON, 50, WHITE, (0, 0, 0), 8), x, y - 48, 1, 1)
+        paste(cv, text_sprite("ANTONELLI'S CHAMPIONSHIP LEAD", F_ANTON, 76, WHITE, (0, 0, 0), 12), 960, 120, 1, e)
+        paste(cv, text_sprite("POINTS CLEAR OF SECOND PLACE · AS REPORTED AFTER SELECTED ROUNDS", F_BARLOW6, 30, (170, 170, 170), None, 0, 0, 3), 960, 900, 1, e)
+
+
 # ------------------------------------------------------------------ cenas
 def scene_frame(sc, data, t, gi):
     """Devolve np RGB para o tempo local t."""
@@ -338,7 +558,12 @@ def scene_frame(sc, data, t, gi):
         t_imp = tg - capline["t0"]
         pulse = max(0, 0.6 * (1 - t_imp / 0.6))
     lines_amt = {"race": 0.9, "cold": 0.4, "title": 0.7, "chapter": 0.3, "champion": 0.5}.get(typ, 0.45)
+    wx = data.get("weather") if typ == "race" else None
+    if wx == "night":
+        lines_amt *= 0.4
     f = background(tg, gi, accent, 1.0, pulse, lines_amt)
+    if wx == "night":
+        f = f * 0.75 + bokeh(tg)
     cv = to_pil(f)
     hud = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     zoom, shake = 1.0, 0.0
@@ -375,30 +600,51 @@ def scene_frame(sc, data, t, gi):
         intro_end = lines[0]["t0"] - sc["start"]
         podium_start = dur - 4.6
         if t < intro_end + 0.2:
-            # cartão de abertura
-            e = ease_out(t / 0.7)
-            fl = data["flag"]
-            for k, col in enumerate(fl):
-                w = int(W * ease_out((t - k * 0.12) / 0.6))
-                if w > 0:
-                    bar = Image.new("RGBA", (w, 26), col + (255,))
-                    paste(cv, bar, 0, 300 + k * 26, 1, 1, "l")
-            s = text_sprite("ROUND %02d / 22" % data["rnd"], F_BARLOW, 60, WHITE, None, 0, 0, 12)
-            paste(cv, s, W / 2, 440, 1, e)
-            g = text_sprite(data["gp"], F_ANTON, fit_size(data["gp"], F_ANTON, 1700, 230), WHITE, (0, 0, 0), 20)
-            paste(cv, g, W / 2, 600, 1.2 - 0.2 * e, min(1, t / 0.3))
-            c2 = text_sprite(data["circuit"] + "  ·  " + data["date"], F_BARLOW6, 50, (200, 200, 200), None, 0, 0, 6)
-            paste(cv, c2, W / 2, 750, 1, ease_out((t - 0.5) / 0.6))
-            zoom = 1 + 0.05 * t / max(intro_end, 0.1)
-            if t < 0.45:
-                t_imp = t
-                shake = 12 * (1 - t / 0.45)
+            # semáforo de partida (5 luzes) -> "lights out" -> cartão do GP
+            LO = 2.35
+            if t < LO:
+                draw_lights(cv, t, LO)
+                s = text_sprite("ROUND %02d / 22" % data["rnd"], F_BARLOW, 54, WHITE, None, 0, 0, 12)
+                paste(cv, s, W / 2, 230, 1, ease_out(t / 0.5))
+                zoom = 1 + 0.02 * t
+            else:
+                tt = t - LO
+                e = ease_out(tt / 0.7)
+                fl = data["flag"]
+                for k, col in enumerate(fl):
+                    w = int(W * ease_out((tt - k * 0.12) / 0.6))
+                    if w > 0:
+                        bar = Image.new("RGBA", (w, 26), col + (255,))
+                        paste(cv, bar, 0, 300 + k * 26, 1, 1, "l")
+                s = text_sprite("ROUND %02d / 22" % data["rnd"], F_BARLOW, 60, WHITE, None, 0, 0, 12)
+                paste(cv, s, W / 2, 440, 1, e)
+                g = text_sprite(data["gp"], F_ANTON, fit_size(data["gp"], F_ANTON, 1700, 230), WHITE, (0, 0, 0), 20)
+                paste(cv, g, W / 2, 600, 1.2 - 0.2 * e, min(1, tt / 0.3))
+                c2 = text_sprite(data["circuit"] + "  ·  " + data["date"], F_BARLOW6, 50, (200, 200, 200), None, 0, 0, 6)
+                paste(cv, c2, W / 2, 750, 1, ease_out((tt - 0.5) / 0.6))
+                # três carros com as cores do pódio passam a alta velocidade
+                for k, nm in enumerate(data["podium"]):
+                    if not nm:
+                        continue
+                    pk = (tt - 0.05 - 0.16 * k) / 0.75
+                    if 0 <= pk <= 1:
+                        x = -400 + (W + 800) * ease_io(pk)
+                        draw_car(cv, x, 880 + 70 * (k - 1), 1.0, guiao.C[guiao.P[nm]], blur=True)
+                zoom = 1 + 0.05 * tt / max(intro_end - LO, 0.1)
+                if tt < 0.45:
+                    t_imp = tt
+                    shake = 14 * (1 - tt / 0.45)
         elif t < podium_start:
             # cabeçalho + legenda
             tag(hud, "R%02d · %s" % (data["rnd"], data["gp"]), 60, 70, accent if accent != (255, 255, 255) else RED, 44)
-            if capline:
-                draw_caption(cv, capline["cap"], tg - capline["t0"], 480)
-            zoom = 1 + 0.035 * min(1.0, (tg - (capline["t0"] if capline else 0)) / 8)
+            special = capline and capline["cap"].startswith("@")
+            if special:
+                draw_special(cv, capline["cap"], tg - capline["t0"], data, capline["t1"] - capline["t0"])
+            else:
+                wins_tower(hud, data["rnd"] - 1, fa)
+                if capline:
+                    draw_caption(cv, capline["cap"], tg - capline["t0"], 480, cx=1160, maxw=1260)
+            zoom = 1 + (0.012 if special else 0.035) * min(1.0, (tg - (capline["t0"] if capline else 0)) / 8)
         else:
             tp = t - podium_start
             hdr = text_sprite("PODIUM · " + data["gp"], F_BARLOW, 54, WHITE, None, 0, 0, 10)
@@ -483,6 +729,8 @@ def scene_frame(sc, data, t, gi):
             draw_caption(cv, capline["cap"], tg - capline["t0"], 520, big=210)
         zoom = 1 + 0.035 * min(1.0, (tg - (capline["t0"] if capline else 0)) / 6)
 
+    if wx in ("rain", "night_rain"):
+        draw_rain(hud, tg)
     # legendas (narração)
     if cur and cur["text"] and typ not in ("title",):
         draw_subtitle(hud, cur["text"], tg - cur["t0"], cur["t1"] - cur["t0"])

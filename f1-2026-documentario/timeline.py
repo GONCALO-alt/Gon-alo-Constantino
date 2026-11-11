@@ -4,7 +4,7 @@ import json, os
 import guiao
 
 GAP = 0.34          # pausa entre frases
-PRE = {"race": 3.2, "chapter": 1.4, "title": 0.0, "cold": 0.8, "champion": 1.5,
+PRE = {"race": 4.7, "chapter": 1.4, "title": 0.0, "cold": 0.8, "champion": 1.5,
        "controversy": 1.6, "news": 1.2, "standings": 1.2, "teams": 0.8, "outro": 0.6}
 POST = {"race": 4.6, "chapter": 1.6, "title": 6.5, "cold": 0.6, "champion": 3.5,
         "standings": 2.5, "outro": 5.0}

@@ -121,9 +121,9 @@ SCENES = [
 {"type": "race", "rnd": 5, "gp": "CANADA", "circuit": "GILLES VILLENEUVE", "date": "24 MAY",
  "flag": [(216, 6, 33), (255, 255, 255), (216, 6, 33)],
  "podium": ["Antonelli", "Hamilton", "Verstappen"], "lines": [
-    ("In Montreal, the civil war at Mercedes exploded.", "!MERCEDES|VS MERCEDES"),
+    ("In Montreal, the civil war at Mercedes exploded.", "@duel|Russell|Antonelli|MERCEDES CIVIL WAR"),
     ("In the sprint, Russell and Antonelli made contact. Antonelli was forced onto the grass and demanded, over the radio, a penalty for his team-mate.", "SPRINT CLASH"),
-    ("Toto Wolff told him to concentrate on the driving, not on moaning over the radio.", "“CONCENTRATE|ON THE DRIVING”"),
+    ("Toto Wolff told him to concentrate on the driving, not on moaning over the radio.", "@radio|TOTO WOLFF|CONCENTRATE ON THE DRIVING, PLEASE"),
     ("On Sunday they fought wheel to wheel again, until Russell retired from the lead with a power unit problem.", "!RUSSELL RETIRES"),
     ("Norris retired too, after a tyre gamble that backfired.", "NORRIS OUT"),
     ("Antonelli won a fourth in a row. Hamilton was second, his best Ferrari result yet, and Verstappen took his first podium of the year.", "HAMILTON P2|VERSTAPPEN P3"),
@@ -151,8 +151,8 @@ SCENES = [
  "flag": [(237, 41, 57), (255, 255, 255), (237, 41, 57)],
  "podium": ["Russell", "Verstappen", "Antonelli"], "lines": [
     ("In Austria, Russell hit back. Pole position and victory, with Verstappen just over a second and a half behind.", "RUSSELL"),
-    ("But the story of the day was something else: Verstappen against Hamilton, once again.", "!VERSTAPPEN|VS HAMILTON"),
-    ("During their fight, Verstappen said on the radio it was a clear penalty. The stewards looked at it and took no further action.", "FACT|NO PENALTY"),
+    ("But the story of the day was something else: Verstappen against Hamilton, once again.", "@duel|Verstappen|Hamilton|OLD RIVALS, ROUND TWO"),
+    ("During their fight, Verstappen said on the radio it was a clear penalty. The stewards looked at it and took no further action.", "@radio|MAX VERSTAPPEN|CLEAR PENALTY"),
     ("In Hamilton's view, it was Verstappen who should have backed out. Opposing opinions, no punishment.", "OPINION|“HE SHOULD HAVE BACKED OUT”"),
     ("Hamilton was fifth, Leclerc only eighth. At Red Bull's home race, Ferrari had a day to forget.", "FERRARI SLUMP"),
 ]},
@@ -161,14 +161,14 @@ SCENES = [
  "podium": ["Leclerc", "Russell", "Hamilton"], "lines": [
     ("At Silverstone, Antonelli won the sprint. But Sunday belonged to Ferrari.", "SPRINT: ANTONELLI"),
     ("Charles Leclerc won for the first time since 2024. It was the two hundred and fiftieth victory in Ferrari's history.", "!LECLERC|FERRARI WIN 250"),
-    ("But the finish was tarnished. After a late crash for Verstappen, a message appeared saying the safety car would come in that lap.", "“SAFETY CAR|IN THIS LAP”"),
+    ("But the finish was tarnished. After a late crash for Verstappen, a message appeared saying the safety car would come in that lap.", "@rc|SAFETY CAR IN THIS LAP"),
     ("The FIA overruled it eight seconds later and blamed a software error. The race finished behind the safety car, to boos from the grandstands.", "!SOFTWARE ERROR"),
     ("Russell was less than half a second behind. And Antonelli, hit by reliability trouble, finished sixteenth. The lead fell to twenty-five points.", "+25"),
 ]},
 {"type": "race", "rnd": 10, "gp": "BELGIUM", "circuit": "SPA-FRANCORCHAMPS", "date": "19 JULY",
  "flag": [(0, 0, 0), (253, 218, 36), (239, 51, 64)],
  "podium": ["Antonelli", "Leclerc", "Verstappen"], "lines": [
-    ("Spa. Lap one. Russell goes around the outside, touches Hamilton and ends up in the gravel. Race over.", "!RUSSELL OUT"),
+    ("Spa. Lap one. Russell goes around the outside, touches Hamilton and ends up in the gravel. Race over.", "@duel|Russell|Hamilton|SPA · LAP ONE"),
     ("The stewards held Hamilton wholly responsible, but cut the penalty to five seconds because it was the opening lap.", "FACT|5 SECONDS"),
     ("Hamilton and Ferrari team boss Fred Vasseur disagreed with the decision. Hamilton said he felt unlucky.", "OPINION|“UNLUCKY”"),
     ("There was also an unsafe release in the pits, in which a mechanic was knocked over. Ferrari were fined.", "FINE"),
@@ -178,7 +178,7 @@ SCENES = [
  "flag": [(206, 41, 57), (255, 255, 255), (71, 112, 80)],
  "podium": ["Norris", "Verstappen", "Antonelli"], "lines": [
     ("Before the summer break, McLaren woke up.", ""),
-    ("Norris started from pole. Piastri collided with Carlos Sainz's Williams at turn two, which opened the door for Norris in the pit strategy.", "PIASTRI|VS SAINZ"),
+    ("Norris started from pole. Piastri collided with Carlos Sainz's Williams at turn two, which opened the door for Norris in the pit strategy.", "@duel|Piastri|Sainz|TURN TWO"),
     ("Piastri would later retire with a gearbox failure.", "PIASTRI RETIRES"),
     ("Norris won for the first time in 2026, fifteen seconds clear of Verstappen.", "!NORRIS|AT LAST"),
     ("Antonelli was third and extended his lead. Hamilton lost a place to a five-second penalty.", ""),
@@ -188,7 +188,7 @@ SCENES = [
     ("At the back, Honda-powered Aston Martin reached the break with a single point, scored by Alonso in Monaco.", "ASTON MARTIN|1 POINT"),
     ("And Cadillac had yet to score, with nine retirements in eleven races.", "CADILLAC|0 POINTS"),
 ]},
-{"type": "race", "rnd": 12, "gp": "NETHERLANDS", "circuit": "ZANDVOORT", "date": "23 AUGUST",
+{"type": "race", "rnd": 12, "gp": "NETHERLANDS", "weather": "rain", "circuit": "ZANDVOORT", "date": "23 AUGUST",
  "flag": [(174, 28, 40), (255, 255, 255), (33, 70, 139)],
  "podium": ["Norris", "Antonelli", "Russell"], "lines": [
     ("Zandvoort hosted the final Dutch Grand Prix. Russell won the sprint.", "THE LAST ONE"),
@@ -202,7 +202,7 @@ SCENES = [
  "podium": ["Antonelli", "Russell", "Verstappen"], "lines": [
     ("Monza. The nineteen-year-old Italian started nineteenth, after a power unit penalty.", "!P19"),
     ("Leclerc, Ferrari's great hope, crashed at the Parabolica on the very first lap.", "LECLERC OUT"),
-    ("And Antonelli climbed, car by car, until he passed Russell on the run to Ascari and took the lead.", "P19 TO P1"),
+    ("And Antonelli climbed, car by car, until he passed Russell on the run to Ascari and took the lead.", "@climb|Antonelli|19|1"),
     ("He won by almost four seconds. The first Italian to win at Monza since Ludovico Scarfiotti, in 1966.", "!FIRST SINCE|1966"),
     ("And the second-lowest grid position for a winner in Formula One history, behind only John Watson at Long Beach in 1983.", "2ND GREATEST|COMEBACK"),
 ]},
@@ -223,13 +223,13 @@ SCENES = [
     ("Six drivers retired, including both McLarens, who left Baku without a point.", "McLAREN|ZERO POINTS"),
     ("Antonelli, after starting in the midfield, recovered to fifth. The lead fell to sixty-six points.", "+66"),
 ]},
-{"type": "race", "rnd": 16, "gp": "SINGAPORE", "circuit": "MARINA BAY", "date": "11 OCTOBER",
+{"type": "race", "rnd": 16, "gp": "SINGAPORE", "weather": "night", "circuit": "MARINA BAY", "date": "11 OCTOBER",
  "flag": [(239, 51, 64), (255, 255, 255), (239, 51, 64)],
  "podium": ["Verstappen", "Leclerc", "Antonelli"], "lines": [
     ("In Singapore, Verstappen had the perfect weekend.", "!VERSTAPPEN"),
     ("He won the sprint, a wet race in which Russell crashed while leading.", "SPRINT:|RUSSELL CRASHES"),
     ("On Sunday he took pole and led every lap. His first ever win in Singapore.", "FIRST EVER|IN SINGAPORE"),
-    ("Hamilton stayed out on old tyres during a virtual safety car, dropped from third to sixth, and apologised to his team.", "!“SORRY, BOYS”"),
+    ("Hamilton stayed out on old tyres during a virtual safety car, dropped from third to sixth, and apologised to his team.", "@radio|LEWIS HAMILTON|SORRY, BOYS"),
     ("Leclerc was second, Antonelli third. The title was getting closer and closer.", ""),
 ]},
 {"type": "race", "rnd": 17, "gp": "UNITED STATES", "circuit": "AUSTIN", "date": "25 OCTOBER",
@@ -242,7 +242,7 @@ SCENES = [
 {"type": "race", "rnd": 18, "gp": "MEXICO", "circuit": "HERMANOS RODRÍGUEZ", "date": "1 NOVEMBER",
  "flag": [(0, 104, 71), (255, 255, 255), (206, 17, 38)],
  "podium": ["Verstappen", "Hamilton", "Antonelli"], "lines": [
-    ("Mexico City. Antonelli arrived one hundred and twenty-three points clear of Russell. Ninth place would be enough.", "P9 IS ENOUGH"),
+    ("Mexico City. Antonelli arrived one hundred and twenty-three points clear of Russell. Ninth place would be enough.", "@leadchart"),
     ("The race was chaos. Valtteri Bottas had a heavy crash at turn one, and the race was red-flagged.", "!RED FLAG"),
     ("Then came a standing restart, more safety cars, and a collision between Piastri and Lindblad that earned Piastri a ten-second penalty.", "PIASTRI|PENALISED"),
     ("Both Alpines were also penalised for ignoring yellow flags.", "YELLOW FLAGS"),
@@ -259,7 +259,7 @@ SCENES = [
 {"type": "chapter", "num": "III", "title": "INTERLAGOS", "lines": [
     ("The champion was decided. But Brazil still had a story to tell.", ""),
 ]},
-{"type": "race", "rnd": 19, "gp": "BRAZIL", "circuit": "INTERLAGOS", "date": "8 NOVEMBER",
+{"type": "race", "rnd": 19, "gp": "BRAZIL", "weather": "rain", "circuit": "INTERLAGOS", "date": "8 NOVEMBER",
  "flag": [(0, 156, 59), (255, 223, 0), (0, 39, 118)],
  "podium": ["Norris", "Verstappen", "Hadjar"], "long": True, "lines": [
     ("Saturday. Rain delayed qualifying by almost an hour and a half.", "!RAIN"),
@@ -268,7 +268,7 @@ SCENES = [
     ("Hamilton started twentieth. Verstappen, twenty-first.", "!P20 · P21"),
     ("Sunday. Seventy-one laps. The track started damp, dried out, and then the rain returned at the end.", "71 LAPS"),
     ("Norris managed everything from the front, without a mistake, on a day with no safety car and no crashes.", "FLAWLESS"),
-    ("And from the back came Verstappen. Car by car, pass after pass, from twenty-first all the way to second.", "!P21 TO P2"),
+    ("And from the back came Verstappen. Car by car, pass after pass, from twenty-first all the way to second.", "@climb|Verstappen|21|2"),
     ("Hadjar completed the podium for Red Bull, twenty-four seconds back. Russell was fourth and Antonelli fifth; according to reports, he let his team-mate through.", "HADJAR P3"),
     ("Hamilton, in his four hundredth Grand Prix, recovered from twentieth to ninth despite a spin, but finished a lap down.", "HAMILTON|400 RACES"),
     ("Norris won by fourteen and a half seconds, his third victory of the year.", "!NORRIS WINS"),
@@ -328,5 +328,7 @@ WINNERS = ["Russell", "Antonelli", "Antonelli", "Antonelli", "Antonelli", "Anton
            "Hamilton", "Russell", "Leclerc", "Antonelli", "Norris", "Norris", "Antonelli",
            "Antonelli", "Russell", "Verstappen", "Antonelli", "Verstappen", "Norris"]
 
-# Vantagem de Antonelli confirmada em reportagens (ronda -> pontos)
+# Vantagem de Antonelli sobre o 2.º, confirmada em reportagens (ronda após a qual foi medida -> pontos)
+LEAD_PTS = {4: 20, 5: 43, 9: 25, 12: 59, 14: 81, 15: 66, 17: 123}
+# (antigo)
 LEAD = {4: 20, 5: 43, 9: 25, 12: 59, 14: 81, 15: 66, 17: None, 18: 123}

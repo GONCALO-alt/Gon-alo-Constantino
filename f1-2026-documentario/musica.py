@@ -115,6 +115,25 @@ def braam(root, d=3.5):
     return sweep * 0.14
 
 
+def beep(f=1046.5, d=0.16):
+    n = int(d * SR); t = np.arange(n) / SR
+    x = np.sin(2 * np.pi * f * t) * np.minimum(1, (n - np.arange(n)) / (0.02 * SR))
+    x[:150] *= np.linspace(0, 1, 150)
+    return x * 0.22
+
+
+def roar(d=2.6):
+    """Partida: motor a subir de rotação + passagem (sintetizado)."""
+    n = int(d * SR); t = np.arange(n) / SR
+    f = 90 + 260 * (1 - np.exp(-t * 2.2))
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = sum(np.sin(ph * h) / h for h in (1, 2, 3, 4, 6))
+    x = np.tanh(x * 1.8)
+    x = lp(x, 3500) + lp(rng.standard_normal(n), 1200) * 0.25
+    env = np.minimum(1, t / 0.08) * np.exp(-np.maximum(0, t - 0.6) * 1.4)
+    return x * env * 0.45
+
+
 # progressões (MIDI) — Ré menor épico / Dó maior emocional
 DARK = [[50, 57, 62, 65], [46, 53, 58, 62], [53, 57, 60, 65], [48, 55, 60, 64]]   # Dm Bb F C
 TENSE = [[50, 57, 62, 65], [50, 56, 62, 65], [49, 56, 61, 64], [50, 57, 62, 65]]
@@ -216,7 +235,12 @@ def main():
     # efeitos
     for k, sc in enumerate(scenes):
         typ = sc["type"]
-        if typ in ("race", "chapter", "title", "champion", "controversy", "news"):
+        if typ == "race":
+            for k in range(5):
+                add(sfx, beep(), sc["start"] + 0.15 + 0.38 * k, 0.9)
+            add(sfx, impact(), sc["start"] + 2.35, 0.9)
+            add(sfx, roar(), sc["start"] + 2.33, 0.9)
+        elif typ in ("chapter", "title", "champion", "controversy", "news"):
             add(sfx, riser(2.2), sc["start"] - 2.2, 0.8)
             add(sfx, impact(), sc["start"], 0.9)
             if typ in ("chapter", "title", "champion"):
