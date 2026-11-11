@@ -24,6 +24,9 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import visuais  # noqa: E402
+
 W, H = 1080, 1920
 FPS = 30
 SR = 44100
@@ -296,27 +299,37 @@ class Cena:
         self.data_txt = data_txt
         tipo = TIPOS.get(cena.get("tipo", "contexto"), TIPOS["contexto"])
         self.chip_txt = f"{idx + 1:02d}  {cena.get('rotulo', tipo['rotulo'])}"
-        y = 460
+        y = 440
+        self.visual = visuais.criar(cena.get("visual"))
+        compacto = self.visual is not None
         # número grande (opcional). «A → B» anima: A aparece, seta desliza, B conta de A até B.
         self.num = None
         if cena.get("numero"):
             txt = cena["numero"]
-            f, lines, size = fit_text(txt, F_BLACK, W - 2 * M, 360, start=330, minimum=140)
+            f, lines, size = fit_text(txt, F_BLACK, W - 2 * M, 170 if compacto else 360,
+                                      start=170 if compacto else 330, minimum=90 if compacto else 140)
             self.num = {"txt": txt, "size": size, "y": y}
-            y += int(size * 0.98) * len(lines) + 30
-        reserva = 130 if cena.get("detalhe") else 0
-        f, lines, size = fit_text(cena["ecra"], F_BLACK, W - 2 * M, min(560, LIMITE_TEXTO - y - reserva),
-                                  start=128, minimum=60)
+            y += int(size * 0.98) * len(lines) + (10 if compacto else 30)
+        reserva = 130 if cena.get("detalhe") and not compacto else 0
+        if compacto:
+            f, lines, size = fit_text(cena["ecra"], F_BLACK, W - 2 * M, 150, start=80, minimum=50)
+        else:
+            f, lines, size = fit_text(cena["ecra"], F_BLACK, W - 2 * M, min(560, LIMITE_TEXTO - y - reserva),
+                                      start=128, minimum=60)
         self.lines = []
         for l in lines:
             self.lines.append((l, size, y)); y += int(size * 1.05)
         self.det = []
-        if cena.get("detalhe"):
+        if compacto:
+            y += 30
+            self.vbox = (M - 30, y, W - 2 * (M - 30), max(560, 1400 - y))
+        elif cena.get("detalhe"):
             y += 26
             fd = font(F_SEMI, 42)
             for l in wrap(cena["detalhe"], fd, W - 2 * M)[: max(1, (LIMITE_TEXTO + 60 - y) // 56)]:
                 self.det.append((l, y)); y += 56
         self.t_texto = 0.55 if self.num else 0.15
+        self.dur = 5.0  # definido em build()
 
     # -- contagem do número (usada também para os «tiques» sonoros)
     def num_parts(self, u: float) -> list[tuple[str, float, float]]:
@@ -420,6 +433,19 @@ class Cena:
                 if self.det: yy = min(yy, self.det[0][1] - 14)
                 d.rectangle([M, yy, M + lw * p, yy + 8], fill=self.cor)
 
+        # visual animado (repetição GPS, gráfico, notícia, meme...): sobe a partir de baixo
+        if self.visual:
+            p = ease_out((u - 0.25) / 0.45)
+            if p > 0:
+                bx, by, bw, bh = self.vbox
+                by2 = int(by + 260 * (1 - p))
+                if p < 1:
+                    layer = img.copy()
+                    self.visual.draw(layer, (bx, by2, bw, bh), u, self.dur)
+                    img = Image.blend(img, layer, p)
+                else:
+                    self.visual.draw(img, (bx, by2, bw, bh), u, self.dur)
+
         # abanão quando o número aterra (só no gancho)
         if self.num and self.c.get("tipo") == "gancho":
             for t_hit in (0.05, 0.7):
@@ -449,6 +475,43 @@ def _pop(k: float) -> float:
     """Escala de «pop»: começa a 1.35 e assenta em 1.0."""
     if k < 0: return 1.35
     return 1 + 0.35 * (1 - ease_out(k / 0.28))
+
+
+_GRAIN = None
+_VIGNETTE = None
+
+
+def post_fx(frame: Image.Image, t: float, cuts: list[float], beat: float) -> Image.Image:
+    """Zoom de batida, flash e glitch RGB nos cortes, grão de filme e vinheta."""
+    global _GRAIN, _VIGNETTE
+    if _GRAIN is None:
+        r = np.random.default_rng(11)
+        _GRAIN = [Image.fromarray(np.clip(128 + r.normal(0, 10, (H // 2, W // 2)), 0, 255).astype(np.uint8))
+                  .resize((W, H)).convert("RGB") for _ in range(4)]
+        yy, xx = np.mgrid[0:H // 4, 0:W // 4]
+        dist = np.sqrt(((xx - W / 8) / (W / 8)) ** 2 + ((yy - H / 8) / (H / 8)) ** 2)
+        v = np.clip(1.08 - 0.42 * dist ** 2.2, 0.45, 1) * 255
+        _VIGNETTE = Image.fromarray(v.astype(np.uint8)).resize((W, H), Image.BILINEAR).convert("RGB")
+    since_cut = min((t - c for c in cuts if t >= c), default=99)
+    # zoom: forte em cada corte, leve em cada batida
+    z = 0.0
+    if since_cut < 0.35: z = 0.07 * (1 - ease_out(since_cut / 0.35))
+    else:
+        bp = (t % beat) / beat
+        if int(t / beat) % 2 == 0 and bp < 0.25: z = 0.012 * (1 - bp / 0.25)
+    if z > 0.002:
+        cw, ch = int(W / (1 + z)), int(H / (1 + z))
+        frame = frame.crop(((W - cw) // 2, (H - ch) // 2, (W - cw) // 2 + cw, (H - ch) // 2 + ch)).resize((W, H), Image.BILINEAR)
+    # glitch RGB e flash logo a seguir ao corte
+    if since_cut < 0.14:
+        k = int(26 * (1 - since_cut / 0.14))
+        r_, g_, b_ = frame.split()
+        frame = Image.merge("RGB", (ImageChops.offset(r_, k, 0), g_, ImageChops.offset(b_, -k, 0)))
+        if since_cut < 0.07:
+            frame = Image.blend(frame, Image.new("RGB", (W, H), (255, 255, 255)), 0.35 * (1 - since_cut / 0.07))
+    frame = ImageChops.multiply(frame, _VIGNETTE)
+    frame = Image.blend(frame, ImageChops.overlay(frame, _GRAIN[int(t * FPS / 3) % 4]), 0.5)
+    return frame
 
 
 def wipe(old: Image.Image, new: Image.Image, p: float, cor) -> Image.Image:
@@ -577,6 +640,8 @@ def build(guiao: dict, outdir: Path) -> dict:
 
     cenas_obj = [Cena(c, i, len(cenas), data_txt) for i, c in enumerate(cenas)]
     bounds = scene_start[1:] + [total]
+    for co, a, b in zip(cenas_obj, scene_start, bounds):
+        co.dur = b - a
 
     # áudio
     n = int(total * SR) + SR
@@ -614,7 +679,7 @@ def build(guiao: dict, outdir: Path) -> dict:
          "-i", "-", "-i", str(work / "mix.wav"),
          "-filter_complex", f"[0:v]subtitles={ass}:fontsdir={FONT_DIR},format=yuv420p[v]",
          "-map", "[v]", "-map", "1:a", "-af", "loudnorm=I=-14:TP=-1.5:LRA=9", "-ar", "48000",
-         "-c:v", "libx264", "-preset", "medium", "-crf", "22", "-profile:v", "high",
+         "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-maxrate", "3M", "-bufsize", "6M", "-profile:v", "high",
          "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", "-shortest", str(mp4)],
         stdin=subprocess.PIPE)
     nframes = int(total * FPS)
@@ -632,6 +697,7 @@ def build(guiao: dict, outdir: Path) -> dict:
             frame = wipe(prv, frame, (t - (scene_start[i] - WIPE / 2)) / WIPE, co.cor)
         if t > speech_end:
             frame = chequered(frame, (t - speech_end - 0.1) / 0.7, t)
+        frame = post_fx(frame, t, scene_start[1:] + [speech_end + 0.1], 60 / 124)
         if t < 0.25:  # entrada a partir de preto
             frame = Image.blend(Image.new("RGB", (W, H)), frame, t / 0.25)
         ff.stdin.write(frame.convert("RGB").tobytes())
