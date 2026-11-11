@@ -84,7 +84,7 @@ George Russell won, with Kimi Antonelli less than three seconds behind. A Merced
 
 Hamilton was fourth, Norris fifth. And rookie Lindblad scored on debut, in eighth.  _[ecrã: LINDBLAD P8]_
 
-## [03:45] R02 · GP China (15 march)
+## [03:46] R02 · GP China (15 march)
 
 In Shanghai, the first bombshell: neither McLaren started. Two different electrical problems, both linked to the Mercedes power unit.  _[ecrã: McLAREN / DOUBLE DNS]_
 
@@ -98,13 +98,13 @@ His first career win, at nineteen. Only Verstappen had won younger.  _[ecrã: FI
 
 And Hamilton, at last, stood on the podium for Ferrari.  _[ecrã: HAMILTON'S FIRST / FERRARI PODIUM]_
 
-## [04:24] NEWS
+## [04:27] NEWS
 
 Days later came the news: because of the conflict in the Middle East, the Bahrain and Saudi Arabian Grands Prix were cancelled, with no replacements.  _[ecrã: BAHRAIN / SAUDI ARABIA]_
 
 The calendar shrank to twenty-two races, with a five-week gap between Japan and Miami.  _[ecrã: 22 RACES]_
 
-## [04:41] R03 · GP Japan (29 march)
+## [04:44] R03 · GP Japan (29 march)
 
 At Suzuka, Antonelli took pole again, but made a poor start and dropped to sixth.  _[ecrã: P1 TO P6]_
 
@@ -114,7 +114,7 @@ He won by thirteen seconds from Piastri, who finally finished a race and took se
 
 Antonelli became the youngest ever multiple Grand Prix winner, and the youngest championship leader in history.  _[ecrã: LEADER / AT 19]_
 
-## [05:16] R04 · GP Miami (3 may)
+## [05:20] R04 · GP Miami (3 may)
 
 After five weeks, Miami. On Saturday, Norris won the sprint: McLaren's first victory of 2026.  _[ecrã: SPRINT: NORRIS]_
 
@@ -126,13 +126,13 @@ Leclerc led early but spun. He lost fourth to Russell and, on the line, fifth to
 
 Up front, Antonelli held off Norris by just over three seconds. Three wins in a row, and a twenty-point lead over Russell.  _[ecrã: 3 IN A ROW]_
 
-## [05:59] R05 · GP Canada (24 may)
+## [06:05] R05 · GP Canada (24 may)
 
-In Montreal, the civil war at Mercedes exploded.  _[ecrã: MERCEDES / VS MERCEDES]_
+In Montreal, the civil war at Mercedes exploded.
 
 In the sprint, Russell and Antonelli made contact. Antonelli was forced onto the grass and demanded, over the radio, a penalty for his team-mate.  _[ecrã: SPRINT CLASH]_
 
-Toto Wolff told him to concentrate on the driving, not on moaning over the radio.  _[ecrã: “CONCENTRATE / ON THE DRIVING”]_
+Toto Wolff told him to concentrate on the driving, not on moaning over the radio.
 
 On Sunday they fought wheel to wheel again, until Russell retired from the lead with a power unit problem.  _[ecrã: RUSSELL RETIRES]_
 
@@ -142,7 +142,7 @@ Antonelli won a fourth in a row. Hamilton was second, his best Ferrari result ye
 
 The lead grew to forty-three points. And Mercedes drew up new internal rules on how its drivers could race each other.  _[ecrã: +43]_
 
-## [06:52] R06 · GP Monaco (7 june)
+## [07:00] R06 · GP Monaco (7 june)
 
 In Monaco, the first race under the new compression test, Verstappen was out on the very first lap.  _[ecrã: VERSTAPPEN / LAP 1]_
 
@@ -154,7 +154,7 @@ Antonelli led every lap and survived the restart. Hamilton second, Hadjar third.
 
 A fifth straight win. The youngest Monaco winner ever, and Mercedes' first victory in the Principality since 2019.  _[ecrã: 5 IN A ROW]_
 
-## [07:37] R07 · GP Barcelona (14 june)
+## [07:46] R07 · GP Barcelona (14 june)
 
 Barcelona. And finally, it happened.
 
@@ -166,33 +166,33 @@ And Lewis Hamilton won. His first victory with Ferrari, his first since Belgium 
 
 Russell was second, Norris third, Verstappen fourth. And Alpine got both cars into the points.  _[ecrã: WIN 106]_
 
-## [08:14] R08 · GP Austria (28 june)
+## [08:25] R08 · GP Austria (28 june)
 
 In Austria, Russell hit back. Pole position and victory, with Verstappen just over a second and a half behind.  _[ecrã: RUSSELL]_
 
-But the story of the day was something else: Verstappen against Hamilton, once again.  _[ecrã: VERSTAPPEN / VS HAMILTON]_
+But the story of the day was something else: Verstappen against Hamilton, once again.
 
-During their fight, Verstappen said on the radio it was a clear penalty. The stewards looked at it and took no further action.  _[ecrã: FACT / NO PENALTY]_
+During their fight, Verstappen said on the radio it was a clear penalty. The stewards looked at it and took no further action.
 
 In Hamilton's view, it was Verstappen who should have backed out. Opposing opinions, no punishment.  _[ecrã: OPINION / “HE SHOULD HAVE BACKED OUT”]_
 
 Hamilton was fifth, Leclerc only eighth. At Red Bull's home race, Ferrari had a day to forget.  _[ecrã: FERRARI SLUMP]_
 
-## [08:55] R09 · GP Great Britain (5 july)
+## [09:07] R09 · GP Great Britain (5 july)
 
 At Silverstone, Antonelli won the sprint. But Sunday belonged to Ferrari.  _[ecrã: SPRINT: ANTONELLI]_
 
 Charles Leclerc won for the first time since 2024. It was the two hundred and fiftieth victory in Ferrari's history.  _[ecrã: LECLERC / FERRARI WIN 250]_
 
-But the finish was tarnished. After a late crash for Verstappen, a message appeared saying the safety car would come in that lap.  _[ecrã: “SAFETY CAR / IN THIS LAP”]_
+But the finish was tarnished. After a late crash for Verstappen, a message appeared saying the safety car would come in that lap.
 
 The FIA overruled it eight seconds later and blamed a software error. The race finished behind the safety car, to boos from the grandstands.  _[ecrã: SOFTWARE ERROR]_
 
 Russell was less than half a second behind. And Antonelli, hit by reliability trouble, finished sixteenth. The lead fell to twenty-five points.  _[ecrã: +25]_
 
-## [09:42] R10 · GP Belgium (19 july)
+## [09:56] R10 · GP Belgium (19 july)
 
-Spa. Lap one. Russell goes around the outside, touches Hamilton and ends up in the gravel. Race over.  _[ecrã: RUSSELL OUT]_
+Spa. Lap one. Russell goes around the outside, touches Hamilton and ends up in the gravel. Race over.
 
 The stewards held Hamilton wholly responsible, but cut the penalty to five seconds because it was the opening lap.  _[ecrã: FACT / 5 SECONDS]_
 
@@ -202,11 +202,11 @@ There was also an unsafe release in the pits, in which a mechanic was knocked ov
 
 Antonelli retook the lead after a restart and beat Leclerc by under two seconds. His sixth win of the year.  _[ecrã: 6 WINS]_
 
-## [10:24] R11 · GP Hungary (26 july)
+## [10:39] R11 · GP Hungary (26 july)
 
 Before the summer break, McLaren woke up.
 
-Norris started from pole. Piastri collided with Carlos Sainz's Williams at turn two, which opened the door for Norris in the pit strategy.  _[ecrã: PIASTRI / VS SAINZ]_
+Norris started from pole. Piastri collided with Carlos Sainz's Williams at turn two, which opened the door for Norris in the pit strategy.
 
 Piastri would later retire with a gearbox failure.  _[ecrã: PIASTRI RETIRES]_
 
@@ -214,7 +214,7 @@ Norris won for the first time in 2026, fifteen seconds clear of Verstappen.  _[e
 
 Antonelli was third and extended his lead. Hamilton lost a place to a five-second penalty.
 
-## [11:00] MIDSEASON
+## [11:17] MIDSEASON
 
 At the summer break, the picture was clear: Mercedes dominated, Ferrari won now and then, and McLaren and Red Bull were searching for answers.  _[ecrã: MID-SEASON]_
 
@@ -222,7 +222,7 @@ At the back, Honda-powered Aston Martin reached the break with a single point, s
 
 And Cadillac had yet to score, with nine retirements in eleven races.  _[ecrã: CADILLAC / 0 POINTS]_
 
-## [11:22] R12 · GP Netherlands (23 august)
+## [11:39] R12 · GP Netherlands (23 august)
 
 Zandvoort hosted the final Dutch Grand Prix. Russell won the sprint.  _[ecrã: THE LAST ONE]_
 
@@ -234,19 +234,19 @@ At the restart, Norris passed Antonelli and Hamilton on the same lap and won by 
 
 Antonelli second, Russell third. The lead grew to fifty-nine points.  _[ecrã: +59]_
 
-## [11:59] R13 · GP Italy (6 september)
+## [12:17] R13 · GP Italy (6 september)
 
 Monza. The nineteen-year-old Italian started nineteenth, after a power unit penalty.  _[ecrã: P19]_
 
 Leclerc, Ferrari's great hope, crashed at the Parabolica on the very first lap.  _[ecrã: LECLERC OUT]_
 
-And Antonelli climbed, car by car, until he passed Russell on the run to Ascari and took the lead.  _[ecrã: P19 TO P1]_
+And Antonelli climbed, car by car, until he passed Russell on the run to Ascari and took the lead.
 
 He won by almost four seconds. The first Italian to win at Monza since Ludovico Scarfiotti, in 1966.  _[ecrã: FIRST SINCE / 1966]_
 
 And the second-lowest grid position for a winner in Formula One history, behind only John Watson at Long Beach in 1983.  _[ecrã: 2ND GREATEST / COMEBACK]_
 
-## [12:42] R14 · GP Spain (13 september)
+## [13:01] R14 · GP Spain (13 september)
 
 Madrid hosted Formula One for the first time in forty-five years, on a brand-new circuit.  _[ecrã: MADRID / 45 YEARS ON]_
 
@@ -256,7 +256,7 @@ Antonelli won, Verstappen was second, Norris third. Hamilton retired on lap seve
 
 Many critics called it a forgettable race. Not for the championship: the lead reached eighty-one points.  _[ecrã: +81]_
 
-## [13:19] R15 · GP Azerbaijan (26 september)
+## [13:40] R15 · GP Azerbaijan (26 september)
 
 In Baku, Russell started from pole and led from lights to flag.  _[ecrã: LIGHTS TO FLAG]_
 
@@ -268,7 +268,7 @@ Six drivers retired, including both McLarens, who left Baku without a point.  _[
 
 Antonelli, after starting in the midfield, recovered to fifth. The lead fell to sixty-six points.  _[ecrã: +66]_
 
-## [13:55] R16 · GP Singapore (11 october)
+## [14:17] R16 · GP Singapore (11 october)
 
 In Singapore, Verstappen had the perfect weekend.  _[ecrã: VERSTAPPEN]_
 
@@ -276,11 +276,11 @@ He won the sprint, a wet race in which Russell crashed while leading.  _[ecrã: 
 
 On Sunday he took pole and led every lap. His first ever win in Singapore.  _[ecrã: FIRST EVER / IN SINGAPORE]_
 
-Hamilton stayed out on old tyres during a virtual safety car, dropped from third to sixth, and apologised to his team.  _[ecrã: “SORRY, BOYS”]_
+Hamilton stayed out on old tyres during a virtual safety car, dropped from third to sixth, and apologised to his team.
 
 Leclerc was second, Antonelli third. The title was getting closer and closer.
 
-## [14:28] R17 · GP United States (25 october)
+## [14:52] R17 · GP United States (25 october)
 
 In Austin, Antonelli delivered what Toto Wolff called the best race of his career so far.  _[ecrã: “THE BEST”]_
 
@@ -288,9 +288,9 @@ A single stop, at the end of lap twenty-four, and total control. Leclerc thirtee
 
 Hamilton was fourth, Norris fifth. The title was one step away.  _[ecrã: ONE STEP AWAY]_
 
-## [14:54] R18 · GP Mexico (1 november)
+## [15:20] R18 · GP Mexico (1 november)
 
-Mexico City. Antonelli arrived one hundred and twenty-three points clear of Russell. Ninth place would be enough.  _[ecrã: P9 IS ENOUGH]_
+Mexico City. Antonelli arrived one hundred and twenty-three points clear of Russell. Ninth place would be enough.
 
 The race was chaos. Valtteri Bottas had a heavy crash at turn one, and the race was red-flagged.  _[ecrã: RED FLAG]_
 
@@ -300,7 +300,7 @@ Both Alpines were also penalised for ignoring yellow flags.  _[ecrã: YELLOW FLA
 
 Verstappen beat Hamilton by eight tenths. And Antonelli, in third, crossed the line as world champion.  _[ecrã: WORLD / CHAMPION]_
 
-## [15:35] CHAMPION
+## [16:02] CHAMPION
 
 Kimi Antonelli. Twenty years and sixty-eight days.  _[ecrã: KIMI ANTONELLI]_
 
@@ -310,11 +310,11 @@ The first Italian champion since Alberto Ascari, in 1953.  _[ecrã: FIRST ITALIA
 
 And Mercedes' first drivers' title since Hamilton in 2020. Won in only his second Formula One season, with four races to spare.  _[ecrã: MERCEDES / FIRST SINCE 2020]_
 
-## [16:04] Capítulo III — Interlagos
+## [16:31] Capítulo III — Interlagos
 
 The champion was decided. But Brazil still had a story to tell.
 
-## [16:11] R19 · GP Brazil (8 november)
+## [16:38] R19 · GP Brazil (8 november)
 
 Saturday. Rain delayed qualifying by almost an hour and a half.  _[ecrã: RAIN]_
 
@@ -328,7 +328,7 @@ Sunday. Seventy-one laps. The track started damp, dried out, and then the rain r
 
 Norris managed everything from the front, without a mistake, on a day with no safety car and no crashes.  _[ecrã: FLAWLESS]_
 
-And from the back came Verstappen. Car by car, pass after pass, from twenty-first all the way to second.  _[ecrã: P21 TO P2]_
+And from the back came Verstappen. Car by car, pass after pass, from twenty-first all the way to second.
 
 Hadjar completed the podium for Red Bull, twenty-four seconds back. Russell was fourth and Antonelli fifth; according to reports, he let his team-mate through.  _[ecrã: HADJAR P3]_
 
@@ -340,11 +340,11 @@ And with points from Russell and Antonelli, Mercedes clinched the constructors' 
 
 Verstappen stretched his advantage in second place in the championship from two points to seventeen.  _[ecrã: +17]_
 
-## [17:43] Capítulo IV — Winners And Losers
+## [18:11] Capítulo IV — Winners And Losers
 
 Nineteen races in, where does every team stand?
 
-## [17:49] TEAMS
+## [18:18] TEAMS
 
 Mercedes: the best reading of the new rules. Twelve wins from nineteen Grands Prix and both titles secured, despite reliability failures and tension between the drivers.
 
@@ -362,11 +362,11 @@ Haas and Audi are fighting for seventh. Williams are having a difficult year.
 
 Aston Martin, with Honda, have had a very hard season, with only seven points. And newcomers Cadillac are still searching for their first point.
 
-## [19:00] Capítulo V — Where We Stand
+## [19:29] Capítulo V — Where We Stand
 
 The eleventh of November, 2026. Three races to go: Las Vegas, Qatar and Abu Dhabi.
 
-## [19:10] STANDINGS
+## [19:39] STANDINGS
 
 Antonelli is champion with three hundred and ninety points.
 
@@ -376,7 +376,7 @@ Leclerc has two hundred and forty-nine, and Norris two hundred and forty-six.
 
 With seventy-five points still available, these five drivers, separated by thirty-three points, can all still finish second.  _[ecrã: 75 POINTS / STILL AVAILABLE]_
 
-## [19:41] STANDINGS
+## [20:09] STANDINGS
 
 In the constructors' championship, Mercedes are already champions, with six hundred and fifty-two points. Ferrari are second, with more than five hundred.
 
@@ -384,7 +384,7 @@ The big battle is for third: Red Bull on four hundred and fifteen, McLaren seven
 
 And at the back, Aston Martin and Cadillac are fighting to avoid last place.
 
-## [20:06] OUTRO
+## [20:34] OUTRO
 
 A season of new rules, new faces and old rivalries.  _[ecrã: NEW RULES]_
 
