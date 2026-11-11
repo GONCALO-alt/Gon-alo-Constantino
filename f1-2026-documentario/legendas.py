@@ -14,7 +14,7 @@ def ts(t):
 def main(dest="."):
     scenes, T = timeline.build(OUT)
     n = 1
-    with open(os.path.join(dest, "F1_2026_ate_ao_Brasil.srt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(dest, "F1_2026_Up_To_Brazil.srt"), "w", encoding="utf-8") as f:
         for sc in scenes:
             for ln in sc["lines"]:
                 if not ln["text"]:
@@ -23,7 +23,7 @@ def main(dest="."):
                                                    "\n".join(textwrap.wrap(ln["text"], 60))))
                 n += 1
     with open(os.path.join(dest, "GUIAO.md"), "w", encoding="utf-8") as f:
-        f.write("# F1 2026 — Tudo o que aconteceu até o Brasil\n\nGuião completo da narração (português do Brasil).\n\n")
+        f.write("# F1 2026 — Everything That Happened Up To Brazil\n\nGuião completo da narração (em inglês), com os tempos de cada cena.\n\n")
         for sc, data in zip(scenes, guiao.SCENES):
             m, s = divmod(int(sc["start"]), 60)
             head = {"race": lambda d: "R%02d · GP %s (%s)" % (d["rnd"], d["gp"].title(), d["date"].lower()),

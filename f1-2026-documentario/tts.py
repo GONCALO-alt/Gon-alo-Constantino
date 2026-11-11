@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Narração em português do Brasil com voz masculina grave.
+"""Narração em inglês com voz masculina grave e natural.
 
-Motor: Kokoro-82M (ONNX, Apache-2.0), voz pm_alex, fonética espeak-ng pt-br.
-Depois da síntese, a voz é baixada ~3 semitons (formantes preservados) e
-recebe reforço de graves, para soar mais "grossa".
+Motor: Kokoro-82M (ONNX, Apache-2.0). Voz "am_deep" = mistura de estilos
+0,55·am_michael + 0,45·am_onyx (grave sem distorção; criada em voices.npz
+pela função ensure_voice). Sem alteração de tom; só equalização leve.
 Modelo: pacote npm kokoro-q8-shards (6 partes concatenadas); vozes: pacote npm kokoro-js.
 """
 import json, os, re, subprocess, sys
@@ -13,12 +13,13 @@ import guiao
 
 OUT = os.environ.get("OUT", "build")
 KDIR = os.environ.get("KOKORO_DIR", "kokoro")
-VOICE = os.environ.get("VOICE", "pm_alex")
-SPEED = float(os.environ.get("SPEED", "1.0"))
-PITCH = float(os.environ.get("PITCH", "0.82"))   # 0.82 ≈ -3,5 semitons
+VOICE = os.environ.get("VOICE", "am_deep")
+LANG = os.environ.get("TTS_LANG", "en-us")
+SPEED = float(os.environ.get("SPEED", "0.96"))
+PITCH = float(os.environ.get("PITCH", "1.0"))    # 1.0 = sem alteração de tom
 SR = 44100
 
-# Grafias só para a pronúncia (o texto no ecrã/legendas não muda)
+# Grafias só para a pronúncia em pt-BR (não usadas em inglês)
 PRON = [
     ("Hamilton", "Rámilton"), ("Verstappen", "Verstápen"), ("Norris", "Nóris"), ("Russell", "Rássel"),
     ("Antonelli", "Antonéli"), ("Piastri", "Piástri"), ("Leclerc", "Leclérc"), ("Hadjar", "Adjár"),
@@ -39,6 +40,8 @@ PRON = [
 
 
 def pron(text):
+    if LANG != "pt-br":
+        return text
     for a, b in PRON:
         text = re.sub(r"\b%s\b" % re.escape(a), b, text)
     return text
@@ -60,11 +63,11 @@ def synth(job):
     path = os.path.join(OUT, f"vo_{si:02d}_{li:02d}.f32")
     raw = os.path.join(OUT, "kokoro_cache", f"{si:02d}_{li:02d}.f32")
     if not os.path.exists(raw):
-        a, sr = kokoro().create(pron(text), voice=VOICE, speed=SPEED, lang="pt-br")
+        a, sr = kokoro().create(pron(text), voice=VOICE, speed=SPEED, lang=LANG)
         np.asarray(a, np.float32).tofile(raw)
     # graves: tom mais baixo (formantes preservados), resample para 44.1k, EQ e corte de silêncios
-    af = (f"rubberband=pitch={PITCH}:formant=preserved:pitchq=quality,"
-          "aresample=44100,highpass=f=55,equalizer=f=110:t=q:w=1.0:g=5,equalizer=f=220:t=q:w=1.2:g=2,"
+    shift = f"rubberband=pitch={PITCH}:formant=preserved:pitchq=quality," if abs(PITCH - 1.0) > 1e-3 else ""
+    af = (shift + "aresample=44100,highpass=f=55,equalizer=f=120:t=q:w=1.0:g=3,"
           "equalizer=f=3500:t=q:w=1.5:g=1.5,"
           "silenceremove=start_periods=1:start_threshold=-45dB,areverse,"
           "silenceremove=start_periods=1:start_threshold=-45dB,areverse")
@@ -76,7 +79,16 @@ def synth(job):
     return si, li, path, len(a) / SR, text
 
 
+def ensure_voice():
+    p = os.path.join(KDIR, "voices.npz")
+    d = dict(np.load(p))
+    if "am_deep" not in d:
+        d["am_deep"] = 0.55 * d["am_michael"] + 0.45 * d["am_onyx"]
+        np.savez(p, **d)
+
+
 def main():
+    ensure_voice()
     os.makedirs(os.path.join(OUT, "kokoro_cache"), exist_ok=True)
     jobs = [(si, li, t) for si, sc in enumerate(guiao.SCENES) for li, (t, _) in enumerate(sc["lines"]) if t.strip()]
     jobs.sort(key=lambda j: -len(j[2]))

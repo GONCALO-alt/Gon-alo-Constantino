@@ -24,14 +24,14 @@ TEAMNAME = {"MER": "MERCEDES", "FER": "FERRARI", "MCL": "McLAREN", "RBR": "RED B
             "RB": "RACING BULLS", "ALP": "ALPINE", "HAA": "HAAS", "WIL": "WILLIAMS",
             "AUD": "AUDI", "AST": "ASTON MARTIN", "CAD": "CADILLAC"}
 TEAMCARD = {
-    "MER": ("1.º", "652", "12 VITÓRIAS", "CAMPEÃ DE CONSTRUTORES"),
-    "FER": ("2.º", "512", "2 VITÓRIAS", "HAMILTON · LECLERC"),
-    "RBR": ("3.º", "415", "2 VITÓRIAS", "VERSTAPPEN · HADJAR"),
-    "MCL": ("4.º", "398", "3 VITÓRIAS", "NORRIS · PIASTRI"),
-    "RB": ("5.º", "112", "MELHOR DO RESTO", "LAWSON · LINDBLAD"),
-    "ALP": ("6.º", "69", "MOTOR MERCEDES", "GASLY · COLAPINTO"),
-    "HAA": ("7.º–9.º", "31 · 28 · 12", "HAAS · AUDI · WILLIAMS", ""),
-    "AST": ("10.º–11.º", "7 · 0", "ASTON MARTIN · CADILLAC", ""),
+    "MER": ("1ST", "652", "12 WINS", "CONSTRUCTORS' CHAMPIONS"),
+    "FER": ("2ND", "512", "2 WINS", "HAMILTON · LECLERC"),
+    "RBR": ("3RD", "415", "2 WINS", "VERSTAPPEN · HADJAR"),
+    "MCL": ("4TH", "398", "3 WINS", "NORRIS · PIASTRI"),
+    "RB": ("5TH", "112", "BEST OF THE REST", "LAWSON · LINDBLAD"),
+    "ALP": ("6TH", "69", "MERCEDES POWER", "GASLY · COLAPINTO"),
+    "HAA": ("7–9", "31 · 28 · 12", "HAAS · AUDI · WILLIAMS", ""),
+    "AST": ("10–11", "7 · 0", "ASTON MARTIN · CADILLAC", ""),
 }
 GRID = [("MER", "Antonelli · Russell"), ("FER", "Leclerc · Hamilton"), ("MCL", "Norris · Piastri"),
         ("RBR", "Verstappen · Hadjar"), ("RB", "Lawson · Lindblad"), ("ALP", "Gasly · Colapinto"),
@@ -233,7 +233,7 @@ def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, ac
     c = cap[1:] if imp else cap
     label = None
     parts = c.split("|")
-    if parts[0] in ("FATO", "OPINIÃO", "MERCEDES:"):
+    if parts[0] in ("FACT", "OPINION", "MERCEDES:"):
         label, c = parts[0], "|".join(parts[1:])
     col = color
     sprs = caption_sprites(c, col, big if not imp else int(big * 1.1), ((255, 20, 0) if imp else (0, 0, 0)))
@@ -244,7 +244,7 @@ def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, ac
     total = sum(s.height * 0.78 for s in sprs)
     y = cy - total / 2
     if label:
-        lc = (40, 200, 120) if label == "FATO" else ((255, 190, 0) if label == "OPINIÃO" else WHITE)
+        lc = (40, 200, 120) if label == "FACT" else ((255, 190, 0) if label == "OPINION" else WHITE)
         ls = text_sprite(label, F_BARLOW, 54, lc, None, 0, 0, 6)
         bx = Image.new("RGBA", (ls.width + 30, ls.height - 6), (0, 0, 0, 170))
         paste(canvas, bx, W / 2, y - 40, 1, alpha)
@@ -353,17 +353,17 @@ def scene_frame(sc, data, t, gi):
         e = ease_out(t / 1.2)
         s1 = text_sprite("F1 2026", F_ANTON, 300, WHITE, RED, 30)
         paste(cv, s1, W / 2, 430, 1.25 - 0.25 * e, min(1, t / 0.5) * fade_out)
-        s2 = text_sprite("TUDO O QUE ACONTECEU ATÉ O BRASIL", F_BARLOW, 78, WHITE, None, 0, 0, 10)
+        s2 = text_sprite("EVERYTHING THAT HAPPENED UP TO BRAZIL", F_BARLOW, 78, WHITE, None, 0, 0, 10)
         paste(cv, s2, W / 2, 640, 1, ease_out((t - 0.8) / 0.8) * fade_out)
         w = int(1100 * ease_out((t - 0.5) / 1.0))
         if w > 2:
             paste(cv, Image.new("RGBA", (w, 6), RED + (255,)), W / 2, 700, 1, fade_out)
-        s3 = text_sprite("UM DOCUMENTÁRIO DA TEMPORADA · DA AUSTRÁLIA AO BRASIL", F_BARLOW6, 36, (180, 180, 180), None, 0, 0, 4)
+        s3 = text_sprite("A SEASON DOCUMENTARY · FROM AUSTRALIA TO BRAZIL", F_BARLOW6, 36, (180, 180, 180), None, 0, 0, 4)
         paste(cv, s3, W / 2, 750, 1, ease_out((t - 1.6) / 0.8) * fade_out)
         zoom = 1 + 0.03 * t / dur
     elif typ == "chapter":
         e = ease_out(t / 0.9)
-        n = text_sprite("CAPÍTULO " + data["num"], F_BARLOW, 56, RED, None, 0, 0, 14)
+        n = text_sprite("CHAPTER " + data["num"], F_BARLOW, 56, RED, None, 0, 0, 14)
         paste(cv, n, W / 2, 400, 1, e * fade_out)
         tt = text_sprite(data["title"], F_ANTON, fit_size(data["title"], F_ANTON, 1700, 190), WHITE, (0, 0, 0), 20)
         paste(cv, tt, W / 2, 540, 1.15 - 0.15 * e, e * fade_out)
@@ -383,7 +383,7 @@ def scene_frame(sc, data, t, gi):
                 if w > 0:
                     bar = Image.new("RGBA", (w, 26), col + (255,))
                     paste(cv, bar, 0, 300 + k * 26, 1, 1, "l")
-            s = text_sprite("ETAPA %02d / 22" % data["rnd"], F_BARLOW, 60, WHITE, None, 0, 0, 12)
+            s = text_sprite("ROUND %02d / 22" % data["rnd"], F_BARLOW, 60, WHITE, None, 0, 0, 12)
             paste(cv, s, W / 2, 440, 1, e)
             g = text_sprite(data["gp"], F_ANTON, fit_size(data["gp"], F_ANTON, 1700, 230), WHITE, (0, 0, 0), 20)
             paste(cv, g, W / 2, 600, 1.2 - 0.2 * e, min(1, t / 0.3))
@@ -401,7 +401,7 @@ def scene_frame(sc, data, t, gi):
             zoom = 1 + 0.035 * min(1.0, (tg - (capline["t0"] if capline else 0)) / 8)
         else:
             tp = t - podium_start
-            hdr = text_sprite("PÓDIO · " + data["gp"], F_BARLOW, 54, WHITE, None, 0, 0, 10)
+            hdr = text_sprite("PODIUM · " + data["gp"], F_BARLOW, 54, WHITE, None, 0, 0, 10)
             paste(cv, hdr, W / 2, 190, 1, ease_out(tp / 0.4) * fade_out)
             order = [1, 0, 2]
             xs = [W / 2 - 520, W / 2, W / 2 + 520]
@@ -424,31 +424,31 @@ def scene_frame(sc, data, t, gi):
                 paste(cv, tm, xs[k], 900 - hs[k] - 45, 1, e * fade_out)
             lead = LEADER.get(data["rnd"], "Antonelli")
             if data["rnd"] >= 18:
-                ltxt = "CAMPEÃO: ANTONELLI"
+                ltxt = "CHAMPION: ANTONELLI"
             else:
-                ltxt = "LÍDER DO CAMPEONATO: " + lead.upper()
+                ltxt = "CHAMPIONSHIP LEADER: " + lead.upper()
             tag(hud, ltxt, W / 2 - 250, 960, guiao.C[guiao.P[lead]] if data["rnd"] < 18 else GOLD, 40, ease_out((tp - 0.8) / 0.5) * fade_out)
         season_strip(hud, data["rnd"] - (0 if t >= podium_start else 1) if data["rnd"] > 1 or t >= podium_start else 0, fa)
     elif typ == "rules":
         draw_rules(cv, capline, tg)
-        tag(hud, "AS REGRAS DE 2026", 60, 70, RED, 44)
+        tag(hud, "THE 2026 RULES", 60, 70, RED, 44)
     elif typ == "grid":
         draw_grid(cv, capline, tg, t)
-        tag(hud, "O GRID DE 2026", 60, 70, RED, 44)
+        tag(hud, "THE 2026 GRID", 60, 70, RED, 44)
     elif typ == "controversy":
-        st = text_sprite(data.get("title", "POLÉMICA"), F_BARLOW, 48, WHITE, None, 0, 0, 8)
-        tag(hud, data.get("title", "POLÉMICA"), 60, 70, RED, 44)
+        st = text_sprite(data.get("title", "CONTROVERSY"), F_BARLOW, 48, WHITE, None, 0, 0, 8)
+        tag(hud, data.get("title", "CONTROVERSY"), 60, 70, RED, 44)
         if capline:
             draw_caption(cv, capline["cap"], tg - capline["t0"], 500, big=150)
     elif typ == "news":
-        tag(hud, "ÚLTIMA HORA", 60, 70, RED, 44)
+        tag(hud, "BREAKING", 60, 70, RED, 44)
         if capline:
             draw_caption(cv, capline["cap"], tg - capline["t0"], 500)
     elif typ == "champion":
         draw_confetti(cv, t)
         if capline:
             draw_caption(cv, capline["cap"], tg - capline["t0"], 470, color=GOLD if not capline["cap"].startswith("!") else WHITE)
-        s = text_sprite("CAMPEÃO DO MUNDO 2026", F_BARLOW, 56, GOLD, None, 0, 0, 14)
+        s = text_sprite("2026 WORLD CHAMPION", F_BARLOW, 56, GOLD, None, 0, 0, 14)
         paste(cv, s, W / 2, 160, 1, fa)
         zoom = 1 + 0.03 * t / dur
     elif typ == "teams":
@@ -456,7 +456,7 @@ def scene_frame(sc, data, t, gi):
     elif typ == "standings":
         draw_standings(cv, data, capline, tg, t)
     elif typ == "midseason":
-        tag(hud, "PAUSA DE VERÃO", 60, 70, RED, 44)
+        tag(hud, "SUMMER BREAK", 60, 70, RED, 44)
         if capline:
             col = WHITE
             if "ASTON" in capline["cap"]:
@@ -472,9 +472,9 @@ def scene_frame(sc, data, t, gi):
             tt = tg - last["t1"] - 0.3
             s1 = text_sprite("F1 2026", F_ANTON, 220, WHITE, RED, 26)
             paste(cv, s1, W / 2, 380, 1, ease_out(tt / 0.6) * fade_out)
-            cr = ["FONTES: FORMULA1.COM · FIA · IMPRENSA ESPECIALIZADA (THE RACE, PLANETF1, SKY SPORTS, AP)",
-                  "CLASSIFICAÇÃO EM 11 DE NOVEMBRO DE 2026 · APÓS O GP DO BRASIL (ETAPA 19 DE 22)",
-                  "ARTE E MÚSICA ORIGINAIS · NARRAÇÃO SINTÉTICA EM PORTUGUÊS DO BRASIL"]
+            cr = ["SOURCES: FORMULA1.COM · FIA · SPECIALIST PRESS (THE RACE, PLANETF1, SKY SPORTS, AP)",
+                  "STANDINGS AS OF 11 NOVEMBER 2026 · AFTER THE BRAZILIAN GP (ROUND 19 OF 22)",
+                  "ORIGINAL GRAPHICS AND MUSIC · SYNTHETIC NARRATION"]
             for k, ln in enumerate(cr):
                 s = text_sprite(ln, F_BARLOW6, 34, (190, 190, 190), None, 0, 0, 2)
                 paste(cv, s, W / 2, 590 + k * 56, 1, ease_out((tt - 0.5 - 0.2 * k) / 0.6) * fade_out)
@@ -519,33 +519,33 @@ def draw_rules(cv, capline, tg):
         mid = x0 + (x1 - x0) * 0.5 * e
         d.rectangle([x0, y - 70, mid, y + 70], fill=(225, 6, 0, 255))
         d.rectangle([mid, y - 70, x0 + (x1 - x0) * e, y + 70], fill=(39, 160, 255, 255))
-        paste(cv, text_sprite("COMBUSTÃO", F_BARLOW, 60, WHITE), (x0 + mid) / 2, y, 1, e)
-        paste(cv, text_sprite("ELÉTRICO", F_BARLOW, 60, WHITE), (mid + x1) / 2, y, 1, e)
+        paste(cv, text_sprite("COMBUSTION", F_BARLOW, 60, WHITE), (x0 + mid) / 2, y, 1, e)
+        paste(cv, text_sprite("ELECTRIC", F_BARLOW, 60, WHITE), (mid + x1) / 2, y, 1, e)
         paste(cv, text_sprite("~50%", F_ANTON, 120, WHITE), (x0 + mid) / 2, y - 170, 1, e)
         paste(cv, text_sprite("~50%", F_ANTON, 120, WHITE), (mid + x1) / 2, y - 170, 1, e)
-        paste(cv, text_sprite("NOVA UNIDADE DE POTÊNCIA", F_BARLOW, 54, (200, 200, 200), None, 0, 0, 8), W / 2, y + 160, 1, e)
+        paste(cv, text_sprite("NEW POWER UNIT", F_BARLOW, 54, (200, 200, 200), None, 0, 0, 8), W / 2, y + 160, 1, e)
     elif cap == "@kw":
         v = int(120 + (350 - 120) * ease_io(lt / 2.0))
         paste(cv, text_sprite("MGU-K", F_BARLOW, 70, (200, 200, 200), None, 0, 0, 10), W / 2, 300, 1, 1)
         paste(cv, text_sprite("%d kW" % v, F_ANTON, 260, WHITE, (39, 160, 255), 24), W / 2, 500, 1, 1)
-        paste(cv, text_sprite("MGU-H: ELIMINADO", F_BARLOW, 60, RED, None, 0, 0, 8), W / 2, 720, 1, ease_out((lt - 1.5) / 0.5))
+        paste(cv, text_sprite("MGU-H: GONE", F_BARLOW, 60, RED, None, 0, 0, 8), W / 2, 720, 1, ease_out((lt - 1.5) / 0.5))
     elif cap == "@kg":
         v = int(800 - (800 - 768) * ease_io(lt / 2.0))
-        paste(cv, text_sprite("PESO MÍNIMO", F_BARLOW, 70, (200, 200, 200), None, 0, 0, 10), W / 2, 300, 1, 1)
+        paste(cv, text_sprite("MINIMUM WEIGHT", F_BARLOW, 70, (200, 200, 200), None, 0, 0, 10), W / 2, 300, 1, 1)
         paste(cv, text_sprite("%d KG" % v, F_ANTON, 260, WHITE, RED, 24), W / 2, 500, 1, 1)
-        paste(cv, text_sprite("MAIS CURTOS · MAIS ESTREITOS · MAIS LEVES", F_BARLOW, 56, WHITE, None, 0, 0, 6), W / 2, 720, 1, ease_out((lt - 1.2) / 0.5))
+        paste(cv, text_sprite("SHORTER · NARROWER · LIGHTER", F_BARLOW, 56, WHITE, None, 0, 0, 6), W / 2, 720, 1, ease_out((lt - 1.2) / 0.5))
     elif cap == "@aero":
         ph = (math.sin(lt * 1.6) + 1) / 2
         ang = 6 + 26 * ph
-        for k, (cx, lbl) in enumerate([(640, "ASA DIANTEIRA"), (1280, "ASA TRASEIRA")]):
+        for k, (cx, lbl) in enumerate([(640, "FRONT WING"), (1280, "REAR WING")]):
             wing = Image.new("RGBA", (420, 46), (0, 0, 0, 0))
             ImageDraw.Draw(wing).rounded_rectangle([0, 0, 419, 45], 22, fill=(255, 255, 255, 255))
             wing = wing.rotate(ang if k else ang * 0.7, expand=True, resample=Image.BICUBIC)
             paste(cv, wing, cx, 480, 1, e)
             paste(cv, text_sprite(lbl, F_BARLOW, 48, (200, 200, 200), None, 0, 0, 6), cx, 640, 1, e)
-        mode = "MODO CURVA · MAIS DOWNFORCE" if ph > 0.5 else "MODO RETA · MENOS ARRASTO"
+        mode = "CORNER MODE · MORE DOWNFORCE" if ph > 0.5 else "STRAIGHT MODE · LESS DRAG"
         paste(cv, text_sprite(mode, F_ANTON, 96, WHITE if ph > 0.5 else (39, 160, 255), (0, 0, 0), 12), W / 2, 280, 1, 1)
-        paste(cv, text_sprite("ADEUS DRS", F_BARLOW, 60, RED, None, 0, 0, 10), W / 2, 760, 1, e)
+        paste(cv, text_sprite("GOODBYE DRS", F_BARLOW, 60, RED, None, 0, 0, 10), W / 2, 760, 1, e)
     elif cap == "@overtake":
         x0, y0 = 660, 400
         d.rounded_rectangle([x0, y0, x0 + 560, y0 + 220], 18, outline=(255, 255, 255, 255), width=8)
@@ -553,7 +553,7 @@ def draw_rules(cv, capline, tg):
         fill = ease_io((lt % 3.0) / 2.2)
         d.rectangle([x0 + 18, y0 + 18, x0 + 18 + 524 * fill, y0 + 202], fill=(39, 220, 120, 255))
         paste(cv, text_sprite("OVERTAKE", F_ANTON, 130, WHITE, (39, 220, 120), 20), W / 2, 280, 1, e)
-        paste(cv, text_sprite("ENERGIA EXTRA PARA ULTRAPASSAR  ·  BOOST", F_BARLOW, 54, WHITE, None, 0, 0, 6), W / 2, 720, 1, e)
+        paste(cv, text_sprite("EXTRA ENERGY TO OVERTAKE  ·  BOOST", F_BARLOW, 54, WHITE, None, 0, 0, 6), W / 2, 720, 1, e)
 
 
 def draw_grid(cv, capline, tg, t):
@@ -574,7 +574,7 @@ def draw_grid(cv, capline, tg, t):
         paste(cv, text_sprite(TEAMNAME[tm], F_ANTON, 56, WHITE), x + 40, y + 70, 1, a, "l")
         paste(cv, text_sprite(drv.upper(), F_BARLOW6, 34, (200, 200, 200)), x + 40, y + 140, 1, a, "l")
     if capline and capline["cap"].startswith("22"):
-        draw_caption(cv, "22 CARROS|11 EQUIPAS", tg - capline["t0"], 960, big=110)
+        draw_caption(cv, "22 CARS|11 TEAMS", tg - capline["t0"], 960, big=110)
 
 
 def draw_team(cv, capline, tg):
@@ -588,7 +588,7 @@ def draw_team(cv, capline, tg):
     w = int(1920 * e)
     d.rectangle([0, 180, w, 196], fill=col + (255,))
     pos, pts, l1, l2 = TEAMCARD[tm]
-    name = TEAMNAME[tm] if tm not in ("HAA", "AST") else ("O PELOTÃO" if tm == "HAA" else "LÁ ATRÁS")
+    name = TEAMNAME[tm] if tm not in ("HAA", "AST") else ("THE MIDFIELD" if tm == "HAA" else "AT THE BACK")
     paste(cv, text_sprite(name, F_ANTON, 190, WHITE, col, 22), 140, 380, 1.08 - 0.08 * e, e, "l")
     paste(cv, text_sprite(pos, F_ANTON, 150, col), 140, 640, 1, ease_out((lt - 0.3) / 0.5), "l")
     paste(cv, text_sprite(pts + " PTS", F_ANTON, 150, WHITE), 620 if len(pos) < 4 else 860, 640, 1, ease_out((lt - 0.45) / 0.5), "l")
@@ -601,10 +601,10 @@ def draw_standings(cv, data, capline, tg, t):
     kind = data["kind"]
     if kind == "drivers":
         rows = [(n.upper(), guiao.C[guiao.P[n]], v) for n, v in guiao.DRIVERS]
-        title = "PILOTOS · 11 NOV 2026"
+        title = "DRIVERS · 11 NOV 2026"
     else:
         rows = [(n, guiao.C[c], v) for n, c, v in guiao.TEAMS[:8]]
-        title = "CONSTRUTORES · 11 NOV 2026"
+        title = "CONSTRUCTORS · 11 NOV 2026"
     tag(cv, title, 60, 70, RED, 44)
     mx = rows[0][2]
     n = len(rows)
@@ -630,7 +630,7 @@ def draw_standings(cv, data, capline, tg, t):
         val = int(v * e)
         paste(cv, text_sprite(str(val), F_ANTON, int(rh * 0.55), WHITE), 580 + bw, y, 1, a, "l")
         if k == 0:
-            paste(cv, text_sprite("CAMPEÃO" if kind == "drivers" else "CAMPEÃ", F_BARLOW, 34, GOLD, None, 0, 0, 4),
+            paste(cv, text_sprite("CHAMPION" if kind == "drivers" else "CHAMPIONS", F_BARLOW, 34, GOLD, None, 0, 0, 4),
                   600 + bw + 120, y, 1, e, "l")
     if cap.startswith("!"):
         draw_caption(cv, cap, tg - capline["t0"], 500, big=150)
