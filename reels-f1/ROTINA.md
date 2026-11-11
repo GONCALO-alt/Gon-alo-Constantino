@@ -54,7 +54,7 @@ Com `visual`, a cena mostra o texto em cima (compacto) e o visual animado no mei
 | `ultrapassagens` | `session_key`, `piloto` | Cada ultrapassagem a aparecer (P20 › BOR …) com contador. |
 | `direcao` | `session_key`, `filtro` (palavras) ou `mensagens` [{`volta`,`texto`,`bandeira`}] | Mensagens reais da direção de corrida a serem escritas (chuva, penalizações, bandeiras). |
 | `noticia` | `fonte`, `manchete`, `pontos` (até 4), `rodape` | Cartão «BREAKING» com a manchete a ser escrita, pontos-chave e faixa a correr. |
-| `meme` | `topo` («POV:», «Me when…»), `texto`, `emoji` (2–3 emojis) | Cartão de meme original com emoji grande a abanar e chuva de emojis. |
+| `meme` | `topo` («POV:», «Me when…»), `texto`, `reacao` (1–2 palavras: «PAIN.», «HIM.», «BRUH.») | Cartão de meme original com a palavra de reação grande a abanar. **Sem emojis no vídeo.** |
 
 Regra prática: gancho = `replay` ou `noticia`; problema = `meme` ou `direcao`; virada = `posicoes`
 ou `ultrapassagens`; chamada = `meme`. Sem corrida recente: `noticia` + `meme` + `direcao`

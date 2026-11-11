@@ -1,5 +1,5 @@
 """Visuais animados para as cenas do Reel: repetição da corrida com dados GPS reais (OpenF1),
-gráfico de posições, ultrapassagens, mensagens da direção de corrida, cartão de notícia e memes.
+gráfico de posições, ultrapassagens, mensagens da direção de corrida, cartão de notícia e memes (sem emojis).
 
 Cada visual desenha-se numa caixa (x, y, w, h) a partir do instante u (segundos desde o início
 da cena) e da duração da cena. Os dados da OpenF1 ficam em cache na pasta de trabalho.
@@ -25,7 +25,6 @@ F_BLACK = str(FONT_DIR / "InterDisplay-Black.otf")
 F_BOLD = str(FONT_DIR / "InterDisplay-Bold.otf")
 F_SEMI = str(FONT_DIR / "Inter-SemiBold.otf")
 F_MONO = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf"
-F_EMOJI = "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf"
 
 
 def clamp(x, a=0.0, b=1.0):
@@ -98,29 +97,6 @@ def panel(img: Image.Image, box, radius=26, fill=(10, 10, 12, 215), outline=None
     ImageDraw.Draw(layer).rounded_rectangle([0, 0, w - 1, h - 1], radius, fill=fill,
                                             outline=outline, width=3 if outline else 0)
     img.paste(layer, (x, y), layer)
-
-
-@lru_cache(maxsize=256)
-def emoji_img(ch: str, size: int) -> Image.Image:
-    f = ImageFont.truetype(F_EMOJI, 109)
-    im = Image.new("RGBA", (160, 160), (0, 0, 0, 0))
-    ImageDraw.Draw(im).text((80, 80), ch, font=f, embedded_color=True, anchor="mm")
-    bb = im.getbbox() or (0, 0, 160, 160)
-    im = im.crop(bb)
-    s = size / max(im.width, im.height)
-    return im.resize((max(1, int(im.width * s)), max(1, int(im.height * s))), Image.LANCZOS)
-
-
-def split_emojis(s: str) -> list[str]:
-    out, cur = [], ""
-    for ch in s:
-        if ch in ("️", "‍") or (cur and cur[-1] == "‍"):
-            cur += ch
-        else:
-            if cur: out.append(cur)
-            cur = ch
-    if cur: out.append(cur)
-    return [e for e in out if e.strip()]
 
 
 # ---------------------------------------------------------------- 1. repetição da corrida (GPS)
@@ -404,41 +380,40 @@ class Noticia:
 
 # ---------------------------------------------------------------- 6. meme
 class Meme:
+    """Cartão de meme original: frase («POV: …») e uma palavra de reação grande a abanar."""
+
     def __init__(self, cfg: dict):
         self.topo = cfg.get("topo", "POV:"); self.texto = cfg["texto"]
-        self.emojis = split_emojis(cfg.get("emoji", "😭"))
-        self.chuva = cfg.get("chuva_de_emojis", True)
+        self.reacao = cfg.get("reacao", "PAIN.")
+        self.cor = tuple(cfg.get("cor", (215, 25, 25)))
 
     def draw(self, img, box, u, dur):
         x, y, w, h = box
         panel(img, box, fill=(255, 255, 255, 255))
         d = ImageDraw.Draw(img)
         f = font(F_BLACK, 58)
-        txt = f"{self.topo} {self.texto}".strip()
-        lines = _wrap(txt, f, w - 70)
+        lines = _wrap(f"{self.topo} {self.texto}".strip(), f, w - 70)
         yy = y + 30
         for l in lines[:4]:
             d.text((x + 35, yy), l, font=f, fill=(10, 10, 10)); yy += 68
-        # emoji principal, grande, a entrar com ressalto e a abanar
-        big = emoji_img(self.emojis[0], 300)
-        s = ease_back((u - 0.15) / 0.4)
-        if s > 0.02:
-            im = big.resize((max(1, int(big.width * s)), max(1, int(big.height * s))))
-            im = im.rotate(8 * math.sin(u * 6), expand=True, resample=Image.BICUBIC)
-            cy = yy + (y + h - yy) // 2
-            img.paste(im, (x + w // 2 - im.width // 2, cy - im.height // 2), im)
-        # chuva de emojis por cima
-        if self.chuva:
-            for k in range(14):
-                e = self.emojis[k % len(self.emojis)]
-                t0 = 0.3 + k * 0.12
-                if u < t0: continue
-                p = (u - t0) / 1.6
-                if p > 1: continue
-                ex = x + ((k * 137) % (w - 80)) + 20
-                ey = y + h - 40 - int((h - 40 - (yy - y)) * ease_out(p))
-                im = emoji_img(e, 70)
-                img.paste(im, (ex, ey), im)
+        # palavra de reação: entra com ressalto, abana e pulsa
+        s = ease_back((u - 0.35) / 0.4)
+        if s <= 0.02: return
+        size = 260
+        while size > 80 and ImageDraw.Draw(Image.new("RGB", (4, 4))).textlength(self.reacao, font=font(F_BLACK, size)) > w - 120:
+            size -= 10
+        pulse = 1 + 0.04 * math.sin(u * 9)
+        fr = font(F_BLACK, size)
+        tw = int(ImageDraw.Draw(Image.new("RGB", (4, 4))).textlength(self.reacao, font=fr)) + 30
+        layer = Image.new("RGBA", (tw, int(size * 1.3)), (0, 0, 0, 0))
+        ld = ImageDraw.Draw(layer)
+        ld.text((14, 6), self.reacao, font=fr, fill=(10, 10, 10))
+        ld.text((4, 0), self.reacao, font=fr, fill=self.cor)
+        k = s * pulse
+        layer = layer.resize((max(1, int(layer.width * k)), max(1, int(layer.height * k))), Image.BICUBIC)
+        layer = layer.rotate(5 * math.sin(u * 7), expand=True, resample=Image.BICUBIC)
+        cy = yy + (y + h - yy) // 2
+        img.paste(layer, (x + w // 2 - layer.width // 2, cy - layer.height // 2), layer)
 
 
 TIPOS_VISUAL = {"replay": Replay, "posicoes": Posicoes, "ultrapassagens": Ultrapassagens,

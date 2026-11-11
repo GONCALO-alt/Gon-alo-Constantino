@@ -32,7 +32,7 @@ FPS = 30
 SR = 44100
 GAP = 0.30        # silêncio entre falas
 WIPE = 0.40       # duração da transição em diagonal
-TAIL = 2.0        # tempo final depois da última fala (bandeira de xadrez)
+TAIL = 2.6        # tempo final depois da última fala (bandeira de xadrez)
 M = 90            # margem lateral
 LIMITE_TEXTO = 1180  # abaixo disto ficam as legendas
 FONT_DIR = Path("/usr/share/fonts/opentype/inter")
@@ -528,22 +528,35 @@ def wipe(old: Image.Image, new: Image.Image, p: float, cor) -> Image.Image:
     return out
 
 
-def chequered(img: Image.Image, p: float, t: float) -> Image.Image:
-    """Bandeira de xadrez a ondular, que sobe no fim do vídeo."""
+def chequered(img: Image.Image, p: float, t: float, fim: float) -> Image.Image:
+    """Final: a bandeira de xadrez sobe até cobrir o ecrã, com a despedida numa faixa escura."""
     if p <= 0: return img
     d = ImageDraw.Draw(img)
-    sq = 90
-    top = H - 160 - int(760 * ease_out(p))
+    sq = 120
+    top = H - int((H + 2 * sq) * ease_out(p))
     for gx in range(-1, W // sq + 2):
-        wave_y = 22 * math.sin(gx * 0.7 - t * 7)
-        for gy in range(0, 9):
+        wave_y = 26 * math.sin(gx * 0.7 - t * 6)
+        for gy in range(0, H // sq + 4):
             col = (240, 240, 240) if (gx + gy) % 2 == 0 else (20, 20, 20)
             x0 = gx * sq; y0 = top + gy * sq + wave_y
+            if y0 > H: break
             d.rectangle([x0, y0, x0 + sq, y0 + sq], fill=col)
-    if p > 0.6:
-        fbig, _, _ = fit_text("SEE YOU TOMORROW", F_BLACK, W - 2 * M, 130, start=110, minimum=50)
-        d.text((W // 2 + 4, top - 106), "SEE YOU TOMORROW", font=fbig, fill=(0, 0, 0), anchor="mm")
-        d.text((W // 2, top - 110), "SEE YOU TOMORROW", font=fbig, fill=(255, 255, 255), anchor="mm")
+    a = ease_out((p - 0.55) / 0.3)
+    if a > 0:
+        band_h = 360
+        by = H // 2 - band_h // 2
+        bw = int(W * a)
+        d.rectangle([(W - bw) // 2, by, (W + bw) // 2, by + band_h], fill=(14, 14, 14))
+        d.rectangle([(W - bw) // 2, by, (W + bw) // 2, by + 10], fill=(232, 40, 40))
+        d.rectangle([(W - bw) // 2, by + band_h - 10, (W + bw) // 2, by + band_h], fill=(232, 40, 40))
+        if a > 0.6:
+            f1, _, _ = fit_text("SEE YOU TOMORROW", F_BLACK, W - 2 * M, 130, start=104, minimum=50)
+            d.text((W // 2, by + 140), "SEE YOU TOMORROW", font=f1, fill=(255, 255, 255), anchor="mm")
+            d.text((W // 2, by + 250), "FOLLOW FOR DAILY F1", font=font(F_SEMI, 44), fill=(200, 200, 200), anchor="mm")
+    # fade para preto nos últimos 0,4 s
+    k = (t - (fim - 0.4)) / 0.4
+    if k > 0:
+        img = Image.blend(img, Image.new("RGB", (W, H)), clamp(k))
     return img
 
 
@@ -696,7 +709,7 @@ def build(guiao: dict, outdir: Path) -> dict:
             prv = cenas_obj[i - 1].draw(t - scene_start[i - 1], t, total)
             frame = wipe(prv, frame, (t - (scene_start[i] - WIPE / 2)) / WIPE, co.cor)
         if t > speech_end:
-            frame = chequered(frame, (t - speech_end - 0.1) / 0.7, t)
+            frame = chequered(frame, (t - speech_end - 0.1) / 0.9, t, total)
         frame = post_fx(frame, t, scene_start[1:] + [speech_end + 0.1], 60 / 124)
         if t < 0.25:  # entrada a partir de preto
             frame = Image.blend(Image.new("RGB", (W, H)), frame, t / 0.25)
