@@ -8,6 +8,27 @@ import type { UserProfile } from '../domain/progress.ts';
 export type LessonState = 'completed' | 'available' | 'locked';
 export type UnitState = 'completed' | 'in-progress' | 'available' | 'locked' | 'coming-soon';
 
+/** Mini-lição de palavras novas (prepara a lição escrita seguinte). */
+export const isWordsPrepLesson = (id: string) => /-l[6-9]\d\d$/.test(id);
+
+/**
+ * As mini-lições de palavras novas foram acrescentadas antes de lições que já existiam.
+ * Quem já concluiu essa lição aprendeu as palavras: as mini-lições contam como feitas
+ * (continuam disponíveis para repetir), para não voltar atrás no percurso.
+ */
+export function withPreparedLessons(index: CourseIndex, completed: ReadonlySet<string>): Set<string> {
+  const out = new Set(completed);
+  let pending: string[] = [];
+  for (const u of orderedUnits(index)) {
+    for (const id of u.lessonIds) {
+      if (isWordsPrepLesson(id)) { pending.push(id); continue; }
+      if (pending.length && completed.has(id)) for (const p of pending) out.add(p);
+      pending = [];
+    }
+  }
+  return out;
+}
+
 /** Unidades pela ordem global do curso. */
 export function orderedUnits(index: CourseIndex): IndexedUnit[] {
   return [...index.sections]

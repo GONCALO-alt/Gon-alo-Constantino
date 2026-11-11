@@ -32,14 +32,20 @@ export const SECTION_PLAN: SectionPlan[] = [
   { id: 's8', title: 'Domínio e utilização real', goal: 'Usar o neerlandês com à-vontade em situações reais.', cefr: 'B2', units: 180, from: range('s7', 1, 15) },
 ];
 
-/** Grupos que não se separam: uma lição escrita e a prática que vem logo a seguir (l5xx). */
+/**
+ * Grupos que não se separam: as mini-lições de palavras novas (l6xx–l9xx), a lição escrita
+ * que preparam e a prática que vem logo a seguir (l5xx).
+ */
 function groupsOf(lessonIds: readonly string[]): string[][] {
   const groups: string[][] = [];
+  let pending: string[] = [];
   for (const id of lessonIds) {
+    if (/-l[6-9]\d\d$/.test(id)) { pending.push(id); continue; }
     const isPractice = /-l5\d\d$/.test(id);
-    if (isPractice && groups.length) groups[groups.length - 1]!.push(id);
-    else groups.push([id]);
+    if (isPractice && groups.length && !pending.length) groups[groups.length - 1]!.push(id);
+    else { groups.push([...pending, id]); pending = []; }
   }
+  if (pending.length) groups.push(pending);
   return groups;
 }
 
@@ -98,7 +104,7 @@ export function layoutCourse(index: CourseIndex, titles: ReadonlyMap<string, str
       const k = parts[ti]!;
       chunk(groups[ti]!, k).forEach((ids, ci) => {
         const order = units.length + 1;
-        const written = ids.filter((id) => !/-l5\d\d$/.test(id)).map((id) => titles.get(id)).filter((x): x is string => !!x);
+        const written = ids.filter((id) => !/-l[5-9]\d\d$/.test(id)).map((id) => titles.get(id)).filter((x): x is string => !!x);
         units.push({
           id: `${plan.id}-u${String(order).padStart(pad, '0')}`,
           sectionId: plan.id,

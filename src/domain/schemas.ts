@@ -279,7 +279,7 @@ export const LessonSchema = z.object({
   id: LessonId,
   unitId: UnitId,
   /** Posição na unidade. As lições de prática ficam a meio (ex.: 3.5, a seguir à lição 3). */
-  order: z.number().positive().multipleOf(0.5),
+  order: z.number().positive().refine((n) => Math.abs(Math.round(n * 100) - n * 100) < 1e-6, "A ordem tem no máximo duas casas decimais"),
   title: nonEmpty,
   description: nonEmpty,
   cefr: Cefr,

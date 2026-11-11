@@ -8,7 +8,7 @@ import type { UserProfile, UserSettings } from '../domain/progress.ts';
 import { openMistakes } from '../engine/mistakes.ts';
 import { contentRepo } from '../data/contentRepo.ts';
 import * as repo from '../data/progressRepo.ts';
-import { computeUnitStates, isUnitComplete, localDate, orderedUnits, type UnitState } from '../engine/progression.ts';
+import { computeUnitStates, isUnitComplete, withPreparedLessons, localDate, orderedUnits, type UnitState } from '../engine/progression.ts';
 
 export interface AppData {
   index: CourseIndex;
@@ -38,7 +38,7 @@ interface Ctx {
 const AppContext = createContext<Ctx | null>(null);
 
 async function load(): Promise<AppData> {
-  const [index, profile, settings, completed, dueReviews, reviews, daily, saved, attempts] = await Promise.all([
+  const [index, profile, settings, completedRaw, dueReviews, reviews, daily, saved, attempts] = await Promise.all([
     contentRepo.loadIndex(),
     repo.getProfile(),
     repo.getSettings(),
@@ -49,6 +49,7 @@ async function load(): Promise<AppData> {
     repo.getSavedWords(),
     repo.getAllAttempts(),
   ]);
+  const completed = withPreparedLessons(index, completedRaw);
   const today = localDate();
   return {
     index, profile, settings, completed,

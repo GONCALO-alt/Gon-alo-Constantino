@@ -136,7 +136,9 @@ describe('nunca uma palavra sem a ter visto antes', () => {
     const id = introNow()!.getAttribute('data-exercise-id')!.slice('intro-'.length);
     const v = realFiles().flatMap((f) => f.lessons).flatMap((l) => l.newVocabulary).find((x) => x.id === id)!;
     // A palavra está sublinhada: tocar mostra o significado.
-    const word = (await screen.findAllByRole('button', { name: /^Tradução de/ }, { timeout: 5000 }))[0]!;
+    const buttons = await screen.findAllByRole('button', { name: /^Tradução de/ }, { timeout: 5000 });
+    // Num nome com artigo («De meneer»), toca-se no nome e não no artigo.
+    const word = buttons.find((b) => b.getAttribute('aria-label')!.toLowerCase().includes(v.nl.split(' ')[0]!.toLowerCase())) ?? buttons[0]!;
     await user.click(word);
     expect(document.querySelector('.gloss-card')!.textContent).toContain(v.pt[0]!.replace(/\s*\(.*$/, '').split(' / ')[0]!.trim().slice(0, 4));
     await user.click(word); // tocar outra vez fecha o balão
