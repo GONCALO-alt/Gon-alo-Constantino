@@ -11,7 +11,7 @@
     const n = cs.length;
     const Q = [];
     const side = (c) => (c.d === 'L' ? 'Esquerda' : 'Direita');
-    Q.push({ q: 'Quantas curvas tem o circuito?', opts: U.shuffle([n, n - 1, n + 1, n + 2].map(String)), a: String(n) });
+    Q.push({ q: circ.real ? 'Quantas curvas principais estavam assinaladas no mapa?' : 'Quantas curvas tem o circuito?', opts: U.shuffle([n, n - 1, n + 1, n + 2].map(String)), a: String(n) });
     U.shuffle(cs)
       .slice(0, lv === 1 ? 2 : 3)
       .forEach((c) => Q.push({ q: `Para que lado é a curva ${c.n}?`, opts: ['Esquerda', 'Direita'], a: side(c) }));
@@ -30,7 +30,7 @@
       Q.push({ q: 'Que curva vem depois da reta mais longa?', opts: U.shuffle([t].concat(others)).map((c) => 'Curva ' + c.n), a: 'Curva ' + t.n });
     }
     const zone = geo.straights.find((s) => s.zone);
-    if (zone && lv >= 2) {
+    if (zone && lv >= 2 && !(longest && longest.before === zone.before)) {
       const t = zone.before;
       const others = U.shuffle(cs.filter((c) => c !== t)).slice(0, 3);
       Q.push({ q: 'A zona de ultrapassagem principal termina na travagem para…', opts: U.shuffle([t].concat(others)).map((c) => 'Curva ' + c.n), a: 'Curva ' + t.n });
@@ -58,7 +58,7 @@
     est: 6,
     desc: 'Estuda o mapa do circuito — curvas, travagens e zonas de ultrapassagem — e responde de memória.',
     how: [
-      'Escolhe um circuito (ou cria o teu, com as curvas da pista onde corres).',
+      'Escolhe um circuito: Portimão, Estoril, pistas de Fórmula 1, traçados de karting ou o teu (podes desenhar a pista onde corres).',
       'Estuda o mapa: número, direção e tipo de cada curva, travagens (vermelho/laranja) e zona de ultrapassagem (verde).',
       'O mapa desaparece e respondes às perguntas, incluindo a sequência completa de curvas.',
     ],
@@ -73,15 +73,12 @@
       const studyMs = [0, 60000, 45000, 30000][lv];
 
       const choose = () => {
-        const all = C().all();
         stage.innerHTML = `<div class="cir-wrap scroll">
           <h3 class="sec-t">Escolhe o circuito</h3>
-          <div class="cir-list">${all
-            .map(
-              (c) => `<button class="cir-item" data-id="${c.id}"><div class="cir-thumb">${C().svg(c, { plain: true }).html}</div>
-              <div><b>${U.esc(c.name)}</b><small>${c.custom ? 'Personalizado · ' : ''}${C().geometry(c).corners.length} curvas</small></div></button>`
-            )
-            .join('')}</div>
+          <div class="cir-list">${C().pickerHtml(
+            (c) => `<button class="cir-item" data-id="${c.id}"><div class="cir-thumb">${C().svg(c, { plain: true }).html}</div>
+              <div><b>${U.esc(c.name)}</b><small>${c.real ? U.esc(c.desc) + ' · ' : c.custom ? 'Personalizado · ' : ''}${C().geometry(c).corners.length} curvas${c.real ? ' principais' : ''}</small></div></button>`
+          )}</div>
           <button class="btn ghost full" data-act="new">＋ Criar circuito personalizado</button>
         </div>`;
         ctx.hud('Escolher');
@@ -99,6 +96,8 @@
 
       const study = (circ) => {
         const { html, geo } = C().svg(circ);
+        // Traçados com muitas curvas têm mais tempo de estudo.
+        const studyFor = Math.round(studyMs * (geo.corners.length > 10 ? 1.5 : 1));
         stage.innerHTML = `<div class="cir-wrap">
           <div class="cir-head"><b>${U.esc(circ.name)}</b><span class="mono cir-timer"></span></div>
           <div class="cir-map">${html}</div>
@@ -106,6 +105,7 @@
           <div class="cir-corners scroll">${geo.corners
             .map((c) => `<div class="cc"><span class="cc-n">${c.n}</span><span>${c.d === 'L' ? '↰ Esquerda' : '↱ Direita'}</span><span>${c.kind}</span><span class="b${c.brake}">${C().brakeName[c.brake]}</span></div>`)
             .join('')}</div>
+          ${circ.real ? `<p class="muted small cir-note">${U.esc(circ.place)} · curvas principais detetadas no traçado real. A numeração e as travagens são estimativas e podem não coincidir com as oficiais.</p>` : ''}
           <button class="btn primary full cir-go">Já memorizei</button>
         </div>`;
         const timerEl = stage.querySelector('.cir-timer');
@@ -118,11 +118,11 @@
           quiz(circ, geo, performance.now() - t0);
         };
         const iv = ctx.scope.interval(() => {
-          const left = studyMs - (performance.now() - t0);
+          const left = studyFor - (performance.now() - t0);
           timerEl.textContent = U.fmtClock(Math.max(left, 0));
           if (left <= 0) go();
         }, 200);
-        timerEl.textContent = U.fmtClock(studyMs);
+        timerEl.textContent = U.fmtClock(studyFor);
         ctx.hud('Estudo');
         ctx.scope.on(stage.querySelector('.cir-go'), 'click', go);
       };

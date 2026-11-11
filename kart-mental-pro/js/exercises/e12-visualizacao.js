@@ -9,19 +9,20 @@
   const lapSteps = (circ, geo) => {
     const steps = [];
     const L = geo.len;
+    const longStraight = circ.real ? 300 : 120;
     let prevEnd = 0;
     geo.corners.forEach((c, k) => {
-      const seg = geo.segInfo[c.seg];
-      const prevStraight = circ.segs[c.seg - 1] && circ.segs[c.seg - 1].t === 'S' ? circ.segs[c.seg - 1] : null;
-      const at = seg.start.len / L;
-      const mid = (seg.start.len + (seg.end.len - seg.start.len) / 2) / L;
-      const end = seg.end.len / L;
+      const at = Math.max(c.at, 0) / L;
+      const mid = Math.max((c.at + c.end) / 2, 0) / L;
+      const end = Math.min(Math.max(c.end, 0) / L, 1);
       const side = c.d === 'L' ? 'esquerda' : 'direita';
+      const straight = c.straight || 0;
       let approach;
-      if (prevStraight && prevStraight.l >= 120) approach = `Reta longa: acelerador a fundo, corpo relaxado. Olha já para a referência de travagem da curva ${c.n}.`;
-      else if (prevStraight) approach = `Curta reta: posiciona o kart do lado de fora, preparando a curva ${c.n} à ${side}.`;
+      if (straight >= longStraight)
+        approach = `Reta longa${circ.real ? ' (cerca de ' + Math.round(straight / 10) * 10 + ' m)' : ''}: acelerador a fundo, corpo relaxado. Olha já para a referência de travagem da curva ${c.n}.`;
+      else if (straight >= 30) approach = `Curta reta: posiciona-te do lado de fora, preparando a curva ${c.n} à ${side}.`;
       else approach = `Liga diretamente à curva ${c.n}, à ${side}. Mãos suaves, sem perder ritmo.`;
-      if (prevStraight && prevStraight.zone) approach += ' É a zona de ultrapassagem: vê quem está à tua volta.';
+      if (c.zoneBefore) approach += ' É a zona de ultrapassagem: vê quem está à tua volta.';
       const brake = [
         'Sem travagem: levanta ligeiramente o pé e mantém a velocidade de passagem.',
         'Travagem média: trava a direito, curta e firme, e liberta antes de virar.',
@@ -74,7 +75,12 @@
           <h3 class="sec-t">Duração</h3>
           <div class="seg-ctl" data-k="dur">${[3, 5, 10, 15].map((m) => `<button class="${m === dur ? 'on' : ''}" data-v="${m}">${m} min</button>`).join('')}</div>
           <h3 class="sec-t">Circuito</h3>
-          <div class="seg-ctl wrap" data-k="circ">${all.map((c) => `<button class="${c.id === circId ? 'on' : ''}" data-v="${c.id}">${U.esc(c.name)}</button>`).join('')}</div>
+          <select class="input vis-circ">${C()
+            .GROUPS.map(([gid, gname]) => {
+              const list = all.filter((c) => c.group === gid);
+              return list.length ? `<optgroup label="${gname}">${list.map((c) => `<option value="${c.id}" ${c.id === circId ? 'selected' : ''}>${U.esc(c.name)}</option>`).join('')}</optgroup>` : '';
+            })
+            .join('')}</select>
           <label class="switch-row"><span>Instruções por voz</span><input type="checkbox" class="vis-voice" ${voice ? 'checked' : ''}><i></i></label>
           <p class="muted small">A voz usa a síntese do iPhone. Confirma que o modo silencioso está desligado.</p>
           <button class="btn primary full big vis-start">Começar sessão</button>
@@ -89,6 +95,7 @@
             else circId = b.dataset.v;
           })
         );
+        ctx.scope.on(stage.querySelector('.vis-circ'), 'change', (e) => (circId = e.target.value));
         ctx.scope.on(stage.querySelector('.vis-voice'), 'change', (e) => (voice = e.target.checked));
         ctx.scope.on(stage.querySelector('.vis-start'), 'click', start);
       };
@@ -108,7 +115,10 @@
         const introMs = Math.min(45000, totalMs * 0.2);
         const outroMs = 20000;
         const lapBudget = totalMs - introMs - outroMs;
-        const steps = lapSteps(circ, geo);
+        let steps = lapSteps(circ, geo);
+        // Circuitos com muitas curvas: um passo por curva, para dar tempo de ler e imaginar.
+        if (lapBudget / steps.length < 5500)
+          steps = steps.filter((_, i) => i % 3 === 1).map((s, i) => Object.assign({}, s, { text: lapSteps(circ, geo)[i * 3].text + ' ' + s.text }));
         const laps = Math.max(1, Math.round(lapBudget / (steps.length * 7000)));
         const stepMs = lapBudget / (laps * steps.length);
 

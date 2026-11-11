@@ -88,11 +88,13 @@ const only = process.argv[3] ? process.argv[3].split(',').map(Number) : null;
           const r = c.getBoundingClientRect();
           return { x: r.left, y: r.top, w: r.width, h: r.height };
         });
-        for (let t = 0; t < 40; t++) {
-          await p.mouse.click(box.x + Math.random() * box.w, box.y + Math.random() * box.h);
-          const done = await p.evaluate(() => !!document.querySelector('.fb') || !document.querySelector('.trk-start').classList.contains('hidden'));
-          if (done) break;
-        }
+        // Varre o ecrã em grelha até escolher todos os alvos (acertando ou não).
+        sweep: for (let y = 20; y < box.h; y += 30)
+          for (let x = 20; x < box.w; x += 30) {
+            await p.mouse.click(box.x + x, box.y + y);
+            const done = await p.evaluate(() => !!document.querySelector('.fb') || !document.querySelector('.trk-start').classList.contains('hidden'));
+            if (done) break sweep;
+          }
         await wait(300);
       }
       await wait(1600);

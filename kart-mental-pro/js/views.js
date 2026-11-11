@@ -451,15 +451,13 @@
   /* ======================= CIRCUITOS ======================= */
   V.circuitos = (params) => {
     if (params[0] === 'novo' || params[0] === 'editar') return editor(params[1]);
-    const all = KMP.circuits.all();
     return `<section class="view">${topbar('Circuitos', '#/exercicios')}
-      <p class="muted small pad-x">Os circuitos são usados na Memorização de Circuitos e na Visualização Mental. Cria o traçado da pista onde corres, curva a curva.</p>
-      ${all
-        .map(
-          (c) => `<div class="card cir-row"><div class="cir-thumb">${KMP.circuits.svg(c, { labels: false }).html}</div><div class="cir-row-c"><b>${U.esc(c.name)}</b><small class="muted">${c.custom ? 'Personalizado' : U.esc(c.desc)} · ${KMP.circuits.geometry(c).corners.length} curvas</small>
+      <p class="muted small pad-x">Usados na Memorização de Circuitos e na Visualização Mental. Para a pista onde corres (por exemplo, Vila Nova de Paiva), cria o traçado curva a curva.</p>
+      ${KMP.circuits.pickerHtml(
+        (c) => `<div class="card cir-row"><div class="cir-thumb">${KMP.circuits.svg(c, { labels: false }).html}</div><div class="cir-row-c"><b>${U.esc(c.name)}</b><small class="muted">${c.custom ? 'Personalizado' : U.esc(c.desc)} · ${KMP.circuits.geometry(c).corners.length} curvas${c.real ? ' principais' : ''}</small>
           ${c.custom ? `<div class="row gap mt"><button class="btn ghost small" data-go="#/circuitos/editar/${c.id}">Editar</button><button class="btn danger-ghost small" data-act="del-circ" data-id="${c.id}">Apagar</button></div>` : ''}</div></div>`
-        )
-        .join('')}
+      )}
+      <p class="muted small pad-x">Traçados reais: dados abertos de github.com/bacinger/f1-circuits (licença MIT). Não oficiais; não associados à Fórmula 1.</p>
       <button class="btn primary big full" data-go="#/circuitos/novo">${I('plus')} Criar circuito</button>
     </section>`;
   };

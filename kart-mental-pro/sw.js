@@ -1,5 +1,5 @@
 /* KART MENTAL PRO — service worker: guarda a app no dispositivo para funcionar sem internet. */
-const VERSION = 'kmp-1e0eae393a';
+const VERSION = 'kmp-078851e097';
 const ASSETS = [
   './',
   'index.html',
@@ -12,6 +12,7 @@ const ASSETS = [
   'js/core.js',
   'js/icons.js',
   'js/data.js',
+  'js/tracks-real.js',
   'js/circuits.js',
   'js/exercises/e01-reflexos.js',
   'js/exercises/e02-schulte.js',

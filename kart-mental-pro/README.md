@@ -16,7 +16,7 @@ Aplicação de preparação mental e cognitiva para pilotos de karting, feita pa
   8. Teste Stroop — palavra vs. cor da tinta, conflito progressivo.
   9. Encontra as Diferenças — cenas de pista geradas de novo em cada sessão, cronómetro, pontuação por precisão.
   10. Memória de Números — sequências que crescem, recorde.
-  11. Memorização de Circuitos — estudar o mapa (curvas, travagens, zona de ultrapassagem), perguntas de memória e sequência completa de curvas; **circuitos personalizados** no editor.
+  11. Memorização de Circuitos — estudar o mapa (curvas, travagens, zona de ultrapassagem), perguntas de memória e sequência completa de curvas. Traçados reais de **Portimão e Estoril** e de **16 circuitos de Fórmula 1** (Mónaco, Monza, Silverstone, Spa, Suzuka, Interlagos, Imola, Barcelona, Zandvoort, Red Bull Ring, Hungaroring, Albert Park, Bahrain, Montreal, Austin, Yas Marina), 3 traçados de karting de treino e **circuitos personalizados** no editor (ex.: a pista onde corres).
   12. Visualização Mental — sessão guiada (3/5/10/15 min) com respiração, volta curva a curva com o kart a andar no mapa, voz opcional e autoavaliação.
 - **Programa de 21 dias** (calendário Seg→Dom como pedido), duração estimada, objetivo do dia, progresso, recuperar dias em falta, reiniciar. Adapta-se: o nível de cada exercício sobe com 2 sessões ≥ 80 pontos e desce com 2 abaixo de 45 (no máximo 1 mudança por dia); a 1.ª semana tem 2 exercícios por dia e as seguintes 3, mas se na semana anterior fizeste menos de metade dos dias o plano mantém 2.
   - Sábado: revisão dos 3 exercícios mais fracos **ou** registo de treino real de kart.
@@ -25,6 +25,8 @@ Aplicação de preparação mental e cognitiva para pilotos de karting, feita pa
 - **Extra:** 24 medalhas/conquistas, desafios diários, treino livre e guiado, sons opcionais, lembrete diário (notificação ou evento no Calendário do iPhone), cópia de segurança (exportar/importar).
 
 Todos os resultados vêm do que fazes na app: não há valores inventados.
+
+**Traçados reais:** coordenadas de [bacinger/f1-circuits](https://github.com/bacinger/f1-circuits) (licença MIT; dados não oficiais, sem ligação à Fórmula 1), convertidas por `tools/import-f1.mjs` para `js/tracks-real.js`. As curvas principais são detetadas automaticamente pela curvatura do traçado e as travagens são estimadas pelo comprimento da reta e pelo tipo de curva — a numeração pode não coincidir com a oficial. Os kartódromos portugueses (como Vila Nova de Paiva) ainda não estão incluídos; por agora, desenha-os no editor de circuitos.
 
 ## Pôr a app no iPhone
 
