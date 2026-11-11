@@ -4,9 +4,9 @@
 # fontes Anton / Barlow Condensed / Inter (OFL) em $FONTS em formato .ttf.
 set -euo pipefail
 cd "$(dirname "$0")"
-export OUT=${OUT:-build} FONTS=${FONTS:-fonts}
+export OUT=${OUT:-build} FONTS=${FONTS:-fonts} KOKORO_DIR=${KOKORO_DIR:-kokoro}
 mkdir -p "$OUT"
-python3 tts.py          # narração (pt-PT) + durações
+python3 tts.py          # narração (pt-BR, voz grave) + durações
 python3 musica.py       # banda sonora original, efeitos, ducking e mistura
 python3 render.py       # grafismo 1920x1080 25 fps, por cenas em paralelo
 python3 legendas.py     # .srt + GUIAO.md

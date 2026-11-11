@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Renderização do vídeo (1920x1080, 25 fps): grafismo original, tipografia cinética."""
+"""Renderização do vídeo (1920x1080, 25 fps): arte original, tipografia cinética."""
 import os, sys, math, json, subprocess, textwrap
 from functools import lru_cache
 from multiprocessing import Pool
@@ -233,7 +233,7 @@ def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, ac
     c = cap[1:] if imp else cap
     label = None
     parts = c.split("|")
-    if parts[0] in ("FACTO", "OPINIÃO", "MERCEDES:"):
+    if parts[0] in ("FATO", "OPINIÃO", "MERCEDES:"):
         label, c = parts[0], "|".join(parts[1:])
     col = color
     sprs = caption_sprites(c, col, big if not imp else int(big * 1.1), ((255, 20, 0) if imp else (0, 0, 0)))
@@ -244,7 +244,7 @@ def draw_caption(canvas, cap, lt, cy=500, impact=False, color=WHITE, big=200, ac
     total = sum(s.height * 0.78 for s in sprs)
     y = cy - total / 2
     if label:
-        lc = (40, 200, 120) if label == "FACTO" else ((255, 190, 0) if label == "OPINIÃO" else WHITE)
+        lc = (40, 200, 120) if label == "FATO" else ((255, 190, 0) if label == "OPINIÃO" else WHITE)
         ls = text_sprite(label, F_BARLOW, 54, lc, None, 0, 0, 6)
         bx = Image.new("RGBA", (ls.width + 30, ls.height - 6), (0, 0, 0, 170))
         paste(canvas, bx, W / 2, y - 40, 1, alpha)
@@ -353,7 +353,7 @@ def scene_frame(sc, data, t, gi):
         e = ease_out(t / 1.2)
         s1 = text_sprite("F1 2026", F_ANTON, 300, WHITE, RED, 30)
         paste(cv, s1, W / 2, 430, 1.25 - 0.25 * e, min(1, t / 0.5) * fade_out)
-        s2 = text_sprite("TUDO O QUE ACONTECEU ATÉ AO BRASIL", F_BARLOW, 78, WHITE, None, 0, 0, 10)
+        s2 = text_sprite("TUDO O QUE ACONTECEU ATÉ O BRASIL", F_BARLOW, 78, WHITE, None, 0, 0, 10)
         paste(cv, s2, W / 2, 640, 1, ease_out((t - 0.8) / 0.8) * fade_out)
         w = int(1100 * ease_out((t - 0.5) / 1.0))
         if w > 2:
@@ -383,7 +383,7 @@ def scene_frame(sc, data, t, gi):
                 if w > 0:
                     bar = Image.new("RGBA", (w, 26), col + (255,))
                     paste(cv, bar, 0, 300 + k * 26, 1, 1, "l")
-            s = text_sprite("RONDA %02d / 22" % data["rnd"], F_BARLOW, 60, WHITE, None, 0, 0, 12)
+            s = text_sprite("ETAPA %02d / 22" % data["rnd"], F_BARLOW, 60, WHITE, None, 0, 0, 12)
             paste(cv, s, W / 2, 440, 1, e)
             g = text_sprite(data["gp"], F_ANTON, fit_size(data["gp"], F_ANTON, 1700, 230), WHITE, (0, 0, 0), 20)
             paste(cv, g, W / 2, 600, 1.2 - 0.2 * e, min(1, t / 0.3))
@@ -434,7 +434,7 @@ def scene_frame(sc, data, t, gi):
         tag(hud, "AS REGRAS DE 2026", 60, 70, RED, 44)
     elif typ == "grid":
         draw_grid(cv, capline, tg, t)
-        tag(hud, "A GRELHA DE 2026", 60, 70, RED, 44)
+        tag(hud, "O GRID DE 2026", 60, 70, RED, 44)
     elif typ == "controversy":
         st = text_sprite(data.get("title", "POLÉMICA"), F_BARLOW, 48, WHITE, None, 0, 0, 8)
         tag(hud, data.get("title", "POLÉMICA"), 60, 70, RED, 44)
@@ -473,8 +473,8 @@ def scene_frame(sc, data, t, gi):
             s1 = text_sprite("F1 2026", F_ANTON, 220, WHITE, RED, 26)
             paste(cv, s1, W / 2, 380, 1, ease_out(tt / 0.6) * fade_out)
             cr = ["FONTES: FORMULA1.COM · FIA · IMPRENSA ESPECIALIZADA (THE RACE, PLANETF1, SKY SPORTS, AP)",
-                  "CLASSIFICAÇÕES À DATA DE 11 DE NOVEMBRO DE 2026 · APÓS O GP DO BRASIL (RONDA 19 DE 22)",
-                  "GRAFISMO E MÚSICA ORIGINAIS · NARRAÇÃO SINTÉTICA EM PORTUGUÊS DE PORTUGAL"]
+                  "CLASSIFICAÇÃO EM 11 DE NOVEMBRO DE 2026 · APÓS O GP DO BRASIL (ETAPA 19 DE 22)",
+                  "ARTE E MÚSICA ORIGINAIS · NARRAÇÃO SINTÉTICA EM PORTUGUÊS DO BRASIL"]
             for k, ln in enumerate(cr):
                 s = text_sprite(ln, F_BARLOW6, 34, (190, 190, 190), None, 0, 0, 2)
                 paste(cv, s, W / 2, 590 + k * 56, 1, ease_out((tt - 0.5 - 0.2 * k) / 0.6) * fade_out)
@@ -523,7 +523,7 @@ def draw_rules(cv, capline, tg):
         paste(cv, text_sprite("ELÉTRICO", F_BARLOW, 60, WHITE), (mid + x1) / 2, y, 1, e)
         paste(cv, text_sprite("~50%", F_ANTON, 120, WHITE), (x0 + mid) / 2, y - 170, 1, e)
         paste(cv, text_sprite("~50%", F_ANTON, 120, WHITE), (mid + x1) / 2, y - 170, 1, e)
-        paste(cv, text_sprite("NOVA UNIDADE MOTRIZ", F_BARLOW, 54, (200, 200, 200), None, 0, 0, 8), W / 2, y + 160, 1, e)
+        paste(cv, text_sprite("NOVA UNIDADE DE POTÊNCIA", F_BARLOW, 54, (200, 200, 200), None, 0, 0, 8), W / 2, y + 160, 1, e)
     elif cap == "@kw":
         v = int(120 + (350 - 120) * ease_io(lt / 2.0))
         paste(cv, text_sprite("MGU-K", F_BARLOW, 70, (200, 200, 200), None, 0, 0, 10), W / 2, 300, 1, 1)
@@ -543,7 +543,7 @@ def draw_rules(cv, capline, tg):
             wing = wing.rotate(ang if k else ang * 0.7, expand=True, resample=Image.BICUBIC)
             paste(cv, wing, cx, 480, 1, e)
             paste(cv, text_sprite(lbl, F_BARLOW, 48, (200, 200, 200), None, 0, 0, 6), cx, 640, 1, e)
-        mode = "MODO CURVA · MAIS APOIO" if ph > 0.5 else "MODO RETA · MENOS ARRASTO"
+        mode = "MODO CURVA · MAIS DOWNFORCE" if ph > 0.5 else "MODO RETA · MENOS ARRASTO"
         paste(cv, text_sprite(mode, F_ANTON, 96, WHITE if ph > 0.5 else (39, 160, 255), (0, 0, 0), 12), W / 2, 280, 1, 1)
         paste(cv, text_sprite("ADEUS DRS", F_BARLOW, 60, RED, None, 0, 0, 10), W / 2, 760, 1, e)
     elif cap == "@overtake":

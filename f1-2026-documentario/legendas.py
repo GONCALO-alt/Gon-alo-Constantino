@@ -23,7 +23,7 @@ def main(dest="."):
                                                    "\n".join(textwrap.wrap(ln["text"], 60))))
                 n += 1
     with open(os.path.join(dest, "GUIAO.md"), "w", encoding="utf-8") as f:
-        f.write("# F1 2026 — Tudo o que aconteceu até ao Brasil\n\nGuião completo da narração (português de Portugal).\n\n")
+        f.write("# F1 2026 — Tudo o que aconteceu até o Brasil\n\nGuião completo da narração (português do Brasil).\n\n")
         for sc, data in zip(scenes, guiao.SCENES):
             m, s = divmod(int(sc["start"]), 60)
             head = {"race": lambda d: "R%02d · GP %s (%s)" % (d["rnd"], d["gp"].title(), d["date"].lower()),
