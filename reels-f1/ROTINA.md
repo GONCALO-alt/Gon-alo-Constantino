@@ -1,14 +1,14 @@
 # Rotina diária: Reel de F1
 
 Corre todos os dias às 7:00 (Lisboa) numa sessão nova. Resultado: um Reel vertical de 25–45 s
-com voz sintética em português de Portugal, publicado na página **Reel F1 do Dia**:
+com voz sintética de um jovem britânico, **tudo em inglês** (fala, texto no ecrã, legendas e legenda do post), publicado na página **Reel F1 do Dia**:
 https://claude.ai/artifact/Scaw2w7Ckd9GuBh8ZzxUDw
 
 ## 1. Preparar
 
 ```bash
 git fetch origin claude/kind-meitner-5yd7hc && git checkout claude/kind-meitner-5yd7hc
-bash reels-f1/setup.sh          # instala o Piper e a voz pt_PT (≈ 1 min)
+bash reels-f1/setup.sh          # instala o Piper e a voz inglesa (≈ 1 min)
 ```
 
 ## 2. Buscar o tema do dia
@@ -29,9 +29,13 @@ Guardar em `reels-f1/guioes/AAAA-MM-DD.json` (ver o exemplo `2026-11-11.json`).
 
 - 4–6 cenas, nesta ordem: `gancho` → `problema`/`contexto` → `virada` → `chamada`.
 - Gancho: um número ou facto que choca, falado em menos de 3 s.
-- `fala`: frases curtas, português de Portugal, 2.ª pessoa no fim (escreve, segue).
-  **Escrever os números por extenso na fala** (a voz lê mal algarismos): «vigésimo primeiro»,
-  «catorze segundos e meio».
+- `fala`: frases curtas em inglês britânico, tom de fã jovem, «you» no fim (drop a comment, follow).
+  **Escrever os números por extenso na fala** (a voz lê mal algarismos): «twenty-first»,
+  «fourteen and a half seconds».
+- `ecra`, `detalhe`, `numero`, `rotulo`, `titulo`, `legenda_post` em inglês. Ordinais como «21st → 2nd»
+  animam: o primeiro aparece e o segundo conta até ao valor final.
+- `analise` e títulos das `fontes` podem ficar em português (são só para o Gonçalo).
+- Incluir `"voz": {"modelo": "en_GB-northern_english_male-medium"}`.
 - `ecra`: no máximo 8 palavras. `numero` (opcional): o número grande. `detalhe`: 1 linha.
 - Campos também obrigatórios: `data`, `data_curta`, `titulo`, `analise`, `legenda_post`,
   `hashtags`, `fontes` (título + URL). `referencias_virais` é opcional.
