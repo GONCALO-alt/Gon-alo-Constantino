@@ -1,396 +1,396 @@
-# F1 2026 — Tudo o que aconteceu até ao Brasil
+# F1 2026 — Everything That Happened Up To Brazil
 
-Guião completo da narração (português de Portugal).
+Guião completo da narração (em inglês), com os tempos de cada cena.
 
 ## [00:00] COLD
 
-Vinte anos. Sessenta e oito dias.  _[ecrã: 20 ANOS / 68 DIAS]_
+Twenty years. Sixty-eight days.  _[ecrã: 20 YEARS / 68 DAYS]_
 
-Nunca ninguém tinha sido campeão do mundo de Fórmula 1 tão novo.  _[ecrã: NUNCA ANTES]_
+No one had ever become Formula One world champion so young.  _[ecrã: NEVER BEFORE]_
 
-Mas antes da coroa houve tudo o resto.  _[ecrã: ANTES DA COROA...]_
+But before the crown, there was everything else.  _[ecrã: BEFORE THE CROWN...]_
 
-Uma revolução técnica. Duas corridas canceladas. Uma guerra dentro da mesma garagem.  _[ecrã: UMA REVOLUÇÃO]_
+A technical revolution. Two races cancelled. A war inside the same garage.  _[ecrã: A REVOLUTION]_
 
-O regresso de Lewis Hamilton ao lugar mais alto do pódio. Um Max Verstappen que se recusou a desaparecer.  _[ecrã: HAMILTON / VERSTAPPEN]_
+Lewis Hamilton back on the top step of the podium. A Max Verstappen who refused to fade away.  _[ecrã: HAMILTON / VERSTAPPEN]_
 
-E uma McLaren campeã que, de repente, teve de recomeçar do zero.  _[ecrã: MCLAREN]_
+And a champion McLaren that suddenly had to start again from zero.  _[ecrã: McLAREN]_
 
-Dezanove Grandes Prémios. Da Austrália ao Brasil.  _[ecrã: 19 GRANDES PRÉMIOS]_
+Nineteen Grands Prix. From Australia to Brazil.  _[ecrã: 19 GRANDS PRIX]_
 
-Isto é tudo o que aconteceu.  _[ecrã: TUDO]_
+This is everything that happened.  _[ecrã: EVERYTHING]_
 
-## [00:33] TITLE
+## [00:32] TITLE
 
-## [00:40] Capítulo I — A Nova Era
+## [00:38] Capítulo I — A New Era
 
-Para perceber 2026, é preciso começar antes do primeiro semáforo.
+To understand 2026, you have to start before the first start.
 
-## [00:48] RULES
+## [00:46] RULES
 
-Este foi o ano da maior mudança de regras da história recente da Fórmula 1.  _[ecrã: NOVAS REGRAS]_
+This was the biggest rule change in Formula One's recent history.  _[ecrã: NEW RULES]_
 
-Os motores passaram a dividir a potência quase meio a meio: metade vinda do motor de combustão, metade vinda da parte elétrica.
+Power units now split their output almost fifty-fifty: half from the combustion engine, half from the electrical side.
 
-O MGU-H desapareceu. Em compensação, o MGU-K quase triplicou, de cento e vinte para trezentos e cinquenta quilowatts.
+The MGU-H was gone. In return, the MGU-K almost tripled, from one hundred and twenty to three hundred and fifty kilowatts.
 
-Todos os carros passaram a usar combustível sustentável avançado.  _[ecrã: COMBUSTÍVEL / SUSTENTÁVEL]_
+Every car switched to advanced sustainable fuel.  _[ecrã: SUSTAINABLE / FUEL]_
 
-Os carros ficaram mais curtos, mais estreitos e mais leves: o peso mínimo desceu para setecentos e sessenta e oito quilos, sem combustível.
+The cars became shorter, narrower and lighter: the minimum weight dropped to seven hundred and sixty-eight kilograms, without fuel.
 
-E o DRS acabou. No seu lugar chegou a aerodinâmica ativa: asas dianteira e traseira que mudam de ângulo durante a volta.
+And DRS was gone. In its place came active aerodynamics: front and rear wings that change angle during the lap.
 
-Para ultrapassar, os pilotos ganharam o modo de ultrapassagem, com energia extra, e um botão de impulso para usar a bateria quando quiserem.
+To overtake, drivers got an overtake mode with extra energy, plus a boost button to deploy the battery whenever they wanted.
 
-Resultado: gerir a energia tornou-se tão importante como travar tarde. E as corridas mudaram de natureza.  _[ecrã: GERIR ENERGIA]_
+The result: managing energy became as important as braking late. And the racing changed character.  _[ecrã: ENERGY IS KING]_
 
-## [01:48] GRID
+## [01:42] GRID
 
-A grelha também mudou. A Sauber transformou-se na Audi, com Hulkenberg e Bortoleto.  _[ecrã: AUDI]_
+The grid changed too. Sauber became Audi, with Hulkenberg and Bortoleto.  _[ecrã: AUDI]_
 
-A Cadillac entrou como décima primeira equipa, com dois veteranos: Sergio Pérez e Valtteri Bottas.  _[ecrã: CADILLAC]_
+Cadillac arrived as the eleventh team, with two veterans: Sergio Perez and Valtteri Bottas.  _[ecrã: CADILLAC]_
 
-Isack Hadjar subiu à Red Bull para fazer equipa com Verstappen, e Arvid Lindblad foi o único estreante, na Racing Bulls.  _[ecrã: HADJAR / LINDBLAD]_
+Isack Hadjar was promoted to Red Bull alongside Verstappen, and Arvid Lindblad was the only rookie, at Racing Bulls.  _[ecrã: HADJAR / LINDBLAD]_
 
-Vinte e dois carros. Onze equipas. E Lando Norris a defender o título de campeão do mundo.  _[ecrã: 22 CARROS / 11 EQUIPAS]_
+Twenty-two cars. Eleven teams. And Lando Norris defending the world title.  _[ecrã: 22 CARS / 11 TEAMS]_
 
-## [02:15] CONTROVERSY
+## [02:08] CONTROVERSY
 
-Antes de a época começar, rebentou a primeira polémica.  _[ecrã: POLÉMICA]_
+Before the season even started, the first controversy broke out.  _[ecrã: CONTROVERSY]_
 
-Ferrari, Audi e Honda suspeitavam que a Mercedes tinha encontrado uma forma de, com o motor quente, ultrapassar a taxa de compressão máxima de dezasseis para um, que só era medida a frio.  _[ecrã: FACTO / SUSPEITA DOS RIVAIS]_
+Ferrari, Audi and Honda suspected Mercedes had found a way, with a hot engine, to exceed the sixteen-to-one maximum compression ratio, which was only measured cold.  _[ecrã: FACT / RIVALS' SUSPICION]_
 
-A Mercedes garantiu sempre que o motor era legal e que tinha consultado a FIA durante todo o desenvolvimento.  _[ecrã: MERCEDES: / “É LEGAL”]_
+Mercedes always insisted the engine was legal, and that it had consulted the FIA throughout development.  _[ecrã: MERCEDES: / “IT'S LEGAL”]_
 
-A FIA acabou por mudar a regra: a partir de um de junho, a compressão passou a ser medida também a quente.  _[ecrã: FACTO / NOVA MEDIÇÃO A 1 DE JUNHO]_
+The FIA changed the rule: from the first of June, compression would also be measured hot.  _[ecrã: FACT / NEW HOT TEST FROM 1 JUNE]_
 
-Os rivais estimavam o ganho em cerca de treze cavalos. A Mercedes contestou esses números, e Toto Wolff chegou a chamar-lhe uma tempestade num copo de água.  _[ecrã: OPINIÃO / “TEMPESTADE NUM COPO DE ÁGUA”]_
+Rivals put the gain at around thirteen horsepower. Mercedes disputed those numbers, and Toto Wolff called it a storm in a teacup.  _[ecrã: OPINION / “A STORM IN A TEACUP”]_
 
-## [02:55] Capítulo II — O Domínio Prateado
+## [02:47] Capítulo II — The Silver Surge
 
-Melbourne. Oito de março. Começa a nova era.
+Melbourne. The eighth of March. The new era begins.
 
-## [03:01] R01 · GP Austrália (8 março)
+## [02:53] R01 · GP Australia (8 march)
 
-O drama começou antes da partida. Oscar Piastri, na corrida de casa, despistou-se a caminho da grelha e nem chegou a alinhar.  _[ecrã: PIASTRI FORA]_
+The drama began before the start. Oscar Piastri, at his home race, crashed on the way to the grid and never took the start.  _[ecrã: PIASTRI OUT]_
 
-Nico Hulkenberg também foi retirado mesmo antes da corrida. Só vinte carros partiram.  _[ecrã: SÓ 20 CARROS]_
+Nico Hulkenberg was also withdrawn just before the race. Only twenty cars started.  _[ecrã: ONLY 20 CARS]_
 
-A Ferrari arrancou muito bem e Charles Leclerc andou na luta pela frente.  _[ecrã: FERRARI NA FRENTE]_
+Ferrari got off the line brilliantly, and Charles Leclerc was in the fight at the front.  _[ecrã: FERRARI LEADS]_
 
-Mas o momento decisivo veio com o safety car virtual. A Mercedes parou os dois carros em sequência; a Ferrari não aproveitou da mesma forma e perdeu o controlo da corrida.  _[ecrã: O ERRO DA FERRARI]_
+But the decisive moment came under the virtual safety car. Mercedes double-stacked both cars; Ferrari didn't make the same call and lost control of the race.  _[ecrã: FERRARI'S MISTAKE]_
 
-George Russell venceu, com Kimi Antonelli a menos de três segundos. Uma dobradinha da Mercedes logo na primeira corrida, com Leclerc em terceiro.  _[ecrã: DOBRADINHA / MERCEDES]_
+George Russell won, with Kimi Antonelli less than three seconds behind. A Mercedes one-two in the very first race, with Leclerc third.  _[ecrã: MERCEDES / ONE-TWO]_
 
-Hamilton foi quarto, Norris quinto. E o estreante Lindblad marcou pontos logo à primeira, em oitavo.  _[ecrã: LINDBLAD P8]_
+Hamilton was fourth, Norris fifth. And rookie Lindblad scored on debut, in eighth.  _[ecrã: LINDBLAD P8]_
 
-## [03:55] R02 · GP China (15 março)
+## [03:45] R02 · GP China (15 march)
 
-Em Xangai, a primeira bomba: as duas McLaren não alinharam. Problemas elétricos diferentes, ambos ligados à unidade motriz Mercedes.  _[ecrã: McLAREN / NÃO ALINHA]_
+In Shanghai, the first bombshell: neither McLaren started. Two different electrical problems, both linked to the Mercedes power unit.  _[ecrã: McLAREN / DOUBLE DNS]_
 
-Com outros dois carros de fora, apenas dezoito partiram.
+With two more cars out, only eighteen took the start.
 
-Russell já tinha vencido a corrida sprint de sábado. Mas domingo foi de Antonelli.  _[ecrã: SPRINT: RUSSELL]_
+Russell had already won Saturday's sprint. But Sunday belonged to Antonelli.  _[ecrã: SPRINT: RUSSELL]_
 
-Partiu da pole, perdeu a liderança para Hamilton na partida, recuperou-a e controlou até ao fim.  _[ecrã: ANTONELLI]_
+He started from pole, lost the lead to Hamilton at the start, took it back, and controlled the race to the flag.  _[ecrã: ANTONELLI]_
 
-Primeira vitória da carreira, aos dezanove anos. Só Verstappen tinha vencido mais novo.  _[ecrã: PRIMEIRA VITÓRIA]_
+His first career win, at nineteen. Only Verstappen had won younger.  _[ecrã: FIRST WIN]_
 
-E Hamilton subiu, finalmente, ao pódio com a Ferrari.  _[ecrã: 1.º PÓDIO / HAMILTON FERRARI]_
+And Hamilton, at last, stood on the podium for Ferrari.  _[ecrã: HAMILTON'S FIRST / FERRARI PODIUM]_
 
-## [04:38] NEWS
+## [04:24] NEWS
 
-Dias depois, a notícia: por causa do conflito no Médio Oriente, os Grandes Prémios do Bahrein e da Arábia Saudita foram cancelados, sem substitutos.  _[ecrã: BAHREIN / ARÁBIA SAUDITA]_
+Days later came the news: because of the conflict in the Middle East, the Bahrain and Saudi Arabian Grands Prix were cancelled, with no replacements.  _[ecrã: BAHRAIN / SAUDI ARABIA]_
 
-O calendário encolheu para vinte e duas corridas, com cinco semanas de pausa entre o Japão e Miami.  _[ecrã: 22 CORRIDAS]_
+The calendar shrank to twenty-two races, with a five-week gap between Japan and Miami.  _[ecrã: 22 RACES]_
 
-## [04:55] R03 · GP Japão (29 março)
+## [04:41] R03 · GP Japan (29 march)
 
-Em Suzuka, Antonelli voltou a fazer a pole, mas arrancou mal e caiu para sexto.  _[ecrã: DE P1 A P6]_
+At Suzuka, Antonelli took pole again, but made a poor start and dropped to sixth.  _[ecrã: P1 TO P6]_
 
-A corrida virou com um acidente de Oliver Bearman na curva Spoon. O safety car baralhou tudo, e Antonelli voltou à frente.  _[ecrã: SAFETY CAR]_
+The race turned on Oliver Bearman's crash at Spoon. The safety car shuffled the order, and Antonelli was back in front.  _[ecrã: SAFETY CAR]_
 
-Venceu com treze segundos de vantagem sobre Piastri, que finalmente terminou uma corrida e foi segundo. Leclerc fechou o pódio.  _[ecrã: PIASTRI P2]_
+He won by thirteen seconds from Piastri, who finally finished a race and took second. Leclerc completed the podium.  _[ecrã: PIASTRI P2]_
 
-Antonelli tornou-se o mais jovem de sempre a vencer duas corridas e o mais jovem líder do campeonato.  _[ecrã: LÍDER / AOS 19 ANOS]_
+Antonelli became the youngest ever multiple Grand Prix winner, and the youngest championship leader in history.  _[ecrã: LEADER / AT 19]_
 
-## [05:32] R04 · GP Miami (3 maio)
+## [05:16] R04 · GP Miami (3 may)
 
-Depois de cinco semanas, Miami. No sábado, Norris venceu a sprint: a primeira vitória da McLaren em 2026.  _[ecrã: SPRINT: NORRIS]_
+After five weeks, Miami. On Saturday, Norris won the sprint: McLaren's first victory of 2026.  _[ecrã: SPRINT: NORRIS]_
 
-Hadjar foi desclassificado da qualificação: o fundo do Red Bull excedia em dois milímetros o permitido.  _[ecrã: HADJAR / DESCLASSIFICADO]_
+Hadjar was disqualified from qualifying: his Red Bull's floor was two millimetres outside the rules.  _[ecrã: HADJAR / DISQUALIFIED]_
 
-A ameaça de tempestade antecipou a partida em três horas, mas a chuva quase não apareceu.  _[ecrã: +3 HORAS]_
+The threat of storms moved the start forward by three hours, but the rain barely came.  _[ecrã: 3 HOURS EARLY]_
 
-Leclerc liderou no início, mas fez um pião. Perdeu o quarto lugar para Russell e, na linha de meta, o quinto para Verstappen. Os dois acabaram penalizados.  _[ecrã: PIÃO DE LECLERC]_
+Leclerc led early but spun. He lost fourth to Russell and, on the line, fifth to Verstappen. Both were later penalised.  _[ecrã: LECLERC SPINS]_
 
-À frente, Antonelli resistiu a Norris por pouco mais de três segundos. Terceira vitória seguida e vinte pontos de vantagem sobre Russell.  _[ecrã: 3 SEGUIDAS]_
+Up front, Antonelli held off Norris by just over three seconds. Three wins in a row, and a twenty-point lead over Russell.  _[ecrã: 3 IN A ROW]_
 
-## [06:21] R05 · GP Canadá (24 maio)
+## [05:59] R05 · GP Canada (24 may)
 
-Em Montreal, a guerra interna da Mercedes explodiu.  _[ecrã: MERCEDES / CONTRA MERCEDES]_
+In Montreal, the civil war at Mercedes exploded.  _[ecrã: MERCEDES / VS MERCEDES]_
 
-Na sprint, Russell e Antonelli tocaram-se. Antonelli foi para a relva e exigiu, pela rádio, um castigo para o colega.  _[ecrã: TOQUE NA SPRINT]_
+In the sprint, Russell and Antonelli made contact. Antonelli was forced onto the grass and demanded, over the radio, a penalty for his team-mate.  _[ecrã: SPRINT CLASH]_
 
-Toto Wolff respondeu-lhe para se concentrar na condução e não em queixas pela rádio.  _[ecrã: “CONCENTRA-TE / NA CONDUÇÃO”]_
+Toto Wolff told him to concentrate on the driving, not on moaning over the radio.  _[ecrã: “CONCENTRATE / ON THE DRIVING”]_
 
-No domingo, voltaram a lutar roda com roda, até que Russell abandonou na liderança, com um problema na unidade motriz.  _[ecrã: RUSSELL ABANDONA]_
+On Sunday they fought wheel to wheel again, until Russell retired from the lead with a power unit problem.  _[ecrã: RUSSELL RETIRES]_
 
-Norris também desistiu, depois de uma aposta nos pneus que correu mal.  _[ecrã: NORRIS FORA]_
+Norris retired too, after a tyre gamble that backfired.  _[ecrã: NORRIS OUT]_
 
-Antonelli venceu a quarta seguida. Hamilton foi segundo, o melhor resultado até então pela Ferrari, e Verstappen conquistou o primeiro pódio do ano.  _[ecrã: HAMILTON P2 / VERSTAPPEN P3]_
+Antonelli won a fourth in a row. Hamilton was second, his best Ferrari result yet, and Verstappen took his first podium of the year.  _[ecrã: HAMILTON P2 / VERSTAPPEN P3]_
 
-A vantagem subiu para quarenta e três pontos. E a Mercedes criou novas regras internas sobre como os dois podiam lutar.  _[ecrã: +43]_
+The lead grew to forty-three points. And Mercedes drew up new internal rules on how its drivers could race each other.  _[ecrã: +43]_
 
-## [07:14] R06 · GP Mónaco (7 junho)
+## [06:52] R06 · GP Monaco (7 june)
 
-No Mónaco, a primeira corrida com a nova medição da compressão dos motores, Verstappen ficou de fora logo na primeira volta.  _[ecrã: VERSTAPPEN / 1.ª VOLTA]_
+In Monaco, the first race under the new compression test, Verstappen was out on the very first lap.  _[ecrã: VERSTAPPEN / LAP 1]_
 
-Lance Stroll bateu na última curva e trouxe o safety car. No recomeço, Leclerc bateu no mesmo sítio, em casa, e queixou-se dos travões.  _[ecrã: LECLERC / EM CASA]_
+Lance Stroll crashed at the final corner and brought out the safety car. At the restart, Leclerc crashed in the same place, at his home race, and blamed his brakes.  _[ecrã: LECLERC / AT HOME]_
 
-A seguir, o asfalto começou a desfazer-se nessa curva e a corrida foi interrompida com bandeira vermelha a dez voltas do fim.  _[ecrã: BANDEIRA VERMELHA]_
+Then the track surface began breaking up at that corner, and the race was red-flagged with ten laps to go.  _[ecrã: RED FLAG]_
 
-Antonelli liderou todas as voltas e resistiu ao recomeço. Hamilton segundo, Hadjar terceiro.
+Antonelli led every lap and survived the restart. Hamilton second, Hadjar third.
 
-Quinta vitória seguida. O vencedor mais novo de sempre no Mónaco, e o primeiro triunfo da Mercedes no Principado desde 2019.  _[ecrã: 5 SEGUIDAS]_
+A fifth straight win. The youngest Monaco winner ever, and Mercedes' first victory in the Principality since 2019.  _[ecrã: 5 IN A ROW]_
 
-## [08:01] R07 · GP Barcelona (14 junho)
+## [07:37] R07 · GP Barcelona (14 june)
 
-Barcelona. E, finalmente, aconteceu.
+Barcelona. And finally, it happened.
 
-A Ferrari apostou em três paragens e acertou no momento do safety car virtual.  _[ecrã: 3 PARAGENS]_
+Ferrari went for three stops and nailed the timing of the virtual safety car.  _[ecrã: 3 STOPS]_
 
-Antonelli desistiu já perto do fim, quando lutava pelo segundo lugar. Acabava a série invicta da Mercedes.  _[ecrã: ANTONELLI / ABANDONA]_
+Antonelli retired late on while fighting for second. Mercedes' unbeaten run was over.  _[ecrã: ANTONELLI / RETIRES]_
 
-E Lewis Hamilton venceu. A primeira vitória com a Ferrari, a primeira desde a Bélgica de 2024, e a centésima sexta da carreira.  _[ecrã: HAMILTON / VENCE PELA FERRARI]_
+And Lewis Hamilton won. His first victory with Ferrari, his first since Belgium in 2024, and the one hundred and sixth of his career.  _[ecrã: HAMILTON / WINS FOR FERRARI]_
 
-Russell foi segundo, Norris terceiro, Verstappen quarto. E a Alpine pôs os dois carros nos pontos.  _[ecrã: VITÓRIA 106]_
+Russell was second, Norris third, Verstappen fourth. And Alpine got both cars into the points.  _[ecrã: WIN 106]_
 
-## [08:41] R08 · GP Áustria (28 junho)
+## [08:14] R08 · GP Austria (28 june)
 
-Na Áustria, Russell respondeu. Pole position e vitória, com Verstappen a pouco mais de um segundo e meio.  _[ecrã: RUSSELL]_
+In Austria, Russell hit back. Pole position and victory, with Verstappen just over a second and a half behind.  _[ecrã: RUSSELL]_
 
-Mas a história do dia foi outra: Verstappen contra Hamilton, outra vez.  _[ecrã: VERSTAPPEN / vs HAMILTON]_
+But the story of the day was something else: Verstappen against Hamilton, once again.  _[ecrã: VERSTAPPEN / VS HAMILTON]_
 
-Durante a luta, Verstappen disse pela rádio que era uma penalização clara. Os comissários analisaram e não tomaram qualquer medida.  _[ecrã: FACTO / SEM PENALIZAÇÃO]_
+During their fight, Verstappen said on the radio it was a clear penalty. The stewards looked at it and took no further action.  _[ecrã: FACT / NO PENALTY]_
 
-Para Hamilton, era Verstappen quem devia ter recuado. Opiniões opostas, sem castigo.  _[ecrã: OPINIÃO / “ELE É QUE DEVIA RECUAR”]_
+In Hamilton's view, it was Verstappen who should have backed out. Opposing opinions, no punishment.  _[ecrã: OPINION / “HE SHOULD HAVE BACKED OUT”]_
 
-Hamilton foi quinto, Leclerc só oitavo. Em casa da Red Bull, a Ferrari teve um dia para esquecer.  _[ecrã: FERRARI EM BAIXO]_
+Hamilton was fifth, Leclerc only eighth. At Red Bull's home race, Ferrari had a day to forget.  _[ecrã: FERRARI SLUMP]_
 
-## [09:23] R09 · GP Grã-Bretanha (5 julho)
+## [08:55] R09 · GP Great Britain (5 july)
 
-Em Silverstone, Antonelli venceu a sprint. Mas o domingo foi da Ferrari.  _[ecrã: SPRINT: ANTONELLI]_
+At Silverstone, Antonelli won the sprint. But Sunday belonged to Ferrari.  _[ecrã: SPRINT: ANTONELLI]_
 
-Charles Leclerc ganhou a primeira corrida desde 2024. Foi a ducentésima quinquagésima vitória da história da Ferrari.  _[ecrã: LECLERC / VITÓRIA 250 DA FERRARI]_
+Charles Leclerc won for the first time since 2024. It was the two hundred and fiftieth victory in Ferrari's history.  _[ecrã: LECLERC / FERRARI WIN 250]_
 
-Mas o final ficou manchado. Depois de um acidente tardio de Verstappen, apareceu a mensagem de que o safety car ia sair nessa volta.  _[ecrã: “SAFETY CAR / NESTA VOLTA”]_
+But the finish was tarnished. After a late crash for Verstappen, a message appeared saying the safety car would come in that lap.  _[ecrã: “SAFETY CAR / IN THIS LAP”]_
 
-A FIA anulou-a oito segundos depois e explicou que tinha sido um erro de software. A corrida acabou atrás do safety car, com assobios nas bancadas.  _[ecrã: ERRO DE SOFTWARE]_
+The FIA overruled it eight seconds later and blamed a software error. The race finished behind the safety car, to boos from the grandstands.  _[ecrã: SOFTWARE ERROR]_
 
-Russell ficou a menos de meio segundo. E Antonelli, com problemas de fiabilidade, terminou em décimo sexto. A vantagem caiu para vinte e cinco pontos.  _[ecrã: +25]_
+Russell was less than half a second behind. And Antonelli, hit by reliability trouble, finished sixteenth. The lead fell to twenty-five points.  _[ecrã: +25]_
 
-## [10:14] R10 · GP Bélgica (19 julho)
+## [09:42] R10 · GP Belgium (19 july)
 
-Spa. Primeira volta. Russell tenta por fora, toca em Hamilton e acaba na gravilha. Fim de corrida.  _[ecrã: RUSSELL FORA]_
+Spa. Lap one. Russell goes around the outside, touches Hamilton and ends up in the gravel. Race over.  _[ecrã: RUSSELL OUT]_
 
-Os comissários consideraram Hamilton totalmente responsável, mas reduziram a penalização para cinco segundos, por ser a primeira volta.  _[ecrã: FACTO / 5 SEGUNDOS]_
+The stewards held Hamilton wholly responsible, but cut the penalty to five seconds because it was the opening lap.  _[ecrã: FACT / 5 SECONDS]_
 
-Hamilton e o chefe da Ferrari, Fred Vasseur, discordaram da decisão. Hamilton disse que se considerou azarado.  _[ecrã: OPINIÃO / “AZARADO”]_
+Hamilton and Ferrari team boss Fred Vasseur disagreed with the decision. Hamilton said he felt unlucky.  _[ecrã: OPINION / “UNLUCKY”]_
 
-Houve ainda uma saída insegura nas boxes, em que um mecânico foi derrubado. A Ferrari levou uma multa.  _[ecrã: MULTA]_
+There was also an unsafe release in the pits, in which a mechanic was knocked over. Ferrari were fined.  _[ecrã: FINE]_
 
-Antonelli recuperou a liderança depois de um recomeço e bateu Leclerc por menos de dois segundos. Sexta vitória do ano.  _[ecrã: 6 VITÓRIAS]_
+Antonelli retook the lead after a restart and beat Leclerc by under two seconds. His sixth win of the year.  _[ecrã: 6 WINS]_
 
-## [11:01] R11 · GP Hungria (26 julho)
+## [10:24] R11 · GP Hungary (26 july)
 
-Antes das férias, a McLaren acordou.
+Before the summer break, McLaren woke up.
 
-Norris partiu da pole. Piastri chocou com o Williams de Carlos Sainz na curva dois, o que abriu caminho a Norris na estratégia de paragens.  _[ecrã: PIASTRI / vs SAINZ]_
+Norris started from pole. Piastri collided with Carlos Sainz's Williams at turn two, which opened the door for Norris in the pit strategy.  _[ecrã: PIASTRI / VS SAINZ]_
 
-Piastri acabaria por desistir com uma avaria na caixa de velocidades.  _[ecrã: PIASTRI ABANDONA]_
+Piastri would later retire with a gearbox failure.  _[ecrã: PIASTRI RETIRES]_
 
-Norris venceu pela primeira vez em 2026, quinze segundos à frente de Verstappen.  _[ecrã: NORRIS / FINALMENTE]_
+Norris won for the first time in 2026, fifteen seconds clear of Verstappen.  _[ecrã: NORRIS / AT LAST]_
 
-Antonelli foi terceiro e reforçou a liderança. Hamilton perdeu um lugar com uma penalização de cinco segundos.
+Antonelli was third and extended his lead. Hamilton lost a place to a five-second penalty.
 
-## [11:38] MIDSEASON
+## [11:00] MIDSEASON
 
-Nas férias de verão, o retrato era claro: a Mercedes dominava, a Ferrari ganhava às vezes, a McLaren e a Red Bull tentavam encontrar-se.  _[ecrã: META DA ÉPOCA]_
+At the summer break, the picture was clear: Mercedes dominated, Ferrari won now and then, and McLaren and Red Bull were searching for answers.  _[ecrã: MID-SEASON]_
 
-Lá atrás, a Aston Martin, com motor Honda, chegou à pausa com um único ponto, conquistado por Alonso no Mónaco.  _[ecrã: ASTON MARTIN / 1 PONTO]_
+At the back, Honda-powered Aston Martin reached the break with a single point, scored by Alonso in Monaco.  _[ecrã: ASTON MARTIN / 1 POINT]_
 
-E a Cadillac ainda não tinha pontuado, com nove desistências em onze corridas.  _[ecrã: CADILLAC / 0 PONTOS]_
+And Cadillac had yet to score, with nine retirements in eleven races.  _[ecrã: CADILLAC / 0 POINTS]_
 
-## [12:01] R12 · GP Países Baixos (23 agosto)
+## [11:22] R12 · GP Netherlands (23 august)
 
-Zandvoort recebeu o último Grande Prémio dos Países Baixos. Russell venceu a sprint.  _[ecrã: A ÚLTIMA VEZ]_
+Zandvoort hosted the final Dutch Grand Prix. Russell won the sprint.  _[ecrã: THE LAST ONE]_
 
-No domingo, a última curva inclinada estava molhada. Verstappen, em casa, perdeu o carro no fim da primeira volta e bateu com violência.  _[ecrã: VERSTAPPEN / ACIDENTE]_
+On Sunday, the banked final corner was wet. Verstappen, at home, lost the car at the end of the opening lap and crashed heavily.  _[ecrã: VERSTAPPEN / CRASHES]_
 
-Saiu pelo próprio pé e admitiu que foi demasiado agressivo no acelerador. Bandeira vermelha.  _[ecrã: BANDEIRA VERMELHA]_
+He walked away and admitted he had been too aggressive on the throttle. Red flag.  _[ecrã: RED FLAG]_
 
-No recomeço, Norris passou Antonelli e Hamilton na mesma volta e venceu com onze segundos e meio de vantagem.  _[ecrã: NORRIS / 2 SEGUIDAS]_
+At the restart, Norris passed Antonelli and Hamilton on the same lap and won by eleven and a half seconds.  _[ecrã: NORRIS / BACK TO BACK]_
 
-Antonelli segundo, Russell terceiro. A liderança subiu para cinquenta e nove pontos.  _[ecrã: +59]_
+Antonelli second, Russell third. The lead grew to fifty-nine points.  _[ecrã: +59]_
 
-## [12:43] R13 · GP Itália (6 setembro)
+## [11:59] R13 · GP Italy (6 september)
 
-Monza. O italiano de dezanove anos partia em décimo nono, depois de uma penalização por troca de componentes do motor.  _[ecrã: P19]_
+Monza. The nineteen-year-old Italian started nineteenth, after a power unit penalty.  _[ecrã: P19]_
 
-Leclerc, a grande esperança da Ferrari, bateu na Parabolica logo na primeira volta.  _[ecrã: LECLERC FORA]_
+Leclerc, Ferrari's great hope, crashed at the Parabolica on the very first lap.  _[ecrã: LECLERC OUT]_
 
-E Antonelli subiu, carro a carro, até passar Russell na travagem para a Ascari e ficar com a liderança.  _[ecrã: DE P19 A P1]_
+And Antonelli climbed, car by car, until he passed Russell on the run to Ascari and took the lead.  _[ecrã: P19 TO P1]_
 
-Venceu com quase quatro segundos de vantagem. O primeiro italiano a vencer em Monza desde Ludovico Scarfiotti, em 1966.  _[ecrã: PRIMEIRO DESDE / 1966]_
+He won by almost four seconds. The first Italian to win at Monza since Ludovico Scarfiotti, in 1966.  _[ecrã: FIRST SINCE / 1966]_
 
-E a segunda vitória a partir mais de trás na história da Fórmula 1, só atrás de John Watson em Long Beach, em 1983.  _[ecrã: 2.ª MAIOR / RECUPERAÇÃO]_
+And the second-lowest grid position for a winner in Formula One history, behind only John Watson at Long Beach in 1983.  _[ecrã: 2ND GREATEST / COMEBACK]_
 
-## [13:29] R14 · GP Espanha (13 setembro)
+## [12:42] R14 · GP Spain (13 september)
 
-Madrid voltou a receber a Fórmula 1 pela primeira vez em quarenta e cinco anos, num circuito novo.  _[ecrã: MADRID / 45 ANOS DEPOIS]_
+Madrid hosted Formula One for the first time in forty-five years, on a brand-new circuit.  _[ecrã: MADRID / 45 YEARS ON]_
 
-Norris partiu da pole e liderava. Mas o safety car virtual chegou dois segundos tarde demais para ele, e Antonelli parou no momento certo.  _[ecrã: 2 SEGUNDOS]_
+Norris started from pole and was leading. But the virtual safety car came two seconds too late for him, and Antonelli pitted at exactly the right moment.  _[ecrã: 2 SECONDS]_
 
-Antonelli venceu, Verstappen foi segundo, Norris terceiro. Hamilton desistiu na sétima volta, com uma falha nos travões.  _[ecrã: HAMILTON / TRAVÕES]_
+Antonelli won, Verstappen was second, Norris third. Hamilton retired on lap seven with a brake failure.  _[ecrã: HAMILTON / BRAKES]_
 
-Muitos críticos chamaram-lhe uma corrida esquecível. Mas para o campeonato não foi: a vantagem chegou aos oitenta e um pontos.  _[ecrã: +81]_
+Many critics called it a forgettable race. Not for the championship: the lead reached eighty-one points.  _[ecrã: +81]_
 
-## [14:08] R15 · GP Azerbaijão (26 setembro)
+## [13:19] R15 · GP Azerbaijan (26 september)
 
-Em Baku, Russell partiu da pole e liderou do princípio ao fim.  _[ecrã: LUZES À BANDEIRA]_
+In Baku, Russell started from pole and led from lights to flag.  _[ecrã: LIGHTS TO FLAG]_
 
-Dois períodos de safety car deram a Verstappen a oportunidade de atacar até à última curva.  _[ecrã: VERSTAPPEN ATACA]_
+Two safety car periods gave Verstappen the chance to attack right to the final corner.  _[ecrã: VERSTAPPEN ATTACKS]_
 
-Russell ganhou por cento e noventa e seis milésimas. Hadjar completou o pódio da Red Bull.  _[ecrã: 0,196 s]_
+Russell won by one hundred and ninety-six thousandths of a second. Hadjar completed the podium for Red Bull.  _[ecrã: 0.196 s]_
 
-Seis pilotos desistiram, incluindo as duas McLaren, que saíram de Baku sem pontos.  _[ecrã: McLAREN / ZERO PONTOS]_
+Six drivers retired, including both McLarens, who left Baku without a point.  _[ecrã: McLAREN / ZERO POINTS]_
 
-Antonelli, depois de partir do meio do pelotão, recuperou até quinto. A vantagem desceu para sessenta e seis pontos.  _[ecrã: +66]_
+Antonelli, after starting in the midfield, recovered to fifth. The lead fell to sixty-six points.  _[ecrã: +66]_
 
-## [14:46] R16 · GP Singapura (11 outubro)
+## [13:55] R16 · GP Singapore (11 october)
 
-Em Singapura, Verstappen fez o fim de semana perfeito.  _[ecrã: VERSTAPPEN]_
+In Singapore, Verstappen had the perfect weekend.  _[ecrã: VERSTAPPEN]_
 
-Venceu a sprint, numa corrida molhada em que Russell bateu quando liderava.  _[ecrã: SPRINT: / RUSSELL BATE]_
+He won the sprint, a wet race in which Russell crashed while leading.  _[ecrã: SPRINT: / RUSSELL CRASHES]_
 
-No domingo, fez a pole e liderou todas as voltas. A primeira vitória de sempre em Singapura.  _[ecrã: 1.ª VEZ / EM SINGAPURA]_
+On Sunday he took pole and led every lap. His first ever win in Singapore.  _[ecrã: FIRST EVER / IN SINGAPORE]_
 
-Hamilton ficou em pista com pneus usados durante um safety car virtual, caiu de terceiro para sexto e pediu desculpa à equipa.  _[ecrã: “DESCULPEM”]_
+Hamilton stayed out on old tyres during a virtual safety car, dropped from third to sixth, and apologised to his team.  _[ecrã: “SORRY, BOYS”]_
 
-Leclerc foi segundo, Antonelli terceiro. O título estava cada vez mais perto.
+Leclerc was second, Antonelli third. The title was getting closer and closer.
 
-## [15:22] R17 · GP Estados Unidos (25 outubro)
+## [14:28] R17 · GP United States (25 october)
 
-Em Austin, Antonelli fez aquela que Toto Wolff chamou a melhor corrida da sua carreira.  _[ecrã: “A MELHOR”]_
+In Austin, Antonelli delivered what Toto Wolff called the best race of his career so far.  _[ecrã: “THE BEST”]_
 
-Uma só paragem, no fim da volta vinte e quatro, e um domínio total. Leclerc a treze segundos, Verstappen terceiro.  _[ecrã: 1 PARAGEM]_
+A single stop, at the end of lap twenty-four, and total control. Leclerc thirteen seconds back, Verstappen third.  _[ecrã: ONE STOP]_
 
-Hamilton foi quarto, Norris quinto. O título ficava a um passo.  _[ecrã: A UM PASSO]_
+Hamilton was fourth, Norris fifth. The title was one step away.  _[ecrã: ONE STEP AWAY]_
 
-## [15:48] R18 · GP México (1 novembro)
+## [14:54] R18 · GP Mexico (1 november)
 
-Cidade do México. Antonelli chegava com cento e vinte e três pontos de vantagem sobre Russell. Bastava-lhe o nono lugar.  _[ecrã: BASTA P9]_
+Mexico City. Antonelli arrived one hundred and twenty-three points clear of Russell. Ninth place would be enough.  _[ecrã: P9 IS ENOUGH]_
 
-A corrida foi um caos. Valtteri Bottas teve um acidente forte na primeira curva e a corrida foi interrompida com bandeira vermelha.  _[ecrã: BANDEIRA VERMELHA]_
+The race was chaos. Valtteri Bottas had a heavy crash at turn one, and the race was red-flagged.  _[ecrã: RED FLAG]_
 
-Seguiu-se uma partida parada, mais safety cars, e uma colisão entre Piastri e Lindblad, que valeu a Piastri dez segundos de penalização.  _[ecrã: PIASTRI / PENALIZADO]_
+Then came a standing restart, more safety cars, and a collision between Piastri and Lindblad that earned Piastri a ten-second penalty.  _[ecrã: PIASTRI / PENALISED]_
 
-As duas Alpine também foram castigadas por desrespeitarem bandeiras amarelas.  _[ecrã: BANDEIRAS / AMARELAS]_
+Both Alpines were also penalised for ignoring yellow flags.  _[ecrã: YELLOW FLAGS]_
 
-Verstappen ganhou por oito décimas a Hamilton. E Antonelli, terceiro, cruzou a meta como campeão do mundo.  _[ecrã: CAMPEÃO / DO MUNDO]_
+Verstappen beat Hamilton by eight tenths. And Antonelli, in third, crossed the line as world champion.  _[ecrã: WORLD / CHAMPION]_
 
-## [16:33] CHAMPION
+## [15:35] CHAMPION
 
-Kimi Antonelli. Vinte anos e sessenta e oito dias.  _[ecrã: KIMI ANTONELLI]_
+Kimi Antonelli. Twenty years and sixty-eight days.  _[ecrã: KIMI ANTONELLI]_
 
-O campeão mais novo de sempre, mais novo do que Sebastian Vettel em 2010.  _[ecrã: O MAIS NOVO / DE SEMPRE]_
+The youngest champion in history, younger than Sebastian Vettel in 2010.  _[ecrã: YOUNGEST / EVER]_
 
-O primeiro italiano campeão desde Alberto Ascari, em 1953.  _[ecrã: 1.º ITALIANO / DESDE 1953]_
+The first Italian champion since Alberto Ascari, in 1953.  _[ecrã: FIRST ITALIAN / SINCE 1953]_
 
-E o primeiro título de pilotos da Mercedes desde Hamilton, em 2020. Conquistado na segunda época na Fórmula 1, com quatro corridas por disputar.  _[ecrã: MERCEDES / DESDE 2020]_
+And Mercedes' first drivers' title since Hamilton in 2020. Won in only his second Formula One season, with four races to spare.  _[ecrã: MERCEDES / FIRST SINCE 2020]_
 
-## [17:03] Capítulo III — Interlagos
+## [16:04] Capítulo III — Interlagos
 
-O campeão estava decidido. Mas o Brasil ainda tinha uma história para contar.
+The champion was decided. But Brazil still had a story to tell.
 
-## [17:11] R19 · GP Brasil (8 novembro)
+## [16:11] R19 · GP Brazil (8 november)
 
-Sábado. A chuva atrasou a qualificação durante quase hora e meia.  _[ecrã: CHUVA]_
+Saturday. Rain delayed qualifying by almost an hour and a half.  _[ecrã: RAIN]_
 
-Quando finalmente se correu, Norris foi o rei do molhado: pole position, a terceira seguida em Interlagos, com Russell a dois décimos e Antonelli em terceiro.  _[ecrã: POLE / NORRIS]_
+When it finally ran, Norris was the king of the wet: pole position, his third in a row at Interlagos, with Russell two tenths behind and Antonelli third.  _[ecrã: NORRIS / POLE]_
 
-Hamilton e Verstappen caíram na Q2, e ainda tinham penalizações por trocas de motor. As duas Ferrari foram castigadas com dez lugares por usarem o quinto motor de combustão.  _[ecrã: PENALIZAÇÕES]_
+Hamilton and Verstappen were knocked out in Q2 and also carried engine-change penalties. Both Ferraris took ten-place drops for fitting a fifth combustion engine.  _[ecrã: PENALTIES]_
 
-Hamilton partiu de vigésimo. Verstappen, de vigésimo primeiro.  _[ecrã: P20 · P21]_
+Hamilton started twentieth. Verstappen, twenty-first.  _[ecrã: P20 · P21]_
 
-Domingo. Setenta e uma voltas. A pista começou húmida, foi secando, e no fim voltou a chover.  _[ecrã: 71 VOLTAS]_
+Sunday. Seventy-one laps. The track started damp, dried out, and then the rain returned at the end.  _[ecrã: 71 LAPS]_
 
-Norris geriu tudo da frente, sem erros, num dia sem safety car e sem acidentes.  _[ecrã: SEM ERROS]_
+Norris managed everything from the front, without a mistake, on a day with no safety car and no crashes.  _[ecrã: FLAWLESS]_
 
-E lá de trás veio Verstappen. Carro a carro, ultrapassagem a ultrapassagem, de vigésimo primeiro até ao segundo lugar.  _[ecrã: DE P21 A P2]_
+And from the back came Verstappen. Car by car, pass after pass, from twenty-first all the way to second.  _[ecrã: P21 TO P2]_
 
-Hadjar completou o pódio para a Red Bull, a vinte e quatro segundos. Russell foi quarto e Antonelli quinto: segundo os relatos, deixou passar o colega de equipa.  _[ecrã: HADJAR P3]_
+Hadjar completed the podium for Red Bull, twenty-four seconds back. Russell was fourth and Antonelli fifth; according to reports, he let his team-mate through.  _[ecrã: HADJAR P3]_
 
-Hamilton, na sua corrida número quatrocentos, recuperou de vigésimo para nono, apesar de um pião, mas terminou com uma volta de atraso.  _[ecrã: HAMILTON / 400 CORRIDAS]_
+Hamilton, in his four hundredth Grand Prix, recovered from twentieth to ninth despite a spin, but finished a lap down.  _[ecrã: HAMILTON / 400 RACES]_
 
-Norris venceu com catorze segundos e meio de vantagem, a terceira vitória do ano.  _[ecrã: NORRIS VENCE]_
+Norris won by fourteen and a half seconds, his third victory of the year.  _[ecrã: NORRIS WINS]_
 
-E com os pontos de Russell e Antonelli, a Mercedes garantiu o título de construtores. O nono da sua história.  _[ecrã: MERCEDES / CAMPEÃ]_
+And with points from Russell and Antonelli, Mercedes clinched the constructors' title. The ninth in their history.  _[ecrã: MERCEDES / CHAMPIONS]_
 
-Verstappen aumentou a vantagem no segundo lugar do campeonato de dois para dezassete pontos.  _[ecrã: +17]_
+Verstappen stretched his advantage in second place in the championship from two points to seventeen.  _[ecrã: +17]_
 
-## [18:47] Capítulo IV — Quem Ganhou E Quem Perdeu
+## [17:43] Capítulo IV — Winners And Losers
 
-Dezanove corridas depois, o que ficou de cada equipa?
+Nineteen races in, where does every team stand?
 
-## [18:54] TEAMS
+## [17:49] TEAMS
 
-Mercedes: a melhor leitura das novas regras. Doze vitórias em dezanove Grandes Prémios e os dois títulos garantidos, apesar das falhas de fiabilidade e da tensão entre os pilotos.
+Mercedes: the best reading of the new rules. Twelve wins from nineteen Grands Prix and both titles secured, despite reliability failures and tension between the drivers.
 
-Ferrari: segunda entre as equipas, com as vitórias de Hamilton em Barcelona e de Leclerc em Silverstone. Mas os erros de estratégia, da Austrália a Singapura, custaram caro.
+Ferrari: second among the teams, with wins for Hamilton in Barcelona and Leclerc at Silverstone. But strategy errors, from Australia to Singapore, proved costly.
 
-Red Bull: sem dominar, Verstappen venceu em Singapura e no México e foi a voz mais constante do ano. Hadjar subiu três vezes ao pódio.
+Red Bull: without dominating, Verstappen won in Singapore and Mexico and was the most consistent force of the year. Hadjar reached the podium three times.
 
-McLaren: a campeã do mundo começou com duas corridas sem Piastri e uma dupla ausência na China. Norris venceu três vezes, mas a equipa ainda luta pelo terceiro lugar.
+McLaren: the world champions began with two races without Piastri and a double no-show in China. Norris has won three times, but the team is still fighting for third.
 
-Racing Bulls é a melhor do resto, com mais de cem pontos. Lindblad pontuou na estreia.
+Racing Bulls are best of the rest, with more than one hundred points. Lindblad scored on debut.
 
-A Alpine, agora com motor Mercedes, é sexta, com Gasly e Colapinto a pontuar com regularidade.
+Alpine, now with Mercedes power, are sixth, with Gasly and Colapinto scoring regularly.
 
-A Haas e a Audi lutam pelo sétimo lugar. A Williams tem um ano difícil.
+Haas and Audi are fighting for seventh. Williams are having a difficult year.
 
-A Aston Martin, com a Honda, viveu um ano muito difícil, com apenas sete pontos. E a Cadillac, estreante, ainda procura o primeiro ponto.
+Aston Martin, with Honda, have had a very hard season, with only seven points. And newcomers Cadillac are still searching for their first point.
 
-## [20:07] Capítulo V — Onde Estamos
+## [19:00] Capítulo V — Where We Stand
 
-Onze de novembro de 2026. Faltam três corridas: Las Vegas, Catar e Abu Dhabi.
+The eleventh of November, 2026. Three races to go: Las Vegas, Qatar and Abu Dhabi.
 
-## [20:17] STANDINGS
+## [19:10] STANDINGS
 
-Antonelli é campeão com trezentos e noventa pontos.
+Antonelli is champion with three hundred and ninety points.
 
-Mas a luta pelo vice-campeonato está em aberto. Verstappen tem duzentos e setenta e nove. Russell duzentos e sessenta e dois. Hamilton, apenas um ponto atrás.
+But the fight for runner-up is wide open. Verstappen has two hundred and seventy-nine. Russell, two hundred and sixty-two. Hamilton, just one point behind.
 
-Leclerc soma duzentos e quarenta e nove e Norris duzentos e quarenta e seis.
+Leclerc has two hundred and forty-nine, and Norris two hundred and forty-six.
 
-Com setenta e cinco pontos ainda em jogo, estes cinco pilotos, separados por trinta e três pontos, ainda podem acabar em segundo.  _[ecrã: 75 PONTOS / EM JOGO]_
+With seventy-five points still available, these five drivers, separated by thirty-three points, can all still finish second.  _[ecrã: 75 POINTS / STILL AVAILABLE]_
 
-## [20:48] STANDINGS
+## [19:41] STANDINGS
 
-Nos construtores, a Mercedes já é campeã, com seiscentos e cinquenta e dois pontos. A Ferrari segue em segundo, com mais de quinhentos.
+In the constructors' championship, Mercedes are already champions, with six hundred and fifty-two points. Ferrari are second, with more than five hundred.
 
-A grande batalha é pelo terceiro lugar: Red Bull com quatrocentos e quinze, McLaren a dezassete pontos.
+The big battle is for third: Red Bull on four hundred and fifteen, McLaren seventeen points behind.
 
-E lá atrás, Aston Martin e Cadillac lutam para não ficar em último.
+And at the back, Aston Martin and Cadillac are fighting to avoid last place.
 
-## [21:13] OUTRO
+## [20:06] OUTRO
 
-Uma época de novas regras, novos rostos e velhas rivalidades.  _[ecrã: NOVAS REGRAS]_
+A season of new rules, new faces and old rivalries.  _[ecrã: NEW RULES]_
 
-Um campeão de vinte anos. Um sete vezes campeão que voltou a vencer. Um Verstappen que nunca deixou de lutar.  _[ecrã: UM CAMPEÃO / DE 20 ANOS]_
+A twenty-year-old champion. A seven-time champion who won again. A Verstappen who never stopped fighting.  _[ecrã: A 20-YEAR-OLD / CHAMPION]_
 
-O título já tem dono. Mas ainda há três corridas para escrever o último capítulo.  _[ecrã: 3 CORRIDAS]_
+The title has its owner. But there are still three races left to write the final chapter.  _[ecrã: 3 RACES TO GO]_
 
-Isto foi a Fórmula 1 em 2026. Até ao Brasil.  _[ecrã: F1 2026]_
+This was Formula One in 2026. Up to Brazil.  _[ecrã: F1 2026]_
 
