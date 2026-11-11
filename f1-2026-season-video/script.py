@@ -167,6 +167,7 @@ SCENES = [
                 C("Italy lost its mind. Somewhere, an Italian grandmother is still crying.", "ITALY\nRIGHT NOW")]),
     dict(type="strip", sec="s2", heading="Autumn: Max strikes back",
          cards=[(14, "Madrid", "Kimi Antonelli", "MER"), (15, "Baku", "George Russell", "MER"), (16, "Sepang", "Max Verstappen", "RBR"), (17, "Singapore", "Max Verstappen", "RBR")],
+         card_lines=[0, 1, 3, 4],
          lines=["The brand new track in Madrid: Antonelli again.",
                 "Baku: Russell beat Verstappen by zero point one nine six seconds.",
                 C("That's faster than you can blink.", "0.196 s"),

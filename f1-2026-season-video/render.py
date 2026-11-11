@@ -1380,6 +1380,8 @@ def sc_strip(ctx, t, dur, sc):
         st = lstart(sc, i, dur, n) if len(sc.get("_lines", [])) >= n else 0.5 + i * 0.6
         if sc.get("heading", "").startswith("Heartbreak"):
             st = lstart(sc, i + 1, dur, n + 2)
+        if sc.get("card_lines"):
+            st = lstart(sc, sc["card_lines"][i], dur, n)
         p = eo((t - st) / 0.6)
         if p <= 0:
             continue
