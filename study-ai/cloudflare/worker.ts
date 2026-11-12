@@ -15,6 +15,8 @@ import {
   isAiPath, MAX_UPLOAD, newPasswordError, notGuest, readCookie, readJson, readSession, registerInput, SESSION_COOKIE, sessionCookie,
   signSession, tooManyAttempts, tooManyGuests, unauthenticated, upgradeInput, validEmail, withHeaders,
 } from '../core/host';
+import { generateVapidKeys, type VapidKeys } from '../core/push';
+import { deliverReminders, localNow } from '../core/reminders';
 import { freshState, joinState, splitState, trimState, type UserState } from '../core/state';
 import { todayInTimeZone } from '../shared/dates';
 import { getDummyHash, hashPassword, RateLimiter, verifyPassword } from '../server/security';
@@ -35,6 +37,8 @@ export interface Env {
   WORKERS_AI_MODEL?: string;
   SESSION_SECRET?: string;
   APP_TIMEZONE?: string;
+  /** Só nos testes: aceitar subscrições de notificações em endereços locais. */
+  PUSH_ALLOW_LOCAL?: string;
 }
 
 interface Account {
@@ -92,6 +96,41 @@ export class StudyStore extends DurableObject<Env> {
       this.setMeta('session-secret', s);
     }
     return s;
+  }
+
+  /** Chaves VAPID dos lembretes no telemóvel (criadas na primeira vez). */
+  async vapid(): Promise<VapidKeys> {
+    let k = this.getMeta<VapidKeys>('vapid');
+    if (!k) {
+      k = await generateVapidKeys();
+      if (!this.getMeta('vapid')) this.setMeta('vapid', k);
+      k = this.getMeta<VapidKeys>('vapid')!;
+    }
+    return k;
+  }
+
+  // ---------- objeto «push-index»: estudantes com lembretes ligados ----------
+
+  private indexTable() {
+    this.sql.exec('CREATE TABLE IF NOT EXISTS push_index (uid TEXT PRIMARY KEY)');
+  }
+  async pushIndex(uid: string, on: boolean): Promise<void> {
+    this.indexTable();
+    if (on) this.sql.exec('INSERT OR IGNORE INTO push_index (uid) VALUES (?)', uid);
+    else this.sql.exec('DELETE FROM push_index WHERE uid = ?', uid);
+  }
+  /** Próximo grupo de estudantes (roda pela lista, para caber nos limites de cada execução). */
+  async pushBatch(limit: number): Promise<string[]> {
+    this.indexTable();
+    const cursor = this.getMeta<string>('cursor') ?? '';
+    let rows = this.sql.exec<{ uid: string }>('SELECT uid FROM push_index WHERE uid > ? ORDER BY uid LIMIT ?', cursor, limit).toArray();
+    if (rows.length < limit && cursor) {
+      const more = this.sql.exec<{ uid: string }>('SELECT uid FROM push_index WHERE uid <= ? ORDER BY uid LIMIT ?', cursor, limit - rows.length).toArray();
+      rows = [...rows, ...more];
+    }
+    const last = rows.at(-1)?.uid;
+    if (last) this.setMeta('cursor', last);
+    return [...new Set(rows.map((r) => r.uid))];
   }
 
   // ---------- objeto «email:<hash>» ----------
@@ -182,6 +221,19 @@ export class StudyStore extends DurableObject<Env> {
     if (acc.guest) return ''; // sem conta não há palavra-passe: basta a sessão deste dispositivo
     if (!(await verifyPassword(password, acc.hash))) return null;
     return acc.email;
+  }
+
+  /** Tarefa agendada: envia os lembretes devidos a este estudante. Devolve se ainda tem lembretes. */
+  async remindersTick(): Promise<boolean> {
+    if (!this.account()) return false;
+    try {
+      const vapid = await stub(this.env, 'config').vapid();
+      const r = await deliverReminders(this.context, vapid, localNow(clean(this.env.APP_TIMEZONE) ?? 'Europe/Lisbon'));
+      return r.active;
+    } catch (err) {
+      console.error('[lembretes]', err);
+      return true; // tenta outra vez na próxima execução
+    }
   }
 
   /** Apaga tudo o que este objeto guarda. */
@@ -312,6 +364,11 @@ export class StudyStore extends DurableObject<Env> {
       today: () => todayInTimeZone(clean(env.APP_TIMEZONE) ?? 'Europe/Lisbon'),
       maxImageBytes: MAX_UPLOAD,
       maxPdfBytes: MAX_UPLOAD,
+      push: {
+        vapid: () => stub(env, 'config').vapid(),
+        index: (uid, on) => stub(env, 'push-index').pushIndex(uid, on),
+        allowLocal: clean(env.PUSH_ALLOW_LOCAL) === '1',
+      },
     });
     return this.core;
   }
@@ -474,7 +531,24 @@ async function api(req: Request, env: Env): Promise<Response> {
   return forward(env, req, uid, version);
 }
 
+/** Tarefa agendada (a cada 5 minutos): lembretes de um grupo de estudantes de cada vez. */
+async function runReminders(env: Env) {
+  const index = stub(env, 'push-index');
+  const uids = await index.pushBatch(40); // cada execução gratuita tem um limite de pedidos
+  for (let i = 0; i < uids.length; i += 8) {
+    await Promise.all(
+      uids.slice(i, i + 8).map(async (uid) => {
+        const active = await stub(env, `user:${uid}`).remindersTick().catch(() => true);
+        if (!active) await index.pushIndex(uid, false);
+      }),
+    );
+  }
+}
+
 export default {
+  async scheduled(_event, env, ctx) {
+    ctx.waitUntil(runReminders(env));
+  },
   async fetch(req, env) {
     const url = new URL(req.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(req);

@@ -8,6 +8,8 @@ import {
   isAiPath, MAX_UPLOAD, newPasswordError, notGuest, readCookie, readJson, readSession, registerInput, SESSION_COOKIE, sessionCookie,
   signSession, tooManyAttempts, tooManyGuests, unauthenticated, upgradeInput, validEmail, withHeaders,
 } from '../../core/host';
+import { generateVapidKeys, type VapidKeys } from '../../core/push';
+import { deliverReminders, localNow } from '../../core/reminders';
 import { freshState, trimState, type UserState } from '../../core/state';
 import { todayInTimeZone } from '../../shared/dates';
 import { getDummyHash, hashPassword, RateLimiter, verifyPassword } from '../../server/security';
@@ -21,6 +23,8 @@ export interface AppOptions {
   timeZone?: string;
   /** Cookies `Secure` (https). Desligar só para testes locais em http. */
   secureCookies?: boolean;
+  /** Aceitar subscrições de notificações em endereços locais (só nos testes). */
+  pushAllowLocal?: boolean;
 }
 
 interface Account {
@@ -41,8 +45,34 @@ const fileMetaKey = (uid: string, id: string) => `user/${uid}/filemeta/${id}`;
 
 export function createApp(opts: AppOptions) {
   const { kv } = opts;
-  const today = () => todayInTimeZone(opts.timeZone ?? 'Europe/Lisbon');
-  const core = createCore({ ai: opts.ai, today, maxImageBytes: MAX_UPLOAD, maxPdfBytes: MAX_UPLOAD });
+  const timeZone = opts.timeZone ?? 'Europe/Lisbon';
+  const today = () => todayInTimeZone(timeZone);
+  // Chaves VAPID dos lembretes: criadas uma vez e guardadas no armazenamento.
+  let vapidKeys: Promise<VapidKeys> | null = null;
+  const vapid = () =>
+    (vapidKeys ??= (async () => {
+      const stored = await kv.getJSON<VapidKeys>('config/vapid');
+      if (stored) return stored.data;
+      await kv.setJSON('config/vapid', await generateVapidKeys(), { onlyIfNew: true });
+      return (await kv.getJSON<VapidKeys>('config/vapid'))!.data;
+    })().catch((err) => {
+      vapidKeys = null;
+      throw err;
+    }));
+  const core = createCore({
+    ai: opts.ai,
+    today,
+    maxImageBytes: MAX_UPLOAD,
+    maxPdfBytes: MAX_UPLOAD,
+    push: {
+      vapid,
+      index: async (uid, on) => {
+        if (on) await kv.setJSON(`pushidx/${uid}`, { at: Date.now() });
+        else await kv.delete(`pushidx/${uid}`);
+      },
+      allowLocal: opts.pushAllowLocal,
+    },
+  });
   const authLimiter = new RateLimiter(10, 15 * 60 * 1000);
   const ipLimiter = new RateLimiter(60, 15 * 60 * 1000);
   const aiLimiter = new RateLimiter(15, 60 * 1000);
@@ -278,11 +308,33 @@ export function createApp(opts: AppOptions) {
     return withHeaders(res ?? json({ error: 'Endereço não encontrado.', code: 'not_found' }, 404));
   }
 
-  return async (req: Request, info: { ip: string }): Promise<Response> => {
+  const handler = async (req: Request, info: { ip: string }): Promise<Response> => {
     try {
       return withHeaders(await handle(req, info));
     } catch (err) {
       return errorResponse(err);
     }
   };
+
+  /** Tarefa agendada (a cada 5 minutos): envia os lembretes devidos a cada estudante com lembretes. */
+  async function reminders(now = localNow(timeZone)) {
+    let sent = 0;
+    for (const key of await kv.list('pushidx/')) {
+      const uid = key.slice('pushidx/'.length);
+      try {
+        if (!(await kv.getJSON(accountKey(uid)))) {
+          await kv.delete(key);
+          continue;
+        }
+        const r = await deliverReminders(context(uid), await vapid(), now);
+        sent += r.sent;
+        if (!r.active) await kv.delete(key);
+      } catch (err) {
+        console.error('[lembretes]', uid, err);
+      }
+    }
+    return { sent };
+  }
+
+  return Object.assign(handler, { reminders });
 }

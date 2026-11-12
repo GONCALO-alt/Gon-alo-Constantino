@@ -23,6 +23,7 @@ const api = createApp({
   }),
   secret: env('SESSION_SECRET') ?? 'apenas-para-testes-locais',
   secureCookies: false,
+  pushAllowLocal: env('PUSH_ALLOW_LOCAL') === '1',
 });
 
 // Os mesmos cabeçalhos de public/_headers.

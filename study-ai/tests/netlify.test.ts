@@ -340,7 +340,7 @@ describe('Netlify: IA Gemini', () => {
 
   it('fotos da matéria e redações com o Gemini (as fotos vão para a IA)', async () => {
     const c = await newStudent('fotos-gemini@exemplo.pt');
-    expect((await c.get('/me')).data.features).toEqual(['essays', 'photos']);
+    expect((await c.get('/me')).data.features).toEqual(['essays', 'photos', 'push']);
     await c.put('/profile/ai-plan', { plan: 'claudio-6' });
     const up = await c.post('/uploads', PNG, { 'Content-Type': 'image/png', 'X-File-Name': 'pagina.png' });
     const r = await c.post('/photos/materials', { attachmentIds: [up.data.attachment.id], subject: 'matematica', make: 'flashcards' });

@@ -6,6 +6,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { startFakeGemini, type FakeGemini } from './fake-gemini.ts';
+import { phone, startPushServer } from './fake-push.ts';
+import { localNow } from '../core/reminders.ts';
+import { isoWeekday, minutesToTime } from '../shared/dates.ts';
 
 const root = path.resolve(import.meta.dirname, '..');
 const PNG = Buffer.from(
@@ -40,7 +43,8 @@ async function startWorker() {
   const child = spawn(
     process.execPath,
     [path.join(root, 'node_modules/wrangler/bin/wrangler.js'), 'dev', '--env', 'local', '--port', String(port), '--ip', '127.0.0.1', '--persist-to', persist,
-      '--var', 'GEMINI_API_KEY:chave-de-teste', '--var', `GEMINI_BASE_URL:${fake.url}`, '--var', 'SESSION_SECRET:segredo-de-teste', '--log-level', 'warn'],
+      '--var', 'GEMINI_API_KEY:chave-de-teste', '--var', `GEMINI_BASE_URL:${fake.url}`, '--var', 'SESSION_SECRET:segredo-de-teste', '--var', 'PUSH_ALLOW_LOCAL:1',
+      '--test-scheduled', '--log-level', 'warn'],
     { cwd: root, env: { ...process.env, STUDY_AI_SKIP_BUILD: '1', WRANGLER_SEND_METRICS: 'false', NO_PROXY: '127.0.0.1,localhost', CI: '1' }, stdio: ['ignore', 'pipe', 'pipe'] },
   );
   let log = '';
@@ -353,4 +357,39 @@ describe('usar sem conta', () => {
     expect((await c.del('/account', {})).status).toBe(200);
     expect((await c.get('/me')).status).toBe(401);
   });
+});
+
+describe('Cloudflare: lembretes no telemóvel', () => {
+  it('ativa, envia a notificação de teste e a tarefa agendada avisa da sessão de agora', async () => {
+    const push = await startPushServer();
+    try {
+      const c = await newStudent('lembretes-cf@exemplo.pt');
+      expect((await c.get('/me')).data.features).toContain('push');
+      const cfg = await c.get('/push/config');
+      expect(cfg.data.publicKey).toMatch(/^[A-Za-z0-9_-]{86,88}$/);
+      const p = phone(`${push.url}/push/telemovel`);
+      expect((await c.post('/push/subscribe', { subscription: p.sub, settings: { minutesBefore: 0 } })).status).toBe(200);
+      expect((await c.post('/push/test')).data.sent).toBe(1);
+      expect(JSON.parse(p.decrypt(push.received.at(-1)!.body).text).title).toBe('Lembretes ligados ✅');
+
+      // Uma sessão do plano marcada para agora (hora de Lisboa) → a tarefa agendada envia o lembrete.
+      const now = localNow('Europe/Lisbon');
+      const add = await c.post('/plan/sessions', { weekday: isoWeekday(now.date), start: minutesToTime(now.minutes), minutes: 20, subject: 'matematica', activity: 'exercicios' });
+      expect(add.status).toBe(201);
+      const before = push.received.length;
+      const tick = await fetch(`${base}/__scheduled?cron=${encodeURIComponent('*/5 * * * *')}`);
+      expect(tick.ok).toBe(true);
+      for (let i = 0; i < 40 && push.received.length === before; i++) await new Promise((r) => setTimeout(r, 150));
+      const titles = push.received.slice(before).map((r) => JSON.parse(p.decrypt(r.body).text).title);
+      expect(titles).toContain('Hora de estudar: Matemática');
+
+      // Não repete na execução seguinte.
+      const again = push.received.length;
+      await fetch(`${base}/__scheduled?cron=${encodeURIComponent('*/5 * * * *')}`);
+      await new Promise((r) => setTimeout(r, 800));
+      expect(push.received.length).toBe(again);
+    } finally {
+      await push.close();
+    }
+  }, 60_000);
 });

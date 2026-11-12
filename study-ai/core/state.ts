@@ -1,6 +1,7 @@
 // Estado de um estudante (versões claude.ai, Netlify e Cloudflare).
 // O servidor Node (SQLite) usa tabelas próprias; as outras versões usam este formato.
 
+import type { PushState } from './reminders';
 import type {
   CalendarEvent, ChatMessage, Conversation, DailyGoal, Essay, Flashcard, PracticeTest, Profile, StudyLog, StudyPlan, Summary,
 } from '../shared/types';
@@ -30,6 +31,8 @@ export interface UserState {
   tests: Record<string, PracticeTest>;
   /** Redações corrigidas (pode faltar em estados antigos). */
   essays?: Record<string, Essay>;
+  /** Lembretes no telemóvel: subscrições, preferências e o que já foi enviado. */
+  push?: PushState;
 }
 
 export const newId = () =>
@@ -95,7 +98,7 @@ export function trimConversation(c: { conversation: Conversation; messages: Chat
  */
 export function splitState(s: UserState): Record<string, unknown> {
   const docs: Record<string, unknown> = {
-    main: { rev: s.rev, user: s.user, profile: s.profile, plan: s.plan, checks: s.checks, usage: s.usage, cardReviews: s.cardReviews, events: s.events },
+    main: { rev: s.rev, user: s.user, profile: s.profile, plan: s.plan, checks: s.checks, usage: s.usage, cardReviews: s.cardReviews, events: s.events, push: s.push },
   };
   for (const [id, c] of Object.entries(s.conversations)) docs[`conv_${id}`] = trimConversation(c);
   for (const [id, x] of Object.entries(s.summaries)) docs[`sum_${id}`] = x;
@@ -120,6 +123,7 @@ export function joinState(docs: Record<string, unknown>): UserState | null {
     usage: main.usage ?? {},
     cardReviews: main.cardReviews ?? {},
     events: main.events ?? [],
+    ...(main.push ? { push: main.push } : {}),
     logs: [],
     goals: [],
     conversations: {},

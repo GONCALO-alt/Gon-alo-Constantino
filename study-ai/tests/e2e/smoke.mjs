@@ -9,6 +9,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { startFakeAnthropic } from '../fake-anthropic.ts';
 import { startFakeGemini } from '../fake-gemini.ts';
+import { phone, startPushServer } from '../fake-push.ts';
 
 const require = createRequire(import.meta.url);
 const { chromium, devices } = require('playwright');
@@ -44,9 +45,10 @@ fake.reply = [
 ].join('\n');
 
 const persistDir = fs.mkdtempSync(path.join(os.tmpdir(), 'study-ai-e2e-cf-'));
+const pushServer = await startPushServer();
 const server = target === 'cloudflare'
   ? spawn(process.execPath, ['node_modules/wrangler/bin/wrangler.js', 'dev', '--env', 'local', '--port', String(port), '--ip', '127.0.0.1', '--persist-to', persistDir,
-      '--var', 'GEMINI_API_KEY:e2e', '--var', `GEMINI_BASE_URL:${fake.url}`], {
+      '--var', 'GEMINI_API_KEY:e2e', '--var', `GEMINI_BASE_URL:${fake.url}`, '--var', 'PUSH_ALLOW_LOCAL:1'], {
       cwd: root,
       env: { ...process.env, STUDY_AI_SKIP_BUILD: '1', WRANGLER_SEND_METRICS: 'false', NO_PROXY: '127.0.0.1,localhost', CI: '1' },
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -54,7 +56,7 @@ const server = target === 'cloudflare'
   : target === 'netlify'
   ? spawn(process.execPath, ['tools/netlify-local.mjs'], {
       cwd: root,
-      env: { ...process.env, PORT: String(port), GEMINI_API_KEY: 'e2e', GEMINI_BASE_URL: fake.url },
+      env: { ...process.env, PORT: String(port), GEMINI_API_KEY: 'e2e', GEMINI_BASE_URL: fake.url, PUSH_ALLOW_LOCAL: '1' },
       stdio: ['ignore', 'pipe', 'pipe'],
     })
   : spawn(process.execPath, ['--disable-warning=ExperimentalWarning', 'server/index.ts'], {
@@ -528,6 +530,48 @@ try {
     await fctx.close();
   });
 
+  await step('lembretes no telemóvel', async () => {
+    if (!gemini) return; // a versão Node não envia lembretes
+    const device = phone(`${pushServer.url}/push/e2e`);
+    const rctx = await browser.newContext({ viewport: { width: 1200, height: 800 }, permissions: ['notifications'] });
+    await rctx.addCookies(await ctx.cookies());
+    // O Chromium de testes não tem serviço de notificações: simula a subscrição do telemóvel.
+    await rctx.addInitScript((sub) => {
+      let current = null;
+      const fakeSub = { endpoint: sub.endpoint, toJSON: () => sub, unsubscribe: async () => ((current = null), true) };
+      PushManager.prototype.subscribe = async () => (current = fakeSub);
+      PushManager.prototype.getSubscription = async () => current;
+      // Sem ecrã, o Chromium diz sempre «bloqueadas»: simula a autorização da pessoa.
+      Object.defineProperty(Notification, 'permission', { get: () => 'granted' });
+      Notification.requestPermission = async () => 'granted';
+    }, device.sub);
+    const r = await rctx.newPage();
+    r.on('pageerror', (e) => errors.push(e.message));
+    await r.goto(`${base}/definicoes#lembretes`);
+    const card = r.locator('#lembretes');
+    await card.waitFor({ timeout: 15000 }).catch(() => {});
+    if (!(await card.getByText('Lembretes neste dispositivo').isVisible().catch(() => false))) {
+      await r.waitForTimeout(1500);
+      const txt = (await card.count()) ? await card.innerText() : `(sem cartão) features=${JSON.stringify((await (await r.request.get(`${base}/api/me`)).json()).features)}`;
+      throw new Error(`cartão dos lembretes: ${txt.slice(0, 300)}`);
+    }
+    await card.getByRole('switch', { name: 'Lembretes neste dispositivo' }).click();
+    await r.getByText('Lembretes ligados neste dispositivo').waitFor();
+    await card.locator('select').first().selectOption('0');
+    const before = pushServer.received.length;
+    await card.getByRole('button', { name: 'Enviar teste' }).click();
+    await r.getByText('Enviada!').waitFor();
+    for (let i = 0; i < 30 && pushServer.received.length === before; i++) await r.waitForTimeout(100);
+    const msg = JSON.parse(device.decrypt(pushServer.received.at(-1).body).text);
+    if (msg.title !== 'Lembretes ligados ✅') throw new Error(`notificação errada: ${msg.title}`);
+    const cfg = await (await r.request.get(`${base}/api/push/config`)).json();
+    if (!cfg.subscribed || cfg.settings.minutesBefore !== 0) throw new Error('as preferências não ficaram guardadas');
+    await card.scrollIntoViewIfNeeded();
+    await r.waitForTimeout(300);
+    await card.screenshot({ path: path.join(shots, '24b-lembretes.png') });
+    await rctx.close();
+  });
+
   await step('partilhar a app (QR Code)', async () => {
     const qctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2 });
     await qctx.addCookies(await ctx.cookies());
@@ -600,6 +644,7 @@ try {
   await fake.close();
   fs.rmSync(dataDir, { recursive: true, force: true });
   fs.rmSync(persistDir, { recursive: true, force: true });
+  await pushServer.close();
 }
 
 // O primeiro pedido /api/me antes de iniciar sessão responde 401 de propósito.

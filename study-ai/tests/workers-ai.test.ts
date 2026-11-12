@@ -255,7 +255,7 @@ describe('IA do Cloudflare (Workers AI)', () => {
 
   it('fotos da matéria → resumo, flashcards e teste (e a foto é apagada)', async () => {
     const c = await student('fotos@exemplo.pt');
-    expect((await c.get('/me')).data.features).toEqual(['essays', 'photos']);
+    expect((await c.get('/me')).data.features).toEqual(['essays', 'photos', 'push']);
     // O Cláudio 5 não aceita imagens.
     expect((await c.post('/uploads', PNG, { 'Content-Type': 'image/png', 'X-File-Name': 'p.png' })).status).toBe(403);
     await c.put('/profile/ai-plan', { plan: 'claudio-5-5' });

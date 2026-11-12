@@ -20,6 +20,8 @@ import {
   longestRun, type AchievementNumbers,
   type AiStatus, type Essay, type EssayKind, type Attachment, type CalendarEvent, type ChatMessage, type Conversation, type DailyGoal, type Deck, type MeResponse, type PlanSession, type PracticeTest, type Questionnaire, type QuestionKind, type StudyLog, type StudyPlan, type Summary,
 } from '../shared/types';
+import { validSubscription, type VapidKeys } from './push';
+import { cleanSettings, pushOf, pushToAll } from './reminders';
 import { newId, trimState, type UserState } from './state';
 import {
   calendarPrompt, countWords, ESSAY_KINDS, essayPrompt, JSON_CALENDAR, JSON_ESSAY, JSON_NOTES, normalizeCalendar, normalizeEssay, normalizeNotes,
@@ -100,6 +102,17 @@ export interface CoreOptions {
   /** Tamanhos máximos de envio (bytes). */
   maxImageBytes: number;
   maxPdfBytes: number;
+  /** Lembretes no telemóvel (Web Push). Sem isto, a versão não tem lembretes. */
+  push?: PushHost;
+}
+
+export interface PushHost {
+  /** Chaves VAPID do servidor (criadas uma vez e guardadas). */
+  vapid(): Promise<VapidKeys>;
+  /** Avisado quando o estudante liga ou desliga os lembretes (lista para a tarefa agendada). */
+  index?(uid: string, on: boolean): Promise<void>;
+  /** Aceitar endereços locais nas subscrições (só nos testes). */
+  allowLocal?: boolean;
 }
 
 interface Req {
@@ -165,7 +178,7 @@ export function createCore(opts: CoreOptions) {
     profile: s.profile,
     usage: usageOf(s),
     ai: ai.status(),
-    features: ai.configured() ? ['essays', ...(ai.vision ? ['photos'] : [])] : [],
+    features: [...(ai.configured() ? ['essays', ...(ai.vision ? ['photos'] : [])] : []), ...(opts.push ? ['push'] : [])],
   });
   const subjectName = (s: UserState, id: string | null | undefined) => (id ? getSubject(id, s.profile.questionnaire?.customSubjects).name : 'estudo');
   const requireAi = () => {
@@ -985,6 +998,57 @@ export function createCore(opts: CoreOptions) {
     });
     if (graded) usageOut = usageOf(after);
     return { test: done, ...(usageOut ? { usage: usageOut } : {}) };
+  });
+
+  // ---------- lembretes no telemóvel ----------
+
+  const requirePush = () => opts.push ?? fail(501, 'Esta versão não envia lembretes.', 'no_push');
+  route('GET', '/push/config', async (_r, ctx) => {
+    const host = requirePush();
+    const p = pushOf(await ctx.state());
+    return { publicKey: (await host.vapid()).publicKey, subscribed: p.subs.length > 0, devices: p.subs.length, settings: p.settings };
+  });
+  route('POST', '/push/subscribe', async ({ body, headers }, ctx) => {
+    const host = requirePush();
+    const sub = validSubscription(body?.subscription, host.allowLocal);
+    if (!sub) fail(400, 'Subscrição de notificações inválida.', 'invalid');
+    const origin = String(headers.get('origin') ?? '').slice(0, 200);
+    const after = await ctx.commit((s) => {
+      const p = pushOf(s);
+      const subs = [...p.subs.filter((x) => x.endpoint !== sub.endpoint), { ...sub, origin, createdAt: now() }].slice(-5);
+      s.push = { ...p, subs, settings: cleanSettings(body?.settings, p.settings) };
+      return s;
+    });
+    await host.index?.(after.user.id, true);
+    return { ok: true, settings: pushOf(after).settings };
+  });
+  route('DELETE', '/push/subscribe', async ({ body }, ctx) => {
+    const host = requirePush();
+    const after = await ctx.commit((s) => {
+      const p = pushOf(s);
+      s.push = { ...p, subs: body?.endpoint ? p.subs.filter((x) => x.endpoint !== body.endpoint) : [] };
+      return s;
+    });
+    if (!pushOf(after).subs.length) await host.index?.(after.user.id, false);
+    return { ok: true };
+  });
+  route('PUT', '/push/settings', async ({ body }, ctx) => {
+    requirePush();
+    const after = await ctx.commit((s) => {
+      const p = pushOf(s);
+      s.push = { ...p, settings: cleanSettings(body, p.settings) };
+      return s;
+    });
+    return { settings: pushOf(after).settings };
+  });
+  route('POST', '/push/test', async (_r, ctx) => {
+    const host = requirePush();
+    const p = pushOf(await ctx.state());
+    if (!p.subs.length) fail(400, 'Primeiro ativa os lembretes neste dispositivo.', 'no_subscription');
+    const r = await pushToAll(p.subs, { title: 'Lembretes ligados ✅', body: 'É assim que a STUDY AI te avisa das sessões de estudo e dos testes.', url: '/definicoes#lembretes', tag: 'teste-lembretes' }, await host.vapid());
+    if (r.gone.length) await ctx.commit((s) => void (s.push = { ...pushOf(s), subs: pushOf(s).subs.filter((x) => !r.gone.includes(x.endpoint)) }));
+    if (!r.sent) fail(502, 'Não consegui enviar a notificação. Desativa e volta a ativar os lembretes.', 'push_failed');
+    return { sent: r.sent };
   });
 
   // ---------- funções com fotos ----------

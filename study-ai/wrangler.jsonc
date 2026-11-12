@@ -20,13 +20,22 @@
   // Dados: um Durable Object (com base de dados SQLite) por estudante.
   "durable_objects": { "bindings": [{ "name": "STORE", "class_name": "StudyStore" }] },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["StudyStore"] }],
+  // Lembretes no telemóvel: a cada 5 minutos envia os que estão na hora.
+  "triggers": { "crons": ["*/5 * * * *"] },
   // As variáveis definidas no painel do Cloudflare não são apagadas ao publicar.
   "keep_vars": true,
   "observability": { "enabled": true },
   // Só para testes no computador (`--env local`): sem a IA do Cloudflare, que exige sessão iniciada.
   "env": {
     "local": {
-      "durable_objects": { "bindings": [{ "name": "STORE", "class_name": "StudyStore" }] }
+      "durable_objects": { "bindings": [{ "name": "STORE", "class_name": "StudyStore" }] },
+      // Nos testes, /__scheduled (dispara a tarefa agendada) tem de chegar ao Worker.
+      "assets": {
+        "directory": "./dist",
+        "binding": "ASSETS",
+        "not_found_handling": "single-page-application",
+        "run_worker_first": ["/api/*", "/__scheduled"]
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Download, Info, KeyRound, LogOut, Pencil, ShieldCheck, Smartphone, Sparkles, SlidersHorizontal, Trash2, UserRound } from 'lucide-react';
 import { confirmLogout } from '../guest';
 import { InstallButton } from '../components/Install';
+import { RemindersCard } from '../components/Reminders';
 import { ShareApp } from '../components/ShareApp';
 import { DEMO } from '../env';
 import { invalidate, clearCache } from '../state';
@@ -167,6 +168,8 @@ export function SettingsPage() {
           </div>
         </section>
         )}
+
+        {!DEMO && me.features?.includes('push') && <RemindersCard />}
 
         {!DEMO && <ShareApp />}
 
