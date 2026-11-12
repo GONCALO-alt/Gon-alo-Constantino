@@ -1,0 +1,46 @@
+{
+  "name": "study-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "STUDY AI — assistente pessoal de estudos com inteligência artificial.",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c yellow,white \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "node --disable-warning=ExperimentalWarning --watch server/index.ts",
+    "dev:web": "vite",
+    "build": "tsc -p tsconfig.json && vite build",
+    "start": "NODE_ENV=production node --disable-warning=ExperimentalWarning server/index.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:e2e": "node tests/e2e/smoke.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
+    "@fontsource-variable/geist": "^5.3.0",
+    "express": "^5.3.0",
+    "katex": "^0.19.1",
+    "lucide-react": "^1.72.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.18.5",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "concurrently": "^10.0.7",
+    "typescript": "5.9",
+    "vite": "^7.3.8",
+    "vitest": "^3.2.7"
+  }
+}
