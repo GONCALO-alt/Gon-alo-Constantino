@@ -180,7 +180,7 @@ export function createCore(opts: CoreOptions) {
   // ---------- perfil e questionário ----------
 
   route('GET', '/me', async (_r, ctx) => me(await ctx.state()));
-  route('GET', '/health', () => ({ ok: true, ai: ai.configured() }));
+  route('GET', '/health', () => ({ ok: true, app: 'STUDY AI', ai: ai.configured() }));
   route('GET', '/ai/status', () => ai.status());
 
   route('PUT', '/profile/questionnaire', async ({ body }, ctx) => {

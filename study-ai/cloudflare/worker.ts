@@ -379,7 +379,7 @@ async function api(req: Request, env: Env): Promise<Response> {
 
   const session = readSession(await getSecret(env), readCookie(req, SESSION_COOKIE));
   if (!session) {
-    if (path === '/health') return json({ ok: true, ai: !!clean(env.GEMINI_API_KEY) });
+    if (path === '/health') return json({ ok: true, app: 'STUDY AI', ai: !!clean(env.GEMINI_API_KEY) });
     return withHeaders(unauthenticated());
   }
   const { uid, version } = session;

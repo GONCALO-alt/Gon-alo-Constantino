@@ -192,7 +192,7 @@ export function createApp(opts: AppOptions) {
 
     const uid = await verify(readCookie(req, SESSION_COOKIE));
     if (!uid) {
-      if (path === '/health') return json({ ok: true, ai: opts.ai.configured() });
+      if (path === '/health') return json({ ok: true, app: 'STUDY AI', ai: opts.ai.configured() });
       return unauthenticated();
     }
 

@@ -34,7 +34,7 @@ export function createApp(overrides: Partial<AppConfig> = {}, dbFile?: string): 
     res.setHeader('Cache-Control', 'no-store');
     next();
   });
-  api.get('/health', (_req, res) => res.json({ ok: true, ai: ctx.ai.configured }));
+  api.get('/health', (_req, res) => res.json({ ok: true, app: 'STUDY AI', ai: ctx.ai.configured }));
   api.get('/ai/status', (_req, res) => res.json(ctx.ai.status()));
   api.use(authRouter(ctx));
   api.use(requireAuth(ctx));

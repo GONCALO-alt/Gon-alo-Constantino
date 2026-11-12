@@ -151,12 +151,19 @@ A interface é servida pelo Cloudflare, a API corre num **Worker** (`cloudflare/
    - **Build command:** deixe vazio (o `wrangler.jsonc` já compila a app)
    - **Deploy command:** `npx wrangler deploy` (o que já vem)
    - **Advanced settings → Path** (pasta do projeto): `study-ai` ← importante (a raiz do repositório é outro projeto)
-   - Se pedir a branch: `claude/study-ai-educational-app-luy6ff` (ou a principal, depois de juntar as alterações)
+   - **Branch:** `claude/study-ai-educational-app-luy6ff` ← importante: a branch principal deste repositório é a do DutchPath, que não tem a STUDY AI
 5. **Create and deploy**. Ao fim de 1–2 minutos, a app fica em `https://study-ai.<a-sua-conta>.workers.dev`.
 6. Ligue a IA: no Worker, **Settings → Variables and Secrets → Add** → tipo **Secret**, nome `GEMINI_API_KEY`, valor = a chave → **Deploy**. (Sem este passo a app funciona, mas o chat explica que a IA não está ligada.)
 7. Abra o endereço, crie uma conta e use. No telemóvel: «Adicionar ao ecrã principal».
 
-Se a primeira compilação falhar com «não encontra a pasta study-ai», a branch está errada: **Settings → Build → Branch control → Production branch** = `claude/study-ai-educational-app-luy6ff`, guarde e volte a publicar (*Deployments → Retry*). Cada novo envio para essa branch no GitHub volta a publicar automaticamente.
+**Confirmar que é a STUDY AI que está publicada:** abra `https://<o-seu-endereço>/api/health`. Deve aparecer `{"ok":true,"app":"STUDY AI",…}`. A app abre sempre com fundo preto; uma **página branca** (ou o DutchPath) quer dizer que o Cloudflare está a publicar outra coisa — normalmente a branch principal do repositório.
+
+**Corrigir:** no projeto, **Settings → Build**:
+- **Branch control → Production branch:** `claude/study-ai-educational-app-luy6ff`
+- **Root directory / Path:** `study-ai`
+- **Build command:** vazio · **Deploy command:** `npx wrangler deploy`
+
+Guarde e volte a publicar (**Deployments → … → Retry deployment**, ou envie uma alteração para a branch). Se o nome do projeto não for `study-ai`, o mais simples é apagar o projeto e criá-lo de novo com esse nome. Cada novo envio para a branch no GitHub volta a publicar automaticamente.
 
 ### Variáveis opcionais (Settings → Variables and Secrets)
 
