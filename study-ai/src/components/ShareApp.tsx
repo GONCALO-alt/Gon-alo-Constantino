@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
-import { Check, Copy, Download, QrCode, Share2 } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Check, Copy, Download, Maximize2, QrCode, Share2 } from 'lucide-react';
 import { qrMatrix, qrPath, qrPoster } from '../qr';
 import { useApp } from '../state';
 import { Button, Modal } from './ui';
@@ -18,6 +19,31 @@ export function ShareApp() {
   const path = useMemo(() => qrPath(matrix), [matrix]);
   const [copied, setCopied] = useState(false);
   const [poster, setPoster] = useState<string | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // «Menu → Mostrar QR Code» abre logo em ecrã inteiro.
+  const [big, setBig] = useState(location.hash === '#qr');
+  useEffect(() => {
+    if (location.hash === '#qr') setBig(true);
+  }, [location.hash]);
+  const closeBig = () => {
+    setBig(false);
+    if (location.hash === '#qr') navigate(`${location.pathname}#partilhar`, { replace: true });
+  };
+  // Enquanto mostra o código: ecrã sempre ligado; «Esc» fecha.
+  useEffect(() => {
+    if (!big) return;
+    let lock: { release(): Promise<void> } | null = null;
+    const nav = navigator as Navigator & { wakeLock?: { request(t: 'screen'): Promise<{ release(): Promise<void> }> } };
+    nav.wakeLock?.request('screen').then((l) => (lock = l)).catch(() => {});
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeBig();
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      void lock?.release().catch(() => {});
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [big]);
   const canShare = typeof navigator.share === 'function';
 
   async function copy() {
@@ -67,15 +93,16 @@ export function ShareApp() {
         <span className="card-title"><QrCode /> Partilhar a STUDY AI</span>
       </div>
       <div className="share-app">
-        <div className="qr-box">
+        <button type="button" className="qr-box" onClick={() => setBig(true)} title="Mostrar em ecrã inteiro">
           <svg viewBox={`-4 -4 ${n + 8} ${n + 8}`} role="img" aria-label={`QR Code com o endereço ${url}`} shapeRendering="crispEdges">
             <rect x={-4} y={-4} width={n + 8} height={n + 8} fill="#fff" />
             <path d={path} fill="#09090b" />
           </svg>
-        </div>
+        </button>
         <div className="stack grow" style={{ minWidth: 220 }}>
           <p className="muted small">Os teus colegas apontam a câmara do telemóvel para este código e entram logo na app.</p>
           <div className="share-url" title={url}>{url.replace(/^https?:\/\//, '').replace(/\/$/, '')}</div>
+          <Button icon={<Maximize2 />} onClick={() => setBig(true)}>Mostrar em ecrã inteiro</Button>
           <div className="row wrap" style={{ gap: 8 }}>
             <Button variant="secondary" size="sm" icon={copied ? <Check /> : <Copy />} onClick={copy}>{copied ? 'Copiado' : 'Copiar link'}</Button>
             {canShare && <Button variant="secondary" size="sm" icon={<Share2 />} onClick={share}>Partilhar</Button>}
@@ -83,6 +110,18 @@ export function ShareApp() {
           </div>
         </div>
       </div>
+      {big && (
+        <div className="qr-full" role="dialog" aria-modal="true" aria-label="QR Code da STUDY AI em ecrã inteiro" onClick={closeBig}>
+          <div className="qr-full-brand"><span>STUDY</span> AI</div>
+          <svg viewBox={`-4 -4 ${n + 8} ${n + 8}`} role="img" aria-label={`QR Code grande com o endereço ${url}`} shapeRendering="crispEdges">
+            <rect x={-4} y={-4} width={n + 8} height={n + 8} fill="#fff" />
+            <path d={path} fill="#09090b" />
+          </svg>
+          <div className="qr-full-text">Aponta a câmara do telemóvel<br />e toca no link para entrar</div>
+          <div className="qr-full-url">{url.replace(/^https?:\/\//, '').replace(/\/$/, '')}</div>
+          <button type="button" className="btn btn-secondary" onClick={closeBig}>Fechar</button>
+        </div>
+      )}
       <Modal
         open={!!poster}
         onClose={() => setPoster(null)}

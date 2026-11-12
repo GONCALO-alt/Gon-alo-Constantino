@@ -164,8 +164,8 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
             <div style={{ marginTop: 12 }}>
               <InstallButton block />
             </div>
-            <Link to="/definicoes#partilhar" className="btn btn-secondary btn-block" style={{ marginTop: 12 }}>
-              <QrCode /> Partilhar a app (QR Code)
+            <Link to="/definicoes#qr" className="btn btn-secondary btn-block" style={{ marginTop: 12 }}>
+              <QrCode /> Mostrar QR Code da app
             </Link>
             <button type="button" className="btn btn-ghost btn-block" style={{ marginTop: 12 }} onClick={() => confirmLogout(me) && logout()}>
               <LogOut /> Terminar sessão

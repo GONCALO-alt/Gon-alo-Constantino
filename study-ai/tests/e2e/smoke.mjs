@@ -579,7 +579,15 @@ try {
     q.on('pageerror', (e) => errors.push(e.message));
     await q.goto(base);
     await q.getByRole('button', { name: 'Menu' }).click();
-    await q.getByRole('link', { name: /Partilhar a app/ }).click();
+    await q.getByRole('link', { name: /Mostrar QR Code da app/ }).click();
+    // Abre logo em ecrã inteiro, para mostrar às outras pessoas.
+    const full = q.getByRole('dialog', { name: /QR Code da STUDY AI em ecrã inteiro/ });
+    await full.waitFor();
+    if (!(await full.getByText(base.replace(/^https?:\/\//, '')).isVisible())) throw new Error('o QR Code em ecrã inteiro não mostra o endereço do site');
+    await q.waitForTimeout(300);
+    await q.screenshot({ path: path.join(shots, 'm9a-qr-ecra-inteiro.png') });
+    await full.getByRole('button', { name: 'Fechar' }).click();
+    await full.waitFor({ state: 'detached' });
     const card = q.locator('#partilhar');
     await card.locator('svg[role="img"]').waitFor();
     const shown = (await card.locator('.share-url').textContent())?.trim();

@@ -343,6 +343,14 @@ html[data-reduce-motion='true'] *, html[data-reduce-motion='true'] *::before, ht
 .qr-box { width: 172px; flex-shrink: 0; padding: 0; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 0 0 4px var(--yellow-soft); }
 .qr-box svg { display: block; width: 100%; height: auto; }
 .qr-poster { width: 100%; max-width: 360px; margin: 0 auto; display: block; border-radius: 12px; -webkit-touch-callout: default; }
+button.qr-box { border: 0; cursor: zoom-in; }
+.qr-full { position: fixed; inset: 0; z-index: 1000; background: #fff; color: #09090b; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom)); text-align: center; animation: fadeIn 0.2s ease both; }
+.qr-full svg { width: min(86vw, 62vh); height: auto; }
+.qr-full-brand { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+.qr-full-brand span { background: #09090b; color: #ffd400; padding: 2px 10px; border-radius: 10px; margin-right: 4px; }
+.qr-full-text { font-size: 20px; font-weight: 700; line-height: 1.35; }
+.qr-full-url { font-size: 14px; color: #52525b; word-break: break-all; }
+.qr-full .btn { background: #f4f4f5; color: #09090b; border-color: #e4e4e7; }
 .share-url { font-weight: 600; color: var(--yellow); word-break: break-all; }
 @media (max-width: 560px) { .share-app { flex-direction: column; align-items: stretch; } .qr-box { width: min(240px, 100%); align-self: center; } }
 .auth-or { display: flex; align-items: center; gap: 12px; color: var(--text-3); font-size: 13px; }
