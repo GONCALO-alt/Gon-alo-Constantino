@@ -147,7 +147,7 @@ A interface é servida pelo Cloudflare, a API corre num **Worker** (`cloudflare/
 2. Crie uma conta grátis em <https://dash.cloudflare.com/sign-up>.
 3. No painel: **Workers & Pages → Create** (*Create application*) → **Import a repository** → ligue o GitHub e escolha este repositório.
 4. Preencha:
-   - **Project name:** `study-ai` ← tem de ser exatamente este nome (é o do `wrangler.jsonc`)
+   - **Project name:** `study-ai` (recomendado; com outro nome também funciona)
    - **Build command:** deixe vazio (o `wrangler.jsonc` já compila a app)
    - **Deploy command:** `npx wrangler deploy` (o que já vem)
    - **Advanced settings → Path** (pasta do projeto): `study-ai` ← importante (a raiz do repositório é outro projeto)
@@ -163,7 +163,7 @@ A interface é servida pelo Cloudflare, a API corre num **Worker** (`cloudflare/
 - **Root directory / Path:** `study-ai`
 - **Build command:** vazio · **Deploy command:** `npx wrangler deploy`
 
-Guarde e volte a publicar (**Deployments → … → Retry deployment**, ou envie uma alteração para a branch). Se o nome do projeto não for `study-ai`, o mais simples é apagar o projeto e criá-lo de novo com esse nome. Cada novo envio para a branch no GitHub volta a publicar automaticamente.
+Guarde e volte a publicar (**Deployments → … → Retry deployment**, ou envie uma alteração para a branch). Cada novo envio para a branch no GitHub volta a publicar automaticamente.
 
 ### Variáveis opcionais (Settings → Variables and Secrets)
 
@@ -204,12 +204,14 @@ Alternativa ao Cloudflare: a interface fica no Netlify, a API corre numa **funç
 1. Crie uma conta grátis em <https://app.netlify.com/> (pode entrar com o GitHub).
 2. **Add new project** (ou *Add new site*) **→ Import an existing project → GitHub** e escolha este repositório.
 3. Preencha:
-   - **Branch to deploy:** `claude/study-ai-educational-app-luy6ff` (ou a branch principal, depois de juntar as alterações)
+   - **Branch to deploy:** `claude/study-ai-educational-app-luy6ff` ← importante: a branch principal deste repositório é a do DutchPath, que não tem a STUDY AI
    - **Base directory:** `study-ai` ← importante (a raiz do repositório é outro projeto)
    - Os outros campos (*build command* `npm run build`, *publish directory* `dist`, *functions directory*) vêm do `study-ai/netlify.toml` — pode deixá-los como estão.
 4. Antes de publicar, em **Environment variables → Add a variable**: `GEMINI_API_KEY` = a chave do Gemini.
    (Se já publicou sem a chave: *Site configuration → Environment variables*, adicione-a e faça **Deploys → Trigger deploy**.)
 5. **Deploy**. Ao fim de 1–2 minutos o site fica em `https://<nome>.netlify.app`. Abra-o, crie uma conta e use.
+
+Se der erro («Base directory does not exist» ou o site do DutchPath), corrija num site já criado: **Site configuration → Build & deploy → Continuous deployment** → em *Build settings* **Base directory** = `study-ai`; em *Branches and deploy contexts* **Production branch** = `claude/study-ai-educational-app-luy6ff`. Depois **Deploys → Trigger deploy → Deploy site**. Para confirmar: `https://<nome>.netlify.app/api/health` deve mostrar `"app":"STUDY AI"`.
 
 No telemóvel, abra o endereço no navegador e escolha «Adicionar ao ecrã principal» para a instalar como aplicação.
 
