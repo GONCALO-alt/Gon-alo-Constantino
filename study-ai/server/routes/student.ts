@@ -476,6 +476,8 @@ export function studentRouter(ctx: Ctx): Router {
       userId, week, weekEnd,
     )!.n;
     const totalMinutes = db.one<{ m: number | null }>('SELECT SUM(minutes) AS m FROM study_logs WHERE user_id = ?', userId)!.m ?? 0;
+    const timerMinutes =
+      db.one<{ m: number | null }>("SELECT SUM(minutes) AS m FROM study_logs WHERE user_id = ? AND source = 'timer'", userId)!.m ?? 0;
     const questions = db.one<{ q: number | null }>('SELECT SUM(questions) AS q FROM usage WHERE user_id = ?', userId)!.q ?? 0;
     const tests = db.all<{ id: string; title: string; subject: string | null; score: number; max_score: number; completed_at: string }>(
       'SELECT id, title, subject, score, max_score, completed_at FROM tests WHERE user_id = ? AND completed_at IS NOT NULL ORDER BY completed_at DESC LIMIT 12',
@@ -498,6 +500,7 @@ export function studentRouter(ctx: Ctx): Router {
       allSubjects,
       weekSessions,
       totalMinutes,
+      timerMinutes,
       questions,
       summaries: db.one<{ n: number }>('SELECT COUNT(*) AS n FROM summaries WHERE user_id = ?', userId)!.n,
       conversations: db.one<{ n: number }>('SELECT COUNT(*) AS n FROM conversations WHERE user_id = ?', userId)!.n,

@@ -128,6 +128,8 @@ try {
 
   await step('página inicial', async () => {
     await page.getByText('Plano de hoje').waitFor();
+    // Anúncio da própria app: ainda não falou com a IA → convite para a primeira pergunta.
+    await page.locator('aside.promo[data-promo="primeira-pergunta"]').waitFor();
     await page.waitForTimeout(700);
     await shot('10-inicio');
   });
@@ -228,6 +230,16 @@ try {
     await page.getByText('Minutos de estudo por dia').waitFor();
     await page.waitForTimeout(700);
     await shot('23-progresso');
+    // Fechar um anúncio: não volta a aparecer ao recarregar.
+    const promo = page.locator('aside.promo');
+    if (await promo.count()) {
+      const id = await promo.getAttribute('data-promo');
+      await page.getByRole('button', { name: 'Fechar anúncio' }).click();
+      await page.reload();
+      await page.getByText('Minutos de estudo por dia').waitFor();
+      await page.waitForTimeout(500);
+      if (await page.locator(`aside.promo[data-promo="${id}"]`).count()) throw new Error('o anúncio fechado voltou a aparecer');
+    }
     await page.goto(base + '/definicoes');
     await page.getByText('Perfil de estudante', { exact: true }).waitFor();
     await shot('24-definicoes');

@@ -1,19 +1,9 @@
 import { useState } from 'react';
-import { Check, Download, EllipsisVertical, Share, Smartphone, SquarePlus, X } from 'lucide-react';
-import { isPhoneOrTablet, useInstall } from '../pwa';
+import { Check, Download, EllipsisVertical, Share, SquarePlus } from 'lucide-react';
+import { useInstall } from '../pwa';
 import { useApp } from '../state';
 import { LogoMark } from './Logo';
-import { Button, IconButton, Modal } from './ui';
-
-const DISMISS_KEY = 'study-ai:install-dismissed';
-
-function readDismissed(): boolean {
-  try {
-    return localStorage.getItem(DISMISS_KEY) === '1';
-  } catch {
-    return false;
-  }
-}
+import { Button, Modal } from './ui';
 
 /** Passos para instalar quando o navegador não tem botão de instalação (iPhone, Firefox…). */
 export function InstallHelp({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -72,40 +62,5 @@ export function InstallButton({ block, size }: { block?: boolean; size?: 'sm' | 
       </Button>
       <InstallHelp open={help} onClose={() => setHelp(false)} />
     </>
-  );
-}
-
-/** Cartão no Início, só em telemóveis/tablets e enquanto a aplicação não estiver instalada. */
-export function InstallCard() {
-  const install = useInstall();
-  const [dismissed, setDismissed] = useState(readDismissed);
-  if (install.installed || dismissed || !isPhoneOrTablet()) return null;
-  return (
-    <section className="install-card fade-up">
-      <span className="install-ic">
-        <Smartphone />
-      </span>
-      <div className="grow">
-        <b>Instala a STUDY AI no telemóvel</b>
-        <p className="small muted">Abre como uma aplicação, em ecrã inteiro, com o ícone no ecrã principal.</p>
-        <div style={{ marginTop: 10 }}>
-          <InstallButton size="sm" />
-        </div>
-      </div>
-      <IconButton
-        label="Fechar"
-        small
-        onClick={() => {
-          try {
-            localStorage.setItem(DISMISS_KEY, '1');
-          } catch {
-            /* sem armazenamento: só esconde agora */
-          }
-          setDismissed(true);
-        }}
-      >
-        <X />
-      </IconButton>
-    </section>
   );
 }

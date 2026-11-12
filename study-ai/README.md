@@ -58,6 +58,25 @@ A chave fica **apenas no servidor**: o navegador nunca a vê. Cada pergunta à I
 - **Início**: boas-vindas, plano do dia (marcar como feita, pedir ajuda, temporizador), botão grande para a IA, próximos testes, objetivos do dia e da semana, disciplinas favoritas, perguntas disponíveis.
 - **Disciplinas**, **Resumos** (com IA ou escritos à mão, pesquisa, edição, flashcards a partir de um resumo), **Testes e exercícios** (gerador de testes personalizados com correção automática e pela IA, histórico, flashcards com revisão espaçada), **Calendário escolar**, **Modo de estudo** com temporizador, **Progresso** (minutos por dia, por disciplina, sequência, testes, flashcards) e **Definições** (perfil, plano, preferências, palavra-passe, exportar e apagar dados).
 
+## Anúncios da própria STUDY AI
+
+A aplicação mostra anúncios **só da própria STUDY AI** (sem publicidade de terceiros nem recolha de dados para publicidade), com a etiqueta «Anúncio · STUDY AI». Aparecem quando são úteis:
+
+| Anúncio | Quando aparece | Onde |
+|---|---|---|
+| Mudar para o Cláudio 6 | restam 3 perguntas ou menos no Cláudio 5.5 | Chat, Início |
+| Gerar teste de preparação | há um teste daqui a 1 a 5 dias | Início, Plano |
+| Criar flashcards / teste mais difícil | depois de um teste com nota abaixo de 50 % / 80 % ou mais | resultado do teste |
+| Instalar a aplicação | telemóvel sem a app instalada | Início |
+| Fazer a primeira pergunta | ainda não usou o chat | Início, Plano, Progresso |
+| Experimentar o Cláudio 5.5 (fotografias) | está no Cláudio 5 | Chat, Início |
+| Marcar testes no calendário | calendário vazio | Início, Plano |
+| Explicações mais aprofundadas (Cláudio 6) | 3 ou mais respostas na mesma conversa, fora do Cláudio 6 | Chat, depois das respostas |
+| Flashcards | ainda não tem cartões | Início, Resumos, Testes, Progresso |
+| Modo de estudo | ainda não usou o temporizador | Início, Plano, Progresso, Testes |
+
+Regras para não incomodar: no máximo um anúncio por página; o botão ✕ esconde-o durante alguns dias (normalmente 7); cada anúncio aparece num número limitado de dias; a escolha não muda a cada visita no mesmo dia; sem IA ligada não se anunciam funcionalidades de IA. Mudar de plano a partir de um anúncio é gratuito (versão de demonstração). As regras estão em `src/promos.ts` e a memória dos anúncios fica só no dispositivo.
+
 ## Usar no telemóvel
 
 A STUDY AI instala-se no telemóvel como uma aplicação (PWA): fica com o ícone amarelo no ecrã principal, abre em ecrã inteiro (sem a barra do navegador) e arranca depressa.

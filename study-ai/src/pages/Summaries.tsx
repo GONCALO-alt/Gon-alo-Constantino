@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, Check, Copy, FileText, Layers, MessagesSquare, Pencil, Plus, Search, Sparkles, Trash2, WandSparkles } from 'lucide-react';
 import { api } from '../api';
 import { Markdown, plainText } from '../components/Markdown';
+import { Promo } from '../components/Promo';
 import { SubjectIcon } from '../components/SubjectIcon';
 import { Button, Confirm, Empty, Field, FormError, Modal, PageHead, Skeleton, Tabs } from '../components/ui';
 import { invalidate, updateCached, useApp, useMe, useQuery } from '../state';
@@ -114,6 +115,7 @@ export function SummariesPage() {
     <div>
       <PageHead title="Resumos" sub="Os resumos que guardaste do chat, os que a IA criou e os que escreveste."
         actions={<Button icon={<Plus />} onClick={() => setCreating('')}>Novo resumo</Button>} />
+      <div style={{ marginBottom: 18 }} className="slot-gap"><Promo slot="resumos" /></div>
       <div className="row wrap" style={{ marginBottom: 18 }}>
         <div className="input-icon grow" style={{ minWidth: 220 }}>
           <Search />

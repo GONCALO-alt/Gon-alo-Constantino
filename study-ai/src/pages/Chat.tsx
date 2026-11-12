@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { api, ApiError, streamChat, uploadFile } from '../api';
 import { Markdown } from '../components/Markdown';
+import { Promo } from '../components/Promo';
 import { Button, Confirm, Field, IconButton, Modal } from '../components/ui';
 import { invalidate, useApp, useMe, useQuery } from '../state';
 import { daysBetween, today, toISODate } from '../../shared/dates';
@@ -535,6 +536,7 @@ export function ChatPage() {
                   </button>
                 ))}
               </div>
+              <div style={{ marginTop: 18 }} className="slot-gap"><Promo slot="chat" /></div>
             </div>
           ) : (
             <div className="chat-inner">
@@ -574,6 +576,9 @@ export function ChatPage() {
                     </div>
                   </div>
                 ),
+              )}
+              {!streaming && !limitReached && messages.some((m) => m.role === 'assistant') && (
+                <Promo slot="chat-resposta" aiAnswers={messages.filter((m) => m.role === 'assistant').length} />
               )}
               {streaming && (
                 <div className="msg ai">

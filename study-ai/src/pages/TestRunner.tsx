@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Check, ClipboardCheck, MessagesSquare, RotateCcw, Sparkles, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 import { api } from '../api';
 import { Markdown } from '../components/Markdown';
+import { Promo } from '../components/Promo';
 import { Button, Empty, FormError, Ring, Skeleton } from '../components/ui';
 import { invalidate, setCached, useApp, useMe, useQuery } from '../state';
 import type { UsageSnapshot } from '../../shared/plans';
@@ -104,6 +105,12 @@ export function TestPage() {
           </div>
         )}
       </div>
+
+      {completed && (
+        <div style={{ marginBottom: 18 }} className="slot-gap">
+          <Promo slot="teste-resultado" testResult={{ pct, subject: test.subject }} />
+        </div>
+      )}
 
       <div className="stack lg">
         {test.questions.map((question, i) => {

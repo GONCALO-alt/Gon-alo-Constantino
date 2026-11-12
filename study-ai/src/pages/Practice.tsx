@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ClipboardCheck, History, Info, Layers, Pencil, Plus, Sparkles, Trash2, WandSparkles } from 'lucide-react';
 import { api } from '../api';
+import { Promo } from '../components/Promo';
 import { SubjectIcon } from '../components/SubjectIcon';
 import { Button, Confirm, Empty, Field, FormError, IconButton, Modal, PageHead, Progress, Skeleton, Tabs } from '../components/ui';
 import { invalidate, setCached, useApp, useMe, useQuery } from '../state';
@@ -272,7 +273,12 @@ export function PracticePage({ tab = 'gerador' }: { tab?: Tab }) {
               { value: 'flashcards', label: 'Flashcards', icon: <Layers /> },
             ]} />
         } />
-      {tab === 'gerador' && <Generator initialSubject={subject} />}
+      {tab === 'gerador' && (
+        <>
+          <Generator initialSubject={subject} />
+          <div style={{ marginTop: 18 }} className="slot-gap"><Promo slot="testes" /></div>
+        </>
+      )}
       {tab === 'historico' && <TestHistory />}
       {tab === 'flashcards' && <DeckList initialSubject={subject} />}
     </div>

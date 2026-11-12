@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChartColumn, Check, ClipboardCheck, Clock, Flame, Layers, MessagesSquare, Table2, Target, TrendingUp } from 'lucide-react';
+import { Promo } from '../components/Promo';
 import { Empty, PageHead, Progress, Skeleton, Tabs } from '../components/ui';
 import { usePlanWeek } from '../planData';
 import { useMe, useQuery } from '../state';
@@ -129,6 +130,8 @@ export function ProgressPage() {
         <div className="stat fade-up" style={{ ['--i' as string]: 3 }}><span className="stat-label"><Flame /> Sequência</span><span className="stat-value">{s.streak}<small>{s.streak === 1 ? 'dia' : 'dias'}</small></span></div>
         <div className="stat fade-up" style={{ ['--i' as string]: 4 }}><span className="stat-label"><MessagesSquare /> Perguntas à IA</span><span className="stat-value">{s.questions}</span></div>
       </div>
+
+      <div style={{ marginTop: 18 }} className="slot-gap"><Promo slot="progresso" /></div>
 
       <div className="card" style={{ marginTop: 18 }}>
         <div className="card-head wrap">

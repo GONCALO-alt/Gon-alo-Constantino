@@ -11,6 +11,7 @@ import { Button, Confirm, Empty, Field, FormError, Modal, PageHead, Progress, Sk
 import { usePlanWeek, type PlanResponse } from '../planData';
 import { useMediaQuery } from '../pwa';
 import { SessionRow } from '../components/SessionRow';
+import { Promo } from '../components/Promo';
 import { invalidate, setCached, useApp, useMe } from '../state';
 import { addDays, formatDateShort, formatMinutes, today, weekStart, WEEKDAYS } from '../../shared/dates';
 import { minutesBySubject } from '../../shared/planner';
@@ -248,6 +249,8 @@ function WeekView() {
           })}
         </div>
       )}
+
+      <div className="slot-gap"><Promo slot="plano" /></div>
 
       <div className="grid-2">
         <div className="card">

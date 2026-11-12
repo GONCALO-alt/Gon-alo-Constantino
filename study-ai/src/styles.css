@@ -831,3 +831,27 @@ button, a, .chip, .option, .day-pill { touch-action: manipulation; }
 
 /* Aplicação aberta a partir do ecrã principal */
 html[data-standalone='true'] body { overscroll-behavior-y: none; }
+
+/* ---------- Anúncios da própria STUDY AI ---------- */
+.promo {
+  position: relative; display: flex; align-items: center; gap: 16px; padding: 16px 52px 16px 16px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--border-2);
+}
+.promo.featured {
+  background: radial-gradient(120% 140% at 0% 0%, rgba(255, 212, 0, 0.16), transparent 55%), var(--surface); border-color: var(--yellow-line);
+}
+.promo-ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--yellow-soft); color: var(--yellow); flex-shrink: 0; }
+.promo.featured .promo-ic { background: var(--yellow); color: var(--on-yellow); }
+.promo-ic svg { width: 22px; height: 22px; }
+.promo-body { flex: 1; min-width: 0; }
+.promo-body b { display: block; font-size: 15px; letter-spacing: -0.01em; }
+.promo-body p { font-size: 13.5px; color: var(--text-2); margin-top: 2px; }
+.promo-tag { display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); font-weight: 600; margin-bottom: 3px; }
+.promo-cta { flex-shrink: 0; }
+.promo-x { position: absolute; top: 10px; right: 10px; }
+.slot-gap:empty { display: none; }
+@media (max-width: 640px) {
+  .promo { flex-wrap: wrap; align-items: flex-start; padding: 14px 46px 14px 14px; gap: 12px; }
+  .promo-ic { width: 40px; height: 40px; }
+  .promo-cta { width: 100%; padding-left: 52px; }
+}

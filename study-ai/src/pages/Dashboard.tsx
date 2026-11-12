@@ -4,7 +4,7 @@ import {
   ArrowRight, CalendarDays, Check, ClipboardCheck, Clock, Flame, Info, Plus, Sparkles, Star, Target, Timer, Trash2, TrendingUp,
 } from 'lucide-react';
 import { api } from '../api';
-import { InstallCard } from '../components/Install';
+import { Promo } from '../components/Promo';
 import { SessionRow } from '../components/SessionRow';
 import { SubjectIcon } from '../components/SubjectIcon';
 import { Button, Empty, IconButton, Progress, Ring, Skeleton } from '../components/ui';
@@ -109,7 +109,7 @@ export function DashboardPage() {
         </div>
       )}
 
-      <InstallCard />
+      <div style={{ marginTop: 16 }} className="slot-gap"><Promo slot="inicio" /></div>
 
       <div className="stats-row" style={{ marginTop: 18 }}>
         <div className="stat fade-up" style={{ ['--i' as string]: 1 }}>
