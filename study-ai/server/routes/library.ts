@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { structuredSystemPrompt, summarySystemPrompt } from '../ai/prompts.ts';
 import { assertAllowed, getUsage, recordUsage } from '../ai/usage.ts';
 import type { AiUsage } from '../ai/client.ts';
+import { applyGrades, flashcardsPrompt, gradeClosed, gradePrompt, normalizeCards, normalizeQuestions, testPrompt } from '../ai/materials.ts';
 import { type Ctx, loadProfile, uid, validate } from '../context.ts';
 import { nowIso, parseJson } from '../db.ts';
 import { HttpError, newId, RateLimiter } from '../security.ts';
@@ -73,7 +74,6 @@ const GradeOut = z.object({
   grades: z.array(z.object({ index: z.number().int(), score: z.number(), feedback: z.string() })),
 });
 
-const DIFFICULTY_LABEL = { facil: 'fácil', medio: 'médio', dificil: 'difícil' } as const;
 
 export function libraryRouter(ctx: Ctx): Router {
   const r = Router();
@@ -237,7 +237,7 @@ export function libraryRouter(ctx: Ctx): Router {
     if (body.summaryId) {
       const s = ctx.db.one<SummaryRow>('SELECT * FROM summaries WHERE id = ? AND user_id = ?', body.summaryId, userId);
       if (!s) throw new HttpError(404, 'Resumo não encontrado.', 'not_found');
-      source = `\n\nUsa este resumo como base:\n"""\n${s.content.slice(0, 30000)}\n"""`;
+      source = s.content;
     } else if (body.topic.length < 2) throw new HttpError(400, 'Indica a matéria dos flashcards.', 'invalid');
     const { profile, done } = startAiRequest(userId);
     const q = profile.questionnaire;
@@ -245,16 +245,11 @@ export function libraryRouter(ctx: Ctx): Router {
     const { data, usage } = await ctx.ai.generateStructured({
       plan: profile.aiPlan,
       system: structuredSystemPrompt(q),
-      prompt: `Cria ${body.count} flashcards de ${subjectName}${body.topic ? ` sobre «${body.topic}»` : ''} para um estudante do ${yearLabel(q?.year)}.
-Frente: uma pergunta ou conceito curto. Verso: a resposta, clara e curta (no máximo 2 frases). Sem repetições.
-"title" é um título curto para o baralho.${source}`,
+      prompt: flashcardsPrompt({ count: body.count, subjectName, topic: body.topic, yearLabel: yearLabel(q?.year), source }),
       schema: FlashcardsOut,
     });
     done(usage);
-    const cards = data.cards
-      .filter((c) => c.front.trim() && c.back.trim())
-      .slice(0, body.count)
-      .map((c) => ({ front: c.front.trim().slice(0, 500), back: c.back.trim().slice(0, 2000) }));
+    const cards = normalizeCards(data, body.count);
     if (!cards.length) throw new HttpError(502, 'A IA não devolveu flashcards. Tenta novamente.', 'ai_empty');
     const id = createDeck(userId, body.subject, (data.title || body.topic || 'Flashcards').slice(0, 120), cards);
     res.status(201).json({
@@ -373,37 +368,12 @@ Frente: uma pergunta ou conceito curto. Verso: a resposta, clara e curta (no má
     const { data, usage } = await ctx.ai.generateStructured({
       plan: profile.aiPlan,
       system: structuredSystemPrompt(q),
-      prompt: `Cria um teste de preparação de ${subjectName} sobre «${body.topic}» para um estudante do ${yearLabel(q?.year)}.
-- ${body.count} perguntas, dificuldade ${DIFFICULTY_LABEL[body.difficulty]}.
-- Tipos permitidos (varia entre eles): ${body.kinds.join(', ')}.
-- escolha-multipla: 4 opções em "options", só uma certa; "correct_option" é o índice (0 a 3) da opção certa.
-- verdadeiro-falso: "options" = ["Verdadeiro", "Falso"]; "correct_option" = 0 ou 1.
-- resposta-curta e desenvolvimento: "options" = [] e "correct_option" = -1.
-- "model_answer": a resposta certa completa (para as perguntas abertas, os pontos que uma boa resposta deve ter).
-- "explanation": porque é que essa é a resposta certa (1 a 3 frases).
-- "points": 1 nas perguntas fechadas, 2 nas de resposta curta, 4 nas de desenvolvimento.
-- "title": título curto do teste.`,
+      prompt: testPrompt({ subjectName, topic: body.topic, yearLabel: yearLabel(q?.year), count: body.count, difficulty: body.difficulty, kinds: body.kinds }),
       schema: TestOut,
       maxTokens: 24000,
     });
     done(usage);
-    const questions: TestQuestion[] = data.questions
-      .slice(0, body.count)
-      .map((x): TestQuestion => {
-        const closed = x.kind === 'escolha-multipla' || x.kind === 'verdadeiro-falso';
-        const options = x.kind === 'verdadeiro-falso' ? ['Verdadeiro', 'Falso'] : closed ? x.options.slice(0, 6) : [];
-        const correct = closed && x.correct_option >= 0 && x.correct_option < options.length ? x.correct_option : closed ? 0 : -1;
-        return {
-          kind: x.kind,
-          prompt: x.prompt.trim(),
-          options,
-          correctOption: correct,
-          modelAnswer: x.model_answer.trim(),
-          explanation: x.explanation.trim(),
-          points: Math.min(10, Math.max(1, x.points || 1)),
-        };
-      })
-      .filter((x) => x.prompt && (x.kind === 'resposta-curta' || x.kind === 'desenvolvimento' || x.options.length >= 2));
+    const questions = normalizeQuestions(data, body.count);
     if (!questions.length) throw new HttpError(502, 'A IA não devolveu perguntas válidas. Tenta novamente.', 'ai_empty');
     const id = newId();
     const max = questions.reduce((a, x) => a + x.points, 0);
@@ -431,18 +401,7 @@ Frente: uma pergunta ou conceito curto. Verso: a resposta, clara e curta (no má
       }),
       req.body,
     );
-    const results: (QuestionResult | null)[] = test.questions.map((question, i) => {
-      if (question.kind === 'escolha-multipla' || question.kind === 'verdadeiro-falso') {
-        const ok = body.answers[i] === question.correctOption;
-        return {
-          score: ok ? question.points : 0,
-          max: question.points,
-          correct: ok,
-          feedback: ok ? 'Certo!' : `A resposta certa é: ${question.options[question.correctOption] ?? ''}.`,
-        };
-      }
-      return null;
-    });
+    const results = gradeClosed(test.questions, body.answers);
     const open = test.questions.map((question, i) => ({ question, i })).filter(({ i }) => results[i] === null);
     let usageOut = undefined;
     if (open.length) {
@@ -468,32 +427,12 @@ Frente: uma pergunta ou conceito curto. Verso: a resposta, clara e curta (no má
         const { data, usage } = await ctx.ai.generateStructured({
           plan: profile.aiPlan,
           system: structuredSystemPrompt(profile.questionnaire),
-          prompt: `Corrige as respostas abertas deste teste de preparação («${test.title}»). Para cada uma, dá uma pontuação entre 0 e a cotação (podes usar meios pontos) e um comentário curto, em «tu»: o que está certo, o que falta ou está errado, e como melhorar.
-
-${open
-  .map(
-    ({ question, i }) => `## Pergunta ${i} (cotação ${question.points})
-${question.prompt}
-Resposta-modelo: ${question.modelAnswer}
-Resposta do estudante: ${String(body.answers[i] ?? '').trim() || '(sem resposta)'}`,
-  )
-  .join('\n\n')}
-
-Em "grades", "index" é o número da pergunta indicado acima.`,
+          prompt: gradePrompt(test.title, open.map(({ question, i }) => ({ index: i, question, answer: String(body.answers[i] ?? '') }))),
           schema: GradeOut,
         });
         done(usage);
         usageOut = getUsage(ctx.db, userId, profile.aiPlan, ctx.today());
-        for (const { question, i } of open) {
-          const g = data.grades.find((x) => x.index === i);
-          const score = Math.min(question.points, Math.max(0, Math.round((g?.score ?? 0) * 2) / 2));
-          results[i] = {
-            score,
-            max: question.points,
-            correct: score >= question.points * 0.75,
-            feedback: g?.feedback?.trim() || 'Sem comentário.',
-          };
-        }
+        applyGrades(test.questions, results, open.map(({ i }) => i), data);
       } else {
         // Sem IA (ou sem perguntas disponíveis): o estudante compara com a resposta-modelo.
         res.json({ pendingSelfGrade: open.map(({ i }) => i), test });

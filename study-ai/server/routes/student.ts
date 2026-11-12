@@ -14,11 +14,11 @@ import {
 } from '../context.ts';
 import { nowIso } from '../db.ts';
 import { HttpError, newId, RateLimiter } from '../security.ts';
-import { addDays, isISODate, weekStart, WEEKDAYS } from '../../shared/dates.ts';
-import { generatePlan, newSessionId } from '../../shared/planner.ts';
+import { addDays, isISODate, weekStart } from '../../shared/dates.ts';
+import { cleanQuestionnaire, generatePlan, newSessionId, planAsText } from '../../shared/planner.ts';
 import { AI_PLAN_IDS } from '../../shared/plans.ts';
 import { getSubject } from '../../shared/subjects.ts';
-import { ACTIVITY_LABELS, type CalendarEvent, type Questionnaire, type StudyPlan } from '../../shared/types.ts';
+import type { CalendarEvent, StudyPlan } from '../../shared/types.ts';
 
 const isoDate = z.string().refine(isISODate, 'data inválida');
 const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'hora inválida');
@@ -70,33 +70,6 @@ const logSchema = z.object({
   source: z.enum(['timer', 'plano', 'manual']),
   sessionKey: z.string().max(120).nullable().optional(),
 });
-
-function cleanQuestionnaire(q: z.infer<typeof questionnaireSchema>): Questionnaire {
-  const subjects = [...new Set(q.subjects)];
-  const custom: Record<string, string> = {};
-  for (const id of subjects) if (q.customSubjects[id]) custom[id] = q.customSubjects[id]!;
-  return {
-    ...q,
-    subjects,
-    customSubjects: custom,
-    difficult: [...new Set(q.difficult)].filter((id) => subjects.includes(id)),
-    easy: [...new Set(q.easy)].filter((id) => subjects.includes(id) && !q.difficult.includes(id)),
-    studyDays: [...new Set(q.studyDays)].sort((a, b) => a - b),
-    styles: [...new Set(q.styles)],
-    tests: [],
-  };
-}
-
-function planAsText(plan: StudyPlan, q: Questionnaire): string {
-  return plan.meta.studyDays
-    .map((d) => {
-      const items = plan.sessions
-        .filter((s) => s.weekday === d)
-        .map((s) => `${s.start} ${s.subject ? getSubject(s.subject, q.customSubjects).name : 'TPC'} (${s.minutes} min, ${ACTIVITY_LABELS[s.activity]})`);
-      return `${WEEKDAYS[d]}: ${items.join('; ')}`;
-    })
-    .join('\n');
-}
 
 export function studentRouter(ctx: Ctx): Router {
   const r = Router();

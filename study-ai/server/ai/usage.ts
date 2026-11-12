@@ -1,4 +1,4 @@
-import { AI_PLANS, type AiPlanId, type UsageSnapshot } from '../../shared/plans.ts';
+import { AI_PLANS, limitError, type AiPlanId, type UsageSnapshot } from '../../shared/plans.ts';
 import type { Db } from '../db.ts';
 import { HttpError } from '../security.ts';
 import type { AiUsage } from './client.ts';
@@ -26,30 +26,8 @@ export function getUsage(db: Db, userId: string, plan: AiPlanId, day: string): U
 
 /** Lança um erro 429/403 se o pedido ultrapassar o que o plano permite. */
 export function assertAllowed(usage: UsageSnapshot, opts: { images?: number; files?: number } = {}) {
-  const plan = AI_PLANS[usage.plan];
-  if (usage.questionsLimit !== null && usage.questionsUsed >= usage.questionsLimit) {
-    throw new HttpError(
-      429,
-      `Já usaste as ${usage.questionsLimit} perguntas de hoje do ${plan.name}. Volta amanhã ou muda de plano em «Escolhe a tua IA».`,
-      'limit_questions',
-    );
-  }
-  const images = opts.images ?? 0;
-  if (images > 0) {
-    if (usage.imagesLimit === 0)
-      throw new HttpError(403, `O ${plan.name} não permite carregar imagens. Escolhe o Cláudio 5.5 ou o Cláudio 6.`, 'plan_no_images');
-    if (usage.imagesLimit !== null && usage.imagesUsed + images > usage.imagesLimit) {
-      const left = Math.max(0, usage.imagesLimit - usage.imagesUsed);
-      throw new HttpError(
-        429,
-        `O ${plan.name} permite ${usage.imagesLimit} imagens por dia. Hoje ainda podes enviar ${left}.`,
-        'limit_images',
-      );
-    }
-  }
-  if ((opts.files ?? 0) > 0 && !plan.files) {
-    throw new HttpError(403, `O ${plan.name} não permite carregar ficheiros. Só o Cláudio 6 analisa documentos.`, 'plan_no_files');
-  }
+  const e = limitError(usage, opts);
+  if (e) throw new HttpError(e.status, e.message, e.code);
 }
 
 export function recordUsage(

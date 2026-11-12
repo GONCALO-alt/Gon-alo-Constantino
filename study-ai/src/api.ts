@@ -1,5 +1,23 @@
 import type { UsageSnapshot } from '../shared/plans';
 import type { Attachment, ChatMessage, Conversation } from '../shared/types';
+import { DEMO } from './env';
+
+/** Na versão de demonstração (artefacto) os pedidos são respondidos dentro da página. */
+async function send(url: string, init: RequestInit): Promise<Response> {
+  if (DEMO) {
+    const { demoFetch } = await import('./demo/server');
+    return demoFetch(url, init);
+  }
+  return fetch(url, init);
+}
+
+let demoUrl: ((id: string) => string | null) | null = null;
+if (DEMO) import('./demo/server').then((m) => (demoUrl = m.demoAttachmentUrl));
+
+/** Endereço para mostrar um anexo (imagem ou ficheiro). `null` se já não estiver disponível. */
+export function attachmentUrl(id: string): string | null {
+  return DEMO ? (demoUrl?.(id) ?? null) : `/api/attachments/${id}`;
+}
 
 export class ApiError extends Error {
   readonly status: number;
@@ -34,7 +52,7 @@ async function parseError(res: Response): Promise<ApiError> {
 export async function api<T>(path: string, opts: { method?: Method; body?: unknown; signal?: AbortSignal } = {}): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(`/api${path}`, {
+    res = await send(`/api${path}`, {
       method: opts.method ?? 'GET',
       credentials: 'same-origin',
       headers: {
@@ -57,7 +75,7 @@ export async function api<T>(path: string, opts: { method?: Method; body?: unkno
 }
 
 export async function uploadFile(file: File): Promise<Attachment> {
-  const res = await fetch('/api/uploads', {
+  const res = await send('/api/uploads', {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
@@ -87,7 +105,7 @@ export async function streamChat(
 ): Promise<void> {
   let res: Response;
   try {
-    res = await fetch('/api/chat/send', {
+    res = await send('/api/chat/send', {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'X-Requested-With': 'study-ai', 'Content-Type': 'application/json', Accept: 'text/event-stream' },

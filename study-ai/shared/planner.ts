@@ -18,7 +18,7 @@ import type {
   StudyPlan,
   WeeklyGoal,
 } from './types.ts';
-import { STYLE_LABELS } from './types.ts';
+import { ACTIVITY_LABELS, STYLE_LABELS } from './types.ts';
 
 const STYLE_ACTIVITY: Record<LearningStyle, ActivityType> = {
   explicacoes: 'estudo',
@@ -383,4 +383,33 @@ export function sessionsForWeek(plan: StudyPlan, anyDate: string, events: Calend
 
 export function newSessionId(): string {
   return sessionId();
+}
+
+/** Remove repetições e incoerências das respostas do questionário (os testes passam para o calendário). */
+export function cleanQuestionnaire(q: Questionnaire): Questionnaire {
+  const subjects = [...new Set(q.subjects)];
+  const custom: Record<string, string> = {};
+  for (const id of subjects) if (q.customSubjects[id]) custom[id] = q.customSubjects[id]!;
+  return {
+    ...q,
+    subjects,
+    customSubjects: custom,
+    difficult: [...new Set(q.difficult)].filter((id) => subjects.includes(id)),
+    easy: [...new Set(q.easy)].filter((id) => subjects.includes(id) && !q.difficult.includes(id)),
+    studyDays: [...new Set(q.studyDays)].sort((a, b) => a - b),
+    styles: [...new Set(q.styles)],
+    tests: [],
+  };
+}
+
+/** O horário semanal em texto (para a análise do plano feita pela IA). */
+export function planAsText(plan: StudyPlan, q: Questionnaire): string {
+  return plan.meta.studyDays
+    .map((d) => {
+      const items = plan.sessions
+        .filter((s) => s.weekday === d)
+        .map((s) => `${s.start} ${s.subject ? getSubject(s.subject, q.customSubjects).name : 'TPC'} (${s.minutes} min, ${ACTIVITY_LABELS[s.activity]})`);
+      return `${WEEKDAYS[d]}: ${items.join('; ')}`;
+    })
+    .join('\n');
 }

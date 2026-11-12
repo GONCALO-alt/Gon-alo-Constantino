@@ -1,6 +1,7 @@
 // Tudo o que faz a STUDY AI comportar-se como uma aplicação de telemóvel:
 // instalação no ecrã principal, service worker, vibração, teclado e altura do ecrã.
 import { useEffect, useState, useSyncExternalStore } from 'react';
+import { DEMO } from './env';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -38,7 +39,7 @@ export function initPwa() {
     installed = true;
     emit();
   });
-  if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  if ('serviceWorker' in navigator && import.meta.env.PROD && !DEMO) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js').catch(() => {
         /* sem service worker a aplicação funciona na mesma */
@@ -78,7 +79,7 @@ export function useInstall() {
   return {
     /** O navegador permite instalar com um botão (Android, Chrome, Edge). */
     canPrompt: !!deferred,
-    installed: installed || isStandalone(),
+    installed: DEMO || installed || isStandalone(),
     ios: isIOS(),
     async prompt(): Promise<boolean> {
       if (!deferred) return false;

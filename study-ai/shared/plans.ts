@@ -119,3 +119,27 @@ export function questionsLeft(u: UsageSnapshot): number | null {
 export function imagesLeft(u: UsageSnapshot): number | null {
   return u.imagesLimit === null ? null : Math.max(0, u.imagesLimit - u.imagesUsed);
 }
+
+/** Se o pedido ultrapassar o que o plano permite, devolve o erro a mostrar (senão `null`). */
+export function limitError(usage: UsageSnapshot, opts: { images?: number; files?: number } = {}): { status: number; message: string; code: string } | null {
+  const plan = AI_PLANS[usage.plan];
+  if (usage.questionsLimit !== null && usage.questionsUsed >= usage.questionsLimit) {
+    return {
+      status: 429,
+      message: `Já usaste as ${usage.questionsLimit} perguntas de hoje do ${plan.name}. Volta amanhã ou muda de plano em «Escolhe a tua IA».`,
+      code: 'limit_questions',
+    };
+  }
+  const images = opts.images ?? 0;
+  if (images > 0) {
+    if (usage.imagesLimit === 0)
+      return { status: 403, message: `O ${plan.name} não permite carregar imagens. Escolhe o Cláudio 5.5 ou o Cláudio 6.`, code: 'plan_no_images' };
+    if (usage.imagesLimit !== null && usage.imagesUsed + images > usage.imagesLimit) {
+      const left = Math.max(0, usage.imagesLimit - usage.imagesUsed);
+      return { status: 429, message: `O ${plan.name} permite ${usage.imagesLimit} imagens por dia. Hoje ainda podes enviar ${left}.`, code: 'limit_images' };
+    }
+  }
+  if ((opts.files ?? 0) > 0 && !plan.files)
+    return { status: 403, message: `O ${plan.name} não permite carregar ficheiros. Só o Cláudio 6 analisa documentos.`, code: 'plan_no_files' };
+  return null;
+}

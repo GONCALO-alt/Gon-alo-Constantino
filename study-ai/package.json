@@ -15,7 +15,8 @@
     "start": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning server/index.ts --production",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "test:e2e": "node --disable-warning=ExperimentalWarning tests/e2e/smoke.mjs"
+    "test:e2e": "node --disable-warning=ExperimentalWarning tests/e2e/smoke.mjs",
+    "build:artifact": "VITE_DEMO=1 vite build && node tools/build-artifact.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",

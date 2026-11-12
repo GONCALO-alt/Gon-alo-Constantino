@@ -6,6 +6,7 @@ import {
 import { AI_PLANS, questionsLeft } from '../../shared/plans';
 import { useApp, useMe } from '../state';
 import { InstallButton } from './Install';
+import { DEMO } from '../env';
 import { Logo } from './Logo';
 import { IconButton, Modal, Progress } from './ui';
 
@@ -83,11 +84,13 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
             <span className="avatar">{initial}</span>
             <div className="grow">
               <div style={{ fontWeight: 600, fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{me.user.name}</div>
-              <div className="tiny faint" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{me.user.email}</div>
+              <div className="tiny faint" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{DEMO ? 'Versão de demonstração' : me.user.email}</div>
             </div>
-            <IconButton label="Terminar sessão" small onClick={logout}>
-              <LogOut />
-            </IconButton>
+            {!DEMO && (
+              <IconButton label="Terminar sessão" small onClick={logout}>
+                <LogOut />
+              </IconButton>
+            )}
           </div>
         </div>
       </aside>
@@ -148,12 +151,16 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
         <div style={{ marginTop: 16 }}>
           <UsageMini />
         </div>
-        <div style={{ marginTop: 12 }}>
-          <InstallButton block />
-        </div>
-        <button type="button" className="btn btn-ghost btn-block" style={{ marginTop: 12 }} onClick={logout}>
-          <LogOut /> Terminar sessão
-        </button>
+        {!DEMO && (
+          <>
+            <div style={{ marginTop: 12 }}>
+              <InstallButton block />
+            </div>
+            <button type="button" className="btn btn-ghost btn-block" style={{ marginTop: 12 }} onClick={logout}>
+              <LogOut /> Terminar sessão
+            </button>
+          </>
+        )}
       </Modal>
     </div>
   );

@@ -58,6 +58,16 @@ A chave fica **apenas no servidor**: o navegador nunca a vê. Cada pergunta à I
 - **Início**: boas-vindas, plano do dia (marcar como feita, pedir ajuda, temporizador), botão grande para a IA, próximos testes, objetivos do dia e da semana, disciplinas favoritas, perguntas disponíveis.
 - **Disciplinas**, **Resumos** (com IA ou escritos à mão, pesquisa, edição, flashcards a partir de um resumo), **Testes e exercícios** (gerador de testes personalizados com correção automática e pela IA, histórico, flashcards com revisão espaçada), **Calendário escolar**, **Modo de estudo** com temporizador, **Progresso** (minutos por dia, por disciplina, sequência, testes, flashcards) e **Definições** (perfil, plano, preferências, palavra-passe, exportar e apagar dados).
 
+## Versão no claude.ai (artefacto)
+
+Há também uma versão que corre como **artefacto do claude.ai**, sem servidor nem chave de API: <https://claude.ai/artifact/T9fiD9f48GKAvBZc6jb2TZ> (privada; partilha-se no menu Partilhar da página).
+
+- É a mesma interface, compilada num só ficheiro (`npm run build:artifact` → `dist-artifact/study-ai.html`).
+- Os pedidos `/api/...` são respondidos dentro da página (`src/demo/server.ts`), com o mesmo motor do plano, os mesmos limites dos planos e as mesmas instruções da IA do servidor.
+- A IA usa o **Claude da conta de quem abre a página** (capacidade `sample`): Cláudio 5, 5.5 e 6 pedem respostas mais rápidas, normais ou mais completas. A primeira pergunta pede autorização.
+- Os dados ficam numa área privada de cada pessoa na base de dados do artefacto (só ela os vê, em qualquer dispositivo); sem essa possibilidade, ficam no navegador.
+- Diferenças: sem contas próprias (usa a conta do claude.ai), PDF não são lidos (só imagens e ficheiros de texto), as imagens enviadas ficam só durante a sessão, sem instalação como aplicação.
+
 ## Anúncios da própria STUDY AI
 
 A aplicação mostra anúncios **só da própria STUDY AI** (sem publicidade de terceiros nem recolha de dados para publicidade), com a etiqueta «Anúncio · STUDY AI». Aparecem quando são úteis:

@@ -4,7 +4,7 @@ import {
   ArrowLeft, ArrowUp, BookOpen, Bookmark, Check, ChevronDown, CircleHelp, ClipboardCheck, Copy, FileText, History, Image as ImageIcon, Info, Lightbulb,
   Lock, NotebookPen, Paperclip, Pencil, PenLine, Plus, Search, Sigma, Sparkles, Square, Trash2, X,
 } from 'lucide-react';
-import { api, ApiError, streamChat, uploadFile } from '../api';
+import { api, ApiError, attachmentUrl, streamChat, uploadFile } from '../api';
 import { Markdown } from '../components/Markdown';
 import { Promo } from '../components/Promo';
 import { Button, Confirm, Field, IconButton, Modal } from '../components/ui';
@@ -547,15 +547,22 @@ export function ChatPage() {
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', maxWidth: '100%' }}>
                       {m.attachments.length > 0 && (
                         <div className="msg-atts">
-                          {m.attachments.map((a) =>
-                            a.kind === 'image' ? (
-                              <a key={a.id} href={`/api/attachments/${a.id}`} target="_blank" rel="noreferrer">
-                                <img className="msg-att-img" src={`/api/attachments/${a.id}`} alt={a.name} loading="lazy" />
+                          {m.attachments.map((a) => {
+                            const url = attachmentUrl(a.id);
+                            if (!url)
+                              return (
+                                <span key={a.id} className="file-pill" title="Os anexos ficam só durante a sessão em que foram enviados">
+                                  {a.kind === 'image' ? <ImageIcon /> : <FileText />}<span>{a.name}</span>
+                                </span>
+                              );
+                            return a.kind === 'image' ? (
+                              <a key={a.id} href={url} target="_blank" rel="noreferrer">
+                                <img className="msg-att-img" src={url} alt={a.name} loading="lazy" />
                               </a>
                             ) : (
-                              <a key={a.id} className="file-pill" href={`/api/attachments/${a.id}`}><FileText /><span>{a.name}</span></a>
-                            ),
-                          )}
+                              <a key={a.id} className="file-pill" href={url}><FileText /><span>{a.name}</span></a>
+                            );
+                          })}
                         </div>
                       )}
                       {m.content && <div className="bubble">{m.content}</div>}

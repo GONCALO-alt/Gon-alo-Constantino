@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Download, KeyRound, LogOut, Pencil, ShieldCheck, Smartphone, Sparkles, SlidersHorizontal, Trash2, UserRound } from 'lucide-react';
 import { InstallButton } from '../components/Install';
+import { DEMO } from '../env';
+import { invalidate, clearCache } from '../state';
 import { api } from '../api';
 import { Button, Field, FormError, Modal, PageHead, Toggle } from '../components/ui';
 import { useApp, useMe } from '../state';
@@ -141,6 +143,7 @@ export function SettingsPage() {
           </div>
         </section>
 
+        {!DEMO && (
         <section className="card pad-lg">
           <div className="card-head"><span className="card-title"><Smartphone /> Aplicação no telemóvel</span></div>
           <div className="setting" style={{ padding: 0, flexWrap: 'wrap' }}>
@@ -151,7 +154,11 @@ export function SettingsPage() {
             <InstallButton />
           </div>
         </section>
+        )}
 
+        {DEMO ? (
+        <DemoData />
+        ) : (
         <section className="card pad-lg">
           <div className="card-head"><span className="card-title"><KeyRound /> Conta</span></div>
           <div className="settings-list">
@@ -178,7 +185,9 @@ export function SettingsPage() {
             </div>
           </div>
         </section>
+        )}
 
+        {!DEMO && (
         <section className="card">
           <div className="row" style={{ gap: 12 }}>
             <ShieldCheck size={20} color="var(--yellow)" />
@@ -188,6 +197,7 @@ export function SettingsPage() {
             </p>
           </div>
         </section>
+        )}
       </div>
 
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Apagar a conta?"
@@ -199,5 +209,60 @@ export function SettingsPage() {
         </div>
       </Modal>
     </div>
+  );
+}
+
+/** Versão de demonstração (artefacto): onde ficam os dados e como recomeçar. */
+function DemoData() {
+  const { setMe, toast } = useApp();
+  const [info, setInfo] = useState<{ storage: 'conta' | 'navegador' | 'memoria' } | null>(null);
+  const [confirm, setConfirm] = useState(false);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    api<{ storage: 'conta' | 'navegador' | 'memoria' }>('/demo/info').then(setInfo).catch(() => {});
+  }, []);
+  const where = {
+    conta: 'Na tua conta do claude.ai, numa área privada desta página: só tu os vês, em qualquer dispositivo onde a abras.',
+    navegador: 'Neste navegador, só neste dispositivo. Se limpares os dados do navegador, perdem-se.',
+    memoria: 'Só enquanto esta página estiver aberta (o navegador não deixa guardar).',
+  };
+  async function reset() {
+    setBusy(true);
+    try {
+      clearCache();
+      setMe(await api<MeResponse>('/demo/reset', { method: 'POST' }));
+      invalidate('/');
+      toast('Dados apagados. Podes começar de novo.');
+    } finally {
+      setBusy(false);
+      setConfirm(false);
+    }
+  }
+  return (
+    <section className="card pad-lg">
+      <div className="card-head"><span className="card-title"><ShieldCheck /> Os teus dados nesta página</span></div>
+      <div className="settings-list">
+        <div className="setting">
+          <div>
+            <div className="s-title">Onde ficam guardados</div>
+            <div className="s-desc">{info ? where[info.storage] : 'A verificar…'}</div>
+          </div>
+        </div>
+        <div className="setting">
+          <div>
+            <div className="s-title">IA</div>
+            <div className="s-desc">As respostas usam o Claude da conta de quem abre a página. As imagens enviadas no chat ficam só durante a sessão.</div>
+          </div>
+        </div>
+        <div className="setting">
+          <div><div className="s-title">Começar de novo</div><div className="s-desc">Apaga o questionário, o plano, as conversas e tudo o resto desta página.</div></div>
+          <Button variant="danger" icon={<Trash2 />} onClick={() => setConfirm(true)}>Apagar dados</Button>
+        </div>
+      </div>
+      <Modal open={confirm} onClose={() => setConfirm(false)} title="Apagar todos os dados?"
+        footer={<><Button variant="ghost" onClick={() => setConfirm(false)}>Cancelar</Button><Button variant="danger" loading={busy} onClick={reset}>Apagar e recomeçar</Button></>}>
+        <p className="muted">O questionário, o plano de estudos, as conversas, os resumos, os flashcards, os testes e o progresso são apagados. Isto não pode ser desfeito.</p>
+      </Modal>
+    </section>
   );
 }
