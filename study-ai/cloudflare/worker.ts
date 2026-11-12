@@ -328,11 +328,11 @@ export class StudyStore extends DurableObject<Env> {
       if (isAiPath(path) && !this.aiLimiter.take('ai'))
         return withHeaders(json({ error: 'Estás a fazer pedidos muito depressa. Espera um pouco.', code: 'rate_limited' }, 429));
       let body: unknown = null;
-      if (method === 'POST' && path === '/uploads') {
+      if (method === 'POST' && (path === '/uploads' || path === '/transcribe')) {
         const buf = new Uint8Array(await req.arrayBuffer());
         if (buf.length > MAX_UPLOAD) return withHeaders(json({ error: 'O ficheiro é maior do que 4 MB.', code: 'too_large' }, 413));
         body = buf;
-        this.cleanupFiles();
+        if (path === '/uploads') this.cleanupFiles();
       } else if (!['GET', 'HEAD', 'DELETE'].includes(method)) body = await readJson(req);
       const res = await this.getCore().handle({ method, path, query: url.searchParams, body, headers: req.headers, signal: req.signal }, this.context);
       return withHeaders(res ?? json({ error: 'Endereço não encontrado.', code: 'not_found' }, 404));

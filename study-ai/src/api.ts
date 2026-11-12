@@ -90,6 +90,25 @@ export async function uploadFile(file: File): Promise<Attachment> {
   return body.attachment;
 }
 
+/** Envia uma gravação de voz e devolve o texto. */
+export async function transcribeAudio(audio: Blob, signal?: AbortSignal): Promise<string> {
+  let res: Response;
+  try {
+    res = await send('/api/transcribe', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'X-Requested-With': 'study-ai', 'Content-Type': audio.type || 'audio/webm' },
+      body: audio,
+      signal,
+    });
+  } catch (err) {
+    if ((err as Error)?.name === 'AbortError') throw err;
+    throw new ApiError(0, 'Sem ligação ao servidor. Verifica a tua internet.', 'network');
+  }
+  if (!res.ok) throw await parseError(res);
+  return ((await res.json()) as { text: string }).text;
+}
+
 export interface StreamHandlers {
   onStart?: (data: { conversation: Conversation; userMessage: ChatMessage }) => void;
   onDelta?: (text: string) => void;

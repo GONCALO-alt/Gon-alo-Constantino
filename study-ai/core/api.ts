@@ -13,7 +13,7 @@ import {
 import { addDays, isISODate, weekStart } from '../shared/dates';
 import { cleanQuestionnaire, generatePlan, newSessionId, planAsText } from '../shared/planner';
 import {
-  AI_PLANS, FILE_TYPES, IMAGE_TYPES, isAiPlanId, limitError, MAX_ATTACHMENTS_PER_MESSAGE, MAX_TEXT_BYTES, type AiPlanId, type UsageSnapshot,
+  AI_PLANS, FILE_TYPES, IMAGE_TYPES, isAiPlanId, limitError, MAX_ATTACHMENTS_PER_MESSAGE, MAX_AUDIO_BYTES, MAX_TEXT_BYTES, type AiPlanId, type UsageSnapshot,
 } from '../shared/plans';
 import { getSubject, yearLabel } from '../shared/subjects';
 import type {
@@ -61,6 +61,8 @@ export interface CoreAi {
   checkImage(mime: string, size: number): string | null;
   /** A IA consegue ler PDF? */
   pdf: boolean;
+  /** Transforma uma gravação de voz em texto (opcional). */
+  transcribe?(audio: Uint8Array, mime: string, signal?: AbortSignal): Promise<string>;
 }
 
 export interface StoredFile {
@@ -181,6 +183,20 @@ export function createCore(opts: CoreOptions) {
 
   route('GET', '/me', async (_r, ctx) => me(await ctx.state()));
   route('GET', '/health', () => ({ ok: true, app: 'STUDY AI', ai: ai.configured() }));
+
+  // ---------- voz: gravação → texto (não conta como pergunta) ----------
+
+  route('POST', '/transcribe', async ({ body, headers, signal }) => {
+    if (!ai.transcribe || !ai.configured()) fail(501, 'Nesta versão a gravação de voz não está disponível. Usa o ditado do teclado.', 'no_voice');
+    const bytes = body instanceof Uint8Array ? body : new Uint8Array(0);
+    if (bytes.length < 200) fail(400, 'A gravação ficou vazia. Tenta outra vez, a falar perto do telemóvel.', 'empty');
+    if (bytes.length > MAX_AUDIO_BYTES) fail(413, 'A gravação é demasiado longa. Grava no máximo 2 minutos de cada vez.', 'too_large');
+    const mime = (headers.get('content-type') ?? '').split(';')[0]!.trim().toLowerCase();
+    if (!mime.startsWith('audio/')) fail(415, 'Isto não parece uma gravação de áudio.', 'bad_type');
+    const text = (await ai.transcribe!(bytes, mime, signal)).trim();
+    if (!text) fail(422, 'Não percebi o que disseste. Tenta outra vez, devagar e perto do microfone.', 'no_speech');
+    return { text };
+  });
   route('GET', '/ai/status', () => ai.status());
 
   route('PUT', '/profile/questionnaire', async ({ body }, ctx) => {

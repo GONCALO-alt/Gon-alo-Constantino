@@ -268,11 +268,11 @@ export function createApp(opts: AppOptions) {
     // ---------- tudo o resto: núcleo comum ----------
     if (isAiPath(path) && !aiLimiter.take(uid)) return json({ error: 'Estás a fazer pedidos muito depressa. Espera um pouco.', code: 'rate_limited' }, 429);
     let reqBody: unknown = null;
-    if (path === '/uploads' && method === 'POST') {
+    if ((path === '/uploads' || path === '/transcribe') && method === 'POST') {
       const buf = new Uint8Array(await req.arrayBuffer());
       if (buf.length > MAX_UPLOAD) return json({ error: 'O ficheiro é maior do que 4 MB.', code: 'too_large' }, 413);
       reqBody = buf;
-      cleanupFiles(uid).catch(() => {});
+      if (path === '/uploads') cleanupFiles(uid).catch(() => {});
     } else if (!['GET', 'HEAD', 'DELETE'].includes(method)) reqBody = await readJson(req);
     const res = await core.handle({ method, path, query: url.searchParams, body: reqBody, headers: req.headers, signal: req.signal }, context(uid));
     return withHeaders(res ?? json({ error: 'Endereço não encontrado.', code: 'not_found' }, 404));

@@ -2,9 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ClipboardEvent,
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft, ArrowUp, BookOpen, Bookmark, Check, ChevronDown, CircleHelp, ClipboardCheck, Copy, FileText, History, Image as ImageIcon, Info, Lightbulb,
-  Lock, NotebookPen, Paperclip, Pencil, PenLine, Plus, Search, Sigma, Sparkles, Square, Trash2, X,
+  Lock, Mic, NotebookPen, Paperclip, Pencil, PenLine, Plus, Search, Sigma, Sparkles, Square, Trash2, X,
 } from 'lucide-react';
 import { api, ApiError, attachmentUrl, streamChat, uploadFile } from '../api';
+import { DEMO } from '../env';
+import { useVoiceInput } from '../voice';
 import { Markdown } from '../components/Markdown';
 import { Promo } from '../components/Promo';
 import { Button, Confirm, Field, IconButton, Modal } from '../components/ui';
@@ -144,6 +146,17 @@ export function ChatPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loadingConv, setLoadingConv] = useState(false);
   const [input, setInput] = useState('');
+  // Microfone: o que se diz junta-se ao que já estava escrito.
+  const voiceBase = useRef('');
+  const voice = useVoiceInput({
+    serverVoice: !!me.ai.voice,
+    onStart: () => {
+      voiceBase.current = input;
+    },
+    onText: (t) => setInput(t ? (voiceBase.current.trim() ? `${voiceBase.current.replace(/\s+$/, '')} ${t}` : t) : voiceBase.current),
+    onError: (m) => toast(m, 'error'),
+  });
+  const showMic = !DEMO && me.ai.configured && voice.supported;
   const [subject, setSubject] = useState<string | null>(null);
   const [pending, setPending] = useState<Pending[]>([]);
   const [uploading, setUploading] = useState(0);
@@ -289,6 +302,7 @@ export function ChatPage() {
 
   async function send() {
     if (!canSend) return;
+    voice.cancel();
     const content = input.trim();
     const sentPending = pending;
     const attachments = sentPending.map((p) => p.attachment).filter(Boolean) as Attachment[];
@@ -637,6 +651,15 @@ export function ChatPage() {
               >
                 {canAttachImages ? (canAttachFiles ? <Paperclip /> : <ImageIcon />) : <Lock />}
               </IconButton>
+              {voice.state !== 'idle' ? (
+                <span className="tiny grow voice-status" role="status">
+                  {voice.state === 'listening'
+                    ? 'A ouvir… fala e toca no microfone para parar.'
+                    : voice.state === 'recording'
+                      ? `A gravar ${Math.floor(voice.seconds / 60)}:${String(voice.seconds % 60).padStart(2, '0')}… toca no microfone para parar.`
+                      : 'A transcrever o que disseste…'}
+                </span>
+              ) : (
               <span className="tiny faint grow">
                 {canAttachImages
                   ? imgLeft === null
@@ -644,6 +667,17 @@ export function ChatPage() {
                     : `${imgLeft} ${imgLeft === 1 ? 'imagem disponível' : 'imagens disponíveis'} hoje`
                   : 'Sem imagens no Cláudio 5'}
               </span>
+              )}
+              {showMic && (
+                <IconButton
+                  label={voice.state === 'idle' ? 'Falar (ditar a pergunta)' : voice.state === 'transcribing' ? 'A transcrever…' : 'Parar de ouvir'}
+                  className={`mic-btn ${voice.state === 'listening' || voice.state === 'recording' ? 'on' : ''}`}
+                  onClick={voice.toggle}
+                  disabled={busy || voice.state === 'transcribing'}
+                >
+                  {voice.state === 'transcribing' ? <span className="spinner" /> : <Mic />}
+                </IconButton>
+              )}
               {busy ? (
                 <button type="button" className="send-btn" onClick={stop} aria-label="Parar resposta"><Square fill="currentColor" size={15} /></button>
               ) : (

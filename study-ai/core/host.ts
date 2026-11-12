@@ -100,7 +100,7 @@ export const tooManyAttempts = () => new CoreError(429, 'Demasiadas tentativas. 
 
 /** Pedidos que usam a IA (têm um limite de ritmo próprio). */
 export const isAiPath = (path: string) =>
-  ['/chat/send', '/summaries/generate', '/decks/generate', '/tests/generate', '/plan/insights'].includes(path) || /^\/tests\/[^/]+\/submit$/.test(path);
+  ['/chat/send', '/summaries/generate', '/decks/generate', '/tests/generate', '/plan/insights', '/transcribe'].includes(path) || /^\/tests\/[^/]+\/submit$/.test(path);
 
 /** Caminho da API sem o prefixo (/api/..., /.netlify/functions/api/...). */
 export const apiPath = (url: URL) => url.pathname.replace(/^\/\.netlify\/functions\/api/, '').replace(/^\/api/, '') || '/';

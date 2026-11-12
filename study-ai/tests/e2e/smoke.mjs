@@ -80,7 +80,8 @@ const step = async (name, fn) => {
   }
 };
 
-const browser = await chromium.launch();
+// Microfone simulado (para testar a voz no chat).
+const browser = await chromium.launch({ args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] });
 try {
   const ctx = await browser.newContext({ viewport: { width: 1360, height: 860 }, deviceScaleFactor: scale });
   const page = await ctx.newPage();
@@ -338,6 +339,58 @@ try {
     });
     if (!sw) throw new Error('o service worker não ficou registado');
     await mctx.close();
+  });
+
+  await step('microfone no chat', async () => {
+    // a) Ditado do navegador (simulado): o texto aparece enquanto se fala.
+    const vctx = await browser.newContext({ viewport: { width: 1200, height: 800 } });
+    await vctx.addCookies(await ctx.cookies());
+    await vctx.addInitScript(() => {
+      class FakeRecognition {
+        start() {
+          const said = (text, isFinal) => this.onresult?.({ resultIndex: 0, results: [Object.assign([{ transcript: text }], { isFinal })] });
+          setTimeout(() => said('o que é uma', false), 150);
+          setTimeout(() => said('o que é uma fração', true), 400);
+          setTimeout(() => this.onend?.(), 500);
+        }
+        stop() { this.onend?.(); }
+        abort() {}
+      }
+      window.SpeechRecognition = FakeRecognition;
+      window.webkitSpeechRecognition = FakeRecognition;
+    });
+    const v = await vctx.newPage();
+    v.on('pageerror', (e) => errors.push(e.message));
+    await v.goto(`${base}/chat`);
+    await v.getByLabel('Mensagem').fill('Pergunta:');
+    await v.getByRole('button', { name: 'Falar (ditar a pergunta)' }).click();
+    await v.getByText('A ouvir…').waitFor();
+    const typed = () => v.evaluate(() => document.querySelector('textarea[aria-label="Mensagem"]')?.value);
+    for (let i = 0; i < 30 && (await typed()) !== 'Pergunta: o que é uma fração'; i++) await v.waitForTimeout(200);
+    if ((await typed()) !== 'Pergunta: o que é uma fração') throw new Error(`ditado: a caixa ficou com «${await typed()}»`);
+    await vctx.close();
+
+    // b) Sem ditado no navegador (como na app instalada no iPhone): grava e o servidor transcreve.
+    if (gemini) {
+      const rctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2, permissions: ['microphone'] });
+      await rctx.addCookies(await ctx.cookies());
+      await rctx.addInitScript(() => {
+        delete window.webkitSpeechRecognition;
+        delete window.SpeechRecognition;
+      });
+      const r = await rctx.newPage();
+      r.on('pageerror', (e) => errors.push(e.message));
+      await r.goto(`${base}/chat`);
+      await r.getByRole('button', { name: 'Falar (ditar a pergunta)' }).click();
+      await r.getByText(/A gravar 0:0\d/).waitFor();
+      await r.waitForTimeout(1500);
+      await r.screenshot({ path: path.join(shots, 'm8-a-gravar.png') });
+      await r.getByRole('button', { name: 'Parar de ouvir' }).click();
+      await r.waitForFunction(() => (document.querySelector('textarea[aria-label="Mensagem"]')?.value ?? '').includes('Frações equivalentes'), null, { timeout: 15000 });
+      const sent = fake.requests.filter((x) => (x.body.contents?.[0]?.parts ?? []).some((p) => p.inlineData?.mimeType?.startsWith('audio/'))).at(-1);
+      if (!sent) throw new Error('a gravação não chegou à IA');
+      await rctx.close();
+    }
   });
 
   await step('usar sem conta (telemóvel)', async () => {

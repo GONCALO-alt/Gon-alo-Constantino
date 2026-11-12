@@ -324,6 +324,20 @@ describe('Netlify: IA Gemini', () => {
     }
   });
 
+  it('transforma gravações de voz em texto com o Gemini', async () => {
+    const c = await newStudent('voz@exemplo.pt');
+    expect((await c.get('/me')).data.ai.voice).toBe(true);
+    const audio = Buffer.alloc(3000, 9);
+    const r = await c.post('/transcribe', audio, { 'Content-Type': 'audio/mp4' });
+    expect(r.status).toBe(200);
+    expect(r.data.text).toBe(fake.reply);
+    const sent = fake.requests.filter((x) => x.path.includes(':generateContent')).at(-1)!;
+    const parts = sent.body.contents[0].parts;
+    expect(parts[0].inlineData).toEqual({ mimeType: 'audio/mp4', data: audio.toString('base64') });
+    expect(parts[1].text).toContain('Transcreve');
+    expect((await c.get('/me')).data.usage.questionsUsed).toBe(0);
+  });
+
   it('sem GEMINI_API_KEY diz claramente como ativar a IA', async () => {
     const noAi = createApp({ kv: memoryKV(), ai: new GeminiAi({ apiKey: null }), secret: 's' });
     const c = await newStudent('semia@exemplo.pt', noAi);

@@ -13,6 +13,8 @@ export interface AiBinding {
 
 /** Llama 4 Scout: multilingue (português incluído), lê imagens e tem contexto grande. */
 export const DEFAULT_MODEL = '@cf/meta/llama-4-scout-17b-16e-instruct';
+/** Voz → texto (Whisper, com português). */
+export const SPEECH_MODEL = '@cf/openai/whisper-large-v3-turbo';
 
 /** Tamanho máximo das respostas de cada plano (o limite gratuito conta por palavras geradas). */
 const MAX_TOKENS: Record<AiPlanId, number> = { 'claudio-5': 1536, 'claudio-5-5': 3072, 'claudio-6': 4096 };
@@ -58,11 +60,25 @@ export class WorkersAi implements CoreAi {
   }
 
   status(): AiStatus {
-    return { configured: true, message: 'IA ligada.', provider: 'Cloudflare Workers AI', notice: NOTICE };
+    return { configured: true, message: 'IA ligada.', provider: 'Cloudflare Workers AI', notice: NOTICE, voice: true };
   }
 
   checkImage(mime: string): string | null {
     return IMAGES.includes(mime) ? null : 'Este tipo de imagem não é aceite pela IA. Usa JPG, PNG ou WEBP.';
+  }
+
+  async transcribe(audio: Uint8Array, _mime: string, signal?: AbortSignal): Promise<string> {
+    const limit = AbortSignal.timeout(60_000);
+    try {
+      const r = (await this.ai.run(
+        SPEECH_MODEL,
+        { audio: toBase64(audio), task: 'transcribe', language: 'pt', vad_filter: true },
+        { signal: signal ? AbortSignal.any([signal, limit]) : limit },
+      )) as { text?: string };
+      return String(r?.text ?? '');
+    } catch (err) {
+      throw toCoreError(err);
+    }
   }
 
   /** Texto de um PDF (conversão do próprio Cloudflare). */

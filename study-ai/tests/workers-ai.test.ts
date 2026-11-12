@@ -26,6 +26,7 @@ function fakeAi() {
   const ai: AiBinding = {
     async run(model, inputs) {
       calls.push({ model, inputs });
+      if (model.includes('whisper')) return { text: ' Quanto é dois mais dois? ', transcription_info: { language: 'pt' } };
       if (state.failNext) {
         const m = state.failNext;
         state.failNext = null;
@@ -205,6 +206,21 @@ describe('IA do Cloudflare (Workers AI)', () => {
     expect(err.code).toBe('ai_rate_limit');
     expect(err.message).toContain('limite de hoje');
     expect((await c.get('/me')).data.usage.questionsUsed).toBe(0);
+  });
+
+  it('transforma gravações de voz em texto (sem contar como pergunta)', async () => {
+    const c = await student('voz@exemplo.pt');
+    expect((await c.get('/me')).data.ai.voice).toBe(true);
+    const audio = Buffer.alloc(4000, 7);
+    const r = await c.post('/transcribe', audio, { 'Content-Type': 'audio/webm;codecs=opus' });
+    expect(r.status).toBe(200);
+    expect(r.data.text).toBe('Quanto é dois mais dois?');
+    const call = fake.calls.at(-1)!;
+    expect(call.model).toContain('whisper');
+    expect(call.inputs).toMatchObject({ language: 'pt', task: 'transcribe', audio: audio.toString('base64') });
+    expect((await c.get('/me')).data.usage.questionsUsed).toBe(0);
+    expect((await c.post('/transcribe', Buffer.alloc(50), { 'Content-Type': 'audio/webm' })).status).toBe(400);
+    expect((await c.post('/transcribe', audio, { 'Content-Type': 'image/png' })).status).toBe(415);
   });
 
   it('tira o JSON do meio do texto', () => {

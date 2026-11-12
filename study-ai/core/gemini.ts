@@ -101,7 +101,7 @@ export class GeminiAi implements CoreAi {
 
   status(): AiStatus {
     return this.opts.apiKey
-      ? { configured: true, message: 'IA ligada.', provider: 'Google Gemini', notice: NOTICE }
+      ? { configured: true, message: 'IA ligada.', provider: 'Google Gemini', notice: NOTICE, voice: true }
       : { configured: false, message: this.notConfigured, provider: 'Google Gemini' };
   }
 
@@ -278,6 +278,33 @@ export class GeminiAi implements CoreAi {
 
   text(plan: AiPlanId, system: string, prompt: string) {
     return this.once(plan, system, prompt, false);
+  }
+
+  /** Voz → texto com o modelo mais leve (o Gemini percebe áudio diretamente). */
+  async transcribe(audio: Uint8Array, mime: string, signal?: AbortSignal): Promise<string> {
+    const limit = AbortSignal.timeout(this.opts.deadlineMs ?? 25_000);
+    try {
+      const res = await this.generate(
+        'claudio-5',
+        false,
+        (model) => ({
+          contents: [
+            {
+              role: 'user',
+              parts: [
+                { inlineData: { mimeType: mime, data: toBase64(audio) } },
+                { text: 'Transcreve exatamente o que é dito nesta gravação (português de Portugal). Responde só com o texto transcrito, sem comentários. Se não houver fala, não escrevas nada.' },
+              ],
+            },
+          ],
+          generationConfig: this.config(model, 'claudio-5', 1024),
+        }),
+        signal ? AbortSignal.any([signal, limit]) : limit,
+      );
+      return textOf((await res.json()) as GenerateResponse);
+    } catch (err) {
+      throw toCoreError(err);
+    }
   }
 
   async json<T>(plan: AiPlanId, system: string, prompt: string, format: string): Promise<T> {

@@ -175,6 +175,8 @@ export interface AiStatus {
   provider?: string;
   /** Aviso a mostrar junto do chat (ex.: privacidade do plano gratuito). */
   notice?: string;
+  /** O servidor transforma gravações de voz em texto (POST /transcribe). */
+  voice?: boolean;
 }
 
 export interface Attachment {

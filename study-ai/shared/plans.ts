@@ -98,6 +98,10 @@ export const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'
 export const FILE_TYPES = ['application/pdf', 'text/plain', 'text/markdown', 'text/csv'] as const;
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 export const MAX_PDF_BYTES = 20 * 1024 * 1024;
+/** Gravação de voz para transcrever (cerca de 2 minutos). */
+export const MAX_AUDIO_BYTES = 4 * 1024 * 1024;
+export const MAX_AUDIO_SECONDS = 120;
+
 export const MAX_TEXT_BYTES = 1024 * 1024;
 /** Máximo de anexos numa só mensagem. */
 export const MAX_ATTACHMENTS_PER_MESSAGE = 6;
