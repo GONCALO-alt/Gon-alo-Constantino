@@ -1,5 +1,5 @@
 """Visuais animados para as cenas do Reel: repetição da corrida com dados GPS reais (OpenF1),
-gráfico de posições, ultrapassagens, mensagens da direção de corrida, cartão de notícia e memes (sem emojis).
+gráfico de posições, ultrapassagens, mensagens da direção de corrida, cartão de notícia, classificação do campeonato e pergunta de votação.
 
 Cada visual desenha-se numa caixa (x, y, w, h) a partir do instante u (segundos desde o início
 da cena) e da duração da cena. Os dados da OpenF1 ficam em cache na pasta de trabalho.
@@ -379,45 +379,104 @@ class Noticia:
 
 
 # ---------------------------------------------------------------- 6. meme
-class Meme:
-    """Cartão de meme original: frase («POV: …») e uma palavra de reação grande a abanar."""
+class Classificacao:
+    """Classificação do campeonato: barras a crescer dos pontos de antes para os de depois,
+    com os pilotos a trocar de lugar e a diferença entre eles."""
 
     def __init__(self, cfg: dict):
-        self.topo = cfg.get("topo", "POV:"); self.texto = cfg["texto"]
-        self.reacao = cfg.get("reacao", "PAIN.")
-        self.cor = tuple(cfg.get("cor", (215, 25, 25)))
+        sk = cfg["session_key"]
+        self.drv = drivers(sk)
+        rows = api("championship_drivers", session_key=sk)
+        if cfg.get("pilotos"):
+            rows = [r for r in rows if r["driver_number"] in cfg["pilotos"]]
+        else:
+            rows = sorted(rows, key=lambda r: r["position_current"])[: cfg.get("top", 6)]
+        self.rows = [(r["driver_number"], float(r.get("points_start") or 0), float(r["points_current"])) for r in rows]
+        self.destaque = set(cfg.get("destaque", []))
+        self.titulo = cfg.get("titulo", "DRIVERS' STANDINGS")
+        self.antes = cfg.get("antes", True)
 
     def draw(self, img, box, u, dur):
         x, y, w, h = box
-        panel(img, box, fill=(255, 255, 255, 255))
+        panel(img, box)
         d = ImageDraw.Draw(img)
-        f = font(F_BLACK, 58)
-        lines = _wrap(f"{self.topo} {self.texto}".strip(), f, w - 70)
-        yy = y + 30
-        for l in lines[:4]:
-            d.text((x + 35, yy), l, font=f, fill=(10, 10, 10)); yy += 68
-        # palavra de reação: entra com ressalto, abana e pulsa
-        s = ease_back((u - 0.35) / 0.4)
-        if s <= 0.02: return
-        size = 260
-        while size > 80 and ImageDraw.Draw(Image.new("RGB", (4, 4))).textlength(self.reacao, font=font(F_BLACK, size)) > w - 120:
-            size -= 10
-        pulse = 1 + 0.04 * math.sin(u * 9)
-        fr = font(F_BLACK, size)
-        tw = int(ImageDraw.Draw(Image.new("RGB", (4, 4))).textlength(self.reacao, font=fr)) + 30
-        layer = Image.new("RGBA", (tw, int(size * 1.3)), (0, 0, 0, 0))
-        ld = ImageDraw.Draw(layer)
-        ld.text((14, 6), self.reacao, font=fr, fill=(10, 10, 10))
-        ld.text((4, 0), self.reacao, font=fr, fill=self.cor)
-        k = s * pulse
-        layer = layer.resize((max(1, int(layer.width * k)), max(1, int(layer.height * k))), Image.BICUBIC)
-        layer = layer.rotate(5 * math.sin(u * 7), expand=True, resample=Image.BICUBIC)
-        cy = yy + (y + h - yy) // 2
-        img.paste(layer, (x + w // 2 - layer.width // 2, cy - layer.height // 2), layer)
+        d.text((x + 30, y + 26), self.titulo, font=font(F_BLACK, 30), fill=(255, 255, 255))
+        p = ease_out((u - 0.6) / max(0.6, min(2.2, dur - 1.2))) if self.antes else 1.0
+        cur = [(n, a + (b - a) * p) for n, a, b in self.rows]
+        order = sorted(cur, key=lambda r: -r[1])
+        top = max(v for _, v in cur) or 1
+        lo = min(v for _, v in cur)
+        base = max(0, lo - (top - lo) * 1.2) if len(cur) <= 4 else 0
+        n = len(order)
+        rh = min(130, (h - 110) // n)
+        bx = x + 200; bw = w - 200 - 150
+        # posições suaves: cada piloto desliza para o seu novo lugar
+        slots = {num: i for i, (num, _) in enumerate(order)}
+        if not hasattr(self, "_y"): self._y = {num: i for i, (num, _) in enumerate(sorted(((nn, aa) for nn, aa, _ in self.rows), key=lambda r: -r[1]))}
+        for num in slots:
+            self._y[num] += (slots[num] - self._y[num]) * 0.25
+        prev_v = None
+        for num, v in sorted(cur, key=lambda r: self._y[r[0]]):
+            i = self._y[num]
+            yy = int(y + 90 + i * rh)
+            info = self.drv.get(num, {})
+            col = hexcol(info.get("team_colour"))
+            hl = num in self.destaque
+            grow = ease_out((u - 0.2 - i * 0.06) / 0.4)
+            L = int(bw * (v - base) / (top - base) * grow)
+            d.rounded_rectangle([bx, yy + 8, bx + max(L, 12), yy + rh - 14], 10, fill=col)
+            if hl:
+                d.rounded_rectangle([bx - 4, yy + 4, bx + max(L, 12) + 4, yy + rh - 10], 12, outline=(255, 255, 255), width=4)
+            d.text((x + 30, yy + rh // 2 - 3), f"{int(round(i)) + 1}", font=font(F_BLACK, 34), fill=(150, 150, 155), anchor="lm")
+            d.text((x + 70, yy + rh // 2 - 3), info.get("name_acronym", str(num)), font=font(F_BLACK, 38),
+                   fill=(255, 255, 255), anchor="lm")
+            d.text((bx + max(L, 12) + 14, yy + rh // 2 - 3), f"{v:.0f}", font=font(F_BLACK, 38),
+                   fill=(255, 255, 255), anchor="lm")
+            if prev_v is not None and grow > 0.9:
+                gap = prev_v - v
+                d.text((x + w - 24, yy + rh // 2 - 3), f"-{gap:.0f}", font=font(F_SEMI, 28), fill=(245, 197, 24), anchor="rm")
+            prev_v = v
+
+
+class Pergunta:
+    """Pergunta de votação ao estilo das stories do Instagram, para a chamada final."""
+
+    def __init__(self, cfg: dict):
+        self.pergunta = cfg["pergunta"]
+        self.opcoes = cfg["opcoes"]  # [{"texto": "MAX", "piloto": 3}] ou só textos
+        self.drv = drivers(cfg["session_key"]) if cfg.get("session_key") else {}
+
+    def draw(self, img, box, u, dur):
+        x, y, w, h = box
+        panel(img, box, fill=(250, 250, 248, 255))
+        d = ImageDraw.Draw(img)
+        f = font(F_BLACK, 64)
+        yy = y + 40
+        for l in _wrap(self.pergunta, f, w - 80)[:3]:
+            d.text((x + w // 2, yy), l, font=f, fill=(15, 15, 15), anchor="ma"); yy += 76
+        yy += 30
+        n = len(self.opcoes)
+        oh = min(120, (y + h - 60 - yy) // max(1, n) - 18)
+        # o destaque passa de opção em opção, como um dedo a escolher
+        hl = int(max(0, u - 0.9) / 0.45) % n if u > 0.9 else -1
+        for i, o in enumerate(self.opcoes):
+            o = o if isinstance(o, dict) else {"texto": o}
+            a = ease_back((u - 0.3 - i * 0.12) / 0.35)
+            if a <= 0.02: continue
+            col = hexcol(self.drv.get(o.get("piloto"), {}).get("team_colour"), (215, 25, 25))
+            ox = x + 40; ow = w - 80
+            sc = 1.04 if i == hl else 1.0
+            cw = int(ow * a * sc); cx = x + w // 2 - cw // 2
+            d.rounded_rectangle([cx, yy, cx + cw, yy + oh], oh // 2, fill=col if i == hl else (232, 232, 228),
+                                outline=col, width=5)
+            if a > 0.6:
+                d.text((x + w // 2, yy + oh // 2), o["texto"], font=font(F_BLACK, int(oh * 0.45)),
+                       fill=(255, 255, 255) if i == hl else (20, 20, 20), anchor="mm")
+            yy += oh + 18
 
 
 TIPOS_VISUAL = {"replay": Replay, "posicoes": Posicoes, "ultrapassagens": Ultrapassagens,
-                "direcao": Direcao, "noticia": Noticia, "meme": Meme}
+                "direcao": Direcao, "noticia": Noticia, "classificacao": Classificacao, "pergunta": Pergunta}
 
 
 def criar(cfg: dict | None):

@@ -1,6 +1,6 @@
 # Rotina diária: Reel de F1
 
-Corre todos os dias às 7:00 (Lisboa) numa sessão nova. Resultado: um Reel vertical de 25–45 s
+Corre todos os dias às 6:23 (Lisboa) numa sessão nova. Resultado: um Reel vertical de 25–45 s
 com voz sintética de um jovem britânico, **tudo em inglês** (fala, texto no ecrã, legendas e legenda do post), publicado na página **Reel F1 do Dia**:
 https://claude.ai/artifact/Scaw2w7Ckd9GuBh8ZzxUDw
 
@@ -9,6 +9,7 @@ https://claude.ai/artifact/Scaw2w7Ckd9GuBh8ZzxUDw
 ```bash
 git fetch origin claude/kind-meitner-5yd7hc && git checkout claude/kind-meitner-5yd7hc
 bash reels-f1/setup.sh          # instala o Piper e a voz inglesa (≈ 1 min)
+# usar o mesmo python3 do sistema para o setup e para o make_reel.py
 ```
 
 ## 2. Buscar o tema do dia
@@ -18,8 +19,11 @@ bash reels-f1/setup.sh          # instala o Piper e a voz inglesa (≈ 1 min)
 - Pesquisar na web as notícias de F1 das últimas 24–72 h e o que está a ter mais
   visualizações e comentários (vídeos «de último a pódio», polémicas, rádios, penalizações,
   mercado de pilotos, regulamentos).
-- Não repetir um tema que já esteja em `reels-f1/guioes/`.
+- Não repetir um tema já feito: ver `reels-f1/guioes/` **e** os guiões publicados na página
+  (Artifact `list` com `scope: "files"` e `url` da página; ler os `guioes/*.json` dos últimos dias).
 - Confirmar cada número em duas fontes (OpenF1 + uma notícia). Se não der para confirmar, não usar.
+- Cada diferença de pontos ou de tempo diz **em relação a quem** («18 ahead of Hamilton», não
+  «18 clear of P3» se o P3 mudou). Fazer a conta com os dados da OpenF1 antes de escrever.
 - Sem fim de semana de corrida recente, escolher: antevisão do próximo GP, curiosidade
   histórica com data de hoje, estatística da época, ou explicação de uma regra.
 
@@ -54,11 +58,15 @@ Com `visual`, a cena mostra o texto em cima (compacto) e o visual animado no mei
 | `ultrapassagens` | `session_key`, `piloto` | Cada ultrapassagem a aparecer (P20 › BOR …) com contador. |
 | `direcao` | `session_key`, `filtro` (palavras) ou `mensagens` [{`volta`,`texto`,`bandeira`}] | Mensagens reais da direção de corrida a serem escritas (chuva, penalizações, bandeiras). |
 | `noticia` | `fonte`, `manchete`, `pontos` (até 4), `rodape` | Cartão «BREAKING» com a manchete a ser escrita, pontos-chave e faixa a correr. |
-| `meme` | `topo` («POV:», «Me when…»), `texto`, `reacao` (1–2 palavras: «PAIN.», «HIM.», «BRUH.») | Cartão de meme original com a palavra de reação grande a abanar. **Sem emojis no vídeo.** |
+| `classificacao` | `session_key`, `top` (n.º) ou `pilotos` [números], `destaque` [números], `titulo` | Campeonato: barras a crescer dos pontos antes da sessão para os de depois, pilotos a trocar de lugar, diferenças. |
+| `pergunta` | `pergunta`, `opcoes` [{`texto`, `piloto`}], `session_key` (para as cores) | Votação ao estilo das stories do Instagram, para a chamada final. |
 
-Regra prática: gancho = `replay` ou `noticia`; problema = `meme` ou `direcao`; virada = `posicoes`
-ou `ultrapassagens`; chamada = `meme`. Sem corrida recente: `noticia` + `meme` + `direcao`
-de uma sessão relevante (ex.: treinos livres).
+**Proibido:** memes (POV, «BRUH», «PAIN.», palavras de reação) e emojis no vídeo. O Gonçalo não os quer.
+O estilo é de página de notícias de F1 no Instagram: dados, notícias, números.
+
+Regra prática: gancho = `replay`, `classificacao` ou `noticia`; problema/contexto = `noticia`,
+`direcao` ou `classificacao`; virada = `posicoes` ou `ultrapassagens`; chamada = `pergunta`.
+Sem corrida recente: `classificacao` + `noticia` + `direcao`/`posicoes` da última corrida.
 
 ## 4. Gerar
 
@@ -71,6 +79,11 @@ Ver 6–8 fotogramas (ffmpeg `select` + `tile`) para confirmar que nada se sobre
 ## 5. Entregar
 
 1. Artifact `read` do URL acima e depois `publish` com `url` = esse URL,
-   `file_path` = `$SCRATCH/reel/index.html` e `files` = `reel.mp4` e `capa.jpg` da mesma pasta.
-2. `git add reels-f1/guioes/AAAA-MM-DD.json`, commit e `git push -u origin claude/kind-meitner-5yd7hc`.
-3. Mensagem final curta: título do Reel, duração e o link da página.
+   `file_path` = `$SCRATCH/reel/index.html` e `files` = `reel.mp4`, `capa.jpg` (da mesma pasta) e
+   `guioes/AAAA-MM-DD.json` (o guião do dia, para o histórico).
+2. Enviar o vídeo ao Gonçalo para o publicar no Instagram: `SendUserFile` com
+   `$SCRATCH/reel/reel.mp4`, `status: "proactive"`, legenda curta com o título.
+3. **Não fazer git push** (a sessão automática não tem permissão de escrita no repositório;
+   o histórico fica na página).
+4. Mensagem final curta em português: título do Reel, duração, link da página e a legenda do
+   post pronta a copiar.
