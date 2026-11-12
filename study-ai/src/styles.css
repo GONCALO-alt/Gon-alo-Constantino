@@ -551,6 +551,8 @@ html[data-reduce-motion='true'] *, html[data-reduce-motion='true'] *::before, ht
 .send-btn svg { width: 19px; height: 19px; }
 .mic-btn.on { background: rgba(255, 100, 100, 0.14); color: var(--danger); animation: micPulse 1.4s ease-out infinite; }
 .voice-status { color: var(--danger); font-weight: 600; }
+.talk-on { color: var(--yellow); background: var(--yellow-soft); }
+.talk-hint { color: var(--yellow); display: flex; align-items: center; justify-content: center; gap: 6px; }
 @keyframes micPulse { 0% { box-shadow: 0 0 0 0 rgba(255, 100, 100, 0.45); } 70% { box-shadow: 0 0 0 10px rgba(255, 100, 100, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 100, 100, 0); } }
 .pending-atts { display: flex; gap: 8px; flex-wrap: wrap; padding: 4px 4px 8px; }
 .pending-att { position: relative; }

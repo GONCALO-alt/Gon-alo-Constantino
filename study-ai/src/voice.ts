@@ -14,6 +14,8 @@ interface Options {
   onStart: () => void;
   /** Texto dito até agora nesta vez (substitui o anterior). */
   onText: (text: string) => void;
+  /** Acabou de falar (texto final desta vez). Usado no modo conversa para enviar logo. */
+  onFinal?: (text: string) => void;
   onError: (message: string) => void;
 }
 
@@ -100,6 +102,7 @@ export function useVoiceInput(opts: Options) {
       try {
         const text = await transcribeAudio(new Blob(chunks, { type: (recorder.mimeType || mime || 'audio/webm').split(';')[0] }), ctrl.signal);
         optsRef.current.onText(text);
+        if (text.trim()) optsRef.current.onFinal?.(text.trim());
       } catch (err) {
         if ((err as Error)?.name !== 'AbortError') optsRef.current.onError((err as Error).message);
       } finally {
@@ -125,6 +128,7 @@ export function useVoiceInput(opts: Options) {
     rec.interimResults = true;
     rec.continuous = true;
     let finalText = '';
+    let lastText = '';
     let fellBack = false;
     rec.onresult = (e: any) => {
       let interim = '';
@@ -133,7 +137,8 @@ export function useVoiceInput(opts: Options) {
         if (r.isFinal) finalText += r[0].transcript;
         else interim += r[0].transcript;
       }
-      optsRef.current.onText(`${finalText}${interim}`.replace(/\s+/g, ' ').trim());
+      lastText = `${finalText}${interim}`.replace(/\s+/g, ' ').trim();
+      optsRef.current.onText(lastText);
     };
     rec.onerror = (e: any) => {
       const err = String(e?.error ?? '');
@@ -153,7 +158,9 @@ export function useVoiceInput(opts: Options) {
     };
     rec.onend = () => {
       recRef.current = null;
-      if (!fellBack) setState((s) => (s === 'listening' ? 'idle' : s));
+      if (fellBack) return;
+      setState((s) => (s === 'listening' ? 'idle' : s));
+      if (lastText) optsRef.current.onFinal?.(lastText);
     };
     recRef.current = rec;
     try {
@@ -181,12 +188,21 @@ export function useVoiceInput(opts: Options) {
     else if (record) void startRecording();
   }, [state, speech, record, startSpeech, startRecording]);
 
+  /** Começa a ouvir (se ainda não estiver). */
+  const start = useCallback(() => {
+    if (state !== 'idle') return;
+    optsRef.current.onStart();
+    if (speech && !(record && preferRecord())) startSpeech();
+    else if (record) void startRecording();
+  }, [state, speech, record, startSpeech, startRecording]);
+
   /** Pára sem escrever mais nada (ex.: a pergunta foi enviada). */
   const cancel = useCallback(() => {
     const rec = recRef.current;
     if (rec) {
       rec.onresult = null;
       rec.onerror = null;
+      rec.onend = null;
       try {
         rec.abort();
       } catch {
@@ -208,5 +224,5 @@ export function useVoiceInput(opts: Options) {
   // Ao sair da página: pára tudo e liberta o microfone.
   useEffect(() => cancel, [cancel]);
 
-  return { supported, state, seconds, toggle, cancel };
+  return { supported, state, seconds, toggle, start, cancel };
 }

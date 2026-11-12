@@ -2,10 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ClipboardEvent,
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft, ArrowUp, BookOpen, Bookmark, Check, ChevronDown, CircleHelp, ClipboardCheck, Copy, FileText, History, Image as ImageIcon, Info, Lightbulb,
-  Lock, Mic, NotebookPen, Paperclip, Pencil, PenLine, Plus, Search, Sigma, Sparkles, Square, Trash2, X,
+  Headphones, Lock, Mic, NotebookPen, Paperclip, Pencil, PenLine, Plus, Search, Sigma, Sparkles, Square, Trash2, Volume2, X,
 } from 'lucide-react';
 import { api, ApiError, attachmentUrl, streamChat, uploadFile } from '../api';
 import { DEMO } from '../env';
+import { canSpeak, speak, stopSpeaking, unlockSpeech } from '../speech';
 import { useVoiceInput } from '../voice';
 import { Markdown } from '../components/Markdown';
 import { Promo } from '../components/Promo';
@@ -148,15 +149,60 @@ export function ChatPage() {
   const [input, setInput] = useState('');
   // Microfone: o que se diz junta-se ao que já estava escrito.
   const voiceBase = useRef('');
+  const withVoice = (t: string) => (t ? (voiceBase.current.trim() ? `${voiceBase.current.replace(/\s+$/, '')} ${t}` : t) : voiceBase.current);
+  // Modo conversa: fala → envia sozinho → a resposta é lida em voz alta → volta a ouvir.
+  const [talkMode, setTalkMode] = useState(false);
+  const talkRef = useRef(false);
+  const sendRef = useRef<(text?: string) => void>(() => {});
+  const [speakingId, setSpeakingId] = useState<string | null>(null);
   const voice = useVoiceInput({
     serverVoice: !!me.ai.voice,
     onStart: () => {
       voiceBase.current = input;
     },
-    onText: (t) => setInput(t ? (voiceBase.current.trim() ? `${voiceBase.current.replace(/\s+$/, '')} ${t}` : t) : voiceBase.current),
+    onText: (t) => setInput(withVoice(t)),
+    onFinal: (t) => {
+      if (talkRef.current) sendRef.current(withVoice(t));
+    },
     onError: (m) => toast(m, 'error'),
   });
+  const voiceRef = useRef(voice);
+  voiceRef.current = voice;
   const showMic = !DEMO && me.ai.configured && voice.supported;
+  const showSpeak = canSpeak();
+
+  /** Lê uma resposta; no modo conversa, volta a ouvir no fim. */
+  function readAloud(id: string, text: string) {
+    setSpeakingId(id);
+    speak(text, {
+      onEnd: () => {
+        setSpeakingId(null);
+        if (talkRef.current) voiceRef.current.start();
+      },
+    });
+  }
+
+  function quiet() {
+    stopSpeaking();
+    setSpeakingId(null);
+  }
+
+  function toggleTalk() {
+    if (talkRef.current) {
+      talkRef.current = false;
+      setTalkMode(false);
+      quiet();
+      voice.cancel();
+      return;
+    }
+    unlockSpeech();
+    talkRef.current = true;
+    setTalkMode(true);
+    toast('Modo conversa ligado: fala e eu respondo em voz alta.');
+    if (!streaming) voice.start();
+  }
+
+  useEffect(() => () => stopSpeaking(), []);
   const [subject, setSubject] = useState<string | null>(null);
   const [pending, setPending] = useState<Pending[]>([]);
   const [uploading, setUploading] = useState(0);
@@ -300,10 +346,11 @@ export function ChatPage() {
     setStreaming({ text: bufferRef.current });
   };
 
-  async function send() {
-    if (!canSend) return;
+  async function send(spoken?: string) {
+    if (spoken === undefined ? !canSend : !me.ai.configured || busy || limitReached || uploading > 0 || !spoken.trim()) return;
     voice.cancel();
-    const content = input.trim();
+    quiet();
+    const content = (spoken ?? input).trim();
     const sentPending = pending;
     const attachments = sentPending.map((p) => p.attachment).filter(Boolean) as Attachment[];
     const optimistic: ChatMessage = {
@@ -353,6 +400,7 @@ export function ChatPage() {
           setMessages((m) => [...m, message]);
           setUsage(usage);
           invalidate('/conversations', '/stats');
+          if (talkRef.current) readAloud(message.id, message.content);
         },
         onError: (err: ApiError) => {
           if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
@@ -399,6 +447,8 @@ export function ChatPage() {
   function stop() {
     abortRef.current?.abort();
   }
+
+  sendRef.current = (text?: string) => void send(text);
 
   function onKey(e: KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
@@ -449,6 +499,7 @@ export function ChatPage() {
 
   function newChat() {
     if (busy) stop();
+    quiet();
     setHistoryOpen(false);
     setConversation(null);
     setMessages([]);
@@ -510,6 +561,11 @@ export function ChatPage() {
             <Sparkles />
             <span className="nowrap">{plan.name}{left !== null ? ` · ${left}` : ''}</span>
           </Link>
+          {showMic && showSpeak && (
+            <IconButton label={talkMode ? 'Desligar o modo conversa' : 'Modo conversa (falar e ouvir)'} active={talkMode} className={talkMode ? 'talk-on' : ''} onClick={toggleTalk}>
+              <Headphones />
+            </IconButton>
+          )}
           <IconButton label="Histórico de conversas" className="mobile-only" onClick={() => setHistoryOpen(true)}>
             <History />
           </IconButton>
@@ -593,6 +649,16 @@ export function ChatPage() {
                           {copied === m.id ? 'Copiado' : 'Copiar'}
                         </Button>
                         <Button variant="ghost" size="sm" onClick={() => setSaveMsg(m)} icon={<Bookmark />}>Guardar resumo</Button>
+                        {showSpeak && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => (speakingId === m.id ? quiet() : readAloud(m.id, m.content))}
+                            icon={speakingId === m.id ? <Square /> : <Volume2 />}
+                          >
+                            {speakingId === m.id ? 'Parar' : 'Ouvir'}
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -672,7 +738,10 @@ export function ChatPage() {
                 <IconButton
                   label={voice.state === 'idle' ? 'Falar (ditar a pergunta)' : voice.state === 'transcribing' ? 'A transcrever…' : 'Parar de ouvir'}
                   className={`mic-btn ${voice.state === 'listening' || voice.state === 'recording' ? 'on' : ''}`}
-                  onClick={voice.toggle}
+                  onClick={() => {
+                    quiet();
+                    voice.toggle();
+                  }}
                   disabled={busy || voice.state === 'transcribing'}
                 >
                   {voice.state === 'transcribing' ? <span className="spinner" /> : <Mic />}
@@ -681,10 +750,15 @@ export function ChatPage() {
               {busy ? (
                 <button type="button" className="send-btn" onClick={stop} aria-label="Parar resposta"><Square fill="currentColor" size={15} /></button>
               ) : (
-                <button type="button" className="send-btn" onClick={send} disabled={!canSend} aria-label="Enviar"><ArrowUp /></button>
+                <button type="button" className="send-btn" onClick={() => send()} disabled={!canSend} aria-label="Enviar"><ArrowUp /></button>
               )}
             </div>
           </div>
+          {talkMode && (
+            <div className="composer-hint talk-hint" role="status">
+              <Headphones size={14} /> Modo conversa: fala, a resposta é lida em voz alta e depois volto a ouvir-te. Toca nos auscultadores para desligar.
+            </div>
+          )}
           <div className="composer-hint">
             A IA pode cometer erros. Confirma a informação importante com o teu professor ou com o manual.
             {me.ai.configured && me.ai.notice && <> {me.ai.notice}</>}

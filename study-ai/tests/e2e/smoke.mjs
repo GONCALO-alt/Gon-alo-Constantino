@@ -370,6 +370,49 @@ try {
     if ((await typed()) !== 'Pergunta: o que é uma fração') throw new Error(`ditado: a caixa ficou com «${await typed()}»`);
     await vctx.close();
 
+    // c) Modo conversa: fala → envia sozinho → lê a resposta em voz alta → volta a ouvir.
+    const tctx = await browser.newContext({ viewport: { width: 1200, height: 800 } });
+    await tctx.addCookies(await ctx.cookies());
+    await tctx.addInitScript(() => {
+      window.__starts = 0;
+      window.__spoken = [];
+      class FakeRecognition {
+        start() {
+          window.__starts++;
+          if (window.__starts > 1) return; // depois da primeira vez fica só à escuta
+          setTimeout(() => this.onresult?.({ resultIndex: 0, results: [Object.assign([{ transcript: 'explica frações equivalentes' }], { isFinal: true })] }), 200);
+          setTimeout(() => this.onend?.(), 300);
+        }
+        stop() { this.onend?.(); }
+        abort() {}
+      }
+      window.SpeechRecognition = FakeRecognition;
+      window.webkitSpeechRecognition = FakeRecognition;
+      speechSynthesis.speak = (u) => {
+        window.__spoken.push(u.text);
+        setTimeout(() => u.onend?.(), 5);
+      };
+      speechSynthesis.cancel = () => {};
+    });
+    const t = await tctx.newPage();
+    t.on('pageerror', (e) => errors.push(e.message));
+    await t.goto(`${base}/chat`);
+    await t.getByRole('button', { name: 'Modo conversa (falar e ouvir)' }).click();
+    await t.getByText('Modo conversa: fala').waitFor();
+    await t.getByRole('heading', { name: 'Frações equivalentes' }).waitFor({ timeout: 15000 });
+    await t.waitForFunction(() => window.__spoken.some((x) => x.includes('Frações equivalentes')) && window.__starts >= 2, null, { timeout: 10000 });
+    const spoken = await t.evaluate(() => window.__spoken.join(' '));
+    if (/[*$#|\\]/.test(spoken)) throw new Error(`a leitura tem símbolos: ${spoken.slice(0, 120)}`);
+    await t.getByRole('button', { name: 'Desligar o modo conversa' }).click();
+    await t.getByRole('button', { name: 'Modo conversa (falar e ouvir)' }).waitFor({ timeout: 3000 });
+    if (await t.getByText('A ouvir…').isVisible()) throw new Error('o microfone continuou ligado depois de desligar o modo conversa');
+    await t.evaluate(() => (window.__spoken = []));
+    await t.getByRole('button', { name: 'Ouvir', exact: true }).first().click();
+    await t.getByRole('button', { name: 'Parar', exact: true }).waitFor().catch(() => {});
+    await t.waitForFunction(() => window.__spoken.length > 0);
+    await t.screenshot({ path: path.join(shots, '12b-ouvir-resposta.png') });
+    await tctx.close();
+
     // b) Sem ditado no navegador (como na app instalada no iPhone): grava e o servidor transcreve.
     if (gemini) {
       const rctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2, permissions: ['microphone'] });
