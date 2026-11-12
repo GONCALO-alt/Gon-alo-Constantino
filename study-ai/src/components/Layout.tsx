@@ -1,10 +1,10 @@
 import { Suspense, useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import {
-  BookOpen, CalendarDays, ChartColumn, ClipboardCheck, FileText, House, LayoutGrid, LogOut, MessagesSquare, Settings, Sparkles,
+  BookOpen, CalendarDays, TriangleAlert, ChartColumn, ClipboardCheck, FileText, House, LayoutGrid, LogOut, MessagesSquare, Settings, Sparkles,
 } from 'lucide-react';
 import { AI_PLANS, questionsLeft } from '../../shared/plans';
-import { useApp, useMe } from '../state';
+import { useApp, useMe, useQuery } from '../state';
 import { InstallButton } from './Install';
 import { DEMO } from '../env';
 import { Logo } from './Logo';
@@ -106,6 +106,7 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
           </Link>
         </header>
         <main className={`content ${full ? 'full' : ''}`}>
+          {DEMO && !inChat && <DemoStorageWarning />}
           <Suspense fallback={<div className="row muted small" style={{ padding: 24 }}><span className="spinner" /> A carregar…</div>}>
             <div className="page" key={inChat ? 'chat' : location.pathname}>
               {children}
@@ -162,6 +163,21 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
           </>
         )}
       </Modal>
+    </div>
+  );
+}
+
+/** Na versão do claude.ai: avisa quando a página não consegue guardar os dados. */
+function DemoStorageWarning() {
+  const info = useQuery<{ storage: 'conta' | 'navegador' | 'memoria' }>('/demo/info');
+  if (info.data?.storage !== 'memoria') return null;
+  return (
+    <div className="notice" style={{ marginBottom: 16 }}>
+      <TriangleAlert />
+      <div>
+        <b>Os teus dados não estão a ser guardados.</b> Esta página não consegue gravar na tua conta nem neste navegador, por isso
+        o que fizeres perde-se ao fechá-la. Abre-a no claude.ai com a sessão iniciada (ou pede acesso de edição a quem a partilhou).
+      </div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import {
   Lightbulb, MessageCircleQuestion, NotebookPen, PenLine, Plus, Sparkles, Target, Trash2, TrendingUp, X,
 } from 'lucide-react';
 import { api } from '../api';
+import { DEMO } from '../env';
 import { Logo } from '../components/Logo';
 import { SubjectIcon, subjectColor } from '../components/SubjectIcon';
 import { Button, FormError, Progress } from '../components/ui';
@@ -598,7 +599,9 @@ function PlanReveal({ plan, q, me, onContinue, editing }: { plan: StudyPlan | nu
               </ul>
               <p className="tiny faint" style={{ marginTop: 14 }}>
                 {me.ai.configured
-                  ? 'A IA está a preparar conselhos personalizados — vais vê-los no teu Plano de estudos.'
+                  ? DEMO
+                    ? 'No Plano de estudos podes pedir à IA conselhos personalizados para as disciplinas difíceis.'
+                    : 'A IA está a preparar conselhos personalizados — vais vê-los no teu Plano de estudos.'
                   : 'Plano criado pelo motor de planeamento da STUDY AI. A análise por IA aparece quando a IA estiver ligada.'}
               </p>
             </div>

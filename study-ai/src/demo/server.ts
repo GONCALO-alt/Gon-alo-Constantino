@@ -33,6 +33,7 @@ const now = () => new Date().toISOString();
 
 function freshState(name: string): DemoState {
   return {
+    rev: 0,
     user: { id: uid(), name: name || 'Estudante', email: '', createdAt: now() },
     profile: {
       onboarded: false,
@@ -225,7 +226,7 @@ route('POST', '/demo/reset', async () => {
 route('POST', '/auth/logout', () => ({ ok: true }));
 
 // Perfil e questionário
-route('PUT', '/profile/questionnaire', ({ body }) => {
+route('PUT', '/profile/questionnaire', async ({ body }) => {
   const raw = body?.questionnaire as Questionnaire | undefined;
   if (!raw?.name?.trim()) fail(400, 'Escreve o teu nome.', 'invalid');
   if (!raw.subjects?.length) fail(400, 'Escolhe pelo menos uma disciplina.', 'invalid');
@@ -246,8 +247,8 @@ route('PUT', '/profile/questionnaire', ({ body }) => {
     if (s.plan) fresh.settings = s.plan.settings;
     s.plan = fresh;
   }
-  store.save();
-  if (regenerate) refreshInsights().catch(() => {});
+  // Grava antes de responder: o plano não se perde se a página for recarregada logo a seguir.
+  await store.saveNow();
   return { me: me(), plan: s.plan };
 });
 route('PUT', '/profile/ai-plan', ({ body }) => {
@@ -272,14 +273,13 @@ route('GET', '/plan', ({ query }) => {
   const week = weekStart(isISODate(query.get('week')) ? query.get('week')! : today());
   return { plan: S().plan, week, checks: S().checks[week] ?? [] };
 });
-route('POST', '/plan/generate', () => {
+route('POST', '/plan/generate', async () => {
   const questionnaire = q();
   if (!questionnaire) fail(400, 'Responde primeiro ao questionário.', 'no_questionnaire');
   const plan = generatePlan(questionnaire, S().events.filter((e) => e.date >= today()), today());
   if (S().plan) plan.settings = S().plan!.settings;
   S().plan = plan;
-  store.save();
-  refreshInsights().catch(() => {});
+  await store.saveNow();
   return { plan };
 });
 route('POST', '/plan/insights', async () => {
@@ -638,6 +638,7 @@ route('POST', '/chat/send', ({ body, init }) => {
       send('done', { message, usage: usage() });
     } catch (err) {
       rollback();
+      store.logError('chat', err);
       const e = err instanceof DemoError ? err : new DemoError(500, 'Ocorreu um erro ao falar com a IA.', 'ai_error');
       send('error', { message: `${e.message} A pergunta não foi contada.`, code: e.code });
     }
@@ -912,12 +913,21 @@ export async function demoFetch(input: string, init: RequestInit = {}): Promise<
       if (result instanceof Response) return result;
       return new Response(JSON.stringify(result), { status: 200, headers: { 'Content-Type': 'application/json' } });
     } catch (err) {
-      const e = err instanceof DemoError ? err : new DemoError(500, 'Ocorreu um erro. Tenta novamente.', 'erro');
+      if (!(err instanceof DemoError) || err.status >= 500) store.logError(`${method} ${path}`, err);
+      const e =
+        err instanceof DemoError
+          ? err
+          : new DemoError(500, `Ocorreu um erro (${(err as Error)?.message ?? 'desconhecido'}). Tenta novamente.`, 'erro');
       if (!(err instanceof DemoError)) console.error('[demo]', err);
       return new Response(JSON.stringify({ error: e.message, code: e.code }), { status: e.status, headers: { 'Content-Type': 'application/json' } });
     }
   }
   return new Response(JSON.stringify({ error: 'Endereço não encontrado.', code: 'not_found' }), { status: 404, headers: { 'Content-Type': 'application/json' } });
+}
+
+/** Erros da página (fora dos pedidos) também ficam registados para diagnóstico. */
+export function demoLogError(where: string, err: unknown) {
+  if (ready) store.logError(where, err);
 }
 
 /** Endereço de um anexo desta sessão (imagens). `null` se já não estiver disponível. */
