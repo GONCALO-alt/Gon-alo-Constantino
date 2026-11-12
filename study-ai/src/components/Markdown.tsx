@@ -8,7 +8,9 @@ import remarkMath from 'remark-math';
 function normalizeMath(text: string): string {
   return text
     .replace(/\\\[([\s\S]+?)\\\]/g, (_m, inner: string) => `\n$$${inner}$$\n`)
-    .replace(/\\\(([\s\S]+?)\\\)/g, (_m, inner: string) => `$${inner}$`);
+    .replace(/\\\(([\s\S]+?)\\\)/g, (_m, inner: string) => `$${inner}$`)
+    // $$...$$ sozinho numa linha passa a fórmula em destaque (bloco)
+    .replace(/^[ \t]*\$\$([^\n]+?)\$\$[ \t]*$/gm, (_m, inner: string) => `$$\n${inner.trim()}\n$$`);
 }
 
 export const Markdown = memo(function Markdown({ text, compact, streaming }: { text: string; compact?: boolean; streaming?: boolean }) {

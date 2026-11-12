@@ -1,5 +1,7 @@
 # DutchPath
 
+> Este repositório tem também a **STUDY AI** (assistente de estudos com IA, com servidor e base de dados), na pasta [`study-ai/`](study-ai/README.md). As duas aplicações são independentes.
+
 Aplicação web para aprender **neerlandês** (padrão dos Países Baixos) a partir do **português europeu**.
 Funciona no navegador, em telemóveis, tablets e computadores. O progresso fica guardado apenas no seu dispositivo.
 

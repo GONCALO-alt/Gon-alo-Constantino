@@ -247,6 +247,7 @@ export function OnboardingPage() {
 
   function finish() {
     if (!result) return;
+    window.scrollTo({ top: 0 });
     setMe(result.me);
     navigate(editing ? '/plano' : '/planos?inicio=1');
   }

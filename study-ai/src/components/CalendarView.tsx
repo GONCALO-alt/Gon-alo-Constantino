@@ -167,7 +167,7 @@ export function CalendarView({ events }: { events: CalendarEvent[] }) {
       <div className="stack lg">
         <div className="card">
           <div className="card-head">
-            <span className="card-title" style={{ textTransform: 'capitalize' }}>{formatDateLong(selected)}</span>
+            <span className="card-title">{formatDateLong(selected).replace(/^./, (c) => c.toUpperCase())}</span>
             <IconButton label="Adicionar neste dia" onClick={() => setEditor({ event: null, date: selected })}><CalendarPlus /></IconButton>
           </div>
           {dayEvents.length ? dayEvents.map((e) => <EventRow key={e.id} e={e} onEdit={() => setEditor({ event: e, date: e.date })} onDelete={() => setDeleting(e)} />) : (

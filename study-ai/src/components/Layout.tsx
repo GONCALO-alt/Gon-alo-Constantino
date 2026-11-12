@@ -54,7 +54,10 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
   const { logout } = useApp();
   const location = useLocation();
   const [menu, setMenu] = useState(false);
-  useEffect(() => setMenu(false), [location.pathname]);
+  useEffect(() => {
+    setMenu(false);
+    window.scrollTo({ top: 0 });
+  }, [location.pathname]);
   const initial = (me.user.name || '?').trim().charAt(0).toUpperCase();
   const inChat = location.pathname.startsWith('/chat');
 

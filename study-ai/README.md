@@ -1,0 +1,111 @@
+# STUDY AI
+
+Assistente pessoal de estudos com inteligência artificial, para estudantes de todos os anos (1.º ano ao ensino superior) e de todas as disciplinas. Explica a matéria, resolve exercícios passo a passo, faz resumos, fichas e testes de preparação, corrige respostas e organiza o tempo de estudo com um plano personalizado.
+
+Aplicação web completa: frontend (React), servidor (Node + Express), base de dados (SQLite), contas com autenticação e ligação ao modelo de IA da Anthropic (Claude). Funciona em telemóveis, tablets e computadores.
+
+> **A IA só responde depois de configurar uma chave de API** (ver «Ligar a IA»). Sem chave, a aplicação funciona na mesma (contas, questionário, plano de estudos, calendário, resumos e flashcards escritos à mão, temporizador, progresso) e mostra claramente que a IA não está ligada. Não há respostas simuladas.
+
+## Começar
+
+Requisitos: **Node.js 22.18 ou mais recente**.
+
+```bash
+cd study-ai
+npm install
+cp .env.example .env      # e escreva a chave em ANTHROPIC_API_KEY (opcional)
+npm run dev               # abre em http://localhost:5173
+```
+
+Em desenvolvimento correm dois processos: a interface (Vite, porta 5173) e o servidor/API (porta 8787).
+
+Versão de produção (um só servidor que serve a API e a interface):
+
+```bash
+npm run build
+npm start                 # http://localhost:8787
+```
+
+Os dados ficam em `study-ai/data/` (base de dados `study-ai.sqlite` e pasta `uploads/`). Faça cópias de segurança desta pasta.
+
+## Ligar a IA
+
+1. Crie uma chave em <https://console.anthropic.com/> → *API Keys*.
+2. Ponha-a no ficheiro `study-ai/.env` (`ANTHROPIC_API_KEY=...`) ou como variável de ambiente no alojamento.
+3. Reinicie o servidor. Ao arrancar, o terminal mostra «IA ligada» e os modelos de cada plano.
+
+A chave fica **apenas no servidor**: o navegador nunca a vê. Cada pergunta à IA é um pedido pago à API da Anthropic, faturado a quem é dono da chave — os preços dos planos mostrados na aplicação são só ilustrativos.
+
+### Os três planos
+
+| Plano | Preço (ilustrativo) | Perguntas | Imagens | Ficheiros | Respostas |
+|---|---|---|---|---|---|
+| Cláudio 5 | 0,00 € | ilimitadas | não | não | simples (esforço `low`, até 6 000 tokens) |
+| Cláudio 5.5 | 0,79 € | 20 por dia | 3 por dia | não | detalhadas, passo a passo (`medium`, 16 000) |
+| Cláudio 6 | 0,99 € | ilimitadas | ilimitadas | PDF, TXT, MD, CSV | aprofundadas (`high`, 32 000) |
+
+- Todos os planos se escolhem gratuitamente em «Escolhe a tua IA». **Não existe nenhum sistema de pagamentos.**
+- Os limites são aplicados **no servidor** (`server/ai/usage.ts`), por estudante, por dia (fuso `APP_TIMEZONE`, por omissão Europe/Lisbon) e por plano. Os valores estão em `shared/plans.ts`.
+- Conta como 1 pergunta: cada mensagem no chat, cada resumo, baralho de flashcards ou teste gerado pela IA, e cada correção de respostas abertas. Se a IA falhar, a pergunta não é contada.
+- Por omissão os três planos usam o modelo `claude-opus-5-5`; a diferença está no esforço, no tamanho máximo e nas instruções. Para usar outro modelo num plano: `STUDY_AI_MODEL_CLAUDIO_5`, `STUDY_AI_MODEL_CLAUDIO_5_5`, `STUDY_AI_MODEL_CLAUDIO_6`.
+- Está ativada a opção `fallbacks: "default"` da API: se o modelo recusar um pedido por razões de segurança, o próprio servidor da Anthropic tenta outro modelo. Pode desligá-la em `server/ai/client.ts` (`supportsServerFallback`).
+
+## O que a aplicação faz
+
+- **Questionário inicial** (9 passos): nome, ano, disciplinas (pré-escolhidas para o ano), dificuldades, facilidades, tempo por dia, dias e hora de estudo, objetivo, forma de aprender e próximos testes. Pode ser alterado em Definições.
+- **Plano de estudos automático** (`shared/planner.ts`): horário semanal com sessões por disciplina, mais tempo para as difíceis (e no início do dia), menos para as fáceis, atividades de acordo com a forma de aprender, exercícios de consolidação, objetivos semanais e uma explicação das decisões. Nos 3 dias antes de cada teste do calendário entram revisões, um teste de preparação e uma revisão final. Tudo editável; com a IA ligada, aparece também uma análise personalizada.
+- **Chat IA**: respostas em tempo real, Markdown e fórmulas (KaTeX), atalhos (explicar, resolver, resumo, ficha, teste, corrigir, TPC, perguntas, exemplos), disciplina da conversa, anexos conforme o plano (fotografias, PDF, texto, arrastar ou colar), parar resposta, copiar, guardar como resumo, histórico com pesquisa, mudar o nome e apagar.
+- **Início**: boas-vindas, plano do dia (marcar como feita, pedir ajuda, temporizador), botão grande para a IA, próximos testes, objetivos do dia e da semana, disciplinas favoritas, perguntas disponíveis.
+- **Disciplinas**, **Resumos** (com IA ou escritos à mão, pesquisa, edição, flashcards a partir de um resumo), **Testes e exercícios** (gerador de testes personalizados com correção automática e pela IA, histórico, flashcards com revisão espaçada), **Calendário escolar**, **Modo de estudo** com temporizador, **Progresso** (minutos por dia, por disciplina, sequência, testes, flashcards) e **Definições** (perfil, plano, preferências, palavra-passe, exportar e apagar dados).
+
+## Segurança e dados
+
+- Palavras-passe com `scrypt` e sal aleatório; sessões com token aleatório em cookie `HttpOnly`, `SameSite=Lax` e `Secure` em produção; na base de dados só fica o hash do token.
+- Proteção contra CSRF (cabeçalho obrigatório nos pedidos que alteram dados), limites de tentativas de login e de pedidos à IA, cabeçalhos de segurança (CSP, `X-Frame-Options`, etc.).
+- Todas as consultas filtram pelo estudante: ninguém vê os dados de outra conta (há testes automáticos para isto).
+- Ficheiros enviados: tipo verificado pelo conteúdo (não só pela extensão), tamanho limitado, guardados fora da pasta pública e servidos só ao dono. Anexos não usados são apagados ao fim de 24 h.
+- O estudante pode exportar todos os dados (JSON) e apagar a conta.
+
+## Publicar na internet
+
+A STUDY AI precisa de um servidor Node com disco persistente (por causa da base de dados). **Não funciona no Netlify** (só aloja ficheiros estáticos; o `netlify.toml` da raiz do repositório é da DutchPath).
+
+Opções simples: Render, Railway, Fly.io ou um VPS. Com o `Dockerfile` incluído:
+
+```bash
+docker build -t study-ai .
+docker run -p 8787:8787 -v study-ai-data:/data -e ANTHROPIC_API_KEY=... study-ai
+```
+
+Sem Docker: `npm ci && npm run build && npm start`, com `DATA_DIR` a apontar para um disco persistente. Use sempre https; atrás de um proxy defina `TRUST_PROXY=1`.
+
+## Estrutura
+
+```
+study-ai/
+  shared/      código comum: planos de IA, disciplinas, datas, motor do plano de estudos, tipos
+  server/      API (Express), base de dados SQLite (node:sqlite), autenticação, IA
+    ai/        cliente da API da Anthropic, instruções (prompts), limites dos planos
+    routes/    estudante (perfil, plano, calendário, progresso), chat e anexos, resumos/flashcards/testes
+  src/         interface React (páginas em src/pages, componentes em src/components)
+  tests/       testes automáticos (Vitest) e teste no navegador (Playwright)
+```
+
+## Testes
+
+```bash
+npm test             # motor do plano + API (contas, isolamento, limites, anexos, chat, testes, flashcards)
+npm run typecheck
+npm run build && npm run test:e2e   # navegador real, computador e telemóvel; capturas em tests/e2e/screenshots
+```
+
+Os testes da integração com a IA usam um simulador local da API da Anthropic (`tests/fake-anthropic.ts`): verificam os pedidos enviados (modelo, esforço, instruções, imagens, documentos) e o streaming, sem chave nem custos. **A aplicação nunca usa o simulador.**
+
+## Limitações conhecidas
+
+- Não há recuperação de palavra-passe por email (não existe serviço de email configurado).
+- Sem pagamentos: os preços são apenas informativos, como pedido.
+- SQLite num só servidor: adequado para uma escola ou um grupo de utilizadores; para muitos milhares de utilizadores em simultâneo, migrar para PostgreSQL.
+- Ficheiros Word (.docx) não são lidos pela IA: converta para PDF.
+- A IA pode cometer erros; a aplicação avisa os estudantes para confirmarem a informação importante.
+- O plano de estudos é criado por regras (motor de planeamento), não pela IA, para funcionar sempre e de forma previsível; a IA acrescenta a análise e os conselhos quando está ligada.

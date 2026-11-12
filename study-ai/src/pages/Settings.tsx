@@ -111,7 +111,7 @@ export function SettingsPage() {
             <div className="setting">
               <div>
                 <div className="s-title">Estado da IA</div>
-                <div className="s-desc">{me.ai.configured ? 'A IA está ligada e pronta a responder.' : me.ai.message}</div>
+                <div className="s-desc">{me.ai.configured ? 'A IA está ligada e pronta a responder.' : `A IA ainda não está ligada. ${me.ai.message}`}</div>
               </div>
               <span className={`badge ${me.ai.configured ? 'green' : 'red'}`}>{me.ai.configured ? 'Ligada' : 'Não configurada'}</span>
             </div>

@@ -26,13 +26,23 @@ const subscribe = (l: () => void) => {
 
 /** Marca como desatualizados todos os pedidos cujo nome começa por um dos prefixos. */
 export function invalidate(...prefixes: string[]) {
-  for (const key of cache.keys()) if (prefixes.some((p) => key === p || key.startsWith(`${p}:`) || key.startsWith(`${p}?`))) cache.get(key)!.stale = true;
+  for (const key of cache.keys())
+    if (prefixes.some((p) => key === p || key.startsWith(`${p}/`) || key.startsWith(`${p}?`))) cache.get(key)!.stale = true;
   notify();
 }
 
 export function setCached<T>(key: string, data: T) {
   cache.set(key, { data, stale: false });
   notify();
+}
+
+/** Atualiza já os dados em cache (se existirem), sem esperar por um novo pedido. */
+export function updateCached<T>(key: string, fn: (data: T) => T) {
+  const e = cache.get(key);
+  if (e?.data !== undefined) {
+    cache.set(key, { data: fn(e.data as T), stale: false });
+    notify();
+  }
 }
 
 export function clearCache() {

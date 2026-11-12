@@ -37,7 +37,7 @@ function env(name: string): string | null {
 }
 
 export function loadConfig(overrides: Partial<AppConfig> = {}): AppConfig {
-  const production = process.env.NODE_ENV === 'production';
+  const production = process.env.NODE_ENV === 'production' || process.argv.includes('--production');
   const root = path.resolve(import.meta.dirname, '..');
   const base: AppConfig = {
     port: Number(env('PORT') ?? 8787),

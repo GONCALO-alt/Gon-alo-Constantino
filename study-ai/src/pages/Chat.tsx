@@ -7,7 +7,7 @@ import {
 import { api, ApiError, streamChat, uploadFile } from '../api';
 import { Markdown } from '../components/Markdown';
 import { Button, Confirm, Field, IconButton, Modal } from '../components/ui';
-import { invalidate, setCached, useApp, useMe, useQuery } from '../state';
+import { invalidate, useApp, useMe, useQuery } from '../state';
 import { daysBetween, today, toISODate } from '../../shared/dates';
 import { AI_PLANS, FILE_TYPES, IMAGE_TYPES, imagesLeft, MAX_ATTACHMENTS_PER_MESSAGE, questionsLeft } from '../../shared/plans';
 import { getSubject } from '../../shared/subjects';
@@ -218,7 +218,7 @@ export function ChatPage() {
   }, []);
 
   useEffect(() => {
-    if (stickRef.current) scrollToBottom();
+    if (stickRef.current && (messages.length || streaming)) scrollToBottom();
   }, [messages, streaming, scrollToBottom]);
 
   useEffect(() => () => abortRef.current?.abort(), []);
@@ -482,11 +482,11 @@ export function ChatPage() {
           <div className="grow" style={{ minWidth: 0 }}>
             <div className="title">{conversation?.title ?? 'Nova conversa'}</div>
           </div>
-          <select className="select" style={{ height: 36, width: 'auto', maxWidth: 190, fontSize: 13.5 }} value={subject ?? ''} onChange={(e) => changeSubject(e.target.value)} aria-label="Disciplina da conversa">
+          <select className="select chat-subject" style={{ height: 36, width: 'auto', maxWidth: 190, fontSize: 13.5 }} value={subject ?? ''} onChange={(e) => changeSubject(e.target.value)} aria-label="Disciplina da conversa">
             <option value="">Todas as disciplinas</option>
             {(q?.subjects ?? []).map((id) => <option key={id} value={id}>{getSubject(id, custom).name}</option>)}
           </select>
-          <Link to="/planos" className="badge yellow" style={{ height: 32, padding: '0 11px' }} title="Escolhe a tua IA">
+          <Link to="/planos" className="badge yellow desktop-only" style={{ height: 32, padding: '0 11px' }} title="Escolhe a tua IA">
             <Sparkles />
             <span className="nowrap">{plan.name}{left !== null ? ` · ${left}` : ''}</span>
           </Link>
@@ -642,7 +642,6 @@ export function ChatPage() {
       </Modal>
 
       <SaveSummaryModal message={saveMsg} onClose={() => setSaveMsg(null)} defaultSubject={subject} />
-      <style>{`@media (min-width: 901px) { .mobile-only { display: none !important; } }`}</style>
     </div>
   );
 }
@@ -665,11 +664,10 @@ function SaveSummaryModal({ message, onClose, defaultSubject }: { message: ChatM
     if (!message) return;
     setSaving(true);
     try {
-      const r = await api<{ summary: { id: string } }>('/summaries', {
+      await api('/summaries', {
         method: 'POST',
         body: { title: title.trim() || 'Resumo', subject: subject || null, content: message.content, source: 'ia' },
       });
-      setCached(`/summaries/${r.summary.id}`, r);
       invalidate('/summaries', '/stats');
       toast('Guardado nos teus resumos.');
       onClose();

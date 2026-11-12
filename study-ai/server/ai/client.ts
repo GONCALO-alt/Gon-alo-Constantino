@@ -25,8 +25,10 @@ export interface StreamResult {
   aborted: boolean;
 }
 
-const NOT_CONFIGURED =
-  'A IA ainda não está ligada. Para a ativar, é preciso definir a variável ANTHROPIC_API_KEY no servidor (ver README). Todas as outras funcionalidades funcionam normalmente.';
+/** Explicação mostrada na interface, a seguir ao título «A IA ainda não está ligada.» */
+const HOW_TO_ENABLE =
+  'Para a ativar, é preciso definir a variável ANTHROPIC_API_KEY no servidor (ver README). Todas as outras funcionalidades funcionam normalmente.';
+const NOT_CONFIGURED = `A IA ainda não está ligada neste servidor. ${HOW_TO_ENABLE}`;
 
 /** Modelos em que o servidor da API pode repetir o pedido noutro modelo se houver uma recusa. */
 function supportsServerFallback(model: string): boolean {
@@ -60,7 +62,7 @@ export class AiService {
   status(): AiStatus {
     return this.configured
       ? { configured: true, message: 'IA ligada.' }
-      : { configured: false, message: NOT_CONFIGURED };
+      : { configured: false, message: HOW_TO_ENABLE };
   }
 
   modelFor(plan: AiPlanId): PlanModelConfig {

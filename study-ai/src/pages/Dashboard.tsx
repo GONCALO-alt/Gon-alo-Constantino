@@ -78,7 +78,7 @@ export function DashboardPage() {
       <section className="hero-card fade-up">
         <div className="row between top wrap">
           <div>
-            <div className="small muted" style={{ textTransform: 'capitalize' }}>{formatDateLong(date)}</div>
+            <div className="small muted">{formatDateLong(date).replace(/^./, (c) => c.toUpperCase())}</div>
             <h1 style={{ marginTop: 6 }}>
               {greeting()}, {firstName}!
             </h1>

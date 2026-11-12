@@ -5,7 +5,7 @@ import { api } from '../api';
 import { Markdown, plainText } from '../components/Markdown';
 import { SubjectIcon } from '../components/SubjectIcon';
 import { Button, Confirm, Empty, Field, FormError, Modal, PageHead, Skeleton, Tabs } from '../components/ui';
-import { invalidate, setCached, useApp, useMe, useQuery } from '../state';
+import { invalidate, updateCached, useApp, useMe, useQuery } from '../state';
 import { formatDayMonth, toISODate } from '../../shared/dates';
 import type { UsageSnapshot } from '../../shared/plans';
 import { getSubject } from '../../shared/subjects';
@@ -38,19 +38,16 @@ function NewSummaryModal({ onClose, initialSubject }: { onClose: () => void; ini
     setError('');
     setLoading(true);
     try {
-      if (mode === 'ia') {
-        const r = await api<{ summary: Summary; usage: UsageSnapshot }>('/summaries/generate', { method: 'POST', body: { subject: subject || null, topic } });
-        setUsage(r.usage);
-        setCached(`/summaries/${r.summary.id}`, { summary: r.summary });
-        invalidate('/summaries', '/stats');
-        toast('Resumo criado pela IA.');
-        navigate(`/resumos/${r.summary.id}`);
-      } else {
-        const r = await api<{ summary: Summary }>('/summaries', { method: 'POST', body: { subject: subject || null, title, content, source: 'manual' } });
-        invalidate('/summaries', '/stats');
-        toast('Resumo guardado.');
-        navigate(`/resumos/${r.summary.id}`);
-      }
+      const r =
+        mode === 'ia'
+          ? await api<{ summary: Summary; usage?: UsageSnapshot }>('/summaries/generate', { method: 'POST', body: { subject: subject || null, topic } })
+          : await api<{ summary: Summary; usage?: UsageSnapshot }>('/summaries', { method: 'POST', body: { subject: subject || null, title, content, source: 'manual' } });
+      if (r.usage) setUsage(r.usage);
+      // A página do resumo lê a lista: junta-o já, para não aparecer «não encontrado».
+      updateCached<{ summaries: Summary[] }>('/summaries', (d) => ({ summaries: [r.summary, ...d.summaries] }));
+      invalidate('/stats');
+      toast(mode === 'ia' ? 'Resumo criado pela IA.' : 'Resumo guardado.');
+      navigate(`/resumos/${r.summary.id}`);
       onClose();
     } catch (err) {
       setError((err as Error).message);

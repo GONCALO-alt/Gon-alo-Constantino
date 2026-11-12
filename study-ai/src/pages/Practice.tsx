@@ -60,7 +60,7 @@ function Generator({ initialSubject }: { initialSubject: string }) {
       <div className="card pad-lg">
         <div className="card-head"><span className="card-title"><WandSparkles /> Gerador de testes personalizados</span></div>
         {!me.ai.configured && (
-          <div className="notice" style={{ marginBottom: 18 }}><Info /><div>{me.ai.message}</div></div>
+          <div className="notice" style={{ marginBottom: 18 }}><Info /><div><b>A IA ainda não está ligada.</b> {me.ai.message}</div></div>
         )}
         <div className="stack lg">
           <div className="grid-2">

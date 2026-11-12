@@ -369,7 +369,7 @@ html[data-reduce-motion='true'] *, html[data-reduce-motion='true'] *::before, ht
 .option .opt-icon { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: var(--surface-2); flex-shrink: 0; }
 .option .opt-icon svg { width: 18px; height: 18px; }
 .option.on .opt-icon { background: var(--yellow); color: var(--on-yellow); }
-.option .opt-title { font-weight: 600; font-size: 14.5px; line-height: 1.25; }
+.option .opt-title { font-weight: 600; font-size: 14.5px; line-height: 1.25; overflow-wrap: anywhere; hyphens: auto; }
 .option .opt-desc { font-size: 12.5px; color: var(--text-2); margin-top: 2px; }
 .option .opt-check { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; border-radius: 50%; background: var(--yellow); color: var(--on-yellow); display: grid; place-items: center; animation: pop 0.3s var(--ease); }
 .option .opt-check svg { width: 12px; height: 12px; stroke-width: 3; }
@@ -574,6 +574,12 @@ html[data-reduce-motion='true'] *, html[data-reduce-motion='true'] *::before, ht
   .composer-hint { display: none; }
 }
 
+@media (min-width: 901px) { .mobile-only { display: none !important; } }
+@media (max-width: 900px) {
+  .desktop-only { display: none !important; }
+  .chat-head .chat-subject { max-width: 150px !important; }
+}
+
 /* ---------- Markdown (respostas da IA) ---------- */
 .md { font-size: 15.5px; line-height: 1.7; color: #ececf1; overflow-wrap: anywhere; }
 .md > *:first-child { margin-top: 0; }
@@ -608,7 +614,8 @@ html[data-reduce-motion='true'] *, html[data-reduce-motion='true'] *::before, ht
 .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
 .week-day { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 12px; display: flex; flex-direction: column; gap: 8px; min-height: 160px; }
 .week-day.today { border-color: var(--yellow-line); background: linear-gradient(180deg, rgba(255, 212, 0, 0.07), var(--surface) 40%); }
-.week-day-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 2px 2px 4px; }
+.week-day-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 2px 6px; padding: 2px 2px 4px; }
+.week-day-head span { white-space: nowrap; }
 .week-day-head b { font-size: 14px; }
 .week-day-head span { font-size: 12px; color: var(--text-3); }
 .week-day.today .week-day-head b { color: var(--yellow); }
