@@ -19,11 +19,23 @@
     <title>STUDY AI</title>
     <style>
       /* Fundo escuro desde o primeiro instante (evita o ecrã branco ao abrir a app). */
-      html, body { background: #09090b; }
+      html, body { background: #09090b; margin: 0; }
+      /* Mensagem enquanto a app carrega (substituída pela app quando abre). */
+      .boot { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+        color: #fafafa; font: 600 17px/1.4 -apple-system, system-ui, 'Segoe UI', sans-serif; text-align: center; padding: 24px; box-sizing: border-box; }
+      .boot b { color: #facc15; }
+      .boot small { font-weight: 400; font-size: 14px; color: #a1a1aa; opacity: 0; animation: boot-show 0.3s 8s forwards; }
+      @keyframes boot-show { to { opacity: 1; } }
     </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="boot">
+        <div>A abrir a <b>STUDY AI</b>…</div>
+        <small>Está a demorar? Fecha o separador e abre o endereço outra vez.</small>
+      </div>
+    </div>
+    <noscript><div class="boot">A STUDY AI precisa de JavaScript ligado no navegador.</div></noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
