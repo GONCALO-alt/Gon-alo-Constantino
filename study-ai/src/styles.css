@@ -892,3 +892,17 @@ html[data-standalone='true'] body { overscroll-behavior-y: none; }
 .medal .progress { width: 100%; }
 .celebrate { display: flex; flex-direction: column; gap: 14px; }
 .celebrate-item { display: flex; gap: 14px; align-items: center; animation: scaleIn 0.4s var(--ease) both; }
+
+/* ---------- modo ditado ---------- */
+.dictation { display: flex; flex-direction: column; gap: 14px; }
+.dictation-now { font-size: clamp(22px, 5.5vw, 30px); font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; min-height: 3.2em; color: var(--text); }
+.dictation-next { font-size: 16px; color: var(--text-3); line-height: 1.4; }
+.dictation-controls { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 4px; }
+.dictation-play { width: 68px; height: 68px; border-radius: 50%; border: 0; background: var(--yellow); color: var(--on-yellow); display: grid; place-items: center; box-shadow: var(--glow); transition: transform 0.15s var(--ease); }
+.dictation-play:active { transform: scale(0.94); }
+.dictation-play svg { width: 28px; height: 28px; }
+.dictation-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .dictation-options { grid-template-columns: 1fr; } }
+.seg { display: flex; margin-top: 6px; padding: 3px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); }
+.seg button { flex: 1; border: 0; background: transparent; color: var(--text-2); font: inherit; font-size: 13px; font-weight: 600; padding: 8px 6px; border-radius: 9px; }
+.seg button.on { background: var(--yellow); color: var(--on-yellow); }

@@ -427,6 +427,23 @@ try {
     await t.getByRole('button', { name: 'Parar', exact: true }).waitFor().catch(() => {});
     await t.waitForFunction(() => window.__spoken.length > 0);
     await t.screenshot({ path: path.join(shots, '12b-ouvir-resposta.png') });
+
+    // Modo ditado: frase a frase, com tempo para escrever.
+    await t.evaluate(() => (window.__spoken = []));
+    await t.getByRole('button', { name: 'Ditado', exact: true }).first().click();
+    const dlg = t.getByRole('dialog');
+    await dlg.getByText(/Frase 1 de \d+/).waitFor();
+    await dlg.getByRole('button', { name: 'Rápida' }).click();
+    await dlg.getByRole('button', { name: 'Começar' }).click();
+    await t.waitForFunction(() => window.__spoken.some((x) => x.trim()));
+    await dlg.getByText('tempo para escrever').waitFor();
+    await dlg.getByText(/Frase 2 de \d+/).waitFor({ timeout: 8000 });
+    const first = await t.evaluate(() => window.__spoken.filter((x) => x.trim())[0]);
+    if (first !== 'Frações equivalentes.') throw new Error(`o ditado começou por «${first}»`);
+    await t.waitForTimeout(200);
+    await t.screenshot({ path: path.join(shots, '12c-ditado.png') });
+    await dlg.getByRole('button', { name: 'Pausar' }).click();
+    await dlg.getByRole('button', { name: 'Fechar' }).last().click();
     await tctx.close();
 
     // b) Sem ditado no navegador (como na app instalada no iPhone): grava e o servidor transcreve.

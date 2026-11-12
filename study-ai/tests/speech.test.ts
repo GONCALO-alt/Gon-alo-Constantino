@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { speechChunks, speechText } from '../src/speech.ts';
+import { dictationChunks, speechChunks, speechText } from '../src/speech.ts';
 
 describe('ler as respostas em voz alta', () => {
   it('tira o Markdown e lê as fórmulas por palavras', () => {
@@ -34,5 +34,18 @@ describe('ler as respostas em voz alta', () => {
     expect(chunks.length).toBeGreaterThan(20);
     expect(chunks.every((c) => c.length <= 120)).toBe(true);
     expect(chunks.join(' ').replace(/\s+/g, ' ')).toBe(long.trim().replace(/\s+/g, ' '));
+  });
+
+  it('para ditado, corta também nas vírgulas', () => {
+    const md = 'A Revolução Francesa começou em 1789, com a tomada da Bastilha, e mudou a forma como a Europa via o poder dos reis e a liberdade.';
+    const chunks = dictationChunks(md, 60);
+    expect(chunks.length).toBeGreaterThan(1);
+    expect(chunks.every((c) => c.length <= 60)).toBe(true);
+    expect(chunks.join(' ')).toBe(md);
+  });
+
+  it('os números das listas ficam com a frase', () => {
+    const chunks = dictationChunks('Passos:\n\n1. Multiplica os dois.\n2. Simplifica.');
+    expect(chunks).toEqual(['Passos:', '1) Multiplica os dois.', '2) Simplifica.']);
   });
 });

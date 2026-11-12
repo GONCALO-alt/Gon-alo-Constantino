@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, Check, Copy, FileText, Layers, MessagesSquare, Pencil, Plus, Search, Sparkles, Trash2, WandSparkles } from 'lucide-react';
+import { ArrowLeft, Check, Copy, FileText, Layers, MessagesSquare, Pencil, PenLine, Plus, Search, Sparkles, Trash2, WandSparkles } from 'lucide-react';
 import { api } from '../api';
+import { DictationModal } from '../components/Dictation';
 import { Markdown, plainText } from '../components/Markdown';
 import { Promo } from '../components/Promo';
 import { SubjectIcon } from '../components/SubjectIcon';
@@ -158,6 +159,7 @@ export function SummaryPage() {
   const all = useQuery<{ summaries: Summary[] }>('/summaries');
   const summary = all.data?.summaries.find((s) => s.id === id);
   const [editing, setEditing] = useState(false);
+  const [dictating, setDictating] = useState(false);
   const [form, setForm] = useState({ title: '', subject: '', content: '' });
   const [deleting, setDeleting] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -225,6 +227,7 @@ export function SummaryPage() {
           </div>
         </div>
         <div className="row wrap" style={{ marginBottom: 22 }}>
+          <Button variant="secondary" size="sm" icon={<PenLine />} onClick={() => setDictating(true)}>Ditado</Button>
           <Button variant="secondary" size="sm" icon={copied ? <Check /> : <Copy />} onClick={copy}>{copied ? 'Copiado' : 'Copiar'}</Button>
           <Button variant="secondary" size="sm" icon={<Pencil />} onClick={() => { setForm({ title: summary.title, subject: summary.subject ?? '', content: summary.content }); setEditing(true); }}>Editar</Button>
           <Button variant="secondary" size="sm" icon={<Layers />} loading={flashLoading} disabled={!me.ai.configured} onClick={makeFlashcards} title={me.ai.configured ? '' : 'A IA não está ligada'}>Criar flashcards com IA</Button>
@@ -235,6 +238,7 @@ export function SummaryPage() {
         </div>
         <Markdown text={summary.content} />
       </div>
+      <DictationModal text={dictating ? summary.content : null} title={summary.title} onClose={() => setDictating(false)} />
       {editing && (
         <Modal open onClose={() => setEditing(false)} title="Editar resumo" wide
           footer={<><Button variant="ghost" onClick={() => setEditing(false)}>Cancelar</Button><Button onClick={save} loading={saving}>Guardar</Button></>}>

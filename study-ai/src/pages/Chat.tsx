@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { api, ApiError, attachmentUrl, streamChat, uploadFile } from '../api';
 import { DEMO } from '../env';
+import { DictationModal } from '../components/Dictation';
 import { canSpeak, speak, stopSpeaking, unlockSpeech } from '../speech';
 import { useVoiceInput } from '../voice';
 import { Markdown } from '../components/Markdown';
@@ -155,6 +156,7 @@ export function ChatPage() {
   const talkRef = useRef(false);
   const sendRef = useRef<(text?: string) => void>(() => {});
   const [speakingId, setSpeakingId] = useState<string | null>(null);
+  const [dictation, setDictation] = useState<string | null>(null);
   const voice = useVoiceInput({
     serverVoice: !!me.ai.voice,
     onStart: () => {
@@ -659,6 +661,11 @@ export function ChatPage() {
                             {speakingId === m.id ? 'Parar' : 'Ouvir'}
                           </Button>
                         )}
+                        {showSpeak && (
+                          <Button variant="ghost" size="sm" icon={<PenLine />} onClick={() => { quiet(); setDictation(m.content); }} title="Lê frase a frase, devagar, para escreveres ou decorares">
+                            Ditado
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -773,6 +780,7 @@ export function ChatPage() {
       </Modal>
 
       <SaveSummaryModal message={saveMsg} onClose={() => setSaveMsg(null)} defaultSubject={subject} />
+      <DictationModal text={dictation} onClose={() => setDictation(null)} />
     </div>
   );
 }

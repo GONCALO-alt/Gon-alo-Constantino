@@ -62,6 +62,7 @@ export function speechText(md: string): string {
       l = l.replace(/^#{1,6}\s+(.*)$/, '$1.');
       l = l.replace(/^>\s?/, '');
       l = l.replace(/^[-*+]\s+/, '');
+      l = l.replace(/^(\d+)[.)]\s+/, '$1) '); // «1. Texto» não é o fim de uma frase
       l = l.replace(/^(-{3,}|\*{3,}|_{3,})$/, '');
       return l;
     })
@@ -144,4 +145,45 @@ export function speak(markdown: string, opts: { onEnd?: () => void; rate?: numbe
     window.speechSynthesis.speak(u);
   };
   next();
+}
+
+/** Frases curtas para ditado: corta também nas vírgulas, para dar tempo a escrever. */
+export function dictationChunks(markdown: string, max = 90): string[] {
+  const out: string[] = [];
+  for (const c of speechChunks(speechText(markdown), 220)) {
+    if (c.length <= max) {
+      out.push(c);
+      continue;
+    }
+    let part = '';
+    for (const piece of c.split(/(?<=,)\s+/)) {
+      if (part && (part + ' ' + piece).length > max) {
+        out.push(part);
+        part = piece;
+      } else part = part ? `${part} ${piece}` : piece;
+    }
+    if (part) out.push(...speechChunks(part, max));
+  }
+  return out;
+}
+
+/** Lê uma frase (sem fila). Devolve uma função para parar. */
+export function speakOne(text: string, opts: { rate: number; onEnd: () => void }): () => void {
+  if (!canSpeak()) {
+    opts.onEnd();
+    return () => {};
+  }
+  stopSpeaking();
+  const id = session;
+  const voice = portugueseVoice();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = voice?.lang ?? 'pt-PT';
+  if (voice) u.voice = voice;
+  u.rate = opts.rate;
+  u.onend = () => id === session && opts.onEnd();
+  u.onerror = (e) => {
+    if (id === session && e.error !== 'interrupted' && e.error !== 'canceled') opts.onEnd();
+  };
+  window.speechSynthesis.speak(u);
+  return () => stopSpeaking();
 }
