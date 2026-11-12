@@ -11,9 +11,9 @@ import { createCore, CoreError, json, type CoreContext, type StoredFile } from '
 import { GeminiAi } from '../core/gemini';
 import { WorkersAi, type AiBinding } from './workers-ai';
 import {
-  apiPath, badLogin, clearSessionCookie, csrfOk, emailHash, emailTaken, errorResponse, exportData, isAiPath, MAX_UPLOAD,
-  newPasswordError, readCookie, readJson, readSession, registerInput, SESSION_COOKIE, sessionCookie, signSession, tooManyAttempts,
-  unauthenticated, validEmail, withHeaders,
+  apiPath, badLogin, clearSessionCookie, csrfOk, emailHash, emailTaken, errorResponse, exportData, GUEST_SESSION_DAYS, guestNoPassword,
+  isAiPath, MAX_UPLOAD, newPasswordError, notGuest, readCookie, readJson, readSession, registerInput, SESSION_COOKIE, sessionCookie,
+  signSession, tooManyAttempts, tooManyGuests, unauthenticated, upgradeInput, validEmail, withHeaders,
 } from '../core/host';
 import { freshState, joinState, splitState, trimState, type UserState } from '../core/state';
 import { todayInTimeZone } from '../shared/dates';
@@ -42,6 +42,8 @@ interface Account {
   hash: string;
   tokenVersion: number;
   createdAt: string;
+  /** A usar sem conta (sem email nem palavra-passe). */
+  guest?: boolean;
 }
 
 const CHUNK = 1024 * 1024; // as linhas do SQLite dos Durable Objects vão até 2 MB
@@ -120,12 +122,14 @@ export class StudyStore extends DurableObject<Env> {
     return this.getMeta<Account>('account');
   }
 
-  async createAccount(input: { uid: string; name: string; email: string; password: string }): Promise<void> {
+  /** Cria a conta. Sem palavra-passe (`null`) é uma utilização sem conta. */
+  async createAccount(input: { uid: string; name: string; email: string; password: string | null }): Promise<void> {
     if (this.account()) throw new Error('conta já existe');
-    const hash = await hashPassword(input.password);
+    const guest = input.password === null;
+    const hash = guest ? '' : await hashPassword(input.password!);
     this.ctx.storage.transactionSync(() => {
-      this.setMeta('account', { email: input.email, hash, tokenVersion: 1, createdAt: new Date().toISOString() } satisfies Account);
-      this.state = freshState({ id: input.uid, name: input.name, email: input.email });
+      this.setMeta('account', { email: input.email, hash, tokenVersion: 1, createdAt: new Date().toISOString(), ...(guest ? { guest } : {}) } satisfies Account);
+      this.state = freshState({ id: input.uid, name: input.name, email: input.email, guest });
       this.saved.clear();
       this.persist(this.state);
     });
@@ -138,9 +142,32 @@ export class StudyStore extends DurableObject<Env> {
     return acc.tokenVersion;
   }
 
+  /** Se a sessão é válida e se é uma utilização sem conta. */
+  async info(version: number): Promise<{ guest: boolean } | null> {
+    const acc = this.account();
+    return acc && acc.tokenVersion === version ? { guest: !!acc.guest } : null;
+  }
+
+  /** Transforma a utilização sem conta numa conta normal (o email já foi reservado pelo Worker). */
+  async upgrade(version: number, email: string, password: string): Promise<boolean> {
+    const acc = this.account();
+    if (!acc || acc.tokenVersion !== version || !acc.guest) return false;
+    const hash = await hashPassword(password);
+    const now = this.account()!;
+    const { guest: _g, ...rest } = now;
+    void _g;
+    this.setMeta('account', { ...rest, email, hash } satisfies Account);
+    await this.context.commit((s) => {
+      const { guest: _x, ...user } = s.user;
+      void _x;
+      s.user = { ...user, email };
+    });
+    return true;
+  }
+
   async changePassword(version: number, current: string, next: string): Promise<number | null> {
     const acc = this.account();
-    if (!acc || acc.tokenVersion !== version || !(await verifyPassword(current, acc.hash))) return null;
+    if (!acc || acc.tokenVersion !== version || acc.guest || !(await verifyPassword(current, acc.hash))) return null;
     const hash = await hashPassword(next);
     const now = this.account()!;
     const tokenVersion = now.tokenVersion + 1;
@@ -151,7 +178,9 @@ export class StudyStore extends DurableObject<Env> {
   /** Email da conta, se a sessão e a palavra-passe estiverem certas (antes de a apagar). */
   async checkPassword(version: number, password: string): Promise<string | null> {
     const acc = this.account();
-    if (!acc || acc.tokenVersion !== version || !(await verifyPassword(password, acc.hash))) return null;
+    if (!acc || acc.tokenVersion !== version) return null;
+    if (acc.guest) return ''; // sem conta não há palavra-passe: basta a sessão deste dispositivo
+    if (!(await verifyPassword(password, acc.hash))) return null;
     return acc.email;
   }
 
@@ -317,6 +346,7 @@ export class StudyStore extends DurableObject<Env> {
 
 const authLimiter = new RateLimiter(10, 15 * 60 * 1000);
 const ipLimiter = new RateLimiter(60, 15 * 60 * 1000);
+const guestLimiter = new RateLimiter(5, 60 * 60 * 1000);
 let secretCache: { key: string; value: Promise<Buffer> } | null = null;
 
 const stub = (env: Env, name: string) => env.STORE.get(env.STORE.idFromName(name));
@@ -382,6 +412,15 @@ async function api(req: Request, env: Env): Promise<Response> {
     const { token, exp } = signSession(await getSecret(env), uid, version);
     return withHeaders(await forward(env, req, uid, version, { method: 'GET', path: '/me' }), { 'Set-Cookie': sessionCookie(token, exp, secure) });
   }
+  if (method === 'POST' && path === '/auth/guest') {
+    // Usar sem conta: conta anónima só com a sessão deste dispositivo (pode virar conta normal depois).
+    if (!guestLimiter.take(ip)) throw tooManyGuests();
+    const uid = crypto.randomUUID();
+    await stub(env, `user:${uid}`).createAccount({ uid, name: '', email: '', password: null });
+    const { token, exp } = signSession(await getSecret(env), uid, 1, GUEST_SESSION_DAYS);
+    const me = await forward(env, req, uid, 1, { method: 'GET', path: '/me' });
+    return withHeaders(new Response(me.body, { status: 201, headers: me.headers }), { 'Set-Cookie': sessionCookie(token, exp, secure) });
+  }
   if (method === 'POST' && path === '/auth/logout') return withHeaders(json({ ok: true }), { 'Set-Cookie': clearSessionCookie });
 
   const session = readSession(await getSecret(env), readCookie(req, SESSION_COOKIE));
@@ -391,9 +430,27 @@ async function api(req: Request, env: Env): Promise<Response> {
   }
   const { uid, version } = session;
 
+  if (method === 'POST' && path === '/auth/upgrade') {
+    const input = upgradeInput(await readJson(req));
+    if (input instanceof Response) return input;
+    limit(input.email);
+    const user = stub(env, `user:${uid}`);
+    const info = await user.info(version);
+    if (!info) return withHeaders(unauthenticated());
+    if (!info.guest) return notGuest();
+    const emailStub = stub(env, `email:${emailHash(input.email)}`);
+    if (!(await emailStub.claimEmail(uid))) return emailTaken();
+    if (!(await user.upgrade(version, input.email, input.password))) {
+      await emailStub.releaseEmail(uid);
+      return notGuest();
+    }
+    const { token, exp } = signSession(await getSecret(env), uid, version);
+    return withHeaders(await forward(env, req, uid, version, { method: 'GET', path: '/me' }), { 'Set-Cookie': sessionCookie(token, exp, secure) });
+  }
   if (method === 'POST' && path === '/auth/password') {
     const b = await readJson(req);
     limit(uid);
+    if ((await stub(env, `user:${uid}`).info(version))?.guest) return guestNoPassword();
     const next = String(b?.next ?? '');
     const invalid = newPasswordError(next);
     if (invalid) return invalid;
@@ -409,7 +466,7 @@ async function api(req: Request, env: Env): Promise<Response> {
     const email = await user.checkPassword(version, String(b?.password ?? ''));
     if (email === null) return json({ error: 'A palavra-passe não está correta.', code: 'bad_credentials' }, 400);
     // Primeiro o email (deixa de dar para entrar), depois os dados.
-    await stub(env, `email:${emailHash(email)}`).releaseEmail(uid);
+    if (email) await stub(env, `email:${emailHash(email)}`).releaseEmail(uid);
     await user.wipe();
     return withHeaders(json({ ok: true }), { 'Set-Cookie': clearSessionCookie });
   }

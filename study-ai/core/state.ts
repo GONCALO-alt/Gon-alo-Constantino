@@ -15,7 +15,7 @@ export interface DeckRow {
 export interface UserState {
   /** Aumenta a cada gravação. */
   rev: number;
-  user: { id: string; name: string; email: string; createdAt: string };
+  user: { id: string; name: string; email: string; createdAt: string; guest?: boolean };
   profile: Profile;
   plan: StudyPlan | null;
   checks: Record<string, string[]>;
@@ -35,10 +35,16 @@ export const newId = () =>
     ? crypto.randomUUID()
     : `${Date.now().toString(16)}-${Math.random().toString(16).slice(2)}-${Math.random().toString(16).slice(2)}`;
 
-export function freshState(user: { id?: string; name: string; email?: string }): UserState {
+export function freshState(user: { id?: string; name: string; email?: string; guest?: boolean }): UserState {
   return {
     rev: 0,
-    user: { id: user.id ?? newId(), name: user.name || 'Estudante', email: user.email ?? '', createdAt: new Date().toISOString() },
+    user: {
+      id: user.id ?? newId(),
+      name: user.name || 'Estudante',
+      email: user.email ?? '',
+      createdAt: new Date().toISOString(),
+      ...(user.guest ? { guest: true } : {}),
+    },
     profile: {
       onboarded: false,
       questionnaire: null,

@@ -10,6 +10,7 @@ import {
   loadProfile,
   readCookie,
   requireAuth,
+  GUEST_SESSION_DAYS,
   SESSION_COOKIE,
   SESSION_DAYS,
   uid,
@@ -38,14 +39,17 @@ interface UserRow {
   name: string;
   password_hash: string;
   created_at: string;
+  guest: number;
 }
 
-export function toPublicUser(u: Pick<UserRow, 'id' | 'email' | 'name' | 'created_at'>): UserPublic {
-  return { id: u.id, email: u.email, name: u.name, createdAt: u.created_at };
+export function toPublicUser(u: Pick<UserRow, 'id' | 'email' | 'name' | 'created_at' | 'guest'>): UserPublic {
+  return u.guest
+    ? { id: u.id, email: '', name: u.name || 'Estudante', createdAt: u.created_at, guest: true }
+    : { id: u.id, email: u.email, name: u.name, createdAt: u.created_at };
 }
 
 export function buildMe(ctx: Ctx, userId: string): MeResponse {
-  const user = ctx.db.one<UserRow>('SELECT id, email, name, created_at FROM users WHERE id = ?', userId);
+  const user = ctx.db.one<UserRow>('SELECT id, email, name, created_at, guest FROM users WHERE id = ?', userId);
   if (!user) throw new HttpError(401, 'Conta não encontrada.', 'unauthenticated');
   const profile = loadProfile(ctx.db, userId);
   return {
@@ -60,10 +64,11 @@ export function authRouter(ctx: Ctx): Router {
   const r = Router();
   const authLimiter = new RateLimiter(10, 15 * 60 * 1000);
   const ipLimiter = new RateLimiter(60, 15 * 60 * 1000);
+  const guestLimiter = new RateLimiter(5, 60 * 60 * 1000);
 
-  function startSession(req: Request, res: Response, userId: string) {
+  function startSession(req: Request, res: Response, userId: string, days = SESSION_DAYS) {
     const token = newToken();
-    const expires = new Date(Date.now() + SESSION_DAYS * 86_400_000);
+    const expires = new Date(Date.now() + days * 86_400_000);
     ctx.db.run(
       'INSERT INTO sessions (token_hash, user_id, created_at, expires_at) VALUES (?, ?, ?, ?)',
       hashToken(token),
@@ -121,6 +126,36 @@ export function authRouter(ctx: Ctx): Router {
     res.json(buildMe(ctx, user.id));
   });
 
+  // Usar sem conta: conta anónima só com a sessão deste dispositivo (pode virar conta normal depois).
+  r.post('/auth/guest', (req, res) => {
+    if (!guestLimiter.take(req.ip ?? 'ip'))
+      throw new HttpError(429, 'Foram criadas muitas utilizações sem conta a partir desta ligação. Espera um pouco ou cria uma conta.', 'rate_limited');
+    const id = newId();
+    const now = nowIso();
+    ctx.db.tx(() => {
+      ctx.db.run('INSERT INTO users (id, email, name, password_hash, created_at, guest) VALUES (?, ?, ?, ?, ?, 1)', id, `guest:${id}`, '', '', now);
+      ctx.db.run('INSERT INTO profiles (user_id, updated_at) VALUES (?, ?)', id, now);
+    });
+    startSession(req, res, id, GUEST_SESSION_DAYS);
+    res.status(201).json(buildMe(ctx, id));
+  });
+
+  r.post('/auth/upgrade', requireAuth(ctx), async (req, res) => {
+    const userId = uid(res);
+    const body = validate(z.object({ email, password }), req.body);
+    limit(req, body.email);
+    const user = ctx.db.one<UserRow>('SELECT * FROM users WHERE id = ?', userId);
+    if (!user?.guest) throw new HttpError(400, 'Esta conta já tem email e palavra-passe.', 'not_guest');
+    if (ctx.db.one('SELECT id FROM users WHERE email = ?', body.email))
+      throw new HttpError(409, 'Já existe uma conta com este email. Inicia sessão.', 'email_taken');
+    const hash = await hashPassword(body.password);
+    ctx.db.run('UPDATE users SET email = ?, password_hash = ?, guest = 0 WHERE id = ?', body.email, hash, userId);
+    // Sessão normal a partir de agora.
+    ctx.db.run('DELETE FROM sessions WHERE user_id = ?', userId);
+    startSession(req, res, userId);
+    res.json(buildMe(ctx, userId));
+  });
+
   r.post('/auth/logout', (req, res) => {
     const token = readCookie(req, SESSION_COOKIE);
     if (token) ctx.db.run('DELETE FROM sessions WHERE token_hash = ?', hashToken(token));
@@ -137,6 +172,7 @@ export function authRouter(ctx: Ctx): Router {
     const body = validate(z.object({ current: z.string().min(1).max(200), next: password }), req.body);
     limit(req, userId);
     const user = ctx.db.one<UserRow>('SELECT * FROM users WHERE id = ?', userId);
+    if (user?.guest) throw new HttpError(400, 'Ainda não tens palavra-passe: primeiro cria a conta (email e palavra-passe).', 'guest');
     if (!user || !(await verifyPassword(body.current, user.password_hash)))
       throw new HttpError(400, 'A palavra-passe atual não está correta.', 'bad_credentials');
     ctx.db.run('UPDATE users SET password_hash = ? WHERE id = ?', await hashPassword(body.next), userId);
@@ -186,10 +222,11 @@ export function authRouter(ctx: Ctx): Router {
 
   r.delete('/account', requireAuth(ctx), async (req, res) => {
     const userId = uid(res);
-    const body = validate(z.object({ password: z.string().min(1).max(200) }), req.body);
+    const body = validate(z.object({ password: z.string().max(200).optional() }), req.body ?? {});
     limit(req, userId);
     const user = ctx.db.one<UserRow>('SELECT * FROM users WHERE id = ?', userId);
-    if (!user || !(await verifyPassword(body.password, user.password_hash)))
+    // Sem conta não há palavra-passe: basta a sessão deste dispositivo.
+    if (!user || (!user.guest && !(await verifyPassword(body.password ?? '', user.password_hash))))
       throw new HttpError(400, 'A palavra-passe não está correta.', 'bad_credentials');
     ctx.db.run('DELETE FROM users WHERE id = ?', userId);
     fs.rmSync(path.join(ctx.db.uploadsDir, userId), { recursive: true, force: true });

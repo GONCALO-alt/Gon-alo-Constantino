@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { CalendarCheck, Camera, KeyRound, Mail, MessagesSquare, ShieldCheck, Target, UserRound } from 'lucide-react';
+import { CalendarCheck, Camera, KeyRound, Mail, MessagesSquare, ShieldCheck, Target, UserRound, Zap } from 'lucide-react';
 import { api } from '../api';
 import { Logo } from '../components/Logo';
 import { Button, Field, FormError } from '../components/ui';
@@ -14,7 +14,21 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [guestLoading, setGuestLoading] = useState(false);
   const register = mode === 'register';
+
+  /** Começar já, sem email nem palavra-passe (dá para criar a conta depois sem perder nada). */
+  async function startGuest() {
+    setError('');
+    setGuestLoading(true);
+    try {
+      setMe(await api<MeResponse>('/auth/guest', { method: 'POST' }));
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setGuestLoading(false);
+    }
+  }
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -32,6 +46,15 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
       setLoading(false);
     }
   }
+
+  const guestBlock = (
+    <div className="stack sm">
+      <Button type="button" variant="secondary" size="lg" block icon={<Zap />} loading={guestLoading} onClick={startGuest}>
+        Experimentar sem conta
+      </Button>
+      <p className="tiny faint center">Começas já, sem email. Os dados ficam neste dispositivo e podes criar a conta depois sem perder nada.</p>
+    </div>
+  );
 
   return (
     <div className="auth">
@@ -76,6 +99,12 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
             </p>
           </div>
           {register && (
+            <>
+              {guestBlock}
+              <div className="auth-or" role="separator"><span>ou cria a tua conta</span></div>
+            </>
+          )}
+          {register && (
             <Field label="Nome">
               <div className="input-icon">
                 <UserRound />
@@ -108,6 +137,12 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
           <Button type="submit" size="lg" block loading={loading}>
             {register ? 'Criar conta e começar' : 'Entrar'}
           </Button>
+          {!register && (
+            <>
+              <div className="auth-or" role="separator"><span>ou</span></div>
+              {guestBlock}
+            </>
+          )}
           <p className="center small muted">
             {register ? (
               <>

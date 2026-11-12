@@ -61,6 +61,8 @@ A chave fica **apenas no servidor**: o navegador nunca a vê. Cada pergunta à I
 
 ## O que a aplicação faz
 
+- **Usar sem conta**: no ecrã inicial, «Experimentar sem conta» começa logo, sem email. Os dados ficam guardados no servidor, ligados só a esse dispositivo (sessão de longa duração). Em **Definições → Conta** dá para criar a conta (email e palavra-passe) a qualquer momento, sem perder nada — e a app lembra-o com um aviso quando já há algo a perder. Sair sem conta pede confirmação, porque não há forma de voltar a esses dados. Limite de 5 utilizações sem conta por hora a partir da mesma ligação.
+
 - **Questionário inicial** (9 passos): nome, ano, disciplinas (pré-escolhidas para o ano), dificuldades, facilidades, tempo por dia, dias e hora de estudo, objetivo, forma de aprender e próximos testes. Pode ser alterado em Definições.
 - **Plano de estudos automático** (`shared/planner.ts`): horário semanal com sessões por disciplina, mais tempo para as difíceis (e no início do dia), menos para as fáceis, atividades de acordo com a forma de aprender, exercícios de consolidação, objetivos semanais e uma explicação das decisões. Nos 3 dias antes de cada teste do calendário entram revisões, um teste de preparação e uma revisão final. Tudo editável; com a IA ligada, aparece também uma análise personalizada.
 - **Chat IA**: respostas em tempo real, Markdown e fórmulas (KaTeX), atalhos (explicar, resolver, resumo, ficha, teste, corrigir, TPC, perguntas, exemplos), disciplina da conversa, anexos conforme o plano (fotografias, PDF, texto, arrastar ou colar), parar resposta, copiar, guardar como resumo, histórico com pesquisa, mudar o nome e apagar.

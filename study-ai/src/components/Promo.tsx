@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CalendarDays, Camera, ClipboardCheck, Crown, Layers, MessagesSquare, Smartphone, Sparkles, Timer, Trophy, X, type LucideIcon } from 'lucide-react';
+import { CalendarDays, Camera, ClipboardCheck, Crown, Layers, MessagesSquare, Smartphone, Sparkles, Timer, Trophy, UserPlus, X, type LucideIcon } from 'lucide-react';
 import { api } from '../api';
 import { isPhoneOrTablet, useInstall } from '../pwa';
 import { emptyStore, pickPromo, recordDismissed, recordShown, type PromoContext, type PromoSlot, type PromoStore, type PromoView } from '../promos';
@@ -14,7 +14,7 @@ import { Button, IconButton } from './ui';
 
 const ICONS: Record<PromoView['icon'], LucideIcon> = {
   crown: Crown, camera: Camera, sparkles: Sparkles, clipboard: ClipboardCheck, layers: Layers, timer: Timer,
-  smartphone: Smartphone, calendar: CalendarDays, message: MessagesSquare, trophy: Trophy,
+  smartphone: Smartphone, calendar: CalendarDays, message: MessagesSquare, trophy: Trophy, user: UserPlus,
 };
 
 const KEY = 'study-ai:anuncios';
@@ -75,6 +75,7 @@ export function Promo({
       today: date,
       plan: me.profile.aiPlan,
       aiConfigured: me.ai.configured,
+      guest: !!me.user.guest,
       questionsLeft: questionsLeft(me.usage),
       nextTest: next
         ? { days: daysBetween(date, next.date), subject: next.subject, subjectName: next.subject ? getSubject(next.subject, custom).name : next.title, title: next.title }

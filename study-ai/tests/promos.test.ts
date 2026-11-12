@@ -24,6 +24,14 @@ describe('anúncios da STUDY AI', () => {
     }
   });
 
+  it('quem usa sem conta e já fez alguma coisa é convidado a criar a conta', () => {
+    const p = pickPromo('inicio', { ...base, guest: true }, emptyStore());
+    expect(p?.id).toBe('guardar-conta');
+    expect(p?.action).toEqual({ kind: 'link', to: '/definicoes#conta' });
+    // Ainda sem nada feito: não incomoda.
+    expect(pickPromo('inicio', { ...base, guest: true, conversations: 0, cardsTotal: 0, timerMinutes: 0 }, emptyStore())?.id).not.toBe('guardar-conta');
+  });
+
   it('perto do limite do Cláudio 5.5 sugere o Cláudio 6 (prioridade máxima)', () => {
     const ctx = { ...base, plan: 'claudio-5-5' as const, questionsLeft: 0, cardsTotal: 0 };
     const p = pickPromo('chat', ctx, emptyStore());

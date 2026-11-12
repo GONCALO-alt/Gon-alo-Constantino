@@ -6,6 +6,8 @@ import { CoreError, json } from './api';
 
 export const SESSION_COOKIE = 'study_ai_sid';
 export const SESSION_DAYS = 30;
+/** Sem conta, a sessão é a única forma de voltar aos dados: dura o máximo que os navegadores aceitam. */
+export const GUEST_SESSION_DAYS = 400;
 /** Tamanho máximo de um anexo. */
 export const MAX_UPLOAD = 4 * 1024 * 1024;
 
@@ -36,8 +38,8 @@ export function sessionCookie(token: string, exp: number, secure: boolean) {
 export const clearSessionCookie = `${SESSION_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Expires=Thu, 01 Jan 1970 00:00:00 GMT`;
 
 /** Sessão: `uid.versão.validade.assinatura`. A versão muda ao trocar a palavra-passe. */
-export function signSession(secret: Buffer, uid: string, version: number) {
-  const exp = Date.now() + SESSION_DAYS * 86_400_000;
+export function signSession(secret: Buffer, uid: string, version: number, days = SESSION_DAYS) {
+  const exp = Date.now() + days * 86_400_000;
   const payload = `${uid}.${version}.${exp}`;
   const mac = crypto.createHmac('sha256', secret).update(payload).digest('base64url');
   return { token: `${payload}.${mac}`, exp };
@@ -73,6 +75,20 @@ export function registerInput(b: any): { email: string; name: string; password: 
   if (password.length < 8 || password.length > 200) return json({ error: 'Dados inválidos: a palavra-passe tem de ter pelo menos 8 caracteres.', code: 'invalid' }, 400);
   return { email, name, password };
 }
+
+/** Email e palavra-passe para transformar a utilização sem conta numa conta normal. */
+export function upgradeInput(b: any): { email: string; password: string } | Response {
+  const email = String(b?.email ?? '').trim().toLowerCase();
+  const password = String(b?.password ?? '');
+  if (!validEmail(email)) return json({ error: 'Dados inválidos: email inválido.', code: 'invalid' }, 400);
+  if (password.length < 8 || password.length > 200) return json({ error: 'Dados inválidos: a palavra-passe tem de ter pelo menos 8 caracteres.', code: 'invalid' }, 400);
+  return { email, password };
+}
+
+export const notGuest = () => json({ error: 'Esta conta já tem email e palavra-passe.', code: 'not_guest' }, 400);
+export const guestNoPassword = () => json({ error: 'Ainda não tens palavra-passe: primeiro cria a conta (email e palavra-passe).', code: 'guest' }, 400);
+export const tooManyGuests = () =>
+  new CoreError(429, 'Foram criadas muitas utilizações sem conta a partir desta ligação. Espera um pouco ou cria uma conta.', 'rate_limited');
 
 export const newPasswordError = (next: string) =>
   next.length < 8 || next.length > 200 ? json({ error: 'Dados inválidos: a nova palavra-passe tem de ter pelo menos 8 caracteres.', code: 'invalid' }, 400) : null;

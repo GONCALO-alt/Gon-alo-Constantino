@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Download, KeyRound, LogOut, Pencil, ShieldCheck, Smartphone, Sparkles, SlidersHorizontal, Trash2, UserRound } from 'lucide-react';
+import { useEffect, useState, type FormEvent } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Download, Info, KeyRound, LogOut, Pencil, ShieldCheck, Smartphone, Sparkles, SlidersHorizontal, Trash2, UserRound } from 'lucide-react';
+import { confirmLogout } from '../guest';
 import { InstallButton } from '../components/Install';
 import { DEMO } from '../env';
 import { invalidate, clearCache } from '../state';
@@ -24,6 +25,12 @@ export function SettingsPage() {
   const [deletePw, setDeletePw] = useState('');
   const [deleteError, setDeleteError] = useState('');
   const [exporting, setExporting] = useState(false);
+  const guest = !!me.user.guest;
+  const location = useLocation();
+  // «Definições → Conta» (ligação dos avisos para quem usa sem conta).
+  useEffect(() => {
+    if (location.hash === '#conta') document.getElementById('conta')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [location.hash]);
   const names = (ids: string[]) => (ids.length ? ids.map((id) => getSubject(id, q?.customSubjects).name).join(', ') : '—');
 
   async function setSetting(patch: Record<string, unknown>) {
@@ -162,8 +169,10 @@ export function SettingsPage() {
 
         {DEMO ? (
         <DemoData />
+        ) : guest ? (
+        <GuestAccount exporting={exporting} onExport={exportData} onDelete={() => setDeleteOpen(true)} />
         ) : (
-        <section className="card pad-lg">
+        <section className="card pad-lg" id="conta">
           <div className="card-head"><span className="card-title"><KeyRound /> Conta</span></div>
           <div className="settings-list">
             <div className="setting"><div><div className="s-title">Email</div><div className="s-desc">{me.user.email}</div></div></div>
@@ -205,10 +214,16 @@ export function SettingsPage() {
       </div>
 
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Apagar a conta?"
-        footer={<><Button variant="ghost" onClick={() => setDeleteOpen(false)}>Cancelar</Button><Button variant="danger" onClick={deleteAccount} disabled={!deletePw}>Apagar para sempre</Button></>}>
+        footer={<><Button variant="ghost" onClick={() => setDeleteOpen(false)}>Cancelar</Button><Button variant="danger" onClick={deleteAccount} disabled={!guest && !deletePw}>Apagar para sempre</Button></>}>
         <div className="stack">
-          <p className="muted">Isto não pode ser desfeito. Escreve a tua palavra-passe para confirmar.</p>
-          <input className="input" type="password" value={deletePw} onChange={(e) => setDeletePw(e.target.value)} autoComplete="current-password" />
+          {guest ? (
+            <p className="muted">Isto apaga tudo o que fizeste sem conta (plano, conversas, resumos…). Não pode ser desfeito.</p>
+          ) : (
+            <>
+              <p className="muted">Isto não pode ser desfeito. Escreve a tua palavra-passe para confirmar.</p>
+              <input className="input" type="password" value={deletePw} onChange={(e) => setDeletePw(e.target.value)} autoComplete="current-password" />
+            </>
+          )}
           <FormError>{deleteError}</FormError>
         </div>
       </Modal>
@@ -267,6 +282,73 @@ function DemoData() {
         footer={<><Button variant="ghost" onClick={() => setConfirm(false)}>Cancelar</Button><Button variant="danger" loading={busy} onClick={reset}>Apagar e recomeçar</Button></>}>
         <p className="muted">O questionário, o plano de estudos, as conversas, os resumos, os flashcards, os testes e o progresso são apagados. Isto não pode ser desfeito.</p>
       </Modal>
+    </section>
+  );
+}
+
+/** Conta de quem está a usar sem conta: criar a conta (sem perder nada), exportar, sair, apagar. */
+function GuestAccount({ exporting, onExport, onDelete }: { exporting: boolean; onExport: () => void; onDelete: () => void }) {
+  const me = useMe();
+  const { setMe, logout, toast } = useApp();
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  async function upgrade(e: FormEvent) {
+    e.preventDefault();
+    setError('');
+    setSaving(true);
+    try {
+      setMe(await api<MeResponse>('/auth/upgrade', { method: 'POST', body: form }));
+      toast('Conta criada! Os teus dados ficaram guardados.');
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <section className="card pad-lg" id="conta">
+      <div className="card-head">
+        <span className="card-title"><KeyRound /> Conta</span>
+        <span className="badge yellow">Sem conta</span>
+      </div>
+      <div className="notice">
+        <Info />
+        <div>
+          <b>Estás a usar a STUDY AI sem conta.</b> Os teus dados estão guardados, mas só se abrem neste dispositivo e neste navegador.
+          Se saíres, limpares os dados do navegador ou mudares de telemóvel, perdes o acesso. Cria a conta para os guardares — não perdes nada do que já fizeste.
+        </div>
+      </div>
+      <form className="stack" onSubmit={upgrade} noValidate style={{ marginTop: 16 }}>
+        <div className="grid-2" style={{ gap: 10 }}>
+          <Field label="Email">
+            <input className="input" type="email" autoComplete="email" placeholder="nome@exemplo.pt" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          </Field>
+          <Field label="Palavra-passe">
+            <input className="input" type="password" autoComplete="new-password" placeholder="Pelo menos 8 caracteres" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
+          </Field>
+        </div>
+        <FormError>{error}</FormError>
+        <div>
+          <Button type="submit" loading={saving} disabled={!form.email || form.password.length < 8}>Criar conta e guardar os meus dados</Button>
+        </div>
+      </form>
+      <div className="settings-list" style={{ marginTop: 18 }}>
+        <div className="setting">
+          <div><div className="s-title">Exportar os meus dados</div><div className="s-desc">Perfil, plano, conversas, resumos, flashcards, testes e progresso num ficheiro JSON.</div></div>
+          <Button variant="secondary" icon={<Download />} loading={exporting} onClick={onExport}>Exportar</Button>
+        </div>
+        <div className="setting">
+          <div><div className="s-title">Sair</div><div className="s-desc">Sem conta, depois de saíres não há forma de voltar a estes dados.</div></div>
+          <Button variant="secondary" icon={<LogOut />} onClick={() => confirmLogout(me) && logout()}>Sair</Button>
+        </div>
+        <div className="setting">
+          <div><div className="s-title">Apagar os dados</div><div className="s-desc">Apaga para sempre tudo o que fizeste, incluindo as imagens e ficheiros enviados.</div></div>
+          <Button variant="danger" icon={<Trash2 />} onClick={onDelete}>Apagar</Button>
+        </div>
+      </div>
     </section>
   );
 }

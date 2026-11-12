@@ -4,9 +4,9 @@
 import crypto from 'node:crypto';
 import { createCore, CoreError, json, type CoreAi, type CoreContext, type StoredFile } from '../../core/api';
 import {
-  apiPath, badLogin, clearSessionCookie, csrfOk, emailHash, emailTaken, errorResponse, exportData, isAiPath, MAX_UPLOAD,
-  newPasswordError, readCookie, readJson, readSession, registerInput, SESSION_COOKIE, sessionCookie, signSession, tooManyAttempts,
-  unauthenticated, validEmail, withHeaders,
+  apiPath, badLogin, clearSessionCookie, csrfOk, emailHash, emailTaken, errorResponse, exportData, GUEST_SESSION_DAYS, guestNoPassword,
+  isAiPath, MAX_UPLOAD, newPasswordError, notGuest, readCookie, readJson, readSession, registerInput, SESSION_COOKIE, sessionCookie,
+  signSession, tooManyAttempts, tooManyGuests, unauthenticated, upgradeInput, validEmail, withHeaders,
 } from '../../core/host';
 import { freshState, trimState, type UserState } from '../../core/state';
 import { todayInTimeZone } from '../../shared/dates';
@@ -29,6 +29,8 @@ interface Account {
   hash: string;
   tokenVersion: number;
   createdAt: string;
+  /** A usar sem conta (sem email nem palavra-passe). */
+  guest?: boolean;
 }
 
 const emailKey = (email: string) => `email/${emailHash(email)}`;
@@ -44,6 +46,7 @@ export function createApp(opts: AppOptions) {
   const authLimiter = new RateLimiter(10, 15 * 60 * 1000);
   const ipLimiter = new RateLimiter(60, 15 * 60 * 1000);
   const aiLimiter = new RateLimiter(15, 60 * 1000);
+  const guestLimiter = new RateLimiter(5, 60 * 60 * 1000);
   let secret: Promise<Buffer> | null = null;
   const accountCache = new Map<string, { at: number; tokenVersion: number }>();
 
@@ -188,6 +191,16 @@ export function createApp(opts: AppOptions) {
       const { token, exp } = signSession(await getSecret(), acc.data.id, acc.data.tokenVersion);
       return withHeaders(await me(req, acc.data.id), { 'Set-Cookie': sessionCookie(token, exp, secure) });
     }
+    if (method === 'POST' && path === '/auth/guest') {
+      // Usar sem conta: conta anónima só com a sessão deste dispositivo (pode virar conta normal depois).
+      if (!guestLimiter.take(info.ip)) throw tooManyGuests();
+      const id = crypto.randomUUID();
+      await kv.setJSON(stateKey(id), freshState({ id, name: '', guest: true }));
+      await kv.setJSON(accountKey(id), { id, email: '', hash: '', tokenVersion: 1, createdAt: new Date().toISOString(), guest: true } satisfies Account);
+      const { token, exp } = signSession(await getSecret(), id, 1, GUEST_SESSION_DAYS);
+      const res = await me(req, id);
+      return withHeaders(new Response(res.body, { status: 201, headers: res.headers }), { 'Set-Cookie': sessionCookie(token, exp, secure) });
+    }
     if (method === 'POST' && path === '/auth/logout') return withHeaders(json({ ok: true }), { 'Set-Cookie': clearSessionCookie });
 
     const uid = await verify(readCookie(req, SESSION_COOKIE));
@@ -196,10 +209,36 @@ export function createApp(opts: AppOptions) {
       return unauthenticated();
     }
 
+    if (method === 'POST' && path === '/auth/upgrade') {
+      const input = upgradeInput(await readJson(req));
+      if (input instanceof Response) return input;
+      limit(input.email);
+      const acc = await kv.getJSON<Account>(accountKey(uid));
+      if (!acc?.data.guest) return notGuest();
+      const key = emailKey(input.email);
+      if (!(await kv.setJSON(key, { id: uid }, { onlyIfNew: true }))) {
+        const existing = await kv.getJSON<{ id: string }>(key);
+        const mine = existing?.data.id === uid; // tentativa anterior que ficou a meio
+        const orphan = existing && !mine && !(await kv.getJSON(accountKey(existing.data.id)));
+        if (!mine && (!orphan || !(await kv.setJSON(key, { id: uid }, { onlyIfMatch: existing!.etag })))) return emailTaken();
+      }
+      const { guest: _g, ...rest } = acc.data;
+      void _g;
+      await kv.setJSON(accountKey(uid), { ...rest, email: input.email, hash: await hashPassword(input.password) } satisfies Account);
+      await context(uid).commit((s) => {
+        const { guest: _x, ...user } = s.user;
+        void _x;
+        s.user = { ...user, email: input.email };
+      });
+      accountCache.delete(uid);
+      const { token, exp } = signSession(await getSecret(), uid, acc.data.tokenVersion);
+      return withHeaders(await me(req, uid), { 'Set-Cookie': sessionCookie(token, exp, secure) });
+    }
     if (method === 'POST' && path === '/auth/password') {
       const b = await readJson(req);
       limit(uid);
       const acc = await kv.getJSON<Account>(accountKey(uid));
+      if (acc?.data.guest) return guestNoPassword();
       if (!acc || !(await verifyPassword(String(b?.current ?? ''), acc.data.hash)))
         return json({ error: 'A palavra-passe atual não está correta.', code: 'bad_credentials' }, 400);
       const next = String(b?.next ?? '');
@@ -216,11 +255,12 @@ export function createApp(opts: AppOptions) {
       const b = await readJson(req);
       limit(uid);
       const acc = await kv.getJSON<Account>(accountKey(uid));
-      if (!acc || !(await verifyPassword(String(b?.password ?? ''), acc.data.hash)))
+      // Sem conta não há palavra-passe: basta a sessão deste dispositivo.
+      if (!acc || (!acc.data.guest && !(await verifyPassword(String(b?.password ?? ''), acc.data.hash))))
         return json({ error: 'A palavra-passe não está correta.', code: 'bad_credentials' }, 400);
       await kv.delete(accountKey(uid)); // primeiro a conta: a sessão deixa logo de valer
       for (const key of await kv.list(`user/${uid}/`)) await kv.delete(key);
-      await kv.delete(emailKey(acc.data.email));
+      if (acc.data.email) await kv.delete(emailKey(acc.data.email));
       accountCache.delete(uid);
       return withHeaders(json({ ok: true }), { 'Set-Cookie': clearSessionCookie });
     }

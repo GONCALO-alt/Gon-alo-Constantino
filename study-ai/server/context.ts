@@ -22,6 +22,8 @@ export function makeToday(config: AppConfig) {
 
 export const SESSION_COOKIE = 'study_ai_sid';
 export const SESSION_DAYS = 30;
+/** Sem conta, a sessão é a única forma de voltar aos dados: dura o máximo que os navegadores aceitam. */
+export const GUEST_SESSION_DAYS = 400;
 
 export function readCookie(req: Request, name: string): string | null {
   const header = req.headers.cookie;

@@ -169,6 +169,10 @@ const MIGRATIONS: string[] = [
   );
   CREATE INDEX daily_goals_user_date ON daily_goals(user_id, date);
   `,
+  // 2: usar sem conta (o email fica «guest:<id>» até a pessoa criar a conta).
+  `
+  ALTER TABLE users ADD COLUMN guest INTEGER NOT NULL DEFAULT 0;
+  `,
 ];
 
 export type Row = Record<string, SQLInputValue>;

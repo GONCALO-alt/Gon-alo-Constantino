@@ -18,7 +18,7 @@ export type PromoAction =
 
 export interface PromoView {
   id: string;
-  icon: 'crown' | 'camera' | 'sparkles' | 'clipboard' | 'layers' | 'timer' | 'smartphone' | 'calendar' | 'message' | 'trophy';
+  icon: 'crown' | 'camera' | 'sparkles' | 'clipboard' | 'layers' | 'timer' | 'smartphone' | 'calendar' | 'message' | 'trophy' | 'user';
   title: string;
   text: string;
   cta: string;
@@ -40,6 +40,8 @@ export interface PromoContext {
   timerMinutes: number;
   installed: boolean;
   phone: boolean;
+  /** A usar sem conta (os dados só existem neste dispositivo). */
+  guest?: boolean;
   /** Resultado do teste aberto (para o lugar «teste-resultado»). */
   testResult: { pct: number; subject: string | null; subjectName: string } | null;
 }
@@ -57,6 +59,23 @@ interface PromoDef {
 const FREE = 'Grátis nesta versão de demonstração.';
 
 export const PROMOS: PromoDef[] = [
+  {
+    id: 'guardar-conta',
+    slots: ['inicio', 'progresso', 'plano'],
+    priority: 95,
+    cooldownDays: 2,
+    maxDays: 30,
+    // Só depois de a pessoa ter algo a perder (uma conversa, flashcards ou tempo de estudo).
+    when: (c) => !!c.guest && (c.conversations > 0 || c.cardsTotal > 0 || c.timerMinutes > 0),
+    view: () => ({
+      icon: 'user',
+      featured: true,
+      title: 'Não percas o que já fizeste',
+      text: 'Estás a usar a STUDY AI sem conta: os dados só ficam neste dispositivo. Cria a conta (só email e palavra-passe) para os guardares e entrares em qualquer lado.',
+      cta: 'Criar conta',
+      action: { kind: 'link', to: '/definicoes#conta' },
+    }),
+  },
   {
     id: 'limite-cl6',
     slots: ['chat', 'chat-resposta', 'inicio'],

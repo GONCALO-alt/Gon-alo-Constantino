@@ -340,6 +340,36 @@ try {
     await mctx.close();
   });
 
+  await step('usar sem conta (telemóvel)', async () => {
+    const gctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2 });
+    const g = await gctx.newPage();
+    g.on('pageerror', (e) => errors.push(e.message));
+    await g.goto(base);
+    await g.waitForURL('**/criar-conta');
+    await g.getByRole('button', { name: 'Experimentar sem conta' }).waitFor();
+    await g.waitForTimeout(500);
+    await g.screenshot({ path: path.join(shots, 'm0-criar-conta-ou-sem-conta.png') });
+    await g.getByRole('button', { name: 'Experimentar sem conta' }).click();
+    await g.waitForURL('**/questionario');
+    // Responde ao questionário pela API (o questionário já foi testado acima) e vai às Definições.
+    const q = await g.request.put(`${base}/api/profile/questionnaire`, {
+      headers: { 'X-Requested-With': 'study-ai' },
+      data: { questionnaire: { name: 'Rita', year: '7', subjects: ['portugues', 'matematica'], customSubjects: {}, difficult: ['matematica'], easy: [], dailyMinutes: 45, studyDays: [0, 2, 4], startTime: '17:30', goal: 'melhorar-notas', styles: ['exercicios'], tests: [] } },
+    });
+    if (!q.ok()) throw new Error(`questionário: ${q.status()}`);
+    await g.goto(`${base}/definicoes#conta`);
+    await g.getByText('Estás a usar a STUDY AI sem conta.').waitFor();
+    await g.waitForTimeout(600);
+    await g.screenshot({ path: path.join(shots, 'm6-definicoes-sem-conta.png') });
+    await g.getByPlaceholder('nome@exemplo.pt').fill('rita@exemplo.pt');
+    await g.getByPlaceholder('Pelo menos 8 caracteres').fill('estudar-sempre');
+    await g.getByRole('button', { name: 'Criar conta e guardar os meus dados' }).click();
+    await g.getByText('Conta criada! Os teus dados ficaram guardados.').waitFor();
+    await g.locator('#conta').getByText('rita@exemplo.pt').waitFor();
+    await g.screenshot({ path: path.join(shots, 'm7-conta-criada.png') });
+    await gctx.close();
+  });
+
   await step('cabeçalhos de segurança', async () => {
     for (const url of [`${base}/`, `${base}/plano/semana`]) {
       const r = await fetch(url);

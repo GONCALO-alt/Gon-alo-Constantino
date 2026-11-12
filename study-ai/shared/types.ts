@@ -138,9 +138,12 @@ export interface DaySession extends PlanSession {
 
 export interface UserPublic {
   id: string;
+  /** Vazio quando se usa a app sem conta. */
   email: string;
   name: string;
   createdAt: string;
+  /** A usar sem conta (só neste dispositivo, até criar a conta). */
+  guest?: boolean;
 }
 
 export interface ProfileSettings {

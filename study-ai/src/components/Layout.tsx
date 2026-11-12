@@ -7,6 +7,7 @@ import { AI_PLANS, questionsLeft } from '../../shared/plans';
 import { useApp, useMe, useQuery } from '../state';
 import { InstallButton } from './Install';
 import { DEMO } from '../env';
+import { confirmLogout } from '../guest';
 import { Logo } from './Logo';
 import { IconButton, Modal, Progress } from './ui';
 
@@ -84,10 +85,14 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
             <span className="avatar">{initial}</span>
             <div className="grow">
               <div style={{ fontWeight: 600, fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{me.user.name}</div>
-              <div className="tiny faint" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{DEMO ? 'Versão de demonstração' : me.user.email}</div>
+              {me.user.guest ? (
+                <Link to="/definicoes#conta" className="tiny yellow" style={{ whiteSpace: 'nowrap' }}>Sem conta · criar conta</Link>
+              ) : (
+                <div className="tiny faint" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{DEMO ? 'Versão de demonstração' : me.user.email}</div>
+              )}
             </div>
             {!DEMO && (
-              <IconButton label="Terminar sessão" small onClick={logout}>
+              <IconButton label="Terminar sessão" small onClick={() => confirmLogout(me) && logout()}>
                 <LogOut />
               </IconButton>
             )}

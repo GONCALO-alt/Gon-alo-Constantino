@@ -152,7 +152,7 @@ export function createCore(opts: CoreOptions) {
     for (const k of Object.keys(s.usage)) if (k.slice(0, 10) < cutoff) delete s.usage[k];
   };
   const me = (s: UserState): MeResponse => ({
-    user: { id: s.user.id, email: s.user.email, name: s.user.name, createdAt: s.user.createdAt },
+    user: { id: s.user.id, email: s.user.email, name: s.user.name, createdAt: s.user.createdAt, ...(s.user.guest ? { guest: true } : {}) },
     profile: s.profile,
     usage: usageOf(s),
     ai: ai.status(),

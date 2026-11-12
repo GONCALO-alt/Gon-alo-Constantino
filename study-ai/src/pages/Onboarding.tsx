@@ -124,7 +124,7 @@ export function OnboardingPage() {
   const editing = me.profile.onboarded;
   const [q, setQ] = useState<Questionnaire>(() => {
     const saved = me.profile.questionnaire;
-    return saved ? { ...saved, tests: [] } : emptyQuestionnaire(me.user.name);
+    return saved ? { ...saved, tests: [] } : emptyQuestionnaire(me.user.guest ? '' : me.user.name);
   });
   const [step, setStep] = useState(0);
   const [touchedSubjects, setTouchedSubjects] = useState(editing);

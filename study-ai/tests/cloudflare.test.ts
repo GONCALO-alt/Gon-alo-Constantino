@@ -316,3 +316,41 @@ describe('Cloudflare: os dados ficam guardados', () => {
     expect((await c.get('/me')).status).toBe(200);
   }, 90_000);
 });
+
+describe('usar sem conta', () => {
+  it('começa sem conta e depois cria a conta sem perder nada', async () => {
+    const c = new Client();
+    const g = await c.post('/auth/guest');
+    expect(g.status).toBe(201);
+    expect(g.data.user).toMatchObject({ guest: true, email: '' });
+    expect(g.data.profile.onboarded).toBe(false);
+    expect((await c.put('/profile/questionnaire', { questionnaire })).status).toBe(200);
+    expect((await c.get('/plan')).data.plan.sessions.length).toBeGreaterThan(0);
+    await c.post('/summaries', { subject: 'matematica', title: 'Feito sem conta', content: 'Resumo', source: 'manual' });
+    expect((await c.post('/auth/password', { current: 'x', next: 'nova-palavra-1' })).status).toBe(400);
+
+    expect((await new Client().post('/auth/register', { name: 'X', email: 'ocupado-sc@exemplo.pt', password: '12345678' })).status).toBe(201);
+    expect((await c.post('/auth/upgrade', { email: 'ocupado-sc@exemplo.pt', password: 'palavra-secreta' })).status).toBe(409);
+    expect((await c.post('/auth/upgrade', { email: 'mau-email', password: 'palavra-secreta' })).status).toBe(400);
+    const up = await c.post('/auth/upgrade', { email: 'Sem.Conta@Exemplo.pt', password: 'palavra-secreta' });
+    expect(up.status).toBe(200);
+    expect(up.data.user.guest).toBeUndefined();
+    expect(up.data.user.email).toBe('sem.conta@exemplo.pt');
+    expect(up.data.user.name).toBe('Ana Silva');
+    expect((await c.get('/me')).status).toBe(200);
+    expect((await c.post('/auth/upgrade', { email: 'outro-sc@exemplo.pt', password: 'palavra-secreta' })).status).toBe(400);
+
+    // Noutro dispositivo: entra com o email e encontra tudo.
+    const other = new Client();
+    expect((await other.post('/auth/login', { email: 'sem.conta@exemplo.pt', password: 'palavra-secreta' })).status).toBe(200);
+    expect((await other.get('/summaries')).data.summaries.map((s: any) => s.title)).toEqual(['Feito sem conta']);
+    expect((await other.get('/me')).data.profile.onboarded).toBe(true);
+  }, 60_000);
+
+  it('sem conta, apagar os dados não pede palavra-passe', async () => {
+    const c = new Client();
+    expect((await c.post('/auth/guest')).status).toBe(201);
+    expect((await c.del('/account', {})).status).toBe(200);
+    expect((await c.get('/me')).status).toBe(401);
+  });
+});
