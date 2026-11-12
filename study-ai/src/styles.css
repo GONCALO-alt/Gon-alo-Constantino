@@ -906,3 +906,42 @@ html[data-standalone='true'] body { overscroll-behavior-y: none; }
 .seg { display: flex; margin-top: 6px; padding: 3px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); }
 .seg button { flex: 1; border: 0; background: transparent; color: var(--text-2); font: inherit; font-size: 13px; font-weight: 600; padding: 8px 6px; border-radius: 9px; }
 .seg button.on { background: var(--yellow); color: var(--on-yellow); }
+
+/* ---------- fotos e redações ---------- */
+.photo-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.photo-thumb { position: relative; width: 96px; height: 96px; }
+.photo-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; border: 1px solid var(--border-2); }
+.photo-thumb .loading { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.45); border-radius: 14px; }
+.photo-thumb .x { position: absolute; top: -6px; right: -6px; width: 24px; height: 24px; border-radius: 50%; background: #2c2c33; border: 1px solid var(--border-2); display: grid; place-items: center; padding: 0; color: var(--text); }
+.photo-thumb .x svg { width: 13px; height: 13px; }
+.photo-add { width: 96px; height: 96px; border-radius: 14px; border: 1.5px dashed var(--yellow-line); background: var(--yellow-soft); color: var(--yellow); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font: inherit; font-size: 12px; font-weight: 600; text-align: center; padding: 6px; }
+.photo-add svg { width: 24px; height: 24px; }
+.photo-picker .tiny { margin-top: 8px; }
+.tool-result { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); transition: border-color 0.2s; }
+.tool-result:hover { border-color: var(--yellow-line); }
+.tool-result > svg { color: var(--yellow); flex-shrink: 0; }
+.tool-result b { display: block; }
+.tool-result .tiny { display: block; }
+.grade-pill { min-width: 42px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
+.grade-pill.high, .essay-grade.high { background: var(--success-soft); color: var(--success); }
+.grade-pill.mid, .essay-grade.mid { background: var(--yellow-soft); color: var(--yellow); }
+.grade-pill.low, .essay-grade.low { background: var(--danger-soft); color: var(--danger); }
+.essay-head { display: flex; gap: 18px; align-items: flex-start; }
+.essay-grade { width: 88px; height: 88px; border-radius: 22px; display: flex; align-items: baseline; justify-content: center; padding-top: 22px; flex-shrink: 0; }
+.essay-grade b { font-size: 34px; font-weight: 800; }
+.essay-grade span { font-size: 14px; opacity: 0.8; }
+.essay-title { font-size: 22px; letter-spacing: -0.02em; }
+.essay-box { padding: 14px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); }
+.essay-box.good { border-color: rgba(61, 220, 151, 0.3); }
+.essay-box ul { margin: 8px 0 0 18px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; color: var(--text-2); }
+.essay-error { padding: 12px 14px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.essay-fix { font-size: 15px; }
+.essay-fix s { color: var(--danger); text-decoration-thickness: 2px; }
+.essay-fix b { color: var(--success); }
+.essay-original { white-space: pre-wrap; line-height: 1.7; color: var(--text-2); }
+@media (max-width: 560px) { .essay-head { flex-direction: column; } .essay-grade { width: 72px; height: 72px; padding-top: 16px; } }
+.cal-proposal { padding: 12px 14px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.cal-proposal.off { opacity: 0.55; }
+.cal-proposal input[type='checkbox'] { width: 20px; height: 20px; accent-color: var(--yellow); }
+.cal-proposal-fields { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 8px; }
+@media (max-width: 560px) { .cal-proposal-fields { grid-template-columns: 1fr 1fr; } .cal-proposal-fields select:nth-child(2) { grid-column: span 2; order: 3; } }

@@ -34,6 +34,35 @@ function fakeAi() {
       }
       const prompt = lastText(inputs);
       if (inputs.response_format && state.jsonModeFails) throw new Error('AiError: 5006: response_format is not supported');
+      if (prompt.includes('JSON') && prompt.includes('Estas fotografias são páginas')) {
+        return { response: { readable: true, title: 'Os Descobrimentos', topic: 'Descobrimentos portugueses', content: '## Os Descobrimentos\n\nNo século XV, **Portugal** explorou a costa africana. Em 1498, Vasco da Gama chegou à Índia.' } };
+      }
+      if (prompt.includes('JSON') && prompt.includes('calendário')) {
+        return { response: { events: [
+          { date: '2026-12-03', subject: 'matematica', type: 'teste', title: 'Teste de Matemática', notes: 'Frações' },
+          { date: '2026-12-03', subject: 'matematica', type: 'teste', title: 'Teste de Matemática', notes: 'repetido' },
+          { date: '2026-12-10', subject: 'quimica-inventada', type: 'trabalho', title: 'Trabalho de grupo', notes: '' },
+          { date: '31/12', subject: null, type: 'teste', title: 'Data inválida', notes: '' },
+        ] } };
+      }
+      if (prompt.includes('JSON') && prompt.includes('Corrige esta redação')) {
+        return { response: {
+          transcription: prompt.includes('A redação está nas fotografias') ? 'Eu acho que os telemoveis na escola deviam ser proibidos porque distraem os alunos nas aulas e nos intervalos.' : '',
+          title: 'Telemóveis na escola', grade: 13.5, level: 'x', summary: 'Boa opinião, mas com alguns erros de acentuação.',
+          criteria: [
+            { name: 'Tema e tipo de texto', score: 4, max: 5, comment: 'Adequado.' },
+            { name: 'Estrutura e coesão', score: 3, max: 5, comment: 'Faltam parágrafos.' },
+            { name: 'Correção linguística', score: 3, max: 5, comment: 'Erros de acentuação.' },
+            { name: 'Vocabulário', score: 2, max: 3, comment: 'Simples.' },
+            { name: 'Ideias', score: 1.5, max: 2, comment: 'Bons argumentos.' },
+          ],
+          errors: [
+            { original: 'telemoveis', correction: 'telemóveis', explanation: 'Leva acento agudo no «o».', type: 'acentuação' },
+            { original: 'igual', correction: 'igual', explanation: 'sem erro', type: 'ortografia' },
+          ],
+          strengths: ['Opinião clara'], improvements: ['Usa parágrafos'], improved: 'Eu acho que os **telemóveis** na escola deviam ser proibidos.',
+        } };
+      }
       if (prompt.includes('JSON')) {
         const data = prompt.includes('flashcards')
           ? { title: 'Frações', cards: [{ front: 'Numerador?', back: 'O número de cima.' }, { front: 'Denominador?', back: 'O número de baixo.' }] }
@@ -115,6 +144,7 @@ class Client {
   get = (u: string) => this.req('GET', u);
   post = (u: string, b?: unknown, h?: Record<string, string>) => this.req('POST', u, b ?? {}, h);
   put = (u: string, b: unknown) => this.req('PUT', u, b);
+  del = (u: string, b?: unknown) => this.req('DELETE', u, b);
 }
 
 const parseSse = (text: string) =>
@@ -221,6 +251,70 @@ describe('IA do Cloudflare (Workers AI)', () => {
     expect((await c.get('/me')).data.usage.questionsUsed).toBe(0);
     expect((await c.post('/transcribe', Buffer.alloc(50), { 'Content-Type': 'audio/webm' })).status).toBe(400);
     expect((await c.post('/transcribe', audio, { 'Content-Type': 'image/png' })).status).toBe(415);
+  });
+
+  it('fotos da matéria → resumo, flashcards e teste (e a foto é apagada)', async () => {
+    const c = await student('fotos@exemplo.pt');
+    expect((await c.get('/me')).data.features).toEqual(['essays', 'photos']);
+    // O Cláudio 5 não aceita imagens.
+    expect((await c.post('/uploads', PNG, { 'Content-Type': 'image/png', 'X-File-Name': 'p.png' })).status).toBe(403);
+    await c.put('/profile/ai-plan', { plan: 'claudio-5-5' });
+    const up = await c.post('/uploads', PNG, { 'Content-Type': 'image/png', 'X-File-Name': 'pagina.png' });
+    const r = await c.post('/photos/materials', { attachmentIds: [up.data.attachment.id], subject: 'historia', make: 'both' });
+    expect(r.status).toBe(201);
+    expect(r.data.summary).toMatchObject({ title: 'Os Descobrimentos', subject: 'historia', source: 'ia' });
+    expect(r.data.deck.cardCount).toBe(2);
+    expect(r.data.test.questions).toHaveLength(3);
+    expect(r.data.usage).toMatchObject({ questionsUsed: 1, imagesUsed: 1 });
+    const notesCall = fake.calls.find((x) => JSON.stringify(x.inputs).includes('Estas fotografias são páginas'))!;
+    expect(notesCall.inputs.messages.at(-1).content[1]).toEqual({ type: 'image_url', image_url: { url: `data:image/png;base64,${PNG.toString('base64')}` } });
+    const testCall = fake.calls.filter((x) => JSON.stringify(x.inputs).includes('As perguntas são só sobre esta matéria')).at(-1)!;
+    expect(JSON.stringify(testCall.inputs)).toContain('Vasco da Gama');
+    expect((await c.get(`/attachments/${up.data.attachment.id}`)).status).toBe(404);
+    expect((await c.post('/photos/materials', { attachmentIds: [up.data.attachment.id] })).status).toBe(400);
+  });
+
+  it('foto do calendário → datas dos testes para confirmar', async () => {
+    const c = await student('calendario@exemplo.pt');
+    await c.put('/profile/ai-plan', { plan: 'claudio-6' });
+    const up = await c.post('/uploads', PNG, { 'Content-Type': 'image/png', 'X-File-Name': 'calendario.png' });
+    const r = await c.post('/photos/calendar', { attachmentIds: [up.data.attachment.id] });
+    expect(r.status).toBe(200);
+    expect(r.data.events).toEqual([
+      { date: '2026-12-03', subject: 'matematica', type: 'teste', title: 'Teste de Matemática', notes: 'Frações' },
+      { date: '2026-12-10', subject: null, type: 'trabalho', title: 'Trabalho de grupo', notes: '' },
+    ]);
+    const call = fake.calls.find((x) => JSON.stringify(x.inputs).includes('calendário'))!;
+    expect(JSON.stringify(call.inputs)).toContain('matematica = Matemática');
+    expect((await c.get('/events')).data.events).toHaveLength(0); // só fica marcado depois de confirmar
+  });
+
+  it('corrige redações escritas ou fotografadas e guarda o histórico', async () => {
+    const c = await student('redacao@exemplo.pt');
+    expect((await c.post('/essays/review', { text: 'Muito curta.', kind: 'opiniao' })).status).toBe(400);
+    const text = 'Eu acho que os telemoveis na escola deviam ser proibidos porque distraem os alunos nas aulas e também nos intervalos, quando deviam brincar e conversar uns com os outros em vez de olharem para o ecrã.';
+    const r = await c.post('/essays/review', { text, kind: 'opiniao', theme: 'Telemóveis na escola' });
+    expect(r.status).toBe(201);
+    const e = r.data.essay;
+    expect(e).toMatchObject({ title: 'Telemóveis na escola', kind: 'opiniao', fromPhoto: false, text });
+    expect(e.review).toMatchObject({ grade: 13.5, level: 'Suficiente' });
+    expect(e.review.errors).toEqual([{ original: 'telemoveis', correction: 'telemóveis', explanation: 'Leva acento agudo no «o».', type: 'acentuação' }]);
+    expect(e.review.wordCount).toBe(text.split(/\s+/).length);
+    const call = fake.calls.at(-1)!;
+    expect(JSON.stringify(call.inputs)).toContain('Acordo Ortográfico de 1990');
+
+    await c.put('/profile/ai-plan', { plan: 'claudio-6' });
+    const up = await c.post('/uploads', PNG, { 'Content-Type': 'image/png', 'X-File-Name': 'redacao.png' });
+    const p = await c.post('/essays/review', { attachmentIds: [up.data.attachment.id], kind: 'opiniao' });
+    expect(p.status).toBe(201);
+    expect(p.data.essay.fromPhoto).toBe(true);
+    expect(p.data.essay.text).toContain('telemoveis na escola');
+
+    const list = await c.get('/essays');
+    expect(list.data.essays).toHaveLength(2);
+    expect((await c.get(`/essays/${e.id}`)).data.essay.id).toBe(e.id);
+    expect((await c.del(`/essays/${e.id}`)).status).toBe(200);
+    expect((await c.get('/essays')).data.essays).toHaveLength(1);
   });
 
   it('tira o JSON do meio do texto', () => {

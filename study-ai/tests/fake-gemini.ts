@@ -28,6 +28,16 @@ function promptText(body: Record<string, any>): string {
 }
 
 function structured(prompt: string): unknown {
+  if (prompt.includes('Estas fotografias são páginas'))
+    return { readable: true, title: 'Frações', topic: 'Frações', content: '## Frações\n\nUma **fração** representa partes de um todo: $\\frac{1}{2}$.' };
+  if (prompt.includes('calendário')) return { events: [{ date: '2026-12-03', subject: 'matematica', type: 'teste', title: 'Teste de Matemática', notes: '' }] };
+  if (prompt.includes('Corrige esta redação'))
+    return {
+      transcription: '', title: 'A minha escola', grade: 15, level: 'Bom', summary: 'Muito bem.',
+      criteria: [{ name: 'Tema e tipo de texto', score: 4, max: 5, comment: 'Bom.' }],
+      errors: [{ original: 'á', correction: 'à', explanation: 'Contração da preposição «a» com o artigo «a».', type: 'acentuação' }],
+      strengths: ['Clareza'], improvements: ['Mais exemplos'], improved: 'Texto melhorado.',
+    };
   if (prompt.includes('flashcards')) return { title: 'Frações', cards: [{ front: 'O que é o numerador?', back: 'O número de cima.' }, { front: 'E o denominador?', back: 'O número de baixo.' }] };
   if (prompt.includes('Corrige as respostas abertas')) {
     const indexes = [...prompt.matchAll(/## Pergunta (\d+)/g)].map((m) => Number(m[1]));

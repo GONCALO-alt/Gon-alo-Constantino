@@ -469,6 +469,65 @@ try {
     }
   });
 
+  await step('fotos da matéria, redações e calendário por foto (telemóvel)', async () => {
+    if (!gemini) return; // a versão Node (Claude) não tem estas funções
+    const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64');
+    const fctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2 });
+    await fctx.addCookies(await ctx.cookies());
+    const f = await fctx.newPage();
+    f.on('pageerror', (e) => errors.push(e.message));
+    await f.addLocatorHandler(f.getByRole('dialog').filter({ hasText: /Nova medalha!|medalhas novas!/ }), (d) => d.getByRole('button', { name: 'Continuar' }).click());
+    const noOverflow = async (where) => {
+      const bad = await f.evaluate(() => [...document.querySelectorAll('main *')].filter((el) => el.getBoundingClientRect().right > window.innerWidth + 1 && !el.closest('.tabs, .md table, .katex-display')).map((el) => el.className).slice(0, 3));
+      if (bad.length) throw new Error(`${where}: sai do ecrã (${bad.join(', ')})`);
+    };
+    const upload = async (scope) => {
+      await scope.locator('.photo-picker input[type=file]').setInputFiles({ name: 'foto.png', mimeType: 'image/png', buffer: PNG });
+      await scope.locator('.photo-thumb').first().waitFor();
+      await f.waitForFunction(() => !document.querySelector('.photo-thumb .loading'));
+    };
+
+    // 1) Fotos da matéria → resumo, flashcards e teste.
+    await f.goto(`${base}/testes/fotos`);
+    await f.getByText('Fotografa a matéria').waitFor();
+    await upload(f);
+    await noOverflow('fotos da matéria');
+    await f.screenshot({ path: path.join(shots, 'm10-fotos-materia.png') });
+    await f.getByRole('button', { name: 'Criar a partir das fotos' }).click();
+    await f.getByText('Feito a partir das tuas fotos').waitFor({ timeout: 20000 });
+    await f.getByRole('link', { name: /Flashcards/ }).waitFor();
+    await f.getByRole('link', { name: /Teste de preparação/ }).waitFor();
+    await f.screenshot({ path: path.join(shots, 'm11-fotos-resultado.png') });
+
+    // 2) Correção de uma redação escrita.
+    await f.goto(`${base}/testes/redacoes`);
+    await f.getByLabel(/A tua redação/).fill('A minha escola é grande e tem muitos alunos. Gosto de ir á biblioteca no intervalo, onde leio livros de aventuras com os meus amigos. Os professores são simpáticos e ajudam-nos sempre que temos dúvidas nas aulas de Matemática e de Português.');
+    await noOverflow('redações');
+    await f.getByRole('button', { name: 'Corrigir a redação' }).click();
+    await f.waitForURL(/\/testes\/redacoes\/[0-9a-f-]+$/);
+    await f.locator('.essay-grade').getByText('15').waitFor();
+    await f.getByText('Contração da preposição').waitFor();
+    await noOverflow('redação corrigida');
+    await f.screenshot({ path: path.join(shots, 'm12-redacao-corrigida.png') });
+    await f.goto(`${base}/testes/redacoes`);
+    await f.getByRole('link', { name: /A minha escola/ }).waitFor();
+
+    // 3) Calendário de testes por foto: ler, confirmar e marcar.
+    await f.goto(`${base}/plano/calendario`);
+    await f.getByRole('button', { name: 'Da foto' }).click();
+    const dlg = f.getByRole('dialog');
+    await upload(dlg);
+    await dlg.getByRole('button', { name: 'Ler as datas' }).click();
+    await dlg.getByText('Teste de Matemática').waitFor({ timeout: 15000 });
+    await f.screenshot({ path: path.join(shots, 'm13-calendario-foto.png') });
+    await dlg.getByRole('button', { name: /Marcar 1 no calendário/ }).click();
+    await f.getByText(/1 data marcada no calendário/).waitFor();
+    const evs = await f.request.get(`${base}/api/events`);
+    const list = (await evs.json()).events;
+    if (!list.some((e) => e.date === '2026-12-03' && e.subject === 'matematica')) throw new Error('o teste da foto não ficou no calendário');
+    await fctx.close();
+  });
+
   await step('partilhar a app (QR Code)', async () => {
     const qctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2 });
     await qctx.addCookies(await ctx.cookies());

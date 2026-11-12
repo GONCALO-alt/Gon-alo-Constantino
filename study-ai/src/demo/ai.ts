@@ -115,10 +115,18 @@ export class DemoAi implements CoreAi {
     }
   }
 
-  async json<T>(plan: AiPlanId, system: string, prompt: string, format: string) {
+  get vision() {
+    return this.imageTypes.length > 0;
+  }
+
+  async json<T>(plan: AiPlanId, system: string, prompt: string, format: string, media: Media[] = []) {
     const sample = this.require();
+    const images = media.filter((m) => this.imageTypes.includes(m.mime)).map((m) => new Blob([m.bytes as BlobPart], { type: m.mime }));
     try {
-      return await sample.json<T>(`${system}\n\n---\n\n${prompt}\n\nResponde apenas com JSON neste formato: ${format}`, this.options(plan));
+      return await sample.json<T>(
+        `${system}\n\n---\n\n${prompt}\n\nResponde apenas com JSON neste formato: ${format}`,
+        this.options(plan, images.length ? { images } : {}),
+      );
     } catch (err) {
       throw toCoreError(err as { code?: string });
     }

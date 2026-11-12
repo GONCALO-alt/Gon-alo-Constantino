@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { ClipboardCheck, History, Info, Layers, Pencil, Plus, Sparkles, Trash2, WandSparkles } from 'lucide-react';
+import { Camera, ClipboardCheck, History, Info, Layers, Pencil, PenLine, Plus, Sparkles, Trash2, WandSparkles } from 'lucide-react';
 import { api } from '../api';
 import { Promo } from '../components/Promo';
+import { EssaysTab, hasFeature, PhotoMaterials } from './PhotoTools';
 import { SubjectIcon } from '../components/SubjectIcon';
 import { Button, Confirm, Empty, Field, FormError, IconButton, Modal, PageHead, Progress, Skeleton, Tabs } from '../components/ui';
 import { invalidate, setCached, useApp, useMe, useQuery } from '../state';
@@ -11,7 +12,7 @@ import type { UsageSnapshot } from '../../shared/plans';
 import { getSubject } from '../../shared/subjects';
 import { QUESTION_KIND_LABELS, type Deck, type PracticeTest, type QuestionKind } from '../../shared/types';
 
-type Tab = 'gerador' | 'historico' | 'flashcards';
+type Tab = 'gerador' | 'fotos' | 'redacoes' | 'historico' | 'flashcards';
 
 function SubjectSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const me = useMe();
@@ -259,6 +260,9 @@ function DeckList({ initialSubject }: { initialSubject: string }) {
 
 export function PracticePage({ tab = 'gerador' }: { tab?: Tab }) {
   const navigate = useNavigate();
+  const me = useMe();
+  const photos = hasFeature(me.features, 'photos');
+  const essays = hasFeature(me.features, 'essays');
   const [params] = useSearchParams();
   const [subject, setSubject] = useState(params.get('subject') ?? '');
   useEffect(() => setSubject(params.get('subject') ?? ''), [params]);
@@ -268,9 +272,11 @@ export function PracticePage({ tab = 'gerador' }: { tab?: Tab }) {
         actions={
           <Tabs value={tab} onChange={(v) => navigate(v === 'gerador' ? '/testes' : `/testes/${v}`)}
             items={[
-              { value: 'gerador', label: 'Gerar teste', icon: <WandSparkles /> },
-              { value: 'historico', label: 'Os meus testes', icon: <History /> },
-              { value: 'flashcards', label: 'Flashcards', icon: <Layers /> },
+              { value: 'gerador' as Tab, label: 'Gerar teste', icon: <WandSparkles /> },
+              ...(photos ? [{ value: 'fotos' as Tab, label: 'Da foto', icon: <Camera /> }] : []),
+              ...(essays ? [{ value: 'redacoes' as Tab, label: 'Redações', icon: <PenLine /> }] : []),
+              { value: 'historico' as Tab, label: 'Os meus testes', icon: <History /> },
+              { value: 'flashcards' as Tab, label: 'Flashcards', icon: <Layers /> },
             ]} />
         } />
       {tab === 'gerador' && (
@@ -279,6 +285,8 @@ export function PracticePage({ tab = 'gerador' }: { tab?: Tab }) {
           <div style={{ marginTop: 18 }} className="slot-gap"><Promo slot="testes" /></div>
         </>
       )}
+      {tab === 'fotos' && (photos ? <PhotoMaterials /> : <Empty icon={<Camera />} title="Não disponível" text="Nesta versão a IA não lê fotografias." />)}
+      {tab === 'redacoes' && (essays ? <EssaysTab /> : <Empty icon={<PenLine />} title="Não disponível" text="A correção de redações precisa da IA ligada." />)}
       {tab === 'historico' && <TestHistory />}
       {tab === 'flashcards' && <DeckList initialSubject={subject} />}
     </div>

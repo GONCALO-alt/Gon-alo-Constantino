@@ -165,6 +165,8 @@ export interface MeResponse {
   profile: Profile;
   usage: UsageSnapshot;
   ai: AiStatus;
+  /** Funcionalidades extra desta versão: 'photos' (fotos → materiais/calendário), 'essays' (redações). */
+  features?: string[];
 }
 
 export interface AiStatus {
@@ -323,4 +325,70 @@ export function longestRun(dates: string[]): number {
     prev = d;
   }
   return best;
+}
+
+// ---------- correção de redações ----------
+
+export type EssayKind = 'opiniao' | 'argumentativo' | 'narrativo' | 'descritivo' | 'expositivo' | 'carta' | 'resumo' | 'outro';
+
+export const ESSAY_KIND_LABELS: Record<EssayKind, string> = {
+  opiniao: 'Texto de opinião',
+  argumentativo: 'Texto argumentativo',
+  narrativo: 'Texto narrativo',
+  descritivo: 'Texto descritivo',
+  expositivo: 'Texto expositivo',
+  carta: 'Carta / email',
+  resumo: 'Resumo / síntese',
+  outro: 'Outro',
+};
+
+export type EssayErrorType = 'ortografia' | 'acentuação' | 'pontuação' | 'gramática' | 'vocabulário' | 'estrutura';
+
+export interface EssayError {
+  original: string;
+  correction: string;
+  explanation: string;
+  type: EssayErrorType;
+}
+
+export interface EssayCriterion {
+  name: string;
+  score: number;
+  max: number;
+  comment: string;
+}
+
+export interface EssayReview {
+  /** Nota de 0 a 20. */
+  grade: number;
+  /** «Insuficiente», «Suficiente», «Bom», «Muito bom». */
+  level: string;
+  summary: string;
+  criteria: EssayCriterion[];
+  errors: EssayError[];
+  strengths: string[];
+  improvements: string[];
+  /** Versão melhorada (Markdown). */
+  improved: string;
+  wordCount: number;
+}
+
+export interface Essay {
+  id: string;
+  title: string;
+  kind: EssayKind;
+  theme: string;
+  text: string;
+  fromPhoto: boolean;
+  review: EssayReview;
+  createdAt: string;
+}
+
+/** Proposta de teste/trabalho lida de uma fotografia do calendário (a confirmar pelo estudante). */
+export interface CalendarProposal {
+  date: string;
+  subject: string | null;
+  type: EventType;
+  title: string;
+  notes: string;
 }

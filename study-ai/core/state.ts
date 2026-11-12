@@ -2,7 +2,7 @@
 // O servidor Node (SQLite) usa tabelas próprias; as outras versões usam este formato.
 
 import type {
-  CalendarEvent, ChatMessage, Conversation, DailyGoal, Flashcard, PracticeTest, Profile, StudyLog, StudyPlan, Summary,
+  CalendarEvent, ChatMessage, Conversation, DailyGoal, Essay, Flashcard, PracticeTest, Profile, StudyLog, StudyPlan, Summary,
 } from '../shared/types';
 
 export interface DeckRow {
@@ -28,6 +28,8 @@ export interface UserState {
   summaries: Record<string, Summary>;
   decks: Record<string, { deck: DeckRow; cards: Flashcard[] }>;
   tests: Record<string, PracticeTest>;
+  /** Redações corrigidas (pode faltar em estados antigos). */
+  essays?: Record<string, Essay>;
 }
 
 export const newId = () =>
@@ -63,6 +65,7 @@ export function freshState(user: { id?: string; name: string; email?: string; gu
     summaries: {},
     decks: {},
     tests: {},
+    essays: {},
   };
 }
 
@@ -73,6 +76,8 @@ export function trimState(s: UserState) {
   for (const c of convs.slice(0, 150)) if (c.messages.length > 200) c.messages = c.messages.slice(-200);
   if (s.logs.length > 5000) s.logs = s.logs.slice(-5000);
   if (s.goals.length > 3000) s.goals = s.goals.slice(-3000);
+  const essays = Object.values(s.essays ?? {}).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  for (const e of essays.slice(50)) delete s.essays![e.id];
 }
 
 const month = (date: string) => date.slice(0, 7);
@@ -96,6 +101,7 @@ export function splitState(s: UserState): Record<string, unknown> {
   for (const [id, x] of Object.entries(s.summaries)) docs[`sum_${id}`] = x;
   for (const [id, x] of Object.entries(s.decks)) docs[`deck_${id}`] = x;
   for (const [id, x] of Object.entries(s.tests)) docs[`test_${id}`] = x;
+  for (const [id, x] of Object.entries(s.essays ?? {})) docs[`essay_${id}`] = x;
   for (const l of s.logs) ((docs[`logs_${month(l.date)}`] ??= []) as StudyLog[]).push(l);
   for (const g of s.goals) ((docs[`goals_${month(g.date)}`] ??= []) as DailyGoal[]).push(g);
   return docs;
@@ -120,6 +126,7 @@ export function joinState(docs: Record<string, unknown>): UserState | null {
     summaries: {},
     decks: {},
     tests: {},
+    essays: {},
   };
   for (const [key, value] of Object.entries(docs)) {
     if (!value) continue;
@@ -128,6 +135,7 @@ export function joinState(docs: Record<string, unknown>): UserState | null {
     else if (key.startsWith('sum_')) s.summaries[id] = value as Summary;
     else if (key.startsWith('deck_')) s.decks[id] = value as UserState['decks'][string];
     else if (key.startsWith('test_')) s.tests[id] = value as PracticeTest;
+    else if (key.startsWith('essay_')) s.essays![id] = value as Essay;
     else if (key.startsWith('logs_')) s.logs.push(...(value as StudyLog[]));
     else if (key.startsWith('goals_')) s.goals.push(...(value as DailyGoal[]));
   }

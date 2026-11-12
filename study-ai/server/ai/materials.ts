@@ -41,7 +41,7 @@ Frente: uma pergunta ou conceito curto. Verso: a resposta, clara e curta (no má
 "title" é um título curto para o baralho.${o.source ? `\n\nUsa este resumo como base:\n"""\n${o.source.slice(0, 30000)}\n"""` : ''}`;
 }
 
-export function testPrompt(o: { subjectName: string; topic: string; yearLabel: string; count: number; difficulty: Difficulty; kinds: QuestionKind[] }): string {
+export function testPrompt(o: { subjectName: string; topic: string; yearLabel: string; count: number; difficulty: Difficulty; kinds: QuestionKind[]; source?: string }): string {
   return `Cria um teste de preparação de ${o.subjectName} sobre «${o.topic}» para um estudante do ${o.yearLabel}.
 - ${o.count} perguntas, dificuldade ${DIFFICULTY_LABEL[o.difficulty]}.
 - Tipos permitidos (varia entre eles): ${o.kinds.join(', ')}.
@@ -51,7 +51,7 @@ export function testPrompt(o: { subjectName: string; topic: string; yearLabel: s
 - "model_answer": a resposta certa completa (para as perguntas abertas, os pontos que uma boa resposta deve ter).
 - "explanation": porque é que essa é a resposta certa (1 a 3 frases).
 - "points": 1 nas perguntas fechadas, 2 nas de resposta curta, 4 nas de desenvolvimento.
-- "title": título curto do teste.`;
+- "title": título curto do teste.${o.source ? `\n\nAs perguntas são só sobre esta matéria:\n\"\"\"\n${o.source.slice(0, 30000)}\n\"\"\"` : ''}`;
 }
 
 export function gradePrompt(title: string, open: { index: number; question: TestQuestion; answer: string }[]): string {

@@ -338,6 +338,25 @@ describe('Netlify: IA Gemini', () => {
     expect((await c.get('/me')).data.usage.questionsUsed).toBe(0);
   });
 
+  it('fotos da matéria e redações com o Gemini (as fotos vão para a IA)', async () => {
+    const c = await newStudent('fotos-gemini@exemplo.pt');
+    expect((await c.get('/me')).data.features).toEqual(['essays', 'photos']);
+    await c.put('/profile/ai-plan', { plan: 'claudio-6' });
+    const up = await c.post('/uploads', PNG, { 'Content-Type': 'image/png', 'X-File-Name': 'pagina.png' });
+    const r = await c.post('/photos/materials', { attachmentIds: [up.data.attachment.id], subject: 'matematica', make: 'flashcards' });
+    expect(r.status).toBe(201);
+    expect(r.data.summary.title).toBe('Frações');
+    expect(r.data.deck.cardCount).toBe(2);
+    expect(r.data.test).toBeNull();
+    const notes = fake.requests.find((x) => JSON.stringify(x.body).includes('Estas fotografias são páginas'))!;
+    expect(notes.body.contents[0].parts[0].inlineData).toEqual({ mimeType: 'image/png', data: PNG.toString('base64') });
+    expect(notes.body.generationConfig.responseMimeType).toBe('application/json');
+
+    const essay = await c.post('/essays/review', { text: 'A minha escola é grande e tem muitos alunos. Gosto de ir á biblioteca no intervalo, onde leio livros de aventuras com os meus amigos. Os professores são simpáticos e ajudam-nos sempre que temos dúvidas nas aulas.', kind: 'descritivo' });
+    expect(essay.status).toBe(201);
+    expect(essay.data.essay.review).toMatchObject({ grade: 15, level: 'Bom' });
+  });
+
   it('sem GEMINI_API_KEY diz claramente como ativar a IA', async () => {
     const noAi = createApp({ kv: memoryKV(), ai: new GeminiAi({ apiKey: null }), secret: 's' });
     const c = await newStudent('semia@exemplo.pt', noAi);

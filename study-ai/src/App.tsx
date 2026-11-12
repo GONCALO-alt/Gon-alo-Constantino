@@ -12,6 +12,7 @@ const ChatPage = lazy(() => import('./pages/Chat').then((m) => ({ default: m.Cha
 const ChoosePlanPage = lazy(() => import('./pages/ChoosePlan').then((m) => ({ default: m.ChoosePlanPage })));
 const DeckPage = lazy(() => import('./pages/Flashcards').then((m) => ({ default: m.DeckPage })));
 const PracticePage = lazy(() => import('./pages/Practice').then((m) => ({ default: m.PracticePage })));
+const EssayPage = lazy(() => import('./pages/PhotoTools').then((m) => ({ default: m.EssayPage })));
 const ProgressPage = lazy(() => import('./pages/Progress').then((m) => ({ default: m.ProgressPage })));
 const SettingsPage = lazy(() => import('./pages/Settings').then((m) => ({ default: m.SettingsPage })));
 const StudyPlanPage = lazy(() => import('./pages/StudyPlan').then((m) => ({ default: m.StudyPlanPage })));
@@ -91,6 +92,9 @@ export function App() {
       <Route path="/testes" element={<Layout><PracticePage /></Layout>} />
       <Route path="/testes/flashcards" element={<Layout><PracticePage tab="flashcards" /></Layout>} />
       <Route path="/testes/historico" element={<Layout><PracticePage tab="historico" /></Layout>} />
+      <Route path="/testes/fotos" element={<Layout><PracticePage tab="fotos" /></Layout>} />
+      <Route path="/testes/redacoes" element={<Layout><PracticePage tab="redacoes" /></Layout>} />
+      <Route path="/testes/redacoes/:id" element={<Layout><EssayPage /></Layout>} />
       <Route path="/testes/:id" element={<Layout><TestPage /></Layout>} />
       <Route path="/flashcards/:id" element={<Layout><DeckPage /></Layout>} />
       <Route path="/progresso" element={<Layout><ProgressPage /></Layout>} />

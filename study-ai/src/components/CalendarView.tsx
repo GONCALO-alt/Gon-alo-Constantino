@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import { CalendarPlus, ChevronLeft, ChevronRight, ClipboardCheck, NotebookPen, Pencil, StickyNote, Trash2 } from 'lucide-react';
+import { Camera, CalendarPlus, ChevronLeft, ChevronRight, ClipboardCheck, NotebookPen, Pencil, StickyNote, Trash2 } from 'lucide-react';
 import { api } from '../api';
+import { CalendarPhotoModal } from './CalendarPhoto';
 import { invalidate, useApp, useMe } from '../state';
 import { addDays, daysBetween, formatDateLong, isoWeekday, MONTHS, parseISODate, today, toISODate, WEEKDAYS_SHORT } from '../../shared/dates';
 import { getSubject } from '../../shared/subjects';
@@ -103,6 +104,8 @@ export function CalendarView({ events }: { events: CalendarEvent[] }) {
   const [selected, setSelected] = useState(now);
   const [editor, setEditor] = useState<{ event: CalendarEvent | null; date: string } | null>(null);
   const [deleting, setDeleting] = useState<CalendarEvent | null>(null);
+  const [fromPhoto, setFromPhoto] = useState(false);
+  const canPhoto = !!me.features?.includes('photos');
 
   const cells = useMemo(() => {
     const first = `${month}-01`;
@@ -144,6 +147,7 @@ export function CalendarView({ events }: { events: CalendarEvent[] }) {
           </div>
           <div className="row">
             <Button variant="ghost" size="sm" onClick={() => { setMonth(now.slice(0, 7)); setSelected(now); }}>Hoje</Button>
+            {canPhoto && <Button variant="secondary" size="sm" icon={<Camera />} onClick={() => setFromPhoto(true)}>Da foto</Button>}
             <Button size="sm" icon={<CalendarPlus />} onClick={() => setEditor({ event: null, date: selected })}>Adicionar</Button>
           </div>
         </div>
@@ -181,6 +185,8 @@ export function CalendarView({ events }: { events: CalendarEvent[] }) {
           )}
         </div>
       </div>
+
+      <CalendarPhotoModal open={fromPhoto} onClose={() => setFromPhoto(false)} existing={events} />
 
       {editor && <EventEditor open onClose={() => setEditor(null)} event={editor.event} date={editor.date} key={editor.event?.id ?? editor.date} />}
       <Confirm open={!!deleting} onClose={() => setDeleting(null)} onConfirm={remove} title="Apagar evento?" text={`«${deleting?.title}» vai ser apagado do calendário.`} />

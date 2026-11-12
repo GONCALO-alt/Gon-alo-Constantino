@@ -85,6 +85,7 @@ export class GeminiAi implements CoreAi {
   /** Modelos que não aceitam o controlo do pensamento (pede-se sem ele). */
   private noThinking = new Set<string>();
   pdf = true;
+  vision = true;
 
   constructor(opts: GeminiOptions) {
     this.opts = opts;
@@ -254,13 +255,14 @@ export class GeminiAi implements CoreAi {
     return { text, truncated: finish === 'MAX_TOKENS', aborted: false };
   }
 
-  private async once(plan: AiPlanId, system: string, prompt: string, json: boolean): Promise<string> {
+  private async once(plan: AiPlanId, system: string, prompt: string, json: boolean, media: Media[] = []): Promise<string> {
+    const parts: Part[] = [...media.map((m) => ({ inlineData: { mimeType: m.mime, data: toBase64(m.bytes) } })), { text: prompt }];
     try {
       const res = await this.generate(
         plan,
         false,
         (model) => ({
-          contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          contents: [{ role: 'user', parts }],
           systemInstruction: { parts: [{ text: system }] },
           generationConfig: this.config(model, plan, json ? 8192 : ANSWER_TOKENS[plan], json ? { responseMimeType: 'application/json' } : {}),
         }),
@@ -307,8 +309,8 @@ export class GeminiAi implements CoreAi {
     }
   }
 
-  async json<T>(plan: AiPlanId, system: string, prompt: string, format: string): Promise<T> {
-    const raw = await this.once(plan, system, `${prompt}\n\nResponde apenas com JSON neste formato: ${format}`, true);
+  async json<T>(plan: AiPlanId, system: string, prompt: string, format: string, media: Media[] = []): Promise<T> {
+    const raw = await this.once(plan, system, `${prompt}\n\nResponde apenas com JSON neste formato: ${format}`, true, media);
     try {
       return JSON.parse(raw.trim().replace(/^```(?:json)?\s*|\s*```$/g, '')) as T;
     } catch {

@@ -48,6 +48,7 @@ export class WorkersAi implements CoreAi {
   private model: string;
   private deadlineMs: number;
   pdf = true;
+  vision = true;
 
   constructor(ai: AiBinding, opts: { model?: string | null; deadlineMs?: number } = {}) {
     this.ai = ai;
@@ -162,10 +163,14 @@ export class WorkersAi implements CoreAi {
     return { text, truncated: completion >= maxTokens, aborted: false };
   }
 
-  private async once(plan: AiPlanId, system: string, prompt: string, extra: Record<string, unknown> = {}): Promise<unknown> {
+  private async once(plan: AiPlanId, system: string, prompt: string, extra: Record<string, unknown> = {}, media: Media[] = []): Promise<unknown> {
+    const images = media.filter((m) => m.mime.startsWith('image/'));
+    const user = images.length
+      ? [{ type: 'text', text: prompt }, ...images.map((m) => ({ type: 'image_url', image_url: { url: `data:${m.mime};base64,${toBase64(m.bytes)}` } }))]
+      : prompt;
     const r = (await this.ai.run(
       this.model,
-      { messages: [{ role: 'system', content: system }, { role: 'user', content: prompt }], max_tokens: extra.response_format ? 6144 : MAX_TOKENS[plan], ...extra },
+      { messages: [{ role: 'system', content: system }, { role: 'user', content: user }], max_tokens: extra.response_format ? 6144 : MAX_TOKENS[plan], ...extra },
       { signal: AbortSignal.timeout(this.deadlineMs) },
     )) as { response?: unknown };
     return r?.response;
@@ -181,15 +186,15 @@ export class WorkersAi implements CoreAi {
     }
   }
 
-  async json<T>(plan: AiPlanId, system: string, prompt: string, format: string): Promise<T> {
+  async json<T>(plan: AiPlanId, system: string, prompt: string, format: string, media: Media[] = []): Promise<T> {
     const full = `${prompt}\n\nResponde apenas com JSON válido neste formato (sem texto antes nem depois): ${format}`;
     let response: unknown;
     try {
       try {
-        response = await this.once(plan, system, full, { response_format: { type: 'json_object' } });
+        response = await this.once(plan, system, full, { response_format: { type: 'json_object' } }, media);
       } catch (err) {
         if (isLimit(err) || (err as Error)?.name === 'TimeoutError') throw err;
-        response = await this.once(plan, system, full); // modelo sem modo JSON: pede só por texto
+        response = await this.once(plan, system, full, {}, media); // modelo sem modo JSON: pede só por texto
       }
     } catch (err) {
       throw toCoreError(err);

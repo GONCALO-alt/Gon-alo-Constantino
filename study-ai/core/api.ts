@@ -18,9 +18,13 @@ import {
 import { getSubject, yearLabel } from '../shared/subjects';
 import {
   longestRun, type AchievementNumbers,
-  type AiStatus, type Attachment, type CalendarEvent, type ChatMessage, type Conversation, type DailyGoal, type Deck, type MeResponse, type PlanSession, type PracticeTest, type Questionnaire, type QuestionKind, type StudyLog, type StudyPlan, type Summary,
+  type AiStatus, type Essay, type EssayKind, type Attachment, type CalendarEvent, type ChatMessage, type Conversation, type DailyGoal, type Deck, type MeResponse, type PlanSession, type PracticeTest, type Questionnaire, type QuestionKind, type StudyLog, type StudyPlan, type Summary,
 } from '../shared/types';
 import { newId, trimState, type UserState } from './state';
+import {
+  calendarPrompt, countWords, ESSAY_KINDS, essayPrompt, JSON_CALENDAR, JSON_ESSAY, JSON_NOTES, normalizeCalendar, normalizeEssay, normalizeNotes,
+  photoNotesPrompt, type RawCalendar, type RawEssay, type RawNotes,
+} from './tools';
 
 export class CoreError extends Error {
   status: number;
@@ -56,7 +60,10 @@ export interface CoreAi {
     onDelta: (text: string) => void;
   }): Promise<{ text: string; truncated: boolean; aborted: boolean }>;
   text(plan: AiPlanId, system: string, prompt: string): Promise<string>;
-  json<T>(plan: AiPlanId, system: string, prompt: string, format: string): Promise<T>;
+  /** Resposta em JSON; `media` são fotografias para a IA ver (só se `vision`). */
+  json<T>(plan: AiPlanId, system: string, prompt: string, format: string, media?: Media[]): Promise<T>;
+  /** A IA consegue ver fotografias nas respostas em JSON (funções com fotos). */
+  vision?: boolean;
   /** Mensagem de erro se a imagem não puder ser usada, senão `null`. */
   checkImage(mime: string, size: number): string | null;
   /** A IA consegue ler PDF? */
@@ -110,7 +117,7 @@ const now = () => new Date().toISOString();
 /** Pedidos que criam algo respondem 201, como a versão com servidor próprio. */
 const CREATED = new Set([
   '/plan/sessions', '/events', '/logs', '/goals', '/uploads', '/summaries', '/summaries/generate',
-  '/decks', '/decks/generate', '/decks/:id/cards', '/tests/generate',
+  '/decks', '/decks/generate', '/decks/:id/cards', '/tests/generate', '/photos/materials', '/essays/review',
 ]);
 const BOX_INTERVAL = [0, 1, 2, 4, 7, 14];
 
@@ -158,6 +165,7 @@ export function createCore(opts: CoreOptions) {
     profile: s.profile,
     usage: usageOf(s),
     ai: ai.status(),
+    features: ai.configured() ? ['essays', ...(ai.vision ? ['photos'] : [])] : [],
   });
   const subjectName = (s: UserState, id: string | null | undefined) => (id ? getSubject(id, s.profile.questionnaire?.customSubjects).name : 'estudo');
   const requireAi = () => {
@@ -977,6 +985,157 @@ export function createCore(opts: CoreOptions) {
     });
     if (graded) usageOut = usageOf(after);
     return { test: done, ...(usageOut ? { usage: usageOut } : {}) };
+  });
+
+  // ---------- funções com fotos ----------
+
+  const requireVision = () => {
+    requireAi();
+    if (!ai.vision) fail(501, 'Nesta versão a IA não consegue ler fotografias.', 'no_vision');
+  };
+  /** Fotografias carregadas em /uploads (no máximo 4), para a IA ver. */
+  async function takePhotos(ctx: CoreContext, ids: unknown): Promise<{ media: Media[]; ids: string[] }> {
+    const list = [...new Set((Array.isArray(ids) ? ids : []).filter((x): x is string => typeof x === 'string'))].slice(0, 4);
+    if (!list.length) fail(400, 'Tira pelo menos uma fotografia.', 'empty');
+    const files = await Promise.all(list.map((id) => ctx.files.get(id)));
+    if (files.some((f) => !f || f.meta.kind !== 'image' || f.messageId)) fail(400, 'Uma das fotografias já não existe. Volta a tirá-la.', 'bad_attachment');
+    return { media: files.map((f) => ({ mime: f!.meta.mime, bytes: f!.bytes, name: f!.meta.name })), ids: list };
+  }
+  const dropPhotos = async (ctx: CoreContext, ids: string[]) => {
+    for (const id of ids) await ctx.files.remove(id).catch(() => {});
+  };
+
+  // Fotos da matéria → resumo + flashcards e/ou teste de preparação.
+  route('POST', '/photos/materials', async ({ body }, ctx) => {
+    requireVision();
+    const make: 'flashcards' | 'test' | 'both' = ['flashcards', 'test', 'both'].includes(body?.make) ? body.make : 'both';
+    const s = await ctx.state();
+    const photos = await takePhotos(ctx, body?.attachmentIds);
+    assertAllowed(s, { images: photos.media.length, files: 0 });
+    const plan = s.profile.aiPlan;
+    const q = s.profile.questionnaire;
+    const subject: string | null = typeof body?.subject === 'string' && body.subject ? body.subject : null;
+    const name = subjectName(s, subject);
+    const year = yearLabel(q?.year);
+    const notes = normalizeNotes(await ai.json<RawNotes>(plan, structuredSystemPrompt(q), photoNotesPrompt({ subjectName: name, yearLabel: year }), JSON_NOTES, photos.media));
+    if (!notes) fail(422, 'Não consegui ler a matéria nas fotografias. Tira fotos mais nítidas, com boa luz e a página inteira.', 'unreadable');
+    const [rawCards, rawTest] = await Promise.all([
+      make !== 'test'
+        ? ai.json<RawCards>(plan, structuredSystemPrompt(q), flashcardsPrompt({ count: 12, subjectName: name, topic: notes.topic, yearLabel: year, source: notes.content }), JSON_FORMATS.cards)
+        : null,
+      make !== 'flashcards'
+        ? ai.json<RawTest>(
+            plan,
+            structuredSystemPrompt(q),
+            testPrompt({ subjectName: name, topic: notes.topic, yearLabel: year, count: 6, difficulty: 'medio', kinds: ['escolha-multipla', 'verdadeiro-falso', 'resposta-curta'], source: notes.content }),
+            JSON_FORMATS.test,
+          )
+        : null,
+    ]);
+    const cards = rawCards ? normalizeCards(rawCards, 12) : [];
+    const questions = rawTest ? normalizeQuestions(rawTest, 6) : [];
+    if (make === 'flashcards' && !cards.length) fail(502, 'A IA não devolveu flashcards. Tenta novamente.', 'ai_empty');
+    if (make === 'test' && !questions.length) fail(502, 'A IA não devolveu perguntas. Tenta novamente.', 'ai_empty');
+    if (make === 'both' && !cards.length && !questions.length) fail(502, 'A IA não conseguiu criar materiais a partir das fotos. Tenta novamente.', 'ai_empty');
+    const t = now();
+    const summary: Summary = { id: newId(), subject, title: notes.title, content: notes.content, source: 'ia', createdAt: t, updatedAt: t };
+    const deck = cards.length ? newDeck(subject, String(rawCards?.title || notes.title), cards) : null;
+    const test: PracticeTest | null = questions.length
+      ? {
+          id: newId(),
+          subject,
+          topic: notes.topic,
+          difficulty: 'medio',
+          title: String(rawTest?.title || `Teste: ${notes.title}`).slice(0, 140),
+          questions,
+          answers: null,
+          results: null,
+          score: null,
+          maxScore: questions.reduce((a, x) => a + x.points, 0),
+          createdAt: t,
+          completedAt: null,
+        }
+      : null;
+    const after = await ctx.commit((st) => {
+      st.summaries = { ...st.summaries, [summary.id]: summary };
+      if (deck) st.decks = { ...st.decks, [deck.deck.id]: deck };
+      if (test) st.tests = { ...st.tests, [test.id]: test };
+      record(st, plan, { questions: 1, images: photos.media.length });
+      return st;
+    });
+    await dropPhotos(ctx, photos.ids);
+    return { summary, deck: deck ? deckView(after, deck.deck.id, today()) : null, test, usage: usageOf(after) };
+  });
+
+  // Foto do calendário de testes → propostas de datas (o estudante confirma antes de as marcar).
+  route('POST', '/photos/calendar', async ({ body }, ctx) => {
+    requireVision();
+    const s = await ctx.state();
+    const photos = await takePhotos(ctx, body?.attachmentIds);
+    assertAllowed(s, { images: photos.media.length, files: 0 });
+    const plan = s.profile.aiPlan;
+    const q = s.profile.questionnaire;
+    const subjects = (q?.subjects ?? []).map((id) => ({ id, name: getSubject(id, q?.customSubjects).name }));
+    const raw = await ai.json<RawCalendar>(plan, structuredSystemPrompt(q), calendarPrompt({ today: today(), subjects }), JSON_CALENDAR, photos.media);
+    const events = normalizeCalendar(raw, subjects.map((x) => x.id), today());
+    const after = await ctx.commit((st) => {
+      record(st, plan, { questions: 1, images: photos.media.length });
+      return st;
+    });
+    await dropPhotos(ctx, photos.ids);
+    return { events, usage: usageOf(after) };
+  });
+
+  // ---------- correção de redações ----------
+
+  const essaysOf = (s: UserState) => s.essays ?? {};
+  route('GET', '/essays', async (_r, ctx) => ({
+    essays: Object.values(essaysOf(await ctx.state()))
+      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+      .map((e) => ({ id: e.id, title: e.title, kind: e.kind, grade: e.review.grade, level: e.review.level, createdAt: e.createdAt })),
+  }));
+  route('GET', '/essays/:id', async ({ params }, ctx) => ({ essay: essaysOf(await ctx.state())[params.id!] ?? fail(404, 'Redação não encontrada.', 'not_found') }));
+  route('DELETE', '/essays/:id', async ({ params }, ctx) => {
+    await ctx.commit((s) => {
+      const copy = { ...essaysOf(s) };
+      delete copy[params.id!];
+      s.essays = copy;
+    });
+    return { ok: true };
+  });
+  route('POST', '/essays/review', async ({ body }, ctx) => {
+    requireAi();
+    const kind: EssayKind = ESSAY_KINDS.includes(body?.kind) ? body.kind : 'outro';
+    const theme = String(body?.theme ?? '').trim().slice(0, 300);
+    const text = String(body?.text ?? '').trim().slice(0, 12000);
+    const s = await ctx.state();
+    const hasPhotos = Array.isArray(body?.attachmentIds) && body.attachmentIds.length > 0;
+    if (!text && !hasPhotos) fail(400, 'Escreve ou fotografa a tua redação.', 'empty');
+    if (!hasPhotos && countWords(text) < 30) fail(400, 'A redação é muito curta para ser corrigida (escreve pelo menos 30 palavras).', 'too_short');
+    if (hasPhotos) requireVision();
+    const photos = hasPhotos ? await takePhotos(ctx, body.attachmentIds) : null;
+    assertAllowed(s, { images: photos?.media.length ?? 0, files: 0 });
+    const plan = s.profile.aiPlan;
+    const q = s.profile.questionnaire;
+    const raw = await ai.json<RawEssay>(
+      plan,
+      structuredSystemPrompt(q),
+      essayPrompt({ kind, theme, yearLabel: yearLabel(q?.year), text, fromPhoto: !!photos }),
+      JSON_ESSAY,
+      photos?.media ?? [],
+    );
+    const r = normalizeEssay(raw, photos ? '' : text);
+    const body2 = photos ? r.transcription : text;
+    if (!r.review.summary && !r.review.criteria.length) fail(502, 'A IA não devolveu a correção. Tenta novamente.', 'ai_empty');
+    if (photos && countWords(body2) < 10) fail(422, 'Não consegui ler a redação nas fotografias. Tira fotos mais nítidas, com boa luz.', 'unreadable');
+    const essay: Essay = { id: newId(), title: r.title, kind, theme, text: body2, fromPhoto: !!photos, review: r.review, createdAt: now() };
+    const after = await ctx.commit((st) => {
+      st.essays = { ...essaysOf(st), [essay.id]: essay };
+      record(st, plan, { questions: 1, images: photos?.media.length ?? 0 });
+      return st;
+    });
+    if (photos) await dropPhotos(ctx, photos.ids);
+    return { essay, usage: usageOf(after) };
   });
 
   // ---------- entrada ----------
