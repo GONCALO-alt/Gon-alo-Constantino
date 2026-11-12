@@ -651,7 +651,10 @@ export function ChatPage() {
               )}
             </div>
           </div>
-          <div className="composer-hint">A IA pode cometer erros. Confirma a informação importante com o teu professor ou com o manual.</div>
+          <div className="composer-hint">
+            A IA pode cometer erros. Confirma a informação importante com o teu professor ou com o manual.
+            {me.ai.configured && me.ai.notice && <> {me.ai.notice}</>}
+          </div>
         </div>
       </section>
 

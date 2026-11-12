@@ -1,7 +1,9 @@
-// IA na versão de demonstração (artefacto do claude.ai): usa a capacidade `sample`,
-// que pergunta ao Claude com a conta de quem abre a página. Não há chave de API.
+// IA na versão claude.ai (artefacto): usa a capacidade `sample`, que pergunta ao Claude
+// com a conta de quem abre a página. Não há chave de API.
 
+import { CoreError, type CoreAi, type ChatTurn, type Media } from '../../core/api';
 import type { AiPlanId } from '../../shared/plans';
+import type { AiStatus } from '../../shared/types';
 
 type ModelTier = 'quick' | 'default' | 'complex';
 
@@ -9,7 +11,6 @@ interface SampleUpdate {
   text: string;
   delta: string;
 }
-
 interface SampleOptions {
   onText?: (u: SampleUpdate) => void;
   signal?: AbortSignal;
@@ -17,27 +18,14 @@ interface SampleOptions {
   modelTier?: ModelTier;
   cache?: boolean;
 }
-
+type Input = string | ChatTurn[];
 interface SampleFn {
-  (input: string | { role: 'user' | 'assistant'; content: string }[], options?: SampleOptions): Promise<{ text: string; truncated: boolean }>;
-  json<T = unknown>(input: string | { role: 'user' | 'assistant'; content: string }[], options?: SampleOptions): Promise<T>;
+  (input: Input, options?: SampleOptions): Promise<{ text: string; truncated: boolean }>;
+  json<T = unknown>(input: Input, options?: SampleOptions): Promise<T>;
   limits(): Promise<{ maxPromptBytes: number; images?: { maxCount: number; maxInputBytes: number; mediaTypes: string[] }; modelTiers?: string[] }>;
 }
-
 interface ClaudeHost {
   use(name: string): Promise<unknown>;
-}
-
-export class DemoError extends Error {
-  status: number;
-  code: string;
-  partial?: string;
-  constructor(status: number, message: string, code: string, partial?: string) {
-    super(message);
-    this.status = status;
-    this.code = code;
-    this.partial = partial;
-  }
 }
 
 /** Profundidade de cada plano → nível de modelo pedido ao Claude. */
@@ -46,12 +34,13 @@ const TIER: Record<AiPlanId, ModelTier> = { 'claudio-5': 'quick', 'claudio-5-5':
 export const NOT_AVAILABLE =
   'Nesta página, a IA usa o Claude da tua conta do claude.ai. Abre a página no claude.ai com a sessão iniciada e autoriza o uso do Claude quando te for perguntado.';
 
-export class DemoAi {
+export class DemoAi implements CoreAi {
   private sample: SampleFn | null = null;
   private tiers: string[] = [];
-  imageTypes: string[] = [];
-  maxImages = 0;
-  maxImageBytes = 0;
+  private imageTypes: string[] = [];
+  private maxImages = 0;
+  private maxImageBytes = 0;
+  pdf = false;
 
   async init(host: ClaudeHost | null) {
     if (!host) return;
@@ -64,36 +53,45 @@ export class DemoAi {
     this.maxImageBytes = limits?.images?.maxInputBytes ?? 0;
   }
 
-  get configured() {
+  configured() {
     return this.sample !== null;
+  }
+
+  status(): AiStatus {
+    return this.sample ? { configured: true, message: 'IA ligada.' } : { configured: false, message: NOT_AVAILABLE };
+  }
+
+  checkImage(mime: string, size: number): string | null {
+    if (!this.sample) return null;
+    if (!this.maxImages) return 'Nesta página, a IA não consegue receber imagens.';
+    if (this.imageTypes.length && !this.imageTypes.includes(mime)) return 'Este tipo de imagem não é aceite. Usa JPG ou PNG.';
+    if (this.maxImageBytes && size > this.maxImageBytes) return 'A imagem é demasiado grande para a IA. Usa uma fotografia mais pequena.';
+    return null;
   }
 
   private options(plan: AiPlanId, extra: SampleOptions = {}): SampleOptions {
     const tier = TIER[plan];
-    return { ...(this.tiers.includes(tier) ? { modelTier: tier } : {}), ...extra };
+    return { ...(this.tiers.includes(tier) ? { modelTier: tier } : {}), cache: false, ...extra };
   }
 
   private require(): SampleFn {
-    if (!this.sample) throw new DemoError(503, NOT_AVAILABLE, 'ai_not_configured');
+    if (!this.sample) throw new CoreError(503, NOT_AVAILABLE, 'ai_not_configured');
     return this.sample;
   }
 
-  async chat(o: {
-    plan: AiPlanId;
-    turns: { role: 'user' | 'assistant'; content: string }[];
-    images: Blob[];
-    signal: AbortSignal;
-    onDelta: (d: string) => void;
-  }): Promise<{ text: string; truncated: boolean; aborted: boolean }> {
+  async chat(o: { plan: AiPlanId; system: string; turns: ChatTurn[]; media: Media[]; signal: AbortSignal; onDelta: (d: string) => void }) {
     const sample = this.require();
+    // A capacidade não tem instruções de sistema: vão no início da primeira mensagem.
+    const turns = o.turns.map((t) => ({ ...t }));
+    if (turns[0]) turns[0].content = `Instruções para esta conversa (segue-as e não as repitas):\n\n${o.system}\n\n---\n\nMensagem do estudante:\n${turns[0].content}`;
+    const images = o.media.filter((m) => m.mime.startsWith('image/')).map((m) => new Blob([m.bytes as BlobPart], { type: m.mime }));
     let text = '';
     try {
       const r = await sample(
-        o.turns,
+        turns,
         this.options(o.plan, {
-          cache: false,
           signal: o.signal,
-          ...(o.images.length ? { images: o.images } : {}),
+          ...(images.length ? { images } : {}),
           onText: (u) => {
             text = u.text;
             if (u.delta) o.onDelta(u.delta);
@@ -104,54 +102,53 @@ export class DemoAi {
     } catch (err) {
       const e = err as { code?: string; message?: string; text?: string };
       if (e?.code === 'cancelled' || o.signal.aborted) return { text: e?.text ?? text, truncated: false, aborted: true };
-      throw toDemoError(e, e?.text ?? text);
+      throw toCoreError(e);
     }
   }
 
-  async text(plan: AiPlanId, prompt: string): Promise<string> {
+  async text(plan: AiPlanId, system: string, prompt: string) {
     const sample = this.require();
     try {
-      const r = await sample(prompt, this.options(plan, { cache: false }));
-      return r.text;
+      return (await sample(`${system}\n\n---\n\n${prompt}`, this.options(plan))).text;
     } catch (err) {
-      throw toDemoError(err as { code?: string; message?: string });
+      throw toCoreError(err as { code?: string });
     }
   }
 
-  async json<T>(plan: AiPlanId, prompt: string): Promise<T> {
+  async json<T>(plan: AiPlanId, system: string, prompt: string, format: string) {
     const sample = this.require();
     try {
-      return await sample.json<T>(prompt, this.options(plan, { cache: false }));
+      return await sample.json<T>(`${system}\n\n---\n\n${prompt}\n\nResponde apenas com JSON neste formato: ${format}`, this.options(plan));
     } catch (err) {
-      throw toDemoError(err as { code?: string; message?: string });
+      throw toCoreError(err as { code?: string });
     }
   }
 }
 
-function toDemoError(e: { code?: string; message?: string }, partial?: string): DemoError {
+function toCoreError(e: { code?: string; message?: string }): CoreError {
   switch (e?.code) {
     case 'not_granted':
     case 'not_declared':
     case 'sampling_disabled':
     case 'capability_disabled':
     case 'capability_removed':
-      return new DemoError(503, 'A página não tem autorização para usar o Claude. Autoriza-a no menu de permissões do artefacto e tenta de novo.', 'ai_not_granted');
+      return new CoreError(503, 'A página não tem autorização para usar o Claude. Autoriza-a no menu de permissões do artefacto e tenta de novo.', 'ai_not_granted');
     case 'session_expired':
-      return new DemoError(503, 'A tua sessão do claude.ai terminou. Volta a entrar e tenta de novo.', 'ai_session');
+      return new CoreError(503, 'A tua sessão do claude.ai terminou. Volta a entrar e tenta de novo.', 'ai_session');
     case 'rate_limited':
     case 'queue_overflow':
-      return new DemoError(429, 'A IA está a receber muitos pedidos. Espera um pouco e tenta de novo.', 'ai_rate_limit');
+      return new CoreError(429, 'A IA está a receber muitos pedidos. Espera um pouco e tenta de novo.', 'ai_rate_limit');
     case 'refused':
-      return new DemoError(422, 'A IA não pode responder a este pedido. Se for uma dúvida de estudo, tenta explicá-la de outra forma.', 'ai_refusal');
+      return new CoreError(422, 'A IA não pode responder a este pedido. Se for uma dúvida de estudo, tenta explicá-la de outra forma.', 'ai_refusal');
     case 'prompt_too_large':
-      return new DemoError(413, 'A conversa ficou demasiado longa. Começa uma nova conversa.', 'too_large');
+      return new CoreError(413, 'A conversa ficou demasiado longa. Começa uma nova conversa.', 'too_large');
     case 'image_rejected':
     case 'images_unavailable':
-      return new DemoError(415, 'A IA não conseguiu usar esta imagem. Tenta com outra fotografia (JPG ou PNG).', 'bad_image');
+      return new CoreError(415, 'A IA não conseguiu usar esta imagem. Tenta com outra fotografia (JPG ou PNG).', 'bad_image');
     case 'invalid_json':
     case 'empty_completion':
-      return new DemoError(502, 'A resposta da IA veio incompleta. Tenta de novo.', 'ai_incomplete');
+      return new CoreError(502, 'A resposta da IA veio incompleta. Tenta de novo.', 'ai_incomplete');
     default:
-      return new DemoError(503, 'Não foi possível falar com a IA agora. Tenta de novo daqui a pouco.', 'ai_unavailable', partial);
+      return new CoreError(503, 'Não foi possível falar com a IA agora. Tenta de novo daqui a pouco.', 'ai_unavailable');
   }
 }

@@ -168,6 +168,10 @@ export interface AiStatus {
   configured: boolean;
   /** Explicação para mostrar quando a IA não está ligada. */
   message: string;
+  /** Quem fornece a IA (ex.: «Google Gemini»), quando não é o Claude. */
+  provider?: string;
+  /** Aviso a mostrar junto do chat (ex.: privacidade do plano gratuito). */
+  notice?: string;
 }
 
 export interface Attachment {

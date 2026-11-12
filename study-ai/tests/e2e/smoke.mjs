@@ -8,19 +8,22 @@ import os from 'node:os';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { startFakeAnthropic } from '../fake-anthropic.ts';
+import { startFakeGemini } from '../fake-gemini.ts';
 
 const require = createRequire(import.meta.url);
 const { chromium, devices } = require('playwright');
 
 const root = path.resolve(import.meta.dirname, '../..');
-const shots = path.join(root, 'tests/e2e/screenshots');
+const shots = path.join(root, process.env.TARGET === 'netlify' ? 'tests/e2e/screenshots-netlify' : 'tests/e2e/screenshots');
 fs.mkdirSync(shots, { recursive: true });
 const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'study-ai-e2e-'));
 const port = 8800 + Math.floor(Math.random() * 100);
 const base = `http://127.0.0.1:${port}`;
 const scale = Number(process.env.SHOT_SCALE ?? 1);
 
-const fake = await startFakeAnthropic();
+// TARGET=netlify testa a versão Netlify (função /api + Gemini) em vez do servidor Node.
+const netlify = process.env.TARGET === 'netlify';
+const fake = netlify ? await startFakeGemini() : await startFakeAnthropic();
 fake.reply = [
   '## Frações equivalentes',
   '',
@@ -39,11 +42,17 @@ fake.reply = [
   '**Resposta:** $\\frac{3}{4}$ e $\\frac{6}{8}$ são equivalentes.',
 ].join('\n');
 
-const server = spawn(process.execPath, ['--disable-warning=ExperimentalWarning', 'server/index.ts'], {
-  cwd: root,
-  env: { ...process.env, NODE_ENV: 'production', PORT: String(port), DATA_DIR: dataDir, ANTHROPIC_API_KEY: 'e2e', ANTHROPIC_BASE_URL: fake.url, COOKIE_SECURE: 'false' },
-  stdio: ['ignore', 'pipe', 'pipe'],
-});
+const server = netlify
+  ? spawn(process.execPath, ['tools/netlify-local.mjs'], {
+      cwd: root,
+      env: { ...process.env, PORT: String(port), GEMINI_API_KEY: 'e2e', GEMINI_BASE_URL: fake.url },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+  : spawn(process.execPath, ['--disable-warning=ExperimentalWarning', 'server/index.ts'], {
+      cwd: root,
+      env: { ...process.env, NODE_ENV: 'production', PORT: String(port), DATA_DIR: dataDir, ANTHROPIC_API_KEY: 'e2e', ANTHROPIC_BASE_URL: fake.url, COOKIE_SECURE: 'false' },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
 server.stderr.on('data', (d) => process.stderr.write(d));
 await new Promise((resolve, reject) => {
   const t = setTimeout(() => reject(new Error('servidor não arrancou')), 15000);

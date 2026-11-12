@@ -4,7 +4,15 @@ Assistente pessoal de estudos com inteligência artificial, para estudantes de t
 
 Aplicação web completa: frontend (React), servidor (Node + Express), base de dados (SQLite), contas com autenticação e ligação ao modelo de IA da Anthropic (Claude). Funciona em telemóveis, tablets e computadores.
 
-> **A IA só responde depois de configurar uma chave de API** (ver «Ligar a IA»). Sem chave, a aplicação funciona na mesma (contas, questionário, plano de estudos, calendário, resumos e flashcards escritos à mão, temporizador, progresso) e mostra claramente que a IA não está ligada. Não há respostas simuladas.
+**Três formas de usar:**
+
+| Versão | Onde corre | IA | Custo |
+|---|---|---|---|
+| **Netlify + Gemini** (recomendada para usar grátis) | site no Netlify | Google Gemini (chave gratuita) | 0 € — ver [«Publicar grátis no Netlify»](#publicar-grátis-no-netlify-com-a-ia-gemini) |
+| Servidor próprio (Node) | o seu computador ou um servidor | Claude (API da Anthropic, paga) | o que gastar na API |
+| Artefacto no claude.ai | dentro do claude.ai | o Claude da conta de quem abre | incluído na conta claude.ai |
+
+> **A IA só responde depois de configurar uma chave de API** (ver «Ligar a IA» ou «Publicar grátis no Netlify»). Sem chave, a aplicação funciona na mesma (contas, questionário, plano de estudos, calendário, resumos e flashcards escritos à mão, temporizador, progresso) e mostra claramente que a IA não está ligada. Não há respostas simuladas.
 
 ## Começar
 
@@ -114,9 +122,63 @@ Apps nas lojas (Google Play / App Store) não estão incluídas: podem ser criad
 - Ficheiros enviados: tipo verificado pelo conteúdo (não só pela extensão), tamanho limitado, guardados fora da pasta pública e servidos só ao dono. Anexos não usados são apagados ao fim de 24 h.
 - O estudante pode exportar todos os dados (JSON) e apagar a conta.
 
-## Publicar na internet
+## Publicar grátis no Netlify (com a IA Gemini)
 
-A STUDY AI precisa de um servidor Node com disco persistente (por causa da base de dados). **Não funciona no Netlify** (só aloja ficheiros estáticos; o `netlify.toml` da raiz do repositório é da DutchPath).
+Esta versão não precisa de servidor próprio nem de pagar nada: a interface fica no Netlify, a API corre numa **função do Netlify** (`netlify/functions/api.mts`), os dados de cada estudante ficam no **Netlify Blobs** e a IA é o **Google Gemini**, que tem um plano gratuito.
+
+### 1. Criar a chave gratuita do Gemini (5 minutos)
+
+1. Abra <https://aistudio.google.com/> e entre com uma conta Google.
+2. Clique em **Get API key** (ou «Obter chave de API») → **Create API key**.
+3. Copie a chave (começa por `AIza…`). **Não a partilhe nem a ponha no GitHub.**
+
+Não é preciso cartão de crédito. Enquanto não ativar a faturação no Google Cloud, a chave fica no plano gratuito e **nunca é cobrada**: quando o limite gratuito acaba, a IA responde «atingiu o limite de pedidos» até ao dia seguinte.
+
+### 2. Publicar no Netlify
+
+1. Crie uma conta grátis em <https://app.netlify.com/> (pode entrar com o GitHub).
+2. **Add new project** (ou *Add new site*) **→ Import an existing project → GitHub** e escolha este repositório.
+3. Preencha:
+   - **Branch to deploy:** `claude/study-ai-educational-app-luy6ff` (ou a branch principal, depois de juntar as alterações)
+   - **Base directory:** `study-ai` ← importante (a raiz do repositório é outro projeto)
+   - Os outros campos (*build command* `npm run build`, *publish directory* `dist`, *functions directory*) vêm do `study-ai/netlify.toml` — pode deixá-los como estão.
+4. Antes de publicar, em **Environment variables → Add a variable**: `GEMINI_API_KEY` = a chave do passo 1.
+   (Se já publicou sem a chave: *Site configuration → Environment variables*, adicione-a e faça **Deploys → Trigger deploy**.)
+5. **Deploy**. Ao fim de 1–2 minutos o site fica em `https://<nome>.netlify.app`. Abra-o, crie uma conta e use.
+
+No telemóvel, abra o endereço no navegador e escolha «Adicionar ao ecrã principal» para a instalar como aplicação.
+
+### Variáveis opcionais
+
+| Variável | Para quê |
+|---|---|
+| `GEMINI_MODEL` | Forçar um modelo para todos os planos (ex.: `gemini-2.5-flash`). Por omissão é escolhido automaticamente o «Flash» mais recente: «Flash-Lite» no Cláudio 5 (mais pedidos grátis por dia), «Flash» no 5.5 e no 6. |
+| `GEMINI_MODEL_CLAUDIO_5`, `GEMINI_MODEL_CLAUDIO_5_5`, `GEMINI_MODEL_CLAUDIO_6` | Modelo de um plano específico. |
+| `SESSION_SECRET` | Segredo das sessões (texto aleatório longo). Se faltar, é criado e guardado automaticamente no Netlify Blobs. |
+| `APP_TIMEZONE` | Fuso dos limites diários (por omissão `Europe/Lisbon`). |
+
+### O que muda em relação à versão com servidor próprio
+
+- **Privacidade:** no plano gratuito, a Google pode usar as perguntas enviadas para melhorar os seus modelos. A aplicação avisa os estudantes junto do chat e nas Definições. Para escolas ou dados sensíveis, ative a faturação no Google Cloud (deixa de haver esse uso) ou use a versão com servidor próprio.
+- **Limites gratuitos do Gemini:** há um número máximo de pedidos por minuto e por dia (mudam com o tempo; ver *Rate limits* no AI Studio). São partilhados por **todos** os estudantes do site, porque a chave é uma só. Os limites dos planos Cláudio (20 perguntas/3 imagens no 5.5, etc.) continuam a ser aplicados por estudante.
+- **Respostas até ~25 segundos:** as funções do Netlify terminam aos 30 s. Se uma resposta for muito longa, é guardada até onde chegou com a nota «A resposta foi cortada. Pede “continua”».
+- **Anexos até 4 MB** (limite dos pedidos às funções). O Gemini lê imagens e PDF diretamente.
+- **Dados:** cada estudante tem o seu registo no Netlify Blobs (`user/<id>/…`), com escrita protegida contra alterações em simultâneo. Exportar e apagar a conta funcionam como na outra versão.
+- Plano gratuito do Netlify: chega para uso pessoal ou de uma turma; se o site exceder os limites mensais, o Netlify suspende-o até ao mês seguinte (não cobra sem autorização).
+
+### Experimentar no computador antes de publicar
+
+```bash
+cd study-ai
+npm install
+echo "GEMINI_API_KEY=AIza..." > .env   # opcional: sem chave, a IA mostra como a ativar
+npm run build
+npm run netlify:local                  # http://127.0.0.1:8888 (dados só em memória)
+```
+
+## Publicar com servidor próprio
+
+A versão com servidor Node (IA Claude) precisa de um servidor com disco persistente (por causa da base de dados SQLite). Para o Netlify, use a versão acima. (O `netlify.toml` da raiz do repositório é da DutchPath; o da STUDY AI é `study-ai/netlify.toml`.)
 
 Opções simples: Render, Railway, Fly.io ou um VPS. Com o `Dockerfile` incluído:
 
@@ -135,6 +197,8 @@ study-ai/
   server/      API (Express), base de dados SQLite (node:sqlite), autenticação, IA
     ai/        cliente da API da Anthropic, instruções (prompts), limites dos planos
     routes/    estudante (perfil, plano, calendário, progresso), chat e anexos, resumos/flashcards/testes
+  core/        a mesma API sem servidor próprio (usada pelo Netlify e pelo artefacto do claude.ai)
+  netlify/     versão Netlify: função /api, contas, armazenamento (Netlify Blobs) e IA Gemini
   src/         interface React (páginas em src/pages, componentes em src/components)
   tests/       testes automáticos (Vitest) e teste no navegador (Playwright)
 ```
@@ -145,9 +209,10 @@ study-ai/
 npm test             # motor do plano + API (contas, isolamento, limites, anexos, chat, testes, flashcards)
 npm run typecheck
 npm run build && npm run test:e2e   # navegador real, computador e telemóvel; capturas em tests/e2e/screenshots
+npm run build && npm run test:e2e:netlify   # o mesmo, na versão Netlify + Gemini
 ```
 
-Os testes da integração com a IA usam um simulador local da API da Anthropic (`tests/fake-anthropic.ts`): verificam os pedidos enviados (modelo, esforço, instruções, imagens, documentos) e o streaming, sem chave nem custos. **A aplicação nunca usa o simulador.**
+Os testes da integração com a IA usam simuladores locais das APIs da Anthropic (`tests/fake-anthropic.ts`) e do Gemini (`tests/fake-gemini.ts`): verificam os pedidos enviados (modelo, instruções, imagens, documentos, limites) e o streaming, sem chave nem custos. **A aplicação nunca usa os simuladores.**
 
 ## Limitações conhecidas
 

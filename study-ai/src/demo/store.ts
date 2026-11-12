@@ -5,34 +5,10 @@
 // 3.º: em último caso, só na memória (perde-se ao fechar a página).
 // Os dados são guardados em vários documentos pequenos (limite de 256 KiB por documento).
 
-import type {
-  CalendarEvent, ChatMessage, Conversation, DailyGoal, Flashcard, PracticeTest, Profile, StudyLog, StudyPlan, Summary,
-} from '../../shared/types';
+import type { UserState } from '../../core/state';
+import type { ChatMessage, Conversation, DailyGoal, PracticeTest, StudyLog, Summary } from '../../shared/types';
 
-export interface DeckRow {
-  id: string;
-  subject: string | null;
-  title: string;
-  createdAt: string;
-}
-
-export interface DemoState {
-  /** Aumenta a cada gravação: diz qual cópia (conta ou navegador) é a mais recente. */
-  rev: number;
-  user: { id: string; name: string; email: string; createdAt: string };
-  profile: Profile;
-  plan: StudyPlan | null;
-  checks: Record<string, string[]>;
-  usage: Record<string, { questions: number; images: number }>;
-  cardReviews: Record<string, number>;
-  events: CalendarEvent[];
-  logs: StudyLog[];
-  goals: DailyGoal[];
-  conversations: Record<string, { conversation: Conversation; messages: ChatMessage[] }>;
-  summaries: Record<string, Summary>;
-  decks: Record<string, { deck: DeckRow; cards: Flashcard[] }>;
-  tests: Record<string, PracticeTest>;
-}
+export type DemoState = UserState;
 
 export type StorageKind = 'conta' | 'navegador' | 'memoria';
 
