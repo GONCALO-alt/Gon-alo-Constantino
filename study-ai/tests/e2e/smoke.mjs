@@ -451,6 +451,15 @@ try {
     await card.scrollIntoViewIfNeeded();
     await q.waitForTimeout(400);
     await card.screenshot({ path: path.join(shots, 'm9-qr-code.png') });
+    // A imagem para imprimir abre dentro da app (no iPhone, ir para o Safari dava erro).
+    await card.getByRole('button', { name: 'Imagem para imprimir' }).click();
+    const img = q.getByRole('dialog').getByRole('img', { name: /Cartaz com o QR Code/ });
+    await img.waitFor();
+    if (!(await img.getAttribute('src'))?.startsWith('data:image/png')) throw new Error('a imagem do QR Code não foi criada');
+    if (q.url().startsWith('blob:')) throw new Error('saiu da app');
+    await q.getByText('Guardar nas Fotos').waitFor();
+    await q.waitForTimeout(300);
+    await q.screenshot({ path: path.join(shots, 'm9b-qr-imagem.png') });
     await qctx.close();
   });
 

@@ -2,7 +2,10 @@ import { useMemo, useState } from 'react';
 import { Check, Copy, Download, QrCode, Share2 } from 'lucide-react';
 import { qrMatrix, qrPath, qrPoster } from '../qr';
 import { useApp } from '../state';
-import { Button } from './ui';
+import { Button, Modal } from './ui';
+
+/** iPhone/iPad: as transferências abrem fora da app (no Safari) e falham; mostra-se a imagem na app. */
+const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
 /** Endereço público da app (a página inicial). */
 export const appUrl = () => `${window.location.origin}/`;
@@ -14,6 +17,7 @@ export function ShareApp() {
   const matrix = useMemo(() => qrMatrix(url), [url]);
   const path = useMemo(() => qrPath(matrix), [matrix]);
   const [copied, setCopied] = useState(false);
+  const [poster, setPoster] = useState<string | null>(null);
   const canShare = typeof navigator.share === 'function';
 
   async function copy() {
@@ -40,14 +44,17 @@ export function ShareApp() {
       const file = new File([blob], 'study-ai-qr-code.png', { type: 'image/png' });
       // No telemóvel, partilhar a imagem deixa guardá-la nas Fotos ou enviá-la.
       if (navigator.canShare?.({ files: [file] })) {
-        await navigator.share({ files: [file], title: 'STUDY AI' }).catch(() => {});
-        return;
+        try {
+          await navigator.share({ files: [file], title: 'STUDY AI' });
+          return;
+        } catch (err) {
+          if ((err as Error)?.name === 'AbortError') return; // a pessoa fechou a partilha
+        }
       }
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = file.name;
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      // Mostra a imagem dentro da app (no iPhone dá para guardar nas Fotos com um toque longo).
+      const reader = new FileReader();
+      reader.onload = () => setPoster(String(reader.result));
+      reader.readAsDataURL(blob);
     } catch {
       toast('Não consegui criar a imagem. Tira uma captura de ecrã ao QR Code.', 'error');
     }
@@ -76,6 +83,26 @@ export function ShareApp() {
           </div>
         </div>
       </div>
+      <Modal
+        open={!!poster}
+        onClose={() => setPoster(null)}
+        title="Imagem para imprimir"
+        footer={
+          <>
+            <Button variant="ghost" onClick={() => setPoster(null)}>Fechar</Button>
+            {poster && !isIOS() && (
+              <a className="btn btn-primary" href={poster} download="study-ai-qr-code.png"><Download /> Descarregar</a>
+            )}
+          </>
+        }
+      >
+        <div className="stack">
+          {poster && <img src={poster} alt="Cartaz com o QR Code da STUDY AI" className="qr-poster" />}
+          <p className="small muted center">
+            {isIOS() ? 'Mantém o dedo na imagem e escolhe «Guardar nas Fotos» (ou «Partilhar»).' : 'Descarrega a imagem para a imprimir ou enviar.'}
+          </p>
+        </div>
+      </Modal>
     </section>
   );
 }
