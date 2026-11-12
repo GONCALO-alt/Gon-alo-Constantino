@@ -62,7 +62,11 @@ function dbBackend(db: DbLike, uid: string): Backend {
     async load() {
       const snap = await col.limit(1000).get();
       const out: Record<string, unknown> = {};
-      for (const d of snap.docs) out[d.id] = d.data()?.v;
+      // Os documentos chegam congelados (só de leitura): copia-os para os poder alterar.
+      for (const d of snap.docs) {
+        const v = d.data()?.v;
+        out[d.id] = v === undefined ? undefined : JSON.parse(JSON.stringify(v));
+      }
       return out;
     },
     write: (key, value) => col.doc(key).set({ v: value as never }),
