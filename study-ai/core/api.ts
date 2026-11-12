@@ -535,7 +535,7 @@ export function createCore(opts: CoreOptions) {
       if (!plan.files) fail(403, `O ${plan.name} não permite carregar ficheiros. Só o Cláudio 6 analisa documentos.`, 'plan_no_files');
       if (bytes.length > MAX_TEXT_BYTES) fail(413, 'O ficheiro de texto é maior do que 1 MB.', 'too_large');
       try {
-        text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+        text = new TextDecoder('utf-8', { fatal: true, ignoreBOM: false }).decode(bytes);
       } catch {
         fail(415, 'O ficheiro não parece ser texto.', 'bad_type');
       }

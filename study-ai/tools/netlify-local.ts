@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import { createApp } from '../netlify/lib/app';
-import { GeminiAi } from '../netlify/lib/gemini';
+import { GeminiAi } from '../core/gemini';
 import { memoryKV } from '../netlify/lib/kv';
 
 const root = process.cwd();
@@ -25,9 +25,9 @@ const api = createApp({
   secureCookies: false,
 });
 
-// Os mesmos cabeçalhos do netlify.toml.
-const toml = fs.readFileSync(path.join(root, 'netlify.toml'), 'utf8');
-const csp = /Content-Security-Policy = "([^"]+)"/.exec(toml)?.[1] ?? "default-src 'self'";
+// Os mesmos cabeçalhos de public/_headers.
+const headersFile = fs.readFileSync(path.join(root, 'public/_headers'), 'utf8');
+const csp = /Content-Security-Policy: (.+)/.exec(headersFile)?.[1]?.trim() ?? "default-src 'self'";
 const TYPES: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png',
   '.webmanifest': 'application/manifest+json', '.woff2': 'font/woff2', '.woff': 'font/woff', '.ttf': 'font/ttf', '.json': 'application/json',

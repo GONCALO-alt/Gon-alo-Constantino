@@ -2,7 +2,7 @@
 import { getStore } from '@netlify/blobs';
 import type { Context } from '@netlify/functions';
 import { createApp } from '../lib/app.ts';
-import { GeminiAi } from '../lib/gemini.ts';
+import { GeminiAi } from '../../core/gemini.ts';
 import { blobsKV } from '../lib/kv.ts';
 
 const env = (name: string) => {
@@ -19,6 +19,7 @@ export default async (req: Request, context: Context) => {
       apiKey: env('GEMINI_API_KEY'),
       model: env('GEMINI_MODEL'),
       models: { 'claudio-5': env('GEMINI_MODEL_CLAUDIO_5'), 'claudio-5-5': env('GEMINI_MODEL_CLAUDIO_5_5'), 'claudio-6': env('GEMINI_MODEL_CLAUDIO_6') },
+      where: 'no Netlify (Site configuration → Environment variables)',
     }),
     secret: env('SESSION_SECRET'),
     timeZone: env('APP_TIMEZONE') ?? 'Europe/Lisbon',

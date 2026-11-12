@@ -13,10 +13,12 @@ export interface FakeGemini {
   url: string;
   requests: FakeGeminiRequest[];
   reply: string;
-  /** Se definido, o próximo pedido responde com este estado HTTP (ex.: 429). */
+  /** Se definido, o próximo pedido de geração responde com este estado HTTP (ex.: 429). */
   failNext: number | null;
   /** Pausa (ms) entre pedaços da resposta em streaming, para testar o tempo máximo. */
   slowMs: number;
+  /** Simula um modelo que não aceita o controlo do «pensamento» (responde 400). */
+  rejectThinking: boolean;
   close(): Promise<void>;
 }
 
@@ -48,20 +50,27 @@ export async function startFakeGemini(): Promise<FakeGemini> {
     reply: 'Olá! **Uma fração** representa partes de um todo: $\\frac{1}{2}$.',
     failNext: null,
     slowMs: 0,
+    rejectThinking: false,
     close: async () => {},
   };
   const server = http.createServer((req, res) => {
-    let raw = '';
-    req.on('data', (c) => (raw += c));
+    const chunks: Buffer[] = [];
+    req.on('data', (c: Buffer) => chunks.push(c));
     req.on('end', () => {
+      const raw = Buffer.concat(chunks).toString('utf8');
       const body = raw ? JSON.parse(raw) : {};
       const path = req.url ?? '';
       state.requests.push({ path, headers: req.headers, body });
-      if (state.failNext) {
+      if (state.failNext && req.method === 'POST') {
         const status = state.failNext;
         state.failNext = null;
         res.writeHead(status, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: { code: status, message: 'Resource has been exhausted (e.g. check quota).', status: 'RESOURCE_EXHAUSTED' } }));
+        return;
+      }
+      if (state.rejectThinking && body.generationConfig?.thinkingConfig) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: { code: 400, message: 'Thinking budget is not supported for this model.', status: 'INVALID_ARGUMENT' } }));
         return;
       }
       if (req.method === 'GET' && path.startsWith('/v1beta/models')) {

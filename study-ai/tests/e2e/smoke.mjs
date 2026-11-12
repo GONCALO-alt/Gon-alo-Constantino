@@ -14,16 +14,17 @@ const require = createRequire(import.meta.url);
 const { chromium, devices } = require('playwright');
 
 const root = path.resolve(import.meta.dirname, '../..');
-const shots = path.join(root, process.env.TARGET === 'netlify' ? 'tests/e2e/screenshots-netlify' : 'tests/e2e/screenshots');
+const shots = path.join(root, process.env.TARGET ? `tests/e2e/screenshots-${process.env.TARGET}` : 'tests/e2e/screenshots');
 fs.mkdirSync(shots, { recursive: true });
 const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'study-ai-e2e-'));
 const port = 8800 + Math.floor(Math.random() * 100);
 const base = `http://127.0.0.1:${port}`;
 const scale = Number(process.env.SHOT_SCALE ?? 1);
 
-// TARGET=netlify testa a versão Netlify (função /api + Gemini) em vez do servidor Node.
-const netlify = process.env.TARGET === 'netlify';
-const fake = netlify ? await startFakeGemini() : await startFakeAnthropic();
+// TARGET=netlify / TARGET=cloudflare testam essas versões (IA Gemini) em vez do servidor Node.
+const target = process.env.TARGET ?? 'node';
+const gemini = target === 'netlify' || target === 'cloudflare';
+const fake = gemini ? await startFakeGemini() : await startFakeAnthropic();
 fake.reply = [
   '## Frações equivalentes',
   '',
@@ -42,7 +43,15 @@ fake.reply = [
   '**Resposta:** $\\frac{3}{4}$ e $\\frac{6}{8}$ são equivalentes.',
 ].join('\n');
 
-const server = netlify
+const persistDir = fs.mkdtempSync(path.join(os.tmpdir(), 'study-ai-e2e-cf-'));
+const server = target === 'cloudflare'
+  ? spawn(process.execPath, ['node_modules/wrangler/bin/wrangler.js', 'dev', '--port', String(port), '--ip', '127.0.0.1', '--persist-to', persistDir,
+      '--var', 'GEMINI_API_KEY:e2e', '--var', `GEMINI_BASE_URL:${fake.url}`], {
+      cwd: root,
+      env: { ...process.env, STUDY_AI_SKIP_BUILD: '1', WRANGLER_SEND_METRICS: 'false', NO_PROXY: '127.0.0.1,localhost', CI: '1' },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+  : target === 'netlify'
   ? spawn(process.execPath, ['tools/netlify-local.mjs'], {
       cwd: root,
       env: { ...process.env, PORT: String(port), GEMINI_API_KEY: 'e2e', GEMINI_BASE_URL: fake.url },
@@ -53,10 +62,10 @@ const server = netlify
       env: { ...process.env, NODE_ENV: 'production', PORT: String(port), DATA_DIR: dataDir, ANTHROPIC_API_KEY: 'e2e', ANTHROPIC_BASE_URL: fake.url, COOKIE_SECURE: 'false' },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
-server.stderr.on('data', (d) => process.stderr.write(d));
+if (target !== 'cloudflare') server.stderr.on('data', (d) => process.stderr.write(d));
 await new Promise((resolve, reject) => {
-  const t = setTimeout(() => reject(new Error('servidor não arrancou')), 15000);
-  server.stdout.on('data', (d) => String(d).includes('a correr') && (clearTimeout(t), resolve()));
+  const t = setTimeout(() => reject(new Error('servidor não arrancou')), 60000);
+  server.stdout.on('data', (d) => /a correr|Ready on/.test(String(d)) && (clearTimeout(t), resolve()));
 });
 
 const errors = [];
@@ -330,11 +339,22 @@ try {
     if (!sw) throw new Error('o service worker não ficou registado');
     await mctx.close();
   });
+
+  await step('cabeçalhos de segurança', async () => {
+    for (const url of [`${base}/`, `${base}/plano/semana`]) {
+      const r = await fetch(url);
+      const csp = r.headers.get('content-security-policy') ?? '';
+      if (!csp.includes("frame-ancestors 'none'") || r.headers.get('x-content-type-options') !== 'nosniff') throw new Error(`faltam cabeçalhos em ${url}`);
+    }
+    const api = await fetch(`${base}/api/me`);
+    if (api.status !== 401 || api.headers.get('x-content-type-options') !== 'nosniff') throw new Error('a API não tem os cabeçalhos certos');
+  });
 } finally {
   await browser.close();
   server.kill();
   await fake.close();
   fs.rmSync(dataDir, { recursive: true, force: true });
+  fs.rmSync(persistDir, { recursive: true, force: true });
 }
 
 // O primeiro pedido /api/me antes de iniciar sessão responde 401 de propósito.

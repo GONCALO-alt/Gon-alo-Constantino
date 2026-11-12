@@ -150,7 +150,7 @@ export function looksLikeText(buf: Buffer): boolean {
   const sample = buf.subarray(0, 4096);
   if (sample.includes(0)) return false;
   try {
-    new TextDecoder('utf-8', { fatal: true }).decode(sample.length < buf.length ? sample.subarray(0, sample.length - 4) : sample);
+    new TextDecoder('utf-8', { fatal: true, ignoreBOM: false }).decode(sample.length < buf.length ? sample.subarray(0, sample.length - 4) : sample);
     return true;
   } catch {
     return false;

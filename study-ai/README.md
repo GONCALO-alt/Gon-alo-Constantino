@@ -4,15 +4,16 @@ Assistente pessoal de estudos com inteligência artificial, para estudantes de t
 
 Aplicação web completa: frontend (React), servidor (Node + Express), base de dados (SQLite), contas com autenticação e ligação ao modelo de IA da Anthropic (Claude). Funciona em telemóveis, tablets e computadores.
 
-**Três formas de usar:**
+**Formas de usar:**
 
 | Versão | Onde corre | IA | Custo |
 |---|---|---|---|
-| **Netlify + Gemini** (recomendada para usar grátis) | site no Netlify | Google Gemini (chave gratuita) | 0 € — ver [«Publicar grátis no Netlify»](#publicar-grátis-no-netlify-com-a-ia-gemini) |
+| **Cloudflare + Gemini** (recomendada para usar grátis) | site no Cloudflare | Google Gemini (chave gratuita) | 0 € — ver [«Publicar grátis no Cloudflare»](#publicar-grátis-no-cloudflare-com-a-ia-gemini) |
+| Netlify + Gemini | site no Netlify | Google Gemini (chave gratuita) | 0 € — ver [«Publicar grátis no Netlify»](#publicar-grátis-no-netlify-com-a-ia-gemini) |
 | Servidor próprio (Node) | o seu computador ou um servidor | Claude (API da Anthropic, paga) | o que gastar na API |
 | Artefacto no claude.ai | dentro do claude.ai | o Claude da conta de quem abre | incluído na conta claude.ai |
 
-> **A IA só responde depois de configurar uma chave de API** (ver «Ligar a IA» ou «Publicar grátis no Netlify»). Sem chave, a aplicação funciona na mesma (contas, questionário, plano de estudos, calendário, resumos e flashcards escritos à mão, temporizador, progresso) e mostra claramente que a IA não está ligada. Não há respostas simuladas.
+> **A IA só responde depois de configurar uma chave de API** (ver «Ligar a IA» ou as secções «Publicar grátis»). Sem chave, a aplicação funciona na mesma (contas, questionário, plano de estudos, calendário, resumos e flashcards escritos à mão, temporizador, progresso) e mostra claramente que a IA não está ligada. Não há respostas simuladas.
 
 ## Começar
 
@@ -122,11 +123,7 @@ Apps nas lojas (Google Play / App Store) não estão incluídas: podem ser criad
 - Ficheiros enviados: tipo verificado pelo conteúdo (não só pela extensão), tamanho limitado, guardados fora da pasta pública e servidos só ao dono. Anexos não usados são apagados ao fim de 24 h.
 - O estudante pode exportar todos os dados (JSON) e apagar a conta.
 
-## Publicar grátis no Netlify (com a IA Gemini)
-
-Esta versão não precisa de servidor próprio nem de pagar nada: a interface fica no Netlify, a API corre numa **função do Netlify** (`netlify/functions/api.mts`), os dados de cada estudante ficam no **Netlify Blobs** e a IA é o **Google Gemini**, que tem um plano gratuito.
-
-### 1. Criar a chave gratuita do Gemini (5 minutos)
+## Chave gratuita do Gemini (para o Cloudflare ou o Netlify)
 
 1. Abra <https://aistudio.google.com/> e entre com uma conta Google.
 2. Clique em **Get API key** (ou «Obter chave de API») → **Create API key**.
@@ -134,7 +131,68 @@ Esta versão não precisa de servidor próprio nem de pagar nada: a interface fi
 
 Não é preciso cartão de crédito. Enquanto não ativar a faturação no Google Cloud, a chave fica no plano gratuito e **nunca é cobrada**: quando o limite gratuito acaba, a IA responde «atingiu o limite de pedidos» até ao dia seguinte.
 
-### 2. Publicar no Netlify
+**Privacidade e limites (válido para as duas versões gratuitas):**
+
+- No plano gratuito, a Google pode usar as perguntas enviadas para melhorar os seus modelos. A aplicação avisa os estudantes junto do chat e nas Definições. Para escolas ou dados sensíveis, ative a faturação no Google Cloud (deixa de haver esse uso) ou use a versão com servidor próprio.
+- Há um número máximo de pedidos à IA por minuto e por dia (muda com o tempo; ver *Rate limits* no AI Studio). É partilhado por **todos** os estudantes do site, porque a chave é uma só. Os limites dos planos Cláudio (20 perguntas/3 imagens no 5.5, etc.) continuam a ser aplicados por estudante.
+- O modelo é escolhido automaticamente: «Flash-Lite» no Cláudio 5 (mais pedidos grátis por dia), «Flash» no 5.5 e no 6. O 5.5 e o 6 deixam a IA «pensar» antes de responder (o 6 mais), para respostas mais cuidadas.
+
+## Publicar grátis no Cloudflare (com a IA Gemini)
+
+A interface é servida pelo Cloudflare, a API corre num **Worker** (`cloudflare/worker.ts`) e cada estudante tem o seu **Durable Object** com uma pequena base de dados SQLite só dele. Tudo no plano gratuito, sem cartão de crédito. A configuração está em `study-ai/wrangler.jsonc` — não é preciso criar bases de dados à mão.
+
+### Passo a passo
+
+1. Crie a [chave gratuita do Gemini](#chave-gratuita-do-gemini-para-o-cloudflare-ou-o-netlify).
+2. Crie uma conta grátis em <https://dash.cloudflare.com/sign-up>.
+3. No painel: **Workers & Pages → Create** (*Create application*) → **Import a repository** → ligue o GitHub e escolha este repositório.
+4. Preencha:
+   - **Project name:** `study-ai` ← tem de ser exatamente este nome (é o do `wrangler.jsonc`)
+   - **Build command:** deixe vazio (o `wrangler.jsonc` já compila a app)
+   - **Deploy command:** `npx wrangler deploy` (o que já vem)
+   - **Advanced settings → Path** (pasta do projeto): `study-ai` ← importante (a raiz do repositório é outro projeto)
+   - Se pedir a branch: `claude/study-ai-educational-app-luy6ff` (ou a principal, depois de juntar as alterações)
+5. **Create and deploy**. Ao fim de 1–2 minutos, a app fica em `https://study-ai.<a-sua-conta>.workers.dev`.
+6. Ligue a IA: no Worker, **Settings → Variables and Secrets → Add** → tipo **Secret**, nome `GEMINI_API_KEY`, valor = a chave → **Deploy**. (Sem este passo a app funciona, mas o chat explica que a IA não está ligada.)
+7. Abra o endereço, crie uma conta e use. No telemóvel: «Adicionar ao ecrã principal».
+
+Se a primeira compilação falhar com «não encontra a pasta study-ai», a branch está errada: **Settings → Build → Branch control → Production branch** = `claude/study-ai-educational-app-luy6ff`, guarde e volte a publicar (*Deployments → Retry*). Cada novo envio para essa branch no GitHub volta a publicar automaticamente.
+
+### Variáveis opcionais (Settings → Variables and Secrets)
+
+| Variável | Para quê |
+|---|---|
+| `GEMINI_MODEL` | Forçar um modelo para todos os planos (ex.: `gemini-2.5-flash`). |
+| `GEMINI_MODEL_CLAUDIO_5`, `GEMINI_MODEL_CLAUDIO_5_5`, `GEMINI_MODEL_CLAUDIO_6` | Modelo de um plano específico. |
+| `SESSION_SECRET` (como *Secret*) | Segredo das sessões. Se faltar, é criado e guardado automaticamente. |
+| `APP_TIMEZONE` | Fuso dos limites diários (por omissão `Europe/Lisbon`). |
+
+### Como funciona e limites
+
+- **Sem limite de 30 s:** ao contrário do Netlify, a resposta da IA pode demorar o que for preciso (até 2 minutos), por isso o Cláudio 6 pode pensar mais.
+- **Dados:** cada estudante tem um Durable Object próprio (`user:<id>`), que guarda os dados em SQLite e os mantém em memória enquanto está a ser usado; só grava o que muda. As palavras-passe ficam com `scrypt`; as sessões são cookies assinados (`HttpOnly`, `Secure`). Exportar e apagar a conta funcionam como nas outras versões.
+- **Anexos até 4 MB**, guardados em pedaços na base de dados do estudante. O Gemini lê imagens e PDF diretamente.
+- **Plano gratuito do Cloudflare:** os ficheiros da app não contam como pedidos; os pedidos à API têm um limite diário generoso (chega para uso pessoal ou de uma turma). Se for ultrapassado, a API recusa pedidos até ao dia seguinte — não há cobranças no plano gratuito.
+- Registos de erros: no Worker, **Observability → Logs**.
+
+### Experimentar no computador
+
+```bash
+cd study-ai
+npm install
+echo "GEMINI_API_KEY=AIza..." > .dev.vars   # opcional; o .dev.vars nunca vai para o GitHub
+npm run cf:local                            # compila e abre em http://localhost:8787
+```
+
+Corre com o mesmo motor do Cloudflare (workerd); os dados ficam na pasta `.wrangler/`.
+
+## Publicar grátis no Netlify (com a IA Gemini)
+
+Alternativa ao Cloudflare: a interface fica no Netlify, a API corre numa **função do Netlify** (`netlify/functions/api.mts`), os dados de cada estudante ficam no **Netlify Blobs** e a IA é o **Google Gemini**.
+
+### Publicar no Netlify
+
+0. Crie a [chave gratuita do Gemini](#chave-gratuita-do-gemini-para-o-cloudflare-ou-o-netlify).
 
 1. Crie uma conta grátis em <https://app.netlify.com/> (pode entrar com o GitHub).
 2. **Add new project** (ou *Add new site*) **→ Import an existing project → GitHub** e escolha este repositório.
@@ -142,7 +200,7 @@ Não é preciso cartão de crédito. Enquanto não ativar a faturação no Googl
    - **Branch to deploy:** `claude/study-ai-educational-app-luy6ff` (ou a branch principal, depois de juntar as alterações)
    - **Base directory:** `study-ai` ← importante (a raiz do repositório é outro projeto)
    - Os outros campos (*build command* `npm run build`, *publish directory* `dist`, *functions directory*) vêm do `study-ai/netlify.toml` — pode deixá-los como estão.
-4. Antes de publicar, em **Environment variables → Add a variable**: `GEMINI_API_KEY` = a chave do passo 1.
+4. Antes de publicar, em **Environment variables → Add a variable**: `GEMINI_API_KEY` = a chave do Gemini.
    (Se já publicou sem a chave: *Site configuration → Environment variables*, adicione-a e faça **Deploys → Trigger deploy**.)
 5. **Deploy**. Ao fim de 1–2 minutos o site fica em `https://<nome>.netlify.app`. Abra-o, crie uma conta e use.
 
@@ -152,15 +210,13 @@ No telemóvel, abra o endereço no navegador e escolha «Adicionar ao ecrã prin
 
 | Variável | Para quê |
 |---|---|
-| `GEMINI_MODEL` | Forçar um modelo para todos os planos (ex.: `gemini-2.5-flash`). Por omissão é escolhido automaticamente o «Flash» mais recente: «Flash-Lite» no Cláudio 5 (mais pedidos grátis por dia), «Flash» no 5.5 e no 6. |
+| `GEMINI_MODEL` | Forçar um modelo para todos os planos (ex.: `gemini-2.5-flash`). |
 | `GEMINI_MODEL_CLAUDIO_5`, `GEMINI_MODEL_CLAUDIO_5_5`, `GEMINI_MODEL_CLAUDIO_6` | Modelo de um plano específico. |
 | `SESSION_SECRET` | Segredo das sessões (texto aleatório longo). Se faltar, é criado e guardado automaticamente no Netlify Blobs. |
 | `APP_TIMEZONE` | Fuso dos limites diários (por omissão `Europe/Lisbon`). |
 
-### O que muda em relação à versão com servidor próprio
+### Como funciona e limites
 
-- **Privacidade:** no plano gratuito, a Google pode usar as perguntas enviadas para melhorar os seus modelos. A aplicação avisa os estudantes junto do chat e nas Definições. Para escolas ou dados sensíveis, ative a faturação no Google Cloud (deixa de haver esse uso) ou use a versão com servidor próprio.
-- **Limites gratuitos do Gemini:** há um número máximo de pedidos por minuto e por dia (mudam com o tempo; ver *Rate limits* no AI Studio). São partilhados por **todos** os estudantes do site, porque a chave é uma só. Os limites dos planos Cláudio (20 perguntas/3 imagens no 5.5, etc.) continuam a ser aplicados por estudante.
 - **Respostas até ~25 segundos:** as funções do Netlify terminam aos 30 s. Se uma resposta for muito longa, é guardada até onde chegou com a nota «A resposta foi cortada. Pede “continua”».
 - **Anexos até 4 MB** (limite dos pedidos às funções). O Gemini lê imagens e PDF diretamente.
 - **Dados:** cada estudante tem o seu registo no Netlify Blobs (`user/<id>/…`), com escrita protegida contra alterações em simultâneo. Exportar e apagar a conta funcionam como na outra versão.
@@ -178,7 +234,7 @@ npm run netlify:local                  # http://127.0.0.1:8888 (dados só em mem
 
 ## Publicar com servidor próprio
 
-A versão com servidor Node (IA Claude) precisa de um servidor com disco persistente (por causa da base de dados SQLite). Para o Netlify, use a versão acima. (O `netlify.toml` da raiz do repositório é da DutchPath; o da STUDY AI é `study-ai/netlify.toml`.)
+A versão com servidor Node (IA Claude) precisa de um servidor com disco persistente (por causa da base de dados SQLite). Para o Cloudflare ou o Netlify, use as versões acima. (O `netlify.toml` da raiz do repositório é da DutchPath; o da STUDY AI é `study-ai/netlify.toml`.)
 
 Opções simples: Render, Railway, Fly.io ou um VPS. Com o `Dockerfile` incluído:
 
@@ -197,8 +253,9 @@ study-ai/
   server/      API (Express), base de dados SQLite (node:sqlite), autenticação, IA
     ai/        cliente da API da Anthropic, instruções (prompts), limites dos planos
     routes/    estudante (perfil, plano, calendário, progresso), chat e anexos, resumos/flashcards/testes
-  core/        a mesma API sem servidor próprio (usada pelo Netlify e pelo artefacto do claude.ai)
-  netlify/     versão Netlify: função /api, contas, armazenamento (Netlify Blobs) e IA Gemini
+  core/        a mesma API sem servidor próprio (Cloudflare, Netlify e artefacto do claude.ai) e o cliente do Gemini
+  cloudflare/  versão Cloudflare: Worker (contas, sessões) e Durable Objects com SQLite (dados de cada estudante)
+  netlify/     versão Netlify: função /api, contas, armazenamento (Netlify Blobs)
   src/         interface React (páginas em src/pages, componentes em src/components)
   tests/       testes automáticos (Vitest) e teste no navegador (Playwright)
 ```
@@ -209,8 +266,11 @@ study-ai/
 npm test             # motor do plano + API (contas, isolamento, limites, anexos, chat, testes, flashcards)
 npm run typecheck
 npm run build && npm run test:e2e   # navegador real, computador e telemóvel; capturas em tests/e2e/screenshots
-npm run build && npm run test:e2e:netlify   # o mesmo, na versão Netlify + Gemini
+npm run build && npm run test:e2e:netlify      # o mesmo, na versão Netlify + Gemini
+npm run build && npm run test:e2e:cloudflare   # o mesmo, na versão Cloudflare + Gemini
 ```
+
+Os testes da versão Cloudflare (`tests/cloudflare.test.ts`) correm o Worker e os Durable Objects no motor do Cloudflare (workerd, através do `wrangler dev`), sem conta nem internet — incluindo reiniciar e confirmar que os dados ficaram guardados.
 
 Os testes da integração com a IA usam simuladores locais das APIs da Anthropic (`tests/fake-anthropic.ts`) e do Gemini (`tests/fake-gemini.ts`): verificam os pedidos enviados (modelo, instruções, imagens, documentos, limites) e o streaming, sem chave nem custos. **A aplicação nunca usa os simuladores.**
 

@@ -1,7 +1,7 @@
 // Testes da versão Netlify: função /api com armazenamento em memória e um Gemini falso.
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createApp } from '../netlify/lib/app.ts';
-import { GeminiAi, pickModel } from '../netlify/lib/gemini.ts';
+import { GeminiAi, pickModel } from '../core/gemini.ts';
 import { memoryKV } from '../netlify/lib/kv.ts';
 import { startFakeGemini, type FakeGemini } from './fake-gemini.ts';
 
@@ -226,6 +226,7 @@ describe('Netlify: IA Gemini', () => {
     expect(system).toContain('8.º ano');
     expect(system).toContain('Disciplina desta conversa: Matemática');
     expect(sent.body.generationConfig.maxOutputTokens).toBe(2048);
+    expect(sent.body.generationConfig.thinkingConfig).toEqual({ thinkingBudget: 0 });
 
     const conv = events[0]!.data.conversation;
     await c.post('/chat/send', { conversationId: conv.id, content: 'E frações equivalentes?', attachmentIds: [] });
@@ -246,7 +247,8 @@ describe('Netlify: IA Gemini', () => {
     expect(parseSse(r.data).some((e) => e.event === 'done')).toBe(true);
     const sent = geminiRequest('Analisa a ficha');
     expect(sent.path).toContain('/models/gemini-flash-latest:');
-    expect(sent.body.generationConfig.maxOutputTokens).toBe(8192);
+    expect(sent.body.generationConfig.maxOutputTokens).toBe(8192 + 2048);
+    expect(sent.body.generationConfig.thinkingConfig).toEqual({ thinkingBudget: 2048 });
     const parts = sent.body.contents.at(-1).parts;
     expect(parts.filter((p: any) => p.inlineData?.mimeType === 'application/pdf')).toHaveLength(1);
     expect(parts.some((p: any) => String(p.text).includes('Apontamentos de História'))).toBe(true);

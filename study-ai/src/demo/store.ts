@@ -5,8 +5,7 @@
 // 3.º: em último caso, só na memória (perde-se ao fechar a página).
 // Os dados são guardados em vários documentos pequenos (limite de 256 KiB por documento).
 
-import type { UserState } from '../../core/state';
-import type { ChatMessage, Conversation, DailyGoal, PracticeTest, StudyLog, Summary } from '../../shared/types';
+import { joinState as fromDocs, splitState as toDocs, type UserState } from '../../core/state';
 
 export type DemoState = UserState;
 
@@ -83,61 +82,6 @@ function localBackend(): Backend | null {
 }
 
 const memoryBackend = (): Backend => ({ kind: 'memoria', load: async () => ({}), write: async () => {}, remove: async () => {} });
-
-const month = (date: string) => date.slice(0, 7);
-
-/** Converte o estado em documentos: chave → valor. */
-function toDocs(s: DemoState): Record<string, unknown> {
-  const docs: Record<string, unknown> = {
-    main: { rev: s.rev, user: s.user, profile: s.profile, plan: s.plan, checks: s.checks, usage: s.usage, cardReviews: s.cardReviews, events: s.events },
-  };
-  for (const [id, c] of Object.entries(s.conversations)) docs[`conv_${id}`] = trimConversation(c);
-  for (const [id, x] of Object.entries(s.summaries)) docs[`sum_${id}`] = x;
-  for (const [id, x] of Object.entries(s.decks)) docs[`deck_${id}`] = x;
-  for (const [id, x] of Object.entries(s.tests)) docs[`test_${id}`] = x;
-  for (const l of s.logs) ((docs[`logs_${month(l.date)}`] ??= []) as StudyLog[]).push(l);
-  for (const g of s.goals) ((docs[`goals_${month(g.date)}`] ??= []) as DailyGoal[]).push(g);
-  return docs;
-}
-
-/** Uma conversa muito longa guarda só as mensagens mais recentes (limite do documento). */
-function trimConversation(c: { conversation: Conversation; messages: ChatMessage[] }) {
-  let messages = c.messages;
-  while (messages.length > 2 && JSON.stringify(messages).length > 200_000) messages = messages.slice(2);
-  return { conversation: c.conversation, messages };
-}
-
-function fromDocs(docs: Record<string, unknown>): DemoState | null {
-  const main = docs.main as Partial<DemoState> | undefined;
-  if (!main?.user || !main.profile) return null;
-  const s: DemoState = {
-    rev: Number(main.rev) || 0,
-    user: main.user,
-    profile: main.profile,
-    plan: main.plan ?? null,
-    checks: main.checks ?? {},
-    usage: main.usage ?? {},
-    cardReviews: main.cardReviews ?? {},
-    events: main.events ?? [],
-    logs: [],
-    goals: [],
-    conversations: {},
-    summaries: {},
-    decks: {},
-    tests: {},
-  };
-  for (const [key, value] of Object.entries(docs)) {
-    if (!value) continue;
-    const id = key.slice(key.indexOf('_') + 1);
-    if (key.startsWith('conv_')) s.conversations[id] = value as DemoState['conversations'][string];
-    else if (key.startsWith('sum_')) s.summaries[id] = value as Summary;
-    else if (key.startsWith('deck_')) s.decks[id] = value as DemoState['decks'][string];
-    else if (key.startsWith('test_')) s.tests[id] = value as PracticeTest;
-    else if (key.startsWith('logs_')) s.logs.push(...(value as StudyLog[]));
-    else if (key.startsWith('goals_')) s.goals.push(...(value as DailyGoal[]));
-  }
-  return s;
-}
 
 export class DemoStore {
   state!: DemoState;
