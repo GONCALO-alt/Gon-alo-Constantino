@@ -50,8 +50,9 @@ export function readSession(secret: Buffer, token: string | null): { uid: string
   if (parts.length !== 4) return null;
   const [uid, version, exp, mac] = parts as [string, string, string, string];
   if (!/^[0-9a-f-]{36}$/.test(uid) || !(Number(exp) > Date.now())) return null;
-  const expected = crypto.createHmac('sha256', secret).update(`${uid}.${version}.${exp}`).digest();
-  const given = Buffer.from(mac, 'base64url');
+  // Compara o texto exato da assinatura (qualquer letra alterada no cookie invalida a sessão).
+  const expected = Buffer.from(crypto.createHmac('sha256', secret).update(`${uid}.${version}.${exp}`).digest('base64url'));
+  const given = Buffer.from(mac);
   if (given.length !== expected.length || !crypto.timingSafeEqual(given, expected)) return null;
   return { uid, version: Number(version) };
 }

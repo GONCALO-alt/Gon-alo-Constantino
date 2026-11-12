@@ -39,7 +39,7 @@ async function startWorker() {
   const port = 9100 + Math.floor(Math.random() * 800);
   const child = spawn(
     process.execPath,
-    [path.join(root, 'node_modules/wrangler/bin/wrangler.js'), 'dev', '--port', String(port), '--ip', '127.0.0.1', '--persist-to', persist,
+    [path.join(root, 'node_modules/wrangler/bin/wrangler.js'), 'dev', '--env', 'local', '--port', String(port), '--ip', '127.0.0.1', '--persist-to', persist,
       '--var', 'GEMINI_API_KEY:chave-de-teste', '--var', `GEMINI_BASE_URL:${fake.url}`, '--var', 'SESSION_SECRET:segredo-de-teste', '--log-level', 'warn'],
     { cwd: root, env: { ...process.env, STUDY_AI_SKIP_BUILD: '1', WRANGLER_SEND_METRICS: 'false', NO_PROXY: '127.0.0.1,localhost', CI: '1' }, stdio: ['ignore', 'pipe', 'pipe'] },
   );

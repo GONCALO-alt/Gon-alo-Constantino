@@ -9,6 +9,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { createCore, CoreError, json, type CoreContext, type StoredFile } from '../core/api';
 import { GeminiAi } from '../core/gemini';
+import { WorkersAi, type AiBinding } from './workers-ai';
 import {
   apiPath, badLogin, clearSessionCookie, csrfOk, emailHash, emailTaken, errorResponse, exportData, isAiPath, MAX_UPLOAD,
   newPasswordError, readCookie, readJson, readSession, registerInput, SESSION_COOKIE, sessionCookie, signSession, tooManyAttempts,
@@ -28,6 +29,10 @@ export interface Env {
   GEMINI_MODEL_CLAUDIO_6?: string;
   /** Só para testes (simulador do Gemini). */
   GEMINI_BASE_URL?: string;
+  /** IA do próprio Cloudflare (Workers AI): usada quando não há GEMINI_API_KEY. */
+  AI?: Ai;
+  /** Outro modelo do Workers AI (opcional). */
+  WORKERS_AI_MODEL?: string;
   SESSION_SECRET?: string;
   APP_TIMEZONE?: string;
 }
@@ -262,9 +267,11 @@ export class StudyStore extends DurableObject<Env> {
 
   private getCore() {
     const env = this.env;
+    // Com GEMINI_API_KEY usa o Gemini; sem ela, a IA do próprio Cloudflare (não precisa de chave).
+    const geminiKey = clean(env.GEMINI_API_KEY);
     this.core ??= createCore({
-      ai: new GeminiAi({
-        apiKey: clean(env.GEMINI_API_KEY),
+      ai: !geminiKey && env.AI ? new WorkersAi(env.AI as unknown as AiBinding, { model: clean(env.WORKERS_AI_MODEL) }) : new GeminiAi({
+        apiKey: geminiKey,
         baseUrl: clean(env.GEMINI_BASE_URL),
         model: clean(env.GEMINI_MODEL),
         models: { 'claudio-5': clean(env.GEMINI_MODEL_CLAUDIO_5), 'claudio-5-5': clean(env.GEMINI_MODEL_CLAUDIO_5_5), 'claudio-6': clean(env.GEMINI_MODEL_CLAUDIO_6) },
@@ -379,7 +386,7 @@ async function api(req: Request, env: Env): Promise<Response> {
 
   const session = readSession(await getSecret(env), readCookie(req, SESSION_COOKIE));
   if (!session) {
-    if (path === '/health') return json({ ok: true, app: 'STUDY AI', ai: !!clean(env.GEMINI_API_KEY) });
+    if (path === '/health') return json({ ok: true, app: 'STUDY AI', ai: !!clean(env.GEMINI_API_KEY) || !!env.AI });
     return withHeaders(unauthenticated());
   }
   const { uid, version } = session;

@@ -111,8 +111,10 @@ describe('Netlify: contas', () => {
 
     // Um cookie alterado não serve.
     const forged = new Client(app);
-    forged.cookie = c.cookie.replace(/.$/, (ch) => (ch === 'A' ? 'B' : 'A'));
-    expect((await forged.get('/me')).status).toBe(401);
+    for (const ch of ['A', 'B', 'C', 'D', 'Q']) {
+      forged.cookie = c.cookie.replace(/.$/, ch);
+      if (forged.cookie !== c.cookie) expect((await forged.get('/me')).status).toBe(401);
+    }
 
     await c.post('/auth/logout');
     expect((await c.get('/me')).status).toBe(401);

@@ -8,7 +8,7 @@ Aplicação web completa: frontend (React), servidor (Node + Express), base de d
 
 | Versão | Onde corre | IA | Custo |
 |---|---|---|---|
-| **Cloudflare + Gemini** (recomendada para usar grátis) | site no Cloudflare | Google Gemini (chave gratuita) | 0 € — ver [«Publicar grátis no Cloudflare»](#publicar-grátis-no-cloudflare-com-a-ia-gemini) |
+| **Cloudflare** (recomendada para usar grátis) | site no Cloudflare | IA do Cloudflare (sem chave) ou Google Gemini | 0 € — ver [«Publicar grátis no Cloudflare»](#publicar-grátis-no-cloudflare-com-a-ia-gemini) |
 | Netlify + Gemini | site no Netlify | Google Gemini (chave gratuita) | 0 € — ver [«Publicar grátis no Netlify»](#publicar-grátis-no-netlify-com-a-ia-gemini) |
 | Servidor próprio (Node) | o seu computador ou um servidor | Claude (API da Anthropic, paga) | o que gastar na API |
 | Artefacto no claude.ai | dentro do claude.ai | o Claude da conta de quem abre | incluído na conta claude.ai |
@@ -141,9 +141,11 @@ Não é preciso cartão de crédito. Enquanto não ativar a faturação no Googl
 
 A interface é servida pelo Cloudflare, a API corre num **Worker** (`cloudflare/worker.ts`) e cada estudante tem o seu **Durable Object** com uma pequena base de dados SQLite só dele. Tudo no plano gratuito, sem cartão de crédito. A configuração está em `study-ai/wrangler.jsonc` — não é preciso criar bases de dados à mão.
 
+**A IA funciona logo, sem chave nenhuma:** sem `GEMINI_API_KEY`, a app usa a **IA do próprio Cloudflare** (Workers AI, modelo aberto **Llama 4 Scout**, que percebe português, lê imagens e — com a conversão do Cloudflare — o texto dos PDF). Tem um **limite diário gratuito** na conta (quando acaba, a app avisa e volta a funcionar no dia seguinte; nunca é cobrado no plano gratuito). Chega para uso pessoal; para uma turma inteira, o Gemini gratuito dá mais pedidos por dia. Se definir `GEMINI_API_KEY`, passa a usar o Gemini. Outro modelo do Cloudflare: variável `WORKERS_AI_MODEL` (ex.: `@cf/mistralai/mistral-small-3.1-24b-instruct`).
+
 ### Passo a passo
 
-1. Crie a [chave gratuita do Gemini](#chave-gratuita-do-gemini-para-o-cloudflare-ou-o-netlify).
+1. (Opcional) Crie a [chave gratuita do Gemini](#chave-gratuita-do-gemini-para-o-cloudflare-ou-o-netlify). Sem ela, a app usa a IA do Cloudflare.
 2. Crie uma conta grátis em <https://dash.cloudflare.com/sign-up>.
 3. No painel: **Workers & Pages → Create** (*Create application*) → **Import a repository** → ligue o GitHub e escolha este repositório.
 4. Preencha:
@@ -153,7 +155,7 @@ A interface é servida pelo Cloudflare, a API corre num **Worker** (`cloudflare/
    - **Advanced settings → Path** (pasta do projeto): `study-ai` ← importante (a raiz do repositório é outro projeto)
    - **Branch:** `claude/study-ai-educational-app-luy6ff` ← importante: a branch principal deste repositório é a do DutchPath, que não tem a STUDY AI
 5. **Create and deploy**. Ao fim de 1–2 minutos, a app fica em `https://study-ai.<a-sua-conta>.workers.dev`.
-6. Ligue a IA: no Worker, **Settings → Variables and Secrets → Add** → tipo **Secret**, nome `GEMINI_API_KEY`, valor = a chave → **Deploy**. (Sem este passo a app funciona, mas o chat explica que a IA não está ligada.)
+6. (Opcional, só para usar o Gemini) No Worker, **Settings → Variables and Secrets → Add** → tipo **Secret**, nome `GEMINI_API_KEY`, valor = a chave → **Deploy**. Sem este passo, a IA é a do Cloudflare.
 7. Abra o endereço, crie uma conta e use. No telemóvel: «Adicionar ao ecrã principal».
 
 **Confirmar que é a STUDY AI que está publicada:** abra `https://<o-seu-endereço>/api/health`. Deve aparecer `{"ok":true,"app":"STUDY AI",…}`. A app abre sempre com fundo preto; uma **página branca** (ou o DutchPath) quer dizer que o Cloudflare está a publicar outra coisa — normalmente a branch principal do repositório.
@@ -187,11 +189,11 @@ Guarde e volte a publicar (**Deployments → … → Retry deployment**, ou envi
 ```bash
 cd study-ai
 npm install
-echo "GEMINI_API_KEY=AIza..." > .dev.vars   # opcional; o .dev.vars nunca vai para o GitHub
+echo "GEMINI_API_KEY=AIza..." > .dev.vars   # para ter IA no computador; o .dev.vars nunca vai para o GitHub
 npm run cf:local                            # compila e abre em http://localhost:8787
 ```
 
-Corre com o mesmo motor do Cloudflare (workerd); os dados ficam na pasta `.wrangler/`.
+Corre com o mesmo motor do Cloudflare (workerd); os dados ficam na pasta `.wrangler/`. No computador (`--env local`) a IA do Cloudflare não está disponível — só funciona depois de publicado (ou com o Gemini).
 
 ## Publicar grátis no Netlify (com a IA Gemini)
 

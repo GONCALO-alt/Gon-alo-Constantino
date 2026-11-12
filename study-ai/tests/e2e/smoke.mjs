@@ -45,7 +45,7 @@ fake.reply = [
 
 const persistDir = fs.mkdtempSync(path.join(os.tmpdir(), 'study-ai-e2e-cf-'));
 const server = target === 'cloudflare'
-  ? spawn(process.execPath, ['node_modules/wrangler/bin/wrangler.js', 'dev', '--port', String(port), '--ip', '127.0.0.1', '--persist-to', persistDir,
+  ? spawn(process.execPath, ['node_modules/wrangler/bin/wrangler.js', 'dev', '--env', 'local', '--port', String(port), '--ip', '127.0.0.1', '--persist-to', persistDir,
       '--var', 'GEMINI_API_KEY:e2e', '--var', `GEMINI_BASE_URL:${fake.url}`], {
       cwd: root,
       env: { ...process.env, STUDY_AI_SKIP_BUILD: '1', WRANGLER_SEND_METRICS: 'false', NO_PROXY: '127.0.0.1,localhost', CI: '1' },

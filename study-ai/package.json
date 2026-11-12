@@ -20,7 +20,7 @@
     "netlify:local": "node --env-file-if-exists=.env tools/netlify-local.mjs",
     "test:e2e:netlify": "TARGET=netlify node --disable-warning=ExperimentalWarning tests/e2e/smoke.mjs",
     "test:e2e:cloudflare": "TARGET=cloudflare node --disable-warning=ExperimentalWarning tests/e2e/smoke.mjs",
-    "cf:local": "wrangler dev"
+    "cf:local": "wrangler dev --env local"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",
