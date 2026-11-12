@@ -436,6 +436,24 @@ try {
     }
   });
 
+  await step('partilhar a app (QR Code)', async () => {
+    const qctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2 });
+    await qctx.addCookies(await ctx.cookies());
+    const q = await qctx.newPage();
+    q.on('pageerror', (e) => errors.push(e.message));
+    await q.goto(base);
+    await q.getByRole('button', { name: 'Menu' }).click();
+    await q.getByRole('link', { name: /Partilhar a app/ }).click();
+    const card = q.locator('#partilhar');
+    await card.locator('svg[role="img"]').waitFor();
+    const shown = (await card.locator('.share-url').textContent())?.trim();
+    if (shown !== base.replace(/^https?:\/\//, '')) throw new Error(`o QR Code aponta para «${shown}»`);
+    await card.scrollIntoViewIfNeeded();
+    await q.waitForTimeout(400);
+    await card.screenshot({ path: path.join(shots, 'm9-qr-code.png') });
+    await qctx.close();
+  });
+
   await step('usar sem conta (telemóvel)', async () => {
     const gctx = await browser.newContext({ ...devices['iPhone 13'], deviceScaleFactor: scale > 1 ? 3 : 2 });
     const g = await gctx.newPage();

@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import {
-  BookOpen, CalendarDays, TriangleAlert, ChartColumn, ClipboardCheck, FileText, House, LayoutGrid, LogOut, MessagesSquare, Settings, Sparkles,
+  BookOpen, CalendarDays, TriangleAlert, ChartColumn, ClipboardCheck, FileText, House, LayoutGrid, LogOut, MessagesSquare, QrCode, Settings, Sparkles,
 } from 'lucide-react';
 import { AI_PLANS, questionsLeft } from '../../shared/plans';
 import { useApp, useMe, useQuery } from '../state';
@@ -162,7 +162,10 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
             <div style={{ marginTop: 12 }}>
               <InstallButton block />
             </div>
-            <button type="button" className="btn btn-ghost btn-block" style={{ marginTop: 12 }} onClick={logout}>
+            <Link to="/definicoes#partilhar" className="btn btn-secondary btn-block" style={{ marginTop: 12 }}>
+              <QrCode /> Partilhar a app (QR Code)
+            </Link>
+            <button type="button" className="btn btn-ghost btn-block" style={{ marginTop: 12 }} onClick={() => confirmLogout(me) && logout()}>
               <LogOut /> Terminar sessão
             </button>
           </>

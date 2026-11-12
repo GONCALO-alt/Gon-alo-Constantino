@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Download, Info, KeyRound, LogOut, Pencil, ShieldCheck, Smartphone, Sparkles, SlidersHorizontal, Trash2, UserRound } from 'lucide-react';
 import { confirmLogout } from '../guest';
 import { InstallButton } from '../components/Install';
+import { ShareApp } from '../components/ShareApp';
 import { DEMO } from '../env';
 import { invalidate, clearCache } from '../state';
 import { api } from '../api';
@@ -29,7 +30,7 @@ export function SettingsPage() {
   const location = useLocation();
   // «Definições → Conta» (ligação dos avisos para quem usa sem conta).
   useEffect(() => {
-    if (location.hash === '#conta') document.getElementById('conta')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [location.hash]);
   const names = (ids: string[]) => (ids.length ? ids.map((id) => getSubject(id, q?.customSubjects).name).join(', ') : '—');
 
@@ -166,6 +167,8 @@ export function SettingsPage() {
           </div>
         </section>
         )}
+
+        {!DEMO && <ShareApp />}
 
         {DEMO ? (
         <DemoData />
