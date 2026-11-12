@@ -18,7 +18,7 @@ import { addDays, isISODate, weekStart } from '../../shared/dates.ts';
 import { cleanQuestionnaire, generatePlan, newSessionId, planAsText } from '../../shared/planner.ts';
 import { AI_PLAN_IDS } from '../../shared/plans.ts';
 import { getSubject } from '../../shared/subjects.ts';
-import type { CalendarEvent, StudyPlan } from '../../shared/types.ts';
+import { longestRun, type AchievementNumbers, type CalendarEvent, type StudyPlan } from '../../shared/types.ts';
 
 const isoDate = z.string().refine(isISODate, 'data inválida');
 const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'hora inválida');
@@ -464,7 +464,26 @@ export function studentRouter(ctx: Ctx): Router {
       'SELECT date, count FROM card_reviews WHERE user_id = ? AND date >= ?',
       userId, addDays(today, -6),
     );
+    const one = <T,>(sql: string, ...args: (string | number)[]) => db.one<T>(sql, userId, ...args)!;
+    const allDates = db.all<{ date: string }>('SELECT DISTINCT date FROM study_logs WHERE user_id = ? AND minutes > 0', userId).map((r) => r.date);
+    const testCounts = one<{ done: number; excellent: number | null }>(
+      'SELECT COUNT(*) AS done, SUM(CASE WHEN max_score > 0 AND score * 1.0 / max_score >= 0.9 THEN 1 ELSE 0 END) AS excellent FROM tests WHERE user_id = ? AND completed_at IS NOT NULL',
+    );
+    const achievements: AchievementNumbers = {
+      bestStreak: longestRun(allDates),
+      studyDays: allDates.length,
+      sessionsDone: one<{ n: number }>('SELECT COUNT(*) AS n FROM study_logs WHERE user_id = ? AND session_key IS NOT NULL').n,
+      testsDone: testCounts.done,
+      testsExcellent: testCounts.excellent ?? 0,
+      reviewsTotal: one<{ n: number | null }>('SELECT SUM(count) AS n FROM card_reviews WHERE user_id = ?').n ?? 0,
+      subjectsStudied: one<{ n: number }>('SELECT COUNT(DISTINCT subject) AS n FROM study_logs WHERE user_id = ? AND subject IS NOT NULL').n,
+      weekTests: one<{ n: number }>('SELECT COUNT(*) AS n FROM tests WHERE user_id = ? AND completed_at IS NOT NULL AND substr(completed_at, 1, 10) BETWEEN ? AND ?', week, weekEnd).n,
+      weekReviews: one<{ n: number | null }>('SELECT SUM(count) AS n FROM card_reviews WHERE user_id = ? AND date BETWEEN ? AND ?', week, weekEnd).n ?? 0,
+      weekQuestions: one<{ n: number | null }>('SELECT SUM(questions) AS n FROM usage WHERE user_id = ? AND day BETWEEN ? AND ?', week, weekEnd).n ?? 0,
+      weekDays: one<{ n: number }>('SELECT COUNT(DISTINCT date) AS n FROM study_logs WHERE user_id = ? AND minutes > 0 AND date BETWEEN ? AND ?', week, weekEnd).n,
+    };
     res.json({
+      achievements,
       today,
       days,
       streak,

@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { AI_PLANS, questionsLeft } from '../../shared/plans';
 import { useApp, useMe, useQuery } from '../state';
+import { MedalCelebration } from './Achievements';
 import { InstallButton } from './Install';
 import { DEMO } from '../env';
 import { confirmLogout } from '../guest';
@@ -145,6 +146,7 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
         </button>
       </nav>
 
+      <MedalCelebration />
       <Modal open={menu} onClose={() => setMenu(false)} title="Menu">
         <nav className="drawer-nav">
           {NAV.map((n) => (

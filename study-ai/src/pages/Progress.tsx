@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChartColumn, Check, ClipboardCheck, Clock, Flame, Layers, MessagesSquare, Table2, Target, TrendingUp } from 'lucide-react';
+import { AchievementsPanel } from '../components/Achievements';
 import { Promo } from '../components/Promo';
 import { Empty, PageHead, Progress, Skeleton, Tabs } from '../components/ui';
 import { usePlanWeek } from '../planData';
@@ -108,6 +109,11 @@ export function ProgressPage() {
   const [range, setRange] = useState<'7' | '30'>('7');
   const [scope, setScope] = useState<'semana' | 'sempre'>('semana');
   const [table, setTable] = useState(false);
+  const location = useLocation();
+  // «Progresso → Medalhas» (ligação do Início e da celebração).
+  useEffect(() => {
+    if (location.hash === '#medalhas' && stats.data) setTimeout(() => document.getElementById('medalhas')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+  }, [location.hash, stats.data]);
 
   if (stats.loading) return <div className="stack"><Skeleton height={100} /><Skeleton height={260} /></div>;
   const s = stats.data;
@@ -132,6 +138,8 @@ export function ProgressPage() {
       </div>
 
       <div style={{ marginTop: 18 }} className="slot-gap"><Promo slot="progresso" /></div>
+
+      <AchievementsPanel />
 
       <div className="card" style={{ marginTop: 18 }}>
         <div className="card-head wrap">

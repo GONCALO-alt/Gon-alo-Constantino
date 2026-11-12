@@ -4,6 +4,7 @@ import {
   ArrowRight, CalendarDays, Check, ClipboardCheck, Clock, Flame, Info, Plus, Sparkles, Star, Target, Timer, Trash2, TrendingUp,
 } from 'lucide-react';
 import { api } from '../api';
+import { LevelStrip } from '../components/Achievements';
 import { Promo } from '../components/Promo';
 import { SessionRow } from '../components/SessionRow';
 import { SubjectIcon } from '../components/SubjectIcon';
@@ -129,6 +130,8 @@ export function DashboardPage() {
           <span className="stat-value">{left === null ? '∞' : left}<small>{left === null ? 'ilimitadas' : `de ${me.usage.questionsLimit} hoje`}</small></span>
         </Link>
       </div>
+
+      <LevelStrip />
 
       <div className="dash">
         <div className="stack lg">

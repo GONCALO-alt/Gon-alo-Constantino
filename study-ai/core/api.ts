@@ -16,9 +16,9 @@ import {
   AI_PLANS, FILE_TYPES, IMAGE_TYPES, isAiPlanId, limitError, MAX_ATTACHMENTS_PER_MESSAGE, MAX_AUDIO_BYTES, MAX_TEXT_BYTES, type AiPlanId, type UsageSnapshot,
 } from '../shared/plans';
 import { getSubject, yearLabel } from '../shared/subjects';
-import type {
-  AiStatus, Attachment, CalendarEvent, ChatMessage, Conversation, DailyGoal, Deck, MeResponse, PlanSession, PracticeTest,
-  Questionnaire, QuestionKind, StudyLog, StudyPlan, Summary,
+import {
+  longestRun, type AchievementNumbers,
+  type AiStatus, type Attachment, type CalendarEvent, type ChatMessage, type Conversation, type DailyGoal, type Deck, type MeResponse, type PlanSession, type PracticeTest, type Questionnaire, type QuestionKind, type StudyLog, type StudyPlan, type Summary,
 } from '../shared/types';
 import { newId, trimState, type UserState } from './state';
 
@@ -426,6 +426,24 @@ export function createCore(opts: CoreOptions) {
 
   // ---------- estatísticas ----------
 
+  function achievementNumbers(s: UserState, week: string, weekEnd: string, byDate: Map<string, number>): AchievementNumbers {
+    const done = Object.values(s.tests).filter((t) => t.completedAt);
+    const inWeek = (d: string) => d >= week && d <= weekEnd;
+    return {
+      bestStreak: longestRun([...byDate.entries()].filter(([, m]) => m > 0).map(([d]) => d)),
+      studyDays: [...byDate.values()].filter((m) => m > 0).length,
+      sessionsDone: s.logs.filter((l) => l.sessionKey).length,
+      testsDone: done.length,
+      testsExcellent: done.filter((t) => t.maxScore > 0 && (t.score ?? 0) / t.maxScore >= 0.9).length,
+      reviewsTotal: Object.values(s.cardReviews).reduce((a, n) => a + n, 0),
+      subjectsStudied: new Set(s.logs.map((l) => l.subject).filter(Boolean)).size,
+      weekTests: done.filter((t) => inWeek(t.completedAt!.slice(0, 10))).length,
+      weekReviews: Object.entries(s.cardReviews).filter(([d]) => inWeek(d)).reduce((a, [, n]) => a + n, 0),
+      weekQuestions: Object.entries(s.usage).filter(([k]) => inWeek(k.slice(0, 10))).reduce((a, [, u]) => a + u.questions, 0),
+      weekDays: new Set(s.logs.filter((l) => inWeek(l.date) && l.minutes > 0).map((l) => l.date)).size,
+    };
+  }
+
   route('GET', '/stats', async ({ query }, ctx) => {
     const s = await ctx.state();
     const date = isISODate(query.get('date')) ? query.get('date')! : today();
@@ -472,6 +490,7 @@ export function createCore(opts: CoreOptions) {
       reviewsToday: s.cardReviews[date] ?? 0,
       reviewDays: Object.keys(s.cardReviews).filter((d) => d >= week && d <= date).length,
       tests,
+      achievements: achievementNumbers(s, week, weekEnd, byDate),
     };
   });
 

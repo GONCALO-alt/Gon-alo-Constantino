@@ -88,6 +88,13 @@ try {
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   page.on('pageerror', (e) => errors.push(e.message));
   const shot = (name) => page.screenshot({ path: path.join(shots, `${name}.png`) });
+  // Medalhas novas aparecem numa janela de celebração: fecha-a e regista que apareceu.
+  let celebrated = 0;
+  await page.addLocatorHandler(page.getByRole('dialog').filter({ hasText: /Nova medalha!|medalhas novas!/ }), async (dialog) => {
+    celebrated++;
+    if (celebrated === 1) await page.screenshot({ path: path.join(shots, '23b-nova-medalha.png') });
+    await dialog.getByRole('button', { name: 'Continuar' }).click();
+  });
 
   await step('criar conta', async () => {
     await page.goto(base);
@@ -249,6 +256,15 @@ try {
     await page.getByText('Minutos de estudo por dia').waitFor();
     await page.waitForTimeout(700);
     await shot('23-progresso');
+    // Medalhas: já ganhou algumas no percurso acima (resumo, teste, sessões) e houve celebração.
+    const panel = page.locator('#medalhas');
+    await panel.getByText(/Nível \d+ · /).waitFor();
+    await panel.getByText('Desafios da semana').waitFor();
+    if ((await panel.locator('.medal:not(.locked)').count()) < 1) throw new Error('nenhuma medalha ganha');
+    if (!celebrated) throw new Error('a celebração de medalha nova não apareceu');
+    await panel.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(400);
+    await panel.screenshot({ path: path.join(shots, '23c-medalhas.png') });
     // Fechar um anúncio: não volta a aparecer ao recarregar.
     const promo = page.locator('aside.promo');
     if (await promo.count()) {

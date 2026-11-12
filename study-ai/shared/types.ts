@@ -294,3 +294,33 @@ export interface DailyGoal {
   text: string;
   done: boolean;
 }
+
+/** Números para as medalhas e os desafios da semana (parte de GET /stats). */
+export interface AchievementNumbers {
+  bestStreak: number;
+  studyDays: number;
+  sessionsDone: number;
+  testsDone: number;
+  testsExcellent: number;
+  reviewsTotal: number;
+  subjectsStudied: number;
+  weekTests: number;
+  weekReviews: number;
+  weekQuestions: number;
+  weekDays: number;
+}
+
+/** Maior número de dias seguidos numa lista de datas AAAA-MM-DD. */
+export function longestRun(dates: string[]): number {
+  const sorted = [...new Set(dates)].sort();
+  let best = 0;
+  let run = 0;
+  let prev = '';
+  for (const d of sorted) {
+    const next = prev && new Date(Date.parse(`${prev}T12:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
+    run = next === d ? run + 1 : 1;
+    best = Math.max(best, run);
+    prev = d;
+  }
+  return best;
+}
