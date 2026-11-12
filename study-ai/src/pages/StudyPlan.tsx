@@ -9,6 +9,8 @@ import { Markdown } from '../components/Markdown';
 import { subjectColor } from '../components/SubjectIcon';
 import { Button, Confirm, Empty, Field, FormError, Modal, PageHead, Progress, Skeleton, Tabs, Toggle } from '../components/ui';
 import { usePlanWeek, type PlanResponse } from '../planData';
+import { useMediaQuery } from '../pwa';
+import { SessionRow } from '../components/SessionRow';
 import { invalidate, setCached, useApp, useMe } from '../state';
 import { addDays, formatDateShort, formatMinutes, today, weekStart, WEEKDAYS } from '../../shared/dates';
 import { minutesBySubject } from '../../shared/planner';
@@ -109,6 +111,8 @@ function WeekView() {
   const q = me.profile.questionnaire;
   const custom = q?.customSubjects;
   const [anchor, setAnchor] = useState(today());
+  const phone = useMediaQuery('(max-width: 760px)');
+  const [dayIndex, setDayIndex] = useState(() => (new Date().getDay() + 6) % 7);
   const pw = usePlanWeek(anchor);
   const [editing, setEditing] = useState<{ session: PlanSession | null; weekday: number } | null>(null);
   const [viewing, setViewing] = useState<DaySession | null>(null);
@@ -184,29 +188,66 @@ function WeekView() {
         <div style={{ marginTop: 12 }}><Progress value={done} max={weekSessions.length || 1} thin /></div>
       </div>
 
-      <div className="week">
-        {days.map((d, i) => {
-          const items = pw.sessionsFor(d);
-          return (
-            <div key={d} className={`week-day ${d === now ? 'today' : ''} fade-up`} style={{ ['--i' as string]: i }}>
-              <div className="week-day-head">
-                <b>{WEEKDAYS[i]}</b>
-                <span>{formatDateShort(d)}</span>
-              </div>
-              {items.map((s) => (
-                <button key={s.key} type="button" className={`wsession ${pw.doneKeys.has(s.key) ? 'done' : ''} ${s.eventId ? 'rev' : ''}`}
-                  style={{ ['--c' as string]: subjectColor(s.subject, custom) }} onClick={() => setViewing(s)}>
-                  <div className="ws-time">{s.start} · {s.minutes} min {pw.doneKeys.has(s.key) && '✓'}</div>
-                  <div className="ws-title">{s.subject ? getSubject(s.subject, custom).short : 'Trabalhos de casa'}</div>
-                  <div className="ws-act">{s.eventId ? 'Antes do teste' : ACTIVITY_LABELS[s.activity]}</div>
+      {phone ? (
+        <div className="stack">
+          <div className="day-strip" role="tablist" aria-label="Dia da semana">
+            {days.map((d, i) => {
+              const items = pw.sessionsFor(d);
+              const allDone = items.length > 0 && items.every((x) => pw.doneKeys.has(x.key));
+              return (
+                <button key={d} type="button" role="tab" aria-selected={i === dayIndex}
+                  className={`day-pill ${i === dayIndex ? 'on' : ''} ${d === now ? 'today' : ''}`} onClick={() => setDayIndex(i)}>
+                  <span>{WEEKDAYS[i]?.slice(0, 3)}</span>
+                  <b>{d.slice(8)}</b>
+                  <i className={items.length ? (allDone ? 'done' : 'has') : ''} />
                 </button>
-              ))}
-              {!items.length && <span className="tiny faint" style={{ padding: '4px 2px' }}>Dia livre</span>}
-              <button type="button" className="week-add" onClick={() => setEditing({ session: null, weekday: i })}><Plus /> Adicionar</button>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
+          {(() => {
+            const d = days[dayIndex]!;
+            const items = pw.sessionsFor(d);
+            return (
+              <div className="stack fade-in" key={d} style={{ gap: 8 }}>
+                <div className="row between small muted">
+                  <span>{WEEKDAYS[dayIndex]}, {formatDateShort(d)}</span>
+                  <span>{items.length ? formatMinutes(items.reduce((a, x) => a + x.minutes, 0)) : 'Dia livre'}</span>
+                </div>
+                {items.map((x) => (
+                  <SessionRow key={x.key} s={x} custom={custom} done={pw.doneKeys.has(x.key)} busy={pw.busy === x.key}
+                    onToggle={() => pw.toggleDone(x)} onOpen={() => setViewing(x)} />
+                ))}
+                {!items.length && <p className="muted small" style={{ padding: '8px 2px' }}>Sem sessões neste dia.</p>}
+                <button type="button" className="week-add" style={{ height: 44 }} onClick={() => setEditing({ session: null, weekday: dayIndex })}><Plus /> Adicionar sessão</button>
+              </div>
+            );
+          })()}
+        </div>
+      ) : (
+        <div className="week">
+          {days.map((d, i) => {
+            const items = pw.sessionsFor(d);
+            return (
+              <div key={d} className={`week-day ${d === now ? 'today' : ''} fade-up`} style={{ ['--i' as string]: i }}>
+                <div className="week-day-head">
+                  <b>{WEEKDAYS[i]}</b>
+                  <span>{formatDateShort(d)}</span>
+                </div>
+                {items.map((s) => (
+                  <button key={s.key} type="button" className={`wsession ${pw.doneKeys.has(s.key) ? 'done' : ''} ${s.eventId ? 'rev' : ''}`}
+                    style={{ ['--c' as string]: subjectColor(s.subject, custom) }} onClick={() => setViewing(s)}>
+                    <div className="ws-time">{s.start} · {s.minutes} min {pw.doneKeys.has(s.key) && '✓'}</div>
+                    <div className="ws-title">{s.subject ? getSubject(s.subject, custom).short : 'Trabalhos de casa'}</div>
+                    <div className="ws-act">{s.eventId ? 'Antes do teste' : ACTIVITY_LABELS[s.activity]}</div>
+                  </button>
+                ))}
+                {!items.length && <span className="tiny faint" style={{ padding: '4px 2px' }}>Dia livre</span>}
+                <button type="button" className="week-add" onClick={() => setEditing({ session: null, weekday: i })}><Plus /> Adicionar</button>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <div className="grid-2">
         <div className="card">

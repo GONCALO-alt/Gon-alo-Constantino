@@ -58,6 +58,25 @@ A chave fica **apenas no servidor**: o navegador nunca a vê. Cada pergunta à I
 - **Início**: boas-vindas, plano do dia (marcar como feita, pedir ajuda, temporizador), botão grande para a IA, próximos testes, objetivos do dia e da semana, disciplinas favoritas, perguntas disponíveis.
 - **Disciplinas**, **Resumos** (com IA ou escritos à mão, pesquisa, edição, flashcards a partir de um resumo), **Testes e exercícios** (gerador de testes personalizados com correção automática e pela IA, histórico, flashcards com revisão espaçada), **Calendário escolar**, **Modo de estudo** com temporizador, **Progresso** (minutos por dia, por disciplina, sequência, testes, flashcards) e **Definições** (perfil, plano, preferências, palavra-passe, exportar e apagar dados).
 
+## Usar no telemóvel
+
+A STUDY AI instala-se no telemóvel como uma aplicação (PWA): fica com o ícone amarelo no ecrã principal, abre em ecrã inteiro (sem a barra do navegador) e arranca depressa.
+
+- **Android (Chrome, Edge, Samsung Internet):** botão **Instalar aplicação** no Início, no Menu ou em Definições → «Aplicação no telemóvel».
+- **iPhone/iPad (Safari):** Partilhar → **Adicionar ao ecrã principal** (a app mostra estes passos).
+- A instalação só funciona quando a aplicação está publicada em **https** (ou em `localhost`).
+
+O que muda no telemóvel:
+
+- Barra de navegação em baixo (Início, Plano, Chat IA, Testes, Menu), que se esconde enquanto escreves.
+- Chat em ecrã inteiro, com botão para voltar e seletor compacto da disciplina.
+- Plano de estudos um dia de cada vez, com seletor de dias da semana.
+- Flashcards com gestos: deslizar para a direita = «Sabia», para a esquerda = «Não sabia».
+- Janelas que sobem de baixo, vibração ao concluir sessões, caixas de texto sem zoom no iPhone, respeito pelo entalhe e pela barra de gestos.
+- Sem internet, a aplicação abre e mostra «Sem ligação» (os dados e a IA precisam do servidor).
+
+Apps nas lojas (Google Play / App Store) não estão incluídas: podem ser criadas mais tarde a partir desta versão (por exemplo com Capacitor), mas precisam do Android Studio / Xcode e de contas de programador.
+
 ## Segurança e dados
 
 - Palavras-passe com `scrypt` e sal aleatório; sessões com token aleatório em cookie `HttpOnly`, `SameSite=Lax` e `Secure` em produção; na base de dados só fica o hash do token.

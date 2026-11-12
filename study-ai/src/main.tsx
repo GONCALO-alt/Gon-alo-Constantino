@@ -6,6 +6,9 @@ import 'katex/dist/katex.min.css';
 import './styles.css';
 import { App } from './App';
 import { AppProvider } from './state';
+import { initPwa } from './pwa';
+
+initPwa();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

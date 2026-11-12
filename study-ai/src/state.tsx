@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { CircleAlert, CircleCheck } from 'lucide-react';
-import { api, setUnauthorizedHandler } from './api';
+import { api, ApiError, setUnauthorizedHandler } from './api';
 import type { UsageSnapshot } from '../shared/plans';
 import type { MeResponse } from '../shared/types';
 
@@ -89,6 +89,8 @@ interface Toast {
 interface AppState {
   me: MeResponse | null;
   ready: boolean;
+  /** Sem ligação ao servidor ao abrir a aplicação. */
+  offline: boolean;
   setMe: (me: MeResponse | null) => void;
   refreshMe: () => Promise<void>;
   setUsage: (usage: UsageSnapshot) => void;
@@ -101,6 +103,7 @@ const Ctx = createContext<AppState | null>(null);
 export function AppProvider({ children }: { children: ReactNode }) {
   const [me, setMeState] = useState<MeResponse | null>(null);
   const [ready, setReady] = useState(false);
+  const [offline, setOffline] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const toastId = useRef(0);
 
@@ -118,8 +121,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const refreshMe = useCallback(async () => {
     try {
       setMeState(await api<MeResponse>('/me'));
-    } catch {
-      setMeState(null);
+      setOffline(false);
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 0) setOffline(true);
+      else {
+        setOffline(false);
+        setMeState(null);
+      }
     }
   }, []);
 
@@ -136,6 +144,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     () => ({
       me,
       ready,
+      offline,
       setMe,
       refreshMe,
       setUsage: (usage) => setMeState((m) => (m ? { ...m, usage } : m)),
@@ -145,7 +154,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       },
       toast,
     }),
-    [me, ready, setMe, refreshMe, toast],
+    [me, ready, offline, setMe, refreshMe, toast],
   );
 
   return (

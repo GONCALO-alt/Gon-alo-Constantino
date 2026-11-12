@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { api } from './api';
+import { haptic } from './pwa';
 import { invalidate, useQuery } from './state';
 import { addDays, weekStart } from '../shared/dates';
 import { sessionsForDate } from '../shared/planner';
@@ -29,6 +30,7 @@ export function usePlanWeek(anyDate: string) {
 
   async function toggleDone(s: DaySession, minutes?: number) {
     setBusy(s.key);
+    if (!doneKeys.has(s.key)) haptic(15);
     try {
       if (doneKeys.has(s.key)) await api(`/logs?sessionKey=${encodeURIComponent(s.key)}`, { method: 'DELETE' });
       else

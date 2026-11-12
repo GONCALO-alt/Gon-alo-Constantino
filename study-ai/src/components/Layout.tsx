@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { AI_PLANS, questionsLeft } from '../../shared/plans';
 import { useApp, useMe } from '../state';
+import { InstallButton } from './Install';
 import { Logo } from './Logo';
 import { IconButton, Modal, Progress } from './ui';
 
@@ -62,7 +63,7 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
   const inChat = location.pathname.startsWith('/chat');
 
   return (
-    <div className="app">
+    <div className={`app ${inChat ? 'in-chat' : ''}`}>
       <aside className="sidebar">
         <Link to="/" aria-label="Início">
           <Logo />
@@ -146,6 +147,9 @@ export function Layout({ children, full }: { children: ReactNode; full?: boolean
         </nav>
         <div style={{ marginTop: 16 }}>
           <UsageMini />
+        </div>
+        <div style={{ marginTop: 12 }}>
+          <InstallButton block />
         </div>
         <button type="button" className="btn btn-ghost btn-block" style={{ marginTop: 12 }} onClick={logout}>
           <LogOut /> Terminar sessão

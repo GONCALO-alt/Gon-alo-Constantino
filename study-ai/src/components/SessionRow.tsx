@@ -39,6 +39,7 @@ export function SessionRow({
   onToggle,
   custom,
   showHint,
+  onOpen,
 }: {
   s: DaySession;
   done: boolean;
@@ -46,6 +47,8 @@ export function SessionRow({
   onToggle: () => void;
   custom?: CustomSubjects;
   showHint?: boolean;
+  /** Tocar no nome da sessão abre os detalhes (para editar). */
+  onOpen?: () => void;
 }) {
   const color = subjectColor(s.subject, custom);
   const timerUrl = `/estudar?session=${encodeURIComponent(s.key)}&subject=${encodeURIComponent(s.subject)}&minutes=${s.minutes}&date=${s.date}`;
@@ -60,13 +63,15 @@ export function SessionRow({
         <span>{addMinutesToTime(s.start, s.minutes)}</span>
       </div>
       <span className="session-bar" style={{ background: color }} />
-      <div className="grow">
+      <div className="grow session-body" onClick={onOpen} role={onOpen ? 'button' : undefined} tabIndex={onOpen ? 0 : undefined}
+        onKeyDown={onOpen ? (e) => e.key === 'Enter' && onOpen() : undefined} style={onOpen ? { cursor: 'pointer' } : undefined}>
         <div className="session-title">{sessionTitle(s, custom)}</div>
         <div className="session-sub">
-          {ACTIVITY_LABELS[s.activity]} · {s.minutes} min
-          {s.note ? ` · ${s.note}` : ''}
+          <span className="session-when">{s.start}–{addMinutesToTime(s.start, s.minutes)} · </span>
+          {s.eventId ? 'Antes do teste' : ACTIVITY_LABELS[s.activity]} · {s.minutes} min
+          {s.note ? <span className="session-note"> · {s.note}</span> : null}
         </div>
-        {showHint && !done && <div className="tiny faint" style={{ marginTop: 3 }}>{ACTIVITY_HINTS[s.activity]}</div>}
+        {showHint && !done && <div className="tiny faint session-hint" style={{ marginTop: 3 }}>{ACTIVITY_HINTS[s.activity]}</div>}
       </div>
       <Link to={chatUrl} className="icon-btn sm" aria-label="Pedir ajuda à IA" title="Pedir ajuda à IA">
         <MessagesSquare />

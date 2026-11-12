@@ -239,30 +239,74 @@ try {
     const m = await mctx.newPage();
     m.on('pageerror', (e) => errors.push(e.message));
     const mshot = (n) => m.screenshot({ path: path.join(shots, `${n}.png`) });
+    // Algum elemento visível sai da largura do ecrã? (ignora zonas com scroll próprio)
+    const overflowing = () =>
+      m.evaluate(() => {
+        const w = window.innerWidth;
+        const bad = [];
+        for (const el of document.querySelectorAll('body *')) {
+          const r = el.getBoundingClientRect();
+          if (!r.width || r.right <= w + 1) continue;
+          if (el.closest('.tabs, .day-strip, .md table, .md pre, .katex-display, .overlay, .toaster, svg')) continue;
+          if (getComputedStyle(el).position === 'fixed') continue;
+          bad.push(`${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]} (${Math.round(r.right)}px)`);
+        }
+        return bad.slice(0, 3);
+      });
+
     await m.goto(base + '/');
     await m.getByText('Plano de hoje').waitFor();
     await m.waitForTimeout(600);
     await mshot('m1-inicio');
-    const overflow = await m.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
-    if (overflow) throw new Error('a página inicial tem scroll horizontal no telemóvel');
+    await m.getByText('Instala a STUDY AI no telemóvel').waitFor();
+
+    for (const p of ['/', '/plano', '/plano/calendario', '/testes', '/testes/flashcards', '/testes/historico', '/progresso', '/planos', '/disciplinas', '/resumos', '/definicoes', '/estudar']) {
+      await m.goto(base + p);
+      await m.waitForTimeout(600);
+      const bad = await overflowing();
+      if (bad.length) throw new Error(`fora do ecrã em ${p}: ${bad.join(', ')}`);
+    }
+
+    // Chat em ecrã inteiro: sem barras da aplicação, com botão para voltar.
     await m.goto(base + '/chat');
     await m.getByText('Em que posso ajudar?').waitFor();
+    if (await m.locator('.bottom-nav').isVisible()) throw new Error('a barra de baixo aparece no chat');
+    await m.getByRole('link', { name: 'Voltar ao início' }).waitFor();
     await mshot('m2-chat');
+    await m.getByLabel('Mensagem').fill('O que são frações equivalentes?');
+    await m.getByRole('button', { name: 'Enviar' }).click();
+    await m.getByRole('heading', { name: 'Frações equivalentes' }).waitFor({ timeout: 10000 });
+    await m.waitForTimeout(400);
+    await mshot('m2b-chat-resposta');
+
+    // Plano: um dia de cada vez, com seletor de dias.
     await m.goto(base + '/plano');
-    await m.getByText('Objetivos da semana').waitFor();
+    await m.locator('.day-pill').nth(1).click();
+    await m.getByText(/^Terça,/).waitFor();
+    await m.locator('.day-pill.today').click();
+    await m.waitForTimeout(300);
     await mshot('m3-plano');
-    for (const p of ['/plano', '/testes', '/progresso', '/planos', '/disciplinas', '/resumos', '/definicoes']) {
-      await m.goto(base + p);
-      await m.waitForTimeout(500);
-      const o = await m.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
-      if (o) throw new Error(`scroll horizontal em ${p}`);
-    }
+    if ((await m.locator('.week').count()) !== 0) throw new Error('a grelha da semana inteira aparece no telemóvel');
+
     await m.goto(base + '/planos');
     await m.waitForTimeout(500);
     await mshot('m4-planos');
     await m.getByRole('button', { name: 'Menu' }).click();
     await m.waitForTimeout(400);
     await mshot('m5-menu');
+
+    // Aplicação instalável: manifesto, ícones e service worker.
+    const manifest = await (await m.request.get(base + '/manifest.webmanifest')).json();
+    if (manifest.display !== 'standalone' || !manifest.icons.some((i) => i.sizes === '512x512')) throw new Error('manifesto incompleto');
+    for (const i of manifest.icons) {
+      const r = await m.request.get(base + i.src);
+      if (!r.ok()) throw new Error(`ícone em falta: ${i.src}`);
+    }
+    const sw = await m.evaluate(async () => {
+      const reg = await navigator.serviceWorker.getRegistration();
+      return !!reg;
+    });
+    if (!sw) throw new Error('o service worker não ficou registado');
     await mctx.close();
   });
 } finally {

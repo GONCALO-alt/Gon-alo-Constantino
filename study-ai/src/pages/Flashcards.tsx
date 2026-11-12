@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type PointerEvent } from 'react';
+import { haptic } from '../pwa';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Check, Layers, PartyPopper, Pencil, Play, Plus, RotateCcw, Shuffle, Trash2, X } from 'lucide-react';
 import { api } from '../api';
@@ -14,6 +15,9 @@ function Study({ cards, onExit }: { cards: Flashcard[]; onExit: () => void }) {
   const [flipped, setFlipped] = useState(false);
   const [stats, setStats] = useState({ known: 0, unknown: 0 });
   const card = queue[index];
+  // Deslizar o cartão (telemóvel): direita = sabia, esquerda = não sabia.
+  const drag = useRef<{ x: number; id: number } | null>(null);
+  const [dx, setDx] = useState(0);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -28,6 +32,7 @@ function Study({ cards, onExit }: { cards: Flashcard[]; onExit: () => void }) {
 
   async function answer(known: boolean) {
     if (!card) return;
+    haptic(known ? 12 : [10, 40, 10]);
     setStats((s) => ({ known: s.known + (known ? 1 : 0), unknown: s.unknown + (known ? 0 : 1) }));
     api(`/cards/${card.id}/review`, { method: 'POST', body: { known, date: today() } }).catch(() => {});
     if (!known && queue.filter((c) => c.id === card.id).length < 2) setQueue((q) => [...q, card]);
@@ -59,11 +64,35 @@ function Study({ cards, onExit }: { cards: Flashcard[]; onExit: () => void }) {
         </div>
         <Progress value={index} max={queue.length} thin />
       </div>
-      <div className={`flip ${flipped ? 'flipped' : ''}`} onClick={() => setFlipped(!flipped)} role="button" tabIndex={0} aria-label="Virar cartão"
-        onKeyDown={(e) => e.key === 'Enter' && setFlipped(!flipped)}>
+      <div className={`flip ${flipped ? 'flipped' : ''} ${dx ? 'dragging' : ''}`} role="button" tabIndex={0} aria-label="Virar cartão"
+        style={{ transform: dx ? `translateX(${dx}px) rotate(${dx / 22}deg)` : undefined, touchAction: 'pan-y' }}
+        onKeyDown={(e) => e.key === 'Enter' && setFlipped(!flipped)}
+        onPointerDown={(e: PointerEvent<HTMLDivElement>) => {
+          drag.current = { x: e.clientX, id: e.pointerId };
+          e.currentTarget.setPointerCapture(e.pointerId);
+        }}
+        onPointerMove={(e: PointerEvent<HTMLDivElement>) => {
+          if (drag.current && flipped) setDx(e.clientX - drag.current.x);
+        }}
+        onPointerUp={(e: PointerEvent<HTMLDivElement>) => {
+          const moved = drag.current ? e.clientX - drag.current.x : 0;
+          drag.current = null;
+          setDx(0);
+          if (flipped && Math.abs(moved) > 90) answer(moved > 0);
+          else if (Math.abs(moved) < 8) setFlipped(!flipped);
+        }}
+        onPointerCancel={() => {
+          drag.current = null;
+          setDx(0);
+        }}>
+        {dx !== 0 && (
+          <span className={`swipe-label ${dx > 0 ? 'yes' : 'no'}`} style={{ opacity: Math.min(1, Math.abs(dx) / 90) }}>
+            {dx > 0 ? 'Sabia' : 'Não sabia'}
+          </span>
+        )}
         <div className="flip-inner">
           <div className="flip-face"><span className="face-label">Pergunta</span><div className="face-text">{card.front}</div><span className="tiny faint" style={{ position: 'absolute', bottom: 16 }}>Toca para ver a resposta</span></div>
-          <div className="flip-face back"><span className="face-label">Resposta</span><div className="face-text">{card.back}</div></div>
+          <div className="flip-face back"><span className="face-label">Resposta</span><div className="face-text">{card.back}</div><span className="tiny faint swipe-hint">Desliza para a direita se sabias, para a esquerda se não</span></div>
         </div>
       </div>
       <div className="row" style={{ justifyContent: 'center', gap: 12 }}>

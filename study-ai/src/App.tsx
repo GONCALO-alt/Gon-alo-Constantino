@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { LogoMark } from './components/Logo';
@@ -22,6 +22,23 @@ const SummariesPage = lazy(() => import('./pages/Summaries').then((m) => ({ defa
 const SummaryPage = lazy(() => import('./pages/Summaries').then((m) => ({ default: m.SummaryPage })));
 const TestPage = lazy(() => import('./pages/TestRunner').then((m) => ({ default: m.TestPage })));
 
+function Offline() {
+  const { refreshMe } = useApp();
+  const [trying, setTrying] = useState(false);
+  return (
+    <div style={{ minHeight: '100dvh', display: 'grid', placeItems: 'center', padding: 24, textAlign: 'center' }}>
+      <div className="stack fade-up" style={{ alignItems: 'center', maxWidth: 360 }}>
+        <LogoMark size={52} />
+        <h2 style={{ marginTop: 10 }}>Sem ligação</h2>
+        <p className="muted">A STUDY AI precisa de internet para guardar o teu progresso e falar com a IA. Verifica a ligação e tenta outra vez.</p>
+        <button type="button" className="btn btn-primary" disabled={trying} onClick={async () => { setTrying(true); await refreshMe(); setTrying(false); }}>
+          {trying ? <span className="spinner" /> : null} Tentar outra vez
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function Splash() {
   return (
     <div style={{ minHeight: '100dvh', display: 'grid', placeItems: 'center' }}>
@@ -33,9 +50,10 @@ function Splash() {
 }
 
 export function App() {
-  const { me, ready } = useApp();
+  const { me, ready, offline } = useApp();
   const location = useLocation();
   if (!ready) return <Splash />;
+  if (!me && offline) return <Offline />;
 
   if (!me) {
     return (

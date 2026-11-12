@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Coffee, MessagesSquare, Pause, Play, RotateCcw, SkipForward, Square, Timer } from 'lucide-react';
 import { api } from '../api';
+import { haptic } from '../pwa';
 import { Button, Field, PageHead } from '../components/ui';
 import { invalidate, useApp, useMe } from '../state';
 import { today } from '../../shared/dates';
@@ -81,6 +82,7 @@ export function StudyTimerPage() {
         setRunning(false);
         endAt.current = null;
         beep();
+        haptic([40, 80, 40]);
         if (mode === 'foco') {
           log(focus);
           setCycles((c) => c + 1);

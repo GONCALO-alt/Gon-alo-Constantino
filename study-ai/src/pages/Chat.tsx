@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ClipboardEvent, type DragEvent, type KeyboardEvent } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
-  ArrowUp, BookOpen, Bookmark, Check, CircleHelp, ClipboardCheck, Copy, FileText, History, Image as ImageIcon, Info, Lightbulb,
+  ArrowLeft, ArrowUp, BookOpen, Bookmark, Check, ChevronDown, CircleHelp, ClipboardCheck, Copy, FileText, History, Image as ImageIcon, Info, Lightbulb,
   Lock, NotebookPen, Paperclip, Pencil, PenLine, Plus, Search, Sigma, Sparkles, Square, Trash2, X,
 } from 'lucide-react';
 import { api, ApiError, streamChat, uploadFile } from '../api';
@@ -476,20 +476,28 @@ export function ChatPage() {
 
       <section className="chat-main">
         <header className="chat-head">
-          <IconButton label="Histórico de conversas" className="mobile-only" onClick={() => setHistoryOpen(true)}>
-            <History />
-          </IconButton>
+          <Link to="/" className="icon-btn mobile-only" aria-label="Voltar ao início" title="Voltar ao início">
+            <ArrowLeft />
+          </Link>
           <div className="grow" style={{ minWidth: 0 }}>
             <div className="title">{conversation?.title ?? 'Nova conversa'}</div>
           </div>
-          <select className="select chat-subject" style={{ height: 36, width: 'auto', maxWidth: 190, fontSize: 13.5 }} value={subject ?? ''} onChange={(e) => changeSubject(e.target.value)} aria-label="Disciplina da conversa">
-            <option value="">Todas as disciplinas</option>
-            {(q?.subjects ?? []).map((id) => <option key={id} value={id}>{getSubject(id, custom).name}</option>)}
-          </select>
+          <label className={`subject-picker ${subject ? 'on' : ''}`} title="Disciplina da conversa">
+            <BookOpen />
+            {subject ? <span>{getSubject(subject, custom).short}</span> : <><span className="full">Todas as disciplinas</span><span className="short">Disciplina</span></>}
+            <ChevronDown className="chev" />
+            <select value={subject ?? ''} onChange={(e) => changeSubject(e.target.value)} aria-label="Disciplina da conversa">
+              <option value="">Todas as disciplinas</option>
+              {(q?.subjects ?? []).map((id) => <option key={id} value={id}>{getSubject(id, custom).name}</option>)}
+            </select>
+          </label>
           <Link to="/planos" className="badge yellow desktop-only" style={{ height: 32, padding: '0 11px' }} title="Escolhe a tua IA">
             <Sparkles />
             <span className="nowrap">{plan.name}{left !== null ? ` · ${left}` : ''}</span>
           </Link>
+          <IconButton label="Histórico de conversas" className="mobile-only" onClick={() => setHistoryOpen(true)}>
+            <History />
+          </IconButton>
           <IconButton label="Nova conversa" onClick={newChat}><Plus /></IconButton>
         </header>
 

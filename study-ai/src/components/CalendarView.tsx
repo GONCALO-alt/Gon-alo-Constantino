@@ -139,7 +139,7 @@ export function CalendarView({ events }: { events: CalendarEvent[] }) {
         <div className="card-head">
           <div className="row">
             <IconButton label="Mês anterior" onClick={() => shift(-1)}><ChevronLeft /></IconButton>
-            <h2 style={{ textTransform: 'capitalize', minWidth: 150, textAlign: 'center' }}>{MONTHS[d.getMonth()]} {d.getFullYear()}</h2>
+            <h2 className="cal-head-title" style={{ textTransform: 'capitalize', minWidth: 150, textAlign: 'center' }}>{MONTHS[d.getMonth()]} {d.getFullYear()}</h2>
             <IconButton label="Mês seguinte" onClick={() => shift(1)}><ChevronRight /></IconButton>
           </div>
           <div className="row">

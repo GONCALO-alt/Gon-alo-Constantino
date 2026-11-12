@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Download, KeyRound, LogOut, Pencil, ShieldCheck, Sparkles, SlidersHorizontal, Trash2, UserRound } from 'lucide-react';
+import { Download, KeyRound, LogOut, Pencil, ShieldCheck, Smartphone, Sparkles, SlidersHorizontal, Trash2, UserRound } from 'lucide-react';
+import { InstallButton } from '../components/Install';
 import { api } from '../api';
 import { Button, Field, FormError, Modal, PageHead, Toggle } from '../components/ui';
 import { useApp, useMe } from '../state';
@@ -137,6 +138,17 @@ export function SettingsPage() {
                 </select>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="card pad-lg">
+          <div className="card-head"><span className="card-title"><Smartphone /> Aplicação no telemóvel</span></div>
+          <div className="setting" style={{ padding: 0, flexWrap: 'wrap' }}>
+            <div className="grow" style={{ minWidth: 220 }}>
+              <div className="s-title">Instalar a STUDY AI</div>
+              <div className="s-desc">Fica no ecrã principal do telemóvel (ou do computador) e abre como uma aplicação, em ecrã inteiro.</div>
+            </div>
+            <InstallButton />
           </div>
         </section>
 

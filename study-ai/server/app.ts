@@ -51,6 +51,9 @@ export function createApp(overrides: Partial<AppConfig> = {}, dbFile?: string): 
         index: false,
         setHeaders: (res, file) => {
           if (file.includes(`${path.sep}assets${path.sep}`)) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+          // O service worker e o manifesto têm de ser sempre verificados, para as atualizações chegarem.
+          else if (file.endsWith('sw.js') || file.endsWith('.webmanifest')) res.setHeader('Cache-Control', 'no-cache');
+          if (file.endsWith('.webmanifest')) res.setHeader('Content-Type', 'application/manifest+json');
         },
       }),
     );
