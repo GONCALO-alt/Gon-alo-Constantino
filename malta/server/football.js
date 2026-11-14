@@ -186,7 +186,7 @@ function createMatch({ io, sysMsg, nameOf, userOf, addCoins, save, emit, end, se
     nextMoment(r) {
       const g = r.game;
       if (g.moment >= MOMENTS) {
-        if (g.score[0] === g.score[1]) { g.phase = 'pens'; g.penRound = 0; log(g, `Empate ${g.score[0]}-${g.score[1]}! Vamos para os penáltis 😬`, 'big'); return def.nextPen(r); }
+        if (g.score[0] === g.score[1]) { g.minute = 90; g.phase = 'pens'; g.penRound = 0; log(g, `Empate ${g.score[0]}-${g.score[1]}! Vamos para os penáltis 😬`, 'big'); return def.nextPen(r); }
         return def.finish(r);
       }
       g.moment++; g.attacker = (g.moment - 1) % 2; g.minute = Math.round((g.moment - 0.5) * (90 / MOMENTS) + Math.random() * 6 - 3);
@@ -209,7 +209,7 @@ function createMatch({ io, sysMsg, nameOf, userOf, addCoins, save, emit, end, se
         g.score[a]++; g.scorers.push({ side: a, name: scorer.name, min: g.minute }); g.last.goal = true;
         log(g, pickLine(guessed ? ['⚽ GOLO! {s} entra {z} mesmo com marcação e não perdoa!', '⚽ GOLAÇO de {s}! Remate impossível {z}!'] : ['⚽ GOLO! {s} aparece sozinho {z} e marca!', '⚽ GOLO de {s}! A defesa estava toda do outro lado!', '⚽ {s} finta tudo {z} e mete-a lá dentro!'], scorer, defender, atkZone), 'goal');
       } else if (guessed) log(g, pickLine(['🧱 {d} leu o lance {z} e cortou!', '🧤 {d} adivinha e faz a defesa da noite!', '🛑 Ataque {z} travado por {d}.'], scorer, defender, atkZone), 'save');
-      else log(g, pickLine(['😱 {s} isolado {z}… e ao poste!', '😬 {s} remata {z}, mas {d} estica-se toda e defende!', '💨 {s} rematou por cima. Que oportunidade!'], scorer, defender, atkZone), 'miss');
+      else log(g, pickLine(['😱 {s} isolado {z}… e ao poste!', '😬 {s} remata {z}, mas {d} estica-se todo e defende!', '💨 {s} rematou por cima. Que oportunidade!'], scorer, defender, atkZone), 'miss');
       g.phase = 'result'; g.message = `${g.teams[0].name} ${g.score[0]} - ${g.score[1]} ${g.teams[1].name}`;
       setTimer(r, 3500, () => def.nextMoment(r)); emit(r);
     },
