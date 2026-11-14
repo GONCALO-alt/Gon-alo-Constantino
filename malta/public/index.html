@@ -12,7 +12,7 @@
   <section id="screen-auth" class="screen">
     <div class="auth-card">
       <h1 class="logo">malta<span>.</span></h1>
-      <p class="tag">Conversa, vê vídeos e joga com a tua malta. Dos 16 aos 25.</p>
+      <p class="tag">Conversa, vê vídeos, ouve música e joga com a tua malta. Dos 16 aos 25.</p>
       <div class="tabs" id="auth-tabs">
         <button data-mode="login" class="active">Entrar</button>
         <button data-mode="register">Criar conta</button>
@@ -23,6 +23,7 @@
         <label class="only-register">Data de nascimento
           <input name="birthDate" type="date" />
         </label>
+        <label class="only-register check"><input type="checkbox" name="rules" /> Aceito as regras: respeito, nada de ódio, assédio ou partilhar coisas de outras pessoas sem autorização.</label>
         <button class="btn primary" type="submit" id="auth-submit">Entrar</button>
         <p class="error" id="auth-error"></p>
       </form>
@@ -34,23 +35,26 @@
     <header class="topbar">
       <h1 class="logo small">malta<span>.</span></h1>
       <div class="spacer"></div>
+      <button class="icon" id="inbox-btn" title="Prendas">🎁<i id="inbox-dot" class="dot-badge hidden"></i></button>
       <button class="coins" id="coins-btn" title="Comprar moedas">🪙 <b id="coins">0</b></button>
       <button class="icon" id="logout" title="Sair">⏻</button>
     </header>
     <main class="lobby">
       <div class="card hello">
         <div id="me-avatar"></div>
-        <div>
-          <h2 id="me-name"></h2>
-          <span id="me-vip" class="badge vip hidden">Malta+</span>
+        <div class="grow">
+          <h2><span id="me-name"></span> <span id="me-vip" class="badge vip hidden">Malta+</span></h2>
+          <div class="level"><b>Nível <span id="me-level">1</span></b><div class="bar"><i id="me-xpbar"></i></div><small id="me-xp"></small></div>
+          <div id="me-badges" class="badges"></div>
           <button class="btn small" id="daily-btn">🎁 Bónus diário</button>
         </div>
       </div>
       <div class="card">
-        <h3>Entrar numa sala</h3>
+        <h3>Salas</h3>
+        <button class="btn primary" id="house-btn">🏠 Ir para a minha casa</button>
         <form id="join-form" class="row">
           <input id="room-code" placeholder="Código (ex. A1B2C3)" maxlength="8" />
-          <button class="btn primary">Entrar</button>
+          <button class="btn">Entrar</button>
         </form>
         <button class="btn ghost" id="new-room">+ Criar sala nova</button>
       </div>
@@ -61,11 +65,18 @@
           <button class="btn">Adicionar</button>
         </form>
         <ul id="friends" class="friends"></ul>
+        <details id="blocked-box" class="hidden"><summary>Bloqueados</summary><ul id="blocked" class="friends"></ul></details>
+      </div>
+      <div class="card">
+        <h3>🏆 Ranking da malta</h3>
+        <ol id="leaderboard" class="leaderboard"></ol>
       </div>
       <div class="card wide">
         <div class="tabs" id="shop-tabs">
           <button data-tab="avatar" class="active">Avatar</button>
+          <button data-tab="emotes">Emotes</button>
           <button data-tab="reactions">Reações</button>
+          <button data-tab="house">Casa</button>
           <button data-tab="extras">Extras</button>
           <button data-tab="coins">Moedas & Malta+</button>
         </div>
@@ -78,13 +89,19 @@
   <section id="screen-room" class="screen hidden">
     <header class="topbar">
       <button class="icon" id="leave" title="Sair da sala">←</button>
-      <div><b>Sala <span id="room-code-label"></span></b> <button class="btn small ghost" id="copy-code">Copiar código</button></div>
+      <div class="room-title"><b id="room-title"></b> <button class="btn small ghost" id="copy-code">Convidar</button></div>
       <div class="spacer"></div>
+      <button class="icon hidden" id="room-settings" title="Definições da sala">⚙️</button>
       <span class="coins">🪙 <b id="coins-room">0</b></span>
     </header>
     <div class="room">
       <div class="stage">
-        <div class="watch" id="watch">
+        <div class="decor" id="decor"></div>
+        <div class="tabs media-tabs" id="media-tabs">
+          <button data-media="yt" class="active">🎬 YouTube</button>
+          <button data-media="music">🎧 Spotify <span id="music-dot" class="live hidden">●</span></button>
+        </div>
+        <div class="watch" id="media-yt">
           <form id="yt-form" class="row">
             <input id="yt-url" placeholder="Cola um link do YouTube para verem juntos" />
             <button class="btn primary">▶ Ver juntos</button>
@@ -92,13 +109,33 @@
           </form>
           <div id="yt-wrap" class="hidden"><div id="yt-player"></div></div>
         </div>
+        <div class="watch hidden" id="media-music">
+          <form id="music-form" class="row">
+            <input id="music-url" placeholder="Cola um link do Spotify (música, álbum ou playlist)" />
+            <button class="btn primary">+ Fila</button>
+          </form>
+          <div id="music-now" class="hidden">
+            <div id="sp-embed"></div>
+            <div class="row music-ctl">
+              <button class="btn small" id="music-sync">🔊 Sincronizar</button>
+              <button class="btn small" id="music-skip">⏭ Saltar</button>
+              <button class="btn small ghost" id="music-stop">✕ Parar</button>
+            </div>
+          </div>
+          <ol id="music-queue" class="queue"></ol>
+          <p class="hint-small">Quem tem sessão iniciada no Spotify (neste browser) ouve as músicas completas; os outros ouvem 30 s de cada.</p>
+        </div>
         <div class="videos" id="videos"></div>
         <div class="controls">
           <button class="ctl" id="btn-mic" title="Microfone">🎤</button>
           <button class="ctl" id="btn-cam" title="Câmara">📷</button>
-          <button class="ctl" id="btn-call" title="Entrar na chamada">📞 Entrar na chamada</button>
+          <button class="ctl" id="btn-screen" title="Partilhar ecrã">🖥️</button>
+          <button class="ctl" id="btn-call">📞 Entrar na chamada</button>
+          <button class="ctl" id="btn-clip" title="Guardar os últimos 30 segundos">🎬 Clip</button>
+          <button class="ctl" id="btn-emotes" title="Emotes">🕺</button>
           <div class="reactions" id="reaction-bar"></div>
         </div>
+        <div id="emote-pop" class="emote-pop hidden"></div>
         <div id="float-layer"></div>
       </div>
       <aside class="side">
@@ -114,9 +151,7 @@
             <button class="btn primary">➤</button>
           </form>
         </div>
-        <div class="panel hidden" id="panel-games">
-          <div id="game"></div>
-        </div>
+        <div class="panel hidden" id="panel-games"><div id="game"></div></div>
         <div class="panel hidden" id="panel-people"><ul id="people" class="people"></ul></div>
       </aside>
     </div>
@@ -126,9 +161,14 @@
   <div id="toast" class="toast hidden"></div>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="/catalog.js"></script>
   <script src="/avatar.js"></script>
   <script src="/app.js"></script>
+  <script src="/call.js"></script>
+  <script src="/media.js"></script>
+  <script src="/games.js"></script>
+  <script src="/clips.js"></script>
+  <script src="https://www.youtube.com/iframe_api" async></script>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 </body>
 </html>

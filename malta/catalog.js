@@ -71,6 +71,50 @@
       { id: 'r_rocket', value: '🚀', price: 150 },
       { id: 'r_rain', value: '💸', price: 300, name: 'Chuva de dinheiro', big: true },
     ],
+    emotes: [
+      { id: 'e_wave', value: '👋', anim: 'wave', price: 0, name: 'Acenar' },
+      { id: 'e_jump', value: '⬆️', anim: 'jump', price: 0, name: 'Saltar' },
+      { id: 'e_dance', value: '🕺', anim: 'dance', price: 100, name: 'Dançar' },
+      { id: 'e_spin', value: '🌀', anim: 'spin', price: 150, name: 'Rodopio' },
+      { id: 'e_love', value: '😍', anim: 'love', price: 200, name: 'Apaixonado' },
+      { id: 'e_flip', value: '🤸', anim: 'flip', price: 250, name: 'Mortal' },
+      { id: 'e_shake', value: '💃', anim: 'shake', price: 300, name: 'Abanar' },
+    ],
+    themes: [
+      { id: 't_default', value: '#14151f', price: 0, name: 'Noite' },
+      { id: 't_forest', value: 'linear-gradient(160deg,#0b2b1a,#1f5130)', price: 200, name: 'Floresta' },
+      { id: 't_beach', value: 'linear-gradient(180deg,#0f4c75,#1b6f8a 60%,#b9853f)', price: 300, name: 'Praia' },
+      { id: 't_neon', value: 'linear-gradient(135deg,#12002b,#3a0066 50%,#00334d)', price: 300, name: 'Néon' },
+      { id: 't_sunset', value: 'linear-gradient(180deg,#2b1055,#8a2d55 70%,#b8562f)', price: 350, name: 'Pôr do sol' },
+      { id: 't_space', value: 'radial-gradient(circle at 30% 20%,#3b1f6e,#0b0b2b 60%)', price: 400, name: 'Espaço' },
+      { id: 't_arcade', value: 'repeating-linear-gradient(45deg,#1a0f2e 0 22px,#22143d 22px 44px)', price: 500, name: 'Arcade' },
+    ],
+    decor: [
+      { id: 'd_plant', value: '🪴', price: 50, name: 'Planta' },
+      { id: 'd_candle', value: '🕯️', price: 60, name: 'Vela' },
+      { id: 'd_frame', value: '🖼️', price: 80, name: 'Quadro' },
+      { id: 'd_sofa', value: '🛋️', price: 100, name: 'Sofá' },
+      { id: 'd_ball', value: '🏀', price: 100, name: 'Bola' },
+      { id: 'd_teddy', value: '🧸', price: 120, name: 'Peluche' },
+      { id: 'd_tv', value: '📺', price: 150, name: 'TV' },
+      { id: 'd_console', value: '🎮', price: 150, name: 'Consola' },
+      { id: 'd_cat', value: '🐱', price: 200, name: 'Gato' },
+      { id: 'd_guitar', value: '🎸', price: 200, name: 'Guitarra' },
+      { id: 'd_disco', value: '🪩', price: 250, name: 'Bola de espelhos' },
+      { id: 'd_rainbow', value: '🌈', price: 300, name: 'Arco-íris' },
+    ],
+    badges: {
+      first_win: { icon: '🏆', name: 'Primeira vitória', desc: 'Ganha um jogo' },
+      chatty: { icon: '💬', name: 'Tagarela', desc: '500 mensagens no chat' },
+      cinema: { icon: '🍿', name: 'Cinéfilo', desc: '60 min a ver vídeos juntos' },
+      caller: { icon: '📞', name: 'Sempre em linha', desc: '60 min em chamada' },
+      social: { icon: '🤝', name: 'Social', desc: 'Ter 5 amigos' },
+      streak7: { icon: '🔥', name: 'Inseparáveis', desc: 'Streak de 7 dias com um amigo' },
+      generous: { icon: '🎁', name: 'Generoso', desc: 'Oferecer uma prenda' },
+      artist: { icon: '🎨', name: 'Artista', desc: 'Adivinharam 10 desenhos teus' },
+      dj: { icon: '🎧', name: 'DJ', desc: 'Pôr 10 músicas a tocar' },
+      level10: { icon: '⭐', name: 'Veterano', desc: 'Chegar ao nível 10' },
+    },
     extras: [
       { id: 'x_nameGold', price: 250, name: 'Nome dourado no chat' },
       { id: 'x_nameRainbow', price: 500, name: 'Nome arco-íris no chat' },
@@ -92,8 +136,10 @@
     }
     const r = CATALOG.reactions.find((i) => i.id === id);
     if (r) return { ...r, slot: 'reaction' };
-    const x = CATALOG.extras.find((i) => i.id === id);
-    if (x) return { ...x, slot: 'extra' };
+    for (const slot of ['emotes', 'themes', 'decor', 'extras']) {
+      const x = CATALOG[slot].find((i) => i.id === id);
+      if (x) return { ...x, slot: slot === 'extras' ? 'extra' : slot.replace(/s$/, '') };
+    }
     return null;
   }
 
@@ -101,7 +147,11 @@
     return { skin: 'skin2', hair: 'hairShort', hairColor: 'hcBrown', eyes: 'eyesDot', accessory: 'accNone', outfit: 'outBlue', bg: 'bgDark' };
   }
 
-  const api = { CATALOG, findItem, defaultAvatar };
+  // Níveis: nível n precisa de 40·(n-1)² XP
+  function levelFor(xp) { return Math.floor(Math.sqrt((xp || 0) / 40)) + 1; }
+  function xpForLevel(l) { return 40 * (l - 1) * (l - 1); }
+
+  const api = { CATALOG, findItem, defaultAvatar, levelFor, xpForLevel };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Catalog = api;
 })(typeof window !== 'undefined' ? window : globalThis);

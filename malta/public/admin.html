@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Malta · Moderação</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    main { max-width: 900px; margin: 0 auto; padding: 16px; display: grid; gap: 12px; }
+    .rep { background: var(--panel); border-radius: 14px; padding: 14px; display: grid; gap: 6px; }
+    .rep.closed { opacity: .55; }
+    .ev { background: var(--panel2); border-radius: 8px; padding: 6px 10px; font-size: 13px; }
+    .tagx { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--panel2); }
+  </style>
+</head>
+<body>
+  <header class="topbar"><h1 class="logo small">malta<span>.</span></h1><b>Moderação</b><div class="spacer"></div>
+    <form id="f" class="row"><input id="tok" type="password" placeholder="ADMIN_TOKEN" /><button class="btn primary">Entrar</button></form></header>
+  <main id="list"><p class="muted">Introduz o token de administração (variável de ambiente ADMIN_TOKEN no servidor).</p></main>
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    let tok = sessionStorage.getItem('malta.admin') || '';
+    async function load() {
+      const res = await fetch('/api/admin/reports', { headers: { 'x-admin-token': tok } });
+      if (!res.ok) { $('#list').innerHTML = '<p class="error">Token inválido.</p>'; return; }
+      const { reports } = await res.json();
+      $('#list').innerHTML = reports.length ? reports.map((r) => `<div class="rep ${r.status !== 'aberta' ? 'closed' : ''}">
+        <div><b>${esc(r.who)}</b> denunciado por ${esc(r.by)} · <small class="muted">${new Date(r.at).toLocaleString('pt-PT')} ${r.room ? '· sala ' + esc(r.room) : ''}</small>
+          <span class="tagx">${esc(r.status)}</span> ${r.whoState.banned ? '<span class="tagx">banido</span>' : ''} ${r.whoState.mutedUntil > Date.now() ? '<span class="tagx">silenciado</span>' : ''}</div>
+        <div>${esc(r.why)}</div>
+        ${r.evidence.map((m) => `<div class="ev"><small class="muted">${new Date(m.at).toLocaleTimeString('pt-PT')}</small> ${esc(m.text)}</div>`).join('')}
+        <div class="row">${['dismiss:Arquivar', 'mute:Silenciar 24 h', 'unmute:Tirar silêncio', 'ban:Banir', 'unban:Desbanir'].map((x) => { const [a, l] = x.split(':'); return `<button class="btn small" data-a="${a}" data-n="${esc(r.who)}">${l}</button>`; }).join('')}</div>
+      </div>`).join('') : '<p class="muted">Sem denúncias. 🎉</p>';
+    }
+    $('#f').onsubmit = (e) => { e.preventDefault(); tok = $('#tok').value; sessionStorage.setItem('malta.admin', tok); load(); };
+    $('#list').onclick = async (e) => {
+      const b = e.target.closest('[data-a]'); if (!b) return;
+      if (b.dataset.a === 'ban' && !confirm('Banir ' + b.dataset.n + '?')) return;
+      await fetch('/api/admin/action', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-token': tok }, body: JSON.stringify({ name: b.dataset.n, action: b.dataset.a }) });
+      load();
+    };
+    if (tok) load();
+  </script>
+</body>
+</html>

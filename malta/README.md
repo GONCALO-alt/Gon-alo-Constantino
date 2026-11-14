@@ -15,15 +15,23 @@ Para a câmara funcionar noutros dispositivos tem de ser servido por **HTTPS** (
 
 ## O que já faz
 
-- **Contas** com nome + palavra-passe (scrypt). Registo só para quem tem **16 a 25 anos** (data de nascimento).
-- **Salas** com código/link, até 8 pessoas (12 com Malta+).
-- **Vídeochamada** (WebRTC P2P em malha): câmara, microfone, ligar/desligar; sem câmara mostra o avatar.
-- **YouTube juntos**: cola um link, play/pause/saltar fica sincronizado para todos.
-- **Chat** e **reações** que flutuam no ecrã. 5 grátis, as outras pagas (verificado no servidor).
-- **Avatar** (pele, cabelo, cor, olhos, acessório, roupa, fundo). Itens básicos grátis; os especiais custam moedas.
-- **Loja**: moedas (pacotes de 0,99 € a 11,99 €), subscrição **Malta+**, extras (nome dourado/arco-íris, reações gigantes).
-- **Jogos**: Jogo do Galo (1v1), Desenha & Adivinha (quadro partilhado, palpites no chat), Quiz relâmpago. Ganhar dá moedas.
-- **Amigos** (ver quem está online e entrar na sala deles), **denúncias** e bónus diário.
+- **Contas** com nome + palavra-passe (scrypt). Registo só para quem tem **16 a 25 anos** e aceita as regras.
+- **Salas** com código/link, até 8 pessoas (12 com Malta+). O dono pode mudar tema/decoração, fechar a sala só a amigos e expulsar pessoas.
+- **Casas**: cada pessoa tem uma sala própria (🏠) com tema e até 8 decorações compradas na loja, opcionalmente só para amigos.
+- **Vídeochamada** (WebRTC P2P em malha) com câmara, microfone e **partilha de ecrã**.
+- **YouTube juntos** e **Spotify juntos** (fila partilhada, play/pausa/saltos sincronizados; sem sessão Spotify só tocam 30 s).
+- **Chat**, **reações** a flutuar e **emotes** que animam o avatar (grátis e pagos).
+- **Avatar** personalizável; itens especiais pagos com moedas.
+- **Progresso**: XP por conversar, jogar, estar em chamada e ver vídeos; níveis (cada nível dá 50 🪙), 10 emblemas, **streaks** de dias seguidos com cada amigo e ranking entre amigos.
+- **Prendas**: oferecer moedas ou itens a amigos, com mensagem; caixa de prendas recebidas.
+- **Clips**: o browser grava sempre os últimos ~30 s da sala (vídeos, avatares, reações, marca «malta.») em formato vertical; descarregar ou partilhar (TikTok/Instagram). Nada sai do dispositivo; a sala é avisada.
+- **Jogos**: Cartas Loucas (2–6), Impostor (3+), Desenha & Adivinha, Quem é mais provável…, Verdade ou Consequência (versão segura), Quiz geral, Quiz de música e Jogo do Galo. Ganhar dá moedas.
+- **Segurança**:
+  - Filtro de palavrões; insultos de ódio dão avisos (3 → 1 h sem chat).
+  - Anti-spam (máx. 5 mensagens em 5 s, sem repetições).
+  - Bloquear (deixas de ver mensagens/reações/emotes; não pode entrar nas tuas salas nem mandar prendas).
+  - Denúncias com motivo e as últimas mensagens anexadas; 3 denúncias de pessoas diferentes em 24 h → 24 h sem chat.
+  - Página de moderação em `/admin.html` (arranca com `ADMIN_TOKEN=um-segredo npm start`): arquivar, silenciar, banir.
 
 ## Antes de lançar a sério
 
