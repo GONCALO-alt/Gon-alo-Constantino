@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#14151f" />
+  <title>Malta</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- ENTRAR -->
+  <section id="screen-auth" class="screen">
+    <div class="auth-card">
+      <h1 class="logo">malta<span>.</span></h1>
+      <p class="tag">Conversa, vê vídeos e joga com a tua malta. Dos 16 aos 25.</p>
+      <div class="tabs" id="auth-tabs">
+        <button data-mode="login" class="active">Entrar</button>
+        <button data-mode="register">Criar conta</button>
+      </div>
+      <form id="auth-form">
+        <input name="name" placeholder="Nome de utilizador" autocomplete="username" required />
+        <input name="password" type="password" placeholder="Palavra-passe" autocomplete="current-password" required />
+        <label class="only-register">Data de nascimento
+          <input name="birthDate" type="date" />
+        </label>
+        <button class="btn primary" type="submit" id="auth-submit">Entrar</button>
+        <p class="error" id="auth-error"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- LOBBY -->
+  <section id="screen-lobby" class="screen hidden">
+    <header class="topbar">
+      <h1 class="logo small">malta<span>.</span></h1>
+      <div class="spacer"></div>
+      <button class="coins" id="coins-btn" title="Comprar moedas">🪙 <b id="coins">0</b></button>
+      <button class="icon" id="logout" title="Sair">⏻</button>
+    </header>
+    <main class="lobby">
+      <div class="card hello">
+        <div id="me-avatar"></div>
+        <div>
+          <h2 id="me-name"></h2>
+          <span id="me-vip" class="badge vip hidden">Malta+</span>
+          <button class="btn small" id="daily-btn">🎁 Bónus diário</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Entrar numa sala</h3>
+        <form id="join-form" class="row">
+          <input id="room-code" placeholder="Código (ex. A1B2C3)" maxlength="8" />
+          <button class="btn primary">Entrar</button>
+        </form>
+        <button class="btn ghost" id="new-room">+ Criar sala nova</button>
+      </div>
+      <div class="card">
+        <h3>Amigos</h3>
+        <form id="friend-form" class="row">
+          <input id="friend-name" placeholder="Adicionar pelo nome" />
+          <button class="btn">Adicionar</button>
+        </form>
+        <ul id="friends" class="friends"></ul>
+      </div>
+      <div class="card wide">
+        <div class="tabs" id="shop-tabs">
+          <button data-tab="avatar" class="active">Avatar</button>
+          <button data-tab="reactions">Reações</button>
+          <button data-tab="extras">Extras</button>
+          <button data-tab="coins">Moedas & Malta+</button>
+        </div>
+        <div id="shop"></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- SALA -->
+  <section id="screen-room" class="screen hidden">
+    <header class="topbar">
+      <button class="icon" id="leave" title="Sair da sala">←</button>
+      <div><b>Sala <span id="room-code-label"></span></b> <button class="btn small ghost" id="copy-code">Copiar código</button></div>
+      <div class="spacer"></div>
+      <span class="coins">🪙 <b id="coins-room">0</b></span>
+    </header>
+    <div class="room">
+      <div class="stage">
+        <div class="watch" id="watch">
+          <form id="yt-form" class="row">
+            <input id="yt-url" placeholder="Cola um link do YouTube para verem juntos" />
+            <button class="btn primary">▶ Ver juntos</button>
+            <button class="btn ghost hidden" type="button" id="yt-stop">✕</button>
+          </form>
+          <div id="yt-wrap" class="hidden"><div id="yt-player"></div></div>
+        </div>
+        <div class="videos" id="videos"></div>
+        <div class="controls">
+          <button class="ctl" id="btn-mic" title="Microfone">🎤</button>
+          <button class="ctl" id="btn-cam" title="Câmara">📷</button>
+          <button class="ctl" id="btn-call" title="Entrar na chamada">📞 Entrar na chamada</button>
+          <div class="reactions" id="reaction-bar"></div>
+        </div>
+        <div id="float-layer"></div>
+      </div>
+      <aside class="side">
+        <div class="tabs" id="side-tabs">
+          <button data-tab="chat" class="active">Chat</button>
+          <button data-tab="games">Jogos</button>
+          <button data-tab="people">Malta (<span id="count">0</span>)</button>
+        </div>
+        <div class="panel" id="panel-chat">
+          <div id="messages" class="messages"></div>
+          <form id="chat-form" class="row">
+            <input id="chat-input" placeholder="Escreve uma mensagem…" autocomplete="off" maxlength="500" />
+            <button class="btn primary">➤</button>
+          </form>
+        </div>
+        <div class="panel hidden" id="panel-games">
+          <div id="game"></div>
+        </div>
+        <div class="panel hidden" id="panel-people"><ul id="people" class="people"></ul></div>
+      </aside>
+    </div>
+  </section>
+
+  <div id="modal" class="modal hidden"><div class="modal-card" id="modal-card"></div></div>
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="/catalog.js"></script>
+  <script src="/avatar.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
