@@ -26,6 +26,12 @@ Para a câmara funcionar noutros dispositivos tem de ser servido por **HTTPS** (
 - **Prendas**: oferecer moedas ou itens a amigos, com mensagem; caixa de prendas recebidas.
 - **Clips**: o browser grava sempre os últimos ~30 s da sala (vídeos, avatares, reações, marca «malta.») em formato vertical; descarregar ou partilhar (TikTok/Instagram). Nada sai do dispositivo; a sala é avisada.
 - **Jogos**: Cartas Loucas (2–6), Impostor (3+), Desenha & Adivinha, Quem é mais provável…, Verdade ou Consequência (versão segura), Quiz geral, Quiz de música e Jogo do Galo. Ganhar dá moedas.
+- **Malta FC** (futebol):
+  - 360 jogadores fictícios (Bronze, Prata, Ouro, Lenda) de 10 países; plantel inicial de 14.
+  - Pacotes: diário grátis, Bronze 100, Prata 250, Ouro 600 e Lenda 1500 moedas, com animação de abertura.
+  - Monta o onze em 4 formações; jogadores do mesmo país dão química (bónus).
+  - Vender jogadores (ou todos os repetidos) por moedas.
+  - Jogo 1 contra 1 numa sala (ou contra a IA): escolhe a tática; em 8 lances, quem ataca escolhe a zona (esquerda/meio/direita) e quem defende tenta adivinhar. A força das equipas conta. Empate → penáltis. Ganhar: 30 🪙 (15 contra a IA).
 - **Segurança**:
   - Filtro de palavrões; insultos de ódio dão avisos (3 → 1 h sem chat).
   - Anti-spam (máx. 5 mensagens em 5 s, sem repetições).

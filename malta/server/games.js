@@ -335,7 +335,9 @@ module.exports = function createGames(ctx) {
     },
   };
 
-  const GAMES = { galo, desenha, quiz, maisProvavel, verdade, impostor, cartas };
+  const futebol = require('./football').createMatch({ io, sysMsg, nameOf, userOf, addCoins, save: ctx.save, emit, end, setTimer });
+
+  const GAMES = { galo, desenha, quiz, maisProvavel, verdade, impostor, cartas, futebol };
 
   function view(r, sid) {
     const g = r.game; if (!g) return null;

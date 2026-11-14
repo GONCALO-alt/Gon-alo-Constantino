@@ -62,7 +62,7 @@ $('#logout').addEventListener('click', () => { safeSet('malta.token', null); tok
 function setMe(m) {
   const prevInbox = me?.inbox?.length || 0;
   me = m;
-  $('#coins').textContent = me.coins; $('#coins-room').textContent = me.coins;
+  $('#coins').textContent = me.coins; $('#coins-room').textContent = me.coins; const cf = $('#coins-fut'); if (cf) cf.textContent = me.coins;
   $('#me-name').textContent = me.name;
   $('#me-avatar').innerHTML = renderAvatar(me.avatar, 84);
   $('#me-vip').classList.toggle('hidden', !me.vip);
@@ -83,12 +83,12 @@ function setMe(m) {
 
 // ---------------- Lobby ----------------
 function enterLobby() {
-  show('screen-lobby'); renderShop(); loadFriends(); connectSocket();
+  show('screen-lobby'); renderShop(); loadFriends(); connectSocket(); loadFut().catch(() => {});
   const fromUrl = new URLSearchParams(location.search).get('sala');
   if (fromUrl) joinRoom(fromUrl);
   else if (me.inbox.length) showInbox();
 }
-function backToLobby() { show('screen-lobby'); renderShop(); loadFriends(); }
+function backToLobby() { show('screen-lobby'); renderShop(); loadFriends(); loadFut().catch(() => {}); }
 $('#daily-btn').addEventListener('click', async () => { try { const r = await api('/api/daily', {}); toast(`+${r.gained} 🪙`); } catch (e) { toast(e.message); } });
 $('#coins-btn').addEventListener('click', () => { shopTab = 'coins'; renderShop(); $('#shop').scrollIntoView({ behavior: 'smooth' }); });
 $('#join-form').addEventListener('submit', (e) => { e.preventDefault(); joinRoom($('#room-code').value); });

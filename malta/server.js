@@ -10,6 +10,7 @@ const { Server } = require('socket.io');
 const { CATALOG, findItem, defaultAvatar, levelFor } = require('./catalog');
 const { filterText, isClean, makeSpamGuard } = require('./server/moderation');
 const createGames = require('./server/games');
+const football = require('./server/football');
 
 const PORT = process.env.PORT || 3000;
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
@@ -120,6 +121,7 @@ function auth(req, res, next) {
   req.user = u; next();
 }
 const bad = (res, code, error) => res.status(code).json({ error });
+football.routes(app, auth, { save, bad, addXp });
 
 app.post('/api/register', (req, res) => {
   const { name, password, birthDate } = req.body || {};
@@ -310,7 +312,7 @@ const userSockets = new Map();
 const nameOf = (r, sid) => r.members.get(sid)?.name || '?';
 const userOf = (r, sid) => { const m = r.members.get(sid); return m && users[m.userId]; };
 function sysMsg(r, text) { io.to(r.code).emit('chat', { system: true, text, at: Date.now() }); }
-const games = createGames({ io, sysMsg, nameOf, userOf, addCoins, addXp, stat });
+const games = createGames({ io, sysMsg, nameOf, userOf, addCoins, addXp, stat, save });
 
 function newRoom(code, creator) {
   const host = byHouse(code);

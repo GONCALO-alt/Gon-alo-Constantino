@@ -67,6 +67,12 @@
         <ul id="friends" class="friends"></ul>
         <details id="blocked-box" class="hidden"><summary>Bloqueados</summary><ul id="blocked" class="friends"></ul></details>
       </div>
+      <div class="card fut-card">
+        <h3>⚽ Malta FC <span id="fut-daily-dot" class="badge vip hidden">Pacote grátis!</span></h3>
+        <div id="fut-summary" class="fut-summary"><small class="muted">A carregar a tua equipa…</small></div>
+        <div class="row"><button class="btn primary" id="fut-open">Gerir equipa</button><button class="btn" id="fut-bot">🤖 Jogar vs IA</button></div>
+        <small class="muted">Para jogar contra um amigo: entrem na mesma sala → Jogos → Malta FC.</small>
+      </div>
       <div class="card">
         <h3>🏆 Ranking da malta</h3>
         <ol id="leaderboard" class="leaderboard"></ol>
@@ -157,6 +163,25 @@
     </div>
   </section>
 
+  <!-- MALTA FC -->
+  <section id="screen-fut" class="screen hidden">
+    <header class="topbar">
+      <button class="icon" id="fut-back" title="Voltar">←</button>
+      <b>⚽ Malta FC</b>
+      <div class="spacer"></div>
+      <span class="coins">🪙 <b id="coins-fut">0</b></span>
+    </header>
+    <main class="fut-main">
+      <div class="tabs" id="fut-tabs">
+        <button data-tab="team" class="active">Equipa</button>
+        <button data-tab="players">Jogadores</button>
+        <button data-tab="packs">Pacotes</button>
+      </div>
+      <div id="fut-body"></div>
+    </main>
+  </section>
+  <div id="pack-overlay" class="pack-overlay hidden"></div>
+
   <div id="modal" class="modal hidden"><div class="modal-card" id="modal-card"></div></div>
   <div id="toast" class="toast hidden"></div>
 
@@ -167,6 +192,7 @@
   <script src="/call.js"></script>
   <script src="/media.js"></script>
   <script src="/games.js"></script>
+  <script src="/fut.js"></script>
   <script src="/clips.js"></script>
   <script src="https://www.youtube.com/iframe_api" async></script>
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
