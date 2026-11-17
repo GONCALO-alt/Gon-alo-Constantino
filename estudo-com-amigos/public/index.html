@@ -19,14 +19,14 @@
 
       <div class="me-preview">
         <span id="previewAvatar" class="avatar big"></span>
-        <button id="openLocker" class="ghost">🎨 Mudar avatar</button>
+        <button id="openLocker" class="ghost">🎨 Cacifo</button>
         <span id="homeMinutes" class="muted small"></span>
       </div>
 
       <div class="split">
         <div>
           <h3>Criar sala</h3>
-          <input id="roomName" maxlength="40" placeholder="ex.: Teste de Ciências">
+          <input id="roomName" maxlength="40" placeholder="ex.: 8.ºB — Ciências">
           <button id="create">Criar sala</button>
         </div>
         <div>
@@ -47,34 +47,79 @@
     <header class="topbar">
       <div>
         <h2 id="roomTitle"></h2>
-        <button id="copyCode" class="code" title="Copiar código"></button>
+        <div class="row wrap">
+          <button id="copyCode" class="code" title="Copiar código"></button>
+          <span id="leagueBadge" class="badge"></span>
+          <span id="streakBadge" class="badge"></span>
+        </div>
       </div>
       <div class="topbar-right">
-        <button id="openLocker2" class="ghost">🎨</button>
+        <button id="openLocker2" class="ghost" title="Cacifo">🎨</button>
         <button id="leave" class="ghost">Sair</button>
       </div>
     </header>
 
+    <div id="testBanner" class="banner hidden"></div>
+
     <div class="layout">
-      <aside class="card">
-        <div id="timerBox" class="timer idle">
-          <div id="timerLabel" class="timer-label">Pronto para estudar?</div>
-          <div id="timerClock" class="timer-clock">25:00</div>
-          <div class="timer-controls">
-            <select id="focusMin" aria-label="Minutos de foco">
-              <option value="15">15 min</option>
-              <option value="25" selected>25 min</option>
-              <option value="45">45 min</option>
-              <option value="60">60 min</option>
-            </select>
-            <button id="timerStart">▶ Começar foco</button>
-            <button id="timerStop" class="ghost hidden">■ Parar</button>
+      <aside class="side">
+        <div class="card">
+          <div id="timerBox" class="timer idle">
+            <div id="timerLabel" class="timer-label">Pronto para estudar?</div>
+            <div id="timerClock" class="timer-clock">25:00</div>
+            <div class="timer-controls">
+              <select id="focusMin" aria-label="Minutos de foco">
+                <option value="15">15 min</option>
+                <option value="25" selected>25 min</option>
+                <option value="45">45 min</option>
+                <option value="60">60 min</option>
+              </select>
+              <button id="timerStart">▶ Começar foco</button>
+              <button id="timerStop" class="ghost hidden">■ Parar</button>
+            </div>
+            <div class="reactions" aria-label="Reações">
+              <button data-react="🔥">🔥</button><button data-react="💪">💪</button><button data-react="👏">👏</button>
+              <button data-react="🤯">🤯</button><button data-react="😴">😴</button><button data-react="☕">☕</button>
+            </div>
+            <p class="muted small">Se saíres da página durante o foco, ficas como <b>distraído</b> e não ganhas os minutos.</p>
           </div>
-          <p class="muted small">Se saíres da página durante o foco, ficas como <b>distraído</b> e não ganhas os minutos.</p>
+
+          <div class="ambience">
+            <label for="ambience" class="small">🎧 Som da sala</label>
+            <div class="row">
+              <select id="ambience">
+                <option value="none">Silêncio</option>
+                <option value="chuva">🌧️ Chuva</option>
+                <option value="cafe">☕ Café</option>
+                <option value="lofi">🎵 Lo-fi</option>
+                <option value="biblioteca">📖 Biblioteca</option>
+              </select>
+              <input id="volume" type="range" min="0" max="1" step="0.05" value="0.5" aria-label="Volume">
+            </div>
+            <button id="soundUnlock" class="ghost small-btn hidden">🔊 Ligar som</button>
+          </div>
         </div>
 
-        <h3>Na sala</h3>
-        <ul id="members" class="members"></ul>
+        <div class="card">
+          <h3>🔥 Chama da sala</h3>
+          <div id="streakBox"></div>
+        </div>
+
+        <div class="card">
+          <h3>📅 Próximos testes</h3>
+          <ul id="tests" class="tests"></ul>
+          <form id="testForm" class="row wrap">
+            <input id="testSubject" maxlength="40" placeholder="Disciplina">
+            <input id="testDate" type="date">
+            <button>Marcar</button>
+          </form>
+          <p id="testError" class="error small"></p>
+        </div>
+
+        <div class="card">
+          <h3>Na sala</h3>
+          <ul id="members" class="members"></ul>
+        </div>
       </aside>
 
       <section class="card main">
@@ -82,7 +127,8 @@
           <button data-tab="chat" class="active">💬 Chat</button>
           <button data-tab="notes">📝 Apontamentos</button>
           <button data-tab="quiz">⚔️ Quiz</button>
-          <button data-tab="ranking">🏆 Ranking</button>
+          <button data-tab="me">🎯 Eu</button>
+          <button data-tab="league">🏆 Liga</button>
         </nav>
 
         <div id="tab-chat" class="tab">
@@ -94,6 +140,13 @@
         </div>
 
         <div id="tab-notes" class="tab hidden">
+          <div class="ai-box">
+            <div class="row between wrap">
+              <div><b>🤖 Resumo da IA</b><br><span class="muted small">Junta os apontamentos de todos num resumo de 1 página.</span></div>
+              <button id="aiSummary" class="ai-btn">Gerar resumo</button>
+            </div>
+            <div id="summary"></div>
+          </div>
           <form id="noteForm" class="stack">
             <input id="noteTitle" maxlength="60" placeholder="Título (ex.: Fotossíntese)">
             <textarea id="noteText" rows="4" maxlength="4000" placeholder="Escreve o resumo…"></textarea>
@@ -105,29 +158,81 @@
         <div id="tab-quiz" class="tab hidden">
           <div id="duelArea" class="duel hidden"></div>
           <div id="quizSetup">
-            <div class="row between">
+            <div class="duel-start">
               <p><b id="qCount">0</b> perguntas na sala</p>
-              <button id="duelStart">⚔️ Começar duelo</button>
+              <div class="row wrap">
+                <select id="duelMode" aria-label="Modo de duelo">
+                  <option value="classico">⚡ Clássico — pontos por rapidez</option>
+                  <option value="eliminacao">🛡️ Eliminação — quem erra sai</option>
+                </select>
+                <button id="duelStart">⚔️ Começar duelo</button>
+              </div>
             </div>
             <p id="quizError" class="error"></p>
-            <form id="qForm" class="stack">
-              <input id="qText" maxlength="200" placeholder="Pergunta (ex.: Qual é a capital de França?)">
-              <div class="options">
-                <label><input type="radio" name="right" value="0" checked><input class="opt" maxlength="80" placeholder="Resposta A"></label>
-                <label><input type="radio" name="right" value="1"><input class="opt" maxlength="80" placeholder="Resposta B"></label>
-                <label><input type="radio" name="right" value="2"><input class="opt" maxlength="80" placeholder="Resposta C (opcional)"></label>
-                <label><input type="radio" name="right" value="3"><input class="opt" maxlength="80" placeholder="Resposta D (opcional)"></label>
+
+            <div class="ai-box">
+              <b>🤖 Criar perguntas com IA</b>
+              <p class="muted small">Tira uma foto ao livro ou ao caderno (ou cola o texto) e a IA cria perguntas para o duelo.</p>
+              <div class="row wrap">
+                <label class="file-btn">📷 Foto<input id="aiPhoto" type="file" accept="image/*" capture="environment" hidden></label>
+                <button id="aiTextToggle" class="ghost">✏️ Colar texto</button>
+                <span id="aiQuota" class="muted small"></span>
               </div>
-              <p class="muted small">Marca a bolinha da resposta certa.</p>
-              <button>Adicionar pergunta</button>
-            </form>
+              <div id="aiTextBox" class="stack hidden">
+                <textarea id="aiText" rows="4" maxlength="8000" placeholder="Cola aqui a matéria…"></textarea>
+                <button id="aiFromText" class="ai-btn">Criar perguntas</button>
+              </div>
+              <p id="aiStatus" class="muted small"></p>
+            </div>
+
+            <details>
+              <summary>✍️ Escrever uma pergunta à mão</summary>
+              <form id="qForm" class="stack">
+                <input id="qText" maxlength="200" placeholder="Pergunta (ex.: Qual é a capital de França?)">
+                <div class="options">
+                  <label><input type="radio" name="right" value="0" checked><input class="opt" maxlength="80" placeholder="Resposta A"></label>
+                  <label><input type="radio" name="right" value="1"><input class="opt" maxlength="80" placeholder="Resposta B"></label>
+                  <label><input type="radio" name="right" value="2"><input class="opt" maxlength="80" placeholder="Resposta C (opcional)"></label>
+                  <label><input type="radio" name="right" value="3"><input class="opt" maxlength="80" placeholder="Resposta D (opcional)"></label>
+                </div>
+                <div class="row wrap">
+                  <input id="qTopic" maxlength="40" placeholder="Tema (opcional)">
+                  <select id="qDiff" aria-label="Dificuldade">
+                    <option value="1">Fácil</option><option value="2" selected>Média</option><option value="3">Difícil</option>
+                  </select>
+                </div>
+                <p class="muted small">Marca a bolinha da resposta certa.</p>
+                <button>Adicionar pergunta</button>
+              </form>
+            </details>
             <ul id="questions" class="questions"></ul>
           </div>
         </div>
 
-        <div id="tab-ranking" class="tab hidden">
+        <div id="tab-me" class="tab hidden">
+          <div class="ai-box">
+            <div class="row between wrap">
+              <div><b>🔮 Previsão de nota</b><br><span class="muted small">A IA olha para as tuas respostas nos duelos e estima a tua nota.</span></div>
+              <div class="row">
+                <select id="gradeTest" aria-label="Teste"></select>
+                <button id="aiGrade" class="ai-btn">Prever</button>
+              </div>
+            </div>
+            <div id="grade"></div>
+          </div>
+          <h3>🏅 Conquistas</h3>
+          <div id="achievements" class="achievements"></div>
+        </div>
+
+        <div id="tab-league" class="tab hidden">
+          <div id="leagueHead" class="league-head"></div>
           <table class="ranking">
-            <thead><tr><th>#</th><th>Nome</th><th>⏱️ Minutos</th><th>🎯 Sessões</th><th>⚔️ Vitórias</th></tr></thead>
+            <thead><tr><th>#</th><th>Sala</th><th>⏱️ Min. esta semana</th></tr></thead>
+            <tbody id="leagueBody"></tbody>
+          </table>
+          <h3>Nesta sala</h3>
+          <table class="ranking">
+            <thead><tr><th>#</th><th>Nome</th><th>⏱️ Min.</th><th>🎯 Sessões</th><th>⚔️ Vitórias</th></tr></thead>
             <tbody id="rankingBody"></tbody>
           </table>
         </div>
@@ -138,7 +243,7 @@
   <!-- CACIFO (cosméticos) -->
   <dialog id="locker">
     <h2>🎨 O teu cacifo</h2>
-    <p class="muted">Desbloqueias avatares e molduras a estudar. Tens <b id="lockerMinutes">0</b> minutos de foco.</p>
+    <p class="muted">Desbloqueias avatares e molduras a estudar e com conquistas. Tens <b id="lockerMinutes">0</b> minutos de foco.</p>
     <h3>Avatares</h3>
     <div id="avatarGrid" class="grid"></div>
     <h3>Molduras</h3>
@@ -146,6 +251,7 @@
     <form method="dialog"><button>Fechar</button></form>
   </dialog>
 
+  <div id="reactLayer" class="react-layer" aria-hidden="true"></div>
   <div id="toast" class="toast hidden"></div>
 
   <script src="/socket.io/socket.io.js"></script>

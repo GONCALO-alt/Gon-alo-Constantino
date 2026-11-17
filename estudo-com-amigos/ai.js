@@ -1,0 +1,160 @@
+// IA do Estudo com Amigos — corre no SERVIDOR, com a API da Anthropic.
+// A chave (ANTHROPIC_API_KEY) fica só no servidor; o browser nunca a vê.
+import Anthropic from '@anthropic-ai/sdk';
+import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod';
+import { z } from 'zod';
+
+const MODEL = process.env.AI_MODEL || 'claude-opus-5-5';
+
+const SYSTEM = `És o explicador da app "Estudo com Amigos", usada por alunos portugueses entre os 12 e os 18 anos.
+Escreve sempre em português de Portugal, de forma simples, simpática e correta, adequada à idade.
+Baseia-te apenas no material que o aluno enviar e no conhecimento escolar normal. Nunca inventes factos.
+Se o pedido não tiver a ver com estudo ou contiver algo impróprio para menores, recusa com simpatia.`;
+
+// ---------- formatos de resposta ----------
+
+const QuestionsSchema = z.object({
+  questions: z.array(z.object({
+    question: z.string().describe('Pergunta curta e clara (máx. 200 caracteres)'),
+    options: z.array(z.string()).describe('Exatamente 4 respostas curtas (máx. 80 caracteres cada)'),
+    answer: z.number().int().describe('Índice (0 a 3) da resposta certa'),
+    topic: z.string().describe('Tema curto, ex.: "Fotossíntese"'),
+    difficulty: z.number().int().describe('1 = fácil, 2 = média, 3 = difícil'),
+  })),
+  subject: z.string().describe('Disciplina do material, ex.: "Ciências Naturais"'),
+});
+
+const ExplainSchema = z.object({
+  explanation: z.string().describe('Explicação em 2 a 3 frases curtas'),
+});
+
+const SummarySchema = z.object({
+  title: z.string(),
+  sections: z.array(z.object({
+    heading: z.string(),
+    points: z.array(z.string()),
+  })),
+  mustKnow: z.array(z.string()).describe('As 3 a 5 coisas mais importantes para o teste'),
+});
+
+const GradeSchema = z.object({
+  estimate: z.number().int().describe('Percentagem estimada no teste (0 a 100)'),
+  confidence: z.enum(['baixa', 'média', 'alta']),
+  message: z.string().describe('1 frase de incentivo honesta'),
+  strengths: z.array(z.string()),
+  toImprove: z.array(z.string()),
+  plan: z.array(z.string()).describe('Plano curto até ao teste, um passo por dia ou por sessão'),
+});
+
+// ---------- cliente ----------
+
+export function aiEnabled() {
+  return process.env.AI_MOCK === '1' || !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
+}
+
+let client = null;
+const getClient = () => (client ??= new Anthropic());
+
+export class AIError extends Error {}
+
+async function ask(schema, content, effort = 'medium', maxTokens = 16000) {
+  let res;
+  try {
+    res = await getClient().beta.messages.parse({
+      model: MODEL,
+      max_tokens: maxTokens,
+      system: SYSTEM,
+      output_config: { effort, format: betaZodOutputFormat(schema) },
+      // se o modelo recusar por segurança, a API tenta outro modelo automaticamente
+      betas: ['server-side-fallback-2026-07-01'],
+      fallbacks: 'default',
+      messages: [{ role: 'user', content }],
+    });
+  } catch (e) {
+    if (e instanceof Anthropic.AuthenticationError) throw new AIError('A chave da IA não é válida. Fala com quem gere a app.');
+    if (e instanceof Anthropic.RateLimitError) throw new AIError('A IA está muito ocupada. Tenta daqui a um minuto.');
+    if (e instanceof Anthropic.BadRequestError) throw new AIError('A IA não conseguiu ler isto. Tenta outra foto ou texto.');
+    if (e instanceof Anthropic.APIError) throw new AIError('A IA falhou. Tenta outra vez.');
+    throw new AIError('Não consegui falar com a IA. Verifica a ligação.');
+  }
+  if (res.stop_reason === 'refusal') throw new AIError('A IA não pode ajudar com isto.');
+  if (res.stop_reason === 'max_tokens' || !res.parsed_output) throw new AIError('A resposta da IA veio incompleta. Tenta outra vez.');
+  return res.parsed_output;
+}
+
+// ---------- funções ----------
+
+// Foto ou texto dos apontamentos -> perguntas de escolha múltipla
+export async function generateQuestions({ image, text, count = 8 }) {
+  if (process.env.AI_MOCK === '1') return mock.questions(count);
+  const content = [];
+  if (image) content.push({ type: 'image', source: { type: 'base64', media_type: image.mediaType, data: image.data } });
+  content.push({
+    type: 'text',
+    text: `${text ? `Apontamentos do aluno:\n"""\n${text}\n"""\n\n` : ''}Cria ${count} perguntas de escolha múltipla sobre ${image ? 'o material da imagem' : 'estes apontamentos'}, para um duelo de quiz entre amigos.
+Regras: 4 opções por pergunta, só uma certa, opções erradas plausíveis; mistura dificuldades (fácil, média, difícil); perguntas sobre o que é importante para um teste, não sobre pormenores sem interesse.
+Se a imagem não tiver matéria escolar legível, devolve "questions" vazio.`,
+  });
+  const out = await ask(QuestionsSchema, content, 'medium');
+  const questions = out.questions
+    .filter(q => q.options.length >= 2 && q.answer >= 0 && q.answer < q.options.length)
+    .slice(0, count)
+    .map(q => ({ ...q, options: q.options.slice(0, 4), difficulty: Math.min(3, Math.max(1, q.difficulty)) }))
+    .filter(q => q.answer < q.options.length);
+  return { subject: out.subject, questions };
+}
+
+// Explica porque é que a resposta escolhida está errada
+export async function explainMistake({ question, options, answer, chosen }) {
+  if (process.env.AI_MOCK === '1') return mock.explain(options[answer]);
+  const out = await ask(ExplainSchema, `Pergunta: ${question}
+Opções: ${options.map((o, i) => `${'ABCD'[i]}) ${o}`).join('  ')}
+Resposta certa: ${'ABCD'[answer]}) ${options[answer]}
+${chosen == null ? 'O aluno não respondeu a tempo.' : `O aluno escolheu: ${'ABCD'[chosen]}) ${options[chosen]}`}
+
+Explica em 2 a 3 frases curtas, como um bom explicador para alguém de 13 anos, porque é que a resposta certa é a certa${chosen == null ? '' : ' e qual foi o erro'}.`, 'low', 2000);
+  return out;
+}
+
+// Junta os apontamentos da sala num resumo de 1 página
+export async function summarizeNotes(notes) {
+  if (process.env.AI_MOCK === '1') return mock.summary();
+  const text = notes.map(n => `### ${n.title} (por ${n.author})\n${n.text}`).join('\n\n');
+  return ask(SummarySchema, `Apontamentos da turma:\n"""\n${text}\n"""\n\nFaz um resumo de no máximo 1 página para estudar para o teste. Organiza por secções com pontos curtos. Corrige com cuidado qualquer erro que encontres nos apontamentos, sem inventar matéria nova.`, 'medium');
+}
+
+// Estima a nota a partir do desempenho nos quizzes
+export async function predictGrade({ perf, test }) {
+  if (process.env.AI_MOCK === '1') return mock.grade(perf);
+  const topics = Object.entries(perf.byTopic).map(([t, v]) => `- ${t}: ${v.right}/${v.total} certas`).join('\n') || '- (sem dados por tema)';
+  const wrong = perf.wrong.map(w => `- "${w.question}" (certa: ${w.correct})`).join('\n') || '- nenhuma';
+  return ask(GradeSchema, `Dados de estudo de um aluno nesta sala:
+- Teste: ${test ? `${test.subject}, daqui a ${test.daysLeft} dia(s)` : 'sem teste marcado'}
+- Minutos de foco: ${perf.minutes} em ${perf.sessions} sessões
+- Respostas nos quizzes: ${perf.answered} (${perf.accuracy ?? '-'}% certas)
+Por tema:
+${topics}
+Perguntas que errou:
+${wrong}
+
+Estima a percentagem que este aluno teria se o teste fosse hoje. Sê honesto: com poucos dados, a confiança é baixa.
+Indica pontos fortes, o que melhorar e um plano curto e realista até ao teste.`, 'medium', 4000);
+}
+
+// ---------- respostas falsas para testar sem chave (AI_MOCK=1) ----------
+const mock = {
+  questions: n => ({
+    subject: 'Ciências (teste)',
+    questions: Array.from({ length: n }, (_, i) => ({
+      question: `Pergunta de teste ${i + 1}: quanto é ${i + 2} × 2?`,
+      options: [`${(i + 2) * 2}`, `${(i + 2) * 2 + 1}`, `${i + 2}`, `${(i + 2) * 3}`],
+      answer: 0, topic: i % 2 ? 'Multiplicação' : 'Tabuada', difficulty: (i % 3) + 1,
+    })),
+  }),
+  explain: right => ({ explanation: `(modo de teste) A resposta certa é "${right}". Revê esta parte da matéria.` }),
+  summary: () => ({ title: 'Resumo (modo de teste)', sections: [{ heading: 'Ideias principais', points: ['Ponto 1', 'Ponto 2'] }], mustKnow: ['Isto é um resumo de teste.'] }),
+  grade: perf => ({
+    estimate: perf.accuracy ?? 50, confidence: perf.answered > 20 ? 'média' : 'baixa',
+    message: '(modo de teste) Continua assim!', strengths: ['Tabuada'], toImprove: ['Multiplicação'], plan: ['Faz mais um duelo hoje.'],
+  }),
+};
