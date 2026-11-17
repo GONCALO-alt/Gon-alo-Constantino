@@ -13,14 +13,24 @@
   --radius: 16px;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #14121f;
     --card: #1e1b2e;
     --text: #efedf8;
     --muted: #a19cbf;
     --line: #2f2b45;
     --accent: #8f78ff;
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #14121f;
+  --card: #1e1b2e;
+  --text: #efedf8;
+  --muted: #a19cbf;
+  --line: #2f2b45;
+  --accent: #8f78ff;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }

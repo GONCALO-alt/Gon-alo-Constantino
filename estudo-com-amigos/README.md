@@ -51,6 +51,9 @@ A chave fica só no servidor (o browser nunca a vê) e o `.env` nunca vai para o
 
 **Testar sem chave:** `npm run dev:ai-teste` liga a IA em modo de teste, com respostas falsas e sem custos.
 
+## Demo sem servidor
+`DEMO-abre-me.html` (no zip) ou `npm run demo`, que gera `dist/demo-offline.html`, abre a app diretamente no browser. O Rui e a Eva são amigos simulados e a IA dá respostas de exemplo. Serve para mostrar a app a alguém sem a pôr online.
+
 ## Testes
 `npm test`
 
@@ -59,10 +62,12 @@ A chave fica só no servidor (o browser nunca a vê) e o `.env` nunca vai para o
 |---|---|
 | `server.js` | Servidor (Express + Socket.IO): site e tempo real |
 | `rooms.js` | Regras: foco, chama, ligas, calendário, duelos, quota de IA |
+| `handlers.js` | Eventos em tempo real (o que acontece quando alguém clica) |
 | `ai.js` | IA: perguntas, explicações, resumo, previsão de nota (API da Anthropic) |
 | `public/app.js` | O site |
 | `public/sounds.js` | Sons de foco gerados no browser |
 | `public/cosmetics.js` | Avatares, molduras e conquistas |
+| `demo/` | Demo que corre só no browser (servidor falso + bots) |
 | `data/rooms.json` | Onde as salas ficam guardadas (criado automaticamente) |
 
 ## Limitações (por agora)

@@ -12,6 +12,7 @@ export const LIMITS = {
   maxNoteText: 4000,
   nameMax: 20,
   answerLog: 300,        // respostas guardadas por pessoa (para a previsão de nota)
+  minFocus: 5,           // minutos mínimos de uma sessão de foco
 };
 
 export const TZ = 'Europe/Lisbon';
@@ -341,7 +342,7 @@ export function leagueTable(store, room, now = Date.now()) {
 // ---------- temporizador de foco ----------
 
 export function startFocus(room, now = Date.now(), minutes) {
-  const m = clampMin(minutes ?? room.timer.focusMin, 5, 90);
+  const m = clampMin(minutes ?? room.timer.focusMin, LIMITS.minFocus, 90);
   room.timer = { ...room.timer, state: 'focus', focusMin: m, endsAt: now + m * 60_000, startedAt: now };
   room.distracted.clear();
   for (const mem of room.members.values()) if (mem.status === 'away') room.distracted.add(mem.name);
@@ -387,7 +388,7 @@ const clampMin = (v, lo, hi) => Math.min(hi, Math.max(lo, Math.round(Number(v) |
 // mode "classico": pontos por acerto + rapidez.
 // mode "eliminacao": perguntas cada vez mais difíceis; quem erra sai. Ajudas: 50/50 e "perguntar à sala".
 
-export const DUEL = { perQuestionMs: (Number(process.env.DUEL_SECONDS) || 15) * 1000, maxQuestions: 10, maxElimination: 15 };
+export const DUEL = { perQuestionMs: (Number(globalThis.process?.env?.DUEL_SECONDS) || 15) * 1000, maxQuestions: 10, maxElimination: 15 };
 
 export function startDuel(room, mode = 'classico', participants = []) {
   if (room.duel) return { error: 'Já há um duelo a decorrer.' };
