@@ -146,6 +146,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     socket.on('profile', inRoom(p => {
       me.avatar = String(p?.avatar ?? me.avatar).slice(0, 8);
       me.frame = String(p?.frame ?? me.frame).slice(0, 20);
+      me.medal = String(p?.medal ?? me.medal ?? '').slice(0, 8);
       emitMembers(room);
     }));
 

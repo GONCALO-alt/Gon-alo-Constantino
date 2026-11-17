@@ -1,0 +1,27 @@
+# Deploy do Cardume no Render (render.com) com um clique: New → Blueprint → escolher este repositório.
+# A conta no Render tem de ser de um adulto.
+services:
+  - type: web
+    name: cardume
+    runtime: node
+    rootDir: estudo-com-amigos
+    # "starter" (pago) mantém a app sempre ligada e tem disco para guardar as salas.
+    # No plano "free" a app adormece sem visitas e as salas perdem-se quando reinicia (tira o bloco "disk").
+    plan: starter
+    region: frankfurt
+    buildCommand: npm ci --omit=dev
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_DIR
+        value: /var/data
+      - key: AI_WEEKLY_LIMIT
+        value: "30"
+      - key: ANTHROPIC_API_KEY
+        sync: false   # o Render pede a chave no painel; nunca fica no GitHub
+    disk:
+      name: cardume-data
+      mountPath: /var/data
+      sizeGB: 1

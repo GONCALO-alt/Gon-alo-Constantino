@@ -168,6 +168,7 @@ export function addMember(room, socketId, profile, now = Date.now()) {
     name,
     avatar: String(profile?.avatar ?? '🙂').slice(0, 8),
     frame: String(profile?.frame ?? 'none').slice(0, 20),
+    medal: String(profile?.medal ?? '').slice(0, 8),
     status: 'focused',
   };
   room.members.set(socketId, member);

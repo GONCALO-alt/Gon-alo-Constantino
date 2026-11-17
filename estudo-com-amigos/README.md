@@ -1,6 +1,37 @@
-# 📚 Estudo com Amigos
+# 🐟 Cardume
 
-Salas de estudo online: estudas ao mesmo tempo que os teus amigos, cada um na sua casa.
+*Estuda em cardume.* Salas de estudo online: estudas ao mesmo tempo que os teus amigos, cada um na sua casa.
+
+Um cardume é um grupo de peixes que nada junto, tal como uma turma a estudar. O ícone (`public/icons/icon.svg`) são três peixes a nadar em roda.
+
+## Menu
+- **＋ Adicionar**: cria uma sala, entra numa, começa um foco, partilha um apontamento, escreve uma pergunta, tira uma foto para a IA, marca um teste ou manda uma mensagem, tudo a partir do mesmo sítio.
+- **Principal**: Início, Estudar, Chat (com aviso de mensagens novas), Duelos
+- **Turma**: Apontamentos, Calendário, Liga
+- **Eu**: Loja, Medalhas, Perfil, Definições (som, tema claro/escuro, sair da sala, apagar dados)
+
+No computador o menu fica à esquerda. No telemóvel há uma barra em baixo com o botão ＋ ao centro, e o resto do menu abre em "Mais".
+
+## Loja de medalhas e escamas 🐟
+As **escamas** ganham-se a estudar: 1 por minuto de foco, 20 por duelo ganho, 5 por apontamento, 3 por pergunta e 25 por conquista. Quem chega recebe 50 de boas-vindas. Com elas compram-se **12 medalhas** (de 40 a 1500 escamas), que aparecem ao lado do teu nome nas salas. Não há dinheiro real nem caixas surpresa: sabes sempre o que compras.
+
+## Pôr online
+### Render (o mais fácil)
+O ficheiro `render.yaml` na raiz do repositório já tem tudo.
+1. Um **adulto** cria conta em https://render.com e liga o GitHub.
+2. **New → Blueprint**, escolhe este repositório e carrega em **Apply**.
+3. Quando pedir `ANTHROPIC_API_KEY`, cola a chave (ou deixa vazio para ter a app sem IA).
+4. Em poucos minutos a app fica num endereço como `https://cardume.onrender.com`. Partilha esse link com a turma.
+
+O plano `starter` (cerca de 7 $/mês) mantém a app sempre ligada e guarda as salas num disco. No plano grátis a app adormece quando ninguém a usa e as salas apagam-se quando reinicia. Para usar o grátis, muda `plan: free` e tira o bloco `disk` do `render.yaml`.
+
+### Outros serviços
+Há um `Dockerfile` para Fly.io, Railway, etc. Define `PORT`, `DATA_DIR` (pasta com disco permanente) e, se quiseres IA, `ANTHROPIC_API_KEY`.
+
+### No telemóvel
+Depois de estar online, abre o link no telemóvel e escolhe **"Adicionar ao ecrã principal"**. O Cardume fica com o ícone dos peixes, como uma app.
+
+## O que faz
 
 ## O que faz
 
@@ -19,7 +50,7 @@ Salas de estudo online: estudas ao mesmo tempo que os teus amigos, cada um na su
 - **Chama da sala** 🔥: um dia conta quando a sala estuda 15 min × o número de pessoas que entraram nesse dia. Quem estuda a dobrar salva um amigo.
 - **Ligas semanais** 🥉🥈🥇💠💎: todas as segundas-feiras, as melhores salas de cada liga sobem e as que não estudaram descem.
 - **16 conquistas** 🏅, algumas desbloqueiam avatares e molduras especiais.
-- **Cacifo** 🎨: avatares e molduras ganhos a estudar.
+- **Perfil** 🎨: avatares e molduras ganhos a estudar, estatísticas e previsão de nota.
 
 **IA** (corre no servidor, ver abaixo)
 - 📷 **Foto → perguntas**: tira uma foto ao livro ou ao caderno (ou cola texto) e a IA cria 8 perguntas para o duelo.

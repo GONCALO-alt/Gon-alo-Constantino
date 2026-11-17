@@ -57,3 +57,29 @@ export function isUnlocked(item, minutes, achieved = []) {
 export const lockLabel = item => item.ach
   ? `🔒 ${ACHIEVEMENTS.find(a => a.id === item.ach)?.name ?? 'Conquista'}`
   : `🔒 ${item.need} min`;
+
+// ---------- Loja de medalhas ----------
+// Compram-se com escamas 🐟, que se ganham a estudar (nunca com dinheiro, nunca ao calhas).
+export const MEDALS = [
+  { id: 'peixinho',   icon: '🐟', name: 'Peixinho',          price: 0,    desc: 'Toda a gente começa aqui.' },
+  { id: 'bolha',      icon: '🫧', name: 'Bolha de ideias',    price: 40,   desc: 'Para quem pensa fora do aquário.' },
+  { id: 'livro',      icon: '📘', name: 'Leitor',            price: 60,   desc: 'Lê o livro antes do teste.' },
+  { id: 'lapis',      icon: '✏️', name: 'Lápis afiado',       price: 80,   desc: 'Apontamentos impecáveis.' },
+  { id: 'relogio',    icon: '⏱️', name: 'Cronómetro',         price: 120,  desc: 'Nunca falha um foco.' },
+  { id: 'estrela',    icon: '⭐', name: 'Estrela da turma',   price: 160,  desc: 'Brilha nos duelos.' },
+  { id: 'polvo',      icon: '🐙', name: 'Polvo multitarefa',  price: 220,  desc: 'Estuda três disciplinas ao mesmo tempo.' },
+  { id: 'tubarao',    icon: '🦈', name: 'Tubarão dos testes', price: 300,  desc: 'Ninguém lhe escapa num duelo.' },
+  { id: 'baleia',     icon: '🐋', name: 'Baleia sábia',       price: 450,  desc: 'Calma, paciente e cheia de matéria.' },
+  { id: 'tridente',   icon: '🔱', name: 'Tridente',           price: 650,  desc: 'Rei ou rainha do oceano do estudo.' },
+  { id: 'perola',     icon: '🦪', name: 'Pérola rara',        price: 900,  desc: 'Só para quem estuda a sério.' },
+  { id: 'coroa',      icon: '👑', name: 'Coroa do cardume',   price: 1500, desc: 'A medalha mais cara da loja.' },
+];
+
+// Como se ganham escamas
+export const EARN = {
+  perFocusMinute: 1,
+  duelWin: 20,
+  question: 3,
+  note: 5,
+  achievement: 25,
+};

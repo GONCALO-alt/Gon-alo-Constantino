@@ -14,17 +14,21 @@ export function startServer({ port = 3000, dataFile = join(here, 'data', 'rooms.
   const app = express();
   const http = createServer(app);
   const io = new Server(http, { maxHttpBufferSize: 6 * 1024 * 1024 });
-  const store = new R.RoomStore(dataFile);
+  const store = new R.RoomStore(process.env.DATA_DIR ? join(process.env.DATA_DIR, 'rooms.json') : dataFile);
   const handlers = attachHandlers(io, store, { duelPauseMs });
 
-  app.use(express.static(join(here, 'public')));
+  app.use(express.static(join(here, 'public'), {
+    setHeaders(res, path) {
+      if (path.endsWith('.webmanifest')) res.setHeader('Content-Type', 'application/manifest+json');
+    },
+  }));
   app.get('/health', (_req, res) => res.json({ ok: true, ai: AI.aiEnabled() }));
 
   return new Promise(resolve => {
     http.listen(port, () => {
       const actual = http.address().port;
       if (log) {
-        console.log(`📚 Estudo com Amigos a correr em http://localhost:${actual}`);
+        console.log(`🐟 Cardume a correr em http://localhost:${actual}`);
         console.log(AI.aiEnabled()
           ? `🤖 IA ligada${process.env.AI_MOCK === '1' ? ' (modo de teste, respostas falsas)' : ''}.`
           : '🤖 IA desligada: define ANTHROPIC_API_KEY para a ligar.');

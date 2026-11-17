@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7a5cff"/>
+      <stop offset="1" stop-color="#3f24c9"/>
+    </linearGradient>
+    <g id="fish">
+      <path d="M -62 0 L -112 -40 Q -100 0 -112 40 Z"/>
+      <ellipse cx="0" cy="0" rx="72" ry="42"/>
+    </g>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <!-- ondas -->
+  <circle cx="256" cy="256" r="178" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="10"/>
+  <!-- três peixes a nadar em roda: o cardume -->
+  <g transform="translate(256 256)">
+    <g transform="rotate(-90) translate(120 0) rotate(90)">
+      <use href="#fish" fill="#ffffff"/><circle cx="38" cy="-9" r="9" fill="#3f24c9"/>
+    </g>
+    <g transform="rotate(30) translate(120 0) rotate(90)">
+      <use href="#fish" fill="#ff8a3d"/><circle cx="38" cy="-9" r="9" fill="#3f24c9"/>
+    </g>
+    <g transform="rotate(150) translate(120 0) rotate(90)">
+      <use href="#fish" fill="#ffd3b3"/><circle cx="38" cy="-9" r="9" fill="#3f24c9"/>
+    </g>
+    <!-- bolhas no centro -->
+    <circle cx="-6" cy="10" r="14" fill="#ffffff" fill-opacity=".9"/>
+    <circle cx="16" cy="-14" r="9" fill="#ffffff" fill-opacity=".7"/>
+    <circle cx="-14" cy="-22" r="6" fill="#ffffff" fill-opacity=".5"/>
+  </g>
+</svg>

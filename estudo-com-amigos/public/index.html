@@ -2,168 +2,203 @@
 <html lang="pt">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Estudo com Amigos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cardume</title>
+  <meta name="description" content="Cardume: salas de estudo online com a tua turma.">
+  <meta name="theme-color" content="#5a3ce6">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ENTRADA -->
-  <main id="home" class="screen">
-    <div class="card hero">
-      <h1>📚 Estudo com Amigos</h1>
-      <p class="muted">Estuda ao mesmo tempo que os teus amigos, partilha apontamentos e desafia-os para duelos.</p>
-
-      <label>O teu nome
-        <input id="name" maxlength="20" placeholder="ex.: Gonçalo" autocomplete="off">
-      </label>
-
-      <div class="me-preview">
-        <span id="previewAvatar" class="avatar big"></span>
-        <button id="openLocker" class="ghost">🎨 Cacifo</button>
-        <span id="homeMinutes" class="muted small"></span>
-      </div>
-
-      <div class="split">
-        <div>
-          <h3>Criar sala</h3>
-          <input id="roomName" maxlength="40" placeholder="ex.: 8.ºB — Ciências">
-          <button id="create">Criar sala</button>
-        </div>
-        <div>
-          <h3>Entrar numa sala</h3>
-          <input id="code" maxlength="6" placeholder="Código (6 letras)" autocomplete="off">
-          <button id="join">Entrar</button>
-        </div>
-      </div>
-      <p id="homeError" class="error"></p>
-
-      <div id="recent"></div>
-      <p class="muted small">🔒 Só entra quem tiver o código. Não partilhes o código com desconhecidos.</p>
+<div class="app">
+  <!-- MENU -->
+  <aside id="nav" class="nav" aria-label="Menu">
+    <div class="brand">
+      <img src="icons/icon.svg" alt="" class="logo" id="brandLogo">
+      <div><b>Cardume</b><span>estuda em cardume</span></div>
+      <button id="navClose" class="icon-btn nav-close" aria-label="Fechar menu">✕</button>
     </div>
-  </main>
 
-  <!-- SALA -->
-  <main id="room" class="screen hidden">
+    <button id="addBtn" class="add-btn">＋ Adicionar</button>
+
+    <div class="nav-group">
+      <span class="nav-label">Principal</span>
+      <button data-view="inicio"><i>🏠</i>Início</button>
+      <button data-view="estudar"><i>⏱️</i>Estudar</button>
+      <button data-view="chat"><i>💬</i>Chat<em id="chatDot" class="dot hidden"></em></button>
+      <button data-view="duelos"><i>⚔️</i>Duelos</button>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label">Turma</span>
+      <button data-view="apontamentos"><i>📝</i>Apontamentos</button>
+      <button data-view="calendario"><i>📅</i>Calendário</button>
+      <button data-view="liga"><i>🏆</i>Liga</button>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label">Eu</span>
+      <button data-view="loja"><i>🛍️</i>Loja</button>
+      <button data-view="medalhas"><i>🏅</i>Medalhas</button>
+      <button data-view="perfil"><i>👤</i>Perfil</button>
+      <button data-view="definicoes"><i>⚙️</i>Definições</button>
+    </div>
+
+    <div class="nav-foot">
+      <div class="wallet" title="Escamas: ganhas a estudar"><span>🐟</span><b id="navScales">0</b> escamas</div>
+      <button class="me-chip" data-view="perfil"><span id="navAvatar" class="avatar"></span><span id="navName">Sem nome</span></button>
+    </div>
+  </aside>
+  <div id="navShade" class="shade hidden"></div>
+
+  <!-- CONTEÚDO -->
+  <div class="content">
     <header class="topbar">
-      <div>
-        <h2 id="roomTitle"></h2>
-        <div class="row wrap">
-          <button id="copyCode" class="code" title="Copiar código"></button>
-          <span id="leagueBadge" class="badge"></span>
-          <span id="streakBadge" class="badge"></span>
+      <button id="navOpen" class="icon-btn menu-btn" aria-label="Abrir menu">☰</button>
+      <div class="top-title">
+        <h1 id="viewTitle">Início</h1>
+        <div id="roomChips" class="chips hidden">
+          <span id="roomTitle" class="chip strong"></span>
+          <button id="copyCode" class="chip code" title="Copiar código"></button>
+          <span id="leagueBadge" class="chip"></span>
+          <span id="streakBadge" class="chip"></span>
         </div>
       </div>
-      <div class="topbar-right">
-        <button id="openLocker2" class="ghost" title="Cacifo">🎨</button>
-        <button id="leave" class="ghost">Sair</button>
-      </div>
+      <div class="wallet top-wallet"><span>🐟</span><b id="topScales">0</b></div>
     </header>
 
     <div id="testBanner" class="banner hidden"></div>
 
-    <div class="layout">
-      <aside class="side">
-        <div class="card">
-          <div id="timerBox" class="timer idle">
-            <div id="timerLabel" class="timer-label">Pronto para estudar?</div>
-            <div id="timerClock" class="timer-clock">25:00</div>
-            <div class="timer-controls">
-              <select id="focusMin" aria-label="Minutos de foco">
-                <option value="15">15 min</option>
-                <option value="25" selected>25 min</option>
-                <option value="45">45 min</option>
-                <option value="60">60 min</option>
-              </select>
-              <button id="timerStart">▶ Começar foco</button>
-              <button id="timerStop" class="ghost hidden">■ Parar</button>
-            </div>
-            <div class="reactions" aria-label="Reações">
-              <button data-react="🔥">🔥</button><button data-react="💪">💪</button><button data-react="👏">👏</button>
-              <button data-react="🤯">🤯</button><button data-react="😴">😴</button><button data-react="☕">☕</button>
-            </div>
-            <p class="muted small">Se saíres da página durante o foco, ficas como <b>distraído</b> e não ganhas os minutos.</p>
-          </div>
-
-          <div class="ambience">
-            <label for="ambience" class="small">🎧 Som da sala</label>
-            <div class="row">
-              <select id="ambience">
-                <option value="none">Silêncio</option>
-                <option value="chuva">🌧️ Chuva</option>
-                <option value="cafe">☕ Café</option>
-                <option value="lofi">🎵 Lo-fi</option>
-                <option value="biblioteca">📖 Biblioteca</option>
-              </select>
-              <input id="volume" type="range" min="0" max="1" step="0.05" value="0.5" aria-label="Volume">
-            </div>
-            <button id="soundUnlock" class="ghost small-btn hidden">🔊 Ligar som</button>
+    <main>
+      <!-- INÍCIO -->
+      <section id="view-inicio" class="view">
+        <div class="hero card">
+          <img src="icons/icon.svg" alt="" class="hero-logo" id="heroLogo">
+          <div>
+            <h2>Olá<span id="helloName"></span>! 👋</h2>
+            <p class="muted">No Cardume estudas ao mesmo tempo que os teus amigos, cada um na sua casa. Cria uma sala ou entra com o código que te deram.</p>
           </div>
         </div>
 
-        <div class="card">
-          <h3>🔥 Chama da sala</h3>
-          <div id="streakBox"></div>
+        <div id="joinBox" class="grid-2">
+          <div class="card">
+            <label for="name">O teu nome</label>
+            <input id="name" maxlength="20" placeholder="ex.: Gonçalo" autocomplete="off">
+            <div class="split">
+              <div class="stack">
+                <h3>🐟 Criar sala</h3>
+                <input id="roomName" maxlength="40" placeholder="ex.: 8.ºB — Ciências">
+                <button id="create">Criar sala</button>
+              </div>
+              <div class="stack">
+                <h3>🔑 Entrar numa sala</h3>
+                <input id="code" maxlength="6" placeholder="Código (6 letras)" autocomplete="off">
+                <button id="join">Entrar</button>
+              </div>
+            </div>
+            <p id="homeError" class="error"></p>
+            <p class="muted small">🔒 Só entra quem tiver o código. Não partilhes o código com desconhecidos.</p>
+          </div>
+          <div class="card">
+            <h3>Salas recentes</h3>
+            <div id="recent"><p class="muted small">Ainda não entraste em nenhuma sala.</p></div>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>📅 Próximos testes</h3>
-          <ul id="tests" class="tests"></ul>
-          <form id="testForm" class="row wrap">
-            <input id="testSubject" maxlength="40" placeholder="Disciplina">
-            <input id="testDate" type="date">
-            <button>Marcar</button>
-          </form>
-          <p id="testError" class="error small"></p>
+        <div id="roomHome" class="grid-2 hidden">
+          <div class="card room-card">
+            <h3>Estás na sala <span id="roomHomeName"></span></h3>
+            <p class="muted small">Envia o código aos teus amigos para eles entrarem.</p>
+            <div class="row wrap">
+              <button data-go="estudar">⏱️ Estudar agora</button>
+              <button data-go="duelos" class="ghost">⚔️ Duelo</button>
+              <button data-go="chat" class="ghost">💬 Chat</button>
+              <button id="leave2" class="ghost danger">Sair da sala</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Hoje na sala</h3>
+            <div id="roomHomeStats" class="mini-stats"></div>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>Na sala</h3>
-          <ul id="members" class="members"></ul>
+        <h3 class="section-title">O teu progresso</h3>
+        <div id="myStats" class="stat-row"></div>
+      </section>
+
+      <!-- ESTUDAR -->
+      <section id="view-estudar" class="view hidden" data-needs-room>
+        <div class="grid-study">
+          <div class="card">
+            <div id="timerBox" class="timer idle">
+              <div id="timerLabel" class="timer-label">Pronto para estudar?</div>
+              <div id="timerClock" class="timer-clock">25:00</div>
+              <div class="timer-controls">
+                <select id="focusMin" aria-label="Minutos de foco">
+                  <option value="15">15 min</option>
+                  <option value="25" selected>25 min</option>
+                  <option value="45">45 min</option>
+                  <option value="60">60 min</option>
+                </select>
+                <button id="timerStart">▶ Começar foco</button>
+                <button id="timerStop" class="ghost hidden">■ Parar</button>
+              </div>
+              <div class="reactions" aria-label="Reações">
+                <button data-react="🔥">🔥</button><button data-react="💪">💪</button><button data-react="👏">👏</button>
+                <button data-react="🤯">🤯</button><button data-react="😴">😴</button><button data-react="☕">☕</button>
+              </div>
+              <p class="muted small">Se saíres da página durante o foco, ficas como <b>distraído</b> e não ganhas os minutos nem as escamas.</p>
+            </div>
+            <div class="ambience">
+              <label for="ambience" class="small">🎧 Som da sala</label>
+              <div class="row">
+                <select id="ambience">
+                  <option value="none">Silêncio</option>
+                  <option value="chuva">🌧️ Chuva</option>
+                  <option value="cafe">☕ Café</option>
+                  <option value="lofi">🎵 Lo-fi</option>
+                  <option value="biblioteca">📖 Biblioteca</option>
+                </select>
+              </div>
+              <button id="soundUnlock" class="ghost small-btn hidden">🔊 Ligar som</button>
+            </div>
+          </div>
+          <div class="stack-cards">
+            <div class="card">
+              <h3>🔥 Chama da sala</h3>
+              <div id="streakBox"></div>
+            </div>
+            <div class="card">
+              <h3>👥 Na sala</h3>
+              <ul id="members" class="members"></ul>
+            </div>
+          </div>
         </div>
-      </aside>
+      </section>
 
-      <section class="card main">
-        <nav class="tabs" role="tablist">
-          <button data-tab="chat" class="active">💬 Chat</button>
-          <button data-tab="notes">📝 Apontamentos</button>
-          <button data-tab="quiz">⚔️ Quiz</button>
-          <button data-tab="me">🎯 Eu</button>
-          <button data-tab="league">🏆 Liga</button>
-        </nav>
-
-        <div id="tab-chat" class="tab">
+      <!-- CHAT -->
+      <section id="view-chat" class="view hidden" data-needs-room>
+        <div class="card chat-card">
           <ul id="messages" class="messages"></ul>
           <form id="chatForm" class="row">
             <input id="chatInput" maxlength="500" placeholder="Escreve uma mensagem…" autocomplete="off">
             <button>Enviar</button>
           </form>
         </div>
+      </section>
 
-        <div id="tab-notes" class="tab hidden">
-          <div class="ai-box">
-            <div class="row between wrap">
-              <div><b>🤖 Resumo da IA</b><br><span class="muted small">Junta os apontamentos de todos num resumo de 1 página.</span></div>
-              <button id="aiSummary" class="ai-btn">Gerar resumo</button>
-            </div>
-            <div id="summary"></div>
-          </div>
-          <form id="noteForm" class="stack">
-            <input id="noteTitle" maxlength="60" placeholder="Título (ex.: Fotossíntese)">
-            <textarea id="noteText" rows="4" maxlength="4000" placeholder="Escreve o resumo…"></textarea>
-            <button>Partilhar apontamento</button>
-          </form>
-          <ul id="notes" class="notes"></ul>
-        </div>
-
-        <div id="tab-quiz" class="tab hidden">
+      <!-- DUELOS -->
+      <section id="view-duelos" class="view hidden" data-needs-room>
+        <div class="card">
           <div id="duelArea" class="duel hidden"></div>
           <div id="quizSetup">
             <div class="duel-start">
               <p><b id="qCount">0</b> perguntas na sala</p>
               <div class="row wrap">
                 <select id="duelMode" aria-label="Modo de duelo">
-                  <option value="classico">⚡ Clássico — pontos por rapidez</option>
-                  <option value="eliminacao">🛡️ Eliminação — quem erra sai</option>
+                  <option value="classico">⚡ Clássico: pontos por rapidez</option>
+                  <option value="eliminacao">🛡️ Eliminação: quem erra sai</option>
                 </select>
                 <button id="duelStart">⚔️ Começar duelo</button>
               </div>
@@ -185,7 +220,7 @@
               <p id="aiStatus" class="muted small"></p>
             </div>
 
-            <details>
+            <details id="qDetails">
               <summary>✍️ Escrever uma pergunta à mão</summary>
               <form id="qForm" class="stack">
                 <input id="qText" maxlength="200" placeholder="Pergunta (ex.: Qual é a capital de França?)">
@@ -208,8 +243,123 @@
             <ul id="questions" class="questions"></ul>
           </div>
         </div>
+      </section>
 
-        <div id="tab-me" class="tab hidden">
+      <!-- APONTAMENTOS -->
+      <section id="view-apontamentos" class="view hidden" data-needs-room>
+        <div class="grid-2 wide-left">
+          <div class="card">
+            <div class="ai-box">
+              <div class="row between wrap">
+                <div><b>🤖 Resumo da IA</b><br><span class="muted small">Junta os apontamentos de todos num resumo de 1 página.</span></div>
+                <button id="aiSummary" class="ai-btn">Gerar resumo</button>
+              </div>
+              <div id="summary"></div>
+            </div>
+            <ul id="notes" class="notes"></ul>
+          </div>
+          <div class="card">
+            <h3>Novo apontamento</h3>
+            <form id="noteForm" class="stack">
+              <input id="noteTitle" maxlength="60" placeholder="Título (ex.: Fotossíntese)">
+              <textarea id="noteText" rows="6" maxlength="4000" placeholder="Escreve o resumo…"></textarea>
+              <button>Partilhar apontamento</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALENDÁRIO -->
+      <section id="view-calendario" class="view hidden" data-needs-room>
+        <div class="grid-2">
+          <div class="card">
+            <h3>📅 Próximos testes</h3>
+            <ul id="tests" class="tests"></ul>
+          </div>
+          <div class="card">
+            <h3>Marcar um teste</h3>
+            <form id="testForm" class="stack">
+              <input id="testSubject" maxlength="40" placeholder="Disciplina (ex.: Matemática)">
+              <input id="testDate" type="date" aria-label="Data do teste">
+              <button>Marcar teste</button>
+            </form>
+            <p id="testError" class="error small"></p>
+            <p class="muted small">Quando faltarem 3 dias ou menos, aparece um aviso a toda a sala.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIGA -->
+      <section id="view-liga" class="view hidden" data-needs-room>
+        <div class="grid-2">
+          <div class="card">
+            <div id="leagueHead" class="league-head"></div>
+            <div class="table-wrap">
+              <table class="ranking">
+                <thead><tr><th>#</th><th>Sala</th><th>⏱️ Min. esta semana</th></tr></thead>
+                <tbody id="leagueBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Nesta sala</h3>
+            <div class="table-wrap">
+              <table class="ranking">
+                <thead><tr><th>#</th><th>Nome</th><th>⏱️ Min.</th><th>🎯 Sessões</th><th>⚔️ Vitórias</th></tr></thead>
+                <tbody id="rankingBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOJA -->
+      <section id="view-loja" class="view hidden">
+        <div class="card shop-head">
+          <div class="wallet big-wallet"><span>🐟</span><b id="shopScales">0</b><small>escamas</small></div>
+          <div>
+            <h3>Como ganhar escamas</h3>
+            <ul id="earnList" class="earn"></ul>
+          </div>
+        </div>
+        <p class="muted small">As medalhas aparecem ao lado do teu nome nas salas. Compram-se só com escamas, que ganhas a estudar, e sabes sempre o que estás a comprar.</p>
+        <div id="shopGrid" class="shop-grid"></div>
+      </section>
+
+      <!-- MEDALHAS -->
+      <section id="view-medalhas" class="view hidden">
+        <div class="card">
+          <h3>🎖️ As tuas medalhas</h3>
+          <p class="muted small">Toca numa medalha para a mostrares ao lado do teu nome.</p>
+          <div id="ownedMedals" class="owned"></div>
+        </div>
+        <h3 class="section-title">🏅 Conquistas <span id="achCount" class="muted small"></span></h3>
+        <div id="achievements" class="achievements"></div>
+      </section>
+
+      <!-- PERFIL -->
+      <section id="view-perfil" class="view hidden">
+        <div class="card profile-head">
+          <span id="profileAvatar" class="avatar huge"></span>
+          <div>
+            <h2 id="profileName"></h2>
+            <p id="profileMedal" class="muted"></p>
+          </div>
+        </div>
+        <div id="profileStats" class="stat-row"></div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>🎨 Avatar</h3>
+            <div id="avatarGrid" class="grid"></div>
+          </div>
+          <div class="card">
+            <h3>🖼️ Moldura</h3>
+            <div id="frameGrid" class="grid"></div>
+          </div>
+        </div>
+
+        <div class="card" data-room-only>
           <div class="ai-box">
             <div class="row between wrap">
               <div><b>🔮 Previsão de nota</b><br><span class="muted small">A IA olha para as tuas respostas nos duelos e estima a tua nota.</span></div>
@@ -220,41 +370,80 @@
             </div>
             <div id="grade"></div>
           </div>
-          <h3>🏅 Conquistas</h3>
-          <div id="achievements" class="achievements"></div>
-        </div>
-
-        <div id="tab-league" class="tab hidden">
-          <div id="leagueHead" class="league-head"></div>
-          <table class="ranking">
-            <thead><tr><th>#</th><th>Sala</th><th>⏱️ Min. esta semana</th></tr></thead>
-            <tbody id="leagueBody"></tbody>
-          </table>
-          <h3>Nesta sala</h3>
-          <table class="ranking">
-            <thead><tr><th>#</th><th>Nome</th><th>⏱️ Min.</th><th>🎯 Sessões</th><th>⚔️ Vitórias</th></tr></thead>
-            <tbody id="rankingBody"></tbody>
-          </table>
         </div>
       </section>
+
+      <!-- DEFINIÇÕES -->
+      <section id="view-definicoes" class="view hidden">
+        <div class="grid-2">
+          <div class="card stack">
+            <h3>🔊 Som</h3>
+            <label for="volume" class="small">Volume dos sons de foco</label>
+            <input id="volume" type="range" min="0" max="1" step="0.05" value="0.5">
+            <label class="check"><input id="mute" type="checkbox"> Silenciar sons neste aparelho</label>
+          </div>
+          <div class="card stack">
+            <h3>🌗 Tema</h3>
+            <div class="seg" role="radiogroup" aria-label="Tema">
+              <button data-theme-set="system">Sistema</button>
+              <button data-theme-set="light">Claro</button>
+              <button data-theme-set="dark">Escuro</button>
+            </div>
+          </div>
+          <div class="card stack">
+            <h3>🚪 Sala</h3>
+            <p class="muted small" id="settingsRoom">Não estás em nenhuma sala.</p>
+            <button id="leave" class="ghost danger">Sair da sala</button>
+          </div>
+          <div class="card stack">
+            <h3>🧹 Dados deste aparelho</h3>
+            <p class="muted small">Escamas, medalhas, conquistas e cosméticos ficam guardados só neste browser.</p>
+            <button id="wipe" class="ghost danger">Apagar os meus dados</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- precisa de sala -->
+      <div id="noRoom" class="card empty hidden">
+        <span class="empty-icon">🐟</span>
+        <h3>Ainda não estás numa sala</h3>
+        <p class="muted">Cria uma sala ou entra com um código para usar esta parte.</p>
+        <button data-go="inicio">Ir para o Início</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- barra de baixo (telemóvel) -->
+  <nav class="bottombar" aria-label="Menu rápido">
+    <button data-view="inicio"><i>🏠</i>Início</button>
+    <button data-view="estudar"><i>⏱️</i>Estudar</button>
+    <button id="addBtn2" class="bottom-add" aria-label="Adicionar">＋</button>
+    <button data-view="chat"><i>💬</i>Chat<em id="chatDot2" class="dot hidden"></em></button>
+    <button id="moreBtn"><i>☰</i>Mais</button>
+  </nav>
+</div>
+
+<!-- MENU ADICIONAR -->
+<div id="addSheet" class="sheet hidden" role="dialog" aria-label="Adicionar">
+  <div class="sheet-card">
+    <div class="row between"><h3>＋ Adicionar</h3><button id="addClose" class="icon-btn" aria-label="Fechar">✕</button></div>
+    <div class="add-grid">
+      <button data-add="sala"><i>🐟</i><b>Nova sala</b><span>Para a tua turma</span></button>
+      <button data-add="entrar"><i>🔑</i><b>Entrar numa sala</b><span>Com um código</span></button>
+      <button data-add="foco"><i>⏱️</i><b>Sessão de foco</b><span>Estudar agora</span></button>
+      <button data-add="apontamento"><i>📝</i><b>Apontamento</b><span>Partilhar resumo</span></button>
+      <button data-add="pergunta"><i>✍️</i><b>Pergunta</b><span>Para os duelos</span></button>
+      <button data-add="ia"><i>📷</i><b>Perguntas com IA</b><span>De uma foto</span></button>
+      <button data-add="teste"><i>📅</i><b>Teste</b><span>No calendário</span></button>
+      <button data-add="mensagem"><i>💬</i><b>Mensagem</b><span>No chat</span></button>
     </div>
-  </main>
+  </div>
+</div>
 
-  <!-- CACIFO (cosméticos) -->
-  <dialog id="locker">
-    <h2>🎨 O teu cacifo</h2>
-    <p class="muted">Desbloqueias avatares e molduras a estudar e com conquistas. Tens <b id="lockerMinutes">0</b> minutos de foco.</p>
-    <h3>Avatares</h3>
-    <div id="avatarGrid" class="grid"></div>
-    <h3>Molduras</h3>
-    <div id="frameGrid" class="grid"></div>
-    <form method="dialog"><button>Fechar</button></form>
-  </dialog>
+<div id="reactLayer" class="react-layer" aria-hidden="true"></div>
+<div id="toast" class="toast hidden"></div>
 
-  <div id="reactLayer" class="react-layer" aria-hidden="true"></div>
-  <div id="toast" class="toast hidden"></div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script type="module" src="app.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>

@@ -35,20 +35,19 @@ const js = out.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
 
 const css = readFileSync(join(root, 'public', 'style.css'), 'utf8');
 const html = readFileSync(join(root, 'public', 'index.html'), 'utf8');
-const body = html.slice(html.indexOf('<body>') + 6, html.indexOf('<script src="/socket.io')).trim();
+const icon = 'data:image/svg+xml;base64,' + readFileSync(join(root, 'public', 'icons', 'icon.svg')).toString('base64');
+const body = html.slice(html.indexOf('<body>') + 6, html.indexOf('<script src="/socket.io')).trim()
+  .replaceAll('src="icons/icon.svg"', `src="${icon}"`);
 
-const page = `<title>Estudo com Amigos</title>
+const page = `<title>Cardume</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 ${css}
 /* demo */
-body { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.screen { padding-inline: 0; padding-block: 16px; }
-.demo-note { max-width: 1200px; margin: 12px auto 0; padding: .6rem .9rem; border-radius: 12px; background: var(--card); border: 1px dashed var(--accent); color: var(--muted); font-size: .9rem; }
+.demo-note { margin-bottom: 1rem; padding: .6rem .9rem; border-radius: 12px; background: var(--card); border: 1px dashed var(--accent); color: var(--muted); font-size: .9rem; }
 .demo-note b { color: var(--text); }
 </style>
-<div class="demo-note"><b>Demo jogável.</b> O Rui e a Eva são amigos simulados e a IA dá respostas de exemplo. Cria uma sala para eles entrarem. O foco de 1 minuto e os duelos curtos são só para experimentar.</div>
-${body}
+${body.replace('<div id="testBanner"', '<div class="demo-note"><b>Demo jogável.</b> O Rui e a Eva são amigos simulados e a IA dá respostas de exemplo. Cria uma sala para eles entrarem. O foco de 1 minuto e os duelos curtos são só para experimentar.</div>\n    <div id="testBanner"')}
 <script type="module">${js}</script>
 `;
 
