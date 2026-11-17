@@ -95,3 +95,35 @@ export async function tutorStream({ messages, onText }) {
   for (const w of text.split(/(?<=\s)/)) { onText?.(w); await wait(18); }
   return text;
 }
+
+// Modo exame da demo: usa o banco de perguntas da fotossíntese, com explicações.
+export async function generateExam({ subject, count = 10 }) {
+  await wait(1500);
+  const qs = [];
+  for (let i = 0; i < count; i++) {
+    const q = BANK[i % BANK.length];
+    qs.push({ ...q, explanation: EXPLAIN[q.options[q.answer]] ?? 'Revê esta parte da matéria.' });
+  }
+  return { title: `Exame de treino: ${subject || 'Ciências'} (demo)`, questions: qs };
+}
+
+// Correção da demo: nota conforme o tamanho e as palavras-chave da resposta.
+export async function correctAnswer({ answer }) {
+  await wait(1400);
+  const a = (answer || '').toLowerCase();
+  const keys = ['luz', 'água', 'agua', 'dióxido', 'co2', 'glicose', 'oxigénio', 'oxigenio', 'clorofila'];
+  const hits = keys.filter(k => a.includes(k)).length;
+  const score = Math.min(95, 35 + hits * 12 + Math.min(20, Math.floor(a.length / 15)));
+  return {
+    score,
+    verdict: score >= 70 ? 'Boa resposta! Tens as ideias principais.' : 'Estás no caminho certo, mas faltam ideias importantes.',
+    strengths: hits ? ['Usaste termos científicos certos.'] : ['Escreveste uma resposta completa em frases.'],
+    improve: [
+      ...(a.includes('glicose') ? [] : ['Diz o que a planta produz (glicose).']),
+      ...(a.includes('oxig') ? [] : ['Refere que a planta liberta oxigénio.']),
+      ...(a.includes('clorofila') ? [] : ['Explica o papel da clorofila.']),
+    ],
+    modelAnswer: 'A fotossíntese é o processo em que as plantas, nos cloroplastos, usam a energia da luz captada pela clorofila para transformar água e dióxido de carbono em glicose, libertando oxigénio.',
+    tip: 'Numa pergunta "explica", diz sempre o que entra, onde acontece e o que sai.',
+  };
+}

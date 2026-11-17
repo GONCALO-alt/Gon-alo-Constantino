@@ -151,7 +151,7 @@ function hydrate(r) {
 }
 
 function persistable(room) {
-  const { members, distracted, duel, ...rest } = room;
+  const { members, distracted, duel, teamPremium, ...rest } = room;
   // o temporizador a correr não sobrevive a um reinício
   return { ...rest, timer: { ...rest.timer, state: 'idle', endsAt: null } };
 }
@@ -567,8 +567,9 @@ export function performance(room, name) {
 export function aiQuota(room, limit, now = Date.now()) {
   const wk = weekKey(now);
   if (room.aiUsage.week !== wk) room.aiUsage = { week: wk, count: 0 };
-  const max = room.premium ? Infinity : limit;
-  return { used: room.aiUsage.count, limit: room.premium ? null : limit, left: Math.max(0, max - room.aiUsage.count) };
+  const unlimited = room.premium || room.teamPremium;
+  const max = unlimited ? Infinity : limit;
+  return { used: room.aiUsage.count, limit: unlimited ? null : limit, left: Math.max(0, max - room.aiUsage.count) };
 }
 
 export function useAI(room, limit, now = Date.now()) {
@@ -593,6 +594,7 @@ export function publicRoom(room, store, now = Date.now()) {
     timer: room.timer,
     members: membersList(room),
     duelActive: !!room.duel,
+    teamPremium: !!room.teamPremium,
     ambience: room.ambience,
     summary: room.summary,
     streak: streakInfo(room, now),

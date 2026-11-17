@@ -115,6 +115,7 @@
           <div class="card">
             <h3 data-i18n="home.today"></h3>
             <div id="roomHomeStats" class="mini-stats"></div>
+            <div id="teamBox" class="team-box"></div>
           </div>
         </div>
 
@@ -126,6 +127,7 @@
           <div class="tutor-head">
             <img src="icons/icon.svg" alt="" class="tutor-logo">
             <div><b data-i18n="tutor.name"></b><span class="muted small" data-i18n="tutor.sub"></span></div>
+            <button id="tutorSpeak" class="ghost small-btn" data-i18n-title="voice.read" aria-pressed="false">🔈</button>
             <button id="tutorNew" class="ghost small-btn" data-i18n="tutor.new"></button>
           </div>
           <ul id="tutorLog" class="messages tutor-log"></ul>
@@ -133,10 +135,49 @@
           <div id="tutorImg" class="tutor-img hidden"><img alt=""><button class="icon-btn" id="tutorImgX" data-i18n-aria="aria.close">✕</button></div>
           <form id="tutorForm" class="tutor-form">
             <label class="icon-btn tutor-photo" data-i18n-title="tutor.photo">📷<input id="tutorPhoto" type="file" accept="image/*" hidden></label>
+            <button type="button" id="tutorMic" class="icon-btn tutor-photo" data-i18n-title="voice.talk">🎙️</button>
             <textarea id="tutorInput" rows="1" maxlength="2000" data-i18n-ph="tutor.ph"></textarea>
             <button id="tutorSend" data-i18n="btn.send"></button>
           </form>
           <p id="tutorInfo" class="muted small tutor-info"></p>
+        </div>
+      </section>
+
+      <!-- MODO EXAME -->
+      <section id="view-exame" class="view hidden">
+        <div id="examSetup" class="card stack">
+          <div class="row between wrap"><h2 data-i18n="exam.title"></h2><span class="prem-badge" data-i18n="prem.badge"></span></div>
+          <p class="muted" data-i18n="exam.help"></p>
+          <div class="exam-form">
+            <label><span data-i18n="exam.subject"></span><select id="examSubject"></select></label>
+            <label><span data-i18n="exam.count"></span><select id="examCount"><option>5</option><option selected>10</option><option>20</option></select></label>
+            <label><span data-i18n="exam.time"></span><select id="examTime"><option value="10">10 min</option><option value="20" selected>20 min</option><option value="40">40 min</option></select></label>
+            <label><span data-i18n="exam.topic"></span><input id="examTopic" maxlength="60" data-i18n-ph="ph.topic"></label>
+          </div>
+          <button id="examStart" class="ai-btn" data-i18n="exam.start"></button>
+          <p id="examFree" class="muted small"></p>
+          <div id="examHistory"></div>
+        </div>
+        <div id="examRun" class="card hidden"></div>
+      </section>
+
+      <section id="view-corrigir" class="view hidden">
+        <div class="grid-2 wide-left">
+          <div class="card stack">
+            <div class="row between wrap"><h2 data-i18n="corr.title"></h2><span class="prem-badge" data-i18n="prem.badge"></span></div>
+            <p class="muted" data-i18n="corr.help"></p>
+            <label for="corrQuestion" data-i18n="corr.question"></label>
+            <textarea id="corrQuestion" rows="2" maxlength="1000" data-i18n-ph="corr.questionPh"></textarea>
+            <label for="corrAnswer" data-i18n="corr.answer"></label>
+            <textarea id="corrAnswer" rows="6" maxlength="6000" data-i18n-ph="corr.answerPh"></textarea>
+            <div class="row wrap">
+              <label class="file-btn ghostish"><span data-i18n="corr.photo"></span><input id="corrPhoto" type="file" accept="image/*" hidden></label>
+              <span id="corrPhotoName" class="muted small"></span>
+              <button id="corrSend" class="ai-btn" data-i18n="corr.send"></button>
+            </div>
+            <p id="corrFree" class="muted small"></p>
+          </div>
+          <div id="corrResult" class="card corr-result"><p class="muted" data-i18n="corr.empty"></p></div>
         </div>
       </section>
 
@@ -151,6 +192,7 @@
           </div>
           <button id="redoPlan" class="ghost" data-i18n="plan.redo"></button>
         </div>
+        <div id="planTrial" class="trial-card hidden"></div>
         <p id="planNeedRoom" class="banner soft hidden" data-i18n="plan.needRoom"></p>
         <div id="planWeek" class="plan-week"></div>
         <div class="card">
@@ -397,6 +439,39 @@
         </div>
       </section>
 
+      <!-- NOTAS -->
+      <section id="view-notas" class="view hidden">
+        <div class="grid-2 wide-left">
+          <div class="card">
+            <h2 data-i18n="grades.title"></h2>
+            <div id="gradesCompare" class="compare"></div>
+            <div id="gradesChart" class="chart-wrap"></div>
+          </div>
+          <div class="card stack">
+            <h3 data-i18n="grades.add"></h3>
+            <select id="gradeSubject" data-i18n-aria="exam.subject"></select>
+            <div class="row">
+              <input id="gradeValue" type="number" step="0.1" min="0" data-i18n-ph="grades.value">
+              <select id="gradeScale"><option value="20">/ 20</option><option value="100">/ 100</option><option value="5">/ 5</option></select>
+            </div>
+            <input id="gradeDate" type="date" data-i18n-aria="grades.date">
+            <button id="gradeAdd" data-i18n="grades.save"></button>
+            <p id="gradeError" class="error small"></p>
+            <ul id="gradesList" class="grades-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RELATÓRIO PARA OS PAIS -->
+      <section id="view-relatorio" class="view hidden">
+        <div class="card report" id="report"></div>
+        <div class="row wrap report-actions">
+          <button id="reportCopy" data-i18n="report.copy"></button>
+          <button id="reportShare" class="ghost" data-i18n="report.share"></button>
+        </div>
+        <div class="card soon-card"><b>📧 <span data-i18n="report.autoTitle"></span></b> <span class="prem-badge fam" data-i18n="prem.family"></span><p class="muted small" data-i18n="report.autoHelp"></p></div>
+      </section>
+
       <!-- PREMIUM -->
       <section id="view-premium" class="view hidden">
         <div class="prem-head">
@@ -407,7 +482,22 @@
             <button data-billing="year"><span data-i18n="prem.yearly"></span> <em id="saveTag" class="save"></em></button>
           </div>
         </div>
+        <div id="premStatus"></div>
         <div id="planCards" class="plan-cards"></div>
+        <div class="grid-2 prem-extra">
+          <div class="card compare-card">
+            <h3 data-i18n="cmp.title"></h3>
+            <div class="cmp-row"><span>👩‍🏫 <span data-i18n="cmp.tutor"></span></span><b data-i18n="cmp.tutorPrice"></b></div>
+            <div class="cmp-row hl"><span>⭐ <span data-i18n="cmp.premium"></span></span><b id="cmpPremium"></b></div>
+            <p class="muted small" data-i18n="cmp.note"></p>
+          </div>
+          <div class="card stack">
+            <h3 data-i18n="earnPrem.title"></h3>
+            <div id="earnTrial" class="earn-row"></div>
+            <div id="earnStreak" class="earn-row"></div>
+            <div id="earnTeam" class="earn-row"></div>
+          </div>
+        </div>
         <p class="fair">⚖️ <span data-i18n="prem.fair"></span></p>
         <p class="muted small center" data-i18n="prem.soon"></p>
         <div id="askBox" class="card ask hidden">
@@ -498,6 +588,15 @@
       <button data-add="teste"><i>📅</i><b data-i18n="add.teste"></b><span data-i18n="add.testeS"></span></button>
       <button data-add="mensagem"><i>💬</i><b data-i18n="add.mensagem"></b><span data-i18n="add.mensagemS"></span></button>
     </div>
+  </div>
+</div>
+
+<!-- ISTO É PREMIUM -->
+<div id="upsell" class="sheet hidden" role="dialog">
+  <div class="sheet-card upsell-card">
+    <div class="row between"><h3 id="upsellTitle"></h3><button id="upsellClose" class="icon-btn" data-i18n-aria="aria.close">✕</button></div>
+    <p id="upsellText"></p>
+    <div id="upsellActions" class="row wrap"></div>
   </div>
 </div>
 

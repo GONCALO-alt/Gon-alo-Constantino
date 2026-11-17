@@ -1,6 +1,7 @@
 // Regras do servidor em tempo real (eventos Socket.IO). Não depende do Express.
 import * as R from './rooms.js';
 import * as AI from './ai.js';
+import { signPass, verifyPass, randomSecret, DAY } from './premium.js';
 
 const AI_WEEKLY_LIMIT = Number(globalThis.process?.env?.AI_WEEKLY_LIMIT) || 30; // usos de IA por sala por semana (grátis)
 const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
@@ -38,11 +39,32 @@ export function tutorContext(c) {
 }
 
 // Liga as regras das salas a um servidor Socket.IO (ou a qualquer objeto com a mesma forma).
-export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
+export const PREMIUM = {
+  trialDays: 7,          // teste grátis depois do primeiro plano
+  streakDays: 30,        // dias de chama acesa para ganhar Premium
+  streakReward: 7,       // dias de Premium ganhos com a chama
+  teamSize: 5,           // pessoas com Premium para a sala inteira ficar Premium
+  freeExamsPerWeek: 1,   // amostra grátis do modo exame
+  freeCorrectionsPerDay: 2,
+};
+
+export function attachHandlers(io, store, { duelPauseMs = 3000, premiumSecret = randomSecret() } = {}) {
   const timers = new Map();      // code -> timeout do temporizador
   const duelTimers = new Map();
   const explainCache = new Map(); // "qid:escolha" -> explicação
   const tutorUse = new Map();     // pessoa (IP) -> { day, count }
+  const freeUse = new Map();      // "pessoa:tipo" -> { period, count } (amostras grátis)
+  const trialGiven = new Set();   // pessoas que já usaram o teste grátis
+
+  // Premium da turma: com 5 pessoas Premium na sala, a sala inteira fica Premium
+  function updateTeam(room) {
+    const count = [...room.members.values()].filter(m => m.premium).length;
+    const active = count >= PREMIUM.teamSize;
+    room.teamPremium = active;
+    io.to(room.code).emit('teamPremium', { count, need: PREMIUM.teamSize, active });
+    io.to(room.code).emit('aiQuota', R.aiQuota(room, AI_WEEKLY_LIMIT));
+  }
+
 
   R.rolloverLeagues(store);
   const leagueTick = setInterval(() => {
@@ -107,7 +129,32 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     let room = null;
     let me = null;
     let aiBusy = false;
+    let premium = null; // conteúdo do passe Premium desta ligação
     const ack = (cb, data) => typeof cb === 'function' && cb(data);
+    const isPremium = () => !!premium && premium.exp > Date.now();
+
+    // amostras grátis (exame por semana, correção por dia) — o Premium não tem limite
+    function takeFree(kind, limit, period) {
+      if (isPremium()) return true;
+      const k = `${who}:${kind}`;
+      const u = freeUse.get(k);
+      const count = u?.period === period ? u.count : 0;
+      if (count >= limit) return false;
+      freeUse.set(k, { period, count: count + 1 });
+      return true;
+    }
+    const giveBackFree = kind => {
+      if (isPremium()) return;
+      const u = freeUse.get(`${who}:${kind}`);
+      if (u) u.count = Math.max(0, u.count - 1);
+    };
+
+    async function grant(kind, days) {
+      const start = isPremium() ? premium.exp : Date.now();
+      premium = { kind, exp: start + days * DAY };
+      if (room && me) { me.premium = true; updateTeam(room); }
+      return { pass: await signPass(premiumSecret, premium), premium };
+    }
 
     function join(target, profile, cb) {
       if (!target) return ack(cb, { error: 'room_not_found' });
@@ -115,6 +162,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
       if (res.error) return ack(cb, res);
       room = target;
       me = res.member;
+      me.premium = isPremium();
       socket.join(room.code);
       ack(cb, {
         room: R.publicRoom(room, store),
@@ -124,6 +172,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
       socket.to(room.code).emit('system', { k: 'joined', p: { name: me.name } });
       emitMembers(room);
       emitProgress(room); // a meta do dia muda quando entra alguém
+      updateTeam(room);
       store.save();
     }
 
@@ -140,6 +189,80 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     // ---------- tutor: funciona sem sala ----------
     let tutorBusy = false;
     const who = socket.handshake?.headers?.['x-forwarded-for']?.split(',')[0]?.trim() || socket.handshake?.address || socket.id;
+
+    // ---------- Premium ----------
+    socket.on('auth', async (opts, cb) => {
+      premium = await verifyPass(premiumSecret, opts?.pass);
+      if (room && me) { me.premium = isPremium(); updateTeam(room); }
+      ack(cb, { premium });
+    });
+
+    // 7 dias grátis, uma vez por pessoa
+    socket.on('claimTrial', async (_x, cb) => {
+      if (trialGiven.has(who)) return ack(cb, { error: 'trial_used' });
+      trialGiven.add(who);
+      ack(cb, await grant('trial', PREMIUM.trialDays));
+    });
+
+    // 30 dias seguidos de chama acesa na sala dão 7 dias de Premium (uma vez por cada 30 dias)
+    socket.on('claimStreak', async (_x, cb) => {
+      if (!room || !me) return ack(cb, { error: 'need_room' });
+      const streak = R.streakInfo(room).streak;
+      const earned = Math.floor(streak / PREMIUM.streakDays);
+      room.streakRewards ??= {};
+      const given = room.streakRewards[me.name] ?? 0;
+      if (earned <= given) return ack(cb, { error: 'streak_not_yet', p: { n: PREMIUM.streakDays - (streak % PREMIUM.streakDays) } });
+      room.streakRewards[me.name] = earned;
+      store.save();
+      ack(cb, await grant('streak', PREMIUM.streakReward));
+    });
+
+    // ---------- modo exame ----------
+    let examBusy = false;
+    socket.on('aiExam', async (opts, cb) => {
+      const { subject, year, count, topic, lang } = opts ?? {};
+      if (!AI.aiEnabled()) return ack(cb, { error: 'ai_off' });
+      if (examBusy) return ack(cb, { error: 'ai_busy' });
+      const subj = R.cleanText(subject, 40);
+      if (!subj) return ack(cb, { error: 'subject_required' });
+      if (!takeFree('exam', PREMIUM.freeExamsPerWeek, R.weekKey())) return ack(cb, { error: 'exam_limit', quota: true });
+      examBusy = true;
+      try {
+        const n = [5, 10, 20].includes(Number(count)) ? Number(count) : 10;
+        const exam = await AI.generateExam({ subject: subj, year: R.cleanText(year, 10), count: n, topic: R.cleanText(topic, 60), lang });
+        if (!exam.questions.length) throw new AI.AIError('ai_incomplete');
+        ack(cb, { ok: true, exam, premium: isPremium() });
+      } catch (e) {
+        giveBackFree('exam');
+        ack(cb, { error: e instanceof AI.AIError ? e.message : 'ai_failed' });
+      } finally {
+        examBusy = false;
+      }
+    });
+
+    // ---------- correção de respostas escritas ----------
+    let corrBusy = false;
+    socket.on('aiCorrect', async (opts, cb) => {
+      const { question, answer, image, subject, lang } = opts ?? {};
+      if (!AI.aiEnabled()) return ack(cb, { error: 'ai_off' });
+      if (corrBusy) return ack(cb, { error: 'ai_busy' });
+      if (image && (!IMAGE_TYPES.includes(image.mediaType) || typeof image.data !== 'string' || image.data.length > MAX_IMAGE_B64)) {
+        return ack(cb, { error: 'image_invalid' });
+      }
+      const ans = R.cleanText(answer, 6000);
+      if (!image && ans.length < 10) return ack(cb, { error: 'correct_need_answer' });
+      if (!takeFree('correct', PREMIUM.freeCorrectionsPerDay, R.dayKey())) return ack(cb, { error: 'correct_limit', quota: true });
+      corrBusy = true;
+      try {
+        const result = await AI.correctAnswer({ question: R.cleanText(question, 1000), answer: ans, image, subject: R.cleanText(subject, 40), lang });
+        ack(cb, { ok: true, result });
+      } catch (e) {
+        giveBackFree('correct');
+        ack(cb, { error: e instanceof AI.AIError ? e.message : 'ai_failed' });
+      } finally {
+        corrBusy = false;
+      }
+    });
     socket.on('tutorAsk', async (opts, cb) => {
       const { messages, lang, image, context } = opts ?? {};
       if (!AI.aiEnabled()) return ack(cb, { error: 'ai_off' });
@@ -153,8 +276,8 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
       const use = tutorUse.get(who);
       const count = use?.day === day ? use.count : 0;
       const limit = tutorDaily();
-      if (count >= limit) return ack(cb, { error: 'tutor_limit', p: { n: limit }, quota: true });
-      tutorUse.set(who, { day, count: count + 1 });
+      if (!isPremium() && count >= limit) return ack(cb, { error: 'tutor_limit', p: { n: limit }, quota: true });
+      if (!isPremium()) tutorUse.set(who, { day, count: count + 1 });
       tutorBusy = true;
       const id = opts?.id ?? null;
       try {
@@ -162,9 +285,9 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
           messages: msgs, lang, image, context: tutorContext(context),
           onText: delta => socket.emit('tutorDelta', { id, delta }),
         });
-        ack(cb, { ok: true, text, left: limit - count - 1 });
+        ack(cb, { ok: true, text, left: isPremium() ? null : limit - count - 1 });
       } catch (e) {
-        tutorUse.set(who, { day, count }); // falhou: não conta
+        if (!isPremium()) tutorUse.set(who, { day, count }); // falhou: não conta
         ack(cb, { error: e instanceof AI.AIError ? e.message : 'ai_failed' });
         if (!(e instanceof AI.AIError)) console.error('[tutor]', e);
       } finally {
@@ -179,6 +302,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     async function runAI(cb, fn, { count = true } = {}) {
       if (!AI.aiEnabled()) return ack(cb, { error: 'ai_off' });
       if (aiBusy) return ack(cb, { error: 'ai_busy' });
+      if (isPremium()) count = false;
       if (count && !R.useAI(room, AI_WEEKLY_LIMIT)) {
         return ack(cb, { error: 'ai_quota', p: { n: AI_WEEKLY_LIMIT }, quota: true });
       }
@@ -356,6 +480,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     socket.on('disconnect', () => {
       if (!room || !me) return;
       room.members.delete(socket.id);
+      updateTeam(room);
       io.to(room.code).emit('system', { k: 'left', p: { name: me.name } });
       emitMembers(room);
     });

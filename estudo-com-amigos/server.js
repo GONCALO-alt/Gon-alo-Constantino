@@ -7,6 +7,19 @@ import { join, dirname } from 'node:path';
 import * as R from './rooms.js';
 import * as AI from './ai.js';
 import { attachHandlers } from './handlers.js';
+import { randomSecret } from './premium.js';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+
+// Segredo que assina os passes Premium: PREMIUM_SECRET, ou um ficheiro criado na pasta de dados.
+function loadSecret(dir) {
+  if (process.env.PREMIUM_SECRET) return process.env.PREMIUM_SECRET;
+  const file = join(dir, 'secret.txt');
+  if (existsSync(file)) return readFileSync(file, 'utf8').trim();
+  const secret = randomSecret();
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(file, secret, { mode: 0o600 });
+  return secret;
+}
 
 const here = dirname(fileURLToPath(import.meta.url));
 
@@ -14,8 +27,9 @@ export function startServer({ port = 3000, dataFile = join(here, 'data', 'rooms.
   const app = express();
   const http = createServer(app);
   const io = new Server(http, { maxHttpBufferSize: 6 * 1024 * 1024 });
-  const store = new R.RoomStore(process.env.DATA_DIR ? join(process.env.DATA_DIR, 'rooms.json') : dataFile);
-  const handlers = attachHandlers(io, store, { duelPauseMs });
+  const file = process.env.DATA_DIR ? join(process.env.DATA_DIR, 'rooms.json') : dataFile;
+  const store = new R.RoomStore(file);
+  const handlers = attachHandlers(io, store, { duelPauseMs, premiumSecret: loadSecret(dirname(file)) });
 
   app.use(express.static(join(here, 'public'), {
     setHeaders(res, path) {

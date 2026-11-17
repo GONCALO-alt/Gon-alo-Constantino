@@ -194,6 +194,55 @@ export async function tutorStream({ messages, lang, image, context, onText }) {
   return final.content.filter(b => b.type === 'text').map(b => b.text).join('');
 }
 
+// ---------- modo exame ----------
+const ExamSchema = z.object({
+  title: z.string().describe('Título curto do exame, ex.: "Matemática 9.º ano: funções"'),
+  questions: z.array(z.object({
+    question: z.string(),
+    options: z.array(z.string()).describe('Exatamente 4 opções'),
+    answer: z.number().int().describe('Índice (0 a 3) da opção certa'),
+    topic: z.string(),
+    explanation: z.string().describe('Porque é que a resposta certa é a certa, em 1 a 2 frases'),
+  })),
+});
+
+export async function generateExam({ subject, year, count = 10, topic, lang }) {
+  if (process.env.AI_MOCK === '1') return mock.exam(count);
+  const out = await ask(ExamSchema, `Cria um mini-exame de treino ao estilo dos exames nacionais portugueses.
+Disciplina: ${subject}. Ano: ${year || 'não indicado'}.${topic ? ` Tema: ${topic}.` : ''}
+${count} perguntas de escolha múltipla (4 opções, só uma certa), da mais fácil para a mais difícil, cobrindo a matéria mais importante desse ano.
+Cada pergunta tem uma explicação curta da resposta certa.`, { lang });
+  const questions = out.questions
+    .filter(q => q.options.length >= 2 && q.answer >= 0 && q.answer < Math.min(4, q.options.length))
+    .map(q => ({ ...q, options: q.options.slice(0, 4) }))
+    .slice(0, count);
+  return { title: out.title, questions };
+}
+
+// ---------- correção de respostas escritas ----------
+const CorrectionSchema = z.object({
+  score: z.number().int().describe('Nota de 0 a 100'),
+  verdict: z.string().describe('Uma frase a resumir a avaliação'),
+  strengths: z.array(z.string()),
+  improve: z.array(z.string()).describe('O que falta ou está errado, concreto'),
+  modelAnswer: z.string().describe('Uma resposta modelo curta, ao nível do aluno'),
+  tip: z.string().describe('Uma dica para a próxima resposta'),
+});
+
+export async function correctAnswer({ question, answer, image, subject, lang }) {
+  if (process.env.AI_MOCK === '1') return mock.correction();
+  const content = [];
+  if (image) content.push({ type: 'image', source: { type: 'base64', media_type: image.mediaType, data: image.data } });
+  content.push({ type: 'text', text: `Corrige a resposta de um aluno como um professor justo e encorajador.
+Disciplina: ${subject || 'não indicada'}
+Pergunta: ${question || '(está na imagem)'}
+Resposta do aluno: ${answer || '(está na imagem)'}
+
+Dá uma nota de 0 a 100 com base no rigor, na completude e na clareza. Diz o que está bem, o que falta, mostra uma resposta modelo curta ao nível do aluno e uma dica.
+Se a imagem ou o texto não tiverem uma resposta escolar, dá nota 0 e explica com simpatia.` });
+  return ask(CorrectionSchema, content, { lang, maxTokens: 6000 });
+}
+
 // ---------- respostas falsas para testar sem chave (AI_MOCK=1) ----------
 const mock = {
   questions: n => ({
@@ -212,6 +261,17 @@ const mock = {
     for (const w of text.split(/(?<= )/)) { onText?.(w); await new Promise(r => setTimeout(r, 5)); }
     return text;
   },
+  exam: n => ({
+    title: 'Exame de treino (modo de teste)',
+    questions: Array.from({ length: n }, (_, i) => ({
+      question: `Quanto é ${i + 2} × 3?`, options: [`${(i + 2) * 3}`, `${(i + 2) * 3 + 1}`, `${i + 5}`, `${(i + 2) * 4}`],
+      answer: 0, topic: 'Tabuada', explanation: `${i + 2} × 3 = ${(i + 2) * 3}.`,
+    })),
+  }),
+  correction: () => ({
+    score: 72, verdict: '(modo de teste) Boa resposta, mas falta um exemplo.', strengths: ['Ideia principal certa'],
+    improve: ['Falta um exemplo'], modelAnswer: 'Resposta modelo de teste.', tip: 'Usa sempre um exemplo.',
+  }),
   grade: perf => ({
     estimate: perf.accuracy ?? 50, confidence: perf.answered > 20 ? 'medium' : 'low',
     message: '(modo de teste) Continua assim!', strengths: ['Tabuada'], toImprove: ['Multiplicação'], plan: ['Faz mais um duelo hoje.'],

@@ -19,10 +19,10 @@ A app tem **6 secções**. As que juntam várias páginas mostram separadores po
 
 | Secção | O que tem |
 |---|---|
-| 🤖 **Chat** | O tutor de IA (é aqui que a app abre) |
+| 🤖 **Chat** | Tutor · Modo exame · Corrigir resposta (é aqui que a app abre) |
 | 🗓️ **O meu plano** | O plano semanal criado com o questionário |
 | 👥 **Turma** | Sala · Foco · Chat da sala · Duelos · Apontamentos · Calendário · Liga |
-| 👤 **Perfil** | Perfil · Medalhas · Loja |
+| 👤 **Perfil** | Perfil · Notas · Relatório · Medalhas · Loja |
 | ⭐ **Premium** | Preços dos planos |
 | ⚙️ **Definições** | Língua, plano, som, tema, sala e dados |
 
@@ -57,12 +57,28 @@ O menu **Premium** mostra os preços, com opção mensal ou anual:
 
 | Plano | Mensal | Anual | O que tem |
 |---|---|---|---|
-| Grátis | 0 € | 0 € | Salas, foco, chat, duelos, plano de estudo, loja, 30 pedidos de IA por semana em cada sala |
-| Premium | 2,99 € | 24,99 € (poupa 30%) | IA ilimitada, previsão de nota detalhada, plano ajustado pela IA, estatísticas, molduras e sons exclusivos |
-| Família | 4,99 € | 39,99 € | Premium para até 4 irmãos e resumo semanal para os pais |
+| Grátis | 0 € | 0 € | Tutor (40 mensagens/dia), salas, foco, duelos, plano, notas, 1 exame/semana e 2 correções/dia para experimentar |
+| Premium | 2,99 € | 24,99 € (poupa 30%) | Tutor sem limite e com **voz**, **modo exame** e **correção de respostas** sem limite, IA da sala ilimitada |
+| Família | 4,99 € | 39,99 € | Premium para até 4 irmãos e relatório semanal por email aos pais |
 | Escola | 1 € por aluno por ano | | Painel do professor e salas para todas as turmas |
 
-**Os pagamentos ainda não estão ativos.** O botão "Pedir a um adulto" gera uma mensagem para enviar ao pai, mãe ou responsável. O Premium não dá escamas nem vantagens nos duelos. Para cobrar a sério é preciso um adulto com conta num serviço de pagamentos (por exemplo, Stripe), e só um adulto pode subscrever.
+A página compara o Premium com um explicador (15 a 25 € por hora contra 2,99 € por mês).
+
+**Os pagamentos ainda não estão ativos.** O Premium já funciona através de **passes assinados pelo servidor** (`premium.js`), que não dá para falsificar. Há três formas de ganhar um passe:
+- 🎁 **7 dias grátis** depois de criar o plano de estudo, uma vez por pessoa;
+- 🔥 **30 dias de chama acesa** na sala dão 7 dias de Premium;
+- 👥 **Premium da turma**: com 5 pessoas Premium na mesma sala, a sala inteira fica com IA ilimitada.
+
+Quando se chega a um limite (tutor, exame, correção, IA da sala ou voz), aparece uma janela "Isto é Premium" com o teste grátis e os planos. Nunca bloqueia o essencial. O Premium não dá escamas nem vantagens nos duelos.
+
+Para cobrar a sério é preciso um adulto com conta num serviço de pagamentos (por exemplo, Stripe), e só um adulto pode subscrever. Em produção, define `PREMIUM_SECRET`. Se não estiver definido, o servidor cria um em `DATA_DIR/secret.txt`.
+
+## Ferramentas de estudo
+- **Chat › Tutor**: o tutor de IA. Com Premium, também se pode falar com ele (🎙️) e ouvir as respostas (🔊).
+- **Chat › Modo exame**: exames de treino ao estilo dos exames nacionais, com escolha de disciplina, número de perguntas e tempo. No fim mostra a nota em % e em valores, com cada resposta explicada, e guarda o histórico.
+- **Chat › Corrigir resposta**: escreves ou fotografas uma resposta de desenvolvimento e recebes nota de 0 a 100, o que está bem, o que falta, uma resposta modelo e uma dica.
+- **Perfil › Notas**: registas as notas dos testes (em 20, 100 ou 5) e vês um gráfico por disciplina e a média **antes e depois** de usares o Shoalmates.
+- **Perfil › Relatório**: um relatório da semana para os pais, com minutos de foco, dias com estudo, plano cumprido, respostas certas, próximos testes e notas. Pode copiar-se ou partilhar-se. As conversas com o tutor nunca aparecem no relatório.
 
 ## Línguas 🌍
 O Shoalmates está em **Português, English, Español e Français**. Na primeira vez, a app adivinha a língua pelo browser. Pode mudar-se no questionário ou nas Definições, e a página muda logo, sem recarregar.
@@ -152,6 +168,8 @@ A chave fica só no servidor (o browser nunca a vê) e o `.env` nunca vai para o
 | `server.js` | Servidor (Express + Socket.IO): site e tempo real |
 | `rooms.js` | Regras: foco, chama, ligas, calendário, duelos, quota de IA |
 | `handlers.js` | Eventos em tempo real (o que acontece quando alguém clica) |
+| `premium.js` | Passes Premium assinados (teste grátis, chama, turma) |
+| `public/extras.js` | Premium, voz, modo exame, correção, notas e relatório |
 | `ai.js` | IA: perguntas, explicações, resumo, previsão de nota (API da Anthropic) |
 | `public/app.js` | O site |
 | `public/sounds.js` | Sons de foco gerados no browser |

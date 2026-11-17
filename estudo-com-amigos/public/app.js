@@ -2,6 +2,7 @@ import { AVATARS, FRAMES, ACHIEVEMENTS, EMPTY_COUNTERS, MEDALS, EARN, isUnlocked
 import { t, setLang, getLang, guessLang, translateDom, LANGS, locale } from './i18n.js';
 import { SUBJECTS, YEARS, GOALS, MINUTES, WHEN, suggestedSubjects, buildPlan, planTips, daysUntil } from './plan.js';
 import * as Sound from './sounds.js';
+import { initExtras } from './extras.js';
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
@@ -37,6 +38,7 @@ let duelTick = null;
 let duel = null;
 let unread = 0;
 let chatLog = [];
+let ext = null; // funcionalidades Premium e de acompanhamento (extras.js)
 
 // ---------- utilidades ----------
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -65,14 +67,14 @@ const subjName = id => (SUBJECTS.includes(id) ? t(`subj.${id}`) : id);
 // ---------- navegação ----------
 // O menu tem 6 secções. As secções com várias páginas mostram separadores por baixo do título.
 const SECTIONS = {
-  tutor: { title: 'view.chat', views: ['chat'] },
+  tutor: { title: 'view.chat', views: ['chat', 'exame', 'corrigir'] },
   plano: { title: 'view.plano', views: ['plano'] },
   turma: { title: 'nav.class', views: ['inicio', 'estudar', 'salachat', 'duelos', 'apontamentos', 'calendario', 'liga'] },
-  eu: { title: 'view.perfil', views: ['perfil', 'medalhas', 'loja'] },
+  eu: { title: 'view.perfil', views: ['perfil', 'notas', 'relatorio', 'medalhas', 'loja'] },
   premium: { title: 'view.premium', views: ['premium'] },
   definicoes: { title: 'view.definicoes', views: ['definicoes'] },
 };
-const TAB_ICONS = { inicio: '🏠', estudar: '⏱️', salachat: '💬', duelos: '⚔️', apontamentos: '📝', calendario: '📅', liga: '🏆', perfil: '👤', medalhas: '🏅', loja: '🛍️' };
+const TAB_ICONS = { chat: '🤖', exame: '📝', corrigir: '✍️', notas: '📈', relatorio: '📧', inicio: '🏠', estudar: '⏱️', salachat: '💬', duelos: '⚔️', apontamentos: '📝', calendario: '📅', liga: '🏆', perfil: '👤', medalhas: '🏅', loja: '🛍️' };
 const VIEWS = Object.values(SECTIONS).flatMap(x => x.views);
 const sectionOf = v => Object.keys(SECTIONS).find(k => SECTIONS[k].views.includes(v));
 const lastView = {};
@@ -90,7 +92,7 @@ function renderSubnav(sec) {
   nav.innerHTML = views.map(v => {
     const locked = $(`#view-${v}`).hasAttribute('data-needs-room') && !room;
     const dot = v === 'salachat' && unread ? '<em class="dot"></em>' : '';
-    return `<button data-view="${v}" class="${v === view ? 'active' : ''} ${locked ? 'locked' : ''}">${TAB_ICONS[v] ?? ''} ${t(`view.${v}`)}${locked ? ' 🔒' : ''}${dot}</button>`;
+    return `<button data-view="${v}" class="${v === view ? 'active' : ''} ${locked ? 'locked' : ''}">${TAB_ICONS[v] ?? ''} ${t(v === 'chat' ? 'view.chat.tab' : `view.${v}`)}${locked ? ' 🔒' : ''}${dot}</button>`;
   }).join('');
   nav.querySelector('.active')?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 }
@@ -120,6 +122,7 @@ function show(name) {
   if (name === 'premium') renderPremium();
   if (name === 'definicoes') renderSettings();
   if (name === 'liga' && room) renderLeague();
+  ext?.onShow(name);
   window.scrollTo({ top: 0 });
 }
 
@@ -214,6 +217,7 @@ function renderHome() {
       <div><b>${s.today.minutes}/${s.today.goal}</b><span>${t('stat.minToday')}</span></div>
       <div><b>🔥 ${s.streak}</b><span>${t('stat.daysInRow')}</span></div>`;
   }
+  ext?.renderTeam();
 }
 
 $('#recent').addEventListener('click', e => {
@@ -385,6 +389,7 @@ socket.on('focusDone', ({ minutes, rewarded, streak }) => {
   if (rewarded.includes(me.name)) {
     const before = profile.minutes;
     profile.minutes += minutes;
+    profile.log = [...(profile.log ?? []), { d: new Date().toISOString().slice(0, 10), m: minutes }].slice(-400);
     const hour = new Date().getHours();
     bump({ sessions: 1, minutes, night: hour >= 22 || hour < 4 ? 1 : 0, morning: hour >= 4 && hour < 8 ? 1 : 0, 'max:bestStreak': streak });
     earn(minutes * EARN.perFocusMinute);
@@ -541,7 +546,7 @@ async function withAI(button, waiting, call, onOk) {
     const res = await call();
     if (res?.error) {
       toast(errText(res), 5000);
-      if (res.quota) $('#aiStatus').innerHTML = `${esc(errText(res))} <button class="ghost small-btn" data-view="premium">⭐ ${t('prem.upsell')}</button>`;
+      if (res.quota) { $('#aiStatus').textContent = errText(res); ext?.upsell('up.room'); }
       return res;
     }
     $('#toast').classList.add('hidden');
@@ -715,6 +720,7 @@ socket.on('duelReveal', ({ answer, scores, eliminated, qid }) => {
   const fb = $('#duelFeedback');
   const playing = duel.mode !== 'eliminacao' || duel.q.alive.includes(me.name);
   if (!fb || !playing) return;
+  bump({ answered: 1, right: duel.pick === answer ? 1 : 0 });
   const verdict = duel.pick === answer ? t('duel.right') : duel.pick === null ? t('duel.timeout') : t('duel.wrong');
   const extra = duel.mode === 'eliminacao'
     ? `<br>${eliminated.length ? esc(t('duel.out', { names: eliminated.join(', ') })) : t('duel.noneOut')}`
@@ -859,10 +865,11 @@ async function askTutor(text) {
   if (res?.error) {
     reply.content = `⚠️ ${errText(res)}`;
     reply.error = true;
-    if (res.quota) reply.content += `\n\n**⭐ ${t('prem.upsell')}** → ${t('view.premium')}`;
+    if (res.quota) ext?.upsell('up.tutor', res.p);
   } else {
     reply.content = res.text;
-    if (res.left != null) tutorLeft = res.left;
+    tutorLeft = res.left ?? null;
+    ext?.speak(res.text);
   }
   saveTutor();
   renderTutor(true);
@@ -1122,9 +1129,9 @@ $('#obSkip').onclick = () => { closeOnboarding(); show('chat'); };
 // ---------- PREMIUM ----------
 let billing = 'month';
 const PLANS = [
-  { id: 'free', month: 0, year: 0, features: ['rooms', 'focus', 'ai30', 'plan', 'medals'] },
-  { id: 'premium', month: 2.99, year: 24.99, hl: true, features: ['allFree', 'aiUnl', 'grade', 'planAi', 'stats', 'cosm'] },
-  { id: 'family', month: 4.99, year: 39.99, features: ['allPrem', 'kids', 'report'] },
+  { id: 'free', month: 0, year: 0, features: ['rooms', 'focus', 'ai30', 'plan', 'grades', 'examFree', 'medals'] },
+  { id: 'premium', month: 2.99, year: 24.99, hl: true, features: ['allFree', 'tutorUnl', 'voice', 'exam', 'correct', 'aiUnl', 'grade', 'cosm'] },
+  { id: 'family', month: 4.99, year: 39.99, features: ['allPrem', 'kids', 'reportAuto'] },
   { id: 'school', perStudent: 1, features: ['allPrem', 'teacher', 'classes', 'support'] },
 ];
 const planPrice = p => p.perStudent ? `${money(p.perStudent)}${t('prem.perStudent')}`
@@ -1324,6 +1331,20 @@ $('#addSheet').addEventListener('click', e => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAdd(); closeNav(); } });
 
 // ---------- arranque ----------
+// estatísticas do plano desta semana (para o relatório dos pais)
+function weekPlanStats() {
+  const a = planAnswers();
+  if (!a) return { done: 0, total: 0 };
+  const all = buildPlan(a).week.flatMap(d => d.blocks);
+  const m = doneMap();
+  return { done: all.filter(b => m[b.id]).length, total: all.length };
+}
+
+ext = initExtras({
+  $, $$, esc, toast, emitP, errText, socket, store, profile, saveProfile, show, planAnswers, subjName, shrinkImage, askTutor, weekPlanStats,
+  getRoom: () => room, getView: () => view,
+});
+
 translateDom();
 renderWallet();
 renderLocks();
