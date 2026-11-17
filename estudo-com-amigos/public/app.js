@@ -63,19 +63,54 @@ const medalName = m => t(`medal.${m.id}`);
 const subjName = id => (SUBJECTS.includes(id) ? t(`subj.${id}`) : id);
 
 // ---------- navegação ----------
-const VIEWS = ['inicio', 'plano', 'estudar', 'chat', 'salachat', 'duelos', 'apontamentos', 'calendario', 'liga', 'loja', 'medalhas', 'perfil', 'premium', 'definicoes'];
+// O menu tem 6 secções. As secções com várias páginas mostram separadores por baixo do título.
+const SECTIONS = {
+  tutor: { title: 'view.chat', views: ['chat'] },
+  plano: { title: 'view.plano', views: ['plano'] },
+  turma: { title: 'nav.class', views: ['inicio', 'estudar', 'salachat', 'duelos', 'apontamentos', 'calendario', 'liga'] },
+  eu: { title: 'view.perfil', views: ['perfil', 'medalhas', 'loja'] },
+  premium: { title: 'view.premium', views: ['premium'] },
+  definicoes: { title: 'view.definicoes', views: ['definicoes'] },
+};
+const TAB_ICONS = { inicio: '🏠', estudar: '⏱️', salachat: '💬', duelos: '⚔️', apontamentos: '📝', calendario: '📅', liga: '🏆', perfil: '👤', medalhas: '🏅', loja: '🛍️' };
+const VIEWS = Object.values(SECTIONS).flatMap(x => x.views);
+const sectionOf = v => Object.keys(SECTIONS).find(k => SECTIONS[k].views.includes(v));
+const lastView = {};
+
+function openSection(sec) {
+  if (sec === 'turma') return show(room ? (lastView.turma ?? 'estudar') : 'inicio');
+  show(lastView[sec] ?? SECTIONS[sec].views[0]);
+}
+
+function renderSubnav(sec) {
+  const views = SECTIONS[sec].views;
+  const nav = $('#subnav');
+  nav.classList.toggle('hidden', views.length < 2);
+  if (views.length < 2) return;
+  nav.innerHTML = views.map(v => {
+    const locked = $(`#view-${v}`).hasAttribute('data-needs-room') && !room;
+    const dot = v === 'salachat' && unread ? '<em class="dot"></em>' : '';
+    return `<button data-view="${v}" class="${v === view ? 'active' : ''} ${locked ? 'locked' : ''}">${TAB_ICONS[v] ?? ''} ${t(`view.${v}`)}${locked ? ' 🔒' : ''}${dot}</button>`;
+  }).join('');
+  nav.querySelector('.active')?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+}
 
 function show(name) {
-  if (!VIEWS.includes(name)) name = 'inicio';
+  if (!VIEWS.includes(name)) name = 'chat';
   view = name;
+  const sec = sectionOf(name);
+  lastView[sec] = name;
   const target = $(`#view-${name}`);
   const blocked = target.hasAttribute('data-needs-room') && !room;
   $$('.view').forEach(v => v.classList.toggle('hidden', v !== target || blocked));
   $('#noRoom').classList.toggle('hidden', !blocked);
-  $$('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === name));
-  $('#viewTitle').textContent = t(`view.${name}`);
+  $$('[data-section]').forEach(b => b.classList.toggle('active', b.dataset.section === sec));
+  $('#viewTitle').textContent = t(SECTIONS[sec].title);
+  $('#roomChips').classList.toggle('hidden', !(room && sec === 'turma'));
+  if (name === 'salachat') { unread = 0; renderUnread(); }
+  renderSubnav(sec);
   closeNav();
-  if (name === 'salachat') { unread = 0; renderUnread(); const l = $('#messages'); l.scrollTop = l.scrollHeight; }
+  if (name === 'salachat') { const l = $('#messages'); l.scrollTop = l.scrollHeight; }
   if (name === 'chat') renderTutor(true);
   if (name === 'inicio') renderHome();
   if (name === 'plano') renderPlan();
@@ -89,6 +124,8 @@ function show(name) {
 }
 
 document.addEventListener('click', e => {
+  const sec = e.target.closest('[data-section]');
+  if (sec) return openSection(sec.dataset.section);
   const b = e.target.closest('[data-view], [data-go]');
   if (b) show(b.dataset.view ?? b.dataset.go);
 });
@@ -96,19 +133,16 @@ document.addEventListener('click', e => {
 const openNav = () => { $('#nav').classList.add('open'); $('#navShade').classList.remove('hidden'); };
 function closeNav() { $('#nav').classList.remove('open'); $('#navShade').classList.add('hidden'); }
 $('#navOpen').onclick = openNav;
-$('#moreBtn').onclick = openNav;
 $('#navClose').onclick = closeNav;
 $('#navShade').onclick = closeNav;
 
 function renderLocks() {
-  $$('#nav [data-view]').forEach(b => {
-    const v = $(`#view-${b.dataset.view}`);
-    b.classList.toggle('locked', !!v?.hasAttribute('data-needs-room') && !room);
-  });
+  renderSubnav(sectionOf(view));
 }
 function renderUnread() {
   $('#chatDot').classList.toggle('hidden', unread === 0);
   $('#chatDot2').classList.toggle('hidden', unread === 0);
+  if (sectionOf(view) === 'turma') renderSubnav('turma');
 }
 
 // ---------- língua ----------
@@ -167,7 +201,6 @@ $('#name').value = profile.name;
 $('#name').addEventListener('change', e => { profile.name = e.target.value.trim(); saveProfile(); renderWallet(); });
 
 function renderHome() {
-  $('#hello').textContent = t('home.hello', { name: profile.name ? `, ${profile.name}` : '' });
   $('#joinBox').classList.toggle('hidden', !!room);
   $('#roomHome').classList.toggle('hidden', !room);
   $('#recent').innerHTML = recent.length
@@ -181,12 +214,6 @@ function renderHome() {
       <div><b>${s.today.minutes}/${s.today.goal}</b><span>${t('stat.minToday')}</span></div>
       <div><b>🔥 ${s.streak}</b><span>${t('stat.daysInRow')}</span></div>`;
   }
-  renderPlanToday();
-  const c = profile.counters;
-  $('#myStats').innerHTML = [
-    ['🐟', profile.scales, 'stat.scales'], ['⏱️', profile.minutes, 'stat.focusMin'], ['🎯', c.sessions, 'stat.sessions'],
-    ['⚔️', c.duelWins, 'stat.duelsWon'], ['🏅', `${profile.achieved.length}/${ACHIEVEMENTS.length}`, 'stat.achievements'],
-  ].map(([i, v, l]) => `<div class="stat"><b>${i} ${v}</b><span>${t(l)}</span></div>`).join('');
 }
 
 $('#recent').addEventListener('click', e => {
@@ -929,19 +956,6 @@ function renderPlan() {
   $('#planTips').innerHTML = tips.map(x => `<li>${esc(x)}</li>`).join('');
 }
 
-function renderPlanToday() {
-  const a = planAnswers();
-  const box = $('#planToday');
-  if (!a) {
-    box.innerHTML = `<h3>${t('home.planToday')}</h3><p class="muted">${t('home.noPlan')}</p><div><button data-ob="start">${t('home.makePlan')}</button></div>`;
-    return;
-  }
-  const plan = buildPlan(a);
-  const todayIdx = (new Date().getDay() + 6) % 7;
-  const blocks = plan.week[todayIdx].blocks;
-  box.innerHTML = `<div class="row between wrap"><h3>${t('home.planToday')}</h3><button class="ghost small-btn" data-view="plano">${t('home.seePlan')}</button></div>
-    ${blocks.length ? `<div class="blocks">${blocks.map(b => blockHtml(b, true)).join('')}</div>` : `<p class="muted">${t('home.planRest')}</p>`}`;
-}
 
 document.addEventListener('change', e => {
   const c = e.target.closest('[data-done]');
@@ -949,7 +963,7 @@ document.addEventListener('change', e => {
   const m = doneMap();
   if (c.checked) m[c.dataset.done] = true; else delete m[c.dataset.done];
   store.set('planDone', m);
-  if (view === 'plano') renderPlan(); else renderHome();
+  renderPlan();
 });
 document.addEventListener('click', e => {
   const s = e.target.closest('[data-start]');

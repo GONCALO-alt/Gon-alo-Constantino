@@ -15,12 +15,21 @@ A app abre no **Chat**, um tutor de IA que ajuda a estudar qualquer disciplina. 
 - Custos: cada pessoa tem `AI_TUTOR_DAILY` mensagens grátis por dia (40 por defeito). O Premium tira esse limite.
 
 ## Menu
-- **＋ Adicionar**: cria uma sala, entra numa, começa um foco, partilha um apontamento, escreve uma pergunta, tira uma foto para a IA, marca um teste ou manda uma mensagem, tudo a partir do mesmo sítio.
-- **Principal**: Chat (tutor IA), O meu plano, Início, Estudar, Duelos
-- **Turma**: Chat da sala (com aviso de mensagens novas), Apontamentos, Calendário, Liga
-- **Eu**: Loja, Medalhas, Perfil, Premium, Definições (língua, plano, som, tema claro/escuro, sair da sala, apagar dados)
+A app tem **6 secções**. As que juntam várias páginas mostram separadores por baixo do título:
 
-No computador o menu fica à esquerda. No telemóvel há uma barra em baixo com o botão ＋ ao centro, e o resto do menu abre em "Mais".
+| Secção | O que tem |
+|---|---|
+| 🤖 **Chat** | O tutor de IA (é aqui que a app abre) |
+| 🗓️ **O meu plano** | O plano semanal criado com o questionário |
+| 👥 **Turma** | Sala · Foco · Chat da sala · Duelos · Apontamentos · Calendário · Liga |
+| 👤 **Perfil** | Perfil · Medalhas · Loja |
+| ⭐ **Premium** | Preços dos planos |
+| ⚙️ **Definições** | Língua, plano, som, tema, sala e dados |
+
+- Sem sala, os separadores da Turma aparecem com 🔒 e só a "Sala" (criar/entrar) está aberta.
+- Cada secção lembra-se do último separador onde estavas.
+- O botão **＋ Adicionar** leva diretamente a qualquer coisa: perguntar ao tutor, criar ou entrar numa sala, sessão de foco, apontamento, pergunta, perguntas com IA, teste ou mensagem.
+- No telemóvel há uma barra em baixo com Chat, Plano, ＋, Turma e Perfil. O ☰ em cima abre o menu completo, com o Premium e as Definições.
 
 ## Primeira vez: o questionário e o plano de estudo 🗓️
 Quando alguém abre o Shoalmates pela primeira vez, responde a 10 perguntas rápidas:

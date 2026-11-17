@@ -506,3 +506,15 @@ details .stack { margin-top: .5rem; }
 .tutor-log .bubble li { display: list-item; gap: 0; }
 .tutor-log .bubble ul { list-style: disc; }
 .tutor-log .bubble ol { list-style: decimal; }
+
+/* ---------- separadores das secções (Turma, Perfil) ---------- */
+.subnav { display: flex; gap: .35rem; overflow-x: auto; margin: -.25rem 0 1rem; padding-bottom: .25rem; scrollbar-width: thin; }
+.subnav button { background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 99px; font-weight: 500; padding: .45rem .85rem; position: relative; flex: none; }
+.subnav button:hover { border-color: var(--accent); filter: none; }
+.subnav button.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.subnav button.locked { color: var(--muted); }
+.subnav .dot { position: absolute; top: 4px; right: 6px; margin: 0; }
+.nav-group button.active .dot { background: #fff; }
+@media (max-width: 900px) {
+  .subnav { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+}

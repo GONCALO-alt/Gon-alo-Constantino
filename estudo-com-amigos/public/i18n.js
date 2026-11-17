@@ -19,7 +19,7 @@ const pt = {
   'nav.add': '＋ Adicionar', 'nav.main': 'Principal', 'nav.class': 'Turma', 'nav.me': 'Eu',
   'nav.scales': 'escamas', 'nav.noName': 'Sem nome', 'nav.more': 'Mais',
   'aria.openMenu': 'Abrir menu', 'aria.closeMenu': 'Fechar menu', 'aria.close': 'Fechar', 'aria.add': 'Adicionar',
-  'view.inicio': 'Início', 'view.plano': 'O meu plano', 'view.estudar': 'Estudar', 'view.chat': 'Chat', 'view.duelos': 'Duelos',
+  'view.inicio': 'Sala', 'view.plano': 'O meu plano', 'view.estudar': 'Foco', 'view.chat': 'Chat', 'view.duelos': 'Duelos',
   'view.apontamentos': 'Apontamentos', 'view.calendario': 'Calendário', 'view.liga': 'Liga', 'view.loja': 'Loja',
   'view.medalhas': 'Medalhas', 'view.perfil': 'Perfil', 'view.premium': 'Premium', 'view.definicoes': 'Definições',
   'copyCode': 'Copiar código', 'toast.codeCopied': 'Código copiado! Envia-o aos teus amigos.', 'toast.code': 'Código da sala: {code}',
@@ -113,7 +113,7 @@ const pt = {
   'set.data': '🧹 Dados deste aparelho', 'set.dataHelp': 'Escamas, medalhas, conquistas, plano e cosméticos ficam guardados só neste browser.',
   'btn.wipe': 'Apagar os meus dados', 'wipe.sure': 'Tens a certeza? Carrega outra vez', 'set.plan': '🗓️ Plano de estudo', 'set.planHelp': 'Responde outra vez às perguntas para refazer o teu plano.', 'btn.redoPlan': 'Refazer o plano',
 
-  'empty.title': 'Ainda não estás numa sala', 'empty.text': 'Cria uma sala ou entra com um código para usar esta parte.', 'btn.goHome': 'Ir para o Início',
+  'empty.title': 'Ainda não estás numa sala', 'empty.text': 'Cria uma sala ou entra com um código para usar esta parte.', 'turma.title': '👥 Estuda com a tua turma', 'btn.goHome': 'Ir para a Sala',
 
   'add.title': '＋ Adicionar', 'add.sala': 'Nova sala', 'add.salaS': 'Para a tua turma', 'add.entrar': 'Entrar numa sala', 'add.entrarS': 'Com um código',
   'add.foco': 'Sessão de foco', 'add.focoS': 'Estudar agora', 'add.apontamento': 'Apontamento', 'add.apontamentoS': 'Partilhar resumo',
@@ -234,7 +234,7 @@ const en = {
   'nav.add': '＋ Add', 'nav.main': 'Main', 'nav.class': 'Class', 'nav.me': 'Me',
   'nav.scales': 'scales', 'nav.noName': 'No name', 'nav.more': 'More',
   'aria.openMenu': 'Open menu', 'aria.closeMenu': 'Close menu', 'aria.close': 'Close', 'aria.add': 'Add',
-  'view.inicio': 'Home', 'view.plano': 'My plan', 'view.estudar': 'Study', 'view.chat': 'Chat', 'view.duelos': 'Duels',
+  'view.inicio': 'Room', 'view.plano': 'My plan', 'view.estudar': 'Focus', 'view.chat': 'Chat', 'view.duelos': 'Duels',
   'view.apontamentos': 'Notes', 'view.calendario': 'Calendar', 'view.liga': 'League', 'view.loja': 'Shop',
   'view.medalhas': 'Medals', 'view.perfil': 'Profile', 'view.premium': 'Premium', 'view.definicoes': 'Settings',
   'copyCode': 'Copy code', 'toast.codeCopied': 'Code copied! Send it to your friends.', 'toast.code': 'Room code: {code}',
@@ -328,7 +328,7 @@ const en = {
   'set.data': '🧹 Data on this device', 'set.dataHelp': 'Scales, medals, achievements, plan and cosmetics are saved only in this browser.',
   'btn.wipe': 'Delete my data', 'wipe.sure': 'Are you sure? Tap again', 'set.plan': '🗓️ Study plan', 'set.planHelp': 'Answer the questions again to remake your plan.', 'btn.redoPlan': 'Remake plan',
 
-  'empty.title': "You're not in a room yet", 'empty.text': 'Create a room or join with a code to use this part.', 'btn.goHome': 'Go to Home',
+  'empty.title': "You're not in a room yet", 'empty.text': 'Create a room or join with a code to use this part.', 'turma.title': '👥 Study with your class', 'btn.goHome': 'Go to Room',
 
   'add.title': '＋ Add', 'add.sala': 'New room', 'add.salaS': 'For your class', 'add.entrar': 'Join a room', 'add.entrarS': 'With a code',
   'add.foco': 'Focus session', 'add.focoS': 'Study now', 'add.apontamento': 'Note', 'add.apontamentoS': 'Share a summary',
@@ -443,7 +443,7 @@ const es = {
   'nav.add': '＋ Añadir', 'nav.main': 'Principal', 'nav.class': 'Clase', 'nav.me': 'Yo',
   'nav.scales': 'escamas', 'nav.noName': 'Sin nombre', 'nav.more': 'Más',
   'aria.openMenu': 'Abrir menú', 'aria.closeMenu': 'Cerrar menú', 'aria.close': 'Cerrar', 'aria.add': 'Añadir',
-  'view.inicio': 'Inicio', 'view.plano': 'Mi plan', 'view.estudar': 'Estudiar', 'view.chat': 'Chat', 'view.duelos': 'Duelos',
+  'view.inicio': 'Sala', 'view.plano': 'Mi plan', 'view.estudar': 'Foco', 'view.chat': 'Chat', 'view.duelos': 'Duelos',
   'view.apontamentos': 'Apuntes', 'view.calendario': 'Calendario', 'view.liga': 'Liga', 'view.loja': 'Tienda',
   'view.medalhas': 'Medallas', 'view.perfil': 'Perfil', 'view.premium': 'Premium', 'view.definicoes': 'Ajustes',
   'copyCode': 'Copiar código', 'toast.codeCopied': '¡Código copiado! Envíaselo a tus amigos.', 'toast.code': 'Código de la sala: {code}',
@@ -537,7 +537,7 @@ const es = {
   'set.data': '🧹 Datos de este dispositivo', 'set.dataHelp': 'Escamas, medallas, logros, plan y cosméticos se guardan solo en este navegador.',
   'btn.wipe': 'Borrar mis datos', 'wipe.sure': '¿Seguro? Pulsa otra vez', 'set.plan': '🗓️ Plan de estudio', 'set.planHelp': 'Responde otra vez a las preguntas para rehacer tu plan.', 'btn.redoPlan': 'Rehacer el plan',
 
-  'empty.title': 'Todavía no estás en una sala', 'empty.text': 'Crea una sala o entra con un código para usar esta parte.', 'btn.goHome': 'Ir al Inicio',
+  'empty.title': 'Todavía no estás en una sala', 'empty.text': 'Crea una sala o entra con un código para usar esta parte.', 'turma.title': '👥 Estudia con tu clase', 'btn.goHome': 'Ir a la Sala',
 
   'add.title': '＋ Añadir', 'add.sala': 'Nueva sala', 'add.salaS': 'Para tu clase', 'add.entrar': 'Entrar en una sala', 'add.entrarS': 'Con un código',
   'add.foco': 'Sesión de foco', 'add.focoS': 'Estudiar ahora', 'add.apontamento': 'Apunte', 'add.apontamentoS': 'Compartir resumen',
@@ -652,7 +652,7 @@ const fr = {
   'nav.add': '＋ Ajouter', 'nav.main': 'Principal', 'nav.class': 'Classe', 'nav.me': 'Moi',
   'nav.scales': 'écailles', 'nav.noName': 'Sans nom', 'nav.more': 'Plus',
   'aria.openMenu': 'Ouvrir le menu', 'aria.closeMenu': 'Fermer le menu', 'aria.close': 'Fermer', 'aria.add': 'Ajouter',
-  'view.inicio': 'Accueil', 'view.plano': 'Mon plan', 'view.estudar': 'Réviser', 'view.chat': 'Chat', 'view.duelos': 'Duels',
+  'view.inicio': 'Salon', 'view.plano': 'Mon plan', 'view.estudar': 'Concentration', 'view.chat': 'Chat', 'view.duelos': 'Duels',
   'view.apontamentos': 'Notes', 'view.calendario': 'Calendrier', 'view.liga': 'Ligue', 'view.loja': 'Boutique',
   'view.medalhas': 'Médailles', 'view.perfil': 'Profil', 'view.premium': 'Premium', 'view.definicoes': 'Réglages',
   'copyCode': 'Copier le code', 'toast.codeCopied': 'Code copié ! Envoie-le à tes amis.', 'toast.code': 'Code du salon : {code}',
@@ -746,7 +746,7 @@ const fr = {
   'set.data': '🧹 Données de cet appareil', 'set.dataHelp': 'Écailles, médailles, succès, plan et cosmétiques sont enregistrés seulement dans ce navigateur.',
   'btn.wipe': 'Effacer mes données', 'wipe.sure': 'Tu es sûr ? Appuie encore', 'set.plan': '🗓️ Plan de révision', 'set.planHelp': 'Réponds de nouveau aux questions pour refaire ton plan.', 'btn.redoPlan': 'Refaire le plan',
 
-  'empty.title': 'Tu n’es pas encore dans un salon', 'empty.text': 'Crée un salon ou rejoins-en un avec un code pour utiliser cette partie.', 'btn.goHome': 'Aller à l’Accueil',
+  'empty.title': 'Tu n’es pas encore dans un salon', 'empty.text': 'Crée un salon ou rejoins-en un avec un code pour utiliser cette partie.', 'turma.title': '👥 Révise avec ta classe', 'btn.goHome': 'Aller au Salon',
 
   'add.title': '＋ Ajouter', 'add.sala': 'Nouveau salon', 'add.salaS': 'Pour ta classe', 'add.entrar': 'Rejoindre un salon', 'add.entrarS': 'Avec un code',
   'add.foco': 'Séance de concentration', 'add.focoS': 'Réviser maintenant', 'add.apontamento': 'Note', 'add.apontamentoS': 'Partager un résumé',
