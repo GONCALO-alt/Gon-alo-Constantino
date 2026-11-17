@@ -160,10 +160,10 @@ function persistable(room) {
 
 export function addMember(room, socketId, profile, now = Date.now()) {
   const name = cleanName(profile?.name);
-  if (!name) return { error: 'Escolhe um nome.' };
-  if (room.members.size >= LIMITS.maxMembers) return { error: 'A sala está cheia.' };
+  if (!name) return { error: 'name_required' };
+  if (room.members.size >= LIMITS.maxMembers) return { error: 'room_full' };
   const taken = [...room.members.values()].some(m => m.name.toLowerCase() === name.toLowerCase());
-  if (taken) return { error: 'Já há alguém com esse nome nesta sala.' };
+  if (taken) return { error: 'name_taken' };
   const member = {
     name,
     avatar: String(profile?.avatar ?? '🙂').slice(0, 8),
@@ -212,9 +212,9 @@ export function addQuestion(room, author, q) {
   const question = cleanText(q?.question, 200);
   const options = (Array.isArray(q?.options) ? q.options : []).map(o => cleanText(o, 80)).filter(Boolean);
   const answer = Number(q?.answer);
-  if (!question || options.length < 2 || options.length > 4) return { error: 'Escreve a pergunta e 2 a 4 respostas.' };
-  if (!Number.isInteger(answer) || answer < 0 || answer >= options.length) return { error: 'Escolhe a resposta certa.' };
-  if (room.questions.length >= LIMITS.maxQuestions) return { error: 'Esta sala já tem perguntas demais.' };
+  if (!question || options.length < 2 || options.length > 4) return { error: 'question_invalid' };
+  if (!Number.isInteger(answer) || answer < 0 || answer >= options.length) return { error: 'answer_required' };
+  if (room.questions.length >= LIMITS.maxQuestions) return { error: 'too_many_questions' };
   const difficulty = [1, 2, 3].includes(Number(q?.difficulty)) ? Number(q.difficulty) : 2;
   const item = {
     id: newId(), author, question, options, answer, difficulty,
@@ -241,10 +241,10 @@ export const publicQuestion = ({ id, author, question, difficulty, topic, ai }) 
 
 export function addTest(room, author, { subject, date } = {}, now = Date.now()) {
   const s = cleanText(subject, 40);
-  if (!s) return { error: 'Escreve a disciplina.' };
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date ?? ''))) return { error: 'Escolhe a data do teste.' };
-  if (daysUntil(date, now) < 0) return { error: 'Essa data já passou.' };
-  if (room.tests.length >= LIMITS.maxTests) return { error: 'Calendário cheio.' };
+  if (!s) return { error: 'subject_required' };
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date ?? ''))) return { error: 'date_required' };
+  if (daysUntil(date, now) < 0) return { error: 'date_past' };
+  if (room.tests.length >= LIMITS.maxTests) return { error: 'calendar_full' };
   const test = { id: newId(), author, subject: s, date };
   room.tests.push(test);
   room.tests.sort((a, b) => a.date.localeCompare(b.date));
@@ -392,10 +392,10 @@ const clampMin = (v, lo, hi) => Math.min(hi, Math.max(lo, Math.round(Number(v) |
 export const DUEL = { perQuestionMs: (Number(globalThis.process?.env?.DUEL_SECONDS) || 15) * 1000, maxQuestions: 10, maxElimination: 15 };
 
 export function startDuel(room, mode = 'classico', participants = []) {
-  if (room.duel) return { error: 'Já há um duelo a decorrer.' };
-  if (room.questions.length < 3) return { error: 'São precisas pelo menos 3 perguntas para um duelo.' };
+  if (room.duel) return { error: 'duel_running' };
+  if (room.questions.length < 3) return { error: 'duel_need_questions' };
   const elim = mode === 'eliminacao';
-  if (elim && participants.length < 1) return { error: 'Não há ninguém para jogar.' };
+  if (elim && participants.length < 1) return { error: 'duel_no_players' };
   const pool = [...room.questions];
   shuffle(pool);
   if (elim) pool.sort((a, b) => (a.difficulty ?? 2) - (b.difficulty ?? 2));

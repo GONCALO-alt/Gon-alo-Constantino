@@ -1,4 +1,4 @@
-// IA do Estudo com Amigos — corre no SERVIDOR, com a API da Anthropic.
+// IA do Cardume — corre no SERVIDOR, com a API da Anthropic.
 // A chave (ANTHROPIC_API_KEY) fica só no servidor; o browser nunca a vê.
 import Anthropic from '@anthropic-ai/sdk';
 import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod';
@@ -6,8 +6,12 @@ import { z } from 'zod';
 
 const MODEL = process.env.AI_MODEL || 'claude-opus-5-5';
 
-const SYSTEM = `És o explicador da app "Cardume", usada por alunos portugueses entre os 12 e os 18 anos.
-Escreve sempre em português de Portugal, de forma simples, simpática e correta, adequada à idade.
+// Línguas da app -> nome usado nas instruções à IA
+const LANGS = { pt: 'português de Portugal', en: 'English', es: 'español', fr: 'français' };
+export const langName = lang => LANGS[lang] ?? LANGS.pt;
+
+const system = lang => `És o explicador da app "Cardume", usada por alunos entre os 12 e os 18 anos.
+Escreve todo o texto da resposta em ${langName(lang)}, de forma simples, simpática e correta, adequada à idade.
 Baseia-te apenas no material que o aluno enviar e no conhecimento escolar normal. Nunca inventes factos.
 Se o pedido não tiver a ver com estudo ou contiver algo impróprio para menores, recusa com simpatia.`;
 
@@ -39,7 +43,7 @@ const SummarySchema = z.object({
 
 const GradeSchema = z.object({
   estimate: z.number().int().describe('Percentagem estimada no teste (0 a 100)'),
-  confidence: z.enum(['baixa', 'média', 'alta']),
+  confidence: z.enum(['low', 'medium', 'high']),
   message: z.string().describe('1 frase de incentivo honesta'),
   strengths: z.array(z.string()),
   toImprove: z.array(z.string()),
@@ -57,13 +61,13 @@ const getClient = () => (client ??= new Anthropic());
 
 export class AIError extends Error {}
 
-async function ask(schema, content, effort = 'medium', maxTokens = 16000) {
+async function ask(schema, content, { effort = 'medium', maxTokens = 16000, lang } = {}) {
   let res;
   try {
     res = await getClient().beta.messages.parse({
       model: MODEL,
       max_tokens: maxTokens,
-      system: SYSTEM,
+      system: system(lang),
       output_config: { effort, format: betaZodOutputFormat(schema) },
       // se o modelo recusar por segurança, a API tenta outro modelo automaticamente
       betas: ['server-side-fallback-2026-07-01'],
@@ -71,21 +75,21 @@ async function ask(schema, content, effort = 'medium', maxTokens = 16000) {
       messages: [{ role: 'user', content }],
     });
   } catch (e) {
-    if (e instanceof Anthropic.AuthenticationError) throw new AIError('A chave da IA não é válida. Fala com quem gere a app.');
-    if (e instanceof Anthropic.RateLimitError) throw new AIError('A IA está muito ocupada. Tenta daqui a um minuto.');
-    if (e instanceof Anthropic.BadRequestError) throw new AIError('A IA não conseguiu ler isto. Tenta outra foto ou texto.');
-    if (e instanceof Anthropic.APIError) throw new AIError('A IA falhou. Tenta outra vez.');
-    throw new AIError('Não consegui falar com a IA. Verifica a ligação.');
+    if (e instanceof Anthropic.AuthenticationError) throw new AIError('ai_key');
+    if (e instanceof Anthropic.RateLimitError) throw new AIError('ai_rate');
+    if (e instanceof Anthropic.BadRequestError) throw new AIError('ai_unreadable');
+    if (e instanceof Anthropic.APIError) throw new AIError('ai_failed');
+    throw new AIError('ai_network');
   }
-  if (res.stop_reason === 'refusal') throw new AIError('A IA não pode ajudar com isto.');
-  if (res.stop_reason === 'max_tokens' || !res.parsed_output) throw new AIError('A resposta da IA veio incompleta. Tenta outra vez.');
+  if (res.stop_reason === 'refusal') throw new AIError('ai_refused');
+  if (res.stop_reason === 'max_tokens' || !res.parsed_output) throw new AIError('ai_incomplete');
   return res.parsed_output;
 }
 
 // ---------- funções ----------
 
 // Foto ou texto dos apontamentos -> perguntas de escolha múltipla
-export async function generateQuestions({ image, text, count = 8 }) {
+export async function generateQuestions({ image, text, count = 8, lang }) {
   if (process.env.AI_MOCK === '1') return mock.questions(count);
   const content = [];
   if (image) content.push({ type: 'image', source: { type: 'base64', media_type: image.mediaType, data: image.data } });
@@ -95,7 +99,7 @@ export async function generateQuestions({ image, text, count = 8 }) {
 Regras: 4 opções por pergunta, só uma certa, opções erradas plausíveis; mistura dificuldades (fácil, média, difícil); perguntas sobre o que é importante para um teste, não sobre pormenores sem interesse.
 Se a imagem não tiver matéria escolar legível, devolve "questions" vazio.`,
   });
-  const out = await ask(QuestionsSchema, content, 'medium');
+  const out = await ask(QuestionsSchema, content, { lang });
   const questions = out.questions
     .filter(q => q.options.length >= 2 && q.answer >= 0 && q.answer < q.options.length)
     .slice(0, count)
@@ -105,26 +109,26 @@ Se a imagem não tiver matéria escolar legível, devolve "questions" vazio.`,
 }
 
 // Explica porque é que a resposta escolhida está errada
-export async function explainMistake({ question, options, answer, chosen }) {
+export async function explainMistake({ question, options, answer, chosen, lang }) {
   if (process.env.AI_MOCK === '1') return mock.explain(options[answer]);
   const out = await ask(ExplainSchema, `Pergunta: ${question}
 Opções: ${options.map((o, i) => `${'ABCD'[i]}) ${o}`).join('  ')}
 Resposta certa: ${'ABCD'[answer]}) ${options[answer]}
 ${chosen == null ? 'O aluno não respondeu a tempo.' : `O aluno escolheu: ${'ABCD'[chosen]}) ${options[chosen]}`}
 
-Explica em 2 a 3 frases curtas, como um bom explicador para alguém de 13 anos, porque é que a resposta certa é a certa${chosen == null ? '' : ' e qual foi o erro'}.`, 'low', 2000);
+Explica em 2 a 3 frases curtas, como um bom explicador para alguém de 13 anos, porque é que a resposta certa é a certa${chosen == null ? '' : ' e qual foi o erro'}.`, { effort: 'low', maxTokens: 2000, lang });
   return out;
 }
 
 // Junta os apontamentos da sala num resumo de 1 página
-export async function summarizeNotes(notes) {
+export async function summarizeNotes(notes, lang) {
   if (process.env.AI_MOCK === '1') return mock.summary();
   const text = notes.map(n => `### ${n.title} (por ${n.author})\n${n.text}`).join('\n\n');
-  return ask(SummarySchema, `Apontamentos da turma:\n"""\n${text}\n"""\n\nFaz um resumo de no máximo 1 página para estudar para o teste. Organiza por secções com pontos curtos. Corrige com cuidado qualquer erro que encontres nos apontamentos, sem inventar matéria nova.`, 'medium');
+  return ask(SummarySchema, `Apontamentos da turma:\n"""\n${text}\n"""\n\nFaz um resumo de no máximo 1 página para estudar para o teste. Organiza por secções com pontos curtos. Corrige com cuidado qualquer erro que encontres nos apontamentos, sem inventar matéria nova.`, { lang });
 }
 
 // Estima a nota a partir do desempenho nos quizzes
-export async function predictGrade({ perf, test }) {
+export async function predictGrade({ perf, test, lang }) {
   if (process.env.AI_MOCK === '1') return mock.grade(perf);
   const topics = Object.entries(perf.byTopic).map(([t, v]) => `- ${t}: ${v.right}/${v.total} certas`).join('\n') || '- (sem dados por tema)';
   const wrong = perf.wrong.map(w => `- "${w.question}" (certa: ${w.correct})`).join('\n') || '- nenhuma';
@@ -138,7 +142,7 @@ Perguntas que errou:
 ${wrong}
 
 Estima a percentagem que este aluno teria se o teste fosse hoje. Sê honesto: com poucos dados, a confiança é baixa.
-Indica pontos fortes, o que melhorar e um plano curto e realista até ao teste.`, 'medium', 4000);
+Indica pontos fortes, o que melhorar e um plano curto e realista até ao teste.`, { maxTokens: 4000, lang });
 }
 
 // ---------- respostas falsas para testar sem chave (AI_MOCK=1) ----------
@@ -154,7 +158,7 @@ const mock = {
   explain: right => ({ explanation: `(modo de teste) A resposta certa é "${right}". Revê esta parte da matéria.` }),
   summary: () => ({ title: 'Resumo (modo de teste)', sections: [{ heading: 'Ideias principais', points: ['Ponto 1', 'Ponto 2'] }], mustKnow: ['Isto é um resumo de teste.'] }),
   grade: perf => ({
-    estimate: perf.accuracy ?? 50, confidence: perf.answered > 20 ? 'média' : 'baixa',
+    estimate: perf.accuracy ?? 50, confidence: perf.answered > 20 ? 'medium' : 'low',
     message: '(modo de teste) Continua assim!', strengths: ['Tabuada'], toImprove: ['Multiplicação'], plan: ['Faz mais um duelo hoje.'],
   }),
 };

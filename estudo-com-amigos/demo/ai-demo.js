@@ -3,6 +3,7 @@
 
 export class AIError extends Error {}
 export const aiEnabled = () => true;
+export const langName = lang => lang || 'pt';
 
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
@@ -65,7 +66,7 @@ export async function predictGrade({ perf, test }) {
   const topics = Object.entries(perf.byTopic).sort((a, b) => b[1].right / b[1].total - a[1].right / a[1].total);
   return {
     estimate,
-    confidence: perf.answered >= 20 ? 'média' : 'baixa',
+    confidence: perf.answered >= 20 ? 'medium' : 'low',
     message: estimate >= 70 ? 'Estás no bom caminho, continua a treinar!' : 'Com mais umas sessões chegas lá, não desistas!',
     strengths: topics.slice(0, 2).map(([t, v]) => `${t} (${v.right}/${v.total} certas)`),
     toImprove: topics.slice(-2).reverse().filter(([, v]) => v.right < v.total).map(([t]) => t).concat(perf.wrong.length ? [`Rever: "${perf.wrong[0].question}"`] : []),

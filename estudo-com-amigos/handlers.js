@@ -37,7 +37,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
         const { minutes, rewarded } = R.finishFocus(room);
         const streak = R.streakInfo(room);
         io.to(room.code).emit('focusDone', { minutes, rewarded, hour: new Date().getHours(), streak: streak.streak });
-        if (!before && streak.today.lit) io.to(room.code).emit('system', `🔥 A chama da sala está acesa hoje! Sequência: ${streak.streak} dia(s).`);
+        if (!before && streak.today.lit) io.to(room.code).emit('system', { k: 'flame_lit', p: { n: streak.streak } });
         emitProgress(room);
         R.startBreak(room);
       } else {
@@ -58,7 +58,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     duelTimers.set(room.code, setTimeout(() => {
       const reveal = R.revealAnswer(room);
       io.to(room.code).emit('duelReveal', reveal);
-      for (const name of reveal.eliminated) io.to(room.code).emit('system', `💥 ${name} foi eliminado na pergunta ${reveal.index + 1}.`);
+      for (const name of reveal.eliminated) io.to(room.code).emit('system', { k: 'eliminated', p: { name, n: reveal.index + 1 } });
       const end = R.duelShouldEnd(room);
       duelTimers.set(room.code, setTimeout(() => (end ? finishDuel(room) : runDuelQuestion(room)), duelPauseMs));
     }, R.DUEL.perQuestionMs));
@@ -78,7 +78,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     const ack = (cb, data) => typeof cb === 'function' && cb(data);
 
     function join(target, profile, cb) {
-      if (!target) return ack(cb, { error: 'Não encontrei nenhuma sala com esse código.' });
+      if (!target) return ack(cb, { error: 'room_not_found' });
       const res = R.addMember(target, socket.id, profile);
       if (res.error) return ack(cb, res);
       room = target;
@@ -89,19 +89,19 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
         me,
         ai: { enabled: AI.aiEnabled(), quota: R.aiQuota(room, AI_WEEKLY_LIMIT) },
       });
-      socket.to(room.code).emit('system', `${me.name} entrou na sala.`);
+      socket.to(room.code).emit('system', { k: 'joined', p: { name: me.name } });
       emitMembers(room);
       emitProgress(room); // a meta do dia muda quando entra alguém
       store.save();
     }
 
     socket.on('createRoom', ({ name, profile } = {}, cb) => {
-      if (room) return ack(cb, { error: 'Já estás numa sala.' });
+      if (room) return ack(cb, { error: 'already_in_room' });
       join(store.create(name, profile?.name), profile, cb);
     });
 
     socket.on('joinRoom', ({ code, profile } = {}, cb) => {
-      if (room) return ack(cb, { error: 'Já estás numa sala.' });
+      if (room) return ack(cb, { error: 'already_in_room' });
       join(store.get(code), profile, cb);
     });
 
@@ -110,17 +110,17 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
 
     // Corre uma tarefa de IA: verifica se está ligada, a quota, e só uma de cada vez por pessoa.
     async function runAI(cb, fn, { count = true } = {}) {
-      if (!AI.aiEnabled()) return ack(cb, { error: 'A IA ainda não está ligada nesta app.' });
-      if (aiBusy) return ack(cb, { error: 'Espera que a IA acabe o pedido anterior.' });
+      if (!AI.aiEnabled()) return ack(cb, { error: 'ai_off' });
+      if (aiBusy) return ack(cb, { error: 'ai_busy' });
       if (count && !R.useAI(room, AI_WEEKLY_LIMIT)) {
-        return ack(cb, { error: `Esta sala já usou os ${AI_WEEKLY_LIMIT} pedidos de IA desta semana.`, quota: true });
+        return ack(cb, { error: 'ai_quota', p: { n: AI_WEEKLY_LIMIT }, quota: true });
       }
       aiBusy = true;
       try {
         ack(cb, await fn());
       } catch (e) {
         if (count) room.aiUsage.count = Math.max(0, room.aiUsage.count - 1); // falhou: não conta
-        ack(cb, { error: e instanceof AI.AIError ? e.message : 'A IA falhou. Tenta outra vez.' });
+        ack(cb, { error: e instanceof AI.AIError ? e.message : 'ai_failed' });
         if (!(e instanceof AI.AIError)) console.error('[IA]', e);
       } finally {
         aiBusy = false;
@@ -152,13 +152,13 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
 
     socket.on('timerStart', inRoom(minutes => {
       R.startFocus(room, Date.now(), minutes);
-      io.to(room.code).emit('system', `${me.name} começou ${room.timer.focusMin} min de foco. Bora! 💪`);
+      io.to(room.code).emit('system', { k: 'focus_started', p: { name: me.name, n: room.timer.focusMin } });
       emitTimer(room); emitMembers(room); scheduleTimer(room);
     }));
 
     socket.on('timerStop', inRoom(() => {
       R.stopTimer(room);
-      io.to(room.code).emit('system', `${me.name} parou o temporizador.`);
+      io.to(room.code).emit('system', { k: 'timer_stopped', p: { name: me.name } });
       emitTimer(room); emitMembers(room); scheduleTimer(room);
     }));
 
@@ -172,7 +172,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     // apontamentos
     socket.on('addNote', inRoom(({ title, text } = {}, cb) => {
       const note = R.addNote(room, me.name, title, text);
-      if (!note) return ack(cb, { error: 'Não deu para guardar o apontamento.' });
+      if (!note) return ack(cb, { error: 'note_failed' });
       io.to(room.code).emit('note', note); store.save(); ack(cb, { ok: true });
     }));
 
@@ -197,7 +197,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
       const res = R.addTest(room, me.name, t);
       if (res.error) return ack(cb, res);
       io.to(room.code).emit('tests', R.upcomingTests(room));
-      io.to(room.code).emit('system', `📅 ${me.name} marcou o teste de ${res.test.subject}.`);
+      io.to(room.code).emit('system', { k: 'test_added', p: { name: me.name, subject: res.test.subject } });
       store.save(); ack(cb, { ok: true });
     }));
 
@@ -220,61 +220,65 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
       if (res) { ack(cb, res); io.to(room.code).emit('duelAnswered', me.name); }
     }));
 
-    socket.on('duelFifty', inRoom((_x, cb) => ack(cb, R.useFifty(room, me.name) ?? { error: 'Já usaste o 50/50.' })));
-    socket.on('duelAsk', inRoom((_x, cb) => ack(cb, R.useAsk(room, me.name) ?? { error: 'Já perguntaste à sala.' })));
+    socket.on('duelFifty', inRoom((_x, cb) => ack(cb, R.useFifty(room, me.name) ?? { error: 'fifty_used' })));
+    socket.on('duelAsk', inRoom((_x, cb) => ack(cb, R.useAsk(room, me.name) ?? { error: 'ask_used' })));
 
     // ---------- IA ----------
-    socket.on('aiQuestions', inRoom(({ image, text } = {}, cb) => {
+    socket.on('aiQuestions', inRoom((opts, cb) => {
+      const { image, text, lang } = opts ?? {};
       if (image) {
         if (!IMAGE_TYPES.includes(image.mediaType) || typeof image.data !== 'string' || image.data.length > MAX_IMAGE_B64) {
-          return ack(cb, { error: 'A imagem é grande demais ou de um tipo que não conheço.' });
+          return ack(cb, { error: 'image_invalid' });
         }
       }
       const cleanTextIn = R.cleanText(text, 8000);
-      if (!image && cleanTextIn.length < 30) return ack(cb, { error: 'Tira uma foto ou escreve mais texto (pelo menos umas frases).' });
+      if (!image && cleanTextIn.length < 30) return ack(cb, { error: 'ai_text_short' });
       runAI(cb, async () => {
-        const out = await AI.generateQuestions({ image, text: cleanTextIn });
-        if (!out.questions.length) return { error: 'Não encontrei matéria para fazer perguntas. Tenta uma foto mais nítida.' };
+        const out = await AI.generateQuestions({ image, text: cleanTextIn, lang });
+        if (!out.questions.length) return { error: 'ai_no_content' };
         const added = [];
         for (const q of out.questions) {
           const res = R.addQuestion(room, me.name, { ...q, ai: true });
           if (res.question) { added.push(res.question); io.to(room.code).emit('question', R.publicQuestion(res.question)); }
         }
-        io.to(room.code).emit('system', `🤖 ${me.name} criou ${added.length} perguntas com IA (${out.subject}).`);
+        io.to(room.code).emit('system', { k: 'ai_questions', p: { name: me.name, n: added.length, subject: out.subject } });
         return { ok: true, count: added.length, subject: out.subject };
       });
     }));
 
-    socket.on('aiExplain', inRoom(({ qid, chosen } = {}, cb) => {
+    socket.on('aiExplain', inRoom((opts, cb) => {
+      const { qid, chosen, lang } = opts ?? {};
       const q = room.questions.find(x => x.id === qid);
-      if (!q) return ack(cb, { error: 'Essa pergunta já não existe.' });
+      if (!q) return ack(cb, { error: 'question_gone' });
       const pick = Number.isInteger(chosen) && chosen >= 0 && chosen < q.options.length ? chosen : null;
-      const key = `${qid}:${pick}`;
+      const key = `${qid}:${pick}:${AI.langName(lang)}`;
       if (explainCache.has(key)) return ack(cb, explainCache.get(key));
       // explicações não gastam a quota da sala (são curtas e ficam em cache)
       runAI(cb, async () => {
-        const out = await AI.explainMistake({ question: q.question, options: q.options, answer: q.answer, chosen: pick });
+        const out = await AI.explainMistake({ question: q.question, options: q.options, answer: q.answer, chosen: pick, lang });
         explainCache.set(key, out);
         if (explainCache.size > 2000) explainCache.delete(explainCache.keys().next().value);
         return out;
       }, { count: false });
     }));
 
-    socket.on('aiSummary', inRoom((_x, cb) => {
-      if (room.notes.length === 0) return ack(cb, { error: 'Ainda não há apontamentos para resumir.' });
+    socket.on('aiSummary', inRoom((opts, cb) => {
+      const lang = opts?.lang;
+      if (room.notes.length === 0) return ack(cb, { error: 'no_notes' });
       runAI(cb, async () => {
-        const summary = { ...(await AI.summarizeNotes(room.notes)), by: me.name, ts: Date.now(), notes: room.notes.length };
+        const summary = { ...(await AI.summarizeNotes(room.notes, lang)), by: me.name, ts: Date.now(), notes: room.notes.length };
         room.summary = summary;
         io.to(room.code).emit('summary', summary);
         return { ok: true };
       });
     }));
 
-    socket.on('aiGrade', inRoom(({ testId } = {}, cb) => {
+    socket.on('aiGrade', inRoom((opts, cb) => {
+      const { testId, lang } = opts ?? {};
       const perf = R.performance(room, me.name);
-      if (perf.answered < 5) return ack(cb, { error: 'Responde a pelo menos 5 perguntas em duelos para eu conseguir prever.' });
+      if (perf.answered < 5) return ack(cb, { error: 'grade_need_answers' });
       const test = R.upcomingTests(room).find(t => t.id === testId) ?? null;
-      runAI(cb, async () => ({ ...(await AI.predictGrade({ perf, test })), answered: perf.answered, accuracy: perf.accuracy }));
+      runAI(cb, async () => ({ ...(await AI.predictGrade({ perf, test, lang })), answered: perf.answered, accuracy: perf.accuracy }));
     }));
 
     socket.on('report', inRoom(({ messageId } = {}) => {
@@ -285,7 +289,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     socket.on('disconnect', () => {
       if (!room || !me) return;
       room.members.delete(socket.id);
-      io.to(room.code).emit('system', `${me.name} saiu da sala.`);
+      io.to(room.code).emit('system', { k: 'left', p: { name: me.name } });
       emitMembers(room);
     });
   });

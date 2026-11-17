@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -15,39 +15,41 @@
 <body>
 <div class="app">
   <!-- MENU -->
-  <aside id="nav" class="nav" aria-label="Menu">
+  <aside id="nav" class="nav" data-i18n-aria="view.inicio">
     <div class="brand">
-      <img src="icons/icon.svg" alt="" class="logo" id="brandLogo">
-      <div><b>Cardume</b><span>estuda em cardume</span></div>
-      <button id="navClose" class="icon-btn nav-close" aria-label="Fechar menu">✕</button>
+      <img src="icons/icon.svg" alt="" class="logo">
+      <div><b>Cardume</b><span data-i18n="brand.tagline">estuda em cardume</span></div>
+      <button id="navClose" class="icon-btn nav-close" data-i18n-aria="aria.closeMenu">✕</button>
     </div>
 
-    <button id="addBtn" class="add-btn">＋ Adicionar</button>
+    <button id="addBtn" class="add-btn" data-i18n="nav.add">＋ Adicionar</button>
 
     <div class="nav-group">
-      <span class="nav-label">Principal</span>
-      <button data-view="inicio"><i>🏠</i>Início</button>
-      <button data-view="estudar"><i>⏱️</i>Estudar</button>
-      <button data-view="chat"><i>💬</i>Chat<em id="chatDot" class="dot hidden"></em></button>
-      <button data-view="duelos"><i>⚔️</i>Duelos</button>
+      <span class="nav-label" data-i18n="nav.main">Principal</span>
+      <button data-view="inicio"><i>🏠</i><span data-i18n="view.inicio">Início</span></button>
+      <button data-view="plano"><i>🗓️</i><span data-i18n="view.plano">O meu plano</span></button>
+      <button data-view="estudar"><i>⏱️</i><span data-i18n="view.estudar">Estudar</span></button>
+      <button data-view="chat"><i>💬</i><span data-i18n="view.chat">Chat</span><em id="chatDot" class="dot hidden"></em></button>
+      <button data-view="duelos"><i>⚔️</i><span data-i18n="view.duelos">Duelos</span></button>
     </div>
     <div class="nav-group">
-      <span class="nav-label">Turma</span>
-      <button data-view="apontamentos"><i>📝</i>Apontamentos</button>
-      <button data-view="calendario"><i>📅</i>Calendário</button>
-      <button data-view="liga"><i>🏆</i>Liga</button>
+      <span class="nav-label" data-i18n="nav.class">Turma</span>
+      <button data-view="apontamentos"><i>📝</i><span data-i18n="view.apontamentos">Apontamentos</span></button>
+      <button data-view="calendario"><i>📅</i><span data-i18n="view.calendario">Calendário</span></button>
+      <button data-view="liga"><i>🏆</i><span data-i18n="view.liga">Liga</span></button>
     </div>
     <div class="nav-group">
-      <span class="nav-label">Eu</span>
-      <button data-view="loja"><i>🛍️</i>Loja</button>
-      <button data-view="medalhas"><i>🏅</i>Medalhas</button>
-      <button data-view="perfil"><i>👤</i>Perfil</button>
-      <button data-view="definicoes"><i>⚙️</i>Definições</button>
+      <span class="nav-label" data-i18n="nav.me">Eu</span>
+      <button data-view="loja"><i>🛍️</i><span data-i18n="view.loja">Loja</span></button>
+      <button data-view="medalhas"><i>🏅</i><span data-i18n="view.medalhas">Medalhas</span></button>
+      <button data-view="perfil"><i>👤</i><span data-i18n="view.perfil">Perfil</span></button>
+      <button data-view="premium" class="nav-premium"><i>⭐</i><span data-i18n="view.premium">Premium</span></button>
+      <button data-view="definicoes"><i>⚙️</i><span data-i18n="view.definicoes">Definições</span></button>
     </div>
 
     <div class="nav-foot">
-      <div class="wallet" title="Escamas: ganhas a estudar"><span>🐟</span><b id="navScales">0</b> escamas</div>
-      <button class="me-chip" data-view="perfil"><span id="navAvatar" class="avatar"></span><span id="navName">Sem nome</span></button>
+      <div class="wallet"><span>🐟</span><b id="navScales">0</b> <span data-i18n="nav.scales">escamas</span></div>
+      <button class="me-chip" data-view="perfil"><span id="navAvatar" class="avatar"></span><span id="navName"></span></button>
     </div>
   </aside>
   <div id="navShade" class="shade hidden"></div>
@@ -55,12 +57,12 @@
   <!-- CONTEÚDO -->
   <div class="content">
     <header class="topbar">
-      <button id="navOpen" class="icon-btn menu-btn" aria-label="Abrir menu">☰</button>
+      <button id="navOpen" class="icon-btn menu-btn" data-i18n-aria="aria.openMenu">☰</button>
       <div class="top-title">
-        <h1 id="viewTitle">Início</h1>
+        <h1 id="viewTitle"></h1>
         <div id="roomChips" class="chips hidden">
           <span id="roomTitle" class="chip strong"></span>
-          <button id="copyCode" class="chip code" title="Copiar código"></button>
+          <button id="copyCode" class="chip code" data-i18n-title="copyCode"></button>
           <span id="leagueBadge" class="chip"></span>
           <span id="streakBadge" class="chip"></span>
         </div>
@@ -74,57 +76,78 @@
       <!-- INÍCIO -->
       <section id="view-inicio" class="view">
         <div class="hero card">
-          <img src="icons/icon.svg" alt="" class="hero-logo" id="heroLogo">
+          <img src="icons/icon.svg" alt="" class="hero-logo">
           <div>
-            <h2>Olá<span id="helloName"></span>! 👋</h2>
-            <p class="muted">No Cardume estudas ao mesmo tempo que os teus amigos, cada um na sua casa. Cria uma sala ou entra com o código que te deram.</p>
+            <h2 id="hello"></h2>
+            <p class="muted" data-i18n="home.intro"></p>
           </div>
         </div>
 
+        <div id="planToday" class="card plan-today"></div>
+
         <div id="joinBox" class="grid-2">
           <div class="card">
-            <label for="name">O teu nome</label>
-            <input id="name" maxlength="20" placeholder="ex.: Gonçalo" autocomplete="off">
+            <label for="name" data-i18n="home.yourName"></label>
+            <input id="name" maxlength="20" data-i18n-ph="ph.name" autocomplete="off">
             <div class="split">
               <div class="stack">
-                <h3>🐟 Criar sala</h3>
-                <input id="roomName" maxlength="40" placeholder="ex.: 8.ºB — Ciências">
-                <button id="create">Criar sala</button>
+                <h3 data-i18n="home.create"></h3>
+                <input id="roomName" maxlength="40" data-i18n-ph="ph.roomName">
+                <button id="create" data-i18n="btn.create"></button>
               </div>
               <div class="stack">
-                <h3>🔑 Entrar numa sala</h3>
-                <input id="code" maxlength="6" placeholder="Código (6 letras)" autocomplete="off">
-                <button id="join">Entrar</button>
+                <h3 data-i18n="home.join"></h3>
+                <input id="code" maxlength="6" data-i18n-ph="ph.code" autocomplete="off">
+                <button id="join" data-i18n="btn.join"></button>
               </div>
             </div>
             <p id="homeError" class="error"></p>
-            <p class="muted small">🔒 Só entra quem tiver o código. Não partilhes o código com desconhecidos.</p>
+            <p class="muted small" data-i18n="home.privacy"></p>
           </div>
           <div class="card">
-            <h3>Salas recentes</h3>
-            <div id="recent"><p class="muted small">Ainda não entraste em nenhuma sala.</p></div>
+            <h3 data-i18n="home.recent"></h3>
+            <div id="recent"></div>
           </div>
         </div>
 
         <div id="roomHome" class="grid-2 hidden">
           <div class="card room-card">
-            <h3>Estás na sala <span id="roomHomeName"></span></h3>
-            <p class="muted small">Envia o código aos teus amigos para eles entrarem.</p>
+            <h3><span data-i18n="home.inRoom"></span> <span id="roomHomeName"></span></h3>
+            <p class="muted small" data-i18n="home.share"></p>
             <div class="row wrap">
-              <button data-go="estudar">⏱️ Estudar agora</button>
-              <button data-go="duelos" class="ghost">⚔️ Duelo</button>
-              <button data-go="chat" class="ghost">💬 Chat</button>
-              <button id="leave2" class="ghost danger">Sair da sala</button>
+              <button data-go="estudar" data-i18n="btn.studyNow"></button>
+              <button data-go="duelos" class="ghost" data-i18n="btn.duel"></button>
+              <button data-go="chat" class="ghost" data-i18n="btn.chat"></button>
+              <button id="leave2" class="ghost danger" data-i18n="btn.leave"></button>
             </div>
           </div>
           <div class="card">
-            <h3>Hoje na sala</h3>
+            <h3 data-i18n="home.today"></h3>
             <div id="roomHomeStats" class="mini-stats"></div>
           </div>
         </div>
 
-        <h3 class="section-title">O teu progresso</h3>
+        <h3 class="section-title" data-i18n="home.progress"></h3>
         <div id="myStats" class="stat-row"></div>
+      </section>
+
+      <!-- O MEU PLANO -->
+      <section id="view-plano" class="view hidden">
+        <div class="card plan-head">
+          <div>
+            <h2 data-i18n="plan.title"></h2>
+            <p id="planSummary" class="muted"></p>
+            <div class="progress"><div id="planBar" style="width:0%"></div></div>
+            <p id="planProgress" class="muted small"></p>
+          </div>
+          <button id="redoPlan" class="ghost" data-i18n="plan.redo"></button>
+        </div>
+        <p id="planNeedRoom" class="banner soft hidden" data-i18n="plan.needRoom"></p>
+        <div id="planWeek" class="plan-week"></div>
+        <div class="card">
+          <h3 data-i18n="plan.tips"></h3>
+          <ul id="planTips" class="tips"></ul>
+        </div>
       </section>
 
       <!-- ESTUDAR -->
@@ -132,45 +155,45 @@
         <div class="grid-study">
           <div class="card">
             <div id="timerBox" class="timer idle">
-              <div id="timerLabel" class="timer-label">Pronto para estudar?</div>
+              <div id="timerLabel" class="timer-label"></div>
               <div id="timerClock" class="timer-clock">25:00</div>
               <div class="timer-controls">
-                <select id="focusMin" aria-label="Minutos de foco">
+                <select id="focusMin" aria-label="min">
                   <option value="15">15 min</option>
                   <option value="25" selected>25 min</option>
                   <option value="45">45 min</option>
                   <option value="60">60 min</option>
                 </select>
-                <button id="timerStart">▶ Começar foco</button>
-                <button id="timerStop" class="ghost hidden">■ Parar</button>
+                <button id="timerStart" data-i18n="btn.startFocus"></button>
+                <button id="timerStop" class="ghost hidden" data-i18n="btn.stop"></button>
               </div>
-              <div class="reactions" aria-label="Reações">
+              <div class="reactions">
                 <button data-react="🔥">🔥</button><button data-react="💪">💪</button><button data-react="👏">👏</button>
                 <button data-react="🤯">🤯</button><button data-react="😴">😴</button><button data-react="☕">☕</button>
               </div>
-              <p class="muted small">Se saíres da página durante o foco, ficas como <b>distraído</b> e não ganhas os minutos nem as escamas.</p>
+              <p class="muted small" data-i18n="study.warn"></p>
             </div>
             <div class="ambience">
-              <label for="ambience" class="small">🎧 Som da sala</label>
+              <label for="ambience" class="small" data-i18n="study.sound"></label>
               <div class="row">
                 <select id="ambience">
-                  <option value="none">Silêncio</option>
-                  <option value="chuva">🌧️ Chuva</option>
-                  <option value="cafe">☕ Café</option>
-                  <option value="lofi">🎵 Lo-fi</option>
-                  <option value="biblioteca">📖 Biblioteca</option>
+                  <option value="none" data-i18n="amb.none"></option>
+                  <option value="chuva" data-i18n="amb.chuva"></option>
+                  <option value="cafe" data-i18n="amb.cafe"></option>
+                  <option value="lofi" data-i18n="amb.lofi"></option>
+                  <option value="biblioteca" data-i18n="amb.biblioteca"></option>
                 </select>
               </div>
-              <button id="soundUnlock" class="ghost small-btn hidden">🔊 Ligar som</button>
+              <button id="soundUnlock" class="ghost small-btn hidden" data-i18n="btn.enableSound"></button>
             </div>
           </div>
           <div class="stack-cards">
             <div class="card">
-              <h3>🔥 Chama da sala</h3>
+              <h3 data-i18n="study.flame"></h3>
               <div id="streakBox"></div>
             </div>
             <div class="card">
-              <h3>👥 Na sala</h3>
+              <h3 data-i18n="study.members"></h3>
               <ul id="members" class="members"></ul>
             </div>
           </div>
@@ -182,8 +205,8 @@
         <div class="card chat-card">
           <ul id="messages" class="messages"></ul>
           <form id="chatForm" class="row">
-            <input id="chatInput" maxlength="500" placeholder="Escreve uma mensagem…" autocomplete="off">
-            <button>Enviar</button>
+            <input id="chatInput" maxlength="500" data-i18n-ph="ph.message" autocomplete="off">
+            <button data-i18n="btn.send"></button>
           </form>
         </div>
       </section>
@@ -194,50 +217,50 @@
           <div id="duelArea" class="duel hidden"></div>
           <div id="quizSetup">
             <div class="duel-start">
-              <p><b id="qCount">0</b> perguntas na sala</p>
+              <p><b id="qCount">0</b> <span data-i18n="duel.inRoom"></span></p>
               <div class="row wrap">
-                <select id="duelMode" aria-label="Modo de duelo">
-                  <option value="classico">⚡ Clássico: pontos por rapidez</option>
-                  <option value="eliminacao">🛡️ Eliminação: quem erra sai</option>
+                <select id="duelMode">
+                  <option value="classico" data-i18n="mode.classic"></option>
+                  <option value="eliminacao" data-i18n="mode.elim"></option>
                 </select>
-                <button id="duelStart">⚔️ Começar duelo</button>
+                <button id="duelStart" data-i18n="btn.startDuel"></button>
               </div>
             </div>
             <p id="quizError" class="error"></p>
 
             <div class="ai-box">
-              <b>🤖 Criar perguntas com IA</b>
-              <p class="muted small">Tira uma foto ao livro ou ao caderno (ou cola o texto) e a IA cria perguntas para o duelo.</p>
+              <b data-i18n="ai.qTitle"></b>
+              <p class="muted small" data-i18n="ai.qHelp"></p>
               <div class="row wrap">
-                <label class="file-btn">📷 Foto<input id="aiPhoto" type="file" accept="image/*" capture="environment" hidden></label>
-                <button id="aiTextToggle" class="ghost">✏️ Colar texto</button>
+                <label class="file-btn"><span data-i18n="btn.photo"></span><input id="aiPhoto" type="file" accept="image/*" capture="environment" hidden></label>
+                <button id="aiTextToggle" class="ghost" data-i18n="btn.pasteText"></button>
                 <span id="aiQuota" class="muted small"></span>
               </div>
               <div id="aiTextBox" class="stack hidden">
-                <textarea id="aiText" rows="4" maxlength="8000" placeholder="Cola aqui a matéria…"></textarea>
-                <button id="aiFromText" class="ai-btn">Criar perguntas</button>
+                <textarea id="aiText" rows="4" maxlength="8000" data-i18n-ph="ph.aiText"></textarea>
+                <button id="aiFromText" class="ai-btn" data-i18n="btn.makeQuestions"></button>
               </div>
               <p id="aiStatus" class="muted small"></p>
             </div>
 
             <details id="qDetails">
-              <summary>✍️ Escrever uma pergunta à mão</summary>
+              <summary data-i18n="q.manual"></summary>
               <form id="qForm" class="stack">
-                <input id="qText" maxlength="200" placeholder="Pergunta (ex.: Qual é a capital de França?)">
+                <input id="qText" maxlength="200" data-i18n-ph="ph.q">
                 <div class="options">
-                  <label><input type="radio" name="right" value="0" checked><input class="opt" maxlength="80" placeholder="Resposta A"></label>
-                  <label><input type="radio" name="right" value="1"><input class="opt" maxlength="80" placeholder="Resposta B"></label>
-                  <label><input type="radio" name="right" value="2"><input class="opt" maxlength="80" placeholder="Resposta C (opcional)"></label>
-                  <label><input type="radio" name="right" value="3"><input class="opt" maxlength="80" placeholder="Resposta D (opcional)"></label>
+                  <label><input type="radio" name="right" value="0" checked><input class="opt" maxlength="80" data-i18n-ph="ph.optA"></label>
+                  <label><input type="radio" name="right" value="1"><input class="opt" maxlength="80" data-i18n-ph="ph.optB"></label>
+                  <label><input type="radio" name="right" value="2"><input class="opt" maxlength="80" data-i18n-ph="ph.optC"></label>
+                  <label><input type="radio" name="right" value="3"><input class="opt" maxlength="80" data-i18n-ph="ph.optD"></label>
                 </div>
                 <div class="row wrap">
-                  <input id="qTopic" maxlength="40" placeholder="Tema (opcional)">
-                  <select id="qDiff" aria-label="Dificuldade">
-                    <option value="1">Fácil</option><option value="2" selected>Média</option><option value="3">Difícil</option>
+                  <input id="qTopic" maxlength="40" data-i18n-ph="ph.topic">
+                  <select id="qDiff" data-i18n-aria="diff.title">
+                    <option value="1" data-i18n="diff.1"></option><option value="2" selected data-i18n="diff.2"></option><option value="3" data-i18n="diff.3"></option>
                   </select>
                 </div>
-                <p class="muted small">Marca a bolinha da resposta certa.</p>
-                <button>Adicionar pergunta</button>
+                <p class="muted small" data-i18n="q.markRight"></p>
+                <button data-i18n="btn.addQuestion"></button>
               </form>
             </details>
             <ul id="questions" class="questions"></ul>
@@ -251,19 +274,19 @@
           <div class="card">
             <div class="ai-box">
               <div class="row between wrap">
-                <div><b>🤖 Resumo da IA</b><br><span class="muted small">Junta os apontamentos de todos num resumo de 1 página.</span></div>
-                <button id="aiSummary" class="ai-btn">Gerar resumo</button>
+                <div><b data-i18n="ai.sTitle"></b><br><span class="muted small" data-i18n="ai.sHelp"></span></div>
+                <button id="aiSummary" class="ai-btn" data-i18n="btn.makeSummary"></button>
               </div>
               <div id="summary"></div>
             </div>
             <ul id="notes" class="notes"></ul>
           </div>
           <div class="card">
-            <h3>Novo apontamento</h3>
+            <h3 data-i18n="notes.new"></h3>
             <form id="noteForm" class="stack">
-              <input id="noteTitle" maxlength="60" placeholder="Título (ex.: Fotossíntese)">
-              <textarea id="noteText" rows="6" maxlength="4000" placeholder="Escreve o resumo…"></textarea>
-              <button>Partilhar apontamento</button>
+              <input id="noteTitle" maxlength="60" data-i18n-ph="ph.noteTitle">
+              <textarea id="noteText" rows="6" maxlength="4000" data-i18n-ph="ph.noteText"></textarea>
+              <button data-i18n="btn.shareNote"></button>
             </form>
           </div>
         </div>
@@ -273,18 +296,18 @@
       <section id="view-calendario" class="view hidden" data-needs-room>
         <div class="grid-2">
           <div class="card">
-            <h3>📅 Próximos testes</h3>
+            <h3 data-i18n="cal.upcoming"></h3>
             <ul id="tests" class="tests"></ul>
           </div>
           <div class="card">
-            <h3>Marcar um teste</h3>
+            <h3 data-i18n="cal.add"></h3>
             <form id="testForm" class="stack">
-              <input id="testSubject" maxlength="40" placeholder="Disciplina (ex.: Matemática)">
-              <input id="testDate" type="date" aria-label="Data do teste">
-              <button>Marcar teste</button>
+              <input id="testSubject" maxlength="40" data-i18n-ph="ph.subject">
+              <input id="testDate" type="date" data-i18n-aria="aria.testDate">
+              <button data-i18n="btn.markTest"></button>
             </form>
             <p id="testError" class="error small"></p>
-            <p class="muted small">Quando faltarem 3 dias ou menos, aparece um aviso a toda a sala.</p>
+            <p class="muted small" data-i18n="cal.help"></p>
           </div>
         </div>
       </section>
@@ -296,16 +319,16 @@
             <div id="leagueHead" class="league-head"></div>
             <div class="table-wrap">
               <table class="ranking">
-                <thead><tr><th>#</th><th>Sala</th><th>⏱️ Min. esta semana</th></tr></thead>
+                <thead><tr><th>#</th><th data-i18n="th.room"></th><th data-i18n="th.minWeek"></th></tr></thead>
                 <tbody id="leagueBody"></tbody>
               </table>
             </div>
           </div>
           <div class="card">
-            <h3>Nesta sala</h3>
+            <h3 data-i18n="league.inRoom"></h3>
             <div class="table-wrap">
               <table class="ranking">
-                <thead><tr><th>#</th><th>Nome</th><th>⏱️ Min.</th><th>🎯 Sessões</th><th>⚔️ Vitórias</th></tr></thead>
+                <thead><tr><th>#</th><th data-i18n="th.name"></th><th data-i18n="th.min"></th><th data-i18n="th.sessions"></th><th data-i18n="th.wins"></th></tr></thead>
                 <tbody id="rankingBody"></tbody>
               </table>
             </div>
@@ -316,24 +339,24 @@
       <!-- LOJA -->
       <section id="view-loja" class="view hidden">
         <div class="card shop-head">
-          <div class="wallet big-wallet"><span>🐟</span><b id="shopScales">0</b><small>escamas</small></div>
+          <div class="wallet big-wallet"><span>🐟</span><b id="shopScales">0</b><small data-i18n="nav.scales"></small></div>
           <div>
-            <h3>Como ganhar escamas</h3>
+            <h3 data-i18n="shop.howEarn"></h3>
             <ul id="earnList" class="earn"></ul>
           </div>
         </div>
-        <p class="muted small">As medalhas aparecem ao lado do teu nome nas salas. Compram-se só com escamas, que ganhas a estudar, e sabes sempre o que estás a comprar.</p>
+        <p class="muted small" data-i18n="shop.note"></p>
         <div id="shopGrid" class="shop-grid"></div>
       </section>
 
       <!-- MEDALHAS -->
       <section id="view-medalhas" class="view hidden">
         <div class="card">
-          <h3>🎖️ As tuas medalhas</h3>
-          <p class="muted small">Toca numa medalha para a mostrares ao lado do teu nome.</p>
+          <h3 data-i18n="medals.yours"></h3>
+          <p class="muted small" data-i18n="medals.tap"></p>
           <div id="ownedMedals" class="owned"></div>
         </div>
-        <h3 class="section-title">🏅 Conquistas <span id="achCount" class="muted small"></span></h3>
+        <h3 class="section-title"><span data-i18n="medals.ach"></span> <span id="achCount" class="muted small"></span></h3>
         <div id="achievements" class="achievements"></div>
       </section>
 
@@ -347,25 +370,17 @@
           </div>
         </div>
         <div id="profileStats" class="stat-row"></div>
-
         <div class="grid-2">
-          <div class="card">
-            <h3>🎨 Avatar</h3>
-            <div id="avatarGrid" class="grid"></div>
-          </div>
-          <div class="card">
-            <h3>🖼️ Moldura</h3>
-            <div id="frameGrid" class="grid"></div>
-          </div>
+          <div class="card"><h3 data-i18n="profile.avatar"></h3><div id="avatarGrid" class="grid"></div></div>
+          <div class="card"><h3 data-i18n="profile.frame"></h3><div id="frameGrid" class="grid"></div></div>
         </div>
-
         <div class="card" data-room-only>
           <div class="ai-box">
             <div class="row between wrap">
-              <div><b>🔮 Previsão de nota</b><br><span class="muted small">A IA olha para as tuas respostas nos duelos e estima a tua nota.</span></div>
+              <div><b data-i18n="grade.title"></b><br><span class="muted small" data-i18n="grade.help"></span></div>
               <div class="row">
-                <select id="gradeTest" aria-label="Teste"></select>
-                <button id="aiGrade" class="ai-btn">Prever</button>
+                <select id="gradeTest" data-i18n-aria="aria.test"></select>
+                <button id="aiGrade" class="ai-btn" data-i18n="btn.predict"></button>
               </div>
             </div>
             <div id="grade"></div>
@@ -373,32 +388,68 @@
         </div>
       </section>
 
+      <!-- PREMIUM -->
+      <section id="view-premium" class="view hidden">
+        <div class="prem-head">
+          <h2 data-i18n="prem.title"></h2>
+          <p class="muted" data-i18n="prem.sub"></p>
+          <div class="seg" role="radiogroup">
+            <button data-billing="month" class="active" data-i18n="prem.monthly"></button>
+            <button data-billing="year"><span data-i18n="prem.yearly"></span> <em id="saveTag" class="save"></em></button>
+          </div>
+        </div>
+        <div id="planCards" class="plan-cards"></div>
+        <p class="fair">⚖️ <span data-i18n="prem.fair"></span></p>
+        <p class="muted small center" data-i18n="prem.soon"></p>
+        <div id="askBox" class="card ask hidden">
+          <h3 data-i18n="prem.askTitle"></h3>
+          <p class="muted small" data-i18n="prem.askHelp"></p>
+          <textarea id="askMsg" rows="3" readonly></textarea>
+          <button id="copyAsk" data-i18n="btn.copy"></button>
+        </div>
+        <div class="card faq">
+          <h3 data-i18n="prem.faq"></h3>
+          <details><summary data-i18n="prem.q1"></summary><p data-i18n="prem.a1"></p></details>
+          <details><summary data-i18n="prem.q2"></summary><p data-i18n="prem.a2"></p></details>
+          <details><summary data-i18n="prem.q3"></summary><p data-i18n="prem.a3"></p></details>
+        </div>
+      </section>
+
       <!-- DEFINIÇÕES -->
       <section id="view-definicoes" class="view hidden">
         <div class="grid-2">
           <div class="card stack">
-            <h3>🔊 Som</h3>
-            <label for="volume" class="small">Volume dos sons de foco</label>
-            <input id="volume" type="range" min="0" max="1" step="0.05" value="0.5">
-            <label class="check"><input id="mute" type="checkbox"> Silenciar sons neste aparelho</label>
+            <h3 data-i18n="set.language"></h3>
+            <div id="langPicker" class="lang-picker"></div>
           </div>
           <div class="card stack">
-            <h3>🌗 Tema</h3>
-            <div class="seg" role="radiogroup" aria-label="Tema">
-              <button data-theme-set="system">Sistema</button>
-              <button data-theme-set="light">Claro</button>
-              <button data-theme-set="dark">Escuro</button>
+            <h3 data-i18n="set.plan"></h3>
+            <p class="muted small" data-i18n="set.planHelp"></p>
+            <button id="redoPlan2" class="ghost" data-i18n="btn.redoPlan"></button>
+          </div>
+          <div class="card stack">
+            <h3 data-i18n="set.sound"></h3>
+            <label for="volume" class="small" data-i18n="set.volume"></label>
+            <input id="volume" type="range" min="0" max="1" step="0.05" value="0.5">
+            <label class="check"><input id="mute" type="checkbox"> <span data-i18n="set.mute"></span></label>
+          </div>
+          <div class="card stack">
+            <h3 data-i18n="set.theme"></h3>
+            <div class="seg" role="radiogroup">
+              <button data-theme-set="system" data-i18n="theme.system"></button>
+              <button data-theme-set="light" data-i18n="theme.light"></button>
+              <button data-theme-set="dark" data-i18n="theme.dark"></button>
             </div>
           </div>
           <div class="card stack">
-            <h3>🚪 Sala</h3>
-            <p class="muted small" id="settingsRoom">Não estás em nenhuma sala.</p>
-            <button id="leave" class="ghost danger">Sair da sala</button>
+            <h3 data-i18n="set.room"></h3>
+            <p class="muted small" id="settingsRoom"></p>
+            <button id="leave" class="ghost danger" data-i18n="btn.leave"></button>
           </div>
           <div class="card stack">
-            <h3>🧹 Dados deste aparelho</h3>
-            <p class="muted small">Escamas, medalhas, conquistas e cosméticos ficam guardados só neste browser.</p>
-            <button id="wipe" class="ghost danger">Apagar os meus dados</button>
+            <h3 data-i18n="set.data"></h3>
+            <p class="muted small" data-i18n="set.dataHelp"></p>
+            <button id="wipe" class="ghost danger" data-i18n="btn.wipe"></button>
           </div>
         </div>
       </section>
@@ -406,42 +457,61 @@
       <!-- precisa de sala -->
       <div id="noRoom" class="card empty hidden">
         <span class="empty-icon">🐟</span>
-        <h3>Ainda não estás numa sala</h3>
-        <p class="muted">Cria uma sala ou entra com um código para usar esta parte.</p>
-        <button data-go="inicio">Ir para o Início</button>
+        <h3 data-i18n="empty.title"></h3>
+        <p class="muted" data-i18n="empty.text"></p>
+        <button data-go="inicio" data-i18n="btn.goHome"></button>
       </div>
     </main>
   </div>
 
   <!-- barra de baixo (telemóvel) -->
-  <nav class="bottombar" aria-label="Menu rápido">
-    <button data-view="inicio"><i>🏠</i>Início</button>
-    <button data-view="estudar"><i>⏱️</i>Estudar</button>
-    <button id="addBtn2" class="bottom-add" aria-label="Adicionar">＋</button>
-    <button data-view="chat"><i>💬</i>Chat<em id="chatDot2" class="dot hidden"></em></button>
-    <button id="moreBtn"><i>☰</i>Mais</button>
+  <nav class="bottombar">
+    <button data-view="inicio"><i>🏠</i><span data-i18n="view.inicio"></span></button>
+    <button data-view="plano"><i>🗓️</i><span data-i18n="view.plano"></span></button>
+    <button id="addBtn2" class="bottom-add" data-i18n-aria="aria.add">＋</button>
+    <button data-view="chat"><i>💬</i><span data-i18n="view.chat"></span><em id="chatDot2" class="dot hidden"></em></button>
+    <button id="moreBtn"><i>☰</i><span data-i18n="nav.more"></span></button>
   </nav>
 </div>
 
 <!-- MENU ADICIONAR -->
-<div id="addSheet" class="sheet hidden" role="dialog" aria-label="Adicionar">
+<div id="addSheet" class="sheet hidden" role="dialog">
   <div class="sheet-card">
-    <div class="row between"><h3>＋ Adicionar</h3><button id="addClose" class="icon-btn" aria-label="Fechar">✕</button></div>
+    <div class="row between"><h3 data-i18n="add.title"></h3><button id="addClose" class="icon-btn" data-i18n-aria="aria.close">✕</button></div>
     <div class="add-grid">
-      <button data-add="sala"><i>🐟</i><b>Nova sala</b><span>Para a tua turma</span></button>
-      <button data-add="entrar"><i>🔑</i><b>Entrar numa sala</b><span>Com um código</span></button>
-      <button data-add="foco"><i>⏱️</i><b>Sessão de foco</b><span>Estudar agora</span></button>
-      <button data-add="apontamento"><i>📝</i><b>Apontamento</b><span>Partilhar resumo</span></button>
-      <button data-add="pergunta"><i>✍️</i><b>Pergunta</b><span>Para os duelos</span></button>
-      <button data-add="ia"><i>📷</i><b>Perguntas com IA</b><span>De uma foto</span></button>
-      <button data-add="teste"><i>📅</i><b>Teste</b><span>No calendário</span></button>
-      <button data-add="mensagem"><i>💬</i><b>Mensagem</b><span>No chat</span></button>
+      <button data-add="sala"><i>🐟</i><b data-i18n="add.sala"></b><span data-i18n="add.salaS"></span></button>
+      <button data-add="entrar"><i>🔑</i><b data-i18n="add.entrar"></b><span data-i18n="add.entrarS"></span></button>
+      <button data-add="foco"><i>⏱️</i><b data-i18n="add.foco"></b><span data-i18n="add.focoS"></span></button>
+      <button data-add="apontamento"><i>📝</i><b data-i18n="add.apontamento"></b><span data-i18n="add.apontamentoS"></span></button>
+      <button data-add="pergunta"><i>✍️</i><b data-i18n="add.pergunta"></b><span data-i18n="add.perguntaS"></span></button>
+      <button data-add="ia"><i>📷</i><b data-i18n="add.ia"></b><span data-i18n="add.iaS"></span></button>
+      <button data-add="teste"><i>📅</i><b data-i18n="add.teste"></b><span data-i18n="add.testeS"></span></button>
+      <button data-add="mensagem"><i>💬</i><b data-i18n="add.mensagem"></b><span data-i18n="add.mensagemS"></span></button>
     </div>
   </div>
 </div>
 
+<!-- QUESTIONÁRIO INICIAL -->
+<div id="onboarding" class="onboarding hidden" role="dialog" aria-modal="true">
+  <div class="ob-card">
+    <div class="ob-top">
+      <img src="icons/icon.svg" alt="" class="ob-logo">
+      <span id="obStep" class="muted small"></span>
+      <button id="obSkip" class="ghost small-btn" data-i18n="ob.skip"></button>
+    </div>
+    <div class="progress"><div id="obBar" style="width:0%"></div></div>
+    <div id="obBody" class="ob-body"></div>
+    <p id="obError" class="error"></p>
+    <div class="ob-nav">
+      <button id="obBack" class="ghost" data-i18n="ob.back"></button>
+      <button id="obNext" data-i18n="ob.next"></button>
+    </div>
+    <p class="muted small ob-private" data-i18n="ob.private"></p>
+  </div>
+</div>
+
 <div id="reactLayer" class="react-layer" aria-hidden="true"></div>
-<div id="toast" class="toast hidden"></div>
+<div id="toast" class="toast hidden" role="status"></div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script type="module" src="app.js"></script>

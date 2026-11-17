@@ -47,7 +47,7 @@ ${css}
 .demo-note { margin-bottom: 1rem; padding: .6rem .9rem; border-radius: 12px; background: var(--card); border: 1px dashed var(--accent); color: var(--muted); font-size: .9rem; }
 .demo-note b { color: var(--text); }
 </style>
-${body.replace('<div id="testBanner"', '<div class="demo-note"><b>Demo jogável.</b> O Rui e a Eva são amigos simulados e a IA dá respostas de exemplo. Cria uma sala para eles entrarem. O foco de 1 minuto e os duelos curtos são só para experimentar.</div>\n    <div id="testBanner"')}
+${body.replace('<div id="testBanner"', '<div class="demo-note" data-i18n="demo.note"></div>\n    <div id="testBanner"')}
 <script type="module">${js}</script>
 `;
 

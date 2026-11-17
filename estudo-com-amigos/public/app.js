@@ -1,4 +1,6 @@
-import { AVATARS, FRAMES, ACHIEVEMENTS, EMPTY_COUNTERS, MEDALS, EARN, isUnlocked, lockLabel } from './cosmetics.js';
+import { AVATARS, FRAMES, ACHIEVEMENTS, EMPTY_COUNTERS, MEDALS, EARN, isUnlocked } from './cosmetics.js';
+import { t, setLang, getLang, guessLang, translateDom, LANGS, locale } from './i18n.js';
+import { SUBJECTS, YEARS, GOALS, MINUTES, WHEN, suggestedSubjects, buildPlan, planTips, daysUntil } from './plan.js';
 import * as Sound from './sounds.js';
 
 const $ = s => document.querySelector(s);
@@ -24,6 +26,8 @@ profile.achieved ??= [];
 let recent = store.get('recentRooms', []);
 const saveProfile = () => store.set('profile', profile);
 
+setLang(store.get('lang', null) ?? guessLang());
+
 let room = null;
 let me = null;
 let ai = { enabled: false, quota: null };
@@ -32,46 +36,52 @@ let tick = null;
 let duelTick = null;
 let duel = null;
 let unread = 0;
+let chatLog = [];
 
 // ---------- utilidades ----------
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const avatarHtml = (a, f, size = '') => `<span class="avatar frame-${esc(f)}${size ? ` ${size}` : ''}">${esc(a)}</span>`;
 function toast(text, ms = 3000) {
-  const t = $('#toast');
-  t.textContent = text;
-  t.classList.remove('hidden');
+  const el = $('#toast');
+  el.textContent = text;
+  el.classList.remove('hidden');
   clearTimeout(toast._t);
-  toast._t = setTimeout(() => t.classList.add('hidden'), ms);
+  toast._t = setTimeout(() => el.classList.add('hidden'), ms);
 }
 const fmt = ms => {
   const s = Math.max(0, Math.ceil(ms / 1000));
   return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 };
 const LEAGUE_MEDALS = ['🥉', '🥈', '🥇', '💠', '💎'];
-const whenText = d => d === 0 ? 'hoje' : d === 1 ? 'amanhã' : `daqui a ${d} dias`;
+const whenText = d => d === 0 ? t('when.today') : d === 1 ? t('when.tomorrow') : t('when.days', { n: d });
 const emitP = (ev, data) => new Promise(r => socket.emit(ev, data, r));
+const errText = res => t(`err.${res.error}`, res.p);
+const plain = label => label.replace(/^\S+\s/, ''); // tira o emoji do início
+const lower = s => s.charAt(0).toLowerCase() + s.slice(1);
+const money = v => new Intl.NumberFormat(locale(), { style: 'currency', currency: 'EUR' }).format(v);
+const medalName = m => t(`medal.${m.id}`);
+const subjName = id => (SUBJECTS.includes(id) ? t(`subj.${id}`) : id);
 
 // ---------- navegação ----------
-const TITLES = {
-  inicio: 'Início', estudar: 'Estudar', chat: 'Chat', duelos: 'Duelos', apontamentos: 'Apontamentos',
-  calendario: 'Calendário', liga: 'Liga', loja: 'Loja', medalhas: 'Medalhas', perfil: 'Perfil', definicoes: 'Definições',
-};
+const VIEWS = ['inicio', 'plano', 'estudar', 'chat', 'duelos', 'apontamentos', 'calendario', 'liga', 'loja', 'medalhas', 'perfil', 'premium', 'definicoes'];
 
 function show(name) {
-  if (!TITLES[name]) name = 'inicio';
+  if (!VIEWS.includes(name)) name = 'inicio';
   view = name;
   const target = $(`#view-${name}`);
   const blocked = target.hasAttribute('data-needs-room') && !room;
   $$('.view').forEach(v => v.classList.toggle('hidden', v !== target || blocked));
   $('#noRoom').classList.toggle('hidden', !blocked);
   $$('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === name));
-  $('#viewTitle').textContent = TITLES[name];
+  $('#viewTitle').textContent = t(`view.${name}`);
   closeNav();
   if (name === 'chat') { unread = 0; renderUnread(); const l = $('#messages'); l.scrollTop = l.scrollHeight; }
   if (name === 'inicio') renderHome();
+  if (name === 'plano') renderPlan();
   if (name === 'loja') renderShop();
   if (name === 'medalhas') renderMedals();
   if (name === 'perfil') renderProfile();
+  if (name === 'premium') renderPremium();
   if (name === 'definicoes') renderSettings();
   if (name === 'liga' && room) renderLeague();
   window.scrollTo({ top: 0 });
@@ -95,10 +105,29 @@ function renderLocks() {
     b.classList.toggle('locked', !!v?.hasAttribute('data-needs-room') && !room);
   });
 }
-
 function renderUnread() {
   $('#chatDot').classList.toggle('hidden', unread === 0);
   $('#chatDot2').classList.toggle('hidden', unread === 0);
+}
+
+// ---------- língua ----------
+function changeLang(lang) {
+  setLang(lang);
+  store.set('lang', lang);
+  translateDom();
+  renderWallet();
+  if (room) {
+    renderMembers(room.members);
+    renderTimer();
+    renderProgress();
+    renderTests();
+    renderNotes();
+    renderSummary();
+    renderQuestions();
+    renderAiQuota();
+    renderChat();
+  }
+  show(view);
 }
 
 // ---------- escamas e conquistas ----------
@@ -113,7 +142,7 @@ function earn(n, why) {
 function renderWallet() {
   for (const id of ['#navScales', '#topScales', '#shopScales']) $(id).textContent = profile.scales;
   $('#navAvatar').outerHTML = `<span id="navAvatar" class="avatar frame-${esc(profile.frame)}">${esc(profile.avatar)}</span>`;
-  $('#navName').textContent = profile.name || 'Sem nome';
+  $('#navName').textContent = profile.name || t('nav.noName');
 }
 
 function bump(changes) {
@@ -124,12 +153,11 @@ function bump(changes) {
   }
   const fresh = ACHIEVEMENTS.filter(a => !profile.achieved.includes(a.id) && a.test(c));
   for (const a of fresh) profile.achieved.push(a.id);
+  if (fresh.length) profile.scales += EARN.achievement * fresh.length;
   saveProfile();
   if (fresh.length) {
-    profile.scales += EARN.achievement * fresh.length;
-    saveProfile();
     renderWallet();
-    toast(`🏅 Conquista: ${fresh.map(a => `${a.icon} ${a.name}`).join(', ')}! +${EARN.achievement * fresh.length} 🐟`, 5000);
+    toast(t('toast.ach', { list: fresh.map(a => `${a.icon} ${t(`ach.${a.id}`)}`).join(', '), n: EARN.achievement * fresh.length }), 5000);
   }
 }
 
@@ -138,25 +166,26 @@ $('#name').value = profile.name;
 $('#name').addEventListener('change', e => { profile.name = e.target.value.trim(); saveProfile(); renderWallet(); });
 
 function renderHome() {
-  $('#helloName').textContent = profile.name ? `, ${profile.name}` : '';
+  $('#hello').textContent = t('home.hello', { name: profile.name ? `, ${profile.name}` : '' });
   $('#joinBox').classList.toggle('hidden', !!room);
   $('#roomHome').classList.toggle('hidden', !room);
   $('#recent').innerHTML = recent.length
     ? `<ul>${recent.map(r => `<li><button data-code="${esc(r.code)}"><span>${esc(r.name)}</span><code>${esc(r.code)}</code></button></li>`).join('')}</ul>`
-    : '<p class="muted small">Ainda não entraste em nenhuma sala.</p>';
+    : `<p class="muted small">${t('home.noRecent')}</p>`;
   if (room) {
     $('#roomHomeName').textContent = room.name;
     const s = room.streak;
     $('#roomHomeStats').innerHTML = `
-      <div><b>${room.members.length}</b><span>na sala</span></div>
-      <div><b>${s.today.minutes}/${s.today.goal}</b><span>min de hoje</span></div>
-      <div><b>🔥 ${s.streak}</b><span>dias seguidos</span></div>`;
+      <div><b>${room.members.length}</b><span>${t('stat.inRoom')}</span></div>
+      <div><b>${s.today.minutes}/${s.today.goal}</b><span>${t('stat.minToday')}</span></div>
+      <div><b>🔥 ${s.streak}</b><span>${t('stat.daysInRow')}</span></div>`;
   }
+  renderPlanToday();
   const c = profile.counters;
   $('#myStats').innerHTML = [
-    ['🐟', profile.scales, 'escamas'], ['⏱️', profile.minutes, 'minutos de foco'], ['🎯', c.sessions, 'sessões'],
-    ['⚔️', c.duelWins, 'duelos ganhos'], ['🏅', `${profile.achieved.length}/${ACHIEVEMENTS.length}`, 'conquistas'],
-  ].map(([i, v, l]) => `<div class="stat"><b>${i} ${v}</b><span>${l}</span></div>`).join('');
+    ['🐟', profile.scales, 'stat.scales'], ['⏱️', profile.minutes, 'stat.focusMin'], ['🎯', c.sessions, 'stat.sessions'],
+    ['⚔️', c.duelWins, 'stat.duelsWon'], ['🏅', `${profile.achieved.length}/${ACHIEVEMENTS.length}`, 'stat.achievements'],
+  ].map(([i, v, l]) => `<div class="stat"><b>${i} ${v}</b><span>${t(l)}</span></div>`).join('');
 }
 
 $('#recent').addEventListener('click', e => {
@@ -170,11 +199,11 @@ $('#code').addEventListener('input', e => { e.target.value = e.target.value.toUp
 
 function enter(kind) {
   const name = $('#name').value.trim();
-  if (!name) { $('#homeError').textContent = 'Escreve o teu nome primeiro.'; $('#name').focus(); return; }
+  if (!name) { $('#homeError').textContent = t('home.nameFirst'); $('#name').focus(); return; }
   profile.name = name; saveProfile(); renderWallet();
   const payload = { profile: { name, avatar: profile.avatar, frame: profile.frame, medal: profile.medal }, name: $('#roomName').value, code: $('#code').value };
   socket.emit(kind === 'create' ? 'createRoom' : 'joinRoom', payload, res => {
-    if (res.error) return ($('#homeError').textContent = res.error);
+    if (res.error) return ($('#homeError').textContent = errText(res));
     $('#homeError').textContent = '';
     openRoom(res);
   });
@@ -189,8 +218,8 @@ function openRoom({ room: r, me: m, ai: a }) {
   $('#roomChips').classList.remove('hidden');
   $('#roomTitle').textContent = r.name;
   $('#copyCode').textContent = r.code;
-  $('#messages').innerHTML = '';
-  r.messages.forEach(m2 => addMessage(m2, false));
+  chatLog = [...r.messages];
+  renderChat();
   renderMembers(r.members);
   renderNotes();
   renderSummary();
@@ -203,25 +232,25 @@ function openRoom({ room: r, me: m, ai: a }) {
   setAmbience(r.ambience, false);
   $('#duelArea').classList.add('hidden');
   $('#quizSetup').classList.remove('hidden');
-  if (r.duelActive) showDuelMessage('Há um duelo a decorrer: entras na próxima pergunta.');
+  if (r.duelActive) showDuelMessage(t('duel.running'));
   show('estudar');
 }
 
 const leave = () => { try { history.replaceState(null, '', location.pathname); } catch { /* */ } location.reload(); };
-$('#leave').onclick = () => room ? leave() : toast('Não estás em nenhuma sala.');
+$('#leave').onclick = () => room ? leave() : toast(t('toast.noRoom'));
 $('#leave2').onclick = leave;
 $('#copyCode').onclick = async () => {
-  try { await navigator.clipboard.writeText(room.code); toast('Código copiado! Envia-o aos teus amigos.'); }
-  catch { toast(`Código da sala: ${room.code}`); }
+  try { await navigator.clipboard.writeText(room.code); toast(t('toast.codeCopied')); }
+  catch { toast(t('toast.code', { code: room.code })); }
 };
 
 function renderMembers(list) {
   room.members = list;
   $('#members').innerHTML = list.map(m => {
-    const tag = m.distracted ? '<span class="tag away">distraído 😅</span>'
-      : m.status === 'away' ? '<span class="tag away">fora</span>'
-      : room.timer.state === 'focus' ? '<span class="tag">a estudar 📖</span>' : '';
-    return `<li>${avatarHtml(m.avatar, m.frame)}<span>${esc(m.name)} ${m.medal ? `<span class="medal-tag" title="Medalha">${esc(m.medal)}</span>` : ''}${m.name === me.name ? ' <span class="muted small">(tu)</span>' : ''}</span>${tag}</li>`;
+    const tag = m.distracted ? `<span class="tag away">${t('tag.distracted')}</span>`
+      : m.status === 'away' ? `<span class="tag away">${t('tag.away')}</span>`
+      : room.timer.state === 'focus' ? `<span class="tag">${t('tag.studying')}</span>` : '';
+    return `<li>${avatarHtml(m.avatar, m.frame)}<span>${esc(m.name)} ${m.medal ? `<span class="medal-tag" title="${t('tag.medal')}">${esc(m.medal)}</span>` : ''}${m.name === me.name ? ` <span class="muted small">${t('tag.you')}</span>` : ''}</span>${tag}</li>`;
   }).join('');
   if (view === 'inicio') renderHome();
 }
@@ -232,27 +261,37 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // ---------- chat ----------
-function addMessage(m, live = true) {
+function messageEl(m) {
   const li = document.createElement('li');
   if (m.system) {
     li.className = 'system';
-    li.textContent = m.text;
-  } else {
-    const mine = me && m.author === me.name;
-    const member = room.members.find(x => x.name === m.author);
-    li.className = mine ? 'mine' : '';
-    li.innerHTML = `${avatarHtml(member?.avatar ?? '🙂', member?.frame ?? 'none')}
-      <div class="bubble"><div class="who">${esc(m.author)} ${member?.medal ? esc(member.medal) : ''}</div>${esc(m.text)}</div>
-      ${mine ? '' : `<button class="report" title="Denunciar mensagem" data-id="${esc(m.id)}">⚑</button>`}`;
-    if (live && !mine && view !== 'chat') { unread++; renderUnread(); }
+    li.textContent = typeof m.system === 'object' ? t(`sys.${m.system.k}`, m.system.p) : m.text;
+    return li;
   }
+  const mine = me && m.author === me.name;
+  const member = room.members.find(x => x.name === m.author);
+  li.className = mine ? 'mine' : '';
+  li.innerHTML = `${avatarHtml(member?.avatar ?? '🙂', member?.frame ?? 'none')}
+    <div class="bubble"><div class="who">${esc(m.author)} ${member?.medal ? esc(member.medal) : ''}</div>${esc(m.text)}</div>
+    ${mine ? '' : `<button class="report" title="${t('chat.report')}" data-id="${esc(m.id)}">⚑</button>`}`;
+  return li;
+}
+function renderChat() {
+  const list = $('#messages');
+  list.innerHTML = '';
+  chatLog.slice(-150).forEach(m => list.appendChild(messageEl(m)));
+  list.scrollTop = list.scrollHeight;
+}
+function addMessage(m) {
+  chatLog.push(m);
   const list = $('#messages');
   const atBottom = list.scrollHeight - list.scrollTop - list.clientHeight < 60;
-  list.appendChild(li);
+  list.appendChild(messageEl(m));
+  if (!m.system && m.author !== me?.name && view !== 'chat') { unread++; renderUnread(); }
   if (atBottom || m.author === me?.name) list.scrollTop = list.scrollHeight;
 }
 socket.on('chat', m => room && addMessage(m));
-socket.on('system', text => room && addMessage({ system: true, text }));
+socket.on('system', s => room && addMessage({ system: s }));
 $('#chatForm').onsubmit = e => {
   e.preventDefault();
   const v = $('#chatInput').value.trim();
@@ -264,7 +303,7 @@ $('#messages').addEventListener('click', e => {
   if (!b) return;
   socket.emit('report', { messageId: b.dataset.id });
   b.disabled = true;
-  toast('Obrigado. A mensagem foi denunciada.');
+  toast(t('toast.reported'));
 });
 
 $('.reactions').addEventListener('click', e => {
@@ -286,24 +325,31 @@ socket.on('react', ({ name, emoji }) => {
 
 // ---------- temporizador ----------
 function renderTimer() {
-  const t = room.timer;
-  $('#timerBox').className = `timer ${t.state}`;
-  $('#timerStart').classList.toggle('hidden', t.state !== 'idle');
-  $('#focusMin').classList.toggle('hidden', t.state !== 'idle');
-  $('#timerStop').classList.toggle('hidden', t.state === 'idle');
-  $('#timerLabel').textContent = t.state === 'focus' ? '📖 Foco: nada de TikTok!'
-    : t.state === 'break' ? '☕ Pausa' : 'Pronto para estudar?';
+  if (!room) return;
+  const tm = room.timer;
+  $('#timerBox').className = `timer ${tm.state}`;
+  $('#timerStart').classList.toggle('hidden', tm.state !== 'idle');
+  $('#focusMin').classList.toggle('hidden', tm.state !== 'idle');
+  $('#timerStop').classList.toggle('hidden', tm.state === 'idle');
+  $('#timerLabel').textContent = tm.state === 'focus' ? t('timer.focus') : tm.state === 'break' ? t('timer.break') : t('timer.ready');
   clearInterval(tick);
   const draw = () => {
-    $('#timerClock').textContent = t.state === 'idle' ? fmt(Number($('#focusMin').value) * 60_000) : fmt(t.endsAt - Date.now());
+    $('#timerClock').textContent = tm.state === 'idle' ? fmt(Number($('#focusMin').value) * 60_000) : fmt(tm.endsAt - Date.now());
   };
   draw();
-  if (t.state !== 'idle') tick = setInterval(draw, 500);
+  if (tm.state !== 'idle') tick = setInterval(draw, 500);
 }
 $('#focusMin').onchange = () => renderTimer();
 $('#timerStart').onclick = () => socket.emit('timerStart', Number($('#focusMin').value));
 $('#timerStop').onclick = () => socket.emit('timerStop');
-socket.on('timer', t => { if (!room) return; room.timer = t; renderTimer(); });
+socket.on('timer', tm => { if (!room) return; room.timer = tm; renderTimer(); });
+
+function setFocusMinutes(n) {
+  const sel = $('#focusMin');
+  if (![...sel.options].some(o => Number(o.value) === n)) sel.insertAdjacentHTML('beforeend', `<option value="${n}">${n} min</option>`);
+  sel.value = String(n);
+  renderTimer();
+}
 
 socket.on('focusDone', ({ minutes, rewarded, streak }) => {
   if (!room) return;
@@ -315,12 +361,12 @@ socket.on('focusDone', ({ minutes, rewarded, streak }) => {
     bump({ sessions: 1, minutes, night: hour >= 22 || hour < 4 ? 1 : 0, morning: hour >= 4 && hour < 8 ? 1 : 0, 'max:bestStreak': streak });
     earn(minutes * EARN.perFocusMinute);
     const unlocked = [...AVATARS, ...FRAMES].filter(i => i.need > before && i.need <= profile.minutes);
-    toast(`🎉 Ganhaste ${minutes} min de foco e ${minutes * EARN.perFocusMinute} 🐟!${unlocked.length ? ' Há avatares novos no Perfil 🎨' : ''}`, 5000);
+    toast(t('toast.focusDone', { n: minutes, s: minutes * EARN.perFocusMinute }) + (unlocked.length ? t('toast.newAvatars') : ''), 5000);
   } else {
-    toast('Desta vez distraíste-te… na próxima consegues! 💪', 5000);
+    toast(t('toast.distracted'), 5000);
   }
 });
-socket.on('breakDone', () => room && toast('A pausa acabou. Mais uma ronda? 📚'));
+socket.on('breakDone', () => room && toast(t('toast.breakDone')));
 
 // ---------- sons ----------
 const savedVol = store.get('volume', 0.5);
@@ -342,12 +388,12 @@ function setAmbience(a, announce) {
   if (!Sound.canPlay() || store.get('muted', false)) return;
   Sound.play(a);
   setTimeout(() => $('#soundUnlock').classList.toggle('hidden', Sound.isUnlocked()), 300);
-  if (announce) toast(`🎧 Som da sala: ${$('#ambience').selectedOptions[0].textContent}`);
+  if (announce) toast(t('toast.ambience', { name: t(`amb.${a}`) }));
 }
 socket.on('ambience', ({ ambience, by }) => {
   if (!room) return;
   setAmbience(ambience, true);
-  addMessage({ system: true, text: `${by} mudou o som da sala.` });
+  addMessage({ system: { k: 'ambience', p: { name: by } } });
 });
 
 // ---------- chama, liga e ranking ----------
@@ -357,12 +403,12 @@ function renderProgress() {
   const n = Math.max(1, s.today.people);
   $('#streakBox').innerHTML = `
     <div class="flame ${s.today.lit || s.streak ? '' : 'off'}"><span class="big">🔥</span>
-      <div><b>${s.streak} dia${s.streak === 1 ? '' : 's'} seguido${s.streak === 1 ? '' : 's'}</b><br>
-      <span class="muted small">${s.today.lit ? 'Hoje já está acesa! ✅' : 'Ainda falta para hoje'}</span></div></div>
+      <div><b>${t(s.streak === 1 ? 'flame.days1' : 'flame.days', { n: s.streak })}</b><br>
+      <span class="muted small">${s.today.lit ? t('flame.lit') : t('flame.notYet')}</span></div></div>
     <div class="progress"><div style="width:${pct}%"></div></div>
-    <p class="muted small">Hoje: ${s.today.minutes} / ${s.today.goal} min (15 min × ${n} pessoa${n === 1 ? '' : 's'}). Quem estuda a dobrar salva um amigo!</p>`;
+    <p class="muted small">${t('flame.today', { m: s.today.minutes, g: s.today.goal, n })}</p>`;
   $('#streakBadge').textContent = `🔥 ${s.streak}`;
-  $('#leagueBadge').textContent = `${LEAGUE_MEDALS[room.league.tier]} Liga ${room.league.name}`;
+  $('#leagueBadge').textContent = `${LEAGUE_MEDALS[room.league.tier]} ${t('league.name', { name: t(`tier.${room.league.tier}`) })}`;
   bump({ 'max:bestStreak': s.streak, 'max:bestTier': room.league.tier });
   renderRanking();
   renderLeague();
@@ -376,42 +422,42 @@ socket.on('progress', p => {
 
 function renderLeague() {
   const L = room.league;
-  const last = L.last ? `<br><span class="muted small">Semana passada: ${L.last.place}.º lugar com ${L.last.minutes} min.</span>` : '';
+  const last = L.last ? `<br><span class="muted small">${t('league.last', { place: L.last.place, n: L.last.minutes })}</span>` : '';
   $('#leagueHead').innerHTML = `<span class="medal">${LEAGUE_MEDALS[L.tier]}</span>
-    <div><b>Liga ${esc(L.name)}</b><br><span class="muted small">Todas as segundas-feiras, as melhores salas sobem de liga e as que não estudam descem.</span>${last}</div>`;
+    <div><b>${t('league.name', { name: t(`tier.${L.tier}`) })}</b><br><span class="muted small">${t('league.help')}</span>${last}</div>`;
   $('#leagueBody').innerHTML = L.table.map((r, i) =>
-    `<tr class="${r.me ? 'me' : ''}"><td>${i + 1}</td><td>${esc(r.name)}${r.me ? ' (vocês)' : ''}</td><td>${r.minutes}</td></tr>`).join('');
+    `<tr class="${r.me ? 'me' : ''}"><td>${i + 1}</td><td>${esc(r.name)}${r.me ? ` ${t('league.you')}` : ''}</td><td>${r.minutes}</td></tr>`).join('');
 }
 
 function renderRanking() {
   const rows = Object.entries(room.stats).sort((a, b) => b[1].minutes - a[1].minutes || b[1].duelWins - a[1].duelWins);
   $('#rankingBody').innerHTML = rows.map(([name, s], i) =>
     `<tr class="${name === me.name ? 'me' : ''}"><td>${i + 1}</td><td>${esc(name)}</td><td>${s.minutes}</td><td>${s.sessions}</td><td>${s.duelWins}</td></tr>`).join('')
-    || '<tr><td colspan="5" class="muted">Ainda ninguém estudou aqui.</td></tr>';
+    || `<tr><td colspan="5" class="muted">${t('ranking.empty')}</td></tr>`;
 }
 
 // ---------- calendário ----------
 function renderTests() {
   const tests = room.tests;
-  $('#tests').innerHTML = tests.map(t => `
-    <li><span>📘 ${esc(t.subject)}</span><span class="when ${t.daysLeft <= 3 ? 'soon' : ''}">${whenText(t.daysLeft)}</span>
-    <button class="del" data-test="${esc(t.id)}" title="Apagar">✕</button></li>`).join('')
-    || '<li class="muted small">Nenhum teste marcado.</li>';
-  const soon = tests.find(t => t.daysLeft <= 3);
+  $('#tests').innerHTML = tests.map(x => `
+    <li><span>📘 ${esc(x.subject)}</span><span class="when ${x.daysLeft <= 3 ? 'soon' : ''}">${whenText(x.daysLeft)}</span>
+    <button class="del" data-test="${esc(x.id)}" title="${t('btn.delete')}">✕</button></li>`).join('')
+    || `<li class="muted small">${t('cal.none')}</li>`;
+  const soon = tests.find(x => x.daysLeft <= 3);
   $('#testBanner').classList.toggle('hidden', !soon);
-  if (soon) $('#testBanner').textContent = `⏰ Teste de ${soon.subject} ${whenText(soon.daysLeft)}! Bora fazer um foco juntos?`;
+  if (soon) $('#testBanner').textContent = t('banner.test', { subject: soon.subject, when: whenText(soon.daysLeft) });
   renderGradeTests();
 }
 $('#testDate').min = new Date().toISOString().slice(0, 10);
 $('#testForm').onsubmit = async e => {
   e.preventDefault();
   const res = await emitP('addTest', { subject: $('#testSubject').value, date: $('#testDate').value });
-  $('#testError').textContent = res?.error ?? '';
-  if (!res?.error) { $('#testSubject').value = ''; $('#testDate').value = ''; bump({ tests: 1 }); toast('📅 Teste marcado!'); }
+  $('#testError').textContent = res?.error ? errText(res) : '';
+  if (!res?.error) { $('#testSubject').value = ''; $('#testDate').value = ''; bump({ tests: 1 }); toast(t('toast.testAdded')); }
 };
 $('#tests').addEventListener('click', e => {
   const b = e.target.closest('[data-test]');
-  if (b && confirm('Apagar este teste do calendário?')) socket.emit('removeTest', b.dataset.test);
+  if (b && confirm(t('confirm.test'))) socket.emit('removeTest', b.dataset.test);
 });
 socket.on('tests', tests => { if (!room) return; room.tests = tests; renderTests(); });
 
@@ -419,22 +465,22 @@ socket.on('tests', tests => { if (!room) return; room.tests = tests; renderTests
 function renderNotes() {
   $('#notes').innerHTML = [...room.notes].reverse().map(n => `
     <li><div class="row between"><h4>${esc(n.title)}</h4>
-      ${n.author === me.name || room.owner === me.name ? `<button class="del" data-note="${esc(n.id)}" title="Apagar">✕</button>` : ''}</div>
-      <p>${esc(n.text)}</p><span class="muted small">por ${esc(n.author)}</span></li>`).join('')
-    || '<li class="muted">Ainda não há apontamentos. Partilha o primeiro!</li>';
+      ${n.author === me.name || room.owner === me.name ? `<button class="del" data-note="${esc(n.id)}" title="${t('btn.delete')}">✕</button>` : ''}</div>
+      <p>${esc(n.text)}</p><span class="muted small">${esc(t('notes.by', { name: n.author }))}</span></li>`).join('')
+    || `<li class="muted">${t('notes.empty')}</li>`;
 }
 $('#noteForm').onsubmit = e => {
   e.preventDefault();
   socket.emit('addNote', { title: $('#noteTitle').value, text: $('#noteText').value }, res => {
-    if (res?.error) return toast(res.error);
+    if (res?.error) return toast(errText(res));
     $('#noteTitle').value = ''; $('#noteText').value = '';
     bump({ notes: 1 });
-    earn(EARN.note, 'por partilhares um apontamento');
+    earn(EARN.note, t('toast.earnNote'));
   });
 };
 $('#notes').addEventListener('click', e => {
   const b = e.target.closest('[data-note]');
-  if (b && confirm('Apagar este apontamento?')) socket.emit('removeNote', b.dataset.note);
+  if (b && confirm(t('confirm.note'))) socket.emit('removeNote', b.dataset.note);
 });
 socket.on('note', n => { if (!room) return; room.notes.push(n); renderNotes(); });
 socket.on('noteRemoved', id => { if (!room) return; room.notes = room.notes.filter(n => n.id !== id); renderNotes(); });
@@ -444,28 +490,32 @@ function renderSummary() {
   $('#summary').innerHTML = !s ? '' : `<div class="summary">
     <h3>${esc(s.title)}</h3>
     ${s.sections.map(sec => `<h4>${esc(sec.heading)}</h4><ul>${sec.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul>`).join('')}
-    <div class="must"><b>⭐ Tens mesmo de saber:</b><ul>${s.mustKnow.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>
-    <p class="muted small">Gerado por IA a pedido de ${esc(s.by)} a partir de ${s.notes} apontamento(s). Confirma sempre com o livro.</p></div>`;
+    <div class="must"><b>${t('summary.must')}</b><ul>${s.mustKnow.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>
+    <p class="muted small">${esc(t('summary.by', { name: s.by, n: s.notes }))}</p></div>`;
 }
-$('#aiSummary').onclick = () => withAI($('#aiSummary'), 'A IA está a ler os apontamentos…', () => emitP('aiSummary'), () => toast('Resumo pronto! 📄'));
+$('#aiSummary').onclick = () => withAI($('#aiSummary'), t('ai.reading'), () => emitP('aiSummary', { lang: getLang() }), () => toast(t('toast.summary')));
 socket.on('summary', s => { if (!room) return; room.summary = s; renderSummary(); });
 
 // ---------- IA ----------
 function renderAiQuota() {
   const q = ai.quota;
-  $('#aiQuota').textContent = !ai.enabled ? '⚠️ IA desligada' : q?.limit == null ? '✨ IA ilimitada (Premium)' : `${q.left}/${q.limit} pedidos de IA esta semana`;
+  $('#aiQuota').textContent = !ai.enabled ? t('ai.off') : q?.limit == null ? t('ai.unlimited') : t('ai.quota', { left: q.left, limit: q.limit });
 }
 socket.on('aiQuota', q => { if (!room) return; ai.quota = q; renderAiQuota(); });
 
 async function withAI(button, waiting, call, onOk) {
-  if (!ai.enabled) return toast('A IA ainda não está ligada nesta app.');
+  if (!ai.enabled) return toast(t('err.ai_off'));
   button.disabled = true;
   const old = button.textContent;
   button.textContent = '⏳ …';
   toast(waiting, 60000);
   try {
     const res = await call();
-    if (res?.error) { toast(res.error, 5000); return res; }
+    if (res?.error) {
+      toast(errText(res), 5000);
+      if (res.quota) $('#aiStatus').innerHTML = `${esc(errText(res))} <button class="ghost small-btn" data-view="premium">⭐ ${t('prem.upsell')}</button>`;
+      return res;
+    }
     $('#toast').classList.add('hidden');
     onOk?.(res);
     return res;
@@ -482,17 +532,17 @@ $('#aiPhoto').onchange = async e => {
   e.target.value = '';
   if (!file) return;
   try { makeQuestions({ image: await shrinkImage(file) }, $('#aiTextToggle')); }
-  catch { toast('Não consegui abrir essa imagem.'); }
+  catch { toast(t('ai.badImage')); }
 };
 
 async function makeQuestions(payload, button) {
-  $('#aiStatus').textContent = '🤖 A IA está a ler a matéria e a criar perguntas… (pode demorar uns segundos)';
-  const res = await withAI(button, '🤖 A criar perguntas…', () => emitP('aiQuestions', payload), r => {
-    $('#aiStatus').textContent = `✅ ${r.count} perguntas novas sobre ${r.subject}. Já podes começar um duelo!`;
+  $('#aiStatus').textContent = t('ai.working');
+  const res = await withAI(button, t('ai.making'), () => emitP('aiQuestions', { ...payload, lang: getLang() }), r => {
+    $('#aiStatus').textContent = t('ai.done', { n: r.count, subject: r.subject });
     $('#aiText').value = '';
     bump({ aiQuestions: 1 });
   });
-  if (res?.error) $('#aiStatus').textContent = `⚠️ ${res.error}`;
+  if (res?.error && !res.quota) $('#aiStatus').textContent = `⚠️ ${errText(res)}`;
 }
 
 function shrinkImage(file) {
@@ -517,42 +567,42 @@ const DIFF = ['', '●○○', '●●○', '●●●'];
 function renderQuestions() {
   $('#qCount').textContent = room.questions.length;
   $('#questions').innerHTML = [...room.questions].reverse().map(q => `
-    <li><span>${esc(q.question)} <span class="diff" title="Dificuldade">${DIFF[q.difficulty ?? 2]}</span>
+    <li><span>${esc(q.question)} <span class="diff" title="${t('diff.title')}">${DIFF[q.difficulty ?? 2]}</span>
       ${q.ai ? '<span class="tag-ai">IA</span>' : ''}
       <span class="muted small">· ${esc(q.topic ? `${q.topic} · ` : '')}${esc(q.author)}</span></span>
-    ${q.author === me.name || room.owner === me.name ? `<button class="del" data-q="${esc(q.id)}" title="Apagar">✕</button>` : ''}</li>`).join('');
+    ${q.author === me.name || room.owner === me.name ? `<button class="del" data-q="${esc(q.id)}" title="${t('btn.delete')}">✕</button>` : ''}</li>`).join('');
 }
 $('#qForm').onsubmit = e => {
   e.preventDefault();
   const opts = $$('#qForm .opt').map(i => i.value.trim());
   const right = Number(document.querySelector('#qForm input[name=right]:checked').value);
-  if (!opts[right]) return ($('#quizError').textContent = 'A resposta certa que marcaste está vazia.');
+  if (!opts[right]) return ($('#quizError').textContent = t('q.rightEmpty'));
   const kept = opts.map((text, i) => ({ text, i })).filter(o => o.text);
   const q = {
     question: $('#qText').value, options: kept.map(o => o.text), answer: kept.findIndex(o => o.i === right),
     topic: $('#qTopic').value, difficulty: Number($('#qDiff').value),
   };
   socket.emit('addQuestion', q, res => {
-    if (res?.error) return ($('#quizError').textContent = res.error);
+    if (res?.error) return ($('#quizError').textContent = errText(res));
     $('#quizError').textContent = '';
     const topic = $('#qTopic').value;
     $('#qForm').reset();
     $('#qTopic').value = topic;
     $('#qText').focus();
     bump({ questions: 1 });
-    earn(EARN.question, 'por escreveres uma pergunta');
+    earn(EARN.question, t('toast.earnQuestion'));
   });
 };
 $('#questions').addEventListener('click', e => {
   const b = e.target.closest('[data-q]');
-  if (b && confirm('Apagar esta pergunta?')) socket.emit('removeQuestion', b.dataset.q);
+  if (b && confirm(t('confirm.question'))) socket.emit('removeQuestion', b.dataset.q);
 });
 socket.on('question', q => { if (!room) return; room.questions.push(q); renderQuestions(); });
 socket.on('questionRemoved', id => { if (!room) return; room.questions = room.questions.filter(q => q.id !== id); renderQuestions(); });
 
 // ---------- duelos ----------
 $('#duelStart').onclick = () => socket.emit('duelStart', { mode: $('#duelMode').value }, res => {
-  $('#quizError').textContent = res?.error ?? '';
+  $('#quizError').textContent = res?.error ? errText(res) : '';
 });
 function showDuel(html) {
   $('#quizSetup').classList.add('hidden');
@@ -565,9 +615,9 @@ socket.on('duelStarting', ({ by, mode, total, players }) => {
   if (!room) return;
   show('duelos');
   duel = { mode, players, lifelines: { fifty: true, ask: true }, alive: players };
-  const title = mode === 'eliminacao' ? '🛡️ Eliminação: quem erra sai!' : `⚡ ${total} perguntas, prepara-te!`;
-  showDuel(`<p class="muted">${esc(by)} começou um duelo</p><p class="q">${title}</p>
-    ${mode === 'eliminacao' ? '<p class="muted small">As perguntas vão ficando mais difíceis. Tens um 50/50 e podes perguntar à sala uma vez.</p>' : ''}`);
+  const title = mode === 'eliminacao' ? t('duel.elimTitle') : t('duel.classicTitle', { n: total });
+  showDuel(`<p class="muted">${esc(t('duel.started', { name: by }))}</p><p class="q">${title}</p>
+    ${mode === 'eliminacao' ? `<p class="muted small">${t('duel.elimHelp')}</p>` : ''}`);
 });
 
 socket.on('duelQuestion', q => {
@@ -578,15 +628,15 @@ socket.on('duelQuestion', q => {
   const elim = q.mode === 'eliminacao';
   const canPlay = elim ? q.alive.includes(me.name) : true;
   showDuel(`
-    <p class="muted">Pergunta ${q.index + 1} de ${q.total} <span class="diff">${DIFF[q.difficulty ?? 2]}</span></p>
+    <p class="muted">${t('duel.qOf', { i: q.index + 1, n: q.total })} <span class="diff">${DIFF[q.difficulty ?? 2]}</span></p>
     <div class="bar"><div id="duelBar" style="width:100%"></div></div>
     <p class="q">${esc(q.question)}</p>
     <div class="answers">${q.options.map((o, i) => `<button data-a="${i}" ${canPlay ? '' : 'disabled'}>${esc(o)}<span class="vote"></span></button>`).join('')}</div>
     ${elim && canPlay ? `<div class="lifelines">
-      <button id="lfFifty" ${duel.lifelines.fifty && q.options.length > 2 ? '' : 'disabled'}>✂️ 50/50</button>
-      <button id="lfAsk" ${duel.lifelines.ask ? '' : 'disabled'}>🙋 Perguntar à sala</button></div>` : ''}
+      <button id="lfFifty" ${duel.lifelines.fifty && q.options.length > 2 ? '' : 'disabled'}>${t('btn.fifty')}</button>
+      <button id="lfAsk" ${duel.lifelines.ask ? '' : 'disabled'}>${t('btn.ask')}</button></div>` : ''}
     ${elim ? `<div class="alive">${duel.players.map(p => `<span class="${q.alive.includes(p) ? '' : 'out'}">${esc(p)}</span>`).join('')}</div>` : ''}
-    <p id="duelFeedback" class="muted">${canPlay ? '' : 'Foste eliminado: agora és espectador 👀'}</p>
+    <p id="duelFeedback" class="muted">${canPlay ? '' : t('duel.spectator')}</p>
     <div id="duelExplain"></div>`);
   const total = q.endsAt - Date.now();
   clearInterval(duelTick);
@@ -601,7 +651,7 @@ $('#duelArea').addEventListener('click', async e => {
   if (e.target.closest('#lfFifty')) {
     e.target.disabled = true;
     const res = await emitP('duelFifty');
-    if (res?.error) return toast(res.error);
+    if (res?.error) return toast(errText(res));
     duel.lifelines.fifty = false;
     for (const i of res.hide) $(`#duelArea [data-a="${i}"]`)?.classList.add('hidden-opt');
     return;
@@ -609,13 +659,13 @@ $('#duelArea').addEventListener('click', async e => {
   if (e.target.closest('#lfAsk')) {
     e.target.disabled = true;
     const res = await emitP('duelAsk');
-    if (res?.error) return toast(res.error);
+    if (res?.error) return toast(errText(res));
     duel.lifelines.ask = false;
     $$('#duelArea [data-a]').forEach((b, i) => {
       const pct = res.total ? Math.round((res.votes[i] / res.total) * 100) : 0;
-      b.querySelector('.vote').textContent = res.total ? `${pct}% da sala` : '';
+      b.querySelector('.vote').textContent = res.total ? t('duel.pct', { n: pct }) : '';
     });
-    if (!res.total) toast('Ainda ninguém respondeu… estás por tua conta! 😅');
+    if (!res.total) toast(t('duel.nobody'));
     return;
   }
   const b = e.target.closest('[data-a]');
@@ -624,7 +674,7 @@ $('#duelArea').addEventListener('click', async e => {
   b.classList.add('picked');
   $$('#duelArea [data-a]').forEach(x => (x.disabled = true));
   const res = await emitP('duelAnswer', duel.pick);
-  if (res) $('#duelFeedback').textContent = 'Resposta enviada! A aguardar os outros…';
+  if (res) $('#duelFeedback').textContent = t('duel.sent');
 });
 
 socket.on('duelReveal', ({ answer, scores, eliminated, qid }) => {
@@ -637,19 +687,19 @@ socket.on('duelReveal', ({ answer, scores, eliminated, qid }) => {
   const fb = $('#duelFeedback');
   const playing = duel.mode !== 'eliminacao' || duel.q.alive.includes(me.name);
   if (!fb || !playing) return;
-  const verdict = duel.pick === answer ? '✅ Certo!' : duel.pick === null ? '⏰ Não respondeste.' : '❌ Errado.';
+  const verdict = duel.pick === answer ? t('duel.right') : duel.pick === null ? t('duel.timeout') : t('duel.wrong');
   const extra = duel.mode === 'eliminacao'
-    ? (eliminated.length ? `<br>💥 Eliminados: ${eliminated.map(esc).join(', ')}` : '<br>Ninguém saiu desta vez!')
+    ? `<br>${eliminated.length ? esc(t('duel.out', { names: eliminated.join(', ') })) : t('duel.noneOut')}`
     : `<br>${scores.slice(0, 3).map((s, i) => `${['🥇', '🥈', '🥉'][i]} ${esc(s.name)} ${s.points}`).join(' · ')}`;
   fb.innerHTML = verdict + extra;
   if (duel.pick !== answer && ai.enabled) {
-    $('#duelExplain').innerHTML = '<button id="explainBtn" class="ai-btn">🤖 Porque é que errei?</button>';
+    $('#duelExplain').innerHTML = `<button id="explainBtn" class="ai-btn">${t('btn.whyWrong')}</button>`;
     $('#explainBtn').onclick = async () => {
       $('#explainBtn').disabled = true;
-      $('#explainBtn').textContent = '⏳ A pensar…';
-      const res = await emitP('aiExplain', { qid, chosen: duel?.pick ?? null });
+      $('#explainBtn').textContent = t('ai.thinking');
+      const res = await emitP('aiExplain', { qid, chosen: duel?.pick ?? null, lang: getLang() });
       $('#duelExplain').innerHTML = res?.error
-        ? `<p class="error">${esc(res.error)}</p>`
+        ? `<p class="error">${esc(errText(res))}</p>`
         : `<div class="explain">🤖 ${esc(res.explanation)}</div>`;
     };
   }
@@ -661,12 +711,12 @@ socket.on('duelEnd', ({ mode, ranking, winners }) => {
   const won = winners.includes(me.name);
   if (won) { bump({ duelWins: 1, elimWins: mode === 'eliminacao' ? 1 : 0 }); earn(EARN.duelWin); }
   const rows = mode === 'eliminacao'
-    ? ranking.map(r => `<li><b>${esc(r.name)}</b>: ${r.points} certa${r.points === 1 ? '' : 's'}${r.survived ? ' 🛡️' : ''}</li>`)
-    : ranking.map(r => `<li><b>${esc(r.name)}</b>: ${r.points} pontos</li>`);
-  showDuel(`<p class="q">${won ? `🏆 Ganhaste! +${EARN.duelWin} 🐟` : '🏁 Fim do duelo!'}</p>
-    ${winners.length ? `<p>Vencedor${winners.length > 1 ? 'es' : ''}: <b>${winners.map(esc).join(', ')}</b></p>` : '<p>Ninguém sobreviveu 😅</p>'}
-    <ol>${rows.join('') || '<li>Ninguém respondeu 😴</li>'}</ol>
-    <button id="duelBack">Voltar</button>`);
+    ? ranking.map(r => `<li><b>${esc(r.name)}</b>: ${t(r.points === 1 ? 'duel.correct1' : 'duel.correct', { n: r.points })}${r.survived ? ' 🛡️' : ''}</li>`)
+    : ranking.map(r => `<li><b>${esc(r.name)}</b>: ${t('duel.points', { n: r.points })}</li>`);
+  showDuel(`<p class="q">${won ? t('duel.won', { n: EARN.duelWin }) : t('duel.end')}</p>
+    ${winners.length ? `<p>${esc(t(winners.length > 1 ? 'duel.winners' : 'duel.winner', { names: winners.join(', ') }))}</p>` : `<p>${t('duel.noSurvivor')}</p>`}
+    <ol>${rows.join('') || `<li>${t('duel.noAnswers')}</li>`}</ol>
+    <button id="duelBack">${t('btn.back')}</button>`);
   $('#duelBack').onclick = () => { $('#duelArea').classList.add('hidden'); $('#quizSetup').classList.remove('hidden'); };
   duel = null;
 });
@@ -675,47 +725,319 @@ socket.on('duelEnd', ({ mode, ranking, winners }) => {
 function renderGradeTests() {
   const sel = $('#gradeTest');
   const v = sel.value;
-  sel.innerHTML = '<option value="">Sem teste</option>' + room.tests.map(t => `<option value="${esc(t.id)}">${esc(t.subject)} (${whenText(t.daysLeft)})</option>`).join('');
+  sel.innerHTML = `<option value="">${t('grade.noTest')}</option>` + room.tests.map(x => `<option value="${esc(x.id)}">${esc(x.subject)} (${whenText(x.daysLeft)})</option>`).join('');
   if ([...sel.options].some(o => o.value === v)) sel.value = v;
   else if (room.tests[0]) sel.value = room.tests[0].id;
 }
 $('#aiGrade').onclick = () => {
-  if (!room) return toast('Entra numa sala e joga uns duelos primeiro.');
-  withAI($('#aiGrade'), '🔮 A analisar as tuas respostas…', () => emitP('aiGrade', { testId: $('#gradeTest').value }), g => {
+  if (!room) return toast(t('grade.needRoom'));
+  withAI($('#aiGrade'), t('grade.analyzing'), () => emitP('aiGrade', { testId: $('#gradeTest').value, lang: getLang() }), g => {
+    const list = a => a.map(s => `<li>${esc(s)}</li>`).join('') || `<li>${t('grade.noData')}</li>`;
     $('#grade').innerHTML = `<div class="grade">
       <div class="row wrap"><span class="score">~${g.estimate}%</span>
-        <span class="muted">confiança ${esc(g.confidence)}<br>com base em ${g.answered} respostas (${g.accuracy}% certas)</span></div>
+        <span class="muted">${t('grade.conf', { c: t(`conf.${g.confidence}`) })}<br>${t('grade.based', { n: g.answered, p: g.accuracy })}</span></div>
       <p><b>${esc(g.message)}</b></p>
       <div class="cols">
-        <div><b>💪 Pontos fortes</b><ul>${g.strengths.map(s => `<li>${esc(s)}</li>`).join('') || '<li>Ainda sem dados</li>'}</ul></div>
-        <div><b>🎯 A melhorar</b><ul>${g.toImprove.map(s => `<li>${esc(s)}</li>`).join('') || '<li>Ainda sem dados</li>'}</ul></div>
+        <div><b>${t('grade.strengths')}</b><ul>${list(g.strengths)}</ul></div>
+        <div><b>${t('grade.improve')}</b><ul>${list(g.toImprove)}</ul></div>
       </div>
-      <b>🗓️ Plano</b><ol>${g.plan.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
-      <p class="muted small">É só uma estimativa feita por IA. O que conta é o que estudas! 😉</p></div>`;
+      <b>${t('grade.plan')}</b><ol>${g.plan.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+      <p class="muted small">${t('grade.note')}</p></div>`;
   });
+};
+
+// ---------- PLANO DE ESTUDO ----------
+const planAnswers = () => store.get('planAnswers', null);
+const doneMap = () => store.get('planDone', {});
+
+function blockHtml(b, today) {
+  const done = !!doneMap()[b.id];
+  return `<div class="block kind-${b.kind} ${done ? 'done' : ''}">
+    <b>${esc(subjName(b.subject))}</b>
+    <span class="meta">${t(`plan.kind.${b.kind}`)} · ${b.minutes} min</span>
+    <div class="acts">
+      ${today && !done ? `<button data-start="${b.minutes}">${t('plan.start')}</button>` : ''}
+      <label><input type="checkbox" data-done="${esc(b.id)}" ${done ? 'checked' : ''}> ${t('plan.done')}</label>
+    </div></div>`;
+}
+
+function renderPlan() {
+  const a = planAnswers();
+  if (!a) {
+    $('#planSummary').textContent = t('home.noPlan');
+    $('#planWeek').innerHTML = `<div class="card empty" style="grid-column:1/-1"><span class="empty-icon">🗓️</span><p>${t('home.noPlan')}</p><button data-ob="start">${t('home.makePlan')}</button></div>`;
+    $('#planTips').innerHTML = '';
+    $('#planProgress').textContent = '';
+    $('#planBar').style.width = '0%';
+    $('#planNeedRoom').classList.add('hidden');
+    return;
+  }
+  const plan = buildPlan(a);
+  const todayIdx = (new Date().getDay() + 6) % 7;
+  $('#planSummary').textContent = t('plan.summary', {
+    min: a.minutes, days: a.days.length, when: lower(plain(t(`when.${a.when}`))), goal: lower(plain(t(`goal.${a.goal}`))),
+  });
+  const all = plan.week.flatMap(d => d.blocks);
+  const done = all.filter(b => doneMap()[b.id]).length;
+  $('#planProgress').textContent = t('plan.progress', { d: done, t: all.length });
+  $('#planBar').style.width = `${all.length ? Math.round((done / all.length) * 100) : 0}%`;
+  $('#planNeedRoom').classList.toggle('hidden', !!room);
+  $('#planWeek').innerHTML = plan.week.map(d => {
+    const date = new Date(`${d.date}T12:00:00`).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
+    const isToday = d.day === todayIdx;
+    return `<div class="day-col ${isToday ? 'today' : ''}">
+      <header><span>${isToday ? t('plan.today') : t(`dayL.${d.day}`)}</span><small>${esc(date)}</small></header>
+      <div class="blocks-wrap">${d.blocks.length ? d.blocks.map(b => blockHtml(b, isToday)).join('') : `<div class="rest">😌 ${t('plan.rest')}</div>`}</div>
+    </div>`;
+  }).join('');
+  const tips = planTips(a).map(k => t(k));
+  if (a.test?.date && daysUntil(a.test.date) >= 0) tips.unshift(t('tip.test', { subject: subjName(a.test.subject), when: whenText(daysUntil(a.test.date)) }));
+  $('#planTips').innerHTML = tips.map(x => `<li>${esc(x)}</li>`).join('');
+}
+
+function renderPlanToday() {
+  const a = planAnswers();
+  const box = $('#planToday');
+  if (!a) {
+    box.innerHTML = `<h3>${t('home.planToday')}</h3><p class="muted">${t('home.noPlan')}</p><div><button data-ob="start">${t('home.makePlan')}</button></div>`;
+    return;
+  }
+  const plan = buildPlan(a);
+  const todayIdx = (new Date().getDay() + 6) % 7;
+  const blocks = plan.week[todayIdx].blocks;
+  box.innerHTML = `<div class="row between wrap"><h3>${t('home.planToday')}</h3><button class="ghost small-btn" data-view="plano">${t('home.seePlan')}</button></div>
+    ${blocks.length ? `<div class="blocks">${blocks.map(b => blockHtml(b, true)).join('')}</div>` : `<p class="muted">${t('home.planRest')}</p>`}`;
+}
+
+document.addEventListener('change', e => {
+  const c = e.target.closest('[data-done]');
+  if (!c) return;
+  const m = doneMap();
+  if (c.checked) m[c.dataset.done] = true; else delete m[c.dataset.done];
+  store.set('planDone', m);
+  if (view === 'plano') renderPlan(); else renderHome();
+});
+document.addEventListener('click', e => {
+  const s = e.target.closest('[data-start]');
+  if (s) {
+    if (!room) { toast(t('plan.needRoom'), 5000); show('inicio'); return; }
+    setFocusMinutes(Number(s.dataset.start));
+    show('estudar');
+    return;
+  }
+  if (e.target.closest('[data-ob]')) openOnboarding(true);
+});
+$('#redoPlan').onclick = () => openOnboarding(true);
+$('#redoPlan2').onclick = () => openOnboarding(true);
+
+// ---------- QUESTIONÁRIO INICIAL ----------
+let ob = null; // { i, a }
+const OB_STEPS = ['lang', 'name', 'year', 'subjects', 'hard', 'goal', 'minutes', 'days', 'when', 'test'];
+
+function openOnboarding(redo = false) {
+  const prev = planAnswers();
+  ob = {
+    i: redo ? 1 : 0,
+    a: {
+      name: profile.name, year: prev?.year ?? null, subjects: prev?.subjects ?? null, hard: prev?.hard ?? [],
+      goal: prev?.goal ?? null, minutes: prev?.minutes ?? null, days: prev?.days ?? [0, 1, 2, 3, 4], when: prev?.when ?? null,
+      test: prev?.test ?? null,
+    },
+  };
+  $('#onboarding').classList.remove('hidden');
+  renderOb();
+}
+
+function closeOnboarding() {
+  $('#onboarding').classList.add('hidden');
+  store.set('onboarded', true);
+  ob = null;
+}
+
+const opt = (val, label, on, attr = 'data-v') => `<button ${attr}="${esc(val)}" class="${on ? 'on' : ''}">${esc(label)}</button>`;
+
+function renderOb() {
+  const step = OB_STEPS[ob.i];
+  const a = ob.a;
+  $('#obStep').textContent = t('ob.step', { i: ob.i + 1, n: OB_STEPS.length });
+  $('#obBar').style.width = `${Math.round(((ob.i + 1) / OB_STEPS.length) * 100)}%`;
+  $('#obBack').style.visibility = ob.i === 0 ? 'hidden' : 'visible';
+  $('#obNext').textContent = ob.i === OB_STEPS.length - 1 ? t('ob.finish') : t('ob.next');
+  $('#obError').textContent = '';
+  let html = '';
+  switch (step) {
+    case 'lang':
+      html = `<h2>${t('ob.lang')}</h2><p></p><div class="ob-opts">${Object.entries(LANGS).map(([k, v]) => opt(k, v, getLang() === k)).join('')}</div>`;
+      break;
+    case 'name':
+      html = `<h2>${t('ob.name')}</h2><p>${t('ob.nameHelp')}</p><input id="obName" type="text" maxlength="20" value="${esc(a.name)}" placeholder="${esc(t('ph.name'))}" autocomplete="off">`;
+      break;
+    case 'year':
+      html = `<h2>${t('ob.year')}</h2><p></p><div class="ob-opts three">${YEARS.map(y => opt(y, /^\d+$/.test(y) ? t('year.n', { n: y }) : t(`year.${y}`), a.year === y)).join('')}</div>`;
+      break;
+    case 'subjects':
+      a.subjects ??= suggestedSubjects(a.year);
+      html = `<h2>${t('ob.subjects')}</h2><p>${t('ob.pickMany')}</p><div class="ob-opts three">${SUBJECTS.map(s => opt(s, t(`subj.${s}`), a.subjects.includes(s))).join('')}</div>`;
+      break;
+    case 'hard':
+      html = `<h2>${t('ob.hard')}</h2><p>${t('ob.hardHelp')}</p><div class="ob-opts three">${a.subjects.map(s => opt(s, t(`subj.${s}`), a.hard.includes(s))).join('')}</div>`;
+      break;
+    case 'goal':
+      html = `<h2>${t('ob.goal')}</h2><p></p><div class="ob-opts">${GOALS.map(g => opt(g, t(`goal.${g}`), a.goal === g)).join('')}</div>`;
+      break;
+    case 'minutes':
+      html = `<h2>${t('ob.minutes')}</h2><p></p><div class="ob-opts three">${MINUTES.map(m => opt(m, t('timer.min', { n: m }), a.minutes === m)).join('')}</div>`;
+      break;
+    case 'days':
+      html = `<h2>${t('ob.days')}</h2><p>${t('ob.pickMany')}</p><div class="ob-opts days">${[0, 1, 2, 3, 4, 5, 6].map(d => opt(d, t(`day.${d}`), a.days.includes(d))).join('')}</div>`;
+      break;
+    case 'when':
+      html = `<h2>${t('ob.when')}</h2><p></p><div class="ob-opts three">${WHEN.map(w => opt(w, t(`when.${w}`), a.when === w)).join('')}</div>`;
+      break;
+    case 'test':
+      html = `<h2>${t('ob.test')}</h2><p>${t('ob.testHelp')}</p>
+        <div class="ob-opts">${opt('none', t('ob.noTest'), !a.test, 'data-notest')}</div>
+        <div class="ob-test">
+          <select id="obTestSubj">${a.subjects.map(s => `<option value="${s}" ${a.test?.subject === s ? 'selected' : ''}>${esc(t(`subj.${s}`))}</option>`).join('')}</select>
+          <input id="obTestDate" type="date" min="${new Date().toISOString().slice(0, 10)}" value="${esc(a.test?.date ?? '')}" aria-label="${esc(t('aria.testDate'))}">
+        </div>`;
+      break;
+  }
+  $('#obBody').innerHTML = html;
+  $('#obName')?.focus();
+}
+
+$('#obBody').addEventListener('click', e => {
+  if (!ob) return;
+  const step = OB_STEPS[ob.i];
+  const a = ob.a;
+  if (e.target.closest('[data-notest]')) { a.test = null; $('#obTestDate').value = ''; renderOb(); return; }
+  const b = e.target.closest('[data-v]');
+  if (!b) return;
+  const v = b.dataset.v;
+  const toggle = (list, x) => (list.includes(x) ? list.filter(y => y !== x) : [...list, x]);
+  switch (step) {
+    case 'lang': changeLang(v); translateDom($('#onboarding')); break;
+    case 'year': if (a.year !== v) a.subjects = null; a.year = v; break;
+    case 'subjects': a.subjects = toggle(a.subjects, v); a.hard = a.hard.filter(h => a.subjects.includes(h)); break;
+    case 'hard': a.hard = toggle(a.hard, v); break;
+    case 'goal': a.goal = v; break;
+    case 'minutes': a.minutes = Number(v); break;
+    case 'days': a.days = toggle(a.days, Number(v)).sort(); break;
+    case 'when': a.when = v; break;
+  }
+  renderOb();
+  // nas perguntas de uma só resposta, avança logo
+  if (['year', 'goal', 'minutes', 'when'].includes(step)) setTimeout(() => obNext(), 180);
+});
+$('#obBody').addEventListener('change', e => {
+  if (!ob || OB_STEPS[ob.i] !== 'test') return;
+  const date = $('#obTestDate').value;
+  ob.a.test = date ? { subject: $('#obTestSubj').value, date } : null;
+  $('[data-notest]').classList.toggle('on', !ob.a.test);
+});
+$('#obBody').addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'obName') obNext(); });
+
+function obValidate() {
+  const step = OB_STEPS[ob.i];
+  const a = ob.a;
+  if (step === 'name') {
+    a.name = $('#obName').value.trim();
+    if (!a.name) return t('ob.needName');
+  }
+  if (['year', 'goal', 'minutes', 'when'].includes(step) && a[step] == null) return t('ob.pickOne');
+  if (step === 'subjects' && !a.subjects.length) return t('ob.needSubject');
+  if (step === 'days' && !a.days.length) return t('ob.needDay');
+  return null;
+}
+
+function obNext() {
+  if (!ob) return;
+  const err = obValidate();
+  if (err) { $('#obError').textContent = err; return; }
+  if (ob.i < OB_STEPS.length - 1) { ob.i++; renderOb(); return; }
+  // fim: guarda e cria o plano
+  const { name, ...answers } = ob.a;
+  profile.name = name;
+  saveProfile();
+  $('#name').value = name;
+  store.set('planAnswers', answers);
+  closeOnboarding();
+  renderWallet();
+  show('plano');
+  toast(t('ob.done'), 4000);
+}
+$('#obNext').onclick = obNext;
+$('#obBack').onclick = () => { if (ob && ob.i > 0) { ob.i--; renderOb(); } };
+$('#obSkip').onclick = () => { closeOnboarding(); show('inicio'); };
+
+// ---------- PREMIUM ----------
+let billing = 'month';
+const PLANS = [
+  { id: 'free', month: 0, year: 0, features: ['rooms', 'focus', 'ai30', 'plan', 'medals'] },
+  { id: 'premium', month: 2.99, year: 24.99, hl: true, features: ['allFree', 'aiUnl', 'grade', 'planAi', 'stats', 'cosm'] },
+  { id: 'family', month: 4.99, year: 39.99, features: ['allPrem', 'kids', 'report'] },
+  { id: 'school', perStudent: 1, features: ['allPrem', 'teacher', 'classes', 'support'] },
+];
+const planPrice = p => p.perStudent ? `${money(p.perStudent)}${t('prem.perStudent')}`
+  : p.month === 0 ? money(0)
+  : billing === 'year' ? `${money(p.year)}${t('prem.perYear')}` : `${money(p.month)}${t('prem.perMonth')}`;
+
+function renderPremium() {
+  const pr = PLANS[1];
+  $('#saveTag').textContent = t('prem.save', { n: Math.round((1 - pr.year / (pr.month * 12)) * 100) });
+  $$('[data-billing]').forEach(b => b.classList.toggle('active', b.dataset.billing === billing));
+  $('#planCards').innerHTML = PLANS.map(p => {
+    const price = planPrice(p);
+    const [amount, per] = p.month === 0 && !p.perStudent ? [price, ''] : splitPrice(price);
+    const btn = p.id === 'free' ? `<button class="ghost" disabled>${t('prem.current')}</button>`
+      : `<button data-ask="${p.id}" class="${p.hl ? '' : 'ghost'}">${t(p.id === 'school' ? 'prem.contact' : 'prem.ask')}</button>`;
+    return `<div class="plan-card ${p.hl ? 'hl' : ''}">
+      ${p.hl ? `<span class="pop">${t('prem.popular')}</span>` : ''}
+      <h3>${t(`prem.${p.id}`)}</h3>
+      <div class="price">${esc(amount)}<small>${esc(per)}</small></div>
+      <ul>${p.features.map(f => `<li>${t(`prem.f.${f}`)}</li>`).join('')}</ul>
+      ${btn}</div>`;
+  }).join('');
+}
+function splitPrice(s) {
+  const i = s.lastIndexOf('/');
+  return i > 0 ? [s.slice(0, i), s.slice(i)] : [s, ''];
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-billing]');
+  if (b) { billing = b.dataset.billing; renderPremium(); return; }
+  const ask = e.target.closest('[data-ask]');
+  if (ask) {
+    const p = PLANS.find(x => x.id === ask.dataset.ask);
+    $('#askMsg').value = t('prem.askMsg', { plan: t(`prem.${p.id}`), price: planPrice(p) });
+    $('#askBox').classList.remove('hidden');
+    $('#askBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+$('#copyAsk').onclick = async () => {
+  try { await navigator.clipboard.writeText($('#askMsg').value); toast(t('toast.copied')); }
+  catch { $('#askMsg').select(); toast(t('toast.copyFail')); }
 };
 
 // ---------- LOJA ----------
 const buying = new Set();
 function renderShop() {
   $('#shopScales').textContent = profile.scales;
-  $('#earnList').innerHTML = `
-    <li>⏱️ Cada minuto de foco: <b>+${EARN.perFocusMinute}</b></li>
-    <li>⚔️ Ganhar um duelo: <b>+${EARN.duelWin}</b></li>
-    <li>📝 Partilhar um apontamento: <b>+${EARN.note}</b></li>
-    <li>✍️ Escrever uma pergunta: <b>+${EARN.question}</b></li>
-    <li>🏅 Cada conquista: <b>+${EARN.achievement}</b></li>
-    <li>🎁 Boas-vindas: <b>+50</b> (já recebeste)</li>`;
+  $('#earnList').innerHTML = [
+    ['earn.focus', EARN.perFocusMinute], ['earn.duel', EARN.duelWin], ['earn.note', EARN.note],
+    ['earn.question', EARN.question], ['earn.ach', EARN.achievement], ['earn.welcome', 50],
+  ].map(([k, n]) => `<li>${t(k)}: <b>+${n}</b></li>`).join('');
   $('#shopGrid').innerHTML = MEDALS.map(m => {
     const owned = profile.medals.includes(m.id);
     const can = profile.scales >= m.price;
     const confirming = buying.has(m.id);
-    const btn = owned ? '<button class="ghost" disabled>✓ É tua</button>'
-      : confirming ? `<button data-buy="${m.id}" data-sure="1">Confirmar: ${m.price} 🐟</button>`
-      : `<button data-buy="${m.id}" ${can ? '' : 'disabled'}>${can ? 'Comprar' : `Faltam ${m.price - profile.scales} 🐟`}</button>`;
+    const btn = owned ? `<button class="ghost" disabled>${t('shop.mine')}</button>`
+      : confirming ? `<button data-buy="${m.id}" data-sure="1">${t('shop.confirm', { n: m.price })}</button>`
+      : `<button data-buy="${m.id}" ${can ? '' : 'disabled'}>${can ? t('shop.buy') : t('shop.missing', { n: m.price - profile.scales })}</button>`;
     return `<div class="medal-card ${owned ? 'owned' : ''}">
-      <span class="mi">${m.icon}</span><b>${esc(m.name)}</b><p>${esc(m.desc)}</p>
-      <span class="price">${m.price ? `${m.price} 🐟` : 'Grátis'}</span>${btn}</div>`;
+      <span class="mi">${m.icon}</span><b>${esc(medalName(m))}</b><p>${esc(t(`medal.${m.id}.d`))}</p>
+      <span class="price">${m.price ? `${m.price} 🐟` : t('shop.free')}</span>${btn}</div>`;
   }).join('');
 }
 $('#shopGrid').addEventListener('click', e => {
@@ -732,18 +1054,18 @@ $('#shopGrid').addEventListener('click', e => {
   renderWallet();
   renderShop();
   if (room) socket.emit('profile', { medal: profile.medal });
-  toast(`${m.icon} Compraste a medalha ${m.name}! Já aparece ao lado do teu nome.`, 4000);
+  toast(t('toast.bought', { icon: m.icon, name: medalName(m) }), 4000);
 });
 
 // ---------- MEDALHAS ----------
 function renderMedals() {
   $('#ownedMedals').innerHTML = MEDALS.filter(m => profile.medals.includes(m.id)).map(m =>
-    `<button data-medal="${esc(m.icon)}" class="${profile.medal === m.icon ? 'selected' : ''}">${m.icon} ${esc(m.name)}</button>`).join('')
-    + '<button data-view="loja" class="ghost">🛍️ Ir à loja</button>';
-  $('#achCount').textContent = `${profile.achieved.length} de ${ACHIEVEMENTS.length}`;
+    `<button data-medal="${esc(m.icon)}" class="${profile.medal === m.icon ? 'selected' : ''}">${m.icon} ${esc(medalName(m))}</button>`).join('')
+    + `<button data-view="loja" class="ghost">${t('medals.toShop')}</button>`;
+  $('#achCount').textContent = t('medals.count', { n: profile.achieved.length, t: ACHIEVEMENTS.length });
   $('#achievements').innerHTML = ACHIEVEMENTS.map(a => {
     const ok = profile.achieved.includes(a.id);
-    return `<div class="ach ${ok ? '' : 'locked'}" title="${esc(a.desc)}"><span class="ic">${a.icon}</span><div><b>${esc(a.name)}</b><span>${esc(a.desc)}</span></div></div>`;
+    return `<div class="ach ${ok ? '' : 'locked'}" title="${esc(t(`ach.${a.id}.d`))}"><span class="ic">${a.icon}</span><div><b>${esc(t(`ach.${a.id}`))}</b><span>${esc(t(`ach.${a.id}.d`))}</span></div></div>`;
   }).join('');
 }
 $('#ownedMedals').addEventListener('click', e => {
@@ -756,24 +1078,25 @@ $('#ownedMedals').addEventListener('click', e => {
 });
 
 // ---------- PERFIL ----------
+const lockText = item => item.ach ? `🔒 ${t(`ach.${item.ach}`)}` : t('lock.min', { n: item.need });
 function renderProfile() {
   $('#profileAvatar').outerHTML = `<span id="profileAvatar" class="avatar huge frame-${esc(profile.frame)}">${esc(profile.avatar)}</span>`;
-  $('#profileName').textContent = profile.name || 'Sem nome';
+  $('#profileName').textContent = profile.name || t('nav.noName');
   const medal = MEDALS.find(m => m.icon === profile.medal);
-  $('#profileMedal').textContent = medal ? `${medal.icon} ${medal.name}` : '';
+  $('#profileMedal').textContent = medal ? `${medal.icon} ${medalName(medal)}` : '';
   const c = profile.counters;
   $('#profileStats').innerHTML = [
-    ['🐟', profile.scales, 'escamas'], ['⏱️', profile.minutes, 'minutos de foco'], ['🎯', c.sessions, 'sessões'],
-    ['⚔️', c.duelWins, 'duelos ganhos'], ['🎖️', profile.medals.length, 'medalhas'], ['🏅', profile.achieved.length, 'conquistas'],
-  ].map(([i, v, l]) => `<div class="stat"><b>${i} ${v}</b><span>${l}</span></div>`).join('');
+    ['🐟', profile.scales, 'stat.scales'], ['⏱️', profile.minutes, 'stat.focusMin'], ['🎯', c.sessions, 'stat.sessions'],
+    ['⚔️', c.duelWins, 'stat.duelsWon'], ['🎖️', profile.medals.length, 'stat.medals'], ['🏅', profile.achieved.length, 'stat.achievements'],
+  ].map(([i, v, l]) => `<div class="stat"><b>${i} ${v}</b><span>${t(l)}</span></div>`).join('');
   const cell = (item, kind, inner, label) => {
     const ok = isUnlocked(item, profile.minutes, profile.achieved);
     const sel = (kind === 'avatar' ? profile.avatar : profile.frame) === item.id;
     return `<button data-${kind}="${esc(item.id)}" class="${ok ? '' : 'locked'} ${sel ? 'selected' : ''}" ${ok ? '' : 'disabled'}>
-      ${inner}${label}${ok ? '' : `<br>${esc(lockLabel(item))}`}</button>`;
+      ${inner}${label}${ok ? '' : `<br>${esc(lockText(item))}`}</button>`;
   };
   $('#avatarGrid').innerHTML = AVATARS.map(a => cell(a, 'avatar', `<span class="avatar big frame-${esc(profile.frame)}">${a.id}</span>`, '')).join('');
-  $('#frameGrid').innerHTML = FRAMES.map(f => cell(f, 'frame', `<span class="avatar big frame-${f.id}">${esc(profile.avatar)}</span>`, esc(f.name))).join('');
+  $('#frameGrid').innerHTML = FRAMES.map(f => cell(f, 'frame', `<span class="avatar big frame-${f.id}">${esc(profile.avatar)}</span>`, esc(t(`frame.${f.id}`)))).join('');
   $('[data-room-only]').classList.toggle('hidden', !room);
 }
 document.querySelector('#view-perfil').addEventListener('click', e => {
@@ -789,26 +1112,31 @@ document.querySelector('#view-perfil').addEventListener('click', e => {
 });
 
 // ---------- DEFINIÇÕES ----------
-function applyTheme(t) {
-  if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+function applyTheme(th) {
+  if (th === 'light' || th === 'dark') document.documentElement.dataset.theme = th;
   else delete document.documentElement.dataset.theme;
-  $$('[data-theme-set]').forEach(b => b.classList.toggle('active', b.dataset.themeSet === (t || 'system')));
+  $$('[data-theme-set]').forEach(b => b.classList.toggle('active', b.dataset.themeSet === (th || 'system')));
 }
 applyTheme(store.get('theme', null));
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-theme-set]');
-  if (!b) return;
-  const t = b.dataset.themeSet === 'system' ? null : b.dataset.themeSet;
-  store.set('theme', t);
-  applyTheme(t);
+  if (b) {
+    const th = b.dataset.themeSet === 'system' ? null : b.dataset.themeSet;
+    store.set('theme', th);
+    applyTheme(th);
+    return;
+  }
+  const l = e.target.closest('[data-lang]');
+  if (l) { changeLang(l.dataset.lang); }
 });
 function renderSettings() {
-  $('#settingsRoom').textContent = room ? `Estás na sala ${room.name} (${room.code}).` : 'Não estás em nenhuma sala.';
+  $('#langPicker').innerHTML = Object.entries(LANGS).map(([k, v]) => `<button data-lang="${k}" class="${getLang() === k ? 'active' : ''}">${esc(v)}</button>`).join('');
+  $('#settingsRoom').textContent = room ? t('set.inRoom', { name: room.name, code: room.code }) : t('set.noRoom');
   $('#leave').disabled = !room;
 }
 let wipeArmed = false;
 $('#wipe').onclick = () => {
-  if (!wipeArmed) { wipeArmed = true; $('#wipe').textContent = 'Tens a certeza? Carrega outra vez'; return; }
+  if (!wipeArmed) { wipeArmed = true; $('#wipe').textContent = t('wipe.sure'); return; }
   store.clear();
   location.reload();
 };
@@ -825,15 +1153,17 @@ $('#addSheet').addEventListener('click', e => {
   if (!b) return;
   closeAdd();
   const needRoom = ['foco', 'apontamento', 'pergunta', 'ia', 'teste', 'mensagem'].includes(b.dataset.add);
-  if (needRoom && !room) { show('inicio'); toast('Primeiro cria uma sala ou entra numa.'); return; }
+  if (needRoom && !room) { show('inicio'); toast(t('add.needRoom')); return; }
   const focus = sel => setTimeout(() => $(sel)?.focus(), 50);
   switch (b.dataset.add) {
     case 'sala':
-      if (room) { show('inicio'); return toast('Sai desta sala primeiro para criar outra.'); }
-      show('inicio'); focus('#roomName'); break;
+      show('inicio');
+      if (room) return toast(t('add.leaveFirst'));
+      focus('#roomName'); break;
     case 'entrar':
-      if (room) { show('inicio'); return toast('Sai desta sala primeiro para entrar noutra.'); }
-      show('inicio'); focus('#code'); break;
+      show('inicio');
+      if (room) return toast(t('add.leaveFirst'));
+      focus('#code'); break;
     case 'foco': show('estudar'); focus('#timerStart'); break;
     case 'apontamento': show('apontamentos'); focus('#noteTitle'); break;
     case 'pergunta': show('duelos'); $('#qDetails').open = true; focus('#qText'); break;
@@ -845,14 +1175,16 @@ $('#addSheet').addEventListener('click', e => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAdd(); closeNav(); } });
 
 // ---------- arranque ----------
+translateDom();
 renderWallet();
 renderLocks();
 show('inicio');
 const fromHash = location.hash.slice(1).toUpperCase();
 if (/^[A-Z0-9]{6}$/.test(fromHash)) $('#code').value = fromHash;
+if (!store.get('onboarded', false)) openOnboarding(false);
 
 socket.on('disconnect', () => {
   if (!room) return;
-  toast('Ligação perdida… a recarregar.', 2000);
+  toast(t('toast.lost'), 2000);
   setTimeout(() => location.reload(), 2000);
 });
