@@ -1,8 +1,8 @@
-# Deploy do Cardume no Render (render.com) com um clique: New → Blueprint → escolher este repositório.
+# Deploy do Shoalmates no Render (render.com) com um clique: New → Blueprint → escolher este repositório.
 # A conta no Render tem de ser de um adulto.
 services:
   - type: web
-    name: cardume
+    name: shoalmates
     runtime: node
     rootDir: estudo-com-amigos
     # "starter" (pago) mantém a app sempre ligada e tem disco para guardar as salas.
@@ -22,6 +22,6 @@ services:
       - key: ANTHROPIC_API_KEY
         sync: false   # o Render pede a chave no painel; nunca fica no GitHub
     disk:
-      name: cardume-data
+      name: shoalmates-data
       mountPath: /var/data
       sizeGB: 1

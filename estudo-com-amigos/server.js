@@ -28,7 +28,7 @@ export function startServer({ port = 3000, dataFile = join(here, 'data', 'rooms.
     http.listen(port, () => {
       const actual = http.address().port;
       if (log) {
-        console.log(`🐟 Cardume a correr em http://localhost:${actual}`);
+        console.log(`🐟 Shoalmates a correr em http://localhost:${actual}`);
         console.log(AI.aiEnabled()
           ? `🤖 IA ligada${process.env.AI_MOCK === '1' ? ' (modo de teste, respostas falsas)' : ''}.`
           : '🤖 IA desligada: define ANTHROPIC_API_KEY para a ligar.');

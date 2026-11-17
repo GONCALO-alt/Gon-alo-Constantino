@@ -1,8 +1,8 @@
-# 🐟 Cardume
+# 🐟 Shoalmates
 
-*Estuda em cardume.* Salas de estudo online: estudas ao mesmo tempo que os teus amigos, cada um na sua casa.
+*Study as a school.* Salas de estudo online: estudas ao mesmo tempo que os teus amigos, cada um na sua casa.
 
-Um cardume é um grupo de peixes que nada junto, tal como uma turma a estudar. O ícone (`public/icons/icon.svg`) são três peixes a nadar em roda.
+**Porquê "Shoalmates"?** Em inglês, *shoal* é um grupo de peixes que nada junto (um cardume) e *schoolmates* são os colegas de escola. Shoalmates junta as duas coisas: os teus colegas de cardume. O ícone (`public/icons/icon.svg`) são três peixes a nadar em roda, e a moeda da app são as escamas 🐟.
 
 ## Menu
 - **＋ Adicionar**: cria uma sala, entra numa, começa um foco, partilha um apontamento, escreve uma pergunta, tira uma foto para a IA, marca um teste ou manda uma mensagem, tudo a partir do mesmo sítio.
@@ -13,7 +13,7 @@ Um cardume é um grupo de peixes que nada junto, tal como uma turma a estudar. O
 No computador o menu fica à esquerda. No telemóvel há uma barra em baixo com o botão ＋ ao centro, e o resto do menu abre em "Mais".
 
 ## Primeira vez: o questionário e o plano de estudo 🗓️
-Quando alguém abre o Cardume pela primeira vez, responde a 10 perguntas rápidas:
+Quando alguém abre o Shoalmates pela primeira vez, responde a 10 perguntas rápidas:
 1. Língua
 2. Nome
 3. Ano de escolaridade
@@ -46,7 +46,7 @@ O menu **Premium** mostra os preços, com opção mensal ou anual:
 **Os pagamentos ainda não estão ativos.** O botão "Pedir a um adulto" gera uma mensagem para enviar ao pai, mãe ou responsável. O Premium não dá escamas nem vantagens nos duelos. Para cobrar a sério é preciso um adulto com conta num serviço de pagamentos (por exemplo, Stripe), e só um adulto pode subscrever.
 
 ## Línguas 🌍
-O Cardume está em **Português, English, Español e Français**. Na primeira vez, a app adivinha a língua pelo browser. Pode mudar-se no questionário ou nas Definições, e a página muda logo, sem recarregar.
+O Shoalmates está em **Português, English, Español e Français**. Na primeira vez, a app adivinha a língua pelo browser. Pode mudar-se no questionário ou nas Definições, e a página muda logo, sem recarregar.
 - Todos os textos estão em `public/i18n.js`. Para acrescentar uma língua, copia o bloco `en`, traduz e junta-a a `LANGS`. Há um teste que avisa se faltar alguma frase.
 - O servidor envia códigos (por exemplo, `room_full` ou `joined`) em vez de frases, por isso cada pessoa vê as mensagens da sala na sua própria língua.
 - A IA responde na língua de quem faz o pedido.
@@ -60,7 +60,7 @@ O ficheiro `render.yaml` na raiz do repositório já tem tudo.
 1. Um **adulto** cria conta em https://render.com e liga o GitHub.
 2. **New → Blueprint**, escolhe este repositório e carrega em **Apply**.
 3. Quando pedir `ANTHROPIC_API_KEY`, cola a chave (ou deixa vazio para ter a app sem IA).
-4. Em poucos minutos a app fica num endereço como `https://cardume.onrender.com`. Partilha esse link com a turma.
+4. Em poucos minutos a app fica num endereço como `https://shoalmates.onrender.com`. Partilha esse link com a turma.
 
 O plano `starter` (cerca de 7 $/mês) mantém a app sempre ligada e guarda as salas num disco. No plano grátis a app adormece quando ninguém a usa e as salas apagam-se quando reinicia. Para usar o grátis, muda `plan: free` e tira o bloco `disk` do `render.yaml`.
 
@@ -68,7 +68,7 @@ O plano `starter` (cerca de 7 $/mês) mantém a app sempre ligada e guarda as sa
 Há um `Dockerfile` para Fly.io, Railway, etc. Define `PORT`, `DATA_DIR` (pasta com disco permanente) e, se quiseres IA, `ANTHROPIC_API_KEY`.
 
 ### No telemóvel
-Depois de estar online, abre o link no telemóvel e escolhe **"Adicionar ao ecrã principal"**. O Cardume fica com o ícone dos peixes, como uma app.
+Depois de estar online, abre o link no telemóvel e escolhe **"Adicionar ao ecrã principal"**. O Shoalmates fica com o ícone dos peixes, como uma app.
 
 ## O que faz
 

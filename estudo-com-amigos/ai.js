@@ -1,4 +1,4 @@
-// IA do Cardume — corre no SERVIDOR, com a API da Anthropic.
+// IA do Shoalmates — corre no SERVIDOR, com a API da Anthropic.
 // A chave (ANTHROPIC_API_KEY) fica só no servidor; o browser nunca a vê.
 import Anthropic from '@anthropic-ai/sdk';
 import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod';
@@ -10,7 +10,7 @@ const MODEL = process.env.AI_MODEL || 'claude-opus-5-5';
 const LANGS = { pt: 'português de Portugal', en: 'English', es: 'español', fr: 'français' };
 export const langName = lang => LANGS[lang] ?? LANGS.pt;
 
-const system = lang => `És o explicador da app "Cardume", usada por alunos entre os 12 e os 18 anos.
+const system = lang => `És o explicador da app "Shoalmates", usada por alunos entre os 12 e os 18 anos.
 Escreve todo o texto da resposta em ${langName(lang)}, de forma simples, simpática e correta, adequada à idade.
 Baseia-te apenas no material que o aluno enviar e no conhecimento escolar normal. Nunca inventes factos.
 Se o pedido não tiver a ver com estudo ou contiver algo impróprio para menores, recusa com simpatia.`;

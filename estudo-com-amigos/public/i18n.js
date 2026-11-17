@@ -1,4 +1,4 @@
-// Traduções do Cardume. Para acrescentar uma língua: copia o bloco "en", traduz e junta-a a LANGS.
+// Traduções do Shoalmates. Para acrescentar uma língua: copia o bloco "en", traduz e junta-a a LANGS.
 // Chaves com {nome} são substituídas: t('home.hello', { name: 'Ana' }).
 
 export const LANGS = { pt: 'Português', en: 'English', es: 'Español', fr: 'Français' };
@@ -16,7 +16,7 @@ const pt = {
   'copyCode': 'Copiar código', 'toast.codeCopied': 'Código copiado! Envia-o aos teus amigos.', 'toast.code': 'Código da sala: {code}',
 
   'home.hello': 'Olá{name}! 👋',
-  'home.intro': 'No Cardume estudas ao mesmo tempo que os teus amigos, cada um na sua casa. Cria uma sala ou entra com o código que te deram.',
+  'home.intro': 'No Shoalmates estudas ao mesmo tempo que os teus amigos, cada um na sua casa. Cria uma sala ou entra com o código que te deram.',
   'home.yourName': 'O teu nome', 'ph.name': 'ex.: Gonçalo',
   'home.create': '🐟 Criar sala', 'ph.roomName': 'ex.: 8.ºB, Ciências', 'btn.create': 'Criar sala',
   'home.join': '🔑 Entrar numa sala', 'ph.code': 'Código (6 letras)', 'btn.join': 'Entrar',
@@ -116,7 +116,7 @@ const pt = {
   // onboarding
   'ob.step': 'Pergunta {i} de {n}', 'ob.next': 'Continuar', 'ob.back': 'Voltar', 'ob.skip': 'Saltar', 'ob.finish': 'Criar o meu plano',
   'ob.private': '🔒 As tuas respostas ficam só neste aparelho. Não pedimos a tua morada, escola nem contactos.',
-  'ob.lang': 'Em que língua queres usar o Cardume?',
+  'ob.lang': 'Em que língua queres usar o Shoalmates?',
   'ob.name': 'Como te chamas?', 'ob.nameHelp': 'É o nome que os teus amigos vão ver nas salas.',
   'ob.year': 'Em que ano andas?', 'year.uni': 'Universidade', 'year.other': 'Outro', 'year.n': '{n}.º ano',
   'ob.subjects': 'Que disciplinas tens este ano?', 'ob.pickMany': 'Escolhe todas as que quiseres.',
@@ -150,7 +150,7 @@ const pt = {
   'tip.test': 'Tens teste de {subject} {when}: o plano dá-lhe mais tempo até lá.',
 
   // premium
-  'prem.title': 'Planos do Cardume', 'prem.sub': 'O essencial é e será sempre grátis. O Premium dá mais IA e extras.',
+  'prem.title': 'Planos do Shoalmates', 'prem.sub': 'O essencial é e será sempre grátis. O Premium dá mais IA e extras.',
   'prem.monthly': 'Mensal', 'prem.yearly': 'Anual', 'prem.save': 'poupa {n}%', 'prem.perMonth': '/mês', 'prem.perYear': '/ano', 'prem.perStudent': '/aluno por ano',
   'prem.current': 'O teu plano', 'prem.ask': 'Pedir a um adulto', 'prem.contact': 'Falar com a escola', 'prem.popular': 'Mais escolhido',
   'prem.free': 'Grátis', 'prem.premium': 'Premium', 'prem.family': 'Família', 'prem.school': 'Escola',
@@ -163,7 +163,7 @@ const pt = {
   'prem.fair': 'Sem truques: o Premium não dá escamas nem vantagens nos duelos. Ninguém ganha por pagar.',
   'prem.soon': 'Os pagamentos ainda não estão ativos. Quando estiverem, só um adulto poderá subscrever.',
   'prem.askTitle': 'Pede a um adulto', 'prem.askHelp': 'Copia esta mensagem e envia-a ao teu pai, mãe ou responsável:',
-  'prem.askMsg': 'Olá! Uso o Cardume para estudar com a minha turma. Gostava de experimentar o plano {plan} ({price}). Podemos ver isso juntos?',
+  'prem.askMsg': 'Olá! Uso o Shoalmates para estudar com a minha turma. Gostava de experimentar o plano {plan} ({price}). Podemos ver isso juntos?',
   'btn.copy': 'Copiar mensagem', 'toast.copied': 'Mensagem copiada!', 'toast.copyFail': 'Seleciona o texto e copia-o.',
   'prem.faq': 'Perguntas frequentes', 'prem.q1': 'Quem paga?', 'prem.a1': 'Só um adulto pode subscrever. A app nunca te pede dados de pagamento.',
   'prem.q2': 'Posso cancelar?', 'prem.a2': 'Sim, a qualquer momento. Voltas ao plano Grátis e não perdes as tuas salas nem medalhas.',
@@ -222,7 +222,7 @@ const en = {
   'copyCode': 'Copy code', 'toast.codeCopied': 'Code copied! Send it to your friends.', 'toast.code': 'Room code: {code}',
 
   'home.hello': 'Hi{name}! 👋',
-  'home.intro': 'On Cardume you study at the same time as your friends, each in your own home. Create a room or join with the code you were given.',
+  'home.intro': 'On Shoalmates you study at the same time as your friends, each in your own home. Create a room or join with the code you were given.',
   'home.yourName': 'Your name', 'ph.name': 'e.g. Sam',
   'home.create': '🐟 Create a room', 'ph.roomName': 'e.g. Year 8, Science', 'btn.create': 'Create room',
   'home.join': '🔑 Join a room', 'ph.code': 'Code (6 letters)', 'btn.join': 'Join',
@@ -353,7 +353,7 @@ const en = {
   'tip.organize': "Add every test to the room calendar as soon as you know the date.",
   'tip.test': 'You have a {subject} test {when}: your plan gives it more time until then.',
 
-  'prem.title': 'Cardume plans', 'prem.sub': 'The essentials are and always will be free. Premium adds more AI and extras.',
+  'prem.title': 'Shoalmates plans', 'prem.sub': 'The essentials are and always will be free. Premium adds more AI and extras.',
   'prem.monthly': 'Monthly', 'prem.yearly': 'Yearly', 'prem.save': 'save {n}%', 'prem.perMonth': '/month', 'prem.perYear': '/year', 'prem.perStudent': '/student per year',
   'prem.current': 'Your plan', 'prem.ask': 'Ask an adult', 'prem.contact': 'Talk to your school', 'prem.popular': 'Most popular',
   'prem.free': 'Free', 'prem.premium': 'Premium', 'prem.family': 'Family', 'prem.school': 'School',
@@ -366,7 +366,7 @@ const en = {
   'prem.fair': "No tricks: Premium doesn't give scales or duel advantages. Nobody wins by paying.",
   'prem.soon': "Payments aren't active yet. When they are, only an adult will be able to subscribe.",
   'prem.askTitle': 'Ask an adult', 'prem.askHelp': 'Copy this message and send it to your parent or guardian:',
-  'prem.askMsg': 'Hi! I use Cardume to study with my class. I’d like to try the {plan} plan ({price}). Can we look at it together?',
+  'prem.askMsg': 'Hi! I use Shoalmates to study with my class. I’d like to try the {plan} plan ({price}). Can we look at it together?',
   'btn.copy': 'Copy message', 'toast.copied': 'Message copied!', 'toast.copyFail': 'Select the text and copy it.',
   'prem.faq': 'Questions', 'prem.q1': 'Who pays?', 'prem.a1': 'Only an adult can subscribe. The app never asks you for payment details.',
   'prem.q2': 'Can I cancel?', 'prem.a2': 'Yes, any time. You go back to Free and keep your rooms and medals.',
@@ -422,7 +422,7 @@ const es = {
   'copyCode': 'Copiar código', 'toast.codeCopied': '¡Código copiado! Envíaselo a tus amigos.', 'toast.code': 'Código de la sala: {code}',
 
   'home.hello': '¡Hola{name}! 👋',
-  'home.intro': 'En Cardume estudias a la vez que tus amigos, cada uno en su casa. Crea una sala o entra con el código que te dieron.',
+  'home.intro': 'En Shoalmates estudias a la vez que tus amigos, cada uno en su casa. Crea una sala o entra con el código que te dieron.',
   'home.yourName': 'Tu nombre', 'ph.name': 'ej.: Lucía',
   'home.create': '🐟 Crear sala', 'ph.roomName': 'ej.: 2.º ESO, Ciencias', 'btn.create': 'Crear sala',
   'home.join': '🔑 Entrar en una sala', 'ph.code': 'Código (6 letras)', 'btn.join': 'Entrar',
@@ -521,7 +521,7 @@ const es = {
 
   'ob.step': 'Pregunta {i} de {n}', 'ob.next': 'Continuar', 'ob.back': 'Volver', 'ob.skip': 'Saltar', 'ob.finish': 'Crear mi plan',
   'ob.private': '🔒 Tus respuestas se quedan solo en este dispositivo. No pedimos tu dirección, colegio ni contactos.',
-  'ob.lang': '¿En qué idioma quieres usar Cardume?',
+  'ob.lang': '¿En qué idioma quieres usar Shoalmates?',
   'ob.name': '¿Cómo te llamas?', 'ob.nameHelp': 'Es el nombre que verán tus amigos en las salas.',
   'ob.year': '¿En qué curso estás?', 'year.uni': 'Universidad', 'year.other': 'Otro', 'year.n': '{n}.º curso',
   'ob.subjects': '¿Qué asignaturas tienes este año?', 'ob.pickMany': 'Elige todas las que quieras.',
@@ -553,7 +553,7 @@ const es = {
   'tip.organize': 'Apunta todos los exámenes en el calendario de la sala en cuanto sepas las fechas.',
   'tip.test': 'Tienes examen de {subject} {when}: el plan le da más tiempo hasta entonces.',
 
-  'prem.title': 'Planes de Cardume', 'prem.sub': 'Lo esencial es y será siempre gratis. Premium da más IA y extras.',
+  'prem.title': 'Planes de Shoalmates', 'prem.sub': 'Lo esencial es y será siempre gratis. Premium da más IA y extras.',
   'prem.monthly': 'Mensual', 'prem.yearly': 'Anual', 'prem.save': 'ahorra {n}%', 'prem.perMonth': '/mes', 'prem.perYear': '/año', 'prem.perStudent': '/alumno al año',
   'prem.current': 'Tu plan', 'prem.ask': 'Pedírselo a un adulto', 'prem.contact': 'Hablar con el colegio', 'prem.popular': 'El más elegido',
   'prem.free': 'Gratis', 'prem.premium': 'Premium', 'prem.family': 'Familia', 'prem.school': 'Colegio',
@@ -566,7 +566,7 @@ const es = {
   'prem.fair': 'Sin trucos: Premium no da escamas ni ventajas en los duelos. Nadie gana por pagar.',
   'prem.soon': 'Los pagos aún no están activos. Cuando lo estén, solo un adulto podrá suscribirse.',
   'prem.askTitle': 'Pídeselo a un adulto', 'prem.askHelp': 'Copia este mensaje y envíaselo a tu padre, madre o tutor:',
-  'prem.askMsg': '¡Hola! Uso Cardume para estudiar con mi clase. Me gustaría probar el plan {plan} ({price}). ¿Lo miramos juntos?',
+  'prem.askMsg': '¡Hola! Uso Shoalmates para estudiar con mi clase. Me gustaría probar el plan {plan} ({price}). ¿Lo miramos juntos?',
   'btn.copy': 'Copiar mensaje', 'toast.copied': '¡Mensaje copiado!', 'toast.copyFail': 'Selecciona el texto y cópialo.',
   'prem.faq': 'Preguntas frecuentes', 'prem.q1': '¿Quién paga?', 'prem.a1': 'Solo un adulto puede suscribirse. La app nunca te pide datos de pago.',
   'prem.q2': '¿Puedo cancelar?', 'prem.a2': 'Sí, cuando quieras. Vuelves al plan Gratis y no pierdes tus salas ni medallas.',
@@ -622,7 +622,7 @@ const fr = {
   'copyCode': 'Copier le code', 'toast.codeCopied': 'Code copié ! Envoie-le à tes amis.', 'toast.code': 'Code du salon : {code}',
 
   'home.hello': 'Salut{name} ! 👋',
-  'home.intro': 'Sur Cardume, tu révises en même temps que tes amis, chacun chez soi. Crée un salon ou rejoins-en un avec le code qu’on t’a donné.',
+  'home.intro': 'Sur Shoalmates, tu révises en même temps que tes amis, chacun chez soi. Crée un salon ou rejoins-en un avec le code qu’on t’a donné.',
   'home.yourName': 'Ton prénom', 'ph.name': 'ex. : Léa',
   'home.create': '🐟 Créer un salon', 'ph.roomName': 'ex. : 4e B, SVT', 'btn.create': 'Créer le salon',
   'home.join': '🔑 Rejoindre un salon', 'ph.code': 'Code (6 lettres)', 'btn.join': 'Rejoindre',
@@ -721,7 +721,7 @@ const fr = {
 
   'ob.step': 'Question {i} sur {n}', 'ob.next': 'Continuer', 'ob.back': 'Retour', 'ob.skip': 'Passer', 'ob.finish': 'Créer mon plan',
   'ob.private': '🔒 Tes réponses restent sur cet appareil. On ne te demande ni ton adresse, ni ton école, ni tes contacts.',
-  'ob.lang': 'Dans quelle langue veux-tu utiliser Cardume ?',
+  'ob.lang': 'Dans quelle langue veux-tu utiliser Shoalmates ?',
   'ob.name': 'Comment tu t’appelles ?', 'ob.nameHelp': 'C’est le prénom que tes amis verront dans les salons.',
   'ob.year': 'En quelle classe es-tu ?', 'year.uni': 'Université', 'year.other': 'Autre', 'year.n': '{n}e année',
   'ob.subjects': 'Quelles matières as-tu cette année ?', 'ob.pickMany': 'Choisis-en autant que tu veux.',
@@ -753,7 +753,7 @@ const fr = {
   'tip.organize': 'Ajoute chaque contrôle au calendrier du salon dès que tu connais la date.',
   'tip.test': 'Tu as un contrôle de {subject} {when} : ton plan lui donne plus de temps d’ici là.',
 
-  'prem.title': 'Les offres Cardume', 'prem.sub': 'L’essentiel est et restera gratuit. Premium ajoute plus d’IA et des bonus.',
+  'prem.title': 'Les offres Shoalmates', 'prem.sub': 'L’essentiel est et restera gratuit. Premium ajoute plus d’IA et des bonus.',
   'prem.monthly': 'Mensuel', 'prem.yearly': 'Annuel', 'prem.save': '−{n} %', 'prem.perMonth': '/mois', 'prem.perYear': '/an', 'prem.perStudent': '/élève par an',
   'prem.current': 'Ton offre', 'prem.ask': 'Demander à un adulte', 'prem.contact': 'Contacter l’école', 'prem.popular': 'La plus choisie',
   'prem.free': 'Gratuit', 'prem.premium': 'Premium', 'prem.family': 'Famille', 'prem.school': 'École',
@@ -766,7 +766,7 @@ const fr = {
   'prem.fair': 'Pas d’astuce : Premium ne donne ni écailles ni avantage aux duels. Personne ne gagne en payant.',
   'prem.soon': 'Les paiements ne sont pas encore actifs. Quand ils le seront, seul un adulte pourra s’abonner.',
   'prem.askTitle': 'Demande à un adulte', 'prem.askHelp': 'Copie ce message et envoie-le à ton parent ou responsable :',
-  'prem.askMsg': 'Bonjour ! J’utilise Cardume pour réviser avec ma classe. J’aimerais essayer l’offre {plan} ({price}). On regarde ensemble ?',
+  'prem.askMsg': 'Bonjour ! J’utilise Shoalmates pour réviser avec ma classe. J’aimerais essayer l’offre {plan} ({price}). On regarde ensemble ?',
   'btn.copy': 'Copier le message', 'toast.copied': 'Message copié !', 'toast.copyFail': 'Sélectionne le texte et copie-le.',
   'prem.faq': 'Questions fréquentes', 'prem.q1': 'Qui paie ?', 'prem.a1': 'Seul un adulte peut s’abonner. L’appli ne te demande jamais de données de paiement.',
   'prem.q2': 'Je peux arrêter ?', 'prem.a2': 'Oui, à tout moment. Tu reviens à l’offre Gratuite et tu gardes tes salons et tes médailles.',

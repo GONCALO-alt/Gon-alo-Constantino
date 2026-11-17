@@ -39,7 +39,7 @@ const icon = 'data:image/svg+xml;base64,' + readFileSync(join(root, 'public', 'i
 const body = html.slice(html.indexOf('<body>') + 6, html.indexOf('<script src="/socket.io')).trim()
   .replaceAll('src="icons/icon.svg"', `src="${icon}"`);
 
-const page = `<title>Cardume</title>
+const page = `<title>Shoalmates</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 ${css}
