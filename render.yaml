@@ -19,6 +19,8 @@ services:
         value: /var/data
       - key: AI_WEEKLY_LIMIT
         value: "30"
+      - key: AI_TUTOR_DAILY
+        value: "40"
       - key: ANTHROPIC_API_KEY
         sync: false   # o Render pede a chave no painel; nunca fica no GitHub
     disk:

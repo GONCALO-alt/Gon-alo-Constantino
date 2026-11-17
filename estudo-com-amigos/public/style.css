@@ -470,3 +470,39 @@ details .stack { margin-top: .5rem; }
   .ob-opts.days { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .ob-card { padding: 1.1rem; }
 }
+
+/* ---------- tutor (chat principal) ---------- */
+.nav-tag { font-style: normal; font-size: .62rem; font-weight: 700; margin-left: auto; padding: .05rem .4rem; border-radius: 99px; background: linear-gradient(135deg, var(--accent-2), #ffb84d); color: #241000; }
+.nav-group button.active .nav-tag { background: #fff; color: var(--accent); }
+.tutor-card { display: flex; flex-direction: column; height: calc(100vh - 150px); min-height: 440px; padding: 0; overflow: hidden; }
+.tutor-head { display: flex; align-items: center; gap: .7rem; padding: .8rem 1rem; border-bottom: 1px solid var(--line); background: linear-gradient(120deg, var(--accent-soft), var(--card)); }
+.tutor-head .tutor-logo { width: 40px; height: 40px; }
+.tutor-head b { display: block; }
+.tutor-head > div { min-width: 0; flex: 1; }
+.tutor-head button { margin-top: 0; }
+.tutor-log { flex: 1; padding: 1rem; margin: 0; gap: .7rem; }
+.tutor-log .bubble { max-width: min(680px, 85%); line-height: 1.5; }
+.tutor-log .bot .bubble { background: var(--bg); border: 1px solid var(--line); }
+.tutor-log .bot.err .bubble { border-color: color-mix(in srgb, var(--bad) 50%, var(--line)); }
+.tutor-log .bubble p { margin: 0 0 .45rem; }
+.tutor-log .bubble p:last-child { margin-bottom: 0; }
+.tutor-log .bubble ul, .tutor-log .bubble ol { margin: .2rem 0 .5rem; padding-left: 1.2rem; }
+.bot-av { background: linear-gradient(135deg, var(--accent), #b44cff); border-color: transparent; }
+.typing { color: var(--muted); animation: blink 1.2s infinite; }
+@keyframes blink { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .typing { animation: none; } }
+.tutor-chips { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 1rem .6rem; }
+.chip-btn { background: var(--card); color: var(--text); border: 1px solid var(--accent); font-weight: 500; font-size: .85rem; padding: .4rem .7rem; border-radius: 99px; white-space: normal; text-align: left; }
+.chip-btn:hover { background: var(--accent-soft); filter: none; }
+.tutor-img { display: flex; align-items: flex-start; gap: .3rem; padding: 0 1rem .5rem; }
+.tutor-img img { max-height: 90px; max-width: 160px; border-radius: 10px; border: 1px solid var(--line); }
+.tutor-form { display: flex; align-items: flex-end; gap: .5rem; padding: .7rem 1rem; border-top: 1px solid var(--line); }
+.tutor-form textarea { resize: none; min-height: 44px; max-height: 160px; line-height: 1.4; }
+.tutor-photo { cursor: pointer; font-size: 1.3rem; padding: .45rem .5rem; border: 1px solid var(--line); border-radius: 10px; }
+.tutor-info { margin: 0; padding: 0 1rem .7rem; }
+@media (max-width: 900px) {
+  .tutor-card { height: calc(100vh - 190px); }
+}
+.tutor-log .bubble li { display: list-item; gap: 0; }
+.tutor-log .bubble ul { list-style: disc; }
+.tutor-log .bubble ol { list-style: decimal; }

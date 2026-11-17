@@ -63,7 +63,7 @@ const medalName = m => t(`medal.${m.id}`);
 const subjName = id => (SUBJECTS.includes(id) ? t(`subj.${id}`) : id);
 
 // ---------- navegação ----------
-const VIEWS = ['inicio', 'plano', 'estudar', 'chat', 'duelos', 'apontamentos', 'calendario', 'liga', 'loja', 'medalhas', 'perfil', 'premium', 'definicoes'];
+const VIEWS = ['inicio', 'plano', 'estudar', 'chat', 'salachat', 'duelos', 'apontamentos', 'calendario', 'liga', 'loja', 'medalhas', 'perfil', 'premium', 'definicoes'];
 
 function show(name) {
   if (!VIEWS.includes(name)) name = 'inicio';
@@ -75,7 +75,8 @@ function show(name) {
   $$('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === name));
   $('#viewTitle').textContent = t(`view.${name}`);
   closeNav();
-  if (name === 'chat') { unread = 0; renderUnread(); const l = $('#messages'); l.scrollTop = l.scrollHeight; }
+  if (name === 'salachat') { unread = 0; renderUnread(); const l = $('#messages'); l.scrollTop = l.scrollHeight; }
+  if (name === 'chat') renderTutor(true);
   if (name === 'inicio') renderHome();
   if (name === 'plano') renderPlan();
   if (name === 'loja') renderShop();
@@ -287,7 +288,7 @@ function addMessage(m) {
   const list = $('#messages');
   const atBottom = list.scrollHeight - list.scrollTop - list.clientHeight < 60;
   list.appendChild(messageEl(m));
-  if (!m.system && m.author !== me?.name && view !== 'chat') { unread++; renderUnread(); }
+  if (!m.system && m.author !== me?.name && view !== 'salachat') { unread++; renderUnread(); }
   if (atBottom || m.author === me?.name) list.scrollTop = list.scrollHeight;
 }
 socket.on('chat', m => room && addMessage(m));
@@ -746,6 +747,139 @@ $('#aiGrade').onclick = () => {
   });
 };
 
+
+// ---------- TUTOR (chat principal, sem sala) ----------
+let tutorMsgs = store.get('tutorChat', []);
+let tutorBusy = false;
+let tutorImage = null;
+let tutorLeft = null;
+let tutorReqId = 0;
+const saveTutor = () => store.set('tutorChat', tutorMsgs.slice(-60));
+
+// Markdown simples e seguro: escapa tudo primeiro, depois **negrito**, *itálico* e listas
+function md(text) {
+  const lines = esc(text).split('\n');
+  let html = '';
+  let list = null;
+  const inline = l => l.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(^|[\s(])\*(?!\s)([^*]+?)\*(?=[\s.,!?)]|$)/g, '$1<i>$2</i>');
+  for (const line of lines) {
+    const ul = line.match(/^\s*[-•]\s+(.*)/);
+    const ol = line.match(/^\s*\d+[.)]\s+(.*)/);
+    const kind = ul ? 'ul' : ol ? 'ol' : null;
+    if (kind !== list) { if (list) html += `</${list}>`; if (kind) html += `<${kind}>`; list = kind; }
+    if (kind) html += `<li>${inline((ul ?? ol)[1])}</li>`;
+    else if (line.trim()) html += `<p>${inline(line)}</p>`;
+  }
+  if (list) html += `</${list}>`;
+  return html;
+}
+
+function tutorSubject() {
+  const a = planAnswers();
+  return subjName(a?.hard?.[0] ?? a?.subjects?.[0] ?? 'mat');
+}
+
+function tutorBubble(m) {
+  const mine = m.role === 'user';
+  return `<li class="${mine ? 'mine' : 'bot'}${m.error ? ' err' : ''}">
+    ${mine ? avatarHtml(profile.avatar, profile.frame) : '<span class="avatar bot-av">🐟</span>'}
+    <div class="bubble">${m.img ? '<div class="muted small">📷</div>' : ''}${m.pending && !m.content ? `<span class="typing">${t('tutor.thinking')}</span>` : mine ? esc(m.content).replace(/\n/g, '<br>') : md(m.content)}</div></li>`;
+}
+
+function renderTutor(scroll = false) {
+  const hello = { role: 'assistant', content: t('tutor.hello', { name: profile.name ? `, ${profile.name}` : '' }) };
+  $('#tutorLog').innerHTML = [hello, ...tutorMsgs].map(tutorBubble).join('');
+  const subject = tutorSubject();
+  const chips = [
+    ['tutor.chip.explain', 'tutor.chip.explainMsg'], ['tutor.chip.quiz', 'tutor.chip.quizMsg'],
+    ['tutor.chip.homework', 'tutor.chip.homeworkMsg'], ['tutor.chip.test', 'tutor.chip.testMsg'],
+  ];
+  $('#tutorChips').innerHTML = tutorMsgs.length > 2 ? '' : chips.map(([label, msg]) =>
+    `<button class="chip-btn" data-ask-tutor="${esc(t(msg, { subject }))}">${esc(t(label, { subject }))}</button>`).join('');
+  $('#tutorInfo').textContent = (tutorLeft != null ? t('tutor.left', { n: tutorLeft }) : '') + t('tutor.disclaimer');
+  $('#tutorSend').disabled = tutorBusy;
+  if (scroll) { const l = $('#tutorLog'); l.scrollTop = l.scrollHeight; }
+}
+
+async function askTutor(text) {
+  text = text.trim();
+  if (tutorBusy) return;
+  if (!text && !tutorImage) return toast(t('err.tutor_empty'));
+  const image = tutorImage;
+  const userMsg = { role: 'user', content: text || t('tutor.photoMsg'), img: !!image };
+  tutorMsgs.push(userMsg);
+  const reply = { role: 'assistant', content: '', pending: true };
+  tutorMsgs.push(reply);
+  clearTutorImage();
+  $('#tutorInput').value = '';
+  autoGrow();
+  tutorBusy = true;
+  renderTutor(true);
+  const id = ++tutorReqId;
+  const history = tutorMsgs.filter(m => !m.pending && !m.error).map(({ role, content }) => ({ role, content }));
+  const onDelta = d => {
+    if (d.id !== id) return;
+    reply.content += d.delta;
+    const last = $('#tutorLog').lastElementChild;
+    if (last) last.outerHTML = tutorBubble(reply);
+    const l = $('#tutorLog'); l.scrollTop = l.scrollHeight;
+  };
+  socket.on('tutorDelta', onDelta);
+  const res = await emitP('tutorAsk', { id, messages: history, lang: getLang(), image, context: planAnswers() });
+  socket.off('tutorDelta', onDelta);
+  tutorBusy = false;
+  delete reply.pending;
+  if (res?.error) {
+    reply.content = `⚠️ ${errText(res)}`;
+    reply.error = true;
+    if (res.quota) reply.content += `\n\n**⭐ ${t('prem.upsell')}** → ${t('view.premium')}`;
+  } else {
+    reply.content = res.text;
+    if (res.left != null) tutorLeft = res.left;
+  }
+  saveTutor();
+  renderTutor(true);
+}
+
+function autoGrow() {
+  const ta = $('#tutorInput');
+  ta.style.height = 'auto';
+  ta.style.height = `${Math.min(160, ta.scrollHeight)}px`;
+}
+function clearTutorImage() {
+  tutorImage = null;
+  $('#tutorImg').classList.add('hidden');
+}
+
+$('#tutorForm').onsubmit = e => { e.preventDefault(); askTutor($('#tutorInput').value); };
+$('#tutorInput').addEventListener('input', autoGrow);
+$('#tutorInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); askTutor($('#tutorInput').value); }
+});
+$('#tutorChips').addEventListener('click', e => {
+  const b = e.target.closest('[data-ask-tutor]');
+  if (b) askTutor(b.dataset.askTutor);
+});
+$('#tutorNew').onclick = () => {
+  if (tutorBusy) return;
+  tutorMsgs = [];
+  saveTutor();
+  renderTutor(true);
+  toast(t('tutor.cleared'));
+};
+$('#tutorPhoto').onchange = async e => {
+  const file = e.target.files?.[0];
+  e.target.value = '';
+  if (!file) return;
+  try {
+    tutorImage = await shrinkImage(file);
+    $('#tutorImg img').src = `data:${tutorImage.mediaType};base64,${tutorImage.data}`;
+    $('#tutorImg').classList.remove('hidden');
+    $('#tutorInput').focus();
+  } catch { toast(t('ai.badImage')); }
+};
+$('#tutorImgX').onclick = clearTutorImage;
+
 // ---------- PLANO DE ESTUDO ----------
 const planAnswers = () => store.get('planAnswers', null);
 const doneMap = () => store.get('planDone', {});
@@ -969,7 +1103,7 @@ function obNext() {
 }
 $('#obNext').onclick = obNext;
 $('#obBack').onclick = () => { if (ob && ob.i > 0) { ob.i--; renderOb(); } };
-$('#obSkip').onclick = () => { closeOnboarding(); show('inicio'); };
+$('#obSkip').onclick = () => { closeOnboarding(); show('chat'); };
 
 // ---------- PREMIUM ----------
 let billing = 'month';
@@ -1169,7 +1303,8 @@ $('#addSheet').addEventListener('click', e => {
     case 'pergunta': show('duelos'); $('#qDetails').open = true; focus('#qText'); break;
     case 'ia': show('duelos'); $('#aiPhoto').click(); break;
     case 'teste': show('calendario'); focus('#testSubject'); break;
-    case 'mensagem': show('chat'); focus('#chatInput'); break;
+    case 'mensagem': show('salachat'); focus('#chatInput'); break;
+    case 'tutor': show('chat'); focus('#tutorInput'); break;
   }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAdd(); closeNav(); } });
@@ -1178,7 +1313,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAdd()
 translateDom();
 renderWallet();
 renderLocks();
-show('inicio');
+show('chat'); // o tutor é a página principal
 const fromHash = location.hash.slice(1).toUpperCase();
 if (/^[A-Z0-9]{6}$/.test(fromHash)) $('#code').value = fromHash;
 if (!store.get('onboarded', false)) openOnboarding(false);

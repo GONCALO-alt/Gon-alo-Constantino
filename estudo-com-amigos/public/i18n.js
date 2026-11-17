@@ -5,6 +5,15 @@ export const LANGS = { pt: 'Português', en: 'English', es: 'Español', fr: 'Fra
 export const LOCALES = { pt: 'pt-PT', en: 'en-GB', es: 'es-ES', fr: 'fr-FR' };
 
 const pt = {
+  'view.salachat': 'Chat da sala', 'nav.ai': 'IA', 'add.tutor': 'Perguntar ao tutor', 'add.tutorS': 'Chat com IA',
+  'tutor.name': 'Tutor Shoalmates', 'tutor.sub': 'Ajuda-te a estudar qualquer disciplina, a qualquer hora.', 'tutor.new': '＋ Nova conversa',
+  'tutor.photo': 'Enviar foto de um exercício', 'tutor.ph': 'Pergunta o que quiseres sobre a matéria…',
+  'tutor.hello': 'Olá{name}! 👋 Sou o teu tutor. Posso explicar matéria, ajudar-te num exercício (sem te dar só a resposta 😉), fazer-te um quiz ou organizar o teu estudo. Também podes enviar uma foto do caderno. Por onde começamos?',
+  'tutor.chip.explain': '📘 Explica-me {subject}', 'tutor.chip.quiz': '🎯 Faz-me um quiz de {subject}', 'tutor.chip.test': '🗓️ Como me preparo para o teste?', 'tutor.chip.homework': '✏️ Ajuda-me com um exercício',
+  'tutor.chip.homeworkMsg': 'Tenho um exercício que não consigo resolver. Podes ajudar-me passo a passo?', 'tutor.chip.explainMsg': 'Explica-me a matéria de {subject} que costuma sair nos testes do meu ano.', 'tutor.chip.quizMsg': 'Faz-me um quiz rápido de 3 perguntas de {subject}, uma de cada vez.', 'tutor.chip.testMsg': 'Como me devo preparar para o meu próximo teste?',
+  'tutor.left': '{n} mensagens grátis hoje · ', 'tutor.disclaimer': 'A IA pode enganar-se: confirma sempre com o livro ou o professor.', 'tutor.photoMsg': 'Ajuda-me com isto da foto.',
+  'tutor.cleared': 'Nova conversa começada.', 'tutor.thinking': 'A pensar…',
+  'err.tutor_limit': 'Já usaste as {n} mensagens grátis de hoje. Volta amanhã, ou vê os planos Premium.', 'err.tutor_empty': 'Escreve uma pergunta primeiro.',
   'demo.note': 'Demo jogável. O Rui e a Eva são amigos simulados e a IA dá respostas de exemplo. Cria uma sala para eles entrarem. O foco de 1 minuto e os duelos curtos são só para experimentar.',
   'brand.tagline': 'estuda em cardume',
   'nav.add': '＋ Adicionar', 'nav.main': 'Principal', 'nav.class': 'Turma', 'nav.me': 'Eu',
@@ -23,7 +32,7 @@ const pt = {
   'home.privacy': '🔒 Só entra quem tiver o código. Não partilhes o código com desconhecidos.',
   'home.recent': 'Salas recentes', 'home.noRecent': 'Ainda não entraste em nenhuma sala.',
   'home.inRoom': 'Estás na sala', 'home.share': 'Envia o código aos teus amigos para eles entrarem.',
-  'btn.studyNow': '⏱️ Estudar agora', 'btn.duel': '⚔️ Duelo', 'btn.chat': '💬 Chat', 'btn.leave': 'Sair da sala',
+  'btn.studyNow': '⏱️ Estudar agora', 'btn.duel': '⚔️ Duelo', 'btn.chat': '💬 Chat da sala', 'btn.leave': 'Sair da sala',
   'home.today': 'Hoje na sala', 'home.progress': 'O teu progresso', 'home.planToday': '🗓️ Hoje no teu plano',
   'home.planRest': 'Hoje é dia de descanso no teu plano. 😌', 'home.seePlan': 'Ver o plano', 'home.noPlan': 'Ainda não tens plano de estudo.', 'home.makePlan': 'Criar o meu plano',
   'home.nameFirst': 'Escreve o teu nome primeiro.',
@@ -211,6 +220,15 @@ const pt = {
 };
 
 const en = {
+  'view.salachat': 'Room chat', 'nav.ai': 'AI', 'add.tutor': 'Ask the tutor', 'add.tutorS': 'AI chat',
+  'tutor.name': 'Shoalmates Tutor', 'tutor.sub': 'Helps you study any subject, any time.', 'tutor.new': '＋ New chat',
+  'tutor.photo': 'Send a photo of an exercise', 'tutor.ph': 'Ask anything about your lessons…',
+  'tutor.hello': "Hi{name}! 👋 I'm your tutor. I can explain topics, help with an exercise (without just giving you the answer 😉), quiz you or plan your studying. You can also send a photo of your notebook. Where shall we start?",
+  'tutor.chip.explain': '📘 Explain {subject}', 'tutor.chip.quiz': '🎯 Quiz me on {subject}', 'tutor.chip.test': '🗓️ How do I prepare for my test?', 'tutor.chip.homework': '✏️ Help me with an exercise',
+  'tutor.chip.homeworkMsg': "I have an exercise I can't solve. Can you help me step by step?", 'tutor.chip.explainMsg': 'Explain the {subject} topics that usually come up in tests for my year.', 'tutor.chip.quizMsg': 'Give me a quick 3-question {subject} quiz, one question at a time.', 'tutor.chip.testMsg': 'How should I prepare for my next test?',
+  'tutor.left': '{n} free messages left today · ', 'tutor.disclaimer': 'AI can make mistakes: always check with your book or teacher.', 'tutor.photoMsg': 'Help me with this photo.',
+  'tutor.cleared': 'New chat started.', 'tutor.thinking': 'Thinking…',
+  'err.tutor_limit': "You've used today's {n} free messages. Come back tomorrow, or see the Premium plans.", 'err.tutor_empty': 'Write a question first.',
   'demo.note': 'Playable demo. Rui and Eva are simulated friends and the AI gives sample answers. Create a room so they can join. The 1-minute focus and short duels are just for trying it out.',
   'brand.tagline': 'study as a school',
   'nav.add': '＋ Add', 'nav.main': 'Main', 'nav.class': 'Class', 'nav.me': 'Me',
@@ -229,7 +247,7 @@ const en = {
   'home.privacy': '🔒 Only people with the code can join. Never share the code with strangers.',
   'home.recent': 'Recent rooms', 'home.noRecent': "You haven't joined any room yet.",
   'home.inRoom': "You're in the room", 'home.share': 'Send the code to your friends so they can join.',
-  'btn.studyNow': '⏱️ Study now', 'btn.duel': '⚔️ Duel', 'btn.chat': '💬 Chat', 'btn.leave': 'Leave room',
+  'btn.studyNow': '⏱️ Study now', 'btn.duel': '⚔️ Duel', 'btn.chat': '💬 Room chat', 'btn.leave': 'Leave room',
   'home.today': 'Today in the room', 'home.progress': 'Your progress', 'home.planToday': '🗓️ Today in your plan',
   'home.planRest': 'Today is a rest day in your plan. 😌', 'home.seePlan': 'See the plan', 'home.noPlan': "You don't have a study plan yet.", 'home.makePlan': 'Create my plan',
   'home.nameFirst': 'Type your name first.',
@@ -411,6 +429,15 @@ const en = {
 };
 
 const es = {
+  'view.salachat': 'Chat de la sala', 'nav.ai': 'IA', 'add.tutor': 'Preguntar al tutor', 'add.tutorS': 'Chat con IA',
+  'tutor.name': 'Tutor Shoalmates', 'tutor.sub': 'Te ayuda a estudiar cualquier asignatura, a cualquier hora.', 'tutor.new': '＋ Nueva conversación',
+  'tutor.photo': 'Enviar foto de un ejercicio', 'tutor.ph': 'Pregunta lo que quieras sobre el temario…',
+  'tutor.hello': '¡Hola{name}! 👋 Soy tu tutor. Puedo explicarte el temario, ayudarte con un ejercicio (sin darte solo la respuesta 😉), hacerte un quiz u organizar tu estudio. También puedes enviar una foto del cuaderno. ¿Por dónde empezamos?',
+  'tutor.chip.explain': '📘 Explícame {subject}', 'tutor.chip.quiz': '🎯 Hazme un quiz de {subject}', 'tutor.chip.test': '🗓️ ¿Cómo preparo el examen?', 'tutor.chip.homework': '✏️ Ayúdame con un ejercicio',
+  'tutor.chip.homeworkMsg': 'Tengo un ejercicio que no consigo resolver. ¿Me ayudas paso a paso?', 'tutor.chip.explainMsg': 'Explícame el temario de {subject} que suele salir en los exámenes de mi curso.', 'tutor.chip.quizMsg': 'Hazme un quiz rápido de 3 preguntas de {subject}, una a una.', 'tutor.chip.testMsg': '¿Cómo debería prepararme para mi próximo examen?',
+  'tutor.left': '{n} mensajes gratis hoy · ', 'tutor.disclaimer': 'La IA puede equivocarse: compruébalo siempre con el libro o el profesor.', 'tutor.photoMsg': 'Ayúdame con esto de la foto.',
+  'tutor.cleared': 'Nueva conversación empezada.', 'tutor.thinking': 'Pensando…',
+  'err.tutor_limit': 'Ya usaste los {n} mensajes gratis de hoy. Vuelve mañana o mira los planes Premium.', 'err.tutor_empty': 'Escribe primero una pregunta.',
   'demo.note': 'Demo jugable. Rui y Eva son amigos simulados y la IA da respuestas de ejemplo. Crea una sala para que entren. El foco de 1 minuto y los duelos cortos son solo para probar.',
   'brand.tagline': 'estudia en banco',
   'nav.add': '＋ Añadir', 'nav.main': 'Principal', 'nav.class': 'Clase', 'nav.me': 'Yo',
@@ -429,7 +456,7 @@ const es = {
   'home.privacy': '🔒 Solo entra quien tenga el código. No compartas el código con desconocidos.',
   'home.recent': 'Salas recientes', 'home.noRecent': 'Todavía no has entrado en ninguna sala.',
   'home.inRoom': 'Estás en la sala', 'home.share': 'Envía el código a tus amigos para que entren.',
-  'btn.studyNow': '⏱️ Estudiar ahora', 'btn.duel': '⚔️ Duelo', 'btn.chat': '💬 Chat', 'btn.leave': 'Salir de la sala',
+  'btn.studyNow': '⏱️ Estudiar ahora', 'btn.duel': '⚔️ Duelo', 'btn.chat': '💬 Chat de la sala', 'btn.leave': 'Salir de la sala',
   'home.today': 'Hoy en la sala', 'home.progress': 'Tu progreso', 'home.planToday': '🗓️ Hoy en tu plan',
   'home.planRest': 'Hoy es día de descanso en tu plan. 😌', 'home.seePlan': 'Ver el plan', 'home.noPlan': 'Todavía no tienes plan de estudio.', 'home.makePlan': 'Crear mi plan',
   'home.nameFirst': 'Escribe primero tu nombre.',
@@ -611,6 +638,15 @@ const es = {
 };
 
 const fr = {
+  'view.salachat': 'Chat du salon', 'nav.ai': 'IA', 'add.tutor': 'Demander au tuteur', 'add.tutorS': 'Chat avec l’IA',
+  'tutor.name': 'Tuteur Shoalmates', 'tutor.sub': 'T’aide à réviser toutes les matières, à toute heure.', 'tutor.new': '＋ Nouvelle discussion',
+  'tutor.photo': 'Envoyer la photo d’un exercice', 'tutor.ph': 'Pose une question sur tes cours…',
+  'tutor.hello': 'Salut{name} ! 👋 Je suis ton tuteur. Je peux t’expliquer une leçon, t’aider sur un exercice (sans juste te donner la réponse 😉), te faire un quiz ou organiser tes révisions. Tu peux aussi envoyer une photo de ton cahier. On commence par quoi ?',
+  'tutor.chip.explain': '📘 Explique-moi {subject}', 'tutor.chip.quiz': '🎯 Fais-moi un quiz de {subject}', 'tutor.chip.test': '🗓️ Comment préparer mon contrôle ?', 'tutor.chip.homework': '✏️ Aide-moi pour un exercice',
+  'tutor.chip.homeworkMsg': 'J’ai un exercice que je n’arrive pas à faire. Tu peux m’aider étape par étape ?', 'tutor.chip.explainMsg': 'Explique-moi les notions de {subject} qui tombent souvent aux contrôles de mon niveau.', 'tutor.chip.quizMsg': 'Fais-moi un quiz rapide de 3 questions de {subject}, une à la fois.', 'tutor.chip.testMsg': 'Comment dois-je préparer mon prochain contrôle ?',
+  'tutor.left': '{n} messages gratuits aujourd’hui · ', 'tutor.disclaimer': 'L’IA peut se tromper : vérifie toujours avec ton livre ou ton prof.', 'tutor.photoMsg': 'Aide-moi avec cette photo.',
+  'tutor.cleared': 'Nouvelle discussion commencée.', 'tutor.thinking': 'Je réfléchis…',
+  'err.tutor_limit': 'Tu as utilisé les {n} messages gratuits d’aujourd’hui. Reviens demain ou regarde les offres Premium.', 'err.tutor_empty': 'Écris d’abord une question.',
   'demo.note': 'Démo jouable. Rui et Eva sont des amis simulés et l’IA donne des réponses d’exemple. Crée un salon pour qu’ils te rejoignent. La séance d’1 minute et les duels courts servent juste à essayer.',
   'brand.tagline': 'on révise en banc',
   'nav.add': '＋ Ajouter', 'nav.main': 'Principal', 'nav.class': 'Classe', 'nav.me': 'Moi',
@@ -629,7 +665,7 @@ const fr = {
   'home.privacy': '🔒 Seules les personnes qui ont le code peuvent entrer. Ne le partage jamais avec des inconnus.',
   'home.recent': 'Salons récents', 'home.noRecent': 'Tu n’as encore rejoint aucun salon.',
   'home.inRoom': 'Tu es dans le salon', 'home.share': 'Envoie le code à tes amis pour qu’ils te rejoignent.',
-  'btn.studyNow': '⏱️ Réviser maintenant', 'btn.duel': '⚔️ Duel', 'btn.chat': '💬 Chat', 'btn.leave': 'Quitter le salon',
+  'btn.studyNow': '⏱️ Réviser maintenant', 'btn.duel': '⚔️ Duel', 'btn.chat': '💬 Chat du salon', 'btn.leave': 'Quitter le salon',
   'home.today': 'Aujourd’hui dans le salon', 'home.progress': 'Ta progression', 'home.planToday': '🗓️ Aujourd’hui dans ton plan',
   'home.planRest': 'Aujourd’hui, c’est repos dans ton plan. 😌', 'home.seePlan': 'Voir le plan', 'home.noPlan': 'Tu n’as pas encore de plan de révision.', 'home.makePlan': 'Créer mon plan',
   'home.nameFirst': 'Écris d’abord ton prénom.',

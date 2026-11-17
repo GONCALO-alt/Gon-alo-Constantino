@@ -205,3 +205,29 @@ test('tempo real: chat, foco, testes e IA (modo de teste)', async () => {
     await srv.close();
   }
 });
+
+test('tutor: funciona sem sala, responde aos bocados e tem limite diário', async () => {
+  process.env.AI_TUTOR_DAILY = '2';
+  const dir = mkdtempSync(join(tmpdir(), 'eca-'));
+  const srv = await startServer({ port: 0, dataFile: join(dir, 'rooms.json'), log: false });
+  const ana = connect(`http://localhost:${srv.port}`);
+  const emit = (ev, data) => new Promise(r => ana.emit(ev, data, r));
+  try {
+    assert.equal((await emit('tutorAsk', { messages: [] })).error, 'tutor_empty');
+    let streamed = '';
+    ana.on('tutorDelta', d => { if (d.id === 7) streamed += d.delta; });
+    const res = await emit('tutorAsk', { id: 7, messages: [{ role: 'user', content: 'O que é uma fração?' }], lang: 'pt' });
+    assert.ok(res.ok);
+    assert.match(res.text, /fração/);
+    assert.equal(streamed, res.text, 'o texto chegou todo aos bocados');
+    assert.equal(res.left, 1);
+    assert.ok((await emit('tutorAsk', { messages: [{ role: 'user', content: 'e mais?' }] })).ok);
+    const limited = await emit('tutorAsk', { messages: [{ role: 'user', content: 'outra' }] });
+    assert.equal(limited.error, 'tutor_limit');
+    assert.equal(limited.quota, true);
+  } finally {
+    ana.close();
+    await srv.close();
+    delete process.env.AI_TUTOR_DAILY;
+  }
+});

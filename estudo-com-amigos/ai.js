@@ -145,6 +145,55 @@ Estima a percentagem que este aluno teria se o teste fosse hoje. Sê honesto: co
 Indica pontos fortes, o que melhorar e um plano curto e realista até ao teste.`, { maxTokens: 4000, lang });
 }
 
+// ---------- tutor (o chat principal) ----------
+// Conversa livre para ajudar a estudar. A resposta chega aos bocados (streaming) para aparecer enquanto é escrita.
+
+const TUTOR_RULES = `Agora és o tutor pessoal do aluno na app: o chat principal do Shoalmates.
+Como ajudas:
+- Explica passo a passo, com exemplos simples do dia a dia. Respostas curtas (até ~150 palavras), a não ser que o aluno peça mais.
+- Nos trabalhos de casa, não dês só a resposta final: guia o aluno com pistas e perguntas, e mostra o raciocínio. Se ele já tentou e pede a solução, mostra-a explicada.
+- Podes fazer mini-quizzes, resumos, planos de estudo e truques para memorizar.
+- Usa listas e **negrito** com moderação. Para matemática, escreve as contas em texto simples (ex.: 3/4 + 1/2 = 5/4).
+- Se a pergunta não tiver nada a ver com estudo, responde numa frase simpática e volta ao estudo.
+- Nunca peças dados pessoais (morada, escola, telefone, fotos da cara). Se o aluno os partilhar, diz-lhe com simpatia para não o fazer.
+- Se o aluno disser que está muito triste, ansioso, em perigo ou a ser magoado, responde com carinho, sugere falar com um adulto de confiança (pais, professor, psicólogo da escola) e, em Portugal, a linha SOS Criança 116 111.`;
+
+export async function tutorStream({ messages, lang, image, context, onText }) {
+  if (process.env.AI_MOCK === '1') return mock.tutor(messages, onText);
+  const msgs = messages.map((m, i) => {
+    const last = i === messages.length - 1;
+    if (last && image) {
+      return { role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: image.mediaType, data: image.data } },
+        { type: 'text', text: m.content || 'Ajuda-me com isto.' },
+      ] };
+    }
+    return { role: m.role, content: m.content };
+  });
+  let final;
+  try {
+    const stream = getClient().beta.messages.stream({
+      model: MODEL,
+      max_tokens: 8000,
+      system: `${system(lang)}\n\n${TUTOR_RULES}${context ? `\n\nSobre este aluno: ${context}` : ''}`,
+      output_config: { effort: 'low' },
+      betas: ['server-side-fallback-2026-07-01'],
+      fallbacks: 'default',
+      messages: msgs,
+    });
+    stream.on('text', delta => onText?.(delta));
+    final = await stream.finalMessage();
+  } catch (e) {
+    if (e instanceof Anthropic.AuthenticationError) throw new AIError('ai_key');
+    if (e instanceof Anthropic.RateLimitError) throw new AIError('ai_rate');
+    if (e instanceof Anthropic.BadRequestError) throw new AIError('ai_unreadable');
+    if (e instanceof Anthropic.APIError) throw new AIError('ai_failed');
+    throw new AIError('ai_network');
+  }
+  if (final.stop_reason === 'refusal') throw new AIError('ai_refused');
+  return final.content.filter(b => b.type === 'text').map(b => b.text).join('');
+}
+
 // ---------- respostas falsas para testar sem chave (AI_MOCK=1) ----------
 const mock = {
   questions: n => ({
@@ -157,6 +206,12 @@ const mock = {
   }),
   explain: right => ({ explanation: `(modo de teste) A resposta certa é "${right}". Revê esta parte da matéria.` }),
   summary: () => ({ title: 'Resumo (modo de teste)', sections: [{ heading: 'Ideias principais', points: ['Ponto 1', 'Ponto 2'] }], mustKnow: ['Isto é um resumo de teste.'] }),
+  async tutor(messages, onText) {
+    const q = messages.at(-1)?.content ?? '';
+    const text = `(modo de teste) Boa pergunta! Perguntaste: "${q.slice(0, 80)}". Vamos por partes: 1) lê o enunciado, 2) sublinha o que é pedido, 3) tenta um exemplo simples.`;
+    for (const w of text.split(/(?<= )/)) { onText?.(w); await new Promise(r => setTimeout(r, 5)); }
+    return text;
+  },
   grade: perf => ({
     estimate: perf.accuracy ?? 50, confidence: perf.answered > 20 ? 'medium' : 'low',
     message: '(modo de teste) Continua assim!', strengths: ['Tabuada'], toImprove: ['Multiplicação'], plan: ['Faz mais um duelo hoje.'],

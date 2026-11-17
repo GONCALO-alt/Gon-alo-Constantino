@@ -5,12 +5,44 @@ import * as AI from './ai.js';
 const AI_WEEKLY_LIMIT = Number(globalThis.process?.env?.AI_WEEKLY_LIMIT) || 30; // usos de IA por sala por semana (grátis)
 const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 const MAX_IMAGE_B64 = 5 * 1024 * 1024;
+const tutorDaily = () => Number(globalThis.process?.env?.AI_TUTOR_DAILY) || 40; // mensagens grátis ao tutor por pessoa por dia
+const SUBJECT_IDS = ['mat', 'port', 'ing', 'cien', 'fq', 'hist', 'geo', 'bg', 'fil', 'fr', 'es', 'tic', 'ev', 'eco'];
+
+// Limpa a conversa enviada pelo browser: só papéis válidos, textos curtos, últimas 20 mensagens, a acabar no aluno.
+export function cleanTutorMessages(list) {
+  const msgs = (Array.isArray(list) ? list : [])
+    .filter(m => (m?.role === 'user' || m?.role === 'assistant') && typeof m.content === 'string')
+    .map(m => ({ role: m.role, content: m.content.slice(0, 4000) }))
+    .slice(-20);
+  while (msgs.length && msgs[0].role !== 'user') msgs.shift();
+  // junta mensagens seguidas do mesmo papel
+  const out = [];
+  for (const m of msgs) {
+    if (out.length && out.at(-1).role === m.role) out.at(-1).content += `\n\n${m.content}`;
+    else out.push({ ...m });
+  }
+  return out.length && out.at(-1).role === 'user' ? out : null;
+}
+
+// Contexto do plano de estudo (só valores conhecidos, nada de texto livre)
+export function tutorContext(c) {
+  if (!c || typeof c !== 'object') return '';
+  const pick = list => (Array.isArray(list) ? list.filter(x => SUBJECT_IDS.includes(x)) : []);
+  const parts = [];
+  if (/^(\d{1,2}|uni|other)$/.test(String(c.year ?? ''))) parts.push(`ano: ${c.year}`);
+  if (pick(c.subjects).length) parts.push(`disciplinas: ${pick(c.subjects).join(', ')}`);
+  if (pick(c.hard).length) parts.push(`mais difíceis: ${pick(c.hard).join(', ')}`);
+  if (['grades', 'exams', 'keep', 'organize'].includes(c.goal)) parts.push(`objetivo: ${c.goal}`);
+  if (c.test && SUBJECT_IDS.includes(c.test.subject) && /^\d{4}-\d{2}-\d{2}$/.test(c.test.date)) parts.push(`teste de ${c.test.subject} em ${c.test.date}`);
+  return parts.join('; ');
+}
 
 // Liga as regras das salas a um servidor Socket.IO (ou a qualquer objeto com a mesma forma).
 export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
   const timers = new Map();      // code -> timeout do temporizador
   const duelTimers = new Map();
   const explainCache = new Map(); // "qid:escolha" -> explicação
+  const tutorUse = new Map();     // pessoa (IP) -> { day, count }
 
   R.rolloverLeagues(store);
   const leagueTick = setInterval(() => {
@@ -103,6 +135,41 @@ export function attachHandlers(io, store, { duelPauseMs = 3000 } = {}) {
     socket.on('joinRoom', ({ code, profile } = {}, cb) => {
       if (room) return ack(cb, { error: 'already_in_room' });
       join(store.get(code), profile, cb);
+    });
+
+    // ---------- tutor: funciona sem sala ----------
+    let tutorBusy = false;
+    const who = socket.handshake?.headers?.['x-forwarded-for']?.split(',')[0]?.trim() || socket.handshake?.address || socket.id;
+    socket.on('tutorAsk', async (opts, cb) => {
+      const { messages, lang, image, context } = opts ?? {};
+      if (!AI.aiEnabled()) return ack(cb, { error: 'ai_off' });
+      if (tutorBusy) return ack(cb, { error: 'ai_busy' });
+      const msgs = cleanTutorMessages(messages);
+      if (!msgs) return ack(cb, { error: 'tutor_empty' });
+      if (image && (!IMAGE_TYPES.includes(image.mediaType) || typeof image.data !== 'string' || image.data.length > MAX_IMAGE_B64)) {
+        return ack(cb, { error: 'image_invalid' });
+      }
+      const day = R.dayKey();
+      const use = tutorUse.get(who);
+      const count = use?.day === day ? use.count : 0;
+      const limit = tutorDaily();
+      if (count >= limit) return ack(cb, { error: 'tutor_limit', p: { n: limit }, quota: true });
+      tutorUse.set(who, { day, count: count + 1 });
+      tutorBusy = true;
+      const id = opts?.id ?? null;
+      try {
+        const text = await AI.tutorStream({
+          messages: msgs, lang, image, context: tutorContext(context),
+          onText: delta => socket.emit('tutorDelta', { id, delta }),
+        });
+        ack(cb, { ok: true, text, left: limit - count - 1 });
+      } catch (e) {
+        tutorUse.set(who, { day, count }); // falhou: não conta
+        ack(cb, { error: e instanceof AI.AIError ? e.message : 'ai_failed' });
+        if (!(e instanceof AI.AIError)) console.error('[tutor]', e);
+      } finally {
+        tutorBusy = false;
+      }
     });
 
     // A partir daqui é preciso estar numa sala.

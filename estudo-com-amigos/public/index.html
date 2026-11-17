@@ -26,14 +26,15 @@
 
     <div class="nav-group">
       <span class="nav-label" data-i18n="nav.main">Principal</span>
-      <button data-view="inicio"><i>🏠</i><span data-i18n="view.inicio">Início</span></button>
+      <button data-view="chat"><i>🤖</i><span data-i18n="view.chat">Chat</span><em class="nav-tag" data-i18n="nav.ai">IA</em></button>
       <button data-view="plano"><i>🗓️</i><span data-i18n="view.plano">O meu plano</span></button>
+      <button data-view="inicio"><i>🏠</i><span data-i18n="view.inicio">Início</span></button>
       <button data-view="estudar"><i>⏱️</i><span data-i18n="view.estudar">Estudar</span></button>
-      <button data-view="chat"><i>💬</i><span data-i18n="view.chat">Chat</span><em id="chatDot" class="dot hidden"></em></button>
       <button data-view="duelos"><i>⚔️</i><span data-i18n="view.duelos">Duelos</span></button>
     </div>
     <div class="nav-group">
       <span class="nav-label" data-i18n="nav.class">Turma</span>
+      <button data-view="salachat"><i>💬</i><span data-i18n="view.salachat">Chat da sala</span><em id="chatDot" class="dot hidden"></em></button>
       <button data-view="apontamentos"><i>📝</i><span data-i18n="view.apontamentos">Apontamentos</span></button>
       <button data-view="calendario"><i>📅</i><span data-i18n="view.calendario">Calendário</span></button>
       <button data-view="liga"><i>🏆</i><span data-i18n="view.liga">Liga</span></button>
@@ -117,7 +118,7 @@
             <div class="row wrap">
               <button data-go="estudar" data-i18n="btn.studyNow"></button>
               <button data-go="duelos" class="ghost" data-i18n="btn.duel"></button>
-              <button data-go="chat" class="ghost" data-i18n="btn.chat"></button>
+              <button data-go="salachat" class="ghost" data-i18n="btn.chat"></button>
               <button id="leave2" class="ghost danger" data-i18n="btn.leave"></button>
             </div>
           </div>
@@ -129,6 +130,26 @@
 
         <h3 class="section-title" data-i18n="home.progress"></h3>
         <div id="myStats" class="stat-row"></div>
+      </section>
+
+      <!-- CHAT COM O TUTOR (principal, não precisa de sala) -->
+      <section id="view-chat" class="view hidden">
+        <div class="card tutor-card">
+          <div class="tutor-head">
+            <img src="icons/icon.svg" alt="" class="tutor-logo">
+            <div><b data-i18n="tutor.name"></b><span class="muted small" data-i18n="tutor.sub"></span></div>
+            <button id="tutorNew" class="ghost small-btn" data-i18n="tutor.new"></button>
+          </div>
+          <ul id="tutorLog" class="messages tutor-log"></ul>
+          <div id="tutorChips" class="tutor-chips"></div>
+          <div id="tutorImg" class="tutor-img hidden"><img alt=""><button class="icon-btn" id="tutorImgX" data-i18n-aria="aria.close">✕</button></div>
+          <form id="tutorForm" class="tutor-form">
+            <label class="icon-btn tutor-photo" data-i18n-title="tutor.photo">📷<input id="tutorPhoto" type="file" accept="image/*" hidden></label>
+            <textarea id="tutorInput" rows="1" maxlength="2000" data-i18n-ph="tutor.ph"></textarea>
+            <button id="tutorSend" data-i18n="btn.send"></button>
+          </form>
+          <p id="tutorInfo" class="muted small tutor-info"></p>
+        </div>
       </section>
 
       <!-- O MEU PLANO -->
@@ -200,8 +221,8 @@
         </div>
       </section>
 
-      <!-- CHAT -->
-      <section id="view-chat" class="view hidden" data-needs-room>
+      <!-- CHAT DA SALA -->
+      <section id="view-salachat" class="view hidden" data-needs-room>
         <div class="card chat-card">
           <ul id="messages" class="messages"></ul>
           <form id="chatForm" class="row">
@@ -466,10 +487,10 @@
 
   <!-- barra de baixo (telemóvel) -->
   <nav class="bottombar">
-    <button data-view="inicio"><i>🏠</i><span data-i18n="view.inicio"></span></button>
+    <button data-view="chat"><i>🤖</i><span data-i18n="view.chat"></span></button>
     <button data-view="plano"><i>🗓️</i><span data-i18n="view.plano"></span></button>
     <button id="addBtn2" class="bottom-add" data-i18n-aria="aria.add">＋</button>
-    <button data-view="chat"><i>💬</i><span data-i18n="view.chat"></span><em id="chatDot2" class="dot hidden"></em></button>
+    <button data-view="inicio"><i>🏠</i><span data-i18n="view.inicio"></span><em id="chatDot2" class="dot hidden"></em></button>
     <button id="moreBtn"><i>☰</i><span data-i18n="nav.more"></span></button>
   </nav>
 </div>
@@ -479,6 +500,7 @@
   <div class="sheet-card">
     <div class="row between"><h3 data-i18n="add.title"></h3><button id="addClose" class="icon-btn" data-i18n-aria="aria.close">✕</button></div>
     <div class="add-grid">
+      <button data-add="tutor"><i>🤖</i><b data-i18n="add.tutor"></b><span data-i18n="add.tutorS"></span></button>
       <button data-add="sala"><i>🐟</i><b data-i18n="add.sala"></b><span data-i18n="add.salaS"></span></button>
       <button data-add="entrar"><i>🔑</i><b data-i18n="add.entrar"></b><span data-i18n="add.entrarS"></span></button>
       <button data-add="foco"><i>⏱️</i><b data-i18n="add.foco"></b><span data-i18n="add.focoS"></span></button>

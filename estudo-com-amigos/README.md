@@ -4,10 +4,20 @@
 
 **Porquê "Shoalmates"?** Em inglês, *shoal* é um grupo de peixes que nada junto (um cardume) e *schoolmates* são os colegas de escola. Shoalmates junta as duas coisas: os teus colegas de cardume. O ícone (`public/icons/icon.svg`) são três peixes a nadar em roda, e a moeda da app são as escamas 🐟.
 
+## 🤖 Chat com o tutor (a parte principal)
+A app abre no **Chat**, um tutor de IA que ajuda a estudar qualquer disciplina. **Não é preciso estar numa sala**: as salas são para estudar com os amigos, depois.
+- Explica a matéria passo a passo. Nos trabalhos de casa dá pistas e mostra o raciocínio, em vez de dar só a resposta.
+- Faz quizzes, resumos e planos, e aceita **fotos** do caderno ou do livro (📷).
+- Usa o plano de estudo (ano, disciplinas, dificuldades, próximo teste) para personalizar as respostas e as sugestões rápidas.
+- As respostas aparecem enquanto a IA escreve e vêm na língua da app.
+- A conversa fica guardada só no browser. Há um botão "Nova conversa".
+- Segurança: nunca pede dados pessoais, volta sempre ao estudo e, se o aluno disser que não está bem, sugere falar com um adulto de confiança e a linha SOS Criança 116 111.
+- Custos: cada pessoa tem `AI_TUTOR_DAILY` mensagens grátis por dia (40 por defeito). O Premium tira esse limite.
+
 ## Menu
 - **＋ Adicionar**: cria uma sala, entra numa, começa um foco, partilha um apontamento, escreve uma pergunta, tira uma foto para a IA, marca um teste ou manda uma mensagem, tudo a partir do mesmo sítio.
-- **Principal**: Início, O meu plano, Estudar, Chat (com aviso de mensagens novas), Duelos
-- **Turma**: Apontamentos, Calendário, Liga
+- **Principal**: Chat (tutor IA), O meu plano, Início, Estudar, Duelos
+- **Turma**: Chat da sala (com aviso de mensagens novas), Apontamentos, Calendário, Liga
 - **Eu**: Loja, Medalhas, Perfil, Premium, Definições (língua, plano, som, tema claro/escuro, sair da sala, apagar dados)
 
 No computador o menu fica à esquerda. No telemóvel há uma barra em baixo com o botão ＋ ao centro, e o resto do menu abre em "Mais".
