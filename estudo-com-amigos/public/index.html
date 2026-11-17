@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudo com Amigos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ENTRADA -->
+  <main id="home" class="screen">
+    <div class="card hero">
+      <h1>📚 Estudo com Amigos</h1>
+      <p class="muted">Estuda ao mesmo tempo que os teus amigos, partilha apontamentos e desafia-os para duelos.</p>
+
+      <label>O teu nome
+        <input id="name" maxlength="20" placeholder="ex.: Gonçalo" autocomplete="off">
+      </label>
+
+      <div class="me-preview">
+        <span id="previewAvatar" class="avatar big"></span>
+        <button id="openLocker" class="ghost">🎨 Mudar avatar</button>
+        <span id="homeMinutes" class="muted small"></span>
+      </div>
+
+      <div class="split">
+        <div>
+          <h3>Criar sala</h3>
+          <input id="roomName" maxlength="40" placeholder="ex.: Teste de Ciências">
+          <button id="create">Criar sala</button>
+        </div>
+        <div>
+          <h3>Entrar numa sala</h3>
+          <input id="code" maxlength="6" placeholder="Código (6 letras)" autocomplete="off">
+          <button id="join">Entrar</button>
+        </div>
+      </div>
+      <p id="homeError" class="error"></p>
+
+      <div id="recent"></div>
+      <p class="muted small">🔒 Só entra quem tiver o código. Não partilhes o código com desconhecidos.</p>
+    </div>
+  </main>
+
+  <!-- SALA -->
+  <main id="room" class="screen hidden">
+    <header class="topbar">
+      <div>
+        <h2 id="roomTitle"></h2>
+        <button id="copyCode" class="code" title="Copiar código"></button>
+      </div>
+      <div class="topbar-right">
+        <button id="openLocker2" class="ghost">🎨</button>
+        <button id="leave" class="ghost">Sair</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="card">
+        <div id="timerBox" class="timer idle">
+          <div id="timerLabel" class="timer-label">Pronto para estudar?</div>
+          <div id="timerClock" class="timer-clock">25:00</div>
+          <div class="timer-controls">
+            <select id="focusMin" aria-label="Minutos de foco">
+              <option value="15">15 min</option>
+              <option value="25" selected>25 min</option>
+              <option value="45">45 min</option>
+              <option value="60">60 min</option>
+            </select>
+            <button id="timerStart">▶ Começar foco</button>
+            <button id="timerStop" class="ghost hidden">■ Parar</button>
+          </div>
+          <p class="muted small">Se saíres da página durante o foco, ficas como <b>distraído</b> e não ganhas os minutos.</p>
+        </div>
+
+        <h3>Na sala</h3>
+        <ul id="members" class="members"></ul>
+      </aside>
+
+      <section class="card main">
+        <nav class="tabs" role="tablist">
+          <button data-tab="chat" class="active">💬 Chat</button>
+          <button data-tab="notes">📝 Apontamentos</button>
+          <button data-tab="quiz">⚔️ Quiz</button>
+          <button data-tab="ranking">🏆 Ranking</button>
+        </nav>
+
+        <div id="tab-chat" class="tab">
+          <ul id="messages" class="messages"></ul>
+          <form id="chatForm" class="row">
+            <input id="chatInput" maxlength="500" placeholder="Escreve uma mensagem…" autocomplete="off">
+            <button>Enviar</button>
+          </form>
+        </div>
+
+        <div id="tab-notes" class="tab hidden">
+          <form id="noteForm" class="stack">
+            <input id="noteTitle" maxlength="60" placeholder="Título (ex.: Fotossíntese)">
+            <textarea id="noteText" rows="4" maxlength="4000" placeholder="Escreve o resumo…"></textarea>
+            <button>Partilhar apontamento</button>
+          </form>
+          <ul id="notes" class="notes"></ul>
+        </div>
+
+        <div id="tab-quiz" class="tab hidden">
+          <div id="duelArea" class="duel hidden"></div>
+          <div id="quizSetup">
+            <div class="row between">
+              <p><b id="qCount">0</b> perguntas na sala</p>
+              <button id="duelStart">⚔️ Começar duelo</button>
+            </div>
+            <p id="quizError" class="error"></p>
+            <form id="qForm" class="stack">
+              <input id="qText" maxlength="200" placeholder="Pergunta (ex.: Qual é a capital de França?)">
+              <div class="options">
+                <label><input type="radio" name="right" value="0" checked><input class="opt" maxlength="80" placeholder="Resposta A"></label>
+                <label><input type="radio" name="right" value="1"><input class="opt" maxlength="80" placeholder="Resposta B"></label>
+                <label><input type="radio" name="right" value="2"><input class="opt" maxlength="80" placeholder="Resposta C (opcional)"></label>
+                <label><input type="radio" name="right" value="3"><input class="opt" maxlength="80" placeholder="Resposta D (opcional)"></label>
+              </div>
+              <p class="muted small">Marca a bolinha da resposta certa.</p>
+              <button>Adicionar pergunta</button>
+            </form>
+            <ul id="questions" class="questions"></ul>
+          </div>
+        </div>
+
+        <div id="tab-ranking" class="tab hidden">
+          <table class="ranking">
+            <thead><tr><th>#</th><th>Nome</th><th>⏱️ Minutos</th><th>🎯 Sessões</th><th>⚔️ Vitórias</th></tr></thead>
+            <tbody id="rankingBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- CACIFO (cosméticos) -->
+  <dialog id="locker">
+    <h2>🎨 O teu cacifo</h2>
+    <p class="muted">Desbloqueias avatares e molduras a estudar. Tens <b id="lockerMinutes">0</b> minutos de foco.</p>
+    <h3>Avatares</h3>
+    <div id="avatarGrid" class="grid"></div>
+    <h3>Molduras</h3>
+    <div id="frameGrid" class="grid"></div>
+    <form method="dialog"><button>Fechar</button></form>
+  </dialog>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
