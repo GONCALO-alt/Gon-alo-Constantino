@@ -1,7 +1,7 @@
 // Constrói a demo num único ficheiro HTML (dist/demo.html) que corre sem servidor.
 // Uso: npm run demo
 import { build } from 'esbuild';
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, readdirSync, copyFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -56,4 +56,51 @@ writeFileSync(join(root, 'dist', 'demo.html'), page);
 // versão que abre sozinha no browser (duplo clique)
 writeFileSync(join(root, 'dist', 'demo-offline.html'),
   `<!doctype html>\n<html lang="pt">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n</head>\n<body>\n${page}</body>\n</html>\n`);
-console.log(`dist/demo.html + dist/demo-offline.html (${Math.round(page.length / 1024)} KB)`);
+// ---------- versão para o Cloudflare Pages (site estático) ----------
+// Pasta dist/cloudflare/ pronta a enviar: index.html + ícones + manifesto + cabeçalhos de segurança.
+const cf = join(root, 'dist', 'cloudflare');
+rmSync(cf, { recursive: true, force: true });
+mkdirSync(join(cf, 'icons'), { recursive: true });
+for (const f of readdirSync(join(root, 'public', 'icons'))) copyFileSync(join(root, 'public', 'icons', f), join(cf, 'icons', f));
+copyFileSync(join(root, 'public', 'manifest.webmanifest'), join(cf, 'manifest.webmanifest'));
+const cfBody = html.slice(html.indexOf('<body>') + 6, html.indexOf('<script src="/socket.io')).trim()
+  .replace('<div id="testBanner"', '<div class="demo-note" data-i18n="demo.note"></div>\n    <div id="testBanner"');
+writeFileSync(join(cf, 'index.html'), `<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shoalmates</title>
+<meta name="description" content="Shoalmates: estuda com a tua turma e com um tutor de IA.">
+<meta name="theme-color" content="#5a3ce6">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+${css}
+/* demo */
+.demo-note { margin-bottom: 1rem; padding: .6rem .9rem; border-radius: 12px; background: var(--card); border: 1px dashed var(--accent); color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+${cfBody}
+<script type="module">${js}</script>
+</body>
+</html>
+`);
+// cabeçalhos do Cloudflare Pages: segurança e cache dos ícones
+writeFileSync(join(cf, '_headers'), `/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), geolocation=(), microphone=(self)
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+
+/icons/*
+  Cache-Control: public, max-age=604800
+`);
+
+console.log(`dist/demo.html + dist/demo-offline.html + dist/cloudflare/ (${Math.round(page.length / 1024)} KB)`);

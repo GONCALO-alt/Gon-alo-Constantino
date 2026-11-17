@@ -99,6 +99,16 @@ O ficheiro `render.yaml` na raiz do repositório já tem tudo.
 
 O plano `starter` (cerca de 7 $/mês) mantém a app sempre ligada e guarda as salas num disco. No plano grátis a app adormece quando ninguém a usa e as salas apagam-se quando reinicia. Para usar o grátis, muda `plan: free` e tira o bloco `disk` do `render.yaml`.
 
+### Cloudflare Pages (demo, grátis)
+`npm run demo` cria a pasta **`dist/cloudflare/`**, um site estático pronto para o Cloudflare Pages. O zip `shoalmates-cloudflare.zip` tem o mesmo conteúdo.
+1. Entra em https://dash.cloudflare.com (a conta tem de ser de um adulto) e abre **Workers & Pages → Create → Pages → Upload assets**.
+2. Dá um nome ao projeto (por exemplo `shoalmates`), arrasta o zip ou a pasta `dist/cloudflare` e carrega em **Deploy**.
+3. Fica online em `https://shoalmates.pages.dev`.
+
+Pela linha de comandos: `npm run cloudflare` (usa o `wrangler`; pede login no Cloudflare).
+
+⚠️ Esta é a **versão demo**: corre toda no browser, com amigos simulados e respostas de exemplo da IA. O Cloudflare Pages não corre o servidor Node com Socket.IO. Para salas reais entre pessoas diferentes e IA verdadeira, usa o Render (acima). Pôr o servidor no Cloudflare exigia reescrevê-lo para Cloudflare Workers com Durable Objects.
+
 ### Outros serviços
 Há um `Dockerfile` para Fly.io, Railway, etc. Define `PORT`, `DATA_DIR` (pasta com disco permanente) e, se quiseres IA, `ANTHROPIC_API_KEY`.
 
