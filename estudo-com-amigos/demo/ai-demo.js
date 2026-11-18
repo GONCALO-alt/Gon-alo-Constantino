@@ -80,17 +80,17 @@ export async function predictGrade({ perf, test }) {
 
 // Tutor da demo: respostas preparadas conforme as palavras da pergunta, escritas aos bocados.
 const TUTOR = [
-  [/fotoss[ií]ntese|planta|clorofila|photosynth/i, 'A **fotossíntese** é a forma como as plantas fazem o seu próprio alimento. 🌱\n\n1. As folhas captam **luz** com a clorofila (o pigmento verde).\n2. A raiz absorve **água** e as folhas recebem **dióxido de carbono** pelos estomas.\n3. Com isso, a planta produz **glicose** (energia) e liberta **oxigénio**.\n\nTruque para decorar: *"Luz + água + CO₂ → açúcar + O₂"*.\n\nQueres que te faça 3 perguntas rápidas para testares?'],
-  [/fra[cç][aãõo]|fraction|matem[aá]tica|math|\d+\/\d+/i, 'Vamos às **frações**! 🍕\n\nPara somar 1/2 + 1/4, os denominadores (números de baixo) têm de ser iguais:\n- 1/2 = 2/4\n- 2/4 + 1/4 = **3/4**\n\nAgora tenta tu: quanto é 1/3 + 1/6? Diz-me a tua resposta e eu digo-te se está certa. 😉'],
-  [/equa[cç]|x\s*=|equation/i, 'Para resolver uma **equação**, o objetivo é deixar o **x sozinho** de um dos lados.\n\nExemplo: 2x + 3 = 11\n1. Tira 3 dos dois lados: 2x = 8\n2. Divide os dois lados por 2: **x = 4**\n\nConfirma sempre: 2 × 4 + 3 = 11 ✅. Queres tentar uma parecida?'],
-  [/plano|organiz|prepar|\bplan\b|exame|exam/i, 'Boa ideia preparares-te com tempo! 💪 Um plano simples:\n\n- **Hoje:** lê a matéria e faz um resumo curto (25 min).\n- **Amanhã:** faz exercícios das partes mais difíceis.\n- **Véspera:** um duelo com os amigos e revisão leve. Dorme bem!\n\nVê também o separador **O meu plano**, que já tem os teus blocos da semana.'],
-  [/quiz|pergunta|testa-me|quiz me/i, 'Bora! 🎯 Responde a esta:\n\n**Qual é o planeta mais perto do Sol?**\nA) Vénus  B) Mercúrio  C) Marte\n\nEscreve a letra e eu digo-te se acertaste.'],
-  [/^\s*b\s*$|merc[uú]rio/i, '✅ **Certo!** Mercúrio é o planeta mais perto do Sol, e também o mais pequeno do sistema solar. Queres outra?'],
+  [/fotoss[ií]ntese|planta|clorofila|photosynth/i, 'A **fotossíntese** é a forma como as plantas fazem o seu próprio alimento.\n\n1. As folhas captam **luz** com a clorofila (o pigmento verde).\n2. A raiz absorve **água** e as folhas recebem **dióxido de carbono** pelos estomas.\n3. Com isso, a planta produz **glicose** (energia) e liberta **oxigénio**.\n\nTruque para decorar: *"Luz + água + CO₂ → açúcar + O₂"*.\n\nQueres que te faça 3 perguntas rápidas para testares?'],
+  [/fra[cç][aãõo]|fraction|matem[aá]tica|math|\d+\/\d+/i, 'Vamos às **frações**!\n\nPara somar 1/2 + 1/4, os denominadores (números de baixo) têm de ser iguais:\n- 1/2 = 2/4\n- 2/4 + 1/4 = **3/4**\n\nAgora tenta tu: quanto é 1/3 + 1/6? Diz-me a tua resposta e eu digo-te se está certa.'],
+  [/equa[cç]|x\s*=|equation/i, 'Para resolver uma **equação**, o objetivo é deixar o **x sozinho** de um dos lados.\n\nExemplo: 2x + 3 = 11\n1. Tira 3 dos dois lados: 2x = 8\n2. Divide os dois lados por 2: **x = 4**\n\nConfirma sempre: 2 × 4 + 3 = 11. Queres tentar uma parecida?'],
+  [/plano|organiz|prepar|\bplan\b|exame|exam/i, 'Boa ideia preparares-te com tempo! Um plano simples:\n\n- **Hoje:** lê a matéria e faz um resumo curto (25 min).\n- **Amanhã:** faz exercícios das partes mais difíceis.\n- **Véspera:** um duelo com os amigos e revisão leve. Dorme bem!\n\nVê também o separador **O meu plano**, que já tem os teus blocos da semana.'],
+  [/quiz|pergunta|testa-me|quiz me/i, 'Bora! Responde a esta:\n\n**Qual é o planeta mais perto do Sol?**\nA) Vénus  B) Mercúrio  C) Marte\n\nEscreve a letra e eu digo-te se acertaste.'],
+  [/^\s*b\s*$|merc[uú]rio/i, ' **Certo!** Mercúrio é o planeta mais perto do Sol, e também o mais pequeno do sistema solar. Queres outra?'],
 ];
 export async function tutorStream({ messages, onText }) {
   const q = messages.at(-1)?.content ?? '';
   const hit = TUTOR.find(([re]) => re.test(q));
-  const text = hit ? hit[1] : 'Boa pergunta! 🤔 Nesta demo só sei responder a alguns temas de exemplo: **fotossíntese**, **frações**, **equações**, **planos de estudo** ou um **quiz**. Experimenta perguntar sobre um deles!\n\nNa app a sério, o tutor usa IA e ajuda-te com qualquer disciplina.';
+  const text = hit ? hit[1] : 'Boa pergunta! Nesta demo só sei responder a alguns temas de exemplo: **fotossíntese**, **frações**, **equações**, **planos de estudo** ou um **quiz**. Experimenta perguntar sobre um deles!\n\nNa app a sério, o tutor usa IA e ajuda-te com qualquer disciplina.';
   await wait(500);
   for (const w of text.split(/(?<=\s)/)) { onText?.(w); await wait(18); }
   return text;

@@ -326,7 +326,7 @@ export function attachHandlers(io, store, { duelPauseMs = 3000, premiumSecret = 
     }));
 
     socket.on('react', inRoom(emoji => {
-      if (['🔥', '💪', '😴', '👏', '🤯', '☕'].includes(emoji)) io.to(room.code).emit('react', { name: me.name, emoji });
+      if (['flame', 'zap', 'heart', 'sparkles', 'moon', 'coffee'].includes(emoji)) io.to(room.code).emit('react', { name: me.name, emoji });
     }));
 
     socket.on('status', inRoom(status => {

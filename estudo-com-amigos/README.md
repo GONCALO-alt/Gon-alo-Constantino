@@ -2,6 +2,8 @@
 
 *Study as a school.* Salas de estudo online: estudas ao mesmo tempo que os teus amigos, cada um na sua casa.
 
+**Visual:** a app não usa emojis. Os ícones, os 23 avatares (peixes de várias cores e padrões) e os emblemas das medalhas, conquistas e ligas são desenhados em SVG (`public/ui-icons.js`), seguem a cor do tema e ficam iguais em qualquer telemóvel.
+
 **Porquê "Shoalmates"?** Em inglês, *shoal* é um grupo de peixes que nada junto (um cardume) e *schoolmates* são os colegas de escola. Shoalmates junta as duas coisas: os teus colegas de cardume. O ícone (`public/icons/icon.svg`) são três peixes a nadar em roda, e a moeda da app são as escamas 🐟.
 
 ## 🤖 Chat com o tutor (a parte principal)
@@ -183,6 +185,7 @@ A chave fica só no servidor (o browser nunca a vê) e o `.env` nunca vai para o
 | `ai.js` | IA: perguntas, explicações, resumo, previsão de nota (API da Anthropic) |
 | `public/app.js` | O site |
 | `public/sounds.js` | Sons de foco gerados no browser |
+| `public/ui-icons.js` | Ícones desenhados em SVG, avatares-peixe e emblemas (a app não usa emojis) |
 | `public/cosmetics.js` | Avatares, molduras, conquistas e medalhas |
 | `public/i18n.js` | Traduções (PT, EN, ES, FR) |
 | `public/plan.js` | Gerador do plano de estudo |

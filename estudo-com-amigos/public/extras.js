@@ -3,6 +3,7 @@
 // modo exame, correção de respostas, notas (antes/depois) e relatório para os pais.
 import { t, getLang, locale } from './i18n.js';
 import { SUBJECTS } from './plan.js';
+import { icon } from './ui-icons.js';
 
 const DAY = 86_400_000;
 
@@ -52,7 +53,8 @@ export function initExtras(ctx) {
   // sinal de Premium na barra e na carteira
   function refresh() {
     document.body.classList.toggle('is-premium', isPremium());
-    $$('[data-section="premium"] span').forEach(s => { s.textContent = isPremium() ? `${t('view.premium')} ✓` : t('view.premium'); });
+    $$('[data-section="premium"] span').forEach(s => { s.textContent = t('view.premium'); });
+    $$('[data-section="premium"]').forEach(b => b.classList.toggle('has-premium', isPremium()));
     const v = getView();
     if (v === 'premium') renderPremiumExtras();
     if (v === 'plano') renderPlanTrial();
@@ -106,17 +108,17 @@ export function initExtras(ctx) {
     $('#cmpPremium').textContent = new Intl.NumberFormat(locale(), { style: 'currency', currency: 'EUR' }).format(2.99);
     // teste grátis
     const used = store.get('trialUsed', false);
-    $('#earnTrial').innerHTML = `<span>🎁 ${t('earnPrem.trial')}</span>
+    $('#earnTrial').innerHTML = `<span>${icon('gift')} ${t('earnPrem.trial')}</span>
       ${used ? `<em>${t('earnPrem.trialUsed')}</em>` : !planAnswers() ? `<button data-ob="start" class="ghost small-btn">${t('earnPrem.needPlan')}</button>` : isPremium() ? '' : `<button data-claim="trial" class="small-btn">${t('earnPrem.trialBtn')}</button>`}`;
     // chama
     const room = getRoom();
     const streak = room?.streak?.streak ?? 0;
-    $('#earnStreak').innerHTML = `<span>🔥 ${t('earnPrem.streak')}</span>
+    $('#earnStreak').innerHTML = `<span>${icon('flame')} ${t('earnPrem.streak')}</span>
       ${room ? `<div class="mini-bar"><div style="width:${Math.min(100, Math.round(((streak % 30) || (streak >= 30 ? 30 : 0)) / 30 * 100))}%"></div></div>
         <em>${t('earnPrem.streakProgress', { n: Math.min(streak, 30) })}</em>${streak >= 30 ? `<button data-claim="streak" class="small-btn">${t('earnPrem.streakBtn')}</button>` : ''}`
       : `<em>${t('earnPrem.noRoom')}</em>`}`;
     // turma
-    $('#earnTeam').innerHTML = `<span>👥 ${t('earnPrem.team')}</span>
+    $('#earnTeam').innerHTML = `<span>${icon('users')} ${t('earnPrem.team')}</span>
       ${room ? `<em>${t('earnPrem.teamProgress', { n: team.count })}</em>` : `<em>${t('earnPrem.noRoom')}</em>`}`;
   }
   document.addEventListener('click', e => {
@@ -144,7 +146,7 @@ export function initExtras(ctx) {
   let listening = null;
 
   function renderVoiceButtons() {
-    $('#tutorSpeak').textContent = speakOn && isPremium() ? '🔊' : '🔈';
+    $('#tutorSpeak').innerHTML = icon(speakOn && isPremium() ? 'speaker' : 'speakerOff');
     $('#tutorSpeak').setAttribute('aria-pressed', String(speakOn && isPremium()));
     $('#tutorMic').classList.toggle('on', !!listening);
   }
@@ -238,8 +240,8 @@ export function initExtras(ctx) {
       <p class="exam-q">${esc(q.question)}</p>
       <div class="exam-opts">${q.options.map((o, i) => `<button data-opt="${i}" class="${exam.answers[exam.index] === i ? 'picked' : ''}"><b>${'ABCD'[i]}</b> ${esc(o)}</button>`).join('')}</div>
       <div class="row between exam-nav">
-        <button data-move="-1" class="ghost" ${exam.index === 0 ? 'disabled' : ''}>←</button>
-        ${exam.index < exam.questions.length - 1 ? '<button data-move="1" class="ghost">→</button>' : ''}
+        <button data-move="-1" class="ghost" ${exam.index === 0 ? 'disabled' : ''}>${icon('arrowLeft')}</button>
+        ${exam.index < exam.questions.length - 1 ? `<button data-move="1" class="ghost">${icon('arrowRight')}</button>` : ''}
         <button data-finish="1">${t('exam.finish')}</button>
       </div>`;
   }
@@ -275,13 +277,13 @@ export function initExtras(ctx) {
     profile.counters.right = (profile.counters.right ?? 0) + right;
     saveProfile();
     $('#examRun').innerHTML = `
-      <div class="exam-result ${pct >= 50 ? 'pass' : 'fail'}"><span>${pct >= 90 ? '🏆' : pct >= 50 ? '🎉' : '💪'}</span>
+      <div class="exam-result ${pct >= 50 ? 'pass' : 'fail'}"><span>${icon(pct >= 90 ? 'trophy' : pct >= 50 ? 'star' : 'trendUp')}</span>
         <b>${t('exam.result', { p: pct, g: g20 })}</b><small>${esc(exam.title)}</small></div>
       <h3>${t('exam.review')}</h3>
       <ol class="exam-review">${exam.questions.map((q, i) => {
         const a = exam.answers[i];
         const ok = a === q.answer;
-        return `<li class="${ok ? 'ok' : 'bad'}"><b>${ok ? '✅' : '❌'} ${esc(q.question)}</b>
+        return `<li class="${ok ? 'ok' : 'bad'}"><b>${icon(ok ? 'checkCircle' : 'xCircle', ok ? 'ok' : 'bad')} ${esc(q.question)}</b>
           ${ok ? '' : `<span>${esc(t('exam.yours', { a: a === null ? t('exam.none') : q.options[a] }))}</span><span>${esc(t('exam.rightIs', { a: q.options[q.answer] }))}</span>`}
           <em>${esc(q.explanation)}</em></li>`;
       }).join('')}</ol>
@@ -295,7 +297,7 @@ export function initExtras(ctx) {
     const f = e.target.files?.[0];
     e.target.value = '';
     if (!f) return;
-    try { corrImage = await shrinkImage(f); $('#corrPhotoName').textContent = `📷 ${f.name}`; }
+    try { corrImage = await shrinkImage(f); $('#corrPhotoName').textContent = f.name; }
     catch { toast(t('ai.badImage')); }
   };
   $('#corrSend').onclick = async () => {
@@ -367,7 +369,7 @@ export function initExtras(ctx) {
     $('#gradesChart').innerHTML = chart(list, started);
     $('#gradesList').innerHTML = [...list].reverse().map(g => `<li><span class="sw" style="background:${color(g.subject)}"></span>
       <span>${esc(subjName(g.subject))}</span><span class="muted small">${new Date(`${g.date}T12:00:00`).toLocaleDateString(locale())}</span>
-      <b>${g.value}/${g.scale}</b><button class="del" data-delgrade="${g.id}" title="${t('btn.delete')}">✕</button></li>`).join('');
+      <b>${g.value}/${g.scale}</b><button class="del" data-delgrade="${g.id}" title="${t('btn.delete')}">${icon('x')}</button></li>`).join('');
   }
 
   const PALETTE = ['#5a3ce6', '#ff8a3d', '#1fa36b', '#e0435a', '#2f7de0', '#c97f00', '#9b4dff', '#0e9aa7'];
@@ -390,7 +392,7 @@ export function initExtras(ctx) {
       return `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="${color(s)}" stroke-width="2.5" stroke-linejoin="round"/>
         ${pts.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${color(s)}"/>`).join('')}`;
     }).join('');
-    const start = `<line x1="${x(sT)}" x2="${x(sT)}" y1="${T}" y2="${H - B}" class="start"/><text x="${x(sT) > W / 2 ? x(sT) - 4 : x(sT) + 4}" y="${H - B + 16}" text-anchor="${x(sT) > W / 2 ? 'end' : 'start'}" class="axis">🐟 Shoalmates</text>`;
+    const start = `<line x1="${x(sT)}" x2="${x(sT)}" y1="${T}" y2="${H - B}" class="start"/><text x="${x(sT) > W / 2 ? x(sT) - 4 : x(sT) + 4}" y="${H - B + 16}" text-anchor="${x(sT) > W / 2 ? 'end' : 'start'}" class="axis">Shoalmates</text>`;
     const legend = Object.keys(bySubj).map(s => `<span><i style="background:${color(s)}"></i>${esc(subjName(s))}</span>`).join('');
     return `<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="${esc(t('grades.title'))}">${grid}${start}${lines}</svg><div class="legend">${legend}</div>`;
   }
@@ -441,15 +443,15 @@ export function initExtras(ctx) {
   function reportText() {
     const r = reportData();
     return [
-      `🐟 ${t('report.title', { name: r.name })}`,
+      `Shoalmates · ${t('report.title', { name: r.name })}`,
       t('report.week', { from: r.from, to: r.to }), '',
-      `⏱️ ${t('report.minutes')}: ${r.minutes}`,
-      `🎯 ${t('report.sessions')}: ${r.sessions}`,
-      `📅 ${t('report.days')}: ${r.days}/7`,
-      `🗓️ ${t('report.plan')}: ${r.plan.total ? t('report.planVal', { d: r.plan.done, t: r.plan.total }) : t('report.none')}`,
-      `⚔️ ${t('report.quiz')}: ${r.quiz ? t('report.quizVal', r.quiz) : t('report.none')}`,
-      `📘 ${t('report.tests')}: ${r.tests.join(', ') || t('report.none')}`,
-      `📈 ${t('report.grades')}: ${r.grades.join(' · ') || t('report.none')}`, '',
+      `- ${t('report.minutes')}: ${r.minutes}`,
+      `- ${t('report.sessions')}: ${r.sessions}`,
+      `- ${t('report.days')}: ${r.days}/7`,
+      `- ${t('report.plan')}: ${r.plan.total ? t('report.planVal', { d: r.plan.done, t: r.plan.total }) : t('report.none')}`,
+      `- ${t('report.quiz')}: ${r.quiz ? t('report.quizVal', r.quiz) : t('report.none')}`,
+      `- ${t('report.tests')}: ${r.tests.join(', ') || t('report.none')}`,
+      `- ${t('report.grades')}: ${r.grades.join(' · ') || t('report.none')}`, '',
       t('report.footer'),
     ].join('\n');
   }

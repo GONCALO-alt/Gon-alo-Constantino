@@ -627,3 +627,57 @@ body.is-premium .prem-badge:not(.fam) { background: var(--ok); color: #fff; }
   .rep-big { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .rep-big b { font-size: 1.3rem; }
 }
+
+/* ---------- ícones desenhados (ui-icons.js) ---------- */
+.ic { width: 1.15em; height: 1.15em; flex: none; vertical-align: -.2em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+[data-icon] { display: inline-flex; align-items: center; justify-content: center; }
+.nav-group button i, .bottombar button i, .add-grid button i { display: inline-flex; align-items: center; justify-content: center; }
+.nav-group button i .ic { width: 20px; height: 20px; }
+.bottombar button i .ic { width: 24px; height: 24px; }
+.add-grid button i .ic { width: 26px; height: 26px; color: var(--accent); }
+.icon-btn .ic, .menu-btn .ic { width: 22px; height: 22px; }
+.wallet [data-icon] .ic { color: var(--accent-2); width: 18px; height: 18px; }
+.nav .wallet [data-icon] .ic { color: #ffb84d; }
+.big-wallet [data-icon] .ic { width: 34px; height: 34px; }
+.empty-icon .ic { width: 44px; height: 44px; color: var(--accent); }
+.subnav .ic { width: 17px; height: 17px; }
+.subnav .ic.lock { width: 14px; height: 14px; margin-left: .2rem; opacity: .7; }
+.chip .ic, .chip .badge-ic { vertical-align: -.25em; }
+.stat b .ic { color: var(--accent); width: 20px; height: 20px; }
+.flame .big .ic { width: 40px; height: 40px; color: #ff5a1f; }
+.flame.off .big .ic { color: var(--muted); }
+.mini-stats b .ic { color: #ff5a1f; }
+.reactions button { color: var(--text); }
+.reactions button .ic { width: 20px; height: 20px; }
+.react-float .ic { width: 36px; height: 36px; color: var(--accent-2); }
+.messages .report .ic { width: 13px; height: 13px; }
+.del .ic { width: 15px; height: 15px; }
+.explain .ic { color: var(--accent); }
+.rest .ic, .tests .ic { color: var(--muted); }
+.exam-review .ic.ok { color: var(--ok); }
+.exam-review .ic.bad { color: var(--bad); }
+.exam-result > span .ic { width: 44px; height: 44px; color: var(--accent); }
+.earn-row > span .ic, .cmp-row .ic, .fair .ic, .soon-card .ic { color: var(--accent); }
+.tutor-photo .ic, #tutorSpeak .ic { width: 20px; height: 20px; }
+.medal-card .price .ic { color: var(--accent-2); }
+.nav-group button.has-premium i .ic { fill: #f5b301; stroke: #f5b301; }
+
+/* avatares: peixes em SVG dentro do círculo */
+.avatar { overflow: hidden; font-size: 0; }
+.avatar .fish-av { width: 86%; height: auto; margin-left: 4%; }
+.bot-av { color: #fff; }
+.bot-av .ic { width: 60%; height: 60%; }
+
+/* emblemas redondos: medalhas, conquistas, ligas */
+.badge-ic { --bc: var(--accent); display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--bc); color: #fff; flex: none;
+  box-shadow: inset 0 -3px 0 #0002, 0 1px 3px #0002; }
+.badge-ic .ic { width: 56%; height: 56%; }
+.badge-ic.lg { width: 56px; height: 56px; }
+.badge-ic.sm { width: 24px; height: 24px; box-shadow: none; }
+.badge-ic.xs { width: 18px; height: 18px; box-shadow: none; }
+.badge-ic.xs .ic, .badge-ic.sm .ic { stroke-width: 2.4; }
+.league-head .medal .badge-ic { width: 52px; height: 52px; }
+.medal-tag { display: inline-flex; vertical-align: middle; }
+.ach .badge-ic { width: 36px; height: 36px; }
+.ach.locked .badge-ic { background: var(--muted); }
+.owned button .badge-ic { margin-right: .1rem; }

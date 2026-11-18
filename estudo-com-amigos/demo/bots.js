@@ -5,13 +5,13 @@ const pick = a => a[Math.floor(Math.random() * a.length)];
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
 const PEOPLE = [
-  { name: 'Rui', avatar: '🦊', frame: 'blue', skill: 0.75 },
-  { name: 'Eva', avatar: '🐼', frame: 'gold', skill: 0.6 },
+  { name: 'Rui', avatar: 'a2', frame: 'blue', skill: 0.75, medal: 'estrela' },
+  { name: 'Eva', avatar: 'a8', frame: 'gold', skill: 0.6, medal: 'polvo' },
 ];
 
 const REPLIES = [
-  'Siiim 😄', 'Bora!', 'Concordo', 'Haha', 'Não percebi essa parte da matéria 😅',
-  'Fazemos mais um duelo depois?', 'Vou buscar água e já volto', '👍',
+  'Siiim', 'Bora!', 'Concordo', 'Haha', 'Não percebi essa parte da matéria',
+  'Fazemos mais um duelo depois?', 'Vou buscar água e já volto', '',
 ];
 
 export function startBots(hub, store, code) {
@@ -20,7 +20,7 @@ export function startBots(hub, store, code) {
 
   bots.forEach((bot, i) => {
     const s = bot.socket;
-    setTimeout(() => s.emit('joinRoom', { code, profile: { name: bot.name, avatar: bot.avatar, frame: bot.frame } }, () => {}), 1200 + i * 1500);
+    setTimeout(() => s.emit('joinRoom', { code, profile: { name: bot.name, avatar: bot.avatar, frame: bot.frame, medal: bot.medal } }, () => {}), 1200 + i * 1500);
 
     s.on('chat', async m => {
       if (PEOPLE.some(p => p.name === m.author)) return;
@@ -33,12 +33,12 @@ export function startBots(hub, store, code) {
     s.on('timer', async t => {
       if (t.state !== 'focus') return;
       await wait(800 + i * 900);
-      s.emit('react', pick(['🔥', '💪', '👏']));
+      s.emit('react', pick(['flame', 'zap', 'heart']));
     });
 
     s.on('focusDone', async ({ rewarded }) => {
       await wait(1000 + i * 800);
-      if (i === 0) s.emit('chat', rewarded.length ? 'Boa equipa! 🔥' : 'Uiii, distraí-me 😅');
+      if (i === 0) s.emit('chat', rewarded.length ? 'Boa equipa!' : 'Uiii, distraí-me');
     });
 
     s.on('duelQuestion', async q => {
@@ -53,16 +53,16 @@ export function startBots(hub, store, code) {
 
     s.on('duelEnd', async ({ winners }) => {
       await wait(1200 + i * 700);
-      if (winners.includes(bot.name)) s.emit('chat', i === 0 ? 'GG! 😎' : 'Ganhei! 🎉');
-      else if (i === 1) s.emit('chat', 'Quero desforra! ⚔️');
+      if (winners.includes(bot.name)) s.emit('chat', i === 0 ? 'GG!' : 'Ganhei!');
+      else if (i === 1) s.emit('chat', 'Quero desforra!');
     });
   });
 
   // o Rui e a Eva já tinham trazido algumas coisas para a sala
   const [rui, eva] = bots;
   setTimeout(() => {
-    rui.socket.emit('chat', 'Olá! 👋 Já cá estou');
-    eva.socket.emit('chat', 'Bora estudar para o teste de Ciências! Marquei-o no calendário 📅');
+    rui.socket.emit('chat', 'Olá! Já cá estou');
+    eva.socket.emit('chat', 'Bora estudar para o teste de Ciências! Marquei-o no calendário');
     const inTwoDays = R.addDays(R.dayKey(), 2);
     eva.socket.emit('addTest', { subject: 'Ciências Naturais', date: inTwoDays }, () => {});
     rui.socket.emit('addNote', {

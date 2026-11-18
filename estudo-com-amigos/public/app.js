@@ -1,4 +1,5 @@
-import { AVATARS, FRAMES, ACHIEVEMENTS, EMPTY_COUNTERS, MEDALS, EARN, isUnlocked } from './cosmetics.js';
+import { AVATARS, FRAMES, ACHIEVEMENTS, EMPTY_COUNTERS, MEDALS, EARN, isUnlocked, avatarId, medalId } from './cosmetics.js';
+import { icon, paintIcons, fish, badge, tierBadge } from './ui-icons.js';
 import { t, setLang, getLang, guessLang, translateDom, LANGS, locale } from './i18n.js';
 import { SUBJECTS, YEARS, GOALS, MINUTES, WHEN, suggestedSubjects, buildPlan, planTips, daysUntil } from './plan.js';
 import * as Sound from './sounds.js';
@@ -16,12 +17,12 @@ const store = {
 };
 const profile = store.get('profile', {});
 profile.name ??= '';
-profile.avatar ??= '🙂';
+profile.avatar = avatarId(profile.avatar);
 profile.frame ??= 'none';
 profile.minutes ??= 0;
 profile.scales ??= 50; // bónus de boas-vindas
 profile.medals ??= ['peixinho'];
-profile.medal ??= '🐟';
+profile.medal = medalId(profile.medal ?? 'peixinho');
 profile.counters = { ...EMPTY_COUNTERS, ...(profile.counters ?? {}) };
 profile.achieved ??= [];
 let recent = store.get('recentRooms', []);
@@ -42,7 +43,9 @@ let ext = null; // funcionalidades Premium e de acompanhamento (extras.js)
 
 // ---------- utilidades ----------
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const avatarHtml = (a, f, size = '') => `<span class="avatar frame-${esc(f)}${size ? ` ${size}` : ''}">${esc(a)}</span>`;
+const avatarHtml = (a, f, size = '') => `<span class="avatar frame-${esc(f)}${size ? ` ${size}` : ''}">${fish(avatarId(a))}</span>`;
+const medalOf = id => MEDALS.find(m => m.id === medalId(id));
+const medalBadge = (id, cls = 'sm') => { const m = medalOf(id); return m ? badge(m.ic, m.color, cls) : ''; };
 function toast(text, ms = 3000) {
   const el = $('#toast');
   el.textContent = text;
@@ -54,7 +57,6 @@ const fmt = ms => {
   const s = Math.max(0, Math.ceil(ms / 1000));
   return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 };
-const LEAGUE_MEDALS = ['🥉', '🥈', '🥇', '💠', '💎'];
 const whenText = d => d === 0 ? t('when.today') : d === 1 ? t('when.tomorrow') : t('when.days', { n: d });
 const emitP = (ev, data) => new Promise(r => socket.emit(ev, data, r));
 const errText = res => t(`err.${res.error}`, res.p);
@@ -74,7 +76,7 @@ const SECTIONS = {
   premium: { title: 'view.premium', views: ['premium'] },
   definicoes: { title: 'view.definicoes', views: ['definicoes'] },
 };
-const TAB_ICONS = { chat: '🤖', exame: '📝', corrigir: '✍️', notas: '📈', relatorio: '📧', inicio: '🏠', estudar: '⏱️', salachat: '💬', duelos: '⚔️', apontamentos: '📝', calendario: '📅', liga: '🏆', perfil: '👤', medalhas: '🏅', loja: '🛍️' };
+const TAB_ICONS = { chat: 'bot', exame: 'clipboard', corrigir: 'pen', notas: 'chart', relatorio: 'mail', inicio: 'home', estudar: 'timer', salachat: 'message', duelos: 'swords', apontamentos: 'note', calendario: 'calendar', liga: 'trophy', perfil: 'user', medalhas: 'medal', loja: 'bag' };
 const VIEWS = Object.values(SECTIONS).flatMap(x => x.views);
 const sectionOf = v => Object.keys(SECTIONS).find(k => SECTIONS[k].views.includes(v));
 const lastView = {};
@@ -92,7 +94,7 @@ function renderSubnav(sec) {
   nav.innerHTML = views.map(v => {
     const locked = $(`#view-${v}`).hasAttribute('data-needs-room') && !room;
     const dot = v === 'salachat' && unread ? '<em class="dot"></em>' : '';
-    return `<button data-view="${v}" class="${v === view ? 'active' : ''} ${locked ? 'locked' : ''}">${TAB_ICONS[v] ?? ''} ${t(v === 'chat' ? 'view.chat.tab' : `view.${v}`)}${locked ? ' 🔒' : ''}${dot}</button>`;
+    return `<button data-view="${v}" class="${v === view ? 'active' : ''} ${locked ? 'locked' : ''}">${icon(TAB_ICONS[v])} ${t(v === 'chat' ? 'view.chat.tab' : `view.${v}`)}${locked ? icon('lock', 'lock') : ''}${dot}</button>`;
   }).join('');
   nav.querySelector('.active')?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 }
@@ -174,12 +176,12 @@ function earn(n, why) {
   profile.scales += n;
   saveProfile();
   renderWallet();
-  if (why) toast(`+${n} 🐟 ${why}`);
+  if (why) toast(`+${n} ${t('nav.scales')} ${why}`);
 }
 
 function renderWallet() {
   for (const id of ['#navScales', '#topScales', '#shopScales']) $(id).textContent = profile.scales;
-  $('#navAvatar').outerHTML = `<span id="navAvatar" class="avatar frame-${esc(profile.frame)}">${esc(profile.avatar)}</span>`;
+  $('#navAvatar').outerHTML = `<span id="navAvatar" class="avatar frame-${esc(profile.frame)}">${fish(profile.avatar)}</span>`;
   $('#navName').textContent = profile.name || t('nav.noName');
 }
 
@@ -195,7 +197,7 @@ function bump(changes) {
   saveProfile();
   if (fresh.length) {
     renderWallet();
-    toast(t('toast.ach', { list: fresh.map(a => `${a.icon} ${t(`ach.${a.id}`)}`).join(', '), n: EARN.achievement * fresh.length }), 5000);
+    toast(t('toast.ach', { list: fresh.map(a => t(`ach.${a.id}`)).join(', '), n: EARN.achievement * fresh.length }), 5000);
   }
 }
 
@@ -215,7 +217,7 @@ function renderHome() {
     $('#roomHomeStats').innerHTML = `
       <div><b>${room.members.length}</b><span>${t('stat.inRoom')}</span></div>
       <div><b>${s.today.minutes}/${s.today.goal}</b><span>${t('stat.minToday')}</span></div>
-      <div><b>🔥 ${s.streak}</b><span>${t('stat.daysInRow')}</span></div>`;
+      <div><b>${icon('flame')} ${s.streak}</b><span>${t('stat.daysInRow')}</span></div>`;
   }
   ext?.renderTeam();
 }
@@ -282,7 +284,7 @@ function renderMembers(list) {
     const tag = m.distracted ? `<span class="tag away">${t('tag.distracted')}</span>`
       : m.status === 'away' ? `<span class="tag away">${t('tag.away')}</span>`
       : room.timer.state === 'focus' ? `<span class="tag">${t('tag.studying')}</span>` : '';
-    return `<li>${avatarHtml(m.avatar, m.frame)}<span>${esc(m.name)} ${m.medal ? `<span class="medal-tag" title="${t('tag.medal')}">${esc(m.medal)}</span>` : ''}${m.name === me.name ? ` <span class="muted small">${t('tag.you')}</span>` : ''}</span>${tag}</li>`;
+    return `<li>${avatarHtml(m.avatar, m.frame)}<span>${esc(m.name)} ${m.medal ? `<span class="medal-tag" title="${t('tag.medal')}">${medalBadge(m.medal)}</span>` : ''}${m.name === me.name ? ` <span class="muted small">${t('tag.you')}</span>` : ''}</span>${tag}</li>`;
   }).join('');
   if (view === 'inicio') renderHome();
 }
@@ -303,9 +305,9 @@ function messageEl(m) {
   const mine = me && m.author === me.name;
   const member = room.members.find(x => x.name === m.author);
   li.className = mine ? 'mine' : '';
-  li.innerHTML = `${avatarHtml(member?.avatar ?? '🙂', member?.frame ?? 'none')}
-    <div class="bubble"><div class="who">${esc(m.author)} ${member?.medal ? esc(member.medal) : ''}</div>${esc(m.text)}</div>
-    ${mine ? '' : `<button class="report" title="${t('chat.report')}" data-id="${esc(m.id)}">⚑</button>`}`;
+  li.innerHTML = `${avatarHtml(member?.avatar ?? 'a1', member?.frame ?? 'none')}
+    <div class="bubble"><div class="who">${esc(m.author)} ${member?.medal ? medalBadge(member.medal, 'xs') : ''}</div>${esc(m.text)}</div>
+    ${mine ? '' : `<button class="report" title="${t('chat.report')}" data-id="${esc(m.id)}">${icon('flag')}</button>`}`;
   return li;
 }
 function renderChat() {
@@ -350,7 +352,7 @@ socket.on('react', ({ name, emoji }) => {
   const el = document.createElement('div');
   el.className = 'react-float';
   el.style.left = `${10 + Math.random() * 80}%`;
-  el.innerHTML = `${esc(emoji)}<small>${esc(name)}</small>`;
+  el.innerHTML = `${icon(emoji)}<small>${esc(name)}</small>`;
   $('#reactLayer').appendChild(el);
   setTimeout(() => el.remove(), 2500);
 });
@@ -435,13 +437,13 @@ function renderProgress() {
   const pct = Math.min(100, Math.round((s.today.minutes / s.today.goal) * 100));
   const n = Math.max(1, s.today.people);
   $('#streakBox').innerHTML = `
-    <div class="flame ${s.today.lit || s.streak ? '' : 'off'}"><span class="big">🔥</span>
+    <div class="flame ${s.today.lit || s.streak ? '' : 'off'}"><span class="big">${icon('flame')}</span>
       <div><b>${t(s.streak === 1 ? 'flame.days1' : 'flame.days', { n: s.streak })}</b><br>
       <span class="muted small">${s.today.lit ? t('flame.lit') : t('flame.notYet')}</span></div></div>
     <div class="progress"><div style="width:${pct}%"></div></div>
     <p class="muted small">${t('flame.today', { m: s.today.minutes, g: s.today.goal, n })}</p>`;
-  $('#streakBadge').textContent = `🔥 ${s.streak}`;
-  $('#leagueBadge').textContent = `${LEAGUE_MEDALS[room.league.tier]} ${t('league.name', { name: t(`tier.${room.league.tier}`) })}`;
+  $('#streakBadge').innerHTML = `${icon('flame')} ${s.streak}`;
+  $('#leagueBadge').innerHTML = `${tierBadge(room.league.tier).replace('badge-ic', 'badge-ic xs')} ${esc(t('league.name', { name: t(`tier.${room.league.tier}`) }))}`;
   bump({ 'max:bestStreak': s.streak, 'max:bestTier': room.league.tier });
   renderRanking();
   renderLeague();
@@ -456,7 +458,7 @@ socket.on('progress', p => {
 function renderLeague() {
   const L = room.league;
   const last = L.last ? `<br><span class="muted small">${t('league.last', { place: L.last.place, n: L.last.minutes })}</span>` : '';
-  $('#leagueHead').innerHTML = `<span class="medal">${LEAGUE_MEDALS[L.tier]}</span>
+  $('#leagueHead').innerHTML = `<span class="medal">${tierBadge(L.tier)}</span>
     <div><b>${t('league.name', { name: t(`tier.${L.tier}`) })}</b><br><span class="muted small">${t('league.help')}</span>${last}</div>`;
   $('#leagueBody').innerHTML = L.table.map((r, i) =>
     `<tr class="${r.me ? 'me' : ''}"><td>${i + 1}</td><td>${esc(r.name)}${r.me ? ` ${t('league.you')}` : ''}</td><td>${r.minutes}</td></tr>`).join('');
@@ -473,8 +475,8 @@ function renderRanking() {
 function renderTests() {
   const tests = room.tests;
   $('#tests').innerHTML = tests.map(x => `
-    <li><span>📘 ${esc(x.subject)}</span><span class="when ${x.daysLeft <= 3 ? 'soon' : ''}">${whenText(x.daysLeft)}</span>
-    <button class="del" data-test="${esc(x.id)}" title="${t('btn.delete')}">✕</button></li>`).join('')
+    <li><span>${icon('book')} ${esc(x.subject)}</span><span class="when ${x.daysLeft <= 3 ? 'soon' : ''}">${whenText(x.daysLeft)}</span>
+    <button class="del" data-test="${esc(x.id)}" title="${t('btn.delete')}">${icon('x')}</button></li>`).join('')
     || `<li class="muted small">${t('cal.none')}</li>`;
   const soon = tests.find(x => x.daysLeft <= 3);
   $('#testBanner').classList.toggle('hidden', !soon);
@@ -498,7 +500,7 @@ socket.on('tests', tests => { if (!room) return; room.tests = tests; renderTests
 function renderNotes() {
   $('#notes').innerHTML = [...room.notes].reverse().map(n => `
     <li><div class="row between"><h4>${esc(n.title)}</h4>
-      ${n.author === me.name || room.owner === me.name ? `<button class="del" data-note="${esc(n.id)}" title="${t('btn.delete')}">✕</button>` : ''}</div>
+      ${n.author === me.name || room.owner === me.name ? `<button class="del" data-note="${esc(n.id)}" title="${t('btn.delete')}">${icon('x')}</button>` : ''}</div>
       <p>${esc(n.text)}</p><span class="muted small">${esc(t('notes.by', { name: n.author }))}</span></li>`).join('')
     || `<li class="muted">${t('notes.empty')}</li>`;
 }
@@ -540,7 +542,7 @@ async function withAI(button, waiting, call, onOk) {
   if (!ai.enabled) return toast(t('err.ai_off'));
   button.disabled = true;
   const old = button.textContent;
-  button.textContent = '⏳ …';
+  button.textContent = '…';
   toast(waiting, 60000);
   try {
     const res = await call();
@@ -575,7 +577,7 @@ async function makeQuestions(payload, button) {
     $('#aiText').value = '';
     bump({ aiQuestions: 1 });
   });
-  if (res?.error && !res.quota) $('#aiStatus').textContent = `⚠️ ${errText(res)}`;
+  if (res?.error && !res.quota) $('#aiStatus').textContent = errText(res);
 }
 
 function shrinkImage(file) {
@@ -603,7 +605,7 @@ function renderQuestions() {
     <li><span>${esc(q.question)} <span class="diff" title="${t('diff.title')}">${DIFF[q.difficulty ?? 2]}</span>
       ${q.ai ? '<span class="tag-ai">IA</span>' : ''}
       <span class="muted small">· ${esc(q.topic ? `${q.topic} · ` : '')}${esc(q.author)}</span></span>
-    ${q.author === me.name || room.owner === me.name ? `<button class="del" data-q="${esc(q.id)}" title="${t('btn.delete')}">✕</button>` : ''}</li>`).join('');
+    ${q.author === me.name || room.owner === me.name ? `<button class="del" data-q="${esc(q.id)}" title="${t('btn.delete')}">${icon('x')}</button>` : ''}</li>`).join('');
 }
 $('#qForm').onsubmit = e => {
   e.preventDefault();
@@ -724,7 +726,7 @@ socket.on('duelReveal', ({ answer, scores, eliminated, qid }) => {
   const verdict = duel.pick === answer ? t('duel.right') : duel.pick === null ? t('duel.timeout') : t('duel.wrong');
   const extra = duel.mode === 'eliminacao'
     ? `<br>${eliminated.length ? esc(t('duel.out', { names: eliminated.join(', ') })) : t('duel.noneOut')}`
-    : `<br>${scores.slice(0, 3).map((s, i) => `${['🥇', '🥈', '🥉'][i]} ${esc(s.name)} ${s.points}`).join(' · ')}`;
+    : `<br>${scores.slice(0, 3).map((s, i) => `${i + 1}.º ${esc(s.name)} ${s.points}`).join(' · ')}`;
   fb.innerHTML = verdict + extra;
   if (duel.pick !== answer && ai.enabled) {
     $('#duelExplain').innerHTML = `<button id="explainBtn" class="ai-btn">${t('btn.whyWrong')}</button>`;
@@ -734,7 +736,7 @@ socket.on('duelReveal', ({ answer, scores, eliminated, qid }) => {
       const res = await emitP('aiExplain', { qid, chosen: duel?.pick ?? null, lang: getLang() });
       $('#duelExplain').innerHTML = res?.error
         ? `<p class="error">${esc(errText(res))}</p>`
-        : `<div class="explain">🤖 ${esc(res.explanation)}</div>`;
+        : `<div class="explain">${icon('bot')} ${esc(res.explanation)}</div>`;
     };
   }
 });
@@ -745,7 +747,7 @@ socket.on('duelEnd', ({ mode, ranking, winners }) => {
   const won = winners.includes(me.name);
   if (won) { bump({ duelWins: 1, elimWins: mode === 'eliminacao' ? 1 : 0 }); earn(EARN.duelWin); }
   const rows = mode === 'eliminacao'
-    ? ranking.map(r => `<li><b>${esc(r.name)}</b>: ${t(r.points === 1 ? 'duel.correct1' : 'duel.correct', { n: r.points })}${r.survived ? ' 🛡️' : ''}</li>`)
+    ? ranking.map(r => `<li><b>${esc(r.name)}</b>: ${t(r.points === 1 ? 'duel.correct1' : 'duel.correct', { n: r.points })}${r.survived ? ` ${icon('shield')}` : ''}</li>`)
     : ranking.map(r => `<li><b>${esc(r.name)}</b>: ${t('duel.points', { n: r.points })}</li>`);
   showDuel(`<p class="q">${won ? t('duel.won', { n: EARN.duelWin }) : t('duel.end')}</p>
     ${winners.length ? `<p>${esc(t(winners.length > 1 ? 'duel.winners' : 'duel.winner', { names: winners.join(', ') }))}</p>` : `<p>${t('duel.noSurvivor')}</p>`}
@@ -815,8 +817,8 @@ function tutorSubject() {
 function tutorBubble(m) {
   const mine = m.role === 'user';
   return `<li class="${mine ? 'mine' : 'bot'}${m.error ? ' err' : ''}">
-    ${mine ? avatarHtml(profile.avatar, profile.frame) : '<span class="avatar bot-av">🐟</span>'}
-    <div class="bubble">${m.img ? '<div class="muted small">📷</div>' : ''}${m.pending && !m.content ? `<span class="typing">${t('tutor.thinking')}</span>` : mine ? esc(m.content).replace(/\n/g, '<br>') : md(m.content)}</div></li>`;
+    ${mine ? avatarHtml(profile.avatar, profile.frame) : `<span class="avatar bot-av">${icon('fish')}</span>`}
+    <div class="bubble">${m.img ? `<div class="muted small">${icon('image')}</div>` : ''}${m.pending && !m.content ? `<span class="typing">${t('tutor.thinking')}</span>` : mine ? esc(m.content).replace(/\n/g, '<br>') : md(m.content)}</div></li>`;
 }
 
 function renderTutor(scroll = false) {
@@ -863,7 +865,7 @@ async function askTutor(text) {
   tutorBusy = false;
   delete reply.pending;
   if (res?.error) {
-    reply.content = `⚠️ ${errText(res)}`;
+    reply.content = errText(res);
     reply.error = true;
     if (res.quota) ext?.upsell('up.tutor', res.p);
   } else {
@@ -933,7 +935,7 @@ function renderPlan() {
   const a = planAnswers();
   if (!a) {
     $('#planSummary').textContent = t('home.noPlan');
-    $('#planWeek').innerHTML = `<div class="card empty" style="grid-column:1/-1"><span class="empty-icon">🗓️</span><p>${t('home.noPlan')}</p><button data-ob="start">${t('home.makePlan')}</button></div>`;
+    $('#planWeek').innerHTML = `<div class="card empty" style="grid-column:1/-1"><span class="empty-icon">${icon('calendar')}</span><p>${t('home.noPlan')}</p><button data-ob="start">${t('home.makePlan')}</button></div>`;
     $('#planTips').innerHTML = '';
     $('#planProgress').textContent = '';
     $('#planBar').style.width = '0%';
@@ -955,7 +957,7 @@ function renderPlan() {
     const isToday = d.day === todayIdx;
     return `<div class="day-col ${isToday ? 'today' : ''}">
       <header><span>${isToday ? t('plan.today') : t(`dayL.${d.day}`)}</span><small>${esc(date)}</small></header>
-      <div class="blocks-wrap">${d.blocks.length ? d.blocks.map(b => blockHtml(b, isToday)).join('') : `<div class="rest">😌 ${t('plan.rest')}</div>`}</div>
+      <div class="blocks-wrap">${d.blocks.length ? d.blocks.map(b => blockHtml(b, isToday)).join('') : `<div class="rest">${icon('moon')} ${t('plan.rest')}</div>`}</div>
     </div>`;
   }).join('');
   const tips = planTips(a).map(k => t(k));
@@ -1191,8 +1193,8 @@ function renderShop() {
       : confirming ? `<button data-buy="${m.id}" data-sure="1">${t('shop.confirm', { n: m.price })}</button>`
       : `<button data-buy="${m.id}" ${can ? '' : 'disabled'}>${can ? t('shop.buy') : t('shop.missing', { n: m.price - profile.scales })}</button>`;
     return `<div class="medal-card ${owned ? 'owned' : ''}">
-      <span class="mi">${m.icon}</span><b>${esc(medalName(m))}</b><p>${esc(t(`medal.${m.id}.d`))}</p>
-      <span class="price">${m.price ? `${m.price} 🐟` : t('shop.free')}</span>${btn}</div>`;
+      <span class="mi">${badge(m.ic, m.color, 'lg')}</span><b>${esc(medalName(m))}</b><p>${esc(t(`medal.${m.id}.d`))}</p>
+      <span class="price">${m.price ? `${icon('fish')} ${m.price}` : t('shop.free')}</span>${btn}</div>`;
   }).join('');
 }
 $('#shopGrid').addEventListener('click', e => {
@@ -1204,23 +1206,23 @@ $('#shopGrid').addEventListener('click', e => {
   if (profile.scales < m.price || profile.medals.includes(m.id)) return renderShop();
   profile.scales -= m.price;
   profile.medals.push(m.id);
-  profile.medal = m.icon;
+  profile.medal = m.id;
   saveProfile();
   renderWallet();
   renderShop();
   if (room) socket.emit('profile', { medal: profile.medal });
-  toast(t('toast.bought', { icon: m.icon, name: medalName(m) }), 4000);
+  toast(t('toast.bought', { icon: '', name: medalName(m) }).trim(), 4000);
 });
 
 // ---------- MEDALHAS ----------
 function renderMedals() {
   $('#ownedMedals').innerHTML = MEDALS.filter(m => profile.medals.includes(m.id)).map(m =>
-    `<button data-medal="${esc(m.icon)}" class="${profile.medal === m.icon ? 'selected' : ''}">${m.icon} ${esc(medalName(m))}</button>`).join('')
+    `<button data-medal="${esc(m.id)}" class="${profile.medal === m.id ? 'selected' : ''}">${badge(m.ic, m.color, 'sm')} ${esc(medalName(m))}</button>`).join('')
     + `<button data-view="loja" class="ghost">${t('medals.toShop')}</button>`;
   $('#achCount').textContent = t('medals.count', { n: profile.achieved.length, t: ACHIEVEMENTS.length });
   $('#achievements').innerHTML = ACHIEVEMENTS.map(a => {
     const ok = profile.achieved.includes(a.id);
-    return `<div class="ach ${ok ? '' : 'locked'}" title="${esc(t(`ach.${a.id}.d`))}"><span class="ic">${a.icon}</span><div><b>${esc(t(`ach.${a.id}`))}</b><span>${esc(t(`ach.${a.id}.d`))}</span></div></div>`;
+    return `<div class="ach ${ok ? '' : 'locked'}" title="${esc(t(`ach.${a.id}.d`))}"><span class="ach-ic">${badge(a.ic, a.color)}</span><div><b>${esc(t(`ach.${a.id}`))}</b><span>${esc(t(`ach.${a.id}.d`))}</span></div></div>`;
   }).join('');
 }
 $('#ownedMedals').addEventListener('click', e => {
@@ -1233,25 +1235,25 @@ $('#ownedMedals').addEventListener('click', e => {
 });
 
 // ---------- PERFIL ----------
-const lockText = item => item.ach ? `🔒 ${t(`ach.${item.ach}`)}` : t('lock.min', { n: item.need });
+const lockText = item => item.ach ? t(`ach.${item.ach}`) : t('lock.min', { n: item.need });
 function renderProfile() {
-  $('#profileAvatar').outerHTML = `<span id="profileAvatar" class="avatar huge frame-${esc(profile.frame)}">${esc(profile.avatar)}</span>`;
+  $('#profileAvatar').outerHTML = `<span id="profileAvatar" class="avatar huge frame-${esc(profile.frame)}">${fish(profile.avatar)}</span>`;
   $('#profileName').textContent = profile.name || t('nav.noName');
-  const medal = MEDALS.find(m => m.icon === profile.medal);
-  $('#profileMedal').textContent = medal ? `${medal.icon} ${medalName(medal)}` : '';
+  const medal = medalOf(profile.medal);
+  $('#profileMedal').innerHTML = medal ? `${badge(medal.ic, medal.color, 'sm')} ${esc(medalName(medal))}` : '';
   const c = profile.counters;
   $('#profileStats').innerHTML = [
-    ['🐟', profile.scales, 'stat.scales'], ['⏱️', profile.minutes, 'stat.focusMin'], ['🎯', c.sessions, 'stat.sessions'],
-    ['⚔️', c.duelWins, 'stat.duelsWon'], ['🎖️', profile.medals.length, 'stat.medals'], ['🏅', profile.achieved.length, 'stat.achievements'],
-  ].map(([i, v, l]) => `<div class="stat"><b>${i} ${v}</b><span>${t(l)}</span></div>`).join('');
+    ['fish', profile.scales, 'stat.scales'], ['timer', profile.minutes, 'stat.focusMin'], ['target', c.sessions, 'stat.sessions'],
+    ['swords', c.duelWins, 'stat.duelsWon'], ['medal', profile.medals.length, 'stat.medals'], ['trophy', profile.achieved.length, 'stat.achievements'],
+  ].map(([i, v, l]) => `<div class="stat"><b>${icon(i)} ${v}</b><span>${t(l)}</span></div>`).join('');
   const cell = (item, kind, inner, label) => {
     const ok = isUnlocked(item, profile.minutes, profile.achieved);
     const sel = (kind === 'avatar' ? profile.avatar : profile.frame) === item.id;
     return `<button data-${kind}="${esc(item.id)}" class="${ok ? '' : 'locked'} ${sel ? 'selected' : ''}" ${ok ? '' : 'disabled'}>
       ${inner}${label}${ok ? '' : `<br>${esc(lockText(item))}`}</button>`;
   };
-  $('#avatarGrid').innerHTML = AVATARS.map(a => cell(a, 'avatar', `<span class="avatar big frame-${esc(profile.frame)}">${a.id}</span>`, '')).join('');
-  $('#frameGrid').innerHTML = FRAMES.map(f => cell(f, 'frame', `<span class="avatar big frame-${f.id}">${esc(profile.avatar)}</span>`, esc(t(`frame.${f.id}`)))).join('');
+  $('#avatarGrid').innerHTML = AVATARS.map(a => cell(a, 'avatar', `<span class="avatar big frame-${esc(profile.frame)}">${fish(a.id)}</span>`, '')).join('');
+  $('#frameGrid').innerHTML = FRAMES.map(f => cell(f, 'frame', `<span class="avatar big frame-${f.id}">${fish(profile.avatar)}</span>`, esc(t(`frame.${f.id}`)))).join('');
   $('[data-room-only]').classList.toggle('hidden', !room);
 }
 document.querySelector('#view-perfil').addEventListener('click', e => {
@@ -1346,6 +1348,7 @@ ext = initExtras({
 });
 
 translateDom();
+paintIcons();
 renderWallet();
 renderLocks();
 show('chat'); // o tutor é a página principal
