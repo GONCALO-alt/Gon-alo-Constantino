@@ -64,6 +64,7 @@ function endLive() {
   addXP(Math.min(1500, (now - L.start) / MIN * 6 + rec.peak / 400 + 40));
   S.live = null;
   STUDIO.summary = rec.id;
+  if (L.achQueue && L.achQueue.length) { const q = L.achQueue; setTimeout(() => toast('🏆', `Nesta live desbloqueaste: ${q.slice(0, 3).join(', ')}${q.length > 3 ? ` e mais ${q.length - 3}` : ''}`, 6500), 600); }
   STUDIO.media = null;
   notify('⏹️', `Live terminada: pico de ${fmt(rec.peak)} espectadores virtuais e ${fmt(rec.followers)} novos seguidores fictícios.`);
   checkAch(); save(); render();

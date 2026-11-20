@@ -211,7 +211,7 @@ function career(xp = S.me.xp) {
 function addXP(n) {
   const before = career().level; S.me.xp += Math.round(n);
   const after = career();
-  if (after.level > before) { notify('🎖️', `Subiste para o nível de carreira ${after.level}: ${after.name}!`); toast('🎖️', `Nível ${after.level} — ${after.name}`); }
+  if (after.level > before) { notify('🎖️', `Subiste para o nível de carreira ${after.level}: ${after.name}!`); if (S.live) (S.live.achQueue = S.live.achQueue || []).push(`Nível ${after.level} — ${after.name}`); else toast('🎖️', `Nível ${after.level} — ${after.name}`); }
 }
 function coverCSS(c) {
   if (!c) return COVERS[0];
@@ -241,8 +241,9 @@ function unlock(id) {
   S.ach[id] = Date.now();
   addXP(80);
   notify(a.icon, `Conquista desbloqueada: ${a.name}. Podes anunciá-la no feed.`, { ach: id });
-  toast(a.icon, `Conquista desbloqueada: ${a.name}`);
-  if (S.live) addTimeline('achievement', `Conquista desbloqueada: ${a.name}`, a.icon);
+  // durante a live fica em silêncio; aparece tudo junto quando a live termina
+  if (S.live) (S.live.achQueue = S.live.achQueue || []).push(a.name);
+  else toast(a.icon, `Conquista desbloqueada: ${a.name}`);
   save();
 }
 function checkAch() {
