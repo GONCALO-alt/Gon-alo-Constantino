@@ -4195,9 +4195,9 @@ function resetToZero(s) {
 
 /* Contador no ecrã: espetadores em direto em grande e seguidores numa caixa branca */
 function folCounterHTML(viewers, followers, vKey, fKey) {
-  return `<div class="fol-counter" aria-label="${dots(viewers)} espetadores e ${dots(followers)} seguidores">
-    <div class="fc-top"><span class="fc-logo">${LOGO_SVG_FN()}</span><b class="num" ${vKey ? `data-anim="${vKey}" data-v="${viewers}"` : ''}>${dots(viewers)}</b></div>
-    <div class="fc-box num" ${fKey ? `data-anim="${fKey}" data-v="${followers}"` : ''}>${dots(followers)}</div>
+  // só os seguidores (o número grande das views foi retirado)
+  return `<div class="fol-counter" aria-label="${dots(followers)} seguidores">
+    <div class="fc-top"><span class="fc-logo">${LOGO_SVG_FN()}</span><div class="fc-box num" ${fKey ? `data-anim="${fKey}" data-v="${followers}"` : ''}>${dots(followers)}</div></div>
   </div>`;
 }
 
