@@ -34,9 +34,29 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 
 O estado (perfil, publicações, eventos, lives, clips, notificações) fica guardado no `localStorage` do navegador.
 
+## Publicar no Cloudflare Pages
+
+A pasta `dist/` já tem tudo o que é preciso: a página completa, os ícones, o manifesto (para instalar no telemóvel) e o ficheiro `_headers` com as permissões do microfone.
+
+**Opção 1 — arrastar e largar (mais fácil)**
+1. No painel do Cloudflare, vai a **Workers & Pages → Criar → Pages → Carregar ativos** (Upload assets).
+2. Dá um nome ao projeto (por exemplo `liveverse`).
+3. Arrasta o ficheiro `liveverse-cloudflare.zip` (ou o conteúdo da pasta `liveverse/dist`) e carrega em **Implementar**.
+
+**Opção 2 — ligado ao GitHub (atualiza sozinho a cada commit)**
+1. **Workers & Pages → Criar → Pages → Ligar ao Git** e escolhe este repositório e o ramo.
+2. Diretório raiz: `liveverse` · Comando de compilação: `node build.mjs` · Diretório de saída: `dist`.
+
+**Opção 3 — linha de comandos**
+```bash
+cd liveverse && node build.mjs && npx wrangler pages deploy
+```
+
+Fora do Claude, o microfone usa o reconhecimento de voz do navegador (Chrome ou Edge, em https) e a leitura em voz alta usa a voz do sistema. Os dados ficam guardados no navegador de quem usa o site.
+
 ## Desenvolvimento
 
-O código está em `src/` (CSS, HTML e JavaScript sem dependências). Para gerar `index.html`:
+O código está em `src/` (CSS, HTML e JavaScript sem dependências). Para gerar `index.html` (artifact) e `dist/` (Cloudflare):
 
 ```bash
 node liveverse/build.mjs
