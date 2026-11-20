@@ -2021,6 +2021,8 @@ function notify(ic, text, link) {
   save(); paintBadges();
 }
 function toast(ic, text, ms = 3600) {
+  // durante a live só passam avisos importantes (erros e câmara/ecrã/microfone)
+  if (S && S.live && !['⚠️', '📷', '🎮', '🎥', '🎙️', '🔴'].includes(ic)) return;
   const box = $('#toasts'); if (!box) return;
   const el = document.createElement('div');
   el.className = 'toast'; el.innerHTML = `<span class="ico">${ic}</span><span>${esc(text)}</span>`;
@@ -2613,9 +2615,8 @@ function liveTick() {
       L.milestones.push(m);
       addTimeline('milestone', `Marco de audiência: ${dots(m)} espectadores virtuais`, '📈');
       activityPush(L, 'milestone', `Marco de ${dots(m)} espetadores`);
-      if (m >= 1000) toast('📈', `${dots(m)} espectadores virtuais!`);
       if (m >= 1000) crowd(.7);
-      if (m >= 500) { sound('milestone'); alertShow('📈', `${dots(m)} espectadores!`, 'marco de audiência', 'milestone'); }
+      if (m >= 500) sound('milestone');
       if (m >= lvl.max) { notify('🎯', `Meta atingida: ${dots(m)} espectadores virtuais em «${L.title}»!`); fxBurst('🎯', 'META ATINGIDA!'); }
       checkAch();
     }
@@ -4263,7 +4264,7 @@ function liveCounters(L) {
     if (goal && goal > (S.me.folGoalHit || 0)) {
       S.me.folGoalHit = goal;
       sound('goal'); crowd(.7); fxBurst('💜', `${dots(goal)} ${goal === 1 ? 'SEGUIDOR' : 'SEGUIDORES'}!`);
-      alertShow('💜', `${dots(goal)} ${goal === 1 ? 'seguidor' : 'seguidores'}!`, 'nova meta de seguidores', 'follow');
+      activityPush(L, 'follow', `Meta de ${dots(goal)} ${goal === 1 ? 'seguidor' : 'seguidores'} alcançada`);
       notify('💜', goal === 1 ? 'Tens o teu primeiro seguidor fictício!' : `Chegaste aos ${dots(goal)} seguidores fictícios!`);
       addTimeline('follow', `Meta de seguidores: ${dots(goal)}`, '💜', { hype: .6, reactLabel: 'Meta de seguidores', clipTitle: `${dots(goal)} seguidores!` });
       chatBurst([`${dots(goal)}!!! 💜`, 'PARABÉNS 🎉', 'QUE CRESCIMENTO', 'próxima meta já!']);

@@ -379,7 +379,7 @@ function liveCounters(L) {
     if (goal && goal > (S.me.folGoalHit || 0)) {
       S.me.folGoalHit = goal;
       sound('goal'); crowd(.7); fxBurst('💜', `${dots(goal)} ${goal === 1 ? 'SEGUIDOR' : 'SEGUIDORES'}!`);
-      alertShow('💜', `${dots(goal)} ${goal === 1 ? 'seguidor' : 'seguidores'}!`, 'nova meta de seguidores', 'follow');
+      activityPush(L, 'follow', `Meta de ${dots(goal)} ${goal === 1 ? 'seguidor' : 'seguidores'} alcançada`);
       notify('💜', goal === 1 ? 'Tens o teu primeiro seguidor fictício!' : `Chegaste aos ${dots(goal)} seguidores fictícios!`);
       addTimeline('follow', `Meta de seguidores: ${dots(goal)}`, '💜', { hype: .6, reactLabel: 'Meta de seguidores', clipTitle: `${dots(goal)} seguidores!` });
       chatBurst([`${dots(goal)}!!! 💜`, 'PARABÉNS 🎉', 'QUE CRESCIMENTO', 'próxima meta já!']);

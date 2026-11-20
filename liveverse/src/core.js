@@ -226,6 +226,8 @@ function notify(ic, text, link) {
   save(); paintBadges();
 }
 function toast(ic, text, ms = 3600) {
+  // durante a live só passam avisos importantes (erros e câmara/ecrã/microfone)
+  if (S && S.live && !['⚠️', '📷', '🎮', '🎥', '🎙️', '🔴'].includes(ic)) return;
   const box = $('#toasts'); if (!box) return;
   const el = document.createElement('div');
   el.className = 'toast'; el.innerHTML = `<span class="ico">${ic}</span><span>${esc(text)}</span>`;

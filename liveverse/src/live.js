@@ -88,9 +88,8 @@ function liveTick() {
       L.milestones.push(m);
       addTimeline('milestone', `Marco de audiência: ${dots(m)} espectadores virtuais`, '📈');
       activityPush(L, 'milestone', `Marco de ${dots(m)} espetadores`);
-      if (m >= 1000) toast('📈', `${dots(m)} espectadores virtuais!`);
       if (m >= 1000) crowd(.7);
-      if (m >= 500) { sound('milestone'); alertShow('📈', `${dots(m)} espectadores!`, 'marco de audiência', 'milestone'); }
+      if (m >= 500) sound('milestone');
       if (m >= lvl.max) { notify('🎯', `Meta atingida: ${dots(m)} espectadores virtuais em «${L.title}»!`); fxBurst('🎯', 'META ATINGIDA!'); }
       checkAch();
     }
