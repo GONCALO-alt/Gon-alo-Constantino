@@ -12,6 +12,11 @@ Rede social de criadores com simulador de lives. Abre `index.html` diretamente n
 - **Página de eventos**: próximos, em direto, anteriores, os meus, recomendados e calendário mensal.
 - **Estúdio de live**: audiência, chat, presentes, sondagens, raids e marcos simulados. Painel «O que acabou de acontecer?» com 9 botões e 26 acontecimentos em 5 categorias, mais um acontecimento personalizado. As reações no chat dependem do jogo e do acontecimento; animação no ecrã, aumento de interação, novos seguidores, momento viral, cronologia e clip automático opcional.
 - **Clips e cronologia**: «Criar clip» em qualquer momento da cronologia (também depois da live). Cartões com título, jogo, streamer, tipo, popularidade, gostos, comentários, partilhar e adicionar ao perfil. Podes anexar a tua própria media a um clip.
+- **Menu**: no computador, menu lateral agrupado (Descobrir, Social, Criador, Conta) com relógio em tempo real e botão «Criar» (publicação, agendar live, entrar em direto). No telemóvel, barra de topo com hora, pesquisa, mensagens e notificações, barra inferior com botão central «Criar» e um menu completo em folha.
+- **Hora em tempo real**: relógio ao segundo; os tempos relativos («há 2 min») e as contagens decrescentes atualizam-se sozinhos.
+- **Explorar**: pesquisa de contas, hashtags, eventos, clips e publicações; filtro por jogo; secções Em direto, Categorias, Criadores em destaque, Tendências, Clips populares e Próximos eventos.
+- **Mensagens diretas**: conversas com contas fictícias que escrevem «a escrever…» e respondem conforme o que escreves (raids, lives, colaborações). Também te enviam mensagens de vez em quando. Podes enviar publicações, eventos e clips por mensagem.
+- **Moderação do chat**: fixar, apagar, silenciar 5 min e banir mensagens; AutoMod contra spam; modo lento, só subscritores e só emojis; lista de palavras bloqueadas; lista de banidos; estatísticas. Aparecem trolls fictícios no chat para moderares.
 - **Notificações** simuladas: 30 e 5 minutos antes, evento em direto, 1.000 interessados, tendência, comunidade à espera, conquistas, respostas.
 
 O estado (perfil, publicações, eventos, lives, clips, notificações) fica guardado no `localStorage` do navegador.

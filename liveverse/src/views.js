@@ -12,30 +12,11 @@ function route() {
   const h = (location.hash || '#feed').slice(1);
   if (h.startsWith('conta-')) return { name: 'profile', id: h.slice(6) };
   if (h === 'perfil') return { name: 'profile', id: 'me' };
-  if (['feed', 'eventos', 'estudio', 'clips', 'notificacoes'].includes(h)) return { name: h };
+  if (h.startsWith('conversa-')) return { name: 'mensagens', id: h.slice(9) };
+  if (['feed', 'eventos', 'estudio', 'clips', 'notificacoes', 'explorar', 'mensagens'].includes(h)) return { name: h };
   return { name: 'feed' };
 }
 
-const NAV = [
-  ['feed', 'home', 'Início'], ['eventos', 'calendar', 'Eventos'], ['estudio', 'studio', 'Estúdio'],
-  ['clips', 'clip', 'Clips'], ['notificacoes', 'bell', 'Notificações'], ['perfil', 'user', 'Perfil'],
-];
-function renderNav() {
-  const r = route(); const cur = r.name === 'profile' ? (r.id === 'me' ? 'perfil' : '') : r.name;
-  const unread = S.notifs.filter(n => !n.read).length;
-  const link = ([h, ic, label]) => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' && unread ? `<span class="badge-count">${unread > 99 ? '99+' : unread}</span>` : ''}${h === 'estudio' && S.live ? '<span class="pill-live" style="margin-left:auto">LIVE</span>' : ''}</a>`;
-  $('#side').innerHTML = `
-    <a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
-    ${NAV.map(link).join('')}
-    <button class="btn btn-primary" data-act="compose">${icon('plus')} Publicar</button>
-    <button class="btn" data-act="new-event" style="justify-content:center">${icon('calendar')} Agendar live</button>
-    ${S.live ? `<a class="live-pill" href="#estudio"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
-    <a class="side-me" href="#perfil">${avatar(S.me, 38).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)}</small></div></a>`;
-  $('#bottomNav').innerHTML = NAV.filter(n => n[0] !== 'clips').map(link).join('');
-  const lf = $('#liveFloat');
-  lf.hidden = !S.live || r.name === 'estudio';
-  if (S.live) lf.innerHTML = `<span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span>`;
-}
 function paintBadges() { if (S) renderNav(); }
 
 function render() {
@@ -44,16 +25,20 @@ function render() {
   renderNav();
   const r = route();
   const main = $('#main');
-  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio');
+  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio' || r.name === 'mensagens');
   const html = r.name === 'feed' ? viewFeed()
     : r.name === 'profile' ? viewProfile(r.id)
     : r.name === 'eventos' ? viewEvents()
     : r.name === 'estudio' ? viewStudio()
     : r.name === 'clips' ? viewClips()
+    : r.name === 'explorar' ? viewExplore()
+    : r.name === 'mensagens' ? viewMessages(r.id)
     : viewNotifs();
   main.innerHTML = html;
   $('#rail').innerHTML = viewRail();
   if (r.name === 'estudio') afterStudioRender();
+  if (r.name === 'mensagens') afterMessagesRender();
+  tickClock();
   updateLiveBits();
   tickCountdowns();
   UI.lastSig = statusSig();
@@ -186,7 +171,7 @@ function postCard(p) {
     ${avatar(a, 46)}
     <div class="post-body">
       ${pinned ? `<div class="post-meta-top">${icon('pin')} Publicação fixada</div>` : p.reposted ? `<div class="post-meta-top">${icon('repost')} Repostaste</div>` : ''}
-      <div class="post-head"><a href="#${mine ? 'perfil' : 'conta-' + a.id}">${nameLine(a)}</a><span class="muted">@${esc(a.handle)} · <time title="${new Date(p.createdAt).toLocaleString('pt-PT')}">${ago(p.createdAt)}</time></span>${KIND[p.type] ? `<span class="post-kind">${KIND[p.type]}</span>` : ''}
+      <div class="post-head"><a href="#${mine ? 'perfil' : 'conta-' + a.id}">${nameLine(a)}</a><span class="muted">@${esc(a.handle)} · <time data-ago="${p.createdAt}" title="${new Date(p.createdAt).toLocaleString('pt-PT')}">${ago(p.createdAt)}</time></span>${KIND[p.type] ? `<span class="post-kind">${KIND[p.type]}</span>` : ''}
         <div class="menu-wrap"><button class="icon-btn" data-act="menu" data-id="${p.id}" aria-label="Mais opções">${icon('more')}</button>${UI.menu === p.id ? postMenu(p) : ''}</div></div>
       ${text ? `<p class="post-text">${richText(text)}</p>` : ''}
       ${extra}
@@ -198,7 +183,7 @@ function postCard(p) {
         ${mine ? `<button class="pa pin ${pinned ? 'on' : ''}" data-act="pin" data-id="${p.id}" aria-label="${pinned ? 'Desafixar' : 'Fixar no perfil'}">${icon('pin')}</button>` : ''}
         <span class="pa views" title="Visualizações simuladas">${icon('eye')}<span data-views="${p.id}">${fmt(p.views)}</span></span>
       </div>
-      ${open ? `<div class="replies">${p.replies.map(r => { const ra = acc(r.author); return `<div class="reply">${avatar(ra, 30)}<div><strong>${esc(ra.name)}</strong> <span class="muted tiny">${ago(r.t)}</span><br>${richText(r.text)}</div></div>`; }).join('')}
+      ${open ? `<div class="replies">${p.replies.map(r => { const ra = acc(r.author); return `<div class="reply">${avatar(ra, 30)}<div><strong>${esc(ra.name)}</strong> <time class="muted tiny" data-ago="${r.t}">${ago(r.t)}</time><br>${richText(r.text)}</div></div>`; }).join('')}
         <form class="reply-form" data-form="reply" data-id="${p.id}"><input class="input" id="reply-${p.id}" name="t" maxlength="280" placeholder="Escreve uma resposta…" autocomplete="off"><button class="btn btn-sm btn-primary">Responder</button></form></div>` : ''}
     </div></article>`;
 }
@@ -206,6 +191,7 @@ function postMenu(p) {
   const mine = p.author === 'me';
   return `<div class="menu">
     ${mine ? `<button data-act="pin" data-id="${p.id}">${icon('pin')} ${S.pinned === p.id ? 'Desafixar do perfil' : 'Fixar no perfil'}</button>` : `<button data-act="follow" data-id="${p.author}">${icon('users')} ${acc(p.author).followed ? 'Deixar de seguir' : 'Seguir'} @${esc(acc(p.author).handle)}</button>`}
+    <button data-act="share-dm" data-type="post" data-id="${p.id}">${icon('send')} Enviar por mensagem</button>
     <button data-act="copy-post" data-id="${p.id}">${icon('share')} Copiar texto</button>
     ${p.eventId ? `<button data-act="event-open" data-id="${p.eventId}">${icon('calendar')} Ver evento</button>` : ''}
     ${mine ? `<button class="danger" data-act="post-del" data-id="${p.id}">${icon('trash')} Eliminar publicação</button>` : ''}
@@ -266,6 +252,7 @@ function clipCard(c) {
         <button class="pa like ${c.liked ? 'on' : ''}" data-act="clip-like" data-id="${c.id}">${icon('heart')}<span>${fmt(c.likes)}</span></button>
         <button class="pa" data-act="clip-comments" data-id="${c.id}">${icon('reply')}<span>${fmt(c.comments)}</span></button>
         <button class="pa" data-act="clip-share" data-id="${c.id}" title="Partilhar no feed">${icon('share')}<span>Partilhar</span></button>
+        <button class="pa" data-act="share-dm" data-type="clip" data-id="${c.id}" title="Enviar por mensagem" aria-label="Enviar por mensagem">${icon('send')}</button>
         ${c.streamer === 'me' ? `<button class="pa ${c.onProfile ? 'pin on' : ''}" data-act="clip-profile" data-id="${c.id}" title="${c.onProfile ? 'Remover do perfil' : 'Adicionar ao perfil'}">${icon(c.onProfile ? 'check' : 'plus')}<span>${c.onProfile ? 'No perfil' : 'Perfil'}</span></button>` : ''}
       </div>
       ${open ? `<div class="clip-comments">${clipCommentList(c).map(m => `<div><b>${esc(m.u)}</b> ${esc(m.t)}</div>`).join('')}
@@ -310,7 +297,7 @@ function viewProfile(id) {
     <div class="prof-inner">
       <div class="prof-top">${avatar(a, 120).replace('class="av ', 'class="av ' + (me && S.live ? 'ring-live ' : ''))}<span class="spacer"></span>
         ${me ? `<button class="btn" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-primary" data-act="new-event">${icon('calendar')} Agendar live</button>`
-          : `<button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
+          : `<a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
       </div>
       <div class="prof-name"><h1>${esc(a.name)}</h1>${a.verified ? VERIFIED + SIM('selo fictício') : ''}${me && S.live ? '<span class="pill-live">EM DIRETO</span>' : ''}</div>
       <div class="prof-handle">@${esc(a.handle)}</div>
@@ -430,5 +417,5 @@ function calendarHTML(now) {
 /* ---------- Notificações ---------- */
 function viewNotifs() {
   return `<div class="page-head"><div><h1>Notificações</h1><p>Notificações simuladas e geridas pela própria app.</p></div><span class="spacer"></span><button class="btn btn-sm" data-act="notif-read">${icon('check')} Marcar tudo como lido</button><button class="btn btn-sm btn-ghost" data-act="notif-clear">Limpar</button></div>
-  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${n.icon}</span><div>${esc(n.text)}<time>${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
+  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${n.icon}</span><div>${esc(n.text)}<time data-ago="${n.t}">${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
 }

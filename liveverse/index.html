@@ -73,8 +73,8 @@ h1, h2, h3, h4 { font-family: var(--f-display); margin: 0; line-height: 1.15; te
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-block: 0 72px;
 }
-.side { position: sticky; top: env(safe-area-inset-top, 0px); height: 100vh; padding-block: 20px; display: flex; flex-direction: column; gap: 6px; }
-.logo { display: flex; align-items: center; gap: 10px; padding: 6px 10px 18px; text-decoration: none; }
+.side { position: sticky; top: env(safe-area-inset-top, 0px); height: 100vh; padding-block: 18px 44px; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; scrollbar-width: none; }
+.logo { display: flex; align-items: center; gap: 10px; padding: 6px 10px 10px; text-decoration: none; }
 .logo-mark { width: 36px; height: 36px; border-radius: 11px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 6px 24px -6px var(--purple); }
 .logo-mark svg { width: 20px; height: 20px; }
 .logo b { font-family: var(--f-display); font-size: 22px; letter-spacing: .04em; }
@@ -89,7 +89,12 @@ h1, h2, h3, h4 { font-family: var(--f-display); margin: 0; line-height: 1.15; te
 .nav-link.on svg { color: var(--accent); }
 .badge-count { margin-left: auto; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--pink); color: #fff; font-size: 11px; font-weight: 800; display: grid; place-items: center; }
 .side .btn-primary { margin-top: 14px; justify-content: center; padding: 13px; }
-.side-me { margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; }
+.side-me { margin-top: auto; display: flex; align-items: center; gap: 2px; padding: 8px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); flex: none; }
+.side-me .icon-btn { width: 34px; height: 34px; flex: none; }
+.side-me-link { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; flex: 1; }
+.side-me-link div { min-width: 0; }
+.side-me-link strong, .side-me-link small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.side-me-link small { color: var(--muted); }
 .side-me div { min-width: 0; }
 .side-me strong, .side-me small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .side-me small { color: var(--muted); }
@@ -298,16 +303,16 @@ button.poll-opt:hover { border-color: var(--accent); }
 .menu svg { width: 16px; height: 16px; }
 
 /* ---------- Event card (premium) ---------- */
-.ev-card { margin-top: 10px; border-radius: 20px; overflow: hidden; border: 1px solid var(--line-2); background: var(--surface-2); position: relative; isolation: isolate; }
+.ev-card { container-type: inline-size; margin-top: 10px; border-radius: 20px; overflow: hidden; border: 1px solid var(--line-2); background: var(--surface-2); position: relative; isolation: isolate; }
 .ev-card.standalone { margin-top: 0; animation: rise .35s ease both; }
-.ev-cover { position: relative; aspect-ratio: 16 / 7; max-width: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; overflow: hidden; background-size: cover; background-position: center; }
+.ev-cover { position: relative; min-height: clamp(150px, 40cqi, 240px); gap: 16px; max-width: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; overflow: hidden; background-size: cover; background-position: center; }
 .ev-cover::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--cover); background-size: cover; background-position: center; }
 .ev-cover::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(8 7 15 / .1), rgb(8 7 15 / .25) 45%, rgb(8 7 15 / .92)); }
 .ev-cover .grid-lines { position: absolute; inset: 0; z-index: -1; opacity: .25; background-image: linear-gradient(rgb(255 255 255 / .12) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .12) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(180deg, #000, transparent 80%); }
 .ev-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .ev-when { font-family: var(--f-display); font-weight: 700; letter-spacing: .08em; font-size: 13px; padding: 4px 10px; border-radius: 8px; background: rgb(8 7 15 / .6); backdrop-filter: blur(6px); border: 1px solid rgb(255 255 255 / .15); }
 .ev-mode { margin-left: auto; font-family: var(--f-display); font-weight: 700; font-size: 12px; letter-spacing: .12em; padding: 4px 10px; border-radius: 8px; color: #fff; background: linear-gradient(90deg, var(--pink), var(--purple)); box-shadow: 0 0 18px -2px var(--pink); }
-.ev-title { font-size: clamp(20px, 3.6vw, 30px); font-weight: 700; text-transform: uppercase; letter-spacing: .02em; text-shadow: 0 2px 18px rgb(0 0 0 / .6); }
+.ev-title { font-size: clamp(18px, 6.4cqi, 30px); overflow-wrap: anywhere; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; text-shadow: 0 2px 18px rgb(0 0 0 / .6); }
 .ev-sub { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--fg-2); margin-top: 4px; }
 .ev-info { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
 .cd { display: flex; gap: 6px; }
@@ -575,8 +580,182 @@ button.poll-opt:hover { border-color: var(--accent); }
 @media (max-width: 760px) { .watch { grid-template-columns: minmax(0, 1fr); } .watch .chat { height: 300px; border-left: 0; border-top: 1px solid var(--line); } }
 .watch .screen { border-radius: 0; border: 0; }
 
+
+/* ===================== Menu, relógio, explorar, mensagens, moderação ===================== */
+.clock { display: flex; flex-direction: column; padding: 10px 14px; border-radius: 14px; background: linear-gradient(110deg, color-mix(in oklab, var(--accent) 16%, var(--surface)), var(--surface)); border: 1px solid var(--line); flex: none; }
+.clock b { font-family: var(--f-mono); font-size: 24px; font-weight: 700; letter-spacing: .02em; line-height: 1.1; }
+.clock small { color: var(--muted); font-size: 12px; font-weight: 600; }
+.clock.big b { font-size: 30px; }
+.create-wrap { position: relative; flex: none; }
+.create-btn { width: 100%; justify-content: center; padding: 12px; }
+.create-wrap .create-menu { position: absolute; left: 0; right: -40px; top: calc(100% + 8px); z-index: 30; background: var(--surface-2); border: 1px solid var(--line-2); border-radius: 16px; padding: 6px; box-shadow: 0 24px 60px -14px rgb(0 0 0 / .8); animation: rise .18s; }
+.create-menu { display: flex; flex-direction: column; gap: 2px; }
+.create-menu button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px; border: 0; background: transparent; border-radius: 12px; text-align: left; transition: background .15s; }
+.create-menu button:hover { background: var(--surface-3); }
+.create-menu b { display: block; font-size: 14px; }
+.create-menu small { display: block; color: var(--muted); font-size: 12px; }
+.cm-ico { width: 38px; height: 38px; flex: none; border-radius: 12px; display: grid; place-items: center; background: color-mix(in oklab, var(--c) 22%, transparent); color: var(--c); }
+.cm-ico svg { width: 20px; height: 20px; }
+.nav-groups { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.nav-group { display: flex; flex-direction: column; gap: 2px; }
+.nav-label { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 0 14px 4px; opacity: .8; }
+.side .nav-link { padding: 9px 14px; }
+.topbar { display: none; }
+@media (max-width: 820px) {
+  .topbar { display: flex; align-items: center; gap: 4px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 46;
+    padding: 8px max(12px, env(safe-area-inset-right, 0px)) 8px max(12px, env(safe-area-inset-left, 0px));
+    background: color-mix(in oklab, var(--bg) 88%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .topbar .logo { padding: 0; gap: 8px; }
+  .topbar .logo-mark { width: 30px; height: 30px; border-radius: 9px; }
+  .topbar .logo b { font-size: 18px; }
+  .top-clock { margin-left: 8px; font-size: 13px; color: var(--fg-2); padding: 3px 8px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); }
+  .top-ic { position: relative; }
+  .top-ic .badge-count { position: absolute; top: 0; right: 0; margin: 0; min-width: 17px; height: 17px; font-size: 10px; }
+  .topbar .pill-live { text-decoration: none; margin-right: 4px; }
+  .bottom-nav { align-items: center; }
+  .bottom-nav .nav-link { flex: 1; min-width: 0; justify-content: center; border: 0; background: transparent; position: relative; }
+  .bottom-nav button.nav-link { color: var(--fg-2); font-weight: 600; }
+  .bottom-nav .nav-link.on { background: transparent; }
+  .bottom-nav .nav-link.on::after { content: ""; position: absolute; bottom: -2px; width: 18px; height: 3px; border-radius: 3px; background: var(--grad); }
+  .nav-fab { width: 52px; height: 52px; flex: none; border-radius: 18px; border: 0; display: grid; place-items: center; color: #fff; background: var(--grad); box-shadow: 0 10px 26px -8px var(--purple); margin: -18px 4px 0; transition: transform .15s; }
+  .nav-fab:active { transform: scale(.92); }
+  .nav-fab svg { width: 26px; height: 26px; }
+  main { padding-top: 12px; }
+}
+.modal.as-sheet { place-items: end center; padding: 0; }
+.modal-card.sheet { width: min(560px, 100%); border-radius: 26px 26px 0 0; border-bottom: 0; padding-bottom: env(safe-area-inset-bottom, 0px); animation: sheetup .28s cubic-bezier(.2, .9, .2, 1); max-height: 92%; }
+@keyframes sheetup { from { transform: translateY(40%); opacity: 0; } }
+.sheet-grip { width: 44px; height: 5px; border-radius: 3px; background: var(--line-2); margin: 10px auto 4px; }
+.sheet-top { display: flex; align-items: center; gap: 12px; padding: 10px 16px; flex-wrap: wrap; }
+.sheet-top .side-me-link { flex: 1; min-width: 180px; }
+.sheet-body { padding: 12px 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.tile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tile { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 6px; border-radius: 16px; background: var(--bg-2); border: 1px solid var(--line); text-decoration: none; font-weight: 700; font-size: 13px; transition: border-color .2s, transform .15s; }
+.tile svg { width: 24px; height: 24px; color: var(--accent); }
+.tile:active { transform: scale(.96); }
+.tile.on { border-color: var(--accent); background: color-mix(in oklab, var(--accent) 16%, var(--bg-2)); }
+.tile .badge-count { position: absolute; top: 6px; right: 6px; margin: 0; }
+
+/* Explorar */
+.search-bar { position: relative; margin-bottom: 12px; }
+.search-bar svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--muted); pointer-events: none; }
+.search-bar .input { padding: 13px 14px 13px 44px; border-radius: 999px; font-size: 15px; }
+.search-bar.small { margin: 0 12px 8px; }
+.search-bar.small .input { padding: 9px 12px 9px 40px; font-size: 14px; }
+.search-bar.small svg { left: 12px; width: 18px; height: 18px; }
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.page-head + .search-bar + .chip-row { margin-bottom: 18px; }
+.ex-sec { margin-bottom: 26px; }
+.ex-title { font-size: 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.ex-title .num { font-size: 13px; color: var(--muted); font-weight: 500; }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.cat { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px; border-radius: 18px; border: 1px solid var(--line); text-align: left; overflow: hidden; background: radial-gradient(circle at 100% 0, color-mix(in oklab, var(--gc) 40%, transparent), transparent 65%), var(--surface); transition: transform .2s, border-color .2s; }
+.cat:hover { transform: translateY(-3px); border-color: var(--gc); }
+.cat b { font-family: var(--f-display); font-size: 16px; }
+.cat small { color: var(--muted); font-size: 12px; }
+.cat .pill-live { position: absolute; top: 12px; right: 12px; }
+.creator-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.creator { overflow: hidden; display: flex; flex-direction: column; animation: rise .35s ease both; }
+.creator-banner { height: 70px; background: var(--cover); background-size: cover; }
+.creator-body { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.creator-body > .av { margin-top: -28px; box-shadow: 0 0 0 4px var(--surface); }
+.creator-body > .av.ring-live { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--live); }
+.creator-name { text-decoration: none; font-family: var(--f-display); font-size: 17px; }
+.trend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+.trend-card { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); text-align: left; transition: border-color .2s; }
+.trend-card:hover { border-color: var(--blue); }
+.trend-card b { color: var(--blue); font-size: 16px; }
+.trend-card small { color: var(--muted); font-size: 12px; }
+
+/* Mensagens */
+.dm { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 14px; height: calc(100vh - 80px); min-height: 480px; }
+.dm-list { display: flex; flex-direction: column; overflow: hidden; }
+.dm-list-head { display: flex; align-items: center; padding: 14px 12px 10px 16px; }
+.dm-list-head h1 { font-size: 24px; flex: 1; }
+.dm-threads { flex: 1; overflow-y: auto; padding: 0 6px; scrollbar-width: thin; }
+.dm-row { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; text-decoration: none; transition: background .15s; }
+.dm-row:hover { background: var(--surface-2); }
+.dm-row.on { background: color-mix(in oklab, var(--accent) 18%, var(--surface-2)); }
+.dm-row > div { flex: 1; min-width: 0; }
+.dm-row strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 14px; }
+.dm-prev { display: block; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dm-row.unread .dm-prev { color: var(--fg); font-weight: 700; }
+.dm-row .badge-count { margin: 0; }
+.dm-pane { display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+.dm-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.dm-back { display: none; }
+.dm-status { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.dm-status i { width: 8px; height: 8px; border-radius: 50%; background: var(--good); box-shadow: 0 0 8px var(--good); }
+.dm-msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 6px; scrollbar-width: thin; }
+.dm-day { align-self: center; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 4px 10px; border-radius: 999px; background: var(--bg-2); margin: 8px 0; }
+.bubble { max-width: min(78%, 520px); padding: 9px 13px 6px; border-radius: 18px; display: flex; flex-direction: column; gap: 4px; animation: rise .2s ease both; overflow-wrap: anywhere; }
+.bubble time { font-size: 10.5px; opacity: .7; align-self: flex-end; font-family: var(--f-mono); }
+.bubble.them { align-self: flex-start; background: var(--surface-3); border-bottom-left-radius: 6px; }
+.bubble.me { align-self: flex-end; background: var(--grad); color: #fff; border-bottom-right-radius: 6px; }
+.bubble.me .ht, .bubble.me .mn { color: #fff; text-decoration: underline; }
+.bubble.typing { flex-direction: row; gap: 4px; padding: 12px 14px; }
+.bubble.typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--fg-2); animation: blink 1.2s infinite; }
+.bubble.typing span:nth-child(2) { animation-delay: .2s; }
+.bubble.typing span:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+.dm-share { display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 9px 11px; border-radius: 12px; border: 1px solid rgb(255 255 255 / .2); background: rgb(0 0 0 / .22); color: inherit; font-weight: 700; font-size: 13px; }
+.dm-share small { font-weight: 600; opacity: .75; font-size: 11px; }
+.dm-quick { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 8px 12px 0; }
+.dm-quick .chip { flex: none; }
+.dm-form { display: flex; gap: 8px; padding: 10px 12px 12px; }
+.dm-form input { flex: 1; min-width: 0; border-radius: 999px; }
+.dm-form .btn { padding: 9px 14px; }
+.dm-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 30px; }
+.dm-empty > svg { width: 48px; height: 48px; color: var(--accent); }
+.dm-empty b { font-family: var(--f-display); font-size: 20px; }
+.dm-pick { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 14px; border: 0; background: transparent; width: 100%; text-align: left; }
+.dm-pick:hover { background: var(--surface-2); }
+.dm-pick > span:nth-child(2) { flex: 1; min-width: 0; }
+.dm-pick small { display: block; color: var(--muted); }
+@media (max-width: 820px) {
+  .dm { grid-template-columns: minmax(0, 1fr); height: calc(100dvh - 190px); min-height: 420px; }
+  .dm.has-active .dm-list { display: none; }
+  .dm:not(.has-active) .dm-pane { display: none; }
+  .dm-back { display: inline-grid; }
+}
+
+/* Moderação */
+.chat-badges { display: flex; gap: 4px; flex-wrap: wrap; padding: 0 14px; }
+.chat-badges:not(:empty) { padding: 6px 14px; border-bottom: 1px solid var(--line); }
+.mini-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--surface-3); color: var(--fg-2); }
+.chat-pinned { display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 14px; font-size: 13px; background: color-mix(in oklab, var(--accent) 14%, var(--surface)); border-bottom: 1px solid var(--line); }
+.chat-pinned span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.chat-pinned .icon-btn { width: 28px; height: 28px; }
+.msg { position: relative; border-radius: 8px; padding: 1px 4px; margin: 0 -4px; }
+.msg[data-act] { cursor: pointer; }
+.msg[data-act]:hover, .msg.open { background: var(--surface-2); }
+.msg-time { font-family: var(--f-mono); font-size: 10.5px; color: var(--muted); margin-right: 6px; }
+.msg-tools { display: none; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); gap: 2px; padding: 2px; border-radius: 10px; background: var(--surface-3); border: 1px solid var(--line-2); box-shadow: 0 8px 20px -8px rgb(0 0 0 / .8); }
+.msg:hover .msg-tools, .msg.open .msg-tools, .msg:focus-within .msg-tools { display: flex; }
+.msg-tools button { width: 28px; height: 26px; border: 0; background: transparent; border-radius: 7px; font-size: 13px; }
+.msg-tools button:hover { background: var(--surface-2); }
+.msg.removed { color: var(--muted); font-style: italic; font-size: 12.5px; }
+.msg.sys.modmsg { background: color-mix(in oklab, var(--blue) 14%, transparent); border-color: color-mix(in oklab, var(--blue) 35%, transparent); }
+.mod-panel { display: flex; flex-direction: column; gap: 14px; }
+.mod-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.mod-stats div { padding: 8px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); min-width: 0; }
+.mod-stats b { display: block; font-size: 18px; }
+.mod-stats small { color: var(--muted); font-size: 10.5px; line-height: 1.2; display: block; }
+@media (max-width: 420px) { .mod-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.mod-toggles { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.mod-tog { align-items: flex-start; padding: 10px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); }
+.mod-tog input { margin-top: 2px; }
+.mod-tog b { display: block; font-size: 14px; }
+.mod-tog small { display: block; font-size: 12px; color: var(--muted); font-weight: 500; }
+.chip-x { width: 18px; height: 18px; border: 0; background: transparent; padding: 0; display: grid; place-items: center; color: var(--muted); border-radius: 50%; margin-right: -4px; }
+.chip-x:hover { color: var(--fg); background: var(--surface-3); }
+.chip-x svg { width: 12px; height: 12px; }
+
+.chat-paused { text-align: center; font-size: 12px; font-weight: 700; color: var(--fg-2); padding: 4px; background: var(--surface-2); border-top: 1px solid var(--line); }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
+<header class="topbar" id="topBar"></header>
 <div class="app">
   <aside class="side" id="side"></aside>
   <main id="main" tabindex="-1"></main>
@@ -1149,30 +1328,11 @@ function route() {
   const h = (location.hash || '#feed').slice(1);
   if (h.startsWith('conta-')) return { name: 'profile', id: h.slice(6) };
   if (h === 'perfil') return { name: 'profile', id: 'me' };
-  if (['feed', 'eventos', 'estudio', 'clips', 'notificacoes'].includes(h)) return { name: h };
+  if (h.startsWith('conversa-')) return { name: 'mensagens', id: h.slice(9) };
+  if (['feed', 'eventos', 'estudio', 'clips', 'notificacoes', 'explorar', 'mensagens'].includes(h)) return { name: h };
   return { name: 'feed' };
 }
 
-const NAV = [
-  ['feed', 'home', 'Início'], ['eventos', 'calendar', 'Eventos'], ['estudio', 'studio', 'Estúdio'],
-  ['clips', 'clip', 'Clips'], ['notificacoes', 'bell', 'Notificações'], ['perfil', 'user', 'Perfil'],
-];
-function renderNav() {
-  const r = route(); const cur = r.name === 'profile' ? (r.id === 'me' ? 'perfil' : '') : r.name;
-  const unread = S.notifs.filter(n => !n.read).length;
-  const link = ([h, ic, label]) => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' && unread ? `<span class="badge-count">${unread > 99 ? '99+' : unread}</span>` : ''}${h === 'estudio' && S.live ? '<span class="pill-live" style="margin-left:auto">LIVE</span>' : ''}</a>`;
-  $('#side').innerHTML = `
-    <a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
-    ${NAV.map(link).join('')}
-    <button class="btn btn-primary" data-act="compose">${icon('plus')} Publicar</button>
-    <button class="btn" data-act="new-event" style="justify-content:center">${icon('calendar')} Agendar live</button>
-    ${S.live ? `<a class="live-pill" href="#estudio"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
-    <a class="side-me" href="#perfil">${avatar(S.me, 38).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)}</small></div></a>`;
-  $('#bottomNav').innerHTML = NAV.filter(n => n[0] !== 'clips').map(link).join('');
-  const lf = $('#liveFloat');
-  lf.hidden = !S.live || r.name === 'estudio';
-  if (S.live) lf.innerHTML = `<span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span>`;
-}
 function paintBadges() { if (S) renderNav(); }
 
 function render() {
@@ -1181,16 +1341,20 @@ function render() {
   renderNav();
   const r = route();
   const main = $('#main');
-  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio');
+  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio' || r.name === 'mensagens');
   const html = r.name === 'feed' ? viewFeed()
     : r.name === 'profile' ? viewProfile(r.id)
     : r.name === 'eventos' ? viewEvents()
     : r.name === 'estudio' ? viewStudio()
     : r.name === 'clips' ? viewClips()
+    : r.name === 'explorar' ? viewExplore()
+    : r.name === 'mensagens' ? viewMessages(r.id)
     : viewNotifs();
   main.innerHTML = html;
   $('#rail').innerHTML = viewRail();
   if (r.name === 'estudio') afterStudioRender();
+  if (r.name === 'mensagens') afterMessagesRender();
+  tickClock();
   updateLiveBits();
   tickCountdowns();
   UI.lastSig = statusSig();
@@ -1323,7 +1487,7 @@ function postCard(p) {
     ${avatar(a, 46)}
     <div class="post-body">
       ${pinned ? `<div class="post-meta-top">${icon('pin')} Publicação fixada</div>` : p.reposted ? `<div class="post-meta-top">${icon('repost')} Repostaste</div>` : ''}
-      <div class="post-head"><a href="#${mine ? 'perfil' : 'conta-' + a.id}">${nameLine(a)}</a><span class="muted">@${esc(a.handle)} · <time title="${new Date(p.createdAt).toLocaleString('pt-PT')}">${ago(p.createdAt)}</time></span>${KIND[p.type] ? `<span class="post-kind">${KIND[p.type]}</span>` : ''}
+      <div class="post-head"><a href="#${mine ? 'perfil' : 'conta-' + a.id}">${nameLine(a)}</a><span class="muted">@${esc(a.handle)} · <time data-ago="${p.createdAt}" title="${new Date(p.createdAt).toLocaleString('pt-PT')}">${ago(p.createdAt)}</time></span>${KIND[p.type] ? `<span class="post-kind">${KIND[p.type]}</span>` : ''}
         <div class="menu-wrap"><button class="icon-btn" data-act="menu" data-id="${p.id}" aria-label="Mais opções">${icon('more')}</button>${UI.menu === p.id ? postMenu(p) : ''}</div></div>
       ${text ? `<p class="post-text">${richText(text)}</p>` : ''}
       ${extra}
@@ -1335,7 +1499,7 @@ function postCard(p) {
         ${mine ? `<button class="pa pin ${pinned ? 'on' : ''}" data-act="pin" data-id="${p.id}" aria-label="${pinned ? 'Desafixar' : 'Fixar no perfil'}">${icon('pin')}</button>` : ''}
         <span class="pa views" title="Visualizações simuladas">${icon('eye')}<span data-views="${p.id}">${fmt(p.views)}</span></span>
       </div>
-      ${open ? `<div class="replies">${p.replies.map(r => { const ra = acc(r.author); return `<div class="reply">${avatar(ra, 30)}<div><strong>${esc(ra.name)}</strong> <span class="muted tiny">${ago(r.t)}</span><br>${richText(r.text)}</div></div>`; }).join('')}
+      ${open ? `<div class="replies">${p.replies.map(r => { const ra = acc(r.author); return `<div class="reply">${avatar(ra, 30)}<div><strong>${esc(ra.name)}</strong> <time class="muted tiny" data-ago="${r.t}">${ago(r.t)}</time><br>${richText(r.text)}</div></div>`; }).join('')}
         <form class="reply-form" data-form="reply" data-id="${p.id}"><input class="input" id="reply-${p.id}" name="t" maxlength="280" placeholder="Escreve uma resposta…" autocomplete="off"><button class="btn btn-sm btn-primary">Responder</button></form></div>` : ''}
     </div></article>`;
 }
@@ -1343,6 +1507,7 @@ function postMenu(p) {
   const mine = p.author === 'me';
   return `<div class="menu">
     ${mine ? `<button data-act="pin" data-id="${p.id}">${icon('pin')} ${S.pinned === p.id ? 'Desafixar do perfil' : 'Fixar no perfil'}</button>` : `<button data-act="follow" data-id="${p.author}">${icon('users')} ${acc(p.author).followed ? 'Deixar de seguir' : 'Seguir'} @${esc(acc(p.author).handle)}</button>`}
+    <button data-act="share-dm" data-type="post" data-id="${p.id}">${icon('send')} Enviar por mensagem</button>
     <button data-act="copy-post" data-id="${p.id}">${icon('share')} Copiar texto</button>
     ${p.eventId ? `<button data-act="event-open" data-id="${p.eventId}">${icon('calendar')} Ver evento</button>` : ''}
     ${mine ? `<button class="danger" data-act="post-del" data-id="${p.id}">${icon('trash')} Eliminar publicação</button>` : ''}
@@ -1403,6 +1568,7 @@ function clipCard(c) {
         <button class="pa like ${c.liked ? 'on' : ''}" data-act="clip-like" data-id="${c.id}">${icon('heart')}<span>${fmt(c.likes)}</span></button>
         <button class="pa" data-act="clip-comments" data-id="${c.id}">${icon('reply')}<span>${fmt(c.comments)}</span></button>
         <button class="pa" data-act="clip-share" data-id="${c.id}" title="Partilhar no feed">${icon('share')}<span>Partilhar</span></button>
+        <button class="pa" data-act="share-dm" data-type="clip" data-id="${c.id}" title="Enviar por mensagem" aria-label="Enviar por mensagem">${icon('send')}</button>
         ${c.streamer === 'me' ? `<button class="pa ${c.onProfile ? 'pin on' : ''}" data-act="clip-profile" data-id="${c.id}" title="${c.onProfile ? 'Remover do perfil' : 'Adicionar ao perfil'}">${icon(c.onProfile ? 'check' : 'plus')}<span>${c.onProfile ? 'No perfil' : 'Perfil'}</span></button>` : ''}
       </div>
       ${open ? `<div class="clip-comments">${clipCommentList(c).map(m => `<div><b>${esc(m.u)}</b> ${esc(m.t)}</div>`).join('')}
@@ -1447,7 +1613,7 @@ function viewProfile(id) {
     <div class="prof-inner">
       <div class="prof-top">${avatar(a, 120).replace('class="av ', 'class="av ' + (me && S.live ? 'ring-live ' : ''))}<span class="spacer"></span>
         ${me ? `<button class="btn" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-primary" data-act="new-event">${icon('calendar')} Agendar live</button>`
-          : `<button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
+          : `<a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
       </div>
       <div class="prof-name"><h1>${esc(a.name)}</h1>${a.verified ? VERIFIED + SIM('selo fictício') : ''}${me && S.live ? '<span class="pill-live">EM DIRETO</span>' : ''}</div>
       <div class="prof-handle">@${esc(a.handle)}</div>
@@ -1567,7 +1733,7 @@ function calendarHTML(now) {
 /* ---------- Notificações ---------- */
 function viewNotifs() {
   return `<div class="page-head"><div><h1>Notificações</h1><p>Notificações simuladas e geridas pela própria app.</p></div><span class="spacer"></span><button class="btn btn-sm" data-act="notif-read">${icon('check')} Marcar tudo como lido</button><button class="btn btn-sm btn-ghost" data-act="notif-clear">Limpar</button></div>
-  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${n.icon}</span><div>${esc(n.text)}<time>${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
+  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${n.icon}</span><div>${esc(n.text)}<time data-ago="${n.t}">${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
 }
 
 /* =====================================================================
@@ -1576,7 +1742,7 @@ function viewNotifs() {
    ===================================================================== */
 const LIVE_MS = 650;
 const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 100000, 250000, 500000, 1000000];
-const TL_ICON = { start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
+const TL_ICON = { mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
 const STUDIO = { showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
@@ -1664,9 +1830,10 @@ function liveTick() {
   L.followers += fGain; S.me.followers += fGain;
   L.likes += L.viewers * 0.0006 * L.engage * rand(.5, 1.5);
   // chat
-  const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage);
+  const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage) * chatRateFactor();
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
-  while (n--) pushChat({ user: fakeUser(), text: ambientLine(L) });
+  while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? pick(EMOTES) : ambientLine(L) });
+  maybeTroll(L);
   // presentes
   if (Math.random() < 0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage) giftEvent();
   // raid espontânea
@@ -1707,19 +1874,25 @@ function giftEvent(fromUser) {
 /* ---------- Chat ---------- */
 function pushChat(m) {
   const L = S.live; if (!L) return;
-  m.id = uid(); m.color = m.color || pick(NAME_COLORS);
+  m.id = uid(); m.color = m.color || pick(NAME_COLORS); m.t = Date.now();
+  if (!modFilter(m)) return;
   L.chat.push(m); if (L.chat.length > 80) L.chat.shift();
   L.msgs++;
   const list = $('#chatList'); if (!list) return;
-  const atBottom = list.scrollHeight - list.scrollTop - list.clientHeight < 60;
+  const paused = list.matches(':hover') || list.querySelector('.msg.open');
+  const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
+  const pz = $('#chatPaused'); if (pz) pz.hidden = !paused;
   list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
   while (list.children.length > 80) list.firstElementChild.remove();
   if (atBottom) list.scrollTop = list.scrollHeight;
 }
 function chatMsgHTML(m) {
-  if (m.sys) return `<div class="msg sys">${esc(m.text)}</div>`;
+  if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
+  if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(m.text)}</div>`;
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}"><b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}</div>`;
+  const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
+  const inLive = !!(S.live && S.live.chat.includes(m));
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub ? '<span title="Subscritor fictício">⭐</span> ' : ''}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -1916,12 +2089,15 @@ function viewStudio() {
     </div>
     <div class="stack" style="gap:16px">
       <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span></div>
+        <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList">${L.chat.map(chatMsgHTML).join('')}</div>
+        <div class="chat-paused" id="chatPaused" hidden>⏸ Chat em pausa enquanto moderas</div>
         <form class="chat-form" data-form="chat"><input class="input" id="chatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
       </section>
       <section class="card panel"><h3 class="panel-title">${icon('clock', 'style="width:18px"')} Cronologia da live</h3>
         <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
       </section>
+      <section class="card panel"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação</h3>${modPanelHTML()}</section>
     </div>
   </div>`;
 }
@@ -1973,6 +2149,7 @@ function studioSetup() {
       <div class="row"><button class="btn btn-live">${icon('studio')} Entrar em direto</button><span class="small muted">Os espectadores e o chat são simulados.</span></div>
     </form>
   </section>
+  <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação do chat</h3>${modPanelHTML()}</section>
   <h3 style="margin:22px 0 10px;font-size:20px">Lives anteriores</h3>
   <div class="stack">${S.lives.length ? [...S.lives].sort((a, b) => b.start - a.start).map(l => `${pastLive(l)}`).join('') : '<div class="empty"><b>Ainda sem lives</b></div>'}</div>`;
 }
@@ -2014,13 +2191,411 @@ function openWatch(evId) {
 }
 
 /* =====================================================================
+   Social: relógio em tempo real, menu, explorar, mensagens diretas e
+   moderação do chat. Contas e mensagens recebidas são fictícias.
+   ===================================================================== */
+Object.assign(IC, {
+  chat: '<path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1z"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+  shield: '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  send: '<path d="M4 12 20 4l-6 16-3-7z"/>',
+  back: '<path d="M15 5l-7 7 7 7"/>',
+  sparkle: '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>',
+});
+
+/* ---------- Relógio em tempo real ---------- */
+const fullDate = t => { const d = new Date(t); return `${DAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`; };
+const hms = t => { const d = new Date(t); return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; };
+function clockHTML(big = false) {
+  const now = Date.now();
+  return `<div class="clock ${big ? 'big' : ''}" aria-label="Hora atual"><b class="num" data-clock="time">${hms(now)}</b><small data-clock="date">${fullDate(now)}</small></div>`;
+}
+function tickClock() {
+  const now = Date.now();
+  $$('[data-clock="time"]').forEach(n => n.textContent = hms(now));
+  $$('[data-clock="hm"]').forEach(n => n.textContent = hhmm(now));
+  $$('[data-clock="date"]').forEach(n => n.textContent = fullDate(now));
+}
+function tickAgo() { $$('[data-ago]').forEach(n => { const v = ago(+n.dataset.ago); if (n.textContent !== v) n.textContent = v; }); }
+
+/* ---------- Menu ---------- */
+const NAV_GROUPS = [
+  ['Descobrir', [['feed', 'home', 'Início'], ['explorar', 'compass', 'Explorar']]],
+  ['Social', [['mensagens', 'chat', 'Mensagens'], ['notificacoes', 'bell', 'Notificações']]],
+  ['Criador', [['estudio', 'studio', 'Estúdio'], ['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clips']]],
+  ['Conta', [['perfil', 'user', 'Perfil']]],
+];
+const dmUnread = () => (S.dms || []).reduce((s, t) => s + (t.unread || 0), 0);
+const notifUnread = () => S.notifs.filter(n => !n.read).length;
+const badge = n => n ? `<span class="badge-count">${n > 99 ? '99+' : n}</span>` : '';
+function navCurrent() { const r = route(); return r.name === 'profile' ? (r.id === 'me' ? 'perfil' : '') : r.name === 'feed' ? 'feed' : r.name; }
+function navLink([h, ic, label], cur) {
+  const extra = h === 'notificacoes' ? badge(notifUnread()) : h === 'mensagens' ? badge(dmUnread()) : h === 'estudio' && S.live ? '<span class="pill-live" style="margin-left:auto">LIVE</span>' : '';
+  return `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${icon(ic)}<span>${label}</span>${extra}</a>`;
+}
+function createMenuHTML() {
+  return `<div class="create-menu" role="menu">
+    <button role="menuitem" data-act="compose"><span class="cm-ico" style="--c:var(--purple)">${icon('edit')}</span><span><b>Nova publicação</b><small>Texto, sondagem, foto, clip…</small></span></button>
+    <button role="menuitem" data-act="new-event"><span class="cm-ico" style="--c:var(--blue)">${icon('calendar')}</span><span><b>Agendar live</b><small>Evento com contagem decrescente</small></span></button>
+    <button role="menuitem" data-act="go-studio"><span class="cm-ico" style="--c:var(--live)">${icon('studio')}</span><span><b>${S.live ? 'Voltar à live' : 'Entrar em direto'}</b><small>${S.live ? fmt(S.live.viewers) + ' espectadores virtuais' : 'Abrir o estúdio'}</small></span></button>
+  </div>`;
+}
+function renderNav() {
+  const r = route(); const cur = navCurrent();
+  $('#side').innerHTML = `
+    <a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
+    ${clockHTML()}
+    <div class="create-wrap"><button class="btn btn-primary create-btn" data-act="create-toggle" aria-expanded="${!!UI.createOpen}">${icon('plus')} Criar</button>${UI.createOpen ? createMenuHTML() : ''}</div>
+    <nav class="nav-groups" aria-label="Menu principal">${NAV_GROUPS.map(([g, items]) => `<div class="nav-group"><span class="nav-label">${g}</span>${items.map(i => navLink(i, cur)).join('')}</div>`).join('')}</nav>
+    ${S.live ? `<a class="live-pill" href="#estudio"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">a ver</span></a>` : ''}
+    <div class="side-me"><a href="#perfil" class="side-me-link">${avatar(S.me, 38).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)}</small></div></a>
+      <button class="icon-btn" data-act="edit-profile" title="Editar perfil" aria-label="Editar perfil">${icon('edit')}</button><button class="icon-btn" data-act="mod-open" title="Moderação" aria-label="Moderação">${icon('shield')}</button></div>`;
+  $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
+    <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
+    ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
+    <a class="icon-btn top-ic" href="#explorar" aria-label="Explorar">${icon('search')}</a>
+    <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('chat')}${badge(dmUnread())}</a>
+    <a class="icon-btn top-ic" href="#notificacoes" aria-label="Notificações">${icon('bell')}${badge(notifUnread())}</a>`;
+  const bn = (h, ic, label) => navLink([h, ic, label], cur);
+  $('#bottomNav').innerHTML = `${bn('feed', 'home', 'Início')}${bn('explorar', 'compass', 'Explorar')}
+    <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
+    ${bn('estudio', 'studio', 'Estúdio')}
+    <button class="nav-link ${['perfil', 'eventos', 'clips', 'notificacoes', 'mensagens'].includes(cur) ? 'on' : ''}" data-act="menu-sheet">${icon('menu')}<span>Menu</span>${badge(notifUnread() + dmUnread())}</button>`;
+  const lf = $('#liveFloat');
+  lf.hidden = !S.live || r.name === 'estudio';
+  if (S.live) lf.innerHTML = `<span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span>`;
+}
+function openMenuSheet() {
+  const cur = navCurrent();
+  openModal(`<div class="sheet-grip" aria-hidden="true"></div>
+    <div class="sheet-top"><a class="side-me-link" href="#perfil">${avatar(S.me, 46).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)} · nível ${career().level}</small></div></a>${clockHTML(true)}</div>
+    ${S.live ? `<a class="live-pill" href="#estudio" style="margin:0 16px"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
+    <div class="sheet-body">${NAV_GROUPS.map(([g, items]) => `<div><span class="nav-label">${g}</span><div class="tile-grid">${items.map(([h, ic, label]) => `<a class="tile ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' ? badge(notifUnread()) : h === 'mensagens' ? badge(dmUnread()) : ''}</a>`).join('')}</div></div>`).join('')}
+      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div></div>`, 'sheet');
+}
+function openCreateSheet() {
+  openModal(`<div class="sheet-grip" aria-hidden="true"></div><div class="sheet-body"><h2 style="font-size:20px">Criar</h2>${createMenuHTML()}<button class="btn btn-ghost" data-act="modal-close">Fechar</button></div>`, 'sheet');
+}
+
+/* ---------- Explorar ---------- */
+UI.explore = { q: '', game: 'all' };
+function viewExplore() {
+  const games = Object.entries(GAMES).filter(([k]) => k !== 'amnesia');
+  return `<div class="page-head"><div><h1>Explorar</h1><p>Descobre criadores, eventos, clips e tendências da rede fictícia.</p></div></div>
+  <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Pesquisar contas, #hashtags, eventos, clips…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Pesquisar"></div>
+  <div class="chip-row" role="group" aria-label="Filtrar por jogo"><button class="chip ${UI.explore.game === 'all' ? 'on' : ''}" data-act="explore-game" data-k="all">Todos</button>${games.map(([k, g]) => `<button class="chip ${UI.explore.game === k ? 'on' : ''}" data-act="explore-game" data-k="${k}">${gicon(k, 18)} ${esc(g.name)}</button>`).join('')}</div>
+  <div id="exploreResults">${exploreResults()}</div>`;
+}
+function exploreResults() {
+  const q = UI.explore.q.trim().toLowerCase(), g = UI.explore.game;
+  const byGame = x => g === 'all' || x === g;
+  const accs = S.accounts.filter(a => g === 'all' || (a.games || []).includes(g));
+  const evs = S.events.filter(e => byGame(e.game) && !e.cancelled);
+  const clips = S.clips.filter(c => byGame(c.game));
+  const posts = visiblePosts().filter(p => g === 'all' || p.game === g || hashtags(postText(p)).some(t => t.includes((GAMES[g]?.name || '').toLowerCase().replace(/[^\p{L}\d]/gu, ''))));
+  const tagCount = {};
+  visiblePosts().forEach(p => hashtags(postText(p)).forEach(t => tagCount[t] = (tagCount[t] || 0) + 1 + p.likes / 1500));
+  const sec = (title, body, n) => `<section class="ex-sec"><h2 class="ex-title">${title}${n != null ? `<span class="num">${n}</span>` : ''}</h2>${body}</section>`;
+  if (q) {
+    const qq = q.replace(/^#/, '');
+    const mA = accs.filter(a => [a.name, a.handle, a.bio, a.cat].join(' ').toLowerCase().includes(qq));
+    const mT = Object.keys(tagCount).filter(t => t.includes(qq)).slice(0, 10);
+    const mE = evs.filter(e => [e.title, e.desc, GAMES[e.game]?.name].join(' ').toLowerCase().includes(qq));
+    const mC = clips.filter(c => [c.title, c.type, GAMES[c.game]?.name].join(' ').toLowerCase().includes(qq));
+    const mP = posts.filter(p => postText(p).toLowerCase().includes(qq)).slice(0, 8);
+    if (!mA.length && !mT.length && !mE.length && !mC.length && !mP.length) return `<div class="empty"><b>Sem resultados para «${esc(q)}»</b>Experimenta outro nome, jogo ou hashtag.</div>`;
+    return [
+      mA.length ? sec('Contas', `<div class="creator-grid">${mA.map(creatorCard).join('')}</div>`, mA.length) : '',
+      mT.length ? sec('Hashtags', `<div class="chip-row">${mT.map(t => `<button class="chip" data-act="tag" data-tag="${esc(t)}">${esc(t)}</button>`).join('')}</div>`, mT.length) : '',
+      mE.length ? sec('Eventos', `<div class="ev-grid">${mE.map(e => eventCard(e, { standalone: true })).join('')}</div>`, mE.length) : '',
+      mC.length ? sec('Clips', `<div class="clip-grid">${mC.map(clipCard).join('')}</div>`, mC.length) : '',
+      mP.length ? sec('Publicações', `<div class="feed">${mP.map(postCard).join('')}</div>`, mP.length) : '',
+    ].join('');
+  }
+  const live = evs.filter(e => eventStatus(e) === 'live');
+  const up = evs.filter(e => ['scheduled', 'soon'].includes(eventStatus(e))).sort((a, b) => b.interested - a.interested).slice(0, 4);
+  const topClips = [...clips].sort((a, b) => b.popularity - a.popularity).slice(0, 4);
+  const tags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const cats = Object.entries(GAMES).filter(([k]) => k !== 'amnesia').map(([k, G]) => ({ k, G, creators: S.accounts.filter(a => (a.games || []).includes(k)).length + (S.me.games.includes(k) ? 1 : 0), events: S.events.filter(e => e.game === k && ['scheduled', 'soon', 'live'].includes(eventStatus(e))).length, live: S.events.some(e => e.game === k && eventStatus(e) === 'live') })).sort((a, b) => (b.live - a.live) || (b.creators + b.events) - (a.creators + a.events));
+  return [
+    live.length ? sec('<span class="pill-live">EM DIRETO</span> Agora', `<div class="ev-grid">${live.map(e => eventCard(e, { standalone: true })).join('')}</div>`) : '',
+    g === 'all' ? sec('Categorias', `<div class="cat-grid">${cats.map(c => `<button class="cat" style="--gc:${c.G.color}" data-act="explore-game" data-k="${c.k}">${gicon(c.k, 40)}<b>${esc(c.G.name)}</b><small>${c.creators} criadores · ${c.events} eventos</small>${c.live ? '<span class="pill-live">LIVE</span>' : ''}</button>`).join('')}</div>`) : '',
+    sec('Criadores em destaque', accs.length ? `<div class="creator-grid">${[...accs].sort((a, b) => b.followers - a.followers).map(creatorCard).join('')}</div>` : '<p class="muted">Ainda não há criadores fictícios deste jogo.</p>'),
+    tags.length ? sec(`Tendências ${SIM('simulado')}`, `<div class="trend-grid">${tags.map(([t, v], i) => `<button class="trend-card" data-act="tag" data-tag="${esc(t)}"><small>#${i + 1} em tendência</small><b>${esc(t)}</b><small>${fmt(v * 940)} publicações fictícias</small></button>`).join('')}</div>`) : '',
+    topClips.length ? sec('Clips populares', `<div class="clip-grid">${topClips.map(clipCard).join('')}</div>`) : '',
+    up.length ? sec('Próximos eventos', `<div class="ev-grid">${up.map(e => eventCard(e, { standalone: true })).join('')}</div>`) : '',
+  ].join('');
+}
+function creatorCard(a) {
+  const live = S.events.some(e => e.owner === a.id && eventStatus(e) === 'live');
+  return `<article class="card creator"><div class="creator-banner" style="--cover:${esc(COVERS[a.hue % COVERS.length])}"></div>
+    <div class="creator-body">${avatar(a, 56, live ? 'ring-live' : '')}
+      <a href="#conta-${a.id}" class="creator-name"><strong>${esc(a.name)}</strong>${a.verified ? VERIFIED : ''}</a>
+      <small class="muted">@${esc(a.handle)} · ${esc(a.cat)}</small>
+      <div class="row" style="gap:4px">${(a.games || []).map(g => gicon(g, 22)).join('')}${live ? '<span class="pill-live">EM DIRETO</span>' : ''}</div>
+      <span class="small"><b class="num">${fmt(a.followers)}</b> seguidores ${SIM('sim.')}</span>
+      <div class="row" style="gap:6px;margin-top:auto"><button class="btn btn-sm ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? 'A seguir' : 'Seguir'}</button><a class="btn btn-sm" href="#conversa-${a.id}">${icon('chat')} Mensagem</a></div>
+    </div></article>`;
+}
+
+/* ---------- Mensagens diretas ---------- */
+UI.dmSearch = ''; UI.typing = {};
+function seedDMs(now = Date.now()) {
+  const M = (from, text, t) => ({ id: uid(), from, text, t });
+  return [
+    { id: 'a2', with: 'a2', unread: 1, msgs: [M('a2', 'Ei! Vi o teu evento do Modo Superstar 🔥', now - 2 * HOUR - 60000), M('a2', 'No fim da minha live posso fazer raid para a tua?', now - 2 * HOUR)] },
+    { id: 'a1', with: 'a1', unread: 0, msgs: [M('me', 'Obrigado pelo raid de ontem! 💜', now - DAY - 3 * HOUR), M('a1', 'De nada!! Para a semana fazemos uma live juntos em Minecraft? 💎', now - DAY - 2 * HOUR)] },
+    { id: 'a6', with: 'a6', unread: 0, msgs: [M('a6', 'Parabéns pelos 12 mil seguidores! 💜', now - 3 * DAY)] },
+  ];
+}
+function thread(id, create = false) {
+  let t = S.dms.find(x => x.with === id);
+  if (!t && create && S.accounts.find(a => a.id === id)) { t = { id, with: id, unread: 0, msgs: [] }; S.dms.push(t); }
+  return t;
+}
+const lastMsg = t => t.msgs[t.msgs.length - 1];
+function viewMessages(activeId) {
+  const active = activeId && thread(activeId, true);
+  const list = [...S.dms].filter(t => t.msgs.length || t.with === activeId).sort((a, b) => (lastMsg(b)?.t || Date.now()) - (lastMsg(a)?.t || Date.now()));
+  const q = UI.dmSearch.toLowerCase();
+  const shown = list.filter(t => !q || [acc(t.with).name, acc(t.with).handle].join(' ').toLowerCase().includes(q));
+  return `<div class="dm ${active ? 'has-active' : ''}">
+    <aside class="card dm-list">
+      <div class="dm-list-head"><h1>Mensagens</h1><button class="icon-btn" data-act="dm-new" aria-label="Nova mensagem" title="Nova mensagem">${icon('plus')}</button></div>
+      <div class="search-bar small">${icon('search')}<input class="input" type="search" id="dmSearch" data-dmsearch placeholder="Procurar conversa" value="${esc(UI.dmSearch)}" autocomplete="off" aria-label="Procurar conversa"></div>
+      <div class="dm-threads" id="dmThreads">${shown.length ? shown.map(t => dmThreadRow(t, activeId)).join('') : '<p class="muted small" style="padding:12px">Sem conversas.</p>'}</div>
+      <p class="tiny muted" style="padding:10px 14px;margin:0">As contas e as respostas são fictícias e geradas pela app.</p>
+    </aside>
+    <section class="card dm-pane">${active ? dmPane(active) : `<div class="dm-empty">${icon('chat')}<b>As tuas mensagens</b><span class="muted">Fala com criadores fictícios, combina raids e colaborações, ou partilha eventos e clips.</span><button class="btn btn-primary" data-act="dm-new">${icon('plus')} Nova mensagem</button></div>`}</section>
+  </div>`;
+}
+function dmThreadRow(t, activeId) {
+  const a = acc(t.with), m = lastMsg(t);
+  const prev = m ? (m.from === 'me' ? 'Tu: ' : '') + (m.share ? shareLabel(m.share) : m.text) : 'Nova conversa';
+  return `<a class="dm-row ${t.with === activeId ? 'on' : ''} ${t.unread ? 'unread' : ''}" href="#conversa-${a.id}">${avatar(a, 44).replace('<a ', '<span ').replace('</a>', '</span>')}<div><div class="row" style="gap:6px;flex-wrap:nowrap"><strong>${esc(a.name)}</strong>${a.verified ? VERIFIED : ''}<span class="spacer"></span>${m ? `<time class="tiny muted" data-ago="${m.t}">${ago(m.t)}</time>` : ''}</div><span class="dm-prev">${UI.typing[t.with] ? '<i>a escrever…</i>' : esc(prev)}</span></div>${t.unread ? `<span class="badge-count">${t.unread}</span>` : ''}</a>`;
+}
+function dmPane(t) {
+  const a = acc(t.with);
+  let lastDay = null;
+  const bubbles = t.msgs.map(m => {
+    const sep = !lastDay || !sameDay(lastDay, m.t) ? `<div class="dm-day">${dayLabel(m.t)}</div>` : ''; lastDay = m.t;
+    return sep + dmBubble(m);
+  }).join('');
+  return `<header class="dm-head"><a class="icon-btn dm-back" href="#mensagens" aria-label="Voltar às conversas">${icon('back')}</a>${avatar(a, 40)}<div style="min-width:0;flex:1"><a href="#conta-${a.id}" style="text-decoration:none"><strong>${esc(a.name)}</strong>${a.verified ? VERIFIED : ''}</a><span class="small dm-status"><i></i>${S.events.some(e => e.owner === a.id && eventStatus(e) === 'live') ? 'Em direto agora' : 'Ativo agora'} ${SIM()}</span></div><a class="btn btn-sm" href="#conta-${a.id}">Ver perfil</a></header>
+  <div class="dm-msgs" id="dmMsgs">${bubbles || `<div class="dm-empty small">${avatar(a, 64)}<b>${esc(a.name)}</b><span class="muted">@${esc(a.handle)} · ${fmt(a.followers)} seguidores fictícios</span><span class="muted">Diz olá!</span></div>`}${UI.typing[t.with] ? '<div class="bubble them typing" id="dmTyping"><span></span><span></span><span></span></div>' : ''}</div>
+  <div class="dm-quick">${['👋 Olá!', '🔥 Bora fazer uma live juntos?', '🛡️ Fazes raid no fim?', '💜 Obrigado!'].map(q => `<button class="chip" data-act="dm-quick" data-t="${esc(q)}">${esc(q)}</button>`).join('')}</div>
+  <form class="dm-form" data-form="dm" data-id="${a.id}"><input class="input" id="dmInput" name="t" maxlength="500" placeholder="Escreve uma mensagem…" autocomplete="off"><button class="btn btn-primary" aria-label="Enviar">${icon('send')}</button></form>`;
+}
+function shareLabel(s) {
+  if (s.type === 'event') { const e = S.events.find(x => x.id === s.id); return '📅 ' + (e ? e.title : 'Evento'); }
+  if (s.type === 'clip') { const c = S.clips.find(x => x.id === s.id); return '🎬 ' + (c ? c.title : 'Clip'); }
+  const p = S.posts.find(x => x.id === s.id); return '📝 ' + (p ? postText(p).slice(0, 60) : 'Publicação');
+}
+function dmBubble(m) {
+  const share = m.share ? `<button class="dm-share" data-act="dm-share-open" data-type="${m.share.type}" data-id="${m.share.id}">${esc(shareLabel(m.share))}<small>Abrir</small></button>` : '';
+  return `<div class="bubble ${m.from === 'me' ? 'me' : 'them'}">${share}${m.text ? `<span>${richText(m.text)}</span>` : ''}<time>${hhmm(m.t)}</time></div>`;
+}
+function afterMessagesRender() { const b = $('#dmMsgs'); if (b) b.scrollTop = b.scrollHeight; const r = route(); if (r.id) { const t = thread(r.id); if (t && t.unread) { t.unread = 0; save(); renderNav(); } } }
+function refreshDM(id) {
+  const r = route();
+  if (r.name === 'mensagens') {
+    const th = $('#dmThreads'); if (th) { const q = UI.dmSearch.toLowerCase(); th.innerHTML = [...S.dms].filter(t => t.msgs.length || t.with === r.id).sort((a, b) => (lastMsg(b)?.t || Date.now()) - (lastMsg(a)?.t || Date.now())).filter(t => !q || [acc(t.with).name, acc(t.with).handle].join(' ').toLowerCase().includes(q)).map(t => dmThreadRow(t, r.id)).join(''); }
+    if (r.id === id) {
+      const box = $('#dmMsgs'); const t = thread(id);
+      if (box && t) { let lastDay = null; box.innerHTML = t.msgs.map(m => { const sep = !lastDay || !sameDay(lastDay, m.t) ? `<div class="dm-day">${dayLabel(m.t)}</div>` : ''; lastDay = m.t; return sep + dmBubble(m); }).join('') + (UI.typing[id] ? '<div class="bubble them typing"><span></span><span></span><span></span></div>' : ''); box.scrollTop = box.scrollHeight; }
+      if (t && t.unread) { t.unread = 0; save(); }
+    }
+  }
+  renderNav();
+}
+function sendDM(id, text, share) {
+  const t = thread(id, true); if (!t) return;
+  t.msgs.push({ id: uid(), from: 'me', text: text || '', t: Date.now(), share: share || null });
+  save(); refreshDM(id);
+  scheduleDMReply(id, text, share);
+}
+function scheduleDMReply(id, text, share) {
+  if (UI.typing[id]) return;
+  setTimeout(() => { UI.typing[id] = true; refreshDM(id); }, rand(700, 1600));
+  setTimeout(() => { UI.typing[id] = false; receiveDM(id, dmReplyText(id, text, share)); }, rand(2600, 4800));
+}
+function dmReplyText(id, text = '', share) {
+  const a = acc(id), t = text.toLowerCase();
+  const next = S.events.filter(e => e.owner === 'me' && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start)[0];
+  const g = GAMES[pick(a.games || ['fortnite'])].name;
+  if (share) return share.type === 'event' ? `Que evento top! ${next ? `Vou estar lá ${dayLabel(next.start).toLowerCase()} às ${hhmm(next.start)} ⏰` : 'Já ativei o lembrete ⏰'}` : share.type === 'clip' ? pick(['HAHAHA este clip 😂', 'Que momento 😭🔥', 'Vou partilhar com a minha comunidade!']) : pick(['Vi agora, muito bom!', 'Concordo totalmente 👀', 'Top 🔥']);
+  if (/raid/.test(t)) return pick(['Combinado! Faço raid no fim da minha live 🛡️', 'Claro! Avisa-me quando estiveres a acabar.', 'Bora, a minha comunidade vai adorar.']);
+  if (/live|direto|evento|hoje|amanh/.test(t)) return next ? `Vou estar na tua live ${dayLabel(next.start).toLowerCase()} às ${hhmm(next.start)}! Já tenho o lembrete ativo ⏰` : 'Avisa quando marcares a próxima live, quero estar lá!';
+  if (/juntos|collab|colab|squad|jogar|jogamos/.test(t)) return `Bora! Que tal ${g} ${pick(['no sábado à tarde', 'na sexta às 21h', 'amanhã à noite'])}? 🎮`;
+  if (/obrigad|valeu/.test(t)) return pick(['De nada 💜', 'Sempre! 🙌', 'Estamos juntos!']);
+  if (/ol[aá]|oi\b|boas|hey|bom dia|boa noite|boa tarde/.test(t)) return pick([`Olá ${S.me.name.split(' ')[0]}! Tudo bem? 😄`, 'Boas!! Como vai isso?', 'Heyyy 👋']);
+  if (/\?\s*$/.test(t)) return pick(['Boa pergunta… acho que sim! 😅', 'Hmm, deixa-me pensar e já te digo.', 'Sim, sem dúvida!']);
+  return pick(['Haha verdade 😂', 'Fixe! 🔥', 'Concordo!', 'Isso mesmo 💜', 'Vamos falando!']);
+}
+function receiveDM(id, text) {
+  const t = thread(id, true); if (!t) return;
+  t.msgs.push({ id: uid(), from: id, text, t: Date.now() });
+  const r = route(); const viewing = r.name === 'mensagens' && r.id === id && document.visibilityState !== 'hidden';
+  if (!viewing) { t.unread = (t.unread || 0) + 1; notify('✉️', `${acc(id).name}: ${text}`, { dm: id }); toast('✉️', `${acc(id).name}: ${text.length > 50 ? text.slice(0, 48) + '…' : text}`); }
+  save(); refreshDM(id);
+}
+const DM_OPENERS = [
+  'Ei! Vi o teu último clip, está brutal 😂',
+  'Queres fazer uma live juntos esta semana?',
+  'Posso fazer raid para a tua próxima live? 🛡️',
+  'Que setup usas para as lives?',
+  'Parabéns pelo crescimento! A tua comunidade é top 💜',
+  'Vais participar no torneio da comunidade?',
+];
+function maybeInboundDM(now) {
+  if (now - (S.lastDM || 0) < rand(4 * MIN, 7 * MIN)) return;
+  S.lastDM = now;
+  if (Math.random() < .45) return;
+  const a = pick(S.accounts.filter(x => x.followed).concat(S.accounts));
+  const next = S.events.filter(e => e.owner === 'me' && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start)[0];
+  const opener = next && Math.random() < .4 ? `Vi o teu evento «${next.title}». Às ${hhmm(next.start)} estou lá! 🔥` : pick(DM_OPENERS);
+  receiveDM(a.id, opener);
+}
+function openDMPicker(share) {
+  const rows = S.accounts.map(a => `<button class="dm-pick" data-act="${share ? 'dm-send-share' : 'dm-goto'}" data-id="${a.id}" ${share ? `data-type="${share.type}" data-sid="${share.id}"` : ''}>${avatar(a, 40).replace('<a ', '<span ').replace('</a>', '</span>')}<span><strong>${esc(a.name)}</strong>${a.verified ? VERIFIED : ''}<small>@${esc(a.handle)}</small></span>${share ? `<span class="btn btn-sm btn-primary">${icon('send')} Enviar</span>` : ''}</button>`).join('');
+  openModal(`<div class="modal-head"><h2>${share ? 'Enviar por mensagem' : 'Nova mensagem'}</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div>
+    <div class="modal-body">${share ? `<div class="dm-share" style="cursor:default">${esc(shareLabel(share))}</div>` : ''}<div class="stack" style="gap:4px">${rows}</div></div>`);
+}
+
+/* ---------- Moderação ---------- */
+const TROLLS = ['spam_bot99', 'troll_lusitano', 'hater_x', 'botzinho_pt', 'seguidores_baratos'];
+const TROLL_LINES = ['SIGAM O MEU CANAL 👉 spam.pt', 'compra seguidores baratos!!! 💸', 'esta live é uma seca', 'és mesmo burro 🙄', 'ganha moedas grátis aqui 👉 link', 'FFFFFFFFFFFFFFFFFFFFF', 'aaaaaaaaaaaaaaaaaaaaaaaaa'];
+const EMOTES = ['🔥🔥🔥', '💜💜', '😂😂😂', '👏👏', '😱', '🏆', '💎💎', '⚡', '🎉🎉', '👀'];
+const defaultMod = () => ({ automod: true, slow: false, subOnly: false, emoteOnly: false, words: ['burro', 'seca', 'compra seguidores', 'grátis', 'spam.pt'], banned: [], stats: { deleted: 0, banned: 0, timeouts: 0, blocked: 0 } });
+const isEmojiOnly = s => !/[\p{L}\d]/u.test(s);
+function modFilter(m) {
+  // devolve true se a mensagem pode aparecer
+  if (m.sys || m.gift || m.me) return true;
+  const L = S.live, M = S.mod, now = Date.now();
+  if (M.banned.some(b => b.u === m.user)) return false;
+  if (L.muted && L.muted[m.user] > now) return false;
+  const low = m.text.toLowerCase();
+  const word = M.words.find(w => w && low.includes(w.toLowerCase()));
+  const spam = M.automod && (m.troll || /(.)\1{9,}/.test(m.text) || /👉|link|http/i.test(m.text));
+  if (word || spam) {
+    M.stats.blocked++;
+    if (now - (L.lastAutoNotice || 0) > 9000) { L.lastAutoNotice = now; setTimeout(() => S.live === L && pushChat({ sys: true, mod: true, text: `🛡️ AutoMod bloqueou uma mensagem de ${m.user}${word ? ' (palavra bloqueada)' : ' (spam)'}` }), 0); }
+    paintModStats();
+    return false;
+  }
+  if (M.emoteOnly && !isEmojiOnly(m.text)) return false;
+  if (M.subOnly) m.sub = true;
+  return true;
+}
+function chatRateFactor() { const M = S.mod; return (M.slow ? .45 : 1) * (M.subOnly ? .4 : 1); }
+function maybeTroll(L) {
+  const p = .035 * (S.mod.subOnly ? .2 : 1);
+  if (Math.random() < p) pushChat({ user: pick(TROLLS), text: pick(TROLL_LINES), troll: true, color: '#9aa0b4' });
+}
+function chatModTools(m) {
+  if (m.sys || m.gift) return '';
+  const pinOnly = m.me;
+  return `<span class="msg-tools"><button data-act="mod-pin" data-id="${m.id}" title="Fixar mensagem" aria-label="Fixar">📌</button><button data-act="mod-del" data-id="${m.id}" title="Apagar" aria-label="Apagar">🗑️</button>${pinOnly ? '' : `<button data-act="mod-timeout" data-id="${m.id}" title="Silenciar 5 min" aria-label="Silenciar 5 minutos">⏱️</button><button data-act="mod-ban" data-id="${m.id}" title="Banir" aria-label="Banir">🔨</button>`}</span>`;
+}
+function hideUserMsgs(user, label) {
+  const L = S.live; if (!L) return;
+  L.chat.forEach(m => { if (m.user === user && !m.sys) { m.removed = label; } });
+  $$('#chatList .msg').forEach(el => { if (el.dataset.user === user) el.outerHTML = `<div class="msg removed">${esc(label)}</div>`; });
+}
+function chatBadgesHTML() {
+  const M = S.mod;
+  return [M.automod && '<span class="mini-badge">🛡️ AutoMod</span>', M.slow && '<span class="mini-badge">🐢 Modo lento</span>', M.subOnly && '<span class="mini-badge">⭐ Só subscritores</span>', M.emoteOnly && '<span class="mini-badge">😀 Só emojis</span>'].filter(Boolean).join('');
+}
+function pinnedHTML() {
+  const p = S.live?.pinned; if (!p) return '';
+  return `<div class="chat-pinned">📌 <span><b>${esc(p.user)}</b>: ${esc(p.text)}</span><button class="icon-btn" data-act="mod-unpin" aria-label="Desafixar">${icon('close')}</button></div>`;
+}
+function modPanelHTML() {
+  const M = S.mod;
+  const tog = (k, label, desc) => `<label class="switch mod-tog"><input type="checkbox" data-modtoggle="${k}" id="mod-${k}" ${M[k] ? 'checked' : ''}><span><b>${label}</b><small>${desc}</small></span></label>`;
+  return `<div class="mod-panel" data-modpanel>
+    <div class="mod-stats">
+      <div><b class="num" data-modstat="blocked">${dots(M.stats.blocked)}</b><small>bloqueadas pelo AutoMod</small></div>
+      <div><b class="num" data-modstat="deleted">${dots(M.stats.deleted)}</b><small>apagadas</small></div>
+      <div><b class="num" data-modstat="timeouts">${dots(M.stats.timeouts)}</b><small>silenciados</small></div>
+      <div><b class="num" data-modstat="banned">${dots(M.stats.banned)}</b><small>banidos</small></div>
+    </div>
+    <div class="mod-toggles">
+      ${tog('automod', 'AutoMod', 'Bloqueia spam, links e mensagens repetidas.')}
+      ${tog('slow', 'Modo lento', 'Menos mensagens por segundo no chat.')}
+      ${tog('subOnly', 'Só subscritores', 'Só subscritores fictícios podem escrever.')}
+      ${tog('emoteOnly', 'Só emojis', 'O chat só aceita emojis.')}
+    </div>
+    <div class="field"><span>Palavras bloqueadas</span>
+      <div class="chip-row">${M.words.map((w, i) => `<span class="chip">${esc(w)}<button class="chip-x" data-act="mod-word-del" data-i="${i}" aria-label="Remover ${esc(w)}">${icon('close')}</button></span>`).join('') || '<span class="muted small">Nenhuma.</span>'}</div>
+      <form class="reply-form" data-form="mod-word"><input class="input" id="modWord" name="w" maxlength="30" placeholder="Adicionar palavra ou expressão" autocomplete="off"><button class="btn btn-sm">Adicionar</button></form></div>
+    <div class="field"><span>Utilizadores banidos (${M.banned.length})</span>
+      ${M.banned.length ? `<div class="stack" style="gap:4px">${M.banned.map((b, i) => `<div class="sched-item"><span>🔨 ${esc(b.u)}</span><time class="tiny muted" data-ago="${b.t}">${ago(b.t)}</time><button class="btn btn-xs" data-act="mod-unban" data-i="${i}">Desbanir</button></div>`).join('')}</div>` : '<span class="muted small">Ninguém banido.</span>'}</div>
+    ${S.live ? `<div class="row"><button class="btn btn-sm btn-danger" data-act="mod-clear">${icon('trash')} Limpar chat</button><span class="tiny muted">Passa o rato (ou toca) numa mensagem do chat para fixar, apagar, silenciar ou banir.</span></div>` : '<span class="tiny muted">Estas definições aplicam-se a todas as tuas lives simuladas.</span>'}
+  </div>`;
+}
+function rerenderMod() { $$('[data-modpanel]').forEach(el => el.outerHTML = modPanelHTML()); const b = $('#chatBadges'); if (b) b.innerHTML = chatBadgesHTML(); }
+function paintModStats() { const st = S.mod.stats; $$('[data-modstat]').forEach(n => n.textContent = dots(st[n.dataset.modstat] || 0)); }
+function findChat(id) { return S.live && S.live.chat.find(m => m.id === id); }
+
+const SOCIAL_ACT = {
+  'create-toggle': () => { UI.createOpen = !UI.createOpen; renderNav(); },
+  'create-sheet': () => openCreateSheet(),
+  'menu-sheet': () => openMenuSheet(),
+  'go-studio': () => { UI.createOpen = false; closeModalIfOpen(); if (route().name === 'estudio') render(); else location.hash = '#estudio'; },
+  'explore-game': b => { UI.explore.game = b.dataset.k; if (route().name !== 'explorar') location.hash = '#explorar'; else { render(); } },
+  'dm-new': () => openDMPicker(null),
+  'dm-goto': b => { closeModal(); thread(b.dataset.id, true); location.hash = '#conversa-' + b.dataset.id; },
+  'dm-quick': b => { const f = $('[data-form="dm"]'); if (f) sendDM(f.dataset.id, b.dataset.t); },
+  'share-dm': b => { UI.menu = null; openDMPicker({ type: b.dataset.type, id: b.dataset.id }); },
+  'dm-send-share': b => { sendDM(b.dataset.id, '', { type: b.dataset.type, id: b.dataset.sid }); closeModal(); toast('✉️', `Enviado para ${acc(b.dataset.id).name}`); },
+  'dm-share-open': b => { const { type, id } = b.dataset; if (type === 'event') openEventDetail(id); else if (type === 'clip') location.hash = '#clips'; else { UI.openReplies.add(id); const p = S.posts.find(x => x.id === id); location.hash = p && p.author !== 'me' ? '#conta-' + p.author : '#perfil'; } },
+  'mod-open': () => { UI.createOpen = false; openModal(`<div class="modal-head"><h2>${icon('shield', 'style="width:22px;vertical-align:-4px"')} Moderação do chat</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div><div class="modal-body">${modPanelHTML()}</div>`); },
+  'msg-tap': b => { $$('#chatList .msg.open').forEach(x => x !== b && x.classList.remove('open')); b.classList.toggle('open'); },
+  'mod-del': b => { const m = findChat(b.dataset.id); if (!m) return; m.removed = 'mensagem apagada por um moderador'; S.mod.stats.deleted++; const el = b.closest('.msg'); if (el) el.outerHTML = `<div class="msg removed">mensagem apagada por um moderador</div>`; paintModStats(); save(); },
+  'mod-timeout': b => { const m = findChat(b.dataset.id); if (!m) return; const L = S.live; L.muted = L.muted || {}; L.muted[m.user] = Date.now() + 5 * MIN; S.mod.stats.timeouts++; hideUserMsgs(m.user, `${m.user} foi silenciado durante 5 minutos`); pushChat({ sys: true, mod: true, text: `⏱️ ${m.user} foi silenciado durante 5 minutos.` }); paintModStats(); save(); },
+  'mod-ban': b => {
+    const m = findChat(b.dataset.id); if (!m) return; const L = S.live;
+    if (!S.mod.banned.some(x => x.u === m.user)) S.mod.banned.unshift({ u: m.user, t: Date.now() });
+    S.mod.stats.banned++; hideUserMsgs(m.user, `${m.user} foi banido do chat`);
+    pushChat({ sys: true, mod: true, text: `🔨 ${m.user} foi banido do chat.` });
+    addTimeline('mod', `Moderação: ${m.user} foi banido`, '🔨');
+    if (m.troll) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(['obrigado mod 🙏', 'finalmente 😂', 'GG mod', 'chat limpo 💜']) }), 600);
+    rerenderMod(); save();
+  },
+  'mod-pin': b => { const m = findChat(b.dataset.id); if (!m) return; S.live.pinned = { user: m.user, text: m.text }; const p = $('#chatPinnedBox'); if (p) p.innerHTML = pinnedHTML(); toast('📌', 'Mensagem fixada no chat'); save(); },
+  'mod-unpin': () => { if (S.live) S.live.pinned = null; const p = $('#chatPinnedBox'); if (p) p.innerHTML = ''; save(); },
+  'mod-clear': () => { const L = S.live; if (!L) return; L.chat = []; const l = $('#chatList'); if (l) l.innerHTML = ''; pushChat({ sys: true, mod: true, text: '🧹 O chat foi limpo por um moderador.' }); },
+  'mod-unban': b => { const x = S.mod.banned.splice(+b.dataset.i, 1)[0]; if (x) toast('✅', `${x.u} foi desbanido`); save(); rerenderMod(); },
+  'mod-word-del': b => { S.mod.words.splice(+b.dataset.i, 1); save(); rerenderMod(); },
+};
+const SOCIAL_FORMS = {
+  dm: f => { const t = f.t.value.trim(); if (!t) return; f.t.value = ''; sendDM(f.dataset.id, t); $('#dmInput')?.focus(); },
+  'mod-word': f => { const w = f.w.value.trim().toLowerCase(); if (!w) return; if (!S.mod.words.includes(w)) S.mod.words.push(w); save(); rerenderMod(); $('#modWord')?.focus(); },
+};
+function onSocialInput(t) {
+  if (t.hasAttribute('data-explore')) { UI.explore.q = t.value; const box = $('#exploreResults'); if (box) { box.innerHTML = exploreResults(); tickCountdowns(); } return true; }
+  if (t.hasAttribute('data-dmsearch')) { UI.dmSearch = t.value; refreshDM(null); return true; }
+  if (t.dataset.modtoggle) {
+    S.mod[t.dataset.modtoggle] = t.checked; save();
+    const b = $('#chatBadges'); if (b) b.innerHTML = chatBadgesHTML();
+    $$(`[data-modtoggle="${t.dataset.modtoggle}"]`).forEach(x => x.checked = t.checked);
+    if (S.live) pushChat({ sys: true, mod: true, text: `${t.checked ? 'Ativado' : 'Desativado'}: ${{ automod: 'AutoMod', slow: 'modo lento', subOnly: 'só subscritores', emoteOnly: 'só emojis' }[t.dataset.modtoggle]}.` });
+    return true;
+  }
+  return false;
+}
+
+/* =====================================================================
    Janelas (perfil, editor de eventos, detalhes), ações e ciclo principal
    ===================================================================== */
 let lastFocus = null;
 function openModal(html, wide = false) {
   lastFocus = document.activeElement;
   const m = $('#modal'), c = $('#modalCard');
-  c.className = 'modal-card' + (wide ? ' wide' : '');
+  c.className = 'modal-card' + (wide === true ? ' wide' : wide ? ' ' + wide : '');
+  m.classList.toggle('as-sheet', wide === 'sheet');
   c.innerHTML = html; m.hidden = false;
   setTimeout(() => { const f = c.querySelector('input:not([type=file]):not([type=checkbox]),textarea,select,button'); f && f.focus({ preventScroll: true }); }, 30);
 }
@@ -2173,6 +2748,7 @@ function openEventDetail(id, confirm = null) {
       <div class="kv"><span>Estado</span><b>${STATUS_LABEL[st]}</b></div>
       <div class="kv"><span>Lembretes simulados</span><b>${ev.reminders ? dots(ev.reminderUsers) + ' utilizadores fictícios' : 'Desligados'}</b></div>
     </section>
+    <button class="btn btn-sm" data-act="share-dm" data-type="event" data-id="${ev.id}" style="align-self:flex-start">${icon('send')} Enviar por mensagem</button>
     ${!mine && st !== 'ended' && st !== 'cancelled' ? `<button class="btn ${ev.myInterest ? '' : 'btn-primary'}" data-act="interest" data-id="${ev.id}">${ev.myInterest ? icon('check') + ' Tens interesse' : '⭐ Tenho interesse'}</button>` : ''}
     ${MODAL.confirm === 'delete' ? `<div class="confirm-box"><span>Eliminar este evento? A publicação do evento também é removida do feed.</span><button class="btn btn-sm btn-ghost" data-act="confirm-no">Manter</button><button class="btn btn-sm btn-danger" data-act="ev-delete" data-id="${ev.id}">${icon('trash')} Eliminar</button></div>` : ''}
     ${MODAL.confirm === 'cancel' ? `<div class="confirm-box"><span>Cancelar este evento? Continua visível como «Cancelado».</span><button class="btn btn-sm btn-ghost" data-act="confirm-no">Manter</button><button class="btn btn-sm btn-danger" data-act="ev-cancel" data-id="${ev.id}">Cancelar evento</button></div>` : ''}
@@ -2296,7 +2872,8 @@ const ACT = {
   'notif-clear': () => { S.notifs = []; save(); render(); },
   'notif-open': b => {
     const n = S.notifs.find(x => x.id === b.dataset.id); if (!n) return; n.read = true; save();
-    if (n.link?.ev) { render(); openEventDetail(n.link.ev); }
+    if (n.link?.dm) { location.hash = '#conversa-' + n.link.dm; }
+    else if (n.link?.ev) { render(); openEventDetail(n.link.ev); }
     else if (n.link?.post) { UI.openReplies.add(n.link.post); location.hash = '#perfil'; UI.profTab = 'posts'; UI.profSub = 'posts'; render(); }
     else if (n.link?.ach) { location.hash = '#perfil'; UI.profTab = 'ach'; render(); }
     else render();
@@ -2420,6 +2997,9 @@ let tickN = 0;
 function tick() {
   if (!S) return;
   const now = Date.now(); tickN++;
+  tickClock();
+  if (tickN % 15 === 0) tickAgo();
+  maybeInboundDM(now);
   // publicações agendadas
   for (const p of S.posts) if (p.status === 'scheduled' && p.scheduledAt <= now) {
     activatePost(p); notify('🕒', 'A tua publicação agendada foi publicada.', { post: p.id }); toast('🕒', 'Publicação agendada publicada'); fakeEngagement(p); checkAch(); save();
@@ -2460,6 +3040,7 @@ function bind() {
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-act]');
     if (UI.menu && !e.target.closest('.menu-wrap')) { const id = UI.menu; UI.menu = null; rerenderPost(id); }
+    if (UI.createOpen && !e.target.closest('.create-wrap')) { UI.createOpen = false; renderNav(); }
     if (!b) { if (e.target === $('#modal')) closeModal(); return; }
     const fn = ACT[b.dataset.act]; if (!fn) return;
     if (b.tagName === 'A' && b.getAttribute('href')) return;
@@ -2471,6 +3052,7 @@ function bind() {
   });
   document.addEventListener('input', e => {
     const t = e.target;
+    if (onSocialInput(t)) return;
     if (t.dataset.cmp) {
       const k = t.dataset.cmp;
       if (k === 'poll') UI.cmp.poll[+t.dataset.i] = t.value;
@@ -2496,7 +3078,7 @@ function bind() {
     if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && e.target.id === 'cmpText') publishPost();
   });
-  window.addEventListener('hashchange', () => { UI.menu = null; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
+  window.addEventListener('hashchange', () => { UI.menu = null; UI.createOpen = false; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
 }
 
 function migrate(s) {
@@ -2504,6 +3086,8 @@ function migrate(s) {
   s.ach = s.ach || {}; s.notifs = s.notifs || []; s.clips = s.clips || []; s.lives = s.lives || [];
   s.events.forEach(e => { e.notified = e.notified || {}; e.cover = e.cover || { type: 'preset', v: 0 }; });
   s.clips.forEach(c => { if (c.media && c.media.kind === 'video') delete c.media; });
+  s.dms = s.dms || seedDMs(); s.mod = { ...defaultMod(), ...(s.mod || {}) }; s.mod.stats = { ...defaultMod().stats, ...s.mod.stats };
+  if (s.lastDM == null) s.lastDM = Date.now();
   if (s.live) { s.live.chat = []; }
   return s;
 }
@@ -2518,6 +3102,8 @@ function init() {
   setInterval(tick, 1000);
   save();
 }
+Object.assign(ACT, SOCIAL_ACT);
+Object.assign(FORMS, SOCIAL_FORMS);
 init();
 
 </script>

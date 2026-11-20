@@ -4,7 +4,7 @@
    ===================================================================== */
 const LIVE_MS = 650;
 const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 100000, 250000, 500000, 1000000];
-const TL_ICON = { start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
+const TL_ICON = { mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
 const STUDIO = { showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
@@ -92,9 +92,10 @@ function liveTick() {
   L.followers += fGain; S.me.followers += fGain;
   L.likes += L.viewers * 0.0006 * L.engage * rand(.5, 1.5);
   // chat
-  const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage);
+  const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage) * chatRateFactor();
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
-  while (n--) pushChat({ user: fakeUser(), text: ambientLine(L) });
+  while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? pick(EMOTES) : ambientLine(L) });
+  maybeTroll(L);
   // presentes
   if (Math.random() < 0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage) giftEvent();
   // raid espontânea
@@ -135,19 +136,25 @@ function giftEvent(fromUser) {
 /* ---------- Chat ---------- */
 function pushChat(m) {
   const L = S.live; if (!L) return;
-  m.id = uid(); m.color = m.color || pick(NAME_COLORS);
+  m.id = uid(); m.color = m.color || pick(NAME_COLORS); m.t = Date.now();
+  if (!modFilter(m)) return;
   L.chat.push(m); if (L.chat.length > 80) L.chat.shift();
   L.msgs++;
   const list = $('#chatList'); if (!list) return;
-  const atBottom = list.scrollHeight - list.scrollTop - list.clientHeight < 60;
+  const paused = list.matches(':hover') || list.querySelector('.msg.open');
+  const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
+  const pz = $('#chatPaused'); if (pz) pz.hidden = !paused;
   list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
   while (list.children.length > 80) list.firstElementChild.remove();
   if (atBottom) list.scrollTop = list.scrollHeight;
 }
 function chatMsgHTML(m) {
-  if (m.sys) return `<div class="msg sys">${esc(m.text)}</div>`;
+  if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
+  if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(m.text)}</div>`;
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}"><b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}</div>`;
+  const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
+  const inLive = !!(S.live && S.live.chat.includes(m));
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub ? '<span title="Subscritor fictício">⭐</span> ' : ''}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -344,12 +351,15 @@ function viewStudio() {
     </div>
     <div class="stack" style="gap:16px">
       <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span></div>
+        <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList">${L.chat.map(chatMsgHTML).join('')}</div>
+        <div class="chat-paused" id="chatPaused" hidden>⏸ Chat em pausa enquanto moderas</div>
         <form class="chat-form" data-form="chat"><input class="input" id="chatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
       </section>
       <section class="card panel"><h3 class="panel-title">${icon('clock', 'style="width:18px"')} Cronologia da live</h3>
         <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
       </section>
+      <section class="card panel"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação</h3>${modPanelHTML()}</section>
     </div>
   </div>`;
 }
@@ -401,6 +411,7 @@ function studioSetup() {
       <div class="row"><button class="btn btn-live">${icon('studio')} Entrar em direto</button><span class="small muted">Os espectadores e o chat são simulados.</span></div>
     </form>
   </section>
+  <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação do chat</h3>${modPanelHTML()}</section>
   <h3 style="margin:22px 0 10px;font-size:20px">Lives anteriores</h3>
   <div class="stack">${S.lives.length ? [...S.lives].sort((a, b) => b.start - a.start).map(l => `${pastLive(l)}`).join('') : '<div class="empty"><b>Ainda sem lives</b></div>'}</div>`;
 }

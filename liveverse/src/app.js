@@ -5,7 +5,8 @@ let lastFocus = null;
 function openModal(html, wide = false) {
   lastFocus = document.activeElement;
   const m = $('#modal'), c = $('#modalCard');
-  c.className = 'modal-card' + (wide ? ' wide' : '');
+  c.className = 'modal-card' + (wide === true ? ' wide' : wide ? ' ' + wide : '');
+  m.classList.toggle('as-sheet', wide === 'sheet');
   c.innerHTML = html; m.hidden = false;
   setTimeout(() => { const f = c.querySelector('input:not([type=file]):not([type=checkbox]),textarea,select,button'); f && f.focus({ preventScroll: true }); }, 30);
 }
@@ -158,6 +159,7 @@ function openEventDetail(id, confirm = null) {
       <div class="kv"><span>Estado</span><b>${STATUS_LABEL[st]}</b></div>
       <div class="kv"><span>Lembretes simulados</span><b>${ev.reminders ? dots(ev.reminderUsers) + ' utilizadores fictícios' : 'Desligados'}</b></div>
     </section>
+    <button class="btn btn-sm" data-act="share-dm" data-type="event" data-id="${ev.id}" style="align-self:flex-start">${icon('send')} Enviar por mensagem</button>
     ${!mine && st !== 'ended' && st !== 'cancelled' ? `<button class="btn ${ev.myInterest ? '' : 'btn-primary'}" data-act="interest" data-id="${ev.id}">${ev.myInterest ? icon('check') + ' Tens interesse' : '⭐ Tenho interesse'}</button>` : ''}
     ${MODAL.confirm === 'delete' ? `<div class="confirm-box"><span>Eliminar este evento? A publicação do evento também é removida do feed.</span><button class="btn btn-sm btn-ghost" data-act="confirm-no">Manter</button><button class="btn btn-sm btn-danger" data-act="ev-delete" data-id="${ev.id}">${icon('trash')} Eliminar</button></div>` : ''}
     ${MODAL.confirm === 'cancel' ? `<div class="confirm-box"><span>Cancelar este evento? Continua visível como «Cancelado».</span><button class="btn btn-sm btn-ghost" data-act="confirm-no">Manter</button><button class="btn btn-sm btn-danger" data-act="ev-cancel" data-id="${ev.id}">Cancelar evento</button></div>` : ''}
@@ -281,7 +283,8 @@ const ACT = {
   'notif-clear': () => { S.notifs = []; save(); render(); },
   'notif-open': b => {
     const n = S.notifs.find(x => x.id === b.dataset.id); if (!n) return; n.read = true; save();
-    if (n.link?.ev) { render(); openEventDetail(n.link.ev); }
+    if (n.link?.dm) { location.hash = '#conversa-' + n.link.dm; }
+    else if (n.link?.ev) { render(); openEventDetail(n.link.ev); }
     else if (n.link?.post) { UI.openReplies.add(n.link.post); location.hash = '#perfil'; UI.profTab = 'posts'; UI.profSub = 'posts'; render(); }
     else if (n.link?.ach) { location.hash = '#perfil'; UI.profTab = 'ach'; render(); }
     else render();
@@ -405,6 +408,9 @@ let tickN = 0;
 function tick() {
   if (!S) return;
   const now = Date.now(); tickN++;
+  tickClock();
+  if (tickN % 15 === 0) tickAgo();
+  maybeInboundDM(now);
   // publicações agendadas
   for (const p of S.posts) if (p.status === 'scheduled' && p.scheduledAt <= now) {
     activatePost(p); notify('🕒', 'A tua publicação agendada foi publicada.', { post: p.id }); toast('🕒', 'Publicação agendada publicada'); fakeEngagement(p); checkAch(); save();
@@ -445,6 +451,7 @@ function bind() {
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-act]');
     if (UI.menu && !e.target.closest('.menu-wrap')) { const id = UI.menu; UI.menu = null; rerenderPost(id); }
+    if (UI.createOpen && !e.target.closest('.create-wrap')) { UI.createOpen = false; renderNav(); }
     if (!b) { if (e.target === $('#modal')) closeModal(); return; }
     const fn = ACT[b.dataset.act]; if (!fn) return;
     if (b.tagName === 'A' && b.getAttribute('href')) return;
@@ -456,6 +463,7 @@ function bind() {
   });
   document.addEventListener('input', e => {
     const t = e.target;
+    if (onSocialInput(t)) return;
     if (t.dataset.cmp) {
       const k = t.dataset.cmp;
       if (k === 'poll') UI.cmp.poll[+t.dataset.i] = t.value;
@@ -481,7 +489,7 @@ function bind() {
     if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && e.target.id === 'cmpText') publishPost();
   });
-  window.addEventListener('hashchange', () => { UI.menu = null; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
+  window.addEventListener('hashchange', () => { UI.menu = null; UI.createOpen = false; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
 }
 
 function migrate(s) {
@@ -489,6 +497,8 @@ function migrate(s) {
   s.ach = s.ach || {}; s.notifs = s.notifs || []; s.clips = s.clips || []; s.lives = s.lives || [];
   s.events.forEach(e => { e.notified = e.notified || {}; e.cover = e.cover || { type: 'preset', v: 0 }; });
   s.clips.forEach(c => { if (c.media && c.media.kind === 'video') delete c.media; });
+  s.dms = s.dms || seedDMs(); s.mod = { ...defaultMod(), ...(s.mod || {}) }; s.mod.stats = { ...defaultMod().stats, ...s.mod.stats };
+  if (s.lastDM == null) s.lastDM = Date.now();
   if (s.live) { s.live.chat = []; }
   return s;
 }
@@ -503,4 +513,6 @@ function init() {
   setInterval(tick, 1000);
   save();
 }
+Object.assign(ACT, SOCIAL_ACT);
+Object.assign(FORMS, SOCIAL_FORMS);
 init();
