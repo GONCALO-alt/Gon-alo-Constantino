@@ -17,6 +17,7 @@ Rede social de criadores com simulador de lives. Abre `index.html` diretamente n
 - **Explorar**: pesquisa de contas, hashtags, eventos, clips e publicações; filtro por jogo; secções Em direto, Categorias, Criadores em destaque, Tendências, Clips populares e Próximos eventos.
 - **Mensagens diretas**: conversas com contas fictícias que escrevem «a escrever…» e respondem conforme o que escreves (raids, lives, colaborações). Também te enviam mensagens de vez em quando. Podes enviar publicações, eventos e clips por mensagem.
 - **Moderação do chat**: fixar, apagar, silenciar 5 min e banir mensagens; AutoMod contra spam; modo lento, só subscritores e só emojis; lista de palavras bloqueadas; lista de banidos; estatísticas. Aparecem trolls fictícios no chat para moderares.
+- **Chat sempre visível durante a live**: no estúdio, o chat fica fixo ao lado do ecrã enquanto desces até às reações; no telemóvel, o vídeo fica preso no topo com o chat por cima («Chat no ecrã»). Nas outras páginas aparece um chat flutuante com reações rápidas, que podes minimizar.
 - **GTA VI**: jogo disponível em lives, eventos, publicações e Explorar, com reações próprias no chat (fugas, estrelas de procurado, assaltos, «WASTED»), uma live fictícia a decorrer, um evento agendado e um clip.
 - **Notificações** simuladas: 30 e 5 minutos antes, evento em direto, 1.000 interessados, tendência, comunidade à espera, conquistas, respostas.
 

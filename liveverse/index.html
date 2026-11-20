@@ -38,7 +38,7 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html, body { height: 100%; }
+html, body { min-height: 100%; }
 body {
   background: var(--bg);
   color: var(--fg);
@@ -449,7 +449,18 @@ button.poll-opt:hover { border-color: var(--accent); }
 
 /* ---------- Studio ---------- */
 .studio { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
-@media (max-width: 1100px) { .studio { grid-template-columns: minmax(0, 1fr); } }
+.studio-main { min-width: 0; }
+.studio-chat { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 14px); height: calc(100vh - 64px); min-height: 420px; }
+.studio-chat .chat { height: 100%; }
+@media (max-width: 1100px) { .studio { grid-template-columns: minmax(0, 1fr) 290px; } }
+@media (max-width: 820px) { .studio-chat { top: calc(env(safe-area-inset-top, 0px) + 62px); height: calc(100vh - 200px); } }
+@media (max-width: 760px) {
+  .studio { grid-template-columns: minmax(0, 1fr); }
+  .studio-main { display: contents; }
+  .studio-main > * { order: 3; }
+  .studio-main > .screen { order: 1; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 54px); z-index: 12; box-shadow: 0 14px 30px -12px rgb(0 0 0 / .9); }
+  .studio-chat { order: 2; position: static; height: 360px; min-height: 0; }
+}
 .screen { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: var(--r-lg); overflow: hidden; background: #05040a; border: 1px solid var(--line-2); isolation: isolate; }
 .screen-bg { position: absolute; inset: 0; z-index: -2;
   background: radial-gradient(circle at 30% 40%, color-mix(in oklab, var(--gc) 75%, transparent), transparent 55%), radial-gradient(circle at 80% 70%, color-mix(in oklab, var(--pink) 45%, transparent), transparent 50%), linear-gradient(135deg, #0d0a22, #05040a);
@@ -504,7 +515,6 @@ button.poll-opt:hover { border-color: var(--accent); }
 .react-more button:hover { border-color: var(--accent); }
 .react-cat { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 10px; grid-column: 1 / -1; }
 .chat { display: flex; flex-direction: column; height: 560px; }
-@media (max-width: 1100px) { .chat { height: 420px; } }
 .chat-head { padding: 12px 14px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
 .chat-head strong { font-family: var(--f-display); }
 .chat-list { flex: 1; overflow-y: auto; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; scrollbar-width: thin; }
@@ -753,6 +763,45 @@ button.poll-opt:hover { border-color: var(--accent); }
 
 .chat-paused { text-align: center; font-size: 12px; font-weight: 700; color: var(--fg-2); padding: 4px; background: var(--surface-2); border-top: 1px solid var(--line); }
 
+/* Chat sobre o ecrã */
+.screen-chat { position: absolute; left: 12px; bottom: 64px; width: min(62%, 340px); display: none; flex-direction: column; gap: 3px; pointer-events: none; mask-image: linear-gradient(180deg, transparent, #000 35%); }
+.screen-chat.on { display: flex; }
+.ov-msg { align-self: flex-start; max-width: 100%; font-size: 12.5px; line-height: 1.35; padding: 3px 9px; border-radius: 10px; background: rgb(5 4 10 / .55); backdrop-filter: blur(4px); color: #fff; overflow-wrap: anywhere; animation: rise .25s ease both; }
+.ov-msg b { font-weight: 800; margin-right: 2px; }
+.ov-sys { background: color-mix(in oklab, var(--accent) 45%, rgb(5 4 10 / .6)); font-weight: 700; }
+@media (max-width: 560px) { .screen-chat { bottom: 52px; left: 8px; width: 72%; } .ov-msg { font-size: 11.5px; } }
+
+/* Chat flutuante fora do estúdio */
+.chat-dock { position: fixed; z-index: 47; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
+.chat-dock.open { width: min(340px, calc(100vw - 32px)); height: min(460px, calc(100vh - 120px)); }
+.chat-dock .chat { height: 100%; box-shadow: 0 24px 60px -12px rgb(0 0 0 / .85), 0 0 0 1px color-mix(in oklab, var(--live) 35%, transparent); animation: rise .2s; }
+.chat-dock .chat-head { gap: 6px; padding: 8px 8px 8px 12px; }
+.chat-dock .chat-head .icon-btn { width: 32px; height: 32px; }
+.dock-title { font-size: 14px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dock-react { display: flex; gap: 4px; padding: 6px 10px 0; border-top: 1px solid var(--line); }
+.dock-react button { flex: 1; height: 34px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg-2); font-size: 17px; transition: transform .12s, border-color .2s; }
+.dock-react button:hover { border-color: var(--accent); }
+.dock-react button:active { transform: scale(.9); }
+.dock-pill { display: flex; align-items: center; gap: 8px; max-width: min(360px, calc(100vw - 32px)); padding: 9px 14px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--live) 50%, transparent); background: color-mix(in oklab, var(--live) 16%, var(--surface)); box-shadow: 0 14px 36px -10px var(--live); font-weight: 700; font-size: 13px; }
+.dock-pill .pill-live { flex: none; }
+.dock-pill svg { width: 18px; height: 18px; flex: none; }
+.dock-last { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--fg-2); font-weight: 600; }
+@media (max-width: 820px) {
+  .chat-dock { right: max(8px, env(safe-area-inset-right, 0px)); left: max(8px, env(safe-area-inset-left, 0px)); bottom: calc(100px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: flex-end; }
+  .chat-dock.open { width: auto; height: 56vh; }
+  .chat-dock.open .chat { width: 100%; }
+}
+.pill-live, .pill-soon { white-space: nowrap; }
+@media (max-width: 820px) {
+  .bottom-nav .nav-link .pill-live { position: absolute; top: 2px; right: 50%; margin: 0 -26px 0 0; padding: 0; width: 10px; height: 10px; font-size: 0; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); }
+  .bottom-nav .nav-link .pill-live::before { display: none; }
+}
+@media (max-width: 560px) {
+  .screen:has(.screen-chat.on) .hud-bottom { display: none; }
+  .screen-chat { bottom: 10px; }
+  .screen-chat .ov-msg:nth-last-child(n+5) { display: none; }
+}
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topbar" id="topBar"></header>
@@ -763,6 +812,7 @@ button.poll-opt:hover { border-color: var(--accent); }
 </div>
 <nav class="bottom-nav" id="bottomNav" aria-label="Navegação principal"></nav>
 <a class="live-pill live-float" id="liveFloat" href="#estudio" hidden></a>
+<div class="chat-dock" id="chatDock" hidden></div>
 <div class="simbar"><b>Simulação</b> · Seguidores, espectadores, reações, presentes, popularidade, verificações e métricas são fictícios.</div>
 <div class="modal" id="modal" hidden><div class="modal-card" id="modalCard" role="dialog" aria-modal="true"></div></div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
@@ -1758,7 +1808,7 @@ const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 1000
 const TL_ICON = { mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
-const STUDIO = { showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
+const STUDIO = { overlay: window.innerWidth < 760, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
 
 function fakeUser() { return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
 function fill(t, ctx) {
@@ -1891,13 +1941,26 @@ function pushChat(m) {
   if (!modFilter(m)) return;
   L.chat.push(m); if (L.chat.length > 80) L.chat.shift();
   L.msgs++;
-  const list = $('#chatList'); if (!list) return;
-  const paused = list.matches(':hover') || list.querySelector('.msg.open');
-  const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
-  const pz = $('#chatPaused'); if (pz) pz.hidden = !paused;
-  list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
-  while (list.children.length > 80) list.firstElementChild.remove();
-  if (atBottom) list.scrollTop = list.scrollHeight;
+  $$('[data-chatlist]').forEach(list => {
+    const overlay = list.dataset.chatlist === 'overlay';
+    if (overlay) {
+      if (m.removed) return;
+      list.insertAdjacentHTML('beforeend', overlayMsgHTML(m));
+      while (list.children.length > 6) list.firstElementChild.remove();
+      return;
+    }
+    const paused = list.matches(':hover') || list.querySelector('.msg.open');
+    const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
+    if (list.id === 'chatList') { const pz = $('#chatPaused'); if (pz) pz.hidden = !paused; }
+    list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
+    while (list.children.length > 80) list.firstElementChild.remove();
+    if (atBottom) list.scrollTop = list.scrollHeight;
+  });
+  const last = $('#dockLast'); if (last && !m.sys && !m.gift) last.textContent = `${m.user}: ${m.text}`;
+}
+function overlayMsgHTML(m) {
+  if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(m.text)}</div>`;
+  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}"><b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
@@ -1905,7 +1968,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub ? '<span title="Subscritor fictício">⭐</span> ' : ''}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub ? '<span title="Subscritor fictício">⭐</span> ' : ''}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -2060,17 +2123,19 @@ function viewStudio() {
   return `<div class="page-head"><div><h1>Estúdio de live</h1><p>Simulação: os espectadores, o chat e os presentes são fictícios.</p></div><span class="spacer"></span><button class="btn" data-act="announce-live">${icon('share')} Anunciar no feed</button><button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar live</button></div>
   <div id="endConfirm"></div>
   <div class="studio">
-    <div>
+    <div class="studio-main">
       <div class="screen" id="screen" style="--gc:${G.color}">
         ${STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`) : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(G.glyph.length > 3 ? G.glyph : G.name.toUpperCase())}</div><small>Ecrã de jogo simulado</small></div></div>`}
         <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass">👀 <span class="num" data-live="viewers">${fmt(L.viewers)}</span></span><span class="glass num" data-live="time">${durLabel(Date.now() - L.start)}</span><span class="glass">MODO ${esc(MODES[L.mode].name.toUpperCase())}</span><span class="sim-tag" style="margin-left:auto">Audiência fictícia</span></div>
         <div class="hud-bottom"><div class="hud-title">${gicon(L.game, 26)} <strong>${esc(L.title)}</strong><span class="tiny muted">${esc(G.name)} · @${esc(S.me.handle)}</span></div></div>
+        <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
         <div class="fx" id="fx"></div>
       </div>
       <div class="row" style="margin-top:10px">
         <label class="btn btn-sm upload">${icon('image')} Usar a minha media no ecrã<input type="file" accept="video/*,image/*" data-file="studio-media" id="studioMedia"></label>
         ${STUDIO.media ? `<button class="btn btn-sm btn-ghost" data-act="studio-media-clear">Voltar ao ecrã simulado</button>` : ''}
         <span class="spacer"></span>
+        <label class="switch small"><input type="checkbox" id="ovToggle" data-studio="overlay" ${STUDIO.overlay ? 'checked' : ''}> Chat no ecrã</label>
         <label class="switch small"><input type="checkbox" id="fxToggle" data-studio="fx" ${STUDIO.fx ? 'checked' : ''}> Animações no ecrã</label>
         <label class="switch small"><input type="checkbox" id="clipToggle" data-studio="autoClip" ${STUDIO.autoClip ? 'checked' : ''}> Criar clip automaticamente</label>
       </div>
@@ -2099,22 +2164,22 @@ function viewStudio() {
         <div id="pollBox">${pollBoxHTML()}</div>
         <div class="row" style="margin-top:10px"><button class="btn btn-sm" data-act="raid">${icon('users')} Simular raid</button><button class="btn btn-sm" data-act="gift-sim">🎁 Simular presente</button></div>
       </section>
+      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('clock', 'style="width:18px"')} Cronologia da live</h3>
+        <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
+      </section>
+      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação</h3>${modPanelHTML()}</section>
     </div>
-    <div class="stack" style="gap:16px">
+    <aside class="studio-chat" aria-label="Chat da live">
       <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span></div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
-        <div class="chat-list" id="chatList">${L.chat.map(chatMsgHTML).join('')}</div>
+        <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
         <div class="chat-paused" id="chatPaused" hidden>⏸ Chat em pausa enquanto moderas</div>
         <form class="chat-form" data-form="chat"><input class="input" id="chatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
       </section>
-      <section class="card panel"><h3 class="panel-title">${icon('clock', 'style="width:18px"')} Cronologia da live</h3>
-        <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
-      </section>
-      <section class="card panel"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação</h3>${modPanelHTML()}</section>
-    </div>
+    </aside>
   </div>`;
 }
-function afterStudioRender() { const l = $('#chatList'); if (l) l.scrollTop = l.scrollHeight; }
+function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); }
 function pollBoxHTML() {
   const P = S.live?.poll;
   if (P && !P.done) {
@@ -2275,9 +2340,35 @@ function renderNav() {
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
     ${bn('estudio', 'studio', 'Estúdio')}
     <button class="nav-link ${['perfil', 'eventos', 'clips', 'notificacoes', 'mensagens'].includes(cur) ? 'on' : ''}" data-act="menu-sheet">${icon('menu')}<span>Menu</span>${badge(notifUnread() + dmUnread())}</button>`;
-  const lf = $('#liveFloat');
-  lf.hidden = !S.live || r.name === 'estudio';
-  if (S.live) lf.innerHTML = `<span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span>`;
+  $('#liveFloat').hidden = true;
+  renderDock();
+}
+
+/* ---------- Chat flutuante (fora do estúdio, durante a live) ---------- */
+UI.dockOpen = window.innerWidth >= 820;
+let dockKey = '';
+function renderDock() {
+  const dock = $('#chatDock'); if (!dock) return;
+  const show = !!S.live && route().name !== 'estudio';
+  const key = show ? S.live.id + '|' + UI.dockOpen : 'off';
+  if (key === dockKey) return;
+  dockKey = key; dock.hidden = !show;
+  if (!show) { dock.innerHTML = ''; return; }
+  const L = S.live;
+  const lastM = [...L.chat].reverse().find(m => !m.sys && !m.gift && !m.removed);
+  dock.className = 'chat-dock ' + (UI.dockOpen ? 'open' : 'min');
+  if (!UI.dockOpen) {
+    dock.innerHTML = `<button class="dock-pill" data-act="dock-toggle" aria-label="Abrir o chat da live"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(L.viewers)}</span><span class="dock-last" id="dockLast">${lastM ? esc(lastM.user + ': ' + lastM.text) : 'Abrir chat'}</span>${icon('chat')}</button>`;
+    return;
+  }
+  dock.innerHTML = `<section class="card chat">
+    <div class="chat-head"><span class="pill-live">EM DIRETO</span><strong class="dock-title">${esc(L.title)}</strong><span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span>
+      <a class="icon-btn" href="#estudio" title="Abrir estúdio" aria-label="Abrir estúdio">${icon('studio')}</a><button class="icon-btn" data-act="dock-toggle" title="Minimizar" aria-label="Minimizar chat">${icon('close')}</button></div>
+    <div class="chat-list" data-chatlist="dock">${L.chat.slice(-40).map(chatMsgHTML).join('')}</div>
+    <div class="dock-react">${PANEL_BUTTONS.filter(b => b[0] !== 'custom').slice(0, 6).map(([id, e, l]) => `<button data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}</div>
+    <form class="chat-form" data-form="chat"><input class="input" id="dockChatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
+  </section>`;
+  const list = dock.querySelector('.chat-list'); list.scrollTop = list.scrollHeight;
 }
 function openMenuSheet() {
   const cur = navCurrent();
@@ -2514,7 +2605,7 @@ function chatModTools(m) {
 function hideUserMsgs(user, label) {
   const L = S.live; if (!L) return;
   L.chat.forEach(m => { if (m.user === user && !m.sys) { m.removed = label; } });
-  $$('#chatList .msg').forEach(el => { if (el.dataset.user === user) el.outerHTML = `<div class="msg removed">${esc(label)}</div>`; });
+  $$('[data-chatlist] [data-user]').forEach(el => { if (el.dataset.user !== user) return; if (el.classList.contains('ov-msg')) el.remove(); else el.outerHTML = `<div class="msg removed">${esc(label)}</div>`; });
 }
 function chatBadgesHTML() {
   const M = S.mod;
@@ -2553,6 +2644,7 @@ function paintModStats() { const st = S.mod.stats; $$('[data-modstat]').forEach(
 function findChat(id) { return S.live && S.live.chat.find(m => m.id === id); }
 
 const SOCIAL_ACT = {
+  'dock-toggle': () => { UI.dockOpen = !UI.dockOpen; renderDock(); if (UI.dockOpen) $('#dockChatInput')?.focus({ preventScroll: true }); },
   'create-toggle': () => { UI.createOpen = !UI.createOpen; renderNav(); },
   'create-sheet': () => openCreateSheet(),
   'menu-sheet': () => openMenuSheet(),
@@ -2565,8 +2657,8 @@ const SOCIAL_ACT = {
   'dm-send-share': b => { sendDM(b.dataset.id, '', { type: b.dataset.type, id: b.dataset.sid }); closeModal(); toast('✉️', `Enviado para ${acc(b.dataset.id).name}`); },
   'dm-share-open': b => { const { type, id } = b.dataset; if (type === 'event') openEventDetail(id); else if (type === 'clip') location.hash = '#clips'; else { UI.openReplies.add(id); const p = S.posts.find(x => x.id === id); location.hash = p && p.author !== 'me' ? '#conta-' + p.author : '#perfil'; } },
   'mod-open': () => { UI.createOpen = false; openModal(`<div class="modal-head"><h2>${icon('shield', 'style="width:22px;vertical-align:-4px"')} Moderação do chat</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div><div class="modal-body">${modPanelHTML()}</div>`); },
-  'msg-tap': b => { $$('#chatList .msg.open').forEach(x => x !== b && x.classList.remove('open')); b.classList.toggle('open'); },
-  'mod-del': b => { const m = findChat(b.dataset.id); if (!m) return; m.removed = 'mensagem apagada por um moderador'; S.mod.stats.deleted++; const el = b.closest('.msg'); if (el) el.outerHTML = `<div class="msg removed">mensagem apagada por um moderador</div>`; paintModStats(); save(); },
+  'msg-tap': b => { $$('[data-chatlist] .msg.open').forEach(x => x !== b && x.classList.remove('open')); b.classList.toggle('open'); },
+  'mod-del': b => { const m = findChat(b.dataset.id); if (!m) return; m.removed = 'mensagem apagada por um moderador'; S.mod.stats.deleted++; $$(`[data-mid="${m.id}"]`).forEach(el => { if (el.classList.contains('ov-msg')) el.remove(); else el.outerHTML = `<div class="msg removed">mensagem apagada por um moderador</div>`; }); paintModStats(); save(); },
   'mod-timeout': b => { const m = findChat(b.dataset.id); if (!m) return; const L = S.live; L.muted = L.muted || {}; L.muted[m.user] = Date.now() + 5 * MIN; S.mod.stats.timeouts++; hideUserMsgs(m.user, `${m.user} foi silenciado durante 5 minutos`); pushChat({ sys: true, mod: true, text: `⏱️ ${m.user} foi silenciado durante 5 minutos.` }); paintModStats(); save(); },
   'mod-ban': b => {
     const m = findChat(b.dataset.id); if (!m) return; const L = S.live;
@@ -2579,7 +2671,7 @@ const SOCIAL_ACT = {
   },
   'mod-pin': b => { const m = findChat(b.dataset.id); if (!m) return; S.live.pinned = { user: m.user, text: m.text }; const p = $('#chatPinnedBox'); if (p) p.innerHTML = pinnedHTML(); toast('📌', 'Mensagem fixada no chat'); save(); },
   'mod-unpin': () => { if (S.live) S.live.pinned = null; const p = $('#chatPinnedBox'); if (p) p.innerHTML = ''; save(); },
-  'mod-clear': () => { const L = S.live; if (!L) return; L.chat = []; const l = $('#chatList'); if (l) l.innerHTML = ''; pushChat({ sys: true, mod: true, text: '🧹 O chat foi limpo por um moderador.' }); },
+  'mod-clear': () => { const L = S.live; if (!L) return; L.chat = []; $$('[data-chatlist]').forEach(l => l.innerHTML = ''); pushChat({ sys: true, mod: true, text: '🧹 O chat foi limpo por um moderador.' }); },
   'mod-unban': b => { const x = S.mod.banned.splice(+b.dataset.i, 1)[0]; if (x) toast('✅', `${x.u} foi desbanido`); save(); rerenderMod(); },
   'mod-word-del': b => { S.mod.words.splice(+b.dataset.i, 1); save(); rerenderMod(); },
 };
@@ -3077,7 +3169,7 @@ function bind() {
       STUDIO.setup[t.dataset.setup] = t.value;
       if (t.dataset.setup === 'eventId' && t.value) { const ev = S.events.find(x => x.id === t.value); if (ev) { Object.assign(STUDIO.setup, { title: ev.title, game: ev.game, mode: ev.mode, level: ev.level }); render(); } }
     }
-    if (t.dataset.studio) STUDIO[t.dataset.studio] = t.checked;
+    if (t.dataset.studio) { STUDIO[t.dataset.studio] = t.checked; if (t.dataset.studio === 'overlay') $$('.screen-chat').forEach(x => x.classList.toggle('on', t.checked)); }
     if (t.id === 'customReact') STUDIO.custom = t.value;
     if (t.hasAttribute('data-evprev')) refreshEventPreview();
     if (t.hasAttribute('data-chipcheck')) t.closest('.chip').classList.toggle('on', t.checked);

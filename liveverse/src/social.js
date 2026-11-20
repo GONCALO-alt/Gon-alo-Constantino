@@ -70,9 +70,35 @@ function renderNav() {
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
     ${bn('estudio', 'studio', 'Estúdio')}
     <button class="nav-link ${['perfil', 'eventos', 'clips', 'notificacoes', 'mensagens'].includes(cur) ? 'on' : ''}" data-act="menu-sheet">${icon('menu')}<span>Menu</span>${badge(notifUnread() + dmUnread())}</button>`;
-  const lf = $('#liveFloat');
-  lf.hidden = !S.live || r.name === 'estudio';
-  if (S.live) lf.innerHTML = `<span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span>`;
+  $('#liveFloat').hidden = true;
+  renderDock();
+}
+
+/* ---------- Chat flutuante (fora do estúdio, durante a live) ---------- */
+UI.dockOpen = window.innerWidth >= 820;
+let dockKey = '';
+function renderDock() {
+  const dock = $('#chatDock'); if (!dock) return;
+  const show = !!S.live && route().name !== 'estudio';
+  const key = show ? S.live.id + '|' + UI.dockOpen : 'off';
+  if (key === dockKey) return;
+  dockKey = key; dock.hidden = !show;
+  if (!show) { dock.innerHTML = ''; return; }
+  const L = S.live;
+  const lastM = [...L.chat].reverse().find(m => !m.sys && !m.gift && !m.removed);
+  dock.className = 'chat-dock ' + (UI.dockOpen ? 'open' : 'min');
+  if (!UI.dockOpen) {
+    dock.innerHTML = `<button class="dock-pill" data-act="dock-toggle" aria-label="Abrir o chat da live"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(L.viewers)}</span><span class="dock-last" id="dockLast">${lastM ? esc(lastM.user + ': ' + lastM.text) : 'Abrir chat'}</span>${icon('chat')}</button>`;
+    return;
+  }
+  dock.innerHTML = `<section class="card chat">
+    <div class="chat-head"><span class="pill-live">EM DIRETO</span><strong class="dock-title">${esc(L.title)}</strong><span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span>
+      <a class="icon-btn" href="#estudio" title="Abrir estúdio" aria-label="Abrir estúdio">${icon('studio')}</a><button class="icon-btn" data-act="dock-toggle" title="Minimizar" aria-label="Minimizar chat">${icon('close')}</button></div>
+    <div class="chat-list" data-chatlist="dock">${L.chat.slice(-40).map(chatMsgHTML).join('')}</div>
+    <div class="dock-react">${PANEL_BUTTONS.filter(b => b[0] !== 'custom').slice(0, 6).map(([id, e, l]) => `<button data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}</div>
+    <form class="chat-form" data-form="chat"><input class="input" id="dockChatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
+  </section>`;
+  const list = dock.querySelector('.chat-list'); list.scrollTop = list.scrollHeight;
 }
 function openMenuSheet() {
   const cur = navCurrent();
@@ -309,7 +335,7 @@ function chatModTools(m) {
 function hideUserMsgs(user, label) {
   const L = S.live; if (!L) return;
   L.chat.forEach(m => { if (m.user === user && !m.sys) { m.removed = label; } });
-  $$('#chatList .msg').forEach(el => { if (el.dataset.user === user) el.outerHTML = `<div class="msg removed">${esc(label)}</div>`; });
+  $$('[data-chatlist] [data-user]').forEach(el => { if (el.dataset.user !== user) return; if (el.classList.contains('ov-msg')) el.remove(); else el.outerHTML = `<div class="msg removed">${esc(label)}</div>`; });
 }
 function chatBadgesHTML() {
   const M = S.mod;
@@ -348,6 +374,7 @@ function paintModStats() { const st = S.mod.stats; $$('[data-modstat]').forEach(
 function findChat(id) { return S.live && S.live.chat.find(m => m.id === id); }
 
 const SOCIAL_ACT = {
+  'dock-toggle': () => { UI.dockOpen = !UI.dockOpen; renderDock(); if (UI.dockOpen) $('#dockChatInput')?.focus({ preventScroll: true }); },
   'create-toggle': () => { UI.createOpen = !UI.createOpen; renderNav(); },
   'create-sheet': () => openCreateSheet(),
   'menu-sheet': () => openMenuSheet(),
@@ -360,8 +387,8 @@ const SOCIAL_ACT = {
   'dm-send-share': b => { sendDM(b.dataset.id, '', { type: b.dataset.type, id: b.dataset.sid }); closeModal(); toast('✉️', `Enviado para ${acc(b.dataset.id).name}`); },
   'dm-share-open': b => { const { type, id } = b.dataset; if (type === 'event') openEventDetail(id); else if (type === 'clip') location.hash = '#clips'; else { UI.openReplies.add(id); const p = S.posts.find(x => x.id === id); location.hash = p && p.author !== 'me' ? '#conta-' + p.author : '#perfil'; } },
   'mod-open': () => { UI.createOpen = false; openModal(`<div class="modal-head"><h2>${icon('shield', 'style="width:22px;vertical-align:-4px"')} Moderação do chat</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div><div class="modal-body">${modPanelHTML()}</div>`); },
-  'msg-tap': b => { $$('#chatList .msg.open').forEach(x => x !== b && x.classList.remove('open')); b.classList.toggle('open'); },
-  'mod-del': b => { const m = findChat(b.dataset.id); if (!m) return; m.removed = 'mensagem apagada por um moderador'; S.mod.stats.deleted++; const el = b.closest('.msg'); if (el) el.outerHTML = `<div class="msg removed">mensagem apagada por um moderador</div>`; paintModStats(); save(); },
+  'msg-tap': b => { $$('[data-chatlist] .msg.open').forEach(x => x !== b && x.classList.remove('open')); b.classList.toggle('open'); },
+  'mod-del': b => { const m = findChat(b.dataset.id); if (!m) return; m.removed = 'mensagem apagada por um moderador'; S.mod.stats.deleted++; $$(`[data-mid="${m.id}"]`).forEach(el => { if (el.classList.contains('ov-msg')) el.remove(); else el.outerHTML = `<div class="msg removed">mensagem apagada por um moderador</div>`; }); paintModStats(); save(); },
   'mod-timeout': b => { const m = findChat(b.dataset.id); if (!m) return; const L = S.live; L.muted = L.muted || {}; L.muted[m.user] = Date.now() + 5 * MIN; S.mod.stats.timeouts++; hideUserMsgs(m.user, `${m.user} foi silenciado durante 5 minutos`); pushChat({ sys: true, mod: true, text: `⏱️ ${m.user} foi silenciado durante 5 minutos.` }); paintModStats(); save(); },
   'mod-ban': b => {
     const m = findChat(b.dataset.id); if (!m) return; const L = S.live;
@@ -374,7 +401,7 @@ const SOCIAL_ACT = {
   },
   'mod-pin': b => { const m = findChat(b.dataset.id); if (!m) return; S.live.pinned = { user: m.user, text: m.text }; const p = $('#chatPinnedBox'); if (p) p.innerHTML = pinnedHTML(); toast('📌', 'Mensagem fixada no chat'); save(); },
   'mod-unpin': () => { if (S.live) S.live.pinned = null; const p = $('#chatPinnedBox'); if (p) p.innerHTML = ''; save(); },
-  'mod-clear': () => { const L = S.live; if (!L) return; L.chat = []; const l = $('#chatList'); if (l) l.innerHTML = ''; pushChat({ sys: true, mod: true, text: '🧹 O chat foi limpo por um moderador.' }); },
+  'mod-clear': () => { const L = S.live; if (!L) return; L.chat = []; $$('[data-chatlist]').forEach(l => l.innerHTML = ''); pushChat({ sys: true, mod: true, text: '🧹 O chat foi limpo por um moderador.' }); },
   'mod-unban': b => { const x = S.mod.banned.splice(+b.dataset.i, 1)[0]; if (x) toast('✅', `${x.u} foi desbanido`); save(); rerenderMod(); },
   'mod-word-del': b => { S.mod.words.splice(+b.dataset.i, 1); save(); rerenderMod(); },
 };

@@ -7,7 +7,7 @@ const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 1000
 const TL_ICON = { mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
-const STUDIO = { showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
+const STUDIO = { overlay: window.innerWidth < 760, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
 
 function fakeUser() { return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
 function fill(t, ctx) {
@@ -140,13 +140,26 @@ function pushChat(m) {
   if (!modFilter(m)) return;
   L.chat.push(m); if (L.chat.length > 80) L.chat.shift();
   L.msgs++;
-  const list = $('#chatList'); if (!list) return;
-  const paused = list.matches(':hover') || list.querySelector('.msg.open');
-  const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
-  const pz = $('#chatPaused'); if (pz) pz.hidden = !paused;
-  list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
-  while (list.children.length > 80) list.firstElementChild.remove();
-  if (atBottom) list.scrollTop = list.scrollHeight;
+  $$('[data-chatlist]').forEach(list => {
+    const overlay = list.dataset.chatlist === 'overlay';
+    if (overlay) {
+      if (m.removed) return;
+      list.insertAdjacentHTML('beforeend', overlayMsgHTML(m));
+      while (list.children.length > 6) list.firstElementChild.remove();
+      return;
+    }
+    const paused = list.matches(':hover') || list.querySelector('.msg.open');
+    const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
+    if (list.id === 'chatList') { const pz = $('#chatPaused'); if (pz) pz.hidden = !paused; }
+    list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
+    while (list.children.length > 80) list.firstElementChild.remove();
+    if (atBottom) list.scrollTop = list.scrollHeight;
+  });
+  const last = $('#dockLast'); if (last && !m.sys && !m.gift) last.textContent = `${m.user}: ${m.text}`;
+}
+function overlayMsgHTML(m) {
+  if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(m.text)}</div>`;
+  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}"><b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
@@ -154,7 +167,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub ? '<span title="Subscritor fictício">⭐</span> ' : ''}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub ? '<span title="Subscritor fictício">⭐</span> ' : ''}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -309,17 +322,19 @@ function viewStudio() {
   return `<div class="page-head"><div><h1>Estúdio de live</h1><p>Simulação: os espectadores, o chat e os presentes são fictícios.</p></div><span class="spacer"></span><button class="btn" data-act="announce-live">${icon('share')} Anunciar no feed</button><button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar live</button></div>
   <div id="endConfirm"></div>
   <div class="studio">
-    <div>
+    <div class="studio-main">
       <div class="screen" id="screen" style="--gc:${G.color}">
         ${STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`) : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(G.glyph.length > 3 ? G.glyph : G.name.toUpperCase())}</div><small>Ecrã de jogo simulado</small></div></div>`}
         <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass">👀 <span class="num" data-live="viewers">${fmt(L.viewers)}</span></span><span class="glass num" data-live="time">${durLabel(Date.now() - L.start)}</span><span class="glass">MODO ${esc(MODES[L.mode].name.toUpperCase())}</span><span class="sim-tag" style="margin-left:auto">Audiência fictícia</span></div>
         <div class="hud-bottom"><div class="hud-title">${gicon(L.game, 26)} <strong>${esc(L.title)}</strong><span class="tiny muted">${esc(G.name)} · @${esc(S.me.handle)}</span></div></div>
+        <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
         <div class="fx" id="fx"></div>
       </div>
       <div class="row" style="margin-top:10px">
         <label class="btn btn-sm upload">${icon('image')} Usar a minha media no ecrã<input type="file" accept="video/*,image/*" data-file="studio-media" id="studioMedia"></label>
         ${STUDIO.media ? `<button class="btn btn-sm btn-ghost" data-act="studio-media-clear">Voltar ao ecrã simulado</button>` : ''}
         <span class="spacer"></span>
+        <label class="switch small"><input type="checkbox" id="ovToggle" data-studio="overlay" ${STUDIO.overlay ? 'checked' : ''}> Chat no ecrã</label>
         <label class="switch small"><input type="checkbox" id="fxToggle" data-studio="fx" ${STUDIO.fx ? 'checked' : ''}> Animações no ecrã</label>
         <label class="switch small"><input type="checkbox" id="clipToggle" data-studio="autoClip" ${STUDIO.autoClip ? 'checked' : ''}> Criar clip automaticamente</label>
       </div>
@@ -348,22 +363,22 @@ function viewStudio() {
         <div id="pollBox">${pollBoxHTML()}</div>
         <div class="row" style="margin-top:10px"><button class="btn btn-sm" data-act="raid">${icon('users')} Simular raid</button><button class="btn btn-sm" data-act="gift-sim">🎁 Simular presente</button></div>
       </section>
+      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('clock', 'style="width:18px"')} Cronologia da live</h3>
+        <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
+      </section>
+      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação</h3>${modPanelHTML()}</section>
     </div>
-    <div class="stack" style="gap:16px">
+    <aside class="studio-chat" aria-label="Chat da live">
       <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span></div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
-        <div class="chat-list" id="chatList">${L.chat.map(chatMsgHTML).join('')}</div>
+        <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
         <div class="chat-paused" id="chatPaused" hidden>⏸ Chat em pausa enquanto moderas</div>
         <form class="chat-form" data-form="chat"><input class="input" id="chatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
       </section>
-      <section class="card panel"><h3 class="panel-title">${icon('clock', 'style="width:18px"')} Cronologia da live</h3>
-        <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
-      </section>
-      <section class="card panel"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação</h3>${modPanelHTML()}</section>
-    </div>
+    </aside>
   </div>`;
 }
-function afterStudioRender() { const l = $('#chatList'); if (l) l.scrollTop = l.scrollHeight; }
+function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); }
 function pollBoxHTML() {
   const P = S.live?.poll;
   if (P && !P.done) {
