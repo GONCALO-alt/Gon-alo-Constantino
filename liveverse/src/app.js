@@ -59,7 +59,10 @@ function openEventEditor(evId, dateTs) {
   MODAL.kind = 'event'; MODAL.evId = ev ? ev.id : null; MODAL.confirm = null;
   let start;
   if (ev) start = ev.start;
-  else { const d = dateTs ? new Date(dateTs) : new Date(); d.setHours(18, 0, 0, 0); if (d.getTime() < Date.now() + 5 * MIN) { const n = new Date(Date.now() + HOUR); n.setMinutes(0, 0, 0); start = n.getTime(); if (dateTs && !sameDay(start, dateTs)) start = d.getTime() + DAY; } else start = d.getTime(); }
+  else {
+    const n = new Date(Date.now() + 30 * MIN); n.setMinutes(n.getMinutes() < 30 ? 30 : 60, 0, 0); start = n.getTime();
+    if (dateTs && !sameDay(start, dateTs)) { const d = new Date(dateTs); const h = new Date(start); d.setHours(h.getHours(), h.getMinutes(), 0, 0); start = d.getTime() > Date.now() ? d.getTime() : start; }
+  }
   MODAL.draft = ev ? { ...ev, cover: { ...ev.cover } } : {
     title: '', desc: '', game: S.me.games[0] || 'fortnite', mode: 'superstar', level: 'enorme', start,
     cover: { type: 'preset', v: randi(0, COVERS.length - 1) }, countdown: true, reminders: true,
@@ -88,8 +91,10 @@ function paintEventEditor() {
       <div class="grid-3">
         <label class="field"><span>Jogo</span><select class="input" name="game" id="evGame" data-evprev>${Object.entries(GAMES).map(([k, g]) => `<option value="${k}" ${D.game === k ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select></label>
         <label class="field"><span>Data</span><input class="input" type="date" name="date" id="evDate" required min="${toLocalInput(Date.now())}" value="${toLocalInput(D.start)}" data-evprev></label>
-        <label class="field"><span>Hora de início</span><input class="input" type="time" name="time" id="evTime" required value="${hhmm(D.start)}" data-evprev></label>
+        <label class="field"><span>Hora (qualquer hora)</span><input class="input" type="time" step="60" name="time" id="evTime" required value="${hhmm(D.start)}" data-evprev></label>
       </div>
+      <div class="field"><span>Atalhos</span><div class="chip-row">${[['15m', 'Daqui a 15 min'], ['30m', 'Daqui a 30 min'], ['60m', 'Daqui a 1 h'], ['120m', 'Daqui a 2 h'], ['tonight', 'Hoje às 21:00'], ['tomorrow', 'Amanhã a esta hora'], ['weekend', 'Sábado às 16:00']].map(([k, l]) => `<button type="button" class="chip" data-act="ev-quick" data-k="${k}">${l}</button>`).join('')}</div>
+        <span class="tiny muted" style="text-transform:none;letter-spacing:0;font-weight:500">Escolhe qualquer dia e hora nos campos acima ou usa um atalho. Começa às ${hhmm(D.start)} de ${dayLabel(D.start).toLowerCase()}.</span></div>
       <div class="grid-2">
         <label class="field"><span>Modo de live</span><select class="input" name="mode" id="evMode" data-evprev>${Object.entries(MODES).map(([k, m]) => `<option value="${k}" ${D.mode === k ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label>
         <label class="field"><span>Nível de audiência</span><select class="input" name="level" id="evLevel" data-evprev>${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${D.level === k ? 'selected' : ''}>${esc(l.name)} · até ${dots(l.max)} espectadores virtuais</option>`).join('')}</select></label>
@@ -524,6 +529,8 @@ function migrate(s) {
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
   s.prefs = { ...defaultImmersive(), ...s.prefs };
   s.regulars = s.regulars || seedRegulars();
+  resetToZero(s);
+  if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;

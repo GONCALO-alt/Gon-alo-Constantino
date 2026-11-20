@@ -201,7 +201,7 @@ function avatar(a, size = 44, cls = '') {
 const nameLine = a => `<strong>${esc(a.name)}</strong>${a.verified ? VERIFIED : ''}`;
 const gicon = (g, size = 28) => { const G = GAMES[g] || GAMES.chat; return `<span class="gicon" style="--gc:${G.color};--s:${size}px" title="${esc(G.name)}">${G.glyph}</span>`; };
 const followingCount = () => S.me.followingBase + S.accounts.filter(a => a.followed).length;
-const totalLives = () => S.lives.length + 24; // 24 lives anteriores à app (simuladas)
+const totalLives = () => S.lives.length;
 const totalViews = () => S.me.viewsBase + S.lives.reduce((s, l) => s + (l.views || 0), 0);
 function career(xp = S.me.xp) {
   let i = 0; while (i + 1 < CAREER.length && xp >= CAREER[i + 1][0]) i++;
@@ -285,9 +285,9 @@ function simulateEvents(now) {
     const st = eventStatus(ev, now);
     const lvl = LEVELS[ev.level] || LEVELS.media;
     if (st === 'scheduled' || st === 'soon') {
-      const cap = lvl.max * 0.22;
-      if (ev.interested < cap && Math.random() < .55) {
-        ev.interested += Math.max(1, Math.round(rand(.2, 1) * lvl.max / 3500 * (MODES[ev.mode]?.hype || 1)));
+      const cap = ev.owner === 'me' ? 6 + S.me.followers * 1.2 + lvl.max * .004 : lvl.max * 0.22;
+      if (ev.interested < cap && Math.random() < (ev.owner === 'me' ? .25 : .55)) {
+        ev.interested += Math.max(1, Math.round(rand(.2, 1) * (ev.owner === 'me' ? cap / 120 : lvl.max / 3500) * (MODES[ev.mode]?.hype || 1)));
         ev.reminderUsers = Math.round(ev.interested * .42);
       }
     }

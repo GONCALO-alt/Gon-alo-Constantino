@@ -23,6 +23,9 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 - **Sons e alertas**: sons sintetizados para presentes, seguidores, raids, marcos, momentos virais e metas, com volume; alertas animados no ecrã da live.
 - **Metas de presentes**: barra no ecrã («Troco de skin 1.820 / 5.000»), metas predefinidas ou personalizadas e celebração quando se atinge.
 - **Momentos aleatórios**: surpresas durante a live (streamer fictício no chat, live caiu, 100 subs, desafio, troll, animal na câmara, música com direitos, patrocínio, lanche, raid) com duas escolhas e efeitos diferentes.
+- **Live limpa**: durante a live só ficam o ecrã, o chat, os espectadores e os seguidores. As views e os seguidores sobem com números a rolar, «+N» a saltar e um gráfico em tempo real. O resto (estatísticas, reações completas, sondagens, metas, cronologia, moderação) está no botão «Controlos». O botão «Ecrã inteiro» deixa só o ecrã, as reações rápidas e o chat.
+- **Começa do zero**: o canal arranca com 0 seguidores; há metas de seguidores (1, 5, 10, 25, 50, 100…) celebradas na live e uma cena «Seguidores» com o contador em grande e os últimos seguidores.
+- **Agendar a qualquer hora**: qualquer dia e hora (ao minuto), com atalhos «daqui a 15 min», «30 min», «1 h», «2 h», «hoje às 21:00», «amanhã a esta hora» e «sábado às 16:00».
 - **Cenas como no OBS**: «A começar» (contagem de 20 s quando entras em direto), «Jogo», «Conversa» (o chat faz-te perguntas), «Volto já» (os espectadores esperam) e «Fim». Também podes terminar com uma raid para outra conta.
 - **Avatar na live**: a tua foto (ou outra imagem) num canto do ecrã; mexe-se quando falas ao microfone e faz caras conforme o momento (😂 😱 🤯 😭).
 - **Presentes lidos em voz alta**: presentes grandes trazem mensagem e são lidos por uma voz (capacidade tts no artifact; voz do navegador quando aberto localmente).

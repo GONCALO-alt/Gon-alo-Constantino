@@ -332,25 +332,41 @@ function particles(list, n) {
 function viewStudio() {
   if (!S.live) return studioSetup();
   const L = S.live, G = GAMES[L.game] || GAMES.chat, lvl = LEVELS[L.level] || LEVELS.media;
-  return `<div class="page-head"><div><h1>Estúdio de live</h1><p>Simulação: os espectadores, o chat e os presentes são fictícios.</p></div><span class="spacer"></span><button class="btn" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do modo teatro' : 'Modo teatro'}</button><button class="btn" data-act="announce-live">${icon('share')} Anunciar no feed</button><button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar live</button></div>
+  const open = !!STUDIO.controls;
+  return `<div class="live-top">
+    <span class="pill-live">EM DIRETO</span>
+    <div class="lt-title"><strong>${esc(L.title)}</strong><small>${esc(G.name)} · <span class="num" data-live="time">${durLabel(Date.now() - L.start)}</span></small></div>
+    <div class="lt-stat"><small>Espectadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
+    <canvas class="lt-spark" id="viewSpark" width="160" height="40" aria-label="Gráfico de espectadores"></canvas>
+    <div class="lt-stat lt-fol"><small>Seguidores</small><b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></div>
+    <span class="spacer"></span>
+    <div class="lt-actions">
+      <button class="btn" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
+      <button class="btn ${open ? 'btn-primary' : ''}" data-act="controls" aria-expanded="${open}">${icon('menu')} Controlos</button>
+      <button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar</button>
+    </div>
+  </div>
   <div id="endConfirm"></div>
   <div class="studio ${STUDIO.theater ? 'theater' : ''}">
     <div class="studio-main">
       <div class="screen" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
-      ${scenesHTML()}
       ${theaterBarHTML()}
+      <div data-surprise>${surpriseHTML()}</div>
+      <div class="controls-panel" id="controlsPanel" ${open ? '' : 'hidden'}>
+      ${scenesHTML()}
       <div class="row" style="margin-top:10px">
         <label class="btn btn-sm upload">${icon('image')} Usar a minha media no ecrã<input type="file" accept="video/*,image/*" data-file="studio-media" id="studioMedia"></label>
         ${STUDIO.media ? `<button class="btn btn-sm btn-ghost" data-act="studio-media-clear">Voltar ao ecrã simulado</button>` : ''}
+        <button class="btn btn-sm" data-act="announce-live">${icon('share')} Anunciar no feed</button>
         <span class="spacer"></span>
         <label class="switch small"><input type="checkbox" id="ovToggle" data-studio="overlay" ${STUDIO.overlay ? 'checked' : ''}> Chat no ecrã</label>
+        <label class="switch small"><input type="checkbox" id="goalToggle" data-pref="goalOnScreen" ${S.prefs.goalOnScreen ? 'checked' : ''}> Meta no ecrã</label>
         <label class="switch small"><input type="checkbox" id="fxToggle" data-studio="fx" ${STUDIO.fx ? 'checked' : ''}> Animações no ecrã</label>
         <label class="switch small"><input type="checkbox" id="clipToggle" data-studio="autoClip" ${STUDIO.autoClip ? 'checked' : ''}> Criar clip automaticamente</label>
         <label class="switch small"><input type="checkbox" id="rmToggle" data-studio="randomMoments" ${S.prefs.randomMoments ? 'checked' : ''}> Momentos aleatórios</label>
       </div>
       <div class="live-stats">
-        <div class="ls"><small>Espectadores ${SIM('sim.')}</small><b data-live="viewers">${fmt(L.viewers)}</b></div>
         <div class="ls"><small>Pico</small><b data-live="peak">${fmt(L.peak)}</b></div>
         <div class="ls"><small>Novos seguidores</small><b class="up" data-live="followers">+${fmt(L.followers)}</b></div>
         <div class="ls"><small>Gostos</small><b data-live="likes">${fmt(L.likes)}</b></div>
@@ -358,10 +374,9 @@ function viewStudio() {
         <div class="ls"><small>Reações ao jogo</small><b data-live="reactions">${L.reactions}</b></div>
         <div class="ls"><small>Mensagens</small><b data-live="msgs">${fmt(L.msgs)}</b></div>
         <div class="ls"><small>Interação</small><b data-live="engage">${Math.round(L.engage * 100)}%</b></div>
+        <div class="ls"><small>Modo</small><b>${esc(MODES[L.mode].name)}</b></div>
       </div>
       <div class="goal-row"><span class="small">Meta: <b>${dots(lvl.max)}</b> espectadores virtuais</span><div class="goal-bar"><i data-live="goal" style="width:${Math.min(100, L.peak / lvl.max * 100)}%"></i></div><b class="num small" data-live="goalpct">${Math.min(100, Math.round(L.peak / lvl.max * 100))}%</b></div>
-
-      <div data-surprise>${surpriseHTML()}</div>
       <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('mic', 'style="width:18px"')} Microfone e som<small>${soundPanelHTML()}</small></h3>${micPanelHTML()}${immersivePanelHTML()}</section>
       <section class="card react-panel">
         <h2>O que acabou de acontecer?</h2>
@@ -371,7 +386,6 @@ function viewStudio() {
         <button class="btn btn-sm btn-ghost" data-act="react-more" style="margin-top:8px">${STUDIO.showMore ? 'Esconder' : 'Mais acontecimentos'} (${Object.keys(REACT_ITEMS).length})</button>
         ${STUDIO.showMore ? `<div class="react-more">${REACT_CATS.map(c => `<div class="react-cat">${c.icon} ${esc(c.name)}</div>${c.items.map(([id, l]) => `<button data-act="react" data-id="${id}">${l}</button>`).join('')}`).join('')}</div>` : ''}
       </section>
-
       <section class="card panel" style="margin-top:16px"><h3 class="panel-title">📊 Sondagem e comunidade</h3>
         <div id="pollBox">${pollBoxHTML()}</div>
         <div class="row" style="margin-top:10px"><button class="btn btn-sm" data-act="raid">${icon('users')} Simular raid</button><button class="btn btn-sm" data-act="gift-sim">🎁 Simular presente</button></div>
@@ -381,9 +395,10 @@ function viewStudio() {
         <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
       </section>
       <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação</h3>${modPanelHTML()}</section>
+      </div>
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
-      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span></div>
+      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num">👀 <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
         <div class="chat-paused" id="chatPaused" hidden>⏸ Chat em pausa enquanto moderas</div>
@@ -392,7 +407,7 @@ function viewStudio() {
     </aside>
   </div>`;
 }
-function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); }
+function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); drawSpark(); }
 function pollBoxHTML() {
   const P = S.live?.poll;
   if (P && !P.done) {
@@ -406,6 +421,7 @@ function renderPollBox() { const b = $('#pollBox'); if (b) b.innerHTML = pollBox
 
 function updateLiveBits() {
   const L = S.live; if (!L) return;
+  liveCounters(L);
   const lvl = LEVELS[L.level] || LEVELS.media;
   const set = (k, v) => $$(`[data-live="${k}"]`).forEach(n => { n.textContent = v; });
   set('viewers', fmt(L.viewers)); set('peak', fmt(L.peak)); set('followers', '+' + fmt(L.followers)); set('likes', fmt(L.likes));
@@ -437,7 +453,7 @@ function studioSetup() {
         <label class="field"><span>Modo</span><select class="input" name="mode" id="glMode" data-setup="mode">${Object.entries(MODES).map(([k, m]) => `<option value="${k}" ${st.mode === k ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label>
         <label class="field"><span>Audiência virtual</span><select class="input" name="level" id="glLevel" data-setup="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${st.level === k ? 'selected' : ''}>${esc(l.name)} · até ${dots(l.max)}</option>`).join('')}</select></label>
       </div>
-      <div class="row"><button class="btn btn-live">${icon('studio')} Entrar em direto</button><span class="small muted">Os espectadores e o chat são simulados.</span></div>
+      <div class="row"><button class="btn btn-live">${icon('studio')} Entrar em direto agora</button><button type="button" class="btn" data-act="new-event">${icon('calendar')} Agendar para outra hora</button><span class="small muted">Os espectadores e o chat são simulados.</span></div>
     </form>
   </section>
   <div class="grid-2" style="margin-top:16px;align-items:start">

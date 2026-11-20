@@ -12,14 +12,15 @@ const defaultImmersive = () => ({ cam: true, tts: true, crowd: true, camImg: nul
 
 /* =========================== CENAS =========================== */
 const SCENES = [
-  ['starting', '⏳', 'A começar'], ['game', '🎮', 'Jogo'], ['chat', '💬', 'Conversa'], ['brb', '☕', 'Volto já'], ['ending', '👋', 'Fim'],
+  ['starting', '⏳', 'A começar'], ['game', '🎮', 'Jogo'], ['followers', '💜', 'Seguidores'], ['chat', '💬', 'Conversa'], ['brb', '☕', 'Volto já'], ['ending', '👋', 'Fim'],
 ];
-const SCENE_FACTOR = { starting: .35, game: 1, chat: .95, brb: .72, ending: .85 };
+const SCENE_FACTOR = { starting: .35, game: 1, followers: 1, chat: .95, brb: .72, ending: .85 };
 const CHAT_QUESTIONS = ['de onde és?', 'qual é o teu jogo favorito?', 'tens animais de estimação?', 'quando é a próxima live?', 'qual foi o teu melhor momento de sempre?', 'o que comeste hoje? 😂', 'fazes live amanhã?', 'qual é o teu setup?', 'jogas com o chat um dia?', 'dás dicas para começar a fazer lives?', 'qual é a tua música favorita?', 'preferes Fortnite ou Minecraft?'];
 const SCENE_AMBIENT = {
   starting: ['já começou?', 'cheguei cedo 😎', 'olá!!', 'estou à espera 👀', 'bora bora', 'primeiro!!', 'a música de espera é top 🎶', 'quanto falta?', 'hoje vai ser épico'],
   brb: ['à espera... ⏳', 'quanto tempo?', '🍿🍿', 'volta depressa!', 'o chat toma conta da live 😂', 'ainda aqui 💜', 'AFK 😴', 'vou buscar um lanche também'],
   chat: CHAT_QUESTIONS,
+  followers: ['SEGUIDO ✅', 'vamos à próxima meta!!', 'acabei de seguir 💜', 'bora encher isto', 'segue toda a gente!', 'quase lá 👀', 'partilhem a live!'],
   ending: ['NÃÃÃO já acabou?', 'obrigado pela live 💜', 'até amanhã!!', 'que live top', 'GG', 'próxima quando?', '👋👋', 'melhor live da semana'],
 };
 const sceneFactor = L => SCENE_FACTOR[L.scene || 'game'] || 1;
@@ -37,7 +38,7 @@ function setScene(s, quiet) {
   const lines = { game: ['COMEÇOU!! 🔥', 'BORA', 'finalmente 😭', 'vamos a isso'], chat: ['conversa!! 💬', 'adoro estas partes', 'pergunta-me algo!'], brb: ['volta depressa!', 'ok à espera ⏳'], ending: ['NÃÃÃO 😭', 'obrigado pela live 💜'], starting: ['já começa!!'] }[s];
   if (lines) chatBurst(lines);
   if (s === 'game' && !quiet) crowd(.6);
-  paintScreen(); paintScenes(); save();
+  paintScreen(); paintScenes(); $$('[data-scene-select]').forEach(x => x.value = s); save();
 }
 function scenesHTML() {
   const cur = S.live?.scene || 'game';
@@ -62,17 +63,17 @@ function screenInner(L) {
       starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
       brb: `<small>Pausa</small><div class="scene-big">VOLTO JÁ ☕</div><div class="scene-cd num" data-sceneel>00:00</div><span class="scene-sub">Não saiam daí!</span>`,
       chat: `${camHTML(true)}<div class="scene-big small">CONVERSA COM O CHAT 💬</div><span class="scene-sub">Pergunta o que quiseres</span>`,
+      followers: folSceneHTML(),
       ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM 💜</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
     }[scene];
     bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
-    <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass">👀 <span class="num" data-live="viewers">${fmt(L.viewers)}</span></span><span class="glass num" data-live="time">${durLabel(Date.now() - L.start)}</span><span class="glass">MODO ${esc(MODES[L.mode].name.toUpperCase())}</span><span class="sim-tag" style="margin-left:auto">Audiência fictícia</span></div>
+    <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass hud-num">👀 <b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span><span class="glass hud-num">💜 <b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></span><span class="sim-tag" style="margin-left:auto">Fictício</span></div>
     ${trainHTML()}
-    ${scene === 'game' ? `<div class="hud-bottom"><div class="hud-title">${gicon(L.game, 26)} <strong>${esc(L.title)}</strong><span class="tiny muted">${esc(G.name)} · @${esc(S.me.handle)}</span></div></div>` : ''}
     ${scene !== 'chat' && scene !== 'ending' ? camHTML() : ''}
     <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
-    ${goalBarHTML()}
+    ${S.prefs.goalOnScreen ? goalBarHTML() : ''}
     <div class="alert-box" id="alertBox" aria-live="polite"></div>
     <div class="fx" id="fx"></div>`;
 }
@@ -237,11 +238,13 @@ function crowd(intensity = .6) {
 
 /* =========================== MODO TEATRO =========================== */
 function theaterBarHTML() {
+  const cur = S.live?.scene || 'game';
   return `<div class="theater-bar">
-    ${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}
+    <div class="tb-reacts">${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}</div>
     <span class="spacer"></span>
+    <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelect" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${cur === k ? 'selected' : ''}>${e} ${l}</option>`).join('')}</select></label>
     <button class="btn btn-sm ${MIC.on ? 'btn-live' : ''}" data-act="mic-toggle">${icon('mic')} ${MIC.on ? 'A ouvir' : 'Microfone'}</button>
-    <button class="btn btn-sm" data-act="theater">${icon('shrink')} Sair</button>
+    <button class="btn btn-sm tb-full" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
   </div>`;
 }
 function setTheater(on) {
@@ -250,7 +253,8 @@ function setTheater(on) {
   document.body.classList.toggle('theater-on', on);
   if (on) { try { const p = document.documentElement.requestFullscreen?.(); p && p.catch(() => { }); STUDIO.fs = true; } catch (e) { } }
   else if (document.fullscreenElement) { try { document.exitFullscreen().catch(() => { }); } catch (e) { } }
-  $$('[data-act="theater"]').forEach(b => { if (!b.closest('.theater-bar')) b.innerHTML = `${icon(on ? 'shrink' : 'expand')} ${on ? 'Sair do modo teatro' : 'Modo teatro'}`; });
+  $$('[data-act="theater"]').forEach(b => { b.innerHTML = `${icon(on ? 'shrink' : 'expand')} ${on ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}`; });
+  $$('.screen [data-anim]').forEach(el => { el._v = undefined; });
   afterStudioRender();
 }
 
@@ -279,6 +283,15 @@ function immersiveTick(L) {
 }
 
 const IMM_ACT = {
+  'controls': b => { STUDIO.controls = !STUDIO.controls; const p = $('#controlsPanel'); if (p) p.hidden = !STUDIO.controls; b.classList.toggle('btn-primary', STUDIO.controls); b.setAttribute('aria-expanded', STUDIO.controls); if (STUDIO.controls) p?.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
+  'ev-quick': b => {
+    syncEventDraft(); const now = new Date(); const k = b.dataset.k; let t;
+    if (k.endsWith('m')) { t = Date.now() + (+k.slice(0, -1)) * MIN; }
+    else if (k === 'tonight') { const d = new Date(); d.setHours(21, 0, 0, 0); t = d.getTime() > Date.now() + MIN ? d.getTime() : d.getTime() + DAY; }
+    else if (k === 'tomorrow') { t = Date.now() + DAY; }
+    else if (k === 'weekend') { const d = new Date(); const add = (6 - d.getDay() + 7) % 7 || 7; d.setDate(d.getDate() + add); d.setHours(16, 0, 0, 0); t = d.getTime(); }
+    const d = new Date(t); d.setSeconds(0, 0); MODAL.draft.start = d.getTime(); paintEventEditor();
+  },
   'scene': b => setScene(b.dataset.s),
   'theater': () => setTheater(!STUDIO.theater),
   'cam-img-clear': () => { S.prefs.camImg = null; save(); paintScreen(); $$('[data-immpanel]').forEach(el => el.outerHTML = immersivePanelHTML()); },
@@ -300,6 +313,105 @@ const IMM_ACT = {
   },
 };
 function onImmersiveInput(t) {
+  if (t.hasAttribute('data-scene-select')) { setScene(t.value); return true; }
+  if (t.dataset.pref === 'goalOnScreen') { S.prefs.goalOnScreen = t.checked; save(); paintScreen(); return true; }
   if (t.dataset.pref) { S.prefs[t.dataset.pref] = t.checked; save(); if (t.dataset.pref === 'cam') paintScreen(); if (t.dataset.pref === 'tts' && !t.checked) { TTSX.q = []; try { TTSX.t?.stop(); speechSynthesis?.cancel(); } catch (e) { } } return true; }
   return false;
+}
+
+/* =========================== CONTADORES ANIMADOS =========================== */
+const FOL_GOALS = [1, 5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000];
+const nextFolGoal = f => FOL_GOALS.find(g => g > f) || Math.ceil((f + 1) / 1e6) * 1e6;
+function tweenNum(el, to) {
+  if (el._v === undefined) el._v = +(el.dataset.v || to);
+  const from = el._v; if (from === to) return;
+  el._v = to;
+  cancelAnimationFrame(el._raf);
+  const t0 = performance.now(), d = 620;
+  const step = t => { const p = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - p, 3); el.textContent = dots(Math.round(from + (to - from) * e)); if (p < 1) el._raf = requestAnimationFrame(step); };
+  el._raf = requestAnimationFrame(step);
+  if (to > from) {
+    el._acc = (el._acc || 0) + (to - from);
+    el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    const now = Date.now();
+    if (now - (el._lastPop || 0) > 1300) {
+      const host = el.parentElement; const pop = document.createElement('span');
+      pop.className = 'num-pop' + (el.dataset.anim === 'followers' ? ' fol' : '');
+      pop.textContent = '+' + dots(el._acc) + (el.dataset.anim === 'followers' ? ' 💜' : '');
+      host.appendChild(pop); setTimeout(() => pop.remove(), 1400);
+      el._acc = 0; el._lastPop = now;
+    }
+  }
+}
+function liveCounters(L) {
+  const v = Math.round(L.viewers), f = Math.floor(S.me.followers);
+  $$('[data-anim="viewers"]').forEach(el => tweenNum(el, v));
+  $$('[data-anim="followers"]').forEach(el => tweenNum(el, f));
+  // histórico para o gráfico
+  const now = Date.now();
+  L.hist = L.hist || [];
+  if (!L.hist.length || now - L.hist[L.hist.length - 1][0] > 1900) { L.hist.push([now, v]); if (L.hist.length > 90) L.hist.shift(); drawSpark(); }
+  // novos seguidores com nomes
+  if (L.lastFol == null) L.lastFol = f;
+  if (f > L.lastFol) {
+    const n = f - L.lastFol; L.lastFol = f;
+    L.recentFol = L.recentFol || [];
+    const names = Array.from({ length: Math.min(n, 3) }, () => fakeUser());
+    L.recentFol.unshift(...names); L.recentFol = L.recentFol.slice(0, 8);
+    if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `💜 ${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
+    const goal = FOL_GOALS.filter(g => g <= f).pop();
+    if (goal && goal > (S.me.folGoalHit || 0)) {
+      S.me.folGoalHit = goal;
+      sound('goal'); crowd(.7); fxBurst('💜', `${dots(goal)} ${goal === 1 ? 'SEGUIDOR' : 'SEGUIDORES'}!`);
+      alertShow('💜', `${dots(goal)} ${goal === 1 ? 'seguidor' : 'seguidores'}!`, 'nova meta de seguidores', 'follow');
+      notify('💜', goal === 1 ? 'Tens o teu primeiro seguidor fictício!' : `Chegaste aos ${dots(goal)} seguidores fictícios!`);
+      addTimeline('follow', `Meta de seguidores: ${dots(goal)}`, '💜', { hype: .6, reactLabel: 'Meta de seguidores', clipTitle: `${dots(goal)} seguidores!` });
+      chatBurst([`${dots(goal)}!!! 💜`, 'PARABÉNS 🎉', 'QUE CRESCIMENTO', 'próxima meta já!']);
+    }
+    paintFolScene();
+  }
+}
+function drawSpark() {
+  const c = $('#viewSpark'); const L = S.live; if (!c || !L || !L.hist || L.hist.length < 2) return;
+  const ctx = c.getContext('2d'), w = c.width, h = c.height, pts = L.hist.map(p => p[1]);
+  const max = Math.max(...pts) * 1.08 || 1, min = Math.min(...pts) * .9;
+  const X = i => i / (pts.length - 1) * (w - 6) + 3, Y = v => h - 4 - (v - min) / (max - min || 1) * (h - 8);
+  ctx.clearRect(0, 0, w, h);
+  const g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, 'rgba(145,71,255,.45)'); g.addColorStop(1, 'rgba(145,71,255,0)');
+  ctx.beginPath(); pts.forEach((v, i) => i ? ctx.lineTo(X(i), Y(v)) : ctx.moveTo(X(i), Y(v)));
+  ctx.lineTo(X(pts.length - 1), h); ctx.lineTo(X(0), h); ctx.closePath(); ctx.fillStyle = g; ctx.fill();
+  ctx.beginPath(); pts.forEach((v, i) => i ? ctx.lineTo(X(i), Y(v)) : ctx.moveTo(X(i), Y(v)));
+  ctx.strokeStyle = '#a970ff'; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+  ctx.beginPath(); ctx.arc(X(pts.length - 1), Y(pts[pts.length - 1]), 3.2, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
+}
+function folSceneHTML() {
+  const f = Math.floor(S.me.followers), goal = nextFolGoal(f), prev = FOL_GOALS.filter(g => g <= f).pop() || 0;
+  const pct = Math.min(100, (f - prev) / (goal - prev) * 100);
+  const recent = (S.live?.recentFol || []).slice(0, 5);
+  return `<small>Seguidores</small><div class="fol-big num" data-anim="followers" data-v="${f}">${dots(f)}</div>
+    <div class="fol-goal" data-fol-goal><span>Próxima meta: <b>${dots(goal)}</b></span><div class="goal-bar"><i style="width:${pct}%"></i></div></div>
+    <div class="fol-list" data-fol-list>${recent.length ? recent.map(n => `<span>💜 ${esc(n)}</span>`).join('') : '<span class="muted">À espera do próximo seguidor…</span>'}</div>`;
+}
+function paintFolScene() {
+  if (S.live?.scene !== 'followers') return;
+  const f = Math.floor(S.me.followers), goal = nextFolGoal(f), prev = FOL_GOALS.filter(g => g <= f).pop() || 0;
+  $$('[data-fol-goal]').forEach(el => el.innerHTML = `<span>Próxima meta: <b>${dots(goal)}</b></span><div class="goal-bar"><i style="width:${Math.min(100, (f - prev) / (goal - prev) * 100)}%"></i></div>`);
+  $$('[data-fol-list]').forEach(el => el.innerHTML = (S.live.recentFol || []).slice(0, 5).map(n => `<span>💜 ${esc(n)}</span>`).join(''));
+}
+
+/* =========================== COMEÇAR DO ZERO =========================== */
+function resetToZero(s) {
+  if (s.zero1) return; s.zero1 = 1;
+  Object.assign(s.me, { followers: 0, viewsBase: 0, xp: 0, followingBase: 0, folGoalHit: 0 });
+  s.me.bio = 'Criador de conteúdo no LiveVerse 🎮 A começar do zero!\nObjetivo: chegar aos primeiros 100 seguidores e depois aos 100 mil espectadores virtuais numa live ⭐';
+  s.lives = [];
+  s.clips = s.clips.filter(c => c.streamer !== 'me');
+  s.posts = s.posts.filter(p => p.author !== 'me' || (p.type === 'event' && p.eventId));
+  s.posts.filter(p => p.author === 'me').forEach(p => { p.likes = Math.min(p.likes, 2); p.reposts = 0; p.views = Math.min(p.views, 25); p.replies = []; });
+  if (s.pinned && !s.posts.find(p => p.id === s.pinned)) s.pinned = null;
+  s.ach = {}; s.stats = { reactions: 0, clipsMade: 0, polls: 0 };
+  s.events.filter(e => e.owner === 'me').forEach(e => { e.interested = Math.min(e.interested, 3); e.reminderUsers = 0; e.notified = {}; });
+  s.dms = (s.dms || []).map(t => ({ ...t, msgs: t.msgs.filter(m => !/12 mil|raid de ontem|De nada!!/.test(m.text)) })).filter(t => t.msgs.length);
+  s.notifs = [{ id: uid(), icon: '🚀', text: 'Começas do zero: 0 seguidores. Agenda a tua primeira live à hora que quiseres e faz crescer a comunidade!', t: Date.now(), read: false }];
+  if (s.regulars) s.regulars = s.regulars.slice(0, 3).map(r => ({ ...r, months: 1 }));
 }
