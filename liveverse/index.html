@@ -1269,8 +1269,151 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
 .screen.vertical .fc-top b { font-size: clamp(18px, 6vw, 34px); }
 .screen.vertical .fc-box { font-size: clamp(13px, 4.4vw, 24px); }
 
+/* ===================== Layout de plataforma de streaming (computador) ===================== */
+.topnav { display: none; }
+@media (min-width: 821px) {
+  .topnav { display: flex; align-items: center; gap: 10px; position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; height: 50px; z-index: 50;
+    padding: 0 max(12px, env(safe-area-inset-right, 0px)) 0 max(10px, env(safe-area-inset-left, 0px)); background: var(--surface); box-shadow: 0 1px 2px rgb(0 0 0 / .9), 0 0 2px rgb(0 0 0 / .9); }
+  .app { max-width: none; margin: 0; padding: 50px max(20px, env(safe-area-inset-right, 0px)) 60px 0; grid-template-columns: 240px minmax(0, 1fr); gap: 24px; }
+  .app.wide { grid-template-columns: 240px minmax(0, 1fr); }
+  .app.side-mini, .app.wide.side-mini { grid-template-columns: 50px minmax(0, 1fr); }
+  .app .rail { display: none !important; }
+  .side { top: calc(env(safe-area-inset-top, 0px) + 50px); height: calc(100vh - 50px); padding: 8px 0 44px; gap: 0; background: var(--surface); border-right: 0; padding-left: max(0px, env(safe-area-inset-left, 0px)); }
+  main { padding-top: 20px; }
+  .studio-chat { top: calc(env(safe-area-inset-top, 0px) + 64px); height: calc(100vh - 110px); }
+  .wp-side { top: calc(env(safe-area-inset-top, 0px) + 64px); height: calc(100vh - 110px); }
+  .toasts { top: calc(64px + env(safe-area-inset-top, 0px)); }
+}
+.tn-left { display: flex; align-items: center; gap: 2px; }
+.tn-logo { width: 40px; height: 40px; display: grid; place-items: center; margin-right: 8px; }
+.tn-logo .logo-mark { width: 32px; height: 32px; border-radius: 8px; }
+.tn-link { height: 50px; display: flex; align-items: center; padding: 0 12px; font-size: 17px; font-weight: 700; text-decoration: none; color: var(--fg); position: relative; }
+.tn-link:hover { color: var(--purple-soft); }
+.tn-link.on { color: var(--purple-soft); }
+.tn-link.on::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 0; height: 2px; background: var(--purple-soft); }
+.tn-ic { position: relative; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 6px; background: transparent; color: var(--fg); text-decoration: none; }
+.tn-ic:hover { background: var(--surface-3); }
+.tn-ic svg { width: 20px; height: 20px; }
+.tn-ic .badge-count { position: absolute; top: -3px; right: -4px; margin: 0; min-width: 18px; height: 18px; font-size: 11px; }
+.tn-search { flex: 0 1 420px; margin: 0 auto; display: flex; }
+.tn-search .input { height: 36px; border-radius: 6px 0 0 6px; background: var(--surface-2); border: 1px solid var(--line-2); border-right: 0; }
+.tn-search .input:focus { box-shadow: 0 0 0 2px var(--purple); background: var(--bg); }
+.tn-search button { width: 36px; height: 36px; flex: none; border: 0; border-radius: 0 6px 6px 0; background: var(--surface-3); color: var(--fg-2); display: grid; place-items: center; }
+.tn-search button svg { width: 19px; height: 19px; }
+.tn-right { display: flex; align-items: center; gap: 4px; }
+.tn-clock { font-size: 13px; color: var(--muted); margin-right: 6px; }
+.tn-golive { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; margin: 0 4px; border-radius: 6px; background: var(--surface-3); color: var(--fg); font-weight: 700; font-size: 13.5px; text-decoration: none; }
+.tn-golive:hover { background: #35353b; }
+.tn-golive svg { width: 18px; height: 18px; }
+.tn-golive.is-live { background: var(--live); color: #fff; }
+.tn-avatar { position: relative; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 50%; background: none; padding: 0; }
+.tn-live-dot { position: absolute; right: 1px; bottom: 1px; width: 11px; height: 11px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 2px var(--surface); }
+.tn-drop-wrap { position: relative; }
+.tn-drop { position: absolute; top: 44px; left: 0; z-index: 60; min-width: 230px; display: flex; flex-direction: column; padding: 8px; border-radius: 8px; background: var(--surface-2); box-shadow: 0 8px 30px rgb(0 0 0 / .8); animation: rise .15s; }
+.tn-drop-r { left: auto; right: 0; }
+.tn-drop a, .tn-drop button { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; border: 0; background: none; text-align: left; text-decoration: none; color: var(--fg); font-weight: 600; font-size: 14px; }
+.tn-drop a:hover, .tn-drop button:hover { background: var(--surface-3); }
+.tn-drop svg { width: 18px; height: 18px; }
+.tn-drop hr { border: 0; border-top: 1px solid var(--line-2); margin: 6px 0; width: 100%; }
+.tn-me { display: flex; gap: 10px; align-items: center; padding: 6px 8px 10px; border-bottom: 1px solid var(--line-2); margin-bottom: 6px; }
+.tn-me strong, .tn-me small { display: block; }
+.tn-me small { color: var(--muted); font-size: 12px; }
+/* Barra lateral */
+.sd-head { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px 4px; }
+.sd-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; }
+.sd-label { display: block; padding: 10px 10px 4px; font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--fg-2); letter-spacing: .02em; }
+.sd-empty { margin: 0; padding: 4px 10px; font-size: 13px; color: var(--muted); }
+.side .chan { border-radius: 0; padding: 5px 10px; }
+.side .chan strong { font-size: 14px; font-weight: 600; }
+.side .chan.is-off strong { color: var(--fg-2); }
+.app.side-mini .side .chan { justify-content: center; padding: 5px 0; }
+.app.side-mini .side .chan > :not(.av) { display: none; }
+.app.side-mini .sd-label, .app.side-mini .sd-title, .app.side-mini .sd-empty { display: none; }
+.app.side-mini .sd-head { justify-content: center; padding: 6px 0; }
+/* Destaque da página inicial */
+.feat { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); background: var(--surface); border-radius: 8px; overflow: hidden; margin-bottom: 22px; box-shadow: 0 4px 30px rgb(0 0 0 / .5); }
+.feat-player { border-radius: 0; aspect-ratio: 16 / 9; }
+.feat-player:hover { transform: none; box-shadow: none; }
+.feat-info { padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.feat-info .wp-chan > div { display: flex; flex-direction: column; }
+.feat-vw { font-size: 13.5px; color: var(--muted); }
+.feat-title { margin: 0; font-size: 15px; font-weight: 600; }
+.feat-strip { grid-column: 1 / -1; display: flex; gap: 8px; padding: 10px 12px; background: var(--bg-2); overflow-x: auto; scrollbar-width: none; }
+.feat-mini { position: relative; flex: none; width: 120px; aspect-ratio: 16 / 9; border: 2px solid transparent; border-radius: 4px; overflow: hidden; display: grid; place-items: center; color: #fff; font-weight: 900; padding: 0; background: #000; opacity: .65; transition: opacity .2s, border-color .2s; }
+.feat-mini span:last-child { position: relative; }
+.feat-mini.on, .feat-mini:hover { opacity: 1; border-color: var(--purple); }
+.feat .fol-counter { top: 30%; }
+.feat .fc-top b { font-size: clamp(18px, 2.4vw, 32px); }
+.feat .fc-box { font-size: clamp(13px, 1.7vw, 22px); }
+/* Categorias */
+.cat-grid2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 18px 12px; margin-bottom: 24px; }
+.cat-card { display: flex; flex-direction: column; gap: 2px; padding: 0; border: 0; background: none; text-align: left; color: var(--fg); min-width: 0; }
+.cat-art { position: relative; display: grid; place-items: center; aspect-ratio: 3 / 4; max-width: 100%; border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 6px; transition: transform .15s, box-shadow .15s; }
+.cat-card:hover .cat-art { transform: translate(4px, -4px); box-shadow: -4px 4px 0 var(--purple); }
+.cat-art b { position: relative; font-weight: 900; font-size: clamp(20px, 3vw, 34px); color: #fff; text-shadow: 0 0 24px var(--gc); text-align: center; padding: 0 6px; line-height: 1; }
+.cat-art em { position: absolute; left: 8px; right: 8px; bottom: 8px; font-style: normal; font-weight: 800; font-size: 12px; color: rgb(255 255 255 / .85); text-transform: uppercase; letter-spacing: .06em; }
+.cat-card strong { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cat-card small { font-size: 13px; color: var(--muted); }
+.cat-card .tw-tags { margin-top: 4px; }
+.cat-row { grid-template-rows: auto; }
+.cat-head { display: flex; align-items: flex-end; gap: 20px; margin-bottom: 18px; flex-wrap: wrap; }
+.cat-art.big { width: 140px; margin: 0; }
+.cat-head h1 { font-size: 34px; margin: 4px 0; }
+/* Cartões de live (computador) */
+@media (min-width: 821px) {
+  .tw-live { left: 8px; right: auto; padding: 0 5px; background: var(--live); border-radius: 4px; text-transform: uppercase; font-weight: 700; font-size: 12.5px; letter-spacing: .02em; }
+  .tw-live::before { display: none; }
+  .tw-meta > div { display: flex; flex-direction: column; }
+  .tw-title { order: -1; color: var(--fg); font-weight: 700; font-size: 14px; margin: 0; }
+  .tw-name { font-weight: 500; color: var(--muted); font-size: 13.5px; }
+  .tw-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 26px 12px; }
+  .tw-tabs { margin-bottom: 16px; }
+}
+@media (max-width: 820px) { .feat, .tw-h-desk { display: none; } }
+/* Página do canal (computador) */
+.wp-head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.wp-chan { flex: 1 1 320px; }
+.wp-av { position: relative; flex: none; }
+.wp-livebadge { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); padding: 0 5px; border-radius: 4px; background: var(--live); color: #fff; font-size: 11px; font-weight: 800; white-space: nowrap; }
+.wp-meta { min-width: 0; }
+.wp-gamerow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wp-gamerow .tw-tags { margin: 0; }
+.wp-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.wp-right .wp-actions { flex-wrap: wrap; justify-content: flex-end; }
+.wp-follow { border-radius: 6px; padding: 8px 14px; }
+.wp-gift, .wp-sub { flex: none; border-radius: 6px; padding: 8px 14px; }
+.wp-gift svg, .wp-sub svg, .wp-follow svg { width: 18px; height: 18px; }
+.wp-round { border-radius: 6px; width: 38px; height: 36px; }
+.wp-stats { display: flex; gap: 14px; align-items: center; font-size: 14px; color: var(--fg-2); }
+.wp-vw { display: inline-flex; align-items: center; gap: 4px; color: #ff8080; font-weight: 700; }
+.wp-vw svg { width: 17px; height: 17px; }
+.wp-about { margin-top: 18px; padding: 18px 20px; border-radius: 8px; background: var(--surface); }
+.wp-about h3 { font-size: 18px; margin-bottom: 6px; }
+.wp-about p { margin: 0 0 6px; color: var(--fg-2); }
+.tw-chead-t { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+.chat-head { justify-content: center; }
+/* Campo do chat */
+.tw-input { flex-wrap: wrap; }
+.tw-in-row { flex-basis: 100%; display: flex; align-items: center; gap: 6px; }
+.pts { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--fg-2); font-size: 13.5px; }
+.pts svg { width: 18px; height: 18px; color: var(--purple-soft); }
+.pts-chest { width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 6px; background: var(--purple); color: #fff; animation: bump 1.2s infinite; }
+.pts-chest svg { color: #fff; }
+@media (min-width: 821px) { .tw-in-gift, .tw-send-m { display: none; } .tw-in-wrap { flex-basis: 100%; } }
+@media (max-width: 820px) {
+  .tw-in-row { display: none; }
+  .wp-right { align-items: stretch; width: 100%; }
+  .wp-right .wp-actions { justify-content: stretch; }
+  .wp-follow, .wp-gift, .wp-sub { flex: 1; justify-content: center; border-radius: 999px; }
+  .wp-about { display: none; }
+  .wp-stats { display: none; }
+}
+
+@media (min-width: 821px) { .studio-chat { height: calc(100vh - 172px); } .side { margin: 0; } }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
+<header class="topnav" id="topNav"></header>
 <header class="topbar" id="topBar"></header>
 <div class="app">
   <aside class="side" id="side"></aside>
@@ -2135,7 +2278,7 @@ function viewProfile(id) {
   const car = me ? career() : career(Math.round(a.followers / 30));
   const myEvents = S.events.filter(e => e.owner === id);
   const next = myEvents.filter(e => ['scheduled', 'soon', 'live'].includes(eventStatus(e))).sort((x, y) => x.start - y.start)[0];
-  const tabs = [['posts', 'Publicações'], ['about', 'Sobre'], ['lives', 'Lives'], ['events', 'Eventos'], ['clips', 'Clips'], ['ach', 'Conquistas']];
+  const tabs = [['posts', 'Início'], ['about', 'Sobre'], ['events', 'Agenda'], ['lives', 'Vídeos'], ['clips', 'Clipes'], ['ach', 'Conquistas']];
   const followers = me ? S.me.followers : a.followers;
   const following = me ? followingCount() : 120 + (a.hue % 300);
   const lives = me ? totalLives() : 40 + Math.round(a.followers / 2000);
@@ -2674,7 +2817,7 @@ function viewStudio() {
       </div>
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
-      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num chat-vw">${icon('person')} <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
+      <section class="card chat"><div class="chat-head"><span class="tw-chead-t">Chat da transmissão</span>${SIM('fictício')}<span class="spacer"></span><span class="small muted num chat-vw">${icon('person')} <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
         <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
@@ -2835,15 +2978,9 @@ function createMenuHTML() {
 }
 function renderNav() {
   const r = route(); const cur = navCurrent();
-  $('#side').innerHTML = `
-    <a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
-    ${clockHTML()}
-    <div class="create-wrap"><button class="btn btn-primary create-btn" data-act="create-toggle" aria-expanded="${!!UI.createOpen}">${icon('plus')} Criar</button>${UI.createOpen ? createMenuHTML() : ''}</div>
-    <nav class="nav-groups" aria-label="Menu principal">${NAV_GROUPS.map(([g, items]) => `<div class="nav-group"><span class="nav-label">${g}</span>${items.map(i => navLink(i, cur)).join('')}</div>`).join('')}</nav>
-    ${sideChannelsHTML()}
-    ${S.live ? `<a class="live-pill" href="#estudio"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">a ver</span></a>` : ''}
-    <div class="side-me"><a href="#perfil" class="side-me-link">${avatar(S.me, 38).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)}</small></div></a>
-      <button class="icon-btn" data-act="edit-profile" title="Editar perfil" aria-label="Editar perfil">${icon('edit')}</button><button class="icon-btn" data-act="mod-open" title="Moderação" aria-label="Moderação">${icon('shield')}</button></div>`;
+  $('#side').innerHTML = sideTwitchHTML();
+  $('#topNav').innerHTML = topNavHTML();
+  document.querySelector('.app').classList.toggle('side-mini', !!S.prefs.sideMini);
   $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
@@ -2899,7 +3036,7 @@ function openCreateSheet() {
 
 /* ---------- Explorar ---------- */
 UI.explore = { q: '', game: 'all' };
-function viewExplore() {
+function viewExploreOld() {
   const games = Object.entries(GAMES).filter(([k]) => k !== 'amnesia');
   return `<div class="page-head"><div><h1>Explorar</h1><p>Descobre criadores, eventos, clips e tendências da rede fictícia.</p></div><span class="spacer"></span><button class="btn" data-act="accounts-edit">${icon('users')} Gerir contas</button></div>
   <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Pesquisar contas, #hashtags, eventos, clips…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Pesquisar"></div>
@@ -4156,8 +4293,10 @@ function viewFeed() {
     const lives = liveChannels();
     const cats = [...new Set(lives.map(e => e.game))];
     const list = lives.filter(e => UI.homeCat === 'all' || e.game === UI.homeCat);
-    body = `<div class="chip-row tw-cats">${[['all', 'Tudo'], ...cats.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
-      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>`;
+    body = `${UI.homeCat === 'all' ? featuredHTML(liveHomeList()) : ''}<div class="chip-row tw-cats">${[['all', 'Tudo'], ...cats.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
+      <h2 class="tw-h tw-h-desk">Canais em direto de que achamos que vais gostar</h2>
+      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>
+      ${UI.homeCat === 'all' ? `<h2 class="tw-h">Categorias de que achamos que vais gostar</h2><div class="cat-grid2 cat-row">${categoryStats().slice(0, 7).map(catCardHTML).join('')}</div>` : ''}`;
   } else if (t === 'following') {
     const fol = S.accounts.filter(a => a.followed);
     const live = fol.map(channelLive).filter(Boolean);
@@ -4208,24 +4347,28 @@ function viewWatch(id) {
         <div class="fx" id="wfx"></div>
       </div>
       <section class="wp-info">
-        <div class="wp-chan">${avatar(a, 52, ev ? 'ring-live' : '')}<div>
-          <a class="wp-name" href="#conta-${a.id}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a>
-          <p class="wp-title">${esc(ev ? ev.title : (a.bio || ''))}</p>
-          <a class="wp-game" href="#explorar" data-act="explore-game" data-k="${ev ? ev.game : (a.games || ['chat'])[0]}">${esc(G.name)}</a>
-        </div></div>
-        ${ev ? tagChips(streamTags(ev.game, ['Gaming', 'DropsAtivos'])) : ''}
-        <div class="wp-actions">
-          <button class="wp-round ${a.followed ? 'on' : ''}" data-act="follow" data-id="${a.id}" aria-label="${a.followed ? 'Deixar de seguir' : 'Seguir'}" title="${a.followed ? 'A seguir' : 'Seguir'}">${icon(a.followed ? 'heartFill' : 'heart')}</button>
-          <button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="Notificações do canal">${icon('bellPlus')}</button>
-          <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">Oferecer subscrição</button>
-          <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${sub ? icon('star') + ' Subscrito' : 'Subscrever'}</button>
+        <div class="wp-head">
+          <div class="wp-chan"><span class="wp-av">${avatar(a, 64, ev ? 'ring-live' : '')}${ev ? '<span class="wp-livebadge">EM DIRETO</span>' : ''}</span><div class="wp-meta">
+            <a class="wp-name" href="#conta-${a.id}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a>
+            <p class="wp-title">${esc(ev ? ev.title : 'Offline')}</p>
+            <div class="wp-gamerow"><a class="wp-game" href="#explorar" data-act="cat-open" data-k="${ev ? ev.game : (a.games || ['chat'])[0]}">${esc(G.name)}</a>${ev ? tagChips(streamTags(ev.game, ['Gaming', 'DropsAtivos'])) : ''}</div>
+          </div></div>
+          <div class="wp-right">
+            <div class="wp-actions">
+              ${a.followed ? `<button class="wp-round on" data-act="follow" data-id="${a.id}" aria-label="Deixar de seguir" title="Deixar de seguir">${icon('heartFill')}</button>` : `<button class="btn btn-primary wp-follow" data-act="follow" data-id="${a.id}">${icon('heart')} Seguir</button>`}
+              <button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="Notificações do canal">${icon('bellPlus')}</button>
+              <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">${icon('gift')} Oferecer subscrição</button>
+              <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${icon('star')} ${sub ? 'Subscrito' : 'Subscrever'}</button>
+            </div>
+            ${ev ? `<div class="wp-stats"><span class="wp-vw">${icon('person')}<b class="num" data-wv>${dots(Math.round(ev.viewers || 0))}</b></span><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></div>` : ''}
+          </div>
         </div>
-        <p class="tiny muted" style="margin:0">Subscrições, presentes e espetadores são fictícios: nada é pago.</p>
+        <div class="wp-about"><h3>Sobre ${esc(a.name)}</h3><p><b>${fmt(a.followers)}</b> seguidores ${SIM()}</p><p>${richText(a.bio || '')}</p><p class="tiny muted" style="margin:0">Subscrições, presentes e espetadores são fictícios: nada é pago.</p></div>
       </section>
     </div>
     <aside class="wp-side">
       <section class="card chat wp-chatbox">
-        <div class="chat-head"><strong>Chat ${ev ? '' : 'offline'}</strong>${SIM()}<span class="spacer"></span><span class="small muted">👀 <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
+        <div class="chat-head"><span class="tw-chead-t">${ev ? 'Chat da transmissão' : 'Chat offline'}</span>${SIM()}<span class="spacer"></span><span class="small muted chat-vw">${icon('person')} <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
         ${ev ? `<div class="lb" data-wlb>${leaderboardHTML(WATCH.key === a.id ? WATCH.gifters : {})}</div>
         <div class="drop" data-wdrop>${dropHTML(a, ev)}</div>` : ''}
         <div class="chat-list" id="wpChat" data-wchat></div>
@@ -4248,8 +4391,9 @@ function leaderboardHTML(g) {
 function chatInputHTML(id, form, gift, accId) {
   return `<form class="tw-input" data-form="${form}" ${accId ? `data-id="${accId}"` : ''}>
     ${gift ? `<button type="button" class="tw-in-gift" data-act="w-giftsub" data-id="${accId}" aria-label="Oferecer subscrição">${icon('gift')}</button>` : ''}
-    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar chat" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
-    <button class="btn btn-primary btn-sm">Chat</button>
+    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
+    <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
+    <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
     <div class="emote-pop" data-emotes-for="${id}" hidden>${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
   </form>`;
 }
@@ -4270,7 +4414,7 @@ function startWatch(a) {
   const ev = channelLive(a);
   if (WATCH.key !== a.id) {
     clearInterval(WATCH.timer);
-    Object.assign(WATCH, { key: a.id, acc: a, chat: [], gifters: {}, started: Date.now(), botAt: Date.now(), dropDone: false });
+    Object.assign(WATCH, { key: a.id, acc: a, chat: [], gifters: {}, started: Date.now(), botAt: Date.now(), dropDone: false, chest: false, ptsAt: Date.now(), chestAt: Date.now() });
     if (ev) {
       const seed = Math.max(3, Math.round((ev.viewers || 100) / 80));
       [fakeUser(), fakeUser(), fakeUser()].forEach((u, i) => WATCH.gifters[u] = Math.round(seed * [4, 2, 1.3][i]));
@@ -4297,8 +4441,10 @@ function watchTick(a) {
   const ev = channelLive(a); if (!ev) { clearInterval(WATCH.timer); render(); return; }
   ev.viewers = Math.max(10, Math.round((ev.viewers || 100) * rand(.996, 1.007)));
   $$('[data-anim="wviewers"]').forEach(el => tweenNum(el, ev.viewers));
-  $$('[data-wv]').forEach(el => el.textContent = fmt(ev.viewers));
-  const up = $('[data-wup]'); if (up) up.textContent = upTime(Date.now() - ev.start);
+  $$('[data-wv]').forEach(el => { if (el.tagName !== 'B') el.textContent = fmt(ev.viewers); });
+  $$('[data-wup]').forEach(up => up.textContent = upTime(Date.now() - ev.start));
+  $$('[data-wv]').forEach(el => { if (el.tagName === 'B') el.textContent = dots(ev.viewers); });
+  pointsTick(a);
   const ctx = { gameName: (GAMES[ev.game] || GAMES.chat).name, viewers: ev.viewers, goal: 100000 };
   const rate = ev.viewers > 5000 ? 1.6 : ev.viewers > 500 ? 1 : .5;
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
@@ -4369,6 +4515,151 @@ document.addEventListener('scroll', e => {
   const t = e.target; if (!t || !t.classList || !t.classList.contains('chat-list')) return;
   if (t.scrollHeight - t.scrollTop - t.clientHeight < 40) { const pill = t.parentElement.querySelector('.more-pill'); if (pill) pill.hidden = true; }
 }, true);
+
+/* =====================================================================
+   Layout de plataforma de streaming no computador: barra de topo,
+   barra lateral só com canais, destaque na página inicial, categorias,
+   página Procurar e pontos do canal. Marca e logótipo são do LiveVerse.
+   ===================================================================== */
+Object.assign(IC, {
+  dots3: '<circle cx="12" cy="5" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="19" r="1.7" fill="currentColor"/>',
+  inbox: '<path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5 5h14l2 8v6H3v-6z"/>',
+  collapse: '<path d="M4 4v16M9 12h11M13 8l-4 4 4 4"/>',
+  expandSide: '<path d="M20 4v16M4 12h11M11 8l4 4-4 4"/>',
+  chest: '<rect x="3" y="9" width="18" height="11" rx="2"/><path d="M3 13h18M5 9a7 7 0 0 1 14 0M11 13v3h2v-3"/>',
+  pointsIc: '<circle cx="12" cy="12" r="8"/><path d="M12 7v10M8.5 10.5 12 7l3.5 3.5"/>',
+});
+
+/* ---------- Barra de topo ---------- */
+UI.navMenu = null;
+function topNavHTML() {
+  const cur = navCurrent();
+  const more = [['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clipes'], ['estudio', 'studio', 'Painel do criador'], ['mensagens', 'chat', 'Mensagens'], ['perfil', 'user', 'O meu canal']];
+  return `<div class="tn-left">
+      <a class="tn-logo" href="#feed" aria-label="LiveVerse — página inicial"><span class="logo-mark">${LOGO_SVG_FN()}</span></a>
+      <a class="tn-link ${cur === 'feed' && UI.homeTab === 'following' ? 'on' : ''}" href="#feed" data-act="go-following">Seguidos</a>
+      <a class="tn-link ${cur === 'explorar' ? 'on' : ''}" href="#explorar">Procurar</a>
+      <div class="tn-drop-wrap"><button class="tn-ic" data-act="nav-menu" data-m="more" aria-label="Mais" aria-expanded="${UI.navMenu === 'more'}">${icon('dots3')}</button>
+        ${UI.navMenu === 'more' ? `<div class="tn-drop">${more.map(([h, ic, l]) => `<a href="#${h}">${icon(ic)} ${l}</a>`).join('')}<button data-act="home-posts">${icon('edit')} Publicações</button></div>` : ''}</div>
+    </div>
+    <form class="tn-search" data-form="topsearch" role="search"><input class="input" id="topSearch" name="q" placeholder="Procurar" autocomplete="off" value="${esc(UI.explore?.q || '')}"><button aria-label="Procurar">${icon('search')}</button></form>
+    <div class="tn-right">
+      <span class="tn-clock num" data-clock="hm">${hhmm(Date.now())}</span>
+      <a class="tn-ic" href="#notificacoes" aria-label="Atividade" title="Atividade">${icon('bell')}${badge(notifUnread())}</a>
+      <a class="tn-ic" href="#mensagens" aria-label="Mensagens" title="Mensagens">${icon('inbox')}${badge(dmUnread())}</a>
+      <a class="tn-golive ${S.live ? 'is-live' : ''}" href="#estudio">${icon('studio')} ${S.live ? 'Em direto' : 'Transmitir'}</a>
+      <div class="tn-drop-wrap"><button class="tn-avatar" data-act="nav-menu" data-m="user" aria-label="Menu do utilizador" aria-expanded="${UI.navMenu === 'user'}">${avatar(S.me, 30).replace('<a ', '<span ').replace('</a>', '</span>')}${S.live ? '<i class="tn-live-dot"></i>' : ''}</button>
+        ${UI.navMenu === 'user' ? `<div class="tn-drop tn-drop-r">
+          <div class="tn-me">${avatar(S.me, 40).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>${fmt(S.me.followers)} seguidores · nível ${career().level}</small></div></div>
+          <a href="#perfil">${icon('user')} Canal</a><a href="#estudio">${icon('studio')} Painel do criador</a>
+          <button data-act="new-event">${icon('calendar')} Agendar live</button><button data-act="compose">${icon('edit')} Nova publicação</button>
+          <hr><button data-act="edit-profile">${icon('edit')} Editar perfil</button><button data-act="mod-open">${icon('shield')} Moderação</button><button data-act="accounts-edit">${icon('users')} Gerir contas</button>
+        </div>` : ''}</div>
+    </div>`;
+}
+
+/* ---------- Barra lateral: só canais ---------- */
+function sideTwitchHTML() {
+  const mini = !!S.prefs.sideMini;
+  const row = (a, ev) => {
+    const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
+    const href = a.id === 'me' ? '#estudio' : chanHash(a.id);
+    return `<a class="chan ${ev ? '' : 'is-off'}" href="${href}" title="${esc(a.name)}${ev ? ' · ' + esc(ev.title) : ' · Offline'}">${av}<span><strong>${esc(a.name)}</strong><small>${ev ? esc(GAMES[ev.game]?.name || '') : ''}</small></span>${ev ? `<span class="chan-v"><i></i><span ${a.id === 'me' ? 'data-live="viewers"' : `data-chv="${ev.id}"`}>${fmt(a.id === 'me' ? S.live.viewers : ev.viewers || 0)}</span></span>` : '<span class="chan-off">Offline</span>'}</a>`;
+  };
+  const followed = S.accounts.filter(a => a.followed).map(a => [a, channelLive(a)]).sort((x, y) => (!!y[1] - !!x[1]) || ((y[1]?.viewers || 0) - (x[1]?.viewers || 0)));
+  const rec = S.accounts.filter(a => !a.followed).map(a => [a, channelLive(a)]).filter(x => x[1]).sort((x, y) => (y[1].viewers || 0) - (x[1].viewers || 0)).slice(0, 6);
+  return `<div class="sd-head"><span class="sd-title">Para ti</span><button class="tn-ic sd-toggle" data-act="side-mini" aria-label="${mini ? 'Expandir' : 'Recolher'} barra lateral" title="${mini ? 'Expandir' : 'Recolher'}">${icon(mini ? 'expandSide' : 'collapse')}</button></div>
+    ${S.live ? `<span class="sd-label">O teu canal</span>${row(S.me, S.live)}` : ''}
+    <span class="sd-label">Canais seguidos</span>
+    ${followed.length ? followed.map(([a, ev]) => row(a, ev)).join('') : '<p class="sd-empty">Segue canais para os veres aqui.</p>'}
+    <span class="sd-label">Canais em direto recomendados</span>
+    ${rec.map(([a, ev]) => row(a, ev)).join('') || '<p class="sd-empty">Sem recomendações agora.</p>'}`;
+}
+
+/* ---------- Página inicial: destaque e categorias ---------- */
+UI.featIdx = 0;
+function featuredHTML(lives) {
+  if (!lives.length) return '';
+  const list = lives.slice(0, 6); const i = Math.min(UI.featIdx, list.length - 1); const ev = list[i];
+  const mine = ev === S.live; const a = mine ? S.me : acc(ev.owner), G = GAMES[ev.game] || GAMES.chat;
+  const face = a.avatar ? `<img src="${a.avatar}" alt="">` : esc((a.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase());
+  return `<section class="feat" aria-label="Em destaque">
+    <a class="feat-player tw-thumb" href="${mine ? '#estudio' : chanHash(a.id)}" style="--gc:${G.color}">
+      <span class="tw-thumb-bg"></span><span class="tw-thumb-glyph">${esc(glyphText(G))}</span>
+      <span class="tw-thumb-cam" style="--h:${a.hue || 270}">${face}</span>
+      <span class="tw-live">Em direto</span>
+      ${folCounterHTML(Math.round(mine ? S.live.viewers : ev.viewers || 0), Math.floor(mine ? S.me.followers : a.followers), null, null)}
+    </a>
+    <div class="feat-info">
+      <div class="wp-chan">${avatar(a, 50, 'ring-live')}<div><a class="wp-name" href="${mine ? '#perfil' : chanHash(a.id)}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a><a class="wp-game" href="#explorar" data-act="cat-open" data-k="${ev.game}">${esc(G.name)}</a><span class="feat-vw">${espet(mine ? S.live.viewers : ev.viewers || 0)}</span></div></div>
+      ${tagChips(streamTags(ev.game).slice(0, 3))}
+      <p class="feat-title">${esc(ev.title)}</p>
+      <p class="tiny muted">${esc((a.bio || '').slice(0, 140))}</p>
+    </div>
+    <div class="feat-strip">${list.map((e, k) => { const g = GAMES[e.game] || GAMES.chat; return `<button class="feat-mini ${k === i ? 'on' : ''}" data-act="feat-sel" data-i="${k}" style="--gc:${g.color}" aria-label="Destaque ${k + 1}"><span class="tw-thumb-bg"></span><span>${esc(g.glyph)}</span></button>`; }).join('')}</div>
+  </section>`;
+}
+function categoryStats() {
+  const map = {};
+  liveChannels().forEach(e => { map[e.game] = (map[e.game] || 0) + (e.viewers || 0); });
+  if (S.live) map[S.live.game] = (map[S.live.game] || 0) + S.live.viewers;
+  return Object.keys(GAMES).filter(k => k !== 'amnesia').map(k => ({ k, viewers: map[k] || 0 })).sort((a, b) => b.viewers - a.viewers);
+}
+function catCardHTML({ k, viewers }) {
+  const G = GAMES[k];
+  return `<button class="cat-card" data-act="cat-open" data-k="${k}">
+    <span class="cat-art" style="--gc:${G.color}"><span class="tw-thumb-bg"></span><b>${esc(glyphText(G))}</b><em>${esc(G.name)}</em></span>
+    <strong>${esc(G.name)}</strong><small>${espet(viewers)}</small>${tagChips([({ br: 'Shooter', sandbox: 'Aventura', fps: 'FPS', sports: 'Desporto', open: 'Ação', horror: 'Terror', moba: 'MOBA', chat: 'IRL' })[G.genre] || 'Jogo'])}
+  </button>`;
+}
+
+/* ---------- Procurar ---------- */
+UI.browseTab = 'cats'; UI.browseCat = null;
+function viewExplore() {
+  const q = (UI.explore.q || '').trim();
+  if (UI.browseCat && !q) {
+    const k = UI.browseCat, G = GAMES[k] || GAMES.chat;
+    const lives = liveChannels().filter(e => e.game === k);
+    const total = lives.reduce((s, e) => s + (e.viewers || 0), 0) + (S.live && S.live.game === k ? S.live.viewers : 0);
+    return `<div class="cat-head"><span class="cat-art big" style="--gc:${G.color}"><span class="tw-thumb-bg"></span><b>${esc(glyphText(G))}</b></span>
+      <div><button class="btn btn-sm btn-ghost" data-act="cat-back">${icon('chevL')} Procurar</button><h1>${esc(G.name)}</h1><p class="muted">${espet(total)} · ${lives.length + (S.live && S.live.game === k ? 1 : 0)} canais em direto</p>${tagChips(streamTags(k))}</div></div>
+      <div class="tw-tabs"><button class="on">Canais em direto</button></div>
+      <div class="tw-grid">${S.live && S.live.game === k ? liveCardHTML(S.live, true) : ''}${lives.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Volta mais tarde ou entra tu em direto.</div>'}</div>`;
+  }
+  return `<div class="page-head"><div><h1>Procurar</h1></div><span class="spacer"></span><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button></div>
+    <div class="tw-tabs">${[['cats', 'Categorias'], ['live', 'Canais em direto']].map(([k2, l]) => `<button class="${UI.browseTab === k2 && !q ? 'on' : ''}" data-act="browse-tab" data-k="${k2}">${l}</button>`).join('')}</div>
+    <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Procurar canais, categorias, #hashtags, clipes…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Procurar"></div>
+    <div id="exploreResults">${q ? exploreResults() : UI.browseTab === 'cats' ? `<div class="cat-grid2">${categoryStats().map(catCardHTML).join('')}</div>` : `<div class="tw-grid">${S.live ? liveCardHTML(S.live, true) : ''}${liveChannels().map(e => liveCardHTML(e)).join('')}</div>`}</div>`;
+}
+
+/* ---------- Pontos do canal ---------- */
+function pointsHTML(accId) {
+  const p = (S.points && S.points[accId]) || 0;
+  return `<span class="pts" data-pts="${accId}" title="Pontos do canal (fictícios)">${icon('pointsIc')}<b class="num">${dots(p)}</b>${WATCH.chest && WATCH.key === accId ? `<button type="button" class="pts-chest" data-act="w-chest" data-id="${accId}" aria-label="Recolher bónus">${icon('chest')}</button>` : ''}</span>`;
+}
+function paintPoints(accId) { $$(`[data-pts="${accId}"]`).forEach(el => el.outerHTML = pointsHTML(accId)); }
+function pointsTick(a) {
+  const now = Date.now();
+  WATCH.ptsAt = WATCH.ptsAt || now; WATCH.chestAt = WATCH.chestAt || now;
+  if (now - WATCH.ptsAt > 60000) { WATCH.ptsAt = now; S.points = S.points || {}; S.points[a.id] = (S.points[a.id] || 0) + 10; paintPoints(a.id); save(); }
+  if (!WATCH.chest && now - WATCH.chestAt > 120000) { WATCH.chest = true; paintPoints(a.id); }
+}
+
+const TW2_ACT = {
+  'nav-menu': b => { const m = b.dataset.m; UI.navMenu = UI.navMenu === m ? null : m; renderNav(); },
+  'go-following': () => { UI.homeTab = 'following'; if (route().name === 'feed') render(); },
+  'home-posts': () => { UI.homeTab = 'posts'; UI.navMenu = null; if (route().name !== 'feed') location.hash = '#feed'; else render(); },
+  'side-mini': () => { S.prefs.sideMini = !S.prefs.sideMini; save(); document.querySelector('.app').classList.toggle('side-mini', S.prefs.sideMini); renderNav(); },
+  'feat-sel': b => { UI.featIdx = +b.dataset.i; const f = $('.feat'); if (f) f.outerHTML = featuredHTML(liveHomeList()); },
+  'cat-open': b => { UI.browseCat = b.dataset.k; UI.explore.q = ''; if (route().name !== 'explorar') location.hash = '#explorar'; else render(); window.scrollTo({ top: 0 }); },
+  'cat-back': () => { UI.browseCat = null; render(); },
+  'browse-tab': b => { UI.browseTab = b.dataset.k; UI.browseCat = null; UI.explore.q = ''; render(); },
+  'w-chest': b => { const id = b.dataset.id; S.points = S.points || {}; S.points[id] = (S.points[id] || 0) + 50; WATCH.chest = false; WATCH.chestAt = Date.now(); paintPoints(id); save(); toast('🎁', '+50 pontos do canal (fictícios)'); },
+};
+const TW2_FORMS = {
+  topsearch: f => { UI.explore.q = f.q.value.trim(); UI.browseCat = null; if (route().name !== 'explorar') location.hash = '#explorar'; else render(); },
+};
+function liveHomeList() { const l = liveChannels(); return S.live ? [S.live, ...l] : l; }
 
 /* =====================================================================
    Câmara, ecrã do jogo, gravação e formato da live (horizontal/vertical).
@@ -4999,6 +5290,7 @@ function bind() {
     const b = e.target.closest('[data-act]');
     if (UI.menu && !e.target.closest('.menu-wrap')) { const id = UI.menu; UI.menu = null; rerenderPost(id); }
     if (UI.createOpen && !e.target.closest('.create-wrap')) { UI.createOpen = false; renderNav(); }
+    if (UI.navMenu && (!e.target.closest('.tn-drop-wrap') || e.target.closest('.tn-drop a, .tn-drop button'))) { UI.navMenu = null; setTimeout(renderNav, 0); }
     if (!e.target.closest('.tw-input')) $$('.emote-pop').forEach(p => { p.hidden = true; });
     if (!b) { if (e.target === $('#modal')) closeModal(); return; }
     const fn = ACT[b.dataset.act]; if (!fn) return;
@@ -5072,7 +5364,7 @@ function migrate(s) {
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
   s.prefs = { ...defaultImmersive(), ...s.prefs };
   s.regulars = s.regulars || seedRegulars();
-  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {};
+  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {}; s.points = s.points || {};
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (!s.prefs.orient) s.prefs.orient = 'h';
@@ -5094,8 +5386,8 @@ function init() {
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT);
-Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
+Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS);
 init();
 
 </script>

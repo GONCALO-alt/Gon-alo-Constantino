@@ -460,6 +460,7 @@ function bind() {
     const b = e.target.closest('[data-act]');
     if (UI.menu && !e.target.closest('.menu-wrap')) { const id = UI.menu; UI.menu = null; rerenderPost(id); }
     if (UI.createOpen && !e.target.closest('.create-wrap')) { UI.createOpen = false; renderNav(); }
+    if (UI.navMenu && (!e.target.closest('.tn-drop-wrap') || e.target.closest('.tn-drop a, .tn-drop button'))) { UI.navMenu = null; setTimeout(renderNav, 0); }
     if (!e.target.closest('.tw-input')) $$('.emote-pop').forEach(p => { p.hidden = true; });
     if (!b) { if (e.target === $('#modal')) closeModal(); return; }
     const fn = ACT[b.dataset.act]; if (!fn) return;
@@ -533,7 +534,7 @@ function migrate(s) {
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
   s.prefs = { ...defaultImmersive(), ...s.prefs };
   s.regulars = s.regulars || seedRegulars();
-  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {};
+  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {}; s.points = s.points || {};
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (!s.prefs.orient) s.prefs.orient = 'h';
@@ -555,6 +556,6 @@ function init() {
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT);
-Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
+Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS);
 init();

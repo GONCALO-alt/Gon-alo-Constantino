@@ -90,8 +90,10 @@ function viewFeed() {
     const lives = liveChannels();
     const cats = [...new Set(lives.map(e => e.game))];
     const list = lives.filter(e => UI.homeCat === 'all' || e.game === UI.homeCat);
-    body = `<div class="chip-row tw-cats">${[['all', 'Tudo'], ...cats.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
-      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>`;
+    body = `${UI.homeCat === 'all' ? featuredHTML(liveHomeList()) : ''}<div class="chip-row tw-cats">${[['all', 'Tudo'], ...cats.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
+      <h2 class="tw-h tw-h-desk">Canais em direto de que achamos que vais gostar</h2>
+      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>
+      ${UI.homeCat === 'all' ? `<h2 class="tw-h">Categorias de que achamos que vais gostar</h2><div class="cat-grid2 cat-row">${categoryStats().slice(0, 7).map(catCardHTML).join('')}</div>` : ''}`;
   } else if (t === 'following') {
     const fol = S.accounts.filter(a => a.followed);
     const live = fol.map(channelLive).filter(Boolean);
@@ -142,24 +144,28 @@ function viewWatch(id) {
         <div class="fx" id="wfx"></div>
       </div>
       <section class="wp-info">
-        <div class="wp-chan">${avatar(a, 52, ev ? 'ring-live' : '')}<div>
-          <a class="wp-name" href="#conta-${a.id}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a>
-          <p class="wp-title">${esc(ev ? ev.title : (a.bio || ''))}</p>
-          <a class="wp-game" href="#explorar" data-act="explore-game" data-k="${ev ? ev.game : (a.games || ['chat'])[0]}">${esc(G.name)}</a>
-        </div></div>
-        ${ev ? tagChips(streamTags(ev.game, ['Gaming', 'DropsAtivos'])) : ''}
-        <div class="wp-actions">
-          <button class="wp-round ${a.followed ? 'on' : ''}" data-act="follow" data-id="${a.id}" aria-label="${a.followed ? 'Deixar de seguir' : 'Seguir'}" title="${a.followed ? 'A seguir' : 'Seguir'}">${icon(a.followed ? 'heartFill' : 'heart')}</button>
-          <button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="Notificações do canal">${icon('bellPlus')}</button>
-          <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">Oferecer subscrição</button>
-          <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${sub ? icon('star') + ' Subscrito' : 'Subscrever'}</button>
+        <div class="wp-head">
+          <div class="wp-chan"><span class="wp-av">${avatar(a, 64, ev ? 'ring-live' : '')}${ev ? '<span class="wp-livebadge">EM DIRETO</span>' : ''}</span><div class="wp-meta">
+            <a class="wp-name" href="#conta-${a.id}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a>
+            <p class="wp-title">${esc(ev ? ev.title : 'Offline')}</p>
+            <div class="wp-gamerow"><a class="wp-game" href="#explorar" data-act="cat-open" data-k="${ev ? ev.game : (a.games || ['chat'])[0]}">${esc(G.name)}</a>${ev ? tagChips(streamTags(ev.game, ['Gaming', 'DropsAtivos'])) : ''}</div>
+          </div></div>
+          <div class="wp-right">
+            <div class="wp-actions">
+              ${a.followed ? `<button class="wp-round on" data-act="follow" data-id="${a.id}" aria-label="Deixar de seguir" title="Deixar de seguir">${icon('heartFill')}</button>` : `<button class="btn btn-primary wp-follow" data-act="follow" data-id="${a.id}">${icon('heart')} Seguir</button>`}
+              <button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="Notificações do canal">${icon('bellPlus')}</button>
+              <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">${icon('gift')} Oferecer subscrição</button>
+              <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${icon('star')} ${sub ? 'Subscrito' : 'Subscrever'}</button>
+            </div>
+            ${ev ? `<div class="wp-stats"><span class="wp-vw">${icon('person')}<b class="num" data-wv>${dots(Math.round(ev.viewers || 0))}</b></span><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></div>` : ''}
+          </div>
         </div>
-        <p class="tiny muted" style="margin:0">Subscrições, presentes e espetadores são fictícios: nada é pago.</p>
+        <div class="wp-about"><h3>Sobre ${esc(a.name)}</h3><p><b>${fmt(a.followers)}</b> seguidores ${SIM()}</p><p>${richText(a.bio || '')}</p><p class="tiny muted" style="margin:0">Subscrições, presentes e espetadores são fictícios: nada é pago.</p></div>
       </section>
     </div>
     <aside class="wp-side">
       <section class="card chat wp-chatbox">
-        <div class="chat-head"><strong>Chat ${ev ? '' : 'offline'}</strong>${SIM()}<span class="spacer"></span><span class="small muted">👀 <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
+        <div class="chat-head"><span class="tw-chead-t">${ev ? 'Chat da transmissão' : 'Chat offline'}</span>${SIM()}<span class="spacer"></span><span class="small muted chat-vw">${icon('person')} <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
         ${ev ? `<div class="lb" data-wlb>${leaderboardHTML(WATCH.key === a.id ? WATCH.gifters : {})}</div>
         <div class="drop" data-wdrop>${dropHTML(a, ev)}</div>` : ''}
         <div class="chat-list" id="wpChat" data-wchat></div>
@@ -182,8 +188,9 @@ function leaderboardHTML(g) {
 function chatInputHTML(id, form, gift, accId) {
   return `<form class="tw-input" data-form="${form}" ${accId ? `data-id="${accId}"` : ''}>
     ${gift ? `<button type="button" class="tw-in-gift" data-act="w-giftsub" data-id="${accId}" aria-label="Oferecer subscrição">${icon('gift')}</button>` : ''}
-    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar chat" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
-    <button class="btn btn-primary btn-sm">Chat</button>
+    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
+    <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
+    <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
     <div class="emote-pop" data-emotes-for="${id}" hidden>${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
   </form>`;
 }
@@ -204,7 +211,7 @@ function startWatch(a) {
   const ev = channelLive(a);
   if (WATCH.key !== a.id) {
     clearInterval(WATCH.timer);
-    Object.assign(WATCH, { key: a.id, acc: a, chat: [], gifters: {}, started: Date.now(), botAt: Date.now(), dropDone: false });
+    Object.assign(WATCH, { key: a.id, acc: a, chat: [], gifters: {}, started: Date.now(), botAt: Date.now(), dropDone: false, chest: false, ptsAt: Date.now(), chestAt: Date.now() });
     if (ev) {
       const seed = Math.max(3, Math.round((ev.viewers || 100) / 80));
       [fakeUser(), fakeUser(), fakeUser()].forEach((u, i) => WATCH.gifters[u] = Math.round(seed * [4, 2, 1.3][i]));
@@ -231,8 +238,10 @@ function watchTick(a) {
   const ev = channelLive(a); if (!ev) { clearInterval(WATCH.timer); render(); return; }
   ev.viewers = Math.max(10, Math.round((ev.viewers || 100) * rand(.996, 1.007)));
   $$('[data-anim="wviewers"]').forEach(el => tweenNum(el, ev.viewers));
-  $$('[data-wv]').forEach(el => el.textContent = fmt(ev.viewers));
-  const up = $('[data-wup]'); if (up) up.textContent = upTime(Date.now() - ev.start);
+  $$('[data-wv]').forEach(el => { if (el.tagName !== 'B') el.textContent = fmt(ev.viewers); });
+  $$('[data-wup]').forEach(up => up.textContent = upTime(Date.now() - ev.start));
+  $$('[data-wv]').forEach(el => { if (el.tagName === 'B') el.textContent = dots(ev.viewers); });
+  pointsTick(a);
   const ctx = { gameName: (GAMES[ev.game] || GAMES.chat).name, viewers: ev.viewers, goal: 100000 };
   const rate = ev.viewers > 5000 ? 1.6 : ev.viewers > 500 ? 1 : .5;
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);

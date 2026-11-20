@@ -403,7 +403,7 @@ function viewStudio() {
       </div>
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
-      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num chat-vw">${icon('person')} <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
+      <section class="card chat"><div class="chat-head"><span class="tw-chead-t">Chat da transmissão</span>${SIM('fictício')}<span class="spacer"></span><span class="small muted num chat-vw">${icon('person')} <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
         <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>

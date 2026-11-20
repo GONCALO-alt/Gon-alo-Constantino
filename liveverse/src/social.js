@@ -54,15 +54,9 @@ function createMenuHTML() {
 }
 function renderNav() {
   const r = route(); const cur = navCurrent();
-  $('#side').innerHTML = `
-    <a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
-    ${clockHTML()}
-    <div class="create-wrap"><button class="btn btn-primary create-btn" data-act="create-toggle" aria-expanded="${!!UI.createOpen}">${icon('plus')} Criar</button>${UI.createOpen ? createMenuHTML() : ''}</div>
-    <nav class="nav-groups" aria-label="Menu principal">${NAV_GROUPS.map(([g, items]) => `<div class="nav-group"><span class="nav-label">${g}</span>${items.map(i => navLink(i, cur)).join('')}</div>`).join('')}</nav>
-    ${sideChannelsHTML()}
-    ${S.live ? `<a class="live-pill" href="#estudio"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">a ver</span></a>` : ''}
-    <div class="side-me"><a href="#perfil" class="side-me-link">${avatar(S.me, 38).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)}</small></div></a>
-      <button class="icon-btn" data-act="edit-profile" title="Editar perfil" aria-label="Editar perfil">${icon('edit')}</button><button class="icon-btn" data-act="mod-open" title="Moderação" aria-label="Moderação">${icon('shield')}</button></div>`;
+  $('#side').innerHTML = sideTwitchHTML();
+  $('#topNav').innerHTML = topNavHTML();
+  document.querySelector('.app').classList.toggle('side-mini', !!S.prefs.sideMini);
   $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
@@ -118,7 +112,7 @@ function openCreateSheet() {
 
 /* ---------- Explorar ---------- */
 UI.explore = { q: '', game: 'all' };
-function viewExplore() {
+function viewExploreOld() {
   const games = Object.entries(GAMES).filter(([k]) => k !== 'amnesia');
   return `<div class="page-head"><div><h1>Explorar</h1><p>Descobre criadores, eventos, clips e tendências da rede fictícia.</p></div><span class="spacer"></span><button class="btn" data-act="accounts-edit">${icon('users')} Gerir contas</button></div>
   <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Pesquisar contas, #hashtags, eventos, clips…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Pesquisar"></div>

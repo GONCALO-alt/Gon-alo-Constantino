@@ -288,7 +288,7 @@ function viewProfile(id) {
   const car = me ? career() : career(Math.round(a.followers / 30));
   const myEvents = S.events.filter(e => e.owner === id);
   const next = myEvents.filter(e => ['scheduled', 'soon', 'live'].includes(eventStatus(e))).sort((x, y) => x.start - y.start)[0];
-  const tabs = [['posts', 'Publicações'], ['about', 'Sobre'], ['lives', 'Lives'], ['events', 'Eventos'], ['clips', 'Clips'], ['ach', 'Conquistas']];
+  const tabs = [['posts', 'Início'], ['about', 'Sobre'], ['events', 'Agenda'], ['lives', 'Vídeos'], ['clips', 'Clipes'], ['ach', 'Conquistas']];
   const followers = me ? S.me.followers : a.followers;
   const following = me ? followingCount() : 120 + (a.hue % 300);
   const lives = me ? totalLives() : 40 + Math.round(a.followers / 2000);
