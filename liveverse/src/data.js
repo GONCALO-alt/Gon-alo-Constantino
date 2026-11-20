@@ -39,12 +39,12 @@ const LEVELS = {
 const CATEGORIES = ['Gaming', 'Battle Royale', 'FPS competitivo', 'Terror', 'Desporto', 'Variedades', 'Speedrun', 'Conversa & Comunidade'];
 
 const COVERS = [
-  'radial-gradient(circle at 20% 30%, #ff4fa8 0, transparent 45%), radial-gradient(circle at 80% 20%, #4d8dff 0, transparent 45%), linear-gradient(135deg, #2a0f5c, #0b0820)',
-  'radial-gradient(circle at 75% 35%, #9b6bff 0, transparent 50%), radial-gradient(circle at 15% 80%, #ff3b5c 0, transparent 40%), linear-gradient(160deg, #1a0b3d, #06050f)',
-  'radial-gradient(circle at 50% 120%, #4d8dff 0, transparent 60%), radial-gradient(circle at 10% 10%, #22d3ee 0, transparent 35%), linear-gradient(180deg, #0b1440, #05060f)',
-  'conic-gradient(from 210deg at 70% 40%, #ff4fa8, #9b6bff, #4d8dff, #ff4fa8)',
-  'radial-gradient(circle at 30% 50%, #ffc24b 0, transparent 40%), radial-gradient(circle at 80% 60%, #ff4fa8 0, transparent 45%), linear-gradient(135deg, #3a0d2b, #0c0716)',
-  'radial-gradient(circle at 60% 40%, #3ee0a1 0, transparent 40%), radial-gradient(circle at 20% 80%, #4d8dff 0, transparent 45%), linear-gradient(135deg, #052e2b, #060a12)',
+  'radial-gradient(circle at 25% 30%, #9147ff 0, transparent 50%), radial-gradient(circle at 85% 20%, #5c16c5 0, transparent 45%), linear-gradient(135deg, #1a0b38, #0e0e10)',
+  'radial-gradient(circle at 75% 35%, #a970ff 0, transparent 48%), radial-gradient(circle at 15% 85%, #eb0400 0, transparent 35%), linear-gradient(160deg, #1f0d3d, #0e0e10)',
+  'radial-gradient(circle at 50% 120%, #772ce8 0, transparent 62%), radial-gradient(circle at 10% 10%, #bf94ff 0, transparent 30%), linear-gradient(180deg, #160a2e, #0b0b0d)',
+  'conic-gradient(from 210deg at 70% 40%, #772ce8, #2a0f5c, #9147ff, #18181b, #772ce8)',
+  'radial-gradient(circle at 30% 50%, #bf94ff 0, transparent 38%), radial-gradient(circle at 80% 60%, #6420d4 0, transparent 45%), linear-gradient(135deg, #24104a, #0e0e10)',
+  'radial-gradient(circle at 60% 40%, #9147ff 0, transparent 40%), radial-gradient(circle at 20% 80%, #3a1580 0, transparent 50%), linear-gradient(135deg, #0e0e10, #1d0f3a)',
 ];
 
 const GIFTS = [

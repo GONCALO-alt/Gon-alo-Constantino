@@ -1,33 +1,35 @@
-/* Layout: three-column creator network (nav · feed · rail), collapsing to one column + bottom nav on phones. Dark-only by design. */
+/* Layout: streaming-platform shell — near-black canvas, a dark side rail with channels, one purple accent. Dark-only by design. */
 :root {
   color-scheme: dark;
-  --bg: #08070f;
-  --bg-2: #0e0c1a;
-  --surface: #14111f;
-  --surface-2: #1b1730;
-  --surface-3: #241f3d;
-  --line: #2b2547;
-  --line-2: #3a3260;
-  --fg: #efecff;
-  --fg-2: #c9c3ea;
-  --muted: #8f88b5;
-  --purple: #9b6bff;
-  --blue: #4d8dff;
-  --pink: #ff4fa8;
+  --bg: #0e0e10;
+  --bg-2: #0b0b0d;
+  --surface: #18181b;
+  --surface-2: #1f1f23;
+  --surface-3: #2a2a2f;
+  --line: #2a2a2e;
+  --line-2: #3a3a40;
+  --fg: #efeff1;
+  --fg-2: #dedee3;
+  --muted: #adadb8;
+  --purple: #9147ff;
+  --purple-2: #772ce8;
+  --purple-soft: #bf94ff;
+  --blue: #bf94ff;
+  --pink: #a970ff;
   --accent: var(--purple);
-  --accent-2: var(--pink);
-  --live: #ff3b5c;
-  --good: #3ee0a1;
-  --warn: #ffc24b;
-  --grad: linear-gradient(120deg, var(--purple), var(--blue) 55%, var(--pink));
-  --f-display: "Chakra Petch", "Rajdhani", system-ui, sans-serif;
-  --f-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --accent-2: var(--purple-soft);
+  --live: #eb0400;
+  --good: #00c8af;
+  --warn: #f5b400;
+  --grad: linear-gradient(120deg, #772ce8, #9147ff 60%, #a970ff);
+  --f-display: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --r: 14px;
-  --r-lg: 22px;
+  --r: 8px;
+  --r-lg: 10px;
 }
-:root[data-accent="blue"] { --accent: var(--blue); --accent-2: var(--purple); }
-:root[data-accent="pink"] { --accent: var(--pink); --accent-2: var(--blue); }
+:root[data-accent="blue"] { --accent: #5c7cff; --accent-2: var(--purple); }
+:root[data-accent="pink"] { --accent: #e64fa0; --accent-2: var(--purple); }
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -907,3 +909,87 @@ body.theater-on { overflow: hidden; }
 body.theater-on .app { z-index: 80; }
 body.theater-on .topbar, body.theater-on .bottom-nav, body.theater-on .simbar { display: none; }
 @media (max-width: 560px) { .alert-box { top: 72px; } .cam { bottom: 58px; } }
+
+/* ===================== Tema escuro e roxo (plataforma de streaming) ===================== */
+.bg-glow { display: none; }
+body { font-size: 14px; letter-spacing: .005em; }
+h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
+.page-head h1 { font-size: 26px; }
+.logo b { font-family: "Chakra Petch", var(--f-display); font-weight: 700; letter-spacing: .02em; }
+.logo b span { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--purple-soft); }
+.logo-mark { background: none; box-shadow: none; border-radius: 9px; overflow: hidden; }
+.logo-mark svg { width: 100%; height: 100%; }
+/* Barra lateral */
+@media (min-width: 821px) {
+  .app { padding-left: 0; gap: 20px; }
+  .side { background: var(--surface); border-right: 1px solid var(--line); padding-inline: 10px; }
+}
+.nav-link { border-radius: 6px; font-weight: 600; }
+.nav-link.on { background: var(--surface-3); }
+.nav-link.on svg { color: var(--purple-soft); }
+.nav-link:hover { background: var(--surface-2); }
+.clock { background: var(--bg); border-radius: 8px; }
+/* Botões e chips */
+.btn { border-radius: 6px; font-weight: 700; background: var(--surface-3); border-color: transparent; }
+.btn:hover { background: #35353b; border-color: transparent; }
+.btn-primary { background: var(--purple); box-shadow: none; }
+.btn-primary:hover { background: var(--purple-2); box-shadow: none; }
+.btn-live { background: var(--live); box-shadow: none; }
+.btn-live:hover { background: #c40300; }
+.btn-ghost { background: transparent; }
+.btn-danger { background: transparent; border-color: color-mix(in oklab, var(--live) 50%, transparent); }
+.chip { background: var(--surface-3); border-color: transparent; }
+.chip.on { background: color-mix(in oklab, var(--purple) 30%, var(--surface-2)); border-color: var(--purple); }
+.badge-count { background: var(--live); }
+.input, select.input, textarea.input { background: var(--surface-2); border-color: var(--line-2); border-radius: 6px; }
+.input:focus { background: var(--bg); border-color: var(--purple); box-shadow: 0 0 0 2px color-mix(in oklab, var(--purple) 40%, transparent); }
+.search-bar .input, .dm-form input { border-radius: 6px; }
+/* Cartões mais planos */
+.card { border-color: var(--line); box-shadow: none; }
+.post { border-radius: var(--r-lg); }
+.post:hover { border-color: var(--line-2); background: #1c1c20; }
+.ev-card, .clip, .creator, .cat, .ach, .notif, .stat, .ls, .past-live, .trend-card { border-radius: var(--r-lg); }
+.pill-live { background: var(--live); border-radius: 4px; letter-spacing: .06em; }
+.pill-soon { border-radius: 4px; }
+.tab.on::after { background: var(--purple); }
+.ev-mode { background: var(--purple); box-shadow: none; }
+.cd b { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--fg); }
+.goal-bar i { background: var(--purple); }
+.lvl { background: var(--surface-2); }
+.lvl-num { background: var(--purple); }
+.prof-top .av { box-shadow: 0 0 0 5px var(--surface), 0 0 0 8px var(--purple); }
+.post-text .ht, .trend-card b { color: var(--purple-soft); }
+.post-text .mn { color: var(--purple-soft); }
+.bubble.me { background: var(--purple); }
+.nav-fab { background: var(--purple); box-shadow: 0 8px 22px -8px var(--purple); border-radius: 14px; }
+.create-btn { border-radius: 6px; }
+.rbtn { border-radius: 8px; background: var(--surface-2); }
+.rbtn:hover { background: color-mix(in oklab, var(--purple) 18%, var(--surface-2)); box-shadow: none; }
+.screen { border-radius: 8px; border-color: #000; background: #000; }
+.chat { border-radius: 8px; }
+.chat-head { background: var(--surface); }
+.chat-list { background: var(--surface); }
+.msg.sys { background: color-mix(in oklab, var(--purple) 18%, transparent); border-color: color-mix(in oklab, var(--purple) 40%, transparent); }
+.surprise, .soon-banner { border-radius: var(--r-lg); }
+.modal-card { border-radius: 10px; background: var(--surface); }
+.toast { border-radius: 8px; background: var(--surface-3); }
+.simbar { background: var(--bg-2); }
+.topbar { background: var(--surface); }
+.bottom-nav { background: var(--surface); }
+.scene-btn.on { background: color-mix(in oklab, var(--purple) 26%, var(--bg-2)); border-color: var(--purple); box-shadow: none; }
+.cam { background: var(--purple); }
+.alert { box-shadow: 0 0 40px -6px var(--ac, var(--purple)); }
+.train { background: linear-gradient(90deg, color-mix(in oklab, var(--purple) 70%, rgb(0 0 0 / .7)), rgb(0 0 0 / .7)); box-shadow: 0 0 24px -4px var(--purple); }
+.live-pill { border-radius: 6px; }
+/* Canais na barra lateral */
+.side-channels { display: flex; flex-direction: column; gap: 1px; margin-top: 4px; }
+.side-channels .nav-label { padding-top: 6px; }
+.chan { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 6px; text-decoration: none; border: 0; background: transparent; width: 100%; text-align: left; }
+.chan:hover { background: var(--surface-2); }
+.chan > span:nth-child(2) { flex: 1; min-width: 0; line-height: 1.25; }
+.chan strong { display: block; font-size: 13.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chan small { display: block; font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chan-v { display: flex; align-items: center; gap: 5px; font-size: 12.5px; color: var(--fg-2); white-space: nowrap; }
+.chan-v i { width: 8px; height: 8px; border-radius: 50%; background: var(--live); }
+.chan-off { font-size: 12.5px; color: var(--muted); }
+.chan .av.off { filter: grayscale(.85); opacity: .7; }

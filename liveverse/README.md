@@ -1,6 +1,6 @@
 # LiveVerse
 
-Rede social de criadores com simulador de lives. Abre `index.html` diretamente no navegador; não precisa de servidor nem de instalação.
+Rede social de criadores com simulador de lives, com um tema escuro e roxo de plataforma de streaming. Ícone em `icon.svg` (e `icon-512.png`, `icon-192.png`, `icon-64.png`). Abre `index.html` diretamente no navegador; não precisa de servidor nem de instalação.
 
 **Tudo o que é audiência é fictício:** seguidores, espectadores, reações, presentes, popularidade, verificações, rankings e métricas são simulados pela própria app e estão identificados como tal.
 

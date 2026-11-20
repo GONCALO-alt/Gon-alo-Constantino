@@ -1,3 +1,6 @@
+const LOGO_SVG_RAW = '<svg viewBox="0 0 512 512" role="img" aria-label="LiveVerse"> <defs> <linearGradient id="lvbgX" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#a970ff"/> <stop offset=".55" stop-color="#9147ff"/> <stop offset="1" stop-color="#5c16c5"/> </linearGradient> </defs> <rect width="512" height="512" rx="116" fill="url(#lvbgX)"/> <g transform="rotate(-22 256 272)" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round"> <path d="M66 272 A190 76 0 0 1 446 272" stroke-opacity=".55"/> </g> <path d="M206 168 L206 376 L378 272 Z" fill="#fff" stroke="#7a2ff0" stroke-width="44" stroke-linejoin="round" paint-order="stroke"/> <path d="M206 168 L206 376 L378 272 Z" fill="#fff" stroke="#fff" stroke-width="22" stroke-linejoin="round"/> <g transform="rotate(-22 256 272)" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round"> <path d="M66 272 A190 76 0 0 0 446 272"/> </g> <circle cx="396" cy="126" r="44" fill="#ff3355" stroke="#fff" stroke-width="16"/> </svg>';
+let logoN = 0;
+const LOGO_SVG_FN = () => LOGO_SVG_RAW.replace(/lvbgX/g, 'lvbg' + (++logoN));
 /* =====================================================================
    Social: relógio em tempo real, menu, explorar, mensagens diretas e
    moderação do chat. Contas e mensagens recebidas são fictícias.
@@ -52,14 +55,15 @@ function createMenuHTML() {
 function renderNav() {
   const r = route(); const cur = navCurrent();
   $('#side').innerHTML = `
-    <a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
+    <a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     ${clockHTML()}
     <div class="create-wrap"><button class="btn btn-primary create-btn" data-act="create-toggle" aria-expanded="${!!UI.createOpen}">${icon('plus')} Criar</button>${UI.createOpen ? createMenuHTML() : ''}</div>
     <nav class="nav-groups" aria-label="Menu principal">${NAV_GROUPS.map(([g, items]) => `<div class="nav-group"><span class="nav-label">${g}</span>${items.map(i => navLink(i, cur)).join('')}</div>`).join('')}</nav>
+    ${sideChannelsHTML()}
     ${S.live ? `<a class="live-pill" href="#estudio"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">a ver</span></a>` : ''}
     <div class="side-me"><a href="#perfil" class="side-me-link">${avatar(S.me, 38).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)}</small></div></a>
       <button class="icon-btn" data-act="edit-profile" title="Editar perfil" aria-label="Editar perfil">${icon('edit')}</button><button class="icon-btn" data-act="mod-open" title="Moderação" aria-label="Moderação">${icon('shield')}</button></div>`;
-  $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
+  $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
     <a class="icon-btn top-ic" href="#explorar" aria-label="Explorar">${icon('search')}</a>
@@ -493,4 +497,16 @@ function saveAccounts() {
   }
   S.accounts = D;
   save(); closeModal(); render(); toast('✅', 'Contas guardadas');
+}
+
+/* Canais seguidos na barra lateral (como numa plataforma de streaming) */
+function sideChannelsHTML() {
+  const liveEv = id => S.events.find(e => e.owner === id && eventStatus(e) === 'live');
+  const list = [...S.accounts].sort((a, b) => (!!liveEv(b) - !!liveEv(a)) || (b.followed - a.followed) || b.followers - a.followers).slice(0, 7);
+  return `<div class="side-channels"><span class="nav-label">Canais recomendados</span>${list.map(a => {
+    const ev = liveEv(a.id);
+    const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
+    return ev ? `<button class="chan" data-act="watch" data-id="${ev.id}" title="${esc(a.name)} · ${esc(ev.title)}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[ev.game]?.name || '')}</small></span><span class="chan-v"><i></i><span data-watchers="${ev.id}">${fmt(ev.viewers || 1000)}</span></span></button>`
+      : `<a class="chan" href="#conta-${a.id}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[(a.games || [])[0]]?.name || a.cat)}</small></span><span class="chan-off">Offline</span></a>`;
+  }).join('')}</div>`;
 }

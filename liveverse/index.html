@@ -1,40 +1,44 @@
 <title>LiveVerse</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%20role%3D%22img%22%20aria-label%3D%22LiveVerse%22%3E%20%3Cdefs%3E%20%3ClinearGradient%20id%3D%22lvbg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23a970ff%22/%3E%20%3Cstop%20offset%3D%22.55%22%20stop-color%3D%22%239147ff%22/%3E%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235c16c5%22/%3E%20%3C/linearGradient%3E%20%3C/defs%3E%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22116%22%20fill%3D%22url%28%23lvbg%29%22/%3E%20%3Cg%20transform%3D%22rotate%28-22%20256%20272%29%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2224%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M66%20272%20A190%2076%200%200%201%20446%20272%22%20stroke-opacity%3D%22.55%22/%3E%20%3C/g%3E%20%3Cpath%20d%3D%22M206%20168%20L206%20376%20L378%20272%20Z%22%20fill%3D%22%23fff%22%20stroke%3D%22%237a2ff0%22%20stroke-width%3D%2244%22%20stroke-linejoin%3D%22round%22%20paint-order%3D%22stroke%22/%3E%20%3Cpath%20d%3D%22M206%20168%20L206%20376%20L378%20272%20Z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2222%22%20stroke-linejoin%3D%22round%22/%3E%20%3Cg%20transform%3D%22rotate%28-22%20256%20272%29%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2224%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M66%20272%20A190%2076%200%200%200%20446%20272%22/%3E%20%3C/g%3E%20%3Ccircle%20cx%3D%22396%22%20cy%3D%22126%22%20r%3D%2244%22%20fill%3D%22%23ff3355%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2216%22/%3E%20%3C/svg%3E">
+<meta name="theme-color" content="#0e0e10">
 <meta name="description" content="LiveVerse: rede social de criadores com simulador de lives. Seguidores, espectadores e métricas são fictícios.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-/* Layout: three-column creator network (nav · feed · rail), collapsing to one column + bottom nav on phones. Dark-only by design. */
+/* Layout: streaming-platform shell — near-black canvas, a dark side rail with channels, one purple accent. Dark-only by design. */
 :root {
   color-scheme: dark;
-  --bg: #08070f;
-  --bg-2: #0e0c1a;
-  --surface: #14111f;
-  --surface-2: #1b1730;
-  --surface-3: #241f3d;
-  --line: #2b2547;
-  --line-2: #3a3260;
-  --fg: #efecff;
-  --fg-2: #c9c3ea;
-  --muted: #8f88b5;
-  --purple: #9b6bff;
-  --blue: #4d8dff;
-  --pink: #ff4fa8;
+  --bg: #0e0e10;
+  --bg-2: #0b0b0d;
+  --surface: #18181b;
+  --surface-2: #1f1f23;
+  --surface-3: #2a2a2f;
+  --line: #2a2a2e;
+  --line-2: #3a3a40;
+  --fg: #efeff1;
+  --fg-2: #dedee3;
+  --muted: #adadb8;
+  --purple: #9147ff;
+  --purple-2: #772ce8;
+  --purple-soft: #bf94ff;
+  --blue: #bf94ff;
+  --pink: #a970ff;
   --accent: var(--purple);
-  --accent-2: var(--pink);
-  --live: #ff3b5c;
-  --good: #3ee0a1;
-  --warn: #ffc24b;
-  --grad: linear-gradient(120deg, var(--purple), var(--blue) 55%, var(--pink));
-  --f-display: "Chakra Petch", "Rajdhani", system-ui, sans-serif;
-  --f-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --accent-2: var(--purple-soft);
+  --live: #eb0400;
+  --good: #00c8af;
+  --warn: #f5b400;
+  --grad: linear-gradient(120deg, #772ce8, #9147ff 60%, #a970ff);
+  --f-display: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --r: 14px;
-  --r-lg: 22px;
+  --r: 8px;
+  --r-lg: 10px;
 }
-:root[data-accent="blue"] { --accent: var(--blue); --accent-2: var(--purple); }
-:root[data-accent="pink"] { --accent: var(--pink); --accent-2: var(--blue); }
+:root[data-accent="blue"] { --accent: #5c7cff; --accent-2: var(--purple); }
+:root[data-accent="pink"] { --accent: #e64fa0; --accent-2: var(--purple); }
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -915,6 +919,90 @@ body.theater-on .app { z-index: 80; }
 body.theater-on .topbar, body.theater-on .bottom-nav, body.theater-on .simbar { display: none; }
 @media (max-width: 560px) { .alert-box { top: 72px; } .cam { bottom: 58px; } }
 
+/* ===================== Tema escuro e roxo (plataforma de streaming) ===================== */
+.bg-glow { display: none; }
+body { font-size: 14px; letter-spacing: .005em; }
+h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
+.page-head h1 { font-size: 26px; }
+.logo b { font-family: "Chakra Petch", var(--f-display); font-weight: 700; letter-spacing: .02em; }
+.logo b span { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--purple-soft); }
+.logo-mark { background: none; box-shadow: none; border-radius: 9px; overflow: hidden; }
+.logo-mark svg { width: 100%; height: 100%; }
+/* Barra lateral */
+@media (min-width: 821px) {
+  .app { padding-left: 0; gap: 20px; }
+  .side { background: var(--surface); border-right: 1px solid var(--line); padding-inline: 10px; }
+}
+.nav-link { border-radius: 6px; font-weight: 600; }
+.nav-link.on { background: var(--surface-3); }
+.nav-link.on svg { color: var(--purple-soft); }
+.nav-link:hover { background: var(--surface-2); }
+.clock { background: var(--bg); border-radius: 8px; }
+/* Botões e chips */
+.btn { border-radius: 6px; font-weight: 700; background: var(--surface-3); border-color: transparent; }
+.btn:hover { background: #35353b; border-color: transparent; }
+.btn-primary { background: var(--purple); box-shadow: none; }
+.btn-primary:hover { background: var(--purple-2); box-shadow: none; }
+.btn-live { background: var(--live); box-shadow: none; }
+.btn-live:hover { background: #c40300; }
+.btn-ghost { background: transparent; }
+.btn-danger { background: transparent; border-color: color-mix(in oklab, var(--live) 50%, transparent); }
+.chip { background: var(--surface-3); border-color: transparent; }
+.chip.on { background: color-mix(in oklab, var(--purple) 30%, var(--surface-2)); border-color: var(--purple); }
+.badge-count { background: var(--live); }
+.input, select.input, textarea.input { background: var(--surface-2); border-color: var(--line-2); border-radius: 6px; }
+.input:focus { background: var(--bg); border-color: var(--purple); box-shadow: 0 0 0 2px color-mix(in oklab, var(--purple) 40%, transparent); }
+.search-bar .input, .dm-form input { border-radius: 6px; }
+/* Cartões mais planos */
+.card { border-color: var(--line); box-shadow: none; }
+.post { border-radius: var(--r-lg); }
+.post:hover { border-color: var(--line-2); background: #1c1c20; }
+.ev-card, .clip, .creator, .cat, .ach, .notif, .stat, .ls, .past-live, .trend-card { border-radius: var(--r-lg); }
+.pill-live { background: var(--live); border-radius: 4px; letter-spacing: .06em; }
+.pill-soon { border-radius: 4px; }
+.tab.on::after { background: var(--purple); }
+.ev-mode { background: var(--purple); box-shadow: none; }
+.cd b { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--fg); }
+.goal-bar i { background: var(--purple); }
+.lvl { background: var(--surface-2); }
+.lvl-num { background: var(--purple); }
+.prof-top .av { box-shadow: 0 0 0 5px var(--surface), 0 0 0 8px var(--purple); }
+.post-text .ht, .trend-card b { color: var(--purple-soft); }
+.post-text .mn { color: var(--purple-soft); }
+.bubble.me { background: var(--purple); }
+.nav-fab { background: var(--purple); box-shadow: 0 8px 22px -8px var(--purple); border-radius: 14px; }
+.create-btn { border-radius: 6px; }
+.rbtn { border-radius: 8px; background: var(--surface-2); }
+.rbtn:hover { background: color-mix(in oklab, var(--purple) 18%, var(--surface-2)); box-shadow: none; }
+.screen { border-radius: 8px; border-color: #000; background: #000; }
+.chat { border-radius: 8px; }
+.chat-head { background: var(--surface); }
+.chat-list { background: var(--surface); }
+.msg.sys { background: color-mix(in oklab, var(--purple) 18%, transparent); border-color: color-mix(in oklab, var(--purple) 40%, transparent); }
+.surprise, .soon-banner { border-radius: var(--r-lg); }
+.modal-card { border-radius: 10px; background: var(--surface); }
+.toast { border-radius: 8px; background: var(--surface-3); }
+.simbar { background: var(--bg-2); }
+.topbar { background: var(--surface); }
+.bottom-nav { background: var(--surface); }
+.scene-btn.on { background: color-mix(in oklab, var(--purple) 26%, var(--bg-2)); border-color: var(--purple); box-shadow: none; }
+.cam { background: var(--purple); }
+.alert { box-shadow: 0 0 40px -6px var(--ac, var(--purple)); }
+.train { background: linear-gradient(90deg, color-mix(in oklab, var(--purple) 70%, rgb(0 0 0 / .7)), rgb(0 0 0 / .7)); box-shadow: 0 0 24px -4px var(--purple); }
+.live-pill { border-radius: 6px; }
+/* Canais na barra lateral */
+.side-channels { display: flex; flex-direction: column; gap: 1px; margin-top: 4px; }
+.side-channels .nav-label { padding-top: 6px; }
+.chan { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 6px; text-decoration: none; border: 0; background: transparent; width: 100%; text-align: left; }
+.chan:hover { background: var(--surface-2); }
+.chan > span:nth-child(2) { flex: 1; min-width: 0; line-height: 1.25; }
+.chan strong { display: block; font-size: 13.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chan small { display: block; font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chan-v { display: flex; align-items: center; gap: 5px; font-size: 12.5px; color: var(--fg-2); white-space: nowrap; }
+.chan-v i { width: 8px; height: 8px; border-radius: 50%; background: var(--live); }
+.chan-off { font-size: 12.5px; color: var(--muted); }
+.chan .av.off { filter: grayscale(.85); opacity: .7; }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topbar" id="topBar"></header>
@@ -971,12 +1059,12 @@ const LEVELS = {
 const CATEGORIES = ['Gaming', 'Battle Royale', 'FPS competitivo', 'Terror', 'Desporto', 'Variedades', 'Speedrun', 'Conversa & Comunidade'];
 
 const COVERS = [
-  'radial-gradient(circle at 20% 30%, #ff4fa8 0, transparent 45%), radial-gradient(circle at 80% 20%, #4d8dff 0, transparent 45%), linear-gradient(135deg, #2a0f5c, #0b0820)',
-  'radial-gradient(circle at 75% 35%, #9b6bff 0, transparent 50%), radial-gradient(circle at 15% 80%, #ff3b5c 0, transparent 40%), linear-gradient(160deg, #1a0b3d, #06050f)',
-  'radial-gradient(circle at 50% 120%, #4d8dff 0, transparent 60%), radial-gradient(circle at 10% 10%, #22d3ee 0, transparent 35%), linear-gradient(180deg, #0b1440, #05060f)',
-  'conic-gradient(from 210deg at 70% 40%, #ff4fa8, #9b6bff, #4d8dff, #ff4fa8)',
-  'radial-gradient(circle at 30% 50%, #ffc24b 0, transparent 40%), radial-gradient(circle at 80% 60%, #ff4fa8 0, transparent 45%), linear-gradient(135deg, #3a0d2b, #0c0716)',
-  'radial-gradient(circle at 60% 40%, #3ee0a1 0, transparent 40%), radial-gradient(circle at 20% 80%, #4d8dff 0, transparent 45%), linear-gradient(135deg, #052e2b, #060a12)',
+  'radial-gradient(circle at 25% 30%, #9147ff 0, transparent 50%), radial-gradient(circle at 85% 20%, #5c16c5 0, transparent 45%), linear-gradient(135deg, #1a0b38, #0e0e10)',
+  'radial-gradient(circle at 75% 35%, #a970ff 0, transparent 48%), radial-gradient(circle at 15% 85%, #eb0400 0, transparent 35%), linear-gradient(160deg, #1f0d3d, #0e0e10)',
+  'radial-gradient(circle at 50% 120%, #772ce8 0, transparent 62%), radial-gradient(circle at 10% 10%, #bf94ff 0, transparent 30%), linear-gradient(180deg, #160a2e, #0b0b0d)',
+  'conic-gradient(from 210deg at 70% 40%, #772ce8, #2a0f5c, #9147ff, #18181b, #772ce8)',
+  'radial-gradient(circle at 30% 50%, #bf94ff 0, transparent 38%), radial-gradient(circle at 80% 60%, #6420d4 0, transparent 45%), linear-gradient(135deg, #24104a, #0e0e10)',
+  'radial-gradient(circle at 60% 40%, #9147ff 0, transparent 40%), radial-gradient(circle at 20% 80%, #3a1580 0, transparent 50%), linear-gradient(135deg, #0e0e10, #1d0f3a)',
 ];
 
 const GIFTS = [
@@ -2399,6 +2487,9 @@ function openWatch(evId) {
   }, 700);
 }
 
+const LOGO_SVG_RAW = '<svg viewBox="0 0 512 512" role="img" aria-label="LiveVerse"> <defs> <linearGradient id="lvbgX" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#a970ff"/> <stop offset=".55" stop-color="#9147ff"/> <stop offset="1" stop-color="#5c16c5"/> </linearGradient> </defs> <rect width="512" height="512" rx="116" fill="url(#lvbgX)"/> <g transform="rotate(-22 256 272)" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round"> <path d="M66 272 A190 76 0 0 1 446 272" stroke-opacity=".55"/> </g> <path d="M206 168 L206 376 L378 272 Z" fill="#fff" stroke="#7a2ff0" stroke-width="44" stroke-linejoin="round" paint-order="stroke"/> <path d="M206 168 L206 376 L378 272 Z" fill="#fff" stroke="#fff" stroke-width="22" stroke-linejoin="round"/> <g transform="rotate(-22 256 272)" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round"> <path d="M66 272 A190 76 0 0 0 446 272"/> </g> <circle cx="396" cy="126" r="44" fill="#ff3355" stroke="#fff" stroke-width="16"/> </svg>';
+let logoN = 0;
+const LOGO_SVG_FN = () => LOGO_SVG_RAW.replace(/lvbgX/g, 'lvbg' + (++logoN));
 /* =====================================================================
    Social: relógio em tempo real, menu, explorar, mensagens diretas e
    moderação do chat. Contas e mensagens recebidas são fictícias.
@@ -2453,14 +2544,15 @@ function createMenuHTML() {
 function renderNav() {
   const r = route(); const cur = navCurrent();
   $('#side').innerHTML = `
-    <a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
+    <a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     ${clockHTML()}
     <div class="create-wrap"><button class="btn btn-primary create-btn" data-act="create-toggle" aria-expanded="${!!UI.createOpen}">${icon('plus')} Criar</button>${UI.createOpen ? createMenuHTML() : ''}</div>
     <nav class="nav-groups" aria-label="Menu principal">${NAV_GROUPS.map(([g, items]) => `<div class="nav-group"><span class="nav-label">${g}</span>${items.map(i => navLink(i, cur)).join('')}</div>`).join('')}</nav>
+    ${sideChannelsHTML()}
     ${S.live ? `<a class="live-pill" href="#estudio"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">a ver</span></a>` : ''}
     <div class="side-me"><a href="#perfil" class="side-me-link">${avatar(S.me, 38).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)}</small></div></a>
       <button class="icon-btn" data-act="edit-profile" title="Editar perfil" aria-label="Editar perfil">${icon('edit')}</button><button class="icon-btn" data-act="mod-open" title="Moderação" aria-label="Moderação">${icon('shield')}</button></div>`;
-  $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${icon('bolt', 'style="color:#fff"')}</span><b>Live<span>Verse</span></b></a>
+  $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
     <a class="icon-btn top-ic" href="#explorar" aria-label="Explorar">${icon('search')}</a>
@@ -2894,6 +2986,18 @@ function saveAccounts() {
   }
   S.accounts = D;
   save(); closeModal(); render(); toast('✅', 'Contas guardadas');
+}
+
+/* Canais seguidos na barra lateral (como numa plataforma de streaming) */
+function sideChannelsHTML() {
+  const liveEv = id => S.events.find(e => e.owner === id && eventStatus(e) === 'live');
+  const list = [...S.accounts].sort((a, b) => (!!liveEv(b) - !!liveEv(a)) || (b.followed - a.followed) || b.followers - a.followers).slice(0, 7);
+  return `<div class="side-channels"><span class="nav-label">Canais recomendados</span>${list.map(a => {
+    const ev = liveEv(a.id);
+    const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
+    return ev ? `<button class="chan" data-act="watch" data-id="${ev.id}" title="${esc(a.name)} · ${esc(ev.title)}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[ev.game]?.name || '')}</small></span><span class="chan-v"><i></i><span data-watchers="${ev.id}">${fmt(ev.viewers || 1000)}</span></span></button>`
+      : `<a class="chan" href="#conta-${a.id}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[(a.games || [])[0]]?.name || a.cat)}</small></span><span class="chan-off">Offline</span></a>`;
+  }).join('')}</div>`;
 }
 
 /* =====================================================================
