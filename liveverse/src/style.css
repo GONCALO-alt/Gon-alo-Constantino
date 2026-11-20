@@ -1607,3 +1607,47 @@ a.btn { text-decoration: none; }
 .cal-day { aspect-ratio: auto; height: 58px; border-radius: 4px; }
 .cal { padding: 14px 16px; }
 @media (max-width: 560px) { .cal-day { height: 42px; } }
+
+/* ===================== Ecrã inteiro: vídeo + seguidores + chat ===================== */
+.th-fol { display: none; }
+.studio.theater .studio-chat { display: flex; flex-direction: column; gap: 10px; height: calc(100vh - 20px); min-height: 0; }
+.studio.theater .studio-chat .chat { flex: 1; min-height: 0; height: auto; }
+.studio.theater .th-fol { display: flex; flex-direction: column; gap: 10px; padding: 14px; flex: none; }
+.th-row { display: flex; gap: 18px; }
+.th-row > div { display: flex; flex-direction: column; }
+.th-fol small { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.th-fol .th-row b { font-size: 34px; font-weight: 800; line-height: 1.05; color: var(--fg); }
+.th-vw { padding-left: 18px; border-left: 1px solid var(--line); }
+.th-vw b { font-size: 22px !important; color: var(--fg-2) !important; margin-top: 8px; }
+.th-goal { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--fg-2); }
+.th-goal .goal-bar { height: 6px; }
+.th-list { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12.5px; }
+.th-list span { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); animation: rise .3s; }
+.th-list svg { width: 12px; height: 12px; color: var(--purple-soft); }
+.studio.theater .screen { width: min(100%, calc((100vh - 90px) * 16 / 9)); }
+.studio.theater .screen .fol-counter { display: none; }
+/* telemóvel deitado: lado a lado */
+@media (max-width: 1000px) and (orientation: landscape) {
+  .studio.theater { grid-template-columns: minmax(0, 1fr) min(300px, 38vw); grid-template-rows: none; overflow: hidden; }
+  .studio.theater .studio-main { overflow-y: auto; }
+  .studio.theater .screen { width: min(100%, calc((100vh - 70px) * 16 / 9)); }
+  .studio.theater .studio-chat { order: 0; height: calc(100vh - 20px); }
+  .studio.theater .th-fol { padding: 10px; gap: 6px; }
+  .studio.theater .th-fol .th-row b { font-size: 24px; }
+  .studio.theater .th-list { display: none; }
+  .studio.theater .theater-bar { padding: 4px; }
+}
+/* telemóvel de pé: vídeo, seguidores, chat */
+@media (max-width: 760px) and (orientation: portrait) {
+  .studio.theater .studio-chat { height: auto; min-height: 0; flex: 1; }
+  .studio.theater .th-fol { padding: 10px 12px; }
+  .studio.theater .th-fol .th-row b { font-size: 24px; }
+  .studio.theater .th-list { display: none; }
+}
+@media (max-width: 1000px) and (orientation: landscape) {
+  .studio.theater .lb, .studio.theater .chat-badges, .studio.theater .tw-in-row { display: none; }
+  .studio.theater .chat-head { padding: 6px 10px; }
+  .studio.theater .tw-input { padding: 6px; }
+  .studio.theater .tw-send-m { display: inline-flex; }
+  .studio.theater .studio-chat { gap: 6px; }
+}

@@ -227,15 +227,22 @@ function heard(raw) {
   const text = String(raw || '').trim(); if (!text) return;
   if (MIC.api === 'web' && Date.now() < (MIC.ignoreUntil || 0) && !heard.typed) return;
   avatarTalk();
-  MIC.heard.unshift({ t: Date.now(), text }); MIC.heard = MIC.heard.slice(0, 6);
-  paintMic();
-  if (S.live) chatRespond(text);
+  if (heard.typed) { MIC.heard.unshift({ t: Date.now(), text }); MIC.heard = MIC.heard.slice(0, 6); paintMic(); if (S.live) chatRespond(text); return; }
+  MIC.buf = (MIC.buf ? MIC.buf + ' ' : '') + text;
+  clearTimeout(MIC.bufT);
+  MIC.bufT = setTimeout(() => {
+    const full = MIC.buf.trim(); MIC.buf = '';
+    MIC.heard.unshift({ t: Date.now(), text: full }); MIC.heard = MIC.heard.slice(0, 6);
+    paintMic();
+    if (S.live) chatRespond(full);
+  }, 900);
 }
 
 /* O chat responde ao que disseste */
 const VOICE_RULES = [
   { re: /\b(ha){2,}|\bhehe|\bkkk|\blol\b|piada|engraçad|a rir|rir-me|que risada/i, lines: ['HAHAHAHAHA', '😂😂😂', 'morri a rir 💀', 'o riso dele 😭', 'KKKKKKK', 'conta outra!!', 'essa foi boa 😂'], hype: .25, mood: 'funny' },
-  { re: /^(olá|ola|oi|boas|bom dia|boa tarde|boa noite|e aí|eae|hey|salve)|sejam bem[- ]vindos|bem[- ]vindos/i, lines: ['BOAS!! 👋', 'olá {me} 💜', 'salve!!', 'boa noite chat', 'cheguei 👋', 'olááá', 'presente ✋'], hype: .1 },
+  { re: /se (me )?(estão|estiverem|tão) a ouvir|estão-me a ouvir|ouvem-me|está a dar som|há som|alguém (me )?ouve/i, lines: ['SIM!!', 'estou a ouvir 👂', 'ouvimos-te bem', 'sim, ouço tudo', 'alto e bom som 🔊', 'sim sim', 'ouço perfeitamente', 'tudo a dar 👍'], hype: .2, many: true },
+  { re: /(^|\s)(olá|ola|oi|boas|bom dia|boa tarde|boa noite|e aí|eae|hey|salve)(\s|$|[,!.])|sejam bem[- ]vindos|bem[- ]vindos/i, lines: ['BOAS!! 👋', 'olá {me} 💜', 'salve!!', 'boa noite chat', 'cheguei 👋', 'olááá', 'presente ✋'], hype: .1 },
   { re: /sigam|segue-me|seguir o canal|ativem|subscrev|deixem o like|partilhem/i, lines: ['já sigo!! 💜', 'seguido ✅', 'like dado 👍', 'partilhei!', 'sub feito 🔔'], hype: .1, fol: .004 },
   { re: /presente|doações|doa[çc]|moedas|apoiem/i, lines: ['toma lá 🎁', 'vou mandar um foguetão 🚀', 'apoio sempre!', 'só tenho 3 moedas 😂'], hype: .08, gifts: true },
   { re: /obrigad|valeu|agradeço/i, lines: ['de nada!! 💜', 'nós é que agradecemos', '💜💜💜', 'sempre contigo', 'tu mereces'], hype: .06 },
@@ -247,8 +254,22 @@ const VOICE_RULES = [
   { re: /fome|comer|pizza|jantar|lanche/i, lines: ['traz para nós 🍕', 'o que vais comer?', 'eu também tenho fome 😂', 'pizza 🍕🍕'], hype: .05 },
   { re: /sono|cansad|dormir/i, lines: ['vai dormir 😂', 'café ☕', 'só mais uma partida', 'live até às 4 da manhã!!'], hype: .04 },
 ];
+function chatCommand(L, text) {
+  // «digam olá», «escrevam GG», «mandem corações»: muita gente faz o que pediste
+  const m = text.match(/\b(digam|diz(?:ei)?|escrevam|mandem|ponham|metam|spammem|enviem)\s+(?:aí\s+|ai\s+|lá\s+|no chat\s+|todos\s+)*["«“]?([^,.!?»”"]{1,30})/i);
+  if (!m) return false;
+  let word = m[2].trim().replace(/\s+(no chat|aí|ai|todos|pessoal|malta)$/i, '').trim();
+  if (!word) return false;
+  if (/^cora[çc](ão|ões)$/i.test(word)) word = '💜';
+  const variants = [word, word, word, word.toUpperCase(), word + '!!', word + ' 👋', word.toLowerCase() + ' ' + S.me.name.split(' ')[0], word + ' 💜', word.toUpperCase() + '!!!', word + ' 😄'];
+  const n = clamp(Math.round(8 + Math.log10(L.viewers + 1) * 4), 8, 28);
+  for (let i = 0; i < n; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(variants), hype: true }), 250 + i * rand(70, 190));
+  L.engage = Math.min(3, L.engage + .5);
+  return true;
+}
 function chatRespond(text) {
   const L = S.live; const t = text.toLowerCase();
+  if (chatCommand(L, text)) { L.voice = (L.voice || 0) + 1; avatarEmote('goal'); return; }
   const me = S.me.name.split(' ')[0];
   let lines = [], hype = .08, rule = null;
   const matched = VOICE_RULES.filter(r => r.re.test(t));
@@ -257,7 +278,7 @@ function chatRespond(text) {
   for (const [k, G] of Object.entries(GAMES)) if (t.includes(G.name.toLowerCase()) && k !== 'chat') lines.push(`${G.name} 🔥`, `bora ${G.name}!!`, k === L.game ? 'é o melhor jogo' : `muda para ${G.name}!`);
   // perguntas ao chat
   const question = /\?\s*$/.test(text) || /^(chat|malta|pessoal)[,!]?\s/i.test(t) || /o que acham|que acham|vocês|qual (é|preferem|querem)|quem (é|quer|acha)|querem que|devo |faço /i.test(t);
-  if (question) {
+  if (question && !(rule && rule.many)) {
     if (/que jogo|qual jogo|jogo querem|jogo jogo/i.test(t)) { const gs = Object.values(GAMES).filter(g => g.genre !== 'chat').map(g => g.name); lines.push(...Array.from({ length: 6 }, () => pick(gs) + pick(['!!', ' 🔥', '', ' por favor 🙏'])), 'tanto faz 😂', 'GTA VI!!'); }
     else if (/qual|que arma|que mapa|que modo|que skin/i.test(t)) lines.push('a primeira', 'a segunda', 'tanto faz 😂', 'a mais difícil', 'surpreende-nos', 'a mais rara 💎');
     else if (/sim ou não|sim ou nao|devo|faço|querem que/i.test(t)) lines.push('SIM', 'SIM!!', 'não 😂', 'claro que sim', 'NÃO FAÇAS ISSO 😂', 'SIM SIM SIM', 'faz!!');
@@ -275,11 +296,11 @@ function chatRespond(text) {
     const short = text.length > 40 ? text.slice(0, 38) + '…' : text;
     lines.push(`"${short}" 😂`);
   }
-  const n = clamp(Math.round(3 + hype * 10 + Math.log10(L.viewers + 1)), 3, 12);
+  const n = clamp(Math.round((rule && rule.many ? 9 : 6) + hype * 12 + Math.log10(L.viewers + 1) * 2), 6, 22);
   const used = new Set();
   for (let i = 0; i < n; i++) {
     let line = pick(lines); if (used.has(line) && lines.length > used.size) line = pick(lines); used.add(line);
-    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: line.replace('{me}', me), hype: hype > .2 }), 350 + i * rand(120, 300));
+    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: line.replace('{me}', me), hype: hype >= .2 }), 350 + i * rand(120, 300));
   }
   L.engage = Math.min(3, L.engage + hype * .8); L.boost += (LEVELS[L.level] || LEVELS.media).max * hype * .02;
   if (rule && rule.fol) follow(rule.fol);

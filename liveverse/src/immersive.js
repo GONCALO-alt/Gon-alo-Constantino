@@ -265,8 +265,15 @@ function setTheater(on) {
   STUDIO.theater = on;
   const st = $('.studio'); if (st) st.classList.toggle('theater', on);
   document.body.classList.toggle('theater-on', on);
-  if (on) { try { const p = document.documentElement.requestFullscreen?.(); p && p.catch(() => { }); STUDIO.fs = true; } catch (e) { } }
-  else if (document.fullscreenElement) { try { document.exitFullscreen().catch(() => { }); } catch (e) { } }
+  if (on) {
+    if (S.prefs.orient === 'v') { STUDIO.prevOrient = 'v'; setOrient('h'); }
+    try { const p = document.documentElement.requestFullscreen?.(); if (p) p.then(() => { try { screen.orientation?.lock?.('landscape').catch(() => { }); } catch (e) { } }).catch(() => { }); STUDIO.fs = true; } catch (e) { }
+  } else {
+    try { screen.orientation?.unlock?.(); } catch (e) { }
+    if (document.fullscreenElement) { try { document.exitFullscreen().catch(() => { }); } catch (e) { } }
+    if (STUDIO.prevOrient) { const o = STUDIO.prevOrient; STUDIO.prevOrient = null; setOrient(o); }
+  }
+  paintThFol();
   $$('[data-act="theater"]').forEach(b => { b.innerHTML = `${icon(on ? 'shrink' : 'expand')} ${on ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}`; });
   $$('.screen [data-anim]').forEach(el => { el._v = undefined; });
   afterStudioRender();
@@ -385,7 +392,7 @@ function liveCounters(L) {
       addTimeline('follow', `Meta de seguidores: ${dots(goal)}`, '💜', { hype: .6, reactLabel: 'Meta de seguidores', clipTitle: `${dots(goal)} seguidores!` });
       chatBurst([`${dots(goal)}!!! 💜`, 'PARABÉNS 🎉', 'QUE CRESCIMENTO', 'próxima meta já!']);
     }
-    paintFolScene();
+    paintFolScene(); paintThFol();
   }
 }
 function drawSpark() {
@@ -439,4 +446,23 @@ function folCounterHTML(viewers, followers, vKey, fKey) {
   return `<div class="fol-counter" aria-label="${dots(followers)} seguidores">
     <div class="fc-top"><span class="fc-logo">${LOGO_SVG_FN()}</span><div class="fc-box num" ${fKey ? `data-anim="${fKey}" data-v="${followers}"` : ''}>${dots(followers)}</div></div>
   </div>`;
+}
+
+/* Painel de seguidores ao lado do vídeo no ecrã inteiro */
+function theaterFolHTML() {
+  const L = S.live; if (!L) return '';
+  const f = Math.floor(S.me.followers), goal = nextFolGoal(f), prev = FOL_GOALS.filter(g => g <= f).pop() || 0;
+  return `<section class="th-fol card" aria-label="Seguidores">
+    <div class="th-row"><div><small>Seguidores</small><b class="num" data-anim="followers" data-v="${f}">${dots(f)}</b></div>
+      <div class="th-vw"><small>Espetadores</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div></div>
+    <div class="th-goal" data-thfol-goal><span>Próxima meta: <b>${dots(goal)}</b></span><div class="goal-bar"><i style="width:${Math.min(100, (f - prev) / (goal - prev) * 100)}%"></i></div></div>
+    <div class="th-list" data-thfol-list>${thFolList(L)}</div>
+  </section>`;
+}
+function thFolList(L) { const r = (L.recentFol || []).slice(0, 4); return r.length ? r.map(n => `<span>${icon('heart')} ${esc(n)}</span>`).join('') : '<span class="muted">À espera do próximo seguidor…</span>'; }
+function paintThFol() {
+  const L = S.live; if (!L) return;
+  const f = Math.floor(S.me.followers), goal = nextFolGoal(f), prev = FOL_GOALS.filter(g => g <= f).pop() || 0;
+  $$('[data-thfol-goal]').forEach(el => el.innerHTML = `<span>Próxima meta: <b>${dots(goal)}</b></span><div class="goal-bar"><i style="width:${Math.min(100, (f - prev) / (goal - prev) * 100)}%"></i></div>`);
+  $$('[data-thfol-list]').forEach(el => el.innerHTML = thFolList(L));
 }

@@ -1617,6 +1617,50 @@ a.btn { text-decoration: none; }
 .cal { padding: 14px 16px; }
 @media (max-width: 560px) { .cal-day { height: 42px; } }
 
+/* ===================== Ecrã inteiro: vídeo + seguidores + chat ===================== */
+.th-fol { display: none; }
+.studio.theater .studio-chat { display: flex; flex-direction: column; gap: 10px; height: calc(100vh - 20px); min-height: 0; }
+.studio.theater .studio-chat .chat { flex: 1; min-height: 0; height: auto; }
+.studio.theater .th-fol { display: flex; flex-direction: column; gap: 10px; padding: 14px; flex: none; }
+.th-row { display: flex; gap: 18px; }
+.th-row > div { display: flex; flex-direction: column; }
+.th-fol small { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.th-fol .th-row b { font-size: 34px; font-weight: 800; line-height: 1.05; color: var(--fg); }
+.th-vw { padding-left: 18px; border-left: 1px solid var(--line); }
+.th-vw b { font-size: 22px !important; color: var(--fg-2) !important; margin-top: 8px; }
+.th-goal { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--fg-2); }
+.th-goal .goal-bar { height: 6px; }
+.th-list { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12.5px; }
+.th-list span { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); animation: rise .3s; }
+.th-list svg { width: 12px; height: 12px; color: var(--purple-soft); }
+.studio.theater .screen { width: min(100%, calc((100vh - 90px) * 16 / 9)); }
+.studio.theater .screen .fol-counter { display: none; }
+/* telemóvel deitado: lado a lado */
+@media (max-width: 1000px) and (orientation: landscape) {
+  .studio.theater { grid-template-columns: minmax(0, 1fr) min(300px, 38vw); grid-template-rows: none; overflow: hidden; }
+  .studio.theater .studio-main { overflow-y: auto; }
+  .studio.theater .screen { width: min(100%, calc((100vh - 70px) * 16 / 9)); }
+  .studio.theater .studio-chat { order: 0; height: calc(100vh - 20px); }
+  .studio.theater .th-fol { padding: 10px; gap: 6px; }
+  .studio.theater .th-fol .th-row b { font-size: 24px; }
+  .studio.theater .th-list { display: none; }
+  .studio.theater .theater-bar { padding: 4px; }
+}
+/* telemóvel de pé: vídeo, seguidores, chat */
+@media (max-width: 760px) and (orientation: portrait) {
+  .studio.theater .studio-chat { height: auto; min-height: 0; flex: 1; }
+  .studio.theater .th-fol { padding: 10px 12px; }
+  .studio.theater .th-fol .th-row b { font-size: 24px; }
+  .studio.theater .th-list { display: none; }
+}
+@media (max-width: 1000px) and (orientation: landscape) {
+  .studio.theater .lb, .studio.theater .chat-badges, .studio.theater .tw-in-row { display: none; }
+  .studio.theater .chat-head { padding: 6px 10px; }
+  .studio.theater .tw-input { padding: 6px; }
+  .studio.theater .tw-send-m { display: inline-flex; }
+  .studio.theater .studio-chat { gap: 6px; }
+}
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -3011,6 +3055,7 @@ function viewStudio() {
       </div>
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
+      ${theaterFolHTML()}
       <section class="card chat"><div class="chat-head"><span class="tw-chead-t">Chat da transmissão</span>${SIM('fictício')}<span class="spacer"></span><span class="small muted num chat-vw">${icon('person')} <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
         <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
@@ -3853,15 +3898,22 @@ function heard(raw) {
   const text = String(raw || '').trim(); if (!text) return;
   if (MIC.api === 'web' && Date.now() < (MIC.ignoreUntil || 0) && !heard.typed) return;
   avatarTalk();
-  MIC.heard.unshift({ t: Date.now(), text }); MIC.heard = MIC.heard.slice(0, 6);
-  paintMic();
-  if (S.live) chatRespond(text);
+  if (heard.typed) { MIC.heard.unshift({ t: Date.now(), text }); MIC.heard = MIC.heard.slice(0, 6); paintMic(); if (S.live) chatRespond(text); return; }
+  MIC.buf = (MIC.buf ? MIC.buf + ' ' : '') + text;
+  clearTimeout(MIC.bufT);
+  MIC.bufT = setTimeout(() => {
+    const full = MIC.buf.trim(); MIC.buf = '';
+    MIC.heard.unshift({ t: Date.now(), text: full }); MIC.heard = MIC.heard.slice(0, 6);
+    paintMic();
+    if (S.live) chatRespond(full);
+  }, 900);
 }
 
 /* O chat responde ao que disseste */
 const VOICE_RULES = [
   { re: /\b(ha){2,}|\bhehe|\bkkk|\blol\b|piada|engraçad|a rir|rir-me|que risada/i, lines: ['HAHAHAHAHA', '😂😂😂', 'morri a rir 💀', 'o riso dele 😭', 'KKKKKKK', 'conta outra!!', 'essa foi boa 😂'], hype: .25, mood: 'funny' },
-  { re: /^(olá|ola|oi|boas|bom dia|boa tarde|boa noite|e aí|eae|hey|salve)|sejam bem[- ]vindos|bem[- ]vindos/i, lines: ['BOAS!! 👋', 'olá {me} 💜', 'salve!!', 'boa noite chat', 'cheguei 👋', 'olááá', 'presente ✋'], hype: .1 },
+  { re: /se (me )?(estão|estiverem|tão) a ouvir|estão-me a ouvir|ouvem-me|está a dar som|há som|alguém (me )?ouve/i, lines: ['SIM!!', 'estou a ouvir 👂', 'ouvimos-te bem', 'sim, ouço tudo', 'alto e bom som 🔊', 'sim sim', 'ouço perfeitamente', 'tudo a dar 👍'], hype: .2, many: true },
+  { re: /(^|\s)(olá|ola|oi|boas|bom dia|boa tarde|boa noite|e aí|eae|hey|salve)(\s|$|[,!.])|sejam bem[- ]vindos|bem[- ]vindos/i, lines: ['BOAS!! 👋', 'olá {me} 💜', 'salve!!', 'boa noite chat', 'cheguei 👋', 'olááá', 'presente ✋'], hype: .1 },
   { re: /sigam|segue-me|seguir o canal|ativem|subscrev|deixem o like|partilhem/i, lines: ['já sigo!! 💜', 'seguido ✅', 'like dado 👍', 'partilhei!', 'sub feito 🔔'], hype: .1, fol: .004 },
   { re: /presente|doações|doa[çc]|moedas|apoiem/i, lines: ['toma lá 🎁', 'vou mandar um foguetão 🚀', 'apoio sempre!', 'só tenho 3 moedas 😂'], hype: .08, gifts: true },
   { re: /obrigad|valeu|agradeço/i, lines: ['de nada!! 💜', 'nós é que agradecemos', '💜💜💜', 'sempre contigo', 'tu mereces'], hype: .06 },
@@ -3873,8 +3925,22 @@ const VOICE_RULES = [
   { re: /fome|comer|pizza|jantar|lanche/i, lines: ['traz para nós 🍕', 'o que vais comer?', 'eu também tenho fome 😂', 'pizza 🍕🍕'], hype: .05 },
   { re: /sono|cansad|dormir/i, lines: ['vai dormir 😂', 'café ☕', 'só mais uma partida', 'live até às 4 da manhã!!'], hype: .04 },
 ];
+function chatCommand(L, text) {
+  // «digam olá», «escrevam GG», «mandem corações»: muita gente faz o que pediste
+  const m = text.match(/\b(digam|diz(?:ei)?|escrevam|mandem|ponham|metam|spammem|enviem)\s+(?:aí\s+|ai\s+|lá\s+|no chat\s+|todos\s+)*["«“]?([^,.!?»”"]{1,30})/i);
+  if (!m) return false;
+  let word = m[2].trim().replace(/\s+(no chat|aí|ai|todos|pessoal|malta)$/i, '').trim();
+  if (!word) return false;
+  if (/^cora[çc](ão|ões)$/i.test(word)) word = '💜';
+  const variants = [word, word, word, word.toUpperCase(), word + '!!', word + ' 👋', word.toLowerCase() + ' ' + S.me.name.split(' ')[0], word + ' 💜', word.toUpperCase() + '!!!', word + ' 😄'];
+  const n = clamp(Math.round(8 + Math.log10(L.viewers + 1) * 4), 8, 28);
+  for (let i = 0; i < n; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(variants), hype: true }), 250 + i * rand(70, 190));
+  L.engage = Math.min(3, L.engage + .5);
+  return true;
+}
 function chatRespond(text) {
   const L = S.live; const t = text.toLowerCase();
+  if (chatCommand(L, text)) { L.voice = (L.voice || 0) + 1; avatarEmote('goal'); return; }
   const me = S.me.name.split(' ')[0];
   let lines = [], hype = .08, rule = null;
   const matched = VOICE_RULES.filter(r => r.re.test(t));
@@ -3883,7 +3949,7 @@ function chatRespond(text) {
   for (const [k, G] of Object.entries(GAMES)) if (t.includes(G.name.toLowerCase()) && k !== 'chat') lines.push(`${G.name} 🔥`, `bora ${G.name}!!`, k === L.game ? 'é o melhor jogo' : `muda para ${G.name}!`);
   // perguntas ao chat
   const question = /\?\s*$/.test(text) || /^(chat|malta|pessoal)[,!]?\s/i.test(t) || /o que acham|que acham|vocês|qual (é|preferem|querem)|quem (é|quer|acha)|querem que|devo |faço /i.test(t);
-  if (question) {
+  if (question && !(rule && rule.many)) {
     if (/que jogo|qual jogo|jogo querem|jogo jogo/i.test(t)) { const gs = Object.values(GAMES).filter(g => g.genre !== 'chat').map(g => g.name); lines.push(...Array.from({ length: 6 }, () => pick(gs) + pick(['!!', ' 🔥', '', ' por favor 🙏'])), 'tanto faz 😂', 'GTA VI!!'); }
     else if (/qual|que arma|que mapa|que modo|que skin/i.test(t)) lines.push('a primeira', 'a segunda', 'tanto faz 😂', 'a mais difícil', 'surpreende-nos', 'a mais rara 💎');
     else if (/sim ou não|sim ou nao|devo|faço|querem que/i.test(t)) lines.push('SIM', 'SIM!!', 'não 😂', 'claro que sim', 'NÃO FAÇAS ISSO 😂', 'SIM SIM SIM', 'faz!!');
@@ -3901,11 +3967,11 @@ function chatRespond(text) {
     const short = text.length > 40 ? text.slice(0, 38) + '…' : text;
     lines.push(`"${short}" 😂`);
   }
-  const n = clamp(Math.round(3 + hype * 10 + Math.log10(L.viewers + 1)), 3, 12);
+  const n = clamp(Math.round((rule && rule.many ? 9 : 6) + hype * 12 + Math.log10(L.viewers + 1) * 2), 6, 22);
   const used = new Set();
   for (let i = 0; i < n; i++) {
     let line = pick(lines); if (used.has(line) && lines.length > used.size) line = pick(lines); used.add(line);
-    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: line.replace('{me}', me), hype: hype > .2 }), 350 + i * rand(120, 300));
+    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: line.replace('{me}', me), hype: hype >= .2 }), 350 + i * rand(120, 300));
   }
   L.engage = Math.min(3, L.engage + hype * .8); L.boost += (LEVELS[L.level] || LEVELS.media).max * hype * .02;
   if (rule && rule.fol) follow(rule.fol);
@@ -4225,8 +4291,15 @@ function setTheater(on) {
   STUDIO.theater = on;
   const st = $('.studio'); if (st) st.classList.toggle('theater', on);
   document.body.classList.toggle('theater-on', on);
-  if (on) { try { const p = document.documentElement.requestFullscreen?.(); p && p.catch(() => { }); STUDIO.fs = true; } catch (e) { } }
-  else if (document.fullscreenElement) { try { document.exitFullscreen().catch(() => { }); } catch (e) { } }
+  if (on) {
+    if (S.prefs.orient === 'v') { STUDIO.prevOrient = 'v'; setOrient('h'); }
+    try { const p = document.documentElement.requestFullscreen?.(); if (p) p.then(() => { try { screen.orientation?.lock?.('landscape').catch(() => { }); } catch (e) { } }).catch(() => { }); STUDIO.fs = true; } catch (e) { }
+  } else {
+    try { screen.orientation?.unlock?.(); } catch (e) { }
+    if (document.fullscreenElement) { try { document.exitFullscreen().catch(() => { }); } catch (e) { } }
+    if (STUDIO.prevOrient) { const o = STUDIO.prevOrient; STUDIO.prevOrient = null; setOrient(o); }
+  }
+  paintThFol();
   $$('[data-act="theater"]').forEach(b => { b.innerHTML = `${icon(on ? 'shrink' : 'expand')} ${on ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}`; });
   $$('.screen [data-anim]').forEach(el => { el._v = undefined; });
   afterStudioRender();
@@ -4345,7 +4418,7 @@ function liveCounters(L) {
       addTimeline('follow', `Meta de seguidores: ${dots(goal)}`, '💜', { hype: .6, reactLabel: 'Meta de seguidores', clipTitle: `${dots(goal)} seguidores!` });
       chatBurst([`${dots(goal)}!!! 💜`, 'PARABÉNS 🎉', 'QUE CRESCIMENTO', 'próxima meta já!']);
     }
-    paintFolScene();
+    paintFolScene(); paintThFol();
   }
 }
 function drawSpark() {
@@ -4399,6 +4472,25 @@ function folCounterHTML(viewers, followers, vKey, fKey) {
   return `<div class="fol-counter" aria-label="${dots(followers)} seguidores">
     <div class="fc-top"><span class="fc-logo">${LOGO_SVG_FN()}</span><div class="fc-box num" ${fKey ? `data-anim="${fKey}" data-v="${followers}"` : ''}>${dots(followers)}</div></div>
   </div>`;
+}
+
+/* Painel de seguidores ao lado do vídeo no ecrã inteiro */
+function theaterFolHTML() {
+  const L = S.live; if (!L) return '';
+  const f = Math.floor(S.me.followers), goal = nextFolGoal(f), prev = FOL_GOALS.filter(g => g <= f).pop() || 0;
+  return `<section class="th-fol card" aria-label="Seguidores">
+    <div class="th-row"><div><small>Seguidores</small><b class="num" data-anim="followers" data-v="${f}">${dots(f)}</b></div>
+      <div class="th-vw"><small>Espetadores</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div></div>
+    <div class="th-goal" data-thfol-goal><span>Próxima meta: <b>${dots(goal)}</b></span><div class="goal-bar"><i style="width:${Math.min(100, (f - prev) / (goal - prev) * 100)}%"></i></div></div>
+    <div class="th-list" data-thfol-list>${thFolList(L)}</div>
+  </section>`;
+}
+function thFolList(L) { const r = (L.recentFol || []).slice(0, 4); return r.length ? r.map(n => `<span>${icon('heart')} ${esc(n)}</span>`).join('') : '<span class="muted">À espera do próximo seguidor…</span>'; }
+function paintThFol() {
+  const L = S.live; if (!L) return;
+  const f = Math.floor(S.me.followers), goal = nextFolGoal(f), prev = FOL_GOALS.filter(g => g <= f).pop() || 0;
+  $$('[data-thfol-goal]').forEach(el => el.innerHTML = `<span>Próxima meta: <b>${dots(goal)}</b></span><div class="goal-bar"><i style="width:${Math.min(100, (f - prev) / (goal - prev) * 100)}%"></i></div>`);
+  $$('[data-thfol-list]').forEach(el => el.innerHTML = thFolList(L));
 }
 
 /* =====================================================================

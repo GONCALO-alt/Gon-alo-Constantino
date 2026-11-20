@@ -27,6 +27,8 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 - **Contador no ecrã**: como os overlays dos streamers, o total de seguidores numa caixa branca com o ícone, a subir em tempo real. Liga/desliga em Controlos.
 - **Live na vertical**: escolhe Horizontal (16:9) ou Vertical (9:16), antes ou durante a live.
 - **Live limpa e sem emojis**: o ecrã só tem a imagem, o tempo de live e os espetadores; alertas e animações usam ícones simples.
+- **O chat obedece ao microfone**: «digam olá», «escrevam GG», «mandem corações» põem muita gente a escrever isso; «estão-me a ouvir?» recebe vários «sim». As frases ditadas aos pedaços são juntas antes de o chat reagir.
+- **Ecrã inteiro com seguidores e chat**: vídeo na horizontal, painel de seguidores (total, espetadores, próxima meta, últimos seguidores) e chat ao lado; no telemóvel tenta rodar para horizontal.
 - **Acabamento profissional**: Gestor de transmissão offline com pré-visualização e Informação da transmissão (título, categoria, etiquetas); mais definições recolhidas; clipes como numa plataforma de streaming (duração, visualizações, data); lista suspensa de notificações no sino com ícones; mensagens diretas chamadas Sussurros; calendário compacto.
 - **Editar a transmissão**: muda o título, a categoria e as etiquetas durante a live (botão no título ou em Ações rápidas).
 - **Câmara nas cenas**: na cena Conversa a tua câmara ocupa o ecrã com uma faixa «Conversa com o chat»; em A começar, Volto já e Fim aparece desfocada por trás.
