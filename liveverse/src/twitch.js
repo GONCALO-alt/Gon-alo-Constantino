@@ -77,7 +77,7 @@ function liveCardHTML(ev, mine = false) {
       <a class="tw-name" href="${href}">${esc(a.name)}${a.verified ? VERIFIED : ''}${mine ? ' <span class="tw-you">tu</span>' : ''}</a>
       <p class="tw-title">${esc(ev.title)}</p>
       <span class="tw-game">${esc(G.name)}</span>
-      ${tagChips(streamTags(ev.game).slice(0, 3))}
+      ${tagChips(streamTagsFor(ev).slice(0, 3))}
     </div></div>
   </article>`;
 }
@@ -191,7 +191,7 @@ function chatInputHTML(id, form, gift, accId) {
     <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
     <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
     <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
-    <div class="emote-pop" data-emotes-for="${id}" hidden>${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
+    <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
   </form>`;
 }
 function wMsg(m) {
@@ -230,7 +230,7 @@ function startWatch(a) {
   clearInterval(WATCH.timer);
   paintWatchLB();
   if (!ev) return;
-  WATCH.timer = setInterval(() => watchTick(a), 650);
+  WATCH.timer = setInterval(() => { try { watchTick(a); } catch (e) { console.warn('watch', e); } }, 650);
 }
 function watchTick(a) {
   const r = route();

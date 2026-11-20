@@ -91,6 +91,8 @@ function quickActionsHTML() {
     <div class="qa-head"><span class="tw-chead-t">Ações rápidas</span><span class="spacer"></span>
       <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelectQA" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${(S.live?.scene || 'game') === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>
     <div class="qa-grid">
+      ${tile('stream-info', 'info', 'Editar informação', '#9147ff')}
+      ${tile('emotes-open', 'emote', 'Emotes', '#eb8c00')}
       ${tile('cam-toggle', 'camera', MEDIA.cam ? 'Desligar câmara' : 'Câmara', '#9147ff', !!MEDIA.cam)}
       ${tile('screen-toggle', 'monitor', MEDIA.screen ? 'Parar ecrã' : 'Mostrar jogo', '#1f69ff', !!MEDIA.screen)}
       ${tile('rec-toggle', 'rec', MEDIA.rec ? 'Parar gravação' : 'Gravar', '#e91916', !!MEDIA.rec)}

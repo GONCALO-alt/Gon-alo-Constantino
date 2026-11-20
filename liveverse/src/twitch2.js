@@ -33,7 +33,7 @@ function topNavHTML() {
       <div class="tn-drop-wrap"><button class="tn-avatar" data-act="nav-menu" data-m="user" aria-label="Menu do utilizador" aria-expanded="${UI.navMenu === 'user'}">${avatar(S.me, 30).replace('<a ', '<span ').replace('</a>', '</span>')}${S.live ? '<i class="tn-live-dot"></i>' : ''}</button>
         ${UI.navMenu === 'user' ? `<div class="tn-drop tn-drop-r">
           <div class="tn-me">${avatar(S.me, 40).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>${fmt(S.me.followers)} seguidores · nível ${career().level}</small></div></div>
-          <a href="#perfil">${icon('user')} Canal</a><a href="#estudio">${icon('studio')} Painel do criador</a>
+          <a href="#perfil">${icon('user')} Canal</a><button data-act="emotes-open">${icon('emote')} Emotes do canal</button><a href="#estudio">${icon('studio')} Painel do criador</a>
           <button data-act="new-event">${icon('calendar')} Agendar live</button><button data-act="compose">${icon('edit')} Nova publicação</button>
           <hr><button data-act="edit-profile">${icon('edit')} Editar perfil</button><button data-act="mod-open">${icon('shield')} Moderação</button><button data-act="accounts-edit">${icon('users')} Gerir contas</button>
         </div>` : ''}</div>
@@ -75,7 +75,7 @@ function featuredHTML(lives) {
     </a>
     <div class="feat-info">
       <div class="wp-chan">${avatar(a, 50, 'ring-live')}<div><a class="wp-name" href="${mine ? '#perfil' : chanHash(a.id)}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a><a class="wp-game" href="#explorar" data-act="cat-open" data-k="${ev.game}">${esc(G.name)}</a><span class="feat-vw">${espet(mine ? S.live.viewers : ev.viewers || 0)}</span></div></div>
-      ${tagChips(streamTags(ev.game).slice(0, 3))}
+      ${tagChips(streamTagsFor(ev).slice(0, 3))}
       <p class="feat-title">${esc(ev.title)}</p>
       <p class="tiny muted">${esc((a.bio || '').slice(0, 140))}</p>
     </div>

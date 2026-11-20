@@ -105,7 +105,7 @@ function openMenuSheet() {
     <div class="sheet-top"><a class="side-me-link" href="#perfil">${avatar(S.me, 46).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)} · nível ${career().level}</small></div></a>${clockHTML(true)}</div>
     ${S.live ? `<a class="live-pill" href="#estudio" style="margin:0 16px"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
     <div class="sheet-body">${NAV_GROUPS.map(([g, items]) => `<div><span class="nav-label">${g}</span><div class="tile-grid">${items.map(([h, ic, label]) => `<a class="tile ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' ? badge(notifUnread()) : h === 'mensagens' ? badge(dmUnread()) : ''}</a>`).join('')}</div></div>`).join('')}
-      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div>
+      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="emotes-open">${icon('emote')} Emotes</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div>
       <p class="tiny muted" style="margin:0">O LiveVerse é uma simulação: seguidores, espetadores, subscrições e métricas são fictícios.</p></div>`, 'sheet');
 }
 function openCreateSheet() {
@@ -302,7 +302,7 @@ const TROLLS = ['spam_bot99', 'troll_lusitano', 'hater_x', 'botzinho_pt', 'segui
 const TROLL_LINES = ['SIGAM O MEU CANAL 👉 spam.pt', 'compra seguidores baratos!!! 💸', 'esta live é uma seca', 'és mesmo burro 🙄', 'ganha moedas grátis aqui 👉 link', 'FFFFFFFFFFFFFFFFFFFFF', 'aaaaaaaaaaaaaaaaaaaaaaaaa'];
 const EMOTES = ['🔥🔥🔥', '💜💜', '😂😂😂', '👏👏', '😱', '🏆', '💎💎', '⚡', '🎉🎉', '👀'];
 const defaultMod = () => ({ automod: true, slow: false, subOnly: false, emoteOnly: false, words: ['burro', 'seca', 'compra seguidores', 'grátis', 'spam.pt'], banned: [], stats: { deleted: 0, banned: 0, timeouts: 0, blocked: 0 } });
-const isEmojiOnly = s => !/[\p{L}\d]/u.test(s);
+const isEmojiOnly = s => !/[\p{L}\d]/u.test(stripCodes(s));
 function modFilter(m) {
   // devolve true se a mensagem pode aparecer
   if (m.sys || m.gift || m.me) return true;

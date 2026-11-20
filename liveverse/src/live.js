@@ -46,7 +46,7 @@ function startLive({ title, game, mode, level, eventId }) {
   location.hash = '#estudio';
   render();
 }
-function runLive() { clearInterval(liveTimer); if (S.live) liveTimer = setInterval(liveTick, LIVE_MS); }
+function runLive() { clearInterval(liveTimer); if (S.live) liveTimer = setInterval(() => { try { liveTick(); } catch (e) { console.warn('live', e); } }, LIVE_MS); }
 
 function endLive() {
   const L = S.live; if (!L) return;
@@ -101,7 +101,7 @@ function liveTick() {
   // chat
   const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage) * chatRateFactor();
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
-  while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? pick(EMOTES) : ambientLine(L) });
+  while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? (S.emotes && S.emotes.length && Math.random() < .6 ? pick(S.emotes).code : pick(EMOTES)) : withEmotes(ambientLine(L)) });
   maybeTroll(L);
   surpriseTick(L); surpriseCheck(L); immersiveTick(L);
   // presentes
@@ -173,7 +173,7 @@ function pushChat(m) {
 }
 function overlayMsgHTML(m) {
   if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(noEmoji(m.text))}</div>`;
-  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}">${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
+  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}">${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b> ${emotify(esc(m.text))}</div>`;
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
@@ -182,7 +182,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(noEmoji(m.text))}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${emotify(esc(m.text))}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -248,7 +248,7 @@ function react(itemId, customText) {
     if (vs) lines.push(`${vs[1]}v${vs[2]}?!?! INSANO`, `${vs[1]} CONTRA ${vs[2]} 😭😭`, 'CLIP CLIP CLIP');
   }
   const count = Math.round(6 + item.hype * 10 + Math.log10(L.viewers + 1));
-  for (let i = 0; i < count; i++) setTimeout(() => { if (S.live === L) pushChat({ user: fakeUser(), text: fill(pick(lines), liveCtx(L)), hype: true }); }, i * rand(90, 260));
+  for (let i = 0; i < count; i++) setTimeout(() => { if (S.live === L) pushChat({ user: fakeUser(), text: withEmotes(fill(pick(lines), liveCtx(L))), hype: true }); }, i * rand(90, 260));
   L.lastMood = mood; L.lastMoodAt = Date.now(); avatarEmote(mood);
   if (item.hype >= .6) { giftRain(L, Math.round(item.hype * 5)); crowd(item.hype); }
   // 2. animação
@@ -342,7 +342,7 @@ function viewStudio() {
   const open = !!STUDIO.controls;
   return `<div class="live-top">
     <span class="pill-live">EM DIRETO</span>
-    <div class="lt-title"><strong>${esc(L.title)}</strong><small>${esc(G.name)}</small></div>
+    <button class="lt-title lt-edit" data-act="stream-info" title="Editar informação da transmissão"><strong>${esc(L.title)}</strong><small>${esc(G.name)} · ${esc(streamTagsFor(L).slice(0, 3).join(' · '))} ${icon('edit')}</small></button>
     <div class="lt-stat"><small>Sessão</small><b class="num" data-live="uptime">${upTime(Date.now() - L.start)}</b></div>
     <div class="lt-stat"><small>Espetadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
     <canvas class="lt-spark" id="viewSpark" width="160" height="40" aria-label="Gráfico de espectadores"></canvas>

@@ -1541,6 +1541,31 @@ a.btn { text-decoration: none; }
 .train { top: auto; bottom: 12px; right: 12px; left: auto; width: min(40%, 240px); }
 .screen.vertical .train { width: 60%; bottom: 44px; }
 
+/* ===================== Informação da transmissão, câmara nas cenas, emotes ===================== */
+.lt-edit { border: 0; background: none; text-align: left; color: inherit; padding: 4px 8px; margin: -4px -8px; border-radius: 6px; cursor: pointer; }
+.lt-edit:hover { background: var(--surface-2); }
+.lt-edit small { display: inline-flex; align-items: center; gap: 6px; }
+.lt-edit small svg { width: 13px; height: 13px; opacity: .7; }
+.live-video.blur { filter: blur(22px) brightness(.5); transform: scaleX(-1) scale(1.15); }
+.lower3 { position: absolute; left: 14px; bottom: 44px; z-index: 2; display: flex; flex-direction: column; padding: 8px 14px; border-left: 4px solid var(--purple); background: rgb(14 14 16 / .85); color: #fff; }
+.lower3 b { font-size: 15px; }
+.lower3 span { font-size: 12px; color: var(--fg-2); }
+.emote { height: 28px; width: auto; vertical-align: middle; margin: -4px 1px; }
+.ov-msg .emote { height: 22px; }
+.emote-pop button img { width: 28px; height: 28px; object-fit: contain; }
+.em-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
+.em-item { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); }
+.em-item img { width: 56px; height: 56px; object-fit: contain; }
+.em-item code { font-size: 12px; color: var(--fg-2); }
+.em-item .icon-btn { width: 30px; height: 30px; }
+.em-add { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+.em-pick { flex-direction: column; justify-content: center; width: 96px; height: 96px; border-radius: 8px; border: 1px dashed var(--line-2); background: var(--surface-2); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; padding: 6px; gap: 4px; }
+.em-pick img { width: 56px; height: 56px; object-fit: contain; }
+.em-pick svg { width: 26px; height: 26px; }
+
+.qa-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.qa-t .qa-l { min-width: 0; overflow-wrap: anywhere; }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -2573,7 +2598,7 @@ function startLive({ title, game, mode, level, eventId }) {
   location.hash = '#estudio';
   render();
 }
-function runLive() { clearInterval(liveTimer); if (S.live) liveTimer = setInterval(liveTick, LIVE_MS); }
+function runLive() { clearInterval(liveTimer); if (S.live) liveTimer = setInterval(() => { try { liveTick(); } catch (e) { console.warn('live', e); } }, LIVE_MS); }
 
 function endLive() {
   const L = S.live; if (!L) return;
@@ -2628,7 +2653,7 @@ function liveTick() {
   // chat
   const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage) * chatRateFactor();
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
-  while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? pick(EMOTES) : ambientLine(L) });
+  while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? (S.emotes && S.emotes.length && Math.random() < .6 ? pick(S.emotes).code : pick(EMOTES)) : withEmotes(ambientLine(L)) });
   maybeTroll(L);
   surpriseTick(L); surpriseCheck(L); immersiveTick(L);
   // presentes
@@ -2700,7 +2725,7 @@ function pushChat(m) {
 }
 function overlayMsgHTML(m) {
   if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(noEmoji(m.text))}</div>`;
-  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}">${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
+  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}">${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b> ${emotify(esc(m.text))}</div>`;
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
@@ -2709,7 +2734,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(noEmoji(m.text))}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${emotify(esc(m.text))}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -2775,7 +2800,7 @@ function react(itemId, customText) {
     if (vs) lines.push(`${vs[1]}v${vs[2]}?!?! INSANO`, `${vs[1]} CONTRA ${vs[2]} 😭😭`, 'CLIP CLIP CLIP');
   }
   const count = Math.round(6 + item.hype * 10 + Math.log10(L.viewers + 1));
-  for (let i = 0; i < count; i++) setTimeout(() => { if (S.live === L) pushChat({ user: fakeUser(), text: fill(pick(lines), liveCtx(L)), hype: true }); }, i * rand(90, 260));
+  for (let i = 0; i < count; i++) setTimeout(() => { if (S.live === L) pushChat({ user: fakeUser(), text: withEmotes(fill(pick(lines), liveCtx(L))), hype: true }); }, i * rand(90, 260));
   L.lastMood = mood; L.lastMoodAt = Date.now(); avatarEmote(mood);
   if (item.hype >= .6) { giftRain(L, Math.round(item.hype * 5)); crowd(item.hype); }
   // 2. animação
@@ -2869,7 +2894,7 @@ function viewStudio() {
   const open = !!STUDIO.controls;
   return `<div class="live-top">
     <span class="pill-live">EM DIRETO</span>
-    <div class="lt-title"><strong>${esc(L.title)}</strong><small>${esc(G.name)}</small></div>
+    <button class="lt-title lt-edit" data-act="stream-info" title="Editar informação da transmissão"><strong>${esc(L.title)}</strong><small>${esc(G.name)} · ${esc(streamTagsFor(L).slice(0, 3).join(' · '))} ${icon('edit')}</small></button>
     <div class="lt-stat"><small>Sessão</small><b class="num" data-live="uptime">${upTime(Date.now() - L.start)}</b></div>
     <div class="lt-stat"><small>Espetadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
     <canvas class="lt-spark" id="viewSpark" width="160" height="40" aria-label="Gráfico de espectadores"></canvas>
@@ -3148,7 +3173,7 @@ function openMenuSheet() {
     <div class="sheet-top"><a class="side-me-link" href="#perfil">${avatar(S.me, 46).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)} · nível ${career().level}</small></div></a>${clockHTML(true)}</div>
     ${S.live ? `<a class="live-pill" href="#estudio" style="margin:0 16px"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
     <div class="sheet-body">${NAV_GROUPS.map(([g, items]) => `<div><span class="nav-label">${g}</span><div class="tile-grid">${items.map(([h, ic, label]) => `<a class="tile ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' ? badge(notifUnread()) : h === 'mensagens' ? badge(dmUnread()) : ''}</a>`).join('')}</div></div>`).join('')}
-      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div>
+      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="emotes-open">${icon('emote')} Emotes</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div>
       <p class="tiny muted" style="margin:0">O LiveVerse é uma simulação: seguidores, espetadores, subscrições e métricas são fictícios.</p></div>`, 'sheet');
 }
 function openCreateSheet() {
@@ -3345,7 +3370,7 @@ const TROLLS = ['spam_bot99', 'troll_lusitano', 'hater_x', 'botzinho_pt', 'segui
 const TROLL_LINES = ['SIGAM O MEU CANAL 👉 spam.pt', 'compra seguidores baratos!!! 💸', 'esta live é uma seca', 'és mesmo burro 🙄', 'ganha moedas grátis aqui 👉 link', 'FFFFFFFFFFFFFFFFFFFFF', 'aaaaaaaaaaaaaaaaaaaaaaaaa'];
 const EMOTES = ['🔥🔥🔥', '💜💜', '😂😂😂', '👏👏', '😱', '🏆', '💎💎', '⚡', '🎉🎉', '👀'];
 const defaultMod = () => ({ automod: true, slow: false, subOnly: false, emoteOnly: false, words: ['burro', 'seca', 'compra seguidores', 'grátis', 'spam.pt'], banned: [], stats: { deleted: 0, banned: 0, timeouts: 0, blocked: 0 } });
-const isEmojiOnly = s => !/[\p{L}\d]/u.test(s);
+const isEmojiOnly = s => !/[\p{L}\d]/u.test(stripCodes(s));
 function modFilter(m) {
   // devolve true se a mensagem pode aparecer
   if (m.sys || m.gift || m.me) return true;
@@ -3954,13 +3979,14 @@ function screenInner(L) {
       followers: folSceneHTML(),
       ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
     }[scene];
-    bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
+    if (scene === 'chat' && MEDIA.cam) bg = `<video data-stream="cam" class="live-video mirror" autoplay muted playsinline></video><div class="lower3"><b>Conversa com o chat</b><span>@${esc(S.me.handle)}</span></div>`;
+    else bg = `${MEDIA.cam ? '<video data-stream="cam" class="live-video mirror blur" autoplay muted playsinline></video>' : '<div class="screen-bg"></div>'}<div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
     ${S.prefs.folCounter !== false ? folCounterHTML(Math.round(L.viewers), Math.floor(S.me.followers), 'viewers', 'followers') : ''}
     <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span></div>
     ${trainHTML()}
-    ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : scene !== 'game' && scene !== 'chat' && MEDIA.cam ? camHTML() : ''}
+    ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : ''}
     <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
     ${S.prefs.goalOnScreen ? goalBarHTML() : ''}
     <div class="alert-box" id="alertBox" aria-live="polite"></div>
@@ -4404,7 +4430,7 @@ function liveCardHTML(ev, mine = false) {
       <a class="tw-name" href="${href}">${esc(a.name)}${a.verified ? VERIFIED : ''}${mine ? ' <span class="tw-you">tu</span>' : ''}</a>
       <p class="tw-title">${esc(ev.title)}</p>
       <span class="tw-game">${esc(G.name)}</span>
-      ${tagChips(streamTags(ev.game).slice(0, 3))}
+      ${tagChips(streamTagsFor(ev).slice(0, 3))}
     </div></div>
   </article>`;
 }
@@ -4518,7 +4544,7 @@ function chatInputHTML(id, form, gift, accId) {
     <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
     <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
     <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
-    <div class="emote-pop" data-emotes-for="${id}" hidden>${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
+    <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
   </form>`;
 }
 function wMsg(m) {
@@ -4557,7 +4583,7 @@ function startWatch(a) {
   clearInterval(WATCH.timer);
   paintWatchLB();
   if (!ev) return;
-  WATCH.timer = setInterval(() => watchTick(a), 650);
+  WATCH.timer = setInterval(() => { try { watchTick(a); } catch (e) { console.warn('watch', e); } }, 650);
 }
 function watchTick(a) {
   const r = route();
@@ -4675,7 +4701,7 @@ function topNavHTML() {
       <div class="tn-drop-wrap"><button class="tn-avatar" data-act="nav-menu" data-m="user" aria-label="Menu do utilizador" aria-expanded="${UI.navMenu === 'user'}">${avatar(S.me, 30).replace('<a ', '<span ').replace('</a>', '</span>')}${S.live ? '<i class="tn-live-dot"></i>' : ''}</button>
         ${UI.navMenu === 'user' ? `<div class="tn-drop tn-drop-r">
           <div class="tn-me">${avatar(S.me, 40).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>${fmt(S.me.followers)} seguidores · nível ${career().level}</small></div></div>
-          <a href="#perfil">${icon('user')} Canal</a><a href="#estudio">${icon('studio')} Painel do criador</a>
+          <a href="#perfil">${icon('user')} Canal</a><button data-act="emotes-open">${icon('emote')} Emotes do canal</button><a href="#estudio">${icon('studio')} Painel do criador</a>
           <button data-act="new-event">${icon('calendar')} Agendar live</button><button data-act="compose">${icon('edit')} Nova publicação</button>
           <hr><button data-act="edit-profile">${icon('edit')} Editar perfil</button><button data-act="mod-open">${icon('shield')} Moderação</button><button data-act="accounts-edit">${icon('users')} Gerir contas</button>
         </div>` : ''}</div>
@@ -4717,7 +4743,7 @@ function featuredHTML(lives) {
     </a>
     <div class="feat-info">
       <div class="wp-chan">${avatar(a, 50, 'ring-live')}<div><a class="wp-name" href="${mine ? '#perfil' : chanHash(a.id)}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a><a class="wp-game" href="#explorar" data-act="cat-open" data-k="${ev.game}">${esc(G.name)}</a><span class="feat-vw">${espet(mine ? S.live.viewers : ev.viewers || 0)}</span></div></div>
-      ${tagChips(streamTags(ev.game).slice(0, 3))}
+      ${tagChips(streamTagsFor(ev).slice(0, 3))}
       <p class="feat-title">${esc(ev.title)}</p>
       <p class="tiny muted">${esc((a.bio || '').slice(0, 140))}</p>
     </div>
@@ -4879,6 +4905,8 @@ function quickActionsHTML() {
     <div class="qa-head"><span class="tw-chead-t">Ações rápidas</span><span class="spacer"></span>
       <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelectQA" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${(S.live?.scene || 'game') === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>
     <div class="qa-grid">
+      ${tile('stream-info', 'info', 'Editar informação', '#9147ff')}
+      ${tile('emotes-open', 'emote', 'Emotes', '#eb8c00')}
       ${tile('cam-toggle', 'camera', MEDIA.cam ? 'Desligar câmara' : 'Câmara', '#9147ff', !!MEDIA.cam)}
       ${tile('screen-toggle', 'monitor', MEDIA.screen ? 'Parar ecrã' : 'Mostrar jogo', '#1f69ff', !!MEDIA.screen)}
       ${tile('rec-toggle', 'rec', MEDIA.rec ? 'Parar gravação' : 'Gravar', '#e91916', !!MEDIA.rec)}
@@ -5075,6 +5103,110 @@ const MEDIA_ACT = {
   'rec-toggle': () => recToggle(),
   'reacts-toggle': () => { STUDIO.reacts = !STUDIO.reacts; paintMediaBar(); },
   'orient': b => { setOrient(b.dataset.o); paintQA(); },
+};
+
+/* =====================================================================
+   Editar a informação da transmissão, câmara nas cenas e emotes do
+   canal. Também retira os momentos que fingiam erros na live.
+   ===================================================================== */
+Object.assign(IC, {
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/>',
+  emote: '<circle cx="12" cy="12" r="9"/><path d="M8 14.5s1.5 2 4 2 4-2 4-2M9 9.5h.01M15 9.5h.01"/><path d="M17 3l4 4" />',
+});
+
+/* Sem momentos que fingem erros (live caiu, direitos de autor) */
+['lag', 'music'].forEach(id => { const i = SURPRISES.findIndex(s => s.id === id); if (i >= 0) SURPRISES.splice(i, 1); });
+
+/* ---------- 1. Editar a informação da transmissão ---------- */
+function streamTagsFor(ev) { return ev && ev.tags && ev.tags.length ? ev.tags : streamTags(ev.game); }
+function openStreamInfo() {
+  const L = S.live; if (!L) return;
+  MODAL.kind = 'stream-info';
+  const tags = streamTagsFor(L).join(', ');
+  openModal(`<div class="modal-head"><h2>Editar informação da transmissão</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div>
+  <form data-form="stream-info" id="siForm">
+    <div class="modal-body">
+      <label class="field"><span>Título</span><input class="input" name="title" id="siTitle" maxlength="90" required value="${esc(L.title)}"></label>
+      <label class="field"><span>Categoria</span><select class="input" name="game" id="siGame">${Object.entries(GAMES).map(([k, g]) => `<option value="${k}" ${L.game === k ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select></label>
+      <label class="field"><span>Etiquetas (separadas por vírgulas)</span><input class="input" name="tags" id="siTags" maxlength="120" value="${esc(tags)}" placeholder="Português, Competitivo, Chill"></label>
+      <p class="tiny muted" style="margin:0">As mudanças aparecem logo no teu canal, no cartão da página inicial e no chat.</p>
+    </div>
+    <div class="modal-foot"><button type="button" class="btn btn-ghost" data-act="modal-close">Cancelar</button><button class="btn btn-primary">Guardar</button></div>
+  </form>`);
+}
+function saveStreamInfo(f) {
+  const L = S.live; if (!L) return closeModal();
+  const title = f.title.value.trim() || L.title, game = f.game.value;
+  const tags = f.tags.value.split(',').map(t => t.trim().replace(/^#/, '')).filter(Boolean).slice(0, 6);
+  const gameChanged = game !== L.game, titleChanged = title !== L.title;
+  L.title = title; L.tags = tags.length ? tags : null;
+  if (gameChanged) L.game = game;
+  closeModal(); render();
+  const G = GAMES[L.game] || GAMES.chat;
+  if (gameChanged) { addTimeline('scene', `Categoria mudada para ${G.name}`, '🎮'); activityPush(L, 'milestone', `Categoria: ${G.name}`); chatBurst([`mudou para ${G.name}!!`, 'BORA', `${G.name} 🔥`, 'finalmente!']); }
+  if (titleChanged) { activityPush(L, 'milestone', `Título: ${title}`); }
+  save();
+}
+
+/* ---------- 6. Emotes do canal ---------- */
+UI.emoteDraft = null;
+const emoteRe = () => {
+  const codes = (S.emotes || []).map(e => e.code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  return codes.length ? new RegExp(`(^|\\s)(${codes.join('|')})(?=\\s|$)`, 'g') : null;
+};
+function emotify(escaped) {
+  const re = emoteRe(); if (!re) return escaped;
+  const map = Object.fromEntries((S.emotes || []).map(e => [e.code, e.img]));
+  return escaped.replace(re, (m, sp, code) => `${sp}<img class="emote" src="${map[code]}" alt="${code}" title="${code}">`);
+}
+function stripCodes(s) { const re = emoteRe(); return re ? String(s).replace(re, ' ') : s; }
+function withEmotes(text) {
+  const em = S.emotes || []; if (!em.length || Math.random() > .2) return text;
+  const k = Math.random() < .3 ? 3 : 1;
+  const codes = Array.from({ length: k }, () => pick(em).code).join(' ');
+  return Math.random() < .25 ? codes : `${text} ${codes}`;
+}
+function emotesModalHTML() {
+  const list = S.emotes || [];
+  const prefix = (S.me.handle || 'canal').replace(/[^a-z0-9]/gi, '').slice(0, 5).toLowerCase();
+  return `<div class="modal-head"><h2>Emotes do canal</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div>
+  <div class="modal-body">
+    <p class="small muted" style="margin:0">Carrega imagens tuas (de preferência quadradas e com fundo transparente). Os espetadores fictícios usam-nas no chat e tu podes escolhê-las no botão de emotes.</p>
+    <div class="em-grid">${list.length ? list.map((e, i) => `<div class="em-item"><img src="${e.img}" alt="${esc(e.code)}"><code>${esc(e.code)}</code><button class="icon-btn" data-act="emote-del" data-i="${i}" aria-label="Apagar ${esc(e.code)}">${icon('trash')}</button></div>`).join('') : '<p class="muted small">Ainda não tens emotes.</p>'}</div>
+    <form class="em-add" data-form="emote-add">
+      <label class="em-pick upload">${UI.emoteDraft ? `<img src="${UI.emoteDraft}" alt="Pré-visualização">` : icon('image')}<span>${UI.emoteDraft ? 'Trocar imagem' : 'Escolher imagem'}</span><input type="file" accept="image/*" data-file="emote-img" id="emoteFile"></label>
+      <label class="field" style="flex:1"><span>Código</span><input class="input" name="code" id="emoteCode" maxlength="20" placeholder="${prefix}GG" pattern="[A-Za-z0-9_]{3,20}" required></label>
+      <button class="btn btn-primary" ${UI.emoteDraft ? '' : 'disabled'}>Adicionar</button>
+    </form>
+    <p class="tiny muted" style="margin:0">Até 20 emotes · código com 3 a 20 letras ou números (ex.: ${prefix}Hype).</p>
+  </div>`;
+}
+function openEmotes() { MODAL.kind = 'emotes'; openModal(emotesModalHTML()); }
+function squareEmote(file) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => { const s = 112, c = document.createElement('canvas'); c.width = c.height = s; const ctx = c.getContext('2d'); const m = Math.min(img.width, img.height); ctx.drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, s, s); URL.revokeObjectURL(url); res(c.toDataURL('image/png')); };
+    img.onerror = e => { URL.revokeObjectURL(url); rej(e); };
+    img.src = url;
+  });
+}
+
+const FEAT_ACT = {
+  'stream-info': () => openStreamInfo(),
+  'emotes-open': () => { UI.navMenu = null; openEmotes(); },
+  'emote-del': b => { S.emotes.splice(+b.dataset.i, 1); save(); openEmotes(); },
+};
+const FEAT_FORMS = {
+  'stream-info': f => saveStreamInfo(f),
+  'emote-add': f => {
+    const code = f.code.value.trim();
+    if (!UI.emoteDraft) return toast('⚠️', 'Escolhe uma imagem para o emote.');
+    if (!/^[A-Za-z0-9_]{3,20}$/.test(code)) return toast('⚠️', 'O código só pode ter letras, números e «_» (3 a 20).');
+    S.emotes = S.emotes || [];
+    if (S.emotes.some(e => e.code.toLowerCase() === code.toLowerCase())) return toast('⚠️', 'Já tens um emote com esse código.');
+    if (S.emotes.length >= 20) return toast('⚠️', 'Chegaste ao limite de 20 emotes.');
+    S.emotes.push({ code, img: UI.emoteDraft }); UI.emoteDraft = null; save(); openEmotes();
+  },
 };
 
 /* =====================================================================
@@ -5473,6 +5605,7 @@ async function onFile(input) {
     else if (kind === 'avatar') { syncProfileDraft(); MODAL.draft.avatar = await fileToDataURL(file, 320, 320, .85); paintProfileEditor(); }
     else if (kind === 'banner') { syncProfileDraft(); MODAL.draft.banner = await fileToDataURL(file, 1500, 500); paintProfileEditor(); }
     else if (kind === 'ev-cover') { syncEventDraft(); MODAL.draft.cover = { type: 'img', v: await fileToDataURL(file, 1000, 500) }; paintEventEditor(); }
+    else if (kind === 'emote-img') { UI.emoteDraft = await squareEmote(file); openEmotes(); setTimeout(() => $('#emoteCode')?.focus(), 50); }
     else if (kind === 'cam-img') { S.prefs.camImg = await fileToDataURL(file, 400, 400, .85); save(); paintScreen(); $$('[data-immpanel]').forEach(el => el.outerHTML = immersivePanelHTML()); toast('🙂', 'Imagem do avatar atualizada'); }
     else if (kind === 'studio-media') { if (STUDIO.media) URL.revokeObjectURL(STUDIO.media.url); STUDIO.media = { kind: file.type.startsWith('video') ? 'video' : 'image', url: URL.createObjectURL(file) }; render(); }
     else if (kind === 'clip-media') { const c = S.clips.find(x => x.id === input.dataset.id); c.media = file.type.startsWith('video') ? { kind: 'video', url: URL.createObjectURL(file) } : { kind: 'image', url: await fileToDataURL(file, 800, 450) }; save(); render(); toast('🎬', 'Media anexada ao clip'); }
@@ -5613,7 +5746,7 @@ function migrate(s) {
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
   s.prefs = { ...defaultImmersive(), ...s.prefs };
   s.regulars = s.regulars || seedRegulars();
-  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {}; s.points = s.points || {};
+  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {}; s.points = s.points || {}; s.emotes = s.emotes || [];
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (!s.prefs.orient) s.prefs.orient = 'h';
@@ -5630,13 +5763,13 @@ function init() {
   if (S.live) { runLive(); pushChat({ sys: true, text: '🔁 Live retomada depois de recarregar a página.' }); }
   checkAch();
   render();
-  setInterval(tick, 1000);
+  setInterval(() => { try { tick(); } catch (e) { console.warn('tick', e); } }, 1000);
   micInit(); ttsInit();
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, TW3_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
-Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, TW3_ACT, FEAT_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
+Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS, FEAT_FORMS);
 init();
 
 </script>

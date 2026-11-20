@@ -69,13 +69,14 @@ function screenInner(L) {
       followers: folSceneHTML(),
       ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
     }[scene];
-    bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
+    if (scene === 'chat' && MEDIA.cam) bg = `<video data-stream="cam" class="live-video mirror" autoplay muted playsinline></video><div class="lower3"><b>Conversa com o chat</b><span>@${esc(S.me.handle)}</span></div>`;
+    else bg = `${MEDIA.cam ? '<video data-stream="cam" class="live-video mirror blur" autoplay muted playsinline></video>' : '<div class="screen-bg"></div>'}<div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
     ${S.prefs.folCounter !== false ? folCounterHTML(Math.round(L.viewers), Math.floor(S.me.followers), 'viewers', 'followers') : ''}
     <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span></div>
     ${trainHTML()}
-    ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : scene !== 'game' && scene !== 'chat' && MEDIA.cam ? camHTML() : ''}
+    ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : ''}
     <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
     ${S.prefs.goalOnScreen ? goalBarHTML() : ''}
     <div class="alert-box" id="alertBox" aria-live="polite"></div>
