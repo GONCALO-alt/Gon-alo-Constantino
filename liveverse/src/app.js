@@ -492,6 +492,22 @@ function bind() {
   window.addEventListener('hashchange', () => { UI.menu = null; UI.createOpen = false; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
 }
 
+function addGta6Content(s) {
+  if (s.gta6) return; s.gta6 = 1;
+  const now = Date.now();
+  ['a5', 'a8'].forEach(id => { const a = s.accounts.find(x => x.id === id); if (a && !a.games.includes('gta6')) a.games.unshift('gta6'); });
+  const base = { countdown: true, reminders: true, cancelled: false, notified: {}, createdAt: now - HOUR, myReminder: false, myInterest: false };
+  s.events.push(
+    { ...base, id: 'ev_gta6_live', owner: 'a5', title: 'GTA VI — Primeira noite em Vice City', desc: 'Primeiro passeio por Vice City: carros, praia, missões e muito caos. O chat escolhe para onde vamos!', game: 'gta6', mode: 'superstar', level: 'grande', start: now - 20 * MIN, dur: 3 * HOUR, cover: { type: 'preset', v: 4 }, interested: 15800, reminderUsers: 6300, viewers: 24300 },
+    { ...base, id: 'ev_gta6_heist', owner: 'a8', title: 'GTA VI — Todos os segredos do mapa', desc: 'Speedrun de exploração: vamos procurar easter eggs e carros raros em todo o mapa.', game: 'gta6', mode: 'maratona', level: 'grande', start: now + DAY + 5 * HOUR, dur: 4 * HOUR, cover: { type: 'preset', v: 0 }, interested: 9400, reminderUsers: 3700 },
+  );
+  const P = o => ({ id: 'p_' + uid(), likes: 0, liked: false, reposts: 0, reposted: false, saved: false, views: 0, replies: [], status: 'published', ...o });
+  s.posts.push(
+    P({ author: 'a5', type: 'live', game: 'gta6', eventId: 'ev_gta6_live', text: 'ESTOU EM DIRETO NO GTA VI! 🌴 Primeira noite em Vice City, venham escolher a próxima missão #gta6 #vicecity', createdAt: now - 18 * MIN, likes: 6200, reposts: 940, views: 98000 }),
+    P({ author: 'a8', type: 'event', eventId: 'ev_gta6_heist', text: 'Amanhã: maratona à procura de todos os segredos do mapa do GTA VI 🔍 Ativem o lembrete! #gta6', createdAt: now - 3 * HOUR, likes: 2100, reposts: 310, views: 34000 }),
+  );
+  s.clips.unshift({ id: 'c_gta6', title: 'Fuga com 5 estrelas pela ponte de Vice City', game: 'gta6', streamer: 'a5', type: 'Escape por pouco', emoji: '🚓', popularity: 94, likes: 15200, comments: 1320, onProfile: true, createdAt: now - 2 * HOUR, liked: false, commentsList: [], secs: 42 });
+}
 function migrate(s) {
   s.stats = s.stats || { reactions: 0, clipsMade: 0, polls: 0 };
   s.ach = s.ach || {}; s.notifs = s.notifs || []; s.clips = s.clips || []; s.lives = s.lives || [];
@@ -499,6 +515,7 @@ function migrate(s) {
   s.clips.forEach(c => { if (c.media && c.media.kind === 'video') delete c.media; });
   s.dms = s.dms || seedDMs(); s.mod = { ...defaultMod(), ...(s.mod || {}) }; s.mod.stats = { ...defaultMod().stats, ...s.mod.stats };
   if (s.lastDM == null) s.lastDM = Date.now();
+  addGta6Content(s);
   if (s.live) { s.live.chat = []; }
   return s;
 }

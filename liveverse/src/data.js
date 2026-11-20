@@ -9,6 +9,7 @@ const GAMES = {
   minecraft: { name: 'Minecraft',         genre: 'sandbox', color: '#2fb86a', glyph: 'MC' },
   valorant:  { name: 'Valorant',          genre: 'fps',     color: '#ff4d6d', glyph: 'VL' },
   eafc:      { name: 'EA Sports FC',      genre: 'sports',  color: '#22c3a6', glyph: 'FC' },
+  gta6:      { name: 'GTA VI',            genre: 'open',    color: '#ff5a8a', glyph: 'VI' },
   gta:       { name: 'GTA V',             genre: 'open',    color: '#f59e0b', glyph: 'GTA' },
   roblox:    { name: 'Roblox',            genre: 'sandbox', color: '#ef4444', glyph: 'RB' },
   phasmo:    { name: 'Phasmophobia',      genre: 'horror',  color: '#64748b', glyph: 'PH' },
@@ -149,6 +150,16 @@ const GAME_POOLS = {
   'eafc:amazing': ['QUE GOLAÇO', 'BICICLETA?!', 'DRIBLE DE CRAQUE', 'ROSCA PERFEITA'],
   'rocket:amazing': ['AÉREO PERFEITO 🚗💨', 'FLIP RESET?!', 'QUE DEFESA'],
   'gta:funny': ['A POLÍCIA NÃO DESISTE 😂', 'CONDUÇÃO DE CAMPEÃO', 'ISTO SÓ NO GTA'],
+  'gta6:funny': ['A POLÍCIA NÃO DESISTE 😂', 'ISTO SÓ NO GTA 6', 'CONDUÇÃO DE CAMPEÃO 🚗💥', 'O CROCODILO GANHOU 🐊😂', 'CAIU DO BARCO HAHAHA', 'O NPC FICOU CHOCADO 😂'],
+  'gta6:win': ['GOLPE PERFEITO 💰', 'MISSÃO CUMPRIDA ✅', 'FUGIRAM COM O DINHEIRO TODO', 'VICE CITY É NOSSA 🌴', 'QUE ASSALTO LIMPO'],
+  'gta6:amazing': ['QUE CONDUÇÃO 🏎️', 'FUGA DE FILME', 'QUE MANOBRA', 'SALTO INSANO DA PONTE', 'PERSEGUIÇÃO ÉPICA 🚓'],
+  'gta6:clutch': ['ESCAPOU COM 5 ESTRELAS ⭐⭐⭐⭐⭐', 'NÃO ACREDITO QUE FUGIU', 'CLUTCH NA PERSEGUIÇÃO 😭', 'O HELICÓPTERO PERDEU-TE 🚁'],
+  'gta6:rare': ['CARRO RARÍSSIMO 😳', 'ENCONTROU O SEGREDO!', 'EASTER EGG?!', 'QUE SORTE NESSE CARRO 💎'],
+  'gta6:big': ['GRANDE GOLPE ⚡', 'MOMENTO HISTÓRICO NO GTA 6', 'CHAT DE PÉ 👏', 'ISTO VAI PARA OS CLIPS'],
+  'gta6:sad': ['WASTED 💀', 'A POLÍCIA APANHOU-TE 😭', 'TÃO PERTO DO ESCONDERIJO', 'BUSTED 🚓'],
+  'gta6:enemy': ['A POLÍCIA ESTÁ ATRÁS DE TI 🚓', 'EMBOSCADA NO BECO', 'OLHA O HELICÓPTERO 🚁'],
+  'gta6:scary': ['ESSE SUSTO 😱', 'DE ONDE VEIO ESSE CARRO?!', 'QUASE ATROPELADO 😭'],
+  'gta6:escape': ['FUGIU POR UM TRIZ 🏃', 'DESPISTOU A POLÍCIA', 'ESCONDERIJO ALCANÇADO ✅'],
   'lol:clutch': ['PENTAKILL?!?!', 'BARON STEAL 😭', '1v5 NA BASE'],
   'lol:win': ['NEXUS ABAIXO 🏆', 'VITÓRIA ÉPICA'],
   'roblox:funny': ['O AVATAR 😂', 'OBBY DO TERROR'],
@@ -220,3 +231,5 @@ const OTHER_POST_LINES = [
   ['Quem quer fazer squad comigo amanhã? #{g}', 'game'],
   ['Hoje a live é só conversa e Q&A ☕ #conversa', 'text'],
 ];
+
+const GTA6_AMBIENT = ['GTA 6 FINALMENTE 😭', 'Vice City está linda 🌴', 'faz um assalto!!', 'vai à praia 🏖️', 'rouba aquele carro', 'quantas estrelas já tens? ⭐', 'o mapa é gigante', 'joga com a Lucia!', 'bora fazer missões', 'que gráficos 😳', 'pega num barco 🚤', 'vai ao pântano 🐊'];

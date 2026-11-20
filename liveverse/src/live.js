@@ -111,7 +111,7 @@ function liveTick() {
 }
 function ambientLine(L) {
   const ctx = liveCtx(L);
-  const pools = [AMBIENT, MODE_AMBIENT[L.mode] || []];
+  const pools = [L.game === 'gta6' && Math.random() < .35 ? GTA6_AMBIENT : AMBIENT, MODE_AMBIENT[L.mode] || []];
   if (L.lastMood && Date.now() - L.lastMoodAt < 8000) pools.push(moodPool(L.game, L.lastMood));
   const pool = pools[pools.length > 2 && Math.random() < .5 ? 2 : Math.random() < .2 && pools[1].length ? 1 : 0];
   return fill(pick(pool), ctx);

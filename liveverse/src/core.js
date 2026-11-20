@@ -124,10 +124,10 @@ function seedState() {
     { id: 'a2', name: 'Duarte Clutch', handle: 'duarteclutch', hue: 200, followers: 92500, verified: true, cat: 'FPS competitivo', games: ['valorant', 'fortnite'], bio: 'Jogador competitivo. 1v5 é só mais um dia.', followed: true },
     { id: 'a3', name: 'Sombra Lusa', handle: 'sombralusa', hue: 270, followers: 64300, verified: false, cat: 'Terror', games: ['phasmo', 'amnesia'], bio: 'Jogos de terror com as luzes apagadas 👻', followed: false },
     { id: 'a4', name: 'Mafalda Goals', handle: 'mafaldagoals', hue: 160, followers: 51800, verified: true, cat: 'Desporto', games: ['eafc', 'rocket'], bio: 'Ultimate Team, golos e muita emoção ⚽', followed: false },
-    { id: 'a5', name: 'Tiago Turbo', handle: 'tiagoturbo', hue: 30, followers: 27900, verified: false, cat: 'Variedades', games: ['rocket', 'gta'], bio: 'Carros, caos e gargalhadas.', followed: false },
+    { id: 'a5', name: 'Tiago Turbo', handle: 'tiagoturbo', hue: 30, followers: 27900, verified: false, cat: 'Variedades', games: ['gta6', 'rocket'], bio: 'Carros, caos e gargalhadas. Agora a explorar Vice City no GTA VI 🌴', followed: false },
     { id: 'a6', name: 'Inês Arcade', handle: 'inesarcade', hue: 350, followers: 133000, verified: true, cat: 'Variedades', games: ['roblox', 'fortnite'], bio: 'A rainha dos mini-jogos 🎮', followed: true },
     { id: 'a7', name: 'Leo Lendas', handle: 'leolendas', hue: 230, followers: 78100, verified: false, cat: 'Gaming', games: ['lol'], bio: 'Main mid. Pentakills ao domingo.', followed: false },
-    { id: 'a8', name: 'Kiko Mapas', handle: 'kikomapas', hue: 45, followers: 15400, verified: false, cat: 'Speedrun', games: ['minecraft', 'gta'], bio: 'Speedruns e explorações de mapas.', followed: false },
+    { id: 'a8', name: 'Kiko Mapas', handle: 'kikomapas', hue: 45, followers: 15400, verified: false, cat: 'Speedrun', games: ['gta6', 'minecraft'], bio: 'Speedruns e explorações de mapas. A descobrir todos os segredos do GTA VI.', followed: false },
   ];
   const me = {
     id: 'me', name: 'Nova Play', handle: 'novaplay', hue: 275, avatar: null, banner: null, cover: 0,
