@@ -1566,6 +1566,57 @@ a.btn { text-decoration: none; }
 .qa-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 .qa-t .qa-l { min-width: 0; overflow-wrap: anywhere; }
 
+/* ===================== Acabamento profissional ===================== */
+/* Gestor de transmissão offline */
+.sm-setup { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr); gap: 16px; align-items: start; }
+.sm-pv, .sm-info { padding: 14px; }
+.sm-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.sm-head .pill-state { margin-left: auto; background: var(--surface-3); color: var(--fg-2); }
+.setup-preview.big { max-width: none; aspect-ratio: 16 / 9; }
+.setup-preview.big.vertical { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
+.pv-off { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 16px; background: radial-gradient(ellipse at 50% 40%, #1d1830 0%, #0b0b0d 70%); }
+.pv-off b { font-size: 16px; }
+.pv-off small { color: var(--muted); font-size: 12.5px; max-width: 280px; }
+.sm-go { justify-content: center; padding: 12px; font-size: 15px; }
+.sm-more { margin-top: 16px; padding: 0; }
+.sm-more > summary { display: flex; align-items: center; gap: 10px; padding: 14px 16px; cursor: pointer; font-weight: 700; list-style: none; }
+.sm-more > summary::-webkit-details-marker { display: none; }
+.sm-more > summary svg { width: 18px; height: 18px; color: var(--muted); }
+.sm-more > summary small { margin-left: auto; font-weight: 500; color: var(--muted); font-size: 12.5px; }
+.sm-more[open] > summary { border-bottom: 1px solid var(--line); }
+.sm-more .panel { padding: 16px; }
+@media (max-width: 980px) { .sm-setup { grid-template-columns: minmax(0, 1fr); } .sm-more > summary small { display: none; } }
+/* Clipes */
+.tw-clip { background: none; border: 0; animation: rise .3s ease both; }
+.tw-clip .clip-thumb { border-radius: 6px; transition: transform .15s, box-shadow .15s; }
+.tw-clip:hover .clip-thumb { transform: translate(4px, -4px); box-shadow: -4px 4px 0 var(--purple); }
+.cl-glyph { position: relative; font-weight: 900; font-size: clamp(22px, 3vw, 34px); color: rgb(255 255 255 / .85); text-shadow: 0 0 24px var(--gc); }
+.cl-dur, .cl-views, .cl-date { position: absolute; padding: 1px 6px; border-radius: 4px; background: rgb(0 0 0 / .7); color: #fff; font-size: 12.5px; font-weight: 600; }
+.cl-dur { left: 8px; top: 8px; }
+.cl-views { left: 8px; bottom: 8px; }
+.cl-date { right: 8px; bottom: 8px; }
+.tw-clip .clip-body { padding: 10px 0 0; gap: 6px; }
+.tw-clip .clip-actions { margin-left: -8px; }
+.tw-clip .clip-actions .pa { color: var(--muted); }
+/* Notificações */
+.notif .ico { width: 36px; height: 36px; border-radius: 50%; background: color-mix(in oklab, var(--purple) 22%, var(--surface-2)); color: var(--purple-soft); font-size: 0; }
+.notif .ico svg { width: 18px; height: 18px; }
+.notif { border-radius: 6px; border: 0; background: var(--surface); }
+.notif.unread { background: var(--surface); border-left: 3px solid var(--purple); }
+.tn-notif { width: 360px; max-height: 70vh; overflow-y: auto; padding: 0; }
+.tn-notif-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--line-2); position: sticky; top: 0; background: var(--surface-2); }
+.tn-notif-head button { border: 0; background: none; color: var(--purple-soft); font-weight: 600; font-size: 13px; padding: 0; }
+.tn-drop .tn-n { align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: 0; font-weight: 500; font-size: 13.5px; line-height: 1.35; }
+.tn-drop .tn-n.unread { background: color-mix(in oklab, var(--purple) 10%, transparent); }
+.tn-n-ic { width: 32px; height: 32px; flex: none; display: grid; place-items: center; border-radius: 50%; background: color-mix(in oklab, var(--purple) 22%, var(--surface-3)); color: var(--purple-soft); }
+.tn-n-ic svg { width: 16px; height: 16px; }
+.tn-n small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.tn-notif-all { justify-content: center; border-top: 1px solid var(--line-2); border-radius: 0 !important; color: var(--purple-soft) !important; }
+/* Agenda mais compacta */
+.cal-day { aspect-ratio: auto; height: 58px; border-radius: 4px; }
+.cal { padding: 14px 16px; }
+@media (max-width: 560px) { .cal-day { height: 42px; } }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -2390,13 +2441,12 @@ function eventCard(ev, opts = {}) {
 /* ---------- Clips ---------- */
 function clipCard(c) {
   const s = acc(c.streamer), G = GAMES[c.game] || GAMES.chat, open = UI.openComments.has(c.id);
-  return `<article class="card clip">
-    <div class="clip-thumb" style="--gc:${G.color}">${c.media ? (c.media.kind === 'video' ? `<video src="${c.media.url}" muted loop playsinline autoplay></video>` : `<img src="${c.media.url}" alt="">`) : `<span class="emo">${c.emoji || '🎬'}</span>`}
-      <span class="sim-tag">${c.media ? 'Media tua' : 'Clip simulado'}</span>${gicon(c.game, 26)}<span class="dur">0:${pad(c.secs || 30)}</span><span class="play">${icon('play')}</span></div>
+  const views = c.views || Math.round((c.likes || 0) * 7 + (c.popularity || 50) * 40);
+  return `<article class="clip tw-clip">
+    <div class="clip-thumb" style="--gc:${G.color}">${c.media ? (c.media.kind === 'video' ? `<video src="${c.media.url}" muted loop playsinline autoplay></video>` : `<img src="${c.media.url}" alt="">`) : `<span class="tw-thumb-bg"></span><span class="cl-glyph">${esc(glyphText(G))}</span>`}
+      <span class="cl-dur num">0:${pad(c.secs || 30)}</span><span class="cl-views">${fmt(views)} visualizações</span><span class="cl-date">${ago(c.createdAt)}</span><span class="play">${icon('play')}</span></div>
     <div class="clip-body">
-      <strong>${esc(c.title)}</strong>
-      <span class="small muted">${esc(s.name)} · ${esc(G.name)} · ${esc(c.type)}</span>
-      <div class="clip-pop"><span>Popularidade ${SIM('sim.')}</span><div class="goal-bar"><i style="width:${c.popularity}%"></i></div><b class="num">${c.popularity}</b></div>
+      <div class="tw-meta" style="margin:0">${avatar(s, 36)}<div><p class="tw-title">${esc(c.title)}</p><a class="tw-name" href="#${c.streamer === 'me' ? 'perfil' : 'conta-' + c.streamer}">${esc(s.name)}</a><span class="tw-game">${esc(G.name)} · ${esc(c.type)}${c.media ? '' : ' · simulado'}</span></div></div>
       <div class="clip-actions">
         <button class="pa like ${c.liked ? 'on' : ''}" data-act="clip-like" data-id="${c.id}">${icon('heart')}<span>${fmt(c.likes)}</span></button>
         <button class="pa" data-act="clip-comments" data-id="${c.id}">${icon('reply')}<span>${fmt(c.comments)}</span></button>
@@ -2423,7 +2473,7 @@ function viewClips() {
   let list = [...S.clips].sort((a, b) => b.createdAt - a.createdAt);
   if (UI.clipTab === 'mine') list = list.filter(c => c.streamer === 'me');
   if (UI.clipTab === 'community') list = list.filter(c => c.streamer !== 'me');
-  return `<div class="page-head"><div><h1>Clips</h1><p>Clips simulados criados a partir de momentos das lives. Não são gravações reais, a não ser que anexes a tua própria media.</p></div></div>
+  return `<div class="page-head"><div><h1>Clipes</h1><p>Clipes dos momentos das lives (simulados, a não ser que anexes a tua própria gravação).</p></div></div>
   <div class="tabs">${[['all', 'Todos'], ['mine', 'Os meus'], ['community', 'Comunidade']].map(([k, l]) => `<button class="tab ${UI.clipTab === k ? 'on' : ''}" data-act="clip-tab" data-k="${k}">${l}</button>`).join('')}</div>
   ${list.length ? `<div class="clip-grid">${list.map(clipCard).join('')}</div>` : `<div class="empty"><b>Ainda sem clips</b>Durante uma live, carrega em «Criar clip» na cronologia.</div>`}`;
 }
@@ -2546,8 +2596,8 @@ function calendarHTML(now) {
 
 /* ---------- Notificações ---------- */
 function viewNotifs() {
-  return `<div class="page-head"><div><h1>Notificações</h1><p>Notificações simuladas e geridas pela própria app.</p></div><span class="spacer"></span><button class="btn btn-sm" data-act="notif-read">${icon('check')} Marcar tudo como lido</button><button class="btn btn-sm btn-ghost" data-act="notif-clear">Limpar</button></div>
-  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${n.icon}</span><div>${esc(n.text)}<time data-ago="${n.t}">${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
+  return `<div class="page-head"><div><h1>Notificações</h1></div><span class="spacer"></span><button class="btn btn-sm" data-act="notif-read">${icon('check')} Marcar tudo como lido</button><button class="btn btn-sm btn-ghost" data-act="notif-clear">Limpar</button></div>
+  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${icon(notifIcon(n))}</span><div>${esc(noEmoji(n.text))}<time data-ago="${n.t}">${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
 }
 
 /* =====================================================================
@@ -3000,7 +3050,7 @@ function updateLiveBits() {
   $$('[data-me="followers"]').forEach(n => n.textContent = fmt(S.me.followers));
 }
 
-function studioSetup() {
+function studioSetupOld() {
   const mineEvents = S.events.filter(e => e.owner === 'me' && ['scheduled', 'soon'].includes(eventStatus(e))).sort((a, b) => a.start - b.start);
   const st = STUDIO.setup || (STUDIO.setup = { title: '', game: S.me.games[0] || 'fortnite', mode: 'casual', level: 'media', eventId: '' });
   const summary = STUDIO.summary && S.lives.find(l => l.id === STUDIO.summary);
@@ -3101,7 +3151,7 @@ function tickAgo() { $$('[data-ago]').forEach(n => { const v = ago(+n.dataset.ag
 /* ---------- Menu ---------- */
 const NAV_GROUPS = [
   ['Descobrir', [['feed', 'home', 'Página inicial'], ['explorar', 'search', 'Procurar']]],
-  ['Social', [['mensagens', 'chat', 'Mensagens'], ['notificacoes', 'bell', 'Atividade']]],
+  ['Social', [['mensagens', 'chat', 'Sussurros'], ['notificacoes', 'bell', 'Atividade']]],
   ['Criador', [['estudio', 'studio', 'Estúdio'], ['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clips']]],
   ['Conta', [['perfil', 'user', 'Perfil']]],
 ];
@@ -3130,7 +3180,7 @@ function renderNav() {
     <span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">EM DIRETO</a>` : ''}
     <a class="icon-btn top-ic" href="#notificacoes" aria-label="Atividade">${icon('bell')}${badge(notifUnread())}</a>
-    <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('inbox')}${badge(dmUnread())}</a>`;
+    <a class="icon-btn top-ic" href="#mensagens" aria-label="Sussurros">${icon('inbox')}${badge(dmUnread())}</a>`;
   const bn = (h, ic, label, extra = '') => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${ic}<span>${label}</span>${extra}</a>`;
   $('#bottomNav').innerHTML = `${bn('feed', icon('home'), 'Início')}${bn('explorar', icon('search'), 'Procurar')}
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
@@ -3264,7 +3314,7 @@ function viewMessages(activeId) {
   const shown = list.filter(t => !q || [acc(t.with).name, acc(t.with).handle].join(' ').toLowerCase().includes(q));
   return `<div class="dm ${active ? 'has-active' : ''}">
     <aside class="card dm-list">
-      <div class="dm-list-head"><h1>Mensagens</h1><button class="icon-btn" data-act="dm-new" aria-label="Nova mensagem" title="Nova mensagem">${icon('plus')}</button></div>
+      <div class="dm-list-head"><h1>Sussurros</h1><button class="icon-btn" data-act="dm-new" aria-label="Nova mensagem" title="Nova mensagem">${icon('plus')}</button></div>
       <div class="search-bar small">${icon('search')}<input class="input" type="search" id="dmSearch" data-dmsearch placeholder="Procurar conversa" value="${esc(UI.dmSearch)}" autocomplete="off" aria-label="Procurar conversa"></div>
       <div class="dm-threads" id="dmThreads">${shown.length ? shown.map(t => dmThreadRow(t, activeId)).join('') : '<p class="muted small" style="padding:12px">Sem conversas.</p>'}</div>
       <p class="tiny muted" style="padding:10px 14px;margin:0">As contas e as respostas são fictícias e geradas pela app.</p>
@@ -4684,7 +4734,7 @@ Object.assign(IC, {
 UI.navMenu = null;
 function topNavHTML() {
   const cur = navCurrent();
-  const more = [['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clipes'], ['estudio', 'studio', 'Painel do criador'], ['mensagens', 'chat', 'Mensagens'], ['perfil', 'user', 'O meu canal']];
+  const more = [['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clipes'], ['estudio', 'studio', 'Painel do criador'], ['mensagens', 'chat', 'Sussurros'], ['perfil', 'user', 'O meu canal']];
   return `<div class="tn-left">
       <a class="tn-logo" href="#feed" aria-label="LiveVerse — página inicial"><span class="logo-mark">${LOGO_SVG_FN()}</span></a>
       <a class="tn-link ${cur === 'feed' && UI.homeTab === 'following' ? 'on' : ''}" href="#feed" data-act="go-following">Seguidos</a>
@@ -4695,8 +4745,9 @@ function topNavHTML() {
     <form class="tn-search" data-form="topsearch" role="search"><input class="input" id="topSearch" name="q" placeholder="Procurar" autocomplete="off" value="${esc(UI.explore?.q || '')}"><button aria-label="Procurar">${icon('search')}</button></form>
     <div class="tn-right">
       <span class="tn-clock num" data-clock="hm">${hhmm(Date.now())}</span>
-      <a class="tn-ic" href="#notificacoes" aria-label="Atividade" title="Atividade">${icon('bell')}${badge(notifUnread())}</a>
-      <a class="tn-ic" href="#mensagens" aria-label="Mensagens" title="Mensagens">${icon('inbox')}${badge(dmUnread())}</a>
+      <div class="tn-drop-wrap"><button class="tn-ic" data-act="nav-menu" data-m="notif" aria-label="Notificações" title="Notificações" aria-expanded="${UI.navMenu === 'notif'}">${icon('bell')}${badge(notifUnread())}</button>
+        ${UI.navMenu === 'notif' ? `<div class="tn-drop tn-drop-r tn-notif"><div class="tn-notif-head"><b>Notificações</b><button data-act="notif-read">Marcar como lidas</button></div>${S.notifs.slice(0, 8).map(n => `<button class="tn-n ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="tn-n-ic">${icon(notifIcon(n))}</span><span><span>${esc(noEmoji(n.text))}</span><small>${ago(n.t)}</small></span></button>`).join('') || '<p class="muted small" style="padding:10px">Sem notificações.</p>'}<a class="tn-notif-all" href="#notificacoes">Ver todas as notificações</a></div>` : ''}</div>
+      <a class="tn-ic" href="#mensagens" aria-label="Sussurros" title="Sussurros">${icon('inbox')}${badge(dmUnread())}</a>
       <a class="tn-golive ${S.live ? 'is-live' : ''}" href="#estudio">${icon('studio')} ${S.live ? 'Em direto' : 'Transmitir'}</a>
       <div class="tn-drop-wrap"><button class="tn-avatar" data-act="nav-menu" data-m="user" aria-label="Menu do utilizador" aria-expanded="${UI.navMenu === 'user'}">${avatar(S.me, 30).replace('<a ', '<span ').replace('</a>', '</span>')}${S.live ? '<i class="tn-live-dot"></i>' : ''}</button>
         ${UI.navMenu === 'user' ? `<div class="tn-drop tn-drop-r">
@@ -5008,6 +5059,7 @@ function attachMedia() {
 function mediaChanged() {
   if (S.live) { paintScreen(); paintMediaBar(); }
   $$('[data-setupmedia]').forEach(el => el.outerHTML = setupMediaHTML());
+  $$('[data-setuppv]').forEach(el => el.outerHTML = setupPreviewHTML());
   attachMedia();
 }
 
@@ -5102,7 +5154,7 @@ const MEDIA_ACT = {
   'screen-toggle': () => screenToggle(),
   'rec-toggle': () => recToggle(),
   'reacts-toggle': () => { STUDIO.reacts = !STUDIO.reacts; paintMediaBar(); },
-  'orient': b => { setOrient(b.dataset.o); paintQA(); },
+  'orient': b => { setOrient(b.dataset.o); paintQA(); if (!S.live) mediaChanged(); },
 };
 
 /* =====================================================================
@@ -5206,6 +5258,74 @@ const FEAT_FORMS = {
     if (S.emotes.some(e => e.code.toLowerCase() === code.toLowerCase())) return toast('⚠️', 'Já tens um emote com esse código.');
     if (S.emotes.length >= 20) return toast('⚠️', 'Chegaste ao limite de 20 emotes.');
     S.emotes.push({ code, img: UI.emoteDraft }); UI.emoteDraft = null; save(); openEmotes();
+  },
+};
+
+/* =====================================================================
+   Acabamento profissional: gestor de transmissão offline, ícones das
+   notificações e lista suspensa do sino.
+   ===================================================================== */
+function notifIcon(n) {
+  const t = (n.icon || '') + ' ' + (n.text || '');
+  if (/seguir|seguidor|💜/.test(t)) return 'heart';
+  if (/evento|📅|⏰|começa/.test(t)) return 'calendar';
+  if (/conquista|🏆|nível|🎖️/i.test(t)) return 'trophy';
+  if (/respondeu|✉️|💬|mensagem/.test(t)) return 'chat';
+  if (/direto|live|🔴|🎬/i.test(t)) return 'studio';
+  if (/raid|🚀/.test(t)) return 'users';
+  return 'bell';
+}
+function setupPreviewHTML() {
+  const v = S.prefs.orient === 'v';
+  const inner = MEDIA.screen
+    ? `<video data-stream="screen" class="live-video fit-contain" autoplay muted playsinline></video>${MEDIA.cam ? '<video data-stream="cam" class="pv-cam mirror" autoplay muted playsinline></video>' : ''}`
+    : MEDIA.cam ? '<video data-stream="cam" class="live-video mirror" autoplay muted playsinline></video>'
+    : `<div class="pv-off">${avatar(S.me, 64).replace('<a ', '<span ').replace('</a>', '</span>')}<b>Estás offline</b><small>Liga a câmara ou mostra o jogo para veres a pré-visualização</small></div>`;
+  return `<div data-setuppv><div class="setup-preview big ${v ? 'vertical' : ''}">${inner}</div>
+    <div class="row" style="margin-top:10px">${mediaButtonsHTML()}<span class="spacer"></span>${orientHTML()}</div>
+    <p class="tiny muted" style="margin:8px 0 0">${inClaude() ? 'A câmara e o ecrã funcionam no teu site do Cloudflare ou no Chrome; dentro do Claude o navegador bloqueia-os.' : 'O vídeo fica só no teu navegador. Partilhar o ecrã funciona no computador.'}</p></div>`;
+}
+function studioSetup() {
+  const mineEvents = S.events.filter(e => e.owner === 'me' && ['scheduled', 'soon'].includes(eventStatus(e))).sort((a, b) => a.start - b.start);
+  const st = STUDIO.setup || (STUDIO.setup = { title: '', game: S.me.games[0] || 'fortnite', mode: 'casual', level: 'media', eventId: '', tags: '' });
+  const summary = STUDIO.summary && S.lives.find(l => l.id === STUDIO.summary);
+  return `${soonBanner(mineEvents.filter(e => eventStatus(e) === 'soon'))}
+  <div class="page-head"><div><h1>Gestor de transmissão</h1><p>Estás offline. Prepara a transmissão e entra em direto quando quiseres.</p></div></div>
+  ${summary ? liveSummary(summary) : ''}
+  <form data-form="go-live" class="sm-setup">
+    <section class="card sm-pv"><div class="sm-head"><span class="tw-chead-t">Pré-visualização da transmissão</span><span class="pill-state">OFFLINE</span></div>${setupPreviewHTML()}</section>
+    <section class="card sm-info"><div class="sm-head"><span class="tw-chead-t">Informação da transmissão</span></div>
+      <div class="stack" style="gap:12px">
+        ${mineEvents.length ? `<label class="field"><span>Evento agendado</span><select class="input" name="eventId" id="glEvent" data-setup="eventId"><option value="">Nenhum</option>${mineEvents.map(e => `<option value="${e.id}" ${st.eventId === e.id ? 'selected' : ''}>${esc(e.title)} · ${whenLabel(e.start)}</option>`).join('')}</select></label>` : ''}
+        <label class="field"><span>Título</span><input class="input" name="title" id="glTitle" data-setup="title" maxlength="90" placeholder="Ex.: Ranked com o chat" value="${esc(st.title)}"></label>
+        <label class="field"><span>Categoria</span><select class="input" name="game" id="glGame" data-setup="game">${Object.entries(GAMES).map(([k, g]) => `<option value="${k}" ${st.game === k ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select></label>
+        <label class="field"><span>Etiquetas</span><input class="input" name="tags" id="glTags" data-setup="tags" maxlength="120" placeholder="Português, Competitivo" value="${esc(st.tags || '')}"></label>
+        <div class="grid-2">
+          <label class="field"><span>Modo</span><select class="input" name="mode" id="glMode" data-setup="mode">${Object.entries(MODES).map(([k, m]) => `<option value="${k}" ${st.mode === k ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label>
+          <label class="field"><span>Audiência simulada</span><select class="input" name="level" id="glLevel" data-setup="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${st.level === k ? 'selected' : ''}>Até ${dots(l.max)}</option>`).join('')}</select></label>
+        </div>
+        <button class="btn btn-live sm-go">${icon('studio')} Entrar em direto</button>
+        <button type="button" class="btn" data-act="new-event" style="justify-content:center">${icon('calendar')} Agendar para outra hora</button>
+        <p class="tiny muted" style="margin:0">Os espetadores e o chat são simulados.</p>
+      </div></section>
+  </form>
+  <details class="card sm-more"><summary>${icon('gear')} Mais definições <small>Microfone e som · Meta de presentes · Moderação do chat</small></summary>
+    <div class="grid-2" style="align-items:start">
+      <section class="panel"><h3 class="panel-title">${icon('mic', 'style="width:18px"')} Microfone e som<small>${soundPanelHTML()}</small></h3>${micPanelHTML()}</section>
+      <section class="panel"><h3 class="panel-title">${icon('target', 'style="width:18px"')} Meta de presentes</h3>${goalPanelHTML()}</section>
+    </div>
+    <section class="panel"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação do chat</h3>${modPanelHTML()}</section>
+  </details>
+  <h2 class="tw-h" style="margin-top:22px">Transmissões anteriores</h2>
+  <div class="stack">${S.lives.length ? [...S.lives].sort((a, b) => b.start - a.start).map(pastLive).join('') : '<div class="empty"><b>Ainda não fizeste nenhuma transmissão</b>Quando terminares a primeira, o resumo aparece aqui.</div>'}</div>`;
+}
+const POLISH_FORMS = {
+  'go-live': f => {
+    const st = STUDIO.setup; const ev = st.eventId && S.events.find(e => e.id === st.eventId);
+    const tags = String(f.tags ? f.tags.value : st.tags || '').split(',').map(t => t.trim().replace(/^#/, '')).filter(Boolean).slice(0, 6);
+    startLive(ev ? { title: ev.title, game: ev.game, mode: ev.mode, level: ev.level, eventId: ev.id } : { title: f.title.value.trim() || `Live de ${GAMES[st.game].name}`, game: st.game, mode: st.mode, level: st.level });
+    if (S.live && tags.length) { S.live.tags = tags; render(); }
+    STUDIO.setup = null; save();
   },
 };
 
@@ -5769,7 +5889,7 @@ function init() {
   save();
 }
 Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, TW3_ACT, FEAT_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
-Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS, FEAT_FORMS);
+Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS, FEAT_FORMS, POLISH_FORMS);
 init();
 
 </script>

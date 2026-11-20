@@ -448,7 +448,7 @@ function updateLiveBits() {
   $$('[data-me="followers"]').forEach(n => n.textContent = fmt(S.me.followers));
 }
 
-function studioSetup() {
+function studioSetupOld() {
   const mineEvents = S.events.filter(e => e.owner === 'me' && ['scheduled', 'soon'].includes(eventStatus(e))).sort((a, b) => a.start - b.start);
   const st = STUDIO.setup || (STUDIO.setup = { title: '', game: S.me.games[0] || 'fortnite', mode: 'casual', level: 'media', eventId: '' });
   const summary = STUDIO.summary && S.lives.find(l => l.id === STUDIO.summary);

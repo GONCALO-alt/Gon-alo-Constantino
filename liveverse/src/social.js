@@ -33,7 +33,7 @@ function tickAgo() { $$('[data-ago]').forEach(n => { const v = ago(+n.dataset.ag
 /* ---------- Menu ---------- */
 const NAV_GROUPS = [
   ['Descobrir', [['feed', 'home', 'Página inicial'], ['explorar', 'search', 'Procurar']]],
-  ['Social', [['mensagens', 'chat', 'Mensagens'], ['notificacoes', 'bell', 'Atividade']]],
+  ['Social', [['mensagens', 'chat', 'Sussurros'], ['notificacoes', 'bell', 'Atividade']]],
   ['Criador', [['estudio', 'studio', 'Estúdio'], ['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clips']]],
   ['Conta', [['perfil', 'user', 'Perfil']]],
 ];
@@ -62,7 +62,7 @@ function renderNav() {
     <span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">EM DIRETO</a>` : ''}
     <a class="icon-btn top-ic" href="#notificacoes" aria-label="Atividade">${icon('bell')}${badge(notifUnread())}</a>
-    <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('inbox')}${badge(dmUnread())}</a>`;
+    <a class="icon-btn top-ic" href="#mensagens" aria-label="Sussurros">${icon('inbox')}${badge(dmUnread())}</a>`;
   const bn = (h, ic, label, extra = '') => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${ic}<span>${label}</span>${extra}</a>`;
   $('#bottomNav').innerHTML = `${bn('feed', icon('home'), 'Início')}${bn('explorar', icon('search'), 'Procurar')}
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
@@ -196,7 +196,7 @@ function viewMessages(activeId) {
   const shown = list.filter(t => !q || [acc(t.with).name, acc(t.with).handle].join(' ').toLowerCase().includes(q));
   return `<div class="dm ${active ? 'has-active' : ''}">
     <aside class="card dm-list">
-      <div class="dm-list-head"><h1>Mensagens</h1><button class="icon-btn" data-act="dm-new" aria-label="Nova mensagem" title="Nova mensagem">${icon('plus')}</button></div>
+      <div class="dm-list-head"><h1>Sussurros</h1><button class="icon-btn" data-act="dm-new" aria-label="Nova mensagem" title="Nova mensagem">${icon('plus')}</button></div>
       <div class="search-bar small">${icon('search')}<input class="input" type="search" id="dmSearch" data-dmsearch placeholder="Procurar conversa" value="${esc(UI.dmSearch)}" autocomplete="off" aria-label="Procurar conversa"></div>
       <div class="dm-threads" id="dmThreads">${shown.length ? shown.map(t => dmThreadRow(t, activeId)).join('') : '<p class="muted small" style="padding:12px">Sem conversas.</p>'}</div>
       <p class="tiny muted" style="padding:10px 14px;margin:0">As contas e as respostas são fictícias e geradas pela app.</p>

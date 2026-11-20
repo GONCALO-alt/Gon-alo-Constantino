@@ -68,6 +68,7 @@ function attachMedia() {
 function mediaChanged() {
   if (S.live) { paintScreen(); paintMediaBar(); }
   $$('[data-setupmedia]').forEach(el => el.outerHTML = setupMediaHTML());
+  $$('[data-setuppv]').forEach(el => el.outerHTML = setupPreviewHTML());
   attachMedia();
 }
 
@@ -162,5 +163,5 @@ const MEDIA_ACT = {
   'screen-toggle': () => screenToggle(),
   'rec-toggle': () => recToggle(),
   'reacts-toggle': () => { STUDIO.reacts = !STUDIO.reacts; paintMediaBar(); },
-  'orient': b => { setOrient(b.dataset.o); paintQA(); },
+  'orient': b => { setOrient(b.dataset.o); paintQA(); if (!S.live) mediaChanged(); },
 };

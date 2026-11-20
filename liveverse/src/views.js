@@ -243,13 +243,12 @@ function eventCard(ev, opts = {}) {
 /* ---------- Clips ---------- */
 function clipCard(c) {
   const s = acc(c.streamer), G = GAMES[c.game] || GAMES.chat, open = UI.openComments.has(c.id);
-  return `<article class="card clip">
-    <div class="clip-thumb" style="--gc:${G.color}">${c.media ? (c.media.kind === 'video' ? `<video src="${c.media.url}" muted loop playsinline autoplay></video>` : `<img src="${c.media.url}" alt="">`) : `<span class="emo">${c.emoji || '🎬'}</span>`}
-      <span class="sim-tag">${c.media ? 'Media tua' : 'Clip simulado'}</span>${gicon(c.game, 26)}<span class="dur">0:${pad(c.secs || 30)}</span><span class="play">${icon('play')}</span></div>
+  const views = c.views || Math.round((c.likes || 0) * 7 + (c.popularity || 50) * 40);
+  return `<article class="clip tw-clip">
+    <div class="clip-thumb" style="--gc:${G.color}">${c.media ? (c.media.kind === 'video' ? `<video src="${c.media.url}" muted loop playsinline autoplay></video>` : `<img src="${c.media.url}" alt="">`) : `<span class="tw-thumb-bg"></span><span class="cl-glyph">${esc(glyphText(G))}</span>`}
+      <span class="cl-dur num">0:${pad(c.secs || 30)}</span><span class="cl-views">${fmt(views)} visualizações</span><span class="cl-date">${ago(c.createdAt)}</span><span class="play">${icon('play')}</span></div>
     <div class="clip-body">
-      <strong>${esc(c.title)}</strong>
-      <span class="small muted">${esc(s.name)} · ${esc(G.name)} · ${esc(c.type)}</span>
-      <div class="clip-pop"><span>Popularidade ${SIM('sim.')}</span><div class="goal-bar"><i style="width:${c.popularity}%"></i></div><b class="num">${c.popularity}</b></div>
+      <div class="tw-meta" style="margin:0">${avatar(s, 36)}<div><p class="tw-title">${esc(c.title)}</p><a class="tw-name" href="#${c.streamer === 'me' ? 'perfil' : 'conta-' + c.streamer}">${esc(s.name)}</a><span class="tw-game">${esc(G.name)} · ${esc(c.type)}${c.media ? '' : ' · simulado'}</span></div></div>
       <div class="clip-actions">
         <button class="pa like ${c.liked ? 'on' : ''}" data-act="clip-like" data-id="${c.id}">${icon('heart')}<span>${fmt(c.likes)}</span></button>
         <button class="pa" data-act="clip-comments" data-id="${c.id}">${icon('reply')}<span>${fmt(c.comments)}</span></button>
@@ -276,7 +275,7 @@ function viewClips() {
   let list = [...S.clips].sort((a, b) => b.createdAt - a.createdAt);
   if (UI.clipTab === 'mine') list = list.filter(c => c.streamer === 'me');
   if (UI.clipTab === 'community') list = list.filter(c => c.streamer !== 'me');
-  return `<div class="page-head"><div><h1>Clips</h1><p>Clips simulados criados a partir de momentos das lives. Não são gravações reais, a não ser que anexes a tua própria media.</p></div></div>
+  return `<div class="page-head"><div><h1>Clipes</h1><p>Clipes dos momentos das lives (simulados, a não ser que anexes a tua própria gravação).</p></div></div>
   <div class="tabs">${[['all', 'Todos'], ['mine', 'Os meus'], ['community', 'Comunidade']].map(([k, l]) => `<button class="tab ${UI.clipTab === k ? 'on' : ''}" data-act="clip-tab" data-k="${k}">${l}</button>`).join('')}</div>
   ${list.length ? `<div class="clip-grid">${list.map(clipCard).join('')}</div>` : `<div class="empty"><b>Ainda sem clips</b>Durante uma live, carrega em «Criar clip» na cronologia.</div>`}`;
 }
@@ -399,6 +398,6 @@ function calendarHTML(now) {
 
 /* ---------- Notificações ---------- */
 function viewNotifs() {
-  return `<div class="page-head"><div><h1>Notificações</h1><p>Notificações simuladas e geridas pela própria app.</p></div><span class="spacer"></span><button class="btn btn-sm" data-act="notif-read">${icon('check')} Marcar tudo como lido</button><button class="btn btn-sm btn-ghost" data-act="notif-clear">Limpar</button></div>
-  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${n.icon}</span><div>${esc(n.text)}<time data-ago="${n.t}">${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
+  return `<div class="page-head"><div><h1>Notificações</h1></div><span class="spacer"></span><button class="btn btn-sm" data-act="notif-read">${icon('check')} Marcar tudo como lido</button><button class="btn btn-sm btn-ghost" data-act="notif-clear">Limpar</button></div>
+  <div class="stack" style="gap:8px">${S.notifs.length ? S.notifs.map(n => `<button class="notif ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="ico">${icon(notifIcon(n))}</span><div>${esc(noEmoji(n.text))}<time data-ago="${n.t}">${ago(n.t)}</time></div></button>`).join('') : '<div class="empty"><b>Tudo em dia</b>As notificações dos teus eventos e lives aparecem aqui.</div>'}</div>`;
 }

@@ -16,7 +16,7 @@ Object.assign(IC, {
 UI.navMenu = null;
 function topNavHTML() {
   const cur = navCurrent();
-  const more = [['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clipes'], ['estudio', 'studio', 'Painel do criador'], ['mensagens', 'chat', 'Mensagens'], ['perfil', 'user', 'O meu canal']];
+  const more = [['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clipes'], ['estudio', 'studio', 'Painel do criador'], ['mensagens', 'chat', 'Sussurros'], ['perfil', 'user', 'O meu canal']];
   return `<div class="tn-left">
       <a class="tn-logo" href="#feed" aria-label="LiveVerse — página inicial"><span class="logo-mark">${LOGO_SVG_FN()}</span></a>
       <a class="tn-link ${cur === 'feed' && UI.homeTab === 'following' ? 'on' : ''}" href="#feed" data-act="go-following">Seguidos</a>
@@ -27,8 +27,9 @@ function topNavHTML() {
     <form class="tn-search" data-form="topsearch" role="search"><input class="input" id="topSearch" name="q" placeholder="Procurar" autocomplete="off" value="${esc(UI.explore?.q || '')}"><button aria-label="Procurar">${icon('search')}</button></form>
     <div class="tn-right">
       <span class="tn-clock num" data-clock="hm">${hhmm(Date.now())}</span>
-      <a class="tn-ic" href="#notificacoes" aria-label="Atividade" title="Atividade">${icon('bell')}${badge(notifUnread())}</a>
-      <a class="tn-ic" href="#mensagens" aria-label="Mensagens" title="Mensagens">${icon('inbox')}${badge(dmUnread())}</a>
+      <div class="tn-drop-wrap"><button class="tn-ic" data-act="nav-menu" data-m="notif" aria-label="Notificações" title="Notificações" aria-expanded="${UI.navMenu === 'notif'}">${icon('bell')}${badge(notifUnread())}</button>
+        ${UI.navMenu === 'notif' ? `<div class="tn-drop tn-drop-r tn-notif"><div class="tn-notif-head"><b>Notificações</b><button data-act="notif-read">Marcar como lidas</button></div>${S.notifs.slice(0, 8).map(n => `<button class="tn-n ${n.read ? '' : 'unread'}" data-act="notif-open" data-id="${n.id}"><span class="tn-n-ic">${icon(notifIcon(n))}</span><span><span>${esc(noEmoji(n.text))}</span><small>${ago(n.t)}</small></span></button>`).join('') || '<p class="muted small" style="padding:10px">Sem notificações.</p>'}<a class="tn-notif-all" href="#notificacoes">Ver todas as notificações</a></div>` : ''}</div>
+      <a class="tn-ic" href="#mensagens" aria-label="Sussurros" title="Sussurros">${icon('inbox')}${badge(dmUnread())}</a>
       <a class="tn-golive ${S.live ? 'is-live' : ''}" href="#estudio">${icon('studio')} ${S.live ? 'Em direto' : 'Transmitir'}</a>
       <div class="tn-drop-wrap"><button class="tn-avatar" data-act="nav-menu" data-m="user" aria-label="Menu do utilizador" aria-expanded="${UI.navMenu === 'user'}">${avatar(S.me, 30).replace('<a ', '<span ').replace('</a>', '</span>')}${S.live ? '<i class="tn-live-dot"></i>' : ''}</button>
         ${UI.navMenu === 'user' ? `<div class="tn-drop tn-drop-r">
