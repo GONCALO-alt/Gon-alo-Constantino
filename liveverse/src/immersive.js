@@ -60,7 +60,7 @@ function screenInner(L) {
   const main = MEDIA.screen ? 'screen' : MEDIA.cam ? 'cam' : null;
   if (scene === 'game' && main) bg = `<video data-stream="${main}" class="live-video ${main === 'cam' ? 'mirror' : 'fit-contain'}" autoplay muted playsinline></video>`;
   else if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
-    : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Ecrã de jogo simulado</small></div></div>`;
+    : `<div class="screen-bg pro"></div><div class="screen-center"><div class="nosig">${gicon(L.game, 44)}<b>${esc(G.name)}</b><small>Sem fonte de vídeo · liga a câmara ou mostra o jogo nas Ações rápidas</small></div></div>`;
   else {
     const card = {
       starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
@@ -374,7 +374,7 @@ function liveCounters(L) {
     const names = Array.from({ length: Math.min(n, 3) }, () => fakeUser());
     L.recentFol.unshift(...names); L.recentFol = L.recentFol.slice(0, 8);
     names.forEach(nm => activityPush(L, 'follow', `${nm} seguiu-te`));
-    if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
+    L.lastFolMsg = now;
     const goal = FOL_GOALS.filter(g => g <= f).pop();
     if (goal && goal > (S.me.folGoalHit || 0)) {
       S.me.folGoalHit = goal;

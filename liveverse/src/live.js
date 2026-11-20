@@ -9,6 +9,7 @@ let liveTimer = null;
 let watchTimer = null;
 const STUDIO = { overlay: window.innerWidth < 760, reacts: false, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
 
+const noEmoji = t => String(t).replace(/^[\p{Extended_Pictographic}\uFE0F\u200D\s]+/u, '');
 function fakeUser() { if (S && S.regulars && S.regulars.length && Math.random() < .22) return pick(S.regulars).u; return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
 function fill(t, ctx) {
   return t.replace('{game}', ctx.gameName).replace('{viewers}', fmt(ctx.viewers).toUpperCase()).replace('{goal}', fmt(ctx.goal)).replace('{G}', ctx.gameName);
@@ -86,7 +87,7 @@ function liveTick() {
     if (L.viewers >= m && !L.milestones.includes(m)) {
       L.milestones.push(m);
       addTimeline('milestone', `Marco de audiência: ${dots(m)} espectadores virtuais`, '📈');
-      pushChat({ sys: true, text: `📈 ${dots(m)} espectadores virtuais! O chat está a encher.` });
+      activityPush(L, 'milestone', `Marco de ${dots(m)} espetadores`);
       if (m >= 1000) toast('📈', `${dots(m)} espectadores virtuais!`);
       if (m >= 1000) crowd(.7);
       if (m >= 500) { sound('milestone'); alertShow('📈', `${dots(m)} espectadores!`, 'marco de audiência', 'milestone'); }
@@ -137,7 +138,7 @@ function giftEvent(fromUser) {
   const val = g.value * qty;
   L.gifts += val;
   const u = fromUser || fakeUser();
-  pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
+  if (val >= 50) pushChat({ gift: true, text: `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
   goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
   if (val >= 20) activityPush(L, 'gift', `${u} ofereceu ${qty > 1 ? qty + '× ' : ''}${g.name} · ${dots(val)} moedas`);
   if (val >= 200) giftMessage(u, g, val);
@@ -172,14 +173,14 @@ function pushChat(m) {
   const last = $('#dockLast'); if (last && !m.sys && !m.gift) last.textContent = `${m.user}: ${m.text}`;
 }
 function overlayMsgHTML(m) {
-  if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(m.text)}</div>`;
+  if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(noEmoji(m.text))}</div>`;
   return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}">${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
   if (m.plain) return `<div class="msg plain">${esc(m.text)}</div>`;
-  if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(m.text)}</div>`;
-  if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
+  if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(noEmoji(m.text))}</div>`;
+  if (m.gift) return `<div class="msg gift">${esc(noEmoji(m.text))}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
   return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
@@ -262,7 +263,7 @@ function react(itemId, customText) {
   if (item.fol) {
     const f = Math.round(L.viewers * item.hype * rand(.002, .006) + 1);
     L.followers += f; S.me.followers += f;
-    setTimeout(() => { if (S.live !== L) return; pushChat({ sys: true, text: `💜 +${dots(f)} novos seguidores fictícios!` }); alertShow('💜', `+${dots(f)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }, 900);
+    setTimeout(() => { if (S.live !== L) return; activityPush(L, 'follow', `+${dots(f)} novos seguidores`); alertShow('💜', `+${dots(f)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }, 900);
   }
   // 5. cronologia
   sound('react');
@@ -316,6 +317,7 @@ function raid() {
 
 /* ---------- Efeitos visuais ---------- */
 function fxBurst(emoji, text) {
+  return; // visual limpo: só os alertas discretos
   const fx = $('#fx'); if (!fx || !STUDIO.fx) return;
   const flash = document.createElement('div'); flash.className = 'flash';
   const burst = document.createElement('div'); burst.className = 'burst';

@@ -339,7 +339,7 @@ function hideUserMsgs(user, label) {
 }
 function chatBadgesHTML() {
   const M = S.mod;
-  return [M.automod && '<span class="mini-badge">🛡️ AutoMod</span>', M.slow && '<span class="mini-badge">🐢 Modo lento</span>', M.subOnly && '<span class="mini-badge">⭐ Só subscritores</span>', M.emoteOnly && '<span class="mini-badge">😀 Só emojis</span>'].filter(Boolean).join('');
+  return [M.slow && '<span class="mini-badge">Modo lento</span>', M.subOnly && '<span class="mini-badge">Só subscritores</span>', M.emoteOnly && '<span class="mini-badge">Só emojis</span>'].filter(Boolean).join('');
 }
 function pinnedHTML() {
   const p = S.live?.pinned; if (!p) return '';

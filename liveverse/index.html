@@ -1502,6 +1502,45 @@ a.btn { text-decoration: none; }
 
 @media (max-width: 820px) { .desk-only { display: none; } }
 
+/* ===================== Live limpa e profissional ===================== */
+.screen-bg.pro { background: radial-gradient(ellipse at 50% 40%, #1d1830 0%, #0b0b0d 70%); animation: none; }
+.nosig { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--fg-2); }
+.nosig b { font-size: clamp(15px, 1.6vw, 20px); font-weight: 700; color: var(--fg); }
+.nosig small { font-size: 12px; color: var(--muted); max-width: 280px; letter-spacing: 0; text-transform: none; }
+.screen .num-pop { display: none; }
+.screen .alert { padding: 8px 14px 8px 8px; border-radius: 6px; background: rgb(14 14 16 / .92); border: 1px solid var(--line-2); box-shadow: 0 8px 24px rgb(0 0 0 / .6); }
+.screen .alert b { font-size: 14px; font-family: var(--f-body); font-weight: 700; }
+.screen .alert small { font-size: 11.5px; }
+.screen .alert-ic { width: 32px; height: 32px; border-radius: 4px; }
+.screen .alert-ic svg { width: 18px; height: 18px; }
+.alert-box { top: 14px; }
+.fol-counter { top: 14px; right: 12px; }
+.fc-logo { width: 22px; height: 22px; border-radius: 5px; }
+.fc-box { font-size: clamp(12px, 1.5vw, 18px); border-width: 1.5px; padding: 0 5px; }
+.screen.vertical .fc-box { font-size: clamp(12px, 3.2vw, 16px); }
+.live-top { padding: 12px 16px; background: var(--surface); }
+.live-top .sim-tag { display: none; }
+.live-top .lt-stat small { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.live-top .lt-stat b { font-size: 20px; font-weight: 700; }
+.live-top .lt-fol b { color: var(--fg); }
+.lt-stat + .lt-stat { padding-left: 18px; border-left: 1px solid var(--line); }
+.qa { padding: 14px; }
+.qa-grid { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 6px; }
+.qa-t { min-height: 64px; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; padding: 10px 12px; background: var(--surface-2); border: 1px solid var(--line); color: var(--fg); font-weight: 600; font-size: 13px; }
+.qa-t:hover { filter: none; background: var(--surface-3); border-color: var(--line-2); }
+.qa-t .qa-ic { width: 32px; height: 32px; flex: none; display: grid; place-items: center; border-radius: 6px; background: color-mix(in oklab, var(--c) 22%, transparent); color: color-mix(in oklab, var(--c) 70%, #fff); }
+.qa-t .qa-ic svg { width: 18px; height: 18px; }
+.qa-t.on { box-shadow: none; border-color: var(--purple); background: color-mix(in oklab, var(--purple) 14%, var(--surface-2)); }
+.chat-badges:empty { display: none; }
+.msg.sys, .msg.gift { font-weight: 500; font-size: 13px; color: var(--fg-2); }
+.sm-activity .chat-head .sim-tag, .qa .sim-tag { display: none; }
+.surprise { border-color: var(--line-2); background: var(--surface); animation: rise .3s; }
+.surprise-ic { display: none; }
+.train { background: rgb(14 14 16 / .92); box-shadow: none; border: 1px solid var(--purple); }
+
+.train { top: auto; bottom: 12px; right: 12px; left: auto; width: min(40%, 240px); }
+.screen.vertical .train { width: 60%; bottom: 44px; }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -2495,6 +2534,7 @@ let liveTimer = null;
 let watchTimer = null;
 const STUDIO = { overlay: window.innerWidth < 760, reacts: false, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
 
+const noEmoji = t => String(t).replace(/^[\p{Extended_Pictographic}\uFE0F\u200D\s]+/u, '');
 function fakeUser() { if (S && S.regulars && S.regulars.length && Math.random() < .22) return pick(S.regulars).u; return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
 function fill(t, ctx) {
   return t.replace('{game}', ctx.gameName).replace('{viewers}', fmt(ctx.viewers).toUpperCase()).replace('{goal}', fmt(ctx.goal)).replace('{G}', ctx.gameName);
@@ -2572,7 +2612,7 @@ function liveTick() {
     if (L.viewers >= m && !L.milestones.includes(m)) {
       L.milestones.push(m);
       addTimeline('milestone', `Marco de audiência: ${dots(m)} espectadores virtuais`, '📈');
-      pushChat({ sys: true, text: `📈 ${dots(m)} espectadores virtuais! O chat está a encher.` });
+      activityPush(L, 'milestone', `Marco de ${dots(m)} espetadores`);
       if (m >= 1000) toast('📈', `${dots(m)} espectadores virtuais!`);
       if (m >= 1000) crowd(.7);
       if (m >= 500) { sound('milestone'); alertShow('📈', `${dots(m)} espectadores!`, 'marco de audiência', 'milestone'); }
@@ -2623,7 +2663,7 @@ function giftEvent(fromUser) {
   const val = g.value * qty;
   L.gifts += val;
   const u = fromUser || fakeUser();
-  pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
+  if (val >= 50) pushChat({ gift: true, text: `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
   goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
   if (val >= 20) activityPush(L, 'gift', `${u} ofereceu ${qty > 1 ? qty + '× ' : ''}${g.name} · ${dots(val)} moedas`);
   if (val >= 200) giftMessage(u, g, val);
@@ -2658,14 +2698,14 @@ function pushChat(m) {
   const last = $('#dockLast'); if (last && !m.sys && !m.gift) last.textContent = `${m.user}: ${m.text}`;
 }
 function overlayMsgHTML(m) {
-  if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(m.text)}</div>`;
+  if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(noEmoji(m.text))}</div>`;
   return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}">${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
   if (m.plain) return `<div class="msg plain">${esc(m.text)}</div>`;
-  if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(m.text)}</div>`;
-  if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
+  if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(noEmoji(m.text))}</div>`;
+  if (m.gift) return `<div class="msg gift">${esc(noEmoji(m.text))}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
   return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
@@ -2748,7 +2788,7 @@ function react(itemId, customText) {
   if (item.fol) {
     const f = Math.round(L.viewers * item.hype * rand(.002, .006) + 1);
     L.followers += f; S.me.followers += f;
-    setTimeout(() => { if (S.live !== L) return; pushChat({ sys: true, text: `💜 +${dots(f)} novos seguidores fictícios!` }); alertShow('💜', `+${dots(f)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }, 900);
+    setTimeout(() => { if (S.live !== L) return; activityPush(L, 'follow', `+${dots(f)} novos seguidores`); alertShow('💜', `+${dots(f)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }, 900);
   }
   // 5. cronologia
   sound('react');
@@ -2802,6 +2842,7 @@ function raid() {
 
 /* ---------- Efeitos visuais ---------- */
 function fxBurst(emoji, text) {
+  return; // visual limpo: só os alertas discretos
   const fx = $('#fx'); if (!fx || !STUDIO.fx) return;
   const flash = document.createElement('div'); flash.className = 'flash';
   const burst = document.createElement('div'); burst.className = 'burst';
@@ -3340,7 +3381,7 @@ function hideUserMsgs(user, label) {
 }
 function chatBadgesHTML() {
   const M = S.mod;
-  return [M.automod && '<span class="mini-badge">🛡️ AutoMod</span>', M.slow && '<span class="mini-badge">🐢 Modo lento</span>', M.subOnly && '<span class="mini-badge">⭐ Só subscritores</span>', M.emoteOnly && '<span class="mini-badge">😀 Só emojis</span>'].filter(Boolean).join('');
+  return [M.slow && '<span class="mini-badge">Modo lento</span>', M.subOnly && '<span class="mini-badge">Só subscritores</span>', M.emoteOnly && '<span class="mini-badge">Só emojis</span>'].filter(Boolean).join('');
 }
 function pinnedHTML() {
   const p = S.live?.pinned; if (!p) return '';
@@ -3903,7 +3944,7 @@ function screenInner(L) {
   const main = MEDIA.screen ? 'screen' : MEDIA.cam ? 'cam' : null;
   if (scene === 'game' && main) bg = `<video data-stream="${main}" class="live-video ${main === 'cam' ? 'mirror' : 'fit-contain'}" autoplay muted playsinline></video>`;
   else if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
-    : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Ecrã de jogo simulado</small></div></div>`;
+    : `<div class="screen-bg pro"></div><div class="screen-center"><div class="nosig">${gicon(L.game, 44)}<b>${esc(G.name)}</b><small>Sem fonte de vídeo · liga a câmara ou mostra o jogo nas Ações rápidas</small></div></div>`;
   else {
     const card = {
       starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
@@ -4217,7 +4258,7 @@ function liveCounters(L) {
     const names = Array.from({ length: Math.min(n, 3) }, () => fakeUser());
     L.recentFol.unshift(...names); L.recentFol = L.recentFol.slice(0, 8);
     names.forEach(nm => activityPush(L, 'follow', `${nm} seguiu-te`));
-    if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
+    L.lastFolMsg = now;
     const goal = FOL_GOALS.filter(g => g <= f).pop();
     if (goal && goal > (S.me.folGoalHit || 0)) {
       S.me.folGoalHit = goal;
@@ -4810,7 +4851,7 @@ function aboutExtraHTML(id) {
 }
 
 /* ---------- Gestor de transmissão: feed de atividade ---------- */
-const ACT_IC = { follow: ['heart', '#9147ff'], sub: ['starF', '#9147ff'], gift: ['gift', '#00a3a3'], raid: ['users', '#e91916'], train: ['bolt', '#eb8c00'], giftsub: ['gift', '#9147ff'] };
+const ACT_IC = { milestone: ['person', '#53535f'], follow: ['heart', '#9147ff'], sub: ['starF', '#9147ff'], gift: ['gift', '#00a3a3'], raid: ['users', '#e91916'], train: ['bolt', '#eb8c00'], giftsub: ['gift', '#9147ff'] };
 function activityPush(L, kind, text) {
   if (!L) return;
   const it = { k: kind, text, t: Date.now() };

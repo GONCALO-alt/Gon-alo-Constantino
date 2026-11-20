@@ -64,7 +64,7 @@ function aboutExtraHTML(id) {
 }
 
 /* ---------- Gestor de transmissão: feed de atividade ---------- */
-const ACT_IC = { follow: ['heart', '#9147ff'], sub: ['starF', '#9147ff'], gift: ['gift', '#00a3a3'], raid: ['users', '#e91916'], train: ['bolt', '#eb8c00'], giftsub: ['gift', '#9147ff'] };
+const ACT_IC = { milestone: ['person', '#53535f'], follow: ['heart', '#9147ff'], sub: ['starF', '#9147ff'], gift: ['gift', '#00a3a3'], raid: ['users', '#e91916'], train: ['bolt', '#eb8c00'], giftsub: ['gift', '#9147ff'] };
 function activityPush(L, kind, text) {
   if (!L) return;
   const it = { k: kind, text, t: Date.now() };
