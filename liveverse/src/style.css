@@ -807,3 +807,37 @@ button.poll-opt:hover { border-color: var(--accent); }
 .acc-fields { padding: 4px 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .input.hue { padding: 0; height: 40px; appearance: none; background: linear-gradient(90deg, hsl(0 85% 60%), hsl(60 85% 60%), hsl(120 85% 55%), hsl(180 85% 55%), hsl(240 85% 65%), hsl(300 85% 62%), hsl(359 85% 60%)); border-radius: 12px; }
 .input.hue::-webkit-slider-thumb { appearance: none; width: 22px; height: 30px; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgb(0 0 0 / .5); }
+
+/* Alertas, meta, microfone, momentos surpresa */
+.alert-box { position: absolute; left: 50%; top: 56px; transform: translateX(-50%); pointer-events: none; z-index: 3; }
+.alert { display: flex; align-items: center; gap: 12px; padding: 10px 18px 10px 12px; border-radius: 16px; background: rgb(8 7 15 / .78); backdrop-filter: blur(8px); border: 1px solid rgb(255 255 255 / .16); color: #fff; animation: alertin 2.6s cubic-bezier(.2, .9, .2, 1) forwards; white-space: nowrap; box-shadow: 0 0 40px -6px var(--ac, var(--pink)); }
+.alert-ic { font-size: 30px; line-height: 1; }
+.alert b { display: block; font-family: var(--f-display); font-size: 17px; }
+.alert small { display: block; font-size: 12px; opacity: .8; }
+.alert-follow { --ac: var(--purple); } .alert-raid { --ac: var(--blue); } .alert-goal { --ac: var(--good); } .alert-milestone { --ac: var(--warn); }
+@keyframes alertin { 0% { transform: translateY(-20px) scale(.8); opacity: 0; } 10% { transform: none; opacity: 1; } 88% { opacity: 1; } 100% { transform: translateY(-10px); opacity: 0; } }
+@media (max-width: 560px) { .alert-box { top: 40px; } .alert { padding: 6px 12px 6px 8px; } .alert-ic { font-size: 22px; } .alert b { font-size: 14px; } }
+.goal-overlay { position: absolute; right: 12px; bottom: 12px; width: min(44%, 260px); padding: 7px 10px; border-radius: 12px; background: rgb(5 4 10 / .65); backdrop-filter: blur(6px); border: 1px solid rgb(255 255 255 / .14); color: #fff; font-size: 12px; font-weight: 700; display: flex; flex-direction: column; gap: 4px; }
+.goal-overlay span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.goal-overlay .goal-bar { height: 7px; background: rgb(255 255 255 / .14); }
+.goal-overlay b { font-size: 11px; opacity: .85; }
+.goal-overlay.done { border-color: var(--good); box-shadow: 0 0 22px -4px var(--good); }
+@media (max-width: 560px) { .goal-overlay { width: 46%; right: 8px; bottom: 8px; padding: 5px 8px; font-size: 11px; } }
+.mic-panel { display: flex; flex-direction: column; gap: 10px; }
+.mic-state { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.mic-state i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); }
+.mic-state.on { color: var(--good); }
+.mic-state.on i { background: var(--good); box-shadow: 0 0 0 0 var(--good); animation: micpulse 1.4s infinite; }
+@keyframes micpulse { 70% { box-shadow: 0 0 0 8px transparent; } }
+.mic-live { min-height: 0; font-size: 14px; color: var(--fg-2); }
+.mic-live:empty { display: none; }
+.mic-heard { display: flex; flex-direction: column; gap: 4px; font-size: 13px; padding: 8px 10px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); }
+.mic-heard time { font-family: var(--f-mono); font-size: 11px; color: var(--muted); margin-right: 6px; }
+.sound-row { gap: 4px; flex-wrap: nowrap; font-family: var(--f-body); }
+.vol { width: 90px; accent-color: var(--accent); }
+.panel-title small:has(.sound-row) { display: flex; }
+.dock-mic.on { color: var(--good); background: color-mix(in oklab, var(--good) 16%, transparent); }
+.surprise { display: flex; gap: 14px; padding: 16px; margin-top: 16px; border-color: color-mix(in oklab, var(--warn) 55%, transparent); background: radial-gradient(circle at 0 0, color-mix(in oklab, var(--warn) 18%, transparent), transparent 60%), var(--surface); animation: rise .3s, glow 1.6s 2; }
+.surprise-ic { font-size: 40px; line-height: 1; }
+.surprise-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1; }
+.surprise-body strong { font-family: var(--f-display); font-size: 19px; }

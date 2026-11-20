@@ -4,7 +4,7 @@
    ===================================================================== */
 const LIVE_MS = 650;
 const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 100000, 250000, 500000, 1000000];
-const TL_ICON = { mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
+const TL_ICON = { surprise: '🎲', mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
 const STUDIO = { overlay: window.innerWidth < 760, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
@@ -83,6 +83,7 @@ function liveTick() {
       addTimeline('milestone', `Marco de audiência: ${dots(m)} espectadores virtuais`, '📈');
       pushChat({ sys: true, text: `📈 ${dots(m)} espectadores virtuais! O chat está a encher.` });
       if (m >= 1000) toast('📈', `${dots(m)} espectadores virtuais!`);
+      if (m >= 500) { sound('milestone'); alertShow('📈', `${dots(m)} espectadores!`, 'marco de audiência', 'milestone'); }
       if (m >= lvl.max) { notify('🎯', `Meta atingida: ${dots(m)} espectadores virtuais em «${L.title}»!`); fxBurst('🎯', 'META ATINGIDA!'); }
       checkAch();
     }
@@ -96,6 +97,7 @@ function liveTick() {
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
   while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? pick(EMOTES) : ambientLine(L) });
   maybeTroll(L);
+  surpriseTick(L); surpriseCheck(L);
   // presentes
   if (Math.random() < 0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage) giftEvent();
   // raid espontânea
@@ -129,6 +131,8 @@ function giftEvent(fromUser) {
   L.gifts += val;
   const u = fromUser || fakeUser();
   pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
+  goalAdd(val);
+  if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); sound(val >= 200 ? 'bigGift' : 'gift'); }
   if (val >= 200) { addTimeline('gift', `Presente virtual: ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} ${g.icon}`, '🎁'); if (STUDIO.fx) particles([g.icon], 8); }
   if (L.gifts >= 10000) checkAch();
 }
@@ -246,15 +250,16 @@ function react(itemId, customText) {
   if (item.fol) {
     const f = Math.round(L.viewers * item.hype * rand(.002, .006) + 1);
     L.followers += f; S.me.followers += f;
-    setTimeout(() => S.live === L && pushChat({ sys: true, text: `💜 +${dots(f)} novos seguidores fictícios!` }), 900);
+    setTimeout(() => { if (S.live !== L) return; pushChat({ sys: true, text: `💜 +${dots(f)} novos seguidores fictícios!` }); alertShow('💜', `+${dots(f)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }, 900);
   }
   // 5. cronologia
+  sound('react');
   L.reactions++; S.stats.reactions = (S.stats.reactions || 0) + 1;
   const it = addTimeline('reaction', 'Reação ao jogo: ' + label, item.emoji, { hype: item.hype, reactLabel: itemId === 'custom' ? 'Acontecimento personalizado' : label, clipTitle: label + ' em ' + ctx.gameName });
   // momento viral
   if (Math.random() < item.viral) setTimeout(() => {
     if (S.live !== L) return;
-    L.viralCount++; L.boost += lvl.max * .12;
+    L.viralCount++; L.boost += lvl.max * .12; sound('viral'); alertShow('🌪️', 'Momento viral!', label, 'viral');
     addTimeline('viral', `Momento viral: «${label}» está a espalhar-se na simulação`, '🌪️', { hype: .9, reactLabel: 'Momento viral', clipTitle: 'VIRAL: ' + label });
     pushChat({ sys: true, text: '🌪️ MOMENTO VIRAL! Novos espectadores virtuais a chegar.' });
     toast('🌪️', 'Momento viral na simulação!');
@@ -292,6 +297,7 @@ function raid() {
   for (let i = 0; i < 8; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(['RAID DE @' + from.handle + ' 🚀', 'viemos da live da ' + from.name.split(' ')[0], 'BOAS DO RAID', '🛡️🛡️🛡️', 'que live é esta?! 🔥']), hype: true }), i * 180);
   if (STUDIO.fx) fxBurst('🛡️', 'RAID!');
   toast('🛡️', `Raid de ${from.name}!`);
+  sound('raid'); alertShow('🛡️', `Raid de ${from.name}`, `${dots(n)} espectadores virtuais`, 'raid');
   unlock('raid'); updateLiveBits();
 }
 
@@ -328,6 +334,8 @@ function viewStudio() {
         <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass">👀 <span class="num" data-live="viewers">${fmt(L.viewers)}</span></span><span class="glass num" data-live="time">${durLabel(Date.now() - L.start)}</span><span class="glass">MODO ${esc(MODES[L.mode].name.toUpperCase())}</span><span class="sim-tag" style="margin-left:auto">Audiência fictícia</span></div>
         <div class="hud-bottom"><div class="hud-title">${gicon(L.game, 26)} <strong>${esc(L.title)}</strong><span class="tiny muted">${esc(G.name)} · @${esc(S.me.handle)}</span></div></div>
         <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
+        ${goalBarHTML()}
+        <div class="alert-box" id="alertBox" aria-live="polite"></div>
         <div class="fx" id="fx"></div>
       </div>
       <div class="row" style="margin-top:10px">
@@ -337,6 +345,7 @@ function viewStudio() {
         <label class="switch small"><input type="checkbox" id="ovToggle" data-studio="overlay" ${STUDIO.overlay ? 'checked' : ''}> Chat no ecrã</label>
         <label class="switch small"><input type="checkbox" id="fxToggle" data-studio="fx" ${STUDIO.fx ? 'checked' : ''}> Animações no ecrã</label>
         <label class="switch small"><input type="checkbox" id="clipToggle" data-studio="autoClip" ${STUDIO.autoClip ? 'checked' : ''}> Criar clip automaticamente</label>
+        <label class="switch small"><input type="checkbox" id="rmToggle" data-studio="randomMoments" ${S.prefs.randomMoments ? 'checked' : ''}> Momentos aleatórios</label>
       </div>
       <div class="live-stats">
         <div class="ls"><small>Espectadores ${SIM('sim.')}</small><b data-live="viewers">${fmt(L.viewers)}</b></div>
@@ -350,6 +359,8 @@ function viewStudio() {
       </div>
       <div class="goal-row"><span class="small">Meta: <b>${dots(lvl.max)}</b> espectadores virtuais</span><div class="goal-bar"><i data-live="goal" style="width:${Math.min(100, L.peak / lvl.max * 100)}%"></i></div><b class="num small" data-live="goalpct">${Math.min(100, Math.round(L.peak / lvl.max * 100))}%</b></div>
 
+      <div data-surprise>${surpriseHTML()}</div>
+      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('mic', 'style="width:18px"')} Microfone e som<small>${soundPanelHTML()}</small></h3>${micPanelHTML()}</section>
       <section class="card react-panel">
         <h2>O que acabou de acontecer?</h2>
         <p class="small muted" style="margin:4px 0 0">Escolhe o acontecimento no jogo. A audiência fictícia de ${esc(G.name)} reage de acordo.</p>
@@ -363,6 +374,7 @@ function viewStudio() {
         <div id="pollBox">${pollBoxHTML()}</div>
         <div class="row" style="margin-top:10px"><button class="btn btn-sm" data-act="raid">${icon('users')} Simular raid</button><button class="btn btn-sm" data-act="gift-sim">🎁 Simular presente</button></div>
       </section>
+      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('target', 'style="width:18px"')} Meta de presentes</h3>${goalPanelHTML()}</section>
       <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('clock', 'style="width:18px"')} Cronologia da live</h3>
         <div class="timeline" id="timeline">${L.timeline.map(tlHTML).join('')}</div>
       </section>
@@ -426,6 +438,10 @@ function studioSetup() {
       <div class="row"><button class="btn btn-live">${icon('studio')} Entrar em direto</button><span class="small muted">Os espectadores e o chat são simulados.</span></div>
     </form>
   </section>
+  <div class="grid-2" style="margin-top:16px;align-items:start">
+    <section class="card panel"><h3 class="panel-title">${icon('mic', 'style="width:18px"')} Microfone e som<small>${soundPanelHTML()}</small></h3>${micPanelHTML()}</section>
+    <section class="card panel"><h3 class="panel-title">${icon('target', 'style="width:18px"')} Meta de presentes</h3>${goalPanelHTML()}</section>
+  </div>
   <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('shield', 'style="width:18px"')} Moderação do chat</h3>${modPanelHTML()}</section>
   <h3 style="margin:22px 0 10px;font-size:20px">Lives anteriores</h3>
   <div class="stack">${S.lives.length ? [...S.lives].sort((a, b) => b.start - a.start).map(l => `${pastLive(l)}`).join('') : '<div class="empty"><b>Ainda sem lives</b></div>'}</div>`;

@@ -464,6 +464,7 @@ function bind() {
   document.addEventListener('input', e => {
     const t = e.target;
     if (onSocialInput(t)) return;
+    if (onExtraInput(t)) return;
     if (t.dataset.cmp) {
       const k = t.dataset.cmp;
       if (k === 'poll') UI.cmp.poll[+t.dataset.i] = t.value;
@@ -516,6 +517,9 @@ function migrate(s) {
   s.dms = s.dms || seedDMs(); s.mod = { ...defaultMod(), ...(s.mod || {}) }; s.mod.stats = { ...defaultMod().stats, ...s.mod.stats };
   if (s.lastDM == null) s.lastDM = Date.now();
   addGta6Content(s);
+  s.prefs = { ...defaultPrefs(), ...(s.prefs || {}) };
+  s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
+  if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;
 }
@@ -528,8 +532,9 @@ function init() {
   checkAch();
   render();
   setInterval(tick, 1000);
+  micInit();
   save();
 }
-Object.assign(ACT, SOCIAL_ACT);
-Object.assign(FORMS, SOCIAL_FORMS);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT);
+Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS);
 init();

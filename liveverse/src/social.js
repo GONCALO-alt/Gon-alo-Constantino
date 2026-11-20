@@ -93,6 +93,7 @@ function renderDock() {
   }
   dock.innerHTML = `<section class="card chat">
     <div class="chat-head"><span class="pill-live">EM DIRETO</span><strong class="dock-title">${esc(L.title)}</strong><span class="spacer"></span><span class="small muted num" data-live="viewers">${fmt(L.viewers)}</span>
+      <button class="icon-btn dock-mic ${MIC.on ? 'on' : ''}" id="dockMic" data-act="mic-toggle" title="Microfone" aria-label="Ligar ou desligar o microfone">${icon('mic')}</button>
       <a class="icon-btn" href="#estudio" title="Abrir estúdio" aria-label="Abrir estúdio">${icon('studio')}</a><button class="icon-btn" data-act="dock-toggle" title="Minimizar" aria-label="Minimizar chat">${icon('close')}</button></div>
     <div class="chat-list" data-chatlist="dock">${L.chat.slice(-40).map(chatMsgHTML).join('')}</div>
     <div class="dock-react">${PANEL_BUTTONS.filter(b => b[0] !== 'custom').slice(0, 6).map(([id, e, l]) => `<button data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}</div>
