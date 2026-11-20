@@ -149,7 +149,7 @@ function orientHTML() {
   const o = S.prefs.orient || 'h';
   return `<div class="seg" role="group" aria-label="Formato da live"><button class="${o === 'h' ? 'on' : ''}" data-act="orient" data-o="h">${icon('horizontal')} Horizontal</button><button class="${o === 'v' ? 'on' : ''}" data-act="orient" data-o="v">${icon('vertical')} Vertical</button></div>`;
 }
-function paintMediaBar() { $$('.theater-bar').forEach(el => el.outerHTML = theaterBarHTML()); }
+function paintMediaBar() { $$('.theater-bar').forEach(el => el.outerHTML = theaterBarHTML()); paintQA(); }
 function setupMediaHTML() {
   return `<div class="field" data-setupmedia><span>Câmara e jogo</span><div class="row">${mediaButtonsHTML()}${orientHTML()}</div>
     ${MEDIA.cam || MEDIA.screen ? `<div class="setup-preview ${S.prefs.orient === 'v' ? 'vertical' : ''}">${MEDIA.screen ? '<video data-stream="screen" class="live-video fit-contain" autoplay muted playsinline></video>' : ''}${MEDIA.cam ? `<video data-stream="cam" class="${MEDIA.screen ? 'pv-cam' : 'live-video'} mirror" autoplay muted playsinline></video>` : ''}</div>` : ''}
@@ -161,6 +161,6 @@ const MEDIA_ACT = {
   'cam-flip': () => camFlip(),
   'screen-toggle': () => screenToggle(),
   'rec-toggle': () => recToggle(),
-  'orient': b => setOrient(b.dataset.o),
   'reacts-toggle': () => { STUDIO.reacts = !STUDIO.reacts; paintMediaBar(); },
+  'orient': b => { setOrient(b.dataset.o); paintQA(); },
 };

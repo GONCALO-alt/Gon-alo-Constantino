@@ -294,26 +294,7 @@ function viewProfile(id) {
   const lives = me ? totalLives() : 40 + Math.round(a.followers / 2000);
   const views = me ? totalViews() : a.followers * 14;
   return `
-  <section class="card prof">
-    <div class="banner" style="--cover:${esc(me && S.me.banner ? `url("${S.me.banner}") center/cover` : COVERS[(me ? S.me.cover : a.hue) % COVERS.length])}"><div class="grid-lines"></div></div>
-    <div class="prof-inner">
-      <div class="prof-top">${avatar(a, 120).replace('class="av ', 'class="av ' + (me && S.live ? 'ring-live ' : ''))}<span class="spacer"></span>
-        ${me ? `<button class="btn" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-primary" data-act="new-event">${icon('calendar')} Agendar live</button>`
-          : `${channelLive(a) ? `<a class="btn btn-live" href="${chanHash(a.id)}">● Ver live</a>` : `<a class="btn" href="${chanHash(a.id)}">${icon('studio')} Canal</a>`}<button class="btn" data-act="accounts-edit" data-id="${a.id}" title="Editar esta conta" aria-label="Editar esta conta">${icon('edit')}</button><a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
-      </div>
-      <div class="prof-name"><h1>${esc(a.name)}</h1>${a.verified ? VERIFIED + SIM('selo fictício') : ''}${me && S.live ? '<span class="pill-live">EM DIRETO</span>' : ''}</div>
-      <div class="prof-handle">@${esc(a.handle)}</div>
-      <p class="prof-bio">${richText(a.bio || '')}</p>
-      <div class="prof-tags"><span class="chip on">${esc(me ? S.me.category : a.cat)}</span>${(a.games || []).map(g => `<span class="chip">${gicon(g, 20)} ${esc(GAMES[g]?.name || g)}</span>`).join('')}</div>
-      <div class="lvl"><span class="lvl-num">${car.level}</span><div><strong>Nível de carreira ${car.level} · ${esc(car.name)}</strong><div class="goal-bar" style="margin-top:6px"><i style="width:${car.pct.toFixed(1)}%"></i></div><span class="tiny muted">${me ? `${dots(car.xp)} XP${car.next ? ' · faltam ' + dots(car.next - car.xp) + ' XP para o próximo nível' : ' · nível máximo'}` : 'Nível estimado pela simulação'}</span></div></div>
-      <div class="stats">
-        <div class="stat"><b data-me="followers">${fmt(followers)}</b><small>Seguidores ${SIM()}</small></div>
-        <div class="stat"><b>${fmt(following)}</b><small>A seguir</small></div>
-        <div class="stat"><b>${fmt(lives)}</b><small>Lives simuladas</small></div>
-        <div class="stat"><b>${fmt(views)}</b><small>Visualizações ${SIM()}</small></div>
-      </div>
-    </div>
-  </section>
+  ${channelHeaderHTML(a, me)}
   ${next ? `<div style="margin-bottom:16px">${eventCard(next, { standalone: true })}</div>` : ''}
   <div class="tabs">${tabs.map(([k, l]) => `<button class="tab ${UI.profTab === k ? 'on' : ''}" data-act="prof-tab" data-k="${k}">${l}</button>`).join('')}</div>
   ${profileTab(id)}`;
@@ -336,8 +317,8 @@ function profileTab(id) {
   if (t === 'about') {
     const agenda = me ? S.me.agenda : (a.games || []).slice(0, 2).map((g, i) => ({ day: (a.hue + i * 3) % 7, time: i ? '16:00' : '21:00', game: g }));
     const evs = S.events.filter(e => e.owner === id && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start);
-    return `<div class="about-grid">
-      <section class="card panel"><h3 class="panel-title">Sobre</h3>
+    return `${aboutExtraHTML(id)}<div class="about-grid">
+      <section class="card panel"><h3 class="panel-title">Detalhes</h3>
         <div class="kv"><span>Categoria</span><b>${esc(me ? S.me.category : a.cat)}</b></div>
         <div class="kv"><span>Jogos favoritos</span><b>${(a.games || []).map(g => esc(GAMES[g]?.name)).join(', ') || '—'}</b></div>
         <div class="kv"><span>Verificação</span><b>${a.verified ? 'Selo fictício ativo' : 'Sem selo'}</b></div>

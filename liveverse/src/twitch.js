@@ -59,7 +59,7 @@ const tagChips = tags => `<div class="tw-tags">${tags.map(t => `<span>${esc(t)}<
 /* ---------- Página inicial ---------- */
 UI.homeTab = 'live'; UI.homeCat = 'all';
 function homeTabsHTML() {
-  return `<nav class="tw-tabs" aria-label="Página inicial">${[['following', 'A seguir'], ['live', 'Em direto'], ['clips', 'Clipes'], ['posts', 'Publicações']].map(([k, l]) => `<button class="${UI.homeTab === k ? 'on' : ''}" data-act="home-tab" data-k="${k}">${l}</button>`).join('')}</nav>`;
+  return `<nav class="tw-tabs ${UI.homeTab === 'live' ? 'desk-hide' : ''}" aria-label="Página inicial">${[['following', 'A seguir'], ['live', 'Em direto'], ['clips', 'Clipes'], ['posts', 'Publicações']].map(([k, l]) => `<button class="${UI.homeTab === k ? 'on' : ''}" data-act="home-tab" data-k="${k}">${l}</button>`).join('')}</nav>`;
 }
 function liveCardHTML(ev, mine = false) {
   const a = mine ? S.me : acc(ev.owner), G = GAMES[ev.game] || GAMES.chat;
@@ -133,14 +133,14 @@ function viewWatch(id) {
         ${video}
         <div class="wp-top">
           <a class="wp-ic" href="#feed" aria-label="Voltar">${icon('chevD')}</a>
-          ${ev ? '<span class="wp-aud">Dirigido a todos · fictício</span>' : ''}
           <span class="spacer"></span>
           ${ev ? `<button class="wp-pill" data-act="w-clip" data-id="${a.id}">${icon('clip')} Clipe</button>` : ''}
           <button class="wp-ic" data-act="w-share" data-id="${a.id}" aria-label="Partilhar">${icon('share')}</button>
           <button class="wp-ic" data-act="w-quality" aria-label="Definições">${icon('gear')}</button>
         </div>
         ${ev ? `<div class="wp-bottom"><span class="tw-uptime"><i></i><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="wviewers" data-v="${Math.round(ev.viewers || 0)}">${fmt(ev.viewers || 0)}</b></span><span class="spacer"></span><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon(UI.watchFull ? 'shrink' : 'expand')}</button></div>
-        <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>` : ''}
+        <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>
+        <div class="wp-ctrl"><button class="wp-ic" data-act="player-pause" aria-label="Pausa">${icon('pause')}</button><button class="wp-ic" data-act="player-vol" aria-label="Volume">${icon('vol')}</button><span class="wp-ctrl-live"><i></i>EM DIRETO</span><span class="spacer"></span><button class="wp-ic" data-act="w-quality" aria-label="Definições">${icon('gear')}</button><button class="wp-pill" data-act="w-clip" data-id="${a.id}">${icon('clip')} Clipe</button><button class="wp-ic" data-act="w-full" aria-label="Modo teatro">${icon('theaterIc')}</button><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon('expand')}</button></div>` : ''}
         <div class="fx" id="wfx"></div>
       </div>
       <section class="wp-info">

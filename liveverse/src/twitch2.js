@@ -55,7 +55,8 @@ function sideTwitchHTML() {
     <span class="sd-label">Canais seguidos</span>
     ${followed.length ? followed.map(([a, ev]) => row(a, ev)).join('') : '<p class="sd-empty">Segue canais para os veres aqui.</p>'}
     <span class="sd-label">Canais em direto recomendados</span>
-    ${rec.map(([a, ev]) => row(a, ev)).join('') || '<p class="sd-empty">Sem recomendações agora.</p>'}`;
+    ${rec.map(([a, ev]) => row(a, ev)).join('') || '<p class="sd-empty">Sem recomendações agora.</p>'}
+    <p class="sd-foot">O LiveVerse é uma simulação: seguidores, espetadores, subscrições e métricas são fictícios.</p>`;
 }
 
 /* ---------- Página inicial: destaque e categorias ---------- */
@@ -108,7 +109,7 @@ function viewExplore() {
       <div class="tw-tabs"><button class="on">Canais em direto</button></div>
       <div class="tw-grid">${S.live && S.live.game === k ? liveCardHTML(S.live, true) : ''}${lives.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Volta mais tarde ou entra tu em direto.</div>'}</div>`;
   }
-  return `<div class="page-head"><div><h1>Procurar</h1></div><span class="spacer"></span><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button></div>
+  return `<div class="page-head"><div><h1>Procurar</h1></div></div>
     <div class="tw-tabs">${[['cats', 'Categorias'], ['live', 'Canais em direto']].map(([k2, l]) => `<button class="${UI.browseTab === k2 && !q ? 'on' : ''}" data-act="browse-tab" data-k="${k2}">${l}</button>`).join('')}</div>
     <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Procurar canais, categorias, #hashtags, clipes…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Procurar"></div>
     <div id="exploreResults">${q ? exploreResults() : UI.browseTab === 'cats' ? `<div class="cat-grid2">${categoryStats().map(catCardHTML).join('')}</div>` : `<div class="tw-grid">${S.live ? liveCardHTML(S.live, true) : ''}${liveChannels().map(e => liveCardHTML(e)).join('')}</div>`}</div>`;

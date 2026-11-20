@@ -110,6 +110,7 @@ function hypeAdd(val) {
 }
 function startTrain(L) {
   L.train = { lvl: 1, prog: 0, need: 800, until: Date.now() + 45000 };
+  activityPush(L, 'train', 'Começou um hype train');
   sound('surprise'); crowd(.8); fxBurst('🚂', 'HYPE TRAIN!');
   addTimeline('train', 'Hype train começou!', '🚂', { hype: .7, reactLabel: 'Hype train', clipTitle: 'Hype train na live' });
   pushChat({ sys: true, text: '🚂 HYPE TRAIN! Enviem presentes para subir de nível!' });
@@ -173,7 +174,8 @@ function greetRegulars(L) {
 }
 function subRenewal(L) {
   const r = pick(S.regulars); r.months++;
-  pushChat({ gift: true, text: `⭐ ${r.u} renovou a subscrição: ${r.months} meses!` });
+  pushChat({ gift: true, text: `${r.u} renovou a subscrição: ${r.months} meses!` });
+  activityPush(L, 'sub', `${r.u} subscreveu · ${r.months} meses`);
   alertShow('⭐', `${r.u} · ${r.months} meses`, 'subscrição renovada (fictícia)', 'follow');
   sound('follow');
   ttsSay(`${r.u.replace(/[_.]/g, ' ')} renovou a subscrição. ${r.months} meses!`);
@@ -371,6 +373,7 @@ function liveCounters(L) {
     L.recentFol = L.recentFol || [];
     const names = Array.from({ length: Math.min(n, 3) }, () => fakeUser());
     L.recentFol.unshift(...names); L.recentFol = L.recentFol.slice(0, 8);
+    names.forEach(nm => activityPush(L, 'follow', `${nm} seguiu-te`));
     if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
     const goal = FOL_GOALS.filter(g => g <= f).pop();
     if (goal && goal > (S.me.folGoalHit || 0)) {

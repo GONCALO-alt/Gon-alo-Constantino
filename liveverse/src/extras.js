@@ -303,7 +303,7 @@ function micPanelHTML() {
     <form class="reply-form" data-form="say"><input class="input" id="sayInput" name="t" maxlength="200" placeholder="Ou escreve o que disseste em voz alta…" autocomplete="off"><button class="btn btn-sm">Dizer</button></form>
   </div>`;
 }
-function paintMic() { $$('[data-micpanel]').forEach(el => el.outerHTML = micPanelHTML()); const b = $('#dockMic'); if (b) b.classList.toggle('on', MIC.on); }
+function paintMic() { if (typeof paintQA === 'function') paintQA(); $$('[data-micpanel]').forEach(el => el.outerHTML = micPanelHTML()); const b = $('#dockMic'); if (b) b.classList.toggle('on', MIC.on); }
 function paintMicLive() { if (MIC.partial) avatarTalk(); const el = $('#micLive'); if (el) el.innerHTML = MIC.partial ? `<i>${esc(MIC.partial)}…</i>` : ''; }
 
 function soundPanelHTML() {

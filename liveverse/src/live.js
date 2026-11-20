@@ -139,6 +139,7 @@ function giftEvent(fromUser) {
   const u = fromUser || fakeUser();
   pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
   goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
+  if (val >= 20) activityPush(L, 'gift', `${u} ofereceu ${qty > 1 ? qty + '× ' : ''}${g.name} · ${dots(val)} moedas`);
   if (val >= 200) giftMessage(u, g, val);
   if (val >= 500) crowd(.5);
   if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); sound(val >= 200 ? 'bigGift' : 'gift'); }
@@ -181,7 +182,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? '<span class="cbadge bot" title="Bot do canal">🤖</span>' : ''}${m.sub && !regular(m.user) ? '<span class="cbadge sub" title="Subscritor fictício">⭐</span> ' : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -309,6 +310,7 @@ function raid() {
   if (STUDIO.fx) fxBurst('🛡️', 'RAID!');
   toast('🛡️', `Raid de ${from.name}!`);
   sound('raid'); crowd(.8); alertShow('🛡️', `Raid de ${from.name}`, `${dots(n)} espectadores virtuais`, 'raid');
+  activityPush(L, 'raid', `${from.name} fez raid com ${dots(n)} espetadores`);
   unlock('raid'); updateLiveBits();
 }
 
@@ -339,23 +341,26 @@ function viewStudio() {
   const open = !!STUDIO.controls;
   return `<div class="live-top">
     <span class="pill-live">EM DIRETO</span>
-    <div class="lt-title"><strong>${esc(L.title)}</strong><small>${esc(G.name)} · <span class="num" data-live="time">${durLabel(Date.now() - L.start)}</span></small></div>
-    <div class="lt-stat"><small>Espectadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
+    <div class="lt-title"><strong>${esc(L.title)}</strong><small>${esc(G.name)}</small></div>
+    <div class="lt-stat"><small>Sessão</small><b class="num" data-live="uptime">${upTime(Date.now() - L.start)}</b></div>
+    <div class="lt-stat"><small>Espetadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
     <canvas class="lt-spark" id="viewSpark" width="160" height="40" aria-label="Gráfico de espectadores"></canvas>
     <div class="lt-stat lt-fol"><small>Seguidores</small><b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></div>
     <span class="spacer"></span>
     <div class="lt-actions">
       <button class="btn" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
       <button class="btn ${open ? 'btn-primary' : ''}" data-act="controls" aria-expanded="${open}">${icon('menu')} Controlos</button>
-      <button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar</button>
+      <button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar<span class="desk-only"> transmissão</span></button>
     </div>
   </div>
   <div id="endConfirm"></div>
-  <div class="studio ${STUDIO.theater ? 'theater' : ''} ${S.prefs.orient === 'v' ? 'is-vertical' : ''}">
+  <div class="studio has-activity ${STUDIO.theater ? 'theater' : ''} ${S.prefs.orient === 'v' ? 'is-vertical' : ''}">
+    ${activityHTML(L)}
     <div class="studio-main">
       <div class="screen ${S.prefs.orient === 'v' ? 'vertical' : ''}" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
       ${theaterBarHTML()}
+      ${quickActionsHTML()}
       <div data-surprise>${surpriseHTML()}</div>
       <div class="controls-panel" id="controlsPanel" ${open ? '' : 'hidden'}>
       ${scenesHTML()}

@@ -57,11 +57,12 @@ function renderNav() {
   $('#side').innerHTML = sideTwitchHTML();
   $('#topNav').innerHTML = topNavHTML();
   document.querySelector('.app').classList.toggle('side-mini', !!S.prefs.sideMini);
-  $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
-    <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
-    ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
-    <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('chat')}${badge(dmUnread())}</a>
-    <button class="icon-btn top-ic" data-act="menu-sheet" aria-label="Menu">${icon('menu')}</button>`;
+  $('#topBar').innerHTML = `<button class="tb-avatar" data-act="menu-sheet" aria-label="Menu">${avatar(S.me, 32).replace('<a ', '<span ').replace('</a>', '</span>')}${S.live ? '<i class="tn-live-dot"></i>' : ''}</button>
+    <a class="logo" href="#feed" aria-label="LiveVerse"><span class="logo-mark">${LOGO_SVG_FN()}</span></a>
+    <span class="spacer"></span>
+    ${S.live ? `<a class="pill-live" href="#estudio">EM DIRETO</a>` : ''}
+    <a class="icon-btn top-ic" href="#notificacoes" aria-label="Atividade">${icon('bell')}${badge(notifUnread())}</a>
+    <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('inbox')}${badge(dmUnread())}</a>`;
   const bn = (h, ic, label, extra = '') => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${ic}<span>${label}</span>${extra}</a>`;
   $('#bottomNav').innerHTML = `${bn('feed', icon('home'), 'Início')}${bn('explorar', icon('search'), 'Procurar')}
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
@@ -104,7 +105,8 @@ function openMenuSheet() {
     <div class="sheet-top"><a class="side-me-link" href="#perfil">${avatar(S.me, 46).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)} · nível ${career().level}</small></div></a>${clockHTML(true)}</div>
     ${S.live ? `<a class="live-pill" href="#estudio" style="margin:0 16px"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
     <div class="sheet-body">${NAV_GROUPS.map(([g, items]) => `<div><span class="nav-label">${g}</span><div class="tile-grid">${items.map(([h, ic, label]) => `<a class="tile ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' ? badge(notifUnread()) : h === 'mensagens' ? badge(dmUnread()) : ''}</a>`).join('')}</div></div>`).join('')}
-      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div></div>`, 'sheet');
+      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div>
+      <p class="tiny muted" style="margin:0">O LiveVerse é uma simulação: seguidores, espetadores, subscrições e métricas são fictícios.</p></div>`, 'sheet');
 }
 function openCreateSheet() {
   openModal(`<div class="sheet-grip" aria-hidden="true"></div><div class="sheet-body"><h2 style="font-size:20px">Criar</h2>${createMenuHTML()}<button class="btn btn-ghost" data-act="modal-close">Fechar</button></div>`, 'sheet');

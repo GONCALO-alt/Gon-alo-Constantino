@@ -1411,6 +1411,97 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
 
 @media (min-width: 821px) { .studio-chat { height: calc(100vh - 172px); } .side { margin: 0; } }
 
+/* ===================== Mais perto de uma plataforma de streaming ===================== */
+/* Etiquetas de simulação discretas; sem barra amarela fixa */
+.simbar { display: none; }
+.sim-tag { background: none; border: 0; padding: 0 2px; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .02em; text-transform: lowercase; opacity: .8; }
+.sd-foot { margin: 14px 10px 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+.app.side-mini .sd-foot { display: none; }
+@media (max-width: 820px) { .bottom-nav { bottom: 0; padding-bottom: max(6px, env(safe-area-inset-bottom, 0px)); } .app { padding-bottom: 100px; } }
+/* Avisos sem emoji, como notificações discretas */
+.toast { border-radius: 6px; background: var(--surface-2); border: 0; border-left: 4px solid var(--purple); box-shadow: 0 6px 24px rgb(0 0 0 / .7); font-weight: 600; }
+.toast .ico { display: none; }
+/* Perfil como cabeçalho de canal */
+.ch-head { margin: -20px 0 16px; }
+.ch-banner { position: relative; aspect-ratio: 4 / 1; max-width: 100%; background: var(--cover); background-size: cover; background-position: center; border-radius: 0 0 8px 8px; }
+.ch-off { position: absolute; left: 16px; top: 16px; padding: 2px 8px; border-radius: 4px; background: rgb(0 0 0 / .65); color: #fff; font-size: 13px; font-weight: 800; letter-spacing: .04em; }
+.ch-live { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 6px; background: rgb(0 0 0 / .7); color: #fff; font-weight: 700; text-decoration: none; max-width: calc(100% - 32px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ch-row { display: flex; align-items: center; gap: 14px; padding: 14px 4px 4px; flex-wrap: wrap; }
+.ch-meta h1 { font-size: 22px; display: flex; align-items: center; gap: 6px; }
+.ch-meta span { font-size: 14px; }
+.ch-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ch-actions .btn { border-radius: 6px; }
+.about-wide { margin-bottom: 12px; }
+.tabs { border-bottom-color: var(--line); }
+.tab { font-size: 15px; padding: 12px 10px; }
+.tab.on { color: var(--purple-soft); }
+.tab.on::after { background: var(--purple-soft); left: 10px; right: 10px; height: 2px; }
+@media (max-width: 820px) { .ch-head { margin-top: -12px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); } .ch-banner { border-radius: 0; aspect-ratio: 3 / 1; } .ch-row { padding-inline: max(16px, env(safe-area-inset-left, 0px)); } .ch-actions { width: 100%; } .ch-actions .btn-primary, .ch-actions .btn:first-child { flex: 1; justify-content: center; } }
+/* Gestor de transmissão */
+.sm-activity { display: none; }
+@media (min-width: 1280px) {
+  .studio.has-activity:not(.theater) { grid-template-columns: 270px minmax(0, 1fr) 330px; }
+  .studio.has-activity:not(.theater) .sm-activity { display: flex; flex-direction: column; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 64px); height: calc(100vh - 172px); overflow: hidden; }
+}
+.sm-list { flex: 1; overflow-y: auto; padding: 6px 0; scrollbar-width: thin; }
+.sm-empty { padding: 10px 14px; margin: 0; }
+.sm-item { display: flex; gap: 10px; padding: 8px 14px; animation: rise .25s ease both; }
+.sm-item:hover { background: var(--surface-2); }
+.sm-ic { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 6px; background: var(--c); color: #fff; }
+.sm-ic svg { width: 16px; height: 16px; }
+.sm-item > div { min-width: 0; font-size: 13px; }
+.sm-item span { display: block; overflow-wrap: anywhere; font-weight: 600; }
+.sm-item time { font-size: 11.5px; color: var(--muted); }
+.qa { margin-top: 12px; padding: 12px; }
+.qa-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.qa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+.qa-t { position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 10px; min-height: 84px; padding: 10px; border: 0; border-radius: 6px; background: color-mix(in oklab, var(--c) 82%, #000); color: #fff; text-align: left; font-weight: 700; font-size: 13px; line-height: 1.2; transition: filter .15s, transform .15s; }
+.qa-t:hover { filter: brightness(1.15); }
+.qa-t:active { transform: scale(.97); }
+.qa-t.on { box-shadow: inset 0 0 0 3px #fff; }
+.qa-ic svg { width: 22px; height: 22px; }
+.qa .tb-reacts { margin-top: 10px; }
+.studio:not(.theater) .studio-main > .theater-bar { display: none; }
+.studio.theater .qa, .studio.theater .sm-activity { display: none !important; }
+@media (max-width: 820px) { .studio:not(.theater) .studio-main > .theater-bar { display: flex; } .qa { display: none; } }
+.live-top .lt-stat b { font-size: 22px; }
+/* Distintivos do chat em quadrado */
+.tbadge { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 3px; margin-right: 3px; vertical-align: -3px; color: #fff; }
+.tbadge svg { width: 13px; height: 13px; }
+.tb-mod { background: #00ad03; } .tb-vip { background: #e005b9; } .tb-sub { background: var(--purple); } .tb-bot { background: #53535f; }
+.msg { font-size: 13.5px; line-height: 1.55; padding: 3px 6px; }
+.msg.sys, .msg.gift { margin: 4px 0; padding: 7px 10px; border: 0; border-left: 4px solid var(--purple); border-radius: 0; background: rgb(255 255 255 / .05); font-weight: 600; }
+.msg.gift { border-left-color: var(--purple-soft); }
+.msg.sys.modmsg { border-left-color: #00ad03; background: rgb(255 255 255 / .04); }
+/* Leitor: barra de controlos ao passar o rato */
+.wp-ctrl { display: none; }
+@media (min-width: 821px) {
+  .wp-video .wp-top, .wp-video .wp-bottom { display: none; }
+  .wp-ctrl { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; display: flex; align-items: center; gap: 6px; padding: 30px 10px 8px; background: linear-gradient(transparent, rgb(0 0 0 / .75)); opacity: 0; transition: opacity .2s; }
+  .wp-video:hover .wp-ctrl, .wp-ctrl:focus-within, .wp-video.paused .wp-ctrl { opacity: 1; }
+  .wp-ctrl .wp-ic { background: transparent; border-radius: 4px; }
+  .wp-ctrl .wp-ic:hover { background: rgb(255 255 255 / .15); }
+  .wp-ctrl-live { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #fff; margin-left: 4px; }
+  .wp-ctrl-live i { width: 9px; height: 9px; border-radius: 50%; background: var(--live); }
+}
+.screen.paused .screen-bg, .screen.paused .screen-floor { animation-play-state: paused; }
+.screen.paused::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / .4); z-index: 2; pointer-events: none; }
+.wp-ic.muted { color: var(--live); }
+/* Página inicial no computador sem separadores em cima do destaque */
+@media (min-width: 821px) { .tw-tabs.desk-hide { display: none; } }
+/* Barra de cima no telemóvel */
+.tb-avatar { position: relative; width: 36px; height: 36px; display: grid; place-items: center; border: 0; background: none; padding: 0; }
+@media (max-width: 820px) { .topbar .logo { margin-left: 4px; } .topbar .logo-mark { width: 28px; height: 28px; } .topbar .pill-live { padding: 3px 8px; } }
+a.btn { text-decoration: none; }
+.live-top { gap: 18px; }
+.live-top .lt-stat { flex: none; min-width: 0; }
+.live-top .lt-title { flex: 1 1 140px; min-width: 0; max-width: 320px; }
+.live-top .lt-actions .btn { padding: 8px 12px; }
+@media (max-width: 1500px) { .live-top .lt-spark { display: none; } }
+@media (min-width: 821px) and (max-width: 1280px) { .live-top { flex-wrap: wrap; } }
+
+@media (max-width: 820px) { .desk-only { display: none; } }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -2284,26 +2375,7 @@ function viewProfile(id) {
   const lives = me ? totalLives() : 40 + Math.round(a.followers / 2000);
   const views = me ? totalViews() : a.followers * 14;
   return `
-  <section class="card prof">
-    <div class="banner" style="--cover:${esc(me && S.me.banner ? `url("${S.me.banner}") center/cover` : COVERS[(me ? S.me.cover : a.hue) % COVERS.length])}"><div class="grid-lines"></div></div>
-    <div class="prof-inner">
-      <div class="prof-top">${avatar(a, 120).replace('class="av ', 'class="av ' + (me && S.live ? 'ring-live ' : ''))}<span class="spacer"></span>
-        ${me ? `<button class="btn" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-primary" data-act="new-event">${icon('calendar')} Agendar live</button>`
-          : `${channelLive(a) ? `<a class="btn btn-live" href="${chanHash(a.id)}">● Ver live</a>` : `<a class="btn" href="${chanHash(a.id)}">${icon('studio')} Canal</a>`}<button class="btn" data-act="accounts-edit" data-id="${a.id}" title="Editar esta conta" aria-label="Editar esta conta">${icon('edit')}</button><a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
-      </div>
-      <div class="prof-name"><h1>${esc(a.name)}</h1>${a.verified ? VERIFIED + SIM('selo fictício') : ''}${me && S.live ? '<span class="pill-live">EM DIRETO</span>' : ''}</div>
-      <div class="prof-handle">@${esc(a.handle)}</div>
-      <p class="prof-bio">${richText(a.bio || '')}</p>
-      <div class="prof-tags"><span class="chip on">${esc(me ? S.me.category : a.cat)}</span>${(a.games || []).map(g => `<span class="chip">${gicon(g, 20)} ${esc(GAMES[g]?.name || g)}</span>`).join('')}</div>
-      <div class="lvl"><span class="lvl-num">${car.level}</span><div><strong>Nível de carreira ${car.level} · ${esc(car.name)}</strong><div class="goal-bar" style="margin-top:6px"><i style="width:${car.pct.toFixed(1)}%"></i></div><span class="tiny muted">${me ? `${dots(car.xp)} XP${car.next ? ' · faltam ' + dots(car.next - car.xp) + ' XP para o próximo nível' : ' · nível máximo'}` : 'Nível estimado pela simulação'}</span></div></div>
-      <div class="stats">
-        <div class="stat"><b data-me="followers">${fmt(followers)}</b><small>Seguidores ${SIM()}</small></div>
-        <div class="stat"><b>${fmt(following)}</b><small>A seguir</small></div>
-        <div class="stat"><b>${fmt(lives)}</b><small>Lives simuladas</small></div>
-        <div class="stat"><b>${fmt(views)}</b><small>Visualizações ${SIM()}</small></div>
-      </div>
-    </div>
-  </section>
+  ${channelHeaderHTML(a, me)}
   ${next ? `<div style="margin-bottom:16px">${eventCard(next, { standalone: true })}</div>` : ''}
   <div class="tabs">${tabs.map(([k, l]) => `<button class="tab ${UI.profTab === k ? 'on' : ''}" data-act="prof-tab" data-k="${k}">${l}</button>`).join('')}</div>
   ${profileTab(id)}`;
@@ -2326,8 +2398,8 @@ function profileTab(id) {
   if (t === 'about') {
     const agenda = me ? S.me.agenda : (a.games || []).slice(0, 2).map((g, i) => ({ day: (a.hue + i * 3) % 7, time: i ? '16:00' : '21:00', game: g }));
     const evs = S.events.filter(e => e.owner === id && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start);
-    return `<div class="about-grid">
-      <section class="card panel"><h3 class="panel-title">Sobre</h3>
+    return `${aboutExtraHTML(id)}<div class="about-grid">
+      <section class="card panel"><h3 class="panel-title">Detalhes</h3>
         <div class="kv"><span>Categoria</span><b>${esc(me ? S.me.category : a.cat)}</b></div>
         <div class="kv"><span>Jogos favoritos</span><b>${(a.games || []).map(g => esc(GAMES[g]?.name)).join(', ') || '—'}</b></div>
         <div class="kv"><span>Verificação</span><b>${a.verified ? 'Selo fictício ativo' : 'Sem selo'}</b></div>
@@ -2553,6 +2625,7 @@ function giftEvent(fromUser) {
   const u = fromUser || fakeUser();
   pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
   goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
+  if (val >= 20) activityPush(L, 'gift', `${u} ofereceu ${qty > 1 ? qty + '× ' : ''}${g.name} · ${dots(val)} moedas`);
   if (val >= 200) giftMessage(u, g, val);
   if (val >= 500) crowd(.5);
   if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); sound(val >= 200 ? 'bigGift' : 'gift'); }
@@ -2595,7 +2668,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? '<span class="cbadge bot" title="Bot do canal">🤖</span>' : ''}${m.sub && !regular(m.user) ? '<span class="cbadge sub" title="Subscritor fictício">⭐</span> ' : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -2723,6 +2796,7 @@ function raid() {
   if (STUDIO.fx) fxBurst('🛡️', 'RAID!');
   toast('🛡️', `Raid de ${from.name}!`);
   sound('raid'); crowd(.8); alertShow('🛡️', `Raid de ${from.name}`, `${dots(n)} espectadores virtuais`, 'raid');
+  activityPush(L, 'raid', `${from.name} fez raid com ${dots(n)} espetadores`);
   unlock('raid'); updateLiveBits();
 }
 
@@ -2753,23 +2827,26 @@ function viewStudio() {
   const open = !!STUDIO.controls;
   return `<div class="live-top">
     <span class="pill-live">EM DIRETO</span>
-    <div class="lt-title"><strong>${esc(L.title)}</strong><small>${esc(G.name)} · <span class="num" data-live="time">${durLabel(Date.now() - L.start)}</span></small></div>
-    <div class="lt-stat"><small>Espectadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
+    <div class="lt-title"><strong>${esc(L.title)}</strong><small>${esc(G.name)}</small></div>
+    <div class="lt-stat"><small>Sessão</small><b class="num" data-live="uptime">${upTime(Date.now() - L.start)}</b></div>
+    <div class="lt-stat"><small>Espetadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
     <canvas class="lt-spark" id="viewSpark" width="160" height="40" aria-label="Gráfico de espectadores"></canvas>
     <div class="lt-stat lt-fol"><small>Seguidores</small><b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></div>
     <span class="spacer"></span>
     <div class="lt-actions">
       <button class="btn" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
       <button class="btn ${open ? 'btn-primary' : ''}" data-act="controls" aria-expanded="${open}">${icon('menu')} Controlos</button>
-      <button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar</button>
+      <button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar<span class="desk-only"> transmissão</span></button>
     </div>
   </div>
   <div id="endConfirm"></div>
-  <div class="studio ${STUDIO.theater ? 'theater' : ''} ${S.prefs.orient === 'v' ? 'is-vertical' : ''}">
+  <div class="studio has-activity ${STUDIO.theater ? 'theater' : ''} ${S.prefs.orient === 'v' ? 'is-vertical' : ''}">
+    ${activityHTML(L)}
     <div class="studio-main">
       <div class="screen ${S.prefs.orient === 'v' ? 'vertical' : ''}" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
       ${theaterBarHTML()}
+      ${quickActionsHTML()}
       <div data-surprise>${surpriseHTML()}</div>
       <div class="controls-panel" id="controlsPanel" ${open ? '' : 'hidden'}>
       ${scenesHTML()}
@@ -2981,11 +3058,12 @@ function renderNav() {
   $('#side').innerHTML = sideTwitchHTML();
   $('#topNav').innerHTML = topNavHTML();
   document.querySelector('.app').classList.toggle('side-mini', !!S.prefs.sideMini);
-  $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
-    <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
-    ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
-    <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('chat')}${badge(dmUnread())}</a>
-    <button class="icon-btn top-ic" data-act="menu-sheet" aria-label="Menu">${icon('menu')}</button>`;
+  $('#topBar').innerHTML = `<button class="tb-avatar" data-act="menu-sheet" aria-label="Menu">${avatar(S.me, 32).replace('<a ', '<span ').replace('</a>', '</span>')}${S.live ? '<i class="tn-live-dot"></i>' : ''}</button>
+    <a class="logo" href="#feed" aria-label="LiveVerse"><span class="logo-mark">${LOGO_SVG_FN()}</span></a>
+    <span class="spacer"></span>
+    ${S.live ? `<a class="pill-live" href="#estudio">EM DIRETO</a>` : ''}
+    <a class="icon-btn top-ic" href="#notificacoes" aria-label="Atividade">${icon('bell')}${badge(notifUnread())}</a>
+    <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('inbox')}${badge(dmUnread())}</a>`;
   const bn = (h, ic, label, extra = '') => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${ic}<span>${label}</span>${extra}</a>`;
   $('#bottomNav').innerHTML = `${bn('feed', icon('home'), 'Início')}${bn('explorar', icon('search'), 'Procurar')}
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
@@ -3028,7 +3106,8 @@ function openMenuSheet() {
     <div class="sheet-top"><a class="side-me-link" href="#perfil">${avatar(S.me, 46).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)} · nível ${career().level}</small></div></a>${clockHTML(true)}</div>
     ${S.live ? `<a class="live-pill" href="#estudio" style="margin:0 16px"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
     <div class="sheet-body">${NAV_GROUPS.map(([g, items]) => `<div><span class="nav-label">${g}</span><div class="tile-grid">${items.map(([h, ic, label]) => `<a class="tile ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' ? badge(notifUnread()) : h === 'mensagens' ? badge(dmUnread()) : ''}</a>`).join('')}</div></div>`).join('')}
-      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div></div>`, 'sheet');
+      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div>
+      <p class="tiny muted" style="margin:0">O LiveVerse é uma simulação: seguidores, espetadores, subscrições e métricas são fictícios.</p></div>`, 'sheet');
 }
 function openCreateSheet() {
   openModal(`<div class="sheet-grip" aria-hidden="true"></div><div class="sheet-body"><h2 style="font-size:20px">Criar</h2>${createMenuHTML()}<button class="btn btn-ghost" data-act="modal-close">Fechar</button></div>`, 'sheet');
@@ -3733,7 +3812,7 @@ function micPanelHTML() {
     <form class="reply-form" data-form="say"><input class="input" id="sayInput" name="t" maxlength="200" placeholder="Ou escreve o que disseste em voz alta…" autocomplete="off"><button class="btn btn-sm">Dizer</button></form>
   </div>`;
 }
-function paintMic() { $$('[data-micpanel]').forEach(el => el.outerHTML = micPanelHTML()); const b = $('#dockMic'); if (b) b.classList.toggle('on', MIC.on); }
+function paintMic() { if (typeof paintQA === 'function') paintQA(); $$('[data-micpanel]').forEach(el => el.outerHTML = micPanelHTML()); const b = $('#dockMic'); if (b) b.classList.toggle('on', MIC.on); }
 function paintMicLive() { if (MIC.partial) avatarTalk(); const el = $('#micLive'); if (el) el.innerHTML = MIC.partial ? `<i>${esc(MIC.partial)}…</i>` : ''; }
 
 function soundPanelHTML() {
@@ -3874,6 +3953,7 @@ function hypeAdd(val) {
 }
 function startTrain(L) {
   L.train = { lvl: 1, prog: 0, need: 800, until: Date.now() + 45000 };
+  activityPush(L, 'train', 'Começou um hype train');
   sound('surprise'); crowd(.8); fxBurst('🚂', 'HYPE TRAIN!');
   addTimeline('train', 'Hype train começou!', '🚂', { hype: .7, reactLabel: 'Hype train', clipTitle: 'Hype train na live' });
   pushChat({ sys: true, text: '🚂 HYPE TRAIN! Enviem presentes para subir de nível!' });
@@ -3937,7 +4017,8 @@ function greetRegulars(L) {
 }
 function subRenewal(L) {
   const r = pick(S.regulars); r.months++;
-  pushChat({ gift: true, text: `⭐ ${r.u} renovou a subscrição: ${r.months} meses!` });
+  pushChat({ gift: true, text: `${r.u} renovou a subscrição: ${r.months} meses!` });
+  activityPush(L, 'sub', `${r.u} subscreveu · ${r.months} meses`);
   alertShow('⭐', `${r.u} · ${r.months} meses`, 'subscrição renovada (fictícia)', 'follow');
   sound('follow');
   ttsSay(`${r.u.replace(/[_.]/g, ' ')} renovou a subscrição. ${r.months} meses!`);
@@ -4135,6 +4216,7 @@ function liveCounters(L) {
     L.recentFol = L.recentFol || [];
     const names = Array.from({ length: Math.min(n, 3) }, () => fakeUser());
     L.recentFol.unshift(...names); L.recentFol = L.recentFol.slice(0, 8);
+    names.forEach(nm => activityPush(L, 'follow', `${nm} seguiu-te`));
     if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
     const goal = FOL_GOALS.filter(g => g <= f).pop();
     if (goal && goal > (S.me.folGoalHit || 0)) {
@@ -4262,7 +4344,7 @@ const tagChips = tags => `<div class="tw-tags">${tags.map(t => `<span>${esc(t)}<
 /* ---------- Página inicial ---------- */
 UI.homeTab = 'live'; UI.homeCat = 'all';
 function homeTabsHTML() {
-  return `<nav class="tw-tabs" aria-label="Página inicial">${[['following', 'A seguir'], ['live', 'Em direto'], ['clips', 'Clipes'], ['posts', 'Publicações']].map(([k, l]) => `<button class="${UI.homeTab === k ? 'on' : ''}" data-act="home-tab" data-k="${k}">${l}</button>`).join('')}</nav>`;
+  return `<nav class="tw-tabs ${UI.homeTab === 'live' ? 'desk-hide' : ''}" aria-label="Página inicial">${[['following', 'A seguir'], ['live', 'Em direto'], ['clips', 'Clipes'], ['posts', 'Publicações']].map(([k, l]) => `<button class="${UI.homeTab === k ? 'on' : ''}" data-act="home-tab" data-k="${k}">${l}</button>`).join('')}</nav>`;
 }
 function liveCardHTML(ev, mine = false) {
   const a = mine ? S.me : acc(ev.owner), G = GAMES[ev.game] || GAMES.chat;
@@ -4336,14 +4418,14 @@ function viewWatch(id) {
         ${video}
         <div class="wp-top">
           <a class="wp-ic" href="#feed" aria-label="Voltar">${icon('chevD')}</a>
-          ${ev ? '<span class="wp-aud">Dirigido a todos · fictício</span>' : ''}
           <span class="spacer"></span>
           ${ev ? `<button class="wp-pill" data-act="w-clip" data-id="${a.id}">${icon('clip')} Clipe</button>` : ''}
           <button class="wp-ic" data-act="w-share" data-id="${a.id}" aria-label="Partilhar">${icon('share')}</button>
           <button class="wp-ic" data-act="w-quality" aria-label="Definições">${icon('gear')}</button>
         </div>
         ${ev ? `<div class="wp-bottom"><span class="tw-uptime"><i></i><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="wviewers" data-v="${Math.round(ev.viewers || 0)}">${fmt(ev.viewers || 0)}</b></span><span class="spacer"></span><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon(UI.watchFull ? 'shrink' : 'expand')}</button></div>
-        <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>` : ''}
+        <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>
+        <div class="wp-ctrl"><button class="wp-ic" data-act="player-pause" aria-label="Pausa">${icon('pause')}</button><button class="wp-ic" data-act="player-vol" aria-label="Volume">${icon('vol')}</button><span class="wp-ctrl-live"><i></i>EM DIRETO</span><span class="spacer"></span><button class="wp-ic" data-act="w-quality" aria-label="Definições">${icon('gear')}</button><button class="wp-pill" data-act="w-clip" data-id="${a.id}">${icon('clip')} Clipe</button><button class="wp-ic" data-act="w-full" aria-label="Modo teatro">${icon('theaterIc')}</button><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon('expand')}</button></div>` : ''}
         <div class="fx" id="wfx"></div>
       </div>
       <section class="wp-info">
@@ -4573,7 +4655,8 @@ function sideTwitchHTML() {
     <span class="sd-label">Canais seguidos</span>
     ${followed.length ? followed.map(([a, ev]) => row(a, ev)).join('') : '<p class="sd-empty">Segue canais para os veres aqui.</p>'}
     <span class="sd-label">Canais em direto recomendados</span>
-    ${rec.map(([a, ev]) => row(a, ev)).join('') || '<p class="sd-empty">Sem recomendações agora.</p>'}`;
+    ${rec.map(([a, ev]) => row(a, ev)).join('') || '<p class="sd-empty">Sem recomendações agora.</p>'}
+    <p class="sd-foot">O LiveVerse é uma simulação: seguidores, espetadores, subscrições e métricas são fictícios.</p>`;
 }
 
 /* ---------- Página inicial: destaque e categorias ---------- */
@@ -4626,7 +4709,7 @@ function viewExplore() {
       <div class="tw-tabs"><button class="on">Canais em direto</button></div>
       <div class="tw-grid">${S.live && S.live.game === k ? liveCardHTML(S.live, true) : ''}${lives.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Volta mais tarde ou entra tu em direto.</div>'}</div>`;
   }
-  return `<div class="page-head"><div><h1>Procurar</h1></div><span class="spacer"></span><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button></div>
+  return `<div class="page-head"><div><h1>Procurar</h1></div></div>
     <div class="tw-tabs">${[['cats', 'Categorias'], ['live', 'Canais em direto']].map(([k2, l]) => `<button class="${UI.browseTab === k2 && !q ? 'on' : ''}" data-act="browse-tab" data-k="${k2}">${l}</button>`).join('')}</div>
     <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Procurar canais, categorias, #hashtags, clipes…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Procurar"></div>
     <div id="exploreResults">${q ? exploreResults() : UI.browseTab === 'cats' ? `<div class="cat-grid2">${categoryStats().map(catCardHTML).join('')}</div>` : `<div class="tw-grid">${S.live ? liveCardHTML(S.live, true) : ''}${liveChannels().map(e => liveCardHTML(e)).join('')}</div>`}</div>`;
@@ -4660,6 +4743,130 @@ const TW2_FORMS = {
   topsearch: f => { UI.explore.q = f.q.value.trim(); UI.browseCat = null; if (route().name !== 'explorar') location.hash = '#explorar'; else render(); },
 };
 function liveHomeList() { const l = liveChannels(); return S.live ? [S.live, ...l] : l; }
+
+/* =====================================================================
+   Mais perto de uma plataforma de streaming: cabeçalho de canal no
+   perfil, gestor de transmissão (feed de atividade + ações rápidas),
+   distintivos do chat em quadrado e barra de controlos do leitor.
+   ===================================================================== */
+Object.assign(IC, {
+  chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  pause: '<rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none"/>',
+  playIc: '<path d="M7 4v16l13-8z" fill="currentColor" stroke="none"/>',
+  vol: '<path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16 9a4 4 0 0 1 0 6"/>',
+  theaterIc: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M16 5v14"/>',
+  marker: '<path d="M6 3h12v18l-6-4-6 4z"/>',
+  sword: '<path d="M14.5 3H21v6.5L9 21.5 2.5 15z" fill="currentColor" stroke="none"/>',
+  gem: '<path d="M6 3h12l4 6-10 12L2 9z" fill="currentColor" stroke="none"/>',
+  starF: '<path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="currentColor" stroke="none"/>',
+  botIc: '<rect x="4" y="7" width="16" height="12" rx="3" fill="currentColor" stroke="none"/><path d="M12 3v4" /><circle cx="9" cy="13" r="1.4" fill="#000" stroke="none"/><circle cx="15" cy="13" r="1.4" fill="#000" stroke="none"/>',
+});
+
+/* ---------- Distintivos do chat em quadrado ---------- */
+function regBadges(u) {
+  const r = regular(u); if (!r) return '';
+  const b = r.badge === 'mod' ? `<span class="tbadge tb-mod" title="Moderador (fictício)">${icon('sword')}</span>` : r.badge === 'vip' ? `<span class="tbadge tb-vip" title="VIP (fictício)">${icon('gem')}</span>` : '';
+  return `${b}<span class="tbadge tb-sub" title="Subscritor há ${r.months} ${r.months === 1 ? 'mês' : 'meses'} (fictício)">${icon('starF')}</span>`;
+}
+
+/* ---------- Perfil como cabeçalho de canal ---------- */
+function channelHeaderHTML(a, me) {
+  const ev = me ? (S.live || null) : channelLive(a);
+  const followers = me ? Math.floor(S.me.followers) : a.followers;
+  const banner = me && S.me.banner ? `url("${S.me.banner}") center/cover` : COVERS[(me ? S.me.cover : a.hue) % COVERS.length];
+  return `<section class="ch-head">
+    <div class="ch-banner" style="--cover:${esc(banner)}">${ev ? `<a class="ch-live" href="${me ? '#estudio' : chanHash(a.id)}"><span class="pill-live">EM DIRETO</span> ${esc(ev.title)}</a>` : '<span class="ch-off">OFFLINE</span>'}</div>
+    <div class="ch-row">
+      <span class="wp-av">${avatar(a, 72, ev ? 'ring-live' : '').replace('<a ', '<span ').replace('</a>', '</span>')}${ev ? '<span class="wp-livebadge">EM DIRETO</span>' : ''}</span>
+      <div class="ch-meta"><h1>${esc(a.name)}${a.verified ? VERIFIED : ''}</h1><span class="muted"><b data-me="${me ? 'followers' : ''}">${fmt(followers)}</b> seguidores ${SIM()}</span></div>
+      <span class="spacer"></span>
+      <div class="ch-actions">${me
+        ? `<button class="btn" data-act="edit-profile">${icon('edit')} Personalizar canal</button><a class="btn btn-primary" href="#estudio">${icon('studio')} Painel do criador</a>`
+        : `${a.followed ? `<button class="wp-round on" data-act="follow" data-id="${a.id}" aria-label="Deixar de seguir">${icon('heartFill')}</button>` : `<button class="btn btn-primary" data-act="follow" data-id="${a.id}">${icon('heart')} Seguir</button>`}
+           <button class="btn" data-act="go-sub" data-id="${a.id}">${icon('star')} Subscrever</button>
+           <a class="btn" href="#conversa-${a.id}" aria-label="Enviar mensagem" title="Mensagem">${icon('chat')}</a>
+           <button class="btn" data-act="accounts-edit" data-id="${a.id}" aria-label="Editar esta conta" title="Editar conta">${icon('edit')}</button>`}</div>
+    </div>
+  </section>`;
+}
+function aboutExtraHTML(id) {
+  const me = id === 'me', a = acc(id);
+  const car = me ? career() : career(Math.round(a.followers / 30));
+  const following = me ? followingCount() : 120 + (a.hue % 300);
+  const lives = me ? totalLives() : 40 + Math.round(a.followers / 2000);
+  const views = me ? totalViews() : a.followers * 14;
+  return `<section class="card panel about-wide">
+    <h3 class="panel-title">Sobre ${esc(a.name)}</h3>
+    <p class="prof-bio" style="margin-top:0">${richText(a.bio || '')}</p>
+    <div class="prof-tags"><span class="chip on">${esc(me ? S.me.category : a.cat)}</span>${(a.games || []).map(g => `<span class="chip">${gicon(g, 20)} ${esc(GAMES[g]?.name || g)}</span>`).join('')}</div>
+    <div class="lvl"><span class="lvl-num">${car.level}</span><div><strong>Nível de carreira ${car.level} · ${esc(car.name)}</strong><div class="goal-bar" style="margin-top:6px"><i style="width:${car.pct.toFixed(1)}%"></i></div><span class="tiny muted">${me ? `${dots(car.xp)} XP${car.next ? ' · faltam ' + dots(car.next - car.xp) + ' XP' : ''}` : 'Nível estimado pela simulação'}</span></div></div>
+    <div class="stats">
+      <div class="stat"><b data-me="${me ? 'followers' : ''}">${fmt(me ? S.me.followers : a.followers)}</b><small>Seguidores ${SIM()}</small></div>
+      <div class="stat"><b>${fmt(following)}</b><small>A seguir</small></div>
+      <div class="stat"><b>${fmt(lives)}</b><small>Transmissões</small></div>
+      <div class="stat"><b>${fmt(views)}</b><small>Visualizações ${SIM()}</small></div>
+    </div>
+  </section>`;
+}
+
+/* ---------- Gestor de transmissão: feed de atividade ---------- */
+const ACT_IC = { follow: ['heart', '#9147ff'], sub: ['starF', '#9147ff'], gift: ['gift', '#00a3a3'], raid: ['users', '#e91916'], train: ['bolt', '#eb8c00'], giftsub: ['gift', '#9147ff'] };
+function activityPush(L, kind, text) {
+  if (!L) return;
+  const it = { k: kind, text, t: Date.now() };
+  L.activity = L.activity || []; L.activity.unshift(it); if (L.activity.length > 80) L.activity.pop();
+  const box = $('#smActivity');
+  if (box) { const empty = box.querySelector('.sm-empty'); if (empty) empty.remove(); box.insertAdjacentHTML('afterbegin', activityItemHTML(it)); while (box.children.length > 80) box.lastElementChild.remove(); }
+}
+function activityItemHTML(it) {
+  const [ic, c] = ACT_IC[it.k] || ['bolt', '#9147ff'];
+  return `<div class="sm-item"><span class="sm-ic" style="--c:${c}">${icon(ic)}</span><div><span>${esc(it.text)}</span><time data-ago="${it.t}">${ago(it.t)}</time></div></div>`;
+}
+function activityHTML(L) {
+  return `<aside class="sm-activity card" aria-label="Atividade">
+    <div class="chat-head"><span class="tw-chead-t">Atividade</span>${SIM()}</div>
+    <div class="sm-list" id="smActivity">${(L.activity || []).map(activityItemHTML).join('') || '<p class="sm-empty muted small">Seguidores, subscrições, presentes e raids aparecem aqui.</p>'}</div>
+  </aside>`;
+}
+
+/* ---------- Ações rápidas ---------- */
+function quickActionsHTML() {
+  const o = S.prefs.orient || 'h';
+  const tile = (act, ic, label, color, on = false, extra = '') => `<button class="qa-t ${on ? 'on' : ''}" data-act="${act}" style="--c:${color}" ${extra}><span class="qa-ic">${icon(ic)}</span><span class="qa-l">${label}</span></button>`;
+  return `<section class="qa card" aria-label="Ações rápidas">
+    <div class="qa-head"><span class="tw-chead-t">Ações rápidas</span><span class="spacer"></span>
+      <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelectQA" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${(S.live?.scene || 'game') === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label></div>
+    <div class="qa-grid">
+      ${tile('cam-toggle', 'camera', MEDIA.cam ? 'Desligar câmara' : 'Câmara', '#9147ff', !!MEDIA.cam)}
+      ${tile('screen-toggle', 'monitor', MEDIA.screen ? 'Parar ecrã' : 'Mostrar jogo', '#1f69ff', !!MEDIA.screen)}
+      ${tile('rec-toggle', 'rec', MEDIA.rec ? 'Parar gravação' : 'Gravar', '#e91916', !!MEDIA.rec)}
+      ${tile('orient', o === 'v' ? 'horizontal' : 'vertical', o === 'v' ? 'Passar a horizontal' : 'Passar a vertical', '#00a3a3', false, `data-o="${o === 'v' ? 'h' : 'v'}"`)}
+      ${tile('mic-toggle', 'mic', MIC.on ? 'A ouvir' : 'Microfone', '#2b9c3a', MIC.on)}
+      ${tile('reacts-toggle', 'bolt', 'Momentos', '#eb8c00', !!STUDIO.reacts)}
+      ${tile('clip-now', 'marker', 'Marcador', '#c02bd1')}
+      ${tile('open-poll', 'chart', 'Sondagem', '#1f69ff')}
+      ${tile('end-raid-pick', 'users', 'Raid', '#e91916')}
+      ${tile('announce-live', 'share', 'Anunciar', '#9147ff')}
+      ${tile('mod-open', 'shield', 'Modo de chat', '#2b9c3a')}
+      ${tile('theater', 'expand', 'Ecrã inteiro', '#53535f')}
+    </div>
+    ${MEDIA.lastUrl && !MEDIA.rec ? `<a class="btn btn-sm" href="${MEDIA.lastUrl}" download="liveverse-gravacao.${MEDIA.lastExt || 'webm'}" style="margin-top:8px">${icon('download')} Transferir a última gravação</a>` : ''}
+    <div class="tb-reacts" ${STUDIO.reacts ? '' : 'hidden'}>${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}">${esc(l)}</button>`).join('')}</div>
+  </section>`;
+}
+function paintQA() { $$('.qa').forEach(el => el.outerHTML = quickActionsHTML()); }
+
+const TW3_ACT = {
+  'go-sub': b => { location.hash = chanHash(b.dataset.id); },
+  'clip-now': () => {
+    const L = S.live; if (!L) return;
+    const it = L.timeline.find(x => !x.clipId && x.type !== 'end') || addTimeline('reaction', 'Marcador na live', '🎬', { hype: .4, reactLabel: 'Marcador', clipTitle: `Marcador · ${durLabel(Date.now() - L.start)}` });
+    clipFromTimeline(it.id);
+  },
+  'open-poll': () => { STUDIO.controls = true; const p = $('#controlsPanel'); if (p) p.hidden = false; $$('[data-act="controls"]').forEach(x => x.classList.add('btn-primary')); setTimeout(() => { const f = $('#pollBox'); if (f) { f.scrollIntoView({ behavior: 'smooth', block: 'center' }); $('#lpQ')?.focus({ preventScroll: true }); } }, 50); },
+  'player-pause': b => { const v = b.closest('.screen'); if (!v) return; v.classList.toggle('paused'); b.innerHTML = icon(v.classList.contains('paused') ? 'playIc' : 'pause'); },
+  'player-vol': b => { b.classList.toggle('muted'); toast('🔈', b.classList.contains('muted') ? 'Som da live silenciado (simulado)' : 'Som da live ligado (simulado)'); },
+};
 
 /* =====================================================================
    Câmara, ecrã do jogo, gravação e formato da live (horizontal/vertical).
@@ -4812,7 +5019,7 @@ function orientHTML() {
   const o = S.prefs.orient || 'h';
   return `<div class="seg" role="group" aria-label="Formato da live"><button class="${o === 'h' ? 'on' : ''}" data-act="orient" data-o="h">${icon('horizontal')} Horizontal</button><button class="${o === 'v' ? 'on' : ''}" data-act="orient" data-o="v">${icon('vertical')} Vertical</button></div>`;
 }
-function paintMediaBar() { $$('.theater-bar').forEach(el => el.outerHTML = theaterBarHTML()); }
+function paintMediaBar() { $$('.theater-bar').forEach(el => el.outerHTML = theaterBarHTML()); paintQA(); }
 function setupMediaHTML() {
   return `<div class="field" data-setupmedia><span>Câmara e jogo</span><div class="row">${mediaButtonsHTML()}${orientHTML()}</div>
     ${MEDIA.cam || MEDIA.screen ? `<div class="setup-preview ${S.prefs.orient === 'v' ? 'vertical' : ''}">${MEDIA.screen ? '<video data-stream="screen" class="live-video fit-contain" autoplay muted playsinline></video>' : ''}${MEDIA.cam ? `<video data-stream="cam" class="${MEDIA.screen ? 'pv-cam' : 'live-video'} mirror" autoplay muted playsinline></video>` : ''}</div>` : ''}
@@ -4824,8 +5031,8 @@ const MEDIA_ACT = {
   'cam-flip': () => camFlip(),
   'screen-toggle': () => screenToggle(),
   'rec-toggle': () => recToggle(),
-  'orient': b => setOrient(b.dataset.o),
   'reacts-toggle': () => { STUDIO.reacts = !STUDIO.reacts; paintMediaBar(); },
+  'orient': b => { setOrient(b.dataset.o); paintQA(); },
 };
 
 /* =====================================================================
@@ -5386,7 +5593,7 @@ function init() {
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, TW3_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
 Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS);
 init();
 
