@@ -794,3 +794,16 @@ button.poll-opt:hover { border-color: var(--accent); }
   .screen-chat { bottom: 10px; }
   .screen-chat .ov-msg:nth-last-child(n+5) { display: none; }
 }
+
+/* Gerir contas */
+.acc-row { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-2); }
+.acc-row[open] { border-color: var(--line-2); }
+.acc-row summary { display: flex; align-items: center; gap: 10px; padding: 10px 12px; cursor: pointer; list-style: none; }
+.acc-row summary::-webkit-details-marker { display: none; }
+.acc-row summary > span:nth-child(2) { flex: 1; min-width: 0; }
+.acc-row summary small { display: block; color: var(--muted); font-size: 12px; }
+.acc-chev { width: 18px; height: 18px; color: var(--muted); transition: transform .2s; }
+.acc-row[open] .acc-chev { transform: rotate(90deg); }
+.acc-fields { padding: 4px 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.input.hue { padding: 0; height: 40px; appearance: none; background: linear-gradient(90deg, hsl(0 85% 60%), hsl(60 85% 60%), hsl(120 85% 55%), hsl(180 85% 55%), hsl(240 85% 65%), hsl(300 85% 62%), hsl(359 85% 60%)); border-radius: 12px; }
+.input.hue::-webkit-slider-thumb { appearance: none; width: 22px; height: 30px; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgb(0 0 0 / .5); }

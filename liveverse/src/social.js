@@ -106,7 +106,7 @@ function openMenuSheet() {
     <div class="sheet-top"><a class="side-me-link" href="#perfil">${avatar(S.me, 46).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>@${esc(S.me.handle)} · nível ${career().level}</small></div></a>${clockHTML(true)}</div>
     ${S.live ? `<a class="live-pill" href="#estudio" style="margin:0 16px"><span class="pill-live">EM DIRETO</span><span class="num" data-live="viewers">${fmt(S.live.viewers)}</span><span class="tiny muted">espectadores virtuais</span></a>` : ''}
     <div class="sheet-body">${NAV_GROUPS.map(([g, items]) => `<div><span class="nav-label">${g}</span><div class="tile-grid">${items.map(([h, ic, label]) => `<a class="tile ${cur === h ? 'on' : ''}" href="#${h}">${icon(ic)}<span>${label}</span>${h === 'notificacoes' ? badge(notifUnread()) : h === 'mensagens' ? badge(dmUnread()) : ''}</a>`).join('')}</div></div>`).join('')}
-      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div></div>`, 'sheet');
+      <div class="row"><button class="btn btn-sm" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-sm" data-act="mod-open">${icon('shield')} Moderação</button><button class="btn btn-sm" data-act="accounts-edit">${icon('users')} Gerir contas</button><button class="btn btn-sm btn-ghost" data-act="modal-close" style="margin-left:auto">Fechar</button></div></div>`, 'sheet');
 }
 function openCreateSheet() {
   openModal(`<div class="sheet-grip" aria-hidden="true"></div><div class="sheet-body"><h2 style="font-size:20px">Criar</h2>${createMenuHTML()}<button class="btn btn-ghost" data-act="modal-close">Fechar</button></div>`, 'sheet');
@@ -116,7 +116,7 @@ function openCreateSheet() {
 UI.explore = { q: '', game: 'all' };
 function viewExplore() {
   const games = Object.entries(GAMES).filter(([k]) => k !== 'amnesia');
-  return `<div class="page-head"><div><h1>Explorar</h1><p>Descobre criadores, eventos, clips e tendências da rede fictícia.</p></div></div>
+  return `<div class="page-head"><div><h1>Explorar</h1><p>Descobre criadores, eventos, clips e tendências da rede fictícia.</p></div><span class="spacer"></span><button class="btn" data-act="accounts-edit">${icon('users')} Gerir contas</button></div>
   <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Pesquisar contas, #hashtags, eventos, clips…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Pesquisar"></div>
   <div class="chip-row" role="group" aria-label="Filtrar por jogo"><button class="chip ${UI.explore.game === 'all' ? 'on' : ''}" data-act="explore-game" data-k="all">Todos</button>${games.map(([k, g]) => `<button class="chip ${UI.explore.game === k ? 'on' : ''}" data-act="explore-game" data-k="${k}">${gicon(k, 18)} ${esc(g.name)}</button>`).join('')}</div>
   <div id="exploreResults">${exploreResults()}</div>`;
@@ -374,6 +374,9 @@ function paintModStats() { const st = S.mod.stats; $$('[data-modstat]').forEach(
 function findChat(id) { return S.live && S.live.chat.find(m => m.id === id); }
 
 const SOCIAL_ACT = {
+  'accounts-edit': b => openAccountsEditor(b.dataset.id || null),
+  'acc-add': () => { syncAccountsDraft(); MODAL.draft.push({ id: 'a_' + uid(), name: 'Nova conta', handle: 'novaconta' + randi(10, 99), hue: randi(0, 359), followers: 1000, verified: false, cat: 'Gaming', games: ['fortnite'], bio: '', followed: false, isNew: true }); MODAL.focusLast = true; paintAccountsEditor(); },
+  'acc-del': b => { syncAccountsDraft(); MODAL.draft = MODAL.draft.filter(a => a.id !== b.dataset.id); paintAccountsEditor(); },
   'dock-toggle': () => { UI.dockOpen = !UI.dockOpen; renderDock(); if (UI.dockOpen) $('#dockChatInput')?.focus({ preventScroll: true }); },
   'create-toggle': () => { UI.createOpen = !UI.createOpen; renderNav(); },
   'create-sheet': () => openCreateSheet(),
@@ -406,6 +409,7 @@ const SOCIAL_ACT = {
   'mod-word-del': b => { S.mod.words.splice(+b.dataset.i, 1); save(); rerenderMod(); },
 };
 const SOCIAL_FORMS = {
+  accounts: () => saveAccounts(),
   dm: f => { const t = f.t.value.trim(); if (!t) return; f.t.value = ''; sendDM(f.dataset.id, t); $('#dmInput')?.focus(); },
   'mod-word': f => { const w = f.w.value.trim().toLowerCase(); if (!w) return; if (!S.mod.words.includes(w)) S.mod.words.push(w); save(); rerenderMod(); $('#modWord')?.focus(); },
 };
@@ -420,4 +424,72 @@ function onSocialInput(t) {
     return true;
   }
   return false;
+}
+
+/* ---------- Gerir contas fictícias ---------- */
+function openAccountsEditor(focusId) {
+  MODAL.kind = 'accounts';
+  MODAL.draft = S.accounts.map(a => ({ ...a, games: [...(a.games || [])] }));
+  MODAL.focusId = focusId;
+  paintAccountsEditor();
+}
+function syncAccountsDraft() {
+  const f = $('#accForm'); if (!f) return;
+  MODAL.draft.forEach(a => {
+    const row = f.querySelector(`[data-accrow="${a.id}"]`); if (!row) return;
+    const v = n => row.querySelector(`[name="${n}"]`);
+    a.name = v('name').value; a.handle = v('handle').value; a.bio = v('bio').value; a.cat = v('cat').value;
+    a.followers = Math.max(0, Math.round(+v('followers').value || 0)); a.verified = v('verified').checked; a.hue = +v('hue').value;
+    a.games = [...row.querySelectorAll('input[name="g"]:checked')].map(i => i.value);
+  });
+}
+function paintAccountsEditor() {
+  const D = MODAL.draft;
+  openModal(`<div class="modal-head"><h2>Gerir contas</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div>
+  <form id="accForm" data-form="accounts">
+    <div class="modal-body">
+      <p class="small muted" style="margin:0">Estas contas fazem parte da simulação: publicam, entram em direto, enviam mensagens e aparecem no chat. Muda os nomes, as bios e os números como quiseres. Fica guardado só neste navegador.</p>
+      ${D.map((a, i) => `<details class="acc-row" data-accrow="${a.id}" ${a.isNew && MODAL.focusLast && i === D.length - 1 || MODAL.focusId === a.id ? 'open' : ''}>
+        <summary>${avatar(a, 36).replace('<a ', '<span ').replace('</a>', '</span>')}<span><strong>${esc(a.name)}</strong>${a.verified ? VERIFIED : ''}<small>@${esc(a.handle)} · ${fmt(a.followers)} seguidores</small></span>${icon('chevR', 'class="acc-chev"')}</summary>
+        <div class="acc-fields">
+          <div class="grid-2"><label class="field"><span>Nome</span><input class="input" name="name" id="an-${a.id}" maxlength="40" required value="${esc(a.name)}"></label>
+            <label class="field"><span>Nome de utilizador</span><input class="input" name="handle" id="ah-${a.id}" maxlength="24" required value="${esc(a.handle)}"></label></div>
+          <label class="field"><span>Biografia</span><input class="input" name="bio" id="ab-${a.id}" maxlength="200" value="${esc(a.bio || '')}"></label>
+          <div class="grid-3"><label class="field"><span>Categoria</span><select class="input" name="cat" id="ac-${a.id}">${CATEGORIES.map(c => `<option ${a.cat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select></label>
+            <label class="field"><span>Seguidores (fictícios)</span><input class="input" type="number" min="0" max="100000000" name="followers" id="af-${a.id}" value="${a.followers}"></label>
+            <label class="field"><span>Cor do avatar</span><input class="input hue" type="range" min="0" max="359" name="hue" id="au-${a.id}" value="${a.hue}" style="--h:${a.hue}"></label></div>
+          <div class="field"><span>Jogos</span><div class="chip-row">${Object.entries(GAMES).map(([k, g]) => `<label class="chip ${a.games.includes(k) ? 'on' : ''}" style="cursor:pointer"><input type="checkbox" name="g" value="${k}" ${a.games.includes(k) ? 'checked' : ''} hidden data-chipcheck>${gicon(k, 18)} ${esc(g.name)}</label>`).join('')}</div></div>
+          <div class="row"><label class="switch"><input type="checkbox" name="verified" id="av-${a.id}" ${a.verified ? 'checked' : ''}> Selo de verificação fictício</label><span class="spacer"></span><button type="button" class="btn btn-sm btn-danger" data-act="acc-del" data-id="${a.id}">${icon('trash')} Apagar conta</button></div>
+        </div></details>`).join('')}
+      <button type="button" class="btn" data-act="acc-add" style="align-self:flex-start">${icon('plus')} Adicionar conta</button>
+      <p class="small" id="accErr" style="color:#ff8aa0;margin:0" hidden></p>
+    </div>
+    <div class="modal-foot"><button type="button" class="btn btn-ghost" data-act="modal-close">Cancelar</button><button class="btn btn-primary">Guardar contas</button></div>
+  </form>`, true);
+  MODAL.focusLast = false;
+}
+function saveAccounts() {
+  syncAccountsDraft();
+  const D = MODAL.draft, err = $('#accErr');
+  for (const a of D) {
+    a.name = a.name.trim(); a.handle = a.handle.trim().replace(/^@/, '').toLowerCase();
+    if (!a.name || !/^[a-z0-9_.]+$/.test(a.handle)) { err.textContent = `Revê a conta «${a.name || 'sem nome'}»: o nome de utilizador só pode ter letras, números, «_» e «.».`; err.hidden = false; return; }
+    if (!a.games.length) a.games = ['fortnite'];
+    delete a.isNew;
+  }
+  const handles = D.map(a => a.handle);
+  if (handles.length !== new Set(handles).size || handles.includes(S.me.handle)) { err.textContent = 'Há dois nomes de utilizador iguais. Cada conta precisa de um diferente.'; err.hidden = false; return; }
+  if (!D.length) { err.textContent = 'Mantém pelo menos uma conta na simulação.'; err.hidden = false; return; }
+  const keep = new Set(D.map(a => a.id));
+  const gone = S.accounts.filter(a => !keep.has(a.id)).map(a => a.id);
+  if (gone.length) {
+    const g = new Set(gone);
+    S.posts = S.posts.filter(p => !g.has(p.author));
+    S.posts.forEach(p => p.replies = p.replies.filter(r => !g.has(r.author)));
+    S.events = S.events.filter(e => !g.has(e.owner));
+    S.clips = S.clips.filter(c => !g.has(c.streamer));
+    S.dms = S.dms.filter(t => !g.has(t.with));
+  }
+  S.accounts = D;
+  save(); closeModal(); render(); toast('✅', 'Contas guardadas');
 }
