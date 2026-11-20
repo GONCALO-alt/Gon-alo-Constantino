@@ -359,7 +359,7 @@ const FORMS = {
   },
   'clip-comment': f => { const t = f.t.value.trim(); if (!t) return; const c = S.clips.find(x => x.id === f.dataset.id); c.commentsList = [...(c.commentsList || []), { u: S.me.handle, t }]; c.comments++; save(); render(); $(`#cc-${c.id}`)?.focus(); },
   'react-custom': f => { const t = f.t.value.trim(); if (!t) return f.t.focus(); react('custom', t); STUDIO.custom = ''; f.t.value = ''; },
-  chat: f => { const t = f.t.value.trim(); if (!t || !S.live) return; pushChat({ user: S.me.name, text: t, me: true, color: '#ff4fa8' }); f.t.value = '';
+  chat: f => { const t = f.t.value.trim(); if (!t || !S.live) return; const ep = f.querySelector('.emote-pop'); if (ep) ep.hidden = true; pushChat({ user: S.me.name, text: t, me: true, color: '#ff4fa8' }); f.t.value = '';
     setTimeout(() => S.live && pushChat({ user: fakeUser(), text: pick(['respondeu-me!! 😭', 'concordo!', '💜💜💜', 'haha verdade', 'LEMBRA-TE DE MIM ' + S.me.name.split(' ')[0].toUpperCase()]) }), 700); },
   'watch-chat': f => { const t = f.t.value.trim(); if (!t) return; const box = $('#wChat'); box.insertAdjacentHTML('beforeend', chatMsgHTML({ user: S.me.name, text: t, me: true, color: '#ff4fa8' })); box.scrollTop = box.scrollHeight; f.t.value = ''; },
   'live-poll': f => { const opts = [f.a.value, f.b.value, f.c.value, f.d.value].map(s => s.trim()).filter(Boolean); if (opts.length < 2) return; startPoll(f.q.value.trim(), opts); },
@@ -425,6 +425,8 @@ function tick() {
     simulateEvents(now);
     // contadores
     S.events.forEach(ev => { $$(`[data-int="${ev.id}"]`).forEach(n => n.textContent = dots(ev.interested)); $$(`[data-rem="${ev.id}"]`).forEach(n => n.textContent = dots(ev.reminderUsers || 0)); if (ev.owner !== 'me' && eventStatus(ev) === 'live') { ev.viewers = Math.round((ev.viewers || LEVELS[ev.level].max * .3) * rand(.99, 1.012)); $$(`[data-watchers="${ev.id}"]`).forEach(n => n.textContent = fmt(ev.viewers)); } });
+    Object.values(SYN).forEach(ev => { ev.viewers = Math.max(10, Math.round(ev.viewers * rand(.993, 1.009))); $$(`[data-chv="${ev.id}"]`).forEach(n => n.textContent = n.closest('.tw-thumb') ? espet(ev.viewers) : fmt(ev.viewers)); });
+    S.events.forEach(ev => $$(`[data-chv="${ev.id}"]`).forEach(n => n.textContent = n.closest('.tw-thumb') ? espet(ev.viewers || 0) : fmt(ev.viewers || 0)));
     // visualizações simuladas
     for (const p of S.posts) if (p.status === 'published' && now - p.createdAt < 5 * DAY && Math.random() < .25) {
       p.views += randi(1, p.author === 'me' ? Math.ceil(S.me.followers / 800) : 40);
@@ -458,6 +460,7 @@ function bind() {
     const b = e.target.closest('[data-act]');
     if (UI.menu && !e.target.closest('.menu-wrap')) { const id = UI.menu; UI.menu = null; rerenderPost(id); }
     if (UI.createOpen && !e.target.closest('.create-wrap')) { UI.createOpen = false; renderNav(); }
+    if (!e.target.closest('.tw-input')) $$('.emote-pop').forEach(p => { p.hidden = true; });
     if (!b) { if (e.target === $('#modal')) closeModal(); return; }
     const fn = ACT[b.dataset.act]; if (!fn) return;
     if (b.tagName === 'A' && b.getAttribute('href')) return;
@@ -496,6 +499,7 @@ function bind() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
     else if (e.key === 'Escape' && STUDIO.theater) setTheater(false);
+    else if (e.key === 'Escape' && UI.watchFull) ACT['w-full']();
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && e.target.id === 'cmpText') publishPost();
   });
   window.addEventListener('hashchange', () => { UI.menu = null; UI.createOpen = false; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
@@ -529,6 +533,7 @@ function migrate(s) {
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
   s.prefs = { ...defaultImmersive(), ...s.prefs };
   s.regulars = s.regulars || seedRegulars();
+  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {};
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (s.live) s.live.surprise = null;
@@ -545,9 +550,9 @@ function init() {
   render();
   setInterval(tick, 1000);
   micInit(); ttsInit();
-  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } });
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT);
-Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT);
+Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS);
 init();

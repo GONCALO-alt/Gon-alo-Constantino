@@ -13,6 +13,7 @@ function route() {
   if (h.startsWith('conta-')) return { name: 'profile', id: h.slice(6) };
   if (h === 'perfil') return { name: 'profile', id: 'me' };
   if (h.startsWith('conversa-')) return { name: 'mensagens', id: h.slice(9) };
+  if (h.startsWith('canal-')) return { name: 'watch', id: h.slice(6).replace(/-/g, '_') };
   if (['feed', 'eventos', 'estudio', 'clips', 'notificacoes', 'explorar', 'mensagens'].includes(h)) return { name: h };
   return { name: 'feed' };
 }
@@ -25,19 +26,22 @@ function render() {
   renderNav();
   const r = route();
   const main = $('#main');
-  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio' || r.name === 'mensagens');
+  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio' || r.name === 'mensagens' || r.name === 'watch');
+  if (r.name !== 'watch' && UI.watchFull) { UI.watchFull = false; document.body.classList.remove('theater-on'); }
   const html = r.name === 'feed' ? viewFeed()
     : r.name === 'profile' ? viewProfile(r.id)
     : r.name === 'eventos' ? viewEvents()
     : r.name === 'estudio' ? viewStudio()
     : r.name === 'clips' ? viewClips()
     : r.name === 'explorar' ? viewExplore()
+    : r.name === 'watch' ? viewWatch(r.id)
     : r.name === 'mensagens' ? viewMessages(r.id)
     : viewNotifs();
   main.innerHTML = html;
   $('#rail').innerHTML = viewRail();
   if (r.name === 'estudio') afterStudioRender();
   if (r.name === 'mensagens') afterMessagesRender();
+  if (r.name === 'watch') { const wa = S.accounts.find(x => x.id === r.id); if (wa) startWatch(wa); } else stopWatch();
   tickClock();
   updateLiveBits();
   tickCountdowns();
@@ -48,7 +52,7 @@ function statusSig() { return S.events.map(e => e.id + eventStatus(e)).join('|')
 /* ---------- Rail ---------- */
 function viewRail() {
   const now = Date.now();
-  const liveNow = S.events.filter(e => e.owner !== 'me' && eventStatus(e) === 'live');
+  const liveNow = liveChannels().slice(0, 5);
   const upcoming = S.events.filter(e => ['scheduled', 'soon'].includes(eventStatus(e)) && (e.owner === 'me' || e.myReminder)).sort((a, b) => a.start - b.start).slice(0, 4);
   const tags = {};
   S.posts.filter(p => p.status === 'published' && now - p.createdAt < 14 * DAY).forEach(p => hashtags(postText(p)).forEach(t => tags[t] = (tags[t] || 0) + 1 + p.likes / 1000));
@@ -73,7 +77,7 @@ function viewRail() {
 /* ---------- Feed ---------- */
 function postText(p) { if (p.type === 'event' && p.text == null) { const ev = S.events.find(e => e.id === p.eventId); return ev ? eventPostText(ev) : ''; } return p.text || ''; }
 function visiblePosts() { return S.posts.filter(p => p.status === 'published').sort((a, b) => b.createdAt - a.createdAt); }
-function viewFeed() {
+function viewPosts() {
   let list = visiblePosts();
   if (UI.feedTab === 'following') list = list.filter(p => p.author === 'me' || acc(p.author).followed);
   if (UI.feedTab === 'saved') list = list.filter(p => p.saved);
@@ -81,8 +85,6 @@ function viewFeed() {
   if (UI.tag) list = list.filter(p => hashtags(postText(p)).includes(UI.tag));
   const soon = S.events.filter(e => e.owner === 'me' && eventStatus(e) === 'soon' && !S.live);
   return `
-  ${soonBanner(soon)}
-  <div class="page-head"><div><h1>Início</h1><p>A tua rede de criadores. Tudo o que vês de audiência é simulado.</p></div></div>
   ${composerHTML()}
   <div class="tabs" role="tablist">
     ${[['all', 'Para ti'], ['following', 'A seguir'], ['events', 'Eventos e lives'], ['saved', 'Guardados']].map(([k, l]) => `<button class="tab ${UI.feedTab === k ? 'on' : ''}" data-act="feed-tab" data-k="${k}">${l}</button>`).join('')}
@@ -297,7 +299,7 @@ function viewProfile(id) {
     <div class="prof-inner">
       <div class="prof-top">${avatar(a, 120).replace('class="av ', 'class="av ' + (me && S.live ? 'ring-live ' : ''))}<span class="spacer"></span>
         ${me ? `<button class="btn" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-primary" data-act="new-event">${icon('calendar')} Agendar live</button>`
-          : `<button class="btn" data-act="accounts-edit" data-id="${a.id}" title="Editar esta conta" aria-label="Editar esta conta">${icon('edit')}</button><a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
+          : `${channelLive(a) ? `<a class="btn btn-live" href="${chanHash(a.id)}">● Ver live</a>` : `<a class="btn" href="${chanHash(a.id)}">${icon('studio')} Canal</a>`}<button class="btn" data-act="accounts-edit" data-id="${a.id}" title="Editar esta conta" aria-label="Editar esta conta">${icon('edit')}</button><a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
       </div>
       <div class="prof-name"><h1>${esc(a.name)}</h1>${a.verified ? VERIFIED + SIM('selo fictício') : ''}${me && S.live ? '<span class="pill-live">EM DIRETO</span>' : ''}</div>
       <div class="prof-handle">@${esc(a.handle)}</div>

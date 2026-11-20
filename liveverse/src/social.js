@@ -32,8 +32,8 @@ function tickAgo() { $$('[data-ago]').forEach(n => { const v = ago(+n.dataset.ag
 
 /* ---------- Menu ---------- */
 const NAV_GROUPS = [
-  ['Descobrir', [['feed', 'home', 'Início'], ['explorar', 'compass', 'Explorar']]],
-  ['Social', [['mensagens', 'chat', 'Mensagens'], ['notificacoes', 'bell', 'Notificações']]],
+  ['Descobrir', [['feed', 'home', 'Página inicial'], ['explorar', 'search', 'Procurar']]],
+  ['Social', [['mensagens', 'chat', 'Mensagens'], ['notificacoes', 'bell', 'Atividade']]],
   ['Criador', [['estudio', 'studio', 'Estúdio'], ['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clips']]],
   ['Conta', [['perfil', 'user', 'Perfil']]],
 ];
@@ -66,14 +66,13 @@ function renderNav() {
   $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
-    <a class="icon-btn top-ic" href="#explorar" aria-label="Explorar">${icon('search')}</a>
     <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('chat')}${badge(dmUnread())}</a>
-    <a class="icon-btn top-ic" href="#notificacoes" aria-label="Notificações">${icon('bell')}${badge(notifUnread())}</a>`;
-  const bn = (h, ic, label) => navLink([h, ic, label], cur);
-  $('#bottomNav').innerHTML = `${bn('feed', 'home', 'Início')}${bn('explorar', 'compass', 'Explorar')}
+    <button class="icon-btn top-ic" data-act="menu-sheet" aria-label="Menu">${icon('menu')}</button>`;
+  const bn = (h, ic, label, extra = '') => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${ic}<span>${label}</span>${extra}</a>`;
+  $('#bottomNav').innerHTML = `${bn('feed', icon('home'), 'Início')}${bn('explorar', icon('search'), 'Procurar')}
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
-    ${bn('estudio', 'studio', 'Estúdio')}
-    <button class="nav-link ${['perfil', 'eventos', 'clips', 'notificacoes', 'mensagens'].includes(cur) ? 'on' : ''}" data-act="menu-sheet">${icon('menu')}<span>Menu</span>${badge(notifUnread() + dmUnread())}</button>`;
+    ${bn('notificacoes', icon('bell'), 'Atividade', badge(notifUnread()))}
+    ${bn('perfil', `<span class="bn-av">${avatar(S.me, 24).replace('<a ', '<span ').replace('</a>', '</span>')}</span>`, 'Perfil', S.live ? '<span class="pill-live"></span>' : '')}`;
   $('#liveFloat').hidden = true;
   renderDock();
 }
@@ -501,12 +500,12 @@ function saveAccounts() {
 
 /* Canais seguidos na barra lateral (como numa plataforma de streaming) */
 function sideChannelsHTML() {
-  const liveEv = id => S.events.find(e => e.owner === id && eventStatus(e) === 'live');
+  const liveEv = id => channelLive(S.accounts.find(x => x.id === id));
   const list = [...S.accounts].sort((a, b) => (!!liveEv(b) - !!liveEv(a)) || (b.followed - a.followed) || b.followers - a.followers).slice(0, 7);
   return `<div class="side-channels"><span class="nav-label">Canais recomendados</span>${list.map(a => {
     const ev = liveEv(a.id);
     const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
-    return ev ? `<button class="chan" data-act="watch" data-id="${ev.id}" title="${esc(a.name)} · ${esc(ev.title)}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[ev.game]?.name || '')}</small></span><span class="chan-v"><i></i><span data-watchers="${ev.id}">${fmt(ev.viewers || 1000)}</span></span></button>`
+    return ev ? `<a class="chan" href="${chanHash(a.id)}" title="${esc(a.name)} · ${esc(ev.title)}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[ev.game]?.name || '')}</small></span><span class="chan-v"><i></i><span data-chv="${ev.id}">${fmt(ev.viewers || 1000)}</span></span></a>`
       : `<a class="chan" href="#conta-${a.id}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[(a.games || [])[0]]?.name || a.cat)}</small></span><span class="chan-off">Offline</span></a>`;
   }).join('')}</div>`;
 }

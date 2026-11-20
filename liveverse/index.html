@@ -1072,6 +1072,148 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
   .tb-scene select { width: 100%; }
 }
 
+/* ===================== Página inicial, canal e chat ao estilo de plataforma de streaming ===================== */
+.tw-tabs { display: flex; gap: 22px; margin: 0 0 12px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.tw-tabs button { border: 0; background: none; padding: 10px 0 12px; font-size: 18px; font-weight: 700; color: var(--muted); position: relative; white-space: nowrap; }
+.tw-tabs button.on { color: var(--fg); }
+.tw-tabs button.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; border-radius: 2px; background: var(--purple); }
+.tw-cats { margin-bottom: 14px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.tw-cats .chip { flex: none; border-radius: 999px; padding: 7px 14px; font-size: 14px; }
+.tw-cats .chip.on { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.tw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px 16px; margin-bottom: 24px; }
+.tw-card { min-width: 0; animation: rise .3s ease both; }
+.tw-thumb { position: relative; display: block; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 6px; overflow: hidden; background: #000; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.tw-thumb:hover { transform: translate(4px, -4px); box-shadow: -4px 4px 0 var(--purple); }
+.tw-thumb-bg { position: absolute; inset: 0; background: radial-gradient(circle at 35% 45%, color-mix(in oklab, var(--gc) 80%, transparent), transparent 60%), radial-gradient(circle at 80% 80%, color-mix(in oklab, var(--purple) 50%, transparent), transparent 50%), linear-gradient(135deg, #15102a, #050407); }
+.tw-thumb-glyph { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 900; font-size: clamp(28px, 6vw, 46px); letter-spacing: .02em; color: rgb(255 255 255 / .85); text-shadow: 0 0 30px var(--gc); }
+.tw-thumb-cam { position: absolute; left: 6%; top: 10%; width: 22%; aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; display: grid; place-items: center; font-weight: 800; color: #fff; font-size: 14px; background: linear-gradient(140deg, hsl(var(--h) 80% 60%), hsl(calc(var(--h) + 50) 75% 42%)); box-shadow: 0 0 0 2px rgb(0 0 0 / .5); }
+.tw-thumb-cam img { width: 100%; height: 100%; object-fit: cover; }
+.tw-live { position: absolute; right: 8px; top: 8px; display: inline-flex; align-items: center; gap: 5px; padding: 1px 7px; border-radius: 4px; background: rgb(0 0 0 / .65); color: #fff; font-size: 12.5px; font-weight: 600; }
+.tw-live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--live); }
+.tw-viewers { position: absolute; left: 8px; bottom: 8px; padding: 1px 6px; border-radius: 4px; background: rgb(0 0 0 / .65); color: #fff; font-size: 12.5px; font-weight: 600; }
+.tw-meta { display: flex; gap: 10px; margin-top: 10px; }
+.tw-meta > div { min-width: 0; }
+.tw-name { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 15px; text-decoration: none; }
+.tw-you { font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--purple); color: #fff; }
+.tw-title { margin: 1px 0 0; color: var(--fg-2); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tw-game { display: block; font-size: 13.5px; color: var(--muted); }
+.tw-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.tw-tags span { padding: 2px 9px; border-radius: 999px; background: var(--surface-3); color: var(--fg-2); font-size: 12px; font-weight: 600; }
+.tw-h { font-size: 18px; margin: 4px 0 12px; display: flex; gap: 8px; align-items: center; }
+.tw-h .num { color: var(--muted); font-size: 14px; }
+.tw-offline { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px; }
+.tw-off { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; text-decoration: none; }
+.tw-off:hover { background: var(--surface-2); }
+.tw-off > span:nth-child(2) { flex: 1; min-width: 0; }
+.tw-off strong, .tw-off small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tw-off small { color: var(--muted); font-size: 12.5px; }
+.av.off { filter: grayscale(.9); opacity: .7; }
+
+/* Página do canal */
+.wp { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px; align-items: start; }
+.wp-main { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.wp-video { border-radius: 8px; }
+.wp-cam { position: absolute; left: 3%; top: 16%; width: 19%; aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: clamp(14px, 2.4vw, 26px); background: linear-gradient(140deg, hsl(var(--h) 80% 60%), hsl(calc(var(--h) + 50) 75% 42%)); box-shadow: 0 0 0 2px rgb(0 0 0 / .55); }
+.wp-cam img { width: 100%; height: 100%; object-fit: cover; }
+.wp-cam em { position: absolute; left: 0; right: 0; bottom: 0; font-style: normal; font-size: 10px; padding: 1px 4px; background: rgb(0 0 0 / .6); text-align: center; }
+.wp-offline { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; background: radial-gradient(circle at 50% 40%, #2a1650, #0b0b0d); }
+.wp-offline > div { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; }
+.wp-offline strong { font-size: 20px; }
+.wp-offline span { color: var(--muted); font-size: 14px; }
+.wp-top { position: absolute; left: 8px; right: 8px; top: 8px; display: flex; align-items: center; gap: 6px; z-index: 3; }
+.wp-ic { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; border: 0; background: rgb(0 0 0 / .45); color: #fff; text-decoration: none; }
+.wp-ic svg { width: 20px; height: 20px; }
+.wp-pill { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; border: 0; background: rgb(0 0 0 / .55); color: #fff; font-weight: 700; font-size: 13px; }
+.wp-pill svg { width: 16px; height: 16px; }
+.wp-aud { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: rgb(0 0 0 / .5); color: #fff; }
+.wp-bottom { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 12px; z-index: 3; color: #fff; text-shadow: 0 1px 4px rgb(0 0 0 / .9); }
+.tw-uptime { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; }
+.tw-uptime i { width: 9px; height: 9px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 2px rgb(0 0 0 / .4); animation: pulse 1.4s infinite; }
+.tw-vw { position: relative; display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 700; }
+.tw-vw svg { width: 17px; height: 17px; }
+.tw-vw .num-pop { top: -18px; right: -14px; }
+.wp-info { display: flex; flex-direction: column; gap: 10px; }
+.wp-chan { display: flex; gap: 12px; align-items: flex-start; }
+.wp-chan > div { min-width: 0; flex: 1; }
+.wp-name { display: inline-flex; align-items: center; gap: 4px; font-size: 18px; font-weight: 800; text-decoration: none; }
+.wp-title { margin: 2px 0; font-size: 15px; color: var(--fg); }
+.wp-game { color: var(--purple-soft); font-size: 14px; text-decoration: none; font-weight: 600; }
+.wp-actions { display: flex; gap: 8px; align-items: center; }
+.wp-round { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 0; background: var(--surface-3); color: var(--fg); transition: transform .15s, background .2s; }
+.wp-round svg { width: 20px; height: 20px; }
+.wp-round:active { transform: scale(.9); }
+.wp-round.on { background: var(--purple); color: #fff; }
+.wp-gift { flex: 1; justify-content: center; border-radius: 999px; padding: 10px; }
+.wp-sub { flex: 1; justify-content: center; border-radius: 999px; padding: 10px; }
+.wp-side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 14px); height: calc(100vh - 64px); min-height: 420px; }
+.wp-chatbox { height: 100%; position: relative; }
+.chat { position: relative; }
+.lb { display: flex; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; align-items: center; }
+.lb-i { display: flex; align-items: center; gap: 6px; flex: none; }
+.lb-medal { width: 22px; height: 26px; display: grid; place-items: center; font-size: 12px; color: #1b1300; clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%); }
+.lb-medal.m1 { background: #f5c33b; } .lb-medal.m2 { background: #c8ccd6; } .lb-medal.m3 { background: #d58b4c; }
+.lb-i strong { display: block; font-size: 12.5px; max-width: 92px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-i small { display: flex; align-items: center; gap: 3px; font-size: 11.5px; color: var(--purple-soft); font-weight: 700; }
+.lb-i small svg { width: 12px; height: 12px; }
+.drop { display: flex; gap: 10px; align-items: center; margin: 8px 10px; padding: 8px 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line-2); border-bottom: 3px solid var(--purple); }
+.drop > div { flex: 1; min-width: 0; }
+.drop b { display: block; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.drop small { display: block; font-size: 11.5px; color: var(--muted); }
+.drop .goal-bar { height: 4px; margin-top: 4px; }
+.drop-ic { font-size: 26px; flex: none; }
+.more-pill { position: absolute; left: 50%; bottom: 66px; transform: translateX(-50%); z-index: 4; padding: 7px 14px; border-radius: 999px; border: 0; background: rgb(24 24 27 / .92); color: var(--fg); font-weight: 700; font-size: 13px; box-shadow: 0 6px 20px rgb(0 0 0 / .6); backdrop-filter: blur(6px); }
+.msg.plain { color: var(--muted); padding: 4px 0; }
+.cbadge.bot { margin-right: 3px; }
+.tw-input { position: relative; display: flex; align-items: center; gap: 8px; padding: 10px; border-top: 1px solid var(--line); }
+.tw-in-gift { width: 42px; height: 40px; flex: none; border-radius: 8px; border: 0; background: color-mix(in oklab, var(--good) 75%, #000); color: #fff; display: grid; place-items: center; }
+.tw-in-gift svg { width: 22px; height: 22px; }
+.tw-in-wrap { position: relative; flex: 1; min-width: 0; }
+.tw-in-wrap .input { padding-right: 40px; border-radius: 6px; }
+.tw-in-emo { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border: 0; background: none; color: var(--muted); display: grid; place-items: center; }
+.tw-in-emo svg { width: 20px; height: 20px; }
+.emote-pop { position: absolute; right: 10px; bottom: calc(100% + 4px); z-index: 6; display: grid; grid-template-columns: repeat(5, 40px); gap: 4px; padding: 8px; border-radius: 10px; background: var(--surface-3); border: 1px solid var(--line-2); box-shadow: 0 16px 40px rgb(0 0 0 / .7); }
+.emote-pop button { height: 36px; border: 0; border-radius: 6px; background: transparent; font-size: 18px; font-weight: 800; }
+.emote-pop button:hover { background: var(--surface-2); }
+.wp:not(.full) [data-wchat-overlay] { display: none; }
+.wp.full { display: block; }
+.wp.full .wp-video { position: fixed; inset: 0; z-index: 85; width: 100%; height: 100%; max-width: none; aspect-ratio: auto; border-radius: 0; border: 0; }
+.wp.full .wp-info, .wp.full .wp-side { display: none; }
+.wp.full [data-wchat-overlay] { display: flex; left: max(14px, env(safe-area-inset-left, 0px)); bottom: 64px; width: min(38%, 380px); }
+/* Estúdio */
+.studio-info { margin-top: 12px; padding: 12px 14px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); }
+.studio-info .wp-name { font-size: 16px; }
+.si-stats { display: flex; gap: 14px; align-items: center; font-weight: 700; flex: none; }
+.si-stats span { display: inline-flex; align-items: center; gap: 5px; }
+.si-stats svg { width: 17px; height: 17px; }
+.studio.theater .studio-main > .studio-info { display: none; }
+.cam { left: 12px; top: 12px; right: auto; bottom: auto; width: clamp(80px, 21%, 190px); aspect-ratio: 4 / 3; border-radius: 6px; padding: 2px; background: #000; box-shadow: 0 0 0 2px rgb(0 0 0 / .6), 0 10px 26px -10px #000; animation: none; }
+.cam-face { border-radius: 4px; }
+.cam.talk { box-shadow: 0 0 0 2px var(--purple), 0 0 26px -2px var(--purple); }
+.cam-emote { top: -6px; right: -12px; }
+.cam-name { bottom: 4px; }
+.cam.cam-big { width: clamp(120px, 30%, 260px); }
+.st-bottom { left: 12px; right: auto; }
+.screen-chat { bottom: 46px; }
+.train { left: auto; right: 12px; top: 40px; }
+.hud { justify-content: flex-end; }
+.bn-av { width: 24px; height: 24px; display: grid; place-items: center; }
+.bn-av .av { pointer-events: none; }
+.bottom-nav .nav-link .bn-av + span + .pill-live { position: absolute; top: 2px; right: 50%; margin-right: -18px; width: 10px; height: 10px; padding: 0; font-size: 0; border-radius: 50%; }
+@media (max-width: 1100px) { .wp { grid-template-columns: minmax(0, 1fr) 300px; } }
+@media (max-width: 760px) {
+  .wp { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .wp-main { display: contents; }
+  .wp-video { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 54px); z-index: 12; border-radius: 0; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))); max-width: none; width: auto; }
+  .wp-info { padding: 12px 0; }
+  .wp-side { position: static; height: 58vh; min-height: 360px; }
+  .tw-grid { grid-template-columns: minmax(0, 1fr); }
+  .tw-tabs button { font-size: 17px; }
+  .wp-gift { font-size: 13px; }
+  .si-stats { display: none; }
+}
+
+@media (max-width: 560px) { .wp-aud { display: none; } .bottom-nav .nav-link span:not(.badge-count):not(.bn-av):not(.pill-live) { white-space: nowrap; } }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topbar" id="topBar"></header>
@@ -1662,6 +1804,7 @@ function route() {
   if (h.startsWith('conta-')) return { name: 'profile', id: h.slice(6) };
   if (h === 'perfil') return { name: 'profile', id: 'me' };
   if (h.startsWith('conversa-')) return { name: 'mensagens', id: h.slice(9) };
+  if (h.startsWith('canal-')) return { name: 'watch', id: h.slice(6).replace(/-/g, '_') };
   if (['feed', 'eventos', 'estudio', 'clips', 'notificacoes', 'explorar', 'mensagens'].includes(h)) return { name: h };
   return { name: 'feed' };
 }
@@ -1674,19 +1817,22 @@ function render() {
   renderNav();
   const r = route();
   const main = $('#main');
-  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio' || r.name === 'mensagens');
+  document.querySelector('.app').classList.toggle('wide', r.name === 'estudio' || r.name === 'mensagens' || r.name === 'watch');
+  if (r.name !== 'watch' && UI.watchFull) { UI.watchFull = false; document.body.classList.remove('theater-on'); }
   const html = r.name === 'feed' ? viewFeed()
     : r.name === 'profile' ? viewProfile(r.id)
     : r.name === 'eventos' ? viewEvents()
     : r.name === 'estudio' ? viewStudio()
     : r.name === 'clips' ? viewClips()
     : r.name === 'explorar' ? viewExplore()
+    : r.name === 'watch' ? viewWatch(r.id)
     : r.name === 'mensagens' ? viewMessages(r.id)
     : viewNotifs();
   main.innerHTML = html;
   $('#rail').innerHTML = viewRail();
   if (r.name === 'estudio') afterStudioRender();
   if (r.name === 'mensagens') afterMessagesRender();
+  if (r.name === 'watch') { const wa = S.accounts.find(x => x.id === r.id); if (wa) startWatch(wa); } else stopWatch();
   tickClock();
   updateLiveBits();
   tickCountdowns();
@@ -1697,7 +1843,7 @@ function statusSig() { return S.events.map(e => e.id + eventStatus(e)).join('|')
 /* ---------- Rail ---------- */
 function viewRail() {
   const now = Date.now();
-  const liveNow = S.events.filter(e => e.owner !== 'me' && eventStatus(e) === 'live');
+  const liveNow = liveChannels().slice(0, 5);
   const upcoming = S.events.filter(e => ['scheduled', 'soon'].includes(eventStatus(e)) && (e.owner === 'me' || e.myReminder)).sort((a, b) => a.start - b.start).slice(0, 4);
   const tags = {};
   S.posts.filter(p => p.status === 'published' && now - p.createdAt < 14 * DAY).forEach(p => hashtags(postText(p)).forEach(t => tags[t] = (tags[t] || 0) + 1 + p.likes / 1000));
@@ -1722,7 +1868,7 @@ function viewRail() {
 /* ---------- Feed ---------- */
 function postText(p) { if (p.type === 'event' && p.text == null) { const ev = S.events.find(e => e.id === p.eventId); return ev ? eventPostText(ev) : ''; } return p.text || ''; }
 function visiblePosts() { return S.posts.filter(p => p.status === 'published').sort((a, b) => b.createdAt - a.createdAt); }
-function viewFeed() {
+function viewPosts() {
   let list = visiblePosts();
   if (UI.feedTab === 'following') list = list.filter(p => p.author === 'me' || acc(p.author).followed);
   if (UI.feedTab === 'saved') list = list.filter(p => p.saved);
@@ -1730,8 +1876,6 @@ function viewFeed() {
   if (UI.tag) list = list.filter(p => hashtags(postText(p)).includes(UI.tag));
   const soon = S.events.filter(e => e.owner === 'me' && eventStatus(e) === 'soon' && !S.live);
   return `
-  ${soonBanner(soon)}
-  <div class="page-head"><div><h1>Início</h1><p>A tua rede de criadores. Tudo o que vês de audiência é simulado.</p></div></div>
   ${composerHTML()}
   <div class="tabs" role="tablist">
     ${[['all', 'Para ti'], ['following', 'A seguir'], ['events', 'Eventos e lives'], ['saved', 'Guardados']].map(([k, l]) => `<button class="tab ${UI.feedTab === k ? 'on' : ''}" data-act="feed-tab" data-k="${k}">${l}</button>`).join('')}
@@ -1946,7 +2090,7 @@ function viewProfile(id) {
     <div class="prof-inner">
       <div class="prof-top">${avatar(a, 120).replace('class="av ', 'class="av ' + (me && S.live ? 'ring-live ' : ''))}<span class="spacer"></span>
         ${me ? `<button class="btn" data-act="edit-profile">${icon('edit')} Editar perfil</button><button class="btn btn-primary" data-act="new-event">${icon('calendar')} Agendar live</button>`
-          : `<button class="btn" data-act="accounts-edit" data-id="${a.id}" title="Editar esta conta" aria-label="Editar esta conta">${icon('edit')}</button><a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
+          : `${channelLive(a) ? `<a class="btn btn-live" href="${chanHash(a.id)}">● Ver live</a>` : `<a class="btn" href="${chanHash(a.id)}">${icon('studio')} Canal</a>`}<button class="btn" data-act="accounts-edit" data-id="${a.id}" title="Editar esta conta" aria-label="Editar esta conta">${icon('edit')}</button><a class="btn" href="#conversa-${a.id}">${icon('chat')} Mensagem</a><button class="btn ${a.followed ? '' : 'btn-primary'}" data-act="follow" data-id="${a.id}">${a.followed ? icon('check') + ' A seguir' : icon('plus') + ' Seguir'}</button>`}
       </div>
       <div class="prof-name"><h1>${esc(a.name)}</h1>${a.verified ? VERIFIED + SIM('selo fictício') : ''}${me && S.live ? '<span class="pill-live">EM DIRETO</span>' : ''}</div>
       <div class="prof-handle">@${esc(a.handle)}</div>
@@ -2098,6 +2242,7 @@ function startLive({ title, game, mode, level, eventId }) {
     scene: 'starting', sceneAt: now, sceneUntil: now + 20000,
   };
   addTimeline('start', 'Live começou: ' + S.live.title, '🔴');
+  pushChat({ plain: true, text: `Damos-te as boas-vindas à sala de chat de ${S.me.handle}!` });
   pushChat({ sys: true, text: `🔴 Estás em direto em ${GAMES[game].name} · Modo ${MODES[mode].name}. Audiência simulada.` });
   if (eventId) {
     const ev = S.events.find(e => e.id === eventId);
@@ -2206,7 +2351,7 @@ function giftEvent(fromUser) {
   L.gifts += val;
   const u = fromUser || fakeUser();
   pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
-  goalAdd(val); hypeAdd(val);
+  goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
   if (val >= 200) giftMessage(u, g, val);
   if (val >= 500) crowd(.5);
   if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); sound(val >= 200 ? 'bigGift' : 'gift'); }
@@ -2231,7 +2376,7 @@ function pushChat(m) {
     }
     const paused = list.matches(':hover') || list.querySelector('.msg.open');
     const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
-    if (list.id === 'chatList') { const pz = $('#chatPaused'); if (pz) pz.hidden = !paused; }
+    if (!atBottom) { const pill = list.parentElement.querySelector('.more-pill'); if (pill) pill.hidden = false; }
     list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
     while (list.children.length > 80) list.firstElementChild.remove();
     if (atBottom) list.scrollTop = list.scrollHeight;
@@ -2244,11 +2389,12 @@ function overlayMsgHTML(m) {
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
+  if (m.plain) return `<div class="msg plain">${esc(m.text)}</div>`;
   if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(m.text)}</div>`;
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub && !regular(m.user) ? '<span title="Subscritor fictício">⭐</span> ' : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? '<span class="cbadge bot" title="Bot do canal">🤖</span>' : ''}${m.sub && !regular(m.user) ? '<span class="cbadge sub" title="Subscritor fictício">⭐</span> ' : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -2423,6 +2569,7 @@ function viewStudio() {
       <div class="screen" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
       ${theaterBarHTML()}
+      ${studioInfoHTML()}
       <div data-surprise>${surpriseHTML()}</div>
       <div class="controls-panel" id="controlsPanel" ${open ? '' : 'hidden'}>
       ${scenesHTML()}
@@ -2470,10 +2617,12 @@ function viewStudio() {
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
       <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num">👀 <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
+        <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
+        <div class="drop" data-goalbanner>${goalBannerHTML()}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
-        <div class="chat-paused" id="chatPaused" hidden>⏸ Chat em pausa enquanto moderas</div>
-        <form class="chat-form" data-form="chat"><input class="input" id="chatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
+        <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
+        ${chatInputHTML('chatInput', 'chat', false)}
       </section>
     </aside>
   </div>`;
@@ -2606,8 +2755,8 @@ function tickAgo() { $$('[data-ago]').forEach(n => { const v = ago(+n.dataset.ag
 
 /* ---------- Menu ---------- */
 const NAV_GROUPS = [
-  ['Descobrir', [['feed', 'home', 'Início'], ['explorar', 'compass', 'Explorar']]],
-  ['Social', [['mensagens', 'chat', 'Mensagens'], ['notificacoes', 'bell', 'Notificações']]],
+  ['Descobrir', [['feed', 'home', 'Página inicial'], ['explorar', 'search', 'Procurar']]],
+  ['Social', [['mensagens', 'chat', 'Mensagens'], ['notificacoes', 'bell', 'Atividade']]],
   ['Criador', [['estudio', 'studio', 'Estúdio'], ['eventos', 'calendar', 'Eventos'], ['clips', 'clip', 'Clips']]],
   ['Conta', [['perfil', 'user', 'Perfil']]],
 ];
@@ -2640,14 +2789,13 @@ function renderNav() {
   $('#topBar').innerHTML = `<a class="logo" href="#feed"><span class="logo-mark">${LOGO_SVG_FN()}</span><b>Live<span>Verse</span></b></a>
     <span class="top-clock num" data-clock="hm">${hhmm(Date.now())}</span><span class="spacer"></span>
     ${S.live ? `<a class="pill-live" href="#estudio">LIVE</a>` : ''}
-    <a class="icon-btn top-ic" href="#explorar" aria-label="Explorar">${icon('search')}</a>
     <a class="icon-btn top-ic" href="#mensagens" aria-label="Mensagens">${icon('chat')}${badge(dmUnread())}</a>
-    <a class="icon-btn top-ic" href="#notificacoes" aria-label="Notificações">${icon('bell')}${badge(notifUnread())}</a>`;
-  const bn = (h, ic, label) => navLink([h, ic, label], cur);
-  $('#bottomNav').innerHTML = `${bn('feed', 'home', 'Início')}${bn('explorar', 'compass', 'Explorar')}
+    <button class="icon-btn top-ic" data-act="menu-sheet" aria-label="Menu">${icon('menu')}</button>`;
+  const bn = (h, ic, label, extra = '') => `<a class="nav-link ${cur === h ? 'on' : ''}" href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${ic}<span>${label}</span>${extra}</a>`;
+  $('#bottomNav').innerHTML = `${bn('feed', icon('home'), 'Início')}${bn('explorar', icon('search'), 'Procurar')}
     <button class="nav-fab" data-act="create-sheet" aria-label="Criar">${icon('plus')}</button>
-    ${bn('estudio', 'studio', 'Estúdio')}
-    <button class="nav-link ${['perfil', 'eventos', 'clips', 'notificacoes', 'mensagens'].includes(cur) ? 'on' : ''}" data-act="menu-sheet">${icon('menu')}<span>Menu</span>${badge(notifUnread() + dmUnread())}</button>`;
+    ${bn('notificacoes', icon('bell'), 'Atividade', badge(notifUnread()))}
+    ${bn('perfil', `<span class="bn-av">${avatar(S.me, 24).replace('<a ', '<span ').replace('</a>', '</span>')}</span>`, 'Perfil', S.live ? '<span class="pill-live"></span>' : '')}`;
   $('#liveFloat').hidden = true;
   renderDock();
 }
@@ -3075,12 +3223,12 @@ function saveAccounts() {
 
 /* Canais seguidos na barra lateral (como numa plataforma de streaming) */
 function sideChannelsHTML() {
-  const liveEv = id => S.events.find(e => e.owner === id && eventStatus(e) === 'live');
+  const liveEv = id => channelLive(S.accounts.find(x => x.id === id));
   const list = [...S.accounts].sort((a, b) => (!!liveEv(b) - !!liveEv(a)) || (b.followed - a.followed) || b.followers - a.followers).slice(0, 7);
   return `<div class="side-channels"><span class="nav-label">Canais recomendados</span>${list.map(a => {
     const ev = liveEv(a.id);
     const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
-    return ev ? `<button class="chan" data-act="watch" data-id="${ev.id}" title="${esc(a.name)} · ${esc(ev.title)}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[ev.game]?.name || '')}</small></span><span class="chan-v"><i></i><span data-watchers="${ev.id}">${fmt(ev.viewers || 1000)}</span></span></button>`
+    return ev ? `<a class="chan" href="${chanHash(a.id)}" title="${esc(a.name)} · ${esc(ev.title)}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[ev.game]?.name || '')}</small></span><span class="chan-v"><i></i><span data-chv="${ev.id}">${fmt(ev.viewers || 1000)}</span></span></a>`
       : `<a class="chan" href="#conta-${a.id}">${av}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[(a.games || [])[0]]?.name || a.cat)}</small></span><span class="chan-off">Offline</span></a>`;
   }).join('')}</div>`;
 }
@@ -3169,7 +3317,7 @@ function goalBarHTML() {
   const pct = Math.min(100, G.progress / G.target * 100);
   return `<div class="goal-overlay ${pct >= 100 ? 'done' : ''}" id="goalOverlay"><span>🎯 ${esc(G.title)}</span><div class="goal-bar"><i style="width:${pct}%"></i></div><b class="num">${dots(G.progress)} / ${dots(G.target)}</b></div>`;
 }
-function paintGoal() { const el = $('#goalOverlay'); if (el) el.outerHTML = goalBarHTML(); const p = $('#goalPanel'); if (p) p.outerHTML = goalPanelHTML(); }
+function paintGoal() { paintGoalBanner(); const el = $('#goalOverlay'); if (el) el.outerHTML = goalBarHTML(); const p = $('#goalPanel'); if (p) p.outerHTML = goalPanelHTML(); }
 function goalPanelHTML() {
   const G = S.prefs.giftGoal, pct = Math.min(100, G.progress / G.target * 100);
   return `<div id="goalPanel" class="stack" style="gap:10px">
@@ -3477,7 +3625,7 @@ function screenInner(L) {
   const G = GAMES[L.game] || GAMES.chat, scene = L.scene || 'game';
   let bg;
   if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
-    : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(G.glyph.length > 3 ? G.glyph : G.name.toUpperCase())}</div><small>Ecrã de jogo simulado</small></div></div>`;
+    : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Ecrã de jogo simulado</small></div></div>`;
   else {
     const card = {
       starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
@@ -3489,7 +3637,8 @@ function screenInner(L) {
     bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
-    <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass hud-num">👀 <b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span><span class="glass hud-num">💜 <b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></span><span class="sim-tag" style="margin-left:auto">Fictício</span></div>
+    <div class="hud"><span class="sim-tag" style="margin-left:auto">Fictício</span></div>
+    <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span><span class="tw-vw">💜 <b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></span></div>
     ${trainHTML()}
     ${scene !== 'chat' && scene !== 'ending' ? camHTML() : ''}
     <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
@@ -3765,6 +3914,8 @@ function tweenNum(el, to) {
 }
 function liveCounters(L) {
   const v = Math.round(L.viewers), f = Math.floor(S.me.followers);
+  $$('[data-live="uptime"]').forEach(el => el.textContent = upTime(Date.now() - L.start));
+  $$('[data-live="viewers-card"]').forEach(el => el.textContent = espet(v));
   $$('[data-anim="viewers"]').forEach(el => tweenNum(el, v));
   $$('[data-anim="followers"]').forEach(el => tweenNum(el, f));
   // histórico para o gráfico
@@ -3835,6 +3986,312 @@ function resetToZero(s) {
   s.notifs = [{ id: uid(), icon: '🚀', text: 'Começas do zero: 0 seguidores. Agenda a tua primeira live à hora que quiseres e faz crescer a comunidade!', t: Date.now(), read: false }];
   if (s.regulars) s.regulars = s.regulars.slice(0, 3).map(r => ({ ...r, months: 1 }));
 }
+
+/* =====================================================================
+   Estilo de plataforma de streaming: página inicial com lives, página
+   de canal para ver as lives das outras contas, chat com top de
+   presentes, recompensa, boas-vindas, bot e "Mais mensagens abaixo".
+   Canais, espetadores, subscrições e presentes são fictícios.
+   ===================================================================== */
+Object.assign(IC, {
+  gift: '<rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12.5h18M12 8S10.5 3 7.8 3a2.5 2.5 0 0 0 0 5M12 8s1.5-5 4.2-5a2.5 2.5 0 0 1 0 5"/>',
+  smile: '<circle cx="12" cy="12" r="9"/><path d="M8 14.5s1.5 2 4 2 4-2 4-2"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="3"/>',
+  person: '<circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.3-3.6 4-5.4 7-5.4s5.7 1.8 7 5.4"/>',
+  chevD: '<path d="m6 9 6 6 6-6"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/>',
+  heartFill: '<path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z" fill="currentColor"/>',
+  bellPlus: '<path d="M6 16V11a6 6 0 0 1 9-5.2M18 11v5l2 2H4"/><path d="M10 21h4M19 3v5M16.5 5.5h5"/>',
+  star: '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+});
+
+/* ---------- Canais em direto (eventos + emissões simuladas que mudam a cada 2 h) ---------- */
+const STREAM_TITLES = {
+  fortnite: ['🏆 RANKED ATÉ UNREAL HOJE', 'Torneio de duos com subs 🔥', 'Criativo com o chat'],
+  gta6: ['🌴 GTA 6 PELA PRIMEIRA VEZ 🌴', 'GTA VI: a missão final 💰', 'Explorar Vice City toda 🚗'],
+  minecraft: ['Hardcore dia 100 ⛏️', 'Construir a cidade dos subs', 'Speedrun até ao dragão 🐉'],
+  valorant: ['Radiante hoje? 🎯', 'Ranked com a equipa', 'Aim training + ranked'],
+  eafc: ['FUT Champions 20-0?', 'Abertura de packs 🎁', 'Modo carreira ⚽'],
+  phasmo: ['Terror às escuras 👻', 'Pesadelo sem lanterna'],
+  roblox: ['Mini-jogos com subs!', 'Obby impossível 😭'],
+  lol: ['Solo queue até diamante', 'Só mid hoje'],
+  rocket: ['1v1 contra o chat 🚗', 'Ranked 2v2'],
+  gta: ['RP na cidade 🚓', 'Assaltos com a crew'],
+  amnesia: ['Terror a sério 😱'],
+  chat: ['Só conversa ☕ Q&A', 'Reagir a clips da semana'],
+};
+const STREAM_TAGS = { fortnite: ['Competitivo', 'BattleRoyale'], gta6: ['RP', 'MundoAberto'], minecraft: ['Construção', 'Família'], valorant: ['FPS', 'Competitivo'], eafc: ['Futebol', 'FUT'], phasmo: ['Terror', 'Coop'], roblox: ['Família', 'MiniJogos'], lol: ['MOBA', 'Ranked'], rocket: ['Carros', 'Competitivo'], gta: ['RP'], amnesia: ['Terror'], chat: ['Conversa', 'QA'] };
+const hashStr = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+const SYN = {};
+function channelLive(a) {
+  if (!a) return null;
+  const ev = S.events.find(e => e.owner === a.id && eventStatus(e) === 'live'); if (ev) return ev;
+  const slot = Math.floor(Date.now() / (2 * HOUR)), key = a.id + ':' + slot, h = hashStr(key);
+  if (h % 10 >= 5) return null;
+  if (!SYN[key]) {
+    const games = a.games && a.games.length ? a.games : ['chat'];
+    const game = games[h % games.length], titles = STREAM_TITLES[game] || STREAM_TITLES.chat;
+    SYN[key] = { id: 'syn_' + a.id, owner: a.id, synthetic: true, title: titles[h % titles.length], game, mode: 'casual', level: 'grande', desc: '',
+      start: slot * 2 * HOUR - ((h % 150) + 12) * MIN, dur: 9 * HOUR, viewers: Math.max(40, Math.round(a.followers * (0.04 + (h % 17) / 100))),
+      interested: 0, reminderUsers: 0, cover: { type: 'preset', v: h % 6 }, notified: {}, countdown: false, reminders: false };
+  }
+  return SYN[key];
+}
+const liveChannels = () => S.accounts.map(channelLive).filter(Boolean).sort((x, y) => (y.viewers || 0) - (x.viewers || 0));
+const chanHash = id => '#canal-' + String(id).replace(/_/g, '-');
+const findAnyEvent = id => S.events.find(e => e.id === id) || Object.values(SYN).find(e => e.id === id);
+const espet = n => `${fmt(n)} ${Math.round(n) === 1 ? 'espetador' : 'espetadores'}`;
+function upTime(ms) { const { h, m, s } = cdParts(ms); return `${pad(h + Math.floor(ms / DAY) * 24)}:${pad(m)}:${pad(s)}`; }
+function streamTags(game, extra = []) { return ['Português', ...(STREAM_TAGS[game] || []), ...extra]; }
+const glyphText = G => G.glyph.length > 3 ? G.glyph : (G.name.length > 12 ? G.glyph : G.name.toUpperCase());
+const tagChips = tags => `<div class="tw-tags">${tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>`;
+
+/* ---------- Página inicial ---------- */
+UI.homeTab = 'live'; UI.homeCat = 'all';
+function homeTabsHTML() {
+  return `<nav class="tw-tabs" aria-label="Página inicial">${[['following', 'A seguir'], ['live', 'Em direto'], ['clips', 'Clipes'], ['posts', 'Publicações']].map(([k, l]) => `<button class="${UI.homeTab === k ? 'on' : ''}" data-act="home-tab" data-k="${k}">${l}</button>`).join('')}</nav>`;
+}
+function liveCardHTML(ev, mine = false) {
+  const a = mine ? S.me : acc(ev.owner), G = GAMES[ev.game] || GAMES.chat;
+  const viewers = mine ? S.live.viewers : (ev.viewers || 0);
+  const href = mine ? '#estudio' : chanHash(a.id);
+  const face = a.avatar ? `<img src="${a.avatar}" alt="">` : esc((a.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase());
+  return `<article class="tw-card">
+    <a class="tw-thumb" href="${href}" style="--gc:${G.color}" aria-label="Ver a live de ${esc(a.name)}">
+      <span class="tw-thumb-bg"></span><span class="tw-thumb-glyph">${esc(glyphText(G))}</span>
+      <span class="tw-thumb-cam" style="--h:${a.hue || 270}">${face}</span>
+      <span class="tw-live">Em direto</span>
+      <span class="tw-viewers" ${mine ? 'data-live="viewers-card"' : `data-chv="${ev.id}"`}>${espet(viewers)}</span>
+    </a>
+    <div class="tw-meta">${avatar(a, 40)}<div>
+      <a class="tw-name" href="${href}">${esc(a.name)}${a.verified ? VERIFIED : ''}${mine ? ' <span class="tw-you">tu</span>' : ''}</a>
+      <p class="tw-title">${esc(ev.title)}</p>
+      <span class="tw-game">${esc(G.name)}</span>
+      ${tagChips(streamTags(ev.game).slice(0, 3))}
+    </div></div>
+  </article>`;
+}
+function viewFeed() {
+  const t = UI.homeTab;
+  const soon = S.events.filter(e => e.owner === 'me' && eventStatus(e) === 'soon' && !S.live);
+  if (t === 'posts') return soonBanner(soon) + homeTabsHTML() + viewPosts();
+  let body = '';
+  if (t === 'live') {
+    const lives = liveChannels();
+    const cats = [...new Set(lives.map(e => e.game))];
+    const list = lives.filter(e => UI.homeCat === 'all' || e.game === UI.homeCat);
+    body = `<div class="chip-row tw-cats">${[['all', 'Tudo'], ...cats.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
+      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>`;
+  } else if (t === 'following') {
+    const fol = S.accounts.filter(a => a.followed);
+    const live = fol.map(channelLive).filter(Boolean);
+    const off = fol.filter(a => !channelLive(a));
+    const evs = S.events.filter(e => fol.some(a => a.id === e.owner) && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start).slice(0, 4);
+    body = !fol.length ? `<div class="empty"><b>Ainda não segues ninguém</b>Segue canais fictícios na página <a href="#explorar">Procurar</a>.</div>` : `
+      <h2 class="tw-h">Canais em direto <span class="num">${live.length}</span></h2>
+      <div class="tw-grid">${live.map(e => liveCardHTML(e)).join('') || '<p class="muted">Nenhum canal que segues está em direto agora.</p>'}</div>
+      ${evs.length ? `<h2 class="tw-h">Próximas transmissões</h2><div class="day-list" style="margin:0">${evs.map(evRow).join('')}</div>` : ''}
+      <h2 class="tw-h">Canais offline</h2>
+      <div class="tw-offline">${off.map(a => `<a class="tw-off" href="${chanHash(a.id)}">${avatar(a, 44, 'off').replace('<a ', '<span ').replace('</a>', '</span>')}<span><strong>${esc(a.name)}</strong><small>${esc(GAMES[(a.games || [])[0]]?.name || a.cat)} · ${fmt(a.followers)} seguidores</small></span><span class="chan-off">Offline</span></a>`).join('') || '<p class="muted">Todos estão em direto!</p>'}</div>`;
+  } else {
+    const games = [...new Set(S.clips.map(c => c.game))];
+    const list = [...S.clips].filter(c => UI.homeCat === 'all' || c.game === UI.homeCat).sort((a, b) => b.popularity - a.popularity);
+    body = `<div class="chip-row tw-cats">${[['all', 'Tudo'], ...games.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
+      ${list.length ? `<div class="clip-grid">${list.map(clipCard).join('')}</div>` : '<div class="empty"><b>Sem clipes</b>Cria clipes durante as tuas lives.</div>'}`;
+  }
+  return `${soonBanner(soon)}${homeTabsHTML()}${body}`;
+}
+
+/* ---------- Página do canal ---------- */
+UI.watchFull = false;
+const WATCH = { key: null, acc: null, chat: [], gifters: {}, timer: null, started: 0, botAt: 0, dropDone: false };
+function viewWatch(id) {
+  const a = S.accounts.find(x => x.id === id);
+  if (!a) return `<div class="empty"><b>Canal não encontrado</b><a href="#feed">Voltar à página inicial</a></div>`;
+  const ev = channelLive(a), G = GAMES[ev ? ev.game : ((a.games || [])[0] || 'chat')] || GAMES.chat;
+  const sub = S.subs && S.subs[a.id];
+  const next = S.events.filter(e => e.owner === a.id && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start)[0];
+  const face = a.avatar ? `<img src="${a.avatar}" alt="">` : esc((a.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase());
+  const video = ev ? `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Live simulada</small></div></div>
+      <span class="wp-cam" style="--h:${a.hue || 270}">${face}<em>${esc(a.handle)}</em></span>`
+    : `<div class="wp-offline"><div>${avatar(a, 84).replace('<a ', '<span ').replace('</a>', '</span>')}<strong>${esc(a.name)} está offline</strong><span>${next ? `Próxima live: ${esc(next.title)} · ${whenLabel(next.start)}` : 'Segue o canal para saberes quando entra em direto.'}</span></div></div>`;
+  return `<div class="wp ${UI.watchFull ? 'full' : ''}" data-watch="${a.id}">
+    <div class="wp-main">
+      <div class="wp-video screen" style="--gc:${G.color}">
+        ${video}
+        <div class="wp-top">
+          <a class="wp-ic" href="#feed" aria-label="Voltar">${icon('chevD')}</a>
+          ${ev ? '<span class="wp-aud">Dirigido a todos · fictício</span>' : ''}
+          <span class="spacer"></span>
+          ${ev ? `<button class="wp-pill" data-act="w-clip" data-id="${a.id}">${icon('clip')} Clipe</button>` : ''}
+          <button class="wp-ic" data-act="w-share" data-id="${a.id}" aria-label="Partilhar">${icon('share')}</button>
+          <button class="wp-ic" data-act="w-quality" aria-label="Definições">${icon('gear')}</button>
+        </div>
+        ${ev ? `<div class="wp-bottom"><span class="tw-uptime"><i></i><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="wviewers" data-v="${Math.round(ev.viewers || 0)}">${fmt(ev.viewers || 0)}</b></span><span class="spacer"></span><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon(UI.watchFull ? 'shrink' : 'expand')}</button></div>
+        <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>` : ''}
+        <div class="fx" id="wfx"></div>
+      </div>
+      <section class="wp-info">
+        <div class="wp-chan">${avatar(a, 52, ev ? 'ring-live' : '')}<div>
+          <a class="wp-name" href="#conta-${a.id}">${esc(a.name)}${a.verified ? VERIFIED : ''}</a>
+          <p class="wp-title">${esc(ev ? ev.title : (a.bio || ''))}</p>
+          <a class="wp-game" href="#explorar" data-act="explore-game" data-k="${ev ? ev.game : (a.games || ['chat'])[0]}">${esc(G.name)}</a>
+        </div></div>
+        ${ev ? tagChips(streamTags(ev.game, ['Gaming', 'DropsAtivos'])) : ''}
+        <div class="wp-actions">
+          <button class="wp-round ${a.followed ? 'on' : ''}" data-act="follow" data-id="${a.id}" aria-label="${a.followed ? 'Deixar de seguir' : 'Seguir'}" title="${a.followed ? 'A seguir' : 'Seguir'}">${icon(a.followed ? 'heartFill' : 'heart')}</button>
+          <button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="Notificações do canal">${icon('bellPlus')}</button>
+          <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">Oferecer subscrição</button>
+          <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${sub ? icon('star') + ' Subscrito' : 'Subscrever'}</button>
+        </div>
+        <p class="tiny muted" style="margin:0">Subscrições, presentes e espetadores são fictícios: nada é pago.</p>
+      </section>
+    </div>
+    <aside class="wp-side">
+      <section class="card chat wp-chatbox">
+        <div class="chat-head"><strong>Chat ${ev ? '' : 'offline'}</strong>${SIM()}<span class="spacer"></span><span class="small muted">👀 <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
+        ${ev ? `<div class="lb" data-wlb>${leaderboardHTML(WATCH.key === a.id ? WATCH.gifters : {})}</div>
+        <div class="drop" data-wdrop>${dropHTML(a, ev)}</div>` : ''}
+        <div class="chat-list" id="wpChat" data-wchat></div>
+        <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
+        ${chatInputHTML('wpInput', 'watch-send', true, a.id)}
+      </section>
+    </aside>
+  </div>`;
+}
+function dropHTML(a, ev) {
+  const need = 10 * MIN, got = WATCH.key === a.id ? Date.now() - WATCH.started : 0, pct = Math.min(100, got / need * 100);
+  const G = GAMES[ev.game] || GAMES.chat; const done = S.badges && S.badges[ev.game];
+  return `<span class="drop-ic">${gicon(ev.game, 34)}</span><div><b>${done ? 'Emblema ganho!' : `Vê 10 minutos e ganha o emblema «${esc(G.name)}»`}</b><small>Recompensa fictícia · ${done ? 'já está no teu perfil' : Math.floor(pct) + '%'}</small><div class="goal-bar"><i style="width:${done ? 100 : pct}%"></i></div></div>`;
+}
+function leaderboardHTML(g) {
+  const top = Object.entries(g || {}).sort((a, b) => b[1] - a[1]).slice(0, 3);
+  if (!top.length) return '<span class="tiny muted">Ainda ninguém ofereceu presentes</span>';
+  return top.map(([u, n], i) => `<span class="lb-i"><b class="lb-medal m${i + 1}">${i + 1}</b><span><strong>${esc(u)}</strong><small>${icon('gift')} ${dots(n)}</small></span></span>`).join('');
+}
+function chatInputHTML(id, form, gift, accId) {
+  return `<form class="tw-input" data-form="${form}" ${accId ? `data-id="${accId}"` : ''}>
+    ${gift ? `<button type="button" class="tw-in-gift" data-act="w-giftsub" data-id="${accId}" aria-label="Oferecer subscrição">${icon('gift')}</button>` : ''}
+    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar chat" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
+    <button class="btn btn-primary btn-sm">Chat</button>
+    <div class="emote-pop" data-emotes-for="${id}" hidden>${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
+  </form>`;
+}
+function wMsg(m) {
+  m.id = m.id || uid(); m.t = m.t || Date.now(); m.color = m.color || regColor(m.user) || pick(NAME_COLORS);
+  WATCH.chat.push(m); if (WATCH.chat.length > 150) WATCH.chat.shift();
+  const list = $('#wpChat'); if (list) appendChat(list, chatMsgHTML(m));
+  const ov = $('[data-wchat-overlay]'); if (ov && !m.plain) { ov.insertAdjacentHTML('beforeend', overlayMsgHTML(m)); while (ov.children.length > 7) ov.firstElementChild.remove(); }
+}
+function appendChat(list, html, max = 150) {
+  const near = list.scrollHeight - list.scrollTop - list.clientHeight < 50;
+  list.insertAdjacentHTML('beforeend', html);
+  while (list.children.length > max) list.firstElementChild.remove();
+  const pill = list.parentElement.querySelector('.more-pill');
+  if (near) list.scrollTop = list.scrollHeight; else if (pill) pill.hidden = false;
+}
+function startWatch(a) {
+  const ev = channelLive(a);
+  if (WATCH.key !== a.id) {
+    clearInterval(WATCH.timer);
+    Object.assign(WATCH, { key: a.id, acc: a, chat: [], gifters: {}, started: Date.now(), botAt: Date.now(), dropDone: false });
+    if (ev) {
+      const seed = Math.max(3, Math.round((ev.viewers || 100) / 80));
+      [fakeUser(), fakeUser(), fakeUser()].forEach((u, i) => WATCH.gifters[u] = Math.round(seed * [4, 2, 1.3][i]));
+    }
+  }
+  const list = $('#wpChat');
+  if (list) {
+    list.innerHTML = '';
+    if (!WATCH.chat.length) {
+      wMsg({ plain: true, text: `Damos-te as boas-vindas à sala de chat de ${a.handle}!` });
+      if (ev) wMsg({ user: 'LiveBot', bot: true, color: '#00c8af', text: `Segue ${a.name} nas redes e ativa as notificações 🔔 · comandos: !discord !setup` });
+      else wMsg({ plain: true, text: 'O canal está offline. Podes escrever na mesma.' });
+    } else WATCH.chat.slice(-80).forEach(m => list.insertAdjacentHTML('beforeend', chatMsgHTML(m)));
+    list.scrollTop = list.scrollHeight;
+  }
+  clearInterval(WATCH.timer);
+  paintWatchLB();
+  if (!ev) return;
+  WATCH.timer = setInterval(() => watchTick(a), 650);
+}
+function watchTick(a) {
+  const r = route();
+  if (r.name !== 'watch' || r.id !== a.id) { clearInterval(WATCH.timer); return; }
+  const ev = channelLive(a); if (!ev) { clearInterval(WATCH.timer); render(); return; }
+  ev.viewers = Math.max(10, Math.round((ev.viewers || 100) * rand(.996, 1.007)));
+  $$('[data-anim="wviewers"]').forEach(el => tweenNum(el, ev.viewers));
+  $$('[data-wv]').forEach(el => el.textContent = fmt(ev.viewers));
+  const up = $('[data-wup]'); if (up) up.textContent = upTime(Date.now() - ev.start);
+  const ctx = { gameName: (GAMES[ev.game] || GAMES.chat).name, viewers: ev.viewers, goal: 100000 };
+  const rate = ev.viewers > 5000 ? 1.6 : ev.viewers > 500 ? 1 : .5;
+  let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
+  while (n--) {
+    const pool = Math.random() < .35 ? moodPool(ev.game, pick(['amazing', 'funny', 'win', 'clutch', 'scary', 'sad', 'rare'])) : (ev.game === 'gta6' && Math.random() < .4 ? GTA6_AMBIENT : AMBIENT);
+    wMsg({ user: Math.random() < .12 && S.regulars.length ? pick(S.regulars).u : fakeUser(), text: fill(pick(pool), ctx) });
+  }
+  if (Math.random() < .018) { const u = fakeUser(), k = pick([1, 1, 5, 10]); WATCH.gifters[u] = (WATCH.gifters[u] || 0) + k; wMsg({ gift: true, text: `🎁 ${u} ofereceu ${k} ${k === 1 ? 'subscrição' : 'subscrições'} à comunidade!` }); paintWatchLB(); }
+  if (Math.random() < .012) wMsg({ gift: true, text: `⭐ ${fakeUser()} subscreveu por ${randi(2, 30)} meses!` });
+  if (Date.now() - WATCH.botAt > 45000) { WATCH.botAt = Date.now(); wMsg({ user: 'LiveBot', bot: true, color: '#00c8af', text: pick([`Segue ${a.name} e ativa as notificações 🔔`, 'Lembrem-se de ser simpáticos no chat 💜', `Vejam os clipes de ${a.handle} na página do canal!`]) }); }
+  const drop = $('[data-wdrop]'); if (drop) drop.innerHTML = dropHTML(a, ev);
+  if (!WATCH.dropDone && Date.now() - WATCH.started > 10 * MIN) { WATCH.dropDone = true; S.badges = S.badges || {}; if (!S.badges[ev.game]) { S.badges[ev.game] = Date.now(); notify('🎖️', `Ganhaste o emblema «${(GAMES[ev.game] || GAMES.chat).name}» por veres a live de ${a.name} (fictício).`); toast('🎖️', 'Emblema ganho!'); save(); } }
+}
+function paintWatchLB() { const el = $('[data-wlb]'); if (el) el.innerHTML = leaderboardHTML(WATCH.gifters); }
+function stopWatch() { clearInterval(WATCH.timer); }
+
+/* ---------- Estúdio: informação do canal, top de presentes e meta no chat ---------- */
+function studioInfoHTML() {
+  const L = S.live, G = GAMES[L.game] || GAMES.chat;
+  return `<section class="wp-info studio-info"><div class="wp-chan">${avatar(S.me, 48, 'ring-live')}<div>
+    <span class="wp-name">${esc(S.me.name)}${S.me.verified ? VERIFIED : ''}</span>
+    <p class="wp-title">${esc(L.title)}</p><span class="wp-game">${esc(G.name)}</span></div>
+    <div class="si-stats"><span>${icon('person')} <b class="num" data-live="viewers">${fmt(L.viewers)}</b></span><span>💜 <b class="num" data-me="followers">${fmt(S.me.followers)}</b></span></div></div>
+    ${tagChips(streamTags(L.game, [MODES[L.mode].name]))}</section>`;
+}
+function trackGifter(L, u, val) { L.gifters = L.gifters || {}; L.gifters[u] = (L.gifters[u] || 0) + val; const el = $('[data-slb]'); if (el && Date.now() - (L.lbAt || 0) > 1000) { L.lbAt = Date.now(); el.innerHTML = leaderboardHTML(L.gifters); } }
+function goalBannerHTML() {
+  const G = S.prefs.giftGoal, pct = Math.min(100, G.progress / G.target * 100);
+  return `<span class="drop-ic">🎯</span><div><b>${esc(G.title)}</b><small>${dots(G.progress)} / ${dots(G.target)} moedas virtuais</small><div class="goal-bar"><i style="width:${pct}%"></i></div></div>`;
+}
+function paintGoalBanner() { $$('[data-goalbanner]').forEach(el => el.innerHTML = goalBannerHTML()); }
+
+const TW_ACT = {
+  'home-tab': b => { UI.homeTab = b.dataset.k; UI.homeCat = 'all'; render(); },
+  'home-cat': b => { UI.homeCat = b.dataset.k; render(); },
+  'watch': b => { const ev = findAnyEvent(b.dataset.id); closeModalIfOpen(); if (ev) location.hash = ev.owner === 'me' ? '#estudio' : chanHash(ev.owner); },
+  'chat-bottom': b => { const list = b.parentElement.querySelector('.chat-list'); if (list) list.scrollTop = list.scrollHeight; b.hidden = true; },
+  'emote-pick': b => { const pop = $(`[data-emotes-for="${b.dataset.for}"]`); if (pop) pop.hidden = !pop.hidden; },
+  'emote-insert': b => { const i = document.getElementById(b.dataset.for); if (i) { i.value = (i.value ? i.value.replace(/\s*$/, ' ') : '') + b.dataset.e + ' '; i.focus(); } },
+  'w-full': () => { UI.watchFull = !UI.watchFull; const wp = $('.wp'); if (wp) wp.classList.toggle('full', UI.watchFull); document.body.classList.toggle('theater-on', UI.watchFull); const btn = $('[data-act="w-full"]'); if (btn) btn.innerHTML = icon(UI.watchFull ? 'shrink' : 'expand'); try { if (UI.watchFull) document.documentElement.requestFullscreen?.().catch(() => { }); else if (document.fullscreenElement) document.exitFullscreen().catch(() => { }); } catch (e) { } },
+  'w-clip': b => { const a = acc(b.dataset.id), ev = channelLive(a); if (!ev) return; const G = GAMES[ev.game] || GAMES.chat; S.clips.unshift({ id: 'c_' + uid(), title: `${G.name}: momento na live de ${a.name}`, game: ev.game, streamer: a.id, type: 'Clipe de espetador', emoji: '🎬', popularity: randi(40, 90), likes: 0, comments: 0, onProfile: false, createdAt: Date.now(), liked: false, commentsList: [], secs: 30 }); save(); toast('🎬', 'Clipe criado. Está em Página inicial → Clipes.'); },
+  'w-share': b => { const a = acc(b.dataset.id); copyText(`Estou a ver ${a.name} no LiveVerse (simulação)`); },
+  'w-quality': () => toast('⚙️', 'Qualidade: Automática (1080p60 simulado)'),
+  'w-bell': b => { S.chanBell = S.chanBell || {}; const id = b.dataset.id; S.chanBell[id] = !S.chanBell[id]; b.classList.toggle('on', S.chanBell[id]); toast('🔔', S.chanBell[id] ? 'Vais receber notificações deste canal' : 'Notificações do canal desligadas'); save(); },
+  'w-sub': b => {
+    S.subs = S.subs || {}; const a = acc(b.dataset.id);
+    if (S.subs[a.id]) { delete S.subs[a.id]; toast('⭐', 'Subscrição cancelada (fictícia)'); }
+    else { S.subs[a.id] = { since: Date.now() }; toast('⭐', `Subscreveste ${a.name} (fictício, sem pagamentos)`); wMsg({ gift: true, text: `⭐ ${S.me.name} subscreveu! Bem-vindo à família de ${a.name}!` }); setTimeout(() => ['BEM-VINDO 💜', `${S.me.name} 🫡`, 'mais um sub!! 🎉'].forEach((t, i) => setTimeout(() => wMsg({ user: fakeUser(), text: t }), i * 300)), 400); }
+    save(); const nb = $('.wp-sub'); if (nb) { nb.classList.toggle('btn-primary', !S.subs[a.id]); nb.innerHTML = S.subs[a.id] ? icon('star') + ' Subscrito' : 'Subscrever'; }
+  },
+  'w-giftsub': b => {
+    const id = b.dataset.id; const a = acc(id); if (route().name !== 'watch') return;
+    const who = fakeUser(); WATCH.gifters[S.me.handle] = (WATCH.gifters[S.me.handle] || 0) + 1;
+    wMsg({ gift: true, text: `🎁 ${S.me.name} ofereceu uma subscrição a ${who}!` });
+    setTimeout(() => wMsg({ user: who, text: pick(['OBRIGADO 😭💜', 'obrigadoooo', 'que lenda 🐐', `obrigado ${S.me.name}!!`]) }), 700);
+    paintWatchLB(); toast('🎁', 'Ofereceste uma subscrição (fictícia, sem pagamentos)');
+  },
+};
+const TW_FORMS = {
+  'watch-send': f => {
+    const t = f.t.value.trim(); if (!t) return; f.t.value = ''; const a = acc(f.dataset.id);
+    wMsg({ user: S.me.name, text: t, me: true, sub: !!(S.subs && S.subs[a.id]), color: '#bf94ff' });
+    const pop = f.querySelector('.emote-pop'); if (pop) pop.hidden = true;
+    if (channelLive(a) && Math.random() < .7) setTimeout(() => wMsg({ user: fakeUser(), text: pick([`@${S.me.name} boas!`, `@${S.me.name} concordo`, `@${S.me.name} 😂😂`, 'verdade', `@${S.me.name} bem-vindo!`]) }), rand(900, 2200));
+  },
+};
+document.addEventListener('scroll', e => {
+  const t = e.target; if (!t || !t.classList || !t.classList.contains('chat-list')) return;
+  if (t.scrollHeight - t.scrollTop - t.clientHeight < 40) { const pill = t.parentElement.querySelector('.more-pill'); if (pill) pill.hidden = true; }
+}, true);
 
 /* =====================================================================
    Janelas (perfil, editor de eventos, detalhes), ações e ciclo principal
@@ -4197,7 +4654,7 @@ const FORMS = {
   },
   'clip-comment': f => { const t = f.t.value.trim(); if (!t) return; const c = S.clips.find(x => x.id === f.dataset.id); c.commentsList = [...(c.commentsList || []), { u: S.me.handle, t }]; c.comments++; save(); render(); $(`#cc-${c.id}`)?.focus(); },
   'react-custom': f => { const t = f.t.value.trim(); if (!t) return f.t.focus(); react('custom', t); STUDIO.custom = ''; f.t.value = ''; },
-  chat: f => { const t = f.t.value.trim(); if (!t || !S.live) return; pushChat({ user: S.me.name, text: t, me: true, color: '#ff4fa8' }); f.t.value = '';
+  chat: f => { const t = f.t.value.trim(); if (!t || !S.live) return; const ep = f.querySelector('.emote-pop'); if (ep) ep.hidden = true; pushChat({ user: S.me.name, text: t, me: true, color: '#ff4fa8' }); f.t.value = '';
     setTimeout(() => S.live && pushChat({ user: fakeUser(), text: pick(['respondeu-me!! 😭', 'concordo!', '💜💜💜', 'haha verdade', 'LEMBRA-TE DE MIM ' + S.me.name.split(' ')[0].toUpperCase()]) }), 700); },
   'watch-chat': f => { const t = f.t.value.trim(); if (!t) return; const box = $('#wChat'); box.insertAdjacentHTML('beforeend', chatMsgHTML({ user: S.me.name, text: t, me: true, color: '#ff4fa8' })); box.scrollTop = box.scrollHeight; f.t.value = ''; },
   'live-poll': f => { const opts = [f.a.value, f.b.value, f.c.value, f.d.value].map(s => s.trim()).filter(Boolean); if (opts.length < 2) return; startPoll(f.q.value.trim(), opts); },
@@ -4263,6 +4720,8 @@ function tick() {
     simulateEvents(now);
     // contadores
     S.events.forEach(ev => { $$(`[data-int="${ev.id}"]`).forEach(n => n.textContent = dots(ev.interested)); $$(`[data-rem="${ev.id}"]`).forEach(n => n.textContent = dots(ev.reminderUsers || 0)); if (ev.owner !== 'me' && eventStatus(ev) === 'live') { ev.viewers = Math.round((ev.viewers || LEVELS[ev.level].max * .3) * rand(.99, 1.012)); $$(`[data-watchers="${ev.id}"]`).forEach(n => n.textContent = fmt(ev.viewers)); } });
+    Object.values(SYN).forEach(ev => { ev.viewers = Math.max(10, Math.round(ev.viewers * rand(.993, 1.009))); $$(`[data-chv="${ev.id}"]`).forEach(n => n.textContent = n.closest('.tw-thumb') ? espet(ev.viewers) : fmt(ev.viewers)); });
+    S.events.forEach(ev => $$(`[data-chv="${ev.id}"]`).forEach(n => n.textContent = n.closest('.tw-thumb') ? espet(ev.viewers || 0) : fmt(ev.viewers || 0)));
     // visualizações simuladas
     for (const p of S.posts) if (p.status === 'published' && now - p.createdAt < 5 * DAY && Math.random() < .25) {
       p.views += randi(1, p.author === 'me' ? Math.ceil(S.me.followers / 800) : 40);
@@ -4296,6 +4755,7 @@ function bind() {
     const b = e.target.closest('[data-act]');
     if (UI.menu && !e.target.closest('.menu-wrap')) { const id = UI.menu; UI.menu = null; rerenderPost(id); }
     if (UI.createOpen && !e.target.closest('.create-wrap')) { UI.createOpen = false; renderNav(); }
+    if (!e.target.closest('.tw-input')) $$('.emote-pop').forEach(p => { p.hidden = true; });
     if (!b) { if (e.target === $('#modal')) closeModal(); return; }
     const fn = ACT[b.dataset.act]; if (!fn) return;
     if (b.tagName === 'A' && b.getAttribute('href')) return;
@@ -4334,6 +4794,7 @@ function bind() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
     else if (e.key === 'Escape' && STUDIO.theater) setTheater(false);
+    else if (e.key === 'Escape' && UI.watchFull) ACT['w-full']();
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && e.target.id === 'cmpText') publishPost();
   });
   window.addEventListener('hashchange', () => { UI.menu = null; UI.createOpen = false; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
@@ -4367,6 +4828,7 @@ function migrate(s) {
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
   s.prefs = { ...defaultImmersive(), ...s.prefs };
   s.regulars = s.regulars || seedRegulars();
+  s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {};
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (s.live) s.live.surprise = null;
@@ -4383,11 +4845,11 @@ function init() {
   render();
   setInterval(tick, 1000);
   micInit(); ttsInit();
-  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } });
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT);
-Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT);
+Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS);
 init();
 
 </script>

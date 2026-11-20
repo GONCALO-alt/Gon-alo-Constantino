@@ -82,7 +82,7 @@ function goalBarHTML() {
   const pct = Math.min(100, G.progress / G.target * 100);
   return `<div class="goal-overlay ${pct >= 100 ? 'done' : ''}" id="goalOverlay"><span>🎯 ${esc(G.title)}</span><div class="goal-bar"><i style="width:${pct}%"></i></div><b class="num">${dots(G.progress)} / ${dots(G.target)}</b></div>`;
 }
-function paintGoal() { const el = $('#goalOverlay'); if (el) el.outerHTML = goalBarHTML(); const p = $('#goalPanel'); if (p) p.outerHTML = goalPanelHTML(); }
+function paintGoal() { paintGoalBanner(); const el = $('#goalOverlay'); if (el) el.outerHTML = goalBarHTML(); const p = $('#goalPanel'); if (p) p.outerHTML = goalPanelHTML(); }
 function goalPanelHTML() {
   const G = S.prefs.giftGoal, pct = Math.min(100, G.progress / G.target * 100);
   return `<div id="goalPanel" class="stack" style="gap:10px">

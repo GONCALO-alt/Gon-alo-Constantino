@@ -57,7 +57,7 @@ function screenInner(L) {
   const G = GAMES[L.game] || GAMES.chat, scene = L.scene || 'game';
   let bg;
   if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
-    : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(G.glyph.length > 3 ? G.glyph : G.name.toUpperCase())}</div><small>Ecrã de jogo simulado</small></div></div>`;
+    : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Ecrã de jogo simulado</small></div></div>`;
   else {
     const card = {
       starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
@@ -69,7 +69,8 @@ function screenInner(L) {
     bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
-    <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass hud-num">👀 <b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span><span class="glass hud-num">💜 <b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></span><span class="sim-tag" style="margin-left:auto">Fictício</span></div>
+    <div class="hud"><span class="sim-tag" style="margin-left:auto">Fictício</span></div>
+    <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span><span class="tw-vw">💜 <b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></span></div>
     ${trainHTML()}
     ${scene !== 'chat' && scene !== 'ending' ? camHTML() : ''}
     <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
@@ -345,6 +346,8 @@ function tweenNum(el, to) {
 }
 function liveCounters(L) {
   const v = Math.round(L.viewers), f = Math.floor(S.me.followers);
+  $$('[data-live="uptime"]').forEach(el => el.textContent = upTime(Date.now() - L.start));
+  $$('[data-live="viewers-card"]').forEach(el => el.textContent = espet(v));
   $$('[data-anim="viewers"]').forEach(el => tweenNum(el, v));
   $$('[data-anim="followers"]').forEach(el => tweenNum(el, f));
   // histórico para o gráfico

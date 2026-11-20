@@ -27,6 +27,7 @@ function startLive({ title, game, mode, level, eventId }) {
     scene: 'starting', sceneAt: now, sceneUntil: now + 20000,
   };
   addTimeline('start', 'Live começou: ' + S.live.title, '🔴');
+  pushChat({ plain: true, text: `Damos-te as boas-vindas à sala de chat de ${S.me.handle}!` });
   pushChat({ sys: true, text: `🔴 Estás em direto em ${GAMES[game].name} · Modo ${MODES[mode].name}. Audiência simulada.` });
   if (eventId) {
     const ev = S.events.find(e => e.id === eventId);
@@ -135,7 +136,7 @@ function giftEvent(fromUser) {
   L.gifts += val;
   const u = fromUser || fakeUser();
   pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
-  goalAdd(val); hypeAdd(val);
+  goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
   if (val >= 200) giftMessage(u, g, val);
   if (val >= 500) crowd(.5);
   if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); sound(val >= 200 ? 'bigGift' : 'gift'); }
@@ -160,7 +161,7 @@ function pushChat(m) {
     }
     const paused = list.matches(':hover') || list.querySelector('.msg.open');
     const atBottom = !paused && list.scrollHeight - list.scrollTop - list.clientHeight < 60;
-    if (list.id === 'chatList') { const pz = $('#chatPaused'); if (pz) pz.hidden = !paused; }
+    if (!atBottom) { const pill = list.parentElement.querySelector('.more-pill'); if (pill) pill.hidden = false; }
     list.insertAdjacentHTML('beforeend', chatMsgHTML(m));
     while (list.children.length > 80) list.firstElementChild.remove();
     if (atBottom) list.scrollTop = list.scrollHeight;
@@ -173,11 +174,12 @@ function overlayMsgHTML(m) {
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
+  if (m.plain) return `<div class="msg plain">${esc(m.text)}</div>`;
   if (m.sys) return `<div class="msg sys ${m.mod ? 'modmsg' : ''}">${esc(m.text)}</div>`;
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub && !regular(m.user) ? '<span title="Subscritor fictício">⭐</span> ' : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? '<span class="cbadge bot" title="Bot do canal">🤖</span>' : ''}${m.sub && !regular(m.user) ? '<span class="cbadge sub" title="Subscritor fictício">⭐</span> ' : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -352,6 +354,7 @@ function viewStudio() {
       <div class="screen" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
       ${theaterBarHTML()}
+      ${studioInfoHTML()}
       <div data-surprise>${surpriseHTML()}</div>
       <div class="controls-panel" id="controlsPanel" ${open ? '' : 'hidden'}>
       ${scenesHTML()}
@@ -399,10 +402,12 @@ function viewStudio() {
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
       <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num">👀 <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
+        <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
+        <div class="drop" data-goalbanner>${goalBannerHTML()}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
-        <div class="chat-paused" id="chatPaused" hidden>⏸ Chat em pausa enquanto moderas</div>
-        <form class="chat-form" data-form="chat"><input class="input" id="chatInput" name="t" maxlength="200" placeholder="Fala com o chat…" autocomplete="off"><button class="btn btn-primary btn-sm">Enviar</button></form>
+        <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
+        ${chatInputHTML('chatInput', 'chat', false)}
       </section>
     </aside>
   </div>`;
