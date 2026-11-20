@@ -1,0 +1,25 @@
+# LiveVerse
+
+Rede social de criadores com simulador de lives. Abre `index.html` diretamente no navegador; não precisa de servidor nem de instalação.
+
+**Tudo o que é audiência é fictício:** seguidores, espectadores, reações, presentes, popularidade, verificações, rankings e métricas são simulados pela própria app e estão identificados como tal.
+
+## O que tem
+
+- **Perfil de streamer**: foto, banner, nome, @utilizador, biografia, categoria, jogos favoritos, selo de verificação fictício, seguidores, a seguir, lives simuladas, visualizações, nível de carreira com XP, cor do perfil, agenda semanal de lives e publicação fixada. Separadores: Publicações (com Reposts, Gostos e Guardados), Sobre, Lives, Eventos, Clips e Conquistas.
+- **Publicações**: texto, anúncio de jogo, anúncio de live, evento, sondagem, conquista, fotografia e clip. Gostar, responder, repostar, guardar, fixar, hashtags clicáveis, visualizações simuladas, data e hora, e publicação agendada.
+- **Eventos**: editor com título, descrição, jogo, data, hora, modo, nível de audiência, capa (predefinida ou imagem tua), contagem decrescente e lembretes. Publicar coloca o evento no perfil, no feed e na página de Eventos. Os interessados fictícios crescem com o tempo; aparece «A começar em breve» e o botão «Começar live» quando chega a hora. Editar, cancelar, repor e eliminar.
+- **Página de eventos**: próximos, em direto, anteriores, os meus, recomendados e calendário mensal.
+- **Estúdio de live**: audiência, chat, presentes, sondagens, raids e marcos simulados. Painel «O que acabou de acontecer?» com 9 botões e 26 acontecimentos em 5 categorias, mais um acontecimento personalizado. As reações no chat dependem do jogo e do acontecimento; animação no ecrã, aumento de interação, novos seguidores, momento viral, cronologia e clip automático opcional.
+- **Clips e cronologia**: «Criar clip» em qualquer momento da cronologia (também depois da live). Cartões com título, jogo, streamer, tipo, popularidade, gostos, comentários, partilhar e adicionar ao perfil. Podes anexar a tua própria media a um clip.
+- **Notificações** simuladas: 30 e 5 minutos antes, evento em direto, 1.000 interessados, tendência, comunidade à espera, conquistas, respostas.
+
+O estado (perfil, publicações, eventos, lives, clips, notificações) fica guardado no `localStorage` do navegador.
+
+## Desenvolvimento
+
+O código está em `src/` (CSS, HTML e JavaScript sem dependências). Para gerar `index.html`:
+
+```bash
+node liveverse/build.mjs
+```
