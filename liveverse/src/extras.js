@@ -55,7 +55,8 @@ function nextAlert() {
   const a = ALERTQ.shift(); const box = $('#alertBox');
   if (!a) { alertBusy = false; return; }
   alertBusy = true;
-  if (box) { box.innerHTML = `<div class="alert alert-${a.kind}"><span class="alert-ic">${a.ic}</span><div><b>${esc(a.title)}</b>${a.sub ? `<small>${esc(a.sub)}</small>` : ''}</div></div>`; }
+  const AIC = { gift: 'gift', follow: 'heart', raid: 'users', milestone: 'person', goal: 'target', viral: 'bolt' };
+  if (box) { box.innerHTML = `<div class="alert alert-${a.kind}"><span class="alert-ic">${icon(AIC[a.kind] || 'bolt')}</span><div><b>${esc(a.title)}</b>${a.sub ? `<small>${esc(a.sub)}</small>` : ''}</div></div>`; }
   setTimeout(() => { if (box) box.innerHTML = ''; setTimeout(nextAlert, 250); }, 2600);
 }
 

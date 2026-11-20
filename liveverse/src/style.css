@@ -1204,3 +1204,45 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
 }
 
 @media (max-width: 560px) { .wp-aud { display: none; } .bottom-nav .nav-link span:not(.badge-count):not(.bn-av):not(.pill-live) { white-space: nowrap; } }
+
+/* ===================== Câmara, ecrã do jogo, vertical e live limpa ===================== */
+.live-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; background: #000; }
+.live-video.fit-contain { object-fit: contain; }
+.mirror { transform: scaleX(-1); }
+.cam.live-cam { padding: 0; overflow: hidden; background: #000; box-shadow: 0 0 0 2px #000, 0 10px 26px -10px #000; }
+.cam.live-cam video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cam.live-cam.cam-big { aspect-ratio: 4 / 3; }
+.screen.vertical { aspect-ratio: 9 / 16; width: min(100%, calc((100vh - 230px) * 9 / 16)); max-width: 100%; margin-inline: auto; }
+.screen.vertical .cam { width: 36%; }
+.screen.vertical .screen-center .big { font-size: clamp(30px, 8vw, 54px); }
+.screen.vertical .screen-chat { width: 78%; bottom: 46px; }
+.studio.theater .screen.vertical { width: min(100%, calc((100vh - 120px) * 9 / 16)); }
+.burst .t { font-size: clamp(18px, 3.4vw, 34px); padding: 6px 16px; border-radius: 6px; background: var(--purple); box-shadow: none; letter-spacing: .03em; }
+.flash { display: none; }
+.alert-ic { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 8px; background: var(--purple); color: #fff; font-size: 0; }
+.alert-ic svg { width: 22px; height: 22px; }
+.alert { background: rgb(14 14 16 / .9); border-color: var(--line-2); box-shadow: 0 10px 30px -10px #000; }
+.chat-vw { display: inline-flex; align-items: center; gap: 4px; }
+.chat-vw svg { width: 15px; height: 15px; }
+.theater-bar { gap: 8px; }
+.tb-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.seg { display: inline-flex; padding: 3px; border-radius: 8px; background: var(--surface-3); gap: 2px; }
+.seg button { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); font-weight: 700; font-size: 13px; }
+.seg button svg { width: 16px; height: 16px; }
+.seg button.on { background: var(--surface); color: var(--fg); box-shadow: 0 1px 3px rgb(0 0 0 / .5); }
+.tb-reacts { flex-basis: 100%; flex-wrap: wrap; gap: 6px; padding-top: 4px; border-top: 1px solid var(--line); }
+.tb-react { width: auto; height: auto; padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; background: var(--surface-3); border: 0; color: var(--fg); }
+.tb-react:hover { background: var(--purple); color: #fff; transform: none; }
+.setup-preview { position: relative; aspect-ratio: 16 / 9; max-width: 420px; width: 100%; border-radius: 8px; overflow: hidden; background: #000; isolation: isolate; }
+.setup-preview.vertical { aspect-ratio: 9 / 16; max-width: 200px; }
+.setup-preview .live-video { z-index: 0; }
+.setup-preview .pv-cam { position: absolute; left: 8px; top: 8px; width: 30%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; z-index: 1; box-shadow: 0 0 0 2px #000; }
+@media (max-width: 760px) {
+  .studio-main > .screen.vertical { position: relative; top: auto; width: 100%; box-shadow: none; }
+  .theater-bar .tb-group { width: 100%; }
+  .theater-bar .seg { width: 100%; }
+  .theater-bar .seg button { flex: 1; justify-content: center; }
+  .tb-reacts { overflow-x: visible; flex-wrap: wrap; }
+}
+
+@media (max-width: 760px) { .tb-scene { flex: 1 1 140px; } .tb-scene select { min-width: 120px; } }

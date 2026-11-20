@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 const root = new URL('./', import.meta.url);
 const src = new URL('./src/', import.meta.url);
 const read = f => readFileSync(new URL(f, src), 'utf8');
-const files = ['data.js', 'core.js', 'views.js', 'live.js', 'social.js', 'extras.js', 'immersive.js', 'twitch.js', 'app.js'];
+const files = ['data.js', 'core.js', 'views.js', 'live.js', 'social.js', 'extras.js', 'immersive.js', 'twitch.js', 'media.js', 'app.js'];
 const js = files.map(read).join('\n');
 const page = read('shell.html').replace('/*STYLE*/', () => read('style.css')).replace('/*SCRIPT*/', () => js);
 
@@ -64,7 +64,7 @@ writeFileSync(new URL('./_headers', dist), `/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
-  Permissions-Policy: microphone=(self), camera=(), geolocation=(), payment=()
+  Permissions-Policy: microphone=(self), camera=(self), display-capture=(self), geolocation=(), payment=()
 
 /
   Cache-Control: no-cache

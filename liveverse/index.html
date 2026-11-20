@@ -1214,6 +1214,48 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
 
 @media (max-width: 560px) { .wp-aud { display: none; } .bottom-nav .nav-link span:not(.badge-count):not(.bn-av):not(.pill-live) { white-space: nowrap; } }
 
+/* ===================== Câmara, ecrã do jogo, vertical e live limpa ===================== */
+.live-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; background: #000; }
+.live-video.fit-contain { object-fit: contain; }
+.mirror { transform: scaleX(-1); }
+.cam.live-cam { padding: 0; overflow: hidden; background: #000; box-shadow: 0 0 0 2px #000, 0 10px 26px -10px #000; }
+.cam.live-cam video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cam.live-cam.cam-big { aspect-ratio: 4 / 3; }
+.screen.vertical { aspect-ratio: 9 / 16; width: min(100%, calc((100vh - 230px) * 9 / 16)); max-width: 100%; margin-inline: auto; }
+.screen.vertical .cam { width: 36%; }
+.screen.vertical .screen-center .big { font-size: clamp(30px, 8vw, 54px); }
+.screen.vertical .screen-chat { width: 78%; bottom: 46px; }
+.studio.theater .screen.vertical { width: min(100%, calc((100vh - 120px) * 9 / 16)); }
+.burst .t { font-size: clamp(18px, 3.4vw, 34px); padding: 6px 16px; border-radius: 6px; background: var(--purple); box-shadow: none; letter-spacing: .03em; }
+.flash { display: none; }
+.alert-ic { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 8px; background: var(--purple); color: #fff; font-size: 0; }
+.alert-ic svg { width: 22px; height: 22px; }
+.alert { background: rgb(14 14 16 / .9); border-color: var(--line-2); box-shadow: 0 10px 30px -10px #000; }
+.chat-vw { display: inline-flex; align-items: center; gap: 4px; }
+.chat-vw svg { width: 15px; height: 15px; }
+.theater-bar { gap: 8px; }
+.tb-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.seg { display: inline-flex; padding: 3px; border-radius: 8px; background: var(--surface-3); gap: 2px; }
+.seg button { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); font-weight: 700; font-size: 13px; }
+.seg button svg { width: 16px; height: 16px; }
+.seg button.on { background: var(--surface); color: var(--fg); box-shadow: 0 1px 3px rgb(0 0 0 / .5); }
+.tb-reacts { flex-basis: 100%; flex-wrap: wrap; gap: 6px; padding-top: 4px; border-top: 1px solid var(--line); }
+.tb-react { width: auto; height: auto; padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; background: var(--surface-3); border: 0; color: var(--fg); }
+.tb-react:hover { background: var(--purple); color: #fff; transform: none; }
+.setup-preview { position: relative; aspect-ratio: 16 / 9; max-width: 420px; width: 100%; border-radius: 8px; overflow: hidden; background: #000; isolation: isolate; }
+.setup-preview.vertical { aspect-ratio: 9 / 16; max-width: 200px; }
+.setup-preview .live-video { z-index: 0; }
+.setup-preview .pv-cam { position: absolute; left: 8px; top: 8px; width: 30%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; z-index: 1; box-shadow: 0 0 0 2px #000; }
+@media (max-width: 760px) {
+  .studio-main > .screen.vertical { position: relative; top: auto; width: 100%; box-shadow: none; }
+  .theater-bar .tb-group { width: 100%; }
+  .theater-bar .seg { width: 100%; }
+  .theater-bar .seg button { flex: 1; justify-content: center; }
+  .tb-reacts { overflow-x: visible; flex-wrap: wrap; }
+}
+
+@media (max-width: 760px) { .tb-scene { flex: 1 1 140px; } .tb-scene select { min-width: 120px; } }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topbar" id="topBar"></header>
@@ -2222,7 +2264,7 @@ const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 1000
 const TL_ICON = { scene: '🎬', train: '🚂', surprise: '🎲', mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
-const STUDIO = { overlay: window.innerWidth < 760, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
+const STUDIO = { overlay: window.innerWidth < 760, reacts: false, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
 
 function fakeUser() { if (S && S.regulars && S.regulars.length && Math.random() < .22) return pick(S.regulars).u; return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
 function fill(t, ctx) {
@@ -2266,6 +2308,7 @@ function endLive() {
   const L = S.live; if (!L) return;
   clearInterval(liveTimer); liveTimer = null;
   immersiveEnd(L); if (STUDIO.theater) setTheater(false);
+  if (MEDIA.rec) recStop();
   const now = Date.now();
   addTimeline('end', 'Live terminada', '⏹️');
   const rec = {
@@ -2530,13 +2573,13 @@ function fxBurst(emoji, text) {
   const fx = $('#fx'); if (!fx || !STUDIO.fx) return;
   const flash = document.createElement('div'); flash.className = 'flash';
   const burst = document.createElement('div'); burst.className = 'burst';
-  burst.innerHTML = `<div class="e">${emoji}</div><div class="t">${esc(text)}</div>`;
+  burst.innerHTML = `<div class="t">${esc(text)}</div>`;
   fx.querySelectorAll('.burst').forEach(n => n.remove());
   fx.append(flash, burst);
-  particles([emoji, '✨', '💜', '🔥'], 14);
   setTimeout(() => { flash.remove(); burst.remove(); }, 2300);
 }
 function particles(list, n) {
+  return; // sem emojis a voar no ecrã
   const fx = $('#fx'); if (!fx) return;
   for (let i = 0; i < n; i++) {
     const p = document.createElement('span'); p.className = 'particle'; p.textContent = pick(list);
@@ -2564,12 +2607,11 @@ function viewStudio() {
     </div>
   </div>
   <div id="endConfirm"></div>
-  <div class="studio ${STUDIO.theater ? 'theater' : ''}">
+  <div class="studio ${STUDIO.theater ? 'theater' : ''} ${S.prefs.orient === 'v' ? 'is-vertical' : ''}">
     <div class="studio-main">
-      <div class="screen" id="screen" style="--gc:${G.color}">${screenInner(L)}
+      <div class="screen ${S.prefs.orient === 'v' ? 'vertical' : ''}" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
       ${theaterBarHTML()}
-      ${studioInfoHTML()}
       <div data-surprise>${surpriseHTML()}</div>
       <div class="controls-panel" id="controlsPanel" ${open ? '' : 'hidden'}>
       ${scenesHTML()}
@@ -2616,9 +2658,8 @@ function viewStudio() {
       </div>
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
-      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num">👀 <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
+      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num chat-vw">${icon('person')} <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
         <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
-        <div class="drop" data-goalbanner>${goalBannerHTML()}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
         <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
@@ -2627,7 +2668,7 @@ function viewStudio() {
     </aside>
   </div>`;
 }
-function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); drawSpark(); }
+function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); drawSpark(); attachMedia(); }
 function pollBoxHTML() {
   const P = S.live?.poll;
   if (P && !P.done) {
@@ -2668,6 +2709,7 @@ function studioSetup() {
     <form data-form="go-live" class="stack">
       ${mineEvents.length ? `<label class="field"><span>A partir de um evento</span><select class="input" name="eventId" id="glEvent" data-setup="eventId"><option value="">Live sem evento</option>${mineEvents.map(e => `<option value="${e.id}" ${st.eventId === e.id ? 'selected' : ''}>${esc(e.title)} · ${whenLabel(e.start)}</option>`).join('')}</select></label>` : ''}
       <label class="field"><span>Título</span><input class="input" name="title" id="glTitle" data-setup="title" maxlength="80" placeholder="Ex.: Ranked com o chat" value="${esc(st.title)}"></label>
+      ${setupMediaHTML()}
       <div class="grid-3">
         <label class="field"><span>Jogo</span><select class="input" name="game" id="glGame" data-setup="game">${Object.entries(GAMES).map(([k, g]) => `<option value="${k}" ${st.game === k ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select></label>
         <label class="field"><span>Modo</span><select class="input" name="mode" id="glMode" data-setup="mode">${Object.entries(MODES).map(([k, m]) => `<option value="${k}" ${st.mode === k ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label>
@@ -3290,7 +3332,8 @@ function nextAlert() {
   const a = ALERTQ.shift(); const box = $('#alertBox');
   if (!a) { alertBusy = false; return; }
   alertBusy = true;
-  if (box) { box.innerHTML = `<div class="alert alert-${a.kind}"><span class="alert-ic">${a.ic}</span><div><b>${esc(a.title)}</b>${a.sub ? `<small>${esc(a.sub)}</small>` : ''}</div></div>`; }
+  const AIC = { gift: 'gift', follow: 'heart', raid: 'users', milestone: 'person', goal: 'target', viral: 'bolt' };
+  if (box) { box.innerHTML = `<div class="alert alert-${a.kind}"><span class="alert-ic">${icon(AIC[a.kind] || 'bolt')}</span><div><b>${esc(a.title)}</b>${a.sub ? `<small>${esc(a.sub)}</small>` : ''}</div></div>`; }
   setTimeout(() => { if (box) box.innerHTML = ''; setTimeout(nextAlert, 250); }, 2600);
 }
 
@@ -3616,37 +3659,39 @@ function paintScenes() { $$('[data-scenes]').forEach(el => el.outerHTML = scenes
 
 /* =========================== ECRÃ =========================== */
 function camHTML(big = false) {
-  if (!S.prefs.cam && !big) return '';
+  if (MEDIA.cam) return `<div class="cam live-cam ${big ? 'cam-big' : ''}" aria-hidden="true"><video data-stream="cam" class="mirror" autoplay muted playsinline></video></div>`;
+  if (!big) return '';
   const img = S.prefs.camImg || S.me.avatar;
   const face = img ? `<img src="${img}" alt="">` : `<span>${esc((S.me.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase())}</span>`;
-  return `<div class="cam ${big ? 'cam-big' : ''}" style="--h:${S.me.hue || 270}" aria-hidden="true"><div class="cam-face">${face}</div><span class="cam-emote"></span><span class="cam-name">@${esc(S.me.handle)}</span></div>`;
+  return `<div class="cam ${big ? 'cam-big' : ''}" style="--h:${S.me.hue || 270}" aria-hidden="true"><div class="cam-face">${face}</div><span class="cam-name">@${esc(S.me.handle)}</span></div>`;
 }
 function screenInner(L) {
   const G = GAMES[L.game] || GAMES.chat, scene = L.scene || 'game';
   let bg;
-  if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
+  const main = MEDIA.screen ? 'screen' : MEDIA.cam ? 'cam' : null;
+  if (scene === 'game' && main) bg = `<video data-stream="${main}" class="live-video ${main === 'cam' ? 'mirror' : 'fit-contain'}" autoplay muted playsinline></video>`;
+  else if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
     : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Ecrã de jogo simulado</small></div></div>`;
   else {
     const card = {
       starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
-      brb: `<small>Pausa</small><div class="scene-big">VOLTO JÁ ☕</div><div class="scene-cd num" data-sceneel>00:00</div><span class="scene-sub">Não saiam daí!</span>`,
-      chat: `${camHTML(true)}<div class="scene-big small">CONVERSA COM O CHAT 💬</div><span class="scene-sub">Pergunta o que quiseres</span>`,
+      brb: `<small>Pausa</small><div class="scene-big">VOLTO JÁ</div><div class="scene-cd num" data-sceneel>00:00</div><span class="scene-sub">Não saiam daí!</span>`,
+      chat: `${camHTML(true)}<div class="scene-big small">CONVERSA COM O CHAT</div><span class="scene-sub">Pergunta o que quiseres</span>`,
       followers: folSceneHTML(),
-      ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM 💜</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
+      ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
     }[scene];
     bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
-    <div class="hud"><span class="sim-tag" style="margin-left:auto">Fictício</span></div>
-    <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span><span class="tw-vw">💜 <b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></span></div>
+    <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span></div>
     ${trainHTML()}
-    ${scene !== 'chat' && scene !== 'ending' ? camHTML() : ''}
+    ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : scene !== 'game' && scene !== 'chat' && MEDIA.cam ? camHTML() : ''}
     <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
     ${S.prefs.goalOnScreen ? goalBarHTML() : ''}
     <div class="alert-box" id="alertBox" aria-live="polite"></div>
     <div class="fx" id="fx"></div>`;
 }
-function paintScreen() { const sc = $('#screen'); if (sc && S.live) { sc.innerHTML = screenInner(S.live); tickScene(S.live); } }
+function paintScreen() { const sc = $('#screen'); if (sc && S.live) { sc.innerHTML = screenInner(S.live); sc.classList.toggle('vertical', S.prefs.orient === 'v'); tickScene(S.live); attachMedia(); } }
 
 /* Avatar: mexe-se quando falas e faz caras conforme o momento */
 let talkTimer = null;
@@ -3809,11 +3854,18 @@ function crowd(intensity = .6) {
 function theaterBarHTML() {
   const cur = S.live?.scene || 'game';
   return `<div class="theater-bar">
-    <div class="tb-reacts">${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}</div>
+    <div class="tb-group">${mediaButtonsHTML()}
+      <button class="btn btn-sm ${MEDIA.rec ? 'btn-live' : ''}" data-act="rec-toggle">${icon('rec')} ${MEDIA.rec ? 'Parar <span class="num" data-rec>00:00</span>' : 'Gravar'}</button>
+      ${MEDIA.lastUrl && !MEDIA.rec ? `<a class="btn btn-sm" href="${MEDIA.lastUrl}" download="liveverse-gravacao.${MEDIA.lastExt || 'webm'}">${icon('download')} Transferir</a>` : ''}</div>
+    ${orientHTML()}
     <span class="spacer"></span>
-    <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelect" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${cur === k ? 'selected' : ''}>${e} ${l}</option>`).join('')}</select></label>
-    <button class="btn btn-sm ${MIC.on ? 'btn-live' : ''}" data-act="mic-toggle">${icon('mic')} ${MIC.on ? 'A ouvir' : 'Microfone'}</button>
-    <button class="btn btn-sm tb-full" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
+    <div class="tb-group">
+      <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelect" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${cur === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      <button class="btn btn-sm ${MIC.on ? 'btn-live' : ''}" data-act="mic-toggle">${icon('mic')} ${MIC.on ? 'A ouvir' : 'Microfone'}</button>
+      <button class="btn btn-sm ${STUDIO.reacts ? 'btn-primary' : ''}" data-act="reacts-toggle">${icon('bolt')} Momentos</button>
+      <button class="btn btn-sm tb-full" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
+    </div>
+    <div class="tb-reacts" ${STUDIO.reacts ? '' : 'hidden'}>${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}">${esc(l)}</button>`).join('')}</div>
   </div>`;
 }
 function setTheater(on) {
@@ -3906,7 +3958,7 @@ function tweenNum(el, to) {
     if (now - (el._lastPop || 0) > 1300) {
       const host = el.parentElement; const pop = document.createElement('span');
       pop.className = 'num-pop' + (el.dataset.anim === 'followers' ? ' fol' : '');
-      pop.textContent = '+' + dots(el._acc) + (el.dataset.anim === 'followers' ? ' 💜' : '');
+      pop.textContent = '+' + dots(el._acc);
       host.appendChild(pop); setTimeout(() => pop.remove(), 1400);
       el._acc = 0; el._lastPop = now;
     }
@@ -3929,7 +3981,7 @@ function liveCounters(L) {
     L.recentFol = L.recentFol || [];
     const names = Array.from({ length: Math.min(n, 3) }, () => fakeUser());
     L.recentFol.unshift(...names); L.recentFol = L.recentFol.slice(0, 8);
-    if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `💜 ${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
+    if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
     const goal = FOL_GOALS.filter(g => g <= f).pop();
     if (goal && goal > (S.me.folGoalHit || 0)) {
       S.me.folGoalHit = goal;
@@ -4292,6 +4344,173 @@ document.addEventListener('scroll', e => {
   const t = e.target; if (!t || !t.classList || !t.classList.contains('chat-list')) return;
   if (t.scrollHeight - t.scrollTop - t.clientHeight < 40) { const pill = t.parentElement.querySelector('.more-pill'); if (pill) pill.hidden = true; }
 }, true);
+
+/* =====================================================================
+   Câmara, ecrã do jogo, gravação e formato da live (horizontal/vertical).
+   O vídeo fica só no teu navegador: nada é enviado para lado nenhum.
+   Dentro do Claude o navegador bloqueia a câmara e o ecrã; funciona no
+   site do Cloudflare ou ao abrir o ficheiro no Chrome.
+   ===================================================================== */
+Object.assign(IC, {
+  camera: '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/>',
+  monitor: '<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>',
+  rec: '<circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/>',
+  vertical: '<rect x="7" y="2.5" width="10" height="19" rx="2"/>',
+  horizontal: '<rect x="2.5" y="7" width="19" height="10" rx="2"/>',
+  flip: '<path d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M20 4v4h-4M4 20v-4h4"/>',
+  download: '<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
+});
+const MEDIA = { cam: null, screen: null, rec: null, chunks: [], recStart: 0, recTimer: null, facing: 'user', lastUrl: null, compose: null };
+const inClaude = () => !!(window.claude && typeof window.claude.use === 'function');
+
+function mediaError(e, what) {
+  const n = e && e.name;
+  let msg;
+  if (n === 'NotAllowedError' || n === 'SecurityError') msg = inClaude()
+    ? `Dentro do Claude o navegador não deixa usar a ${what}. Abre o LiveVerse no teu site do Cloudflare (ou o ficheiro no Chrome) para a usares.`
+    : `Não deste autorização para usar a ${what}. Podes ativá-la nas definições do navegador (ícone do cadeado ao lado do endereço).`;
+  else if (n === 'NotFoundError' || n === 'OverconstrainedError') msg = `Não foi encontrada nenhuma ${what} neste dispositivo.`;
+  else if (n === 'NotReadableError') msg = `A ${what} está a ser usada por outra aplicação. Fecha-a e tenta outra vez.`;
+  else msg = `Não foi possível usar a ${what} neste navegador.`;
+  toast('⚠️', msg, 7000);
+}
+function camToggle() {
+  if (MEDIA.cam) { stopStream('cam'); return; }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { mediaError({ name: inClaude() ? 'NotAllowedError' : 'x' }, 'câmara'); return; }
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: MEDIA.facing, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false })
+    .then(st => { MEDIA.cam = st; st.getVideoTracks()[0].addEventListener('ended', () => stopStream('cam')); toast('📷', 'Câmara ligada. Só tu vês este vídeo.'); mediaChanged(); })
+    .catch(e => mediaError(e, 'câmara'));
+}
+function camFlip() {
+  MEDIA.facing = MEDIA.facing === 'user' ? 'environment' : 'user';
+  if (!MEDIA.cam) return;
+  MEDIA.cam.getTracks().forEach(t => t.stop()); MEDIA.cam = null;
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: MEDIA.facing }, audio: false })
+    .then(st => { MEDIA.cam = st; mediaChanged(); })
+    .catch(e => { mediaError(e, 'câmara'); mediaChanged(); });
+}
+function screenToggle() {
+  if (MEDIA.screen) { stopStream('screen'); return; }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+    toast('⚠️', inClaude() ? 'Dentro do Claude não dá para partilhar o ecrã. Abre o LiveVerse no Cloudflare, no computador.' : 'Este dispositivo não permite partilhar o ecrã (os telemóveis normalmente não deixam). Usa a câmara ou o computador.', 7000);
+    return;
+  }
+  navigator.mediaDevices.getDisplayMedia({ video: { frameRate: { ideal: 30 } }, audio: true })
+    .then(st => { MEDIA.screen = st; st.getVideoTracks()[0].addEventListener('ended', () => stopStream('screen')); toast('🎮', 'A mostrar o ecrã do jogo na live.'); mediaChanged(); })
+    .catch(e => { if (e && e.name === 'NotAllowedError' && !inClaude()) return; mediaError(e, 'partilha de ecrã'); });
+}
+function stopStream(kind) {
+  const st = MEDIA[kind]; if (!st) return;
+  if (MEDIA.rec && MEDIA.rec._src && MEDIA.rec._src.includes(kind)) recStop();
+  st.getTracks().forEach(t => t.stop()); MEDIA[kind] = null;
+  mediaChanged();
+}
+function stopAllMedia() { if (MEDIA.rec) recStop(); ['cam', 'screen'].forEach(k => { if (MEDIA[k]) { MEDIA[k].getTracks().forEach(t => t.stop()); MEDIA[k] = null; } }); }
+function attachMedia() {
+  $$('video[data-stream]').forEach(v => {
+    const st = MEDIA[v.dataset.stream];
+    if (st && v.srcObject !== st) { v.srcObject = st; v.muted = true; v.play().catch(() => { }); }
+  });
+}
+function mediaChanged() {
+  if (S.live) { paintScreen(); paintMediaBar(); }
+  $$('[data-setupmedia]').forEach(el => el.outerHTML = setupMediaHTML());
+  attachMedia();
+}
+
+/* ---------- Gravação ---------- */
+function recToggle() { if (MEDIA.rec) recStop(); else recStart(); }
+function recStart() {
+  if (!window.MediaRecorder) { toast('⚠️', 'Este navegador não consegue gravar vídeo.'); return; }
+  const src = MEDIA.screen && MEDIA.cam ? 'screen+cam' : MEDIA.screen ? 'screen' : MEDIA.cam ? 'cam' : null;
+  if (!src) { toast('🎥', 'Liga a câmara ou mostra o jogo para poderes gravar.'); return; }
+  let stream;
+  if (src === 'screen+cam') stream = composeStream();
+  else stream = MEDIA[src];
+  const audio = MEDIA.screen ? MEDIA.screen.getAudioTracks() : [];
+  if (audio.length && src === 'screen+cam') audio.forEach(t => stream.addTrack(t));
+  const types = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm', 'video/mp4'];
+  const mimeType = types.find(t => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || '';
+  let rec;
+  try { rec = new MediaRecorder(stream, mimeType ? { mimeType } : undefined); } catch (e) { toast('⚠️', 'Não foi possível começar a gravar.'); return; }
+  rec._src = src; rec._type = mimeType || 'video/webm';
+  MEDIA.chunks = [];
+  rec.ondataavailable = ev => { if (ev.data && ev.data.size) MEDIA.chunks.push(ev.data); };
+  rec.onstop = () => {
+    if (MEDIA.compose) { MEDIA.compose.stop(); MEDIA.compose = null; }
+    const blob = new Blob(MEDIA.chunks, { type: rec._type.split(';')[0] });
+    if (MEDIA.lastUrl) URL.revokeObjectURL(MEDIA.lastUrl);
+    MEDIA.lastUrl = URL.createObjectURL(blob); MEDIA.lastExt = rec._type.includes('mp4') ? 'mp4' : 'webm';
+    const secs = Math.max(1, Math.round((Date.now() - MEDIA.recStart) / 1000));
+    S.clips.unshift({ id: 'c_' + uid(), title: `Gravação da live · ${hhmm(Date.now())}`, game: S.live ? S.live.game : 'chat', streamer: 'me', type: 'Gravação', emoji: '🎥', popularity: 50, likes: 0, comments: 0, onProfile: false, createdAt: Date.now(), liked: false, commentsList: [], secs: Math.min(59, secs), media: { kind: 'video', url: MEDIA.lastUrl } });
+    save(); toast('🎥', 'Gravação guardada nos teus clips. Podes transferi-la no botão «Transferir».', 6000);
+    paintMediaBar();
+  };
+  rec.start(1000); MEDIA.rec = rec; MEDIA.recStart = Date.now();
+  clearInterval(MEDIA.recTimer); MEDIA.recTimer = setInterval(() => $$('[data-rec]').forEach(n => n.textContent = durLabel(Date.now() - MEDIA.recStart)), 500);
+  paintMediaBar();
+}
+function recStop() { const r = MEDIA.rec; if (!r) return; MEDIA.rec = null; clearInterval(MEDIA.recTimer); try { r.stop(); } catch (e) { } paintMediaBar(); }
+function composeStream() {
+  // junta o ecrã do jogo com a câmara no canto, como na live
+  const c = document.createElement('canvas'); c.width = 1280; c.height = S.prefs.orient === 'v' ? 2276 : 720;
+  if (S.prefs.orient === 'v') { c.width = 720; c.height = 1280; }
+  const ctx = c.getContext('2d');
+  const vs = document.createElement('video'), vc = document.createElement('video');
+  [vs, vc].forEach(v => { v.muted = true; v.playsInline = true; });
+  vs.srcObject = MEDIA.screen; vc.srcObject = MEDIA.cam; vs.play().catch(() => { }); vc.play().catch(() => { });
+  let on = true;
+  const draw = () => {
+    if (!on) return;
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, c.width, c.height);
+    const fit = (v, x, y, w, h, cover) => { const vw = v.videoWidth || 16, vh = v.videoHeight || 9; const s = cover ? Math.max(w / vw, h / vh) : Math.min(w / vw, h / vh); const dw = vw * s, dh = vh * s; ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip(); ctx.drawImage(v, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh); ctx.restore(); };
+    fit(vs, 0, 0, c.width, c.height, false);
+    const cw = Math.round(c.width * (S.prefs.orient === 'v' ? .36 : .22)), ch = Math.round(cw * .75);
+    ctx.save(); ctx.translate(24 + cw, 24); ctx.scale(-1, 1); fit(vc, 0, 0, cw, ch, true); ctx.restore();
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 4; ctx.strokeRect(24, 24, cw, ch);
+    requestAnimationFrame(draw);
+  };
+  draw();
+  const out = c.captureStream(30);
+  MEDIA.compose = { stop() { on = false; vs.srcObject = null; vc.srcObject = null; } };
+  return out;
+}
+
+/* ---------- Formato da live ---------- */
+function setOrient(o) {
+  S.prefs.orient = o; save();
+  if (o === 'v') STUDIO.overlay = true;
+  const sc = $('#screen'); if (sc) sc.classList.toggle('vertical', o === 'v');
+  const st = $('.studio'); if (st) st.classList.toggle('is-vertical', o === 'v');
+  $$('[data-act="orient"]').forEach(b => b.classList.toggle('on', b.dataset.o === o));
+  paintScreen(); attachMedia();
+}
+
+/* ---------- Barra de controlo da live (fora do ecrã) ---------- */
+function mediaButtonsHTML() {
+  return `<button class="btn btn-sm ${MEDIA.cam ? 'btn-primary' : ''}" data-act="cam-toggle">${icon('camera')} ${MEDIA.cam ? 'Desligar câmara' : 'Câmara'}</button>
+    ${MEDIA.cam ? `<button class="btn btn-sm" data-act="cam-flip" title="Trocar câmara" aria-label="Trocar câmara">${icon('flip')}</button>` : ''}
+    <button class="btn btn-sm ${MEDIA.screen ? 'btn-primary' : ''}" data-act="screen-toggle">${icon('monitor')} ${MEDIA.screen ? 'Parar ecrã' : 'Mostrar jogo'}</button>`;
+}
+function orientHTML() {
+  const o = S.prefs.orient || 'h';
+  return `<div class="seg" role="group" aria-label="Formato da live"><button class="${o === 'h' ? 'on' : ''}" data-act="orient" data-o="h">${icon('horizontal')} Horizontal</button><button class="${o === 'v' ? 'on' : ''}" data-act="orient" data-o="v">${icon('vertical')} Vertical</button></div>`;
+}
+function paintMediaBar() { $$('.theater-bar').forEach(el => el.outerHTML = theaterBarHTML()); }
+function setupMediaHTML() {
+  return `<div class="field" data-setupmedia><span>Câmara e jogo</span><div class="row">${mediaButtonsHTML()}${orientHTML()}</div>
+    ${MEDIA.cam || MEDIA.screen ? `<div class="setup-preview ${S.prefs.orient === 'v' ? 'vertical' : ''}">${MEDIA.screen ? '<video data-stream="screen" class="live-video fit-contain" autoplay muted playsinline></video>' : ''}${MEDIA.cam ? `<video data-stream="cam" class="${MEDIA.screen ? 'pv-cam' : 'live-video'} mirror" autoplay muted playsinline></video>` : ''}</div>` : ''}
+    <span class="tiny muted" style="text-transform:none;letter-spacing:0;font-weight:500">${inClaude() ? 'A câmara e o ecrã funcionam no site do Cloudflare ou ao abrir o ficheiro no Chrome; dentro do Claude o navegador bloqueia-os.' : 'O vídeo fica só no teu navegador. Partilhar o ecrã funciona no computador.'}</span></div>`;
+}
+
+const MEDIA_ACT = {
+  'cam-toggle': () => camToggle(),
+  'cam-flip': () => camFlip(),
+  'screen-toggle': () => screenToggle(),
+  'rec-toggle': () => recToggle(),
+  'orient': b => setOrient(b.dataset.o),
+  'reacts-toggle': () => { STUDIO.reacts = !STUDIO.reacts; paintMediaBar(); },
+};
 
 /* =====================================================================
    Janelas (perfil, editor de eventos, detalhes), ações e ciclo principal
@@ -4831,6 +5050,7 @@ function migrate(s) {
   s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {};
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
+  if (!s.prefs.orient) s.prefs.orient = 'h';
   if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;
@@ -4848,7 +5068,7 @@ function init() {
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT);
 Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS);
 init();
 

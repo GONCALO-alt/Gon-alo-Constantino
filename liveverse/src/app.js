@@ -536,6 +536,7 @@ function migrate(s) {
   s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {};
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
+  if (!s.prefs.orient) s.prefs.orient = 'h';
   if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;
@@ -553,6 +554,6 @@ function init() {
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT);
 Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS);
 init();

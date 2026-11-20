@@ -48,37 +48,39 @@ function paintScenes() { $$('[data-scenes]').forEach(el => el.outerHTML = scenes
 
 /* =========================== ECRÃ =========================== */
 function camHTML(big = false) {
-  if (!S.prefs.cam && !big) return '';
+  if (MEDIA.cam) return `<div class="cam live-cam ${big ? 'cam-big' : ''}" aria-hidden="true"><video data-stream="cam" class="mirror" autoplay muted playsinline></video></div>`;
+  if (!big) return '';
   const img = S.prefs.camImg || S.me.avatar;
   const face = img ? `<img src="${img}" alt="">` : `<span>${esc((S.me.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase())}</span>`;
-  return `<div class="cam ${big ? 'cam-big' : ''}" style="--h:${S.me.hue || 270}" aria-hidden="true"><div class="cam-face">${face}</div><span class="cam-emote"></span><span class="cam-name">@${esc(S.me.handle)}</span></div>`;
+  return `<div class="cam ${big ? 'cam-big' : ''}" style="--h:${S.me.hue || 270}" aria-hidden="true"><div class="cam-face">${face}</div><span class="cam-name">@${esc(S.me.handle)}</span></div>`;
 }
 function screenInner(L) {
   const G = GAMES[L.game] || GAMES.chat, scene = L.scene || 'game';
   let bg;
-  if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
+  const main = MEDIA.screen ? 'screen' : MEDIA.cam ? 'cam' : null;
+  if (scene === 'game' && main) bg = `<video data-stream="${main}" class="live-video ${main === 'cam' ? 'mirror' : 'fit-contain'}" autoplay muted playsinline></video>`;
+  else if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
     : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Ecrã de jogo simulado</small></div></div>`;
   else {
     const card = {
       starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
-      brb: `<small>Pausa</small><div class="scene-big">VOLTO JÁ ☕</div><div class="scene-cd num" data-sceneel>00:00</div><span class="scene-sub">Não saiam daí!</span>`,
-      chat: `${camHTML(true)}<div class="scene-big small">CONVERSA COM O CHAT 💬</div><span class="scene-sub">Pergunta o que quiseres</span>`,
+      brb: `<small>Pausa</small><div class="scene-big">VOLTO JÁ</div><div class="scene-cd num" data-sceneel>00:00</div><span class="scene-sub">Não saiam daí!</span>`,
+      chat: `${camHTML(true)}<div class="scene-big small">CONVERSA COM O CHAT</div><span class="scene-sub">Pergunta o que quiseres</span>`,
       followers: folSceneHTML(),
-      ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM 💜</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
+      ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
     }[scene];
     bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
-    <div class="hud"><span class="sim-tag" style="margin-left:auto">Fictício</span></div>
-    <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span><span class="tw-vw">💜 <b class="num" data-anim="followers" data-v="${Math.floor(S.me.followers)}">${dots(Math.floor(S.me.followers))}</b></span></div>
+    <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span></div>
     ${trainHTML()}
-    ${scene !== 'chat' && scene !== 'ending' ? camHTML() : ''}
+    ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : scene !== 'game' && scene !== 'chat' && MEDIA.cam ? camHTML() : ''}
     <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
     ${S.prefs.goalOnScreen ? goalBarHTML() : ''}
     <div class="alert-box" id="alertBox" aria-live="polite"></div>
     <div class="fx" id="fx"></div>`;
 }
-function paintScreen() { const sc = $('#screen'); if (sc && S.live) { sc.innerHTML = screenInner(S.live); tickScene(S.live); } }
+function paintScreen() { const sc = $('#screen'); if (sc && S.live) { sc.innerHTML = screenInner(S.live); sc.classList.toggle('vertical', S.prefs.orient === 'v'); tickScene(S.live); attachMedia(); } }
 
 /* Avatar: mexe-se quando falas e faz caras conforme o momento */
 let talkTimer = null;
@@ -241,11 +243,18 @@ function crowd(intensity = .6) {
 function theaterBarHTML() {
   const cur = S.live?.scene || 'game';
   return `<div class="theater-bar">
-    <div class="tb-reacts">${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}</div>
+    <div class="tb-group">${mediaButtonsHTML()}
+      <button class="btn btn-sm ${MEDIA.rec ? 'btn-live' : ''}" data-act="rec-toggle">${icon('rec')} ${MEDIA.rec ? 'Parar <span class="num" data-rec>00:00</span>' : 'Gravar'}</button>
+      ${MEDIA.lastUrl && !MEDIA.rec ? `<a class="btn btn-sm" href="${MEDIA.lastUrl}" download="liveverse-gravacao.${MEDIA.lastExt || 'webm'}">${icon('download')} Transferir</a>` : ''}</div>
+    ${orientHTML()}
     <span class="spacer"></span>
-    <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelect" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${cur === k ? 'selected' : ''}>${e} ${l}</option>`).join('')}</select></label>
-    <button class="btn btn-sm ${MIC.on ? 'btn-live' : ''}" data-act="mic-toggle">${icon('mic')} ${MIC.on ? 'A ouvir' : 'Microfone'}</button>
-    <button class="btn btn-sm tb-full" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
+    <div class="tb-group">
+      <label class="tb-scene">${icon('layers')}<select class="input" data-scene-select id="sceneSelect" aria-label="Cena">${SCENES.map(([k, e, l]) => `<option value="${k}" ${cur === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      <button class="btn btn-sm ${MIC.on ? 'btn-live' : ''}" data-act="mic-toggle">${icon('mic')} ${MIC.on ? 'A ouvir' : 'Microfone'}</button>
+      <button class="btn btn-sm ${STUDIO.reacts ? 'btn-primary' : ''}" data-act="reacts-toggle">${icon('bolt')} Momentos</button>
+      <button class="btn btn-sm tb-full" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do ecrã inteiro' : 'Ecrã inteiro'}</button>
+    </div>
+    <div class="tb-reacts" ${STUDIO.reacts ? '' : 'hidden'}>${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}">${esc(l)}</button>`).join('')}</div>
   </div>`;
 }
 function setTheater(on) {
@@ -338,7 +347,7 @@ function tweenNum(el, to) {
     if (now - (el._lastPop || 0) > 1300) {
       const host = el.parentElement; const pop = document.createElement('span');
       pop.className = 'num-pop' + (el.dataset.anim === 'followers' ? ' fol' : '');
-      pop.textContent = '+' + dots(el._acc) + (el.dataset.anim === 'followers' ? ' 💜' : '');
+      pop.textContent = '+' + dots(el._acc);
       host.appendChild(pop); setTimeout(() => pop.remove(), 1400);
       el._acc = 0; el._lastPop = now;
     }
@@ -361,7 +370,7 @@ function liveCounters(L) {
     L.recentFol = L.recentFol || [];
     const names = Array.from({ length: Math.min(n, 3) }, () => fakeUser());
     L.recentFol.unshift(...names); L.recentFol = L.recentFol.slice(0, 8);
-    if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `💜 ${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
+    if (now - (L.lastFolMsg || 0) > 5000) { L.lastFolMsg = now; pushChat({ sys: true, text: `${names[0]}${n > 1 ? ` e mais ${dots(n - 1)}` : ''} ${n > 1 ? 'começaram' : 'começou'} a seguir-te!` }); }
     const goal = FOL_GOALS.filter(g => g <= f).pop();
     if (goal && goal > (S.me.folGoalHit || 0)) {
       S.me.folGoalHit = goal;

@@ -7,7 +7,7 @@ const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 1000
 const TL_ICON = { scene: '🎬', train: '🚂', surprise: '🎲', mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
-const STUDIO = { overlay: window.innerWidth < 760, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
+const STUDIO = { overlay: window.innerWidth < 760, reacts: false, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
 
 function fakeUser() { if (S && S.regulars && S.regulars.length && Math.random() < .22) return pick(S.regulars).u; return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
 function fill(t, ctx) {
@@ -51,6 +51,7 @@ function endLive() {
   const L = S.live; if (!L) return;
   clearInterval(liveTimer); liveTimer = null;
   immersiveEnd(L); if (STUDIO.theater) setTheater(false);
+  if (MEDIA.rec) recStop();
   const now = Date.now();
   addTimeline('end', 'Live terminada', '⏹️');
   const rec = {
@@ -315,13 +316,13 @@ function fxBurst(emoji, text) {
   const fx = $('#fx'); if (!fx || !STUDIO.fx) return;
   const flash = document.createElement('div'); flash.className = 'flash';
   const burst = document.createElement('div'); burst.className = 'burst';
-  burst.innerHTML = `<div class="e">${emoji}</div><div class="t">${esc(text)}</div>`;
+  burst.innerHTML = `<div class="t">${esc(text)}</div>`;
   fx.querySelectorAll('.burst').forEach(n => n.remove());
   fx.append(flash, burst);
-  particles([emoji, '✨', '💜', '🔥'], 14);
   setTimeout(() => { flash.remove(); burst.remove(); }, 2300);
 }
 function particles(list, n) {
+  return; // sem emojis a voar no ecrã
   const fx = $('#fx'); if (!fx) return;
   for (let i = 0; i < n; i++) {
     const p = document.createElement('span'); p.className = 'particle'; p.textContent = pick(list);
@@ -349,12 +350,11 @@ function viewStudio() {
     </div>
   </div>
   <div id="endConfirm"></div>
-  <div class="studio ${STUDIO.theater ? 'theater' : ''}">
+  <div class="studio ${STUDIO.theater ? 'theater' : ''} ${S.prefs.orient === 'v' ? 'is-vertical' : ''}">
     <div class="studio-main">
-      <div class="screen" id="screen" style="--gc:${G.color}">${screenInner(L)}
+      <div class="screen ${S.prefs.orient === 'v' ? 'vertical' : ''}" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
       ${theaterBarHTML()}
-      ${studioInfoHTML()}
       <div data-surprise>${surpriseHTML()}</div>
       <div class="controls-panel" id="controlsPanel" ${open ? '' : 'hidden'}>
       ${scenesHTML()}
@@ -401,9 +401,8 @@ function viewStudio() {
       </div>
     </div>
     <aside class="studio-chat" aria-label="Chat da live">
-      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num">👀 <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
+      <section class="card chat"><div class="chat-head"><strong>Chat da live</strong>${SIM('fictício')}<span class="spacer"></span><span class="small muted num chat-vw">${icon('person')} <span data-live="viewers">${fmt(L.viewers)}</span></span></div>
         <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
-        <div class="drop" data-goalbanner>${goalBannerHTML()}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
         <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
@@ -412,7 +411,7 @@ function viewStudio() {
     </aside>
   </div>`;
 }
-function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); drawSpark(); }
+function afterStudioRender() { $$('[data-chatlist]').forEach(l => l.scrollTop = l.scrollHeight); drawSpark(); attachMedia(); }
 function pollBoxHTML() {
   const P = S.live?.poll;
   if (P && !P.done) {
@@ -453,6 +452,7 @@ function studioSetup() {
     <form data-form="go-live" class="stack">
       ${mineEvents.length ? `<label class="field"><span>A partir de um evento</span><select class="input" name="eventId" id="glEvent" data-setup="eventId"><option value="">Live sem evento</option>${mineEvents.map(e => `<option value="${e.id}" ${st.eventId === e.id ? 'selected' : ''}>${esc(e.title)} · ${whenLabel(e.start)}</option>`).join('')}</select></label>` : ''}
       <label class="field"><span>Título</span><input class="input" name="title" id="glTitle" data-setup="title" maxlength="80" placeholder="Ex.: Ranked com o chat" value="${esc(st.title)}"></label>
+      ${setupMediaHTML()}
       <div class="grid-3">
         <label class="field"><span>Jogo</span><select class="input" name="game" id="glGame" data-setup="game">${Object.entries(GAMES).map(([k, g]) => `<option value="${k}" ${st.game === k ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select></label>
         <label class="field"><span>Modo</span><select class="input" name="mode" id="glMode" data-setup="mode">${Object.entries(MODES).map(([k, m]) => `<option value="${k}" ${st.mode === k ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label>
