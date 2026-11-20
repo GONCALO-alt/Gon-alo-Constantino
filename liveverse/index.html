@@ -849,6 +849,72 @@ button.poll-opt:hover { border-color: var(--accent); }
 .surprise-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1; }
 .surprise-body strong { font-family: var(--f-display); font-size: 19px; }
 
+/* ===================== Imersão ===================== */
+.scenes { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 10px; padding: 8px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.scenes-label { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 0 6px; }
+.scenes-label svg { width: 16px; height: 16px; }
+.scene-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--bg-2); font-weight: 700; font-size: 13px; transition: border-color .2s, background .2s; }
+.scene-btn:hover { border-color: var(--accent); }
+.scene-btn.on { background: color-mix(in oklab, var(--live) 22%, var(--bg-2)); border-color: var(--live); box-shadow: 0 0 0 2px color-mix(in oklab, var(--live) 25%, transparent); }
+.scene-wrap { position: absolute; inset: 0; display: grid; place-items: center; z-index: -1; text-align: center; }
+.scene-card { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #fff; }
+.scene-card small { font-size: 12px; letter-spacing: .25em; text-transform: uppercase; opacity: .7; }
+.scene-big { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 6.5vw, 70px); line-height: 1; letter-spacing: .02em; text-shadow: 0 0 40px var(--pink); }
+.scene-big.small { font-size: clamp(18px, 3.4vw, 34px); }
+.scene-cd { font-size: clamp(22px, 4vw, 40px); font-weight: 700; padding: 4px 16px; border-radius: 12px; background: rgb(0 0 0 / .35); border: 1px solid rgb(255 255 255 / .15); }
+.scene-sub { font-size: 14px; opacity: .8; }
+.scene-starting .scene-big { background: linear-gradient(90deg, #fff, #ffd2ec, #c9b6ff, #fff); background-size: 200%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3s linear infinite; }
+@keyframes shimmer { to { background-position: 200% 0; } }
+.scene-brb .scene-big { animation: float 3s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+.cam { position: absolute; right: 12px; bottom: 74px; width: clamp(74px, 17%, 150px); aspect-ratio: 1 / 1; border-radius: 22px; padding: 3px; background: linear-gradient(140deg, var(--pink), var(--purple), var(--blue)); box-shadow: 0 10px 30px -10px rgb(0 0 0 / .8); transition: transform .15s; animation: breathe 4s ease-in-out infinite; }
+.cam-face { width: 100%; height: 100%; border-radius: 19px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(140deg, hsl(var(--h) 85% 62%), hsl(calc(var(--h) + 50) 80% 45%)); font-family: var(--f-display); font-weight: 700; font-size: clamp(22px, 4vw, 48px); color: #fff; }
+.cam-face img { width: 100%; height: 100%; object-fit: cover; }
+.cam-name { position: absolute; left: 50%; bottom: -9px; transform: translateX(-50%); font-size: 10px; font-weight: 800; padding: 1px 7px; border-radius: 6px; background: rgb(5 4 10 / .8); color: #fff; white-space: nowrap; }
+.cam-emote { position: absolute; top: -12px; right: -10px; font-size: clamp(22px, 3.5vw, 34px); opacity: 0; transform: scale(.3); transition: opacity .2s, transform .25s cubic-bezier(.2, 1.6, .4, 1); filter: drop-shadow(0 4px 8px rgb(0 0 0 / .6)); }
+.cam-emote.show { opacity: 1; transform: scale(1); }
+.cam.talk { animation: talk .22s ease-in-out infinite alternate; box-shadow: 0 0 0 3px rgb(255 255 255 / .4), 0 0 34px -2px var(--pink); }
+@keyframes talk { from { transform: translateY(0) scale(1); } to { transform: translateY(-4px) scale(1.04); } }
+@keyframes breathe { 50% { transform: scale(1.015); } }
+.cam.cam-big { position: relative; right: auto; bottom: auto; width: clamp(110px, 26%, 220px); margin-bottom: 10px; }
+.screen-chat { z-index: 2; }
+.train { position: absolute; left: 12px; top: 50px; width: min(48%, 300px); display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 12px; background: linear-gradient(90deg, color-mix(in oklab, var(--pink) 55%, rgb(5 4 10 / .7)), rgb(5 4 10 / .7)); border: 1px solid rgb(255 255 255 / .2); color: #fff; font-size: 11px; box-shadow: 0 0 24px -4px var(--pink); animation: rise .3s; z-index: 2; }
+.train b { white-space: nowrap; font-family: var(--f-display); letter-spacing: .04em; }
+.train .goal-bar { flex: 1; height: 7px; background: rgb(255 255 255 / .2); }
+.train .num { font-size: 11px; }
+@media (max-width: 560px) { .train { top: 40px; width: 62%; padding: 4px 8px; font-size: 10px; } .cam { bottom: 50px; width: 20%; border-radius: 14px; } .cam-face { border-radius: 11px; } }
+.cbadge { display: inline-block; font-size: 10.5px; font-weight: 800; margin-right: 3px; vertical-align: 1px; }
+.cbadge.sub { padding: 0 4px; border-radius: 5px; background: color-mix(in oklab, var(--warn) 18%, transparent); color: var(--warn); }
+.imm-panel { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.raid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px; }
+.theater-bar { display: none; }
+body.theater-on { overflow: hidden; }
+.studio.theater { position: fixed; inset: 0; z-index: 75; background: #05040a; margin: 0; align-items: stretch;
+  padding: max(10px, env(safe-area-inset-top, 0px)) max(10px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px));
+  grid-template-columns: minmax(0, 1fr) 360px; gap: 10px; }
+.studio.theater .studio-main { display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+.studio.theater .studio-main > :not(.screen):not(.scenes):not(.theater-bar):not([data-surprise]) { display: none; }
+.studio.theater .screen { width: min(100%, calc((100vh - 150px) * 16 / 9)); margin: 0 auto; position: relative; top: auto; flex: none; }
+.studio.theater .scenes { margin-top: 0; }
+.studio.theater .surprise { margin-top: 0; }
+.studio.theater .theater-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 8px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.tb-react { width: 44px; height: 40px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--bg-2); font-size: 20px; transition: transform .12s, border-color .2s; }
+.tb-react:hover { border-color: var(--accent); transform: translateY(-2px); }
+.tb-react:active { transform: scale(.9); }
+.studio.theater .studio-chat { position: static; height: auto; min-height: 0; }
+@media (max-width: 760px) {
+  .studio.theater { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); overflow: hidden; }
+  .studio.theater .studio-main { overflow: visible; }
+  .studio.theater .screen { width: 100%; }
+  .studio.theater .studio-chat { order: 2; height: auto; min-height: 220px; }
+  .studio.theater .studio-main > * { order: 0; }
+}
+.alert-box { top: 92px; }
+.cam { bottom: 86px; }
+body.theater-on .app { z-index: 80; }
+body.theater-on .topbar, body.theater-on .bottom-nav, body.theater-on .simbar { display: none; }
+@media (max-width: 560px) { .alert-box { top: 72px; } .cam { bottom: 58px; } }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topbar" id="topBar"></header>
@@ -1852,12 +1918,12 @@ function viewNotifs() {
    ===================================================================== */
 const LIVE_MS = 650;
 const MILESTONES = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 75000, 100000, 250000, 500000, 1000000];
-const TL_ICON = { surprise: '🎲', mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
+const TL_ICON = { scene: '🎬', train: '🚂', surprise: '🎲', mod: '🔨', start: '🔴', milestone: '📈', gift: '🎁', reaction: '⚡', poll_start: '📊', poll_end: '✅', viral: '🌪️', raid: '🛡️', achievement: '🏆', end: '⏹️', follow: '💜' };
 let liveTimer = null;
 let watchTimer = null;
 const STUDIO = { overlay: window.innerWidth < 760, showMore: false, custom: '', fx: true, autoClip: false, media: null, setup: null };
 
-function fakeUser() { return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
+function fakeUser() { if (S && S.regulars && S.regulars.length && Math.random() < .22) return pick(S.regulars).u; return pick(NAME_A) + pick(NAME_B) + (Math.random() < .3 ? randi(1, 99) : ''); }
 function fill(t, ctx) {
   return t.replace('{game}', ctx.gameName).replace('{viewers}', fmt(ctx.viewers).toUpperCase()).replace('{goal}', fmt(ctx.goal)).replace('{G}', ctx.gameName);
 }
@@ -1872,6 +1938,7 @@ function startLive({ title, game, mode, level, eventId }) {
     id: 'live_' + uid(), title: title || 'Live sem título', game, mode, level, eventId: eventId || null,
     start: now, viewers: Math.max(3, Math.round(L.max * .006)), peak: 0, boost: 0, engage: 1, likes: 0, followers: 0, gifts: 0,
     reactions: 0, msgs: 0, milestones: [], timeline: [], clips: [], poll: null, raided: false, chat: [], viralCount: 0,
+    scene: 'starting', sceneAt: now, sceneUntil: now + 20000,
   };
   addTimeline('start', 'Live começou: ' + S.live.title, '🔴');
   pushChat({ sys: true, text: `🔴 Estás em direto em ${GAMES[game].name} · Modo ${MODES[mode].name}. Audiência simulada.` });
@@ -1896,6 +1963,7 @@ function runLive() { clearInterval(liveTimer); if (S.live) liveTimer = setInterv
 function endLive() {
   const L = S.live; if (!L) return;
   clearInterval(liveTimer); liveTimer = null;
+  immersiveEnd(L); if (STUDIO.theater) setTheater(false);
   const now = Date.now();
   addTimeline('end', 'Live terminada', '⏹️');
   const rec = {
@@ -1918,7 +1986,7 @@ function liveTick() {
   const L = S.live; if (!L) return;
   const now = Date.now(), e = (now - L.start) / 1000;
   const lvl = LEVELS[L.level] || LEVELS.media, M = MODES[L.mode] || MODES.casual;
-  const base = lvl.max * (0.05 + 0.68 * (1 - Math.exp(-e / (70 + lvl.max / 4000)))) * Math.min(1.15, M.hype * .85);
+  const base = lvl.max * (0.05 + 0.68 * (1 - Math.exp(-e / (70 + lvl.max / 4000)))) * Math.min(1.15, M.hype * .85) * sceneFactor(L);
   L.boost *= 0.985;
   const target = Math.min(lvl.max * 1.12, base + L.boost) * rand(.985, 1.015);
   L.viewers = Math.max(1, L.viewers + (target - L.viewers) * 0.07);
@@ -1931,6 +1999,7 @@ function liveTick() {
       addTimeline('milestone', `Marco de audiência: ${dots(m)} espectadores virtuais`, '📈');
       pushChat({ sys: true, text: `📈 ${dots(m)} espectadores virtuais! O chat está a encher.` });
       if (m >= 1000) toast('📈', `${dots(m)} espectadores virtuais!`);
+      if (m >= 1000) crowd(.7);
       if (m >= 500) { sound('milestone'); alertShow('📈', `${dots(m)} espectadores!`, 'marco de audiência', 'milestone'); }
       if (m >= lvl.max) { notify('🎯', `Meta atingida: ${dots(m)} espectadores virtuais em «${L.title}»!`); fxBurst('🎯', 'META ATINGIDA!'); }
       checkAch();
@@ -1945,9 +2014,9 @@ function liveTick() {
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
   while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? pick(EMOTES) : ambientLine(L) });
   maybeTroll(L);
-  surpriseTick(L); surpriseCheck(L);
+  surpriseTick(L); surpriseCheck(L); immersiveTick(L);
   // presentes
-  if (Math.random() < 0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage) giftEvent();
+  if (Math.random() < (0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage) * (L.train ? 2.5 : 1) * (L.scene === 'starting' ? .3 : 1)) giftEvent();
   // raid espontânea
   if (!L.raided && e > 120 && Math.random() < 0.0025) raid();
   // sondagem
@@ -1961,6 +2030,7 @@ function liveTick() {
 }
 function ambientLine(L) {
   const ctx = liveCtx(L);
+  const sl = sceneLine(L); if (sl) return sl;
   const pools = [L.game === 'gta6' && Math.random() < .35 ? GTA6_AMBIENT : AMBIENT, MODE_AMBIENT[L.mode] || []];
   if (L.lastMood && Date.now() - L.lastMoodAt < 8000) pools.push(moodPool(L.game, L.lastMood));
   const pool = pools[pools.length > 2 && Math.random() < .5 ? 2 : Math.random() < .2 && pools[1].length ? 1 : 0];
@@ -1979,7 +2049,9 @@ function giftEvent(fromUser) {
   L.gifts += val;
   const u = fromUser || fakeUser();
   pushChat({ gift: true, text: `${g.icon} ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
-  goalAdd(val);
+  goalAdd(val); hypeAdd(val);
+  if (val >= 200) giftMessage(u, g, val);
+  if (val >= 500) crowd(.5);
   if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); sound(val >= 200 ? 'bigGift' : 'gift'); }
   if (val >= 200) { addTimeline('gift', `Presente virtual: ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} ${g.icon}`, '🎁'); if (STUDIO.fx) particles([g.icon], 8); }
   if (L.gifts >= 10000) checkAch();
@@ -1988,7 +2060,7 @@ function giftEvent(fromUser) {
 /* ---------- Chat ---------- */
 function pushChat(m) {
   const L = S.live; if (!L) return;
-  m.id = uid(); m.color = m.color || pick(NAME_COLORS); m.t = Date.now();
+  m.id = uid(); m.color = m.color || regColor(m.user) || pick(NAME_COLORS); m.t = Date.now();
   if (!modFilter(m)) return;
   L.chat.push(m); if (L.chat.length > 80) L.chat.shift();
   L.msgs++;
@@ -2011,7 +2083,7 @@ function pushChat(m) {
 }
 function overlayMsgHTML(m) {
   if (m.sys || m.gift) return `<div class="ov-msg ov-sys" data-mid="${m.id}">${esc(m.text)}</div>`;
-  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}"><b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
+  return `<div class="ov-msg" data-mid="${m.id}" data-user="${esc(m.user)}">${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b> ${esc(m.text)}</div>`;
 }
 function chatMsgHTML(m) {
   if (m.removed) return `<div class="msg removed">${esc(m.removed)}</div>`;
@@ -2019,7 +2091,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(m.text)}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub ? '<span title="Subscritor fictício">⭐</span> ' : ''}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.sub && !regular(m.user) ? '<span title="Subscritor fictício">⭐</span> ' : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${esc(m.text)}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -2086,7 +2158,8 @@ function react(itemId, customText) {
   }
   const count = Math.round(6 + item.hype * 10 + Math.log10(L.viewers + 1));
   for (let i = 0; i < count; i++) setTimeout(() => { if (S.live === L) pushChat({ user: fakeUser(), text: fill(pick(lines), liveCtx(L)), hype: true }); }, i * rand(90, 260));
-  L.lastMood = mood; L.lastMoodAt = Date.now();
+  L.lastMood = mood; L.lastMoodAt = Date.now(); avatarEmote(mood);
+  if (item.hype >= .6) { giftRain(L, Math.round(item.hype * 5)); crowd(item.hype); }
   // 2. animação
   if (STUDIO.fx) { fxBurst(item.emoji, item.fx); if (mood === 'scary') { const sc = $('#screen'); sc?.classList.remove('shake'); void sc?.offsetWidth; sc?.classList.add('shake'); } }
   // 3. interação
@@ -2145,7 +2218,7 @@ function raid() {
   for (let i = 0; i < 8; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(['RAID DE @' + from.handle + ' 🚀', 'viemos da live da ' + from.name.split(' ')[0], 'BOAS DO RAID', '🛡️🛡️🛡️', 'que live é esta?! 🔥']), hype: true }), i * 180);
   if (STUDIO.fx) fxBurst('🛡️', 'RAID!');
   toast('🛡️', `Raid de ${from.name}!`);
-  sound('raid'); alertShow('🛡️', `Raid de ${from.name}`, `${dots(n)} espectadores virtuais`, 'raid');
+  sound('raid'); crowd(.8); alertShow('🛡️', `Raid de ${from.name}`, `${dots(n)} espectadores virtuais`, 'raid');
   unlock('raid'); updateLiveBits();
 }
 
@@ -2173,19 +2246,14 @@ function particles(list, n) {
 function viewStudio() {
   if (!S.live) return studioSetup();
   const L = S.live, G = GAMES[L.game] || GAMES.chat, lvl = LEVELS[L.level] || LEVELS.media;
-  return `<div class="page-head"><div><h1>Estúdio de live</h1><p>Simulação: os espectadores, o chat e os presentes são fictícios.</p></div><span class="spacer"></span><button class="btn" data-act="announce-live">${icon('share')} Anunciar no feed</button><button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar live</button></div>
+  return `<div class="page-head"><div><h1>Estúdio de live</h1><p>Simulação: os espectadores, o chat e os presentes são fictícios.</p></div><span class="spacer"></span><button class="btn" data-act="theater">${icon(STUDIO.theater ? 'shrink' : 'expand')} ${STUDIO.theater ? 'Sair do modo teatro' : 'Modo teatro'}</button><button class="btn" data-act="announce-live">${icon('share')} Anunciar no feed</button><button class="btn btn-danger" data-act="end-live-ask">${icon('close')} Terminar live</button></div>
   <div id="endConfirm"></div>
-  <div class="studio">
+  <div class="studio ${STUDIO.theater ? 'theater' : ''}">
     <div class="studio-main">
-      <div class="screen" id="screen" style="--gc:${G.color}">
-        ${STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`) : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(G.glyph.length > 3 ? G.glyph : G.name.toUpperCase())}</div><small>Ecrã de jogo simulado</small></div></div>`}
-        <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass">👀 <span class="num" data-live="viewers">${fmt(L.viewers)}</span></span><span class="glass num" data-live="time">${durLabel(Date.now() - L.start)}</span><span class="glass">MODO ${esc(MODES[L.mode].name.toUpperCase())}</span><span class="sim-tag" style="margin-left:auto">Audiência fictícia</span></div>
-        <div class="hud-bottom"><div class="hud-title">${gicon(L.game, 26)} <strong>${esc(L.title)}</strong><span class="tiny muted">${esc(G.name)} · @${esc(S.me.handle)}</span></div></div>
-        <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
-        ${goalBarHTML()}
-        <div class="alert-box" id="alertBox" aria-live="polite"></div>
-        <div class="fx" id="fx"></div>
+      <div class="screen" id="screen" style="--gc:${G.color}">${screenInner(L)}
       </div>
+      ${scenesHTML()}
+      ${theaterBarHTML()}
       <div class="row" style="margin-top:10px">
         <label class="btn btn-sm upload">${icon('image')} Usar a minha media no ecrã<input type="file" accept="video/*,image/*" data-file="studio-media" id="studioMedia"></label>
         ${STUDIO.media ? `<button class="btn btn-sm btn-ghost" data-act="studio-media-clear">Voltar ao ecrã simulado</button>` : ''}
@@ -2208,7 +2276,7 @@ function viewStudio() {
       <div class="goal-row"><span class="small">Meta: <b>${dots(lvl.max)}</b> espectadores virtuais</span><div class="goal-bar"><i data-live="goal" style="width:${Math.min(100, L.peak / lvl.max * 100)}%"></i></div><b class="num small" data-live="goalpct">${Math.min(100, Math.round(L.peak / lvl.max * 100))}%</b></div>
 
       <div data-surprise>${surpriseHTML()}</div>
-      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('mic', 'style="width:18px"')} Microfone e som<small>${soundPanelHTML()}</small></h3>${micPanelHTML()}</section>
+      <section class="card panel" style="margin-top:16px"><h3 class="panel-title">${icon('mic', 'style="width:18px"')} Microfone e som<small>${soundPanelHTML()}</small></h3>${micPanelHTML()}${immersivePanelHTML()}</section>
       <section class="card react-panel">
         <h2>O que acabou de acontecer?</h2>
         <p class="small muted" style="margin:4px 0 0">Escolhe o acontecimento no jogo. A audiência fictícia de ${esc(G.name)} reage de acordo.</p>
@@ -2897,7 +2965,7 @@ function goalAdd(val) {
   paintGoal();
   if (G.progress >= G.target) {
     G.reached = (G.reached || 0) + 1;
-    sound('goal'); fxBurst('🎯', 'META ALCANÇADA!');
+    sound('goal'); crowd(.9); fxBurst('🎯', 'META ALCANÇADA!');
     addTimeline('gift', `Meta de presentes alcançada: ${G.title} (${dots(G.target)} moedas virtuais)`, '🎯', { hype: .8, reactLabel: 'Meta de presentes', clipTitle: 'Meta alcançada: ' + G.title });
     pushChat({ sys: true, text: `🎯 META DE PRESENTES ALCANÇADA: ${G.title}!` });
     const L = S.live;
@@ -2962,10 +3030,10 @@ const SURPRISES = [
 ];
 function boost(f) { const L = S.live; if (L) L.boost += (LEVELS[L.level] || LEVELS.media).max * f; }
 function follow(f) { const L = S.live; if (!L) return; const n = Math.round(L.viewers * f + 1); L.followers += n; S.me.followers += n; alertShow('💜', `+${dots(n)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }
-function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); sound('bigGift'); }
+function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); hypeAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); sound('bigGift'); }
 function chatBurst(lines) { const L = S.live; lines.forEach((t, i) => setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: t, hype: true }), 150 + i * 220)); }
 function surpriseTick(L) {
-  if (!S.prefs.randomMoments || L.surprise) return;
+  if (!S.prefs.randomMoments || L.surprise || ['starting', 'ending', 'brb'].includes(L.scene)) return;
   const e = (Date.now() - L.start) / 1000;
   L.nextSurprise = L.nextSurprise || L.start + rand(35000, 60000);
   if (e < 30 || Date.now() < L.nextSurprise) return;
@@ -3054,6 +3122,8 @@ function micError(code) {
 }
 function heard(raw) {
   const text = String(raw || '').trim(); if (!text) return;
+  if (MIC.api === 'web' && Date.now() < (MIC.ignoreUntil || 0) && !heard.typed) return;
+  avatarTalk();
   MIC.heard.unshift({ t: Date.now(), text }); MIC.heard = MIC.heard.slice(0, 6);
   paintMic();
   if (S.live) chatRespond(text);
@@ -3111,7 +3181,8 @@ function chatRespond(text) {
   L.engage = Math.min(3, L.engage + hype * .8); L.boost += (LEVELS[L.level] || LEVELS.media).max * hype * .02;
   if (rule && rule.fol) follow(rule.fol);
   if (rule && rule.gifts) setTimeout(() => S.live === L && giftEvent(), 1200);
-  if (rule && rule.mood) { L.lastMood = rule.mood; L.lastMoodAt = Date.now(); }
+  if (rule && rule.mood) { L.lastMood = rule.mood; L.lastMoodAt = Date.now(); avatarEmote(rule.mood); }
+  else if (question) avatarEmote('surprise');
   L.voice = (L.voice || 0) + 1;
 }
 
@@ -3130,7 +3201,7 @@ function micPanelHTML() {
   </div>`;
 }
 function paintMic() { $$('[data-micpanel]').forEach(el => el.outerHTML = micPanelHTML()); const b = $('#dockMic'); if (b) b.classList.toggle('on', MIC.on); }
-function paintMicLive() { const el = $('#micLive'); if (el) el.innerHTML = MIC.partial ? `<i>${esc(MIC.partial)}…</i>` : ''; }
+function paintMicLive() { if (MIC.partial) avatarTalk(); const el = $('#micLive'); if (el) el.innerHTML = MIC.partial ? `<i>${esc(MIC.partial)}…</i>` : ''; }
 
 function soundPanelHTML() {
   return `<div class="row sound-row" data-soundpanel>
@@ -3149,12 +3220,318 @@ const EXTRA_ACT = {
   'goal-reset': () => { S.prefs.giftGoal.progress = 0; save(); paintGoal(); },
 };
 const EXTRA_FORMS = {
-  say: f => { const t = f.t.value.trim(); if (!t) return; f.t.value = ''; heard(t); if (!S.live) toast('🎙️', 'Entra em direto para o chat reagir ao que dizes.'); },
+  say: f => { const t = f.t.value.trim(); if (!t) return; f.t.value = ''; heard.typed = true; heard(t); heard.typed = false; if (!S.live) toast('🎙️', 'Entra em direto para o chat reagir ao que dizes.'); },
   goal: f => { const G = S.prefs.giftGoal; const title = f.title.value.trim() || 'Meta de presentes'; const target = clamp(Math.round(+f.target.value || 0), 10, 10000000); const changed = title !== G.title || target !== G.target; G.title = title; G.target = target; if (changed && G.progress >= target) G.progress = 0; save(); paintGoal(); toast('🎯', 'Meta de presentes guardada'); },
 };
 function onExtraInput(t) {
   if (t.hasAttribute('data-vol')) { S.prefs.volume = +t.value; save(); return true; }
   if (t.dataset.studio === 'randomMoments') { S.prefs.randomMoments = t.checked; save(); return true; }
+  return false;
+}
+
+/* =====================================================================
+   Imersão: cenas (como no OBS), avatar que fala contigo, presentes lidos
+   em voz alta, hype train, espectadores habituais, som de multidão e
+   modo teatro. Tudo simulado.
+   ===================================================================== */
+Object.assign(IC, {
+  expand: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+  shrink: '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>',
+  layers: '<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>',
+});
+const defaultImmersive = () => ({ cam: true, tts: true, crowd: true, camImg: null });
+
+/* =========================== CENAS =========================== */
+const SCENES = [
+  ['starting', '⏳', 'A começar'], ['game', '🎮', 'Jogo'], ['chat', '💬', 'Conversa'], ['brb', '☕', 'Volto já'], ['ending', '👋', 'Fim'],
+];
+const SCENE_FACTOR = { starting: .35, game: 1, chat: .95, brb: .72, ending: .85 };
+const CHAT_QUESTIONS = ['de onde és?', 'qual é o teu jogo favorito?', 'tens animais de estimação?', 'quando é a próxima live?', 'qual foi o teu melhor momento de sempre?', 'o que comeste hoje? 😂', 'fazes live amanhã?', 'qual é o teu setup?', 'jogas com o chat um dia?', 'dás dicas para começar a fazer lives?', 'qual é a tua música favorita?', 'preferes Fortnite ou Minecraft?'];
+const SCENE_AMBIENT = {
+  starting: ['já começou?', 'cheguei cedo 😎', 'olá!!', 'estou à espera 👀', 'bora bora', 'primeiro!!', 'a música de espera é top 🎶', 'quanto falta?', 'hoje vai ser épico'],
+  brb: ['à espera... ⏳', 'quanto tempo?', '🍿🍿', 'volta depressa!', 'o chat toma conta da live 😂', 'ainda aqui 💜', 'AFK 😴', 'vou buscar um lanche também'],
+  chat: CHAT_QUESTIONS,
+  ending: ['NÃÃÃO já acabou?', 'obrigado pela live 💜', 'até amanhã!!', 'que live top', 'GG', 'próxima quando?', '👋👋', 'melhor live da semana'],
+};
+const sceneFactor = L => SCENE_FACTOR[L.scene || 'game'] || 1;
+function sceneLine(L) {
+  if (!L.scene || L.scene === 'game') return null;
+  const p = L.scene === 'chat' ? .4 : .6;
+  return Math.random() < p ? pick(SCENE_AMBIENT[L.scene]) : null;
+}
+function setScene(s, quiet) {
+  const L = S.live; if (!L || L.scene === s) return;
+  L.scene = s; L.sceneAt = Date.now();
+  if (s === 'starting') L.sceneUntil = Date.now() + 20000;
+  const name = (SCENES.find(x => x[0] === s) || [])[2];
+  if (!quiet) addTimeline('scene', 'Cena: ' + name, (SCENES.find(x => x[0] === s) || [])[1]);
+  const lines = { game: ['COMEÇOU!! 🔥', 'BORA', 'finalmente 😭', 'vamos a isso'], chat: ['conversa!! 💬', 'adoro estas partes', 'pergunta-me algo!'], brb: ['volta depressa!', 'ok à espera ⏳'], ending: ['NÃÃÃO 😭', 'obrigado pela live 💜'], starting: ['já começa!!'] }[s];
+  if (lines) chatBurst(lines);
+  if (s === 'game' && !quiet) crowd(.6);
+  paintScreen(); paintScenes(); save();
+}
+function scenesHTML() {
+  const cur = S.live?.scene || 'game';
+  return `<div class="scenes" data-scenes role="group" aria-label="Cenas da live"><span class="scenes-label">${icon('layers')} Cena</span>${SCENES.map(([k, e, l]) => `<button class="scene-btn ${cur === k ? 'on' : ''}" data-act="scene" data-s="${k}" aria-pressed="${cur === k}"><span>${e}</span>${l}</button>`).join('')}</div>`;
+}
+function paintScenes() { $$('[data-scenes]').forEach(el => el.outerHTML = scenesHTML()); }
+
+/* =========================== ECRÃ =========================== */
+function camHTML(big = false) {
+  if (!S.prefs.cam && !big) return '';
+  const img = S.prefs.camImg || S.me.avatar;
+  const face = img ? `<img src="${img}" alt="">` : `<span>${esc((S.me.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase())}</span>`;
+  return `<div class="cam ${big ? 'cam-big' : ''}" style="--h:${S.me.hue || 270}" aria-hidden="true"><div class="cam-face">${face}</div><span class="cam-emote"></span><span class="cam-name">@${esc(S.me.handle)}</span></div>`;
+}
+function screenInner(L) {
+  const G = GAMES[L.game] || GAMES.chat, scene = L.scene || 'game';
+  let bg;
+  if (scene === 'game') bg = STUDIO.media ? (STUDIO.media.kind === 'video' ? `<video src="${STUDIO.media.url}" autoplay muted loop playsinline></video>` : `<img class="media" src="${STUDIO.media.url}" alt="">`)
+    : `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(G.glyph.length > 3 ? G.glyph : G.name.toUpperCase())}</div><small>Ecrã de jogo simulado</small></div></div>`;
+  else {
+    const card = {
+      starting: `<small>A live vai começar</small><div class="scene-big">A COMEÇAR<br>EM BREVE</div><div class="scene-cd num" data-scenecd>00:20</div><span class="scene-sub">${esc(L.title)}</span>`,
+      brb: `<small>Pausa</small><div class="scene-big">VOLTO JÁ ☕</div><div class="scene-cd num" data-sceneel>00:00</div><span class="scene-sub">Não saiam daí!</span>`,
+      chat: `${camHTML(true)}<div class="scene-big small">CONVERSA COM O CHAT 💬</div><span class="scene-sub">Pergunta o que quiseres</span>`,
+      ending: `<small>Fim da live</small><div class="scene-big">OBRIGADO<br>POR VEREM 💜</div><span class="scene-sub">Até à próxima, @${esc(S.me.handle)}</span>`,
+    }[scene];
+    bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
+  }
+  return `${bg}
+    <div class="hud"><span class="pill-live">EM DIRETO</span><span class="glass">👀 <span class="num" data-live="viewers">${fmt(L.viewers)}</span></span><span class="glass num" data-live="time">${durLabel(Date.now() - L.start)}</span><span class="glass">MODO ${esc(MODES[L.mode].name.toUpperCase())}</span><span class="sim-tag" style="margin-left:auto">Audiência fictícia</span></div>
+    ${trainHTML()}
+    ${scene === 'game' ? `<div class="hud-bottom"><div class="hud-title">${gicon(L.game, 26)} <strong>${esc(L.title)}</strong><span class="tiny muted">${esc(G.name)} · @${esc(S.me.handle)}</span></div></div>` : ''}
+    ${scene !== 'chat' && scene !== 'ending' ? camHTML() : ''}
+    <div class="screen-chat ${STUDIO.overlay ? 'on' : ''}" data-chatlist="overlay" aria-hidden="true">${L.chat.filter(m => !m.removed).slice(-6).map(overlayMsgHTML).join('')}</div>
+    ${goalBarHTML()}
+    <div class="alert-box" id="alertBox" aria-live="polite"></div>
+    <div class="fx" id="fx"></div>`;
+}
+function paintScreen() { const sc = $('#screen'); if (sc && S.live) { sc.innerHTML = screenInner(S.live); tickScene(S.live); } }
+
+/* Avatar: mexe-se quando falas e faz caras conforme o momento */
+let talkTimer = null;
+function avatarTalk() {
+  $$('.cam').forEach(c => c.classList.add('talk'));
+  clearTimeout(talkTimer); talkTimer = setTimeout(() => $$('.cam').forEach(c => c.classList.remove('talk')), 700);
+}
+const MOOD_FACE = { win: '😎', tourn: '🏆', legend: '🤩', goal: '😁', amazing: '🔥', clutch: '🤯', combo: '⚡', rare: '🤩', big: '🥳', surprise: '😳', funny: '😂', bug: '🤨', sad: '😭', badluck: '😩', upset: '😤', scary: '😱', suspense: '😬', escape: '😮‍💨', enemy: '😨' };
+let emoteTimer = null;
+function avatarEmote(mood) {
+  const f = MOOD_FACE[mood]; if (!f) return;
+  $$('.cam-emote').forEach(e => { e.textContent = f; e.classList.remove('show'); void e.offsetWidth; e.classList.add('show'); });
+  clearTimeout(emoteTimer); emoteTimer = setTimeout(() => $$('.cam-emote').forEach(e => e.classList.remove('show')), 2600);
+}
+
+/* =========================== HYPE TRAIN =========================== */
+function hypeAdd(val) {
+  const L = S.live; if (!L) return;
+  L.hpts = (L.hpts || 0) + val;
+  if (!L.train && L.hpts >= 500) startTrain(L);
+  if (L.train) {
+    L.train.prog += val; L.train.until = Math.min(Date.now() + 60000, Math.max(L.train.until, Date.now() + 40000));
+    while (L.train.prog >= L.train.need) trainLevelUp(L);
+    paintTrain();
+  }
+}
+function startTrain(L) {
+  L.train = { lvl: 1, prog: 0, need: 800, until: Date.now() + 45000 };
+  sound('surprise'); crowd(.8); fxBurst('🚂', 'HYPE TRAIN!');
+  addTimeline('train', 'Hype train começou!', '🚂', { hype: .7, reactLabel: 'Hype train', clipTitle: 'Hype train na live' });
+  pushChat({ sys: true, text: '🚂 HYPE TRAIN! Enviem presentes para subir de nível!' });
+  chatBurst(['HYPE TRAIN 🚂🚂', 'TODOS A BORDO', 'VAMOS AO NÍVEL 5!!', 'CHOO CHOO 🚂']);
+  alertShow('🚂', 'Hype train!', 'nível 1', 'milestone');
+  paintTrain();
+}
+function trainLevelUp(L) {
+  const T = L.train; T.prog -= T.need; T.lvl++; T.need = Math.round(T.need * 1.6);
+  sound('goal'); crowd(.5 + Math.min(.5, T.lvl * .1)); fxBurst('🚂', 'NÍVEL ' + T.lvl + '!');
+  pushChat({ sys: true, text: `🚂 Hype train subiu para o nível ${T.lvl}!` });
+  chatBurst([`NÍVEL ${T.lvl}!!!`, 'NÃO PAREM 🚂', 'mais mais mais 🎁']);
+  alertShow('🚂', `Hype train nível ${T.lvl}`, 'continua a subir!', 'milestone');
+  follow(.004);
+}
+function trainTick(L) {
+  L.hpts = (L.hpts || 0) * .98;
+  if (!L.train) return;
+  if (Date.now() > L.train.until) {
+    const lvl = L.train.lvl; L.train = null; L.hpts = 0; L.bestTrain = Math.max(L.bestTrain || 0, lvl);
+    addTimeline('train', `Hype train terminou no nível ${lvl}`, '🚂', { hype: .5 + lvl * .08, reactLabel: 'Hype train', clipTitle: `Hype train nível ${lvl}` });
+    pushChat({ sys: true, text: `🚂 O hype train terminou no nível ${lvl}. Obrigado, chat!` });
+    notify('🚂', `Hype train terminou no nível ${lvl} em «${L.title}».`);
+  }
+  paintTrain();
+}
+function trainHTML() {
+  const T = S.live?.train; if (!T) return '<div class="train" id="trainBar" hidden></div>';
+  const left = Math.max(0, Math.ceil((T.until - Date.now()) / 1000));
+  return `<div class="train" id="trainBar"><b>🚂 HYPE TRAIN · NÍVEL ${T.lvl}</b><div class="goal-bar"><i style="width:${Math.min(100, T.prog / T.need * 100)}%"></i></div><span class="num">${left}s</span></div>`;
+}
+function paintTrain() { const el = $('#trainBar'); if (el) el.outerHTML = trainHTML(); }
+function giftRain(L, n) { for (let i = 0; i < n; i++) setTimeout(() => S.live === L && giftEvent(), 400 + i * rand(250, 600)); }
+
+/* =========================== ESPECTADORES HABITUAIS =========================== */
+function seedRegulars() {
+  const mk = (u, badge, months, color) => ({ u, badge, months, color, since: Date.now() - months * 30 * DAY });
+  return [mk('rita_mod', 'mod', 14, '#3ee0a1'), mk('lobo_pt', 'mod', 9, '#6fb6ff'), mk('beatriz.gg', 'vip', 11, '#ff7ab8'), mk('zecaplays', 'sub', 7, '#ffc24b'), mk('nunolusa', 'sub', 4, '#c084fc'),
+    mk('marta_xd', 'sub', 12, '#5eead4'), mk('tiago07', 'sub', 2, '#ff8a5c'), mk('inesfire', 'vip', 6, '#f472b6'), mk('duarte_fan', 'sub', 1, '#93c5fd'), mk('saralove', 'sub', 3, '#9b8cff')];
+}
+const regular = u => (S.regulars || []).find(r => r.u === u);
+const regColor = u => regular(u)?.color;
+function regBadges(u) {
+  const r = regular(u); if (!r) return '';
+  const b = r.badge === 'mod' ? '<span class="cbadge mod" title="Moderador (fictício)">🛡️</span>' : r.badge === 'vip' ? '<span class="cbadge vip" title="VIP (fictício)">💎</span>' : '';
+  return `${b}<span class="cbadge sub" title="Subscritor há ${r.months} ${r.months === 1 ? 'mês' : 'meses'} (fictício)">⭐${r.months}</span>`;
+}
+function greetRegulars(L) {
+  const me = S.me.name.split(' ')[0];
+  const last = [...S.lives].sort((a, b) => b.end - a.end)[0];
+  const moment = last && (last.timeline || []).find(t => t.type === 'reaction' || t.type === 'viral');
+  const lastClip = S.clips.find(c => c.streamer === 'me');
+  const regs = [...S.regulars].sort(() => Math.random() - .5).slice(0, 4);
+  const lines = [
+    `${me}!! cheguei 💜`, 'a minha live favorita da semana', `já são ${regs[0]?.months || 3} meses de sub ⭐`, 'boa noite a todos 👋',
+    moment ? `ainda me lembro do «${moment.label.replace(/^Reação ao jogo: /, '')}» da última live 😂` : 'hoje vai ser épico',
+    lastClip ? `vi o clip «${lastClip.title}» umas 10 vezes 😭` : 'trouxe pipocas 🍿',
+  ];
+  regs.forEach((r, i) => setTimeout(() => S.live === L && pushChat({ user: r.u, text: lines[i % lines.length] }), 800 + i * 1400));
+  if (moment || lastClip) setTimeout(() => S.live === L && pushChat({ user: regs[3]?.u || pick(S.regulars).u, text: lines[moment ? 4 : 5] }), 6500);
+}
+function subRenewal(L) {
+  const r = pick(S.regulars); r.months++;
+  pushChat({ gift: true, text: `⭐ ${r.u} renovou a subscrição: ${r.months} meses!` });
+  alertShow('⭐', `${r.u} · ${r.months} meses`, 'subscrição renovada (fictícia)', 'follow');
+  sound('follow');
+  ttsSay(`${r.u.replace(/[_.]/g, ' ')} renovou a subscrição. ${r.months} meses!`);
+  setTimeout(() => S.live === L && pushChat({ user: r.u, text: pick(['mais um mês contigo 💜', 'nunca saio daqui', 'melhor canal ⭐']) }), 900);
+}
+function immersiveEnd(L) {
+  // um espectador frequente desta live passa a ser habitual
+  const names = [...new Set(L.chat.filter(m => m.user && !m.me && !m.troll && !regular(m.user)).map(m => m.user))];
+  if (names.length) {
+    const u = pick(names);
+    S.regulars.push({ u, badge: 'sub', months: 1, color: pick(NAME_COLORS), since: Date.now() });
+    if (S.regulars.length > 24) S.regulars.shift();
+    notify('⭐', `${u} subscreveu o teu canal e passou a ser um espectador habitual (fictício).`);
+  }
+}
+
+/* =========================== LEITURA EM VOZ ALTA =========================== */
+const GIFT_MSGS = ['GG mano, continua assim!', 'manda um abraço para Braga!', 'isto é para o troco de skin', 'és o melhor streamer de Portugal', 'faz um clutch para mim!', 'lê isto em voz alta', 'primeira doação, adoro as tuas lives', 'saudações do Algarve', 'não te esqueças de beber água', 'aposto que não ganhas a próxima'];
+const TTSX = { t: null, q: [], busy: false };
+async function ttsInit() {
+  try { if (window.claude && typeof window.claude.use === 'function') TTSX.t = await window.claude.use('tts'); } catch (e) { }
+}
+function ttsSay(text) {
+  if (!S.prefs.tts || !S.prefs.sound) return;
+  if (TTSX.q.length >= 3) TTSX.q.shift();
+  TTSX.q.push(text); ttsDrain();
+}
+async function ttsDrain() {
+  if (TTSX.busy || !TTSX.q.length) return;
+  TTSX.busy = true; const text = TTSX.q.shift();
+  const done = () => { TTSX.busy = false; setTimeout(ttsDrain, 700); };
+  if (TTSX.t) {
+    try { await TTSX.t.speak(text, { voice: 'airy' }); return done(); }
+    catch (e) { if (e && ['busy', 'rate_limited', 'viewer_stopped', 'not_granted'].includes(e.code)) return done(); }
+  }
+  if (window.speechSynthesis) {
+    try {
+      const u = new SpeechSynthesisUtterance(text); u.lang = 'pt-PT'; u.rate = 1.05; u.volume = S.prefs.volume;
+      MIC.ignoreUntil = Date.now() + text.length * 85 + 1500;
+      u.onend = done; u.onerror = done; speechSynthesis.speak(u); return;
+    } catch (e) { }
+  }
+  done();
+}
+function giftMessage(u, g, val) {
+  const msg = pick(GIFT_MSGS);
+  pushChat({ gift: true, text: `💬 ${u}: «${msg}»` });
+  ttsSay(`${u.replace(/[_.\d]+/g, ' ').trim() || 'Alguém'} enviou ${g.name}. ${msg}`);
+}
+
+/* =========================== SOM DE MULTIDÃO =========================== */
+let noiseBuf = null;
+function crowd(intensity = .6) {
+  if (!S.prefs.crowd) return;
+  const ctx = audio(); if (!ctx) return;
+  try {
+    if (!noiseBuf) { noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 2.2, ctx.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+    const src = ctx.createBufferSource(); src.buffer = noiseBuf;
+    const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1100; bp.Q.value = .6;
+    const g = ctx.createGain(), t = ctx.currentTime, v = S.prefs.volume * .32 * intensity;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(v, t + .25); g.gain.setValueAtTime(v, t + .9); g.gain.exponentialRampToValueAtTime(.0001, t + 2.1);
+    const lfo = ctx.createOscillator(), lg = ctx.createGain(); lfo.frequency.value = 7 + Math.random() * 4; lg.gain.value = v * .5; lfo.connect(lg).connect(g.gain);
+    src.connect(bp).connect(g).connect(ctx.destination); src.start(t); src.stop(t + 2.2); lfo.start(t); lfo.stop(t + 2.2);
+  } catch (e) { }
+}
+
+/* =========================== MODO TEATRO =========================== */
+function theaterBarHTML() {
+  return `<div class="theater-bar">
+    ${PANEL_BUTTONS.filter(b => b[0] !== 'custom').map(([id, e, l]) => `<button class="tb-react" data-act="react" data-id="${id}" title="${esc(l)}" aria-label="${esc(l)}">${e}</button>`).join('')}
+    <span class="spacer"></span>
+    <button class="btn btn-sm ${MIC.on ? 'btn-live' : ''}" data-act="mic-toggle">${icon('mic')} ${MIC.on ? 'A ouvir' : 'Microfone'}</button>
+    <button class="btn btn-sm" data-act="theater">${icon('shrink')} Sair</button>
+  </div>`;
+}
+function setTheater(on) {
+  STUDIO.theater = on;
+  const st = $('.studio'); if (st) st.classList.toggle('theater', on);
+  document.body.classList.toggle('theater-on', on);
+  if (on) { try { const p = document.documentElement.requestFullscreen?.(); p && p.catch(() => { }); STUDIO.fs = true; } catch (e) { } }
+  else if (document.fullscreenElement) { try { document.exitFullscreen().catch(() => { }); } catch (e) { } }
+  $$('[data-act="theater"]').forEach(b => { if (!b.closest('.theater-bar')) b.innerHTML = `${icon(on ? 'shrink' : 'expand')} ${on ? 'Sair do modo teatro' : 'Modo teatro'}`; });
+  afterStudioRender();
+}
+
+/* =========================== PAINEL =========================== */
+function immersivePanelHTML() {
+  const sw = (k, label) => `<label class="switch small"><input type="checkbox" data-pref="${k}" id="pref-${k}" ${S.prefs[k] ? 'checked' : ''}> ${label}</label>`;
+  return `<div class="imm-panel" data-immpanel>
+    <div class="row" style="gap:16px">${sw('cam', 'Avatar na live')}${sw('tts', 'Ler presentes em voz alta')}${sw('crowd', 'Som de multidão')}</div>
+    <div class="row"><label class="btn btn-xs upload">${icon('image')} Imagem do avatar<input type="file" accept="image/*" data-file="cam-img" id="camImg"></label>${S.prefs.camImg ? '<button class="btn btn-xs btn-ghost" data-act="cam-img-clear">Usar a foto de perfil</button>' : ''}<span class="tiny muted">O avatar mexe-se quando falas ao microfone e faz caras conforme o que acontece.</span></div>
+  </div>`;
+}
+
+/* =========================== CICLO =========================== */
+function tickScene(L) {
+  const now = Date.now();
+  $$('[data-scenecd]').forEach(n => n.textContent = durLabel(Math.max(0, (L.sceneUntil || now) - now)));
+  $$('[data-sceneel]').forEach(n => n.textContent = durLabel(now - (L.sceneAt || now)));
+}
+function immersiveTick(L) {
+  const now = Date.now();
+  tickScene(L);
+  if (L.scene === 'starting' && now >= (L.sceneUntil || 0)) { setScene('game'); toast('🎮', 'A live começou: cena «Jogo»'); }
+  if (!L.greeted && now - L.start > 3500) { L.greeted = true; greetRegulars(L); }
+  if (L.scene !== 'starting' && Math.random() < .004) subRenewal(L);
+  trainTick(L);
+}
+
+const IMM_ACT = {
+  'scene': b => setScene(b.dataset.s),
+  'theater': () => setTheater(!STUDIO.theater),
+  'cam-img-clear': () => { S.prefs.camImg = null; save(); paintScreen(); $$('[data-immpanel]').forEach(el => el.outerHTML = immersivePanelHTML()); },
+  'end-raid-pick': () => {
+    const live = S.accounts.filter(a => S.events.some(e => e.owner === a.id && eventStatus(e) === 'live'));
+    const list = [...live, ...S.accounts.filter(a => !live.includes(a))].slice(0, 6);
+    $('#endConfirm').innerHTML = `<div class="confirm-box" style="margin-bottom:16px;flex-direction:column;align-items:stretch"><span>Para quem queres enviar os teus espectadores?</span><div class="raid-grid">${list.map(a => `<button class="dm-pick" data-act="raid-out" data-id="${a.id}">${avatar(a, 36).replace('<a ', '<span ').replace('</a>', '</span>')}<span><strong>${esc(a.name)}</strong><small>${live.includes(a) ? '🔴 em direto' : esc(a.cat)}</small></span></button>`).join('')}</div><button class="btn btn-sm btn-ghost" data-act="end-live-no" style="align-self:flex-start">Cancelar</button></div>`;
+  },
+  'raid-out': b => {
+    const L = S.live; if (!L) return; const a = acc(b.dataset.id); const n = Math.round(L.viewers);
+    $('#endConfirm').innerHTML = '';
+    setScene('ending', true);
+    pushChat({ sys: true, text: `🚀 A fazer raid para ${a.name} com ${dots(n)} espectadores virtuais!` });
+    chatBurst([`RAID PARA @${a.handle} 🚀`, 'BORA TODOS', 'obrigado pela live 💜', `${a.name.split(' ')[0].toUpperCase()} AQUI VAMOS NÓS`, '🚀🚀🚀']);
+    addTimeline('raid', `Raid enviada para ${a.name} com ${dots(n)} espectadores`, '🚀');
+    sound('raid'); crowd(.7);
+    notify('🚀', `Fizeste raid para ${a.name} com ${dots(n)} espectadores virtuais.`);
+    setTimeout(() => { if (S.live === L) endLive(); }, 4200);
+  },
+};
+function onImmersiveInput(t) {
+  if (t.dataset.pref) { S.prefs[t.dataset.pref] = t.checked; save(); if (t.dataset.pref === 'cam') paintScreen(); if (t.dataset.pref === 'tts' && !t.checked) { TTSX.q = []; try { TTSX.t?.stop(); speechSynthesis?.cancel(); } catch (e) { } } return true; }
   return false;
 }
 
@@ -3467,7 +3844,7 @@ const ACT = {
   'gift-sim': () => giftEvent(),
   'poll-end': () => endPoll(),
   'tl-clip': b => { clipFromTimeline(b.dataset.id); if (!S.live) render(); },
-  'end-live-ask': () => { $('#endConfirm').innerHTML = `<div class="confirm-box" style="margin-bottom:16px"><span>Terminar a live? O resumo e a cronologia ficam guardados no perfil.</span><button class="btn btn-sm btn-ghost" data-act="end-live-no">Continuar em direto</button><button class="btn btn-sm btn-danger" data-act="end-live">Terminar live</button></div>`; },
+  'end-live-ask': () => { $('#endConfirm').innerHTML = `<div class="confirm-box" style="margin-bottom:16px"><span>Terminar a live? O resumo e a cronologia ficam guardados no perfil.</span><button class="btn btn-sm btn-ghost" data-act="end-live-no">Continuar em direto</button><button class="btn btn-sm" data-act="end-raid-pick">🚀 Terminar com raid</button><button class="btn btn-sm btn-danger" data-act="end-live">Terminar live</button></div>`; },
   'end-live-no': () => { $('#endConfirm').innerHTML = ''; },
   'end-live': () => endLive(),
   'announce-live': () => {
@@ -3549,6 +3926,7 @@ async function onFile(input) {
     else if (kind === 'avatar') { syncProfileDraft(); MODAL.draft.avatar = await fileToDataURL(file, 320, 320, .85); paintProfileEditor(); }
     else if (kind === 'banner') { syncProfileDraft(); MODAL.draft.banner = await fileToDataURL(file, 1500, 500); paintProfileEditor(); }
     else if (kind === 'ev-cover') { syncEventDraft(); MODAL.draft.cover = { type: 'img', v: await fileToDataURL(file, 1000, 500) }; paintEventEditor(); }
+    else if (kind === 'cam-img') { S.prefs.camImg = await fileToDataURL(file, 400, 400, .85); save(); paintScreen(); $$('[data-immpanel]').forEach(el => el.outerHTML = immersivePanelHTML()); toast('🙂', 'Imagem do avatar atualizada'); }
     else if (kind === 'studio-media') { if (STUDIO.media) URL.revokeObjectURL(STUDIO.media.url); STUDIO.media = { kind: file.type.startsWith('video') ? 'video' : 'image', url: URL.createObjectURL(file) }; render(); }
     else if (kind === 'clip-media') { const c = S.clips.find(x => x.id === input.dataset.id); c.media = file.type.startsWith('video') ? { kind: 'video', url: URL.createObjectURL(file) } : { kind: 'image', url: await fileToDataURL(file, 800, 450) }; save(); render(); toast('🎬', 'Media anexada ao clip'); }
   } catch (e) { toast('⚠️', 'Não foi possível ler este ficheiro. Experimenta outra imagem.'); }
@@ -3625,6 +4003,7 @@ function bind() {
     const t = e.target;
     if (onSocialInput(t)) return;
     if (onExtraInput(t)) return;
+    if (onImmersiveInput(t)) return;
     if (t.dataset.cmp) {
       const k = t.dataset.cmp;
       if (k === 'poll') UI.cmp.poll[+t.dataset.i] = t.value;
@@ -3648,6 +4027,7 @@ function bind() {
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
+    else if (e.key === 'Escape' && STUDIO.theater) setTheater(false);
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && e.target.id === 'cmpText') publishPost();
   });
   window.addEventListener('hashchange', () => { UI.menu = null; UI.createOpen = false; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
@@ -3679,6 +4059,8 @@ function migrate(s) {
   addGta6Content(s);
   s.prefs = { ...defaultPrefs(), ...(s.prefs || {}) };
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
+  s.prefs = { ...defaultImmersive(), ...s.prefs };
+  s.regulars = s.regulars || seedRegulars();
   if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;
@@ -3692,10 +4074,11 @@ function init() {
   checkAch();
   render();
   setInterval(tick, 1000);
-  micInit();
+  micInit(); ttsInit();
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT);
 Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS);
 init();
 

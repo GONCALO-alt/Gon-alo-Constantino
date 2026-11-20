@@ -307,7 +307,7 @@ const ACT = {
   'gift-sim': () => giftEvent(),
   'poll-end': () => endPoll(),
   'tl-clip': b => { clipFromTimeline(b.dataset.id); if (!S.live) render(); },
-  'end-live-ask': () => { $('#endConfirm').innerHTML = `<div class="confirm-box" style="margin-bottom:16px"><span>Terminar a live? O resumo e a cronologia ficam guardados no perfil.</span><button class="btn btn-sm btn-ghost" data-act="end-live-no">Continuar em direto</button><button class="btn btn-sm btn-danger" data-act="end-live">Terminar live</button></div>`; },
+  'end-live-ask': () => { $('#endConfirm').innerHTML = `<div class="confirm-box" style="margin-bottom:16px"><span>Terminar a live? O resumo e a cronologia ficam guardados no perfil.</span><button class="btn btn-sm btn-ghost" data-act="end-live-no">Continuar em direto</button><button class="btn btn-sm" data-act="end-raid-pick">🚀 Terminar com raid</button><button class="btn btn-sm btn-danger" data-act="end-live">Terminar live</button></div>`; },
   'end-live-no': () => { $('#endConfirm').innerHTML = ''; },
   'end-live': () => endLive(),
   'announce-live': () => {
@@ -389,6 +389,7 @@ async function onFile(input) {
     else if (kind === 'avatar') { syncProfileDraft(); MODAL.draft.avatar = await fileToDataURL(file, 320, 320, .85); paintProfileEditor(); }
     else if (kind === 'banner') { syncProfileDraft(); MODAL.draft.banner = await fileToDataURL(file, 1500, 500); paintProfileEditor(); }
     else if (kind === 'ev-cover') { syncEventDraft(); MODAL.draft.cover = { type: 'img', v: await fileToDataURL(file, 1000, 500) }; paintEventEditor(); }
+    else if (kind === 'cam-img') { S.prefs.camImg = await fileToDataURL(file, 400, 400, .85); save(); paintScreen(); $$('[data-immpanel]').forEach(el => el.outerHTML = immersivePanelHTML()); toast('🙂', 'Imagem do avatar atualizada'); }
     else if (kind === 'studio-media') { if (STUDIO.media) URL.revokeObjectURL(STUDIO.media.url); STUDIO.media = { kind: file.type.startsWith('video') ? 'video' : 'image', url: URL.createObjectURL(file) }; render(); }
     else if (kind === 'clip-media') { const c = S.clips.find(x => x.id === input.dataset.id); c.media = file.type.startsWith('video') ? { kind: 'video', url: URL.createObjectURL(file) } : { kind: 'image', url: await fileToDataURL(file, 800, 450) }; save(); render(); toast('🎬', 'Media anexada ao clip'); }
   } catch (e) { toast('⚠️', 'Não foi possível ler este ficheiro. Experimenta outra imagem.'); }
@@ -465,6 +466,7 @@ function bind() {
     const t = e.target;
     if (onSocialInput(t)) return;
     if (onExtraInput(t)) return;
+    if (onImmersiveInput(t)) return;
     if (t.dataset.cmp) {
       const k = t.dataset.cmp;
       if (k === 'poll') UI.cmp.poll[+t.dataset.i] = t.value;
@@ -488,6 +490,7 @@ function bind() {
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
+    else if (e.key === 'Escape' && STUDIO.theater) setTheater(false);
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && e.target.id === 'cmpText') publishPost();
   });
   window.addEventListener('hashchange', () => { UI.menu = null; UI.createOpen = false; const r = route(); if (r.name === 'profile' && r.id !== UI.lastProfile) { UI.profTab = 'posts'; UI.profSub = 'posts'; UI.lastProfile = r.id; } closeModalIfOpen(); render(); window.scrollTo({ top: 0 }); $('#main').focus({ preventScroll: true }); });
@@ -519,6 +522,8 @@ function migrate(s) {
   addGta6Content(s);
   s.prefs = { ...defaultPrefs(), ...(s.prefs || {}) };
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
+  s.prefs = { ...defaultImmersive(), ...s.prefs };
+  s.regulars = s.regulars || seedRegulars();
   if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;
@@ -532,9 +537,10 @@ function init() {
   checkAch();
   render();
   setInterval(tick, 1000);
-  micInit();
+  micInit(); ttsInit();
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT);
+Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT);
 Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS);
 init();

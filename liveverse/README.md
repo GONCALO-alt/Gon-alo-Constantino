@@ -23,6 +23,12 @@ Rede social de criadores com simulador de lives. Abre `index.html` diretamente n
 - **Sons e alertas**: sons sintetizados para presentes, seguidores, raids, marcos, momentos virais e metas, com volume; alertas animados no ecrã da live.
 - **Metas de presentes**: barra no ecrã («Troco de skin 1.820 / 5.000»), metas predefinidas ou personalizadas e celebração quando se atinge.
 - **Momentos aleatórios**: surpresas durante a live (streamer fictício no chat, live caiu, 100 subs, desafio, troll, animal na câmara, música com direitos, patrocínio, lanche, raid) com duas escolhas e efeitos diferentes.
+- **Cenas como no OBS**: «A começar» (contagem de 20 s quando entras em direto), «Jogo», «Conversa» (o chat faz-te perguntas), «Volto já» (os espectadores esperam) e «Fim». Também podes terminar com uma raid para outra conta.
+- **Avatar na live**: a tua foto (ou outra imagem) num canto do ecrã; mexe-se quando falas ao microfone e faz caras conforme o momento (😂 😱 🤯 😭).
+- **Presentes lidos em voz alta**: presentes grandes trazem mensagem e são lidos por uma voz (capacidade tts no artifact; voz do navegador quando aberto localmente).
+- **Hype train**: muitos presentes seguidos lançam um comboio com níveis, tempo e barra no ecrã.
+- **Espectadores habituais**: moderadores, VIP e subscritores com meses, que te cumprimentam, se lembram da última live e dos teus clips, e renovam subscrições.
+- **Som de multidão** nos grandes momentos e **modo teatro** em ecrã inteiro, só com o ecrã, as cenas, as reações e o chat.
 - **GTA VI**: jogo disponível em lives, eventos, publicações e Explorar, com reações próprias no chat (fugas, estrelas de procurado, assaltos, «WASTED»), uma live fictícia a decorrer, um evento agendado e um clip.
 - **Notificações** simuladas: 30 e 5 minutos antes, evento em direto, 1.000 interessados, tendência, comunidade à espera, conquistas, respostas.
 

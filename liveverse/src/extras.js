@@ -67,7 +67,7 @@ function goalAdd(val) {
   paintGoal();
   if (G.progress >= G.target) {
     G.reached = (G.reached || 0) + 1;
-    sound('goal'); fxBurst('🎯', 'META ALCANÇADA!');
+    sound('goal'); crowd(.9); fxBurst('🎯', 'META ALCANÇADA!');
     addTimeline('gift', `Meta de presentes alcançada: ${G.title} (${dots(G.target)} moedas virtuais)`, '🎯', { hype: .8, reactLabel: 'Meta de presentes', clipTitle: 'Meta alcançada: ' + G.title });
     pushChat({ sys: true, text: `🎯 META DE PRESENTES ALCANÇADA: ${G.title}!` });
     const L = S.live;
@@ -132,10 +132,10 @@ const SURPRISES = [
 ];
 function boost(f) { const L = S.live; if (L) L.boost += (LEVELS[L.level] || LEVELS.media).max * f; }
 function follow(f) { const L = S.live; if (!L) return; const n = Math.round(L.viewers * f + 1); L.followers += n; S.me.followers += n; alertShow('💜', `+${dots(n)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }
-function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); sound('bigGift'); }
+function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); hypeAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); sound('bigGift'); }
 function chatBurst(lines) { const L = S.live; lines.forEach((t, i) => setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: t, hype: true }), 150 + i * 220)); }
 function surpriseTick(L) {
-  if (!S.prefs.randomMoments || L.surprise) return;
+  if (!S.prefs.randomMoments || L.surprise || ['starting', 'ending', 'brb'].includes(L.scene)) return;
   const e = (Date.now() - L.start) / 1000;
   L.nextSurprise = L.nextSurprise || L.start + rand(35000, 60000);
   if (e < 30 || Date.now() < L.nextSurprise) return;
@@ -224,6 +224,8 @@ function micError(code) {
 }
 function heard(raw) {
   const text = String(raw || '').trim(); if (!text) return;
+  if (MIC.api === 'web' && Date.now() < (MIC.ignoreUntil || 0) && !heard.typed) return;
+  avatarTalk();
   MIC.heard.unshift({ t: Date.now(), text }); MIC.heard = MIC.heard.slice(0, 6);
   paintMic();
   if (S.live) chatRespond(text);
@@ -281,7 +283,8 @@ function chatRespond(text) {
   L.engage = Math.min(3, L.engage + hype * .8); L.boost += (LEVELS[L.level] || LEVELS.media).max * hype * .02;
   if (rule && rule.fol) follow(rule.fol);
   if (rule && rule.gifts) setTimeout(() => S.live === L && giftEvent(), 1200);
-  if (rule && rule.mood) { L.lastMood = rule.mood; L.lastMoodAt = Date.now(); }
+  if (rule && rule.mood) { L.lastMood = rule.mood; L.lastMoodAt = Date.now(); avatarEmote(rule.mood); }
+  else if (question) avatarEmote('surprise');
   L.voice = (L.voice || 0) + 1;
 }
 
@@ -300,7 +303,7 @@ function micPanelHTML() {
   </div>`;
 }
 function paintMic() { $$('[data-micpanel]').forEach(el => el.outerHTML = micPanelHTML()); const b = $('#dockMic'); if (b) b.classList.toggle('on', MIC.on); }
-function paintMicLive() { const el = $('#micLive'); if (el) el.innerHTML = MIC.partial ? `<i>${esc(MIC.partial)}…</i>` : ''; }
+function paintMicLive() { if (MIC.partial) avatarTalk(); const el = $('#micLive'); if (el) el.innerHTML = MIC.partial ? `<i>${esc(MIC.partial)}…</i>` : ''; }
 
 function soundPanelHTML() {
   return `<div class="row sound-row" data-soundpanel>
@@ -319,7 +322,7 @@ const EXTRA_ACT = {
   'goal-reset': () => { S.prefs.giftGoal.progress = 0; save(); paintGoal(); },
 };
 const EXTRA_FORMS = {
-  say: f => { const t = f.t.value.trim(); if (!t) return; f.t.value = ''; heard(t); if (!S.live) toast('🎙️', 'Entra em direto para o chat reagir ao que dizes.'); },
+  say: f => { const t = f.t.value.trim(); if (!t) return; f.t.value = ''; heard.typed = true; heard(t); heard.typed = false; if (!S.live) toast('🎙️', 'Entra em direto para o chat reagir ao que dizes.'); },
   goal: f => { const G = S.prefs.giftGoal; const title = f.title.value.trim() || 'Meta de presentes'; const target = clamp(Math.round(+f.target.value || 0), 10, 10000000); const changed = title !== G.title || target !== G.target; G.title = title; G.target = target; if (changed && G.progress >= target) G.progress = 0; save(); paintGoal(); toast('🎯', 'Meta de presentes guardada'); },
 };
 function onExtraInput(t) {
