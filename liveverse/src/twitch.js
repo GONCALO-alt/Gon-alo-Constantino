@@ -123,7 +123,7 @@ function viewWatch(id) {
   const next = S.events.filter(e => e.owner === a.id && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start)[0];
   const face = a.avatar ? `<img src="${a.avatar}" alt="">` : esc((a.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase());
   const video = ev ? `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Live simulada</small></div></div>
-      <span class="wp-cam" style="--h:${a.hue || 270}">${face}<em>${esc(a.handle)}</em></span>`
+      <span class="wp-cam" style="--h:${a.hue || 270}">${face}<em>${esc(a.handle)}</em></span>${folCounterHTML(Math.round(ev.viewers || 0), a.followers, 'wviewers', null)}`
     : `<div class="wp-offline"><div>${avatar(a, 84).replace('<a ', '<span ').replace('</a>', '</span>')}<strong>${esc(a.name)} está offline</strong><span>${next ? `Próxima live: ${esc(next.title)} · ${whenLabel(next.start)}` : 'Segue o canal para saberes quando entra em direto.'}</span></div></div>`;
   return `<div class="wp ${UI.watchFull ? 'full' : ''}" data-watch="${a.id}">
     <div class="wp-main">

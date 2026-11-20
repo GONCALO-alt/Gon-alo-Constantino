@@ -365,6 +365,7 @@ function viewStudio() {
         <button class="btn btn-sm" data-act="announce-live">${icon('share')} Anunciar no feed</button>
         <span class="spacer"></span>
         <label class="switch small"><input type="checkbox" id="ovToggle" data-studio="overlay" ${STUDIO.overlay ? 'checked' : ''}> Chat no ecrã</label>
+        <label class="switch small"><input type="checkbox" id="folCtToggle" data-pref="folCounter" ${S.prefs.folCounter !== false ? 'checked' : ''}> Contador de seguidores no ecrã</label>
         <label class="switch small"><input type="checkbox" id="goalToggle" data-pref="goalOnScreen" ${S.prefs.goalOnScreen ? 'checked' : ''}> Meta no ecrã</label>
         <label class="switch small"><input type="checkbox" id="fxToggle" data-studio="fx" ${STUDIO.fx ? 'checked' : ''}> Animações no ecrã</label>
         <label class="switch small"><input type="checkbox" id="clipToggle" data-studio="autoClip" ${STUDIO.autoClip ? 'checked' : ''}> Criar clip automaticamente</label>

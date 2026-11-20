@@ -1256,6 +1256,19 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.01em; }
 
 @media (max-width: 760px) { .tb-scene { flex: 1 1 140px; } .tb-scene select { min-width: 120px; } }
 
+/* Contador de seguidores no ecrã (estilo overlay de streamer) */
+.fol-counter { position: absolute; right: 10px; top: 36%; z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; pointer-events: none; }
+.fc-top { position: relative; display: flex; align-items: center; gap: 6px; }
+.fc-logo { width: clamp(18px, 3vw, 32px); height: clamp(18px, 3vw, 32px); border-radius: 6px; overflow: hidden; flex: none; box-shadow: 0 1px 0 #000; }
+.fc-logo svg { width: 100%; height: 100%; display: block; }
+.fc-top b { font-family: var(--f-body); font-weight: 900; font-size: clamp(20px, 3.8vw, 42px); line-height: 1; color: #fff; -webkit-text-stroke: 2px #000; paint-order: stroke fill; text-shadow: 2px 2px 0 #000, 0 3px 6px rgb(0 0 0 / .5); font-variant-numeric: tabular-nums; }
+.fc-box { position: relative; background: #fff; color: #0e0e10; font-family: var(--f-body); font-weight: 900; font-size: clamp(14px, 2.7vw, 30px); line-height: 1.12; padding: 0 6px; border: 2px solid #000; font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+.fol-counter .num-pop { right: auto; left: -46px; top: 2px; color: #3ef2d6; }
+.fol-counter .fc-box + .num-pop, .fc-box .num-pop { color: #9147ff; }
+.screen.vertical .fol-counter { top: 30%; }
+.screen.vertical .fc-top b { font-size: clamp(18px, 6vw, 34px); }
+.screen.vertical .fc-box { font-size: clamp(13px, 4.4vw, 24px); }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topbar" id="topBar"></header>
@@ -2623,6 +2636,7 @@ function viewStudio() {
         <button class="btn btn-sm" data-act="announce-live">${icon('share')} Anunciar no feed</button>
         <span class="spacer"></span>
         <label class="switch small"><input type="checkbox" id="ovToggle" data-studio="overlay" ${STUDIO.overlay ? 'checked' : ''}> Chat no ecrã</label>
+        <label class="switch small"><input type="checkbox" id="folCtToggle" data-pref="folCounter" ${S.prefs.folCounter !== false ? 'checked' : ''}> Contador de seguidores no ecrã</label>
         <label class="switch small"><input type="checkbox" id="goalToggle" data-pref="goalOnScreen" ${S.prefs.goalOnScreen ? 'checked' : ''}> Meta no ecrã</label>
         <label class="switch small"><input type="checkbox" id="fxToggle" data-studio="fx" ${STUDIO.fx ? 'checked' : ''}> Animações no ecrã</label>
         <label class="switch small"><input type="checkbox" id="clipToggle" data-studio="autoClip" ${STUDIO.autoClip ? 'checked' : ''}> Criar clip automaticamente</label>
@@ -3685,6 +3699,7 @@ function screenInner(L) {
     bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
+    ${S.prefs.folCounter !== false ? folCounterHTML(Math.round(L.viewers), Math.floor(S.me.followers), 'viewers', 'followers') : ''}
     <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span></div>
     ${trainHTML()}
     ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : scene !== 'game' && scene !== 'chat' && MEDIA.cam ? camHTML() : ''}
@@ -3938,7 +3953,7 @@ const IMM_ACT = {
 function onImmersiveInput(t) {
   if (t.hasAttribute('data-scene-select')) { setScene(t.value); return true; }
   if (t.dataset.pref === 'goalOnScreen') { S.prefs.goalOnScreen = t.checked; save(); paintScreen(); return true; }
-  if (t.dataset.pref) { S.prefs[t.dataset.pref] = t.checked; save(); if (t.dataset.pref === 'cam') paintScreen(); if (t.dataset.pref === 'tts' && !t.checked) { TTSX.q = []; try { TTSX.t?.stop(); speechSynthesis?.cancel(); } catch (e) { } } return true; }
+  if (t.dataset.pref) { S.prefs[t.dataset.pref] = t.checked; save(); if (t.dataset.pref === 'cam' || t.dataset.pref === 'folCounter') paintScreen(); if (t.dataset.pref === 'tts' && !t.checked) { TTSX.q = []; try { TTSX.t?.stop(); speechSynthesis?.cancel(); } catch (e) { } } return true; }
   return false;
 }
 
@@ -4039,6 +4054,14 @@ function resetToZero(s) {
   s.dms = (s.dms || []).map(t => ({ ...t, msgs: t.msgs.filter(m => !/12 mil|raid de ontem|De nada!!/.test(m.text)) })).filter(t => t.msgs.length);
   s.notifs = [{ id: uid(), icon: '🚀', text: 'Começas do zero: 0 seguidores. Agenda a tua primeira live à hora que quiseres e faz crescer a comunidade!', t: Date.now(), read: false }];
   if (s.regulars) s.regulars = s.regulars.slice(0, 3).map(r => ({ ...r, months: 1 }));
+}
+
+/* Contador no ecrã: espetadores em direto em grande e seguidores numa caixa branca */
+function folCounterHTML(viewers, followers, vKey, fKey) {
+  return `<div class="fol-counter" aria-label="${dots(viewers)} espetadores e ${dots(followers)} seguidores">
+    <div class="fc-top"><span class="fc-logo">${LOGO_SVG_FN()}</span><b class="num" ${vKey ? `data-anim="${vKey}" data-v="${viewers}"` : ''}>${dots(viewers)}</b></div>
+    <div class="fc-box num" ${fKey ? `data-anim="${fKey}" data-v="${followers}"` : ''}>${dots(followers)}</div>
+  </div>`;
 }
 
 /* =====================================================================
@@ -4166,7 +4189,7 @@ function viewWatch(id) {
   const next = S.events.filter(e => e.owner === a.id && ['scheduled', 'soon'].includes(eventStatus(e))).sort((x, y) => x.start - y.start)[0];
   const face = a.avatar ? `<img src="${a.avatar}" alt="">` : esc((a.name || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase());
   const video = ev ? `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Live simulada</small></div></div>
-      <span class="wp-cam" style="--h:${a.hue || 270}">${face}<em>${esc(a.handle)}</em></span>`
+      <span class="wp-cam" style="--h:${a.hue || 270}">${face}<em>${esc(a.handle)}</em></span>${folCounterHTML(Math.round(ev.viewers || 0), a.followers, 'wviewers', null)}`
     : `<div class="wp-offline"><div>${avatar(a, 84).replace('<a ', '<span ').replace('</a>', '</span>')}<strong>${esc(a.name)} está offline</strong><span>${next ? `Próxima live: ${esc(next.title)} · ${whenLabel(next.start)}` : 'Segue o canal para saberes quando entra em direto.'}</span></div></div>`;
   return `<div class="wp ${UI.watchFull ? 'full' : ''}" data-watch="${a.id}">
     <div class="wp-main">
@@ -5053,6 +5076,7 @@ function migrate(s) {
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (!s.prefs.orient) s.prefs.orient = 'h';
+  if (s.prefs.folCounter == null) s.prefs.folCounter = true;
   if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;

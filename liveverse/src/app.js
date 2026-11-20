@@ -537,6 +537,7 @@ function migrate(s) {
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
   if (!s.prefs.orient) s.prefs.orient = 'h';
+  if (s.prefs.folCounter == null) s.prefs.folCounter = true;
   if (s.live) s.live.surprise = null;
   if (s.live) { s.live.chat = []; }
   return s;

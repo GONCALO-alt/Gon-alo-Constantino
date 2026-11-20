@@ -72,6 +72,7 @@ function screenInner(L) {
     bg = `<div class="screen-bg"></div><div class="scene-wrap scene-${scene}"><div class="scene-card">${card}</div></div>`;
   }
   return `${bg}
+    ${S.prefs.folCounter !== false ? folCounterHTML(Math.round(L.viewers), Math.floor(S.me.followers), 'viewers', 'followers') : ''}
     <div class="wp-bottom st-bottom"><span class="tw-uptime"><i></i><span class="num" data-live="uptime">${upTime(Date.now() - L.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></span></div>
     ${trainHTML()}
     ${scene === 'game' && MEDIA.cam && MEDIA.screen ? camHTML() : scene !== 'game' && scene !== 'chat' && MEDIA.cam ? camHTML() : ''}
@@ -325,7 +326,7 @@ const IMM_ACT = {
 function onImmersiveInput(t) {
   if (t.hasAttribute('data-scene-select')) { setScene(t.value); return true; }
   if (t.dataset.pref === 'goalOnScreen') { S.prefs.goalOnScreen = t.checked; save(); paintScreen(); return true; }
-  if (t.dataset.pref) { S.prefs[t.dataset.pref] = t.checked; save(); if (t.dataset.pref === 'cam') paintScreen(); if (t.dataset.pref === 'tts' && !t.checked) { TTSX.q = []; try { TTSX.t?.stop(); speechSynthesis?.cancel(); } catch (e) { } } return true; }
+  if (t.dataset.pref) { S.prefs[t.dataset.pref] = t.checked; save(); if (t.dataset.pref === 'cam' || t.dataset.pref === 'folCounter') paintScreen(); if (t.dataset.pref === 'tts' && !t.checked) { TTSX.q = []; try { TTSX.t?.stop(); speechSynthesis?.cancel(); } catch (e) { } } return true; }
   return false;
 }
 
@@ -426,4 +427,12 @@ function resetToZero(s) {
   s.dms = (s.dms || []).map(t => ({ ...t, msgs: t.msgs.filter(m => !/12 mil|raid de ontem|De nada!!/.test(m.text)) })).filter(t => t.msgs.length);
   s.notifs = [{ id: uid(), icon: '🚀', text: 'Começas do zero: 0 seguidores. Agenda a tua primeira live à hora que quiseres e faz crescer a comunidade!', t: Date.now(), read: false }];
   if (s.regulars) s.regulars = s.regulars.slice(0, 3).map(r => ({ ...r, months: 1 }));
+}
+
+/* Contador no ecrã: espetadores em direto em grande e seguidores numa caixa branca */
+function folCounterHTML(viewers, followers, vKey, fKey) {
+  return `<div class="fol-counter" aria-label="${dots(viewers)} espetadores e ${dots(followers)} seguidores">
+    <div class="fc-top"><span class="fc-logo">${LOGO_SVG_FN()}</span><b class="num" ${vKey ? `data-anim="${vKey}" data-v="${viewers}"` : ''}>${dots(viewers)}</b></div>
+    <div class="fc-box num" ${fKey ? `data-anim="${fKey}" data-v="${followers}"` : ''}>${dots(followers)}</div>
+  </div>`;
 }
