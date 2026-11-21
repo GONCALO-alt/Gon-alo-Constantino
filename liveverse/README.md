@@ -27,6 +27,7 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 - **Contador no ecrã**: como os overlays dos streamers, o total de seguidores numa caixa branca com o ícone, a subir em tempo real. Liga/desliga em Controlos.
 - **Live na vertical**: escolhe Horizontal (16:9) ou Vertical (9:16), antes ou durante a live.
 - **Live limpa e sem emojis**: o ecrã só tem a imagem, o tempo de live e os espetadores; alertas e animações usam ícones simples.
+- **Som dos presentes**: o som que enviaste toca nos presentes, no máximo uma vez a cada 8 segundos; cada espetador pode enviar no máximo 500 presentes em 8 horas e os presentes são menos frequentes. O som pode ser trocado em Microfone e som.
 - **Sons de live**: sinos de alerta (seguidor, subscrição), moedas (presentes), fanfarra de raid, multidão com palmas e eco, tudo sintetizado.
 - **Chat que entende perguntas**: «vou para aquela loja?» → sim, não, talvez, era bué top, vai à loja…; «praia ou aeroporto?» → o chat vota nas opções; onde/quando/qual/como/quanto têm respostas próprias. Muitos espetadores respondem e no fim aparece o resultado (x% sim).
 - **Contador com algarismos a subir**: o algarismo antigo sobe e o novo entra por baixo.

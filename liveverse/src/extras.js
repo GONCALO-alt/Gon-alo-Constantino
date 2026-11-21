@@ -133,7 +133,7 @@ const SURPRISES = [
 ];
 function boost(f) { const L = S.live; if (L) L.boost += (LEVELS[L.level] || LEVELS.media).max * f; }
 function follow(f) { const L = S.live; if (!L) return; const n = Math.round(L.viewers * f + 1); L.followers += n; S.me.followers += n; alertShow('💜', `+${dots(n)} novos seguidores`, 'seguidores fictícios', 'follow'); sound('follow'); }
-function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); hypeAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); sound('bigGift'); }
+function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); hypeAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); giftSound(); }
 function chatBurst(lines) { const L = S.live; lines.forEach((t, i) => setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: t, hype: true }), 150 + i * 220)); }
 function surpriseTick(L) {
   if (!S.prefs.randomMoments || L.surprise || ['starting', 'ending', 'brb'].includes(L.scene) || (isReal(L) && L.viewers < 3)) return;
@@ -333,7 +333,9 @@ function soundPanelHTML() {
   return `<div class="row sound-row" data-soundpanel>
     <button class="icon-btn" data-act="sound-toggle" aria-label="${S.prefs.sound ? 'Desligar sons' : 'Ligar sons'}" title="${S.prefs.sound ? 'Desligar sons' : 'Ligar sons'}">${icon(S.prefs.sound ? 'volume' : 'mute')}</button>
     <input type="range" class="vol" id="volRange" data-vol min="0" max="1" step="0.05" value="${S.prefs.volume}" aria-label="Volume dos alertas" ${S.prefs.sound ? '' : 'disabled'}>
-    <button class="btn btn-xs" data-act="sound-test">Testar</button>
+    <button class="btn btn-xs" data-act="gift-sound-test">Testar som dos presentes</button>
+    <label class="btn btn-xs upload">Trocar som<input type="file" accept="audio/*" data-file="gift-sound" id="giftSoundFile"></label>
+    ${S.prefs.giftSound ? '<button class="btn btn-xs btn-ghost" data-act="gift-sound-reset">Som original</button>' : ''}
   </div>`;
 }
 

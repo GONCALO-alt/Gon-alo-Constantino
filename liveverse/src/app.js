@@ -394,6 +394,12 @@ async function onFile(input) {
     else if (kind === 'avatar') { syncProfileDraft(); MODAL.draft.avatar = await fileToDataURL(file, 320, 320, .85); paintProfileEditor(); }
     else if (kind === 'banner') { syncProfileDraft(); MODAL.draft.banner = await fileToDataURL(file, 1500, 500); paintProfileEditor(); }
     else if (kind === 'ev-cover') { syncEventDraft(); MODAL.draft.cover = { type: 'img', v: await fileToDataURL(file, 1000, 500) }; paintEventEditor(); }
+    else if (kind === 'gift-sound') {
+      if (file.size > 600 * 1024) { toast('⚠️', 'O som é demasiado grande. Usa um ficheiro com menos de 600 KB (alguns segundos).'); return; }
+      S.prefs.giftSound = await new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = rej; fr.readAsDataURL(file); });
+      GS.buf = null; save(); giftSound(true); toast('🔊', 'Som dos presentes atualizado');
+      $$('[data-soundpanel]').forEach(el => el.outerHTML = soundPanelHTML());
+    }
     else if (kind === 'emote-img') { UI.emoteDraft = await squareEmote(file); openEmotes(); setTimeout(() => $('#emoteCode')?.focus(), 50); }
     else if (kind === 'cam-img') { S.prefs.camImg = await fileToDataURL(file, 400, 400, .85); save(); paintScreen(); $$('[data-immpanel]').forEach(el => el.outerHTML = immersivePanelHTML()); toast('🙂', 'Imagem do avatar atualizada'); }
     else if (kind === 'studio-media') { if (STUDIO.media) URL.revokeObjectURL(STUDIO.media.url); STUDIO.media = { kind: file.type.startsWith('video') ? 'video' : 'image', url: URL.createObjectURL(file) }; render(); }
@@ -536,6 +542,7 @@ function migrate(s) {
   s.prefs.giftGoal = { ...defaultPrefs().giftGoal, ...(s.prefs.giftGoal || {}) };
   s.prefs = { ...defaultImmersive(), ...s.prefs };
   s.regulars = s.regulars || seedRegulars();
+  s.giftLog = s.giftLog || {};
   s.subs = s.subs || {}; s.badges = s.badges || {}; s.chanBell = s.chanBell || {}; s.points = s.points || {}; s.emotes = s.emotes || [];
   resetToZero(s);
   if (s.prefs.goalOnScreen == null) s.prefs.goalOnScreen = false;
@@ -558,6 +565,6 @@ function init() {
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && STUDIO.theater && STUDIO.fs) { STUDIO.fs = false; setTheater(false); } if (!document.fullscreenElement && UI.watchFull) ACT['w-full'](); });
   save();
 }
-Object.assign(ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, TW3_ACT, FEAT_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
+Object.assign(ACT, GIFTSND_ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, TW3_ACT, FEAT_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
 Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS, FEAT_FORMS, POLISH_FORMS);
 init();

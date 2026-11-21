@@ -118,7 +118,7 @@ function liveTick() {
   maybeTroll(L);
   surpriseTick(L); surpriseCheck(L); immersiveTick(L);
   // presentes
-  if (Math.random() < (real ? (L.viewers < 1 ? 0 : Math.min(0.05 + Math.log10(L.viewers + 1) * 0.025, 0.0006 * L.viewers)) * L.engage : (0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage)) * (L.train ? 2.5 : 1) * (L.scene === 'starting' ? .3 : 1)) giftEvent();
+  if (Math.random() < (real ? (L.viewers < 1 ? 0 : Math.min(0.05 + Math.log10(L.viewers + 1) * 0.025, 0.0006 * L.viewers)) * L.engage : (0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage)) * (L.train ? 2.5 : 1) * (L.scene === 'starting' ? .3 : 1) * .4) giftEvent();
   // raid espontânea
   if (!L.raided && e > 120 && Math.random() < (real ? 0.0006 : 0.0025)) raid();
   // sondagem
@@ -146,16 +146,22 @@ function giftEvent(fromUser) {
   const L = S.live;
   const tot = GIFTS.reduce((s, g) => s + g.w, 0); let r = Math.random() * tot; let g = GIFTS[0];
   for (const x of GIFTS) { r -= x.w; if (r <= 0) { g = x; break; } }
-  const qty = g.value >= 200 ? 1 : randi(1, L.viewers > 10000 ? 20 : 5);
+  let qty = g.value >= 200 ? 1 : randi(1, L.viewers > 10000 ? 20 : 5);
+  // cada pessoa: no máximo 500 presentes em 8 horas
+  let u = fromUser || fakeUser(), left = giftAllowance(u), tries = 0;
+  while (left <= 0 && !fromUser && tries++ < 4) { u = fakeUser(); left = giftAllowance(u); }
+  if (left <= 0) return;
+  qty = Math.min(qty, left);
+  giftRecord(u, qty);
   const val = g.value * qty;
   L.gifts += val;
-  const u = fromUser || fakeUser();
   if (val >= 50) pushChat({ gift: true, text: `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
   goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
   if (val >= 20) activityPush(L, 'gift', `${u} ofereceu ${qty > 1 ? qty + '× ' : ''}${g.name} · ${dots(val)} moedas`);
   if (val >= 200) giftMessage(u, g, val);
   if (val >= 500) crowd(.5);
-  if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); sound(val >= 200 ? 'bigGift' : 'gift'); }
+  if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); }
+  giftSound();
   if (val >= 200) { addTimeline('gift', `Presente virtual: ${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} ${g.icon}`, '🎁'); if (STUDIO.fx) particles([g.icon], 8); }
   if (L.gifts >= 10000) checkAch();
 }
