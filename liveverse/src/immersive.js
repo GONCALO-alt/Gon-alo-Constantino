@@ -370,6 +370,7 @@ function liveCounters(L) {
   $$('[data-live="viewers-card"]').forEach(el => el.textContent = espet(v));
   $$('[data-anim="viewers"]').forEach(el => tweenNum(el, v));
   $$('[data-anim="followers"]').forEach(el => tweenNum(el, f));
+  $$('[data-odo="followers"]').forEach(el => setOdo(el, f));
   // histórico para o gráfico
   const now = Date.now();
   L.hist = L.hist || [];
@@ -442,10 +443,24 @@ function resetToZero(s) {
 
 /* Contador no ecrã: espetadores em direto em grande e seguidores numa caixa branca */
 function folCounterHTML(viewers, followers, vKey, fKey) {
-  // só os seguidores (o número grande das views foi retirado)
-  return `<div class="fol-counter" aria-label="${dots(followers)} seguidores">
-    <div class="fc-top"><span class="fc-logo">${LOGO_SVG_FN()}</span><div class="fc-box num" ${fKey ? `data-anim="${fKey}" data-v="${followers}"` : ''}>${dots(followers)}</div></div>
+  // contador de streamer: espetadores em cima, seguidores numa caixa branca com algarismos a rodar
+  return `<div class="yt-counter" aria-label="${dots(viewers)} espetadores, ${dots(followers)} seguidores">
+    <div class="yc-top"><span class="yc-ic">${LOGO_SVG_FN()}</span><b class="yc-v num" ${vKey ? `data-anim="${vKey}" data-v="${viewers}"` : ''}>${dots(viewers)}</b></div>
+    <div class="yc-box num" ${fKey ? `data-odo="${fKey}"` : ''} data-n="${followers}">${odoHTML(followers)}</div>
   </div>`;
+}
+function odoHTML(n) {
+  return dots(n).split('').map(ch => /\d/.test(ch)
+    ? `<span class="od"><span class="od-s" style="transform:translateY(-${+ch * 10}%)">${'0123456789'.split('').map(d => `<span>${d}</span>`).join('')}</span></span>`
+    : `<span class="od-sep">${ch}</span>`).join('');
+}
+function setOdo(el, n) {
+  if (+el.dataset.n === n) return;
+  const str = dots(n), old = dots(+el.dataset.n || 0);
+  el.dataset.n = n;
+  if (str.length !== old.length) { el.innerHTML = odoHTML(n); return; }
+  const strips = el.querySelectorAll('.od-s'); let k = 0;
+  str.split('').forEach(ch => { if (/\d/.test(ch)) { const s = strips[k++]; if (s) s.style.transform = `translateY(-${+ch * 10}%)`; } });
 }
 
 /* Painel de seguidores ao lado do vídeo no ecrã inteiro */

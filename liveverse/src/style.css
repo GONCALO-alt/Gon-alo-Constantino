@@ -1651,3 +1651,48 @@ a.btn { text-decoration: none; }
   .studio.theater .tw-send-m { display: inline-flex; }
   .studio.theater .studio-chat { gap: 6px; }
 }
+
+/* ===================== Contador estilo streamer (algarismos a rodar) ===================== */
+.yt-counter { position: absolute; right: 12px; top: 30%; z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; pointer-events: none; }
+.yc-top { display: flex; align-items: center; gap: 6px; }
+.yc-ic { width: clamp(16px, 2.4vw, 28px); height: clamp(16px, 2.4vw, 28px); border-radius: 5px; overflow: hidden; flex: none; }
+.yc-ic svg { width: 100%; height: 100%; display: block; }
+.yc-v { font-family: var(--f-body); font-weight: 900; font-size: clamp(18px, 3.2vw, 36px); line-height: 1; color: #fff; -webkit-text-stroke: 2px #000; paint-order: stroke fill; text-shadow: 2px 2px 0 #000; font-variant-numeric: tabular-nums; }
+.yc-box { display: inline-flex; background: #fff; color: #000; font-family: var(--f-body); font-weight: 900; font-size: clamp(14px, 2.3vw, 26px); line-height: 1.12; padding: 0 5px; border: 2px solid #000; font-variant-numeric: tabular-nums; }
+.od { display: inline-block; height: 1.12em; overflow: hidden; vertical-align: top; }
+.od-s { display: flex; flex-direction: column; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.od-s span { display: block; height: 1.12em; line-height: 1.12em; text-align: center; }
+.od-sep { display: inline-block; }
+.screen.vertical .yt-counter { top: 26%; }
+.screen.vertical .yc-v { font-size: clamp(16px, 5vw, 30px); }
+.screen.vertical .yc-box { font-size: clamp(13px, 3.8vw, 22px); }
+.feat .yt-counter { top: 28%; }
+.screen .yt-counter .num-pop { display: none; }
+
+/* ===================== Ecrã inteiro no telemóvel de pé: roda para horizontal ===================== */
+@media (max-width: 760px) and (orientation: portrait) {
+  .studio.theater { inset: auto; top: 0; left: 0; width: 100dvh; height: 100vw; transform-origin: top left; transform: rotate(90deg) translateY(-100%);
+    display: grid; grid-template-columns: minmax(0, 1fr) min(260px, 36dvh); grid-template-rows: none; gap: 8px; padding: 8px max(8px, env(safe-area-inset-top, 0px)) 8px 8px; overflow: hidden; }
+  .studio.theater .studio-main { display: flex; flex-direction: column; gap: 6px; overflow: hidden; min-height: 0; }
+  .studio.theater .studio-main > * { order: 0; }
+  .studio.theater .studio-main > .screen { position: relative; top: auto; width: min(100%, calc((100vw - 70px) * 16 / 9)); max-width: 100%; margin: 0 auto; box-shadow: none; z-index: 1; }
+  .studio.theater .studio-chat { order: 0; position: static; display: flex; flex-direction: column; gap: 6px; height: calc(100vw - 16px); min-height: 0; }
+  .studio.theater .studio-chat .chat { flex: 1; min-height: 0; height: auto; }
+  .studio.theater .th-fol { padding: 8px 10px; gap: 4px; }
+  .studio.theater .th-fol .th-row b { font-size: 22px; }
+  .studio.theater .th-vw b { font-size: 16px !important; margin-top: 4px; }
+  .studio.theater .th-list, .studio.theater .lb, .studio.theater .chat-badges, .studio.theater .tw-in-row { display: none; }
+  .studio.theater .chat-head { padding: 6px 10px; }
+  .studio.theater .tw-input { padding: 6px; }
+  .studio.theater .tw-send-m { display: inline-flex; }
+  .studio.theater .theater-bar { padding: 4px; gap: 4px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .studio.theater .theater-bar .tb-group, .studio.theater .theater-bar .seg { width: auto; flex-wrap: nowrap; }
+  .studio.theater .theater-bar .btn { padding: 5px 9px; font-size: 12px; }
+  .studio.theater .theater-bar .tb-reacts { display: none; }
+  .studio.theater .tb-scene { flex: none; }
+  .studio.theater .tb-scene select { min-width: 0; width: auto; padding: 4px 8px; font-size: 12px; }
+  .studio.theater .msg { font-size: 12px; }
+}
+
+.studio.theater .screen .screen-chat { display: none !important; }
+.yc-v.bump { animation: none; }
