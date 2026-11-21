@@ -94,7 +94,7 @@ function crowd(intensity = .6) { crowdCheer(intensity); }
 
 /* ---------- Contador: o algarismo antigo sobe e o novo entra por baixo ---------- */
 function odoHTML(n) { return dots(n).split('').map(ch => /\d/.test(ch) ? `<span class="od">${ch}</span>` : `<span class="od-sep">${ch}</span>`).join(''); }
-function setOdo(el, n) {
+function setOdoInstant(el, n) {
   const prev = +el.dataset.n || 0; if (prev === n) return;
   el.dataset.n = n;
   const a = dots(prev), b = dots(n);
@@ -160,19 +160,18 @@ function answerLines(text) {
   if (topic) lines.push(`vai à ${topic}`, `${topic} sim`, `${topic}!!`, `a ${topic} é top`, `nada de ${topic} 😂`, `${topic} era bué top`, `bora ${topic}`, `${topic} não 💀`);
   return { lines, hype: .3, yn: true };
 }
-function chatRespond(text) {
+function chatRespondLocal(text) {
   const L = S.live; if (!L) return;
   if (chatCommand(L, text)) { L.voice = (L.voice || 0) + 1; avatarEmote('goal'); return; }
   const ans = answerLines(text);
   if (!ans) return chatRespondOld(text);
-  let n = clamp(Math.round(9 + Math.log10(L.viewers + 1) * 3), 9, 24);
-  if (isReal(L)) n = Math.min(n, Math.max(0, Math.round(L.viewers * .85)));
+  const n = respN(L);
   const used = new Map();
   for (let i = 0; i < n; i++) {
     let line = pick(ans.lines), tries = 0;
     while ((used.get(line) || 0) >= 2 && tries++ < 6) line = pick(ans.lines);
     used.set(line, (used.get(line) || 0) + 1);
-    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: withEmotes(line), hype: true }), 450 + i * rand(110, 320) + Math.random() * 250);
+    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: withEmotes(line), hype: true }), 400 + i * rand(55, 130) + Math.random() * 400);
   }
   L.engage = Math.min(3, L.engage + .6);
   L.voice = (L.voice || 0) + 1;
@@ -181,5 +180,5 @@ function chatRespond(text) {
     if (S.live !== L) return;
     const yes = randi(40, 75);
     pushChat({ sys: true, text: `O chat respondeu: ${yes}% sim · ${100 - yes}% não` });
-  }, 450 + n * 260);
+  }, 600 + n * 95);
 }

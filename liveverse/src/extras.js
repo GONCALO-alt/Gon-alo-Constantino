@@ -262,9 +262,8 @@ function chatCommand(L, text) {
   if (!word) return false;
   if (/^cora[çc](ão|ões)$/i.test(word)) word = '💜';
   const variants = [word, word, word, word.toUpperCase(), word + '!!', word + ' 👋', word.toLowerCase() + ' ' + S.me.name.split(' ')[0], word + ' 💜', word.toUpperCase() + '!!!', word + ' 😄'];
-  let n = clamp(Math.round(8 + Math.log10(L.viewers + 1) * 4), 8, 28);
-  if ((LEVELS[L.level] || {}).realistic) n = Math.min(n, Math.max(0, Math.round(L.viewers * .9)));
-  for (let i = 0; i < n; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(variants), hype: true }), 250 + i * rand(70, 190));
+  const n = respN(L);
+  for (let i = 0; i < n; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(variants), hype: true }), 250 + i * rand(50, 120));
   L.engage = Math.min(3, L.engage + .5);
   return true;
 }
@@ -297,12 +296,11 @@ function chatRespondOld(text) {
     const short = text.length > 40 ? text.slice(0, 38) + '…' : text;
     lines.push(`"${short}" 😂`);
   }
-  let n = clamp(Math.round((rule && rule.many ? 9 : 6) + hype * 12 + Math.log10(L.viewers + 1) * 2), 6, 22);
-  if ((LEVELS[L.level] || {}).realistic) n = Math.min(n, Math.max(0, Math.round(L.viewers * .8)));
+  const n = respN(L);
   const used = new Set();
   for (let i = 0; i < n; i++) {
     let line = pick(lines); if (used.has(line) && lines.length > used.size) line = pick(lines); used.add(line);
-    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: line.replace('{me}', me), hype: hype >= .2 }), 350 + i * rand(120, 300));
+    setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: line.replace('{me}', me), hype: hype >= .2 }), 350 + i * rand(55, 130));
   }
   L.engage = Math.min(3, L.engage + hype * .8); L.boost += (LEVELS[L.level] || LEVELS.media).max * hype * .02;
   if (rule && rule.fol) follow(rule.fol);

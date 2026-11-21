@@ -23,7 +23,7 @@ const SCENE_AMBIENT = {
   followers: ['SEGUIDO ✅', 'vamos à próxima meta!!', 'acabei de seguir 💜', 'bora encher isto', 'segue toda a gente!', 'quase lá 👀', 'partilhem a live!'],
   ending: ['NÃÃÃO já acabou?', 'obrigado pela live 💜', 'até amanhã!!', 'que live top', 'GG', 'próxima quando?', '👋👋', 'melhor live da semana'],
 };
-const sceneFactor = L => SCENE_FACTOR[L.scene || 'game'] || 1;
+let sceneFactor = L => SCENE_FACTOR[L.scene || 'game'] || 1;
 function sceneLine(L) {
   if (!L.scene || L.scene === 'game') return null;
   const p = L.scene === 'chat' ? .4 : .6;
@@ -223,7 +223,7 @@ async function ttsDrain() {
   }
   done();
 }
-function giftMessage(u, g, val) {
+function giftMessageOld(u, g, val) {
   const msg = pick(GIFT_MSGS);
   pushChat({ gift: true, text: `💬 ${u}: «${msg}»` });
   ttsSay(`${u.replace(/[_.\d]+/g, ' ').trim() || 'Alguém'} enviou ${g.name}. ${msg}`);

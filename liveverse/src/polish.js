@@ -42,6 +42,7 @@ function studioSetup() {
           <label class="field"><span>Audiência</span><select class="input" name="level" id="glLevel" data-setup="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${st.level === k ? 'selected' : ''}>${l.realistic ? 'Realista' : 'Livre · até ' + dots(l.max)}</option>`).join('')}</select></label>
         </div>
         ${st.level === 'real' ? realHintHTML(st.game) : ''}
+        <p class="tiny muted" style="margin:0">Ao entrares em direto o microfone liga-se sozinho: fala e o chat responde.</p>
         <button class="btn btn-live sm-go">${icon('studio')} Entrar em direto</button>
         <button type="button" class="btn" data-act="new-event" style="justify-content:center">${icon('calendar')} Agendar para outra hora</button>
         <p class="tiny muted" style="margin:0">Os espetadores e o chat são simulados.</p>
@@ -59,6 +60,7 @@ function studioSetup() {
 }
 const POLISH_FORMS = {
   'go-live': f => {
+    micAuto(); // o microfone liga-se sozinho ao entrar em direto
     const st = STUDIO.setup; const ev = st.eventId && S.events.find(e => e.id === st.eventId);
     const tags = String(f.tags ? f.tags.value : st.tags || '').split(',').map(t => t.trim().replace(/^#/, '')).filter(Boolean).slice(0, 6);
     startLive(ev ? { title: ev.title, game: ev.game, mode: ev.mode, level: ev.level, eventId: ev.id } : { title: f.title.value.trim() || `Live de ${GAMES[st.game].name}`, game: st.game, mode: st.mode, level: st.level });

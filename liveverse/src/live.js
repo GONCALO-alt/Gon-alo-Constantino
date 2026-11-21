@@ -59,6 +59,7 @@ function endLive() {
     id: L.id, title: L.title, game: L.game, mode: L.mode, level: L.level, eventId: L.eventId, start: L.start, end: now,
     peak: Math.round(L.peak), views: Math.round(L.peak * rand(1.5, 2.1) + L.followers * 3), followers: Math.round(L.followers), gifts: Math.round(L.gifts),
     likes: Math.round(L.likes), reactions: L.reactions, timeline: L.timeline, clips: L.clips,
+    hist: (L.hist || []).slice(-90), chatters: Object.keys(L.chatters || {}).length, msgs: L.msgs,
   };
   S.lives.push(rec);
   if (L.eventId) { const ev = S.events.find(e => e.id === L.eventId); if (ev) { ev.endedAt = now; ev.peak = rec.peak; } }
@@ -155,10 +156,11 @@ function giftEvent(fromUser) {
   giftRecord(u, qty);
   const val = g.value * qty;
   L.gifts += val;
-  if (val >= 50) pushChat({ gift: true, text: `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
+  const withMsg = val >= 5 && Math.random() < .55;
+  if (val >= 50 && !withMsg) pushChat({ gift: true, text: `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name} (${dots(val)} moedas virtuais)` });
   goalAdd(val); hypeAdd(val); trackGifter(L, u, val);
   if (val >= 20) activityPush(L, 'gift', `${u} ofereceu ${qty > 1 ? qty + '× ' : ''}${g.name} · ${dots(val)} moedas`);
-  if (val >= 200) giftMessage(u, g, val);
+  if (withMsg) giftMessage(u, g, val);
   if (val >= 500) crowd(.5);
   if (val >= 50) { alertShow(g.icon, `${u} enviou ${qty > 1 ? qty + '× ' : ''}${g.name}`, `${dots(val)} moedas virtuais`, 'gift'); }
   giftSound();
@@ -201,7 +203,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(noEmoji(m.text))}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${emotify(esc(m.text))}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''} ${m.first ? 'first' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${emotify(esc(m.text))}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */
@@ -362,7 +364,7 @@ function viewStudio() {
   const open = !!STUDIO.controls;
   return `<div class="live-top">
     <span class="pill-live">EM DIRETO</span>
-    <button class="lt-title lt-edit" data-act="stream-info" title="Editar informação da transmissão"><strong>${esc(L.title)}</strong><small>${esc(G.name)} · ${esc(streamTagsFor(L).slice(0, 3).join(' · '))} ${icon('edit')}</small></button>
+    ${micIndHTML()}<button class="lt-title lt-edit" data-act="stream-info" title="Editar informação da transmissão"><strong>${esc(L.title)}</strong><small>${esc(G.name)} · ${esc(streamTagsFor(L).slice(0, 3).join(' · '))} ${icon('edit')}</small></button>
     <div class="lt-stat"><small>Sessão</small><b class="num" data-live="uptime">${upTime(Date.now() - L.start)}</b></div>
     <div class="lt-stat"><small>Espetadores ${SIM('sim.')}</small><b class="num" data-anim="viewers" data-v="${Math.round(L.viewers)}">${dots(L.viewers)}</b></div>
     <canvas class="lt-spark" id="viewSpark" width="160" height="40" aria-label="Gráfico de espectadores"></canvas>
@@ -497,7 +499,7 @@ function studioSetupOld() {
   <h3 style="margin:22px 0 10px;font-size:20px">Lives anteriores</h3>
   <div class="stack">${S.lives.length ? [...S.lives].sort((a, b) => b.start - a.start).map(l => `${pastLive(l)}`).join('') : '<div class="empty"><b>Ainda sem lives</b></div>'}</div>`;
 }
-function liveSummary(l) {
+function liveSummaryOld(l) {
   return `<section class="card setup" style="margin-bottom:16px;border-color:color-mix(in oklab,var(--accent) 50%,transparent)">
     <div class="row"><h2 style="flex:1">Resumo: ${esc(l.title)}</h2>${SIM('valores fictícios')}<button class="icon-btn" data-act="summary-close" aria-label="Fechar resumo">${icon('close')}</button></div>
     <div class="summary-grid">
