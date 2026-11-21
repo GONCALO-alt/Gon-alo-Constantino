@@ -66,6 +66,8 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 - **Som de multidão** nos grandes momentos e **modo teatro** em ecrã inteiro, só com o ecrã, as cenas, as reações e o chat.
 - **GTA VI**: jogo disponível em lives, eventos, publicações e Explorar, com reações próprias no chat (fugas, estrelas de procurado, assaltos, «WASTED»), uma live fictícia a decorrer, um evento agendado e um clip.
 - **Notificações** simuladas: 30 e 5 minutos antes, evento em direto, 1.000 interessados, tendência, comunidade à espera, conquistas, respostas.
+- **Comportamento de plataforma de streaming**: os controlos do player escondem-se sozinhos (e o cursor também) e voltam ao mexer o rato; clique no vídeo pausa e duplo clique põe em ecrã inteiro; o modo teatro (tecla `t`) ocupa o ecrã todo com o chat à direita e o nome do canal por cima do vídeo; o chat pode ser recolhido e expandido; regras do chat aparecem antes da primeira mensagem em cada canal; o coração de «A seguir» parte-se ao passar o rato para deixar de seguir e o sino de notificações só aparece quando segues.
+- **Navegação**: barra lateral com «Mostrar mais» e cartão com o título da live ao passar o rato, «Mostrar mais» nas lives da página inicial, sugestões na pesquisa do topo (canais, categorias e «Ver todos os resultados») e página de categoria com seguir categoria, separadores Canais em direto/Clipes e ordenação por espetadores ou mais recentes.
 
 O estado (perfil, publicações, eventos, lives, clips, notificações) fica guardado no `localStorage` do navegador.
 

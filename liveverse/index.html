@@ -1829,6 +1829,89 @@ body[data-chatsize="l"] .chat-list .msg { font-size: 15.5px; }
 .uc-top strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ss-row .switch input:not(:checked) { background: var(--surface-3); }
 
+/* ===================== Padrões de plataforma de streaming ===================== */
+/* player: controlos escondem-se sozinhos */
+@media (min-width: 821px) {
+  .wp-video:hover .wp-ctrl { opacity: 0; }
+  .wp-video.ctrl-on .wp-ctrl, .wp-video.paused .wp-ctrl, .wp-ctrl:focus-within { opacity: 1; }
+  .wp-video:not(.ctrl-on):not(.paused) { cursor: none; }
+}
+.wp-htop { position: absolute; left: 0; right: 0; top: 0; z-index: 4; display: none; align-items: center; gap: 10px; padding: 12px 14px 34px; background: linear-gradient(rgb(0 0 0 / .75), transparent); color: #fff; pointer-events: none; opacity: 0; transition: opacity .2s; }
+.wp-htop b { display: block; font-size: 15px; }
+.wp-htop span { display: block; font-size: 13px; color: rgb(255 255 255 / .85); }
+.wp.full .wp-htop, .wp-video:fullscreen .wp-htop { display: flex; }
+.wp-video.ctrl-on .wp-htop, .wp-video.paused .wp-htop { opacity: 1; }
+/* modo teatro: vídeo preto + chat à direita */
+@media (min-width: 761px) {
+  .wp.full { position: fixed; inset: 0; z-index: 85; display: grid; grid-template-columns: minmax(0, 1fr) 340px; background: #000; gap: 0; padding: 0; }
+  .wp.full .wp-main { display: block; min-width: 0; height: 100vh; }
+  .wp.full .wp-video { position: relative; inset: auto; width: 100%; height: 100vh; aspect-ratio: auto; border-radius: 0; z-index: auto; }
+  .wp.full .wp-info { display: none; }
+  .wp.full .wp-side { display: block; position: static; height: 100vh; }
+  .wp.full .wp-chatbox { border-radius: 0; border: 0; border-left: 1px solid var(--line); }
+  .wp.full [data-wchat-overlay] { display: none !important; }
+}
+/* recolher o chat */
+.chat-col { width: 30px; height: 30px; position: absolute; left: 8px; top: 50%; transform: translateY(-50%); }
+.chat-head { position: relative; }
+.chat-expand { display: none; position: absolute; right: 10px; top: 10px; z-index: 4; width: 34px; height: 34px; border: 0; border-radius: 4px; background: rgb(0 0 0 / .6); color: #fff; place-items: center; }
+.chat-expand svg { width: 20px; height: 20px; }
+.wp.chat-collapsed { grid-template-columns: minmax(0, 1fr) !important; }
+.wp.chat-collapsed .wp-side { display: none !important; }
+.wp.chat-collapsed .chat-expand { display: grid; }
+@media (max-width: 760px) { .chat-col, .chat-expand { display: none !important; } .wp.chat-collapsed .wp-side { display: block !important; } }
+/* seguir / deixar de seguir */
+.wp-unf .hb { display: none; }
+.wp-unf:hover { background: var(--surface-3) !important; color: var(--fg) !important; }
+.wp-unf:hover .hf { display: none; }
+.wp-unf:hover .hb { display: inline-flex; }
+.wp-unf span { display: inline-flex; }
+/* barra lateral */
+.sd-more { display: block; width: 100%; padding: 6px 10px; border: 0; background: none; color: var(--purple-soft); text-align: left; font-size: 13px; font-weight: 600; }
+.sd-more:hover { text-decoration: underline; }
+.app.side-mini .sd-more { display: none; }
+.hovercard { position: fixed; z-index: 120; max-width: 300px; padding: 8px 10px; border-radius: 6px; background: var(--surface-2); box-shadow: 0 6px 22px rgb(0 0 0 / .7); pointer-events: none; opacity: 0; transform: translateX(-4px); transition: opacity .12s, transform .12s; }
+.hovercard.on { opacity: 1; transform: none; }
+.hovercard b { display: block; font-size: 13.5px; line-height: 1.3; }
+.hovercard span { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+/* página inicial: mostrar mais */
+.show-more { display: flex; align-items: center; gap: 12px; margin: -6px 0 26px; }
+.show-more span { flex: 1; height: 1px; background: var(--line-2); }
+.show-more button { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border: 0; border-radius: 4px; background: none; color: var(--purple-soft); font-weight: 700; font-size: 13px; }
+.show-more button:hover { background: var(--surface-2); }
+.show-more svg { width: 16px; height: 16px; }
+/* pesquisa com sugestões */
+.tn-search { position: relative; }
+.tn-suggest { position: absolute; left: 0; right: 0; top: 42px; z-index: 70; padding: 6px; border-radius: 6px; background: var(--surface-2); box-shadow: 0 10px 30px rgb(0 0 0 / .8); display: flex; flex-direction: column; }
+.sg { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border: 0; border-radius: 4px; background: none; color: var(--fg); text-align: left; text-decoration: none; }
+.sg:hover { background: var(--surface-3); }
+.sg b { display: flex; align-items: center; gap: 4px; font-size: 14px; }
+.sg small { display: flex; align-items: center; gap: 5px; font-size: 12.5px; color: var(--muted); }
+.sg-live { width: 8px; height: 8px; border-radius: 50%; background: var(--live); display: inline-block; }
+.sg-all { color: var(--purple-soft); font-weight: 600; font-size: 13px; border-top: 1px solid var(--line-2); border-radius: 0; margin-top: 4px; padding-top: 10px; }
+.sg-all svg { width: 16px; height: 16px; }
+.sg-none { margin: 0; padding: 10px; color: var(--muted); font-size: 13px; }
+/* categoria */
+.cat-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: space-between; border-bottom: 1px solid var(--line); margin-bottom: 16px; }
+.cat-sort { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--fg-2); }
+.cat-sort select { width: auto; padding: 6px 10px; }
+.cat-n { color: var(--fg); }
+.rules { margin: 8px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+/* chat: densidade de plataforma */
+.chat-list { padding: 8px 0 !important; gap: 0 !important; }
+.chat-list .msg { padding: 4px 20px 4px 16px; margin: 0; border-radius: 0; line-height: 20px; font-size: 13px; }
+.chat-list .msg:hover, .chat-list .msg.open { background: rgb(255 255 255 / .05); }
+.chat-list .msg.sys, .chat-list .msg.gift { margin: 4px 0; }
+.chat-list .msg b.cu { font-weight: 700; }
+/* modo teatro: o vídeo cobre o ecrã todo (a animação de entrada da página não pode criar um contentor) */
+main.page-in:has(.wp.full) { transform: none !important; animation: none !important; }
+body.theater-on main { transform: none !important; animation: none !important; }
+.chat-head:has(.chat-col) { padding-left: 44px; }
+.chat-head .tw-chead-t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.chat-head > * { flex-shrink: 0; }
+.chat-head > .tw-chead-t { flex-shrink: 1; }
+.chat-head, .chat-head * { white-space: nowrap; }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -4797,7 +4880,8 @@ function viewFeed() {
     const list = lives.filter(e => UI.homeCat === 'all' || e.game === UI.homeCat);
     body = `${UI.homeCat === 'all' ? featuredHTML(liveHomeList()) : ''}<div class="chip-row tw-cats">${[['all', 'Tudo'], ...cats.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
       <h2 class="tw-h tw-h-desk">Canais em direto de que achamos que vais gostar</h2>
-      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>
+      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.slice(0, UI.homeMore ? 80 : 8).map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>
+      ${list.length > 8 ? `<div class="show-more"><span></span><button data-act="home-more">${UI.homeMore ? 'Mostrar menos' : 'Mostrar mais'} ${icon(UI.homeMore ? 'chevL' : 'chevD')}</button><span></span></div>` : ''}
       ${UI.homeCat === 'all' ? `<h2 class="tw-h">Categorias de que achamos que vais gostar</h2><div class="cat-grid2 cat-row">${categoryStats().slice(0, 7).map(catCardHTML).join('')}</div>` : ''}`;
   } else if (t === 'following') {
     const fol = S.accounts.filter(a => a.followed);
@@ -4832,7 +4916,7 @@ function viewWatch(id) {
   const video = ev ? `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Live simulada</small></div></div>
       <span class="wp-cam" style="--h:${a.hue || 270}">${face}<em>${esc(a.handle)}</em></span>${folCounterHTML(Math.round(ev.viewers || 0), a.followers, 'wviewers', null)}`
     : `<div class="wp-offline"><div>${avatar(a, 84).replace('<a ', '<span ').replace('</a>', '</span>')}<strong>${esc(a.name)} está offline</strong><span>${next ? `Próxima live: ${esc(next.title)} · ${whenLabel(next.start)}` : 'Segue o canal para saberes quando entra em direto.'}</span></div></div>`;
-  return `<div class="wp ${UI.watchFull ? 'full' : ''}" data-watch="${a.id}">
+  return `<div class="wp ${UI.watchFull ? 'full' : ''} ${UI.chatCollapsed ? 'chat-collapsed' : ''}" data-watch="${a.id}">
     <div class="wp-main">
       <div class="wp-video screen" style="--gc:${G.color}">
         ${video}
@@ -4845,6 +4929,8 @@ function viewWatch(id) {
         </div>
         ${ev ? `<div class="wp-bottom"><span class="tw-uptime"><i></i><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="wviewers" data-v="${Math.round(ev.viewers || 0)}">${fmt(ev.viewers || 0)}</b></span><span class="spacer"></span><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon(UI.watchFull ? 'shrink' : 'expand')}</button></div>
         <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>
+        <div class="wp-htop">${avatar(a, 36).replace('<a ', '<span ').replace('</a>', '</span>')}<div><b>${esc(a.name)}</b><span>${esc(ev.title)}</span></div></div>
+        <button class="chat-expand" data-act="chat-collapse" aria-label="Expandir chat">${icon('collapseR')}</button>
         ${playerCtrlHTML(a.id)}` : ''}
         <div class="fx" id="wfx"></div>
       </div>
@@ -4857,8 +4943,8 @@ function viewWatch(id) {
           </div></div>
           <div class="wp-right">
             <div class="wp-actions">
-              ${a.followed ? `<button class="wp-round on" data-act="follow" data-id="${a.id}" aria-label="Deixar de seguir" title="Deixar de seguir">${icon('heartFill')}</button>` : `<button class="btn btn-primary wp-follow" data-act="follow" data-id="${a.id}">${icon('heart')} Seguir</button>`}
-              <button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="Notificações do canal">${icon('bellPlus')}</button>
+              ${a.followed ? `<button class="wp-round on wp-unf" data-act="follow" data-id="${a.id}" aria-label="Deixar de seguir"><span class="hf">${icon('heartFill')}</span><span class="hb">${icon('heartBreak')}</span></button>` : `<button class="btn btn-primary wp-follow" data-act="follow" data-id="${a.id}">${icon('heart')} Seguir</button>`}
+              ${a.followed ? `<button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="${S.chanBell && S.chanBell[a.id] ? 'Desligar notificações' : 'Ligar notificações'}">${icon('bellPlus')}</button>` : ''}
               <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">${icon('gift')} Oferecer subscrição</button>
               <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${icon('star')} ${sub ? 'Subscrito' : 'Subscrever'}</button>
             </div>
@@ -4870,7 +4956,7 @@ function viewWatch(id) {
     </div>
     <aside class="wp-side">
       <section class="card chat wp-chatbox">
-        <div class="chat-head"><span class="tw-chead-t">${ev ? 'Chat da transmissão' : 'Chat offline'}</span>${SIM()}<span class="spacer"></span><span class="small muted chat-vw">${icon('person')} <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
+        <div class="chat-head"><button class="tn-ic chat-col" data-act="chat-collapse" aria-label="Recolher chat">${icon('collapseL')}</button><span class="tw-chead-t">${ev ? 'Chat da transmissão' : 'Chat offline'}</span>${SIM()}<span class="spacer"></span><span class="small muted chat-vw">${icon('person')} <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
         ${ev ? `<div class="lb" data-wlb>${leaderboardHTML(WATCH.key === a.id ? WATCH.gifters : {})}</div>
         <div class="drop" data-wdrop>${dropHTML(a, ev)}</div>` : ''}
         <div class="chat-list" id="wpChat" data-wchat></div>
@@ -4893,7 +4979,7 @@ function leaderboardHTML(g) {
 function chatInputHTML(id, form, gift, accId) {
   return `<form class="tw-input" data-form="${form}" ${accId ? `data-id="${accId}"` : ''}>
     ${gift ? `<button type="button" class="tw-in-gift" data-act="w-giftsub" data-id="${accId}" aria-label="Oferecer subscrição">${icon('gift')}</button>` : ''}
-    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
+    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="500" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
     <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
     <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
     <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
@@ -5046,7 +5132,7 @@ function topNavHTML() {
       <div class="tn-drop-wrap"><button class="tn-ic" data-act="nav-menu" data-m="more" aria-label="Mais" aria-expanded="${UI.navMenu === 'more'}">${icon('dots3')}</button>
         ${UI.navMenu === 'more' ? `<div class="tn-drop">${more.map(([h, ic, l]) => `<a href="#${h}">${icon(ic)} ${l}</a>`).join('')}<button data-act="home-posts">${icon('edit')} Publicações</button></div>` : ''}</div>
     </div>
-    <form class="tn-search" data-form="topsearch" role="search"><input class="input" id="topSearch" name="q" placeholder="Procurar" autocomplete="off" value="${esc(UI.explore?.q || '')}"><button aria-label="Procurar">${icon('search')}</button></form>
+    <form class="tn-search" data-form="topsearch" role="search"><input class="input" id="topSearch" name="q" placeholder="Procurar" autocomplete="off" aria-autocomplete="list" value="${esc(UI.explore?.q || '')}"><button aria-label="Procurar">${icon('search')}</button><div class="tn-suggest" id="tnSuggest" hidden></div></form>
     <div class="tn-right">
       <span class="tn-clock num" data-clock="hm">${hhmm(Date.now())}</span>
       <div class="tn-drop-wrap"><button class="tn-ic" data-act="nav-menu" data-m="notif" aria-label="Notificações" title="Notificações" aria-expanded="${UI.navMenu === 'notif'}">${icon('bell')}${badge(notifUnread())}</button>
@@ -5064,7 +5150,7 @@ function topNavHTML() {
 }
 
 /* ---------- Barra lateral: só canais ---------- */
-function sideTwitchHTML() {
+function sideTwitchHTMLOld() {
   const mini = !!S.prefs.sideMini;
   const row = (a, ev) => {
     const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
@@ -5123,15 +5209,8 @@ function catCardHTML({ k, viewers }) {
 UI.browseTab = 'cats'; UI.browseCat = null;
 function viewExplore() {
   const q = (UI.explore.q || '').trim();
-  if (UI.browseCat && !q) {
-    const k = UI.browseCat, G = GAMES[k] || GAMES.chat;
-    const lives = liveChannels().filter(e => e.game === k);
-    const total = lives.reduce((s, e) => s + (e.viewers || 0), 0) + (S.live && S.live.game === k ? S.live.viewers : 0);
-    return `<div class="cat-head"><span class="cat-art big" style="--gc:${G.color}"><span class="tw-thumb-bg"></span><b>${esc(glyphText(G))}</b></span>
-      <div><button class="btn btn-sm btn-ghost" data-act="cat-back">${icon('chevL')} Procurar</button><h1>${esc(G.name)}</h1><p class="muted">${espet(total)} · ${lives.length + (S.live && S.live.game === k ? 1 : 0)} canais em direto</p>${tagChips(streamTags(k))}</div></div>
-      <div class="tw-tabs"><button class="on">Canais em direto</button></div>
-      <div class="tw-grid">${S.live && S.live.game === k ? liveCardHTML(S.live, true) : ''}${lives.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Volta mais tarde ou entra tu em direto.</div>'}</div>`;
-  }
+  if (UI.browseCat && !q) return categoryPageHTML(UI.browseCat);
+
   return `<div class="page-head"><div><h1>Procurar</h1></div></div>
     <div class="tw-tabs">${[['cats', 'Categorias'], ['live', 'Canais em direto']].map(([k2, l]) => `<button class="${UI.browseTab === k2 && !q ? 'on' : ''}" data-act="browse-tab" data-k="${k2}">${l}</button>`).join('')}</div>
     <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Procurar canais, categorias, #hashtags, clipes…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Procurar"></div>
@@ -6399,6 +6478,172 @@ function proInit() {
 }
 
 /* =====================================================================
+   Padrões de interface de uma plataforma de streaming: controlos do
+   player com auto-esconder, clique para pausa e duplo clique para ecrã
+   inteiro, modo teatro com chat, recolher o chat, regras do chat,
+   deixar de seguir no coração, sino só para quem segue, barra lateral
+   com «Mostrar mais» e cartão ao passar o rato, «Mostrar mais» na
+   página inicial, categorias com seguir/ordenar/clipes e sugestões na
+   pesquisa. A marca, o logótipo e os sons próprios continuam a ser do
+   LiveVerse.
+   ===================================================================== */
+Object.assign(IC, {
+  heartBreak: '<path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/><path d="m12 8-1.5 3 3 2-1.5 3"/>',
+  collapseR: '<path d="M4 4v16M20 12H9M13 8l-4 4 4 4"/>',
+  collapseL: '<path d="M20 4v16M4 12h11M11 8l4 4-4 4"/>',
+  sort: '<path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/>',
+});
+/* cores de nome predefinidas, ajustadas para fundo escuro */
+NAME_COLORS.splice(0, NAME_COLORS.length, '#FF4A4A', '#7B8CFF', '#3EC23E', '#E05A5A', '#FF7F50', '#9ACD32', '#FF6A33', '#4BC08C', '#DAA520', '#E0883F', '#6FB2B5', '#4DA3FF', '#FF69B4', '#A970FF', '#00E57A');
+
+/* ---------- Player: auto-esconder, clique e duplo clique ---------- */
+let ctrlT = null, clickT = null;
+function ctrlShow(v) {
+  v.classList.add('ctrl-on');
+  clearTimeout(ctrlT);
+  ctrlT = setTimeout(() => { if (!v.matches(':hover') || !v.querySelector('.pq-menu')) v.classList.remove('ctrl-on'); }, 2600);
+}
+document.addEventListener('mousemove', e => { const v = e.target.closest && e.target.closest('.wp-video'); if (v) ctrlShow(v); }, { passive: true });
+document.addEventListener('mouseleave', e => { if (e.target && e.target.classList && e.target.classList.contains('wp-video')) e.target.classList.remove('ctrl-on'); }, true);
+document.addEventListener('click', e => {
+  const v = e.target.closest && e.target.closest('.wp-video');
+  if (!v || e.target.closest('.wp-ctrl, .wp-top, .wp-htop, button, a, .pl-load, .chat-expand')) return;
+  clearTimeout(clickT);
+  clickT = setTimeout(() => { const b = v.querySelector('[data-act="player-pause"]'); if (b && v.isConnected) ACT['player-pause'](b); }, 230);
+}, true);
+document.addEventListener('dblclick', e => {
+  const v = e.target.closest && e.target.closest('.wp-video');
+  if (!v || e.target.closest('.wp-ctrl, button, a')) return;
+  clearTimeout(clickT);
+  ACT['player-fs']();
+}, true);
+
+/* ---------- Barra lateral com «Mostrar mais» e cartão ao passar o rato ---------- */
+UI.sideMoreF = false; UI.sideMoreR = false;
+function sideTwitchHTML() {
+  const mini = !!S.prefs.sideMini;
+  const row = (a, ev) => {
+    const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
+    const href = a.id === 'me' ? '#estudio' : chanHash(a.id);
+    return `<a class="chan ${ev ? '' : 'is-off'}" href="${href}" data-hovercard="${a.id}">${av}<span><strong>${esc(a.name)}</strong><small>${ev ? esc(GAMES[ev.game]?.name || '') : ''}</small></span>${ev ? `<span class="chan-v"><i></i><span ${a.id === 'me' ? 'data-live="viewers"' : `data-chv="${ev.id}"`}>${fmt(a.id === 'me' ? S.live.viewers : ev.viewers || 0)}</span></span>` : '<span class="chan-off">Offline</span>'}</a>`;
+  };
+  const followed = S.accounts.filter(a => a.followed).map(a => [a, channelLive(a)]).sort((x, y) => (!!y[1] - !!x[1]) || ((y[1]?.viewers || 0) - (x[1]?.viewers || 0)));
+  const rec = S.accounts.filter(a => !a.followed).map(a => [a, channelLive(a)]).filter(x => x[1]).sort((x, y) => (y[1].viewers || 0) - (x[1].viewers || 0));
+  const fShow = UI.sideMoreF ? followed : followed.slice(0, 6), rShow = UI.sideMoreR ? rec : rec.slice(0, 4);
+  const more = (k, open, n) => n ? `<button class="sd-more" data-act="side-more" data-k="${k}">${open ? 'Mostrar menos' : 'Mostrar mais'}</button>` : '';
+  return `<div class="sd-head"><span class="sd-title">Para ti</span><button class="tn-ic sd-toggle" data-act="side-mini" aria-label="${mini ? 'Expandir' : 'Recolher'} barra lateral">${icon(mini ? 'expandSide' : 'collapse')}</button></div>
+    ${S.live ? `<span class="sd-label">O teu canal</span>${row(S.me, S.live)}` : ''}
+    <span class="sd-label">Canais seguidos</span>
+    ${fShow.length ? fShow.map(([a, ev]) => row(a, ev)).join('') : '<p class="sd-empty">Segue canais para os veres aqui.</p>'}
+    ${more('f', UI.sideMoreF, followed.length > 6)}
+    <span class="sd-label">Canais em direto recomendados</span>
+    ${rShow.map(([a, ev]) => row(a, ev)).join('') || '<p class="sd-empty">Sem recomendações agora.</p>'}
+    ${more('r', UI.sideMoreR, rec.length > 4)}
+    <p class="sd-foot">O LiveVerse é uma simulação: seguidores, espetadores, subscrições e métricas são fictícios.</p>`;
+}
+let hcEl = null, hcT = null;
+function hoverCardShow(link) {
+  const id = link.dataset.hovercard, a = id === 'me' ? S.me : S.accounts.find(x => x.id === id); if (!a) return;
+  const ev = id === 'me' ? S.live : channelLive(a);
+  hcEl = hcEl || Object.assign(document.createElement('div'), { className: 'hovercard' });
+  hcEl.innerHTML = ev ? `<b>${esc(ev.title)}</b><span>${esc(GAMES[ev.game]?.name || '')} · ${espet(id === 'me' ? S.live.viewers : ev.viewers || 0)}</span>` : `<b>${esc(a.name)}</b><span>Offline · ${fmt(a.followers)} seguidores</span>`;
+  document.body.appendChild(hcEl);
+  const r = link.getBoundingClientRect();
+  hcEl.style.top = Math.max(56, r.top + r.height / 2 - hcEl.offsetHeight / 2) + 'px'; hcEl.style.left = (r.right + 8) + 'px';
+  hcEl.classList.add('on');
+}
+document.addEventListener('mouseover', e => {
+  const l = e.target.closest && e.target.closest('.side [data-hovercard]');
+  clearTimeout(hcT);
+  if (!l) { if (hcEl) hcEl.classList.remove('on'); return; }
+  hcT = setTimeout(() => hoverCardShow(l), 250);
+}, true);
+
+/* ---------- Sugestões na pesquisa de cima ---------- */
+function searchSuggest(q) {
+  const box = $('#tnSuggest'); if (!box) return;
+  q = q.trim().toLowerCase();
+  if (!q) { box.hidden = true; return; }
+  const cats = Object.entries(GAMES).filter(([k, g]) => k !== 'amnesia' && g.name.toLowerCase().includes(q)).slice(0, 4);
+  const chans = S.accounts.filter(a => (a.name + ' ' + a.handle).toLowerCase().includes(q)).slice(0, 6);
+  box.innerHTML = (cats.length || chans.length) ? `${cats.map(([k, g]) => `<button type="button" class="sg" data-act="cat-open" data-k="${k}">${gicon(k, 30)}<span><b>${esc(g.name)}</b><small>Categoria</small></span></button>`).join('')}
+    ${chans.map(a => { const ev = channelLive(a); return `<a class="sg" href="${chanHash(a.id)}">${avatar(a, 30).replace('<a ', '<span ').replace('</a>', '</span>')}<span><b>${esc(a.name)}${a.verified ? VERIFIED : ''}</b><small>${ev ? `<i class="sg-live"></i>Em direto · ${esc(GAMES[ev.game]?.name || '')}` : 'Offline'}</small></span></a>`; }).join('')}
+    <button type="button" class="sg sg-all" data-act="search-all">${icon('search')} Ver todos os resultados para «${esc(q)}»</button>`
+    : `<p class="sg-none">Sem resultados para «${esc(q)}»</p>`;
+  box.hidden = false;
+}
+
+/* ---------- Página de categoria: seguir, separadores, ordenar ---------- */
+UI.catTab = 'live'; UI.catSort = 'rec';
+function categoryPageHTML(k) {
+  const G = GAMES[k] || GAMES.chat;
+  let lives = liveChannels().filter(e => e.game === k);
+  if (UI.catSort === 'desc') lives.sort((a, b) => (b.viewers || 0) - (a.viewers || 0));
+  else if (UI.catSort === 'asc') lives.sort((a, b) => (a.viewers || 0) - (b.viewers || 0));
+  else if (UI.catSort === 'recent') lives.sort((a, b) => b.start - a.start);
+  const total = lives.reduce((s, e) => s + (e.viewers || 0), 0) + (S.live && S.live.game === k ? S.live.viewers : 0);
+  const fol = !!(S.catFollow && S.catFollow[k]);
+  const catFollowers = 2000 + hashStr(k) % 900000 + (fol ? 1 : 0);
+  const clips = S.clips.filter(c => c.game === k);
+  return `<div class="cat-head"><span class="cat-art big" style="--gc:${G.color}"><span class="tw-thumb-bg"></span><b>${esc(glyphText(G))}</b></span>
+      <div><button class="btn btn-sm btn-ghost" data-act="cat-back">${icon('chevL')} Procurar</button><h1>${esc(G.name)}</h1>
+        <p class="muted"><b class="cat-n">${espet(total)}</b> · ${fmt(catFollowers)} seguidores ${SIM()}</p>${tagChips(streamTags(k))}
+        <button class="btn ${fol ? '' : 'btn-primary'} cat-fol" data-act="cat-follow" data-k="${k}" style="margin-top:10px">${icon(fol ? 'heartFill' : 'heart')} ${fol ? 'A seguir' : 'Seguir'}</button></div></div>
+    <div class="cat-bar"><div class="tw-tabs" style="margin:0;border:0">${[['live', 'Canais em direto'], ['clips', 'Clipes']].map(([t, l]) => `<button class="${UI.catTab === t ? 'on' : ''}" data-act="cat-tab" data-t="${t}">${l}</button>`).join('')}</div>
+      ${UI.catTab === 'live' ? `<label class="cat-sort">Ordenar por <select class="input" data-catsort id="catSort">${[['rec', 'Recomendados para ti'], ['desc', 'Espetadores (mais para menos)'], ['asc', 'Espetadores (menos para mais)'], ['recent', 'Começaram recentemente']].map(([v, l]) => `<option value="${v}" ${UI.catSort === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>` : ''}</div>
+    ${UI.catTab === 'live'
+      ? `<div class="tw-grid">${S.live && S.live.game === k ? liveCardHTML(S.live, true) : ''}${lives.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Volta mais tarde ou entra tu em direto.</div>'}</div>`
+      : clips.length ? `<div class="clip-grid">${clips.map(clipCard).join('')}</div>` : '<div class="empty"><b>Ainda não há clipes desta categoria</b>Cria clipes durante as lives.</div>'}`;
+}
+
+/* ---------- Regras do chat (primeira mensagem em cada canal) ---------- */
+const CHAT_RULES = ['Sê simpático e respeita toda a gente.', 'Nada de spam, links ou autopromoção.', 'Não partilhes dados pessoais.', 'Segue as indicações dos moderadores.'];
+function chatRulesModal(accId, onOk) {
+  const a = acc(accId);
+  MODAL.kind = 'rules'; MODAL.onRulesOk = onOk;
+  openModal(`<div class="modal-head"><h2>Regras do chat</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div>
+    <div class="modal-body"><p style="margin:0">O chat de <b>${esc(a.name)}</b> tem estas regras:</p><ol class="rules">${CHAT_RULES.map(r => `<li>${r}</li>`).join('')}</ol></div>
+    <div class="modal-foot"><button class="btn btn-primary" data-act="rules-ok" data-id="${accId}">Aceito</button></div>`);
+}
+
+const TW4_ACT = {
+  'side-more': b => { if (b.dataset.k === 'f') UI.sideMoreF = !UI.sideMoreF; else UI.sideMoreR = !UI.sideMoreR; renderNav(); },
+  'home-more': () => { UI.homeMore = !UI.homeMore; render(); },
+  'search-all': () => { const i = $('#topSearch'); UI.explore.q = i ? i.value.trim() : ''; UI.browseCat = null; const s = $('#tnSuggest'); if (s) s.hidden = true; if (route().name !== 'explorar') location.hash = '#explorar'; else render(); },
+  'cat-follow': b => { S.catFollow = S.catFollow || {}; const k = b.dataset.k; S.catFollow[k] = !S.catFollow[k]; save(); if (S.catFollow[k]) { uiSound('follow'); toast('💜', `A seguir a categoria ${GAMES[k]?.name || k}`); } render(); },
+  'cat-tab': b => { UI.catTab = b.dataset.t; render(); },
+  'chat-collapse': () => { UI.chatCollapsed = !UI.chatCollapsed; const wp = $('.wp'); if (wp) wp.classList.toggle('chat-collapsed', UI.chatCollapsed); uiSound(UI.chatCollapsed ? 'close' : 'open'); },
+  'rules-ok': b => { S.rulesOk = S.rulesOk || {}; S.rulesOk[b.dataset.id] = true; save(); const fn = MODAL.onRulesOk; closeModal(); if (fn) fn(); },
+  'w-full': () => {
+    UI.watchFull = !UI.watchFull;
+    const wp = $('.wp'); if (wp) wp.classList.toggle('full', UI.watchFull);
+    document.body.classList.toggle('theater-on', UI.watchFull);
+    $$('.wp-ctrl [data-act="w-full"]').forEach(btn => btn.setAttribute('data-tip', UI.watchFull ? 'Sair do modo teatro (t)' : 'Modo teatro (t)'));
+    const l = $('#wpChat'); if (l) l.scrollTop = l.scrollHeight;
+  },
+};
+function tw4Init() {
+  // seguir: o coração passa a «deixar de seguir» ao passar o rato; sem confirmação, como na plataforma original
+  // enviar no chat de outro canal: regras na primeira vez
+  const sendBase = FORMS['watch-send'];
+  FORMS['watch-send'] = f => {
+    const id = f.dataset.id; S.rulesOk = S.rulesOk || {};
+    if (!S.rulesOk[id] && f.t.value.trim()) { chatRulesModal(id, () => sendBase(f)); return; }
+    sendBase(f);
+  };
+  // definições do chat: horas escondidas por omissão
+  const c = chatPrefs(); if (!c.v2) { c.time = false; c.v2 = true; save(); applyChatPrefs(); }
+  document.addEventListener('input', e => {
+    const t = e.target;
+    if (t.id === 'topSearch') searchSuggest(t.value);
+    if (t.hasAttribute && t.hasAttribute('data-catsort')) { UI.catSort = t.value; render(); }
+  });
+  document.addEventListener('focusin', e => { if (e.target.id === 'topSearch' && e.target.value) searchSuggest(e.target.value); });
+  document.addEventListener('click', e => { if (!e.target.closest('.tn-search')) { const s = $('#tnSuggest'); if (s) s.hidden = true; } });
+  window.addEventListener('hashchange', () => { const s = $('#tnSuggest'); if (s) s.hidden = true; if (hcEl) hcEl.classList.remove('on'); UI.homeMore = false; if (route().name !== 'explorar') { UI.catTab = 'live'; } });
+}
+
+/* =====================================================================
    Janelas (perfil, editor de eventos, detalhes), ações e ciclo principal
    ===================================================================== */
 let lastFocus = null;
@@ -6973,5 +7218,7 @@ Object.assign(ACT, PRO_ACT, {
 });
 ACT['player-qset'] = (b, e) => { closeModalIfOpen(); PRO_ACT['player-qset'](b, e); };
 proInit();
+Object.assign(ACT, TW4_ACT);
+tw4Init();
 
 </script>

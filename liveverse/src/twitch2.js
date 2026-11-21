@@ -24,7 +24,7 @@ function topNavHTML() {
       <div class="tn-drop-wrap"><button class="tn-ic" data-act="nav-menu" data-m="more" aria-label="Mais" aria-expanded="${UI.navMenu === 'more'}">${icon('dots3')}</button>
         ${UI.navMenu === 'more' ? `<div class="tn-drop">${more.map(([h, ic, l]) => `<a href="#${h}">${icon(ic)} ${l}</a>`).join('')}<button data-act="home-posts">${icon('edit')} Publicações</button></div>` : ''}</div>
     </div>
-    <form class="tn-search" data-form="topsearch" role="search"><input class="input" id="topSearch" name="q" placeholder="Procurar" autocomplete="off" value="${esc(UI.explore?.q || '')}"><button aria-label="Procurar">${icon('search')}</button></form>
+    <form class="tn-search" data-form="topsearch" role="search"><input class="input" id="topSearch" name="q" placeholder="Procurar" autocomplete="off" aria-autocomplete="list" value="${esc(UI.explore?.q || '')}"><button aria-label="Procurar">${icon('search')}</button><div class="tn-suggest" id="tnSuggest" hidden></div></form>
     <div class="tn-right">
       <span class="tn-clock num" data-clock="hm">${hhmm(Date.now())}</span>
       <div class="tn-drop-wrap"><button class="tn-ic" data-act="nav-menu" data-m="notif" aria-label="Notificações" title="Notificações" aria-expanded="${UI.navMenu === 'notif'}">${icon('bell')}${badge(notifUnread())}</button>
@@ -42,7 +42,7 @@ function topNavHTML() {
 }
 
 /* ---------- Barra lateral: só canais ---------- */
-function sideTwitchHTML() {
+function sideTwitchHTMLOld() {
   const mini = !!S.prefs.sideMini;
   const row = (a, ev) => {
     const av = avatar(a, 30, ev ? '' : 'off').replace('<a ', '<span ').replace('</a>', '</span>');
@@ -101,15 +101,8 @@ function catCardHTML({ k, viewers }) {
 UI.browseTab = 'cats'; UI.browseCat = null;
 function viewExplore() {
   const q = (UI.explore.q || '').trim();
-  if (UI.browseCat && !q) {
-    const k = UI.browseCat, G = GAMES[k] || GAMES.chat;
-    const lives = liveChannels().filter(e => e.game === k);
-    const total = lives.reduce((s, e) => s + (e.viewers || 0), 0) + (S.live && S.live.game === k ? S.live.viewers : 0);
-    return `<div class="cat-head"><span class="cat-art big" style="--gc:${G.color}"><span class="tw-thumb-bg"></span><b>${esc(glyphText(G))}</b></span>
-      <div><button class="btn btn-sm btn-ghost" data-act="cat-back">${icon('chevL')} Procurar</button><h1>${esc(G.name)}</h1><p class="muted">${espet(total)} · ${lives.length + (S.live && S.live.game === k ? 1 : 0)} canais em direto</p>${tagChips(streamTags(k))}</div></div>
-      <div class="tw-tabs"><button class="on">Canais em direto</button></div>
-      <div class="tw-grid">${S.live && S.live.game === k ? liveCardHTML(S.live, true) : ''}${lives.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Volta mais tarde ou entra tu em direto.</div>'}</div>`;
-  }
+  if (UI.browseCat && !q) return categoryPageHTML(UI.browseCat);
+
   return `<div class="page-head"><div><h1>Procurar</h1></div></div>
     <div class="tw-tabs">${[['cats', 'Categorias'], ['live', 'Canais em direto']].map(([k2, l]) => `<button class="${UI.browseTab === k2 && !q ? 'on' : ''}" data-act="browse-tab" data-k="${k2}">${l}</button>`).join('')}</div>
     <div class="search-bar">${icon('search')}<input class="input" type="search" id="exploreQ" data-explore placeholder="Procurar canais, categorias, #hashtags, clipes…" value="${esc(UI.explore.q)}" autocomplete="off" aria-label="Procurar"></div>

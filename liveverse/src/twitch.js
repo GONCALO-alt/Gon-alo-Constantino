@@ -92,7 +92,8 @@ function viewFeed() {
     const list = lives.filter(e => UI.homeCat === 'all' || e.game === UI.homeCat);
     body = `${UI.homeCat === 'all' ? featuredHTML(liveHomeList()) : ''}<div class="chip-row tw-cats">${[['all', 'Tudo'], ...cats.map(g => [g, GAMES[g]?.name || g])].map(([k, l]) => `<button class="chip ${UI.homeCat === k ? 'on' : ''}" data-act="home-cat" data-k="${k}">${esc(l)}</button>`).join('')}</div>
       <h2 class="tw-h tw-h-desk">Canais em direto de que achamos que vais gostar</h2>
-      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>
+      <div class="tw-grid">${S.live && (UI.homeCat === 'all' || UI.homeCat === S.live.game) ? liveCardHTML(S.live, true) : ''}${list.slice(0, UI.homeMore ? 80 : 8).map(e => liveCardHTML(e)).join('') || '<div class="empty"><b>Ninguém em direto nesta categoria</b>Experimenta outra categoria.</div>'}</div>
+      ${list.length > 8 ? `<div class="show-more"><span></span><button data-act="home-more">${UI.homeMore ? 'Mostrar menos' : 'Mostrar mais'} ${icon(UI.homeMore ? 'chevL' : 'chevD')}</button><span></span></div>` : ''}
       ${UI.homeCat === 'all' ? `<h2 class="tw-h">Categorias de que achamos que vais gostar</h2><div class="cat-grid2 cat-row">${categoryStats().slice(0, 7).map(catCardHTML).join('')}</div>` : ''}`;
   } else if (t === 'following') {
     const fol = S.accounts.filter(a => a.followed);
@@ -127,7 +128,7 @@ function viewWatch(id) {
   const video = ev ? `<div class="screen-bg"></div><div class="screen-floor"></div><div class="screen-center"><div><div class="big">${esc(glyphText(G))}</div><small>Live simulada</small></div></div>
       <span class="wp-cam" style="--h:${a.hue || 270}">${face}<em>${esc(a.handle)}</em></span>${folCounterHTML(Math.round(ev.viewers || 0), a.followers, 'wviewers', null)}`
     : `<div class="wp-offline"><div>${avatar(a, 84).replace('<a ', '<span ').replace('</a>', '</span>')}<strong>${esc(a.name)} está offline</strong><span>${next ? `Próxima live: ${esc(next.title)} · ${whenLabel(next.start)}` : 'Segue o canal para saberes quando entra em direto.'}</span></div></div>`;
-  return `<div class="wp ${UI.watchFull ? 'full' : ''}" data-watch="${a.id}">
+  return `<div class="wp ${UI.watchFull ? 'full' : ''} ${UI.chatCollapsed ? 'chat-collapsed' : ''}" data-watch="${a.id}">
     <div class="wp-main">
       <div class="wp-video screen" style="--gc:${G.color}">
         ${video}
@@ -140,6 +141,8 @@ function viewWatch(id) {
         </div>
         ${ev ? `<div class="wp-bottom"><span class="tw-uptime"><i></i><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="wviewers" data-v="${Math.round(ev.viewers || 0)}">${fmt(ev.viewers || 0)}</b></span><span class="spacer"></span><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon(UI.watchFull ? 'shrink' : 'expand')}</button></div>
         <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>
+        <div class="wp-htop">${avatar(a, 36).replace('<a ', '<span ').replace('</a>', '</span>')}<div><b>${esc(a.name)}</b><span>${esc(ev.title)}</span></div></div>
+        <button class="chat-expand" data-act="chat-collapse" aria-label="Expandir chat">${icon('collapseR')}</button>
         ${playerCtrlHTML(a.id)}` : ''}
         <div class="fx" id="wfx"></div>
       </div>
@@ -152,8 +155,8 @@ function viewWatch(id) {
           </div></div>
           <div class="wp-right">
             <div class="wp-actions">
-              ${a.followed ? `<button class="wp-round on" data-act="follow" data-id="${a.id}" aria-label="Deixar de seguir" title="Deixar de seguir">${icon('heartFill')}</button>` : `<button class="btn btn-primary wp-follow" data-act="follow" data-id="${a.id}">${icon('heart')} Seguir</button>`}
-              <button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="Notificações do canal">${icon('bellPlus')}</button>
+              ${a.followed ? `<button class="wp-round on wp-unf" data-act="follow" data-id="${a.id}" aria-label="Deixar de seguir"><span class="hf">${icon('heartFill')}</span><span class="hb">${icon('heartBreak')}</span></button>` : `<button class="btn btn-primary wp-follow" data-act="follow" data-id="${a.id}">${icon('heart')} Seguir</button>`}
+              ${a.followed ? `<button class="wp-round ${S.chanBell && S.chanBell[a.id] ? 'on' : ''}" data-act="w-bell" data-id="${a.id}" aria-label="${S.chanBell && S.chanBell[a.id] ? 'Desligar notificações' : 'Ligar notificações'}">${icon('bellPlus')}</button>` : ''}
               <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">${icon('gift')} Oferecer subscrição</button>
               <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${icon('star')} ${sub ? 'Subscrito' : 'Subscrever'}</button>
             </div>
@@ -165,7 +168,7 @@ function viewWatch(id) {
     </div>
     <aside class="wp-side">
       <section class="card chat wp-chatbox">
-        <div class="chat-head"><span class="tw-chead-t">${ev ? 'Chat da transmissão' : 'Chat offline'}</span>${SIM()}<span class="spacer"></span><span class="small muted chat-vw">${icon('person')} <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
+        <div class="chat-head"><button class="tn-ic chat-col" data-act="chat-collapse" aria-label="Recolher chat">${icon('collapseL')}</button><span class="tw-chead-t">${ev ? 'Chat da transmissão' : 'Chat offline'}</span>${SIM()}<span class="spacer"></span><span class="small muted chat-vw">${icon('person')} <span data-wv>${ev ? fmt(ev.viewers || 0) : 0}</span></span></div>
         ${ev ? `<div class="lb" data-wlb>${leaderboardHTML(WATCH.key === a.id ? WATCH.gifters : {})}</div>
         <div class="drop" data-wdrop>${dropHTML(a, ev)}</div>` : ''}
         <div class="chat-list" id="wpChat" data-wchat></div>
@@ -188,7 +191,7 @@ function leaderboardHTML(g) {
 function chatInputHTML(id, form, gift, accId) {
   return `<form class="tw-input" data-form="${form}" ${accId ? `data-id="${accId}"` : ''}>
     ${gift ? `<button type="button" class="tw-in-gift" data-act="w-giftsub" data-id="${accId}" aria-label="Oferecer subscrição">${icon('gift')}</button>` : ''}
-    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="200" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
+    <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="500" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
     <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
     <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
     <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
