@@ -203,7 +203,7 @@ function chatMsgHTML(m) {
   if (m.gift) return `<div class="msg gift">${esc(noEmoji(m.text))}</div>`;
   const time = m.t ? `<span class="msg-time">${hhmm(m.t)}</span>` : '';
   const inLive = !!(S.live && S.live.chat.includes(m));
-  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''} ${m.first ? 'first' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b style="color:${m.color}">${esc(m.user)}</b>: ${emotify(esc(m.text))}${inLive ? chatModTools(m) : ''}</div>`;
+  return `<div class="msg ${m.hype ? 'hype' : ''} ${m.me ? 'me' : ''} ${m.first ? 'first' : ''} ${m.mention ? 'mention' : ''}" data-mid="${m.id}" ${inLive ? `data-act="msg-tap" data-user="${esc(m.user)}" tabindex="0"` : ''}>${time}${m.bot ? `<span class="tbadge tb-bot" title="Bot do canal">${icon('botIc')}</span>` : ''}${m.sub && !regular(m.user) ? `<span class="tbadge tb-sub" title="Subscritor fictício">${icon('starF')}</span>` : ''}${regBadges(m.user)}<b class="cu" data-act="user-card" data-user="${esc(m.user)}" style="color:${m.color}">${esc(m.user)}</b>: ${emotify(esc(m.text))}${inLive ? chatModTools(m) : ''}</div>`;
 }
 
 /* ---------- Cronologia & clips ---------- */

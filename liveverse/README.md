@@ -27,6 +27,10 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 - **Contador no ecrã**: como os overlays dos streamers, o total de seguidores numa caixa branca com o ícone, a subir em tempo real. Liga/desliga em Controlos.
 - **Live na vertical**: escolhe Horizontal (16:9) ou Vertical (9:16), antes ou durante a live.
 - **Live limpa e sem emojis**: o ecrã só tem a imagem, o tempo de live e os espetadores; alertas e animações usam ícones simples.
+- **Player a sério**: pausa, volume com barra e mute, qualidade (Automática, 1080p60 … 160p), modo teatro e ecrã inteiro reais, atalhos de teclado (espaço/k, m, f, t), estado «A ligar à transmissão…», buffering ocasional e «A religar…» quando a internet falha. O volume do player controla os sons de alerta desse canal.
+- **Chat de plataforma**: clicar num nome abre o cartão do utilizador (distintivos, desde quando segue, últimas mensagens, mencionar, silenciar 5 min, banir); menções a ti destacadas e com som; definições do chat (horas, tamanho do texto, destacar menções); menos frases repetidas.
+- **Sons com preferências**: notificações, início e fim da live, seguir, subscrever, menções e interface (menus e interruptores, muito discretos), cada um com interruptor próprio e volume geral em Definições de som.
+- **Detalhes**: tooltips, transições suaves entre páginas, aviso quando não há internet, microinterações em botões e cartões.
 - **Microfone sempre ligado na live**: sem botão; liga-se ao entrares em direto (ou ao tocares no ecrã) e cada coisa que dizes recebe pelo menos 100 respostas (com audiência realista, só quem está a ver).
 - **O chat vê o jogo**: no artifact do Claude, quando falas, uma imagem do ecrã e a tua frase vão ao Claude, que escreve mensagens de chat sobre o que disseste e o que se vê.
 - **Chat mais humano**: conversas entre espetadores (@nome), erros de escrita e abreviaturas, «Primeira mensagem», entradas e saídas, personagens (fã, crítico, quem pede jogos, quem oferece presentes), memória do que disseste e reação ao silêncio («estás aí?»).

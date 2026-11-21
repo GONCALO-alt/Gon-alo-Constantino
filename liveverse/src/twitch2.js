@@ -36,7 +36,7 @@ function topNavHTML() {
           <div class="tn-me">${avatar(S.me, 40).replace('<a ', '<span ').replace('</a>', '</span>')}<div><strong>${esc(S.me.name)}</strong><small>${fmt(S.me.followers)} seguidores · nível ${career().level}</small></div></div>
           <a href="#perfil">${icon('user')} Canal</a><button data-act="emotes-open">${icon('emote')} Emotes do canal</button><a href="#estudio">${icon('studio')} Painel do criador</a>
           <button data-act="new-event">${icon('calendar')} Agendar live</button><button data-act="compose">${icon('edit')} Nova publicação</button>
-          <hr><button data-act="edit-profile">${icon('edit')} Editar perfil</button><button data-act="mod-open">${icon('shield')} Moderação</button><button data-act="accounts-edit">${icon('users')} Gerir contas</button>
+          <hr><button data-act="edit-profile">${icon('edit')} Editar perfil</button><button data-act="mod-open">${icon('shield')} Moderação</button><button data-act="snd-open">${icon('volume')} Definições de som</button><button data-act="accounts-edit">${icon('users')} Gerir contas</button>
         </div>` : ''}</div>
     </div>`;
 }

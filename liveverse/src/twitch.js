@@ -140,7 +140,7 @@ function viewWatch(id) {
         </div>
         ${ev ? `<div class="wp-bottom"><span class="tw-uptime"><i></i><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></span><span class="tw-vw">${icon('person')}<b class="num" data-anim="wviewers" data-v="${Math.round(ev.viewers || 0)}">${fmt(ev.viewers || 0)}</b></span><span class="spacer"></span><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon(UI.watchFull ? 'shrink' : 'expand')}</button></div>
         <div class="screen-chat on" data-wchat-overlay aria-hidden="true"></div>
-        <div class="wp-ctrl"><button class="wp-ic" data-act="player-pause" aria-label="Pausa">${icon('pause')}</button><button class="wp-ic" data-act="player-vol" aria-label="Volume">${icon('vol')}</button><span class="wp-ctrl-live"><i></i>EM DIRETO</span><span class="spacer"></span><button class="wp-ic" data-act="w-quality" aria-label="Definições">${icon('gear')}</button><button class="wp-pill" data-act="w-clip" data-id="${a.id}">${icon('clip')} Clipe</button><button class="wp-ic" data-act="w-full" aria-label="Modo teatro">${icon('theaterIc')}</button><button class="wp-ic" data-act="w-full" aria-label="Ecrã inteiro">${icon('expand')}</button></div>` : ''}
+        ${playerCtrlHTML(a.id)}` : ''}
         <div class="fx" id="wfx"></div>
       </div>
       <section class="wp-info">
@@ -228,8 +228,9 @@ function startWatch(a) {
     list.scrollTop = list.scrollHeight;
   }
   clearInterval(WATCH.timer);
-  paintWatchLB();
+  paintWatchLB(); applyQuality();
   if (!ev) return;
+  if (!WATCH.connected || WATCH.connected !== a.id) { WATCH.connected = a.id; playerOverlay('A ligar à transmissão…', 700 + Math.random() * 700); }
   WATCH.timer = setInterval(() => { try { watchTick(a); } catch (e) { console.warn('watch', e); } }, 650);
 }
 function watchTick(a) {
@@ -249,8 +250,9 @@ function watchTick(a) {
     const pool = Math.random() < .35 ? moodPool(ev.game, pick(['amazing', 'funny', 'win', 'clutch', 'scary', 'sad', 'rare'])) : (ev.game === 'gta6' && Math.random() < .4 ? GTA6_AMBIENT : AMBIENT);
     wMsg({ user: Math.random() < .12 && S.regulars.length ? pick(S.regulars).u : fakeUser(), text: fill(pick(pool), ctx) });
   }
-  if (Math.random() < .018) { const u = fakeUser(), k = pick([1, 1, 5, 10]); WATCH.gifters[u] = (WATCH.gifters[u] || 0) + k; wMsg({ gift: true, text: `🎁 ${u} ofereceu ${k} ${k === 1 ? 'subscrição' : 'subscrições'} à comunidade!` }); paintWatchLB(); }
-  if (Math.random() < .012) wMsg({ gift: true, text: `⭐ ${fakeUser()} subscreveu por ${randi(2, 30)} meses!` });
+  if (Math.random() < .018) { const u = fakeUser(), k = pick([1, 1, 5, 10]); WATCH.gifters[u] = (WATCH.gifters[u] || 0) + k; wMsg({ gift: true, text: `${u} ofereceu ${k} ${k === 1 ? 'subscrição' : 'subscrições'} à comunidade!` }); paintWatchLB(); playWatchAlert('gift'); }
+  if (Math.random() < .012) { wMsg({ gift: true, text: `${fakeUser()} subscreveu por ${randi(2, 30)} meses!` }); playWatchAlert('sub'); }
+  if (navigator.onLine && Math.random() < .0011 && !$('.wp-video.paused') && !(($('.wp-video .pl-load') || {}).hidden === false)) playerOverlay('', 900 + Math.random() * 1400);
   if (Date.now() - WATCH.botAt > 45000) { WATCH.botAt = Date.now(); wMsg({ user: 'LiveBot', bot: true, color: '#00c8af', text: pick([`Segue ${a.name} e ativa as notificações 🔔`, 'Lembrem-se de ser simpáticos no chat 💜', `Vejam os clipes de ${a.handle} na página do canal!`]) }); }
   const drop = $('[data-wdrop]'); if (drop) drop.innerHTML = dropHTML(a, ev);
   if (!WATCH.dropDone && Date.now() - WATCH.started > 10 * MIN) { WATCH.dropDone = true; S.badges = S.badges || {}; if (!S.badges[ev.game]) { S.badges[ev.game] = Date.now(); notify('🎖️', `Ganhaste o emblema «${(GAMES[ev.game] || GAMES.chat).name}» por veres a live de ${a.name} (fictício).`); toast('🎖️', 'Emblema ganho!'); save(); } }

@@ -568,3 +568,8 @@ function init() {
 Object.assign(ACT, GIFTSND_ACT, SOCIAL_ACT, EXTRA_ACT, IMM_ACT, TW_ACT, MEDIA_ACT, TW2_ACT, TW3_ACT, FEAT_ACT, { 'chat-settings': () => S.live && route().name === 'estudio' ? ACT['mod-open']() : toast('⚙️', 'Definições do chat: modo normal (simulado)') });
 Object.assign(FORMS, SOCIAL_FORMS, EXTRA_FORMS, TW_FORMS, TW2_FORMS, FEAT_FORMS, POLISH_FORMS);
 init();
+Object.assign(ACT, PRO_ACT, {
+  'w-quality': b => { if ($('.wp-ctrl') && getComputedStyle($('.wp-ctrl')).display !== 'none') return PRO_ACT['player-q'](b); const P = playerPrefs(); openModal(`<div class="modal-head"><h2>Qualidade</h2><button class="icon-btn" data-act="modal-close" aria-label="Fechar">${icon('close')}</button></div><div class="modal-body pq-sheet">${QUALITIES.map(([k, l]) => `<button data-act="player-qset" data-q="${k}" class="${P.q === k ? 'on' : ''}">${P.q === k ? icon('check') : '<i></i>'}${l}</button>`).join('')}</div>`, 'sheet'); },
+});
+ACT['player-qset'] = (b, e) => { closeModalIfOpen(); PRO_ACT['player-qset'](b, e); };
+proInit();
