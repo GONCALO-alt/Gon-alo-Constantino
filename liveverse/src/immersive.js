@@ -138,7 +138,9 @@ function trainTick(L) {
   }
   paintTrain();
 }
-function trainHTML() {
+function trainHTML() { return '<div class="train" id="trainBar" hidden></div>';
+}
+function trainHTMLOld() {
   const T = S.live?.train; if (!T) return '<div class="train" id="trainBar" hidden></div>';
   const left = Math.max(0, Math.ceil((T.until - Date.now()) / 1000));
   return `<div class="train" id="trainBar"><b>🚂 HYPE TRAIN · NÍVEL ${T.lvl}</b><div class="goal-bar"><i style="width:${Math.min(100, T.prog / T.need * 100)}%"></i></div><span class="num">${left}s</span></div>`;
@@ -229,7 +231,7 @@ function giftMessage(u, g, val) {
 
 /* =========================== SOM DE MULTIDÃO =========================== */
 let noiseBuf = null;
-function crowd(intensity = .6) {
+function crowdOld(intensity = .6) {
   if (!S.prefs.crowd) return;
   const ctx = audio(); if (!ctx) return;
   try {
@@ -449,12 +451,12 @@ function folCounterHTML(viewers, followers, vKey, fKey) {
     <div class="yc-box num" ${fKey ? `data-odo="${fKey}"` : ''} data-n="${followers}">${odoHTML(followers)}</div>
   </div>`;
 }
-function odoHTML(n) {
+function odoHTMLOld(n) {
   return dots(n).split('').map(ch => /\d/.test(ch)
     ? `<span class="od"><span class="od-s" style="transform:translateY(-${+ch * 10}%)">${'0123456789'.split('').map(d => `<span>${d}</span>`).join('')}</span></span>`
     : `<span class="od-sep">${ch}</span>`).join('');
 }
-function setOdo(el, n) {
+function setOdoOld(el, n) {
   if (+el.dataset.n === n) return;
   const str = dots(n), old = dots(+el.dataset.n || 0);
   el.dataset.n = n;

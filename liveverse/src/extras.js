@@ -38,7 +38,7 @@ const SOUNDS = {
   ding: [{ f: 1046, d: .2, v: .5 }],
 };
 const lastSound = {};
-function sound(name) {
+function soundOld(name) {
   const now = Date.now(); if (now - (lastSound[name] || 0) < 350) return; lastSound[name] = now;
   const ctx = audio(); if (!ctx) return;
   (SOUNDS[name] || SOUNDS.ding).forEach(n => tone(ctx, n));
@@ -268,7 +268,7 @@ function chatCommand(L, text) {
   L.engage = Math.min(3, L.engage + .5);
   return true;
 }
-function chatRespond(text) {
+function chatRespondOld(text) {
   const L = S.live; const t = text.toLowerCase();
   if (chatCommand(L, text)) { L.voice = (L.voice || 0) + 1; avatarEmote('goal'); return; }
   const me = S.me.name.split(' ')[0];

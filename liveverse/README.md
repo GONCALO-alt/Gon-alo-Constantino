@@ -27,6 +27,9 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 - **Contador no ecrã**: como os overlays dos streamers, o total de seguidores numa caixa branca com o ícone, a subir em tempo real. Liga/desliga em Controlos.
 - **Live na vertical**: escolhe Horizontal (16:9) ou Vertical (9:16), antes ou durante a live.
 - **Live limpa e sem emojis**: o ecrã só tem a imagem, o tempo de live e os espetadores; alertas e animações usam ícones simples.
+- **Sons de live**: sinos de alerta (seguidor, subscrição), moedas (presentes), fanfarra de raid, multidão com palmas e eco, tudo sintetizado.
+- **Chat que entende perguntas**: «vou para aquela loja?» → sim, não, talvez, era bué top, vai à loja…; «praia ou aeroporto?» → o chat vota nas opções; onde/quando/qual/como/quanto têm respostas próprias. Muitos espetadores respondem e no fim aparece o resultado (x% sim).
+- **Contador com algarismos a subir**: o algarismo antigo sobe e o novo entra por baixo.
 - **Audiência realista** (por omissão): os espetadores dependem dos teus seguidores, da hora (mais à noite), da popularidade do jogo, de fazeres live no horário da tua agenda, de vires de um evento e do tempo de live. Um canal novo começa com 0 a 3 espetadores; chat, presentes, seguidores, habituais, raids e momentos surpresa são proporcionais. O estúdio mostra uma estimativa antes de entrares em direto. A audiência «Livre» (até 1.000 … 1.000.000) continua disponível.
 - **O chat obedece ao microfone**: «digam olá», «escrevam GG», «mandem corações» põem muita gente a escrever isso; «estão-me a ouvir?» recebe vários «sim». As frases ditadas aos pedaços são juntas antes de o chat reagir.
 - **Contador de streamer**: espetadores em cima (branco com contorno preto) e seguidores numa caixa branca com algarismos que rodam um a um.
