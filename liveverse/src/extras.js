@@ -136,7 +136,7 @@ function follow(f) { const L = S.live; if (!L) return; const n = Math.round(L.vi
 function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); hypeAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); sound('bigGift'); }
 function chatBurst(lines) { const L = S.live; lines.forEach((t, i) => setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: t, hype: true }), 150 + i * 220)); }
 function surpriseTick(L) {
-  if (!S.prefs.randomMoments || L.surprise || ['starting', 'ending', 'brb'].includes(L.scene)) return;
+  if (!S.prefs.randomMoments || L.surprise || ['starting', 'ending', 'brb'].includes(L.scene) || (isReal(L) && L.viewers < 3)) return;
   const e = (Date.now() - L.start) / 1000;
   L.nextSurprise = L.nextSurprise || L.start + rand(35000, 60000);
   if (e < 30 || Date.now() < L.nextSurprise) return;
@@ -262,7 +262,8 @@ function chatCommand(L, text) {
   if (!word) return false;
   if (/^cora[çc](ão|ões)$/i.test(word)) word = '💜';
   const variants = [word, word, word, word.toUpperCase(), word + '!!', word + ' 👋', word.toLowerCase() + ' ' + S.me.name.split(' ')[0], word + ' 💜', word.toUpperCase() + '!!!', word + ' 😄'];
-  const n = clamp(Math.round(8 + Math.log10(L.viewers + 1) * 4), 8, 28);
+  let n = clamp(Math.round(8 + Math.log10(L.viewers + 1) * 4), 8, 28);
+  if ((LEVELS[L.level] || {}).realistic) n = Math.min(n, Math.max(0, Math.round(L.viewers * .9)));
   for (let i = 0; i < n; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(variants), hype: true }), 250 + i * rand(70, 190));
   L.engage = Math.min(3, L.engage + .5);
   return true;
@@ -296,7 +297,8 @@ function chatRespond(text) {
     const short = text.length > 40 ? text.slice(0, 38) + '…' : text;
     lines.push(`"${short}" 😂`);
   }
-  const n = clamp(Math.round((rule && rule.many ? 9 : 6) + hype * 12 + Math.log10(L.viewers + 1) * 2), 6, 22);
+  let n = clamp(Math.round((rule && rule.many ? 9 : 6) + hype * 12 + Math.log10(L.viewers + 1) * 2), 6, 22);
+  if ((LEVELS[L.level] || {}).realistic) n = Math.min(n, Math.max(0, Math.round(L.viewers * .8)));
   const used = new Set();
   for (let i = 0; i < n; i++) {
     let line = pick(lines); if (used.has(line) && lines.length > used.size) line = pick(lines); used.add(line);

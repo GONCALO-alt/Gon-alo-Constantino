@@ -23,7 +23,7 @@ function startLive({ title, game, mode, level, eventId }) {
   const L = LEVELS[level] || LEVELS.media;
   S.live = {
     id: 'live_' + uid(), title: title || 'Live sem título', game, mode, level, eventId: eventId || null,
-    start: now, viewers: Math.max(3, Math.round(L.max * .006)), peak: 0, boost: 0, engage: 1, likes: 0, followers: 0, gifts: 0,
+    start: now, viewers: level === 'real' ? 0 : Math.max(3, Math.round(L.max * .006)), realLuck: rand(.7, 1.4), peak: 0, boost: 0, engage: 1, likes: 0, followers: 0, gifts: 0,
     reactions: 0, msgs: 0, milestones: [], timeline: [], clips: [], poll: null, raided: false, chat: [], viralCount: 0,
     scene: 'starting', sceneAt: now, sceneUntil: now + 20000,
   };
@@ -76,10 +76,23 @@ function liveTick() {
   const L = S.live; if (!L) return;
   const now = Date.now(), e = (now - L.start) / 1000;
   const lvl = LEVELS[L.level] || LEVELS.media, M = MODES[L.mode] || MODES.casual;
-  const base = lvl.max * (0.05 + 0.68 * (1 - Math.exp(-e / (70 + lvl.max / 4000)))) * Math.min(1.15, M.hype * .85) * sceneFactor(L);
-  L.boost *= 0.985;
-  const target = Math.min(lvl.max * 1.12, base + L.boost) * rand(.985, 1.015);
-  L.viewers = Math.max(1, L.viewers + (target - L.viewers) * 0.07);
+  const real = !!lvl.realistic;
+  let target;
+  if (real) {
+    // audiência realista: cresce devagar (minutos) e mexe-se aos poucos, em números inteiros
+    const cap = lvl.max;
+    const base = cap * (0.1 + 0.9 * (1 - Math.exp(-e / 420))) * sceneFactor(L) * Math.min(1.2, .8 + L.engage * .2);
+    L.boost *= 0.992;
+    target = base + L.boost;
+    L.vf = (L.vf == null ? L.viewers : L.vf) + (target - (L.vf == null ? L.viewers : L.vf)) * 0.02 + rand(-.04, .04) * Math.sqrt(cap + 1);
+    L.vf = Math.max(0, L.vf);
+    if (Math.random() < .35) L.viewers = Math.round(L.vf);
+  } else {
+    const base = lvl.max * (0.05 + 0.68 * (1 - Math.exp(-e / (70 + lvl.max / 4000)))) * Math.min(1.15, M.hype * .85) * sceneFactor(L);
+    L.boost *= 0.985;
+    target = Math.min(lvl.max * 1.12, base + L.boost) * rand(.985, 1.015);
+    L.viewers = Math.max(1, L.viewers + (target - L.viewers) * 0.07);
+  }
   if (L.viewers > L.peak) L.peak = L.viewers;
   L.engage = 1 + (L.engage - 1) * 0.96;
 
@@ -95,19 +108,19 @@ function liveTick() {
     }
   }
   // seguidores, gostos
-  const fGain = L.viewers * 0.00005 * L.engage * rand(.3, 1.4);
+  const fGain = L.viewers * (real ? 0.00014 : 0.00005) * L.engage * rand(.3, 1.4);
   L.followers += fGain; S.me.followers += fGain;
   L.likes += L.viewers * 0.0006 * L.engage * rand(.5, 1.5);
   // chat
-  const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage) * chatRateFactor();
+  const rate = (real ? Math.min(2.1, L.viewers * 0.011 + (L.viewers > 0 ? 0.01 : 0)) : (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1)) * Math.min(2.2, L.engage) * chatRateFactor();
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
   while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? (S.emotes && S.emotes.length && Math.random() < .6 ? pick(S.emotes).code : pick(EMOTES)) : withEmotes(ambientLine(L)) });
   maybeTroll(L);
   surpriseTick(L); surpriseCheck(L); immersiveTick(L);
   // presentes
-  if (Math.random() < (0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage) * (L.train ? 2.5 : 1) * (L.scene === 'starting' ? .3 : 1)) giftEvent();
+  if (Math.random() < (real ? (L.viewers < 1 ? 0 : Math.min(0.05 + Math.log10(L.viewers + 1) * 0.025, 0.0006 * L.viewers)) * L.engage : (0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage)) * (L.train ? 2.5 : 1) * (L.scene === 'starting' ? .3 : 1)) giftEvent();
   // raid espontânea
-  if (!L.raided && e > 120 && Math.random() < 0.0025) raid();
+  if (!L.raided && e > 120 && Math.random() < (real ? 0.0006 : 0.0025)) raid();
   // sondagem
   if (L.poll && !L.poll.done) {
     L.poll.options.forEach(o => o.v += Math.round(L.viewers * rand(0, .0016) * o.bias));
@@ -247,7 +260,8 @@ function react(itemId, customText) {
     const vs = customText.match(/(\d+)\s*(?:contra|vs?|x)\s*(\d+)/i);
     if (vs) lines.push(`${vs[1]}v${vs[2]}?!?! INSANO`, `${vs[1]} CONTRA ${vs[2]} 😭😭`, 'CLIP CLIP CLIP');
   }
-  const count = Math.round(6 + item.hype * 10 + Math.log10(L.viewers + 1));
+  let count = Math.round(6 + item.hype * 10 + Math.log10(L.viewers + 1));
+  if ((LEVELS[L.level] || {}).realistic) count = Math.min(count, Math.max(0, Math.round(L.viewers * .9)));
   for (let i = 0; i < count; i++) setTimeout(() => { if (S.live === L) pushChat({ user: fakeUser(), text: withEmotes(fill(pick(lines), liveCtx(L))), hype: true }); }, i * rand(90, 260));
   L.lastMood = mood; L.lastMoodAt = Date.now(); avatarEmote(mood);
   if (item.hype >= .6) { giftRain(L, Math.round(item.hype * 5)); crowd(item.hype); }
@@ -302,7 +316,7 @@ function endPoll() {
 function raid() {
   const L = S.live; if (!L) return;
   const from = pick(S.accounts); const lvl = LEVELS[L.level] || LEVELS.media;
-  const n = Math.round(lvl.max * rand(.04, .14));
+  const n = lvl.realistic ? randi(4, 35) + Math.round(S.me.followers * rand(.005, .02)) : Math.round(lvl.max * rand(.04, .14));
   L.boost += n; L.viewers += n * .5; L.raided = true;
   addTimeline('raid', `Raid fictícia de ${from.name} com ${dots(n)} espectadores`, '🛡️', { hype: .7, reactLabel: 'Raid', clipTitle: 'Raid de ' + from.name });
   pushChat({ sys: true, text: `🛡️ RAID! ${from.name} chegou com ${dots(n)} espectadores virtuais!` });

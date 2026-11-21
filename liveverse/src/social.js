@@ -324,6 +324,7 @@ function modFilter(m) {
 }
 function chatRateFactor() { const M = S.mod; return (M.slow ? .45 : 1) * (M.subOnly ? .4 : 1); }
 function maybeTroll(L) {
+  if (isReal(L) && L.viewers < 5) return;
   const p = .035 * (S.mod.subOnly ? .2 : 1);
   if (Math.random() < p) pushChat({ user: pick(TROLLS), text: pick(TROLL_LINES), troll: true, color: '#9aa0b4' });
 }

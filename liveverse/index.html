@@ -1706,6 +1706,11 @@ a.btn { text-decoration: none; }
 .studio.theater .screen .screen-chat { display: none !important; }
 .yc-v.bump { animation: none; }
 
+.real-hint { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 6px; background: var(--surface-2); border-left: 3px solid var(--purple); }
+.real-hint b { font-size: 14px; }
+.real-hint span { font-size: 12.5px; color: var(--fg-2); }
+.real-hint small { font-size: 12px; color: var(--muted); }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -1753,6 +1758,7 @@ const MODES = {
 };
 
 const LEVELS = {
+  real:     { name: 'Realista', realistic: true, get max() { return Math.max(1, Math.round(realMax(typeof S !== 'undefined' && S ? S.live : null))); } },
   pequena:  { name: 'Pequena',  max: 1000 },
   media:    { name: 'Média',    max: 10000 },
   grande:   { name: 'Grande',   max: 50000 },
@@ -2714,7 +2720,7 @@ function startLive({ title, game, mode, level, eventId }) {
   const L = LEVELS[level] || LEVELS.media;
   S.live = {
     id: 'live_' + uid(), title: title || 'Live sem título', game, mode, level, eventId: eventId || null,
-    start: now, viewers: Math.max(3, Math.round(L.max * .006)), peak: 0, boost: 0, engage: 1, likes: 0, followers: 0, gifts: 0,
+    start: now, viewers: level === 'real' ? 0 : Math.max(3, Math.round(L.max * .006)), realLuck: rand(.7, 1.4), peak: 0, boost: 0, engage: 1, likes: 0, followers: 0, gifts: 0,
     reactions: 0, msgs: 0, milestones: [], timeline: [], clips: [], poll: null, raided: false, chat: [], viralCount: 0,
     scene: 'starting', sceneAt: now, sceneUntil: now + 20000,
   };
@@ -2767,10 +2773,23 @@ function liveTick() {
   const L = S.live; if (!L) return;
   const now = Date.now(), e = (now - L.start) / 1000;
   const lvl = LEVELS[L.level] || LEVELS.media, M = MODES[L.mode] || MODES.casual;
-  const base = lvl.max * (0.05 + 0.68 * (1 - Math.exp(-e / (70 + lvl.max / 4000)))) * Math.min(1.15, M.hype * .85) * sceneFactor(L);
-  L.boost *= 0.985;
-  const target = Math.min(lvl.max * 1.12, base + L.boost) * rand(.985, 1.015);
-  L.viewers = Math.max(1, L.viewers + (target - L.viewers) * 0.07);
+  const real = !!lvl.realistic;
+  let target;
+  if (real) {
+    // audiência realista: cresce devagar (minutos) e mexe-se aos poucos, em números inteiros
+    const cap = lvl.max;
+    const base = cap * (0.1 + 0.9 * (1 - Math.exp(-e / 420))) * sceneFactor(L) * Math.min(1.2, .8 + L.engage * .2);
+    L.boost *= 0.992;
+    target = base + L.boost;
+    L.vf = (L.vf == null ? L.viewers : L.vf) + (target - (L.vf == null ? L.viewers : L.vf)) * 0.02 + rand(-.04, .04) * Math.sqrt(cap + 1);
+    L.vf = Math.max(0, L.vf);
+    if (Math.random() < .35) L.viewers = Math.round(L.vf);
+  } else {
+    const base = lvl.max * (0.05 + 0.68 * (1 - Math.exp(-e / (70 + lvl.max / 4000)))) * Math.min(1.15, M.hype * .85) * sceneFactor(L);
+    L.boost *= 0.985;
+    target = Math.min(lvl.max * 1.12, base + L.boost) * rand(.985, 1.015);
+    L.viewers = Math.max(1, L.viewers + (target - L.viewers) * 0.07);
+  }
   if (L.viewers > L.peak) L.peak = L.viewers;
   L.engage = 1 + (L.engage - 1) * 0.96;
 
@@ -2786,19 +2805,19 @@ function liveTick() {
     }
   }
   // seguidores, gostos
-  const fGain = L.viewers * 0.00005 * L.engage * rand(.3, 1.4);
+  const fGain = L.viewers * (real ? 0.00014 : 0.00005) * L.engage * rand(.3, 1.4);
   L.followers += fGain; S.me.followers += fGain;
   L.likes += L.viewers * 0.0006 * L.engage * rand(.5, 1.5);
   // chat
-  const rate = (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1) * Math.min(2.2, L.engage) * chatRateFactor();
+  const rate = (real ? Math.min(2.1, L.viewers * 0.011 + (L.viewers > 0 ? 0.01 : 0)) : (L.viewers < 30 ? .25 : L.viewers < 1000 ? .8 : L.viewers < 20000 ? 1.4 : 2.1)) * Math.min(2.2, L.engage) * chatRateFactor();
   let n = Math.floor(rate) + (Math.random() < rate % 1 ? 1 : 0);
   while (n--) pushChat({ user: fakeUser(), text: S.mod.emoteOnly ? (S.emotes && S.emotes.length && Math.random() < .6 ? pick(S.emotes).code : pick(EMOTES)) : withEmotes(ambientLine(L)) });
   maybeTroll(L);
   surpriseTick(L); surpriseCheck(L); immersiveTick(L);
   // presentes
-  if (Math.random() < (0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage) * (L.train ? 2.5 : 1) * (L.scene === 'starting' ? .3 : 1)) giftEvent();
+  if (Math.random() < (real ? (L.viewers < 1 ? 0 : Math.min(0.05 + Math.log10(L.viewers + 1) * 0.025, 0.0006 * L.viewers)) * L.engage : (0.05 + Math.log10(L.viewers + 1) * 0.025 * L.engage)) * (L.train ? 2.5 : 1) * (L.scene === 'starting' ? .3 : 1)) giftEvent();
   // raid espontânea
-  if (!L.raided && e > 120 && Math.random() < 0.0025) raid();
+  if (!L.raided && e > 120 && Math.random() < (real ? 0.0006 : 0.0025)) raid();
   // sondagem
   if (L.poll && !L.poll.done) {
     L.poll.options.forEach(o => o.v += Math.round(L.viewers * rand(0, .0016) * o.bias));
@@ -2938,7 +2957,8 @@ function react(itemId, customText) {
     const vs = customText.match(/(\d+)\s*(?:contra|vs?|x)\s*(\d+)/i);
     if (vs) lines.push(`${vs[1]}v${vs[2]}?!?! INSANO`, `${vs[1]} CONTRA ${vs[2]} 😭😭`, 'CLIP CLIP CLIP');
   }
-  const count = Math.round(6 + item.hype * 10 + Math.log10(L.viewers + 1));
+  let count = Math.round(6 + item.hype * 10 + Math.log10(L.viewers + 1));
+  if ((LEVELS[L.level] || {}).realistic) count = Math.min(count, Math.max(0, Math.round(L.viewers * .9)));
   for (let i = 0; i < count; i++) setTimeout(() => { if (S.live === L) pushChat({ user: fakeUser(), text: withEmotes(fill(pick(lines), liveCtx(L))), hype: true }); }, i * rand(90, 260));
   L.lastMood = mood; L.lastMoodAt = Date.now(); avatarEmote(mood);
   if (item.hype >= .6) { giftRain(L, Math.round(item.hype * 5)); crowd(item.hype); }
@@ -2993,7 +3013,7 @@ function endPoll() {
 function raid() {
   const L = S.live; if (!L) return;
   const from = pick(S.accounts); const lvl = LEVELS[L.level] || LEVELS.media;
-  const n = Math.round(lvl.max * rand(.04, .14));
+  const n = lvl.realistic ? randi(4, 35) + Math.round(S.me.followers * rand(.005, .02)) : Math.round(lvl.max * rand(.04, .14));
   L.boost += n; L.viewers += n * .5; L.raided = true;
   addTimeline('raid', `Raid fictícia de ${from.name} com ${dots(n)} espectadores`, '🛡️', { hype: .7, reactLabel: 'Raid', clipTitle: 'Raid de ' + from.name });
   pushChat({ sys: true, text: `🛡️ RAID! ${from.name} chegou com ${dots(n)} espectadores virtuais!` });
@@ -3532,6 +3552,7 @@ function modFilter(m) {
 }
 function chatRateFactor() { const M = S.mod; return (M.slow ? .45 : 1) * (M.subOnly ? .4 : 1); }
 function maybeTroll(L) {
+  if (isReal(L) && L.viewers < 5) return;
   const p = .035 * (S.mod.subOnly ? .2 : 1);
   if (Math.random() < p) pushChat({ user: pick(TROLLS), text: pick(TROLL_LINES), troll: true, color: '#9aa0b4' });
 }
@@ -3852,7 +3873,7 @@ function follow(f) { const L = S.live; if (!L) return; const n = Math.round(L.vi
 function gift(v) { const L = S.live; if (!L) return; L.gifts += v; goalAdd(v); hypeAdd(v); alertShow('🎁', `${dots(v)} moedas virtuais`, 'presente fictício', 'gift'); sound('bigGift'); }
 function chatBurst(lines) { const L = S.live; lines.forEach((t, i) => setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: t, hype: true }), 150 + i * 220)); }
 function surpriseTick(L) {
-  if (!S.prefs.randomMoments || L.surprise || ['starting', 'ending', 'brb'].includes(L.scene)) return;
+  if (!S.prefs.randomMoments || L.surprise || ['starting', 'ending', 'brb'].includes(L.scene) || (isReal(L) && L.viewers < 3)) return;
   const e = (Date.now() - L.start) / 1000;
   L.nextSurprise = L.nextSurprise || L.start + rand(35000, 60000);
   if (e < 30 || Date.now() < L.nextSurprise) return;
@@ -3978,7 +3999,8 @@ function chatCommand(L, text) {
   if (!word) return false;
   if (/^cora[çc](ão|ões)$/i.test(word)) word = '💜';
   const variants = [word, word, word, word.toUpperCase(), word + '!!', word + ' 👋', word.toLowerCase() + ' ' + S.me.name.split(' ')[0], word + ' 💜', word.toUpperCase() + '!!!', word + ' 😄'];
-  const n = clamp(Math.round(8 + Math.log10(L.viewers + 1) * 4), 8, 28);
+  let n = clamp(Math.round(8 + Math.log10(L.viewers + 1) * 4), 8, 28);
+  if ((LEVELS[L.level] || {}).realistic) n = Math.min(n, Math.max(0, Math.round(L.viewers * .9)));
   for (let i = 0; i < n; i++) setTimeout(() => S.live === L && pushChat({ user: fakeUser(), text: pick(variants), hype: true }), 250 + i * rand(70, 190));
   L.engage = Math.min(3, L.engage + .5);
   return true;
@@ -4012,7 +4034,8 @@ function chatRespond(text) {
     const short = text.length > 40 ? text.slice(0, 38) + '…' : text;
     lines.push(`"${short}" 😂`);
   }
-  const n = clamp(Math.round((rule && rule.many ? 9 : 6) + hype * 12 + Math.log10(L.viewers + 1) * 2), 6, 22);
+  let n = clamp(Math.round((rule && rule.many ? 9 : 6) + hype * 12 + Math.log10(L.viewers + 1) * 2), 6, 22);
+  if ((LEVELS[L.level] || {}).realistic) n = Math.min(n, Math.max(0, Math.round(L.viewers * .8)));
   const used = new Set();
   for (let i = 0; i < n; i++) {
     let line = pick(lines); if (used.has(line) && lines.length > used.size) line = pick(lines); used.add(line);
@@ -4235,7 +4258,7 @@ function greetRegulars(L) {
   const last = [...S.lives].sort((a, b) => b.end - a.end)[0];
   const moment = last && (last.timeline || []).find(t => t.type === 'reaction' || t.type === 'viral');
   const lastClip = S.clips.find(c => c.streamer === 'me');
-  const regs = [...S.regulars].sort(() => Math.random() - .5).slice(0, 4);
+  const regs = [...S.regulars].sort(() => Math.random() - .5).slice(0, isReal(L) ? Math.max(1, Math.min(4, Math.round(L.viewers / 2))) : 4);
   const lines = [
     `${me}!! cheguei 💜`, 'a minha live favorita da semana', `já são ${regs[0]?.months || 3} meses de sub ⭐`, 'boa noite a todos 👋',
     moment ? `ainda me lembro do «${moment.label.replace(/^Reação ao jogo: /, '')}» da última live 😂` : 'hoje vai ser épico',
@@ -4369,8 +4392,8 @@ function immersiveTick(L) {
   const now = Date.now();
   tickScene(L);
   if (L.scene === 'starting' && now >= (L.sceneUntil || 0)) { setScene('game'); toast('🎮', 'A live começou: cena «Jogo»'); }
-  if (!L.greeted && now - L.start > 3500) { L.greeted = true; greetRegulars(L); }
-  if (L.scene !== 'starting' && Math.random() < .004) subRenewal(L);
+  if (!L.greeted && now - L.start > 3500 && (!isReal(L) || L.viewers >= 2)) { L.greeted = true; greetRegulars(L); }
+  if (L.scene !== 'starting' && Math.random() < (isReal(L) ? Math.min(.004, L.viewers * .0002) : .004)) subRenewal(L);
   trainTick(L);
 }
 
@@ -5439,7 +5462,7 @@ function setupPreviewHTML() {
 }
 function studioSetup() {
   const mineEvents = S.events.filter(e => e.owner === 'me' && ['scheduled', 'soon'].includes(eventStatus(e))).sort((a, b) => a.start - b.start);
-  const st = STUDIO.setup || (STUDIO.setup = { title: '', game: S.me.games[0] || 'fortnite', mode: 'casual', level: 'media', eventId: '', tags: '' });
+  const st = STUDIO.setup || (STUDIO.setup = { title: '', game: S.me.games[0] || 'fortnite', mode: 'casual', level: 'real', eventId: '', tags: '' });
   const summary = STUDIO.summary && S.lives.find(l => l.id === STUDIO.summary);
   return `${soonBanner(mineEvents.filter(e => eventStatus(e) === 'soon'))}
   <div class="page-head"><div><h1>Gestor de transmissão</h1><p>Estás offline. Prepara a transmissão e entra em direto quando quiseres.</p></div></div>
@@ -5454,8 +5477,9 @@ function studioSetup() {
         <label class="field"><span>Etiquetas</span><input class="input" name="tags" id="glTags" data-setup="tags" maxlength="120" placeholder="Português, Competitivo" value="${esc(st.tags || '')}"></label>
         <div class="grid-2">
           <label class="field"><span>Modo</span><select class="input" name="mode" id="glMode" data-setup="mode">${Object.entries(MODES).map(([k, m]) => `<option value="${k}" ${st.mode === k ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label>
-          <label class="field"><span>Audiência simulada</span><select class="input" name="level" id="glLevel" data-setup="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${st.level === k ? 'selected' : ''}>Até ${dots(l.max)}</option>`).join('')}</select></label>
+          <label class="field"><span>Audiência</span><select class="input" name="level" id="glLevel" data-setup="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${st.level === k ? 'selected' : ''}>${l.realistic ? 'Realista' : 'Livre · até ' + dots(l.max)}</option>`).join('')}</select></label>
         </div>
+        ${st.level === 'real' ? realHintHTML(st.game) : ''}
         <button class="btn btn-live sm-go">${icon('studio')} Entrar em direto</button>
         <button type="button" class="btn" data-act="new-event" style="justify-content:center">${icon('calendar')} Agendar para outra hora</button>
         <p class="tiny muted" style="margin:0">Os espetadores e o chat são simulados.</p>
@@ -5480,6 +5504,42 @@ const POLISH_FORMS = {
     STUDIO.setup = null; save();
   },
 };
+
+/* =====================================================================
+   Audiência realista: depende dos seguidores, da hora, do jogo, do
+   horário e do tempo de live. Um canal novo começa com 0 a 3.
+   ===================================================================== */
+const isReal = L => !!(L && (LEVELS[L.level] || {}).realistic);
+const realQuiet = L => isReal(L) && L.viewers < 1;
+const GAME_POP = { gta6: 1.35, fortnite: 1.2, minecraft: 1.1, valorant: 1, lol: 1, eafc: .9, roblox: .9, rocket: .8, gta: .8, phasmo: .8, amnesia: .7, chat: .75 };
+function hourFactor(h) { return h >= 19 && h <= 23 ? 1.3 : h >= 14 ? 1 : h >= 8 ? .7 : .4; }
+function onSchedule(d) {
+  const mins = d.getHours() * 60 + d.getMinutes();
+  return (S.me.agenda || []).some(a => { if (a.day !== d.getDay()) return false; const [h, m] = String(a.time || '0:0').split(':').map(Number); return Math.abs(h * 60 + m - mins) <= 90; });
+}
+function realFactors(L, game) {
+  const d = new Date();
+  const ev = L && L.eventId ? S.events.find(e => e.id === L.eventId) : null;
+  return { base: 1.5 + S.me.followers * 0.02, hour: hourFactor(d.getHours()), game: GAME_POP[game] || 1, sched: onSchedule(d) ? 1.2 : 1, event: ev ? 1.3 : 1, eventExtra: ev ? ev.interested * 0.3 : 0 };
+}
+function realMax(L) {
+  if (!S) return 2;
+  const game = L ? L.game : (STUDIO.setup && STUDIO.setup.game) || 'fortnite';
+  const f = realFactors(L, game);
+  let v = f.base * f.hour * f.game * f.sched * f.event + f.eventExtra;
+  if (L) { const hrs = (Date.now() - L.start) / HOUR; if (hrs > 3) v *= Math.max(.6, 1 - (hrs - 3) * .1); v *= L.realLuck || 1; }
+  return v;
+}
+function realHintHTML(game) {
+  const f = realFactors(null, game), est = realMax(null);
+  const lo = Math.max(0, Math.floor(est * .6)), hi = Math.max(2, Math.ceil(est * 1.4));
+  const h = new Date().getHours();
+  const tips = [];
+  if (f.hour < 1) tips.push(h < 8 ? 'é madrugada: pouca gente online' : 'à noite (19h–23h) há mais gente');
+  if (f.sched === 1) tips.push('fazer live no horário da tua agenda dá +20%');
+  if (S.me.followers < 50) tips.push('com poucos seguidores, falar com o chat ajuda a ganhar os primeiros');
+  return `<div class="real-hint"><b>Estimativa: ${lo === hi ? lo : lo + ' a ' + hi} espetadores</b><span>${dots(Math.floor(S.me.followers))} seguidores · ${(GAMES[game] || GAMES.chat).name} ${f.game >= 1.1 ? '(popular)' : ''} · ${pad(h)}h${f.sched > 1 ? ' · no teu horário' : ''}</span>${tips.length ? `<small>Dica: ${tips[0]}.</small>` : ''}</div>`;
+}
 
 /* =====================================================================
    Janelas (perfil, editor de eventos, detalhes), ações e ciclo principal
@@ -5969,6 +6029,7 @@ function bind() {
     }
     if (t.dataset.setup && STUDIO.setup) {
       STUDIO.setup[t.dataset.setup] = t.value;
+      if ((t.dataset.setup === 'game' || t.dataset.setup === 'level') && route().name === 'estudio' && !S.live) { render(); }
       if (t.dataset.setup === 'eventId' && t.value) { const ev = S.events.find(x => x.id === t.value); if (ev) { Object.assign(STUDIO.setup, { title: ev.title, game: ev.game, mode: ev.mode, level: ev.level }); render(); } }
     }
     if (t.dataset.studio) { STUDIO[t.dataset.studio] = t.checked; if (t.dataset.studio === 'overlay') $$('.screen-chat').forEach(x => x.classList.toggle('on', t.checked)); }

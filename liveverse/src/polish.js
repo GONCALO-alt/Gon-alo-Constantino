@@ -24,7 +24,7 @@ function setupPreviewHTML() {
 }
 function studioSetup() {
   const mineEvents = S.events.filter(e => e.owner === 'me' && ['scheduled', 'soon'].includes(eventStatus(e))).sort((a, b) => a.start - b.start);
-  const st = STUDIO.setup || (STUDIO.setup = { title: '', game: S.me.games[0] || 'fortnite', mode: 'casual', level: 'media', eventId: '', tags: '' });
+  const st = STUDIO.setup || (STUDIO.setup = { title: '', game: S.me.games[0] || 'fortnite', mode: 'casual', level: 'real', eventId: '', tags: '' });
   const summary = STUDIO.summary && S.lives.find(l => l.id === STUDIO.summary);
   return `${soonBanner(mineEvents.filter(e => eventStatus(e) === 'soon'))}
   <div class="page-head"><div><h1>Gestor de transmissão</h1><p>Estás offline. Prepara a transmissão e entra em direto quando quiseres.</p></div></div>
@@ -39,8 +39,9 @@ function studioSetup() {
         <label class="field"><span>Etiquetas</span><input class="input" name="tags" id="glTags" data-setup="tags" maxlength="120" placeholder="Português, Competitivo" value="${esc(st.tags || '')}"></label>
         <div class="grid-2">
           <label class="field"><span>Modo</span><select class="input" name="mode" id="glMode" data-setup="mode">${Object.entries(MODES).map(([k, m]) => `<option value="${k}" ${st.mode === k ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label>
-          <label class="field"><span>Audiência simulada</span><select class="input" name="level" id="glLevel" data-setup="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${st.level === k ? 'selected' : ''}>Até ${dots(l.max)}</option>`).join('')}</select></label>
+          <label class="field"><span>Audiência</span><select class="input" name="level" id="glLevel" data-setup="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${st.level === k ? 'selected' : ''}>${l.realistic ? 'Realista' : 'Livre · até ' + dots(l.max)}</option>`).join('')}</select></label>
         </div>
+        ${st.level === 'real' ? realHintHTML(st.game) : ''}
         <button class="btn btn-live sm-go">${icon('studio')} Entrar em direto</button>
         <button type="button" class="btn" data-act="new-event" style="justify-content:center">${icon('calendar')} Agendar para outra hora</button>
         <p class="tiny muted" style="margin:0">Os espetadores e o chat são simulados.</p>
@@ -65,3 +66,39 @@ const POLISH_FORMS = {
     STUDIO.setup = null; save();
   },
 };
+
+/* =====================================================================
+   Audiência realista: depende dos seguidores, da hora, do jogo, do
+   horário e do tempo de live. Um canal novo começa com 0 a 3.
+   ===================================================================== */
+const isReal = L => !!(L && (LEVELS[L.level] || {}).realistic);
+const realQuiet = L => isReal(L) && L.viewers < 1;
+const GAME_POP = { gta6: 1.35, fortnite: 1.2, minecraft: 1.1, valorant: 1, lol: 1, eafc: .9, roblox: .9, rocket: .8, gta: .8, phasmo: .8, amnesia: .7, chat: .75 };
+function hourFactor(h) { return h >= 19 && h <= 23 ? 1.3 : h >= 14 ? 1 : h >= 8 ? .7 : .4; }
+function onSchedule(d) {
+  const mins = d.getHours() * 60 + d.getMinutes();
+  return (S.me.agenda || []).some(a => { if (a.day !== d.getDay()) return false; const [h, m] = String(a.time || '0:0').split(':').map(Number); return Math.abs(h * 60 + m - mins) <= 90; });
+}
+function realFactors(L, game) {
+  const d = new Date();
+  const ev = L && L.eventId ? S.events.find(e => e.id === L.eventId) : null;
+  return { base: 1.5 + S.me.followers * 0.02, hour: hourFactor(d.getHours()), game: GAME_POP[game] || 1, sched: onSchedule(d) ? 1.2 : 1, event: ev ? 1.3 : 1, eventExtra: ev ? ev.interested * 0.3 : 0 };
+}
+function realMax(L) {
+  if (!S) return 2;
+  const game = L ? L.game : (STUDIO.setup && STUDIO.setup.game) || 'fortnite';
+  const f = realFactors(L, game);
+  let v = f.base * f.hour * f.game * f.sched * f.event + f.eventExtra;
+  if (L) { const hrs = (Date.now() - L.start) / HOUR; if (hrs > 3) v *= Math.max(.6, 1 - (hrs - 3) * .1); v *= L.realLuck || 1; }
+  return v;
+}
+function realHintHTML(game) {
+  const f = realFactors(null, game), est = realMax(null);
+  const lo = Math.max(0, Math.floor(est * .6)), hi = Math.max(2, Math.ceil(est * 1.4));
+  const h = new Date().getHours();
+  const tips = [];
+  if (f.hour < 1) tips.push(h < 8 ? 'é madrugada: pouca gente online' : 'à noite (19h–23h) há mais gente');
+  if (f.sched === 1) tips.push('fazer live no horário da tua agenda dá +20%');
+  if (S.me.followers < 50) tips.push('com poucos seguidores, falar com o chat ajuda a ganhar os primeiros');
+  return `<div class="real-hint"><b>Estimativa: ${lo === hi ? lo : lo + ' a ' + hi} espetadores</b><span>${dots(Math.floor(S.me.followers))} seguidores · ${(GAMES[game] || GAMES.chat).name} ${f.game >= 1.1 ? '(popular)' : ''} · ${pad(h)}h${f.sched > 1 ? ' · no teu horário' : ''}</span>${tips.length ? `<small>Dica: ${tips[0]}.</small>` : ''}</div>`;
+}

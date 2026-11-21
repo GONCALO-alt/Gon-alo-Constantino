@@ -164,7 +164,7 @@ function greetRegulars(L) {
   const last = [...S.lives].sort((a, b) => b.end - a.end)[0];
   const moment = last && (last.timeline || []).find(t => t.type === 'reaction' || t.type === 'viral');
   const lastClip = S.clips.find(c => c.streamer === 'me');
-  const regs = [...S.regulars].sort(() => Math.random() - .5).slice(0, 4);
+  const regs = [...S.regulars].sort(() => Math.random() - .5).slice(0, isReal(L) ? Math.max(1, Math.min(4, Math.round(L.viewers / 2))) : 4);
   const lines = [
     `${me}!! cheguei 💜`, 'a minha live favorita da semana', `já são ${regs[0]?.months || 3} meses de sub ⭐`, 'boa noite a todos 👋',
     moment ? `ainda me lembro do «${moment.label.replace(/^Reação ao jogo: /, '')}» da última live 😂` : 'hoje vai ser épico',
@@ -298,8 +298,8 @@ function immersiveTick(L) {
   const now = Date.now();
   tickScene(L);
   if (L.scene === 'starting' && now >= (L.sceneUntil || 0)) { setScene('game'); toast('🎮', 'A live começou: cena «Jogo»'); }
-  if (!L.greeted && now - L.start > 3500) { L.greeted = true; greetRegulars(L); }
-  if (L.scene !== 'starting' && Math.random() < .004) subRenewal(L);
+  if (!L.greeted && now - L.start > 3500 && (!isReal(L) || L.viewers >= 2)) { L.greeted = true; greetRegulars(L); }
+  if (L.scene !== 'starting' && Math.random() < (isReal(L) ? Math.min(.004, L.viewers * .0002) : .004)) subRenewal(L);
   trainTick(L);
 }
 

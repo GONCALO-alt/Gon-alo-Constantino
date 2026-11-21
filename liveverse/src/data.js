@@ -29,6 +29,7 @@ const MODES = {
 };
 
 const LEVELS = {
+  real:     { name: 'Realista', realistic: true, get max() { return Math.max(1, Math.round(realMax(typeof S !== 'undefined' && S ? S.live : null))); } },
   pequena:  { name: 'Pequena',  max: 1000 },
   media:    { name: 'Média',    max: 10000 },
   grande:   { name: 'Grande',   max: 50000 },

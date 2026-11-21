@@ -486,6 +486,7 @@ function bind() {
     }
     if (t.dataset.setup && STUDIO.setup) {
       STUDIO.setup[t.dataset.setup] = t.value;
+      if ((t.dataset.setup === 'game' || t.dataset.setup === 'level') && route().name === 'estudio' && !S.live) { render(); }
       if (t.dataset.setup === 'eventId' && t.value) { const ev = S.events.find(x => x.id === t.value); if (ev) { Object.assign(STUDIO.setup, { title: ev.title, game: ev.game, mode: ev.mode, level: ev.level }); render(); } }
     }
     if (t.dataset.studio) { STUDIO[t.dataset.studio] = t.checked; if (t.dataset.studio === 'overlay') $$('.screen-chat').forEach(x => x.classList.toggle('on', t.checked)); }
