@@ -77,7 +77,7 @@ document.addEventListener('pointerdown', tipHide, true);
 /* ---------- Player do canal ---------- */
 const QUALITIES = [['auto', 'Automática (1080p60)'], ['1080', '1080p60 (origem)'], ['720', '720p60'], ['480', '480p'], ['360', '360p'], ['160', '160p']];
 function playerPrefs() { S.prefs.player = S.prefs.player || { vol: .7, muted: false, q: 'auto' }; return S.prefs.player; }
-function playerCtrlHTML(accId) {
+function playerCtrlHTMLOld(accId) {
   const P = playerPrefs(), muted = P.muted || P.vol === 0;
   return `<div class="wp-ctrl">
     <button class="wp-ic" data-act="player-pause" aria-label="Pausa (espaço)">${icon('pause')}</button>

@@ -1912,6 +1912,160 @@ body.theater-on main { transform: none !important; animation: none !important; }
 .chat-head > .tw-chead-t { flex-shrink: 1; }
 .chat-head, .chat-head * { white-space: nowrap; }
 
+/* ===================== Fidelidade de plataforma (camada final) ===================== */
+html, body { margin: 0; }
+body { background: #0e0e10; }
+.bg-glow { display: none !important; }
+:root { --tw-hover: rgb(83 83 95 / .48); --tw-btn: rgb(83 83 95 / .38); --tw-border: #2f2f35; }
+/* botões: 30 px, cantos de 4 px, sem sombras nem gradientes */
+.wp-info .btn, .wp-info .wp-round, .wp-sq { height: 30px; min-height: 30px; border-radius: 4px; font-size: 13px; font-weight: 600; padding: 0 10px; box-shadow: none; transition: background-color .1s; }
+.wp-info .btn-primary { background: #9147ff; }
+.wp-info .btn-primary:hover { background: #772ce8; }
+.wp-info .btn:not(.btn-primary) { background: var(--tw-btn); color: var(--fg); }
+.wp-info .btn:not(.btn-primary):hover { background: var(--tw-hover); }
+.wp-info .btn svg { width: 20px; height: 20px; }
+.wp-gift, .wp-sub { flex: none; border-radius: 4px; padding: 0 10px; }
+.wp-round, .wp-sq { width: 30px; padding: 0 !important; display: grid; place-items: center; border: 0; background: var(--tw-btn); color: var(--fg); }
+.wp-round svg, .wp-sq svg { width: 20px; height: 20px; }
+.wp-round:hover, .wp-sq:hover { background: var(--tw-hover); }
+.wp-round:active { transform: none; }
+.wp-round.on:not(.wp-unf) { background: #9147ff; color: #fff; }
+.wp-unf { background: var(--tw-btn) !important; color: var(--fg) !important; }
+.wp-unf .hf svg { fill: currentColor; }
+.wp-sq { background: transparent; }
+.wp-sq:hover { background: var(--tw-hover); }
+.wp-stats { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 8px; font-size: 14px; }
+.wp-stats .wp-vw { color: #ff8280; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.wp-stats .wp-vw b { font-family: var(--f-body); font-weight: 600; }
+.wp-stats .wp-vw svg { width: 20px; height: 20px; }
+.wp-stats [data-wup] { font-family: var(--f-body); font-variant-numeric: tabular-nums; color: var(--fg); }
+.wp-stats .wp-sq { margin-left: -6px; }
+/* informação do canal */
+.wp-name { font-size: 18px; font-weight: 600; }
+.wp-title { font-size: 14px; font-weight: 600; margin: 4px 0 2px; }
+.wp-game { font-size: 14px; font-weight: 400; color: #bf94ff; }
+.wp-game:hover { text-decoration: underline; color: #a970ff; }
+.tw-tags span { height: 20px; display: inline-flex; align-items: center; padding: 0 8px; border-radius: 9999px; background: #323239; color: #dedee3; font-size: 12px; font-weight: 600; }
+.tw-tags span:hover { background: #3b3b44; }
+.wp-livebadge { border-radius: 4px; font-size: 13px; font-weight: 600; padding: 0 5px; letter-spacing: 0; }
+.wp-about { border-radius: 6px; }
+.wp-about h3 { font-size: 20px; font-weight: 700; }
+
+/* layout encostado como numa plataforma real: barra lateral, vídeo e chat sem margens */
+@media (min-width: 821px) {
+  .app:has(.wp) { padding-right: 0; padding-bottom: 0; gap: 0; }
+  .app:has(.wp) main { padding: 0; }
+  .app:has(.wp) .side { box-shadow: none; }
+  .wp { gap: 0; height: calc(100vh - 50px - env(safe-area-inset-top, 0px)); align-items: stretch; }
+  .wp-main { height: 100%; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #53535f transparent; gap: 0; }
+  .wp-video { border-radius: 0 !important; border: 0 !important; flex: none; }
+  .wp-info { padding: 20px 20px 0; gap: 0; }
+  .wp-about { margin: 30px 20px 40px; padding: 30px; background: #18181b; }
+  .wp-side { position: relative; top: 0 !important; height: 100% !important; min-height: 0; }
+  .wp-chatbox { border-radius: 0 !important; border: 0 !important; border-left: 1px solid var(--tw-border) !important; box-shadow: none !important; }
+  .side { background: #1f1f23; }
+  body:has(.wp) .toasts { top: auto; bottom: 16px; left: 256px; right: auto; align-items: flex-start; }
+}
+.toasts .toast:nth-last-child(n+4) { display: none; }
+
+/* barra de navegação */
+.tn-link { font-size: 18px; font-weight: 600; }
+.tn-ic:hover, .tn-avatar:hover { background: var(--tw-hover); }
+
+/* ---------- player ---------- */
+@media (min-width: 821px) {
+  .wp-ctrl { gap: 4px; padding: 40px 10px 6px; background: linear-gradient(transparent, rgb(0 0 0 / .8)); }
+  .wp-ctrl .wp-ic { width: 30px; height: 30px; border-radius: 4px; background: transparent; }
+  .wp-ctrl .wp-ic:hover, .wp-ctrl .wp-ic.on { background: rgb(255 255 255 / .15); }
+  .wp-ctrl .wp-ic svg { width: 20px; height: 20px; }
+}
+.wp-ctrl-live { display: inline-flex; align-items: center; gap: 5px; margin-left: 8px; font-size: 13px; font-weight: 600; color: #fff; text-transform: uppercase; }
+.wp-ctrl-live i { width: 8px; height: 8px; border-radius: 50%; background: #eb0400; }
+.pv-range { -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer; }
+.pv-range::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #fff var(--v, 70%), rgb(255 255 255 / .3) var(--v, 70%)); }
+.pv-range::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -4px; border-radius: 50%; background: #fff; border: 0; }
+.pv-range::-moz-range-track { height: 4px; border-radius: 2px; background: rgb(255 255 255 / .3); }
+.pv-range::-moz-range-progress { height: 4px; border-radius: 2px; background: #fff; }
+.pv-range::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 0; }
+/* menu de definições */
+.pq-menu { right: -4px; bottom: 42px; min-width: 260px; padding: 10px; border-radius: 6px; background: #18181b; box-shadow: 0 6px 16px rgb(0 0 0 / .4), 0 0 4px rgb(0 0 0 / .4); gap: 0; animation: none; }
+.pq-menu > button { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 32px; padding: 5px; border: 0; border-radius: 4px; background: none; color: #efeff1; font-size: 13px; font-weight: 400; text-align: left; }
+.pq-menu > button:hover { background: var(--tw-hover); }
+.pq-menu > button span { flex: 1; }
+.pq-menu > button em { font-style: normal; color: #adadb8; font-size: 13px; }
+.pq-menu > button > svg { width: 18px; height: 18px; flex: none; }
+.pq-back { border-bottom: 1px solid var(--tw-border) !important; border-radius: 0 !important; margin-bottom: 6px; padding-bottom: 10px !important; }
+.pq-back b { font-weight: 600; font-size: 13px; flex: 1; text-align: center; margin-right: 26px; }
+.pq-radio i { width: 16px; height: 16px; flex: none; border-radius: 50%; border: 2px solid #adadb8; }
+.pq-radio.on i { border-color: #9147ff; background: radial-gradient(circle, #9147ff 0 3.5px, transparent 4px); }
+.pq-radio svg { display: none; }
+.pq-tog .sw { position: relative; width: 28px; height: 16px; flex: none; border-radius: 8px; background: transparent; box-shadow: inset 0 0 0 2px #adadb8; }
+.pq-tog .sw::after { content: ""; position: absolute; left: 3px; top: 3px; width: 10px; height: 10px; border-radius: 50%; background: #adadb8; transition: transform .12s; }
+.pq-tog .sw.on { background: #9147ff; box-shadow: none; }
+.pq-tog .sw.on::after { transform: translateX(12px); background: #fff; }
+.vstats { position: absolute; left: 10px; top: 10px; z-index: 5; width: min(330px, 70%); padding: 10px 12px; border-radius: 4px; background: rgb(0 0 0 / .75); color: #fff; font-size: 12px; line-height: 18px; }
+.vstats b { display: block; font-size: 13px; margin-bottom: 4px; }
+.vstats b small { font-weight: 400; color: #adadb8; }
+.vstats span { display: flex; justify-content: space-between; gap: 10px; }
+.vstats i { font-style: normal; color: #adadb8; }
+.vstats button { position: absolute; right: 4px; top: 4px; width: 24px; height: 24px; border: 0; border-radius: 4px; background: none; color: #fff; display: grid; place-items: center; }
+.vstats button:hover { background: rgb(255 255 255 / .15); }
+.vstats button svg { width: 16px; height: 16px; }
+
+/* menus pequenos (⋮) */
+.tw-pop { position: fixed; z-index: 130; min-width: 210px; padding: 10px; border-radius: 6px; background: #18181b; box-shadow: 0 6px 16px rgb(0 0 0 / .4), 0 0 4px rgb(0 0 0 / .4); display: flex; flex-direction: column; }
+.tw-pop > a, .tw-pop > button { display: flex; align-items: center; gap: 8px; padding: 5px; min-height: 30px; border: 0; border-radius: 4px; background: none; color: #efeff1; font-size: 13px; text-decoration: none; text-align: left; }
+.tw-pop > a:hover, .tw-pop > button:hover { background: var(--tw-hover); }
+.tw-pop svg { width: 18px; height: 18px; }
+.tn-drop { padding: 10px; border-radius: 6px; background: #18181b; box-shadow: 0 6px 16px rgb(0 0 0 / .4), 0 0 4px rgb(0 0 0 / .4); animation: none; }
+
+/* ---------- chat ---------- */
+.chat-head { height: 50px; min-height: 50px; padding-block: 0 !important; border-bottom: 1px solid var(--tw-border); }
+.tw-chead-t { font-size: 13px; font-weight: 600; letter-spacing: 0; }
+.chat-list .msg { animation: none !important; padding: 5px 20px; line-height: 20px; font-size: 13px; color: #efeff1; }
+.chat-list .msg b.cu { font-weight: 700; cursor: pointer; }
+.chat-list .msg b.cu:hover { background: rgb(255 255 255 / .1); border-radius: 2px; }
+.chat-list .msg .msg-time { color: #adadb8; font-size: 13px; margin-right: 5px; }
+.chat-list .msg .cbadge, .chat-list .msg [class*="badge"]:not(.badge-count) { vertical-align: -4px; }
+.chat-list img.emote { width: 28px; height: 28px; margin: -5px 0; vertical-align: middle; object-fit: contain; }
+.chat-list .msg.sys, .chat-list .msg.sub, .chat-list .msg.gift { background: none; border-left: 4px solid #9147ff; padding: 5px 20px 5px 16px; border-radius: 0; font-weight: 600; }
+.chat-list .msg.plain { color: #adadb8; padding: 5px 20px; }
+.more-pill { left: 10px !important; right: 10px; bottom: auto; top: auto; transform: none !important; display: flex; align-items: center; justify-content: center; gap: 6px; width: auto; padding: 5px 10px; border-radius: 4px; background: rgb(0 0 0 / .6); box-shadow: none; font-size: 13px; font-weight: 600; color: #fff; backdrop-filter: blur(2px); }
+.more-pill[hidden] { display: none; }
+.more-pill svg { width: 16px; height: 16px; }
+.wp-chatbox .more-pill { bottom: 100px; }
+.more-pill:hover { background: rgb(0 0 0 / .75); }
+.tw-input { border-top: 0; padding: 0 10px 10px; }
+.tw-in-wrap .input { min-height: 40px; border-radius: 6px; background: rgb(83 83 95 / .38); border: 2px solid transparent; box-shadow: none; font-size: 13px; color: #efeff1; transition: border-color .1s, background-color .1s; }
+.tw-in-wrap .input:hover { border-color: #53535f; }
+.tw-in-wrap .input:focus { border-color: #9147ff; background: #000; outline: none; box-shadow: none; }
+.tw-in-wrap .input::placeholder { color: #adadb8; }
+.tw-in-emo { width: 30px; height: 30px; right: 6px; border-radius: 4px; color: #efeff1; }
+.tw-in-emo:hover { background: var(--tw-hover); }
+.tw-input .btn-primary.btn-sm { height: 30px; padding: 0 10px; border-radius: 4px; font-size: 13px; font-weight: 600; background: #9147ff; box-shadow: none; }
+.tw-input .btn-primary.btn-sm:hover { background: #772ce8; }
+.tw-in-row .tn-ic { width: 30px; height: 30px; border-radius: 4px; }
+@media (min-width: 821px) { .wp-chatbox .tw-in-gift { display: none; } }
+/* seletor de emotes */
+.emote-pop { width: 320px; max-height: 320px; overflow-y: auto; right: 10px; grid-template-columns: repeat(7, 1fr); gap: 2px; padding: 10px; border-radius: 6px; background: #18181b; border: 0; box-shadow: 0 6px 16px rgb(0 0 0 / .5), 0 0 4px rgb(0 0 0 / .4); }
+.emote-pop h5 { grid-column: 1 / -1; margin: 6px 2px 4px; font-size: 12px; font-weight: 600; color: #adadb8; text-transform: none; }
+.emote-pop h5:first-child { margin-top: 0; }
+.emote-pop button { height: 38px; border-radius: 4px; display: grid; place-items: center; }
+.emote-pop button:hover { background: var(--tw-hover); }
+.emote-pop button img { width: 28px; height: 28px; object-fit: contain; }
+.wp-chatbox .tw-input { margin: 0; }
+.chat-list img.emote { margin: -4px 0; }
+@media (max-width: 820px) {
+  .wp-actions { flex-wrap: nowrap; }
+  .wp-gift { font-size: 0 !important; gap: 0; width: 30px; padding: 0 !important; justify-content: center; }
+  .wp-gift svg { width: 20px; height: 20px; }
+  .wp-sub { flex: 1; justify-content: center; }
+  .wp-chatbox { border-radius: 0 !important; border: 0 !important; border-top: 1px solid var(--tw-border) !important; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))); }
+  .chat-head:has(.chat-col) { padding-left: 14px; }
+  body:has(.wp) .toasts { top: auto; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (min-width: 821px) { .studio:not(.theater) .studio-chat { height: calc(100vh - 212px); } }
+
 </style>
 <div class="bg-glow" aria-hidden="true"></div>
 <header class="topnav" id="topNav"></header>
@@ -3333,7 +3487,7 @@ function viewStudio() {
         <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
-        <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
+        <button class="more-pill" data-act="chat-bottom" hidden>${icon('pause')} Chat em pausa devido ao scroll</button>
         ${chatInputHTML('chatInput', 'chat', false)}
       </section>
     </aside>
@@ -4948,7 +5102,7 @@ function viewWatch(id) {
               <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">${icon('gift')} Oferecer subscrição</button>
               <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${icon('star')} ${sub ? 'Subscrito' : 'Subscrever'}</button>
             </div>
-            ${ev ? `<div class="wp-stats"><span class="wp-vw">${icon('person')}<b class="num" data-wv>${dots(Math.round(ev.viewers || 0))}</b></span><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></div>` : ''}
+            ${ev ? `<div class="wp-stats"><span class="wp-vw">${icon('person')}<b class="num" data-wv>${dots(Math.round(ev.viewers || 0))}</b></span><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span><button class="wp-sq" data-act="wp-share" data-id="${a.id}" aria-label="Partilhar">${icon('share')}</button><button class="wp-sq" data-act="wp-more" data-id="${a.id}" aria-label="Mais opções">${icon('more')}</button></div>` : ''}
           </div>
         </div>
         <div class="wp-about"><h3>Sobre ${esc(a.name)}</h3><p><b>${fmt(a.followers)}</b> seguidores ${SIM()}</p><p>${richText(a.bio || '')}</p><p class="tiny muted" style="margin:0">Subscrições, presentes e espetadores são fictícios: nada é pago.</p></div>
@@ -4960,7 +5114,7 @@ function viewWatch(id) {
         ${ev ? `<div class="lb" data-wlb>${leaderboardHTML(WATCH.key === a.id ? WATCH.gifters : {})}</div>
         <div class="drop" data-wdrop>${dropHTML(a, ev)}</div>` : ''}
         <div class="chat-list" id="wpChat" data-wchat></div>
-        <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
+        <button class="more-pill" data-act="chat-bottom" hidden>${icon('pause')} Chat em pausa devido ao scroll</button>
         ${chatInputHTML('wpInput', 'watch-send', true, a.id)}
       </section>
     </aside>
@@ -4982,11 +5136,12 @@ function chatInputHTML(id, form, gift, accId) {
     <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="500" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
     <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
     <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
-    <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
+    <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).length ? `<h5>Emotes do canal</h5>` : ''}${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}<h5>Emotes do LiveVerse</h5>${GLOBAL_EMOTES.map(e => `<button type="button" data-act="emote-insert" data-e="${e.code}" data-for="${id}" title="${e.code}"><img src="${e.img}" alt="${e.code}"></button>`).join('')}<h5>Emoji</h5>${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
   </form>`;
 }
 function wMsg(m) {
   m.id = m.id || uid(); m.t = m.t || Date.now(); m.color = m.color || regColor(m.user) || pick(NAME_COLORS);
+  if (!m.id0 && !m.me && !m.sys && !m.plain && !m.gift && m.user && m.user !== 'LiveBot' && typeof m.text === 'string') { m.id0 = 1; m.text = withEmotes(m.text); }
   WATCH.chat.push(m); if (WATCH.chat.length > 150) WATCH.chat.shift();
   const list = $('#wpChat'); if (list) appendChat(list, chatMsgHTML(m));
   const ov = $('[data-wchat-overlay]'); if (ov && !m.plain) { ov.insertAdjacentHTML('beforeend', overlayMsgHTML(m)); while (ov.children.length > 7) ov.firstElementChild.remove(); }
@@ -5585,18 +5740,20 @@ function saveStreamInfo(f) {
 
 /* ---------- 6. Emotes do canal ---------- */
 UI.emoteDraft = null;
+const allEmotes = () => [...(S.emotes || []), ...(typeof GLOBAL_EMOTES !== 'undefined' ? GLOBAL_EMOTES : [])];
 const emoteRe = () => {
-  const codes = (S.emotes || []).map(e => e.code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const codes = allEmotes().map(e => e.code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   return codes.length ? new RegExp(`(^|\\s)(${codes.join('|')})(?=\\s|$)`, 'g') : null;
 };
 function emotify(escaped) {
   const re = emoteRe(); if (!re) return escaped;
-  const map = Object.fromEntries((S.emotes || []).map(e => [e.code, e.img]));
+  const map = Object.fromEntries(allEmotes().map(e => [e.code, e.img]));
   return escaped.replace(re, (m, sp, code) => `${sp}<img class="emote" src="${map[code]}" alt="${code}" title="${code}">`);
 }
 function stripCodes(s) { const re = emoteRe(); return re ? String(s).replace(re, ' ') : s; }
 function withEmotes(text) {
-  const em = S.emotes || []; if (!em.length || Math.random() > .2) return text;
+  const own = S.emotes || [];
+  const em = own.length && Math.random() < .7 ? own : allEmotes(); if (Math.random() > (own.length ? .2 : .1)) return text;
   const k = Math.random() < .3 ? 3 : 1;
   const codes = Array.from({ length: k }, () => pick(em).code).join(' ');
   return Math.random() < .25 ? codes : `${text} ${codes}`;
@@ -6301,7 +6458,7 @@ document.addEventListener('pointerdown', tipHide, true);
 /* ---------- Player do canal ---------- */
 const QUALITIES = [['auto', 'Automática (1080p60)'], ['1080', '1080p60 (origem)'], ['720', '720p60'], ['480', '480p'], ['360', '360p'], ['160', '160p']];
 function playerPrefs() { S.prefs.player = S.prefs.player || { vol: .7, muted: false, q: 'auto' }; return S.prefs.player; }
-function playerCtrlHTML(accId) {
+function playerCtrlHTMLOld(accId) {
   const P = playerPrefs(), muted = P.muted || P.vol === 0;
   return `<div class="wp-ctrl">
     <button class="wp-ic" data-act="player-pause" aria-label="Pausa (espaço)">${icon('pause')}</button>
@@ -6641,6 +6798,123 @@ function tw4Init() {
   document.addEventListener('focusin', e => { if (e.target.id === 'topSearch' && e.target.value) searchSuggest(e.target.value); });
   document.addEventListener('click', e => { if (!e.target.closest('.tn-search')) { const s = $('#tnSuggest'); if (s) s.hidden = true; } });
   window.addEventListener('hashchange', () => { const s = $('#tnSuggest'); if (s) s.hidden = true; if (hcEl) hcEl.classList.remove('on'); UI.homeMore = false; if (route().name !== 'explorar') { UI.catTab = 'live'; } });
+}
+
+/* ===================== Fidelidade de plataforma: player, canal, chat e emotes ===================== */
+
+Object.assign(IC, { flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>' });
+
+/* ---------- Emotes globais do LiveVerse (desenhos próprios, 28 px no chat) ---------- */
+function lvEmoteSVG(kind) {
+  const face = (c, inner) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><circle cx="28" cy="29" r="24" fill="${c}" stroke="#000" stroke-opacity=".35" stroke-width="2"/>${inner}</svg>`;
+  const eyes = '<circle cx="20" cy="24" r="3.4" fill="#1b1030"/><circle cx="36" cy="24" r="3.4" fill="#1b1030"/>';
+  const S = {
+    lvRir: face('#ffcf3f', '<path d="M14 23q6-6 12 0M30 23q6-6 12 0" stroke="#1b1030" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M15 31h26q-1 13-13 13T15 31z" fill="#1b1030"/><path d="M20 38q8 5 16 0" stroke="#ff6b8a" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M10 26q-3 7 1 10M46 26q3 7-1 10" stroke="#57c7ff" stroke-width="3.4" fill="none" stroke-linecap="round"/>'),
+    lvHype: face('#a970ff', '<circle cx="20" cy="23" r="5.5" fill="#fff"/><circle cx="36" cy="23" r="5.5" fill="#fff"/><circle cx="21" cy="24" r="2.8" fill="#1b1030"/><circle cx="37" cy="24" r="2.8" fill="#1b1030"/><ellipse cx="28" cy="38" rx="7" ry="6.5" fill="#1b1030"/><path d="M6 8l3 6M50 8l-3 6M28 1v6" stroke="#ffe066" stroke-width="3" stroke-linecap="round"/>'),
+    lvGG: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><path d="M15 6h26v14a13 13 0 0 1-26 0z" fill="#ffc83d" stroke="#8a5a00" stroke-width="2"/><path d="M15 10H7q0 12 10 13M41 10h8q0 12-10 13" stroke="#ffc83d" stroke-width="4" fill="none"/><rect x="24" y="32" width="8" height="9" fill="#e0a21b"/><rect x="15" y="41" width="26" height="8" rx="2" fill="#9147ff"/><text x="28" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="11" text-anchor="middle" fill="#8a5a00">GG</text></svg>',
+    lvAmor: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><path d="M28 50S5 35 5 19A11.5 11.5 0 0 1 28 13a11.5 11.5 0 0 1 23 6c0 16-23 31-23 31z" fill="#9147ff" stroke="#3b1580" stroke-width="2"/><path d="M15 17q3-5 8-4" stroke="#fff" stroke-opacity=".7" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>',
+    lvOmg: face('#7fd1ff', '<circle cx="20" cy="22" r="6" fill="#fff"/><circle cx="36" cy="22" r="6" fill="#fff"/><circle cx="20" cy="22" r="2.6" fill="#1b1030"/><circle cx="36" cy="22" r="2.6" fill="#1b1030"/><ellipse cx="28" cy="39" rx="4.5" ry="6" fill="#1b1030"/><path d="M14 13l6 2M42 13l-6 2" stroke="#1b1030" stroke-width="3" stroke-linecap="round"/>'),
+    lvChoro: face('#8fb3ff', eyes + '<path d="M19 42q9-8 18 0" stroke="#1b1030" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M18 29q-3 6 0 10q3-4 0-10zM38 29q-3 6 0 10q3-4 0-10z" fill="#2a7dff"/>'),
+    lvFogo: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56"><path d="M28 3c3 10 15 15 15 30a15 15 0 0 1-30 0c0-7 4-11 7-14 0 5 2 8 5 9-2-9 0-17 3-25z" fill="#ff5a1f" stroke="#8a1c00" stroke-width="2"/><path d="M28 27c2 5 8 7 8 14a8 8 0 0 1-16 0c0-4 3-6 4-8 1 3 2 4 3 4-1-4 0-7 1-10z" fill="#ffd23f"/></svg>',
+    lvPiscar: face('#ffcf3f', '<circle cx="20" cy="24" r="3.4" fill="#1b1030"/><path d="M32 24h8" stroke="#1b1030" stroke-width="3.4" stroke-linecap="round"/><path d="M18 35q10 9 20 0" stroke="#1b1030" stroke-width="3.4" fill="none" stroke-linecap="round"/>'),
+    lvRaiva: face('#ff5c5c', '<path d="M14 17l9 4M42 17l-9 4" stroke="#1b1030" stroke-width="3.4" stroke-linecap="round"/><circle cx="20" cy="26" r="3" fill="#1b1030"/><circle cx="36" cy="26" r="3" fill="#1b1030"/><path d="M19 41q9-7 18 0" stroke="#1b1030" stroke-width="3.4" fill="none" stroke-linecap="round"/>'),
+    lvPop: face('#ffe7a3', '<circle cx="20" cy="24" r="3.4" fill="#1b1030"/><circle cx="36" cy="24" r="3.4" fill="#1b1030"/><path d="M17 33q11 10 22 0" stroke="#1b1030" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M38 40l10-4-2 14-12-2z" fill="#ff4f4f"/><circle cx="43" cy="37" r="3" fill="#fff"/><circle cx="47" cy="35" r="2.4" fill="#fff"/>'),
+  };
+  return 'data:image/svg+xml,' + encodeURIComponent(S[kind]);
+}
+const GLOBAL_EMOTES = ['lvRir', 'lvHype', 'lvGG', 'lvAmor', 'lvOmg', 'lvChoro', 'lvFogo', 'lvPiscar', 'lvRaiva', 'lvPop'].map(code => ({ code, img: lvEmoteSVG(code), global: true }));
+
+/* ---------- Player: barra inferior e menu de definições com submenus ---------- */
+UI.qPanel = 'main'; UI.vstats = false;
+function playerCtrlHTML(accId) {
+  const P = playerPrefs(), muted = P.muted || P.vol === 0;
+  const qLabel = (QUALITIES.find(q => q[0] === P.q) || QUALITIES[0])[1];
+  const panel = UI.qPanel || 'main';
+  const row = (act, label, val, extra = '') => `<button data-act="${act}" ${extra}><span>${label}</span>${val != null ? `<em>${esc(val)}</em>` : ''}${icon('chevR')}</button>`;
+  const tog = (act, label, on) => `<button data-act="${act}" class="pq-tog" role="switch" aria-checked="${on}"><span>${label}</span><i class="sw ${on ? 'on' : ''}"></i></button>`;
+  const menu = !UI.qOpen ? '' : panel === 'q'
+    ? `<div class="pq-menu pq-sub"><button class="pq-back" data-act="pq-go" data-p="main">${icon('chevL')}<b>Qualidade</b></button>${QUALITIES.map(([k, l]) => `<button data-act="player-qset" data-q="${k}" class="pq-radio ${P.q === k ? 'on' : ''}"><i></i>${l}</button>`).join('')}</div>`
+    : panel === 'adv'
+      ? `<div class="pq-menu pq-sub"><button class="pq-back" data-act="pq-go" data-p="main">${icon('chevL')}<b>Avançado</b></button>${tog('pq-stats', 'Estatísticas de vídeo', !!UI.vstats)}${tog('pq-lowlat', 'Baixa latência', P.lowLat !== false)}</div>`
+      : `<div class="pq-menu">${row('pq-go', 'Qualidade', qLabel, 'data-p="q"')}${row('pq-go', 'Avançado', null, 'data-p="adv"')}<button data-act="pq-report"><span>Comunicar problema de reprodução</span></button></div>`;
+  return `<div class="wp-ctrl">
+    <button class="wp-ic" data-act="player-pause" aria-label="Pausa (espaço)">${icon('pause')}</button>
+    <div class="pv-vol"><button class="wp-ic ${muted ? 'muted' : ''}" data-act="player-vol" aria-label="${muted ? 'Ligar som (m)' : 'Silenciar (m)'}">${icon(muted ? 'volMute' : 'vol')}</button><input type="range" class="pv-range" data-pvol min="0" max="1" step="0.05" value="${muted ? 0 : P.vol}" aria-label="Volume" style="--v:${(muted ? 0 : P.vol) * 100}%"></div>
+    <span class="wp-ctrl-live"><i></i>EM DIRETO</span><span class="spacer"></span>
+    <button class="wp-ic" data-act="w-clip" data-id="${accId}" aria-label="Clipe (alt+x)">${icon('clip')}</button>
+    <div class="tn-drop-wrap"><button class="wp-ic ${UI.qOpen ? 'on' : ''}" data-act="player-q" aria-label="Definições" aria-expanded="${!!UI.qOpen}">${icon('gear')}</button>${menu}</div>
+    <button class="wp-ic" data-act="w-full" aria-label="${UI.watchFull ? 'Sair do modo teatro (t)' : 'Modo teatro (t)'}">${icon('theaterIc')}</button>
+    <button class="wp-ic" data-act="player-fs" aria-label="${document.fullscreenElement ? 'Sair do ecrã inteiro (f)' : 'Ecrã inteiro (f)'}">${icon('expand')}</button>
+  </div>`;
+}
+
+/* estatísticas de vídeo (fictícias), como o painel avançado de um leitor real */
+let vstatsT = null;
+function vstatsPaint() {
+  const v = $('.wp-video'); if (!v) return;
+  let box = v.querySelector('.vstats');
+  if (!UI.vstats) { if (box) box.remove(); return; }
+  if (!box) { box = document.createElement('div'); box.className = 'vstats'; v.appendChild(box); }
+  const P = playerPrefs();
+  const q = P.q === 'auto' ? '1080' : P.q;
+  const res = { 1080: '1920x1080', 720: '1280x720', 480: '852x480', 360: '640x360', 160: '284x160' }[q];
+  const kbps = { 1080: 6000, 720: 3500, 480: 1500, 360: 700, 160: 230 }[q];
+  const low = P.lowLat !== false;
+  const lat = (low ? 1.1 + Math.random() * .7 : 4.2 + Math.random() * 1.4).toFixed(2);
+  const rows = [['Resolução de vídeo', res], ['Resolução de apresentação', `${v.clientWidth}x${v.clientHeight}`], ['FPS', q === '480' || q === '360' || q === '160' ? '30' : '60'], ['Velocidade de transferência', `${dots(Math.round(kbps * (.9 + Math.random() * .2)))} Kbps`], ['Latência até ao emissor', `${lat} s`], ['Tamanho do buffer', `${(low ? 1.4 + Math.random() * .5 : 4 + Math.random()).toFixed(2)} s`], ['Fotogramas perdidos', String(Math.floor(Math.random() * 3))], ['Modo de latência', low ? 'Baixa latência' : 'Normal']];
+  box.innerHTML = `<b>Estatísticas de vídeo <small>(simuladas)</small></b>${rows.map(([k, val]) => `<span><i>${k}</i>${val}</span>`).join('')}<button data-act="pq-stats" aria-label="Fechar estatísticas">${icon('close')}</button>`;
+}
+
+/* ---------- Barra do canal: partilhar e mais opções ---------- */
+function moreMenuHTML(a) {
+  return `<div class="tw-pop wp-more-pop" role="menu">
+    <a role="menuitem" href="#conta-${a.id}">${icon('user')} Ver perfil</a>
+    <button role="menuitem" data-act="wp-share" data-id="${a.id}">${icon('share')} Partilhar</button>
+    <button role="menuitem" data-act="chat-collapse">${icon('collapseR')} ${UI.chatCollapsed ? 'Mostrar chat' : 'Esconder chat'}</button>
+    <button role="menuitem" data-act="wp-report">${icon('flag')} Denunciar transmissão</button>
+  </div>`;
+}
+function closeTwPops() { $$('.tw-pop').forEach(p => p.remove()); }
+
+const TW5_ACT = {
+  'pq-go': b => { UI.qPanel = b.dataset.p; paintPlayerCtrl(); },
+  'pq-stats': () => { UI.vstats = !UI.vstats; clearInterval(vstatsT); if (UI.vstats) vstatsT = setInterval(vstatsPaint, 1000); vstatsPaint(); if ($('.pq-menu')) paintPlayerCtrl(); },
+  'pq-lowlat': () => { const P = playerPrefs(); P.lowLat = P.lowLat === false; save(); paintPlayerCtrl(); vstatsPaint(); playerOverlay('', 600); },
+  'pq-report': () => { UI.qOpen = false; UI.qPanel = 'main'; paintPlayerCtrl(); toast('✅', 'Obrigado! O relatório de reprodução foi enviado (simulação).'); },
+  'wp-share': b => {
+    closeTwPops();
+    const url = location.href.split('#')[0] + chanHash(b.dataset.id);
+    const done = () => toast('🔗', 'Link copiado para a área de transferência');
+    try { navigator.clipboard.writeText(url).then(done, done); } catch (e) { done(); }
+  },
+  'wp-more': b => {
+    const open = $('.wp-more-pop'); closeTwPops(); if (open) return;
+    const a = S.accounts.find(x => x.id === b.dataset.id); if (!a) return;
+    const wrap = document.createElement('div'); wrap.innerHTML = moreMenuHTML(a);
+    const pop = wrap.firstElementChild; document.body.appendChild(pop);
+    const r = b.getBoundingClientRect();
+    pop.style.top = (r.bottom + 6) + 'px'; pop.style.left = Math.max(8, Math.min(innerWidth - pop.offsetWidth - 8, r.right - pop.offsetWidth)) + 'px';
+  },
+  'wp-report': () => { closeTwPops(); toast('🛡️', 'Denúncia registada (simulação). A equipa fictícia vai analisar.'); },
+};
+
+/* ---------- Integração ---------- */
+function tw5Init() {
+  // fechar menus ao clicar fora e voltar ao painel principal das definições
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.tw-pop, [data-act="wp-more"]')) closeTwPops();
+    if (!UI.qOpen) UI.qPanel = 'main';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeTwPops(); if (UI.qOpen) { UI.qOpen = false; UI.qPanel = 'main'; paintPlayerCtrl(); } }
+    if (e.altKey && (e.key === 'x' || e.key === 'X' || e.code === 'KeyX')) { const c = $('.wp-ctrl [data-act="w-clip"]'); if (c) { e.preventDefault(); c.click(); } }
+  });
+  // trilho do volume preenchido até ao valor (como num leitor real)
+  document.addEventListener('input', e => { if (e.target.hasAttribute && e.target.hasAttribute('data-pvol')) e.target.style.setProperty('--v', (+e.target.value * 100) + '%'); });
+  // ao abrir/fechar o ecrã inteiro, o rótulo do botão muda
+  document.addEventListener('fullscreenchange', () => { if ($('.wp-ctrl')) paintPlayerCtrl(); });
+  // estatísticas continuam depois de mudar de página
+  addEventListener('hashchange', () => { closeTwPops(); setTimeout(vstatsPaint, 60); });
 }
 
 /* =====================================================================
@@ -7220,5 +7494,7 @@ ACT['player-qset'] = (b, e) => { closeModalIfOpen(); PRO_ACT['player-qset'](b, e
 proInit();
 Object.assign(ACT, TW4_ACT);
 tw4Init();
+Object.assign(ACT, TW5_ACT);
+tw5Init();
 
 </script>

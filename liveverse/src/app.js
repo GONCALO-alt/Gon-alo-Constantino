@@ -575,3 +575,5 @@ ACT['player-qset'] = (b, e) => { closeModalIfOpen(); PRO_ACT['player-qset'](b, e
 proInit();
 Object.assign(ACT, TW4_ACT);
 tw4Init();
+Object.assign(ACT, TW5_ACT);
+tw5Init();

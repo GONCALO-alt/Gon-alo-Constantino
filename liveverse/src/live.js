@@ -435,7 +435,7 @@ function viewStudio() {
         <div class="lb" data-slb>${leaderboardHTML(L.gifters)}</div>
         <div class="chat-badges" id="chatBadges">${chatBadgesHTML()}</div><div id="chatPinnedBox">${pinnedHTML()}</div>
         <div class="chat-list" id="chatList" data-chatlist="main">${L.chat.map(chatMsgHTML).join('')}</div>
-        <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
+        <button class="more-pill" data-act="chat-bottom" hidden>${icon('pause')} Chat em pausa devido ao scroll</button>
         ${chatInputHTML('chatInput', 'chat', false)}
       </section>
     </aside>

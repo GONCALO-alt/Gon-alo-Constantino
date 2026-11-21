@@ -43,18 +43,20 @@ function saveStreamInfo(f) {
 
 /* ---------- 6. Emotes do canal ---------- */
 UI.emoteDraft = null;
+const allEmotes = () => [...(S.emotes || []), ...(typeof GLOBAL_EMOTES !== 'undefined' ? GLOBAL_EMOTES : [])];
 const emoteRe = () => {
-  const codes = (S.emotes || []).map(e => e.code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const codes = allEmotes().map(e => e.code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   return codes.length ? new RegExp(`(^|\\s)(${codes.join('|')})(?=\\s|$)`, 'g') : null;
 };
 function emotify(escaped) {
   const re = emoteRe(); if (!re) return escaped;
-  const map = Object.fromEntries((S.emotes || []).map(e => [e.code, e.img]));
+  const map = Object.fromEntries(allEmotes().map(e => [e.code, e.img]));
   return escaped.replace(re, (m, sp, code) => `${sp}<img class="emote" src="${map[code]}" alt="${code}" title="${code}">`);
 }
 function stripCodes(s) { const re = emoteRe(); return re ? String(s).replace(re, ' ') : s; }
 function withEmotes(text) {
-  const em = S.emotes || []; if (!em.length || Math.random() > .2) return text;
+  const own = S.emotes || [];
+  const em = own.length && Math.random() < .7 ? own : allEmotes(); if (Math.random() > (own.length ? .2 : .1)) return text;
   const k = Math.random() < .3 ? 3 : 1;
   const codes = Array.from({ length: k }, () => pick(em).code).join(' ');
   return Math.random() < .25 ? codes : `${text} ${codes}`;

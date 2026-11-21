@@ -160,7 +160,7 @@ function viewWatch(id) {
               <button class="btn wp-gift" data-act="w-giftsub" data-id="${a.id}">${icon('gift')} Oferecer subscrição</button>
               <button class="btn ${sub ? '' : 'btn-primary'} wp-sub" data-act="w-sub" data-id="${a.id}">${icon('star')} ${sub ? 'Subscrito' : 'Subscrever'}</button>
             </div>
-            ${ev ? `<div class="wp-stats"><span class="wp-vw">${icon('person')}<b class="num" data-wv>${dots(Math.round(ev.viewers || 0))}</b></span><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span></div>` : ''}
+            ${ev ? `<div class="wp-stats"><span class="wp-vw">${icon('person')}<b class="num" data-wv>${dots(Math.round(ev.viewers || 0))}</b></span><span class="num" data-wup>${upTime(Date.now() - ev.start)}</span><button class="wp-sq" data-act="wp-share" data-id="${a.id}" aria-label="Partilhar">${icon('share')}</button><button class="wp-sq" data-act="wp-more" data-id="${a.id}" aria-label="Mais opções">${icon('more')}</button></div>` : ''}
           </div>
         </div>
         <div class="wp-about"><h3>Sobre ${esc(a.name)}</h3><p><b>${fmt(a.followers)}</b> seguidores ${SIM()}</p><p>${richText(a.bio || '')}</p><p class="tiny muted" style="margin:0">Subscrições, presentes e espetadores são fictícios: nada é pago.</p></div>
@@ -172,7 +172,7 @@ function viewWatch(id) {
         ${ev ? `<div class="lb" data-wlb>${leaderboardHTML(WATCH.key === a.id ? WATCH.gifters : {})}</div>
         <div class="drop" data-wdrop>${dropHTML(a, ev)}</div>` : ''}
         <div class="chat-list" id="wpChat" data-wchat></div>
-        <button class="more-pill" data-act="chat-bottom" hidden>Mais mensagens abaixo</button>
+        <button class="more-pill" data-act="chat-bottom" hidden>${icon('pause')} Chat em pausa devido ao scroll</button>
         ${chatInputHTML('wpInput', 'watch-send', true, a.id)}
       </section>
     </aside>
@@ -194,11 +194,12 @@ function chatInputHTML(id, form, gift, accId) {
     <div class="tw-in-wrap"><input class="input" id="${id}" name="t" maxlength="500" placeholder="Enviar uma mensagem" autocomplete="off"><button type="button" class="tw-in-emo" data-act="emote-pick" data-for="${id}" aria-label="Emotes">${icon('smile')}</button></div>
     <button class="btn btn-primary btn-sm tw-send-m">Chat</button>
     <div class="tw-in-row">${accId ? pointsHTML(accId) : ''}<span class="spacer"></span><button type="button" class="tn-ic" data-act="chat-settings" aria-label="Definições do chat">${icon('gear')}</button><button class="btn btn-primary btn-sm">Chat</button></div>
-    <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
+    <div class="emote-pop" data-emotes-for="${id}" hidden>${(S.emotes || []).length ? `<h5>Emotes do canal</h5>` : ''}${(S.emotes || []).map(e => `<button type="button" data-act="emote-insert" data-e="${esc(e.code)}" data-for="${id}" title="${esc(e.code)}"><img src="${e.img}" alt="${esc(e.code)}"></button>`).join('')}<h5>Emotes do LiveVerse</h5>${GLOBAL_EMOTES.map(e => `<button type="button" data-act="emote-insert" data-e="${e.code}" data-for="${id}" title="${e.code}"><img src="${e.img}" alt="${e.code}"></button>`).join('')}<h5>Emoji</h5>${['😂', '🔥', '💜', '😭', '😱', '🏆', '👀', '💀', '🎉', '👏', 'GG', 'W', 'L', '🐐', '🫡', '🤯', '💎', '⚡', '🍿', '❤️'].map(e => `<button type="button" data-act="emote-insert" data-e="${e}" data-for="${id}">${e}</button>`).join('')}</div>
   </form>`;
 }
 function wMsg(m) {
   m.id = m.id || uid(); m.t = m.t || Date.now(); m.color = m.color || regColor(m.user) || pick(NAME_COLORS);
+  if (!m.id0 && !m.me && !m.sys && !m.plain && !m.gift && m.user && m.user !== 'LiveBot' && typeof m.text === 'string') { m.id0 = 1; m.text = withEmotes(m.text); }
   WATCH.chat.push(m); if (WATCH.chat.length > 150) WATCH.chat.shift();
   const list = $('#wpChat'); if (list) appendChat(list, chatMsgHTML(m));
   const ov = $('[data-wchat-overlay]'); if (ov && !m.plain) { ov.insertAdjacentHTML('beforeend', overlayMsgHTML(m)); while (ov.children.length > 7) ov.firstElementChild.remove(); }

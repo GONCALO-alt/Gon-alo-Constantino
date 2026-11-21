@@ -69,6 +69,10 @@ Rede social de criadores com simulador de lives, com um tema escuro e roxo de pl
 - **Comportamento de plataforma de streaming**: os controlos do player escondem-se sozinhos (e o cursor também) e voltam ao mexer o rato; clique no vídeo pausa e duplo clique põe em ecrã inteiro; o modo teatro (tecla `t`) ocupa o ecrã todo com o chat à direita e o nome do canal por cima do vídeo; o chat pode ser recolhido e expandido; regras do chat aparecem antes da primeira mensagem em cada canal; o coração de «A seguir» parte-se ao passar o rato para deixar de seguir e o sino de notificações só aparece quando segues.
 - **Navegação**: barra lateral com «Mostrar mais» e cartão com o título da live ao passar o rato, «Mostrar mais» nas lives da página inicial, sugestões na pesquisa do topo (canais, categorias e «Ver todos os resultados») e página de categoria com seguir categoria, separadores Canais em direto/Clipes e ordenação por espetadores ou mais recentes.
 
+- **Página do canal com as proporções de uma plataforma real**: barra superior de 50 px, barra lateral de 240 px, vídeo 16:9 encostado e chat de 340 px de altura total, sem margens nem cantos arredondados; a coluna do vídeo tem scroll próprio e o chat fica fixo.
+- **Player completo**: barra inferior com pausa, volume com trilho preenchido, «EM DIRETO», clipe (alt+x), definições, modo teatro e ecrã inteiro; menu de definições com submenus «Qualidade» e «Avançado» (estatísticas de vídeo simuladas e baixa latência) e «Comunicar problema de reprodução».
+- **Barra do canal**: botões de 30 px, contador de espetadores a vermelho, tempo de live, partilhar (copia o link) e menu ⋮ (ver perfil, partilhar, esconder chat, denunciar).
+- **Chat com densidade de plataforma real**: linhas de 20 px, mensagens sem animação, avisos de subscrição com barra roxa, «Chat em pausa devido ao scroll», caixa de escrita cinzenta que fica preta com contorno roxo ao escrever, e emotes próprios do LiveVerse (lvRir, lvHype, lvGG, lvAmor…) em 28 px, usados também pelo chat fictício.
 O estado (perfil, publicações, eventos, lives, clips, notificações) fica guardado no `localStorage` do navegador.
 
 ## Publicar no Cloudflare Pages
